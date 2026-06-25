@@ -1,0 +1,314 @@
+{% load static %}<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ c.seo_title }}</title>
+  <meta name="description" content="{{ c.seo_desc }}">
+  <meta name="theme-color" content="#0a0a12">
+  <link rel="canonical" href="{{ c.wvm_url }}/">
+  <meta property="og:title" content="{{ c.seo_title }}">
+  <meta property="og:description" content="{{ c.seo_desc }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ c.hero_image }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"{{ c.site_name }}","description":"{{ c.seo_desc }}","url":"{{ c.wvm_url }}","areaServed":"DE","email":"{{ c.email }}"}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<!-- ── Navigation (Glass) ─────────────────────────────────────────────────── -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="{{ c.site_name }} Startseite">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      {{ c.site_name }}
+    </a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#prozess">Arbeitsweise</a>
+      <a href="#preise">Preise</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn btn-sm" href="#kontakt">{{ c.cta_text }}</a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ── HERO — scrollgesteuerte Canvas-Animation + cinematisches Backdrop ──── -->
+  <section class="hero" id="top">
+    <div class="hero-bg" {% if c.hero_image %}style="--hero-img:url('{{ c.hero_image }}')"{% endif %} aria-hidden="true"></div>
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <div class="wrap hero-in">
+      <div class="hero-copy" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>{{ c.branche }} · Webseiten, KI &amp; SEO</span>
+        <h1>{{ c.headline }}</h1>
+        <p class="lead">{{ c.subline }}</p>
+        <div class="hero-cta">
+          <a class="btn btn-lg" href="#kontakt">{{ c.cta_text }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-ghost btn-lg" href="#leistungen">Leistungen ansehen</a>
+        </div>
+        <p class="hero-note">{{ c.cta_sub }}</p>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ── Vertrauens-Leiste / Kennzahlen ────────────────────────────────────── -->
+  <section class="stats-band">
+    <div class="wrap stats">
+      <div class="stat" data-reveal><strong data-count="100">0</strong><span>Lighthouse-Performance angestrebt</span></div>
+      <div class="stat" data-reveal><strong data-count="24">0</strong><span>Stunden bis zur ersten Antwort</span></div>
+      <div class="stat" data-reveal><strong data-count="7">0</strong><span>Leistungen aus einer Hand</span></div>
+      <div class="stat" data-reveal><strong data-count="99" data-suffix="%">0</strong><span>Uptime-Ziel beim Hosting</span></div>
+    </div>
+  </section>
+
+  <!-- ── LEISTUNGEN (Bento-Grid) ───────────────────────────────────────────── -->
+  <section class="section" id="leistungen">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="kicker">Leistungen</span>
+        <h2 class="section-t">Alles für Ihren Online-Auftritt — aus einer Hand.</h2>
+        <p class="section-lead">Von der ersten Idee bis zum laufenden Betrieb: Design, Technik, Hosting und Sichtbarkeit greifen bei uns nahtlos ineinander.</p>
+      </header>
+
+      <div class="bento">
+        <article class="b-card b-lg" data-reveal>
+          <div class="b-ic">{% include 'icons.html' with name='web' %}</div>
+          <h3>Individuelle Webseiten</h3>
+          <p>Maßgeschneiderte Seiten, die zu Ihrer Marke passen — kein Baukasten, kein Template-Look. Schnell, barrierearm und auf Conversion gebaut.</p>
+          <ul class="b-tags"><li>Design</li><li>Entwicklung</li><li>Responsive</li></ul>
+        </article>
+        <article class="b-card" data-reveal>
+          <div class="b-ic">{% include 'icons.html' with name='ai' %}</div>
+          <h3>KI-Automatisierungen</h3>
+          <p>Anfragen, Termine und Routine — automatisiert. Wir verbinden Ihre Tools zu Abläufen, die Zeit sparen.</p>
+        </article>
+        <article class="b-card" data-reveal>
+          <div class="b-ic">{% include 'icons.html' with name='seo' %}</div>
+          <h3>SEO &amp; Sichtbarkeit</h3>
+          <p>Technisches SEO, saubere Struktur und Inhalte, damit Kunden Sie bei Google finden — nicht den Wettbewerb.</p>
+        </article>
+        <article class="b-card" data-reveal>
+          <div class="b-ic">{% include 'icons.html' with name='host' %}</div>
+          <h3>Hosting</h3>
+          <p>Schnelles, sicheres Hosting mit HTTPS, Backups und Monitoring. Ohne Technikstress für Sie.</p>
+        </article>
+        <article class="b-card" data-reveal>
+          <div class="b-ic">{% include 'icons.html' with name='domain' %}</div>
+          <h3>Domains</h3>
+          <p>Wunschdomain finden, registrieren und sauber einrichten — inklusive E-Mail und Zertifikaten.</p>
+        </article>
+        <article class="b-card b-wide" data-reveal>
+          <div class="b-ic">{% include 'icons.html' with name='care' %}</div>
+          <h3>Wartung &amp; Performance</h3>
+          <p>Updates, Sicherheit und Geschwindigkeit im laufenden Betrieb. Wir halten Ihre Seite aktuell, schnell und erreichbar — Sie kümmern sich um Ihr Geschäft.</p>
+          <ul class="b-tags"><li>Updates</li><li>Sicherheit</li><li>Core Web Vitals</li><li>Monitoring</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROZESS ───────────────────────────────────────────────────────────── -->
+  <section class="section section-alt" id="prozess">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="kicker">Arbeitsweise</span>
+        <h2 class="section-t">In vier klaren Schritten online.</h2>
+        <p class="section-lead">Transparent, planbar und ohne Fachchinesisch — Sie wissen immer, woran wir arbeiten.</p>
+      </header>
+      <ol class="steps">
+        <li class="step" data-reveal><span class="step-n">01</span><h3>Idee &amp; Beratung</h3><p>Wir hören zu, verstehen Ihr Ziel und schlagen den passenden Weg vor — ehrlich und unverbindlich.</p></li>
+        <li class="step" data-reveal><span class="step-n">02</span><h3>Design</h3><p>Ein Entwurf auf Premium-Niveau, abgestimmt auf Ihre Marke. Sie sehen das Ergebnis, bevor wir bauen.</p></li>
+        <li class="step" data-reveal><span class="step-n">03</span><h3>Umsetzung</h3><p>Sauberer, schneller Code. Hosting, Domain und SEO richten wir gleich richtig ein.</p></li>
+        <li class="step" data-reveal><span class="step-n">04</span><h3>Launch &amp; Betreuung</h3><p>Wir gehen live, messen die Ergebnisse und bleiben für Wartung und Wachstum an Ihrer Seite.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── KI-HIGHLIGHT (Glass-Showcase) ─────────────────────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <div class="showcase" data-reveal>
+        <div class="showcase-glow" aria-hidden="true"></div>
+        <div class="showcase-copy">
+          <span class="kicker">KI-Automatisierung</span>
+          <h2 class="section-t">Lassen Sie Routine von Maschinen erledigen.</h2>
+          <p class="section-lead">Vom automatischen Beantworten von Anfragen über Terminbuchung bis zur Lead-Qualifizierung: Wir bauen Abläufe, die rund um die Uhr für Sie arbeiten — verbunden mit den Tools, die Sie schon nutzen.</p>
+          <ul class="check-list">
+            <li>Automatische Anfrage- &amp; E-Mail-Bearbeitung</li>
+            <li>Termin- und Angebotsabläufe ohne manuelles Tippen</li>
+            <li>Anbindung an CRM, Kalender und WhatsApp</li>
+          </ul>
+          <a class="btn" href="#kontakt">Automatisierung anfragen</a>
+        </div>
+        <div class="showcase-visual" aria-hidden="true">
+          <div class="orbit"><span class="core"></span><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PREISE ────────────────────────────────────────────────────────────── -->
+  <section class="section section-alt" id="preise">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="kicker">Pakete</span>
+        <h2 class="section-t">Klare Pakete, faire Preise.</h2>
+        <p class="section-lead">Transparente Startpreise — das passende Angebot stimmen wir im Gespräch auf Ihr Projekt ab.</p>
+      </header>
+      <div class="price-grid">
+        <article class="price" data-reveal>
+          <h3>Starter</h3>
+          <p class="price-for">Für den professionellen Auftritt.</p>
+          <div class="price-tag"><span class="from">ab</span>790<span class="cur">€</span></div>
+          <ul class="price-list">
+            <li>One-Page-Webseite</li>
+            <li>Responsiv &amp; schnell</li>
+            <li>Kontaktformular</li>
+            <li>Basis-SEO &amp; HTTPS</li>
+          </ul>
+          <a class="btn btn-ghost" href="#kontakt">Anfragen</a>
+        </article>
+        <article class="price price-featured" data-reveal>
+          <span class="badge">Beliebt</span>
+          <h3>Business</h3>
+          <p class="price-for">Für Unternehmen mit Anspruch.</p>
+          <div class="price-tag"><span class="from">ab</span>1.890<span class="cur">€</span></div>
+          <ul class="price-list">
+            <li>Mehrseitige Webseite</li>
+            <li>Individuelles Premium-Design</li>
+            <li>SEO-Grundoptimierung</li>
+            <li>Hosting &amp; Domain im 1. Jahr</li>
+            <li>Persönlicher Ansprechpartner</li>
+          </ul>
+          <a class="btn" href="#kontakt">Projekt starten</a>
+        </article>
+        <article class="price" data-reveal>
+          <h3>Wachstum</h3>
+          <p class="price-for">Webseite + KI + laufende Betreuung.</p>
+          <div class="price-tag"><span class="from">ab</span>89<span class="cur">€/Mt.</span></div>
+          <ul class="price-list">
+            <li>Alles aus Business</li>
+            <li>KI-Automatisierungen</li>
+            <li>Wartung &amp; Updates</li>
+            <li>Performance-Monitoring</li>
+            <li>Laufende SEO-Betreuung</li>
+          </ul>
+          <a class="btn btn-ghost" href="#kontakt">Beraten lassen</a>
+        </article>
+      </div>
+      <p class="price-foot" data-reveal>Alle Preise netto zzgl. USt. Hosting &amp; Domain optional als Monatspaket.</p>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────────────────── -->
+  <section class="section" id="faq">
+    <div class="wrap faq-wrap">
+      <header class="sec-head" data-reveal>
+        <span class="kicker">Häufige Fragen</span>
+        <h2 class="section-t">Gut zu wissen.</h2>
+      </header>
+      <div class="faq" data-reveal>
+        <details class="faq-item"><summary>Wie lange dauert eine neue Webseite?</summary><div class="faq-a">Eine One-Page-Seite ist oft in 1–2 Wochen live, umfangreichere Projekte in 3–6 Wochen — abhängig von Umfang und Zulieferung Ihrer Inhalte.</div></details>
+        <details class="faq-item"><summary>Brauche ich technisches Wissen?</summary><div class="faq-a">Nein. Wir übernehmen Design, Technik, Hosting, Domain und SEO komplett. Sie bekommen eine fertige, betreute Lösung.</div></details>
+        <details class="faq-item"><summary>Was kostet das Hosting?</summary><div class="faq-a">Hosting gibt es als faires Monatspaket inklusive HTTPS, Backups und Monitoring. Den genauen Preis nennen wir passend zu Ihrem Projekt.</div></details>
+        <details class="faq-item"><summary>Was bringt mir KI konkret?</summary><div class="faq-a">KI nimmt Ihnen wiederkehrende Arbeit ab — etwa das Beantworten von Standardanfragen, Terminvereinbarungen oder das Sortieren von Leads. Das spart Zeit und keine Anfrage geht verloren.</div></details>
+        <details class="faq-item"><summary>Für wen arbeiten Sie?</summary><div class="faq-a">Für Unternehmen, Handwerker, Restaurants, Dienstleister und Startups — überall dort, wo ein hochwertiger, verlässlicher Online-Auftritt zählt.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── KONTAKT ───────────────────────────────────────────────────────────── -->
+  <section class="section section-alt" id="kontakt">
+    <div class="wrap contact">
+      <div class="contact-info" data-reveal>
+        <span class="kicker">Kontakt</span>
+        <h2 class="section-t">Erzählen Sie uns von Ihrem Projekt.</h2>
+        <p class="section-lead">Unverbindlich und kostenlos. Wir melden uns innerhalb von 24 Stunden mit einer ersten Einschätzung zurück.</p>
+        <ul class="contact-list">
+          {% if c.email %}<li><span>E-Mail</span><a href="mailto:{{ c.email }}">{{ c.email }}</a></li>{% endif %}
+          {% if c.telefon %}<li><span>Telefon</span><a href="tel:{{ c.telefon }}">{{ c.telefon }}</a></li>{% endif %}
+          {% if c.whatsapp %}<li><span>WhatsApp</span><a href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">Nachricht senden</a></li>{% endif %}
+          {% if c.adresse %}<li><span>Adresse</span><span>{{ c.adresse }}</span></li>{% endif %}
+          <li><span>Erreichbarkeit</span><span>Mo–Fr, Antwort in 24 h</span></li>
+        </ul>
+      </div>
+
+      {% if sent %}
+      <div class="contact-form form-sent" data-reveal>
+        <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Vielen Dank!</h3>
+        <p>Ihre Anfrage ist bei uns eingegangen. Wir melden uns kurzfristig bei Ihnen.</p>
+      </div>
+      {% else %}
+      <form class="contact-form" method="post" action="#kontakt" data-reveal>
+        {% csrf_token %}
+        <div class="f-row">
+          <label>Name<input type="text" name="name" required autocomplete="name" placeholder="Ihr Name"></label>
+          <label>E-Mail<input type="email" name="email" required autocomplete="email" placeholder="name@firma.de"></label>
+        </div>
+        <div class="f-row">
+          <label>Telefon <span class="opt">(optional)</span><input type="tel" name="telefon" autocomplete="tel" placeholder="+49 …"></label>
+          <label>Budget <span class="opt">(optional)</span>
+            <select name="budget">
+              <option value="">Bitte wählen</option>
+              <option>unter 1.000 €</option>
+              <option>1.000 – 3.000 €</option>
+              <option>3.000 – 7.000 €</option>
+              <option>über 7.000 €</option>
+            </select>
+          </label>
+        </div>
+        <label>Ihr Projekt<textarea name="nachricht" rows="4" required placeholder="Worum geht es? Ein paar Stichworte genügen."></textarea></label>
+        <label class="check"><input type="checkbox" name="einwilligung" required> Ich habe die <a href="#datenschutz">Datenschutzerklärung</a> gelesen und stimme zu.</label>
+        <button class="btn btn-lg" type="submit">Anfrage absenden</button>
+        <p class="form-fine">Keine Verpflichtung. Ihre Daten werden vertraulich behandelt.</p>
+      </form>
+      {% endif %}
+    </div>
+  </section>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer class="foot">
+  <div class="wrap foot-top">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><span></span></span>{{ c.site_name }}</a>
+      <p>Digitale Infrastruktur für Unternehmen — Webseiten, Hosting, KI und SEO aus einer Hand.</p>
+    </div>
+    <nav class="foot-nav" aria-label="Footer">
+      <div><h4>Leistungen</h4><a href="#leistungen">Webseiten</a><a href="#leistungen">Hosting &amp; Domains</a><a href="#leistungen">KI-Automatisierung</a><a href="#leistungen">SEO</a></div>
+      <div><h4>Unternehmen</h4><a href="#prozess">Arbeitsweise</a><a href="#preise">Preise</a><a href="#kontakt">Kontakt</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">Shop</a>{% endif %}</div>
+      <div><h4>Rechtliches</h4><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></div>
+    </nav>
+  </div>
+
+  <div class="wrap legal">
+    <details id="impressum"><summary>Impressum</summary><div class="legal-body">{% if c.impressum %}{{ c.impressum|linebreaks }}{% else %}<p><strong>Angaben gemäß § 5 TMG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt (E-Mail/Telefon), ggf. USt-IdNr. und Registereintrag.</p>{% endif %}</div></details>
+    <details id="datenschutz"><summary>Datenschutzerklärung</summary><div class="legal-body">{% if c.datenschutz %}{{ c.datenschutz|linebreaks }}{% else %}<p><strong>Platzhalter.</strong> Vor Veröffentlichung eine DSGVO-konforme Datenschutzerklärung einsetzen (Verantwortlicher, Hosting, Kontaktformular, Cookies/Tracking, Betroffenenrechte).</p>{% endif %}</div></details>
+  </div>
+
+  <div class="wrap foot-bottom">
+    <span>© {{ c.jahr }} {{ c.site_name }}</span>
+    <span class="foot-credit">Gebaut mit Sorgfalt · {{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
+  </div>
+</footer>
+
+<!-- Mobiler Sticky-CTA -->
+<a class="mobile-cta" href="#kontakt">{{ c.cta_text }}</a>
+
+<script src="{% static 'js/main.js' %}" defer></script>
+</body>
+</html>
