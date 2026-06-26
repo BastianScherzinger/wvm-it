@@ -31,13 +31,16 @@
     <a class="brand" href="#top" aria-label="{{ c.site_name }} Startseite">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <nav class="nav-links" aria-label="Hauptnavigation">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#prozess">Arbeitsweise</a>
-      <a href="#preise">Preise</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-    <a class="btn btn-sm btn-magnetic" href="#kontakt">{{ c.cta_text }}</a>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="navMenu">
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#partner">Partner</a>
+        <a href="#preise">Preise</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="btn btn-sm btn-magnetic nav-cta" href="#kontakt">{{ c.cta_text }}</a>
+    </div>
   </div>
 </header>
 
@@ -150,58 +153,75 @@
   <section class="section" id="leistungen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">Weit mehr als Webseiten. Ihre komplette digitale Basis.</h2>
-        <p class="section-lead">Webdesign, eigenes Hosting und Server, Domains und DNS, KI bis hin zu Industrielösungen, dazu SEO und Wartung. Alles aus einer Hand, sauber aufeinander abgestimmt.</p>
+        <h2 class="section-t">Technik und Digitales. Alles aus einer Hand.</h2>
+        <p class="section-lead">Von Gebäudeautomation und Veranstaltungstechnik über EDV und Sicherheit bis zu Webseiten und KI. Mit starken Partnern, sauber aufeinander abgestimmt.</p>
       </header>
 
       <div class="bento">
         <article class="b-card b-wide b-feature spot" data-reveal data-spot>
+          <div class="b-ic">{% include 'icons.html' with name='home' %}</div>
+          <h3>Gebäude- &amp; Smarthome-Automation</h3>
+          <p>Loxone, KNX und Smarthome aus einer Hand. Licht, Heizung, Beschattung und Sicherheit intelligent vernetzt, sauber programmiert und zuverlässig im Betrieb.</p>
+          <ul class="b-tags"><li>Loxone</li><li>KNX</li><li>Smarthome</li><li>All-in-One</li></ul>
+        </article>
+        <article class="b-card spot" data-reveal data-spot>
+          <div class="b-ic">{% include 'icons.html' with name='conf' %}</div>
+          <h3>Konferenzraum-Technik</h3>
+          <p>Konferenz- und Meetingräume komplett ausgestattet. Displays, Kameras, Mikrofone und Steuerung, einsatzbereit und einfach zu bedienen.</p>
+        </article>
+        <article class="b-card spot" data-reveal data-spot>
+          <div class="b-ic">{% include 'icons.html' with name='av' %}</div>
+          <h3>Video-, Ton- &amp; Bühnentechnik</h3>
+          <p>Professionelle Veranstaltungs- und Bühnentechnik auf höchstem Niveau. Video, Ton und Licht für Live-Events, geplant und betreut.</p>
+        </article>
+        <article class="b-card spot" data-reveal data-spot>
+          <div class="b-ic">{% include 'icons.html' with name='host' %}</div>
+          <h3>EDV &amp; IT-Solutions</h3>
+          <p>Hardware, Server, Arbeitsplätze und Software. Wir planen, installieren und betreuen Ihre komplette IT, damit alles läuft.</p>
+        </article>
+        <article class="b-card b-tint spot" data-reveal data-spot>
+          <div class="b-ic">{% include 'icons.html' with name='net' %}</div>
+          <h3>Netzwerk &amp; Sicherheit</h3>
+          <p>Stabile Verbindungen, sicheres Netzwerk und Zutritts- sowie Videoüberwachung. Damit Sie ungestört und geschützt arbeiten.</p>
+        </article>
+        <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='web' %}</div>
-          <h3>Individuelle Webseiten &amp; Webapps</h3>
-          <p>Maßgeschneidert von der ersten Skizze bis zum Launch. Schnell, barrierearm und auf Conversion gebaut. Kein Baukasten, kein Template-Look.</p>
-          <ul class="b-tags"><li>Design</li><li>Entwicklung</li><li>Onlineshops</li><li>Responsive</li></ul>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='server' %}</div>
-          <h3>Webhosting &amp; Server</h3>
-          <p>Schnelles, sicheres Hosting auf eigener Infrastruktur. Server-Plätze mit 99,9 % Uptime-Ziel, HTTPS, Backups und Monitoring.</p>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='dns' %}</div>
-          <h3>Domains &amp; DNS</h3>
-          <p>Wunschdomain finden, registrieren und DNS sauber verwalten. Inklusive E-Mail-Postfächern und SSL-Zertifikaten.</p>
+          <h3>Webseiten, Hosting &amp; Domains</h3>
+          <p>Individuelle Webseiten mit messbaren Ergebnissen, dazu Hosting, Server, Domains und SEO. Schnell, sicher und sichtbar.</p>
         </article>
         <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='ai' %}</div>
           <h3>KI-Automatisierung</h3>
-          <p>Custom-KI für Anfragen, Termine und Abläufe. Verbunden mit den Tools, die Sie schon nutzen, rund um die Uhr aktiv.</p>
-        </article>
-        <article class="b-card b-tint spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='industrie' %}</div>
-          <h3>Industrielle KI &amp; Software</h3>
-          <p>Maßgeschneiderte KI- und Softwarelösungen für Industrie und Betrieb. Von Datenanalyse über Schnittstellen bis zur Prozesssteuerung.</p>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='seo' %}</div>
-          <h3>SEO &amp; Sichtbarkeit</h3>
-          <p>Technisches SEO und starke Inhalte, damit Kunden Sie bei Google finden, nicht den Wettbewerb.</p>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='gauge' %}</div>
-          <h3>Wartung &amp; Performance</h3>
-          <p>Updates, Sicherheit und Tempo im laufenden Betrieb. Top-Werte bei den Core Web Vitals, ohne Aufwand für Sie.</p>
+          <p>Custom-KI für Anfragen, Termine und Abläufe, auch industriell. Verbunden mit Ihren Systemen, rund um die Uhr aktiv.</p>
         </article>
         <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='consulting' %}</div>
-          <h3>IT-Service &amp; Beratung</h3>
-          <p>Ein fester Ansprechpartner für alles Digitale. Ehrliche Beratung statt Agentur-Bla, von der Idee bis zum Betrieb.</p>
+          <h3>Beratung aus einer Hand</h3>
+          <p>Ein fester Ansprechpartner für Technik und Digitales. Ehrliche Beratung, von der Planung bis zum laufenden Betrieb.</p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- ── PARTNER / ALLES AUS EINER HAND ────────────────────────────────────── -->
+  <section class="section section-alt" id="partner">
+    <div class="wrap">
+      <header class="sec-head sec-head-center" data-reveal>
+        <h2 class="section-t">Alles aus einer Hand. Mit starken Partnern.</h2>
+        {% if c.partner_text %}<p class="section-lead">{{ c.partner_text }}</p>{% endif %}
+      </header>
+      <div class="partner-row" data-reveal>
+        <span class="partner-chip">{% include 'icons.html' with name='home' %}Loxone</span>
+        <span class="partner-chip">{% include 'icons.html' with name='net' %}KNX</span>
+        <span class="partner-chip">{% include 'icons.html' with name='av' %}AV &amp; Bühne</span>
+        <span class="partner-chip">{% include 'icons.html' with name='shield' %}Sicherheit</span>
+        <span class="partner-chip">{% include 'icons.html' with name='consulting' %}Beratung</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ── PROZESS (vertikale Timeline) ──────────────────────────────────────── -->
-  <section class="section section-alt" id="prozess">
+  <section class="section" id="prozess">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <h2 class="section-t">In vier klaren Schritten online.</h2>
@@ -242,21 +262,21 @@
   <section class="section" id="referenzen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">So sehen unsere Webseiten aus.</h2>
-        <p class="section-lead">Ein Eindruck davon, was wir für Handwerk, Gastronomie und Startups bauen. Jede Seite individuell, schnell und auf Anfragen ausgelegt.</p>
+        <h2 class="section-t">Ein Eindruck unserer Arbeit.</h2>
+        <p class="section-lead">Von der Gebäudeautomation über Konferenztechnik bis zur Bühne. Geplant, installiert und betreut, auf höchstem Niveau.</p>
       </header>
       <div class="refs">
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_handwerk.jpg' %}" alt="Beispiel-Webseite für einen Handwerks- und Technikbetrieb" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>Handwerk &amp; Technik</strong><span>Leistungen, Vertrauen und Kontakt auf einen Blick.</span></figcaption>
+          <div class="ref-img"><img src="{% static 'img/ref_smarthome.jpg' %}" alt="Smarthome und Gebäudeautomation mit Loxone und KNX" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>Smarthome &amp; Automation</strong><span>Loxone und KNX, intelligent vernetzt.</span></figcaption>
         </figure>
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_gastro.jpg' %}" alt="Beispiel-Webseite für ein Restaurant mit Reservierung" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>Gastronomie</strong><span>Appetit machen und Reservierungen direkt entgegennehmen.</span></figcaption>
+          <div class="ref-img"><img src="{% static 'img/ref_konferenz.jpg' %}" alt="Konferenzraum mit professioneller Medien- und AV-Technik" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>Konferenz- &amp; Medientechnik</strong><span>Displays, Ton und Steuerung, einsatzbereit.</span></figcaption>
         </figure>
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_startup.jpg' %}" alt="Beispiel-Webseite für ein Startup oder SaaS-Produkt" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>Startup &amp; SaaS</strong><span>Klares Produkt, starke Wirkung, mehr Anmeldungen.</span></figcaption>
+          <div class="ref-img"><img src="{% static 'img/ref_buehne.jpg' %}" alt="Professionelle Video-, Ton- und Bühnentechnik für Live-Events" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>Video-, Ton- &amp; Bühnentechnik</strong><span>Live-Events auf höchstem Niveau.</span></figcaption>
         </figure>
       </div>
     </div>
@@ -306,7 +326,7 @@
       </div>
       <div class="founder-body">
         <h2 class="section-t">Ein fester Ansprechpartner. Kein Agentur-Bla.</h2>
-        <p class="section-lead">Hinter {{ c.site_name }} steht {{ c.inhaber_name }}. Aus Leidenschaft für saubere Technik baue ich Webseiten, Hosting, KI-Automatisierung und SEO für Unternehmen, die online wirklich gefunden werden wollen. Persönlich, ehrlich und direkt erreichbar.</p>
+        <p class="section-lead">Hinter {{ c.site_name }} steht {{ c.inhaber_name }}. Aus Leidenschaft für saubere Technik bringe ich Gebäudeautomation, Veranstaltungstechnik, EDV und digitale Auftritte zusammen, alles aus einer Hand und mit starken Partnern. Persönlich, ehrlich und direkt erreichbar.</p>
         <ul class="founder-points">
           <li>Alles aus einer Hand, von der Idee bis zum laufenden Betrieb.</li>
           <li>Klare Kommunikation ohne Fachchinesisch.</li>
@@ -328,16 +348,16 @@
       </header>
       <div class="quotes">
         <figure class="quote spot" data-reveal data-spot>
-          <blockquote>„Neue Seite in zwei Wochen, seitdem deutlich mehr Anfragen über das Formular. Alles ohne Aufwand für uns."</blockquote>
-          <figcaption><span class="q-av" aria-hidden="true">MK</span><span><strong>Markus Keller</strong>Inhaber, Elektro Keller</span></figcaption>
+          <blockquote>„Unser ganzes Haus läuft jetzt über eine App. Loxone sauber installiert und verständlich erklärt."</blockquote>
+          <figcaption><span class="q-av" aria-hidden="true">MB</span><span><strong>Michael Berger</strong>Bauherr, Privathaus</span></figcaption>
         </figure>
         <figure class="quote spot" data-reveal data-spot>
-          <blockquote>„Die Reservierungen kommen jetzt automatisch rein. Endlich eine Seite, auf die das Restaurant stolz ist."</blockquote>
-          <figcaption><span class="q-av" aria-hidden="true">LB</span><span><strong>Lena Brandt</strong>Trattoria Da Vinci</span></figcaption>
+          <blockquote>„Der neue Konferenzraum funktioniert auf Knopfdruck. Professionell geplant und zuverlässig betreut."</blockquote>
+          <figcaption><span class="q-av" aria-hidden="true">SH</span><span><strong>Sandra Huber</strong>Büroleitung, Steuerkanzlei</span></figcaption>
         </figure>
         <figure class="quote spot" data-reveal data-spot>
-          <blockquote>„Schnell, ehrlich, technisch top. Hosting und SEO laufen einfach, ich muss mich um nichts kümmern."</blockquote>
-          <figcaption><span class="q-av" aria-hidden="true">TR</span><span><strong>Tobias Renz</strong>Gründer, Renz Consulting</span></figcaption>
+          <blockquote>„Schnell, ehrlich, technisch top. Von der IT bis zur Veranstaltungstechnik stimmt einfach alles."</blockquote>
+          <figcaption><span class="q-av" aria-hidden="true">TR</span><span><strong>Tobias Renz</strong>Inhaber, Eventagentur</span></figcaption>
         </figure>
       </div>
     </div>
@@ -399,11 +419,11 @@
   <div class="wrap foot-top">
     <div class="foot-brand">
       <a class="brand" href="#top">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
-      <p>Digitale Infrastruktur für Unternehmen. Webseiten, Hosting, Server, KI bis zur Industrielösung und SEO, alles aus einer Hand.</p>
+      <p>Technik und Digitales aus einer Hand. Smarthome, Konferenz- und Veranstaltungstechnik, EDV, Sicherheit, Webseiten und KI.</p>
     </div>
     <nav class="foot-nav" aria-label="Footer">
-      <div><h4>Leistungen</h4><a href="#leistungen">Webseiten &amp; Webapps</a><a href="#leistungen">Hosting &amp; Server</a><a href="#leistungen">Domains &amp; DNS</a><a href="#leistungen">KI &amp; Industrie</a><a href="#leistungen">SEO</a></div>
-      <div><h4>Unternehmen</h4><a href="#prozess">Arbeitsweise</a><a href="#preise">Preise</a><a href="#stimmen">Stimmen</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">Shop</a>{% endif %}</div>
+      <div><h4>Leistungen</h4><a href="#leistungen">Smarthome &amp; KNX</a><a href="#leistungen">Konferenz &amp; AV-Technik</a><a href="#leistungen">EDV &amp; Sicherheit</a><a href="#leistungen">Webseiten &amp; KI</a></div>
+      <div><h4>Unternehmen</h4><a href="#partner">Partner</a><a href="#preise">Preise</a><a href="#stimmen">Stimmen</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">Shop</a>{% endif %}</div>
       <div><h4>Rechtliches</h4><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></div>
     </nav>
   </div>

@@ -175,6 +175,17 @@
     const onScrollNav = () => nav.classList.toggle("scrolled", window.scrollY > 12);
     window.addEventListener("scroll", onScrollNav, { passive: true });
     onScrollNav();
+    // Mobile-Menü (Burger) öffnen/schließen
+    const burger = document.getElementById("navBurger");
+    if (burger) {
+      const close = function () { nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); };
+      burger.addEventListener("click", function () {
+        const open = nav.classList.toggle("open");
+        burger.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      nav.querySelectorAll(".nav-menu a").forEach(function (a) { a.addEventListener("click", close); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    }
   }
 
   /* ── 4) COUNT-UP-KENNZAHLEN ────────────────────────────────────────────── */
