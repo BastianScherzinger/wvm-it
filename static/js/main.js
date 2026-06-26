@@ -14,53 +14,88 @@
      in der hohen .scrolly-Sektion wird auf video.currentTime abgebildet. Der
      Wert wird per Lerp geglättet → butterweich. Die Text-Schritte (Hosting,
      Performance, Sicherheit) blenden passend zum Fortschritt ein. */
-  const scrolly = document.querySelector("[data-scrolly]");
-  const video = document.getElementById("scrollyVideo");
-  const bar = document.getElementById("scrollyBar");
-  if (scrolly && video) {
+  const scrollies = [];
+  function initScrolly(scrolly) {
+    const video = scrolly.querySelector(".scrolly-video");
+    const bar = scrolly.querySelector(".scrolly-bar");
+    if (!video) return;
     const steps = Array.prototype.slice.call(scrolly.querySelectorAll(".scrolly-step"));
-    let duration = 0, ready = false, target = 0, current = 0, active = false, looping = false;
-
-    video.addEventListener("loadedmetadata", function () { duration = video.duration || 0; ready = true; });
+    const ctx = { scrolly, video, bar, steps, duration: 0, ready: false, current: 0 };
+    video.addEventListener("loadedmetadata", function () { ctx.duration = video.duration || 0; ctx.ready = true; });
     // Safari/iOS: kurz anspielen + pausieren, damit Frame-genaues Seeking erlaubt ist.
     video.addEventListener("canplay", function prime() {
       const p = video.play();
       if (p && p.then) p.then(function () { video.pause(); }).catch(function () {});
       video.removeEventListener("canplay", prime);
     });
-
-    function progress() {
-      const rect = scrolly.getBoundingClientRect();
-      const total = scrolly.offsetHeight - window.innerHeight;
-      return total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
-    }
-    function render() {
-      const p = progress();
-      if (ready && duration) {
-        target = p * (duration - 0.06);
-        current += (target - current) * 0.16;            // Lerp → weiches Scrubbing
-        if (Math.abs(target - current) < 0.004) current = target;
-        try { video.currentTime = current; } catch (e) {}
-      }
-      if (bar) bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
-      const idx = Math.min(steps.length - 1, Math.floor(p * steps.length));
-      for (let i = 0; i < steps.length; i++) steps[i].classList.toggle("is-active", i === idx);
-    }
-    function loop() {
-      if (!active) { looping = false; return; }
-      looping = true; render(); requestAnimationFrame(loop);
-    }
-    if (reduce) {
-      // Kein Scrubbing: Poster bleibt stehen, erster Text sichtbar.
-      if (steps[0]) steps[0].classList.add("is-active");
-    } else {
-      new IntersectionObserver(function (en) {
-        active = en[0].isIntersecting;
-        if (active && !looping) requestAnimationFrame(loop);
-      }, { threshold: 0 }).observe(scrolly);
-      video.load();
-    }
+    if (reduce) { if (steps[0]) steps[0].classList.add("is-active"); return; }
+    video.load();
+    scrollies.push(ctx);
   }
+  function renderScrolly(ctx) {
+    const rect = ctx.scrolly.getBoundingClientRect();
+    // Nur rechnen, wenn die Sektion im oder am Viewport ist.
+    if (rect.bottom < -50 || rect.top > window.innerHeight + 50) return;
+    const total = ctx.scrolly.offsetHeight - window.innerHeight;
+    const p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+    if (ctx.ready && ctx.duration) {
+      const target = p * (ctx.duration - 0.06);
+      ctx.current += (target - ctx.current) * 0.16;        // Lerp -> weiches Scrubbing
+      if (Math.abs(target - ctx.current) < 0.004) ctx.current = target;
+      try { ctx.video.currentTime = ctx.current; } catch (e) {}
+    }
+    if (ctx.bar) ctx.bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+    const idx = Math.min(ctx.steps.length - 1, Math.floor(p * ctx.steps.length));
+    for (let i = 0; i < ctx.steps.length; i++) ctx.steps[i].classList.toggle("is-active", i === idx);
+  }
+  document.querySelectorAll("[data-scrolly]").forEach(initScrolly);
+  if (scrollies.length) {
+    (function tick() { for (let i = 0; i < scrollies.length; i++) renderScrolly(scrollies[i]); requestAnimationFrame(tick); })();
+  }
+
+  /* ── 1b) SPLINE-ROBOTER (folgt der Maus) ────────────────────────────────
+     3D-Szene per <spline-viewer> nachladen. Ohne WebGL oder bei reduced-motion
+     bleibt der freigestellte Roboter (robot-fallback) stehen. */
+  (function initRobot() {
+    const stage = document.getElementById("robotStage");
+    if (!stage) return;
+    const hasWebGL = (function () {
+      try { const c = document.createElement("canvas");
+        return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl")));
+      } catch (e) { return false; }
+    })();
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (reduce || !hasWebGL || isMobile) return;           // Fallback-Bild (Cutout) bleibt sichtbar
+    const canvas = document.getElementById("robotCanvas");
+    const loader = document.getElementById("robotLoader");
+    const url = stage.getAttribute("data-spline");
+
+    const runtime = document.createElement("script");
+    runtime.type = "module";
+    runtime.src = "https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js";
+    document.head.appendChild(runtime);
+
+    const viewer = document.createElement("spline-viewer");
+    viewer.setAttribute("url", url);
+    viewer.style.cssText = "width:100%;height:100%;display:block;background:transparent";
+    if (isMobile) viewer.style.pointerEvents = "none"; // Mobile: Scrollen nicht blockieren
+    canvas.appendChild(viewer);
+
+    let settled = false;
+    const ready = function () {
+      if (settled) return; settled = true;
+      stage.classList.add("spline-on");                   // blendet Fallback aus, Canvas ein
+      if (loader) loader.classList.add("hide");
+    };
+    // "Made with Spline"-Logo aus dem Shadow-DOM entfernen.
+    const killLogo = function (root) { const l = root && root.querySelector('#logo, a[href*="spline.design"]'); if (l) l.remove(); };
+    viewer.addEventListener("load", function () { ready(); if (viewer.shadowRoot) killLogo(viewer.shadowRoot); });
+    const poll = setInterval(function () {
+      const sr = viewer.shadowRoot;
+      if (sr) { killLogo(sr); if (sr.querySelector("canvas")) { clearInterval(poll); setTimeout(ready, 300); } }
+    }, 150);
+    setTimeout(function () { clearInterval(poll); ready(); }, 7000); // Sicherheitsnetz
+  })();
 
   /* ── 2) REVEAL ON SCROLL ───────────────────────────────────────────────── */
   const reveals = document.querySelectorAll("[data-reveal]");

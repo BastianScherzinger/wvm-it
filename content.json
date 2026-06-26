@@ -16,6 +16,8 @@
   "robot_image": "/static/img/robot.png",
   "server_video": "/static/video/server.mp4",
   "server_poster": "/static/img/server_poster.jpg",
+  "pc_video": "/static/video/pc.mp4",
+  "pc_poster": "/static/img/pc_poster.jpg",
   "preis_ab": "350",
   "seo_title": "WVM-IT, Webseiten ab 350 Euro | Hosting, KI und SEO für Unternehmen",
   "seo_desc": "WVM-IT baut performante Webseiten ab 350 Euro, dazu Hosting, Domains, KI-Automatisierungen, Wartung und SEO für Unternehmen, Handwerker, Restaurants, Dienstleister und Startups.",

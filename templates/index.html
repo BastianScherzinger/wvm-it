@@ -58,12 +58,46 @@
         <p class="hero-note">{{ c.cta_sub }}</p>
       </div>
       <div class="hero-figure" data-reveal>
-        {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="WVM-IT Assistent" class="robot" width="820" height="1098" fetchpriority="high">{% endif %}
-        <div class="hero-figure-glow" aria-hidden="true"></div>
+        <div class="robot-stage" id="robotStage" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
+          <div class="hero-figure-glow" aria-hidden="true"></div>
+          <!-- 3D-Roboter (Spline) folgt der Maus; wird per JS auf Geräten mit WebGL eingehängt -->
+          <div class="robot-canvas" id="robotCanvas" aria-hidden="true">
+            <div class="robot-loader" id="robotLoader"><span class="spinner"></span><span class="robot-loadtxt">3D-Assistent lädt</span></div>
+          </div>
+          <!-- Fallback: freigestellter Roboter (ohne WebGL / reduced-motion) -->
+          {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="WVM-IT Assistent" class="robot robot-fallback" width="820" height="1098" fetchpriority="high">{% endif %}
+        </div>
         <div class="hero-price-chip" aria-hidden="true"><span>Webseiten</span><strong>ab {{ c.preis_ab }} €</strong></div>
       </div>
     </div>
-    <a class="hero-scroll" href="#infrastruktur" aria-label="Weiter nach unten"><span></span></a>
+    <a class="hero-scroll" href="#aufbau" aria-label="Weiter nach unten"><span></span></a>
+  </section>
+
+  <!-- ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── -->
+  <section class="band">
+    <div class="wrap band-in" data-reveal>
+      <span class="band-kick">Von der Idee zur fertigen Seite</span>
+      <h2 class="band-h">Sie sagen, was Sie brauchen. Wir bauen den Rest.</h2>
+      <p class="band-p">Scrollen Sie und sehen Sie zu, wie aus einem leeren Bildschirm Ihre Webseite entsteht.</p>
+    </div>
+  </section>
+
+  <!-- ── SCROLL-VIDEO 1, PC: Webseite baut sich auf, per Scroll gescrubbt ──── -->
+  <section class="scrolly" id="aufbau" data-scrolly>
+    <div class="scrolly-sticky">
+      <video class="scrolly-video" id="scrollyVideoPc" playsinline muted preload="auto"
+             {% if c.pc_poster %}poster="{{ c.pc_poster }}"{% endif %}>
+        {% if c.pc_video %}<source src="{{ c.pc_video }}" type="video/mp4">{% endif %}
+      </video>
+      <div class="scrolly-shade" aria-hidden="true"></div>
+      <div class="wrap scrolly-overlay">
+        <div class="scrolly-step is-active" data-step="0"><h2>Aus Ihrer Idee wird eine Webseite.</h2><p>Individuell gestaltet, sauber gebaut, auf Anfragen ausgelegt.</p></div>
+        <div class="scrolly-step" data-step="1"><h3>Design</h3><p>Ein Entwurf auf Premium-Niveau, abgestimmt auf Ihre Marke.</p></div>
+        <div class="scrolly-step" data-step="2"><h3>Entwicklung</h3><p>Schneller, sauberer Code. Responsiv auf jedem Gerät.</p></div>
+        <div class="scrolly-step" data-step="3"><h3>Launch</h3><p>Wir gehen live und messen, was die Seite für Sie bringt.</p></div>
+      </div>
+      <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
+    </div>
   </section>
 
   <!-- ── Vertrauens-Leiste + Kennzahlen ────────────────────────────────────── -->
@@ -79,7 +113,16 @@
     </div>
   </section>
 
-  <!-- ── SCROLL-VIDEO ,  Higgsfield-Rechenzentrum, per Scroll gescrubbt ──────── -->
+  <!-- ── Trenner-Text: Überleitung zum Server-Raum ─────────────────────────── -->
+  <section class="band">
+    <div class="wrap band-in" data-reveal>
+      <span class="band-kick">Damit Ihre Seite immer läuft</span>
+      <h2 class="band-h">Eine schöne Webseite ist nur die halbe Miete.</h2>
+      <p class="band-p">Sie braucht ein Zuhause, das schnell, sicher und immer erreichbar ist. Genau dafür sorgen wir.</p>
+    </div>
+  </section>
+
+  <!-- ── SCROLL-VIDEO 2 ,  Higgsfield-Rechenzentrum (Server-Raum), per Scroll gescrubbt ── -->
   <section class="scrolly" id="infrastruktur" data-scrolly>
     <div class="scrolly-sticky">
       <video class="scrolly-video" id="scrollyVideo" playsinline muted preload="auto"
@@ -96,7 +139,7 @@
         <div class="scrolly-step" data-step="2"><h3>Tempo</h3><p>Optimierte Ladezeiten und Top-Werte bei den Core Web Vitals.</p></div>
         <div class="scrolly-step" data-step="3"><h3>Schutz</h3><p>Updates, Zertifikate und Sicherheit, ohne dass Sie sich kümmern müssen.</p></div>
       </div>
-      <div class="scrolly-progress" aria-hidden="true"><span id="scrollyBar"></span></div>
+      <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
     </div>
   </section>
 

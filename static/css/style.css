@@ -82,9 +82,28 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .hero-note{margin-top:18px;font-size:13.5px;color:var(--ink-dim)}
 /* Roboter rechts */
 .hero-figure{position:relative;justify-self:center;align-self:end;height:min(78svh,720px);display:flex;align-items:flex-end}
-.robot{height:100%;width:auto;object-fit:contain;position:relative;z-index:1;
-  filter:drop-shadow(0 30px 60px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(109,94,252,.22));animation:float 7s ease-in-out infinite}
+.robot-stage{position:relative;width:min(46vw,520px);height:100%}
+/* Spline-3D-Canvas (folgt der Maus); per JS eingeblendet sobald geladen */
+.robot-canvas{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .6s var(--ease)}
+.robot-stage.spline-on .robot-canvas{opacity:1}
+.robot-loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:3;transition:opacity .4s}
+.robot-loader.hide{opacity:0;pointer-events:none}
+.robot-loadtxt{font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase}
+.spinner{width:30px;height:30px;border-radius:50%;border:2px solid var(--line-2);border-top-color:var(--accent2);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Freigestellter Roboter als Fallback (ohne WebGL / reduced-motion) */
+.robot.robot-fallback{position:absolute;inset:auto 0 0;margin:auto;height:100%;width:auto;object-fit:contain;z-index:0;
+  filter:drop-shadow(0 30px 60px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(109,94,252,.22));animation:float 7s ease-in-out infinite;transition:opacity .5s}
+.robot-stage.spline-on .robot-fallback{opacity:0}
 @keyframes float{50%{transform:translateY(-12px)}}
+
+/* ── Trenner-Bänder (abgetrennte Textteile zwischen den Animationen) ──────── */
+.band{padding:clamp(64px,9vw,110px) 0;border-block:1px solid var(--line);
+  background:radial-gradient(70% 100% at 50% 0%, color-mix(in srgb,var(--accent) 7%,transparent), transparent 70%),var(--bg-2)}
+.band-in{max-width:760px;margin:0 auto;text-align:center}
+.band-kick{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:16px}
+.band-h{font-size:clamp(1.8rem,3.8vw,2.8rem);font-weight:700}
+.band-p{color:var(--ink-soft);font-size:clamp(1.02rem,1.6vw,1.2rem);margin-top:16px}
 .hero-figure-glow{position:absolute;inset:auto 0 6%;height:60%;z-index:0;
   background:radial-gradient(50% 60% at 50% 60%, color-mix(in srgb,var(--accent) 34%,transparent), transparent 70%);filter:blur(20px)}
 .hero-price-chip{position:absolute;left:-6px;bottom:20%;z-index:2;display:flex;flex-direction:column;gap:2px;
@@ -137,7 +156,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .scrolly-step h3{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:8px}
 .scrolly-step p{color:var(--ink-soft);font-size:clamp(1rem,1.6vw,1.2rem);max-width:42ch;margin-top:12px}
 .scrolly-progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08)}
-#scrollyBar{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.scrolly-bar{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--accent),var(--accent2))}
 
 /* ── Bento ───────────────────────────────────────────────────────────────── */
 .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
