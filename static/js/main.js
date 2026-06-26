@@ -21,7 +21,18 @@
     if (!video) return;
     const steps = Array.prototype.slice.call(scrolly.querySelectorAll(".scrolly-step"));
     const ctx = { scrolly, video, bar, steps, duration: 0, ready: false, current: 0 };
-    if (reduce) { if (steps[0]) steps[0].classList.add("is-active"); return; }
+    if (steps[0]) steps[0].classList.add("is-active");
+    if (reduce) return;                                   // Reduced-Motion: nur Poster + Text
+    // Mobil: KEIN Scroll-Scrubbing (ruckelt). Stattdessen sanfter, leiser Autoplay-Loop,
+    // der nur läuft, während die Sektion sichtbar ist -> flüssiges Scrollen, hochwertige Optik.
+    if (window.matchMedia("(max-width: 980px)").matches) {
+      video.loop = true; video.muted = true; video.setAttribute("playsinline", "");
+      new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) { video.preload = "auto"; const p = video.play(); if (p && p.catch) p.catch(function () {}); }
+        else { try { video.pause(); } catch (e) {} }
+      }, { threshold: 0.25 }).observe(scrolly);
+      return;
+    }
     video.addEventListener("loadedmetadata", function () { ctx.duration = video.duration || 0; });
     // Frame-genaues Seeking erst freigeben, NACHDEM das Video durch play+pause aktiviert
     // wurde. Sonst ignoriert der Browser gesetzte currentTime-Werte (Seek-Sperre).
@@ -106,7 +117,7 @@
         return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl")));
       } catch (e) { return false; }
     })();
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const isMobile = window.matchMedia("(max-width: 980px)").matches;
     if (reduce || !hasWebGL || isMobile) return;           // Fallback-Bild (Cutout) bleibt sichtbar
     const canvas = document.getElementById("robotCanvas");
     const loader = document.getElementById("robotLoader");
