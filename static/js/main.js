@@ -1,5 +1,5 @@
 /* ============================================================================
-   WVM-IT — Interaktionen
+   WVM-IT ,  Interaktionen
    1) Scroll-Scrubbing des Higgsfield-Server-Videos (Apple-Scrollytelling)
    2) Reveal-on-Scroll  3) Nav-Scroll-Status  4) Count-up-Kennzahlen
    Alles transform/opacity-basiert, pausiert ausserhalb des Viewports,
@@ -87,15 +87,15 @@
 
   /* ── 4) COUNT-UP-KENNZAHLEN ────────────────────────────────────────────── */
   const counters = document.querySelectorAll("[data-count]");
+  const fmt = (el, n) => (el.getAttribute("data-prefix") || "") + n + (el.getAttribute("data-suffix") || "");
   if (counters.length && !reduce) {
     const animate = (el) => {
       const end = parseFloat(el.getAttribute("data-count")) || 0;
-      const suffix = el.getAttribute("data-suffix") || "";
       const dur = 1200; const start = performance.now();
       const tick = (now) => {
         const t = Math.min(1, (now - start) / dur);
         const eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.round(end * eased) + suffix;
+        el.textContent = fmt(el, Math.round(end * eased));
         if (t < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -107,6 +107,37 @@
     }, { threshold: 0.6 });
     counters.forEach((el) => io.observe(el));
   } else {
-    counters.forEach((el) => { el.textContent = el.getAttribute("data-count") + (el.getAttribute("data-suffix") || ""); });
+    counters.forEach((el) => { el.textContent = fmt(el, el.getAttribute("data-count")); });
+  }
+
+  /* ── 5) SPOTLIGHT ,  Mouse-Follow-Highlight auf [data-spot]-Karten ───────── */
+  if (!reduce && window.matchMedia("(pointer:fine)").matches) {
+    let raf = 0, pending = null;
+    const move = (el, e) => {
+      const r = el.getBoundingClientRect();
+      pending = () => {
+        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        el.style.setProperty("--my", (e.clientY - r.top) + "px");
+      };
+      if (!raf) raf = requestAnimationFrame(() => { pending && pending(); raf = 0; });
+    };
+    document.querySelectorAll("[data-spot]").forEach((el) => {
+      el.addEventListener("pointermove", (e) => move(el, e), { passive: true });
+    });
+  }
+
+  /* ── 6) MAGNETIC ,  Buttons ziehen sanft zum Cursor ─────────────────────── */
+  if (!reduce && window.matchMedia("(pointer:fine)").matches) {
+    document.querySelectorAll(".btn-magnetic").forEach((btn) => {
+      let raf = 0;
+      const onMove = (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = (e.clientX - (r.left + r.width / 2)) * 0.28;
+        const y = (e.clientY - (r.top + r.height / 2)) * 0.4;
+        if (!raf) raf = requestAnimationFrame(() => { btn.style.transform = `translate(${x}px,${y}px)`; raf = 0; });
+      };
+      btn.addEventListener("pointermove", onMove, { passive: true });
+      btn.addEventListener("pointerleave", () => { btn.style.transform = ""; });
+    });
   }
 })();

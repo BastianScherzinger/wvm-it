@@ -1,5 +1,5 @@
 """
-Django-Settings — schlanke, datenbankfreie Landing-Page.
+Django-Settings ,  schlanke, datenbankfreie Landing-Page.
 
 Bewusst minimal: keine Auth, keine Sessions, keine Migrationen, kein Admin.
 Dadurch deployt die Seite ohne Datenbank-Plugin sofort auf Railway.
@@ -47,7 +47,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# Keine Datenbank — die Landing-Page nutzt das ORM nicht.
+# Keine Datenbank ,  die Landing-Page nutzt das ORM nicht.
 DATABASES = {}
 
 LANGUAGE_CODE = "de"
@@ -71,7 +71,7 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # ── E-Mail (optional) ────────────────────────────────────────────────────────
 # Kontaktformular: ist EMAIL_HOST per Umgebungsvariable gesetzt, wird per SMTP
-# versendet — sonst bleibt EMAIL_HOST leer und die Anfrage wird nur geloggt.
+# versendet ,  sonst bleibt EMAIL_HOST leer und die Anfrage wird nur geloggt.
 EMAIL_HOST = os.environ.get("EMAIL_HOST", "")
 EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")

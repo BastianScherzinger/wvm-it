@@ -1,4 +1,4 @@
-# WVM-IT — Premium-Landingpage
+# WVM-IT ,  Premium-Landingpage
 
 Bespoke, **datenbankfreie** Django-Landingpage für die Digitalagentur **WVM-IT**
 (Webseiten, Hosting, Domains, KI-Automatisierungen, Wartung, Performance, SEO).
@@ -8,11 +8,11 @@ Canvas-Hero-Animation** („Aus einer Idee wird digitale Infrastruktur") und ein
 cinematischen Higgsfield-Backdrop.
 
 ## Aufbau
-- `content.json` — Marke, Kontakt, Akzentfarben, Rechtstexte (zentral anpassbar).
-- `templates/index.html` — Layout/Sektionen, `templates/icons.html` — Inline-SVG-Icons.
-- `static/css/style.css` — komplettes Premium-Dark-Stylesheet (ein Akzent + Cyan).
-- `static/js/main.js` — Hero-Canvas, Reveal-on-Scroll, Count-up, Nav-Status.
-- `landing/views.py` — rendert die Seite, nimmt das Kontaktformular per POST entgegen.
+- `content.json` ,  Marke, Kontakt, Akzentfarben, Rechtstexte (zentral anpassbar).
+- `templates/index.html` ,  Layout/Sektionen, `templates/icons.html` ,  Inline-SVG-Icons.
+- `static/css/style.css` ,  komplettes Premium-Dark-Stylesheet (ein Akzent + Cyan).
+- `static/js/main.js` ,  Hero-Canvas, Reveal-on-Scroll, Count-up, Nav-Status.
+- `landing/views.py` ,  rendert die Seite, nimmt das Kontaktformular per POST entgegen.
 
 ## Lokal starten
 ```bash
@@ -35,7 +35,7 @@ Nixpacks erkennt Django automatisch. Umgebungsvariablen:
 Optional für echten E-Mail-Versand des Kontaktformulars:
 `EMAIL_HOST`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, `DEFAULT_FROM_EMAIL`,
 `KONTAKT_EMPFAENGER`. Ohne SMTP wird die Anfrage geloggt und der Besucher trotzdem
-bestätigt. Kein Datenbank-Plugin nötig — die Seite nutzt das ORM nicht.
+bestätigt. Kein Datenbank-Plugin nötig ,  die Seite nutzt das ORM nicht.
 
 ## To-do vor Veröffentlichung
 - Echte **Impressum**- und **Datenschutz**-Texte in `content.json` eintragen.

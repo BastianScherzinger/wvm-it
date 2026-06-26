@@ -1,10 +1,10 @@
 """
-Landing-View für WVM-IT — eine bespoke Premium-Landingpage.
+Landing-View für WVM-IT ,  eine bespoke Premium-Landingpage.
 
 Inhalt (Marke, Kontakt, Rechtstexte) kommt aus content.json im Projekt-Wurzel-
 verzeichnis; fehlt sie, greift ein neutraler Fallback, damit die Seite nie crasht.
 Das Kontaktformular wird per POST entgegengenommen: gibt es eine SMTP-Konfiguration
-(EMAIL_* / KONTAKT_EMPFAENGER in der Umgebung), wird die Anfrage gemailt — sonst
+(EMAIL_* / KONTAKT_EMPFAENGER in der Umgebung), wird die Anfrage gemailt ,  sonst
 wird sie still geloggt. In beiden Fällen sieht der Besucher eine Erfolgsmeldung.
 """
 import json
@@ -34,7 +34,7 @@ _FALLBACK = {
     "cta_text": "Projekt anfragen",
     "cta_sub": "Unverbindlich · Antwort in 24 h",
     "hero_image": "",
-    "seo_title": "WVM-IT — Webseiten, Hosting, KI & SEO",
+    "seo_title": "WVM-IT ,  Webseiten, Hosting, KI & SEO",
     "seo_desc": "Performante Webseiten, Hosting, KI-Automatisierungen und SEO für Unternehmen.",
     "jahr": 2026,
     "wvm_url": "https://wvm-it.tech",
