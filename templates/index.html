@@ -42,10 +42,9 @@
 </header>
 
 <main id="main">
-  <!-- ── HERO — scrollgesteuerte Canvas-Animation + cinematisches Backdrop ──── -->
+  <!-- ── HERO — wuchtiges Roboter-Bild + Verkaufs-Headline + Angebot ───────── -->
   <section class="hero" id="top">
     <div class="hero-bg" {% if c.hero_image %}style="--hero-img:url('{{ c.hero_image }}')"{% endif %} aria-hidden="true"></div>
-    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
     <div class="hero-grain" aria-hidden="true"></div>
 
     <div class="wrap hero-in">
@@ -53,15 +52,43 @@
         <span class="eyebrow"><span class="dot"></span>{{ c.branche }} · Webseiten, KI &amp; SEO</span>
         <h1>{{ c.headline }}</h1>
         <p class="lead">{{ c.subline }}</p>
+        <div class="offer-chips">
+          <span class="chip chip-hot">Webseiten ab {{ c.preis_ab }} €</span>
+          <span class="chip">Hosting &amp; Domain</span>
+          <span class="chip">KI-Automatisierung</span>
+          <span class="chip">SEO inklusive</span>
+        </div>
         <div class="hero-cta">
           <a class="btn btn-lg" href="#kontakt">{{ c.cta_text }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn btn-ghost btn-lg" href="#leistungen">Leistungen ansehen</a>
+          <a class="btn btn-ghost btn-lg" href="#preise">Preise ansehen</a>
         </div>
         <p class="hero-note">{{ c.cta_sub }}</p>
       </div>
     </div>
 
     <div class="hero-scroll" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ── SCROLL-VIDEO — Higgsfield-Server „geht auf", per Scroll gescrubbt ──── -->
+  <section class="scrolly" id="infrastruktur" data-scrolly>
+    <div class="scrolly-sticky">
+      <video class="scrolly-video" id="scrollyVideo" playsinline muted preload="auto"
+             {% if c.server_poster %}poster="{{ c.server_poster }}"{% endif %}>
+        {% if c.server_video %}<source src="{{ c.server_video }}" type="video/mp4">{% endif %}
+      </video>
+      <div class="scrolly-shade" aria-hidden="true"></div>
+      <div class="wrap scrolly-overlay">
+        <div class="scrolly-step is-active" data-step="0">
+          <span class="kicker">Digitale Infrastruktur</span>
+          <h2>Ihre Seite läuft auf echter Power.</h2>
+          <p>Scrollen Sie — und sehen Sie, was unter der Haube steckt.</p>
+        </div>
+        <div class="scrolly-step" data-step="1"><span class="s-num">01</span><h3>Hosting</h3><p>Schnelle Server, HTTPS, automatische Backups &amp; Monitoring.</p></div>
+        <div class="scrolly-step" data-step="2"><span class="s-num">02</span><h3>Performance</h3><p>Optimierte Ladezeiten und Top-Werte bei den Core Web Vitals.</p></div>
+        <div class="scrolly-step" data-step="3"><span class="s-num">03</span><h3>Sicherheit</h3><p>Updates, Zertifikate und Schutz — rund um die Uhr betreut.</p></div>
+      </div>
+      <div class="scrolly-progress" aria-hidden="true"><span id="scrollyBar"></span></div>
+    </div>
   </section>
 
   <!-- ── Vertrauens-Leiste / Kennzahlen ────────────────────────────────────── -->
@@ -172,7 +199,7 @@
         <article class="price" data-reveal>
           <h3>Starter</h3>
           <p class="price-for">Für den professionellen Auftritt.</p>
-          <div class="price-tag"><span class="from">ab</span>790<span class="cur">€</span></div>
+          <div class="price-tag"><span class="from">ab</span>{{ c.preis_ab }}<span class="cur">€</span></div>
           <ul class="price-list">
             <li>One-Page-Webseite</li>
             <li>Responsiv &amp; schnell</li>
@@ -185,7 +212,7 @@
           <span class="badge">Beliebt</span>
           <h3>Business</h3>
           <p class="price-for">Für Unternehmen mit Anspruch.</p>
-          <div class="price-tag"><span class="from">ab</span>1.890<span class="cur">€</span></div>
+          <div class="price-tag"><span class="from">ab</span>1.490<span class="cur">€</span></div>
           <ul class="price-list">
             <li>Mehrseitige Webseite</li>
             <li>Individuelles Premium-Design</li>
