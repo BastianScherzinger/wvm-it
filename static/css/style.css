@@ -207,7 +207,9 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .tl-n{position:relative;z-index:1;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
   font-family:"Space Grotesk",sans-serif;font-size:15px;font-weight:700;color:var(--accent2);
   background:var(--surface);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);box-shadow:0 0 0 6px var(--bg-2)}
-.tl-body h3{font-size:1.2rem;margin-bottom:6px}
+.tl-body h3{font-size:1.2rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.tl-ic{display:inline-grid;place-items:center;flex:0 0 auto;color:var(--accent2)}
+.tl-ic svg{width:20px;height:20px}
 .tl-body p{color:var(--ink-soft);font-size:15px;max-width:54ch}
 
 /* ── Showcase (KI) ───────────────────────────────────────────────────────── */
@@ -299,6 +301,21 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .contact-list{list-style:none;display:grid;gap:14px;margin-top:30px}
 .contact-list li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:12px;font-size:15px;color:var(--ink-soft)}
 .contact-list a{color:var(--ink);font-weight:500}.contact-list a:hover{color:var(--accent2)}
+/* Kontakt-Kacheln (mehrere Wege, mit Icons) */
+.contact-methods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0 14px}
+.cm{display:flex;align-items:center;gap:14px;padding:15px 17px;border-radius:14px;border:1px solid var(--line-2);
+  background:rgba(255,255,255,.03);transition:border-color .2s,transform .2s var(--ease),background .2s}
+.cm:hover{border-color:color-mix(in srgb,var(--accent) 55%,transparent);transform:translateY(-3px);background:rgba(255,255,255,.05)}
+.cm-ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;color:var(--accent2);
+  background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
+.cm-ic svg{width:21px;height:21px}
+.cm-wa .cm-ic{color:#25d366;background:color-mix(in srgb,#25d366 16%,transparent);border-color:color-mix(in srgb,#25d366 32%,transparent)}
+.cm-t{display:flex;flex-direction:column;min-width:0}
+.cm-t strong{font-size:15px;color:var(--ink)}
+.cm-t span{font-size:13px;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.contact-avail{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-soft);margin-top:8px}
+.cm-ic-sm{display:inline-grid;place-items:center;flex:0 0 auto;color:var(--accent2)}
+.cm-ic-sm svg{width:16px;height:16px}
 .contact-form{background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--line);border-radius:22px;
   padding:clamp(26px,4vw,40px);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px}
 .f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -366,6 +383,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 @media (max-width:560px){
   .bento{grid-template-columns:1fr}.b-wide{grid-column:span 1}
   .f-row{grid-template-columns:1fr}.foot-nav{grid-template-columns:1fr 1fr}
+  .contact-methods{grid-template-columns:1fr}
   .hero{min-height:auto;padding:104px 0 72px}.hero-figure{opacity:.32}
 }
 @media (prefers-reduced-motion:reduce){
