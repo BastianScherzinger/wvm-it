@@ -45,16 +45,17 @@ _FALLBACK = {
 
 
 def _whatsapp(tel: str) -> str:
-    """Telefonnummer → wa.me-Ziffern (Vorwahl 49, ohne 0/+/Leerzeichen). '' = ungültig."""
-    digits = re.sub(r"\D", "", tel or "")
+    """Telefonnummer in wa.me-Ziffern (international, ohne 0/+/Leerzeichen).
+    Unterstützt +43 (AT) und +49 (DE): '+...'/'00...' sind bereits international,
+    eine führende '0' wird als deutsche Vorwahl interpretiert. '' = ungültig."""
+    raw = (tel or "").strip()
+    digits = re.sub(r"\D", "", raw)
     if not digits:
         return ""
-    if digits.startswith("00"):
-        digits = digits[2:]
+    if raw.startswith("+") or digits.startswith("00"):
+        digits = digits[2:] if digits.startswith("00") else digits
     elif digits.startswith("0"):
         digits = "49" + digits[1:]
-    elif not digits.startswith("49"):
-        digits = "49" + digits
     return digits if len(digits) >= 8 else ""
 
 

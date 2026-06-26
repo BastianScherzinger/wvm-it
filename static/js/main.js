@@ -21,15 +21,21 @@
     if (!video) return;
     const steps = Array.prototype.slice.call(scrolly.querySelectorAll(".scrolly-step"));
     const ctx = { scrolly, video, bar, steps, duration: 0, ready: false, current: 0 };
-    video.addEventListener("loadedmetadata", function () { ctx.duration = video.duration || 0; ctx.ready = true; });
-    // Safari/iOS: kurz anspielen + pausieren, damit Frame-genaues Seeking erlaubt ist.
-    video.addEventListener("canplay", function prime() {
-      const p = video.play();
-      if (p && p.then) p.then(function () { video.pause(); }).catch(function () {});
-      video.removeEventListener("canplay", prime);
-    });
     if (reduce) { if (steps[0]) steps[0].classList.add("is-active"); return; }
-    video.load();
+    video.addEventListener("loadedmetadata", function () { ctx.duration = video.duration || 0; });
+    // Frame-genaues Seeking erst freigeben, NACHDEM das Video durch play+pause aktiviert
+    // wurde. Sonst ignoriert der Browser gesetzte currentTime-Werte (Seek-Sperre).
+    video.addEventListener("canplay", function prime() {
+      video.removeEventListener("canplay", prime);
+      const done = function () { try { video.pause(); } catch (e) {} ctx.duration = video.duration || 0; ctx.ready = true; };
+      const p = video.play();
+      if (p && p.then) p.then(done).catch(done); else done();
+    });
+    // Lazy: Video erst voll laden, wenn die Sektion näher kommt (schnellerer Erst-Load,
+    // keine Decoder-Konkurrenz). Einmaliger load()-Aufruf, danach Observer trennen.
+    new IntersectionObserver(function (en, obs) {
+      if (en[0].isIntersecting) { video.preload = "auto"; video.load(); obs.disconnect(); }
+    }, { rootMargin: "1200px 0px" }).observe(scrolly);
     scrollies.push(ctx);
   }
   function renderScrolly(ctx) {
@@ -106,6 +112,7 @@
     const loader = document.getElementById("robotLoader");
     const url = stage.getAttribute("data-spline");
 
+    const loadSpline = function () {
     const runtime = document.createElement("script");
     runtime.type = "module";
     runtime.src = "https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js";
@@ -131,6 +138,9 @@
       if (sr) { killLogo(sr); if (sr.querySelector("canvas")) { clearInterval(poll); setTimeout(ready, 300); } }
     }, 150);
     setTimeout(function () { clearInterval(poll); ready(); }, 7000); // Sicherheitsnetz
+    };
+    // 3D-Szene erst im Leerlauf laden -> schnellerer Erst-Load der Seite.
+    (window.requestIdleCallback || function (f) { return setTimeout(f, 200); })(loadSpline);
   })();
 
   /* ── 2) REVEAL ON SCROLL ───────────────────────────────────────────────── */
