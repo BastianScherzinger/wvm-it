@@ -59,6 +59,42 @@
   (function initRobot() {
     const stage = document.getElementById("robotStage");
     if (!stage) return;
+
+    // Klickbarer Assistent (wie RTC): Sprechblase + Hinweis. Funktioniert immer,
+    // egal ob der 3D-Roboter oder der Fallback-Cutout angezeigt wird.
+    let viewer = null;
+    (function enableRobotChat() {
+      const bubble = document.getElementById("robotBubble");
+      const hint = document.getElementById("robotHint");
+      const tap = document.getElementById("robotTap");
+      if (!bubble) return;
+      const msgs = [
+        "Hi! Schön, dass du da bist.",
+        "Wir bauen Webseiten, Hosting, KI und SEO. Alles aus einer Hand.",
+        "Schon ab 350 Euro hast du deine eigene Webseite.",
+        "Tipp: Hol dir ein unverbindliches Angebot in 24 Stunden.",
+        "Bereit? Klick auf Projekt anfragen, wir melden uns schnell.",
+      ];
+      let idx = -1, hideT, started = false;
+      function say() {
+        started = true;
+        idx = (idx + 1) % msgs.length;
+        bubble.textContent = msgs[idx];
+        bubble.classList.add("show");
+        if (hint) hint.classList.remove("show");
+        clearTimeout(hideT);
+        hideT = setTimeout(function () { bubble.classList.remove("show"); }, 4400);
+      }
+      stage.addEventListener("click", say);
+      stage.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); say(); } });
+      if (hint) hint.addEventListener("click", function (e) { e.stopPropagation(); say(); });
+      if (tap) tap.addEventListener("click", function (e) { e.stopPropagation(); say(); });
+      stage.classList.add("chat-on");
+      if (hint && !reduce) setTimeout(function () {
+        if (!started) { hint.classList.add("show"); setTimeout(function () { if (!started) hint.classList.remove("show"); }, 6000); }
+      }, 1800);
+    })();
+
     const hasWebGL = (function () {
       try { const c = document.createElement("canvas");
         return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl")));
@@ -75,11 +111,11 @@
     runtime.src = "https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js";
     document.head.appendChild(runtime);
 
-    const viewer = document.createElement("spline-viewer");
+    viewer = document.createElement("spline-viewer");
     viewer.setAttribute("url", url);
     viewer.style.cssText = "width:100%;height:100%;display:block;background:transparent";
-    if (isMobile) viewer.style.pointerEvents = "none"; // Mobile: Scrollen nicht blockieren
     canvas.appendChild(viewer);
+    viewer.addEventListener("click", function () { stage.click(); }); // Klick auf 3D-Roboter -> Sprechblase
 
     let settled = false;
     const ready = function () {

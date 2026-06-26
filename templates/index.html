@@ -55,10 +55,9 @@
           <a class="btn btn-lg btn-magnetic" href="#kontakt">{{ c.cta_text }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <a class="btn btn-ghost btn-lg" href="#leistungen">Leistungen ansehen</a>
         </div>
-        <p class="hero-note">{{ c.cta_sub }}</p>
       </div>
       <div class="hero-figure" data-reveal>
-        <div class="robot-stage" id="robotStage" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
+        <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="3D-Assistent, klick mich" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
           <div class="hero-figure-glow" aria-hidden="true"></div>
           <!-- 3D-Roboter (Spline) folgt der Maus; wird per JS auf Geräten mit WebGL eingehängt -->
           <div class="robot-canvas" id="robotCanvas" aria-hidden="true">
@@ -66,7 +65,11 @@
           </div>
           <!-- Fallback: freigestellter Roboter (ohne WebGL / reduced-motion) -->
           {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="WVM-IT Assistent" class="robot robot-fallback" width="820" height="1098" fetchpriority="high">{% endif %}
+          <!-- Klickbar wie bei RTC: Sprechblase + einladender Hinweis -->
+          <div class="robot-bubble" id="robotBubble" aria-live="polite"></div>
+          <div class="robot-hint" id="robotHint" aria-hidden="true">Klick mich</div>
         </div>
+        <button class="robot-tap" id="robotTap" type="button">Klick mich</button>
         <div class="hero-price-chip" aria-hidden="true"><span>Webseiten</span><strong>ab {{ c.preis_ab }} €</strong></div>
       </div>
     </div>
@@ -76,9 +79,9 @@
   <!-- ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── -->
   <section class="band">
     <div class="wrap band-in" data-reveal>
-      <span class="band-kick">Von der Idee zur fertigen Seite</span>
-      <h2 class="band-h">Sie sagen, was Sie brauchen. Wir bauen den Rest.</h2>
-      <p class="band-p">Scrollen Sie und sehen Sie zu, wie aus einem leeren Bildschirm Ihre Webseite entsteht.</p>
+      <span class="band-kick">Performance ab der ersten Sekunde</span>
+      <h2 class="band-h">Wir bauen mit kompromissloser Leistung.</h2>
+      <p class="band-p">Scrollen Sie und sehen Sie die Maschine hinter schnellen Webseiten hochfahren.</p>
     </div>
   </section>
 
@@ -91,10 +94,10 @@
       </video>
       <div class="scrolly-shade" aria-hidden="true"></div>
       <div class="wrap scrolly-overlay">
-        <div class="scrolly-step is-active" data-step="0"><h2>Aus Ihrer Idee wird eine Webseite.</h2><p>Individuell gestaltet, sauber gebaut, auf Anfragen ausgelegt.</p></div>
-        <div class="scrolly-step" data-step="1"><h3>Design</h3><p>Ein Entwurf auf Premium-Niveau, abgestimmt auf Ihre Marke.</p></div>
-        <div class="scrolly-step" data-step="2"><h3>Entwicklung</h3><p>Schneller, sauberer Code. Responsiv auf jedem Gerät.</p></div>
-        <div class="scrolly-step" data-step="3"><h3>Launch</h3><p>Wir gehen live und messen, was die Seite für Sie bringt.</p></div>
+        <div class="scrolly-step is-active" data-step="0"><h2>Leistung, die man spürt.</h2><p>Schnelle Technik und sauberer Code, von der ersten Zeile an.</p></div>
+        <div class="scrolly-step" data-step="1"><h3>Schnell</h3><p>Optimierte Ladezeiten, die Ihre Besucher nicht warten lassen.</p></div>
+        <div class="scrolly-step" data-step="2"><h3>Modern</h3><p>Aktuelle Technik, sauber gebaut und langfristig wartbar.</p></div>
+        <div class="scrolly-step" data-step="3"><h3>Stabil</h3><p>Bleibt schnell, auch wenn viele Besucher gleichzeitig kommen.</p></div>
       </div>
       <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
     </div>
@@ -147,7 +150,6 @@
   <section class="section" id="leistungen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <span class="eyebrow eyebrow-dark"><span class="dot"></span>Leistungen</span>
         <h2 class="section-t">Alles für Ihren Auftritt, aus einer Hand.</h2>
         <p class="section-lead">Design, Technik, Hosting und Sichtbarkeit greifen nahtlos ineinander, von der ersten Idee bis zum laufenden Betrieb.</p>
       </header>
@@ -226,7 +228,6 @@
   <section class="section section-alt" id="preise">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <span class="eyebrow eyebrow-dark"><span class="dot"></span>Pakete</span>
         <h2 class="section-t">Klare Pakete, faire Preise.</h2>
         <p class="section-lead">Transparente Startpreise. Das passende Angebot stimmen wir im Gespräch auf Ihr Projekt ab.</p>
       </header>
