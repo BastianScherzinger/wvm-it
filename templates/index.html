@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ c.seo_title }}</title>
   <meta name="description" content="{{ c.seo_desc }}">
-  <meta name="theme-color" content="#08080f">
+  <meta name="theme-color" content="#0a0908">
   <link rel="canonical" href="{{ c.wvm_url }}/">
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://prod.spline.design" crossorigin>
   <meta property="og:title" content="{{ c.seo_title }}">
   <meta property="og:description" content="{{ c.seo_desc }}">
   <meta property="og:type" content="website">
@@ -39,6 +41,7 @@
         <a href="#preise">Preise</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="Anrufen">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
       <a class="btn btn-sm btn-magnetic nav-cta" href="#kontakt">{{ c.cta_text }}</a>
     </div>
   </div>
@@ -78,6 +81,14 @@
     </div>
     <a class="hero-scroll" href="#aufbau" aria-label="Weiter nach unten"><span></span></a>
   </section>
+
+  <!-- ── Service-Marquee (sofort sichtbar, worum es geht + Bewegung) ────────── -->
+  <div class="marquee" aria-label="Unsere Leistungen">
+    <div class="marquee-track">
+      <span>Smarthome</span><i>·</i><span>Loxone</span><i>·</i><span>KNX</span><i>·</i><span>Konferenztechnik</span><i>·</i><span>Video &amp; Ton</span><i>·</i><span>Bühnentechnik</span><i>·</i><span>EDV</span><i>·</i><span>Netzwerk &amp; Sicherheit</span><i>·</i><span>Webdesign</span><i>·</i><span>KI</span><i>·</i>
+      <span aria-hidden="true">Smarthome</span><i aria-hidden="true">·</i><span aria-hidden="true">Loxone</span><i aria-hidden="true">·</i><span aria-hidden="true">KNX</span><i aria-hidden="true">·</i><span aria-hidden="true">Konferenztechnik</span><i aria-hidden="true">·</i><span aria-hidden="true">Video &amp; Ton</span><i aria-hidden="true">·</i><span aria-hidden="true">Bühnentechnik</span><i aria-hidden="true">·</i><span aria-hidden="true">EDV</span><i aria-hidden="true">·</i><span aria-hidden="true">Netzwerk &amp; Sicherheit</span><i aria-hidden="true">·</i><span aria-hidden="true">Webdesign</span><i aria-hidden="true">·</i><span aria-hidden="true">KI</span><i aria-hidden="true">·</i>
+    </div>
+  </div>
 
   <!-- ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── -->
   <section class="band">
@@ -439,7 +450,10 @@
   </div>
 </footer>
 
-<a class="mobile-cta" href="#kontakt">{{ c.cta_text }}</a>
+<div class="mobilebar">
+  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}Anrufen</a>{% endif %}
+  <a class="mobilebar-cta" href="#kontakt">{{ c.cta_text }}</a>
+</div>
 
 <script src="{% static 'js/main.js' %}" defer></script>
 </body>
