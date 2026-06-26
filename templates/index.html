@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ProfessionalService","name":"{{ c.site_name }}","description":"{{ c.seo_desc }}","url":"{{ c.wvm_url }}","areaServed":"DE","email":"{{ c.email }}","priceRange":"ab {{ c.preis_ab }} EUR"}
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"{{ c.site_name }}","description":"{{ c.seo_desc }}","url":"{{ c.wvm_url }}","areaServed":["AT","DE"],"telephone":"{{ c.telefon }}","email":"{{ c.email }}","priceRange":"ab {{ c.preis_ab }} EUR"}
   </script>
 </head>
 <body>
@@ -106,7 +106,7 @@
   <!-- ── Vertrauens-Leiste + Kennzahlen ────────────────────────────────────── -->
   <section class="proof">
     <div class="wrap">
-      <p class="proof-line" data-reveal>Im Einsatz für Unternehmen, Handwerk, Gastronomie, Dienstleister und Startups in ganz Deutschland.</p>
+      <p class="proof-line" data-reveal>Im Einsatz für Unternehmen, Handwerk, Gastronomie, Dienstleister und Startups im gesamten DACH-Raum.</p>
       <div class="stats" data-reveal>
         <div class="stat"><strong data-count="350" data-prefix="ab " data-suffix=" €">0</strong><span>Start für die erste Webseite</span></div>
         <div class="stat"><strong data-count="24" data-suffix=" h">0</strong><span>bis zur ersten Antwort</span></div>
