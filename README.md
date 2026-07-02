@@ -14,6 +14,11 @@ cinematischen Higgsfield-Backdrop.
 - `static/js/main.js` ,  Hero-Canvas, Reveal-on-Scroll, Count-up, Nav-Status.
 - `landing/views.py` ,  rendert die Seite, nimmt das Kontaktformular per POST entgegen.
 
+## Bilder
+- `static/img/florin.jpg` — Gründerfoto (Florin Feier). Aktualisiert am 02.07.2026:
+  neues Foto aus WhatsApp-Übertragung, quadratisch auf das Gesicht zugeschnitten,
+  auf 640×640 skaliert und als JPEG (Qualität 82, ~46 KB) komprimiert.
+
 ## Lokal starten
 ```bash
 pip install -r requirements.txt
