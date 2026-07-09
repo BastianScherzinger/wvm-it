@@ -13,9 +13,11 @@ import re
 from pathlib import Path
 
 from django.conf import settings
+from django.core import signing
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -253,20 +255,23 @@ def _handle_contact(request, c) -> bool:
     return True
 
 
-def _handle_newsletter(request, c) -> bool:
-    """Newsletter-Anmeldung: benachrichtigt das Postfach und schickt dem Abonnenten
-    eine Willkommens-Mail mit dem 25%-Rabattcode. True = erfolgreich entgegengenommen."""
-    email = (request.POST.get("email") or "").strip()
-    if not email or "@" not in email or " " in email:
-        return False
-    wunsch = (request.POST.get("wunsch") or "").strip()
-    code = os.environ.get("NEWSLETTER_CODE", "WVM25").strip() or "WVM25"
+# ── Newsletter (Double-Opt-in, ohne Datenbank via signiertem Link) ─────────────
+_NEWSLETTER_SALT = "wvm-newsletter-confirm"
+_NEWSLETTER_MAXAGE = 60 * 60 * 24 * 3  # Bestätigungslink 3 Tage gültig
+
+
+def _newsletter_code() -> str:
+    return os.environ.get("NEWSLETTER_CODE", "WVM25").strip() or "WVM25"
+
+
+def _newsletter_deliver(email: str, wunsch: str, c: dict) -> None:
+    """Nach BESTÄTIGTEM Opt-in: Postfach benachrichtigen + Willkommens-Mail mit Code."""
+    code = _newsletter_code()
     site = c.get("site_name", "WVM-IT")
     empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger)
-
     notify = (
-        "Neue Newsletter-Anmeldung über wvm-it.tech\n\n"
+        "Neue BESTÄTIGTE Newsletter-Anmeldung über wvm-it.tech\n\n"
         f"E-Mail:         {email}\n"
         f"Website-Wunsch: {wunsch or '-'}\n\n"
         f"Ausgegebener Rabattcode: {code}\n"
@@ -274,7 +279,7 @@ def _handle_newsletter(request, c) -> bool:
     )
     welcome = (
         "Hallo,\n\n"
-        "schön, dass du dabei bist. Als Dankeschön für deine Anmeldung:\n\n"
+        "danke, dass du deine Anmeldung bestätigt hast. Als Dankeschön:\n\n"
         f"  Dein Rabattcode: {code}  (25 % auf deine erste Website)\n\n"
         "Außerdem erstellen wir dir eine kostenlose Beispiel-Website und schicken sie dir "
         "in Kürze zu, damit du direkt siehst, was möglich ist.\n\n"
@@ -284,13 +289,58 @@ def _handle_newsletter(request, c) -> bool:
     try:
         if getattr(settings, "EMAIL_HOST", ""):
             if empfaenger:
-                send_mail(f"Newsletter-Anmeldung: {email}", notify, from_email, [empfaenger], fail_silently=True)
+                send_mail(f"Newsletter bestätigt: {email}", notify, from_email, [empfaenger], fail_silently=True)
             send_mail(f"Willkommen bei {site}: dein 25%-Code", welcome, from_email, [email], fail_silently=True)
         else:
-            print("[NEWSLETTER]\n" + notify + "\n--- Willkommens-Mail ---\n" + welcome, flush=True)
+            print("[NEWSLETTER-CONFIRMED]\n" + notify + "\n--- Willkommens-Mail ---\n" + welcome, flush=True)
+    except Exception as exc:  # Besucher nie mit einem 500 bestrafen
+        print(f"[NEWSLETTER-FEHLER] {exc}", flush=True)
+
+
+def _handle_newsletter(request, c) -> bool:
+    """Double-Opt-in Schritt 1: E-Mail prüfen und einen signierten Bestätigungslink mailen.
+    Es wird noch KEIN Code ausgegeben und das Postfach noch NICHT benachrichtigt."""
+    email = (request.POST.get("email") or "").strip()
+    if not email or "@" not in email or " " in email:
+        return False
+    wunsch = (request.POST.get("wunsch") or "").strip()[:300]
+    token = signing.dumps({"e": email, "w": wunsch}, salt=_NEWSLETTER_SALT)
+    base = (c.get("wvm_url") or "").rstrip("/") or request.build_absolute_uri("/").rstrip("/")
+    link = f"{base}{reverse('newsletter_confirm')}?t={token}"
+    site = c.get("site_name", "WVM-IT")
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
+    confirm = (
+        "Hallo,\n\n"
+        f"fast geschafft. Bitte bestätige deine Newsletter-Anmeldung bei {site} mit einem Klick:\n\n"
+        f"{link}\n\n"
+        "Danach bekommst du deinen 25%-Rabattcode und deine kostenlose Beispiel-Website.\n"
+        "Der Link ist 3 Tage gültig. Falls du dich nicht angemeldet hast, ignoriere diese E-Mail einfach.\n"
+    )
+    try:
+        if getattr(settings, "EMAIL_HOST", ""):
+            send_mail(f"Bitte bestätige deine Anmeldung bei {site}", confirm, from_email, [email], fail_silently=True)
+        else:
+            print("[NEWSLETTER-CONFIRM-MAIL]\n" + confirm, flush=True)
     except Exception as exc:  # Besucher nie mit einem 500 bestrafen
         print(f"[NEWSLETTER-FEHLER] {exc}", flush=True)
     return True
+
+
+def newsletter_confirm(request):
+    """Double-Opt-in Schritt 2: Token prüfen, dann Code + Willkommens-Mail ausliefern."""
+    c = _content()
+    token = (request.GET.get("t") or "").strip()
+    ok = False
+    try:
+        data = signing.loads(token, salt=_NEWSLETTER_SALT, max_age=_NEWSLETTER_MAXAGE)
+        email = (data.get("e") or "").strip()
+        wunsch = (data.get("w") or "").strip()
+        if email:
+            _newsletter_deliver(email, wunsch, c)
+            ok = True
+    except Exception:  # BadSignature, SignatureExpired, kaputtes Token
+        ok = False
+    return render(request, "newsletter_confirm.html", {"c": c, "ok": ok, "code": _newsletter_code()})
 
 
 def index(request):

@@ -768,3 +768,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   .offer-row .btn{width:100%;justify-content:center}
   .hero-offer,.hero-offer-done{max-width:none}
 }
+
+/* ── Newsletter-Bestätigungsseite (Double-Opt-in) ────────────────────────── */
+.ang-page .confirm-sec{padding-top:clamp(118px,15vw,150px);padding-bottom:clamp(60px,8vw,90px)}
+.confirm-code{display:inline-flex;align-items:center;gap:12px;margin:4px 0 22px;padding:12px 20px;border-radius:14px;
+  border:1px dashed color-mix(in srgb,var(--accent) 50%,transparent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.confirm-code span{font-size:13px;color:var(--ink-soft)}
+.confirm-code strong{font-family:"Space Grotesk",sans-serif;font-size:1.3rem;letter-spacing:.06em;color:var(--accent2)}
+.ang-sent--error .sent-ic{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent2);
+  border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);box-shadow:none}
