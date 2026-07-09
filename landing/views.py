@@ -71,6 +71,156 @@ def _content() -> dict:
     return data
 
 
+# ── Angebots-Konfigurator ─────────────────────────────────────────────────────
+# Einzige Preisquelle (auch der Client liest die Preise aus dem gerenderten DOM,
+# die E-Mail wird serverseitig NEU aus dieser Tabelle berechnet — kein Client-Trust).
+# once = einmalig (€), mtl = pro Monat (€), yr = pro Jahr (€), anfrage = Preis auf Anfrage.
+ANGEBOT_GROUPS = [
+    {
+        "id": "web", "title": "Webseiten & Shop", "icon": "web",
+        "sub": "Ihr digitaler Auftritt, sauber gebaut.",
+        "items": [
+            {"id": "onepager", "name": "One-Pager / Landingpage", "desc": "Eine starke Seite, die verkauft.", "once": 350, "icon": "bolt"},
+            {"id": "business", "name": "Business-Website", "desc": "Mehrseitig, individuell, mit SEO-Basis.", "once": 1490, "popular": True, "icon": "web"},
+            {"id": "premium", "name": "Premium / Individuell", "desc": "Animationen, 3D und echte Maßarbeit.", "once": 2900, "icon": "rocket"},
+            {"id": "shop", "name": "Online-Shop", "desc": "Verkaufen rund um die Uhr.", "once": 3500, "icon": "cart"},
+        ],
+    },
+    {
+        "id": "infra", "title": "Domain, Hosting & Wartung", "icon": "server",
+        "sub": "Damit Ihre Seite schnell bleibt und immer läuft.",
+        "items": [
+            {"id": "domain", "name": "Domain", "desc": "Ihre Wunschadresse (.at, .de, .com ...).", "yr": 15, "icon": "domain"},
+            {"id": "hosting", "name": "Hosting + SSL + Backups", "desc": "Schnell, sicher, immer erreichbar.", "mtl": 15, "icon": "host"},
+            {"id": "wartung", "name": "Wartung & Updates", "desc": "Updates, Sicherheit, kleine Änderungen.", "mtl": 39, "icon": "care"},
+        ],
+    },
+    {
+        "id": "ki", "title": "KI & Automatisierung", "icon": "ai",
+        "sub": "Lassen Sie die Technik für sich arbeiten.",
+        "items": [
+            {"id": "chatbot", "name": "KI-Chatbot / Anfrage-Bot", "desc": "Beantwortet Fragen und sammelt Leads, rund um die Uhr.", "once": 690, "mtl": 39, "icon": "ai"},
+            {"id": "wa_auto", "name": "WhatsApp- / E-Mail-Automatisierung", "desc": "Anfragen und Antworten laufen automatisch.", "once": 490, "icon": "wa"},
+            {"id": "termin", "name": "Termin- / Booking-Automatisierung", "desc": "Kunden buchen selbst, mit Kalender-Sync.", "once": 390, "icon": "calendar"},
+            {"id": "custom_ki", "name": "Custom-KI (CRM/ERP-Anbindung)", "desc": "Maßgeschneidert an Ihre Systeme angebunden.", "once": 1200, "icon": "cog"},
+        ],
+    },
+    {
+        "id": "extra", "title": "Bots, SEO & Custom", "icon": "rocket",
+        "sub": "Der letzte Schliff für mehr Sichtbarkeit.",
+        "items": [
+            {"id": "bot", "name": "Social- / Content-Bot", "desc": "Automatischer Content für Ihre Kanäle.", "once": 390, "icon": "bot"},
+            {"id": "seo", "name": "SEO-Grundoptimierung", "desc": "Einmalig sauber für Google aufgestellt.", "once": 390, "icon": "seo"},
+            {"id": "seo_care", "name": "Laufende SEO-Betreuung", "desc": "Monat für Monat besser ranken.", "mtl": 149, "icon": "gauge"},
+            {"id": "custom", "name": "Custom-Software / individuell", "desc": "Ihre Idee, individuell umgesetzt.", "anfrage": True, "icon": "consulting"},
+        ],
+    },
+]
+
+# Flache id -> item-Zuordnung (inkl. Gruppentitel) für die serverseitige Neuberechnung.
+_ANGEBOT_INDEX = {
+    it["id"]: dict(it, gruppe=g["title"])
+    for g in ANGEBOT_GROUPS for it in g["items"]
+}
+
+
+def _eur(n) -> str:
+    """1490 -> '1.490' (deutsche Tausendertrennung, ganze Euro)."""
+    return f"{int(n):,.0f}".replace(",", ".")
+
+
+# Anzeige-Labels vorberechnen (einmalige, konsistente Formatierung für die Templates).
+for _g in ANGEBOT_GROUPS:
+    for _it in _g["items"]:
+        if _it.get("anfrage"):
+            _it["price_label"] = "auf Anfrage"
+        else:
+            _parts = []
+            if _it.get("once"):
+                _parts.append(f"{_eur(_it['once'])} €")
+            if _it.get("mtl"):
+                _parts.append(f"{_it['mtl']} €/Mt")
+            if _it.get("yr"):
+                _parts.append(f"{_eur(_it['yr'])} €/Jahr")
+            _it["price_label"] = ("ab " + " + ".join(_parts)) if _parts else "-"
+
+
+def _angebot_summary(ids):
+    """Baut aus einer Liste von Item-IDs die Zusammenfassung + Summen — serverseitig,
+    unabhängig von etwaigen Client-Werten. Gibt (zeilen, once, mtl, yr, hat_anfrage) zurück."""
+    zeilen, once, mtl, yr = [], 0, 0, 0
+    hat_anfrage = False
+    for iid in ids:
+        it = _ANGEBOT_INDEX.get(iid)
+        if not it:
+            continue
+        teile = []
+        if it.get("anfrage"):
+            teile.append("auf Anfrage")
+            hat_anfrage = True
+        if it.get("once"):
+            once += it["once"]; teile.append(f"einmalig {it['once']} €")
+        if it.get("mtl"):
+            mtl += it["mtl"]; teile.append(f"{it['mtl']} €/Monat")
+        if it.get("yr"):
+            yr += it["yr"]; teile.append(f"{it['yr']} €/Jahr")
+        preis = ", ".join(teile) if teile else "-"
+        zeilen.append(f"- {it['gruppe']}: {it['name']} ({preis})")
+    return zeilen, once, mtl, yr, hat_anfrage
+
+
+def _handle_angebot(request, c) -> bool:
+    """Verarbeitet den Angebots-Konfigurator (POST). True = erfolgreich entgegengenommen."""
+    name = (request.POST.get("name") or "").strip()
+    email = (request.POST.get("email") or "").strip()
+    if not (name and email):
+        return False
+    # Auswahl: mehrere Checkboxen name="item" ODER Fallback: kommagetrennt in "auswahl".
+    ids = request.POST.getlist("item")
+    if not ids:
+        ids = [s.strip() for s in (request.POST.get("auswahl") or "").split(",") if s.strip()]
+    ids = [i for i in ids if i in _ANGEBOT_INDEX]
+    if not ids:
+        return False
+    telefon = (request.POST.get("telefon") or "").strip()
+    nachricht = (request.POST.get("nachricht") or "").strip()
+    zeilen, once, mtl, yr, hat_anfrage = _angebot_summary(ids)
+
+    summen = []
+    if once:
+        summen.append(f"Einmalig gesamt: {once} €")
+    if mtl:
+        summen.append(f"Monatlich gesamt: {mtl} €")
+    if yr:
+        summen.append(f"Jährlich gesamt: {yr} €")
+    if hat_anfrage:
+        summen.append("Einzelne Positionen: Preis auf Anfrage")
+
+    empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+    body = (
+        "Neue Angebots-Anfrage über wvm-it.tech (Konfigurator)\n\n"
+        f"Name:    {name}\nE-Mail:  {email}\nTelefon: {telefon}\n\n"
+        "Gewählte Leistungen:\n" + "\n".join(zeilen) + "\n\n"
+        + "\n".join(summen) + "\n\n"
+        + (f"Nachricht:\n{nachricht}\n" if nachricht else "")
+        + "\nHinweis: Richtpreise, unverbindlich. Endpreis nach Gespräch.\n"
+    )
+    try:
+        if getattr(settings, "EMAIL_HOST", "") and empfaenger:
+            send_mail(
+                subject=f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)",
+                message=body,
+                from_email=getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger),
+                recipient_list=[empfaenger],
+                fail_silently=True,
+            )
+        else:
+            print("[ANGEBOT]\n" + body, flush=True)
+    except Exception as exc:  # niemals den Besucher mit einem 500 bestrafen
+        print(f"[ANGEBOT-FEHLER] {exc}", flush=True)
+    return True
+
+
 def _handle_contact(request, c) -> bool:
     """Verarbeitet das Kontaktformular. True = erfolgreich entgegengenommen."""
     name = (request.POST.get("name") or "").strip()
@@ -109,6 +259,14 @@ def index(request):
     if request.method == "POST":
         sent = _handle_contact(request, c)
     return render(request, "index.html", {"c": c, "sent": sent})
+
+
+def angebot(request):
+    c = _content()
+    sent = False
+    if request.method == "POST":
+        sent = _handle_angebot(request, c)
+    return render(request, "angebot.html", {"c": c, "sent": sent, "groups": ANGEBOT_GROUPS})
 
 
 def health(request):

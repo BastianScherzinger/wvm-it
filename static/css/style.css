@@ -449,3 +449,156 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   .robot{animation:none}
   .marquee-track{animation:none;transform:none;flex-wrap:wrap;white-space:normal;justify-content:center;padding:14px 16px}
 }
+
+/* ============================================================================
+   ANGEBOTS-KONFIGURATOR (/angebot/)
+   ========================================================================== */
+/* ── Kopf ────────────────────────────────────────────────────────────────── */
+.ang-head{position:relative;padding:128px 0 40px;overflow:hidden;isolation:isolate}
+.ang-head-bg{position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(60% 60% at 84% -10%, color-mix(in srgb,var(--accent) 14%,transparent), transparent 60%),
+    radial-gradient(50% 50% at 6% 0%, color-mix(in srgb,var(--accent2) 8%,transparent), transparent 60%)}
+.ang-head-in{max-width:52ch}
+.ang-head h1{font-size:clamp(2.1rem,4.6vw,3.5rem);font-weight:700;max-width:16ch;
+  background:linear-gradient(180deg,#fff 34%,#cfc6b3);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ang-head .lead{margin:20px 0 26px}
+.ang-promise{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+.ang-promise li{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;color:var(--ink-soft);
+  padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.ang-promise svg{width:16px;height:16px;color:var(--accent2);flex:0 0 auto}
+
+/* ── Preisliste ──────────────────────────────────────────────────────────── */
+.pl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.pl-card{position:relative;background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--line);
+  border-radius:var(--radius);padding:26px 26px 22px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.pl-card:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow-lg)}
+.pl-card-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.pl-ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;flex:0 0 auto;color:var(--accent2);
+  background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
+.pl-ic svg{width:23px;height:23px}
+.pl-card-head h3{font-size:1.16rem}
+.pl-sub{display:block;font-size:13px;color:var(--ink-dim);margin-top:2px}
+.pl-list{list-style:none;display:flex;flex-direction:column;gap:2px}
+.pl-list li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-top:1px solid var(--line)}
+.pl-list li:first-child{border-top:0}
+.pl-name{font-size:14.5px;color:var(--ink);font-weight:500}
+.pl-pop{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent2);
+  padding:2px 8px;border-radius:999px;border:1px solid color-mix(in srgb,var(--accent) 34%,transparent);margin-left:4px;vertical-align:middle}
+.pl-price{font-size:14px;font-weight:700;color:var(--accent2);white-space:nowrap;font-family:"Space Grotesk",sans-serif}
+
+/* ── Konfigurator-Layout ─────────────────────────────────────────────────── */
+.ang-layout{display:grid;grid-template-columns:minmax(0,1fr) 384px;gap:28px;align-items:start}
+.ang-groups{display:flex;flex-direction:column;gap:34px;min-width:0}
+.ang-group-head{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.ang-group-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:0 0 auto;color:var(--accent2);
+  background:color-mix(in srgb,var(--accent) 13%,transparent);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent)}
+.ang-group-ic svg{width:21px;height:21px}
+.ang-group-head h3{font-size:1.14rem}
+.ang-group-sub{display:block;font-size:13px;color:var(--ink-dim);margin-top:1px}
+.ang-item-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* ── Auswahl-Kachel ──────────────────────────────────────────────────────── */
+.ang-item{display:block;cursor:pointer;height:100%}
+.ang-check{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);border:0}
+.ang-item-box{position:relative;display:flex;flex-direction:column;gap:9px;height:100%;padding:17px 17px 15px;
+  border:1px solid var(--line);border-radius:15px;background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  transition:transform .22s var(--ease),border-color .22s,box-shadow .22s,background .22s}
+.ang-item:hover .ang-item-box{transform:translateY(-3px);border-color:var(--line-2)}
+.ang-item-ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;color:var(--accent2);
+  background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);transition:background .22s,color .22s}
+.ang-item-ic svg{width:19px;height:19px}
+.ang-item-name{display:block;font-size:15px;font-weight:600;color:var(--ink);line-height:1.3}
+.ang-item-desc{display:block;font-size:13px;color:var(--ink-soft);margin-top:3px;line-height:1.5}
+.ang-tag{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--on-accent);
+  background:linear-gradient(180deg,var(--accent2),var(--accent));padding:2px 8px;border-radius:999px;vertical-align:middle;margin-left:2px}
+.ang-item-price{margin-top:auto;font-size:14px;font-weight:700;color:var(--accent2);font-family:"Space Grotesk",sans-serif}
+.ang-item-check{position:absolute;top:13px;right:13px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid var(--line-2);background:rgba(255,255,255,.02);color:transparent;transition:all .22s var(--ease)}
+.ang-item-check svg{width:14px;height:14px}
+/* Ausgewählt */
+.ang-check:checked + .ang-item-box{border-color:color-mix(in srgb,var(--accent) 62%,transparent);
+  background:radial-gradient(120% 100% at 100% 0%, color-mix(in srgb,var(--accent) 14%,transparent), transparent 60%),linear-gradient(180deg,var(--surface),var(--surface-2));
+  box-shadow:var(--glow)}
+.ang-check:checked + .ang-item-box .ang-item-ic{background:linear-gradient(150deg,var(--accent),var(--accent2));color:var(--on-accent);border-color:transparent}
+.ang-check:checked + .ang-item-box .ang-item-check{border-color:transparent;color:var(--on-accent);
+  background:linear-gradient(150deg,var(--accent),var(--accent2))}
+.ang-check:focus-visible + .ang-item-box{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:3px}
+
+/* ── Warenkorb / Summe ───────────────────────────────────────────────────── */
+.ang-summary-in{position:sticky;top:88px;display:flex;flex-direction:column;gap:16px}
+.ang-cart,.ang-lead{background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--line);border-radius:20px;padding:22px}
+.ang-cart-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.ang-cart-head h3{font-size:1.15rem}
+.ang-count{font-size:12.5px;font-weight:600;color:var(--accent2);padding:4px 11px;border-radius:999px;
+  border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);background:color-mix(in srgb,var(--accent) 8%,transparent);white-space:nowrap}
+.ang-cart-list{list-style:none;display:flex;flex-direction:column;margin:0 0 4px}
+.ang-cart-empty{font-size:13.5px;color:var(--ink-dim);line-height:1.6;padding:6px 0 14px}
+.ang-ci{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.ang-ci:first-child{border-top:0}
+.ang-ci-name{font-size:14px;color:var(--ink);font-weight:500;min-width:0}
+.ang-ci-price{font-size:12.5px;color:var(--ink-soft);white-space:nowrap;font-family:"Space Grotesk",sans-serif}
+.ang-ci-x{width:24px;height:24px;border-radius:50%;border:1px solid var(--line-2);background:rgba(255,255,255,.02);color:var(--ink-soft);
+  font-size:17px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:all .18s;flex:0 0 auto}
+.ang-ci-x:hover{border-color:color-mix(in srgb,var(--accent) 55%,transparent);color:var(--ink);transform:scale(1.06)}
+.ang-totals{display:flex;flex-direction:column;gap:2px;margin-top:6px;padding-top:14px;border-top:1px dashed var(--line-2)}
+.ang-total-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:6px 0}
+.ang-total-row span{font-size:14px;color:var(--ink-soft)}
+.ang-total-row strong{font-size:1.5rem;font-weight:700;color:var(--ink);font-family:"Space Grotesk",sans-serif;letter-spacing:-.02em}
+.ang-total-row strong small{font-size:.62em;font-weight:600;color:var(--ink-soft);margin-left:1px}
+.ang-total-row[data-total="once"] strong{color:var(--accent2)}
+.ang-total-note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--ink-soft);margin-top:8px;
+  padding:10px 12px;border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px solid color-mix(in srgb,var(--accent) 18%,transparent)}
+.ang-total-note svg{width:16px;height:16px;flex:0 0 auto;color:var(--accent2);margin-top:1px}
+.ang-cart-fine{font-size:12px;color:var(--ink-dim);margin-top:12px}
+
+/* ── Lead-Formular (im Konfigurator) ─────────────────────────────────────── */
+.ang-lead h4{font-size:1.05rem;margin-bottom:14px}
+.ang-lead .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.ang-lead label{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:14px}
+.ang-lead .opt{font-weight:400;color:var(--ink-dim)}
+.ang-lead input,.ang-lead textarea{font:inherit;font-weight:400;font-size:15px;padding:12px 14px;color:var(--ink);
+  background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;transition:border-color .2s,box-shadow .2s;width:100%}
+.ang-lead input::placeholder,.ang-lead textarea::placeholder{color:var(--ink-dim)}
+.ang-lead input:focus,.ang-lead textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+.ang-lead .check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400;font-size:12.5px;color:var(--ink-soft)}
+.ang-lead .check input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:var(--accent)}
+.ang-lead .check a{color:var(--accent2);text-decoration:underline}
+.ang-submit{width:100%;margin-top:2px}
+.ang-submit.is-off{opacity:.5;filter:grayscale(.3)}
+.ang-hint{font-size:12.5px;color:color-mix(in srgb,var(--accent2) 90%,#fff);text-align:center;margin-top:10px}
+
+/* ── Erfolgs-State ───────────────────────────────────────────────────────── */
+.ang-sent{max-width:620px;margin:0 auto;text-align:center;background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  border:1px solid var(--line);border-radius:22px;padding:48px 32px}
+.ang-sent .sent-ic{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;color:var(--on-accent);
+  background:linear-gradient(150deg,var(--accent),var(--accent2));box-shadow:var(--glow)}
+.ang-sent .sent-ic svg{width:34px;height:34px}
+.ang-sent h3{font-size:1.5rem;margin-bottom:10px}
+.ang-sent p{color:var(--ink-soft);max-width:44ch;margin:0 auto 26px}
+.ang-sent-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ── Mobile Summenleiste ─────────────────────────────────────────────────── */
+.ang-mobar{display:none}
+.ang-mobar-in{display:flex;align-items:center;gap:12px}
+.ang-mobar-sum{display:flex;flex-direction:column;line-height:1.15}
+.ang-mobar-sum span{font-size:11.5px;color:var(--ink-soft)}
+.ang-mobar-sum strong{font-size:16px;font-family:"Space Grotesk",sans-serif;color:var(--accent2)}
+.ang-mobar .btn{flex:1;justify-content:center}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width:980px){
+  .ang-layout{grid-template-columns:1fr}
+  .ang-summary-in{position:static;top:auto}
+  .pl-grid{grid-template-columns:1fr;max-width:560px;margin-inline:auto}
+  .ang-head{padding:112px 0 28px}
+  /* Fixierte Summenleiste unten (springt zum Formular) */
+  .ang-mobar[hidden]{display:none}
+  .ang-mobar{display:block;position:fixed;left:12px;right:12px;bottom:76px;z-index:88;
+    background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--line-2);border-radius:16px;padding:11px 13px;box-shadow:0 20px 50px -18px rgba(0,0,0,.8)}
+}
+@media (max-width:560px){
+  .ang-item-grid{grid-template-columns:1fr}
+  .ang-lead .f-row{grid-template-columns:1fr}
+  .ang-promise{gap:8px}
+}

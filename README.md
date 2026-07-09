@@ -10,9 +10,29 @@ cinematischen Higgsfield-Backdrop.
 ## Aufbau
 - `content.json` ,  Marke, Kontakt, Akzentfarben, Rechtstexte (zentral anpassbar).
 - `templates/index.html` ,  Layout/Sektionen, `templates/icons.html` ,  Inline-SVG-Icons.
+- `templates/angebot.html` ,  Angebots-Konfigurator (Unterseite `/angebot/`).
 - `static/css/style.css` ,  komplettes Premium-Dark-Stylesheet (ein Akzent + Cyan).
 - `static/js/main.js` ,  Hero-Canvas, Reveal-on-Scroll, Count-up, Nav-Status.
-- `landing/views.py` ,  rendert die Seite, nimmt das Kontaktformular per POST entgegen.
+- `static/js/angebot.js` ,  Live-Summen-Logik des Konfigurators.
+- `landing/views.py` ,  rendert die Seiten, nimmt Kontakt- und Angebotsformular per POST entgegen.
+
+## Angebots-Konfigurator (`/angebot/`)
+Eigene Unterseite, auf der Kundinnen und Kunden ihr Angebot selbst zusammenstellen:
+eine übersichtliche **Preisliste** und darunter wählbare Leistungs-Kacheln
+(Webseiten & Shop, Domain/Hosting/Wartung, KI & Automatisierung, Bots/SEO/Custom).
+Die **Summe (Einmalig / Monatlich / Jährlich) rechnet sich live** mit; am Ende fordert
+man das Angebot mit Name + E-Mail an.
+
+- **Preisquelle:** `ANGEBOT_GROUPS` in `landing/views.py` (Felder `once`/`mtl`/`yr`/
+  `anfrage` je Leistung). Preise ändern = nur dort anpassen. Das Anzeige-Label
+  (`ab 1.490 €`) wird beim Import einmal vorformatiert.
+- **Kein Client-Trust:** Der Browser liest die Preise aus `data-`-Attributen nur für
+  die Live-Anzeige. Beim Absenden berechnet `_handle_angebot()` die Auswahl aus den
+  Item-IDs **serverseitig neu** und mailt/loggt sie (gleiche Logik wie Kontaktformular).
+- **Progressive Enhancement:** Die Auswahl sind echte Checkboxen (`name="item"`),
+  das Formular funktioniert auch ohne JavaScript.
+- Der Lead landet per SMTP bei `KONTAKT_EMPFAENGER` (bzw. `email` aus `content.json`),
+  sonst wird er geloggt — identisch zum Kontaktformular.
 
 ## Bilder
 - `static/img/florin.jpg` — Gründerfoto (Florin Feier). Aktualisiert am 02.07.2026:

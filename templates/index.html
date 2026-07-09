@@ -37,8 +37,8 @@
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="Hauptnavigation">
         <a href="#leistungen">Leistungen</a>
-        <a href="#partner">Partner</a>
         <a href="#preise">Preise</a>
+        <a href="/angebot/">Angebot</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
       {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="Anrufen">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
@@ -58,8 +58,8 @@
         <h1>{{ c.headline }}</h1>
         <p class="lead">{{ c.subline }}</p>
         <div class="hero-cta">
-          <a class="btn btn-lg btn-magnetic" href="#kontakt">{{ c.cta_text }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn btn-ghost btn-lg" href="#leistungen">Leistungen ansehen</a>
+          <a class="btn btn-lg btn-magnetic" href="/angebot/">Angebot berechnen<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-ghost btn-lg" href="#kontakt">{{ c.cta_text }}</a>
         </div>
       </div>
       <div class="hero-figure" data-reveal>
