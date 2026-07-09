@@ -43,167 +43,169 @@
 </header>
 
 <main id="main">
-  <!-- ── Kopf ──────────────────────────────────────────────────────────────── -->
-  <section class="ang-head">
-    <div class="ang-head-bg" aria-hidden="true"></div>
-    <div class="wrap ang-head-in" data-reveal>
-      <span class="eyebrow"><span class="dot"></span>Angebots-Konfigurator</span>
-      <h1>Stellen Sie Ihr Angebot selbst zusammen.</h1>
-      <p class="lead">In wenigen Schritten durchklicken, Leistungen auswählen, Richtpreis sofort sehen. Unverbindlich, ohne Registrierung, Antwort in 24 Stunden.</p>
-      <ul class="ang-promise">
-        <li>{% include 'icons.html' with name='bolt' %}Richtpreis in Echtzeit</li>
-        <li>{% include 'icons.html' with name='shield' %}Komplett unverbindlich</li>
-        <li>{% include 'icons.html' with name='clock' %}Antwort in 24 Stunden</li>
-        <li>{% include 'icons.html' with name='check' %}Keine Registrierung</li>
-      </ul>
-    </div>
-  </section>
+  <!-- ── KOPF: Überschrift links, Konfigurator rechts ──────────────────────── -->
+  <section class="section ang-top-sec" id="konfigurator">
+    <div class="wrap ang-top">
 
-  <!-- ── KONFIGURATOR (Wizard, zuerst) ─────────────────────────────────────── -->
-  <section class="section section-alt" id="konfigurator">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <h2 class="section-t">Ihr Angebot in wenigen Schritten.</h2>
-        <p class="section-lead">Klicken Sie sich durch die Schritte und tippen Sie an, was Sie brauchen. Die Summe rechnet sich live mit. Am Ende fordern Sie Ihr Angebot mit einem Klick an.</p>
-      </header>
-
-      {% if sent %}
-      <div class="ang-sent" data-reveal>
-        <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Vielen Dank. Ihre Angebots-Anfrage ist da.</h3>
-        <p>Wir schauen uns Ihre Auswahl an und melden uns innerhalb von 24 Stunden mit einem persönlichen Angebot bei Ihnen.</p>
-        <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/">Zurück zur Startseite</a>
-          <a class="btn btn-ghost" href="/angebot/">Neues Angebot zusammenstellen</a>
+      <!-- Links: Überschrift -->
+      <div class="ang-top-copy" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>Angebots-Konfigurator</span>
+        <h1>Stellen Sie Ihr Angebot selbst zusammen.</h1>
+        <p class="lead">Klicken Sie sich in wenigen Schritten durch, wählen Sie Ihre Leistungen und sehen Sie den Richtpreis sofort. Unverbindlich, ohne Registrierung.</p>
+        <ul class="ang-promise">
+          <li>{% include 'icons.html' with name='bolt' %}Richtpreis in Echtzeit</li>
+          <li>{% include 'icons.html' with name='shield' %}Komplett unverbindlich</li>
+          <li>{% include 'icons.html' with name='clock' %}Antwort in 24 Stunden</li>
+          <li>{% include 'icons.html' with name='check' %}Keine Registrierung</li>
+        </ul>
+        {% if c.telefon %}
+        <div class="ang-top-contact">
+          <span>Lieber direkt sprechen?</span>
+          <a class="ang-top-phone" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>
         </div>
+        {% endif %}
       </div>
-      {% else %}
-      <form method="post" action="/angebot/#konfigurator" class="wz" id="angForm" novalidate data-reveal>
-        {% csrf_token %}
 
-        <!-- Schritt-Anzeige -->
-        <ol class="wz-steps" id="wzSteps">
-          {% for g in groups %}
-          <li class="wz-step{% if forloop.first %} is-active{% endif %}" data-goto="{{ forloop.counter0 }}">
-            <span class="wz-step-n">{{ forloop.counter }}</span>
-            <span class="wz-step-t">{{ g.short }}</span>
-          </li>
-          {% endfor %}
-          <li class="wz-step" data-goto="{{ groups|length }}">
-            <span class="wz-step-n">{{ groups|length|add:1 }}</span>
-            <span class="wz-step-t">Angebot</span>
-          </li>
-        </ol>
-        <div class="wz-progress" aria-hidden="true"><span class="wz-bar" id="wzBar"></span></div>
-
-        <!-- Slides -->
-        <div class="wz-panels">
-          {% for g in groups %}
-          <section class="wz-panel{% if forloop.first %} is-active{% endif %}" data-step="{{ forloop.counter0 }}" aria-label="{{ g.title }}">
-            <div class="wz-panel-head">
-              <span class="wz-panel-ic">{% include 'icons.html' with name=g.icon %}</span>
-              <div>
-                <span class="wz-panel-kick">Schritt {{ forloop.counter }} von {{ groups|length|add:1 }}</span>
-                <h3>{{ g.title }}</h3>
-                <span class="wz-panel-sub">{{ g.sub }} Mehrfachauswahl möglich, Schritt gern auch überspringen.</span>
-              </div>
-            </div>
-
-            <div class="ang-item-grid">
-              {% for it in g.items %}
-              <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
-                <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
-                       data-name="{{ it.name }}" data-group="{{ g.title }}"
-                       data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                       data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
-                <span class="ang-item-box">
-                  <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
-                  <span class="ang-item-main">
-                    <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">beliebt</span>{% endif %}</span>
-                    <span class="ang-item-desc">{{ it.desc }}</span>
-                  </span>
-                  <span class="ang-item-price">{{ it.price_label }}</span>
-                  <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-                </span>
-              </label>
-              {% endfor %}
-            </div>
-
-            <div class="wz-nav">
-              <button type="button" class="wz-back btn btn-ghost"{% if forloop.first %} disabled{% endif %}>← Zurück</button>
-              <div class="wz-run" aria-live="polite">
-                <span class="wz-run-count" data-run-count>0 Leistungen</span>
-                <span class="wz-run-sum" data-run-sum>ab 0 €</span>
-              </div>
-              <button type="button" class="wz-next btn">{% if forloop.last %}Zum Angebot →{% else %}Weiter →{% endif %}</button>
-            </div>
-          </section>
-          {% endfor %}
-
-          <!-- Slide: Ihr Angebot -->
-          <section class="wz-panel" data-step="{{ groups|length }}" aria-label="Ihr Angebot">
-            <div class="wz-panel-head">
-              <span class="wz-panel-ic">{% include 'icons.html' with name='check' %}</span>
-              <div>
-                <span class="wz-panel-kick">Letzter Schritt</span>
-                <h3>Ihr Angebot</h3>
-                <span class="wz-panel-sub">Prüfen Sie Ihre Auswahl und fordern Sie Ihr persönliches Angebot an.</span>
-              </div>
-            </div>
-
-            <div class="ang-final">
-              <div class="ang-cart">
-                <div class="ang-cart-head">
-                  <h3>Ihre Auswahl</h3>
-                  <span class="ang-count" id="angCount" aria-live="polite">0 Leistungen</span>
-                </div>
-                <ul class="ang-cart-list" id="angCartList">
-                  <li class="ang-cart-empty" id="angCartEmpty">Noch nichts gewählt. Gehen Sie zurück und tippen Sie die Leistungen an, die Sie interessieren.</li>
-                </ul>
-                <div class="ang-totals" id="angTotals" hidden>
-                  <div class="ang-total-row" data-total="once" hidden><span>Einmalig</span><strong><span id="angOnce">0</span> €</strong></div>
-                  <div class="ang-total-row" data-total="mtl" hidden><span>Monatlich</span><strong><span id="angMtl">0</span> €<small>/Mt</small></strong></div>
-                  <div class="ang-total-row" data-total="yr" hidden><span>Jährlich</span><strong><span id="angYr">0</span> €<small>/Jahr</small></strong></div>
-                  <div class="ang-total-note" id="angAnfrage" hidden>{% include 'icons.html' with name='consulting' %} Einzelne Positionen auf Anfrage, Preis nach Gespräch.</div>
-                </div>
-                <p class="ang-cart-fine">Richtpreise, netto zzgl. USt. Unverbindlich.</p>
-              </div>
-
-              <div class="ang-lead">
-                <h4>Angebot anfordern</h4>
-                <div class="f-row">
-                  <label>Name<input type="text" name="name" required autocomplete="name" placeholder="Ihr Name"></label>
-                  <label>E-Mail<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
-                </div>
-                <label>Telefon <span class="opt">(optional)</span><input type="tel" name="telefon" autocomplete="tel" placeholder="+43 ..."></label>
-                <label>Nachricht <span class="opt">(optional)</span><textarea name="nachricht" rows="3" placeholder="Details zu Ihrem Projekt? Ein paar Stichworte genügen."></textarea></label>
-                <label class="check"><input type="checkbox" name="einwilligung" required> Ich habe die <a href="/#datenschutz">Datenschutzerklärung</a> gelesen und stimme zu.</label>
-                <button class="btn btn-lg btn-magnetic ang-submit" type="submit" id="angSubmit">
-                  Angebot anfordern
-                  <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <p class="ang-hint" id="angHint" hidden>Bitte wählen Sie in den Schritten davor mindestens eine Leistung aus.</p>
-                <p class="form-fine">Keine Verpflichtung. Ihre Daten werden vertraulich behandelt.</p>
-              </div>
-            </div>
-
-            <div class="wz-nav">
-              <button type="button" class="wz-back btn btn-ghost">← Zurück</button>
-              <div class="wz-run" aria-live="polite">
-                <span class="wz-run-count" data-run-count>0 Leistungen</span>
-                <span class="wz-run-sum" data-run-sum>ab 0 €</span>
-              </div>
-              <span class="wz-nav-spacer" aria-hidden="true"></span>
-            </div>
-          </section>
+      <!-- Rechts: das Angebot mit den Buttons -->
+      <div class="ang-top-config" data-reveal>
+        {% if sent %}
+        <div class="ang-sent">
+          <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Vielen Dank. Ihre Angebots-Anfrage ist da.</h3>
+          <p>Wir schauen uns Ihre Auswahl an und melden uns innerhalb von 24 Stunden mit einem persönlichen Angebot bei Ihnen.</p>
+          <div class="ang-sent-actions">
+            <a class="btn btn-magnetic" href="/">Zurück zur Startseite</a>
+            <a class="btn btn-ghost" href="/angebot/">Neues Angebot zusammenstellen</a>
+          </div>
         </div>
-      </form>
-      {% endif %}
+        {% else %}
+        <form method="post" action="/angebot/#konfigurator" class="wz" id="angForm" novalidate>
+          {% csrf_token %}
+
+          <!-- Schritt-Anzeige -->
+          <ol class="wz-steps" id="wzSteps">
+            {% for g in groups %}
+            <li class="wz-step{% if forloop.first %} is-active{% endif %}" data-goto="{{ forloop.counter0 }}">
+              <span class="wz-step-n">{{ forloop.counter }}</span>
+              <span class="wz-step-t">{{ g.short }}</span>
+            </li>
+            {% endfor %}
+            <li class="wz-step" data-goto="{{ groups|length }}">
+              <span class="wz-step-n">{{ groups|length|add:1 }}</span>
+              <span class="wz-step-t">Angebot</span>
+            </li>
+          </ol>
+          <div class="wz-progress" aria-hidden="true"><span class="wz-bar" id="wzBar"></span></div>
+
+          <!-- Slides -->
+          <div class="wz-panels">
+            {% for g in groups %}
+            <section class="wz-panel{% if forloop.first %} is-active{% endif %}" data-step="{{ forloop.counter0 }}" aria-label="{{ g.title }}">
+              <div class="wz-panel-head">
+                <span class="wz-panel-ic">{% include 'icons.html' with name=g.icon %}</span>
+                <div>
+                  <span class="wz-panel-kick">Schritt {{ forloop.counter }} von {{ groups|length|add:1 }}</span>
+                  <h3>{{ g.title }}</h3>
+                  <span class="wz-panel-sub">{{ g.sub }} Mehrfachauswahl möglich, Schritt gern auch überspringen.</span>
+                </div>
+              </div>
+
+              <div class="ang-item-grid">
+                {% for it in g.items %}
+                <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
+                  <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
+                         data-name="{{ it.name }}" data-group="{{ g.title }}"
+                         data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
+                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
+                  <span class="ang-item-box">
+                    <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
+                    <span class="ang-item-main">
+                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">beliebt</span>{% endif %}</span>
+                      <span class="ang-item-desc">{{ it.desc }}</span>
+                    </span>
+                    <span class="ang-item-price">{{ it.price_label }}</span>
+                    <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+                  </span>
+                </label>
+                {% endfor %}
+              </div>
+
+              <div class="wz-nav">
+                <button type="button" class="wz-back btn btn-ghost"{% if forloop.first %} disabled{% endif %}>← Zurück</button>
+                <div class="wz-run" aria-live="polite">
+                  <span class="wz-run-count" data-run-count>0 Leistungen</span>
+                  <span class="wz-run-sum" data-run-sum>ab 0 €</span>
+                </div>
+                <button type="button" class="wz-next btn">{% if forloop.last %}Zum Angebot →{% else %}Weiter →{% endif %}</button>
+              </div>
+            </section>
+            {% endfor %}
+
+            <!-- Slide: Ihr Angebot -->
+            <section class="wz-panel" data-step="{{ groups|length }}" aria-label="Ihr Angebot">
+              <div class="wz-panel-head">
+                <span class="wz-panel-ic">{% include 'icons.html' with name='check' %}</span>
+                <div>
+                  <span class="wz-panel-kick">Letzter Schritt</span>
+                  <h3>Ihr Angebot</h3>
+                  <span class="wz-panel-sub">Prüfen Sie Ihre Auswahl und fordern Sie Ihr persönliches Angebot an.</span>
+                </div>
+              </div>
+
+              <div class="ang-final">
+                <div class="ang-cart">
+                  <div class="ang-cart-head">
+                    <h3>Ihre Auswahl</h3>
+                    <span class="ang-count" id="angCount" aria-live="polite">0 Leistungen</span>
+                  </div>
+                  <ul class="ang-cart-list" id="angCartList">
+                    <li class="ang-cart-empty" id="angCartEmpty">Noch nichts gewählt. Gehen Sie zurück und tippen Sie die Leistungen an, die Sie interessieren.</li>
+                  </ul>
+                  <div class="ang-totals" id="angTotals" hidden>
+                    <div class="ang-total-row" data-total="once" hidden><span>Einmalig</span><strong><span id="angOnce">0</span> €</strong></div>
+                    <div class="ang-total-row" data-total="mtl" hidden><span>Monatlich</span><strong><span id="angMtl">0</span> €<small>/Mt</small></strong></div>
+                    <div class="ang-total-row" data-total="yr" hidden><span>Jährlich</span><strong><span id="angYr">0</span> €<small>/Jahr</small></strong></div>
+                    <div class="ang-total-note" id="angAnfrage" hidden>{% include 'icons.html' with name='consulting' %} Einzelne Positionen auf Anfrage, Preis nach Gespräch.</div>
+                  </div>
+                  <p class="ang-cart-fine">Richtpreise, netto zzgl. USt. Unverbindlich.</p>
+                </div>
+
+                <div class="ang-lead">
+                  <h4>Angebot anfordern</h4>
+                  <div class="f-row">
+                    <label>Name<input type="text" name="name" required autocomplete="name" placeholder="Ihr Name"></label>
+                    <label>E-Mail<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
+                  </div>
+                  <label>Telefon <span class="opt">(optional)</span><input type="tel" name="telefon" autocomplete="tel" placeholder="+43 ..."></label>
+                  <label>Nachricht <span class="opt">(optional)</span><textarea name="nachricht" rows="3" placeholder="Details zu Ihrem Projekt? Ein paar Stichworte genügen."></textarea></label>
+                  <label class="check"><input type="checkbox" name="einwilligung" required> Ich habe die <a href="/#datenschutz">Datenschutzerklärung</a> gelesen und stimme zu.</label>
+                  <button class="btn btn-lg btn-magnetic ang-submit" type="submit" id="angSubmit">
+                    Angebot anfordern
+                    <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <p class="ang-hint" id="angHint" hidden>Bitte wählen Sie in den Schritten davor mindestens eine Leistung aus.</p>
+                  <p class="form-fine">Keine Verpflichtung. Ihre Daten werden vertraulich behandelt.</p>
+                </div>
+              </div>
+
+              <div class="wz-nav">
+                <button type="button" class="wz-back btn btn-ghost">← Zurück</button>
+                <div class="wz-run" aria-live="polite">
+                  <span class="wz-run-count" data-run-count>0 Leistungen</span>
+                  <span class="wz-run-sum" data-run-sum>ab 0 €</span>
+                </div>
+                <span class="wz-nav-spacer" aria-hidden="true"></span>
+              </div>
+            </section>
+          </div>
+        </form>
+        {% endif %}
+      </div>
     </div>
   </section>
 
   <!-- ── PREISLISTE (volle Übersicht, darunter) ────────────────────────────── -->
-  <section class="section" id="preisliste">
+  <section class="section section-alt" id="preisliste">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <h2 class="section-t">Alle Preise auf einen Blick.</h2>

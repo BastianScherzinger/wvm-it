@@ -669,7 +669,35 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 
 /* ── Angebots-Seite: dichtere Section-Rhythmik (scoped — Startseite bleibt unberührt) ── */
 .ang-page .section{padding:clamp(38px,5vw,62px) 0}
-.ang-page #konfigurator{padding-top:clamp(28px,3.6vw,44px)}
-.ang-page #preisliste{padding-top:clamp(32px,4.2vw,52px)}
+.ang-page #konfigurator{padding-top:clamp(102px,12vw,124px)}
+.ang-page #preisliste{padding-top:clamp(34px,4.2vw,54px)}
 .ang-page .sec-head{margin-bottom:clamp(20px,2.8vw,30px);max-width:64ch}
 .ang-page .price-foot{margin-top:18px}
+
+/* ── Kopf: Überschrift links | Konfigurator (Buttons) rechts | Preise darunter ── */
+.ang-top-sec{position:relative;isolation:isolate}
+.ang-top-sec::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(54% 52% at 90% -8%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 60%),
+    radial-gradient(44% 44% at 2% 0%, color-mix(in srgb,var(--accent2) 6%,transparent), transparent 62%)}
+.ang-top{display:grid;grid-template-columns:0.8fr 1.2fr;gap:clamp(26px,3.6vw,52px);align-items:start}
+.ang-top-copy{position:sticky;top:90px}
+.ang-top-copy h1{font-size:clamp(1.85rem,3.3vw,2.85rem);font-weight:700;letter-spacing:-.02em;line-height:1.05;max-width:14ch;
+  background:linear-gradient(180deg,#fff 36%,#cfc6b3);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ang-top-copy .lead{font-size:clamp(1rem,1.35vw,1.15rem);color:var(--ink-soft);line-height:1.6;margin:14px 0 20px;max-width:42ch}
+.ang-top-contact{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.ang-top-contact>span{font-size:13px;color:var(--ink-dim)}
+.ang-top-phone{display:inline-flex;align-items:center;gap:9px;width:max-content;color:var(--ink);
+  font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.05rem;transition:color .2s}
+.ang-top-phone svg{width:18px;height:18px;color:var(--accent2)}
+.ang-top-phone:hover{color:var(--accent2)}
+/* Konfigurator füllt seine Spalte + eine ruhige Insel-Fläche (premium auf dem Kopf-Band) */
+.ang-top-config .wz{max-width:none;margin:0;background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  border:1px solid var(--line);border-radius:22px;padding:clamp(20px,2.4vw,28px);box-shadow:var(--shadow-lg)}
+.ang-top-config .ang-final{grid-template-columns:1fr}
+.ang-top-config .ang-cart,.ang-top-config .ang-lead{background:var(--bg-2)}
+
+@media (max-width:980px){
+  .ang-top{grid-template-columns:1fr;gap:24px}
+  .ang-top-copy{position:static}
+  .ang-top-copy h1{max-width:20ch}
+}
