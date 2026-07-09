@@ -454,32 +454,32 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
    ANGEBOTS-KONFIGURATOR (/angebot/)
    ========================================================================== */
 /* ── Kopf ────────────────────────────────────────────────────────────────── */
-.ang-head{position:relative;padding:128px 0 40px;overflow:hidden;isolation:isolate}
+.ang-head{position:relative;padding:clamp(104px,13vw,124px) 0 clamp(16px,2.4vw,24px);overflow:hidden;isolation:isolate}
 .ang-head-bg{position:absolute;inset:0;z-index:-1;
   background:radial-gradient(60% 60% at 84% -10%, color-mix(in srgb,var(--accent) 14%,transparent), transparent 60%),
     radial-gradient(50% 50% at 6% 0%, color-mix(in srgb,var(--accent2) 8%,transparent), transparent 60%)}
 .ang-head-in{max-width:52ch}
 .ang-head h1{font-size:clamp(2.1rem,4.6vw,3.5rem);font-weight:700;max-width:16ch;
   background:linear-gradient(180deg,#fff 34%,#cfc6b3);-webkit-background-clip:text;background-clip:text;color:transparent}
-.ang-head .lead{margin:20px 0 26px}
+.ang-head .lead{margin:15px 0 20px}
 .ang-promise{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
 .ang-promise li{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;color:var(--ink-soft);
   padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
 .ang-promise svg{width:16px;height:16px;color:var(--accent2);flex:0 0 auto}
 
 /* ── Preisliste ──────────────────────────────────────────────────────────── */
-.pl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.pl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .pl-card{position:relative;background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid var(--line);
-  border-radius:var(--radius);padding:26px 26px 22px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+  border-radius:var(--radius);padding:22px 22px 18px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
 .pl-card:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow-lg)}
-.pl-card-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.pl-card-head{display:flex;align-items:center;gap:13px;margin-bottom:13px}
 .pl-ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;flex:0 0 auto;color:var(--accent2);
   background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
 .pl-ic svg{width:23px;height:23px}
 .pl-card-head h3{font-size:1.16rem}
 .pl-sub{display:block;font-size:13px;color:var(--ink-dim);margin-top:2px}
 .pl-list{list-style:none;display:flex;flex-direction:column;gap:2px}
-.pl-list li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-top:1px solid var(--line)}
+.pl-list li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:8.5px 0;border-top:1px solid var(--line)}
 .pl-list li:first-child{border-top:0}
 .pl-name{font-size:14.5px;color:var(--ink);font-weight:500}
 .pl-pop{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent2);
@@ -495,12 +495,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .ang-group-ic svg{width:21px;height:21px}
 .ang-group-head h3{font-size:1.14rem}
 .ang-group-sub{display:block;font-size:13px;color:var(--ink-dim);margin-top:1px}
-.ang-item-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ang-item-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
 /* ── Auswahl-Kachel ──────────────────────────────────────────────────────── */
 .ang-item{display:block;cursor:pointer;height:100%}
 .ang-check{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);border:0}
-.ang-item-box{position:relative;display:flex;flex-direction:column;gap:9px;height:100%;padding:17px 17px 15px;
+.ang-item-box{position:relative;display:flex;flex-direction:column;gap:8px;height:100%;padding:15px 16px 14px;
   border:1px solid var(--line);border-radius:15px;background:linear-gradient(180deg,var(--surface),var(--surface-2));
   transition:transform .22s var(--ease),border-color .22s,box-shadow .22s,background .22s}
 .ang-item:hover .ang-item-box{transform:translateY(-3px);border-color:var(--line-2)}
@@ -606,7 +606,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 /* ── Wizard (mehrstufiges Klickmenü) ─────────────────────────────────────── */
 .wz{max-width:940px;margin:0 auto}
 /* Schritt-Anzeige */
-.wz-steps{list-style:none;display:flex;gap:6px;justify-content:space-between;margin-bottom:14px}
+.wz-steps{list-style:none;display:flex;gap:6px;justify-content:space-between;margin-bottom:12px}
 .wz-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;color:var(--ink-dim);
   text-align:center;min-width:0;transition:color .2s}
 .wz-step-n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;
@@ -623,7 +623,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .wz-step:focus-visible{outline:none}
 .wz-step:focus-visible .wz-step-n{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:3px}
 /* Fortschrittsbalken */
-.wz-progress{height:4px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;margin-bottom:30px}
+.wz-progress{height:4px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;margin-bottom:24px}
 .wz-bar{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s var(--ease)}
 
 /* Slides */
@@ -632,7 +632,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .wz-on .wz-panel{display:none}
 .wz-on .wz-panel.is-active{display:block;animation:wzIn .34s var(--ease)}
 @keyframes wzIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.wz-panel-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px}
+.wz-panel-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
 .wz-panel-ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;flex:0 0 auto;color:var(--accent2);
   background:color-mix(in srgb,var(--accent) 13%,transparent);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent)}
 .wz-panel-ic svg{width:24px;height:24px}
@@ -641,8 +641,8 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .wz-panel-sub{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:4px;max-width:52ch}
 
 /* Navigation + laufende Summe */
-.wz-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:28px;
-  padding-top:22px;border-top:1px solid var(--line)}
+.wz-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:22px;
+  padding-top:18px;border-top:1px solid var(--line)}
 .wz-back,.wz-next{flex:0 0 auto}
 .wz-back[disabled]{opacity:.4;pointer-events:none}
 .wz-nav-spacer{flex:0 0 auto;width:104px}
@@ -651,7 +651,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .wz-run-sum{font-size:17px;font-weight:700;font-family:"Space Grotesk",sans-serif;color:var(--accent2);letter-spacing:-.01em}
 
 /* Letzte Slide: Auswahl + Formular */
-.ang-final{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin-top:4px}
+.ang-final{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:2px}
 
 @media (max-width:760px){
   .ang-final{grid-template-columns:1fr}
@@ -666,3 +666,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   .wz-back,.wz-next{flex:1}
   .wz-nav-spacer{display:none}
 }
+
+/* ── Angebots-Seite: dichtere Section-Rhythmik (scoped — Startseite bleibt unberührt) ── */
+.ang-page .section{padding:clamp(38px,5vw,62px) 0}
+.ang-page #konfigurator{padding-top:clamp(28px,3.6vw,44px)}
+.ang-page #preisliste{padding-top:clamp(32px,4.2vw,52px)}
+.ang-page .sec-head{margin-bottom:clamp(20px,2.8vw,30px);max-width:64ch}
+.ang-page .price-foot{margin-top:18px}
