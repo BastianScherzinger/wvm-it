@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Angebot konfigurieren | {{ c.site_name }}</title>
-  <meta name="description" content="Stellen Sie Ihr Angebot selbst zusammen: Webseiten, Shop, Domain, Hosting, KI-Automatisierung, Bots und SEO. Transparente Richtpreise, unverbindlich, Antwort in 24 Stunden.">
+  <meta name="description" content="Stellen Sie Ihr Angebot in wenigen Schritten selbst zusammen: Webseiten, Shop, Domain, Hosting, KI-Automatisierung, Bots und SEO. Transparente Richtpreise, unverbindlich, Antwort in 24 Stunden.">
   <meta name="theme-color" content="#0a0908">
   <link rel="canonical" href="{{ c.wvm_url }}/angebot/">
   <meta name="robots" content="index,follow">
   <meta property="og:title" content="Angebot konfigurieren | {{ c.site_name }}">
-  <meta property="og:description" content="Webseiten, KI, Automatisierung und mehr, transparent zusammenstellen und Richtpreis sofort sehen.">
+  <meta property="og:description" content="Webseiten, KI, Automatisierung und mehr in wenigen Schritten zusammenstellen und Richtpreis sofort sehen.">
   <meta property="og:type" content="website">
   {% if c.hero_bg %}<meta property="og:image" content="{{ c.hero_bg }}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
@@ -49,7 +49,7 @@
     <div class="wrap ang-head-in" data-reveal>
       <span class="eyebrow"><span class="dot"></span>Angebots-Konfigurator</span>
       <h1>Stellen Sie Ihr Angebot selbst zusammen.</h1>
-      <p class="lead">Wählen Sie Leistungen aus Webdesign, Hosting, KI und mehr. Der Richtpreis rechnet sich live zusammen. Unverbindlich, ohne Registrierung, Antwort in 24 Stunden.</p>
+      <p class="lead">In wenigen Schritten durchklicken, Leistungen auswählen, Richtpreis sofort sehen. Unverbindlich, ohne Registrierung, Antwort in 24 Stunden.</p>
       <ul class="ang-promise">
         <li>{% include 'icons.html' with name='bolt' %}Richtpreis in Echtzeit</li>
         <li>{% include 'icons.html' with name='shield' %}Komplett unverbindlich</li>
@@ -59,41 +59,12 @@
     </div>
   </section>
 
-  <!-- ── PREISLISTE (Übersicht davor) ──────────────────────────────────────── -->
-  <section class="section" id="preisliste">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <h2 class="section-t">Unsere Preise auf einen Blick.</h2>
-        <p class="section-lead">Transparente Startpreise für alle Leistungen. Das genaue Angebot stimmen wir im Gespräch auf Ihr Projekt ab.</p>
-      </header>
-      <div class="pl-grid">
-        {% for g in groups %}
-        <article class="pl-card spot" data-reveal data-spot>
-          <div class="pl-card-head">
-            <span class="pl-ic">{% include 'icons.html' with name=g.icon %}</span>
-            <div><h3>{{ g.title }}</h3><span class="pl-sub">{{ g.sub }}</span></div>
-          </div>
-          <ul class="pl-list">
-            {% for it in g.items %}
-            <li>
-              <span class="pl-name">{{ it.name }}{% if it.popular %} <span class="pl-pop">beliebt</span>{% endif %}</span>
-              <span class="pl-price">{{ it.price_label }}</span>
-            </li>
-            {% endfor %}
-          </ul>
-        </article>
-        {% endfor %}
-      </div>
-      <p class="price-foot" data-reveal>Alle Preise netto zzgl. USt. Richtpreise, der Endpreis ergibt sich nach dem Gespräch. Monatliche Leistungen sind jederzeit kündbar.</p>
-    </div>
-  </section>
-
-  <!-- ── KONFIGURATOR ──────────────────────────────────────────────────────── -->
+  <!-- ── KONFIGURATOR (Wizard, zuerst) ─────────────────────────────────────── -->
   <section class="section section-alt" id="konfigurator">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">Ihr Angebot zusammenstellen.</h2>
-        <p class="section-lead">Tippen Sie an, was Sie brauchen. Die Summe rechnet sich rechts live mit. Am Ende fordern Sie Ihr Angebot mit einem Klick an.</p>
+        <h2 class="section-t">Ihr Angebot in wenigen Schritten.</h2>
+        <p class="section-lead">Klicken Sie sich durch die Schritte und tippen Sie an, was Sie brauchen. Die Summe rechnet sich live mit. Am Ende fordern Sie Ihr Angebot mit einem Klick an.</p>
       </header>
 
       {% if sent %}
@@ -107,51 +78,87 @@
         </div>
       </div>
       {% else %}
-      <form method="post" action="/angebot/#konfigurator" class="ang-config" id="angForm" novalidate>
+      <form method="post" action="/angebot/#konfigurator" class="wz" id="angForm" novalidate data-reveal>
         {% csrf_token %}
-        <div class="ang-layout">
 
-          <!-- Auswahl -->
-          <div class="ang-groups">
-            {% for g in groups %}
-            <div class="ang-group" data-reveal>
-              <div class="ang-group-head">
-                <span class="ang-group-ic">{% include 'icons.html' with name=g.icon %}</span>
-                <div><h3>{{ g.title }}</h3><span class="ang-group-sub">{{ g.sub }}</span></div>
-              </div>
-              <div class="ang-item-grid">
-                {% for it in g.items %}
-                <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
-                  <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
-                         data-name="{{ it.name }}" data-group="{{ g.title }}"
-                         data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
-                  <span class="ang-item-box">
-                    <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
-                    <span class="ang-item-main">
-                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">beliebt</span>{% endif %}</span>
-                      <span class="ang-item-desc">{{ it.desc }}</span>
-                    </span>
-                    <span class="ang-item-price">{{ it.price_label }}</span>
-                    <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-                  </span>
-                </label>
-                {% endfor %}
+        <!-- Schritt-Anzeige -->
+        <ol class="wz-steps" id="wzSteps">
+          {% for g in groups %}
+          <li class="wz-step{% if forloop.first %} is-active{% endif %}" data-goto="{{ forloop.counter0 }}">
+            <span class="wz-step-n">{{ forloop.counter }}</span>
+            <span class="wz-step-t">{{ g.short }}</span>
+          </li>
+          {% endfor %}
+          <li class="wz-step" data-goto="{{ groups|length }}">
+            <span class="wz-step-n">{{ groups|length|add:1 }}</span>
+            <span class="wz-step-t">Angebot</span>
+          </li>
+        </ol>
+        <div class="wz-progress" aria-hidden="true"><span class="wz-bar" id="wzBar"></span></div>
+
+        <!-- Slides -->
+        <div class="wz-panels">
+          {% for g in groups %}
+          <section class="wz-panel{% if forloop.first %} is-active{% endif %}" data-step="{{ forloop.counter0 }}" aria-label="{{ g.title }}">
+            <div class="wz-panel-head">
+              <span class="wz-panel-ic">{% include 'icons.html' with name=g.icon %}</span>
+              <div>
+                <span class="wz-panel-kick">Schritt {{ forloop.counter }} von {{ groups|length|add:1 }}</span>
+                <h3>{{ g.title }}</h3>
+                <span class="wz-panel-sub">{{ g.sub }} Mehrfachauswahl möglich, Schritt gern auch überspringen.</span>
               </div>
             </div>
-            {% endfor %}
-          </div>
 
-          <!-- Warenkorb / Live-Summe + Lead -->
-          <aside class="ang-summary" id="angSummary" aria-label="Ihr Angebot">
-            <div class="ang-summary-in">
+            <div class="ang-item-grid">
+              {% for it in g.items %}
+              <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
+                <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
+                       data-name="{{ it.name }}" data-group="{{ g.title }}"
+                       data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
+                       data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
+                <span class="ang-item-box">
+                  <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
+                  <span class="ang-item-main">
+                    <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">beliebt</span>{% endif %}</span>
+                    <span class="ang-item-desc">{{ it.desc }}</span>
+                  </span>
+                  <span class="ang-item-price">{{ it.price_label }}</span>
+                  <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+                </span>
+              </label>
+              {% endfor %}
+            </div>
+
+            <div class="wz-nav">
+              <button type="button" class="wz-back btn btn-ghost"{% if forloop.first %} disabled{% endif %}>← Zurück</button>
+              <div class="wz-run" aria-live="polite">
+                <span class="wz-run-count" data-run-count>0 Leistungen</span>
+                <span class="wz-run-sum" data-run-sum>ab 0 €</span>
+              </div>
+              <button type="button" class="wz-next btn">{% if forloop.last %}Zum Angebot →{% else %}Weiter →{% endif %}</button>
+            </div>
+          </section>
+          {% endfor %}
+
+          <!-- Slide: Ihr Angebot -->
+          <section class="wz-panel" data-step="{{ groups|length }}" aria-label="Ihr Angebot">
+            <div class="wz-panel-head">
+              <span class="wz-panel-ic">{% include 'icons.html' with name='check' %}</span>
+              <div>
+                <span class="wz-panel-kick">Letzter Schritt</span>
+                <h3>Ihr Angebot</h3>
+                <span class="wz-panel-sub">Prüfen Sie Ihre Auswahl und fordern Sie Ihr persönliches Angebot an.</span>
+              </div>
+            </div>
+
+            <div class="ang-final">
               <div class="ang-cart">
                 <div class="ang-cart-head">
-                  <h3>Ihr Angebot</h3>
+                  <h3>Ihre Auswahl</h3>
                   <span class="ang-count" id="angCount" aria-live="polite">0 Leistungen</span>
                 </div>
                 <ul class="ang-cart-list" id="angCartList">
-                  <li class="ang-cart-empty" id="angCartEmpty">Noch nichts gewählt. Tippen Sie links auf die Leistungen, die Sie interessieren.</li>
+                  <li class="ang-cart-empty" id="angCartEmpty">Noch nichts gewählt. Gehen Sie zurück und tippen Sie die Leistungen an, die Sie interessieren.</li>
                 </ul>
                 <div class="ang-totals" id="angTotals" hidden>
                   <div class="ang-total-row" data-total="once" hidden><span>Einmalig</span><strong><span id="angOnce">0</span> €</strong></div>
@@ -175,25 +182,52 @@
                   Angebot anfordern
                   <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
-                <p class="ang-hint" id="angHint" hidden>Bitte wählen Sie oben mindestens eine Leistung aus.</p>
+                <p class="ang-hint" id="angHint" hidden>Bitte wählen Sie in den Schritten davor mindestens eine Leistung aus.</p>
                 <p class="form-fine">Keine Verpflichtung. Ihre Daten werden vertraulich behandelt.</p>
               </div>
             </div>
-          </aside>
+
+            <div class="wz-nav">
+              <button type="button" class="wz-back btn btn-ghost">← Zurück</button>
+              <div class="wz-run" aria-live="polite">
+                <span class="wz-run-count" data-run-count>0 Leistungen</span>
+                <span class="wz-run-sum" data-run-sum>ab 0 €</span>
+              </div>
+              <span class="wz-nav-spacer" aria-hidden="true"></span>
+            </div>
+          </section>
         </div>
       </form>
-
-      <!-- Mobile: kompakte, fixierte Summenleiste (springt zum Formular) -->
-      <div class="ang-mobar" id="angMobar" hidden>
-        <div class="ang-mobar-in">
-          <div class="ang-mobar-sum">
-            <span id="angMobarCount">0 Leistungen</span>
-            <strong id="angMobarPrice">0 €</strong>
-          </div>
-          <a class="btn btn-sm" href="#angSubmit">Angebot anfordern</a>
-        </div>
-      </div>
       {% endif %}
+    </div>
+  </section>
+
+  <!-- ── PREISLISTE (volle Übersicht, darunter) ────────────────────────────── -->
+  <section class="section" id="preisliste">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="section-t">Alle Preise auf einen Blick.</h2>
+        <p class="section-lead">Die komplette Übersicht aller Leistungen mit Startpreisen. Das genaue Angebot stimmen wir im Gespräch auf Ihr Projekt ab.</p>
+      </header>
+      <div class="pl-grid">
+        {% for g in groups %}
+        <article class="pl-card spot" data-reveal data-spot>
+          <div class="pl-card-head">
+            <span class="pl-ic">{% include 'icons.html' with name=g.icon %}</span>
+            <div><h3>{{ g.title }}</h3><span class="pl-sub">{{ g.sub }}</span></div>
+          </div>
+          <ul class="pl-list">
+            {% for it in g.items %}
+            <li>
+              <span class="pl-name">{{ it.name }}{% if it.popular %} <span class="pl-pop">beliebt</span>{% endif %}</span>
+              <span class="pl-price">{{ it.price_label }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </article>
+        {% endfor %}
+      </div>
+      <p class="price-foot" data-reveal>Alle Preise netto zzgl. USt. Richtpreise, der Endpreis ergibt sich nach dem Gespräch. Monatliche Leistungen sind jederzeit kündbar.</p>
     </div>
   </section>
 </main>

@@ -77,7 +77,7 @@ def _content() -> dict:
 # once = einmalig (€), mtl = pro Monat (€), yr = pro Jahr (€), anfrage = Preis auf Anfrage.
 ANGEBOT_GROUPS = [
     {
-        "id": "web", "title": "Webseiten & Shop", "icon": "web",
+        "id": "web", "title": "Webseiten & Shop", "icon": "web", "short": "Webseiten",
         "sub": "Ihr digitaler Auftritt, sauber gebaut.",
         "items": [
             {"id": "onepager", "name": "One-Pager / Landingpage", "desc": "Eine starke Seite, die verkauft.", "once": 350, "icon": "bolt"},
@@ -87,7 +87,7 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "infra", "title": "Domain, Hosting & Wartung", "icon": "server",
+        "id": "infra", "title": "Domain, Hosting & Wartung", "icon": "server", "short": "Hosting",
         "sub": "Damit Ihre Seite schnell bleibt und immer läuft.",
         "items": [
             {"id": "domain", "name": "Domain", "desc": "Ihre Wunschadresse (.at, .de, .com ...).", "yr": 15, "icon": "domain"},
@@ -96,7 +96,7 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "ki", "title": "KI & Automatisierung", "icon": "ai",
+        "id": "ki", "title": "KI & Automatisierung", "icon": "ai", "short": "KI",
         "sub": "Lassen Sie die Technik für sich arbeiten.",
         "items": [
             {"id": "chatbot", "name": "KI-Chatbot / Anfrage-Bot", "desc": "Beantwortet Fragen und sammelt Leads, rund um die Uhr.", "once": 690, "mtl": 39, "icon": "ai"},
@@ -106,7 +106,7 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "extra", "title": "Bots, SEO & Custom", "icon": "rocket",
+        "id": "extra", "title": "Bots, SEO & Custom", "icon": "rocket", "short": "Extras",
         "sub": "Der letzte Schliff für mehr Sichtbarkeit.",
         "items": [
             {"id": "bot", "name": "Social- / Content-Bot", "desc": "Automatischer Content für Ihre Kanäle.", "once": 390, "icon": "bot"},

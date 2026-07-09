@@ -1,0 +1,7 @@
+.git
+.claude
+staticfiles
+__pycache__
+*.pyc
+db.sqlite3
+*.log
