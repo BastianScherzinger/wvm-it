@@ -253,12 +253,58 @@ def _handle_contact(request, c) -> bool:
     return True
 
 
+def _handle_newsletter(request, c) -> bool:
+    """Newsletter-Anmeldung: benachrichtigt das Postfach und schickt dem Abonnenten
+    eine Willkommens-Mail mit dem 25%-Rabattcode. True = erfolgreich entgegengenommen."""
+    email = (request.POST.get("email") or "").strip()
+    if not email or "@" not in email or " " in email:
+        return False
+    wunsch = (request.POST.get("wunsch") or "").strip()
+    code = os.environ.get("NEWSLETTER_CODE", "WVM25").strip() or "WVM25"
+    site = c.get("site_name", "WVM-IT")
+    empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger)
+
+    notify = (
+        "Neue Newsletter-Anmeldung über wvm-it.tech\n\n"
+        f"E-Mail:         {email}\n"
+        f"Website-Wunsch: {wunsch or '-'}\n\n"
+        f"Ausgegebener Rabattcode: {code}\n"
+        "To-do: kostenlose Beispiel-Website (JARVIS) erstellen und zuschicken.\n"
+    )
+    welcome = (
+        "Hallo,\n\n"
+        "schön, dass du dabei bist. Als Dankeschön für deine Anmeldung:\n\n"
+        f"  Dein Rabattcode: {code}  (25 % auf deine erste Website)\n\n"
+        "Außerdem erstellen wir dir eine kostenlose Beispiel-Website und schicken sie dir "
+        "in Kürze zu, damit du direkt siehst, was möglich ist.\n\n"
+        + (f"Dein Hinweis an uns: {wunsch}\n\n" if wunsch else "")
+        + f"Bis bald,\ndein Team von {site}\n{c.get('wvm_url', '')}\n"
+    )
+    try:
+        if getattr(settings, "EMAIL_HOST", ""):
+            if empfaenger:
+                send_mail(f"Newsletter-Anmeldung: {email}", notify, from_email, [empfaenger], fail_silently=True)
+            send_mail(f"Willkommen bei {site}: dein 25%-Code", welcome, from_email, [email], fail_silently=True)
+        else:
+            print("[NEWSLETTER]\n" + notify + "\n--- Willkommens-Mail ---\n" + welcome, flush=True)
+    except Exception as exc:  # Besucher nie mit einem 500 bestrafen
+        print(f"[NEWSLETTER-FEHLER] {exc}", flush=True)
+    return True
+
+
 def index(request):
     c = _content()
     sent = False
+    news_sent = False
     if request.method == "POST":
-        sent = _handle_contact(request, c)
-    return render(request, "index.html", {"c": c, "sent": sent, "angebot_groups": ANGEBOT_GROUPS})
+        if (request.POST.get("form") or "").strip() == "newsletter":
+            news_sent = _handle_newsletter(request, c)
+        else:
+            sent = _handle_contact(request, c)
+    return render(request, "index.html", {
+        "c": c, "sent": sent, "news_sent": news_sent, "angebot_groups": ANGEBOT_GROUPS,
+    })
 
 
 def angebot(request):

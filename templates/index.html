@@ -58,10 +58,37 @@
         <span class="eyebrow"><span class="dot"></span>Digitalagentur für Webseiten, KI und SEO</span>
         <h1>{{ c.headline }}</h1>
         <p class="lead">{{ c.subline }}</p>
-        <div class="hero-cta">
-          <a class="btn btn-lg btn-magnetic" href="/angebot/">Angebot berechnen<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn btn-ghost btn-lg" href="#kontakt">{{ c.cta_text }}</a>
+        <!-- ── Newsletter-/Offer-Modul (Teil des Hero) ── -->
+        {% if news_sent %}
+        <div class="hero-offer hero-offer-done" data-reveal>
+          <span class="offer-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div>
+            <strong>Willkommen an Bord!</strong>
+            <p>Dein 25%-Code und die Infos zu deiner kostenlosen Beispiel-Website sind unterwegs. Schau kurz in dein Postfach.</p>
+          </div>
         </div>
+        {% else %}
+        <div class="hero-offer" data-reveal>
+          <div class="offer-benefits">
+            <span class="offer-chip">{% include 'icons.html' with name='gift' %}25% Rabatt auf deine Website</span>
+            <span class="offer-chip">{% include 'icons.html' with name='bolt' %}Gratis Beispiel-Seite in ~10 Min</span>
+          </div>
+          <form class="offer-form" id="newsForm" method="post" action="#top">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="newsletter">
+            <div class="offer-row">
+              <input type="email" name="email" required autocomplete="email" placeholder="Deine E-Mail-Adresse" aria-label="E-Mail-Adresse">
+              <button class="btn btn-lg btn-magnetic" type="submit">Gratis sichern<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+            <input class="offer-wish" type="text" name="wunsch" autocomplete="off" maxlength="300" placeholder="Deine Website-Idee oder aktuelle Adresse (optional)" aria-label="Deine Website-Idee oder aktuelle Adresse">
+            <label class="offer-consent"><input type="checkbox" name="einwilligung" required> Ich möchte Neuigkeiten und das Angebot erhalten und stimme der <a href="#datenschutz">Datenschutzerklärung</a> zu.</label>
+          </form>
+          <div class="offer-foot">
+            <span class="offer-jarvis"><span class="jarvis-tag">JARVIS-KI</span> Deine Beispiel-Seite baut unsere Automatik. <em>Logo &amp; Video folgen.</em></span>
+            <a class="offer-alt" href="/angebot/">Oder direkt Angebot berechnen →</a>
+          </div>
+        </div>
+        {% endif %}
       </div>
       <div class="hero-figure" data-reveal>
         <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="3D-Assistent, klick mich" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
