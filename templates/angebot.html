@@ -31,6 +31,7 @@
     <button class="nav-burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="/">Home</a>
         <a href="/#leistungen">Leistungen</a>
         <a href="/#preise">Preise</a>
         <a href="/angebot/" aria-current="page">Angebot</a>
@@ -100,7 +101,7 @@
           <!-- Slides -->
           <div class="wz-panels">
             {% for g in groups %}
-            <section class="wz-panel{% if forloop.first %} is-active{% endif %}" data-step="{{ forloop.counter0 }}" aria-label="{{ g.title }}">
+            <section class="wz-panel{% if forloop.first %} is-active{% endif %}" data-step="{{ forloop.counter0 }}" data-kat="{{ g.id }}" aria-label="{{ g.title }}">
               <div class="wz-panel-head">
                 <span class="wz-panel-ic">{% include 'icons.html' with name=g.icon %}</span>
                 <div>

@@ -36,6 +36,7 @@
     <button class="nav-burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="#top">Home</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#preise">Preise</a>
         <a href="/angebot/">Angebot</a>
@@ -89,6 +90,35 @@
       <span aria-hidden="true">Smarthome</span><i aria-hidden="true">·</i><span aria-hidden="true">Loxone</span><i aria-hidden="true">·</i><span aria-hidden="true">KNX</span><i aria-hidden="true">·</i><span aria-hidden="true">Konferenztechnik</span><i aria-hidden="true">·</i><span aria-hidden="true">Video &amp; Ton</span><i aria-hidden="true">·</i><span aria-hidden="true">Bühnentechnik</span><i aria-hidden="true">·</i><span aria-hidden="true">EDV</span><i aria-hidden="true">·</i><span aria-hidden="true">Netzwerk &amp; Sicherheit</span><i aria-hidden="true">·</i><span aria-hidden="true">Webdesign</span><i aria-hidden="true">·</i><span aria-hidden="true">KI</span><i aria-hidden="true">·</i>
     </div>
   </div>
+
+  <!-- ── ANGEBOTS-BLOCK (weit oben, führt in den Konfigurator /angebot/) ────── -->
+  <section class="section section-alt ang-teaser-sec" id="angebot-teaser">
+    <div class="wrap">
+      <div class="ang-teaser">
+        <div class="ang-teaser-copy" data-reveal>
+          <span class="eyebrow"><span class="dot"></span>Angebot in wenigen Schritten</span>
+          <h2 class="section-t">Stellen Sie sich Ihr Angebot selbst zusammen.</h2>
+          <p class="section-lead">Wählen Sie Ihre Leistungen aus Web, Hosting, KI und mehr, und sehen Sie den Richtpreis sofort. Unverbindlich, ohne Registrierung.</p>
+          <div class="ang-teaser-cta">
+            <a class="btn btn-lg btn-magnetic" href="/angebot/">Angebot berechnen<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn-ghost btn-lg" href="/angebot/#preisliste">Alle Preise ansehen</a>
+          </div>
+        </div>
+        <div class="ang-teaser-grid" data-reveal>
+          {% for g in angebot_groups %}
+          <a class="ang-teaser-tile spot" data-spot href="/angebot/?kat={{ g.id }}#konfigurator" aria-label="{{ g.title }} im Konfigurator öffnen">
+            <span class="ang-teaser-ic">{% include 'icons.html' with name=g.icon %}</span>
+            <span class="ang-teaser-tx">
+              <span class="ang-teaser-name">{{ g.short }}</span>
+              <span class="ang-teaser-from">{{ g.from_label }}</span>
+            </span>
+            <svg class="ang-teaser-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── -->
   <section class="band">

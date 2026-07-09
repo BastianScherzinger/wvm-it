@@ -173,6 +173,16 @@
     }
   });
 
-  show(0, false);
+  // Vorauswahl per ?kat=<id> (Deep-Link von der Startseite auf einen Schritt)
+  var startStep = 0;
+  try {
+    var kat = new URLSearchParams(window.location.search).get("kat");
+    if (kat) {
+      for (var pi = 0; pi < panels.length; pi++) {
+        if (panels[pi].getAttribute("data-kat") === kat) { startStep = pi; break; }
+      }
+    }
+  } catch (e) {}
+  show(startStep, false);
   render();
 })();
