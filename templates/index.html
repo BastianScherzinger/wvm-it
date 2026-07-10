@@ -58,37 +58,10 @@
         <span class="eyebrow"><span class="dot"></span>Digitalagentur für Webseiten, KI und SEO</span>
         <h1>{{ c.headline }}</h1>
         <p class="lead">{{ c.subline }}</p>
-        <!-- ── Newsletter-/Offer-Modul (Teil des Hero) ── -->
-        {% if news_sent %}
-        <div class="hero-offer hero-offer-done" data-reveal>
-          <span class="offer-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div>
-            <strong>Fast geschafft!</strong>
-            <p>Wir haben dir eine E-Mail geschickt. Bestätige den Link darin, dann sind dein 25%-Code und deine kostenlose Beispiel-Website unterwegs. Schau ggf. kurz im Spam-Ordner nach.</p>
-          </div>
+        <div class="hero-cta">
+          <a class="btn btn-lg btn-magnetic" href="#gratis">Gratis Beispiel-Website sichern<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        {% else %}
-        <div class="hero-offer" data-reveal>
-          <div class="offer-benefits">
-            <span class="offer-chip">{% include 'icons.html' with name='gift' %}25% Rabatt auf deine Website</span>
-            <span class="offer-chip">{% include 'icons.html' with name='bolt' %}Gratis Beispiel-Seite in ~10 Min</span>
-          </div>
-          <form class="offer-form" id="newsForm" method="post" action="#top">
-            {% csrf_token %}
-            <input type="hidden" name="form" value="newsletter">
-            <div class="offer-row">
-              <input type="email" name="email" required autocomplete="email" placeholder="Deine E-Mail-Adresse" aria-label="E-Mail-Adresse">
-              <button class="btn btn-lg btn-magnetic" type="submit">Gratis sichern<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            </div>
-            <input class="offer-wish" type="text" name="wunsch" autocomplete="off" maxlength="300" placeholder="Deine Website-Idee oder aktuelle Adresse (optional)" aria-label="Deine Website-Idee oder aktuelle Adresse">
-            <label class="offer-consent"><input type="checkbox" name="einwilligung" required> Ich möchte Neuigkeiten und das Angebot erhalten und stimme der <a href="#datenschutz">Datenschutzerklärung</a> zu.</label>
-          </form>
-          <div class="offer-foot">
-            <span class="offer-jarvis"><span class="jarvis-tag">JARVIS-KI</span> Deine Beispiel-Seite baut unsere Automatik. <em>Logo &amp; Video folgen.</em></span>
-            <a class="offer-alt" href="/angebot/">Oder direkt Angebot berechnen →</a>
-          </div>
-        </div>
-        {% endif %}
+        <p class="hero-note">Kostenlos und unverbindlich · von unserer JARVIS-KI in ~10 Minuten gebaut.</p>
       </div>
       <div class="hero-figure" data-reveal>
         <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="3D-Assistent, klick mich" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
@@ -107,7 +80,55 @@
         <div class="hero-price-chip" aria-hidden="true"><span>Webseiten</span><strong>ab {{ c.preis_ab }} €</strong></div>
       </div>
     </div>
-    <a class="hero-scroll" href="#aufbau" aria-label="Weiter nach unten"><span></span></a>
+    <a class="hero-scroll" href="#gratis" aria-label="Weiter nach unten"><span></span></a>
+  </section>
+
+  <!-- ── GRATIS-BLOCK: Newsletter + kostenlose JARVIS-Beispielseite (dunkles Band + Insel-Karte) ── -->
+  <section class="offer-sec" id="gratis">
+    <div class="offer-glow" aria-hidden="true"></div>
+    <div class="wrap offer-grid">
+      <div class="offer-pitch" data-reveal>
+        <span class="eyebrow eyebrow-dark"><span class="dot"></span>Gratis für neue Kunden</span>
+        <h2 class="offer-h">Deine kostenlose Beispiel-Website. In etwa 10 Minuten.</h2>
+        <p class="offer-lead">Trag deine E-Mail ein und beschreib kurz deine Idee. Unsere JARVIS-KI baut dir sofort eine echte Beispiel-Seite, und du sicherst dir 25% Rabatt auf dein Projekt.</p>
+        <div class="offer-benefits">
+          <span class="offer-chip">{% include 'icons.html' with name='gift' %}25% Rabatt auf deine Website</span>
+          <span class="offer-chip">{% include 'icons.html' with name='bolt' %}Gratis Beispiel-Seite in ~10 Min</span>
+        </div>
+        <ol class="offer-steps">
+          <li class="offer-step"><span class="offer-step-n">1</span><span class="offer-step-tx"><strong>E-Mail eintragen</strong><span>Adresse und optional deine Website-Idee angeben.</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">2</span><span class="offer-step-tx"><strong>JARVIS baut deine Seite</strong><span>Unsere KI erstellt automatisch eine echte Beispiel-Website.</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">3</span><span class="offer-step-tx"><strong>Link + 25%-Code per Mail</strong><span>Du bekommst den Link zur Seite und deinen Rabattcode.</span></span></li>
+        </ol>
+      </div>
+      <div class="offer-card" data-reveal>
+        {% if news_sent %}
+        <div class="hero-offer-done">
+          <span class="offer-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div>
+            <strong>Fast geschafft!</strong>
+            <p>Wir haben dir eine E-Mail geschickt. Bestätige den Link darin, dann sind dein 25%-Code und deine kostenlose Beispiel-Website unterwegs. Schau ggf. kurz im Spam-Ordner nach.</p>
+          </div>
+        </div>
+        {% else %}
+        <span class="offer-card-badge">JARVIS free</span>
+        <form class="offer-form" id="newsForm" method="post" action="#gratis">
+          {% csrf_token %}
+          <input type="hidden" name="form" value="newsletter">
+          <div class="offer-row">
+            <input type="email" name="email" required autocomplete="email" placeholder="Deine E-Mail-Adresse" aria-label="E-Mail-Adresse">
+          </div>
+          <input class="offer-wish" type="text" name="wunsch" autocomplete="off" maxlength="300" placeholder="Deine Website-Idee oder aktuelle Adresse (optional)" aria-label="Deine Website-Idee oder aktuelle Adresse">
+          <label class="offer-consent"><input type="checkbox" name="einwilligung" required> Ich möchte Neuigkeiten und das Angebot erhalten und stimme der <a href="#datenschutz">Datenschutzerklärung</a> zu.</label>
+          <button class="btn btn-lg btn-magnetic offer-submit" type="submit">Gratis sichern<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="offer-foot">
+            <span class="offer-jarvis"><span class="jarvis-tag">JARVIS-KI</span> Deine Beispiel-Seite baut unsere Automatik. <em>Logo &amp; Video folgen.</em></span>
+            <a class="offer-alt" href="/angebot/">Oder direkt Angebot berechnen →</a>
+          </div>
+        </form>
+        {% endif %}
+      </div>
+    </div>
   </section>
 
   <!-- ── Service-Marquee (sofort sichtbar, worum es geht + Bewegung) ────────── -->
