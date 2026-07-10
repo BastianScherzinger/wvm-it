@@ -257,7 +257,29 @@ def _handle_contact(request, c) -> bool:
 
 # ── Newsletter (Double-Opt-in, ohne Datenbank via signiertem Link) ─────────────
 _NEWSLETTER_SALT = "wvm-newsletter-confirm"
+_NEWSLETTER_UNSUB_SALT = "wvm-newsletter-unsub"
 _NEWSLETTER_MAXAGE = 60 * 60 * 24 * 3  # Bestätigungslink 3 Tage gültig
+
+
+def _client_ip(request) -> str:
+    """Client-IP (hinter Railways Proxy erste Adresse aus X-Forwarded-For), als Consent-Nachweis."""
+    xff = (request.META.get("HTTP_X_FORWARDED_FOR") or "").split(",")[0].strip()
+    return xff or request.META.get("REMOTE_ADDR", "") or ""
+
+
+def _newsletter_store(email: str, wunsch: str, ip: str) -> None:
+    """Bestätigten Abonnenten + Bau-Auftrag (queued) in Supabase ablegen.
+    Ohne Supabase-Env ein stiller No-Op; Fehler brechen den Bestätigungs-Flow nie ab."""
+    try:
+        from . import supa
+        if not supa.enabled():
+            return
+        unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
+        sid = supa.upsert_subscriber(email, wunsch, consent_ip=ip, unsub_token=unsub)
+        if sid:
+            supa.enqueue_job(sid, email, wunsch)
+    except Exception as exc:
+        print(f"[NEWSLETTER-STORE-FEHLER] {exc}", flush=True)
 
 
 def _newsletter_code() -> str:
@@ -337,10 +359,29 @@ def newsletter_confirm(request):
         wunsch = (data.get("w") or "").strip()
         if email:
             _newsletter_deliver(email, wunsch, c)
+            _newsletter_store(email, wunsch, _client_ip(request))
             ok = True
     except Exception:  # BadSignature, SignatureExpired, kaputtes Token
         ok = False
     return render(request, "newsletter_confirm.html", {"c": c, "ok": ok, "code": _newsletter_code()})
+
+
+def newsletter_unsubscribe(request):
+    """Abmeldung vom Newsletter über signierten Link (Token läuft nicht ab)."""
+    c = _content()
+    token = (request.GET.get("t") or "").strip()
+    ok = False
+    try:
+        data = signing.loads(token, salt=_NEWSLETTER_UNSUB_SALT)
+        email = (data.get("e") or "").strip()
+        if email:
+            from . import supa
+            if supa.enabled():
+                supa.set_subscriber_status(email, "unsubscribed")
+            ok = True
+    except Exception:
+        ok = False
+    return render(request, "newsletter_unsub.html", {"c": c, "ok": ok})
 
 
 def index(request):
