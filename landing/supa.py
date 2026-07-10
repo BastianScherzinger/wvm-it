@@ -92,3 +92,65 @@ def set_subscriber_status(email, status):
     except Exception as exc:
         print(f"[SUPABASE-FEHLER] set_subscriber_status: {exc}", flush=True)
         return None
+
+
+def _rows(sql, params=()):
+    if not enabled():
+        return []
+    try:
+        with closing(_connect()) as conn:
+            with conn.cursor() as cur:
+                cur.execute(sql, params)
+                cols = [d[0] for d in cur.description]
+                return [dict(zip(cols, r)) for r in cur.fetchall()]
+    except Exception as exc:
+        print(f"[SUPABASE-FEHLER] query: {exc}", flush=True)
+        return []
+
+
+def active_subscribers():
+    """Abonnenten, die für den Wochen-Newsletter aktiviert sind."""
+    return _rows("select email, coalesce(unsub_token,'') as unsub_token "
+                 "from wvm.subscribers where status='active'")
+
+
+def published_references(limit=12):
+    """Veröffentlichte Referenzen für den Wochen-Newsletter (neueste zuerst)."""
+    return _rows(
+        "select title, coalesce(beschreibung,'') as beschreibung, "
+        "coalesce(image_url,'') as image_url, coalesce(live_url,'') as live_url "
+        "from wvm.reference_items where published = true order by created_at desc limit %s",
+        (limit,),
+    )
+
+
+def claim_newsletter_run(run_key):
+    """Atomar: True, wenn DIESER Aufruf den Wochen-Lauf belegt (sonst schon gesendet)."""
+    if not enabled():
+        return False
+    try:
+        with closing(_connect()) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "insert into wvm.newsletter_runs (run_key, sent_count) values (%s, 0) "
+                    "on conflict (run_key) do nothing returning id",
+                    (run_key,),
+                )
+                got = cur.fetchone() is not None
+            conn.commit()
+            return got
+    except Exception as exc:
+        print(f"[SUPABASE-FEHLER] claim_newsletter_run: {exc}", flush=True)
+        return False
+
+
+def set_newsletter_run_count(run_key, count):
+    if not enabled():
+        return None
+    try:
+        with closing(_connect()) as conn:
+            with conn.cursor() as cur:
+                cur.execute("update wvm.newsletter_runs set sent_count=%s where run_key=%s", (count, run_key))
+            conn.commit()
+    except Exception as exc:
+        print(f"[SUPABASE-FEHLER] set_newsletter_run_count: {exc}", flush=True)

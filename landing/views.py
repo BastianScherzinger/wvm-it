@@ -384,6 +384,93 @@ def newsletter_unsubscribe(request):
     return render(request, "newsletter_unsub.html", {"c": c, "ok": ok})
 
 
+# ── Wöchentlicher Referenz-Newsletter ─────────────────────────────────────────
+def _weekly_html(refs, c, unsub_url):
+    accent = c.get("akzent", "#d8a43d")
+    site = c.get("site_name", "WVM-IT")
+    url = (c.get("wvm_url") or "").rstrip("/")
+    cards = ""
+    for r in refs:
+        img = (f'<img src="{r["image_url"]}" alt="" width="548" style="border-radius:10px;'
+               f'display:block;margin-bottom:10px;max-width:100%">') if r.get("image_url") else ""
+        live = (f'<a href="{r["live_url"]}" style="color:{accent};font-weight:600;'
+                f'text-decoration:none">Ansehen &rarr;</a>') if r.get("live_url") else ""
+        cards += (
+            '<tr><td style="padding:16px 0;border-top:1px solid #eee">' + img
+            + f'<div style="font-weight:700;font-size:17px;color:#111">{r.get("title","")}</div>'
+            + f'<div style="color:#555;font-size:14px;margin:4px 0 8px">{r.get("beschreibung","")}</div>'
+            + live + "</td></tr>"
+        )
+    if not cards:
+        cards = '<tr><td style="padding:16px 0;color:#555">Bald stellen wir hier neue Arbeiten vor.</td></tr>'
+    return (
+        '<!doctype html><html><body style="margin:0;background:#f5f5f4;font-family:Arial,sans-serif">'
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f4;padding:24px 12px"><tr><td align="center">'
+        '<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border-radius:14px;overflow:hidden">'
+        f'<tr><td style="background:#0a0908;padding:22px 26px;color:#fff;font-size:20px;font-weight:800">{site}<span style="color:{accent}"> &middot; Referenzen</span></td></tr>'
+        '<tr><td style="padding:24px 26px">'
+        '<div style="font-size:16px;color:#111;font-weight:700;margin-bottom:6px">Unsere neuesten Arbeiten</div>'
+        '<div style="font-size:14px;color:#555;margin-bottom:8px">Ein kurzer Blick auf das, was wir gerade gebaut haben.</div>'
+        f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">{cards}</table>'
+        f'<div style="margin-top:22px"><a href="{url}/angebot/" style="background:{accent};color:#181206;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;display:inline-block">Eigenes Angebot berechnen</a></div>'
+        '</td></tr>'
+        f'<tr><td style="padding:16px 26px;background:#faf9f7;color:#999;font-size:12px">Du bekommst diese Mail, weil du den {site}-Newsletter bestätigt hast. <a href="{unsub_url}" style="color:#999">Abmelden</a></td></tr>'
+        '</table></td></tr></table></body></html>'
+    )
+
+
+def _send_weekly(force=False):
+    """Verschickt den Wochen-Newsletter an aktive Abonnenten. Idempotent pro ISO-Woche."""
+    from datetime import date
+
+    from . import supa
+    if not supa.enabled():
+        return {"ok": False, "msg": "keine DB"}
+    c = _content()
+    y, w, _ = date.today().isocalendar()
+    run_key = f"{y}-W{w:02d}"
+    if not force and not supa.claim_newsletter_run(run_key):
+        return {"ok": True, "sent": 0, "msg": "diese Woche bereits gesendet", "run": run_key}
+    subs = supa.active_subscribers()
+    if not subs:
+        return {"ok": True, "sent": 0, "msg": "keine aktiven Abonnenten", "run": run_key}
+    refs = supa.published_references()
+    site_url = (c.get("wvm_url") or "").rstrip("/")
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
+    subject = f"Neues von {c.get('site_name', 'WVM-IT')}: unsere aktuellen Projekte"
+    sent = 0
+    for s in subs:
+        tok = s.get("unsub_token") or ""
+        unsub = f"{site_url}/newsletter/abmelden/?t={tok}" if tok else f"{site_url}/newsletter/abmelden/"
+        html = _weekly_html(refs, c, unsub)
+        text = ("Unsere neuesten Arbeiten:\n\n"
+                + "\n".join(f"- {r.get('title')}: {r.get('live_url', '')}" for r in refs)
+                + f"\n\nAbmelden: {unsub}\n")
+        try:
+            if getattr(settings, "EMAIL_HOST", ""):
+                from django.core.mail import EmailMultiAlternatives
+                m = EmailMultiAlternatives(subject, text, from_email, [s["email"]])
+                m.attach_alternative(html, "text/html")
+                m.send(fail_silently=True)
+            else:
+                print(f"[WOCHEN-NL] an {s['email']} ({len(refs)} Referenzen)", flush=True)
+            sent += 1
+        except Exception as exc:
+            print(f"[WOCHEN-NL-FEHLER] {s.get('email')}: {exc}", flush=True)
+    supa.set_newsletter_run_count(run_key, sent)
+    return {"ok": True, "sent": sent, "msg": f"{sent} gesendet", "run": run_key}
+
+
+def newsletter_weekly(request):
+    """Geschützter Trigger (per Cron/HTTP). ?key=WEEKLY_TRIGGER_KEY, optional &force=1."""
+    key = (request.GET.get("key") or "").strip()
+    expected = os.environ.get("WEEKLY_TRIGGER_KEY", "").strip()
+    if not expected or key != expected:
+        return HttpResponse("forbidden", status=403)
+    res = _send_weekly(force=(request.GET.get("force") == "1"))
+    return HttpResponse(json.dumps(res), content_type="application/json")
+
+
 def index(request):
     c = _content()
     sent = False
