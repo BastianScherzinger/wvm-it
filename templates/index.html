@@ -40,8 +40,8 @@
       <nav class="nav-links" aria-label="Hauptnavigation">
         <a href="#top">Home</a>
         <a href="#leistungen">Leistungen</a>
+        <a href="#angebot">Angebot</a>
         <a href="#preise">Preise</a>
-        <a href="/angebot/">Angebot</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
       {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="Anrufen">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
@@ -209,34 +209,143 @@
     </div>
   </div>
 
-  <!-- ── ANGEBOTS-BLOCK (weit oben, führt in den Konfigurator /angebot/) ────── -->
-  <section class="section section-alt ang-teaser-sec" id="angebot-teaser">
+  <!-- ── ANGEBOT (inline: Leistungen wählen, Richtpreis per E-Mail freischalten) ─ -->
+  <section class="section rb-sec" id="angebot" aria-labelledby="rb-title">
     <div class="wrap">
-      <div class="ang-teaser">
-        <div class="ang-teaser-copy" data-reveal>
-          <span class="eyebrow"><span class="dot"></span>Angebot in wenigen Schritten</span>
-          <h2 class="section-t">Stellen Sie sich Ihr Angebot selbst zusammen.</h2>
-          <p class="section-lead">Wählen Sie Ihre Leistungen aus Web, Hosting, KI und mehr, und sehen Sie den Richtpreis sofort. Unverbindlich, ohne Registrierung.</p>
-          <div class="ang-teaser-cta">
-            <a class="btn btn-lg btn-magnetic" href="/angebot/">Angebot berechnen<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            <a class="btn btn-ghost btn-lg" href="/angebot/#preisliste">Alle Preise ansehen</a>
+      <header class="sec-head rb-head" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>Ihr Richtangebot</span>
+        <h2 class="section-t" id="rb-title">Angebot zusammenstellen, Richtpreis erhalten.</h2>
+        <p class="section-lead">Tippen Sie an, was Sie interessiert &ndash; von Webseiten, Hosting und KI bis Smarthome, Netzwerk, EDV und Veranstaltungstechnik. Ihren persönlichen Richtpreis schalten wir mit Ihrer E-Mail frei und senden ihn Ihnen zu. Unverbindlich, in unter einer Minute.</p>
+      </header>
+
+      <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
+        <div class="rb-grid">
+          <div class="rb-cats">
+            {% for g in angebot_groups %}
+            <fieldset class="rb-cat" data-reveal>
+              <legend class="rb-cat-head">
+                <span class="rb-cat-ic">{% include 'icons.html' with name=g.icon %}</span>
+                <span class="rb-cat-tx"><strong>{{ g.title }}</strong><small>{{ g.sub }}</small></span>
+              </legend>
+              <div class="rb-items">
+                {% for it in g.items %}
+                <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
+                  <input class="ang-check rb-check" type="checkbox" name="item" value="{{ it.id }}"
+                         data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
+                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
+                  <span class="ang-item-box">
+                    <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
+                    <span class="ang-item-main">
+                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">beliebt</span>{% endif %}</span>
+                      <span class="ang-item-desc">{{ it.desc }}</span>
+                    </span>
+                    <span class="ang-item-price">{{ it.price_label }}</span>
+                    <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+                  </span>
+                </label>
+                {% endfor %}
+              </div>
+            </fieldset>
+            {% endfor %}
           </div>
+
+          <aside class="rb-side">
+            <div class="rb-card" data-reveal>
+              <div class="rb-card-head">
+                <h3>Ihr Richtangebot</h3>
+                <span class="rb-count" id="rbCount">0 Leistungen</span>
+              </div>
+
+              <div class="rb-sum is-locked" id="rbSum">
+                <div class="rb-sum-rows">
+                  <div class="rb-sum-empty" id="rbSumEmpty">Noch nichts gewählt &ndash; tippen Sie links Leistungen an.</div>
+                  <div class="rb-sum-row" data-k="once" hidden><span>Einmalig</span><strong>ab <span data-t="once">0</span>&nbsp;€</strong></div>
+                  <div class="rb-sum-row" data-k="mtl" hidden><span>Monatlich</span><strong>ab <span data-t="mtl">0</span>&nbsp;€<small>/Mt</small></strong></div>
+                  <div class="rb-sum-row" data-k="yr" hidden><span>Jährlich</span><strong>ab <span data-t="yr">0</span>&nbsp;€<small>/Jahr</small></strong></div>
+                  <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>Weitere Positionen</span><strong>auf Anfrage</strong></div>
+                </div>
+                <div class="rb-lock" id="rbLock">
+                  {% include 'icons.html' with name='shield' %}
+                  <span>Richtpreis mit E-Mail freischalten</span>
+                </div>
+              </div>
+
+              <div class="rb-gate" id="rbGate">
+                <div class="rb-field">
+                  <label class="fld-l" for="rbEmail">Ihre E-Mail</label>
+                  <input class="fld" type="email" name="email" id="rbEmail" required autocomplete="email" placeholder="name@firma.at">
+                </div>
+                <label class="rb-consent">
+                  <input type="checkbox" name="angebote" id="rbConsent" value="1" required>
+                  <span>Ja, schaltet meinen Richtpreis frei und schickt mir künftig passende Angebote. Jederzeit abbestellbar.</span>
+                </label>
+                <button class="btn btn-lg btn-magnetic rb-submit" type="submit" id="rbSubmit" disabled>
+                  Richtpreis freischalten
+                  <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <p class="rb-fine">Richtpreise, netto zzgl. USt. Unverbindlich, kein Konto nötig. Antwort in 24&nbsp;Stunden.</p>
+              </div>
+
+              <div class="rb-done" id="rbDone" hidden>
+                <div class="rb-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <h4>Freigeschaltet! Ihr Richtangebot ist unterwegs.</h4>
+                <p>Wir haben Ihnen die Übersicht per E-Mail geschickt und melden uns mit dem genauen Angebot.</p>
+              </div>
+            </div>
+            <a class="rb-all" href="/angebot/#preisliste">Lieber die komplette Preisliste ansehen &rarr;</a>
+          </aside>
         </div>
-        <div class="ang-teaser-grid" data-reveal>
-          {% for g in angebot_groups %}
-          <a class="ang-teaser-tile spot" data-spot href="/angebot/?kat={{ g.id }}#konfigurator" aria-label="{{ g.title }} im Konfigurator öffnen">
-            <span class="ang-teaser-ic">{% include 'icons.html' with name=g.icon %}</span>
-            <span class="ang-teaser-tx">
-              <span class="ang-teaser-name">{{ g.short }}</span>
-              <span class="ang-teaser-from">{{ g.from_label }}</span>
-            </span>
-            <svg class="ang-teaser-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          {% endfor %}
-        </div>
-      </div>
+      </form>
     </div>
   </section>
+
+  <script>
+  (function(){
+    var form=document.getElementById('rbForm'); if(!form) return;
+    var checks=form.querySelectorAll('.rb-check'),
+        count=document.getElementById('rbCount'), sum=document.getElementById('rbSum'),
+        empty=document.getElementById('rbSumEmpty'), email=document.getElementById('rbEmail'),
+        consent=document.getElementById('rbConsent'), submit=document.getElementById('rbSubmit'),
+        gate=document.getElementById('rbGate'), done=document.getElementById('rbDone'),
+        lock=document.getElementById('rbLock');
+    function eur(n){ return (Number(n)||0).toLocaleString('de-DE'); }
+    function row(k){ return form.querySelector('[data-k="'+k+'"]'); }
+    function setRow(k,v){ var r=row(k); if(!r) return; r.hidden=!(v>0);
+      var s=r.querySelector('[data-t="'+k+'"]'); if(s) s.textContent=eur(v); }
+    function tally(){
+      var once=0,mtl=0,yr=0,anf=false,n=0;
+      checks.forEach(function(c){ if(c.checked){ n++; once+=+c.dataset.once||0;
+        mtl+=+c.dataset.mtl||0; yr+=+c.dataset.yr||0; if(c.dataset.anfrage==='1') anf=true; }});
+      count.textContent=n+(n===1?' Leistung':' Leistungen');
+      if(empty) empty.hidden=n>0;
+      setRow('once',once); setRow('mtl',mtl); setRow('yr',yr);
+      var ar=row('anfrage'); if(ar) ar.hidden=!anf;
+      return {n:n,once:once,mtl:mtl,yr:yr,anf:anf};
+    }
+    function refresh(){ var t=tally();
+      submit.disabled=!(t.n>0 && email.value && email.checkValidity() && consent.checked); }
+    checks.forEach(function(c){ c.addEventListener('change',refresh); });
+    email.addEventListener('input',refresh); consent.addEventListener('change',refresh);
+    form.addEventListener('submit',function(e){
+      e.preventDefault(); if(submit.disabled) return;
+      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent='Wird freigeschaltet …';
+      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if(!j.ok) throw new Error('fail');
+          setRow('once',j.once); setRow('mtl',j.mtl); setRow('yr',j.yr);
+          var ar=row('anfrage'); if(ar) ar.hidden=!j.anfrage;
+          sum.classList.remove('is-locked'); if(lock) lock.hidden=true;
+          gate.hidden=true; done.hidden=false;
+          done.scrollIntoView({behavior:'smooth',block:'center'});
+        })
+        .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
+          submit.textContent='Richtpreis freischalten';
+          alert('Das hat gerade nicht geklappt. Bitte in einem Moment erneut versuchen.'); });
+    });
+    refresh();
+  })();
+  </script>
 
   <!-- ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── -->
   <section class="band">

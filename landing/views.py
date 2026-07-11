@@ -117,14 +117,19 @@ ANGEBOT_GROUPS = [
             {"id": "custom", "name": "Custom-Software / individuell", "desc": "Ihre Idee, individuell umgesetzt.", "anfrage": True, "icon": "consulting"},
         ],
     },
+    {
+        "id": "technik", "title": "Technik & Vor-Ort", "icon": "home", "short": "Technik", "from_label": "auf Anfrage",
+        "sub": "Installation und Technik vor Ort, projektbezogen.",
+        "items": [
+            {"id": "smarthome", "name": "Gebäude- & Smarthome-Automation", "desc": "Loxone, KNX, Licht, Heizung, Beschattung, Sicherheit.", "anfrage": True, "icon": "home"},
+            {"id": "konferenz", "name": "Konferenzraum-Technik", "desc": "Displays, Kameras, Mikrofone und Steuerung, einsatzbereit.", "anfrage": True, "icon": "conf"},
+            {"id": "buehne", "name": "Video-, Ton- & Bühnentechnik", "desc": "Veranstaltungs- und Bühnentechnik, geplant und betreut.", "anfrage": True, "icon": "av"},
+            {"id": "edv", "name": "EDV & IT-Solutions", "desc": "Hardware, Server, Arbeitsplätze und Software, komplett betreut.", "anfrage": True, "icon": "host"},
+            {"id": "netzwerk", "name": "Netzwerk & Sicherheit", "desc": "Stabiles Netzwerk, Zutritt und Videoüberwachung.", "anfrage": True, "icon": "net"},
+            {"id": "beratung", "name": "Beratung aus einer Hand", "desc": "Ein fester Ansprechpartner für Technik und Digitales.", "anfrage": True, "icon": "consulting"},
+        ],
+    },
 ]
-
-# Flache id -> item-Zuordnung (inkl. Gruppentitel) für die serverseitige Neuberechnung.
-_ANGEBOT_INDEX = {
-    it["id"]: dict(it, gruppe=g["title"])
-    for g in ANGEBOT_GROUPS for it in g["items"]
-}
-
 
 def _eur(n) -> str:
     """1490 -> '1.490' (deutsche Tausendertrennung, ganze Euro)."""
@@ -145,6 +150,13 @@ for _g in ANGEBOT_GROUPS:
             if _it.get("yr"):
                 _parts.append(f"{_eur(_it['yr'])} €/Jahr")
             _it["price_label"] = ("ab " + " + ".join(_parts)) if _parts else "-"
+
+
+# Flache id -> item-Zuordnung (inkl. Gruppentitel + price_label) für die serverseitige Neuberechnung.
+_ANGEBOT_INDEX = {
+    it["id"]: dict(it, gruppe=g["title"])
+    for g in ANGEBOT_GROUPS for it in g["items"]
+}
 
 
 def _angebot_summary(ids):
@@ -709,6 +721,70 @@ def angebot(request):
     if request.method == "POST":
         sent = _handle_angebot(request, c)
     return render(request, "angebot.html", {"c": c, "sent": sent, "groups": ANGEBOT_GROUPS})
+
+
+def angebot_anfordern(request):
+    """Inline-Richtangebot: berechnet die Summe serverseitig (autoritativ), schickt dem Kunden
+    sein Richtangebot + benachrichtigt den Inhaber und speichert die Einwilligung (weitere
+    Angebote). Antwortet als JSON, damit der Preis im Frontend erst nach E-Mail sichtbar wird."""
+    c = _content()
+    if request.method != "POST":
+        return JsonResponse({"ok": False}, status=405)
+    email = (request.POST.get("email") or "").strip()
+    if not email or "@" not in email or " " in email:
+        return JsonResponse({"ok": False, "error": "email"}, status=400)
+    consent = (request.POST.get("angebote") or "").strip().lower() in ("1", "on", "true", "ja", "yes")
+    ids = [i for i in request.POST.getlist("item") if i in _ANGEBOT_INDEX][:40]
+    once = mtl = yr = 0
+    anfrage = False
+    lines = []
+    for i in ids:
+        it = _ANGEBOT_INDEX[i]
+        once += int(it.get("once") or 0)
+        mtl += int(it.get("mtl") or 0)
+        yr += int(it.get("yr") or 0)
+        if it.get("anfrage"):
+            anfrage = True
+        lines.append(f"- {it['gruppe']}: {it['name']} ({it.get('price_label', '')})")
+    teile = []
+    if once:
+        teile.append(f"einmalig ab {_eur(once)} €")
+    if mtl:
+        teile.append(f"monatlich ab {mtl} €")
+    if yr:
+        teile.append(f"jährlich ab {_eur(yr)} €")
+    summe_txt = " · ".join(teile) if teile else "auf Anfrage"
+    site = c.get("site_name", "WVM-IT")
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
+    if ids:
+        kunde = (
+            "Hallo,\n\ndanke für Ihr Interesse. Hier Ihr unverbindliches Richtangebot von "
+            f"{site}:\n\n" + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}"
+            + ("\n(einzelne Positionen klären wir kurz mit Ihnen)" if anfrage else "")
+            + "\n\nDas ist ein grober Richtwert; das genaue Angebot stimmen wir kurz mit Ihnen ab. "
+            "Antworten Sie einfach auf diese Mail.\n\n"
+            f"Beste Grüße\ndein Team von {site}\n{c.get('wvm_url', '')}\n"
+        )
+        _send_mail_logged(f"Ihr Richtangebot von {site}", kunde, from_email, [email], tag="ANGEBOT-KUNDE")
+        empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+        if empf:
+            notify = (
+                "Neue Angebots-Anfrage (Startseite) über wvm-it.tech\n\n"
+                f"E-Mail: {email}\nWeitere Angebote erwünscht: {'ja' if consent else 'nein'}\n\n"
+                + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}\n"
+            )
+            _send_mail_logged(f"Angebots-Anfrage: {email}", notify, from_email, [empf], tag="ANGEBOT-NOTIFY")
+    if consent:
+        try:
+            from . import supa
+            if supa.enabled():
+                unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
+                supa.upsert_subscriber(email, "Angebot-Interesse: " + summe_txt,
+                                       consent_ip=_client_ip(request), unsub_token=unsub)
+        except Exception as exc:
+            print(f"[ANGEBOT-LEAD-FEHLER] {exc}", flush=True)
+    return JsonResponse({"ok": True, "once": once, "mtl": mtl, "yr": yr,
+                         "anfrage": anfrage, "summe": summe_txt, "count": len(ids)})
 
 
 def health(request):

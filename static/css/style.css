@@ -882,3 +882,62 @@ select.fld option{background:var(--surface);color:var(--ink)}
 .af-uphint{margin-top:10px;font-size:13px;color:var(--accent2)}
 .af-submit{align-self:flex-start}
 .af-note{font-size:13px;color:var(--ink-soft);margin:-6px 0 0}
+
+/* ── Inline-Angebot / Richtangebot (#angebot) ────────────────────────────── */
+.rb-head{max-width:760px}
+.rb-grid{display:grid;grid-template-columns:1.4fr .95fr;gap:clamp(20px,3vw,40px);align-items:start;margin-top:clamp(24px,4vw,44px)}
+@media (max-width:920px){.rb-grid{grid-template-columns:1fr}}
+.rb-cats{display:flex;flex-direction:column;gap:clamp(20px,3vw,32px);min-width:0}
+.rb-cat{border:0;padding:0;margin:0;min-width:0}
+.rb-cat-head{display:flex;align-items:center;gap:12px;margin:0 0 14px;padding:0}
+.rb-cat-ic{display:grid;place-items:center;inline-size:38px;block-size:38px;flex:none;border-radius:11px;
+  color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+.rb-cat-ic svg{inline-size:20px;block-size:20px}
+.rb-cat-tx{display:flex;flex-direction:column;line-height:1.25}
+.rb-cat-tx strong{font-family:"Space Grotesk",sans-serif;font-size:1.05rem}
+.rb-cat-tx small{color:var(--ink-soft);font-size:13px}
+.rb-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){.rb-items{grid-template-columns:1fr}}
+
+.rb-side{position:sticky;top:92px;display:flex;flex-direction:column;gap:12px}
+@media (max-width:920px){.rb-side{position:static}}
+.rb-card{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:var(--paper);padding:20px 20px 22px;
+  box-shadow:0 1px 2px rgba(10,9,8,.05),0 18px 44px -24px rgba(10,9,8,.35)}
+.rb-card::before{content:"";position:absolute;inset:0 0 auto 0;block-size:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.rb-card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.rb-card-head h3{font-family:"Space Grotesk",sans-serif;font-size:1.15rem}
+.rb-count{font-size:12px;font-weight:600;color:var(--accent2);white-space:nowrap;
+  padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.rb-sum{position:relative;min-block-size:104px;border-radius:14px;padding:14px 16px;
+  border:1px solid var(--line);background:color-mix(in srgb,var(--accent) 4%,transparent);margin-bottom:16px}
+.rb-sum-rows{display:flex;flex-direction:column;gap:8px;transition:filter .25s,opacity .25s}
+.rb-sum.is-locked .rb-sum-rows{filter:blur(7px);opacity:.5;pointer-events:none;user-select:none}
+.rb-sum-empty{color:var(--ink-soft);font-size:14px}
+.rb-sum-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.rb-sum-row span{color:var(--ink-soft);font-size:14px}
+.rb-sum-row strong{font-family:"Space Grotesk",sans-serif;font-size:1.15rem}
+.rb-sum-row strong small{font-size:12px;font-weight:500;color:var(--ink-soft)}
+.rb-sum-anfrage strong{font-size:.95rem;color:var(--accent2)}
+.rb-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;text-align:center;padding:10px;font-size:13px;font-weight:600;color:var(--ink)}
+.rb-lock svg{inline-size:22px;block-size:22px;color:var(--accent)}
+.rb-sum:not(.is-locked) .rb-lock{display:none}
+.rb-gate{display:flex;flex-direction:column;gap:12px}
+.rb-field{display:block;min-inline-size:0}
+.rb-consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-soft);line-height:1.45;cursor:pointer}
+.rb-consent input{margin-top:2px;inline-size:17px;block-size:17px;flex:none;accent-color:var(--accent)}
+.rb-submit{inline-size:100%;justify-content:center}
+.rb-submit:disabled{opacity:.5;cursor:not-allowed}
+.rb-submit.is-busy{opacity:.7;cursor:progress}
+.rb-fine{font-size:12px;color:var(--ink-soft);text-align:center;margin:0}
+.rb-done{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;padding:6px 4px}
+.rb-done-ic{display:grid;place-items:center;inline-size:46px;block-size:46px;border-radius:50%;color:#fff;
+  background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.rb-done-ic svg{inline-size:24px;block-size:24px}
+.rb-done h4{font-family:"Space Grotesk",sans-serif;font-size:1.05rem}
+.rb-done p{font-size:14px;color:var(--ink-soft)}
+.rb-all{align-self:center;font-size:13px;color:var(--ink-soft);text-decoration:none}
+.rb-all:hover{color:var(--accent2)}
