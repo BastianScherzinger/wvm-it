@@ -161,6 +161,13 @@
     if (reduce) {
       reveals.forEach((el) => el.classList.add("in"));
     } else {
+      // sanfte Staffelung: benachbarte data-reveal-Geschwister kaskadieren (max 260ms)
+      reveals.forEach((el) => {
+        const kids = el.parentNode ? el.parentNode.children : [];
+        const sibs = Array.prototype.filter.call(kids, (c) => c.hasAttribute && c.hasAttribute("data-reveal"));
+        const i = sibs.indexOf(el);
+        if (i > 0) el.style.transitionDelay = Math.min(i * 70, 260) + "ms";
+      });
       const io = new IntersectionObserver((entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
