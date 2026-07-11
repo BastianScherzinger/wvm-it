@@ -15,7 +15,7 @@ from pathlib import Path
 from django.conf import settings
 from django.core import signing
 from django.core.mail import send_mail
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -269,6 +269,7 @@ def _handle_contact(request, c) -> bool:
 # ── Newsletter (Double-Opt-in, ohne Datenbank via signiertem Link) ─────────────
 _NEWSLETTER_SALT = "wvm-newsletter-confirm"
 _NEWSLETTER_UNSUB_SALT = "wvm-newsletter-unsub"
+_ANFRAGE_SALT = "wvm-anfrage-detail"  # signiert E-Mail/Name für das Detailformular nach Bestätigung
 _NEWSLETTER_MAXAGE = 60 * 60 * 24 * 3  # Bestätigungslink 3 Tage gültig
 
 
@@ -291,6 +292,85 @@ def _newsletter_store(email: str, wunsch: str, ip: str) -> None:
             supa.enqueue_job(sid, email, wunsch)
     except Exception as exc:
         print(f"[NEWSLETTER-STORE-FEHLER] {exc}", flush=True)
+
+
+def _subscriber_confirm(email: str, wunsch: str, ip: str) -> None:
+    """Nach Opt-in-Klick den Abonnenten bestätigen — aber NOCH KEINEN Bau-Auftrag anlegen.
+    Der Job entsteht erst, wenn der Kunde den Detail-Bogen absendet (_handle_anfrage)."""
+    try:
+        from . import supa
+        if not supa.enabled():
+            return
+        unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
+        supa.upsert_subscriber(email, wunsch, consent_ip=ip, unsub_token=unsub)
+    except Exception as exc:
+        print(f"[SUBSCRIBER-CONFIRM-FEHLER] {exc}", flush=True)
+
+
+def _parse_cloudinary() -> dict:
+    """CLOUDINARY_URL (cloudinary://<key>:<secret>@<cloud_name>) in Teile zerlegen. {} wenn fehlt."""
+    raw = (os.environ.get("CLOUDINARY_URL") or "").strip()
+    m = re.match(r"cloudinary://([^:]+):([^@]+)@(.+)$", raw)
+    if not m:
+        return {}
+    return {"api_key": m.group(1), "api_secret": m.group(2), "cloud_name": m.group(3)}
+
+
+def _parse_images(request) -> list:
+    """Hochgeladene Bild-URLs aus dem versteckten Feld 'bilder' (JSON-Liste). Nur sichere
+    Cloudinary-https-URLs, maximal 8 — robust gegen Müll/zu viele."""
+    raw = (request.POST.get("bilder") or "").strip()
+    urls = []
+    if raw:
+        try:
+            urls = json.loads(raw)
+        except Exception:
+            urls = []
+    out = []
+    for u in urls if isinstance(urls, list) else []:
+        u = str(u).strip()
+        if u.startswith("https://res.cloudinary.com/") and u not in out:
+            out.append(u)
+    return out[:8]
+
+
+_ANFRAGE_LABELS = {
+    "titel": "Titel/Name", "branche": "Branche", "mitarbeiter": "Team zeigen",
+    "mitarbeiter_zahl": "Teamgröße", "stil": "Stil", "farbwelt": "Farbwelt",
+    "akzent": "Akzentfarbe", "ziel": "Ziel der Seite", "sektionen": "Gewünschte Bereiche",
+    "stadt": "Standort", "telefon": "Telefon", "kontaktmail": "Kontakt-E-Mail",
+    "oeffnungszeiten": "Öffnungszeiten", "slogan": "Slogan", "extra": "Weitere Wünsche",
+}
+
+
+def _compose_full_wunsch(request, hero_wunsch: str, name: str, images: list) -> str:
+    """Baut aus dem Detailbogen einen strukturierten Auftragstext, den JARVIS4 in den
+    Bau-Prompt einsetzt. Fokus: seriöses Kleinunternehmen + klar baubare Komponenten."""
+    g = lambda k: (request.POST.get(k) or "").strip()
+    parts = []
+    if name:
+        parts.append(f"Ansprechpartner: {name}")
+    for key in ("titel", "branche"):
+        v = g(key)
+        if v:
+            parts.append(f"{_ANFRAGE_LABELS[key]}: {v[:120]}")
+    mit = g("mitarbeiter")
+    if mit:
+        zahl = g("mitarbeiter_zahl")
+        parts.append("Team zeigen: " + ("ja" + (f" ({zahl})" if zahl else "")) if mit == "ja" else "Team zeigen: nein")
+    for key in ("stil", "farbwelt", "ziel", "sektionen"):
+        vals = [v.strip() for v in request.POST.getlist(key) if v.strip()][:12]
+        if vals:
+            parts.append(f"{_ANFRAGE_LABELS[key]}: " + ", ".join(vals))
+    for key in ("akzent", "stadt", "telefon", "kontaktmail", "oeffnungszeiten", "slogan", "extra"):
+        v = g(key)
+        if v:
+            parts.append(f"{_ANFRAGE_LABELS[key]}: {v[:200]}")
+    if hero_wunsch:
+        parts.append(f"Erste Angaben: {hero_wunsch[:300]}")
+    if images:
+        parts.append(f"Bilder ({len(images)}): " + ", ".join(images))
+    return "\n".join(parts)[:2000]
 
 
 def _newsletter_code() -> str:
@@ -383,10 +463,13 @@ def _handle_newsletter(request, c) -> bool:
 
 
 def newsletter_confirm(request):
-    """Double-Opt-in Schritt 2: Token prüfen, dann Code + Willkommens-Mail ausliefern."""
+    """Double-Opt-in Schritt 2: Token prüfen, Code + Willkommens-Mail ausliefern und
+    danach den Detail-Bogen für die Gratis-Website zeigen (der Bau-Auftrag entsteht erst
+    beim Absenden dieses Bogens)."""
     c = _content()
     token = (request.GET.get("t") or "").strip()
     ok = False
+    anfrage_token = name = ""
     try:
         data = signing.loads(token, salt=_NEWSLETTER_SALT, max_age=_NEWSLETTER_MAXAGE)
         email = (data.get("e") or "").strip()
@@ -394,11 +477,77 @@ def newsletter_confirm(request):
         name = (data.get("n") or "").strip()
         if email:
             _newsletter_deliver(email, wunsch, c, name=name)
-            _newsletter_store(email, wunsch, _client_ip(request))
+            _subscriber_confirm(email, wunsch, _client_ip(request))
+            # signiertes Token trägt E-Mail/Name/erste Angaben sicher zum Detail-Bogen
+            anfrage_token = signing.dumps({"e": email, "n": name, "w": wunsch},
+                                          salt=_ANFRAGE_SALT, compress=True)
             ok = True
     except Exception:  # BadSignature, SignatureExpired, kaputtes Token
         ok = False
-    return render(request, "newsletter_confirm.html", {"c": c, "ok": ok, "code": _newsletter_code()})
+    return render(request, "newsletter_confirm.html", {
+        "c": c, "ok": ok, "code": _newsletter_code(),
+        "anfrage_token": anfrage_token, "name": name,
+        "cloud_ready": bool(_parse_cloudinary()),
+    })
+
+
+def cloudinary_sign(request):
+    """Erzeugt eine kurzlebige, serverseitige Signatur für einen direkten Browser-Upload
+    zu Cloudinary. Das Secret verlässt nie den Server; der Browser lädt danach direkt hoch."""
+    conf = _parse_cloudinary()
+    if not conf.get("api_secret"):
+        return JsonResponse({"ok": False, "error": "Cloudinary nicht konfiguriert"}, status=503)
+    import time
+    import hashlib
+    ts = int(time.time())
+    folder = "wvm-anfragen"
+    to_sign = f"folder={folder}&timestamp={ts}{conf['api_secret']}"
+    sig = hashlib.sha1(to_sign.encode("utf-8")).hexdigest()
+    return JsonResponse({
+        "ok": True, "cloud_name": conf["cloud_name"], "api_key": conf["api_key"],
+        "timestamp": ts, "signature": sig, "folder": folder,
+    })
+
+
+def anfrage_absenden(request):
+    """Detail-Bogen nach der Bestätigung: verifiziert das Token, baut den vollständigen
+    Auftragstext + Bilder und legt EINEN Bau-Auftrag in der JARVIS4-Warteschlange an."""
+    c = _content()
+    if request.method != "POST":
+        return render(request, "anfrage_done.html", {"c": c, "ok": False})
+    token = (request.POST.get("t") or "").strip()
+    try:
+        data = signing.loads(token, salt=_ANFRAGE_SALT, max_age=_NEWSLETTER_MAXAGE)
+    except Exception:
+        return render(request, "anfrage_done.html", {"c": c, "ok": False})
+    email = (data.get("e") or "").strip()
+    name = (data.get("n") or "").strip()
+    hero_wunsch = (data.get("w") or "").strip()
+    if not email:
+        return render(request, "anfrage_done.html", {"c": c, "ok": False})
+    images = _parse_images(request)
+    full = _compose_full_wunsch(request, hero_wunsch, name, images)
+    try:
+        from . import supa
+        if supa.enabled():
+            unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
+            sid = supa.upsert_subscriber(email, full, consent_ip=_client_ip(request), unsub_token=unsub)
+            if sid:
+                supa.enqueue_job(sid, email, full, images=images)
+    except Exception as exc:
+        print(f"[ANFRAGE-FEHLER] {exc}", flush=True)
+    # Postfach-Notiz (best effort)
+    try:
+        empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+        if empfaenger:
+            from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger)
+            _send_mail_logged(
+                f"Neue Website-Anfrage (Detailbogen): {email}",
+                f"Name: {name or '-'}\nE-Mail: {email}\nBilder: {len(images)}\n\n{full}\n",
+                from_email, [empfaenger], tag="ANFRAGE-NOTIFY")
+    except Exception:
+        pass
+    return render(request, "anfrage_done.html", {"c": c, "ok": True, "name": name})
 
 
 def newsletter_unsubscribe(request):

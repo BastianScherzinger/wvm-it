@@ -42,16 +42,145 @@
       {% if ok %}
       <div class="ang-sent" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Anmeldung bestätigt. Willkommen!</h3>
-        <p>Danke fürs Bestätigen. Dein <strong>25%-Rabattcode</strong> ist per E-Mail unterwegs, und deine kostenlose Beispiel-Website schicken wir dir in Kürze zu.</p>
+        <h3>Bestätigt{% if name %}, {{ name }}{% endif %}! Nur noch ein kurzer Schritt.</h3>
+        <p>Dein <strong>25%-Rabattcode</strong> ist per E-Mail unterwegs. Damit wir deine <strong>kostenlose Beispiel-Website</strong> (bleibt 1 Woche live) genau passend bauen, füll bitte kurz diesen Bogen aus — je mehr du anklickst, desto besser das Ergebnis.</p>
         <div class="confirm-code" aria-label="Dein Rabattcode">
           <span>Dein Code</span><strong>{{ code }}</strong>
         </div>
-        <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/angebot/">Angebot berechnen</a>
-          <a class="btn btn-ghost" href="/">Zur Startseite</a>
-        </div>
       </div>
+
+      <form class="anfrage-form" method="post" action="{% url 'anfrage_absenden' %}" data-reveal>
+        <input type="hidden" name="t" value="{{ anfrage_token }}">
+        <input type="hidden" name="bilder" id="bilderField" value="[]">
+
+        <div class="af-grid">
+          <label class="fld"><span>Titel / Firmenname *</span>
+            <input type="text" name="titel" required maxlength="120" placeholder="z. B. Bäckerei Sonnenschein">
+          </label>
+          <label class="fld"><span>Branche</span>
+            <input type="text" name="branche" maxlength="120" placeholder="z. B. Bäckerei, Kanzlei, Friseur">
+          </label>
+        </div>
+
+        <fieldset class="af-block">
+          <legend>Team auf der Seite zeigen?</legend>
+          <div class="chipset" role="radiogroup">
+            <label class="pick"><input type="radio" name="mitarbeiter" value="ja"><span>Ja, Team zeigen</span></label>
+            <label class="pick"><input type="radio" name="mitarbeiter" value="nein" checked><span>Nein</span></label>
+          </div>
+          <div class="chipset af-sub">
+            <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="1"><span>1</span></label>
+            <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="2–5"><span>2–5</span></label>
+            <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="6–20"><span>6–20</span></label>
+            <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="20+"><span>20+</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="af-block">
+          <legend>Welche Bereiche soll die Seite haben? <small>(anklicken, was passt)</small></legend>
+          <div class="chipset">
+            <label class="pick"><input type="checkbox" name="sektionen" value="Startbereich (Hero)" checked><span>Startbereich (Hero)</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Leistungen/Angebote" checked><span>Leistungen/Angebote</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Über uns"><span>Über uns</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Team"><span>Team</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Galerie"><span>Galerie</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Bewertungen"><span>Bewertungen</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Preise/Pakete"><span>Preise/Pakete</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="FAQ"><span>FAQ</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Öffnungszeiten"><span>Öffnungszeiten</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Kontaktformular" checked><span>Kontaktformular</span></label>
+            <label class="pick"><input type="checkbox" name="sektionen" value="Anfahrt/Karte"><span>Anfahrt/Karte</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="af-block">
+          <legend>Ziel der Seite</legend>
+          <div class="chipset">
+            <label class="pick"><input type="checkbox" name="ziel" value="Anfragen/Kontakte" checked><span>Anfragen/Kontakte</span></label>
+            <label class="pick"><input type="checkbox" name="ziel" value="Termin buchen"><span>Termin buchen</span></label>
+            <label class="pick"><input type="checkbox" name="ziel" value="Verkauf"><span>Verkauf</span></label>
+            <label class="pick"><input type="checkbox" name="ziel" value="Info/Präsenz"><span>Info/Präsenz</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="af-block">
+          <legend>Stil &amp; Farbwelt</legend>
+          <div class="chipset">
+            <label class="pick"><input type="checkbox" name="stil" value="Modern"><span>Modern</span></label>
+            <label class="pick"><input type="checkbox" name="stil" value="Edel/Premium"><span>Edel/Premium</span></label>
+            <label class="pick"><input type="checkbox" name="stil" value="Verspielt"><span>Verspielt</span></label>
+            <label class="pick"><input type="checkbox" name="stil" value="Minimalistisch"><span>Minimalistisch</span></label>
+            <label class="pick"><input type="checkbox" name="stil" value="Warm/Einladend"><span>Warm/Einladend</span></label>
+          </div>
+          <div class="chipset af-sub">
+            <label class="pick"><input type="checkbox" name="farbwelt" value="Dunkel"><span>Dunkel</span></label>
+            <label class="pick"><input type="checkbox" name="farbwelt" value="Hell"><span>Hell</span></label>
+            <label class="pick"><input type="checkbox" name="farbwelt" value="Kräftig/Bunt"><span>Kräftig/Bunt</span></label>
+            <label class="pick"><input type="checkbox" name="farbwelt" value="Erdig/Natur"><span>Erdig/Natur</span></label>
+            <label class="fld fld-color"><span>Akzentfarbe</span><input type="color" name="akzent" value="#c8a24a"></label>
+          </div>
+        </fieldset>
+
+        <div class="af-grid">
+          <label class="fld"><span>Standort (Stadt)</span><input type="text" name="stadt" maxlength="120" placeholder="z. B. Leipzig"></label>
+          <label class="fld"><span>Telefon</span><input type="text" name="telefon" maxlength="40" placeholder="optional"></label>
+          <label class="fld"><span>Kontakt-E-Mail</span><input type="email" name="kontaktmail" maxlength="120" placeholder="optional"></label>
+          <label class="fld"><span>Öffnungszeiten</span><input type="text" name="oeffnungszeiten" maxlength="160" placeholder="z. B. Mo–Fr 8–18 Uhr"></label>
+        </div>
+        <label class="fld"><span>Slogan / Claim (optional)</span><input type="text" name="slogan" maxlength="160" placeholder="Ein kurzer Satz, der euch beschreibt"></label>
+
+        <fieldset class="af-block">
+          <legend>Bilder hochladen <small>(Logo, Fotos — optional, bis 8)</small></legend>
+          <label class="af-upload" id="uploadLabel">
+            <input type="file" id="fileInput" accept="image/*" multiple hidden {% if not cloud_ready %}disabled{% endif %}>
+            <span class="af-upload-inner"><strong>Bilder auswählen</strong><small>PNG/JPG, per Klick oder Drag &amp; Drop</small></span>
+          </label>
+          <div class="af-thumbs" id="thumbs"></div>
+          <p class="af-uphint" id="upHint" hidden>Lädt hoch …</p>
+        </fieldset>
+
+        <label class="fld"><span>Weitere Wünsche (optional)</span>
+          <textarea name="extra" rows="3" maxlength="600" placeholder="Alles, was uns beim Bauen hilft — Beispiele, Vorbilder, Besonderheiten …"></textarea>
+        </label>
+
+        <button class="btn btn-lg btn-magnetic af-submit" type="submit" id="afSubmit">Anfrage absenden &amp; Website bauen lassen</button>
+        <p class="af-note">Kostenlos &amp; unverbindlich. Deine Beispiel-Website bleibt 1 Woche live — danach melden wir uns.</p>
+      </form>
+
+      <script>
+      (function(){
+        var fileInput=document.getElementById('fileInput'), thumbs=document.getElementById('thumbs'),
+            hidden=document.getElementById('bilderField'), hint=document.getElementById('upHint'),
+            submit=document.getElementById('afSubmit'), label=document.getElementById('uploadLabel');
+        if(!fileInput) return;
+        var urls=[], pending=0;
+        function sync(){ hidden.value=JSON.stringify(urls); }
+        function setBusy(b){ hint.hidden=!b; submit.disabled=b; }
+        async function upload(file){
+          if(urls.length>=8) return;
+          pending++; setBusy(true);
+          try{
+            var s=await (await fetch('{% url 'cloudinary_sign' %}')).json();
+            if(!s.ok) throw new Error('sign');
+            var fd=new FormData();
+            fd.append('file',file); fd.append('api_key',s.api_key);
+            fd.append('timestamp',s.timestamp); fd.append('signature',s.signature);
+            fd.append('folder',s.folder);
+            var r=await fetch('https://api.cloudinary.com/v1_1/'+s.cloud_name+'/image/upload',{method:'POST',body:fd});
+            var j=await r.json();
+            if(j.secure_url){ urls.push(j.secure_url); sync();
+              var t=document.createElement('div'); t.className='af-thumb';
+              t.innerHTML='<img src="'+j.secure_url+'" alt="">'; thumbs.appendChild(t);
+            }
+          }catch(e){ /* still: einzelnes Bild schlägt fehl, Rest läuft weiter */ }
+          finally{ pending--; if(pending<=0) setBusy(false); }
+        }
+        fileInput.addEventListener('change',function(){ Array.prototype.forEach.call(fileInput.files,upload); fileInput.value=''; });
+        ['dragover','dragenter'].forEach(function(ev){ label.addEventListener(ev,function(e){e.preventDefault();label.classList.add('drag');}); });
+        ['dragleave','drop'].forEach(function(ev){ label.addEventListener(ev,function(e){e.preventDefault();label.classList.remove('drag');}); });
+        label.addEventListener('drop',function(e){ if(e.dataTransfer&&e.dataTransfer.files) Array.prototype.forEach.call(e.dataTransfer.files,upload); });
+      })();
+      </script>
       {% else %}
       <div class="ang-sent ang-sent--error" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v4M12 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>

@@ -1,0 +1,59 @@
+{% load static %}<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if ok %}Anfrage erhalten{% else %}Link ungültig{% endif %} | {{ c.site_name }}</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0a0908">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+</head>
+<body class="ang-page">
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="{{ c.site_name }} Startseite">
+      {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section confirm-sec">
+    <div class="wrap">
+      {% if ok %}
+      <div class="ang-sent" data-reveal>
+        <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Danke{% if name %}, {{ name }}{% endif %}! Deine Anfrage ist da.</h3>
+        <p>Wir bauen jetzt deine <strong>kostenlose Beispiel-Website</strong> und schicken dir den Link per E-Mail, sobald sie fertig ist. Sie bleibt <strong>1 Woche live</strong> — danach melden wir uns, um sie gemeinsam mit dir final umzusetzen.</p>
+        <div class="ang-sent-actions">
+          <a class="btn btn-magnetic" href="/">Zur Startseite</a>
+          <a class="btn btn-ghost" href="/angebot/">Angebot ansehen</a>
+        </div>
+      </div>
+      {% else %}
+      <div class="ang-sent ang-sent--error" data-reveal>
+        <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v4M12 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Der Link ist abgelaufen.</h3>
+        <p>Bitte melde dich noch einmal an, dann bekommst du einen frischen Bestätigungslink und kannst den Bogen erneut ausfüllen.</p>
+        <div class="ang-sent-actions">
+          <a class="btn btn-magnetic" href="/#gratis">Erneut anmelden</a>
+          <a class="btn btn-ghost" href="/">Zur Startseite</a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-bottom">
+    <span>© {{ c.jahr }} {{ c.site_name }}</span>
+    <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
+  </div>
+</footer>
+</body>
+</html>

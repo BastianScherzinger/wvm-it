@@ -56,13 +56,15 @@ def upsert_subscriber(email, wunsch="", consent_ip="", unsub_token=""):
         return None
 
 
-def enqueue_job(subscriber_id, email, wunsch=""):
-    """Legt einen Bau-Auftrag (queued) an, aber nur wenn nicht schon einer offen ist."""
+def enqueue_job(subscriber_id, email, wunsch="", images=None):
+    """Legt einen Bau-Auftrag (queued) an, aber nur wenn nicht schon einer offen ist.
+    images = Liste von Bild-URLs (Cloudinary), die JARVIS4 in die Seite einbauen kann."""
     if not enabled():
         return None
+    import json as _json
     sql = """
-        insert into wvm.build_jobs (subscriber_id, email, website_wunsch, status)
-        select %s, %s, %s, 'queued'
+        insert into wvm.build_jobs (subscriber_id, email, website_wunsch, images, status)
+        select %s, %s, %s, %s::jsonb, 'queued'
         where not exists (
             select 1 from wvm.build_jobs
             where subscriber_id = %s and status in ('queued','processing','review')
@@ -71,7 +73,8 @@ def enqueue_job(subscriber_id, email, wunsch=""):
     try:
         with closing(_connect()) as conn:
             with conn.cursor() as cur:
-                cur.execute(sql, (subscriber_id, email, wunsch or "", subscriber_id))
+                cur.execute(sql, (subscriber_id, email, wunsch or "",
+                                  _json.dumps(images or []), subscriber_id))
             conn.commit()
             return True
     except Exception as exc:
