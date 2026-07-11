@@ -171,6 +171,36 @@ def _angebot_summary(ids):
     return zeilen, once, mtl, yr, hat_anfrage
 
 
+def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="MAIL") -> bool:
+    """Zentraler E-Mail-Versand MIT ausfuehrlichem Logging.
+
+    Wichtig: KEIN fail_silently -> echte SMTP-Fehler (Auth, TLS, abgelehnter Absender)
+    landen sichtbar im Log, werden hier gefangen und NIE an den Besucher weitergereicht.
+    Gibt True zurueck, wenn tatsaechlich versendet wurde.
+    """
+    recipients = [r for r in (recipients or []) if r]
+    host = getattr(settings, "EMAIL_HOST", "")
+    if not recipients:
+        print(f"[{tag}] uebersprungen: kein Empfaenger. Betreff: {subject}", flush=True)
+        return False
+    if not host:
+        # Kein SMTP konfiguriert -> nur protokollieren (Besucher wird trotzdem bestaetigt).
+        print(f"[{tag}] KEIN EMAIL_HOST gesetzt -> nur Log. An {recipients}: {subject}", flush=True)
+        print(f"[{tag}-BODY]\n{message}", flush=True)
+        return False
+    try:
+        from django.core.mail import EmailMultiAlternatives
+        msg = EmailMultiAlternatives(subject, message, from_email, recipients)
+        if html:
+            msg.attach_alternative(html, "text/html")
+        n = msg.send(fail_silently=False)
+        print(f"[{tag}] OK gesendet ({n}) an {recipients} | from={from_email} host={host}:{getattr(settings,'EMAIL_PORT','?')} tls={getattr(settings,'EMAIL_USE_TLS','?')} | {subject}", flush=True)
+        return bool(n)
+    except Exception as exc:  # SMTP-Fehler sichtbar loggen, Besucher nie mit 500 bestrafen
+        print(f"[{tag}-FEHLER] {type(exc).__name__}: {exc} | an {recipients} from={from_email} host={host}:{getattr(settings,'EMAIL_PORT','?')} user={getattr(settings,'EMAIL_HOST_USER','')}", flush=True)
+        return False
+
+
 def _handle_angebot(request, c) -> bool:
     """Verarbeitet den Angebots-Konfigurator (POST). True = erfolgreich entgegengenommen."""
     name = (request.POST.get("name") or "").strip()
@@ -207,19 +237,10 @@ def _handle_angebot(request, c) -> bool:
         + (f"Nachricht:\n{nachricht}\n" if nachricht else "")
         + "\nHinweis: Richtpreise, unverbindlich. Endpreis nach Gespräch.\n"
     )
-    try:
-        if getattr(settings, "EMAIL_HOST", "") and empfaenger:
-            send_mail(
-                subject=f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)",
-                message=body,
-                from_email=getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger),
-                recipient_list=[empfaenger],
-                fail_silently=True,
-            )
-        else:
-            print("[ANGEBOT]\n" + body, flush=True)
-    except Exception as exc:  # niemals den Besucher mit einem 500 bestrafen
-        print(f"[ANGEBOT-FEHLER] {exc}", flush=True)
+    _send_mail_logged(
+        f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)", body,
+        getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="ANGEBOT",
+    )
     return True
 
 
@@ -238,20 +259,10 @@ def _handle_contact(request, c) -> bool:
         f"Name:    {name}\nE-Mail:  {email}\nTelefon: {telefon}\nBudget:  {budget}\n\n"
         f"Nachricht:\n{nachricht}\n"
     )
-    try:
-        if getattr(settings, "EMAIL_HOST", "") and empfaenger:
-            send_mail(
-                subject=f"Neue Projektanfrage von {name}",
-                message=body,
-                from_email=getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger),
-                recipient_list=[empfaenger],
-                fail_silently=True,
-            )
-        else:
-            # Kein SMTP konfiguriert: Anfrage protokollieren, Besucher trotzdem bestätigen.
-            print("[KONTAKT]\n" + body, flush=True)
-    except Exception as exc:  # niemals den Besucher mit einem 500 bestrafen
-        print(f"[KONTAKT-FEHLER] {exc}", flush=True)
+    _send_mail_logged(
+        f"Neue Projektanfrage von {name}", body,
+        getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
+    )
     return True
 
 
@@ -286,37 +297,62 @@ def _newsletter_code() -> str:
     return os.environ.get("NEWSLETTER_CODE", "WVM25").strip() or "WVM25"
 
 
-def _newsletter_deliver(email: str, wunsch: str, c: dict) -> None:
+def _newsletter_deliver(email: str, wunsch: str, c: dict, name: str = "") -> None:
     """Nach BESTÄTIGTEM Opt-in: Postfach benachrichtigen + Willkommens-Mail mit Code."""
     code = _newsletter_code()
     site = c.get("site_name", "WVM-IT")
     empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger)
+    anrede = f"Hallo {name}" if name else "Hallo"
     notify = (
         "Neue BESTÄTIGTE Newsletter-Anmeldung über wvm-it.tech\n\n"
+        f"Name:           {name or '-'}\n"
         f"E-Mail:         {email}\n"
-        f"Website-Wunsch: {wunsch or '-'}\n\n"
+        f"Angaben/Wunsch: {wunsch or '-'}\n\n"
         f"Ausgegebener Rabattcode: {code}\n"
         "To-do: kostenlose Beispiel-Website (JARVIS) erstellen und zuschicken.\n"
     )
     welcome = (
-        "Hallo,\n\n"
+        f"{anrede},\n\n"
         "danke, dass du deine Anmeldung bestätigt hast. Als Dankeschön:\n\n"
         f"  Dein Rabattcode: {code}  (25 % auf deine erste Website)\n\n"
         "Außerdem erstellen wir dir eine kostenlose Beispiel-Website und schicken sie dir "
-        "in Kürze zu, damit du direkt siehst, was möglich ist.\n\n"
-        + (f"Dein Hinweis an uns: {wunsch}\n\n" if wunsch else "")
+        "in Kürze zu, damit du direkt siehst, was möglich ist. Danach setzen wir sie "
+        "gemeinsam mit dir um, bis alles genau passt.\n\n"
+        + (f"Deine Angaben an uns: {wunsch}\n\n" if wunsch else "")
+        + "Du bekommst ab jetzt außerdem etwa einmal pro Woche unseren Referenz-Newsletter "
+        "mit echten Projekten von uns. Du kannst ihn jederzeit über den Link am Ende jeder "
+        "Mail wieder abbestellen.\n\n"
         + f"Bis bald,\ndein Team von {site}\n{c.get('wvm_url', '')}\n"
     )
-    try:
-        if getattr(settings, "EMAIL_HOST", ""):
-            if empfaenger:
-                send_mail(f"Newsletter bestätigt: {email}", notify, from_email, [empfaenger], fail_silently=True)
-            send_mail(f"Willkommen bei {site}: dein 25%-Code", welcome, from_email, [email], fail_silently=True)
-        else:
-            print("[NEWSLETTER-CONFIRMED]\n" + notify + "\n--- Willkommens-Mail ---\n" + welcome, flush=True)
-    except Exception as exc:  # Besucher nie mit einem 500 bestrafen
-        print(f"[NEWSLETTER-FEHLER] {exc}", flush=True)
+    if empfaenger:
+        _send_mail_logged(f"Newsletter bestätigt: {email}", notify, from_email, [empfaenger], tag="NEWSLETTER-NOTIFY")
+    _send_mail_logged(f"Willkommen bei {site}: dein 25%-Code", welcome, from_email, [email], tag="NEWSLETTER-WELCOME")
+
+
+def _compose_wunsch(request) -> str:
+    """Baut aus allen Formularfeldern eine kompakte Wunsch-/Angaben-Zeile, die JARVIS
+    fuer den Bau nutzt und die im Postfach landet. Robust gegen fehlende Felder."""
+    art = (request.POST.get("art") or "").strip()
+    budget = (request.POST.get("budget") or "").strip()
+    telefon = (request.POST.get("telefon") or "").strip()[:40]
+    farbe = [f.strip() for f in request.POST.getlist("farbe") if f.strip()][:6]
+    stil = [s.strip() for s in request.POST.getlist("stil") if s.strip()][:6]
+    idee = (request.POST.get("wunsch") or "").strip()[:600]
+    parts = []
+    if art:
+        parts.append(f"Art: {art}")
+    if farbe:
+        parts.append("Farben: " + ", ".join(farbe))
+    if stil:
+        parts.append("Stil: " + ", ".join(stil))
+    if budget:
+        parts.append(f"Budget: {budget}")
+    if telefon:
+        parts.append(f"Tel: {telefon}")
+    if idee:
+        parts.append(f"Idee: {idee}")
+    return " | ".join(parts)[:700]
 
 
 def _handle_newsletter(request, c) -> bool:
@@ -325,26 +361,24 @@ def _handle_newsletter(request, c) -> bool:
     email = (request.POST.get("email") or "").strip()
     if not email or "@" not in email or " " in email:
         return False
-    wunsch = (request.POST.get("wunsch") or "").strip()[:300]
-    token = signing.dumps({"e": email, "w": wunsch}, salt=_NEWSLETTER_SALT)
+    name = (request.POST.get("name") or "").strip()[:80]
+    wunsch = _compose_wunsch(request)
+    # Angaben kompakt + komprimiert in den signierten Link legen (kein DB-Zugriff noetig).
+    token = signing.dumps({"e": email, "w": wunsch, "n": name}, salt=_NEWSLETTER_SALT, compress=True)
     base = (c.get("wvm_url") or "").rstrip("/") or request.build_absolute_uri("/").rstrip("/")
     link = f"{base}{reverse('newsletter_confirm')}?t={token}"
     site = c.get("site_name", "WVM-IT")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
+    anrede = f"Hallo {name}" if name else "Hallo"
     confirm = (
-        "Hallo,\n\n"
-        f"fast geschafft. Bitte bestätige deine Newsletter-Anmeldung bei {site} mit einem Klick:\n\n"
+        f"{anrede},\n\n"
+        f"fast geschafft. Bitte bestätige deine Anmeldung bei {site} mit einem Klick:\n\n"
         f"{link}\n\n"
-        "Danach bekommst du deinen 25%-Rabattcode und deine kostenlose Beispiel-Website.\n"
+        "Danach bekommst du deinen 25%-Rabattcode und deine kostenlose Beispiel-Website. "
+        "Außerdem erhältst du ca. einmal pro Woche unseren Referenz-Newsletter (jederzeit abbestellbar).\n"
         "Der Link ist 3 Tage gültig. Falls du dich nicht angemeldet hast, ignoriere diese E-Mail einfach.\n"
     )
-    try:
-        if getattr(settings, "EMAIL_HOST", ""):
-            send_mail(f"Bitte bestätige deine Anmeldung bei {site}", confirm, from_email, [email], fail_silently=True)
-        else:
-            print("[NEWSLETTER-CONFIRM-MAIL]\n" + confirm, flush=True)
-    except Exception as exc:  # Besucher nie mit einem 500 bestrafen
-        print(f"[NEWSLETTER-FEHLER] {exc}", flush=True)
+    _send_mail_logged(f"Bitte bestätige deine Anmeldung bei {site}", confirm, from_email, [email], tag="NEWSLETTER-CONFIRM")
     return True
 
 
@@ -357,8 +391,9 @@ def newsletter_confirm(request):
         data = signing.loads(token, salt=_NEWSLETTER_SALT, max_age=_NEWSLETTER_MAXAGE)
         email = (data.get("e") or "").strip()
         wunsch = (data.get("w") or "").strip()
+        name = (data.get("n") or "").strip()
         if email:
-            _newsletter_deliver(email, wunsch, c)
+            _newsletter_deliver(email, wunsch, c, name=name)
             _newsletter_store(email, wunsch, _client_ip(request))
             ok = True
     except Exception:  # BadSignature, SignatureExpired, kaputtes Token
@@ -446,17 +481,8 @@ def _send_weekly(force=False):
         text = ("Unsere neuesten Arbeiten:\n\n"
                 + "\n".join(f"- {r.get('title')}: {r.get('live_url', '')}" for r in refs)
                 + f"\n\nAbmelden: {unsub}\n")
-        try:
-            if getattr(settings, "EMAIL_HOST", ""):
-                from django.core.mail import EmailMultiAlternatives
-                m = EmailMultiAlternatives(subject, text, from_email, [s["email"]])
-                m.attach_alternative(html, "text/html")
-                m.send(fail_silently=True)
-            else:
-                print(f"[WOCHEN-NL] an {s['email']} ({len(refs)} Referenzen)", flush=True)
+        if _send_mail_logged(subject, text, from_email, [s["email"]], html=html, tag="WOCHEN-NL"):
             sent += 1
-        except Exception as exc:
-            print(f"[WOCHEN-NL-FEHLER] {s.get('email')}: {exc}", flush=True)
     supa.set_newsletter_run_count(run_key, sent)
     return {"ok": True, "sent": sent, "msg": f"{sent} gesendet", "run": run_key}
 
@@ -469,6 +495,49 @@ def newsletter_weekly(request):
         return HttpResponse("forbidden", status=403)
     res = _send_weekly(force=(request.GET.get("force") == "1"))
     return HttpResponse(json.dumps(res), content_type="application/json")
+
+
+def newsletter_diag(request):
+    """Geschützte E-Mail-Diagnose: zeigt (ohne Passwort) die SMTP-Konfiguration und
+    kann eine echte Testmail schicken, um den exakten SMTP-Fehler sichtbar zu machen.
+    Aufruf: /newsletter/diagnose/?key=WEEKLY_TRIGGER_KEY[&to=name@domain]"""
+    key = (request.GET.get("key") or "").strip()
+    expected = os.environ.get("WEEKLY_TRIGGER_KEY", "").strip()
+    if not expected or key != expected:
+        return HttpResponse("forbidden", status=403)
+    pw = getattr(settings, "EMAIL_HOST_PASSWORD", "") or ""
+    info = {
+        "EMAIL_BACKEND": getattr(settings, "EMAIL_BACKEND", ""),
+        "EMAIL_HOST": getattr(settings, "EMAIL_HOST", ""),
+        "EMAIL_PORT": getattr(settings, "EMAIL_PORT", None),
+        "EMAIL_USE_TLS": getattr(settings, "EMAIL_USE_TLS", None),
+        "EMAIL_USE_SSL": getattr(settings, "EMAIL_USE_SSL", None),
+        "EMAIL_HOST_USER": getattr(settings, "EMAIL_HOST_USER", ""),
+        "EMAIL_HOST_PASSWORD_gesetzt": bool(pw),
+        "EMAIL_HOST_PASSWORD_len": len(pw),
+        "DEFAULT_FROM_EMAIL": getattr(settings, "DEFAULT_FROM_EMAIL", ""),
+        "KONTAKT_EMPFAENGER": os.environ.get("KONTAKT_EMPFAENGER", ""),
+    }
+    to = (request.GET.get("to") or "").strip()
+    if to:
+        from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "")
+        try:
+            from django.core.mail import EmailMultiAlternatives, get_connection
+            conn = get_connection(fail_silently=False)
+            conn.open()  # erzwingt Verbindung + Login -> Auth-/TLS-Fehler werden sofort sichtbar
+            msg = EmailMultiAlternatives(
+                "WVM-IT SMTP-Test", "Test-Mail zur SMTP-Diagnose. Wenn du das liest, funktioniert der Versand.",
+                from_email, [to], connection=conn)
+            n = msg.send(fail_silently=False)
+            conn.close()
+            info["test_ergebnis"] = {"gesendet": bool(n), "count": n}
+            print(f"[DIAG] Testmail OK an {to} (count={n})", flush=True)
+        except Exception as exc:
+            info["test_ergebnis"] = {"gesendet": False, "fehler_typ": type(exc).__name__, "fehler": str(exc)}
+            print(f"[DIAG-FEHLER] {type(exc).__name__}: {exc} an {to}", flush=True)
+        info["test_an"] = to
+    return HttpResponse(json.dumps(info, ensure_ascii=False, indent=2),
+                        content_type="application/json; charset=utf-8")
 
 
 def index(request):

@@ -150,8 +150,9 @@
     }, 150);
     setTimeout(function () { clearInterval(poll); ready(); }, 7000); // Sicherheitsnetz
     };
-    // 3D-Szene erst im Leerlauf laden -> schnellerer Erst-Load der Seite.
-    (window.requestIdleCallback || function (f) { return setTimeout(f, 200); })(loadSpline);
+    // 3D-Szene moeglichst frueh anstossen (Modul-Script blockiert das Rendern nicht),
+    // damit der Roboter schnell erscheint. Start im naechsten Frame.
+    (window.requestAnimationFrame || function (f) { return setTimeout(f, 16); })(loadSpline);
   })();
 
   /* ── 2) REVEAL ON SCROLL ───────────────────────────────────────────────── */
