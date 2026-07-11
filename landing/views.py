@@ -39,7 +39,7 @@ _FALLBACK = {
     "seo_title": "WVM-IT ,  Webseiten, Hosting, KI & SEO",
     "seo_desc": "Performante Webseiten, Hosting, KI-Automatisierungen und SEO für Unternehmen.",
     "jahr": 2026,
-    "wvm_url": "https://wvm-it.tech",
+    "wvm_url": "https://www.wvm-it.tech",
     "wvm_shop": "https://www.pystore.de",
     "datenschutz": "",
     "impressum": "",
