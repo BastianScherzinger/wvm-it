@@ -53,95 +53,134 @@
         <input type="hidden" name="t" value="{{ anfrage_token }}">
         <input type="hidden" name="bilder" id="bilderField" value="[]">
 
-        <div class="af-grid">
-          <label class="fld"><span>Titel / Firmenname *</span>
-            <input type="text" name="titel" required maxlength="120" placeholder="z. B. Bäckerei Sonnenschein">
-          </label>
-          <label class="fld"><span>Branche</span>
-            <input type="text" name="branche" maxlength="120" placeholder="z. B. Bäckerei, Kanzlei, Friseur">
-          </label>
-        </div>
-
-        <fieldset class="af-block">
-          <legend>Team auf der Seite zeigen?</legend>
-          <div class="chipset" role="radiogroup">
-            <label class="pick"><input type="radio" name="mitarbeiter" value="ja"><span>Ja, Team zeigen</span></label>
-            <label class="pick"><input type="radio" name="mitarbeiter" value="nein" checked><span>Nein</span></label>
+        <section class="af-section">
+          <div class="af-section-head"><span class="af-num">1</span><div><h4>Über euch</h4><p>Wer ihr seid und was ihr macht.</p></div></div>
+          <div class="af-grid">
+            <label class="fld"><span>Titel / Firmenname *</span><input type="text" name="titel" required maxlength="120" placeholder="z. B. Bäckerei Sonnenschein"></label>
+            <label class="fld"><span>Branche</span><input type="text" name="branche" maxlength="120" placeholder="z. B. Bäckerei, Kanzlei, Friseur"></label>
           </div>
-          <div class="chipset af-sub">
-            <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="1"><span>1</span></label>
-            <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="2–5"><span>2–5</span></label>
-            <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="6–20"><span>6–20</span></label>
-            <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="20+"><span>20+</span></label>
+          <label class="fld"><span>Was macht ihr genau?</span><textarea name="beschreibung" rows="2" maxlength="400" placeholder="In 1–2 Sätzen: euer Angebot, eure Leistung, euer Standort …"></textarea></label>
+          <div class="af-grid">
+            <label class="fld"><span>Wer sind eure Kunden?</span><input type="text" name="zielgruppe" maxlength="160" placeholder="z. B. Familien aus der Region, kleine Firmen …"></label>
+            <label class="fld"><span>Was macht euch besonders?</span><input type="text" name="usp" maxlength="160" placeholder="euer Vorteil, euer Versprechen …"></label>
           </div>
-        </fieldset>
+        </section>
 
-        <fieldset class="af-block">
-          <legend>Welche Bereiche soll die Seite haben? <small>(anklicken, was passt)</small></legend>
-          <div class="chipset">
-            <label class="pick"><input type="checkbox" name="sektionen" value="Startbereich (Hero)" checked><span>Startbereich (Hero)</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Leistungen/Angebote" checked><span>Leistungen/Angebote</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Über uns"><span>Über uns</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Team"><span>Team</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Galerie"><span>Galerie</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Bewertungen"><span>Bewertungen</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Preise/Pakete"><span>Preise/Pakete</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="FAQ"><span>FAQ</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Öffnungszeiten"><span>Öffnungszeiten</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Kontaktformular" checked><span>Kontaktformular</span></label>
-            <label class="pick"><input type="checkbox" name="sektionen" value="Anfahrt/Karte"><span>Anfahrt/Karte</span></label>
+        <section class="af-section">
+          <div class="af-section-head"><span class="af-num">2</span><div><h4>Die Website</h4><p>Welche Bereiche und welches Ziel.</p></div></div>
+          <fieldset class="af-block">
+            <legend>Welche Bereiche soll die Seite haben? <small>(anklicken, was passt)</small></legend>
+            <div class="chipset">
+              <label class="pick"><input type="checkbox" name="sektionen" value="Startbereich (Hero)" checked><span>Startbereich (Hero)</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Leistungen/Angebote" checked><span>Leistungen/Angebote</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Über uns"><span>Über uns</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Team"><span>Team</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Galerie"><span>Galerie</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Bewertungen"><span>Bewertungen</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Preise/Pakete"><span>Preise/Pakete</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="FAQ"><span>FAQ</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Öffnungszeiten"><span>Öffnungszeiten</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Kontaktformular" checked><span>Kontaktformular</span></label>
+              <label class="pick"><input type="checkbox" name="sektionen" value="Anfahrt/Karte"><span>Anfahrt/Karte</span></label>
+            </div>
+          </fieldset>
+          <div class="af-two">
+            <fieldset class="af-block">
+              <legend>Wichtigstes Ziel</legend>
+              <div class="chipset">
+                <label class="pick"><input type="checkbox" name="ziel" value="Anfragen/Kontakte" checked><span>Anfragen/Kontakte</span></label>
+                <label class="pick"><input type="checkbox" name="ziel" value="Termin buchen"><span>Termin buchen</span></label>
+                <label class="pick"><input type="checkbox" name="ziel" value="Verkauf"><span>Verkauf</span></label>
+                <label class="pick"><input type="checkbox" name="ziel" value="Info/Präsenz"><span>Info/Präsenz</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="af-block">
+              <legend>Sprache</legend>
+              <div class="chipset">
+                <label class="pick"><input type="checkbox" name="sprache" value="Deutsch" checked><span>Deutsch</span></label>
+                <label class="pick"><input type="checkbox" name="sprache" value="Englisch"><span>Englisch</span></label>
+              </div>
+            </fieldset>
           </div>
-        </fieldset>
+        </section>
 
-        <fieldset class="af-block">
-          <legend>Ziel der Seite</legend>
-          <div class="chipset">
-            <label class="pick"><input type="checkbox" name="ziel" value="Anfragen/Kontakte" checked><span>Anfragen/Kontakte</span></label>
-            <label class="pick"><input type="checkbox" name="ziel" value="Termin buchen"><span>Termin buchen</span></label>
-            <label class="pick"><input type="checkbox" name="ziel" value="Verkauf"><span>Verkauf</span></label>
-            <label class="pick"><input type="checkbox" name="ziel" value="Info/Präsenz"><span>Info/Präsenz</span></label>
+        <section class="af-section">
+          <div class="af-section-head"><span class="af-num">3</span><div><h4>Look &amp; Feel</h4><p>Wie soll die Seite wirken?</p></div></div>
+          <fieldset class="af-block">
+            <legend>Design-Stil</legend>
+            <div class="chipset">
+              <label class="pick"><input type="checkbox" name="stil" value="Modern"><span>Modern</span></label>
+              <label class="pick"><input type="checkbox" name="stil" value="Edel/Premium"><span>Edel/Premium</span></label>
+              <label class="pick"><input type="checkbox" name="stil" value="Verspielt"><span>Verspielt</span></label>
+              <label class="pick"><input type="checkbox" name="stil" value="Minimalistisch"><span>Minimalistisch</span></label>
+              <label class="pick"><input type="checkbox" name="stil" value="Warm/Einladend"><span>Warm/Einladend</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="af-block">
+            <legend>Farbwelt &amp; Akzent</legend>
+            <div class="chipset">
+              <label class="pick"><input type="checkbox" name="farbwelt" value="Dunkel"><span>Dunkel</span></label>
+              <label class="pick"><input type="checkbox" name="farbwelt" value="Hell"><span>Hell</span></label>
+              <label class="pick"><input type="checkbox" name="farbwelt" value="Kräftig/Bunt"><span>Kräftig/Bunt</span></label>
+              <label class="pick"><input type="checkbox" name="farbwelt" value="Erdig/Natur"><span>Erdig/Natur</span></label>
+              <label class="fld fld-color"><span>Akzentfarbe</span><input type="color" name="akzent" value="#c8a24a"></label>
+            </div>
+          </fieldset>
+          <fieldset class="af-block">
+            <legend>Tonalität <small>(wie soll der Text klingen?)</small></legend>
+            <div class="chipset">
+              <label class="pick"><input type="checkbox" name="tonalitaet" value="Seriös"><span>Seriös</span></label>
+              <label class="pick"><input type="checkbox" name="tonalitaet" value="Locker/freundlich"><span>Locker/freundlich</span></label>
+              <label class="pick"><input type="checkbox" name="tonalitaet" value="Hochwertig"><span>Hochwertig</span></label>
+              <label class="pick"><input type="checkbox" name="tonalitaet" value="Herzlich"><span>Herzlich</span></label>
+              <label class="pick"><input type="checkbox" name="tonalitaet" value="Technisch"><span>Technisch</span></label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="af-section">
+          <div class="af-section-head"><span class="af-num">4</span><div><h4>Team &amp; Kontakt</h4><p>Damit alles Wichtige auf der Seite steht.</p></div></div>
+          <fieldset class="af-block">
+            <legend>Team auf der Seite zeigen?</legend>
+            <div class="chipset" role="radiogroup">
+              <label class="pick"><input type="radio" name="mitarbeiter" value="ja"><span>Ja, Team zeigen</span></label>
+              <label class="pick"><input type="radio" name="mitarbeiter" value="nein" checked><span>Nein</span></label>
+            </div>
+            <div class="chipset af-sub">
+              <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="1"><span>1</span></label>
+              <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="2–5"><span>2–5</span></label>
+              <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="6–20"><span>6–20</span></label>
+              <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="20+"><span>20+</span></label>
+            </div>
+          </fieldset>
+          <div class="af-grid">
+            <label class="fld"><span>Standort (Stadt)</span><input type="text" name="stadt" maxlength="120" placeholder="z. B. Leipzig"></label>
+            <label class="fld"><span>Adresse <small>(optional)</small></span><input type="text" name="adresse" maxlength="160" placeholder="Straße, PLZ Ort"></label>
+            <label class="fld"><span>Telefon</span><input type="text" name="telefon" maxlength="40" placeholder="optional"></label>
+            <label class="fld"><span>Kontakt-E-Mail</span><input type="email" name="kontaktmail" maxlength="120" placeholder="optional"></label>
+            <label class="fld"><span>Öffnungszeiten</span><input type="text" name="oeffnungszeiten" maxlength="160" placeholder="z. B. Mo–Fr 8–18 Uhr"></label>
+            <label class="fld"><span>Slogan / Claim <small>(optional)</small></span><input type="text" name="slogan" maxlength="160" placeholder="Ein kurzer Satz, der euch beschreibt"></label>
           </div>
-        </fieldset>
+        </section>
 
-        <fieldset class="af-block">
-          <legend>Stil &amp; Farbwelt</legend>
-          <div class="chipset">
-            <label class="pick"><input type="checkbox" name="stil" value="Modern"><span>Modern</span></label>
-            <label class="pick"><input type="checkbox" name="stil" value="Edel/Premium"><span>Edel/Premium</span></label>
-            <label class="pick"><input type="checkbox" name="stil" value="Verspielt"><span>Verspielt</span></label>
-            <label class="pick"><input type="checkbox" name="stil" value="Minimalistisch"><span>Minimalistisch</span></label>
-            <label class="pick"><input type="checkbox" name="stil" value="Warm/Einladend"><span>Warm/Einladend</span></label>
-          </div>
-          <div class="chipset af-sub">
-            <label class="pick"><input type="checkbox" name="farbwelt" value="Dunkel"><span>Dunkel</span></label>
-            <label class="pick"><input type="checkbox" name="farbwelt" value="Hell"><span>Hell</span></label>
-            <label class="pick"><input type="checkbox" name="farbwelt" value="Kräftig/Bunt"><span>Kräftig/Bunt</span></label>
-            <label class="pick"><input type="checkbox" name="farbwelt" value="Erdig/Natur"><span>Erdig/Natur</span></label>
-            <label class="fld fld-color"><span>Akzentfarbe</span><input type="color" name="akzent" value="#c8a24a"></label>
-          </div>
-        </fieldset>
-
-        <div class="af-grid">
-          <label class="fld"><span>Standort (Stadt)</span><input type="text" name="stadt" maxlength="120" placeholder="z. B. Leipzig"></label>
-          <label class="fld"><span>Telefon</span><input type="text" name="telefon" maxlength="40" placeholder="optional"></label>
-          <label class="fld"><span>Kontakt-E-Mail</span><input type="email" name="kontaktmail" maxlength="120" placeholder="optional"></label>
-          <label class="fld"><span>Öffnungszeiten</span><input type="text" name="oeffnungszeiten" maxlength="160" placeholder="z. B. Mo–Fr 8–18 Uhr"></label>
-        </div>
-        <label class="fld"><span>Slogan / Claim (optional)</span><input type="text" name="slogan" maxlength="160" placeholder="Ein kurzer Satz, der euch beschreibt"></label>
-
-        <fieldset class="af-block">
-          <legend>Bilder hochladen <small>(Logo, Fotos — optional, bis 8)</small></legend>
+        <section class="af-section">
+          <div class="af-section-head"><span class="af-num">5</span><div><h4>Bilder</h4><p>Logo und Fotos machen die Seite echt (optional, bis 8).</p></div></div>
           <label class="af-upload" id="uploadLabel">
             <input type="file" id="fileInput" accept="image/*" multiple hidden {% if not cloud_ready %}disabled{% endif %}>
             <span class="af-upload-inner"><strong>Bilder auswählen</strong><small>PNG/JPG, per Klick oder Drag &amp; Drop</small></span>
           </label>
           <div class="af-thumbs" id="thumbs"></div>
           <p class="af-uphint" id="upHint" hidden>Lädt hoch …</p>
-        </fieldset>
+        </section>
 
-        <label class="fld"><span>Weitere Wünsche (optional)</span>
-          <textarea name="extra" rows="3" maxlength="600" placeholder="Alles, was uns beim Bauen hilft — Beispiele, Vorbilder, Besonderheiten …"></textarea>
-        </label>
+        <section class="af-section">
+          <div class="af-section-head"><span class="af-num">6</span><div><h4>Sonstiges</h4><p>Vorbilder und alles, was uns beim Bauen hilft.</p></div></div>
+          <div class="af-grid">
+            <label class="fld"><span>Habt ihr schon eine Website?</span><input type="url" name="aktuelle_website" maxlength="200" placeholder="https:// … (optional)"></label>
+            <label class="fld"><span>Vorbild-Seiten, die euch gefallen</span><input type="text" name="vorbilder" maxlength="200" placeholder="Links oder Namen (optional)"></label>
+          </div>
+          <label class="fld"><span>Weitere Wünsche</span><textarea name="extra" rows="3" maxlength="600" placeholder="Alles, was uns beim Bauen hilft — Besonderheiten, No-Gos …"></textarea></label>
+        </section>
 
         <button class="btn btn-lg btn-magnetic af-submit" type="submit" id="afSubmit">Anfrage absenden &amp; Website bauen lassen</button>
         <p class="af-note">Kostenlos &amp; unverbindlich. Deine Beispiel-Website bleibt 1 Woche live — danach melden wir uns.</p>

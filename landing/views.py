@@ -16,7 +16,7 @@ from django.conf import settings
 from django.core import signing
 from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
@@ -282,6 +282,7 @@ def _handle_contact(request, c) -> bool:
 _NEWSLETTER_SALT = "wvm-newsletter-confirm"
 _NEWSLETTER_UNSUB_SALT = "wvm-newsletter-unsub"
 _ANFRAGE_SALT = "wvm-anfrage-detail"  # signiert E-Mail/Name für das Detailformular nach Bestätigung
+_STATUS_SALT = "wvm-bau-status"       # signiert E-Mail für die Live-Status-Warteseite
 _NEWSLETTER_MAXAGE = 60 * 60 * 24 * 3  # Bestätigungslink 3 Tage gültig
 
 
@@ -347,11 +348,14 @@ def _parse_images(request) -> list:
 
 
 _ANFRAGE_LABELS = {
-    "titel": "Titel/Name", "branche": "Branche", "mitarbeiter": "Team zeigen",
+    "titel": "Titel/Name", "branche": "Branche", "beschreibung": "Was sie machen",
+    "zielgruppe": "Zielgruppe", "usp": "Besonderheit/USP", "mitarbeiter": "Team zeigen",
     "mitarbeiter_zahl": "Teamgröße", "stil": "Stil", "farbwelt": "Farbwelt",
-    "akzent": "Akzentfarbe", "ziel": "Ziel der Seite", "sektionen": "Gewünschte Bereiche",
-    "stadt": "Standort", "telefon": "Telefon", "kontaktmail": "Kontakt-E-Mail",
-    "oeffnungszeiten": "Öffnungszeiten", "slogan": "Slogan", "extra": "Weitere Wünsche",
+    "akzent": "Akzentfarbe", "tonalitaet": "Tonalität", "ziel": "Ziel der Seite",
+    "sektionen": "Gewünschte Bereiche", "sprache": "Sprache", "stadt": "Standort",
+    "adresse": "Adresse", "telefon": "Telefon", "kontaktmail": "Kontakt-E-Mail",
+    "oeffnungszeiten": "Öffnungszeiten", "slogan": "Slogan",
+    "aktuelle_website": "Aktuelle Website", "vorbilder": "Vorbilder", "extra": "Weitere Wünsche",
 }
 
 
@@ -362,27 +366,28 @@ def _compose_full_wunsch(request, hero_wunsch: str, name: str, images: list) -> 
     parts = []
     if name:
         parts.append(f"Ansprechpartner: {name}")
-    for key in ("titel", "branche"):
+    for key in ("titel", "branche", "beschreibung", "zielgruppe", "usp"):
         v = g(key)
         if v:
-            parts.append(f"{_ANFRAGE_LABELS[key]}: {v[:120]}")
+            parts.append(f"{_ANFRAGE_LABELS[key]}: {v[:400]}")
     mit = g("mitarbeiter")
     if mit:
         zahl = g("mitarbeiter_zahl")
-        parts.append("Team zeigen: " + ("ja" + (f" ({zahl})" if zahl else "")) if mit == "ja" else "Team zeigen: nein")
-    for key in ("stil", "farbwelt", "ziel", "sektionen"):
+        parts.append(("Team zeigen: ja" + (f" ({zahl})" if zahl else "")) if mit == "ja" else "Team zeigen: nein")
+    for key in ("sektionen", "ziel", "sprache", "stil", "farbwelt", "tonalitaet"):
         vals = [v.strip() for v in request.POST.getlist(key) if v.strip()][:12]
         if vals:
             parts.append(f"{_ANFRAGE_LABELS[key]}: " + ", ".join(vals))
-    for key in ("akzent", "stadt", "telefon", "kontaktmail", "oeffnungszeiten", "slogan", "extra"):
+    for key in ("akzent", "stadt", "adresse", "telefon", "kontaktmail", "oeffnungszeiten",
+                "slogan", "aktuelle_website", "vorbilder", "extra"):
         v = g(key)
         if v:
-            parts.append(f"{_ANFRAGE_LABELS[key]}: {v[:200]}")
+            parts.append(f"{_ANFRAGE_LABELS[key]}: {v[:250]}")
     if hero_wunsch:
         parts.append(f"Erste Angaben: {hero_wunsch[:300]}")
     if images:
         parts.append(f"Bilder ({len(images)}): " + ", ".join(images))
-    return "\n".join(parts)[:2000]
+    return "\n".join(parts)[:2600]
 
 
 def _newsletter_code() -> str:
@@ -559,7 +564,45 @@ def anfrage_absenden(request):
                 from_email, [empfaenger], tag="ANFRAGE-NOTIFY")
     except Exception:
         pass
-    return render(request, "anfrage_done.html", {"c": c, "ok": True, "name": name})
+    # Auf die Live-Status-Warteseite schicken (pollt bis die Seite gebaut + live ist).
+    status_token = signing.dumps({"e": email, "n": name}, salt=_STATUS_SALT, compress=True)
+    return redirect(reverse("warten") + "?t=" + status_token)
+
+
+def warten(request):
+    """Warteseite nach dem Absenden: zeigt live den Baufortschritt und blendet den Link
+    zur fertigen Seite ein, sobald sie gebaut und online ist."""
+    c = _content()
+    token = (request.GET.get("t") or "").strip()
+    name = ""
+    try:
+        data = signing.loads(token, salt=_STATUS_SALT, max_age=_NEWSLETTER_MAXAGE)
+        name = (data.get("n") or "").strip()
+    except Exception:
+        token = ""
+    return render(request, "warten.html", {"c": c, "status_token": token, "name": name})
+
+
+def bau_status(request):
+    """JSON-Status für die Warteseite: prüft den neuesten Bau-Auftrag der E-Mail in Supabase.
+    Gibt {state: queued|processing|done|failed|unknown, url} zurück."""
+    token = (request.GET.get("t") or "").strip()
+    try:
+        data = signing.loads(token, salt=_STATUS_SALT, max_age=_NEWSLETTER_MAXAGE)
+        email = (data.get("e") or "").strip()
+    except Exception:
+        return JsonResponse({"state": "unknown"}, status=400)
+    state, url = "queued", ""
+    try:
+        from . import supa
+        if supa.enabled():
+            job = supa.job_status(email)
+            if job:
+                state = job.get("status") or "queued"
+                url = job.get("site_url") or ""
+    except Exception as exc:
+        print(f"[BAU-STATUS-FEHLER] {exc}", flush=True)
+    return JsonResponse({"state": state, "url": url})
 
 
 def newsletter_unsubscribe(request):

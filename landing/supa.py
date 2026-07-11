@@ -82,6 +82,23 @@ def enqueue_job(subscriber_id, email, wunsch="", images=None):
         return None
 
 
+def job_status(email):
+    """Neuester Bau-Auftrag einer E-Mail: {status, site_url} oder None (fuer die Warteseite)."""
+    if not enabled() or not email:
+        return None
+    try:
+        with closing(_connect()) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "select status, coalesce(site_url,'') from wvm.build_jobs "
+                    "where email=%s order by created_at desc limit 1", (email,))
+                row = cur.fetchone()
+                return {"status": row[0], "site_url": row[1]} if row else None
+    except Exception as exc:
+        print(f"[SUPABASE-FEHLER] job_status: {exc}", flush=True)
+        return None
+
+
 def set_subscriber_status(email, status):
     """Setzt den Status eines Abonnenten (z. B. 'unsubscribed')."""
     if not enabled():

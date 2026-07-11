@@ -92,13 +92,13 @@
       <div class="offer-pitch" data-reveal>
         <span class="eyebrow eyebrow-dark"><span class="dot"></span>Gratis für neue Kunden</span>
         <h2 class="offer-h">Deine kostenlose Beispiel-Website. In etwa 10 Minuten.</h2>
-        <p class="offer-lead">Sag uns rechts, was du dir vorstellst. Unsere JARVIS-KI baut dir sofort eine echte Beispiel-Seite, du sicherst dir 25% Rabatt auf dein Projekt, und danach setzen wir sie gemeinsam mit dir perfekt um.</p>
+        <p class="offer-lead">Trag rechts nur deine E-Mail ein. Danach fragen wir kurz deine Wünsche ab, unsere JARVIS-KI baut dir sofort eine echte Beispiel-Seite, du sicherst dir 25% Rabatt, und wir setzen sie gemeinsam mit dir perfekt um.</p>
         <div class="offer-benefits">
           <span class="offer-chip">{% include 'icons.html' with name='gift' %}25% Rabatt auf deine Website</span>
           <span class="offer-chip">{% include 'icons.html' with name='bolt' %}Gratis Beispiel-Seite in ~10 Min</span>
         </div>
         <ol class="offer-steps">
-          <li class="offer-step"><span class="offer-step-n">1</span><span class="offer-step-tx"><strong>Wünsche eintragen</strong><span>E-Mail, Art der Seite, Farben und Stil angeben, so genau du magst.</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">1</span><span class="offer-step-tx"><strong>E-Mail eintragen</strong><span>Nur die E-Mail. Danach fragen wir in Ruhe deine Wünsche ab (Art, Farben, Bilder …).</span></span></li>
           <li class="offer-step"><span class="offer-step-n">2</span><span class="offer-step-tx"><strong>JARVIS baut deine Seite</strong><span>Unsere KI erstellt automatisch eine echte Beispiel-Website nach deinen Angaben.</span></span></li>
           <li class="offer-step"><span class="offer-step-n">3</span><span class="offer-step-tx"><strong>Link + 25%-Code per Mail</strong><span>Du bekommst den Link zur Seite und deinen Rabattcode.</span></span></li>
           <li class="offer-step"><span class="offer-step-n">4</span><span class="offer-step-tx"><strong>Wir passen sie mit dir an</strong><span>Wir arbeiten komplett mit dir zusammen und sind für dich da, bis alles genau passt.</span></span></li>
@@ -120,74 +120,13 @@
         {% else %}
         <span class="offer-card-badge">JARVIS free</span>
         <h3 class="offer-card-h">Gratis-Website anfordern</h3>
-        <p class="offer-card-sub">Je mehr du uns verrätst, desto besser baut JARVIS. Nur die E-Mail ist Pflicht.</p>
-        <form class="offer-form" id="newsForm" method="post" action="#gratis">
+        <p class="offer-card-sub">Trag nur deine E-Mail ein. Deine Wünsche zur Seite fragen wir gleich danach in Ruhe ab.</p>
+        <form class="offer-form offer-form-slim" id="newsForm" method="post" action="#gratis">
           {% csrf_token %}
           <input type="hidden" name="form" value="newsletter">
-          <div class="of-grid">
-            <div class="field">
-              <label class="fld-l" for="of-name">Name</label>
-              <input id="of-name" class="fld" type="text" name="name" autocomplete="name" maxlength="80" placeholder="Dein Name">
-            </div>
-            <div class="field">
-              <label class="fld-l" for="of-tel">Telefon <span class="fld-opt">optional</span></label>
-              <input id="of-tel" class="fld" type="tel" name="telefon" autocomplete="tel" maxlength="40" placeholder="+43 / +49 …">
-            </div>
-          </div>
           <div class="field">
-            <label class="fld-l" for="of-mail">E-Mail <span class="fld-req">Pflicht</span></label>
+            <label class="fld-l" for="of-mail">Deine E-Mail</label>
             <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.de">
-          </div>
-          <div class="of-grid">
-            <div class="field">
-              <label class="fld-l" for="of-art">Art der Website</label>
-              <select id="of-art" class="fld" name="art">
-                <option value="">Bitte wählen</option>
-                <option>Firmen- / Unternehmensseite</option>
-                <option>Restaurant / Café / Bar</option>
-                <option>Handwerk &amp; Bau</option>
-                <option>Dienstleister / Beratung</option>
-                <option>Online-Shop</option>
-                <option>Portfolio / Persönlich</option>
-                <option>Verein / Verband</option>
-                <option>Sonstiges</option>
-              </select>
-            </div>
-            <div class="field">
-              <label class="fld-l" for="of-budget">Budget <span class="fld-opt">optional</span></label>
-              <select id="of-budget" class="fld" name="budget">
-                <option value="">Noch offen</option>
-                <option>bis 1.000 €</option>
-                <option>1.000 – 3.000 €</option>
-                <option>3.000 – 7.000 €</option>
-                <option>über 7.000 €</option>
-              </select>
-            </div>
-          </div>
-          <div class="field">
-            <span class="fld-l">Farbwelt <span class="fld-opt">Mehrfachauswahl</span></span>
-            <div class="chipset" role="group" aria-label="Farbwelt">
-              <label class="pick"><input type="checkbox" name="farbe" value="Dunkel &amp; edel"><span>Dunkel &amp; edel</span></label>
-              <label class="pick"><input type="checkbox" name="farbe" value="Hell &amp; clean"><span>Hell &amp; clean</span></label>
-              <label class="pick"><input type="checkbox" name="farbe" value="Bunt &amp; lebendig"><span>Bunt &amp; lebendig</span></label>
-              <label class="pick"><input type="checkbox" name="farbe" value="Natürlich / Erdig"><span>Natürlich</span></label>
-              <label class="pick"><input type="checkbox" name="farbe" value="Blau / Seriös"><span>Blau / Seriös</span></label>
-            </div>
-          </div>
-          <div class="field">
-            <span class="fld-l">Design-Stil <span class="fld-opt">Mehrfachauswahl</span></span>
-            <div class="chipset" role="group" aria-label="Design-Stil">
-              <label class="pick"><input type="checkbox" name="stil" value="Modern"><span>Modern</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Minimal"><span>Minimal</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Luxuriös"><span>Luxuriös</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Verspielt"><span>Verspielt</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Klassisch"><span>Klassisch</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Techy"><span>Techy</span></label>
-            </div>
-          </div>
-          <div class="field">
-            <label class="fld-l" for="of-wunsch">Deine Idee &amp; Details <span class="fld-opt">optional</span></label>
-            <textarea id="of-wunsch" class="fld" name="wunsch" rows="3" maxlength="600" placeholder="Was soll die Seite können? Aktuelle Adresse, Vorbilder, Besonderheiten …"></textarea>
           </div>
           <label class="offer-consent"><input type="checkbox" name="einwilligung" required> Ich möchte die kostenlose Beispiel-Website, meinen 25%-Code und den wöchentlichen Referenz-Newsletter (ca. 1&#215;/Woche, jederzeit abbestellbar) erhalten und stimme der <a href="#datenschutz">Datenschutzerklärung</a> zu.</label>
           <button class="btn btn-lg btn-magnetic offer-submit" type="submit">Gratis-Website sichern<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>

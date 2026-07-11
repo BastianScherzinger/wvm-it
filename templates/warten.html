@@ -1,0 +1,104 @@
+{% load static %}<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deine Website wird gebaut | {{ c.site_name }}</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0a0908">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+</head>
+<body class="ang-page">
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="{{ c.site_name }} Startseite">
+      {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section confirm-sec">
+    <div class="wrap wait-wrap" data-status-url="{% if status_token %}{% url 'bau_status' %}?t={{ status_token }}{% endif %}">
+      <div class="wait-card" data-reveal>
+        <div class="wait-orb" id="waitOrb"><span class="wait-orb-core" aria-hidden="true"></span></div>
+        <h1 id="waitTitle">Deine Website wird gebaut …{% if name %}<br><span class="wait-name">Danke, {{ name }}!</span>{% endif %}</h1>
+        <p class="wait-sub" id="waitSub">Lass dieses Fenster offen. Sobald deine Seite fertig ist, erscheint hier automatisch der Link — meist in wenigen Minuten.</p>
+
+        <ol class="wait-steps" id="waitSteps">
+          <li class="wait-step" data-s="1"><span class="wait-dot" aria-hidden="true"></span>In der Warteschlange</li>
+          <li class="wait-step" data-s="2"><span class="wait-dot" aria-hidden="true"></span>JARVIS schreibt &amp; baut die Seite</li>
+          <li class="wait-step" data-s="3"><span class="wait-dot" aria-hidden="true"></span>Geht online</li>
+          <li class="wait-step" data-s="4"><span class="wait-dot" aria-hidden="true"></span>Live &amp; bereit</li>
+        </ol>
+
+        <div class="wait-live" id="waitLive" hidden>
+          <a class="btn btn-lg btn-magnetic" id="waitLink" href="#" target="_blank" rel="noopener">Deine Seite ansehen
+            <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="/">Zur Startseite</a>
+        </div>
+
+        <p class="wait-hint" id="waitHint">Du bekommst den Link auch per E-Mail — du kannst diese Seite also jederzeit schließen.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-bottom">
+    <span>© {{ c.jahr }} {{ c.site_name }}</span>
+    <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var wrap=document.querySelector('.wait-wrap'); if(!wrap) return;
+  var url=wrap.getAttribute('data-status-url');
+  var steps=document.getElementById('waitSteps'), orb=document.getElementById('waitOrb'),
+      title=document.getElementById('waitTitle'), sub=document.getElementById('waitSub'),
+      live=document.getElementById('waitLive'), link=document.getElementById('waitLink'),
+      hint=document.getElementById('waitHint');
+  function setStep(active, allDone){
+    Array.prototype.forEach.call(steps.querySelectorAll('.wait-step'), function(li){
+      var s=+li.getAttribute('data-s');
+      li.classList.toggle('is-done', allDone ? true : s<active);
+      li.classList.toggle('is-active', !allDone && s===active);
+    });
+  }
+  if(!url){ setStep(1); return; }
+  var tries=0, stopped=false;
+  function poll(){
+    if(stopped) return;
+    fetch(url,{headers:{'X-Requested-With':'fetch'}}).then(function(r){return r.json();}).then(function(j){
+      var st=j.state;
+      if(st==='done' && j.url){
+        stopped=true; setStep(4,true); orb.classList.add('is-live');
+        title.textContent='Fertig! Deine Seite ist live.';
+        sub.textContent='Schau sie dir an — danach setzen wir sie gemeinsam mit dir perfekt um.';
+        link.href=j.url; live.hidden=false;
+        hint.textContent='Den Link findest du auch in deiner E-Mail.';
+        return;
+      }
+      if(st==='failed'){
+        stopped=true; orb.classList.add('is-err');
+        title.textContent='Da ist gerade etwas schiefgelaufen.';
+        sub.textContent='Kein Problem — wir kümmern uns persönlich darum und melden uns bei dir.';
+        hint.textContent='';
+        return;
+      }
+      setStep((st==='processing'||st==='review') ? 3 : (st==='queued' ? 1 : 2));
+      tries++;
+      setTimeout(poll, tries>45 ? 12000 : 4000);
+    }).catch(function(){ setTimeout(poll, 6000); });
+  }
+  setStep(1); poll();
+})();
+</script>
+</body>
+</html>

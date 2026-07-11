@@ -942,3 +942,43 @@ select.fld option{background:var(--surface);color:var(--ink)}
 .rb-done p{font-size:14px;color:var(--ink-soft)}
 .rb-all{align-self:center;font-size:13px;color:var(--ink-soft);text-decoration:none}
 .rb-all:hover{color:var(--accent2)}
+
+/* ── Detail-Bogen: nummerierte Abschnitte ────────────────────────────────── */
+.af-section{border-top:1px solid var(--line);padding-top:24px;margin-top:8px;display:flex;flex-direction:column;gap:16px}
+.af-section:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.af-section-head{display:flex;align-items:center;gap:12px}
+.af-num{display:grid;place-items:center;inline-size:30px;block-size:30px;flex:none;border-radius:9px;
+  font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:14px;color:var(--on-accent,#181206);
+  background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.af-section-head h4{font-family:"Space Grotesk",sans-serif;font-size:1.1rem;line-height:1.2}
+.af-section-head p{font-size:13px;color:var(--ink-soft);margin-top:1px}
+.af-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.af-two{grid-template-columns:1fr}}
+
+/* ── Warteseite (Live-Bau-Status) ────────────────────────────────────────── */
+.wait-wrap{max-width:600px;margin:0 auto;text-align:center}
+.wait-card{display:flex;flex-direction:column;align-items:center}
+.wait-orb{position:relative;inline-size:96px;block-size:96px;border-radius:50%;margin-bottom:18px;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%)}
+.wait-orb::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid transparent;
+  border-top-color:var(--accent2);border-right-color:color-mix(in srgb,var(--accent) 50%,transparent);animation:spin 1s linear infinite}
+.wait-orb-core{inline-size:20px;block-size:20px;border-radius:50%;background:var(--accent2);
+  box-shadow:0 0 22px var(--accent2);animation:corePulse 1.6s ease-in-out infinite}
+@keyframes corePulse{50%{transform:scale(.68);opacity:.65}}
+.wait-orb.is-live{background:radial-gradient(circle at 50% 40%,rgba(52,211,153,.28),transparent 70%)}
+.wait-orb.is-live::before{animation:none;border-color:#34d399}
+.wait-orb.is-live .wait-orb-core{background:#34d399;box-shadow:0 0 22px #34d399;animation:none}
+.wait-orb.is-err::before{animation:none;border-color:#f87171}
+.wait-orb.is-err .wait-orb-core{background:#f87171;box-shadow:0 0 22px #f87171;animation:none}
+.wait-card h1{font-size:clamp(1.5rem,3.4vw,2.1rem)}
+.wait-name{color:var(--accent2);font-size:.72em;font-weight:600}
+.wait-sub{color:var(--ink-soft);max-width:46ch;margin:8px auto 0}
+.wait-steps{list-style:none;display:flex;flex-direction:column;gap:12px;margin:24px auto 4px;text-align:left;width:max-content;max-width:100%}
+.wait-step{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--ink-dim);transition:color .3s}
+.wait-dot{inline-size:14px;block-size:14px;flex:none;border-radius:50%;border:2px solid var(--line-2);transition:all .3s}
+.wait-step.is-active{color:var(--ink)}
+.wait-step.is-active .wait-dot{border-color:var(--accent2);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%,transparent);animation:corePulse 1.4s ease-in-out infinite}
+.wait-step.is-done{color:var(--ink-soft)}
+.wait-step.is-done .wait-dot{border-color:#34d399;background:#34d399}
+.wait-live{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+.wait-hint{font-size:13px;color:var(--ink-dim);margin-top:16px}
