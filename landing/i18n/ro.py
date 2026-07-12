@@ -14,6 +14,14 @@ PACK = {
         "angebot_og_desc": "Alcătuiește site-uri web, AI, automatizări și altele în câțiva pași și vezi prețul orientativ imediat.",
     },
     "lang": {"switch_aria": "Alege limba"},
+    "cookie": {
+        "aria": "Notificare cookie",
+        "title": "Îți respectăm confidențialitatea",
+        "body": "Folosim doar cookie-uri necesare din punct de vedere tehnic, ca site-ul să funcționeze. Pentru asistentul 3D interactiv integrăm și conținut extern — îl încărcăm doar cu acordul tău. Detalii în",
+        "link": "politica de confidențialitate",
+        "accept": "Acceptă tot",
+        "decline": "Doar necesare",
+    },
     "nav": {
         "skip": "Sari la conținut",
         "skip_konfigurator": "Sari la configurator",

@@ -14,6 +14,14 @@ PACK = {
         "angebot_og_desc": "Webseiten, KI, Automatisierung und mehr in wenigen Schritten zusammenstellen und Richtpreis sofort sehen.",
     },
     "lang": {"switch_aria": "Sprache wählen"},
+    "cookie": {
+        "aria": "Cookie-Hinweis",
+        "title": "Wir respektieren deine Privatsphäre",
+        "body": "Wir verwenden nur technisch notwendige Cookies, damit die Seite funktioniert. Für den interaktiven 3D-Assistenten binden wir zusätzlich externe Inhalte ein — diese laden wir erst mit deiner Zustimmung. Details in der",
+        "link": "Datenschutzerklärung",
+        "accept": "Alle akzeptieren",
+        "decline": "Nur notwendige",
+    },
     "nav": {
         "skip": "Zum Inhalt springen",
         "skip_konfigurator": "Zum Konfigurator springen",

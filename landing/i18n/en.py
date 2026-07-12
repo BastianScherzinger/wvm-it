@@ -14,6 +14,14 @@ PACK = {
         "angebot_og_desc": "Put together websites, AI, automation and more in a few steps and see your ballpark price instantly.",
     },
     "lang": {"switch_aria": "Choose language"},
+    "cookie": {
+        "aria": "Cookie notice",
+        "title": "We respect your privacy",
+        "body": "We only use technically necessary cookies to make the site work. For the interactive 3D assistant we also embed external content — we only load it with your consent. Details in the",
+        "link": "privacy policy",
+        "accept": "Accept all",
+        "decline": "Only necessary",
+    },
     "nav": {
         "skip": "Skip to content",
         "skip_konfigurator": "Skip to the configurator",

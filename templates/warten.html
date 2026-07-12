@@ -6,9 +6,8 @@
   <title>{{ t.wait.title|safe }} | {{ c.site_name }}</title>
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#0a0908">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
   <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
   <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -67,6 +66,7 @@
     }
   };
 </script>
+{% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}" defer></script>
 <script>
 (function(){

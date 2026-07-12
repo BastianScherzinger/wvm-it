@@ -21,9 +21,8 @@
   <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
   {% if c.hero_bg %}<meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
 </head>
@@ -279,6 +278,7 @@
   <a class="mobilebar-cta" href="#konfigurator">{{ t.nav.cta_angebot|safe }}</a>
 </div>
 
+{% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}" defer></script>
 <script src="{% static 'js/angebot.js' %}" defer></script>
 </body>

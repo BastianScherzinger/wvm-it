@@ -151,9 +151,21 @@
     }, 150);
     setTimeout(function () { clearInterval(poll); ready(); }, 7000); // Sicherheitsnetz
     };
-    // 3D-Szene moeglichst frueh anstossen (Modul-Script blockiert das Rendern nicht),
-    // damit der Roboter schnell erscheint. Start im naechsten Frame.
-    (window.requestAnimationFrame || function (f) { return setTimeout(f, 16); })(loadSpline);
+    // Externe 3D-Inhalte (Spline via unpkg/prod.spline.design) NUR mit Cookie-Einwilligung
+    // laden (DSGVO) — ohne Zustimmung bleibt der selbst gehostete Fallback-Cutout sichtbar.
+    let started = false;
+    const startSpline = function () {
+      if (started) return; started = true;
+      (window.requestAnimationFrame || function (f) { return setTimeout(f, 16); })(loadSpline);
+    };
+    const consentAll = function () {
+      const m = document.cookie.match(/(?:^|;\s*)wvm_consent=([^;]+)/);
+      return !!m && m[1] === "all";
+    };
+    if (consentAll()) startSpline();
+    else window.addEventListener("wvm:consent", function (e) {
+      if (!e || e.detail === "all") startSpline();
+    }, { once: true });
   })();
 
   /* ── 2) REVEAL ON SCROLL ───────────────────────────────────────────────── */

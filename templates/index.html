@@ -17,10 +17,8 @@
   <!-- Favicon / App-Icon -->
   <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
   <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preconnect" href="https://prod.spline.design" crossorigin>
-  <!-- 3D-Viewer vorladen, damit der Roboter frueher erscheint -->
-  <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js" crossorigin>
+  <!-- 3D-Viewer (Spline) wird ERST nach Cookie-Einwilligung von main.js geladen (DSGVO). -->
+
   <meta property="og:title" content="{{ t.meta.seo_title|safe }}">
   <meta property="og:description" content="{{ t.meta.seo_desc|safe }}">
   <meta property="og:type" content="website">
@@ -37,9 +35,8 @@
   <meta name="twitter:description" content="{{ t.meta.seo_desc|safe }}">
   <meta name="twitter:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
   {% if c.hero_bg %}<link rel="preload" as="image" href="{{ c.hero_bg }}">{% endif %}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
   <script type="application/ld+json">
@@ -761,6 +758,7 @@
   <a class="mobilebar-cta" href="#kontakt">{{ t.nav.cta|safe }}</a>
 </div>
 
+{% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}" defer></script>
 </body>
 </html>
