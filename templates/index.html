@@ -1,16 +1,16 @@
 {% load static %}<!DOCTYPE html>
-<html lang="de-AT">
+<html lang="{{ t.meta.html_lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ c.seo_title }}</title>
-  <meta name="description" content="{{ c.seo_desc }}">
+  <title>{{ t.meta.seo_title|safe }}</title>
+  <meta name="description" content="{{ t.meta.seo_desc|safe }}">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="{{ c.site_name }} · {{ c.inhaber_name }}">
   <meta name="theme-color" content="#0a0908">
-  <link rel="canonical" href="{{ c.wvm_url }}/">
-  <link rel="alternate" hreflang="de-AT" href="{{ c.wvm_url }}/">
-  <link rel="alternate" hreflang="x-default" href="{{ c.wvm_url }}/">
+  <link rel="canonical" href="{{ c.wvm_url }}{{ canonical_path }}">
+  {% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
+  {% endfor %}
   <!-- Lokal-SEO Österreich -->
   <meta name="geo.region" content="AT">
   <meta name="geo.placename" content="Österreich">
@@ -21,17 +21,20 @@
   <link rel="preconnect" href="https://prod.spline.design" crossorigin>
   <!-- 3D-Viewer vorladen, damit der Roboter frueher erscheint -->
   <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js" crossorigin>
-  <meta property="og:title" content="{{ c.seo_title }}">
-  <meta property="og:description" content="{{ c.seo_desc }}">
+  <meta property="og:title" content="{{ t.meta.seo_title|safe }}">
+  <meta property="og:description" content="{{ t.meta.seo_desc|safe }}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ c.site_name }}">
-  <meta property="og:locale" content="de_AT">
-  <meta property="og:url" content="{{ c.wvm_url }}/">
+  <meta property="og:locale" content="{{ t.meta.locale }}">
+  {% if lang != 'de' %}<meta property="og:locale:alternate" content="de_AT">{% endif %}
+  {% if lang != 'en' %}<meta property="og:locale:alternate" content="en_US">{% endif %}
+  {% if lang != 'ro' %}<meta property="og:locale:alternate" content="ro_RO">{% endif %}
+  <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
   <meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
-  <meta property="og:image:alt" content="{{ c.site_name }} — Technik und Digitales aus einer Hand">
+  <meta property="og:image:alt" content="{{ c.site_name }} — {{ t.meta.og_image_alt_suffix|safe }}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ c.seo_title }}">
-  <meta name="twitter:description" content="{{ c.seo_desc }}">
+  <meta name="twitter:title" content="{{ t.meta.seo_title|safe }}">
+  <meta name="twitter:description" content="{{ t.meta.seo_desc|safe }}">
   <meta name="twitter:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
   {% if c.hero_bg %}<link rel="preload" as="image" href="{{ c.hero_bg }}">{% endif %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,29 +43,38 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ProfessionalService","@id":"{{ c.wvm_url }}/#business","name":"{{ c.site_name }}","legalName":"WVM-IT, {{ c.inhaber_name }}","description":"{{ c.seo_desc }}","url":"{{ c.wvm_url }}/","logo":"{{ c.wvm_url }}{{ c.logo_mark }}","image":"{{ c.wvm_url }}{{ c.hero_bg }}","telephone":"{{ c.telefon }}","email":"{{ c.email }}","priceRange":"ab {{ c.preis_ab }} EUR","currenciesAccepted":"EUR","founder":{"@type":"Person","name":"{{ c.inhaber_name }}"},"address":{"@type":"PostalAddress","addressCountry":"AT"},"areaServed":[{"@type":"Country","name":"Österreich"},{"@type":"Country","name":"Deutschland"}],"knowsAbout":["Smarthome","Gebäudeautomation","Loxone","KNX","Konferenztechnik","Veranstaltungstechnik","EDV","Netzwerksicherheit","Webentwicklung","SEO","KI-Automatisierung"]}
+  {"@context":"https://schema.org","@type":"ProfessionalService","@id":"{{ c.wvm_url }}/#business","name":"{{ c.site_name }}","legalName":"WVM-IT, {{ c.inhaber_name }}","description":"{{ t.meta.seo_desc }}","url":"{{ c.wvm_url }}/","logo":"{{ c.wvm_url }}{{ c.logo_mark }}","image":"{{ c.wvm_url }}{{ c.hero_bg }}","telephone":"{{ c.telefon }}","email":"{{ c.email }}","priceRange":"ab {{ c.preis_ab }} EUR","currenciesAccepted":"EUR","founder":{"@type":"Person","name":"{{ c.inhaber_name }}"},"address":{"@type":"PostalAddress","addressCountry":"AT"},"areaServed":[{"@type":"Country","name":"Österreich"},{"@type":"Country","name":"Deutschland"}],"knowsAbout":["Smarthome","Gebäudeautomation","Loxone","KNX","Konferenztechnik","Veranstaltungstechnik","EDV","Netzwerksicherheit","Webentwicklung","SEO","KI-Automatisierung"]}
   </script>
 </head>
 <body>
-<a class="skip" href="#main">Zum Inhalt springen</a>
+<script>
+  window.I18N = {
+    numLocale: "{{ t.meta.num_locale }}",
+    robot: [{% for m in t.hero.robot_msgs %}"{{ m|escapejs }}"{% if not forloop.last %},{% endif %}{% endfor %}],
+    rb: { leistung: "{{ t.rb.js_leistung|escapejs }}", leistungen: "{{ t.rb.js_leistungen|escapejs }}", busy: "{{ t.rb.js_busy|escapejs }}", submit: "{{ t.rb.submit|escapejs }}", error: "{{ t.rb.js_error|escapejs }}" },
+    coop: { busy: "{{ t.koop.js_busy|escapejs }}", submit: "{{ t.koop.submit|escapejs }}", error: "{{ t.koop.js_error|escapejs }}" }
+  };
+</script>
+<a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
 
 <!-- ── Navigation (Glass, einzeilig) ──────────────────────────────────────── -->
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#top" aria-label="{{ c.site_name }} Startseite">
+    <a class="brand" href="#top" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <button class="nav-burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
-      <nav class="nav-links" aria-label="Hauptnavigation">
-        <a href="#top">Home</a>
-        <a href="#leistungen">Leistungen</a>
-        <a href="#angebot">Angebot</a>
-        <a href="#preise">Preise</a>
-        <a href="#kontakt">Kontakt</a>
+      <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
+        <a href="#top">{{ t.nav.home|safe }}</a>
+        <a href="#leistungen">{{ t.nav.leistungen|safe }}</a>
+        <a href="#angebot">{{ t.nav.angebot|safe }}</a>
+        <a href="#preise">{{ t.nav.preise|safe }}</a>
+        <a href="#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
-      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="Anrufen">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
-      <a class="btn btn-sm btn-magnetic nav-cta" href="#kontakt">{{ c.cta_text }}</a>
+      {% include 'lang_switch.html' %}
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+      <a class="btn btn-sm btn-magnetic nav-cta" href="#kontakt">{{ t.nav.cta|safe }}</a>
     </div>
   </div>
 </header>
@@ -74,32 +86,32 @@
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div class="hero-copy" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>Digitalagentur für Webseiten, KI und SEO</span>
-        <h1>{{ c.headline }}</h1>
-        <p class="lead">{{ c.subline }}</p>
+        <span class="eyebrow"><span class="dot"></span>{{ t.hero.eyebrow|safe }}</span>
+        <h1>{{ t.hero.headline|safe }}</h1>
+        <p class="lead">{{ t.hero.subline|safe }}</p>
         <div class="hero-cta">
-          <a class="btn btn-lg btn-magnetic" href="#gratis">Gratis Beispiel-Website sichern<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-lg btn-magnetic" href="#gratis">{{ t.hero.cta|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-        <p class="hero-note">Kostenlos und unverbindlich · von unserer JARVIS-KI in ~10 Minuten gebaut.</p>
+        <p class="hero-note">{{ t.hero.note|safe }}</p>
       </div>
       <div class="hero-figure" data-reveal>
-        <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="3D-Assistent, klick mich" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
+        <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="{{ t.hero.robot_aria|safe }}" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
           <div class="hero-figure-glow" aria-hidden="true"></div>
           <!-- 3D-Roboter (Spline) folgt der Maus; wird per JS auf Geräten mit WebGL eingehängt -->
           <div class="robot-canvas" id="robotCanvas" aria-hidden="true">
-            <div class="robot-loader" id="robotLoader"><span class="spinner"></span><span class="robot-loadtxt">3D-Assistent lädt</span></div>
+            <div class="robot-loader" id="robotLoader"><span class="spinner"></span><span class="robot-loadtxt">{{ t.hero.robot_loading|safe }}</span></div>
           </div>
           <!-- Fallback: freigestellter Roboter (ohne WebGL / reduced-motion) -->
-          {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="WVM-IT Assistent" class="robot robot-fallback" width="820" height="1098" fetchpriority="high">{% endif %}
+          {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="{{ c.site_name }}" class="robot robot-fallback" width="820" height="1098" fetchpriority="high">{% endif %}
           <!-- Klickbar wie bei RTC: Sprechblase + einladender Hinweis -->
           <div class="robot-bubble" id="robotBubble" aria-live="polite"></div>
-          <div class="robot-hint" id="robotHint" aria-hidden="true">Klick mich</div>
+          <div class="robot-hint" id="robotHint" aria-hidden="true">{{ t.hero.robot_click|safe }}</div>
         </div>
-        <button class="robot-tap" id="robotTap" type="button">Klick mich</button>
-        <div class="hero-price-chip" aria-hidden="true"><span>Webseiten</span><strong>ab {{ c.preis_ab }} €</strong></div>
+        <button class="robot-tap" id="robotTap" type="button">{{ t.hero.robot_click|safe }}</button>
+        <div class="hero-price-chip" aria-hidden="true"><span>{{ t.hero.chip_label|safe }}</span><strong>ab {{ c.preis_ab }} €</strong></div>
       </div>
     </div>
-    <a class="hero-scroll" href="#gratis" aria-label="Weiter nach unten"><span></span></a>
+    <a class="hero-scroll" href="#gratis" aria-label="{{ t.hero.scroll_aria|safe }}"><span></span></a>
   </section>
 
   <!-- ── GRATIS-BLOCK: Newsletter + kostenlose JARVIS-Beispielseite (dunkles Band + Insel-Karte) ── -->
@@ -107,22 +119,22 @@
     <div class="offer-glow" aria-hidden="true"></div>
     <div class="wrap offer-grid">
       <div class="offer-pitch" data-reveal>
-        <span class="eyebrow eyebrow-dark"><span class="dot"></span>Gratis für neue Kunden</span>
-        <h2 class="offer-h">Deine kostenlose Beispiel-Website. In etwa 10 Minuten.</h2>
-        <p class="offer-lead">Trag rechts nur deine E-Mail ein. Danach fragen wir kurz deine Wünsche ab, unsere JARVIS-KI baut dir sofort eine echte Beispiel-Seite, du sicherst dir 25% Rabatt, und wir setzen sie gemeinsam mit dir perfekt um.</p>
+        <span class="eyebrow eyebrow-dark"><span class="dot"></span>{{ t.offer.eyebrow|safe }}</span>
+        <h2 class="offer-h">{{ t.offer.h|safe }}</h2>
+        <p class="offer-lead">{{ t.offer.lead|safe }}</p>
         <div class="offer-benefits">
-          <span class="offer-chip">{% include 'icons.html' with name='gift' %}25% Rabatt auf deine Website</span>
-          <span class="offer-chip">{% include 'icons.html' with name='bolt' %}Gratis Beispiel-Seite in ~10 Min</span>
+          <span class="offer-chip">{% include 'icons.html' with name='gift' %}{{ t.offer.chip_rabatt|safe }}</span>
+          <span class="offer-chip">{% include 'icons.html' with name='bolt' %}{{ t.offer.chip_speed|safe }}</span>
         </div>
         <ol class="offer-steps">
-          <li class="offer-step"><span class="offer-step-n">1</span><span class="offer-step-tx"><strong>E-Mail eintragen</strong><span>Nur die E-Mail. Danach fragen wir in Ruhe deine Wünsche ab (Art, Farben, Bilder …).</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">2</span><span class="offer-step-tx"><strong>JARVIS baut deine Seite</strong><span>Unsere KI erstellt automatisch eine echte Beispiel-Website nach deinen Angaben.</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">3</span><span class="offer-step-tx"><strong>Link + 25%-Code per Mail</strong><span>Du bekommst den Link zur Seite und deinen Rabattcode.</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">4</span><span class="offer-step-tx"><strong>Wir passen sie mit dir an</strong><span>Wir arbeiten komplett mit dir zusammen und sind für dich da, bis alles genau passt.</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">1</span><span class="offer-step-tx"><strong>{{ t.offer.step1_h|safe }}</strong><span>{{ t.offer.step1_t|safe }}</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">2</span><span class="offer-step-tx"><strong>{{ t.offer.step2_h|safe }}</strong><span>{{ t.offer.step2_t|safe }}</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">3</span><span class="offer-step-tx"><strong>{{ t.offer.step3_h|safe }}</strong><span>{{ t.offer.step3_t|safe }}</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">4</span><span class="offer-step-tx"><strong>{{ t.offer.step4_h|safe }}</strong><span>{{ t.offer.step4_t|safe }}</span></span></li>
         </ol>
         <p class="offer-note">
           <span class="offer-note-ic" aria-hidden="true">{% include 'icons.html' with name='mail' %}</span>
-          <span><strong>Inklusive Referenz-Newsletter:</strong> ca. 1&#215;/Woche zeigen wir dir echte Projekte, die wir gebaut haben, als Inspiration. Jederzeit mit einem Klick abbestellbar.</span>
+          <span><strong>{{ t.offer.note_strong|safe }}</strong> {{ t.offer.note_rest|safe }}</span>
         </p>
       </div>
       <div class="offer-card" data-reveal>
@@ -130,26 +142,26 @@
         <div class="hero-offer-done">
           <span class="offer-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div>
-            <strong>Fast geschafft!</strong>
-            <p>Wir haben dir eine E-Mail geschickt. Bestätige den Link darin, dann sind dein 25%-Code und deine kostenlose Beispiel-Website unterwegs. Schau ggf. kurz im Spam-Ordner nach.</p>
+            <strong>{{ t.offer.done_h|safe }}</strong>
+            <p>{{ t.offer.done_t|safe }}</p>
           </div>
         </div>
         {% else %}
-        <span class="offer-card-badge">JARVIS free</span>
-        <h3 class="offer-card-h">Gratis-Website anfordern</h3>
-        <p class="offer-card-sub">Trag nur deine E-Mail ein. Deine Wünsche zur Seite fragen wir gleich danach in Ruhe ab.</p>
+        <span class="offer-card-badge">{{ t.offer.card_badge|safe }}</span>
+        <h3 class="offer-card-h">{{ t.offer.card_h|safe }}</h3>
+        <p class="offer-card-sub">{{ t.offer.card_sub|safe }}</p>
         <form class="offer-form offer-form-slim" id="newsForm" method="post" action="#gratis">
           {% csrf_token %}
           <input type="hidden" name="form" value="newsletter">
           <div class="field">
-            <label class="fld-l" for="of-mail">Deine E-Mail</label>
+            <label class="fld-l" for="of-mail">{{ t.offer.mail_label|safe }}</label>
             <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
           </div>
-          <label class="offer-consent"><input type="checkbox" name="einwilligung" required> Ich möchte die kostenlose Beispiel-Website, meinen 25%-Code und den wöchentlichen Referenz-Newsletter (ca. 1&#215;/Woche, jederzeit abbestellbar) erhalten und stimme der <a href="#datenschutz">Datenschutzerklärung</a> zu.</label>
-          <button class="btn btn-lg btn-magnetic offer-submit" type="submit">Gratis-Website sichern<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="#datenschutz">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
+          <button class="btn btn-lg btn-magnetic offer-submit" type="submit">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="offer-foot">
-            <span class="offer-jarvis"><span class="jarvis-tag">JARVIS-KI</span> Deine Beispiel-Seite baut unsere Automatik. <em>Logo &amp; Video folgen.</em></span>
-            <a class="offer-alt" href="/angebot/">Oder direkt Angebot berechnen →</a>
+            <span class="offer-jarvis"><span class="jarvis-tag">{{ t.offer.foot_tag|safe }}</span> {{ t.offer.foot_rest|safe }} <em>{{ t.offer.foot_em|safe }}</em></span>
+            <a class="offer-alt" href="{% url 'angebot' %}">{{ t.offer.foot_alt|safe }}</a>
           </div>
         </form>
         {% endif %}
@@ -158,10 +170,10 @@
   </section>
 
   <!-- ── Service-Marquee (sofort sichtbar, worum es geht + Bewegung) ────────── -->
-  <div class="marquee" aria-label="Unsere Leistungen">
+  <div class="marquee" aria-label="{{ t.marquee_aria|safe }}">
     <div class="marquee-track">
-      <span>Smarthome</span><i>·</i><span>Loxone</span><i>·</i><span>KNX</span><i>·</i><span>Konferenztechnik</span><i>·</i><span>Video &amp; Ton</span><i>·</i><span>Bühnentechnik</span><i>·</i><span>EDV</span><i>·</i><span>Netzwerk &amp; Sicherheit</span><i>·</i><span>Webdesign</span><i>·</i><span>KI</span><i>·</i>
-      <span aria-hidden="true">Smarthome</span><i aria-hidden="true">·</i><span aria-hidden="true">Loxone</span><i aria-hidden="true">·</i><span aria-hidden="true">KNX</span><i aria-hidden="true">·</i><span aria-hidden="true">Konferenztechnik</span><i aria-hidden="true">·</i><span aria-hidden="true">Video &amp; Ton</span><i aria-hidden="true">·</i><span aria-hidden="true">Bühnentechnik</span><i aria-hidden="true">·</i><span aria-hidden="true">EDV</span><i aria-hidden="true">·</i><span aria-hidden="true">Netzwerk &amp; Sicherheit</span><i aria-hidden="true">·</i><span aria-hidden="true">Webdesign</span><i aria-hidden="true">·</i><span aria-hidden="true">KI</span><i aria-hidden="true">·</i>
+      {% for w in t.marquee %}<span>{{ w|safe }}</span><i>·</i>{% endfor %}
+      {% for w in t.marquee %}<span aria-hidden="true">{{ w|safe }}</span><i aria-hidden="true">·</i>{% endfor %}
     </div>
   </div>
 
@@ -169,9 +181,9 @@
   <section class="section rb-sec" id="angebot" aria-labelledby="rb-title">
     <div class="wrap">
       <header class="sec-head rb-head" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>Ihr Richtangebot</span>
-        <h2 class="section-t" id="rb-title">Angebot zusammenstellen, Richtpreis erhalten.</h2>
-        <p class="section-lead">Tippen Sie an, was Sie interessiert &ndash; von Webseiten, Hosting und KI bis Smarthome, Netzwerk, EDV und Veranstaltungstechnik. Ihren persönlichen Richtpreis schalten wir mit Ihrer E-Mail frei und senden ihn Ihnen zu. Unverbindlich, in unter einer Minute.</p>
+        <span class="eyebrow"><span class="dot"></span>{{ t.rb.eyebrow|safe }}</span>
+        <h2 class="section-t" id="rb-title">{{ t.rb.title|safe }}</h2>
+        <p class="section-lead">{{ t.rb.lead|safe }}</p>
       </header>
 
       <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
@@ -193,7 +205,7 @@
                   <span class="ang-item-box">
                     <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
                     <span class="ang-item-main">
-                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">beliebt</span>{% endif %}</span>
+                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
                       <span class="ang-item-desc">{{ it.desc }}</span>
                     </span>
                     <span class="ang-item-price">{{ it.price_label }}</span>
@@ -209,47 +221,47 @@
           <aside class="rb-side">
             <div class="rb-card" data-reveal>
               <div class="rb-card-head">
-                <h3>Ihr Richtangebot</h3>
-                <span class="rb-count" id="rbCount">0 Leistungen</span>
+                <h3>{{ t.rb.card_h|safe }}</h3>
+                <span class="rb-count" id="rbCount">{{ t.rb.count|safe }}</span>
               </div>
 
               <div class="rb-sum is-locked" id="rbSum">
                 <div class="rb-sum-rows">
-                  <div class="rb-sum-empty" id="rbSumEmpty">Noch nichts gewählt &ndash; tippen Sie links Leistungen an.</div>
-                  <div class="rb-sum-row" data-k="once" hidden><span>Einmalig</span><strong>ab <span data-t="once">0</span>&nbsp;€</strong></div>
-                  <div class="rb-sum-row" data-k="mtl" hidden><span>Monatlich</span><strong>ab <span data-t="mtl">0</span>&nbsp;€<small>/Mt</small></strong></div>
-                  <div class="rb-sum-row" data-k="yr" hidden><span>Jährlich</span><strong>ab <span data-t="yr">0</span>&nbsp;€<small>/Jahr</small></strong></div>
-                  <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>Weitere Positionen</span><strong>auf Anfrage</strong></div>
+                  <div class="rb-sum-empty" id="rbSumEmpty">{{ t.rb.sum_empty|safe }}</div>
+                  <div class="rb-sum-row" data-k="once" hidden><span>{{ t.rb.row_once|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="once">0</span>&nbsp;€</strong></div>
+                  <div class="rb-sum-row" data-k="mtl" hidden><span>{{ t.rb.row_mtl|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="mtl">0</span>&nbsp;€<small>{{ t.rb.per_month|safe }}</small></strong></div>
+                  <div class="rb-sum-row" data-k="yr" hidden><span>{{ t.rb.row_yr|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="yr">0</span>&nbsp;€<small>{{ t.rb.per_year|safe }}</small></strong></div>
+                  <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>{{ t.rb.row_more|safe }}</span><strong>{{ t.rb.on_request|safe }}</strong></div>
                 </div>
                 <div class="rb-lock" id="rbLock">
                   {% include 'icons.html' with name='shield' %}
-                  <span>Richtpreis mit E-Mail freischalten</span>
+                  <span>{{ t.rb.lock|safe }}</span>
                 </div>
               </div>
 
               <div class="rb-gate" id="rbGate">
                 <div class="rb-field">
-                  <label class="fld-l" for="rbEmail">Ihre E-Mail</label>
+                  <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
                   <input class="fld" type="email" name="email" id="rbEmail" required autocomplete="email" placeholder="name@firma.at">
                 </div>
                 <label class="rb-consent">
                   <input type="checkbox" name="angebote" id="rbConsent" value="1" required>
-                  <span>Ja, schaltet meinen Richtpreis frei und schickt mir künftig passende Angebote. Jederzeit abbestellbar.</span>
+                  <span>{{ t.rb.consent|safe }}</span>
                 </label>
                 <button class="btn btn-lg btn-magnetic rb-submit" type="submit" id="rbSubmit" disabled>
-                  Richtpreis freischalten
+                  {{ t.rb.submit|safe }}
                   <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
-                <p class="rb-fine">Richtpreise, netto zzgl. USt. Unverbindlich, kein Konto nötig. Antwort in 24&nbsp;Stunden.</p>
+                <p class="rb-fine">{{ t.rb.fine|safe }}</p>
               </div>
 
               <div class="rb-done" id="rbDone" hidden>
                 <div class="rb-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <h4>Freigeschaltet! Ihr Richtangebot ist unterwegs.</h4>
-                <p>Wir haben Ihnen die Übersicht per E-Mail geschickt und melden uns mit dem genauen Angebot.</p>
+                <h4>{{ t.rb.done_h|safe }}</h4>
+                <p>{{ t.rb.done_t|safe }}</p>
               </div>
             </div>
-            <a class="rb-all" href="/angebot/#preisliste">Lieber die komplette Preisliste ansehen &rarr;</a>
+            <a class="rb-all" href="{% url 'angebot' %}#preisliste">{{ t.rb.all_link|safe }}</a>
           </aside>
         </div>
       </form>
@@ -259,13 +271,15 @@
   <script>
   (function(){
     var form=document.getElementById('rbForm'); if(!form) return;
+    var I=(window.I18N&&window.I18N.rb)||{};
+    var NL=(window.I18N&&window.I18N.numLocale)||'de-DE';
     var checks=form.querySelectorAll('.rb-check'),
         count=document.getElementById('rbCount'), sum=document.getElementById('rbSum'),
         empty=document.getElementById('rbSumEmpty'), email=document.getElementById('rbEmail'),
         consent=document.getElementById('rbConsent'), submit=document.getElementById('rbSubmit'),
         gate=document.getElementById('rbGate'), done=document.getElementById('rbDone'),
         lock=document.getElementById('rbLock');
-    function eur(n){ return (Number(n)||0).toLocaleString('de-DE'); }
+    function eur(n){ return (Number(n)||0).toLocaleString(NL); }
     function row(k){ return form.querySelector('[data-k="'+k+'"]'); }
     function setRow(k,v){ var r=row(k); if(!r) return; r.hidden=!(v>0);
       var s=r.querySelector('[data-t="'+k+'"]'); if(s) s.textContent=eur(v); }
@@ -273,7 +287,7 @@
       var once=0,mtl=0,yr=0,anf=false,n=0;
       checks.forEach(function(c){ if(c.checked){ n++; once+=+c.dataset.once||0;
         mtl+=+c.dataset.mtl||0; yr+=+c.dataset.yr||0; if(c.dataset.anfrage==='1') anf=true; }});
-      count.textContent=n+(n===1?' Leistung':' Leistungen');
+      count.textContent=n+' '+(n===1?(I.leistung||'Leistung'):(I.leistungen||'Leistungen'));
       if(empty) empty.hidden=n>0;
       setRow('once',once); setRow('mtl',mtl); setRow('yr',yr);
       var ar=row('anfrage'); if(ar) ar.hidden=!anf;
@@ -285,7 +299,7 @@
     email.addEventListener('input',refresh); consent.addEventListener('change',refresh);
     form.addEventListener('submit',function(e){
       e.preventDefault(); if(submit.disabled) return;
-      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent='Wird freigeschaltet …';
+      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent=I.busy||'…';
       fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
         .then(function(r){ return r.json(); })
         .then(function(j){
@@ -297,8 +311,8 @@
           done.scrollIntoView({behavior:'smooth',block:'center'});
         })
         .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
-          submit.textContent='Richtpreis freischalten';
-          alert('Das hat gerade nicht geklappt. Bitte in einem Moment erneut versuchen.'); });
+          submit.textContent=I.submit||'…';
+          alert(I.error||'Error'); });
     });
     refresh();
   })();
@@ -307,9 +321,9 @@
   <!-- ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── -->
   <section class="band">
     <div class="wrap band-in" data-reveal>
-      <span class="band-kick">Performance ab der ersten Sekunde</span>
-      <h2 class="band-h">Wir bauen mit kompromissloser Leistung.</h2>
-      <p class="band-p">Scrollen Sie und sehen Sie die Maschine hinter schnellen Webseiten hochfahren.</p>
+      <span class="band-kick">{{ t.band1.kick|safe }}</span>
+      <h2 class="band-h">{{ t.band1.h|safe }}</h2>
+      <p class="band-p">{{ t.band1.p|safe }}</p>
     </div>
   </section>
 
@@ -322,10 +336,10 @@
       </video>
       <div class="scrolly-shade" aria-hidden="true"></div>
       <div class="wrap scrolly-overlay">
-        <div class="scrolly-step is-active" data-step="0"><h2>Leistung, die man spürt.</h2><p>Schnelle Technik und sauberer Code, von der ersten Zeile an.</p></div>
-        <div class="scrolly-step" data-step="1"><h3>Schnell</h3><p>Optimierte Ladezeiten, die Ihre Besucher nicht warten lassen.</p></div>
-        <div class="scrolly-step" data-step="2"><h3>Modern</h3><p>Aktuelle Technik, sauber gebaut und langfristig wartbar.</p></div>
-        <div class="scrolly-step" data-step="3"><h3>Stabil</h3><p>Bleibt schnell, auch wenn viele Besucher gleichzeitig kommen.</p></div>
+        <div class="scrolly-step is-active" data-step="0"><h2>{{ t.scrolly_pc.s0_h|safe }}</h2><p>{{ t.scrolly_pc.s0_p|safe }}</p></div>
+        <div class="scrolly-step" data-step="1"><h3>{{ t.scrolly_pc.s1_h|safe }}</h3><p>{{ t.scrolly_pc.s1_p|safe }}</p></div>
+        <div class="scrolly-step" data-step="2"><h3>{{ t.scrolly_pc.s2_h|safe }}</h3><p>{{ t.scrolly_pc.s2_p|safe }}</p></div>
+        <div class="scrolly-step" data-step="3"><h3>{{ t.scrolly_pc.s3_h|safe }}</h3><p>{{ t.scrolly_pc.s3_p|safe }}</p></div>
       </div>
       <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
     </div>
@@ -334,12 +348,12 @@
   <!-- ── Vertrauens-Leiste + Kennzahlen ────────────────────────────────────── -->
   <section class="proof">
     <div class="wrap">
-      <p class="proof-line" data-reveal>Im Einsatz für Unternehmen, Handwerk, Gastronomie, Dienstleister und Startups im gesamten DACH-Raum.</p>
+      <p class="proof-line" data-reveal>{{ t.proof.line|safe }}</p>
       <div class="stats" data-reveal>
-        <div class="stat"><strong data-count="350" data-prefix="ab " data-suffix=" €">0</strong><span>Start für die erste Webseite</span></div>
-        <div class="stat"><strong data-count="24" data-suffix=" h">0</strong><span>bis zur ersten Antwort</span></div>
-        <div class="stat"><strong data-count="100" data-suffix="">0</strong><span>angestrebte Lighthouse-Performance</span></div>
-        <div class="stat"><strong data-count="99" data-suffix=" %">0</strong><span>Uptime-Ziel beim Hosting</span></div>
+        <div class="stat"><strong data-count="350" data-prefix="{{ t.proof.stat1_prefix }}" data-suffix=" €">0</strong><span>{{ t.proof.stat1_label|safe }}</span></div>
+        <div class="stat"><strong data-count="24" data-suffix=" h">0</strong><span>{{ t.proof.stat2_label|safe }}</span></div>
+        <div class="stat"><strong data-count="100" data-suffix="">0</strong><span>{{ t.proof.stat3_label|safe }}</span></div>
+        <div class="stat"><strong data-count="99" data-suffix=" %">0</strong><span>{{ t.proof.stat4_label|safe }}</span></div>
       </div>
     </div>
   </section>
@@ -347,9 +361,9 @@
   <!-- ── Trenner-Text: Überleitung zum Server-Raum ─────────────────────────── -->
   <section class="band">
     <div class="wrap band-in" data-reveal>
-      <span class="band-kick">Damit Ihre Seite immer läuft</span>
-      <h2 class="band-h">Eine schöne Webseite ist nur die halbe Miete.</h2>
-      <p class="band-p">Sie braucht ein Zuhause, das schnell, sicher und immer erreichbar ist. Genau dafür sorgen wir.</p>
+      <span class="band-kick">{{ t.band2.kick|safe }}</span>
+      <h2 class="band-h">{{ t.band2.h|safe }}</h2>
+      <p class="band-p">{{ t.band2.p|safe }}</p>
     </div>
   </section>
 
@@ -363,12 +377,12 @@
       <div class="scrolly-shade" aria-hidden="true"></div>
       <div class="wrap scrolly-overlay">
         <div class="scrolly-step is-active" data-step="0">
-          <h2>Ihre Seite läuft auf echter Infrastruktur.</h2>
-          <p>Kein Baukasten. Eigene Technik, sauber aufgesetzt und rund um die Uhr betreut.</p>
+          <h2>{{ t.scrolly_srv.s0_h|safe }}</h2>
+          <p>{{ t.scrolly_srv.s0_p|safe }}</p>
         </div>
-        <div class="scrolly-step" data-step="1"><h3>Hosting</h3><p>Schnelle Server, HTTPS, automatische Backups und laufendes Monitoring.</p></div>
-        <div class="scrolly-step" data-step="2"><h3>Tempo</h3><p>Optimierte Ladezeiten und Top-Werte bei den Core Web Vitals.</p></div>
-        <div class="scrolly-step" data-step="3"><h3>Schutz</h3><p>Updates, Zertifikate und Sicherheit, ohne dass Sie sich kümmern müssen.</p></div>
+        <div class="scrolly-step" data-step="1"><h3>{{ t.scrolly_srv.s1_h|safe }}</h3><p>{{ t.scrolly_srv.s1_p|safe }}</p></div>
+        <div class="scrolly-step" data-step="2"><h3>{{ t.scrolly_srv.s2_h|safe }}</h3><p>{{ t.scrolly_srv.s2_p|safe }}</p></div>
+        <div class="scrolly-step" data-step="3"><h3>{{ t.scrolly_srv.s3_h|safe }}</h3><p>{{ t.scrolly_srv.s3_p|safe }}</p></div>
       </div>
       <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
     </div>
@@ -378,51 +392,51 @@
   <section class="section" id="leistungen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">Technik und Digitales. Alles aus einer Hand.</h2>
-        <p class="section-lead">Von Gebäudeautomation und Veranstaltungstechnik über EDV und Sicherheit bis zu Webseiten und KI. Mit starken Partnern, sauber aufeinander abgestimmt.</p>
+        <h2 class="section-t">{{ t.leistungen.h|safe }}</h2>
+        <p class="section-lead">{{ t.leistungen.lead|safe }}</p>
       </header>
 
       <div class="bento">
         <article class="b-card b-wide b-feature spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='home' %}</div>
-          <h3>Gebäude- &amp; Smarthome-Automation</h3>
-          <p>Loxone, KNX und Smarthome aus einer Hand. Licht, Heizung, Beschattung und Sicherheit intelligent vernetzt, sauber programmiert und zuverlässig im Betrieb.</p>
-          <ul class="b-tags"><li>Loxone</li><li>KNX</li><li>Smarthome</li><li>All-in-One</li></ul>
+          <h3>{{ t.leistungen.c1_h|safe }}</h3>
+          <p>{{ t.leistungen.c1_p|safe }}</p>
+          <ul class="b-tags">{% for tag in t.leistungen.c1_tags %}<li>{{ tag|safe }}</li>{% endfor %}</ul>
         </article>
         <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='conf' %}</div>
-          <h3>Konferenzraum-Technik</h3>
-          <p>Konferenz- und Meetingräume komplett ausgestattet. Displays, Kameras, Mikrofone und Steuerung, einsatzbereit und einfach zu bedienen.</p>
+          <h3>{{ t.leistungen.c2_h|safe }}</h3>
+          <p>{{ t.leistungen.c2_p|safe }}</p>
         </article>
         <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='av' %}</div>
-          <h3>Video-, Ton- &amp; Bühnentechnik</h3>
-          <p>Professionelle Veranstaltungs- und Bühnentechnik auf höchstem Niveau. Video, Ton und Licht für Live-Events, geplant und betreut.</p>
+          <h3>{{ t.leistungen.c3_h|safe }}</h3>
+          <p>{{ t.leistungen.c3_p|safe }}</p>
         </article>
         <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='host' %}</div>
-          <h3>EDV &amp; IT-Solutions</h3>
-          <p>Hardware, Server, Arbeitsplätze und Software. Wir planen, installieren und betreuen Ihre komplette IT, damit alles läuft.</p>
+          <h3>{{ t.leistungen.c4_h|safe }}</h3>
+          <p>{{ t.leistungen.c4_p|safe }}</p>
         </article>
         <article class="b-card b-tint spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='net' %}</div>
-          <h3>Netzwerk &amp; Sicherheit</h3>
-          <p>Stabile Verbindungen, sicheres Netzwerk und Zutritts- sowie Videoüberwachung. Damit Sie ungestört und geschützt arbeiten.</p>
+          <h3>{{ t.leistungen.c5_h|safe }}</h3>
+          <p>{{ t.leistungen.c5_p|safe }}</p>
         </article>
         <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='web' %}</div>
-          <h3>Webseiten, Hosting &amp; Domains</h3>
-          <p>Individuelle Webseiten mit messbaren Ergebnissen, dazu Hosting, Server, Domains und SEO. Schnell, sicher und sichtbar.</p>
+          <h3>{{ t.leistungen.c6_h|safe }}</h3>
+          <p>{{ t.leistungen.c6_p|safe }}</p>
         </article>
         <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='ai' %}</div>
-          <h3>KI-Automatisierung</h3>
-          <p>Custom-KI für Anfragen, Termine und Abläufe, auch industriell. Verbunden mit Ihren Systemen, rund um die Uhr aktiv.</p>
+          <h3>{{ t.leistungen.c7_h|safe }}</h3>
+          <p>{{ t.leistungen.c7_p|safe }}</p>
         </article>
         <article class="b-card spot" data-reveal data-spot>
           <div class="b-ic">{% include 'icons.html' with name='consulting' %}</div>
-          <h3>Beratung aus einer Hand</h3>
-          <p>Ein fester Ansprechpartner für Technik und Digitales. Ehrliche Beratung, von der Planung bis zum laufenden Betrieb.</p>
+          <h3>{{ t.leistungen.c8_h|safe }}</h3>
+          <p>{{ t.leistungen.c8_p|safe }}</p>
         </article>
       </div>
     </div>
@@ -432,15 +446,15 @@
   <section class="section section-alt" id="partner">
     <div class="wrap">
       <header class="sec-head sec-head-center" data-reveal>
-        <h2 class="section-t">Alles aus einer Hand. Mit starken Partnern.</h2>
-        {% if c.partner_text %}<p class="section-lead">{{ c.partner_text }}</p>{% endif %}
+        <h2 class="section-t">{{ t.partner.h|safe }}</h2>
+        {% if t.partner.text %}<p class="section-lead">{{ t.partner.text|safe }}</p>{% endif %}
       </header>
       <div class="partner-row" data-reveal>
         <span class="partner-chip">{% include 'icons.html' with name='home' %}Loxone</span>
         <span class="partner-chip">{% include 'icons.html' with name='net' %}KNX</span>
-        <span class="partner-chip">{% include 'icons.html' with name='av' %}AV &amp; Bühne</span>
-        <span class="partner-chip">{% include 'icons.html' with name='shield' %}Sicherheit</span>
-        <span class="partner-chip">{% include 'icons.html' with name='consulting' %}Beratung</span>
+        <span class="partner-chip">{% include 'icons.html' with name='av' %}{{ t.partner.chip_av|safe }}</span>
+        <span class="partner-chip">{% include 'icons.html' with name='shield' %}{{ t.partner.chip_security|safe }}</span>
+        <span class="partner-chip">{% include 'icons.html' with name='consulting' %}{{ t.partner.chip_beratung|safe }}</span>
       </div>
     </div>
   </section>
@@ -449,14 +463,14 @@
   <section class="section" id="prozess">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">In vier klaren Schritten online.</h2>
-        <p class="section-lead">Transparent und planbar, ohne Fachchinesisch. Sie wissen immer, woran wir arbeiten.</p>
+        <h2 class="section-t">{{ t.prozess.h|safe }}</h2>
+        <p class="section-lead">{{ t.prozess.lead|safe }}</p>
       </header>
       <ol class="timeline">
-        <li class="tl-item" data-reveal><span class="tl-n">01</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='consulting' %}</span>Idee &amp; Beratung</h3><p>Wir hören zu, verstehen Ihr Ziel und schlagen den passenden Weg vor. Ehrlich und unverbindlich.</p></div></li>
-        <li class="tl-item" data-reveal><span class="tl-n">02</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='web' %}</span>Konzept &amp; Design</h3><p>Ein Entwurf auf Premium-Niveau, abgestimmt auf Ihre Marke. Sie sehen das Ergebnis, bevor wir bauen.</p></div></li>
-        <li class="tl-item" data-reveal><span class="tl-n">03</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='bolt' %}</span>Umsetzung</h3><p>Sauberer, schneller Code. Hosting, Server, Domain und SEO richten wir gleich richtig ein.</p></div></li>
-        <li class="tl-item" data-reveal><span class="tl-n">04</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='rocket' %}</span>Launch &amp; Betreuung</h3><p>Wir gehen live, messen die Ergebnisse und bleiben für Wartung und Wachstum an Ihrer Seite.</p></div></li>
+        <li class="tl-item" data-reveal><span class="tl-n">01</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='consulting' %}</span>{{ t.prozess.s1_h|safe }}</h3><p>{{ t.prozess.s1_p|safe }}</p></div></li>
+        <li class="tl-item" data-reveal><span class="tl-n">02</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='web' %}</span>{{ t.prozess.s2_h|safe }}</h3><p>{{ t.prozess.s2_p|safe }}</p></div></li>
+        <li class="tl-item" data-reveal><span class="tl-n">03</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='bolt' %}</span>{{ t.prozess.s3_h|safe }}</h3><p>{{ t.prozess.s3_p|safe }}</p></div></li>
+        <li class="tl-item" data-reveal><span class="tl-n">04</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='rocket' %}</span>{{ t.prozess.s4_h|safe }}</h3><p>{{ t.prozess.s4_p|safe }}</p></div></li>
       </ol>
     </div>
   </section>
@@ -467,14 +481,14 @@
       <div class="showcase" data-reveal>
         <div class="showcase-glow" aria-hidden="true"></div>
         <div class="showcase-copy">
-          <h2 class="section-t">KI, die wirklich arbeitet. Im Büro und in der Industrie.</h2>
-          <p class="section-lead">Von der automatischen Anfrage-Bearbeitung bis zur Datenanalyse in der Produktion: Wir bauen maßgeschneiderte KI- und Softwarelösungen, die rund um die Uhr für Sie laufen, verbunden mit den Systemen, die Sie schon nutzen.</p>
+          <h2 class="section-t">{{ t.showcase.h|safe }}</h2>
+          <p class="section-lead">{{ t.showcase.lead|safe }}</p>
           <ul class="check-list">
-            <li>Anfragen, Termine und E-Mails automatisch bearbeiten</li>
-            <li>Daten auswerten und Prozesse in der Industrie steuern</li>
-            <li>Anbindung an CRM, ERP, Kalender und WhatsApp</li>
+            <li>{{ t.showcase.li1|safe }}</li>
+            <li>{{ t.showcase.li2|safe }}</li>
+            <li>{{ t.showcase.li3|safe }}</li>
           </ul>
-          <a class="btn btn-magnetic" href="#kontakt">Automatisierung anfragen</a>
+          <a class="btn btn-magnetic" href="#kontakt">{{ t.showcase.cta|safe }}</a>
         </div>
         <div class="showcase-visual" aria-hidden="true">
           <div class="orbit"><span class="core"></span><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i></div>
@@ -487,21 +501,21 @@
   <section class="section" id="referenzen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">Ein Eindruck unserer Arbeit.</h2>
-        <p class="section-lead">Von der Gebäudeautomation über Konferenztechnik bis zur Bühne. Geplant, installiert und betreut, auf höchstem Niveau.</p>
+        <h2 class="section-t">{{ t.referenzen.h|safe }}</h2>
+        <p class="section-lead">{{ t.referenzen.lead|safe }}</p>
       </header>
       <div class="refs">
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_smarthome.jpg' %}" alt="Smarthome und Gebäudeautomation mit Loxone und KNX" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>Smarthome &amp; Automation</strong><span>Loxone und KNX, intelligent vernetzt.</span></figcaption>
+          <div class="ref-img"><img src="{% static 'img/ref_smarthome.jpg' %}" alt="{{ t.referenzen.r1_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>{{ t.referenzen.r1_h|safe }}</strong><span>{{ t.referenzen.r1_p|safe }}</span></figcaption>
         </figure>
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_konferenz.jpg' %}" alt="Konferenzraum mit professioneller Medien- und AV-Technik" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>Konferenz- &amp; Medientechnik</strong><span>Displays, Ton und Steuerung, einsatzbereit.</span></figcaption>
+          <div class="ref-img"><img src="{% static 'img/ref_konferenz.jpg' %}" alt="{{ t.referenzen.r2_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>{{ t.referenzen.r2_h|safe }}</strong><span>{{ t.referenzen.r2_p|safe }}</span></figcaption>
         </figure>
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_buehne.jpg' %}" alt="Professionelle Video-, Ton- und Bühnentechnik für Live-Events" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>Video-, Ton- &amp; Bühnentechnik</strong><span>Live-Events auf höchstem Niveau.</span></figcaption>
+          <div class="ref-img"><img src="{% static 'img/ref_buehne.jpg' %}" alt="{{ t.referenzen.r3_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>{{ t.referenzen.r3_h|safe }}</strong><span>{{ t.referenzen.r3_p|safe }}</span></figcaption>
         </figure>
       </div>
     </div>
@@ -511,34 +525,34 @@
   <section class="section section-alt" id="preise">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">Klare Pakete, faire Preise.</h2>
-        <p class="section-lead">Transparente Startpreise. Das passende Angebot stimmen wir im Gespräch auf Ihr Projekt ab.</p>
+        <h2 class="section-t">{{ t.preise.h|safe }}</h2>
+        <p class="section-lead">{{ t.preise.lead|safe }}</p>
       </header>
       <div class="price-grid">
         <article class="price spot" data-reveal data-spot>
-          <h3>Starter</h3>
-          <p class="price-for">Für den professionellen Auftritt.</p>
-          <div class="price-tag"><span class="from">ab</span>{{ c.preis_ab }}<span class="cur">€</span></div>
-          <ul class="price-list"><li>One-Page-Webseite</li><li>Responsiv und schnell</li><li>Kontaktformular</li><li>Basis-SEO und HTTPS</li></ul>
-          <a class="btn btn-ghost" href="#kontakt">Anfragen</a>
+          <h3>{{ t.preise.starter_h|safe }}</h3>
+          <p class="price-for">{{ t.preise.starter_for|safe }}</p>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>{{ c.preis_ab }}<span class="cur">€</span></div>
+          <ul class="price-list">{% for li in t.preise.starter_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
+          <a class="btn btn-ghost" href="#kontakt">{{ t.preise.starter_cta|safe }}</a>
         </article>
         <article class="price price-featured spot" data-reveal data-spot>
-          <span class="badge">Beliebt</span>
-          <h3>Business</h3>
-          <p class="price-for">Für Unternehmen mit Anspruch.</p>
-          <div class="price-tag"><span class="from">ab</span>1.490<span class="cur">€</span></div>
-          <ul class="price-list"><li>Mehrseitige Webseite</li><li>Individuelles Premium-Design</li><li>SEO-Grundoptimierung</li><li>Hosting und Domain im 1. Jahr</li><li>Persönlicher Ansprechpartner</li></ul>
-          <a class="btn btn-magnetic" href="#kontakt">Projekt starten</a>
+          <span class="badge">{{ t.preise.business_badge|safe }}</span>
+          <h3>{{ t.preise.business_h|safe }}</h3>
+          <p class="price-for">{{ t.preise.business_for|safe }}</p>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>1.490<span class="cur">€</span></div>
+          <ul class="price-list">{% for li in t.preise.business_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
+          <a class="btn btn-magnetic" href="#kontakt">{{ t.preise.business_cta|safe }}</a>
         </article>
         <article class="price spot" data-reveal data-spot>
-          <h3>Wachstum</h3>
-          <p class="price-for">Webseite plus KI und Betreuung.</p>
-          <div class="price-tag"><span class="from">ab</span>89<span class="cur">€/Mt.</span></div>
-          <ul class="price-list"><li>Alles aus Business</li><li>KI-Automatisierungen</li><li>Wartung und Updates</li><li>Performance-Monitoring</li><li>Laufende SEO-Betreuung</li></ul>
-          <a class="btn btn-ghost" href="#kontakt">Beraten lassen</a>
+          <h3>{{ t.preise.growth_h|safe }}</h3>
+          <p class="price-for">{{ t.preise.growth_for|safe }}</p>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>89<span class="cur">{{ t.preise.growth_unit|safe }}</span></div>
+          <ul class="price-list">{% for li in t.preise.growth_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
+          <a class="btn btn-ghost" href="#kontakt">{{ t.preise.growth_cta|safe }}</a>
         </article>
       </div>
-      <p class="price-foot" data-reveal>Alle Preise netto zzgl. USt. Hosting und Domain optional als Monatspaket.</p>
+      <p class="price-foot" data-reveal>{{ t.preise.foot|safe }}</p>
     </div>
   </section>
 
@@ -546,16 +560,16 @@
   <section class="section" id="ueber">
     <div class="wrap founder" data-reveal>
       <div class="founder-media">
-        {% if c.founder_image %}<img class="founder-photo" src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}, Inhaber von {{ c.site_name }}" width="640" height="640" loading="lazy">{% endif %}
-        <span class="founder-badge">{% if c.tagline %}{{ c.tagline }}{% else %}IT · service · consulting{% endif %}</span>
+        {% if c.founder_image %}<img class="founder-photo" src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}, {{ c.site_name }}" width="640" height="640" loading="lazy">{% endif %}
+        <span class="founder-badge">{% if c.tagline %}{{ c.tagline }}{% else %}{{ t.ueber.badge_fallback|safe }}{% endif %}</span>
       </div>
       <div class="founder-body">
-        <h2 class="section-t">Ein fester Ansprechpartner. Kein Agentur-Bla.</h2>
-        <p class="section-lead">Hinter {{ c.site_name }} steht {{ c.inhaber_name }}. Aus Leidenschaft für saubere Technik bringe ich Gebäudeautomation, Veranstaltungstechnik, EDV und digitale Auftritte zusammen, alles aus einer Hand und mit starken Partnern. Persönlich, ehrlich und direkt erreichbar.</p>
+        <h2 class="section-t">{{ t.ueber.h|safe }}</h2>
+        <p class="section-lead">{{ t.ueber.lead_pre|safe }} {{ c.site_name }} {{ t.ueber.lead_mid|safe }} {{ c.inhaber_name }}{{ t.ueber.lead_rest|safe }}</p>
         <ul class="founder-points">
-          <li>Alles aus einer Hand, von der Idee bis zum laufenden Betrieb.</li>
-          <li>Klare Kommunikation ohne Fachchinesisch.</li>
-          <li>Faire Preise und schnelle Reaktion.</li>
+          <li>{{ t.ueber.p1|safe }}</li>
+          <li>{{ t.ueber.p2|safe }}</li>
+          <li>{{ t.ueber.p3|safe }}</li>
         </ul>
         <div class="founder-contact">
           {% if c.telefon %}<a class="founder-chip" href="tel:{{ c.telefon }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>{{ c.telefon }}</a>{% endif %}
@@ -569,20 +583,20 @@
   <section class="section section-alt" id="stimmen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">Was Kundinnen und Kunden sagen.</h2>
+        <h2 class="section-t">{{ t.stimmen.h|safe }}</h2>
       </header>
       <div class="quotes">
         <figure class="quote spot" data-reveal data-spot>
-          <blockquote>„Unser ganzes Haus läuft jetzt über eine App. Loxone sauber installiert und verständlich erklärt."</blockquote>
-          <figcaption><span class="q-av" aria-hidden="true">MB</span><span><strong>Michael Berger</strong>Bauherr, Privathaus</span></figcaption>
+          <blockquote>{{ t.stimmen.q1|safe }}</blockquote>
+          <figcaption><span class="q-av" aria-hidden="true">MB</span><span><strong>{{ t.stimmen.q1_name|safe }}</strong>{{ t.stimmen.q1_role|safe }}</span></figcaption>
         </figure>
         <figure class="quote spot" data-reveal data-spot>
-          <blockquote>„Der neue Konferenzraum funktioniert auf Knopfdruck. Professionell geplant und zuverlässig betreut."</blockquote>
-          <figcaption><span class="q-av" aria-hidden="true">SH</span><span><strong>Sandra Huber</strong>Büroleitung, Steuerkanzlei</span></figcaption>
+          <blockquote>{{ t.stimmen.q2|safe }}</blockquote>
+          <figcaption><span class="q-av" aria-hidden="true">SH</span><span><strong>{{ t.stimmen.q2_name|safe }}</strong>{{ t.stimmen.q2_role|safe }}</span></figcaption>
         </figure>
         <figure class="quote spot" data-reveal data-spot>
-          <blockquote>„Schnell, ehrlich, technisch top. Von der IT bis zur Veranstaltungstechnik stimmt einfach alles."</blockquote>
-          <figcaption><span class="q-av" aria-hidden="true">TR</span><span><strong>Tobias Renz</strong>Inhaber, Eventagentur</span></figcaption>
+          <blockquote>{{ t.stimmen.q3|safe }}</blockquote>
+          <figcaption><span class="q-av" aria-hidden="true">TR</span><span><strong>{{ t.stimmen.q3_name|safe }}</strong>{{ t.stimmen.q3_role|safe }}</span></figcaption>
         </figure>
       </div>
     </div>
@@ -592,9 +606,9 @@
   <section class="section" id="kooperationen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>Kooperationen</span>
-        <h2 class="section-t">Gemeinsam mehr möglich machen.</h2>
-        <p class="section-lead">Wir arbeiten mit ausgewählten Partnern zusammen, die unseren Anspruch an Qualität und Verlässlichkeit teilen. Hier stellen wir sie vor.</p>
+        <span class="eyebrow"><span class="dot"></span>{{ t.koop.eyebrow|safe }}</span>
+        <h2 class="section-t">{{ t.koop.h|safe }}</h2>
+        <p class="section-lead">{{ t.koop.lead|safe }}</p>
       </header>
 
       <div class="coop-grid" data-reveal>
@@ -611,7 +625,7 @@
           </div>
         </a>
         {% empty %}
-        <div class="coop-empty">Bald stellen wir hier unsere Kooperationspartner vor.</div>
+        <div class="coop-empty">{{ t.koop.empty|safe }}</div>
         {% endfor %}
       </div>
 
@@ -620,23 +634,23 @@
         <div class="coop-join-copy">
           <span class="coop-join-ic" aria-hidden="true">{% include 'icons.html' with name='handshake' %}</span>
           <div>
-            <h3>Willst du unser Kooperationspartner werden?</h3>
-            <p>Ob Technik, Design, Vertrieb oder eine ganz neue Idee: Wenn du glaubst, dass wir gut zusammenpassen, schreib uns kurz. Wir melden uns zeitnah.</p>
+            <h3>{{ t.koop.join_h|safe }}</h3>
+            <p>{{ t.koop.join_p|safe }}</p>
           </div>
         </div>
         <form class="coop-form" id="coopForm" method="post" action="{% url 'kooperation_anfordern' %}">
           {% csrf_token %}
           <div class="coop-f-row">
-            <label class="fld"><span>Name *</span><input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="Dein Name"></label>
-            <label class="fld"><span>Firma</span><input type="text" name="firma" maxlength="120" autocomplete="organization" placeholder="optional"></label>
+            <label class="fld"><span>{{ t.koop.f_name|safe }}</span><input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="{{ t.koop.f_name_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.koop.f_firma|safe }}</span><input type="text" name="firma" maxlength="120" autocomplete="organization" placeholder="{{ t.koop.f_firma_ph|safe }}"></label>
           </div>
-          <label class="fld"><span>E-Mail *</span><input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
-          <label class="fld"><span>Worum geht es? *</span><textarea name="nachricht" rows="3" required maxlength="1200" placeholder="Kurz: worin ihr stark seid und wie eine Zusammenarbeit aussehen könnte."></textarea></label>
-          <button class="btn btn-lg btn-magnetic coop-submit" type="submit" id="coopSubmit">Kooperation anfragen<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <p class="coop-fine">Unverbindlich. Wir behandeln deine Angaben vertraulich.</p>
+          <label class="fld"><span>{{ t.koop.f_email|safe }}</span><input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
+          <label class="fld"><span>{{ t.koop.f_msg|safe }}</span><textarea name="nachricht" rows="3" required maxlength="1200" placeholder="{{ t.koop.f_msg_ph|safe }}"></textarea></label>
+          <button class="btn btn-lg btn-magnetic coop-submit" type="submit" id="coopSubmit">{{ t.koop.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="coop-fine">{{ t.koop.fine|safe }}</p>
           <div class="coop-done" id="coopDone" hidden>
             <div class="coop-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><strong>Danke! Deine Anfrage ist unterwegs.</strong><p>Wir schauen sie uns an und melden uns zeitnah bei dir.</p></div>
+            <div><strong>{{ t.koop.done_h|safe }}</strong><p>{{ t.koop.done_p|safe }}</p></div>
           </div>
         </form>
       </div>
@@ -646,11 +660,12 @@
   <script>
   (function(){
     var form=document.getElementById('coopForm'); if(!form) return;
+    var I=(window.I18N&&window.I18N.coop)||{};
     var submit=document.getElementById('coopSubmit'), done=document.getElementById('coopDone');
     form.addEventListener('submit',function(e){
       e.preventDefault();
       if(!form.checkValidity()){ form.reportValidity(); return; }
-      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent='Wird gesendet …';
+      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent=I.busy||'…';
       fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
         .then(function(r){ return r.json(); })
         .then(function(j){
@@ -659,8 +674,8 @@
           done.hidden=false; done.scrollIntoView({behavior:'smooth',block:'center'});
         })
         .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
-          submit.textContent='Kooperation anfragen';
-          alert('Das hat gerade nicht geklappt. Bitte in einem Moment erneut versuchen.'); });
+          submit.textContent=I.submit||'…';
+          alert(I.error||'Error'); });
     });
   })();
   </script>
@@ -669,47 +684,47 @@
   <section class="section section-alt" id="kontakt">
     <div class="wrap contact">
       <div class="contact-info" data-reveal>
-        <h2 class="section-t">Erzählen Sie uns von Ihrem Projekt.</h2>
-        <p class="section-lead">Unverbindlich und kostenlos. Wir melden uns innerhalb von 24 Stunden mit einer ersten Einschätzung. Wählen Sie einfach Ihren Weg.</p>
+        <h2 class="section-t">{{ t.kontakt.h|safe }}</h2>
+        <p class="section-lead">{{ t.kontakt.lead|safe }}</p>
         <div class="contact-methods">
-          {% if c.telefon %}<a class="cm" href="tel:{{ c.telefon }}"><span class="cm-ic">{% include 'icons.html' with name='phone' %}</span><span class="cm-t"><strong>Anrufen</strong><span>{{ c.telefon }}</span></span></a>{% endif %}
-          {% if c.whatsapp %}<a class="cm cm-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>WhatsApp</strong><span>Schnell schreiben</span></span></a>{% endif %}
-          {% if c.email %}<a class="cm" href="mailto:{{ c.email }}"><span class="cm-ic">{% include 'icons.html' with name='mail' %}</span><span class="cm-t"><strong>E-Mail</strong><span>{{ c.email }}</span></span></a>{% endif %}
-          <a class="cm" href="#kontakt-form"><span class="cm-ic">{% include 'icons.html' with name='consulting' %}</span><span class="cm-t"><strong>Formular</strong><span>In einer Minute ausgefüllt</span></span></a>
+          {% if c.telefon %}<a class="cm" href="tel:{{ c.telefon }}"><span class="cm-ic">{% include 'icons.html' with name='phone' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_call|safe }}</strong><span>{{ c.telefon }}</span></span></a>{% endif %}
+          {% if c.whatsapp %}<a class="cm cm-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
+          {% if c.email %}<a class="cm" href="mailto:{{ c.email }}"><span class="cm-ic">{% include 'icons.html' with name='mail' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_mail|safe }}</strong><span>{{ c.email }}</span></span></a>{% endif %}
+          <a class="cm" href="#kontakt-form"><span class="cm-ic">{% include 'icons.html' with name='consulting' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_form|safe }}</strong><span>{{ t.kontakt.m_form_sub|safe }}</span></span></a>
         </div>
-        <p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='clock' %}</span> Mo bis Fr erreichbar. Antwort in 24 Stunden.</p>
+        <p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='clock' %}</span> {{ t.kontakt.avail|safe }}</p>
         {% if c.tagline %}<p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='shield' %}</span> {{ c.inhaber_name }}, {{ c.tagline }}.</p>{% endif %}
       </div>
 
       {% if sent %}
       <div class="contact-form form-sent" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Vielen Dank.</h3>
-        <p>Ihre Anfrage ist eingegangen. Wir melden uns kurzfristig bei Ihnen.</p>
+        <h3>{{ t.kontakt.sent_h|safe }}</h3>
+        <p>{{ t.kontakt.sent_p|safe }}</p>
       </div>
       {% else %}
       <form class="contact-form" id="kontakt-form" method="post" action="#kontakt" data-reveal>
         {% csrf_token %}
         <div class="f-row">
-          <label>Name<input type="text" name="name" required autocomplete="name" placeholder="Ihr Name"></label>
-          <label>E-Mail<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
+          <label>{{ t.kontakt.f_name|safe }}<input type="text" name="name" required autocomplete="name" placeholder="{{ t.kontakt.f_name_ph|safe }}"></label>
+          <label>{{ t.kontakt.f_email|safe }}<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
         </div>
         <div class="f-row">
-          <label>Telefon <span class="opt">(optional)</span><input type="tel" name="telefon" autocomplete="tel" placeholder="+43 ..."></label>
-          <label>Budget <span class="opt">(optional)</span>
+          <label>{{ t.kontakt.f_phone|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span><input type="tel" name="telefon" autocomplete="tel" placeholder="{{ t.kontakt.f_phone_ph|safe }}"></label>
+          <label>{{ t.kontakt.f_budget|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span>
             <select name="budget">
-              <option value="">Bitte wählen</option>
-              <option>unter 1.000 Euro</option>
-              <option>1.000 bis 3.000 Euro</option>
-              <option>3.000 bis 7.000 Euro</option>
-              <option>über 7.000 Euro</option>
+              <option value="">{{ t.kontakt.budget_choose|safe }}</option>
+              <option>{{ t.kontakt.budget_1|safe }}</option>
+              <option>{{ t.kontakt.budget_2|safe }}</option>
+              <option>{{ t.kontakt.budget_3|safe }}</option>
+              <option>{{ t.kontakt.budget_4|safe }}</option>
             </select>
           </label>
         </div>
-        <label>Ihr Projekt<textarea name="nachricht" rows="4" required placeholder="Worum geht es? Ein paar Stichworte genügen."></textarea></label>
-        <label class="check"><input type="checkbox" name="einwilligung" required> Ich habe die <a href="#datenschutz">Datenschutzerklärung</a> gelesen und stimme zu.</label>
-        <button class="btn btn-lg btn-magnetic" type="submit">Anfrage absenden</button>
-        <p class="form-fine">Keine Verpflichtung. Ihre Daten werden vertraulich behandelt.</p>
+        <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}"></textarea></label>
+        <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.kontakt.consent_pre|safe }} <a href="#datenschutz">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</label>
+        <button class="btn btn-lg btn-magnetic" type="submit">{{ t.kontakt.submit|safe }}</button>
+        <p class="form-fine">{{ t.kontakt.fine|safe }}</p>
       </form>
       {% endif %}
     </div>
@@ -721,18 +736,18 @@
   <div class="wrap foot-top">
     <div class="foot-brand">
       <a class="brand" href="#top">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
-      <p>Technik und Digitales aus einer Hand. Smarthome, Konferenz- und Veranstaltungstechnik, EDV, Sicherheit, Webseiten und KI.</p>
+      <p>{{ t.footer.tagline|safe }}</p>
     </div>
     <nav class="foot-nav" aria-label="Footer">
-      <div><h4>Leistungen</h4><a href="#leistungen">Smarthome &amp; KNX</a><a href="#leistungen">Konferenz &amp; AV-Technik</a><a href="#leistungen">EDV &amp; Sicherheit</a><a href="#leistungen">Webseiten &amp; KI</a></div>
-      <div><h4>Unternehmen</h4><a href="#partner">Partner</a><a href="#kooperationen">Kooperationen</a><a href="#preise">Preise</a><a href="#stimmen">Stimmen</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">Shop</a>{% endif %}</div>
-      <div><h4>Rechtliches</h4><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></div>
+      <div><h4>{{ t.footer.col_leistungen|safe }}</h4><a href="#leistungen">{{ t.footer.l_smarthome|safe }}</a><a href="#leistungen">{{ t.footer.l_konferenz|safe }}</a><a href="#leistungen">{{ t.footer.l_edv|safe }}</a><a href="#leistungen">{{ t.footer.l_web|safe }}</a></div>
+      <div><h4>{{ t.footer.col_unternehmen|safe }}</h4><a href="#partner">{{ t.footer.u_partner|safe }}</a><a href="#kooperationen">{{ t.footer.u_koop|safe }}</a><a href="#preise">{{ t.footer.u_preise|safe }}</a><a href="#stimmen">{{ t.footer.u_stimmen|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
+      <div><h4>{{ t.footer.col_recht|safe }}</h4><a href="#impressum">{{ t.footer.impressum|safe }}</a><a href="#datenschutz">{{ t.footer.datenschutz|safe }}</a></div>
     </nav>
   </div>
 
   <div class="wrap legal">
-    <details id="impressum"><summary>Impressum</summary><div class="legal-body">{% if c.impressum %}{{ c.impressum|linebreaks }}{% else %}<p><strong>Angaben gemäß Paragraf 5 TMG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt (E-Mail und Telefon), gegebenenfalls USt-IdNr. und Registereintrag.</p>{% endif %}</div></details>
-    <details id="datenschutz"><summary>Datenschutzerklärung</summary><div class="legal-body">{% if c.datenschutz %}{{ c.datenschutz|linebreaks }}{% else %}<p><strong>Platzhalter.</strong> Vor Veröffentlichung eine DSGVO-konforme Datenschutzerklärung einsetzen (Verantwortlicher, Hosting, Kontaktformular, Cookies und Tracking, Betroffenenrechte).</p>{% endif %}</div></details>
+    <details id="impressum"><summary>{{ t.footer.impressum|safe }}</summary><div class="legal-body">{% if c.impressum %}{{ c.impressum|linebreaks }}{% else %}<p>{{ t.footer.impressum_ph|safe }}</p>{% endif %}</div></details>
+    <details id="datenschutz"><summary>{{ t.footer.datenschutz_full|safe }}</summary><div class="legal-body">{% if c.datenschutz %}{{ c.datenschutz|linebreaks }}{% else %}<p>{{ t.footer.datenschutz_ph|safe }}</p>{% endif %}</div></details>
   </div>
 
   <div class="wrap foot-bottom">
@@ -742,8 +757,8 @@
 </footer>
 
 <div class="mobilebar">
-  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}Anrufen</a>{% endif %}
-  <a class="mobilebar-cta" href="#kontakt">{{ c.cta_text }}</a>
+  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
+  <a class="mobilebar-cta" href="#kontakt">{{ t.nav.cta|safe }}</a>
 </div>
 
 <script src="{% static 'js/main.js' %}" defer></script>

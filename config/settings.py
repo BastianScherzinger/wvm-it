@@ -31,6 +31,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    # Sprache aus URL-Präfix (/en/, /ro/) bzw. Cookie/Accept-Language auflösen.
+    # MUSS vor CommonMiddleware stehen und aktiviert die Übersetzung pro Request.
+    "django.middleware.locale.LocaleMiddleware",
+    # Eigene, SEO-sichere Auto-Erkennung: echte Besucher auf der präfixlosen
+    # Standardseite einmalig auf /en/ bzw. /ro/ leiten (Bots nie).
+    "landing.middleware.LocalePrefsMiddleware",
     "django.middleware.common.CommonMiddleware",
     # CSRF-Schutz für alle POST-Formulare (Kontakt/Newsletter/Angebot/Detailbogen).
     # War zuvor NICHT aktiv — die {% csrf_token %} wurden gerendert, aber nie geprüft.
@@ -50,7 +56,11 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
-        "OPTIONS": {"context_processors": []},
+        "OPTIONS": {"context_processors": [
+            "django.template.context_processors.request",
+            # Aktives Sprachpaket als {{ t.* }}, Sprachumschalter und hreflang-Alternates.
+            "landing.i18n.context_processor",
+        ]},
     },
 ]
 
@@ -60,6 +70,15 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {}
 
 LANGUAGE_CODE = "de"
+# Angebotene Sprachen: Deutsch (Standard, ohne URL-Präfix), Englisch (/en/), Rumänisch (/ro/).
+LANGUAGES = [
+    ("de", "Deutsch"),
+    ("en", "English"),
+    ("ro", "Română"),
+]
+# Sprachwahl wird über dieses Cookie gemerkt (1 Jahr); gesetzt von /sprache/<lang>/.
+LANGUAGE_COOKIE_NAME = "wvm_lang"
+LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 365
 TIME_ZONE = "Europe/Berlin"
 USE_I18N = True
 USE_TZ = True

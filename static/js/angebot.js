@@ -15,6 +15,16 @@
   if (!form) return;
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Lokalisierte Labels + Zahlenformat (Fallback: Deutsch).
+  var I = (window.I18N && window.I18N.ang) || {};
+  var NL = (window.I18N && window.I18N.numLocale) || "de-DE";
+  var T_ON_REQ = I.on_request || "auf Anfrage";
+  var T_FROM = I.from || "ab";
+  var T_PM = I.per_month || "€/Mt";
+  var T_PY = I.per_year || "€/Jahr";
+  var T_ONE = I.leistung || "Leistung";
+  var T_MANY = I.leistungen || "Leistungen";
+  var T_REMOVE = I.remove || "Entfernen:";
 
   // ── Wizard-Modus aktivieren ──────────────────────────────────────────────
   form.classList.add("wz-on");
@@ -72,14 +82,14 @@
   var submitEl = document.getElementById("angSubmit");
   var hintEl = document.getElementById("angHint");
 
-  function eur(n) { return (n || 0).toLocaleString("de-DE"); }
+  function eur(n) { return (n || 0).toLocaleString(NL); }
 
   function priceLabel(d) {
-    if (d.anfrage) return "auf Anfrage";
+    if (d.anfrage) return T_ON_REQ;
     var parts = [];
     if (d.once) parts.push(eur(d.once) + " €");
-    if (d.mtl) parts.push(d.mtl + " €/Mt");
-    if (d.yr) parts.push(eur(d.yr) + " €/Jahr");
+    if (d.mtl) parts.push(d.mtl + " " + T_PM);
+    if (d.yr) parts.push(eur(d.yr) + " " + T_PY);
     return parts.join(" + ") || "-";
   }
 
@@ -96,9 +106,9 @@
 
   function runSummary(once, mtl, yr) {
     var main = "";
-    if (once) main = "ab " + eur(once) + " €";
-    if (mtl) main += (main ? " + " : "") + eur(mtl) + " €/Mt";
-    if (!main && yr) main = eur(yr) + " €/Jahr";
+    if (once) main = T_FROM + " " + eur(once) + " €";
+    if (mtl) main += (main ? " + " : "") + eur(mtl) + " " + T_PM;
+    if (!main && yr) main = eur(yr) + " " + T_PY;
     return main || "0 €";
   }
 
@@ -118,7 +128,7 @@
       pr.className = "ang-ci-price"; pr.textContent = priceLabel(d);
       var x = document.createElement("button");
       x.type = "button"; x.className = "ang-ci-x";
-      x.setAttribute("aria-label", "Entfernen: " + d.name);
+      x.setAttribute("aria-label", T_REMOVE + " " + d.name);
       x.setAttribute("data-remove", d.id); x.textContent = "×";
       li.appendChild(nm); li.appendChild(pr); li.appendChild(x);
       frag.appendChild(li);
@@ -143,7 +153,7 @@
     if (anfrageEl) anfrageEl.hidden = !anfrage;
     if (totalsEl) totalsEl.hidden = chosen.length === 0;
 
-    var label = chosen.length === 1 ? "1 Leistung" : chosen.length + " Leistungen";
+    var label = chosen.length + " " + (chosen.length === 1 ? T_ONE : T_MANY);
     var sum = runSummary(once, mtl, yr);
     runCounts.forEach(function (el) { el.textContent = label; });
     runSums.forEach(function (el) { el.textContent = sum; });

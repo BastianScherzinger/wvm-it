@@ -1,0 +1,3 @@
+{% comment %}Sprachumschalter DE/EN/RO — ein Klick, merkt die Wahl per Cookie (/sprache/<lang>/).{% endcomment %}<div class="lang-switch" role="group" aria-label="{{ t.lang.switch_aria }}">
+  {% for l in lang_switch %}<a class="lang-opt{% if l.active %} is-active{% endif %}" href="{{ l.url }}" hreflang="{{ l.code }}" lang="{{ l.code }}"{% if l.active %} aria-current="true"{% endif %} title="{{ l.name }}">{{ l.label }}</a>{% endfor %}
+</div>

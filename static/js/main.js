@@ -85,7 +85,8 @@
       const hint = document.getElementById("robotHint");
       const tap = document.getElementById("robotTap");
       if (!bubble) return;
-      const msgs = [
+      // Sprechblasen-Texte kommen lokalisiert aus window.I18N (Fallback: Deutsch).
+      const msgs = (window.I18N && window.I18N.robot && window.I18N.robot.length) ? window.I18N.robot : [
         "Hi! Schön, dass du da bist.",
         "Wir bauen Webseiten, Hosting, KI und SEO. Alles aus einer Hand.",
         "Schon ab 350 Euro hast du deine eigene Webseite.",

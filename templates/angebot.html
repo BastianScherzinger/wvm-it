@@ -1,23 +1,24 @@
 {% load static %}<!DOCTYPE html>
-<html lang="de-AT">
+<html lang="{{ t.meta.html_lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Angebot konfigurieren | {{ c.site_name }}</title>
-  <meta name="description" content="Stellen Sie Ihr Angebot in wenigen Schritten selbst zusammen: Webseiten, Shop, Domain, Hosting, KI-Automatisierung, Bots und SEO. Transparente Richtpreise, unverbindlich, Antwort in 24 Stunden.">
+  <title>{{ t.meta.angebot_title|safe }} | {{ c.site_name }}</title>
+  <meta name="description" content="{{ t.meta.angebot_desc|safe }}">
   <meta name="theme-color" content="#0a0908">
-  <link rel="canonical" href="{{ c.wvm_url }}/angebot/">
-  <link rel="alternate" hreflang="de-AT" href="{{ c.wvm_url }}/angebot/">
+  <link rel="canonical" href="{{ c.wvm_url }}{{ canonical_path }}">
+  {% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
+  {% endfor %}
   <meta name="robots" content="index,follow">
   <meta name="geo.region" content="AT">
   <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
   <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
-  <meta property="og:title" content="Angebot konfigurieren | {{ c.site_name }}">
-  <meta property="og:description" content="Webseiten, KI, Automatisierung und mehr in wenigen Schritten zusammenstellen und Richtpreis sofort sehen.">
+  <meta property="og:title" content="{{ t.meta.angebot_title|safe }} | {{ c.site_name }}">
+  <meta property="og:description" content="{{ t.meta.angebot_og_desc|safe }}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ c.site_name }}">
-  <meta property="og:locale" content="de_AT">
-  <meta property="og:url" content="{{ c.wvm_url }}/angebot/">
+  <meta property="og:locale" content="{{ t.meta.locale }}">
+  <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
   {% if c.hero_bg %}<meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,25 +28,37 @@
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
 </head>
 <body class="ang-page">
-<a class="skip" href="#konfigurator">Zum Konfigurator springen</a>
+<script>
+  window.I18N = {
+    numLocale: "{{ t.meta.num_locale }}",
+    ang: {
+      leistung: "{{ t.angebot_page.js_leistung|escapejs }}", leistungen: "{{ t.angebot_page.js_leistungen|escapejs }}",
+      remove: "{{ t.angebot_page.js_remove|escapejs }}", from: "{{ t.angebot_page.js_from|escapejs }}",
+      on_request: "{{ t.angebot_page.js_on_request|escapejs }}",
+      per_month: "{{ t.angebot_page.js_per_month|escapejs }}", per_year: "{{ t.angebot_page.js_per_year|escapejs }}"
+    }
+  };
+</script>
+<a class="skip" href="#konfigurator">{{ t.nav.skip_konfigurator|safe }}</a>
 
 <!-- ── Navigation ──────────────────────────────────────────────────────────── -->
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} Startseite">
+    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <button class="nav-burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
-      <nav class="nav-links" aria-label="Hauptnavigation">
-        <a href="/">Home</a>
-        <a href="/#leistungen">Leistungen</a>
-        <a href="/#preise">Preise</a>
-        <a href="/angebot/" aria-current="page">Angebot</a>
-        <a href="/#kontakt">Kontakt</a>
+      <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
+        <a href="/">{{ t.nav.home|safe }}</a>
+        <a href="/#leistungen">{{ t.nav.leistungen|safe }}</a>
+        <a href="/#preise">{{ t.nav.preise|safe }}</a>
+        <a href="{% url 'angebot' %}" aria-current="page">{{ t.nav.angebot|safe }}</a>
+        <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
-      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="Anrufen">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
-      <a class="btn btn-sm btn-magnetic nav-cta" href="#konfigurator">Angebot berechnen</a>
+      {% include 'lang_switch.html' %}
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+      <a class="btn btn-sm btn-magnetic nav-cta" href="#konfigurator">{{ t.nav.cta_angebot|safe }}</a>
     </div>
   </div>
 </header>
@@ -57,18 +70,18 @@
 
       <!-- Links: Überschrift -->
       <div class="ang-top-copy" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>Angebots-Konfigurator</span>
-        <h1>Stellen Sie Ihr Angebot selbst zusammen.</h1>
-        <p class="lead">Klicken Sie sich in wenigen Schritten durch, wählen Sie Ihre Leistungen und sehen Sie den Richtpreis sofort. Unverbindlich, ohne Registrierung.</p>
+        <span class="eyebrow"><span class="dot"></span>{{ t.angebot_page.eyebrow|safe }}</span>
+        <h1>{{ t.angebot_page.h1|safe }}</h1>
+        <p class="lead">{{ t.angebot_page.lead|safe }}</p>
         <ul class="ang-promise">
-          <li>{% include 'icons.html' with name='bolt' %}Richtpreis in Echtzeit</li>
-          <li>{% include 'icons.html' with name='shield' %}Komplett unverbindlich</li>
-          <li>{% include 'icons.html' with name='clock' %}Antwort in 24 Stunden</li>
-          <li>{% include 'icons.html' with name='check' %}Keine Registrierung</li>
+          <li>{% include 'icons.html' with name='bolt' %}{{ t.angebot_page.promise1|safe }}</li>
+          <li>{% include 'icons.html' with name='shield' %}{{ t.angebot_page.promise2|safe }}</li>
+          <li>{% include 'icons.html' with name='clock' %}{{ t.angebot_page.promise3|safe }}</li>
+          <li>{% include 'icons.html' with name='check' %}{{ t.angebot_page.promise4|safe }}</li>
         </ul>
         {% if c.telefon %}
         <div class="ang-top-contact">
-          <span>Lieber direkt sprechen?</span>
+          <span>{{ t.angebot_page.talk|safe }}</span>
           <a class="ang-top-phone" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>
         </div>
         {% endif %}
@@ -79,15 +92,15 @@
         {% if sent %}
         <div class="ang-sent">
           <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <h3>Vielen Dank. Ihre Angebots-Anfrage ist da.</h3>
-          <p>Wir schauen uns Ihre Auswahl an und melden uns innerhalb von 24 Stunden mit einem persönlichen Angebot bei Ihnen.</p>
+          <h3>{{ t.angebot_page.sent_h|safe }}</h3>
+          <p>{{ t.angebot_page.sent_p|safe }}</p>
           <div class="ang-sent-actions">
-            <a class="btn btn-magnetic" href="/">Zurück zur Startseite</a>
-            <a class="btn btn-ghost" href="/angebot/">Neues Angebot zusammenstellen</a>
+            <a class="btn btn-magnetic" href="/">{{ t.angebot_page.sent_back|safe }}</a>
+            <a class="btn btn-ghost" href="{% url 'angebot' %}">{{ t.angebot_page.sent_new|safe }}</a>
           </div>
         </div>
         {% else %}
-        <form method="post" action="/angebot/#konfigurator" class="wz" id="angForm" novalidate>
+        <form method="post" action="{% url 'angebot' %}#konfigurator" class="wz" id="angForm" novalidate>
           {% csrf_token %}
 
           <!-- Schritt-Anzeige -->
@@ -100,7 +113,7 @@
             {% endfor %}
             <li class="wz-step" data-goto="{{ groups|length }}">
               <span class="wz-step-n">{{ groups|length|add:1 }}</span>
-              <span class="wz-step-t">Angebot</span>
+              <span class="wz-step-t">{{ t.angebot_page.step_last|safe }}</span>
             </li>
           </ol>
           <div class="wz-progress" aria-hidden="true"><span class="wz-bar" id="wzBar"></span></div>
@@ -112,9 +125,9 @@
               <div class="wz-panel-head">
                 <span class="wz-panel-ic">{% include 'icons.html' with name=g.icon %}</span>
                 <div>
-                  <span class="wz-panel-kick">Schritt {{ forloop.counter }} von {{ groups|length|add:1 }}</span>
+                  <span class="wz-panel-kick">{{ t.angebot_page.step_word|safe }} {{ forloop.counter }} {{ t.angebot_page.of_word|safe }} {{ groups|length|add:1 }}</span>
                   <h3>{{ g.title }}</h3>
-                  <span class="wz-panel-sub">{{ g.sub }} Mehrfachauswahl möglich, Schritt gern auch überspringen.</span>
+                  <span class="wz-panel-sub">{{ g.sub }} {{ t.angebot_page.sub_suffix|safe }}</span>
                 </div>
               </div>
 
@@ -128,7 +141,7 @@
                   <span class="ang-item-box">
                     <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
                     <span class="ang-item-main">
-                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">beliebt</span>{% endif %}</span>
+                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
                       <span class="ang-item-desc">{{ it.desc }}</span>
                     </span>
                     <span class="ang-item-price">{{ it.price_label }}</span>
@@ -139,68 +152,68 @@
               </div>
 
               <div class="wz-nav">
-                <button type="button" class="wz-back btn btn-ghost"{% if forloop.first %} disabled{% endif %}>← Zurück</button>
+                <button type="button" class="wz-back btn btn-ghost"{% if forloop.first %} disabled{% endif %}>{{ t.angebot_page.back|safe }}</button>
                 <div class="wz-run" aria-live="polite">
-                  <span class="wz-run-count" data-run-count>0 Leistungen</span>
-                  <span class="wz-run-sum" data-run-sum>ab 0 €</span>
+                  <span class="wz-run-count" data-run-count>{{ t.angebot_page.run_count|safe }}</span>
+                  <span class="wz-run-sum" data-run-sum>{{ t.angebot_page.run_sum|safe }}</span>
                 </div>
-                <button type="button" class="wz-next btn">{% if forloop.last %}Zum Angebot →{% else %}Weiter →{% endif %}</button>
+                <button type="button" class="wz-next btn">{% if forloop.last %}{{ t.angebot_page.to_offer|safe }}{% else %}{{ t.angebot_page.next|safe }}{% endif %}</button>
               </div>
             </section>
             {% endfor %}
 
             <!-- Slide: Ihr Angebot -->
-            <section class="wz-panel" data-step="{{ groups|length }}" aria-label="Ihr Angebot">
+            <section class="wz-panel" data-step="{{ groups|length }}" aria-label="{{ t.angebot_page.last_h|safe }}">
               <div class="wz-panel-head">
                 <span class="wz-panel-ic">{% include 'icons.html' with name='check' %}</span>
                 <div>
-                  <span class="wz-panel-kick">Letzter Schritt</span>
-                  <h3>Ihr Angebot</h3>
-                  <span class="wz-panel-sub">Prüfen Sie Ihre Auswahl und fordern Sie Ihr persönliches Angebot an.</span>
+                  <span class="wz-panel-kick">{{ t.angebot_page.last_kick|safe }}</span>
+                  <h3>{{ t.angebot_page.last_h|safe }}</h3>
+                  <span class="wz-panel-sub">{{ t.angebot_page.last_sub|safe }}</span>
                 </div>
               </div>
 
               <div class="ang-final">
                 <div class="ang-cart">
                   <div class="ang-cart-head">
-                    <h3>Ihre Auswahl</h3>
-                    <span class="ang-count" id="angCount" aria-live="polite">0 Leistungen</span>
+                    <h3>{{ t.angebot_page.cart_h|safe }}</h3>
+                    <span class="ang-count" id="angCount" aria-live="polite">{{ t.angebot_page.cart_count|safe }}</span>
                   </div>
                   <ul class="ang-cart-list" id="angCartList">
-                    <li class="ang-cart-empty" id="angCartEmpty">Noch nichts gewählt. Gehen Sie zurück und tippen Sie die Leistungen an, die Sie interessieren.</li>
+                    <li class="ang-cart-empty" id="angCartEmpty">{{ t.angebot_page.cart_empty|safe }}</li>
                   </ul>
                   <div class="ang-totals" id="angTotals" hidden>
-                    <div class="ang-total-row" data-total="once" hidden><span>Einmalig</span><strong><span id="angOnce">0</span> €</strong></div>
-                    <div class="ang-total-row" data-total="mtl" hidden><span>Monatlich</span><strong><span id="angMtl">0</span> €<small>/Mt</small></strong></div>
-                    <div class="ang-total-row" data-total="yr" hidden><span>Jährlich</span><strong><span id="angYr">0</span> €<small>/Jahr</small></strong></div>
-                    <div class="ang-total-note" id="angAnfrage" hidden>{% include 'icons.html' with name='consulting' %} Einzelne Positionen auf Anfrage, Preis nach Gespräch.</div>
+                    <div class="ang-total-row" data-total="once" hidden><span>{{ t.angebot_page.total_once|safe }}</span><strong><span id="angOnce">0</span> €</strong></div>
+                    <div class="ang-total-row" data-total="mtl" hidden><span>{{ t.angebot_page.total_mtl|safe }}</span><strong><span id="angMtl">0</span> €<small>{{ t.angebot_page.per_month|safe }}</small></strong></div>
+                    <div class="ang-total-row" data-total="yr" hidden><span>{{ t.angebot_page.total_yr|safe }}</span><strong><span id="angYr">0</span> €<small>{{ t.angebot_page.per_year|safe }}</small></strong></div>
+                    <div class="ang-total-note" id="angAnfrage" hidden>{% include 'icons.html' with name='consulting' %} {{ t.angebot_page.anfrage_note|safe }}</div>
                   </div>
-                  <p class="ang-cart-fine">Richtpreise, netto zzgl. USt. Unverbindlich.</p>
+                  <p class="ang-cart-fine">{{ t.angebot_page.cart_fine|safe }}</p>
                 </div>
 
                 <div class="ang-lead">
-                  <h4>Angebot anfordern</h4>
+                  <h4>{{ t.angebot_page.lead_h|safe }}</h4>
                   <div class="f-row">
-                    <label>Name<input type="text" name="name" required autocomplete="name" placeholder="Ihr Name"></label>
-                    <label>E-Mail<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
+                    <label>{{ t.angebot_page.f_name|safe }}<input type="text" name="name" required autocomplete="name" placeholder="{{ t.angebot_page.f_name_ph|safe }}"></label>
+                    <label>{{ t.angebot_page.f_email|safe }}<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
                   </div>
-                  <label>Telefon <span class="opt">(optional)</span><input type="tel" name="telefon" autocomplete="tel" placeholder="+43 ..."></label>
-                  <label>Nachricht <span class="opt">(optional)</span><textarea name="nachricht" rows="3" placeholder="Details zu Ihrem Projekt? Ein paar Stichworte genügen."></textarea></label>
-                  <label class="check"><input type="checkbox" name="einwilligung" required> Ich habe die <a href="/#datenschutz">Datenschutzerklärung</a> gelesen und stimme zu.</label>
+                  <label>{{ t.angebot_page.f_phone|safe }} <span class="opt">{{ t.angebot_page.f_opt|safe }}</span><input type="tel" name="telefon" autocomplete="tel" placeholder="{{ t.angebot_page.f_phone_ph|safe }}"></label>
+                  <label>{{ t.angebot_page.f_msg|safe }} <span class="opt">{{ t.angebot_page.f_opt|safe }}</span><textarea name="nachricht" rows="3" placeholder="{{ t.angebot_page.f_msg_ph|safe }}"></textarea></label>
+                  <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.angebot_page.consent_pre|safe }} <a href="/#datenschutz">{{ t.angebot_page.consent_link|safe }}</a> {{ t.angebot_page.consent_post|safe }}</label>
                   <button class="btn btn-lg btn-magnetic ang-submit" type="submit" id="angSubmit">
-                    Angebot anfordern
+                    {{ t.angebot_page.submit|safe }}
                     <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
-                  <p class="ang-hint" id="angHint" hidden>Bitte wählen Sie in den Schritten davor mindestens eine Leistung aus.</p>
-                  <p class="form-fine">Keine Verpflichtung. Ihre Daten werden vertraulich behandelt.</p>
+                  <p class="ang-hint" id="angHint" hidden>{{ t.angebot_page.hint|safe }}</p>
+                  <p class="form-fine">{{ t.angebot_page.fine|safe }}</p>
                 </div>
               </div>
 
               <div class="wz-nav">
-                <button type="button" class="wz-back btn btn-ghost">← Zurück</button>
+                <button type="button" class="wz-back btn btn-ghost">{{ t.angebot_page.back|safe }}</button>
                 <div class="wz-run" aria-live="polite">
-                  <span class="wz-run-count" data-run-count>0 Leistungen</span>
-                  <span class="wz-run-sum" data-run-sum>ab 0 €</span>
+                  <span class="wz-run-count" data-run-count>{{ t.angebot_page.run_count|safe }}</span>
+                  <span class="wz-run-sum" data-run-sum>{{ t.angebot_page.run_sum|safe }}</span>
                 </div>
                 <span class="wz-nav-spacer" aria-hidden="true"></span>
               </div>
@@ -216,8 +229,8 @@
   <section class="section section-alt" id="preisliste">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">Alle Preise auf einen Blick.</h2>
-        <p class="section-lead">Die komplette Übersicht aller Leistungen mit Startpreisen. Das genaue Angebot stimmen wir im Gespräch auf Ihr Projekt ab.</p>
+        <h2 class="section-t">{{ t.angebot_page.pl_h|safe }}</h2>
+        <p class="section-lead">{{ t.angebot_page.pl_lead|safe }}</p>
       </header>
       <div class="pl-grid">
         {% for g in groups %}
@@ -229,7 +242,7 @@
           <ul class="pl-list">
             {% for it in g.items %}
             <li>
-              <span class="pl-name">{{ it.name }}{% if it.popular %} <span class="pl-pop">beliebt</span>{% endif %}</span>
+              <span class="pl-name">{{ it.name }}{% if it.popular %} <span class="pl-pop">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
               <span class="pl-price">{{ it.price_label }}</span>
             </li>
             {% endfor %}
@@ -237,7 +250,7 @@
         </article>
         {% endfor %}
       </div>
-      <p class="price-foot" data-reveal>Alle Preise netto zzgl. USt. Richtpreise, der Endpreis ergibt sich nach dem Gespräch. Monatliche Leistungen sind jederzeit kündbar.</p>
+      <p class="price-foot" data-reveal>{{ t.angebot_page.pl_foot|safe }}</p>
     </div>
   </section>
 </main>
@@ -247,12 +260,12 @@
   <div class="wrap foot-top">
     <div class="foot-brand">
       <a class="brand" href="/">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
-      <p>Technik und Digitales aus einer Hand. Smarthome, Konferenz- und Veranstaltungstechnik, EDV, Sicherheit, Webseiten und KI.</p>
+      <p>{{ t.footer.tagline|safe }}</p>
     </div>
     <nav class="foot-nav" aria-label="Footer">
-      <div><h4>Leistungen</h4><a href="/#leistungen">Smarthome &amp; KNX</a><a href="/#leistungen">Konferenz &amp; AV-Technik</a><a href="/#leistungen">EDV &amp; Sicherheit</a><a href="/#leistungen">Webseiten &amp; KI</a></div>
-      <div><h4>Unternehmen</h4><a href="/angebot/">Angebot</a><a href="/#preise">Preise</a><a href="/#kontakt">Kontakt</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">Shop</a>{% endif %}</div>
-      <div><h4>Rechtliches</h4><a href="/#impressum">Impressum</a><a href="/#datenschutz">Datenschutz</a></div>
+      <div><h4>{{ t.footer.col_leistungen|safe }}</h4><a href="/#leistungen">{{ t.footer.l_smarthome|safe }}</a><a href="/#leistungen">{{ t.footer.l_konferenz|safe }}</a><a href="/#leistungen">{{ t.footer.l_edv|safe }}</a><a href="/#leistungen">{{ t.footer.l_web|safe }}</a></div>
+      <div><h4>{{ t.footer.col_unternehmen|safe }}</h4><a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a><a href="/#preise">{{ t.footer.u_preise|safe }}</a><a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
+      <div><h4>{{ t.footer.col_recht|safe }}</h4><a href="/#impressum">{{ t.footer.impressum|safe }}</a><a href="/#datenschutz">{{ t.footer.datenschutz|safe }}</a></div>
     </nav>
   </div>
   <div class="wrap foot-bottom">
@@ -262,8 +275,8 @@
 </footer>
 
 <div class="mobilebar">
-  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}Anrufen</a>{% endif %}
-  <a class="mobilebar-cta" href="#konfigurator">Angebot berechnen</a>
+  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
+  <a class="mobilebar-cta" href="#konfigurator">{{ t.nav.cta_angebot|safe }}</a>
 </div>
 
 <script src="{% static 'js/main.js' %}" defer></script>

@@ -19,6 +19,11 @@ from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.utils import translation
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.utils.translation import get_language
+
+from . import i18n
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -72,6 +77,23 @@ def _content() -> dict:
         pass
     data["whatsapp"] = _whatsapp(data.get("telefon", ""))
     return data
+
+
+def set_language(request, lang):
+    """Merkt die Sprachwahl als Cookie und leitet zur (validierten) Zielseite weiter.
+    Aufruf per Sprachumschalter: /sprache/<de|en|ro>/?next=<zielpfad>."""
+    lang = i18n.norm_lang(lang)
+    nxt = request.GET.get("next") or "/"
+    if not url_has_allowed_host_and_scheme(nxt, allowed_hosts={request.get_host()},
+                                           require_https=request.is_secure()):
+        nxt = "/"
+    resp = redirect(nxt)
+    resp.set_cookie(
+        settings.LANGUAGE_COOKIE_NAME, lang,
+        max_age=getattr(settings, "LANGUAGE_COOKIE_AGE", 31536000),
+        samesite="Lax", secure=request.is_secure(),
+    )
+    return resp
 
 
 # ── Angebots-Konfigurator ─────────────────────────────────────────────────────
@@ -152,25 +174,63 @@ def _eur(n) -> str:
     return f"{int(n):,.0f}".replace(",", ".")
 
 
-# Anzeige-Labels vorberechnen (einmalige, konsistente Formatierung für die Templates).
+def _thousands(n, sep=".") -> str:
+    """1490 -> '1.490' (Tausendertrennung mit lokalem Trennzeichen, ganze Euro)."""
+    return f"{int(n):,}".replace(",", sep)
+
+
+def _make_price_label(it, words) -> str:
+    """Baut das Anzeige-Label einer Position in der gewünschten Sprache (aus catalog_words)."""
+    if it.get("anfrage"):
+        return words.get("on_request", "auf Anfrage")
+    sep = words.get("thousands", ".")
+    parts = []
+    if it.get("once"):
+        parts.append(f"{_thousands(it['once'], sep)} €")
+    if it.get("mtl"):
+        parts.append(f"{it['mtl']} {words.get('per_month', '€/Mt')}")
+    if it.get("yr"):
+        parts.append(f"{_thousands(it['yr'], sep)} {words.get('per_year', '€/Jahr')}")
+    return (words.get("from", "ab") + " " + " + ".join(parts)) if parts else "-"
+
+
+def _localized_groups(lang):
+    """ANGEBOT_GROUPS mit Titeln/Namen/Beschreibungen + Preis-Labels in der aktiven Sprache.
+    IDs, Preise, Icons und Flags bleiben unverändert (einzige Preisquelle in ANGEBOT_GROUPS)."""
+    pack = i18n.get_pack(lang)
+    cat = pack.get("catalog", {})
+    citems = pack.get("catalog_items", {})
+    words = pack.get("catalog_words", {})
+    out = []
+    for g in ANGEBOT_GROUPS:
+        cg = cat.get(g["id"], {})
+        ng = dict(g)
+        ng["title"] = cg.get("title", g["title"])
+        ng["sub"] = cg.get("sub", g["sub"])
+        ng["short"] = cg.get("short", g["short"])
+        items = []
+        for it in g["items"]:
+            ci = citems.get(it["id"], {})
+            nit = dict(it)
+            nit["name"] = ci.get("name", it["name"])
+            nit["desc"] = ci.get("desc", it["desc"])
+            nit["price_label"] = _make_price_label(it, words)
+            items.append(nit)
+        ng["items"] = items
+        out.append(ng)
+    return out
+
+
+# Deutsches Anzeige-Label vorberechnen (Fallback für serverseitige E-Mail-Zeilen).
+_DE_WORDS = i18n.get_pack("de")["catalog_words"]
 for _g in ANGEBOT_GROUPS:
     for _it in _g["items"]:
-        if _it.get("anfrage"):
-            _it["price_label"] = "auf Anfrage"
-        else:
-            _parts = []
-            if _it.get("once"):
-                _parts.append(f"{_eur(_it['once'])} €")
-            if _it.get("mtl"):
-                _parts.append(f"{_it['mtl']} €/Mt")
-            if _it.get("yr"):
-                _parts.append(f"{_eur(_it['yr'])} €/Jahr")
-            _it["price_label"] = ("ab " + " + ".join(_parts)) if _parts else "-"
+        _it["price_label"] = _make_price_label(_it, _DE_WORDS)
 
 
-# Flache id -> item-Zuordnung (inkl. Gruppentitel + price_label) für die serverseitige Neuberechnung.
+# Flache id -> item-Zuordnung (inkl. Gruppentitel/-id + price_label) für die serverseitige Neuberechnung.
 _ANGEBOT_INDEX = {
-    it["id"]: dict(it, gruppe=g["title"])
+    it["id"]: dict(it, gruppe=g["title"], gruppe_id=g["id"])
     for g in ANGEBOT_GROUPS for it in g["items"]
 }
 
@@ -395,37 +455,30 @@ def _newsletter_code() -> str:
     return os.environ.get("NEWSLETTER_CODE", "WVM25").strip() or "WVM25"
 
 
-def _newsletter_deliver(email: str, wunsch: str, c: dict, name: str = "") -> None:
-    """Nach BESTÄTIGTEM Opt-in: Postfach benachrichtigen + Willkommens-Mail mit Code."""
+def _newsletter_deliver(email: str, wunsch: str, c: dict, name: str = "", lang: str = "de") -> None:
+    """Nach BESTÄTIGTEM Opt-in: Postfach benachrichtigen + Willkommens-Mail mit Code.
+    Die Willkommens-Mail (an den Kunden) ist in dessen Sprache; die Inhaber-Notiz bleibt Deutsch."""
     code = _newsletter_code()
     site = c.get("site_name", "WVM-IT")
     empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger)
-    anrede = f"Hallo {name}" if name else "Hallo"
+    em = i18n.get_pack(lang)["emails"]
+    anrede = em["greeting_named"].format(name=name) if name else em["greeting"]
+    wunsch_line = em["nl_welcome_wunsch"].format(wunsch=wunsch) if wunsch else ""
     notify = (
         "Neue BESTÄTIGTE Newsletter-Anmeldung über wvm-it.tech\n\n"
         f"Name:           {name or '-'}\n"
         f"E-Mail:         {email}\n"
+        f"Sprache:        {lang}\n"
         f"Angaben/Wunsch: {wunsch or '-'}\n\n"
         f"Ausgegebener Rabattcode: {code}\n"
         "To-do: kostenlose Beispiel-Website (JARVIS) erstellen und zuschicken.\n"
     )
-    welcome = (
-        f"{anrede},\n\n"
-        "danke, dass du deine Anmeldung bestätigt hast. Als Dankeschön:\n\n"
-        f"  Dein Rabattcode: {code}  (25 % auf deine erste Website)\n\n"
-        "Außerdem erstellen wir dir eine kostenlose Beispiel-Website und schicken sie dir "
-        "in Kürze zu, damit du direkt siehst, was möglich ist. Danach setzen wir sie "
-        "gemeinsam mit dir um, bis alles genau passt.\n\n"
-        + (f"Deine Angaben an uns: {wunsch}\n\n" if wunsch else "")
-        + "Du bekommst ab jetzt außerdem etwa einmal pro Woche unseren Referenz-Newsletter "
-        "mit echten Projekten von uns. Du kannst ihn jederzeit über den Link am Ende jeder "
-        "Mail wieder abbestellen.\n\n"
-        + f"Bis bald,\ndein Team von {site}\n{c.get('wvm_url', '')}\n"
-    )
+    welcome = em["nl_welcome_body"].format(
+        anrede=anrede, code=code, wunsch_line=wunsch_line, site=site, url=c.get("wvm_url", ""))
     if empfaenger:
         _send_mail_logged(f"Newsletter bestätigt: {email}", notify, from_email, [empfaenger], tag="NEWSLETTER-NOTIFY")
-    _send_mail_logged(f"Willkommen bei {site}: dein 25%-Code", welcome, from_email, [email], tag="NEWSLETTER-WELCOME")
+    _send_mail_logged(em["nl_welcome_subject"].format(site=site), welcome, from_email, [email], tag="NEWSLETTER-WELCOME")
 
 
 def _compose_wunsch(request) -> str:
@@ -461,22 +514,21 @@ def _handle_newsletter(request, c) -> bool:
         return False
     name = (request.POST.get("name") or "").strip()[:80]
     wunsch = _compose_wunsch(request)
-    # Angaben kompakt + komprimiert in den signierten Link legen (kein DB-Zugriff noetig).
-    token = signing.dumps({"e": email, "w": wunsch, "n": name}, salt=_NEWSLETTER_SALT, compress=True)
+    lang = i18n.norm_lang(get_language())
+    # Angaben + Sprache kompakt + komprimiert in den signierten Link legen (kein DB-Zugriff noetig).
+    token = signing.dumps({"e": email, "w": wunsch, "n": name, "l": lang},
+                          salt=_NEWSLETTER_SALT, compress=True)
     base = (c.get("wvm_url") or "").rstrip("/") or request.build_absolute_uri("/").rstrip("/")
-    link = f"{base}{reverse('newsletter_confirm')}?t={token}"
+    # Bestätigungslink in der Sprache des Anmeldenden (präfixierte URL /en/ bzw. /ro/).
+    with translation.override(lang):
+        confirm_path = reverse("newsletter_confirm")
+    link = f"{base}{confirm_path}?t={token}"
     site = c.get("site_name", "WVM-IT")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
-    anrede = f"Hallo {name}" if name else "Hallo"
-    confirm = (
-        f"{anrede},\n\n"
-        f"fast geschafft. Bitte bestätige deine Anmeldung bei {site} mit einem Klick:\n\n"
-        f"{link}\n\n"
-        "Danach bekommst du deinen 25%-Rabattcode und deine kostenlose Beispiel-Website. "
-        "Außerdem erhältst du ca. einmal pro Woche unseren Referenz-Newsletter (jederzeit abbestellbar).\n"
-        "Der Link ist 3 Tage gültig. Falls du dich nicht angemeldet hast, ignoriere diese E-Mail einfach.\n"
-    )
-    _send_mail_logged(f"Bitte bestätige deine Anmeldung bei {site}", confirm, from_email, [email], tag="NEWSLETTER-CONFIRM")
+    em = i18n.get_pack(lang)["emails"]
+    anrede = em["greeting_named"].format(name=name) if name else em["greeting"]
+    confirm = em["nl_confirm_body"].format(anrede=anrede, site=site, link=link)
+    _send_mail_logged(em["nl_confirm_subject"].format(site=site), confirm, from_email, [email], tag="NEWSLETTER-CONFIRM")
     return True
 
 
@@ -493,6 +545,7 @@ def newsletter_confirm(request):
         email = (data.get("e") or "").strip()
         wunsch = (data.get("w") or "").strip()
         name = (data.get("n") or "").strip()
+        tlang = i18n.norm_lang(data.get("l") or get_language())
         if email:
             # Einmaligkeit: Willkommens-/Info-Mail nur beim ERSTEN Bestätigen verschicken.
             # E-Mail-Scanner rufen Links vorab auf (Prefetch) und Reloads/erneute Klicks
@@ -505,10 +558,10 @@ def newsletter_confirm(request):
             except Exception:
                 already = False
             if not already:
-                _newsletter_deliver(email, wunsch, c, name=name)
+                _newsletter_deliver(email, wunsch, c, name=name, lang=tlang)
                 _subscriber_confirm(email, wunsch, _client_ip(request))
-            # signiertes Token trägt E-Mail/Name/erste Angaben sicher zum Detail-Bogen
-            anfrage_token = signing.dumps({"e": email, "n": name, "w": wunsch},
+            # signiertes Token trägt E-Mail/Name/erste Angaben/Sprache sicher zum Detail-Bogen
+            anfrage_token = signing.dumps({"e": email, "n": name, "w": wunsch, "l": tlang},
                                           salt=_ANFRAGE_SALT, compress=True)
             ok = True
     except Exception:  # BadSignature, SignatureExpired, kaputtes Token
@@ -552,6 +605,7 @@ def anfrage_absenden(request):
     email = (data.get("e") or "").strip()
     name = (data.get("n") or "").strip()
     hero_wunsch = (data.get("w") or "").strip()
+    lang = i18n.norm_lang(data.get("l") or get_language())
     if not email:
         return render(request, "anfrage_done.html", {"c": c, "ok": False})
     images = _parse_images(request)
@@ -576,9 +630,11 @@ def anfrage_absenden(request):
                 from_email, [empfaenger], tag="ANFRAGE-NOTIFY")
     except Exception:
         pass
-    # Auf die Live-Status-Warteseite schicken (pollt bis die Seite gebaut + live ist).
-    status_token = signing.dumps({"e": email, "n": name}, salt=_STATUS_SALT, compress=True)
-    return redirect(reverse("warten") + "?t=" + status_token)
+    # Auf die Live-Status-Warteseite schicken (pollt bis die Seite gebaut + live ist),
+    # in der Sprache des Kunden (präfixierte URL).
+    status_token = signing.dumps({"e": email, "n": name, "l": lang}, salt=_STATUS_SALT, compress=True)
+    with translation.override(lang):
+        return redirect(reverse("warten") + "?t=" + status_token)
 
 
 def warten(request):
@@ -766,7 +822,8 @@ def index(request):
         else:
             sent = _handle_contact(request, c)
     return render(request, "index.html", {
-        "c": c, "sent": sent, "news_sent": news_sent, "angebot_groups": ANGEBOT_GROUPS,
+        "c": c, "sent": sent, "news_sent": news_sent,
+        "angebot_groups": _localized_groups(get_language()),
         "kooperationen": KOOPERATIONEN,
     })
 
@@ -776,7 +833,8 @@ def angebot(request):
     sent = False
     if request.method == "POST":
         sent = _handle_angebot(request, c)
-    return render(request, "angebot.html", {"c": c, "sent": sent, "groups": ANGEBOT_GROUPS})
+    return render(request, "angebot.html", {
+        "c": c, "sent": sent, "groups": _localized_groups(get_language())})
 
 
 def angebot_anfordern(request):
@@ -791,6 +849,13 @@ def angebot_anfordern(request):
         return JsonResponse({"ok": False, "error": "email"}, status=400)
     consent = (request.POST.get("angebote") or "").strip().lower() in ("1", "on", "true", "ja", "yes")
     ids = [i for i in request.POST.getlist("item") if i in _ANGEBOT_INDEX][:40]
+    lang = i18n.norm_lang(get_language())
+    pack = i18n.get_pack(lang)
+    em = pack["emails"]
+    words = pack["catalog_words"]
+    cat = pack["catalog"]
+    citems = pack["catalog_items"]
+    sep = words.get("thousands", ".")
     once = mtl = yr = 0
     anfrage = False
     lines = []
@@ -801,32 +866,30 @@ def angebot_anfordern(request):
         yr += int(it.get("yr") or 0)
         if it.get("anfrage"):
             anfrage = True
-        lines.append(f"- {it['gruppe']}: {it['name']} ({it.get('price_label', '')})")
+        gruppe = cat.get(it.get("gruppe_id", ""), {}).get("title", it["gruppe"])
+        name = citems.get(it["id"], {}).get("name", it["name"])
+        lines.append(f"- {gruppe}: {name} ({_make_price_label(it, words)})")
     teile = []
     if once:
-        teile.append(f"einmalig ab {_eur(once)} €")
+        teile.append(em["angebot_sum_once"].format(n=_thousands(once, sep)))
     if mtl:
-        teile.append(f"monatlich ab {mtl} €")
+        teile.append(em["angebot_sum_mtl"].format(n=mtl))
     if yr:
-        teile.append(f"jährlich ab {_eur(yr)} €")
-    summe_txt = " · ".join(teile) if teile else "auf Anfrage"
+        teile.append(em["angebot_sum_yr"].format(n=_thousands(yr, sep)))
+    summe_txt = " · ".join(teile) if teile else em["angebot_sum_request"]
     site = c.get("site_name", "WVM-IT")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
     if ids:
-        kunde = (
-            "Hallo,\n\ndanke für Ihr Interesse. Hier Ihr unverbindliches Richtangebot von "
-            f"{site}:\n\n" + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}"
-            + ("\n(einzelne Positionen klären wir kurz mit Ihnen)" if anfrage else "")
-            + "\n\nDas ist ein grober Richtwert; das genaue Angebot stimmen wir kurz mit Ihnen ab. "
-            "Antworten Sie einfach auf diese Mail.\n\n"
-            f"Beste Grüße\ndein Team von {site}\n{c.get('wvm_url', '')}\n"
-        )
-        _send_mail_logged(f"Ihr Richtangebot von {site}", kunde, from_email, [email], tag="ANGEBOT-KUNDE")
+        anfrage_line = em["angebot_anfrage_line"] if anfrage else ""
+        kunde = em["angebot_kunde_body"].format(
+            site=site, lines="\n".join(lines), summe=summe_txt,
+            anfrage_line=anfrage_line, url=c.get("wvm_url", ""))
+        _send_mail_logged(em["angebot_kunde_subject"].format(site=site), kunde, from_email, [email], tag="ANGEBOT-KUNDE")
         empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
         if empf:
             notify = (
                 "Neue Angebots-Anfrage (Startseite) über wvm-it.tech\n\n"
-                f"E-Mail: {email}\nWeitere Angebote erwünscht: {'ja' if consent else 'nein'}\n\n"
+                f"E-Mail: {email}\nSprache: {lang}\nWeitere Angebote erwünscht: {'ja' if consent else 'nein'}\n\n"
                 + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}\n"
             )
             _send_mail_logged(f"Angebots-Anfrage: {email}", notify, from_email, [empf], tag="ANGEBOT-NOTIFY")
@@ -856,6 +919,7 @@ def robots_txt(request):
         "Disallow: /cloudinary/signatur/",
         "Disallow: /anfrage/absenden/",
         "Disallow: /warten/",
+        "Disallow: /sprache/",
         "",
         f"Sitemap: {base}/sitemap.xml",
         "",
@@ -864,19 +928,29 @@ def robots_txt(request):
 
 
 def sitemap_xml(request):
-    """Schlanke XML-Sitemap der öffentlichen Seiten (Startseite + Angebot)."""
+    """XML-Sitemap der öffentlichen Seiten (Startseite + Angebot) in allen Sprachen,
+    jeweils mit hreflang-Alternates (DE ohne Präfix, EN /en/, RO /ro/)."""
     base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
-    urls = [
-        (f"{base}/", "1.0", "weekly"),
-        (f"{base}/angebot/", "0.8", "monthly"),
-    ]
-    items = "".join(
-        f"<url><loc>{loc}</loc><changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
-        for loc, pr, cf in urls
-    )
+    # (Basis-Pfad, priority, changefreq)
+    pages = [("/", "1.0", "weekly"), ("/angebot/", "0.8", "monthly")]
+    items = []
+    for path, pr, cf in pages:
+        alts = "".join(
+            f'<xhtml:link rel="alternate" hreflang="{a["hreflang"]}" '
+            f'href="{base}{i18n.add_prefix(a["code"], path)}"/>'
+            for a in ({"code": "de", "hreflang": "de"}, {"code": "en", "hreflang": "en"},
+                      {"code": "ro", "hreflang": "ro"}, {"code": "de", "hreflang": "x-default"})
+        )
+        for lang in ("de", "en", "ro"):
+            loc = base + i18n.add_prefix(lang, path)
+            items.append(
+                f"<url><loc>{loc}</loc>{alts}"
+                f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
+            )
     xml = ('<?xml version="1.0" encoding="UTF-8"?>'
-           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-           + items + "</urlset>")
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+           'xmlns:xhtml="http://www.w3.org/1999/xhtml">'
+           + "".join(items) + "</urlset>")
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 
@@ -900,13 +974,10 @@ def kooperation_anfordern(request):
         f"Nachricht:\n{nachricht or '-'}\n"
     )
     _send_mail_logged(f"Kooperations-Anfrage von {name}", body, from_email, [empf], tag="KOOPERATION")
-    ack = (
-        f"Hallo {name},\n\ndanke für dein Interesse an einer Kooperation mit "
-        f"{c.get('site_name', 'WVM-IT')}. Wir sehen uns deine Nachricht an und melden uns "
-        "zeitnah bei dir.\n\n"
-        f"Beste Grüße\ndein Team von {c.get('site_name', 'WVM-IT')}\n{c.get('wvm_url', '')}\n"
-    )
-    _send_mail_logged("Danke für deine Kooperations-Anfrage", ack, from_email, [email], tag="KOOPERATION-ACK")
+    em = i18n.get_pack(get_language())["emails"]
+    site = c.get("site_name", "WVM-IT")
+    ack = em["kooperation_ack_body"].format(name=name, site=site, url=c.get("wvm_url", ""))
+    _send_mail_logged(em["kooperation_ack_subject"], ack, from_email, [email], tag="KOOPERATION-ACK")
     return JsonResponse({"ok": True})
 
 

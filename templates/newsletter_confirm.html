@@ -1,10 +1,10 @@
 {% load static %}<!DOCTYPE html>
-<html lang="de-AT">
+<html lang="{{ t.meta.html_lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if ok %}Anmeldung bestätigt{% else %}Bestätigung fehlgeschlagen{% endif %} | {{ c.site_name }}</title>
-  <meta name="description" content="Bestätigung deiner Newsletter-Anmeldung bei {{ c.site_name }}.">
+  <title>{% if ok %}{{ t.confirm_page.title_ok|safe }}{% else %}{{ t.confirm_page.title_fail|safe }}{% endif %} | {{ c.site_name }}</title>
+  <meta name="description" content="{{ t.confirm_page.meta_desc|safe }}">
   <meta name="theme-color" content="#0a0908">
   <meta name="robots" content="noindex,nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,24 +16,25 @@
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
 </head>
 <body class="ang-page">
-<a class="skip" href="#main">Zum Inhalt springen</a>
+<a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} Startseite">
+    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <button class="nav-burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
-      <nav class="nav-links" aria-label="Hauptnavigation">
-        <a href="/">Home</a>
-        <a href="/#leistungen">Leistungen</a>
-        <a href="/#preise">Preise</a>
-        <a href="/angebot/">Angebot</a>
-        <a href="/#kontakt">Kontakt</a>
+      <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
+        <a href="/">{{ t.nav.home|safe }}</a>
+        <a href="/#leistungen">{{ t.nav.leistungen|safe }}</a>
+        <a href="/#preise">{{ t.nav.preise|safe }}</a>
+        <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
+        <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
-      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="Anrufen">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
-      <a class="btn btn-sm btn-magnetic nav-cta" href="/angebot/">Angebot berechnen</a>
+      {% include 'lang_switch.html' %}
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+      <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'angebot' %}">{{ t.nav.cta_angebot|safe }}</a>
     </div>
   </div>
 </header>
@@ -44,10 +45,10 @@
       {% if ok %}
       <div class="ang-sent" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Bestätigt{% if name %}, {{ name }}{% endif %}! Nur noch ein kurzer Schritt.</h3>
-        <p>Dein <strong>25%-Rabattcode</strong> ist per E-Mail unterwegs. Damit wir deine <strong>kostenlose Beispiel-Website</strong> (bleibt 1 Woche live) genau passend bauen, füll bitte kurz diesen Bogen aus — je mehr du anklickst, desto besser das Ergebnis.</p>
-        <div class="confirm-code" aria-label="Dein Rabattcode">
-          <span>Dein Code</span><strong>{{ code }}</strong>
+        <h3>{{ t.confirm_page.ok_h_pre|safe }}{% if name %}, {{ name }}{% endif %}{{ t.confirm_page.ok_h_post|safe }}</h3>
+        <p>{{ t.confirm_page.ok_p|safe }}</p>
+        <div class="confirm-code" aria-label="{{ t.confirm_page.code_aria|safe }}">
+          <span>{{ t.confirm_page.code_label|safe }}</span><strong>{{ code }}</strong>
         </div>
       </div>
 
@@ -57,97 +58,72 @@
         <input type="hidden" name="bilder" id="bilderField" value="[]">
 
         <section class="af-section">
-          <div class="af-section-head"><span class="af-num">1</span><div><h4>Über euch</h4><p>Wer ihr seid und was ihr macht.</p></div></div>
+          <div class="af-section-head"><span class="af-num">1</span><div><h4>{{ t.confirm_page.sec1_h|safe }}</h4><p>{{ t.confirm_page.sec1_p|safe }}</p></div></div>
           <div class="af-grid">
-            <label class="fld"><span>Titel / Firmenname *</span><input type="text" name="titel" required maxlength="120" placeholder="z. B. Bäckerei Sonnenschein"></label>
-            <label class="fld"><span>Branche</span><input type="text" name="branche" maxlength="120" placeholder="z. B. Bäckerei, Kanzlei, Friseur"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_titel|safe }}</span><input type="text" name="titel" required maxlength="120" placeholder="{{ t.confirm_page.f_titel_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_branche|safe }}</span><input type="text" name="branche" maxlength="120" placeholder="{{ t.confirm_page.f_branche_ph|safe }}"></label>
           </div>
-          <label class="fld"><span>Was macht ihr genau?</span><textarea name="beschreibung" rows="2" maxlength="400" placeholder="In 1–2 Sätzen: euer Angebot, eure Leistung, euer Standort …"></textarea></label>
+          <label class="fld"><span>{{ t.confirm_page.f_beschreibung|safe }}</span><textarea name="beschreibung" rows="2" maxlength="400" placeholder="{{ t.confirm_page.f_beschreibung_ph|safe }}"></textarea></label>
           <div class="af-grid">
-            <label class="fld"><span>Wer sind eure Kunden?</span><input type="text" name="zielgruppe" maxlength="160" placeholder="z. B. Familien aus der Region, kleine Firmen …"></label>
-            <label class="fld"><span>Was macht euch besonders?</span><input type="text" name="usp" maxlength="160" placeholder="euer Vorteil, euer Versprechen …"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_zielgruppe|safe }}</span><input type="text" name="zielgruppe" maxlength="160" placeholder="{{ t.confirm_page.f_zielgruppe_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_usp|safe }}</span><input type="text" name="usp" maxlength="160" placeholder="{{ t.confirm_page.f_usp_ph|safe }}"></label>
           </div>
         </section>
 
         <section class="af-section">
-          <div class="af-section-head"><span class="af-num">2</span><div><h4>Die Website</h4><p>Welche Bereiche und welches Ziel.</p></div></div>
+          <div class="af-section-head"><span class="af-num">2</span><div><h4>{{ t.confirm_page.sec2_h|safe }}</h4><p>{{ t.confirm_page.sec2_p|safe }}</p></div></div>
           <fieldset class="af-block">
-            <legend>Welche Bereiche soll die Seite haben? <small>(anklicken, was passt)</small></legend>
+            <legend>{{ t.confirm_page.sektionen_legend|safe }} <small>{{ t.confirm_page.sektionen_small|safe }}</small></legend>
             <div class="chipset">
-              <label class="pick"><input type="checkbox" name="sektionen" value="Startbereich (Hero)" checked><span>Startbereich (Hero)</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Leistungen/Angebote" checked><span>Leistungen/Angebote</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Über uns"><span>Über uns</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Team"><span>Team</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Galerie"><span>Galerie</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Bewertungen"><span>Bewertungen</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Preise/Pakete"><span>Preise/Pakete</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="FAQ"><span>FAQ</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Öffnungszeiten"><span>Öffnungszeiten</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Kontaktformular" checked><span>Kontaktformular</span></label>
-              <label class="pick"><input type="checkbox" name="sektionen" value="Anfahrt/Karte"><span>Anfahrt/Karte</span></label>
+              {% for opt in t.confirm_page.sektionen %}<label class="pick"><input type="checkbox" name="sektionen" value="{{ opt.v }}"{% if opt.c %} checked{% endif %}><span>{{ opt.l|safe }}</span></label>{% endfor %}
             </div>
           </fieldset>
           <div class="af-two">
             <fieldset class="af-block">
-              <legend>Wichtigstes Ziel</legend>
+              <legend>{{ t.confirm_page.ziel_legend|safe }}</legend>
               <div class="chipset">
-                <label class="pick"><input type="checkbox" name="ziel" value="Anfragen/Kontakte" checked><span>Anfragen/Kontakte</span></label>
-                <label class="pick"><input type="checkbox" name="ziel" value="Termin buchen"><span>Termin buchen</span></label>
-                <label class="pick"><input type="checkbox" name="ziel" value="Verkauf"><span>Verkauf</span></label>
-                <label class="pick"><input type="checkbox" name="ziel" value="Info/Präsenz"><span>Info/Präsenz</span></label>
+                {% for opt in t.confirm_page.ziel %}<label class="pick"><input type="checkbox" name="ziel" value="{{ opt.v }}"{% if opt.c %} checked{% endif %}><span>{{ opt.l|safe }}</span></label>{% endfor %}
               </div>
             </fieldset>
             <fieldset class="af-block">
-              <legend>Sprache</legend>
+              <legend>{{ t.confirm_page.sprache_legend|safe }}</legend>
               <div class="chipset">
-                <label class="pick"><input type="checkbox" name="sprache" value="Deutsch" checked><span>Deutsch</span></label>
-                <label class="pick"><input type="checkbox" name="sprache" value="Englisch"><span>Englisch</span></label>
+                {% for opt in t.confirm_page.sprache %}<label class="pick"><input type="checkbox" name="sprache" value="{{ opt.v }}"{% if opt.c %} checked{% endif %}><span>{{ opt.l|safe }}</span></label>{% endfor %}
               </div>
             </fieldset>
           </div>
         </section>
 
         <section class="af-section">
-          <div class="af-section-head"><span class="af-num">3</span><div><h4>Look &amp; Feel</h4><p>Wie soll die Seite wirken?</p></div></div>
+          <div class="af-section-head"><span class="af-num">3</span><div><h4>{{ t.confirm_page.sec3_h|safe }}</h4><p>{{ t.confirm_page.sec3_p|safe }}</p></div></div>
           <fieldset class="af-block">
-            <legend>Design-Stil</legend>
+            <legend>{{ t.confirm_page.stil_legend|safe }}</legend>
             <div class="chipset">
-              <label class="pick"><input type="checkbox" name="stil" value="Modern"><span>Modern</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Edel/Premium"><span>Edel/Premium</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Verspielt"><span>Verspielt</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Minimalistisch"><span>Minimalistisch</span></label>
-              <label class="pick"><input type="checkbox" name="stil" value="Warm/Einladend"><span>Warm/Einladend</span></label>
+              {% for opt in t.confirm_page.stil %}<label class="pick"><input type="checkbox" name="stil" value="{{ opt.v }}"><span>{{ opt.l|safe }}</span></label>{% endfor %}
             </div>
           </fieldset>
           <fieldset class="af-block">
-            <legend>Farbwelt &amp; Akzent</legend>
+            <legend>{{ t.confirm_page.farbwelt_legend|safe }}</legend>
             <div class="chipset">
-              <label class="pick"><input type="checkbox" name="farbwelt" value="Dunkel"><span>Dunkel</span></label>
-              <label class="pick"><input type="checkbox" name="farbwelt" value="Hell"><span>Hell</span></label>
-              <label class="pick"><input type="checkbox" name="farbwelt" value="Kräftig/Bunt"><span>Kräftig/Bunt</span></label>
-              <label class="pick"><input type="checkbox" name="farbwelt" value="Erdig/Natur"><span>Erdig/Natur</span></label>
-              <label class="fld fld-color"><span>Akzentfarbe</span><input type="color" name="akzent" value="#c8a24a"></label>
+              {% for opt in t.confirm_page.farbwelt %}<label class="pick"><input type="checkbox" name="farbwelt" value="{{ opt.v }}"><span>{{ opt.l|safe }}</span></label>{% endfor %}
+              <label class="fld fld-color"><span>{{ t.confirm_page.akzent_label|safe }}</span><input type="color" name="akzent" value="#c8a24a"></label>
             </div>
           </fieldset>
           <fieldset class="af-block">
-            <legend>Tonalität <small>(wie soll der Text klingen?)</small></legend>
+            <legend>{{ t.confirm_page.ton_legend|safe }} <small>{{ t.confirm_page.ton_small|safe }}</small></legend>
             <div class="chipset">
-              <label class="pick"><input type="checkbox" name="tonalitaet" value="Seriös"><span>Seriös</span></label>
-              <label class="pick"><input type="checkbox" name="tonalitaet" value="Locker/freundlich"><span>Locker/freundlich</span></label>
-              <label class="pick"><input type="checkbox" name="tonalitaet" value="Hochwertig"><span>Hochwertig</span></label>
-              <label class="pick"><input type="checkbox" name="tonalitaet" value="Herzlich"><span>Herzlich</span></label>
-              <label class="pick"><input type="checkbox" name="tonalitaet" value="Technisch"><span>Technisch</span></label>
+              {% for opt in t.confirm_page.tonalitaet %}<label class="pick"><input type="checkbox" name="tonalitaet" value="{{ opt.v }}"><span>{{ opt.l|safe }}</span></label>{% endfor %}
             </div>
           </fieldset>
         </section>
 
         <section class="af-section">
-          <div class="af-section-head"><span class="af-num">4</span><div><h4>Team &amp; Kontakt</h4><p>Damit alles Wichtige auf der Seite steht.</p></div></div>
+          <div class="af-section-head"><span class="af-num">4</span><div><h4>{{ t.confirm_page.sec4_h|safe }}</h4><p>{{ t.confirm_page.sec4_p|safe }}</p></div></div>
           <fieldset class="af-block">
-            <legend>Team auf der Seite zeigen?</legend>
+            <legend>{{ t.confirm_page.team_legend|safe }}</legend>
             <div class="chipset" role="radiogroup">
-              <label class="pick"><input type="radio" name="mitarbeiter" value="ja"><span>Ja, Team zeigen</span></label>
-              <label class="pick"><input type="radio" name="mitarbeiter" value="nein" checked><span>Nein</span></label>
+              <label class="pick"><input type="radio" name="mitarbeiter" value="ja"><span>{{ t.confirm_page.team_yes|safe }}</span></label>
+              <label class="pick"><input type="radio" name="mitarbeiter" value="nein" checked><span>{{ t.confirm_page.team_no|safe }}</span></label>
             </div>
             <div class="chipset af-sub">
               <label class="pick"><input type="radio" name="mitarbeiter_zahl" value="1"><span>1</span></label>
@@ -157,36 +133,36 @@
             </div>
           </fieldset>
           <div class="af-grid">
-            <label class="fld"><span>Standort (Stadt)</span><input type="text" name="stadt" maxlength="120" placeholder="z. B. Leipzig"></label>
-            <label class="fld"><span>Adresse <small>(optional)</small></span><input type="text" name="adresse" maxlength="160" placeholder="Straße, PLZ Ort"></label>
-            <label class="fld"><span>Telefon</span><input type="text" name="telefon" maxlength="40" placeholder="optional"></label>
-            <label class="fld"><span>Kontakt-E-Mail</span><input type="email" name="kontaktmail" maxlength="120" placeholder="optional"></label>
-            <label class="fld"><span>Öffnungszeiten</span><input type="text" name="oeffnungszeiten" maxlength="160" placeholder="z. B. Mo–Fr 8–18 Uhr"></label>
-            <label class="fld"><span>Slogan / Claim <small>(optional)</small></span><input type="text" name="slogan" maxlength="160" placeholder="Ein kurzer Satz, der euch beschreibt"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_stadt|safe }}</span><input type="text" name="stadt" maxlength="120" placeholder="{{ t.confirm_page.f_stadt_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_adresse|safe }} <small>{{ t.confirm_page.f_adresse_small|safe }}</small></span><input type="text" name="adresse" maxlength="160" placeholder="{{ t.confirm_page.f_adresse_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_telefon|safe }}</span><input type="text" name="telefon" maxlength="40" placeholder="{{ t.confirm_page.f_telefon_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_kontaktmail|safe }}</span><input type="email" name="kontaktmail" maxlength="120" placeholder="{{ t.confirm_page.f_kontaktmail_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_zeiten|safe }}</span><input type="text" name="oeffnungszeiten" maxlength="160" placeholder="{{ t.confirm_page.f_zeiten_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_slogan|safe }} <small>{{ t.confirm_page.f_slogan_small|safe }}</small></span><input type="text" name="slogan" maxlength="160" placeholder="{{ t.confirm_page.f_slogan_ph|safe }}"></label>
           </div>
         </section>
 
         <section class="af-section">
-          <div class="af-section-head"><span class="af-num">5</span><div><h4>Bilder</h4><p>Logo und Fotos machen die Seite echt (optional, bis 8).</p></div></div>
+          <div class="af-section-head"><span class="af-num">5</span><div><h4>{{ t.confirm_page.sec5_h|safe }}</h4><p>{{ t.confirm_page.sec5_p|safe }}</p></div></div>
           <label class="af-upload" id="uploadLabel">
             <input type="file" id="fileInput" accept="image/*" multiple hidden {% if not cloud_ready %}disabled{% endif %}>
-            <span class="af-upload-inner"><strong>Bilder auswählen</strong><small>PNG/JPG, per Klick oder Drag &amp; Drop</small></span>
+            <span class="af-upload-inner"><strong>{{ t.confirm_page.upload_h|safe }}</strong><small>{{ t.confirm_page.upload_sub|safe }}</small></span>
           </label>
           <div class="af-thumbs" id="thumbs"></div>
-          <p class="af-uphint" id="upHint" hidden>Lädt hoch …</p>
+          <p class="af-uphint" id="upHint" hidden>{{ t.confirm_page.uploading|safe }}</p>
         </section>
 
         <section class="af-section">
-          <div class="af-section-head"><span class="af-num">6</span><div><h4>Sonstiges</h4><p>Vorbilder und alles, was uns beim Bauen hilft.</p></div></div>
+          <div class="af-section-head"><span class="af-num">6</span><div><h4>{{ t.confirm_page.sec6_h|safe }}</h4><p>{{ t.confirm_page.sec6_p|safe }}</p></div></div>
           <div class="af-grid">
-            <label class="fld"><span>Habt ihr schon eine Website?</span><input type="url" name="aktuelle_website" maxlength="200" placeholder="https:// … (optional)"></label>
-            <label class="fld"><span>Vorbild-Seiten, die euch gefallen</span><input type="text" name="vorbilder" maxlength="200" placeholder="Links oder Namen (optional)"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_website|safe }}</span><input type="url" name="aktuelle_website" maxlength="200" placeholder="{{ t.confirm_page.f_website_ph|safe }}"></label>
+            <label class="fld"><span>{{ t.confirm_page.f_vorbilder|safe }}</span><input type="text" name="vorbilder" maxlength="200" placeholder="{{ t.confirm_page.f_vorbilder_ph|safe }}"></label>
           </div>
-          <label class="fld"><span>Weitere Wünsche</span><textarea name="extra" rows="3" maxlength="600" placeholder="Alles, was uns beim Bauen hilft — Besonderheiten, No-Gos …"></textarea></label>
+          <label class="fld"><span>{{ t.confirm_page.f_extra|safe }}</span><textarea name="extra" rows="3" maxlength="600" placeholder="{{ t.confirm_page.f_extra_ph|safe }}"></textarea></label>
         </section>
 
-        <button class="btn btn-lg btn-magnetic af-submit" type="submit" id="afSubmit">Anfrage absenden &amp; Website bauen lassen</button>
-        <p class="af-note">Kostenlos &amp; unverbindlich. Deine Beispiel-Website bleibt 1 Woche live — danach melden wir uns.</p>
+        <button class="btn btn-lg btn-magnetic af-submit" type="submit" id="afSubmit">{{ t.confirm_page.submit|safe }}</button>
+        <p class="af-note">{{ t.confirm_page.note|safe }}</p>
       </form>
 
       <script>
@@ -226,11 +202,11 @@
       {% else %}
       <div class="ang-sent ang-sent--error" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v4M12 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3>Link ungültig oder abgelaufen.</h3>
-        <p>Dieser Bestätigungslink funktioniert nicht mehr (er ist maximal 3 Tage gültig). Melde dich einfach noch einmal an, dann schicken wir dir einen frischen Link.</p>
+        <h3>{{ t.confirm_page.fail_h|safe }}</h3>
+        <p>{{ t.confirm_page.fail_p|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/#top">Erneut anmelden</a>
-          <a class="btn btn-ghost" href="/">Zur Startseite</a>
+          <a class="btn btn-magnetic" href="/#top">{{ t.confirm_page.fail_retry|safe }}</a>
+          <a class="btn btn-ghost" href="/">{{ t.confirm_page.fail_home|safe }}</a>
         </div>
       </div>
       {% endif %}

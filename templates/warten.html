@@ -1,9 +1,9 @@
 {% load static %}<!DOCTYPE html>
-<html lang="de-AT">
+<html lang="{{ t.meta.html_lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Deine Website wird gebaut | {{ c.site_name }}</title>
+  <title>{{ t.wait.title|safe }} | {{ c.site_name }}</title>
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#0a0908">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
 <body class="ang-page">
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} Startseite">
+    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
   </div>
@@ -28,24 +28,24 @@
     <div class="wrap wait-wrap" data-status-url="{% if status_token %}{% url 'bau_status' %}?t={{ status_token }}{% endif %}">
       <div class="wait-card" data-reveal>
         <div class="wait-orb" id="waitOrb"><span class="wait-orb-core" aria-hidden="true"></span></div>
-        <h1 id="waitTitle">Deine Website wird gebaut …{% if name %}<br><span class="wait-name">Danke, {{ name }}!</span>{% endif %}</h1>
-        <p class="wait-sub" id="waitSub">Lass dieses Fenster offen. Sobald deine Seite fertig ist, erscheint hier automatisch der Link — meist in wenigen Minuten.</p>
+        <h1 id="waitTitle">{{ t.wait.h1|safe }}{% if name %}<br><span class="wait-name">{{ t.wait.name_pre|safe }}{{ name }}{{ t.wait.name_post|safe }}</span>{% endif %}</h1>
+        <p class="wait-sub" id="waitSub">{{ t.wait.sub|safe }}</p>
 
         <ol class="wait-steps" id="waitSteps">
-          <li class="wait-step" data-s="1"><span class="wait-dot" aria-hidden="true"></span>In der Warteschlange</li>
-          <li class="wait-step" data-s="2"><span class="wait-dot" aria-hidden="true"></span>JARVIS schreibt &amp; baut die Seite</li>
-          <li class="wait-step" data-s="3"><span class="wait-dot" aria-hidden="true"></span>Geht online</li>
-          <li class="wait-step" data-s="4"><span class="wait-dot" aria-hidden="true"></span>Live &amp; bereit</li>
+          <li class="wait-step" data-s="1"><span class="wait-dot" aria-hidden="true"></span>{{ t.wait.step1|safe }}</li>
+          <li class="wait-step" data-s="2"><span class="wait-dot" aria-hidden="true"></span>{{ t.wait.step2|safe }}</li>
+          <li class="wait-step" data-s="3"><span class="wait-dot" aria-hidden="true"></span>{{ t.wait.step3|safe }}</li>
+          <li class="wait-step" data-s="4"><span class="wait-dot" aria-hidden="true"></span>{{ t.wait.step4|safe }}</li>
         </ol>
 
         <div class="wait-live" id="waitLive" hidden>
-          <a class="btn btn-lg btn-magnetic" id="waitLink" href="#" target="_blank" rel="noopener">Deine Seite ansehen
+          <a class="btn btn-lg btn-magnetic" id="waitLink" href="#" target="_blank" rel="noopener">{{ t.wait.view|safe }}
             <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="btn btn-ghost" href="/">Zur Startseite</a>
+          <a class="btn btn-ghost" href="/">{{ t.wait.home|safe }}</a>
         </div>
 
-        <p class="wait-hint" id="waitHint">Du bekommst den Link auch per E-Mail — du kannst diese Seite also jederzeit schließen.</p>
+        <p class="wait-hint" id="waitHint">{{ t.wait.hint|safe }}</p>
       </div>
     </div>
   </section>
@@ -58,9 +58,19 @@
   </div>
 </footer>
 
+<script>
+  window.I18N = {
+    wait: {
+      done_title: "{{ t.wait.js_done_title|escapejs }}", done_sub: "{{ t.wait.js_done_sub|escapejs }}",
+      done_hint: "{{ t.wait.js_done_hint|escapejs }}",
+      fail_title: "{{ t.wait.js_fail_title|escapejs }}", fail_sub: "{{ t.wait.js_fail_sub|escapejs }}"
+    }
+  };
+</script>
 <script src="{% static 'js/main.js' %}" defer></script>
 <script>
 (function(){
+  var W=(window.I18N&&window.I18N.wait)||{};
   // Failsafe: Reveal-Elemente sofort sichtbar machen — diese Seite darf NIE „schwarz"
   // erscheinen, auch wenn main.js (IntersectionObserver) mal nicht greift.
   Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function(el){ el.classList.add('in'); });
@@ -85,16 +95,16 @@
       var st=j.state;
       if(st==='done' && j.url){
         stopped=true; setStep(4,true); orb.classList.add('is-live');
-        title.textContent='Fertig! Deine Seite ist live.';
-        sub.textContent='Schau sie dir an — danach setzen wir sie gemeinsam mit dir perfekt um.';
+        title.textContent=W.done_title||'';
+        sub.textContent=W.done_sub||'';
         link.href=j.url; live.hidden=false;
-        hint.textContent='Den Link findest du auch in deiner E-Mail.';
+        hint.textContent=W.done_hint||'';
         return;
       }
       if(st==='failed'){
         stopped=true; orb.classList.add('is-err');
-        title.textContent='Da ist gerade etwas schiefgelaufen.';
-        sub.textContent='Kein Problem — wir kümmern uns persönlich darum und melden uns bei dir.';
+        title.textContent=W.fail_title||'';
+        sub.textContent=W.fail_sub||'';
         hint.textContent='';
         return;
       }

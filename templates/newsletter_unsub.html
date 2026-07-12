@@ -1,9 +1,9 @@
 {% load static %}<!DOCTYPE html>
-<html lang="de-AT">
+<html lang="{{ t.meta.html_lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Newsletter abgemeldet | {{ c.site_name }}</title>
+  <title>{{ t.unsub.title|safe }} | {{ c.site_name }}</title>
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#0a0908">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,23 +15,24 @@
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
 </head>
 <body class="ang-page">
-<a class="skip" href="#main">Zum Inhalt springen</a>
+<a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} Startseite">
+    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <button class="nav-burger" id="navBurger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
-      <nav class="nav-links" aria-label="Hauptnavigation">
-        <a href="/">Home</a>
-        <a href="/#leistungen">Leistungen</a>
-        <a href="/#preise">Preise</a>
-        <a href="/angebot/">Angebot</a>
-        <a href="/#kontakt">Kontakt</a>
+      <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
+        <a href="/">{{ t.nav.home|safe }}</a>
+        <a href="/#leistungen">{{ t.nav.leistungen|safe }}</a>
+        <a href="/#preise">{{ t.nav.preise|safe }}</a>
+        <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
+        <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
-      <a class="btn btn-sm btn-magnetic nav-cta" href="/angebot/">Angebot berechnen</a>
+      {% include 'lang_switch.html' %}
+      <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'angebot' %}">{{ t.nav.cta_angebot|safe }}</a>
     </div>
   </div>
 </header>
@@ -42,19 +43,19 @@
       {% if ok %}
       <div class="ang-sent" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Du bist abgemeldet.</h3>
-        <p>Wir schicken dir keinen Newsletter mehr. Schade, dass du gehst, du bist jederzeit wieder herzlich willkommen.</p>
+        <h3>{{ t.unsub.ok_h|safe }}</h3>
+        <p>{{ t.unsub.ok_p|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/">Zur Startseite</a>
+          <a class="btn btn-magnetic" href="/">{{ t.unsub.ok_home|safe }}</a>
         </div>
       </div>
       {% else %}
       <div class="ang-sent ang-sent--error" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v4M12 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3>Abmeldung nicht möglich.</h3>
-        <p>Dieser Abmeldelink ist ungültig. Schreib uns kurz an <a href="mailto:{{ c.email }}">{{ c.email }}</a>, dann nehmen wir dich manuell heraus.</p>
+        <h3>{{ t.unsub.fail_h|safe }}</h3>
+        <p>{{ t.unsub.fail_pre|safe }} <a href="mailto:{{ c.email }}">{{ c.email }}</a>{{ t.unsub.fail_post|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/">Zur Startseite</a>
+          <a class="btn btn-magnetic" href="/">{{ t.unsub.fail_home|safe }}</a>
         </div>
       </div>
       {% endif %}
