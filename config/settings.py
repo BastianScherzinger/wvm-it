@@ -32,7 +32,16 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.common.CommonMiddleware",
+    # CSRF-Schutz für alle POST-Formulare (Kontakt/Newsletter/Angebot/Detailbogen).
+    # War zuvor NICHT aktiv — die {% csrf_token %} wurden gerendert, aber nie geprüft.
+    "django.middleware.csrf.CsrfViewMiddleware",
+    # Clickjacking-Schutz (X-Frame-Options: DENY) — die Seite darf nicht in fremde iFrames.
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+X_FRAME_OPTIONS = "DENY"
+# Referrer sparsam mitgeben (SEO-/Analytics-freundlich, aber datenschonend).
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 ROOT_URLCONF = "config.urls"
 
@@ -89,3 +98,9 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
+    # HSTS: erzwingt HTTPS im Browser (1 Jahr). Bewusst OHNE includeSubDomains/preload,
+    # da nur www.wvm-it.tech per HTTPS bedient wird (die Apex-/übrige Subdomains nicht
+    # versehentlich mit-erfassen). Per Env feinjustierbar.
+    SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", "31536000"))
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "False").strip().lower() in ("1", "true", "yes")
+    SECURE_HSTS_PRELOAD = os.environ.get("SECURE_HSTS_PRELOAD", "False").strip().lower() in ("1", "true", "yes")

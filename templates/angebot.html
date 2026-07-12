@@ -1,5 +1,5 @@
 {% load static %}<!DOCTYPE html>
-<html lang="de">
+<html lang="de-AT">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,11 +7,18 @@
   <meta name="description" content="Stellen Sie Ihr Angebot in wenigen Schritten selbst zusammen: Webseiten, Shop, Domain, Hosting, KI-Automatisierung, Bots und SEO. Transparente Richtpreise, unverbindlich, Antwort in 24 Stunden.">
   <meta name="theme-color" content="#0a0908">
   <link rel="canonical" href="{{ c.wvm_url }}/angebot/">
+  <link rel="alternate" hreflang="de-AT" href="{{ c.wvm_url }}/angebot/">
   <meta name="robots" content="index,follow">
+  <meta name="geo.region" content="AT">
+  <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
+  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
   <meta property="og:title" content="Angebot konfigurieren | {{ c.site_name }}">
   <meta property="og:description" content="Webseiten, KI, Automatisierung und mehr in wenigen Schritten zusammenstellen und Richtpreis sofort sehen.">
   <meta property="og:type" content="website">
-  {% if c.hero_bg %}<meta property="og:image" content="{{ c.hero_bg }}">{% endif %}
+  <meta property="og:site_name" content="{{ c.site_name }}">
+  <meta property="og:locale" content="de_AT">
+  <meta property="og:url" content="{{ c.wvm_url }}/angebot/">
+  {% if c.hero_bg %}<meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

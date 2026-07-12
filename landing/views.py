@@ -7,6 +7,7 @@ Das Kontaktformular wird per POST entgegengenommen: gibt es eine SMTP-Konfigurat
 (EMAIL_* / KONTAKT_EMPFAENGER in der Umgebung), wird die Anfrage gemailt ,  sonst
 wird sie still geloggt. In beiden Fällen sieht der Besucher eine Erfolgsmeldung.
 """
+import hmac
 import json
 import os
 import re
@@ -130,6 +131,21 @@ ANGEBOT_GROUPS = [
         ],
     },
 ]
+
+# ── Kooperationen (erweiterbar) ───────────────────────────────────────────────
+# Neue Kooperationspartner einfach als weiteren Eintrag ergänzen (logo = Pfad unter
+# static/img, rolle = kurze Rollenbezeichnung, url = externe Seite).
+KOOPERATIONEN = [
+    {
+        "name": "PyStore",
+        "rolle": "Webentwicklung",
+        "url": "https://www.pystore.de",
+        "domain": "pystore.de",
+        "logo": "img/coop_pystore.jpg",
+        "text": "Unser Partner für Webentwicklung und digitale Produkte.",
+    },
+]
+
 
 def _eur(n) -> str:
     """1490 -> '1.490' (deutsche Tausendertrennung, ganze Euro)."""
@@ -290,21 +306,6 @@ def _client_ip(request) -> str:
     """Client-IP (hinter Railways Proxy erste Adresse aus X-Forwarded-For), als Consent-Nachweis."""
     xff = (request.META.get("HTTP_X_FORWARDED_FOR") or "").split(",")[0].strip()
     return xff or request.META.get("REMOTE_ADDR", "") or ""
-
-
-def _newsletter_store(email: str, wunsch: str, ip: str) -> None:
-    """Bestätigten Abonnenten + Bau-Auftrag (queued) in Supabase ablegen.
-    Ohne Supabase-Env ein stiller No-Op; Fehler brechen den Bestätigungs-Flow nie ab."""
-    try:
-        from . import supa
-        if not supa.enabled():
-            return
-        unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
-        sid = supa.upsert_subscriber(email, wunsch, consent_ip=ip, unsub_token=unsub)
-        if sid:
-            supa.enqueue_job(sid, email, wunsch)
-    except Exception as exc:
-        print(f"[NEWSLETTER-STORE-FEHLER] {exc}", flush=True)
 
 
 def _subscriber_confirm(email: str, wunsch: str, ip: str) -> None:
@@ -706,7 +707,7 @@ def newsletter_weekly(request):
     """Geschützter Trigger (per Cron/HTTP). ?key=WEEKLY_TRIGGER_KEY, optional &force=1."""
     key = (request.GET.get("key") or "").strip()
     expected = os.environ.get("WEEKLY_TRIGGER_KEY", "").strip()
-    if not expected or key != expected:
+    if not expected or not hmac.compare_digest(key, expected):
         return HttpResponse("forbidden", status=403)
     res = _send_weekly(force=(request.GET.get("force") == "1"))
     return HttpResponse(json.dumps(res), content_type="application/json")
@@ -718,7 +719,7 @@ def newsletter_diag(request):
     Aufruf: /newsletter/diagnose/?key=WEEKLY_TRIGGER_KEY[&to=name@domain]"""
     key = (request.GET.get("key") or "").strip()
     expected = os.environ.get("WEEKLY_TRIGGER_KEY", "").strip()
-    if not expected or key != expected:
+    if not expected or not hmac.compare_digest(key, expected):
         return HttpResponse("forbidden", status=403)
     pw = getattr(settings, "EMAIL_HOST_PASSWORD", "") or ""
     info = {
@@ -766,6 +767,7 @@ def index(request):
             sent = _handle_contact(request, c)
     return render(request, "index.html", {
         "c": c, "sent": sent, "news_sent": news_sent, "angebot_groups": ANGEBOT_GROUPS,
+        "kooperationen": KOOPERATIONEN,
     })
 
 
@@ -839,6 +841,73 @@ def angebot_anfordern(request):
             print(f"[ANGEBOT-LEAD-FEHLER] {exc}", flush=True)
     return JsonResponse({"ok": True, "once": once, "mtl": mtl, "yr": yr,
                          "anfrage": anfrage, "summe": summe_txt, "count": len(ids)})
+
+
+def robots_txt(request):
+    """robots.txt: alles indexierbar außer den technischen/geschützten Endpunkten;
+    verweist auf die Sitemap (wichtig fürs Google-Crawling in Österreich)."""
+    base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        "Disallow: /newsletter/diagnose/",
+        "Disallow: /newsletter/wochenversand/",
+        "Disallow: /bau/status/",
+        "Disallow: /cloudinary/signatur/",
+        "Disallow: /anfrage/absenden/",
+        "Disallow: /warten/",
+        "",
+        f"Sitemap: {base}/sitemap.xml",
+        "",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain; charset=utf-8")
+
+
+def sitemap_xml(request):
+    """Schlanke XML-Sitemap der öffentlichen Seiten (Startseite + Angebot)."""
+    base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
+    urls = [
+        (f"{base}/", "1.0", "weekly"),
+        (f"{base}/angebot/", "0.8", "monthly"),
+    ]
+    items = "".join(
+        f"<url><loc>{loc}</loc><changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
+        for loc, pr, cf in urls
+    )
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+           + items + "</urlset>")
+    return HttpResponse(xml, content_type="application/xml; charset=utf-8")
+
+
+def kooperation_anfordern(request):
+    """Kooperations-Anfrage (JSON): ein potenzieller Partner meldet sich. Mailt an den
+    Inhaber und schickt dem Absender eine kurze Bestätigung. Kein Konto/keine DB nötig."""
+    c = _content()
+    if request.method != "POST":
+        return JsonResponse({"ok": False}, status=405)
+    name = (request.POST.get("name") or "").strip()
+    email = (request.POST.get("email") or "").strip()
+    firma = (request.POST.get("firma") or "").strip()
+    nachricht = (request.POST.get("nachricht") or "").strip()
+    if not name or "@" not in email or " " in email:
+        return JsonResponse({"ok": False, "error": "eingabe"}, status=400)
+    empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empf)
+    body = (
+        "Neue Kooperations-Anfrage über wvm-it.tech\n\n"
+        f"Name:    {name}\nFirma:   {firma or '-'}\nE-Mail:  {email}\n\n"
+        f"Nachricht:\n{nachricht or '-'}\n"
+    )
+    _send_mail_logged(f"Kooperations-Anfrage von {name}", body, from_email, [empf], tag="KOOPERATION")
+    ack = (
+        f"Hallo {name},\n\ndanke für dein Interesse an einer Kooperation mit "
+        f"{c.get('site_name', 'WVM-IT')}. Wir sehen uns deine Nachricht an und melden uns "
+        "zeitnah bei dir.\n\n"
+        f"Beste Grüße\ndein Team von {c.get('site_name', 'WVM-IT')}\n{c.get('wvm_url', '')}\n"
+    )
+    _send_mail_logged("Danke für deine Kooperations-Anfrage", ack, from_email, [email], tag="KOOPERATION-ACK")
+    return JsonResponse({"ok": True})
 
 
 def health(request):

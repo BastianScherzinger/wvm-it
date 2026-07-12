@@ -1,12 +1,22 @@
 {% load static %}<!DOCTYPE html>
-<html lang="de">
+<html lang="de-AT">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ c.seo_title }}</title>
   <meta name="description" content="{{ c.seo_desc }}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="{{ c.site_name }} · {{ c.inhaber_name }}">
   <meta name="theme-color" content="#0a0908">
   <link rel="canonical" href="{{ c.wvm_url }}/">
+  <link rel="alternate" hreflang="de-AT" href="{{ c.wvm_url }}/">
+  <link rel="alternate" hreflang="x-default" href="{{ c.wvm_url }}/">
+  <!-- Lokal-SEO Österreich -->
+  <meta name="geo.region" content="AT">
+  <meta name="geo.placename" content="Österreich">
+  <!-- Favicon / App-Icon -->
+  <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
+  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="preconnect" href="https://prod.spline.design" crossorigin>
   <!-- 3D-Viewer vorladen, damit der Roboter frueher erscheint -->
@@ -14,8 +24,15 @@
   <meta property="og:title" content="{{ c.seo_title }}">
   <meta property="og:description" content="{{ c.seo_desc }}">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="{{ c.hero_bg }}">
+  <meta property="og:site_name" content="{{ c.site_name }}">
+  <meta property="og:locale" content="de_AT">
+  <meta property="og:url" content="{{ c.wvm_url }}/">
+  <meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
+  <meta property="og:image:alt" content="{{ c.site_name }} — Technik und Digitales aus einer Hand">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ c.seo_title }}">
+  <meta name="twitter:description" content="{{ c.seo_desc }}">
+  <meta name="twitter:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
   {% if c.hero_bg %}<link rel="preload" as="image" href="{{ c.hero_bg }}">{% endif %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +40,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ProfessionalService","name":"{{ c.site_name }}","description":"{{ c.seo_desc }}","url":"{{ c.wvm_url }}","areaServed":["AT","DE"],"telephone":"{{ c.telefon }}","email":"{{ c.email }}","priceRange":"ab {{ c.preis_ab }} EUR"}
+  {"@context":"https://schema.org","@type":"ProfessionalService","@id":"{{ c.wvm_url }}/#business","name":"{{ c.site_name }}","legalName":"WVM-IT, {{ c.inhaber_name }}","description":"{{ c.seo_desc }}","url":"{{ c.wvm_url }}/","logo":"{{ c.wvm_url }}{{ c.logo_mark }}","image":"{{ c.wvm_url }}{{ c.hero_bg }}","telephone":"{{ c.telefon }}","email":"{{ c.email }}","priceRange":"ab {{ c.preis_ab }} EUR","currenciesAccepted":"EUR","founder":{"@type":"Person","name":"{{ c.inhaber_name }}"},"address":{"@type":"PostalAddress","addressCountry":"AT"},"areaServed":[{"@type":"Country","name":"Österreich"},{"@type":"Country","name":"Deutschland"}],"knowsAbout":["Smarthome","Gebäudeautomation","Loxone","KNX","Konferenztechnik","Veranstaltungstechnik","EDV","Netzwerksicherheit","Webentwicklung","SEO","KI-Automatisierung"]}
   </script>
 </head>
 <body>
@@ -126,7 +143,7 @@
           <input type="hidden" name="form" value="newsletter">
           <div class="field">
             <label class="fld-l" for="of-mail">Deine E-Mail</label>
-            <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.de">
+            <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
           </div>
           <label class="offer-consent"><input type="checkbox" name="einwilligung" required> Ich möchte die kostenlose Beispiel-Website, meinen 25%-Code und den wöchentlichen Referenz-Newsletter (ca. 1&#215;/Woche, jederzeit abbestellbar) erhalten und stimme der <a href="#datenschutz">Datenschutzerklärung</a> zu.</label>
           <button class="btn btn-lg btn-magnetic offer-submit" type="submit">Gratis-Website sichern<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -158,6 +175,7 @@
       </header>
 
       <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
+        {% csrf_token %}
         <div class="rb-grid">
           <div class="rb-cats">
             {% for g in angebot_groups %}
@@ -570,6 +588,83 @@
     </div>
   </section>
 
+  <!-- ── KOOPERATIONEN ─────────────────────────────────────────────────────── -->
+  <section class="section" id="kooperationen">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>Kooperationen</span>
+        <h2 class="section-t">Gemeinsam mehr möglich machen.</h2>
+        <p class="section-lead">Wir arbeiten mit ausgewählten Partnern zusammen, die unseren Anspruch an Qualität und Verlässlichkeit teilen. Hier stellen wir sie vor.</p>
+      </header>
+
+      <div class="coop-grid" data-reveal>
+        {% for k in kooperationen %}
+        <a class="coop-card spot" data-spot href="{{ k.url }}" target="_blank" rel="noopener" aria-label="{{ k.name }} ({{ k.rolle }})">
+          <div class="coop-logo"><img src="{% static k.logo %}" alt="{{ k.name }} Logo" loading="lazy" width="1100" height="618"></div>
+          <div class="coop-meta">
+            <div class="coop-meta-top">
+              <strong class="coop-name">{{ k.name }}</strong>
+              <span class="coop-role">{{ k.rolle }}</span>
+            </div>
+            <p class="coop-text">{{ k.text }}</p>
+            <span class="coop-link">{{ k.domain }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+        {% empty %}
+        <div class="coop-empty">Bald stellen wir hier unsere Kooperationspartner vor.</div>
+        {% endfor %}
+      </div>
+
+      <!-- Partner werden -->
+      <div class="coop-join" id="partner-werden" data-reveal>
+        <div class="coop-join-copy">
+          <span class="coop-join-ic" aria-hidden="true">{% include 'icons.html' with name='handshake' %}</span>
+          <div>
+            <h3>Willst du unser Kooperationspartner werden?</h3>
+            <p>Ob Technik, Design, Vertrieb oder eine ganz neue Idee: Wenn du glaubst, dass wir gut zusammenpassen, schreib uns kurz. Wir melden uns zeitnah.</p>
+          </div>
+        </div>
+        <form class="coop-form" id="coopForm" method="post" action="{% url 'kooperation_anfordern' %}">
+          {% csrf_token %}
+          <div class="coop-f-row">
+            <label class="fld"><span>Name *</span><input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="Dein Name"></label>
+            <label class="fld"><span>Firma</span><input type="text" name="firma" maxlength="120" autocomplete="organization" placeholder="optional"></label>
+          </div>
+          <label class="fld"><span>E-Mail *</span><input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
+          <label class="fld"><span>Worum geht es? *</span><textarea name="nachricht" rows="3" required maxlength="1200" placeholder="Kurz: worin ihr stark seid und wie eine Zusammenarbeit aussehen könnte."></textarea></label>
+          <button class="btn btn-lg btn-magnetic coop-submit" type="submit" id="coopSubmit">Kooperation anfragen<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="coop-fine">Unverbindlich. Wir behandeln deine Angaben vertraulich.</p>
+          <div class="coop-done" id="coopDone" hidden>
+            <div class="coop-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><strong>Danke! Deine Anfrage ist unterwegs.</strong><p>Wir schauen sie uns an und melden uns zeitnah bei dir.</p></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function(){
+    var form=document.getElementById('coopForm'); if(!form) return;
+    var submit=document.getElementById('coopSubmit'), done=document.getElementById('coopDone');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent='Wird gesendet …';
+      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if(!j.ok) throw new Error('fail');
+          form.querySelectorAll('.fld,.coop-f-row,.coop-submit,.coop-fine').forEach(function(el){ el.hidden=true; });
+          done.hidden=false; done.scrollIntoView({behavior:'smooth',block:'center'});
+        })
+        .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
+          submit.textContent='Kooperation anfragen';
+          alert('Das hat gerade nicht geklappt. Bitte in einem Moment erneut versuchen.'); });
+    });
+  })();
+  </script>
+
   <!-- ── KONTAKT ───────────────────────────────────────────────────────────── -->
   <section class="section section-alt" id="kontakt">
     <div class="wrap contact">
@@ -597,10 +692,10 @@
         {% csrf_token %}
         <div class="f-row">
           <label>Name<input type="text" name="name" required autocomplete="name" placeholder="Ihr Name"></label>
-          <label>E-Mail<input type="email" name="email" required autocomplete="email" placeholder="name@firma.de"></label>
+          <label>E-Mail<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
         </div>
         <div class="f-row">
-          <label>Telefon <span class="opt">(optional)</span><input type="tel" name="telefon" autocomplete="tel" placeholder="+49 ..."></label>
+          <label>Telefon <span class="opt">(optional)</span><input type="tel" name="telefon" autocomplete="tel" placeholder="+43 ..."></label>
           <label>Budget <span class="opt">(optional)</span>
             <select name="budget">
               <option value="">Bitte wählen</option>
@@ -630,7 +725,7 @@
     </div>
     <nav class="foot-nav" aria-label="Footer">
       <div><h4>Leistungen</h4><a href="#leistungen">Smarthome &amp; KNX</a><a href="#leistungen">Konferenz &amp; AV-Technik</a><a href="#leistungen">EDV &amp; Sicherheit</a><a href="#leistungen">Webseiten &amp; KI</a></div>
-      <div><h4>Unternehmen</h4><a href="#partner">Partner</a><a href="#preise">Preise</a><a href="#stimmen">Stimmen</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">Shop</a>{% endif %}</div>
+      <div><h4>Unternehmen</h4><a href="#partner">Partner</a><a href="#kooperationen">Kooperationen</a><a href="#preise">Preise</a><a href="#stimmen">Stimmen</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">Shop</a>{% endif %}</div>
       <div><h4>Rechtliches</h4><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></div>
     </nav>
   </div>
