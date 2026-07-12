@@ -62,24 +62,49 @@ def enqueue_job(subscriber_id, email, wunsch="", images=None):
     if not enabled():
         return None
     import json as _json
+    # Doppel-Schutz: kein neuer Auftrag, solange einer offen ist ODER wenn in den letzten
+    # 2 Tagen bereits eine Seite für denselben Abonnenten fertig gebaut wurde. Das verhindert
+    # den häufigen Fall „Bestätigungslink später erneut geklickt / Formular erneut abgeschickt
+    # → zweiter Bau + zweite Link-Mail zur selben Seite".
     sql = """
         insert into wvm.build_jobs (subscriber_id, email, website_wunsch, images, status)
         select %s, %s, %s, %s::jsonb, 'queued'
         where not exists (
             select 1 from wvm.build_jobs
-            where subscriber_id = %s and status in ('queued','processing','review')
-        );
+            where subscriber_id = %s
+              and ( status in ('queued','processing','review')
+                 or (status = 'done' and created_at > now() - interval '2 days') )
+        )
+        returning id;
     """
     try:
         with closing(_connect()) as conn:
             with conn.cursor() as cur:
                 cur.execute(sql, (subscriber_id, email, wunsch or "",
                                   _json.dumps(images or []), subscriber_id))
+                created = cur.fetchone() is not None
             conn.commit()
-            return True
+            return created
     except Exception as exc:
         print(f"[SUPABASE-FEHLER] enqueue_job: {exc}", flush=True)
         return None
+
+
+def subscriber_status(email):
+    """Aktueller Status eines Abonnenten ('confirmed'/'active'/...) oder '' — für die
+    Einmaligkeit des Bestätigungslinks (kein erneuter Willkommens-Mail-Versand bei
+    Prefetch/Reload/erneutem Klick)."""
+    if not enabled() or not email:
+        return ""
+    try:
+        with closing(_connect()) as conn:
+            with conn.cursor() as cur:
+                cur.execute("select coalesce(status,'') from wvm.subscribers where email=%s", (email,))
+                row = cur.fetchone()
+                return (row[0] or "") if row else ""
+    except Exception as exc:
+        print(f"[SUPABASE-FEHLER] subscriber_status: {exc}", flush=True)
+        return ""
 
 
 def job_status(email):

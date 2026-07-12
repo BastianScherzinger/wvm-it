@@ -56,8 +56,12 @@
   </div>
 </footer>
 
+<script src="{% static 'js/main.js' %}" defer></script>
 <script>
 (function(){
+  // Failsafe: Reveal-Elemente sofort sichtbar machen — diese Seite darf NIE „schwarz"
+  // erscheinen, auch wenn main.js (IntersectionObserver) mal nicht greift.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function(el){ el.classList.add('in'); });
   var wrap=document.querySelector('.wait-wrap'); if(!wrap) return;
   var url=wrap.getAttribute('data-status-url');
   var steps=document.getElementById('waitSteps'), orb=document.getElementById('waitOrb'),

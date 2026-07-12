@@ -493,8 +493,19 @@ def newsletter_confirm(request):
         wunsch = (data.get("w") or "").strip()
         name = (data.get("n") or "").strip()
         if email:
-            _newsletter_deliver(email, wunsch, c, name=name)
-            _subscriber_confirm(email, wunsch, _client_ip(request))
+            # Einmaligkeit: Willkommens-/Info-Mail nur beim ERSTEN Bestätigen verschicken.
+            # E-Mail-Scanner rufen Links vorab auf (Prefetch) und Reloads/erneute Klicks
+            # würden sonst dieselbe Mail mehrfach auslösen. Ist der Abonnent schon
+            # bestätigt/aktiv, zeigen wir nur den Detail-Bogen — ohne erneuten Versand.
+            already = False
+            try:
+                from . import supa
+                already = supa.subscriber_status(email) in ("confirmed", "active")
+            except Exception:
+                already = False
+            if not already:
+                _newsletter_deliver(email, wunsch, c, name=name)
+                _subscriber_confirm(email, wunsch, _client_ip(request))
             # signiertes Token trägt E-Mail/Name/erste Angaben sicher zum Detail-Bogen
             anfrage_token = signing.dumps({"e": email, "n": name, "w": wunsch},
                                           salt=_ANFRAGE_SALT, compress=True)
