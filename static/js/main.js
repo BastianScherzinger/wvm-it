@@ -118,8 +118,9 @@
         return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl")));
       } catch (e) { return false; }
     })();
-    const isMobile = window.matchMedia("(max-width: 980px)").matches;
-    if (reduce || !hasWebGL || isMobile) return;           // Fallback-Bild (Cutout) bleibt sichtbar
+    // 3D-Roboter auch auf Mobile laden (WebGL vorausgesetzt). Faellt die Szene aus,
+    // bleibt der selbst gehostete Cutout stehen (siehe Sicherheitsnetz unten).
+    if (reduce || !hasWebGL) return;                        // Fallback-Bild (Cutout) bleibt sichtbar
     const canvas = document.getElementById("robotCanvas");
     const loader = document.getElementById("robotLoader");
     const url = stage.getAttribute("data-spline");
@@ -137,6 +138,7 @@
     viewer.addEventListener("click", function () { stage.click(); }); // Klick auf 3D-Roboter -> Sprechblase
 
     let settled = false;
+    const hasCanvas = function () { const sr = viewer.shadowRoot; return !!(sr && sr.querySelector("canvas")); };
     const ready = function () {
       if (settled) return; settled = true;
       stage.classList.add("spline-on");                   // blendet Fallback aus, Canvas ein
@@ -149,7 +151,13 @@
       const sr = viewer.shadowRoot;
       if (sr) { killLogo(sr); if (sr.querySelector("canvas")) { clearInterval(poll); setTimeout(ready, 300); } }
     }, 150);
-    setTimeout(function () { clearInterval(poll); ready(); }, 7000); // Sicherheitsnetz
+    // Sicherheitsnetz: nur einblenden, wenn Spline wirklich ein Canvas gerendert hat.
+    // Sonst (z. B. schwaches Mobilgeraet) Fallback-Cutout sichtbar lassen, nur Loader ausblenden.
+    setTimeout(function () {
+      clearInterval(poll);
+      if (hasCanvas()) ready();
+      else if (loader) loader.classList.add("hide");
+    }, 7000);
     };
     // Externe 3D-Inhalte (Spline via unpkg/prod.spline.design) NUR mit Cookie-Einwilligung
     // laden (DSGVO) — ohne Zustimmung bleibt der selbst gehostete Fallback-Cutout sichtbar.
