@@ -11,9 +11,11 @@
   <link rel="canonical" href="{{ c.wvm_url }}{{ canonical_path }}">
   {% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
   {% endfor %}
-  <!-- Lokal-SEO Österreich -->
+  <!-- Lokal-SEO: Österreich (Sitz) und Deutschland (Zielmarkt) -->
   <meta name="geo.region" content="AT">
-  <meta name="geo.placename" content="Österreich">
+  <meta name="geo.region" content="DE">
+  <meta name="geo.placename" content="Österreich, Deutschland">
+  <meta name="keywords" content="WVM-IT, Smarthome, Loxone, KNX, Gebäudeautomation, Konferenztechnik, Veranstaltungstechnik, EDV, Netzwerk, Webseiten, Hosting, SEO, KI-Automatisierung, Österreich, Deutschland">
   <!-- Favicon / App-Icon -->
   <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
   <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
@@ -29,6 +31,8 @@
   {% if lang != 'ro' %}<meta property="og:locale:alternate" content="ro_RO">{% endif %}
   <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
   <meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="{{ c.site_name }} — {{ t.meta.og_image_alt_suffix|safe }}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ t.meta.seo_title|safe }}">
@@ -39,9 +43,9 @@
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ProfessionalService","@id":"{{ c.wvm_url }}/#business","name":"{{ c.site_name }}","legalName":"WVM-IT, {{ c.inhaber_name }}","description":"{{ t.meta.seo_desc }}","url":"{{ c.wvm_url }}/","logo":"{{ c.wvm_url }}{{ c.logo_mark }}","image":"{{ c.wvm_url }}{{ c.hero_bg }}","telephone":"{{ c.telefon }}","email":"{{ c.email }}","priceRange":"ab {{ c.preis_ab }} EUR","currenciesAccepted":"EUR","founder":{"@type":"Person","name":"{{ c.inhaber_name }}"},"address":{"@type":"PostalAddress","addressCountry":"AT"},"areaServed":[{"@type":"Country","name":"Österreich"},{"@type":"Country","name":"Deutschland"}],"knowsAbout":["Smarthome","Gebäudeautomation","Loxone","KNX","Konferenztechnik","Veranstaltungstechnik","EDV","Netzwerksicherheit","Webentwicklung","SEO","KI-Automatisierung"]}
-  </script>
+  <!-- Strukturierte Daten (SEO + GEO): @graph mit ProfessionalService (Local-SEO AT+DE,
+       Preise als OfferCatalog), WebSite und FAQPage — server-seitig gebaut (views._structured_data). -->
+  <script type="application/ld+json">{{ structured_data|safe }}</script>
 </head>
 <body>
 <script>
@@ -60,6 +64,8 @@
     <a class="brand" href="#top" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
+    <!-- Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) -->
+    <div class="nav-lang-mobile">{% include 'lang_switch.html' %}</div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
@@ -595,6 +601,28 @@
           <blockquote>{{ t.stimmen.q3|safe }}</blockquote>
           <figcaption><span class="q-av" aria-hidden="true">TR</span><span><strong>{{ t.stimmen.q3_name|safe }}</strong>{{ t.stimmen.q3_role|safe }}</span></figcaption>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ (GEO: sichtbare Antworten + FAQPage-Schema für KI-Antwortmaschinen) ── -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>{{ t.faq.eyebrow|safe }}</span>
+        <h2 class="section-t" id="faq-title">{{ t.faq.h|safe }}</h2>
+        <p class="section-lead">{{ t.faq.lead|safe }}</p>
+      </header>
+      <div class="faq" data-reveal>
+        {% for item in t.faq.items %}
+        <details class="faq-item"{% if forloop.first %} open{% endif %}>
+          <summary class="faq-q">
+            <span>{{ item.q }}</span>
+            <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </summary>
+          <div class="faq-a"><p>{{ item.a }}</p></div>
+        </details>
+        {% endfor %}
       </div>
     </div>
   </section>

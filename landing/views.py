@@ -812,6 +812,108 @@ def newsletter_diag(request):
                         content_type="application/json; charset=utf-8")
 
 
+# Städte, die WVM-IT in Österreich und Deutschland bedient (Local-/GEO-Signal).
+_AREA_CITIES = ["Wien", "Graz", "Linz", "Salzburg", "Innsbruck", "Klagenfurt",
+                "München", "Stuttgart", "Frankfurt am Main", "Berlin"]
+
+
+def _structured_data(c, lang):
+    """Baut das JSON-LD-@graph server-seitig (robust gegen Template-Escaping): ein
+    ProfessionalService (Local-SEO AT+DE, Preise als OfferCatalog), die WebSite und
+    eine FAQPage aus dem aktiven Sprachpaket. Rückgabe: fertiger JSON-String."""
+    base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
+    pack = i18n.get_pack(lang)
+    words = pack.get("catalog_words", {})
+    citems = pack.get("catalog_items", {})
+
+    # Maschinenlesbarer Preis-Katalog aus der einzigen Preisquelle (ANGEBOT_GROUPS).
+    offers = []
+    for g in ANGEBOT_GROUPS:
+        for it in g["items"]:
+            name = citems.get(it["id"], {}).get("name", it["name"])
+            svc = {"@type": "Service", "name": name,
+                   "serviceType": g["title"], "provider": {"@id": f"{base}/#business"}}
+            offer = {"@type": "Offer", "itemOffered": svc,
+                     "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}
+            price = it.get("once") or it.get("mtl") or it.get("yr")
+            if price:
+                offer["price"] = str(price)
+                offer["priceSpecification"] = {
+                    "@type": "PriceSpecification", "price": str(price),
+                    "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
+                }
+            offers.append(offer)
+
+    area_served = ([{"@type": "Country", "name": "Österreich"},
+                    {"@type": "Country", "name": "Deutschland"}]
+                   + [{"@type": "City", "name": city} for city in _AREA_CITIES])
+
+    business = {
+        "@type": "ProfessionalService",
+        "@id": f"{base}/#business",
+        "name": c.get("site_name", "WVM-IT"),
+        "legalName": f"WVM-IT, {c.get('inhaber_name', 'Florin Feier')}",
+        "description": pack["meta"]["seo_desc"],
+        "url": f"{base}/",
+        "logo": f"{base}{c.get('logo_mark', '')}",
+        "image": f"{base}{c.get('hero_bg', '')}",
+        "telephone": c.get("telefon", ""),
+        "email": c.get("email", ""),
+        "priceRange": f"ab {c.get('preis_ab', '350')} EUR",
+        "currenciesAccepted": "EUR",
+        "paymentAccepted": "Überweisung, Rechnung",
+        "founder": {"@type": "Person", "name": c.get("inhaber_name", "Florin Feier"),
+                    "jobTitle": "Inhaber"},
+        "address": {"@type": "PostalAddress", "addressCountry": "AT"},
+        "areaServed": area_served,
+        "availableLanguage": ["de", "en", "ro"],
+        "knowsAbout": ["Smarthome", "Gebäudeautomation", "Loxone", "KNX",
+                       "Konferenztechnik", "Veranstaltungstechnik", "Bühnentechnik",
+                       "EDV", "Netzwerksicherheit", "Webentwicklung", "Hosting",
+                       "SEO", "GEO", "KI-Automatisierung"],
+        "contactPoint": {
+            "@type": "ContactPoint", "contactType": "customer service",
+            "telephone": c.get("telefon", ""), "email": c.get("email", ""),
+            "areaServed": ["AT", "DE"], "availableLanguage": ["de", "en", "ro"],
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00", "closes": "18:00",
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Leistungen von WVM-IT",
+            "itemListElement": offers,
+        },
+    }
+
+    website = {
+        "@type": "WebSite", "@id": f"{base}/#website", "url": f"{base}/",
+        "name": c.get("site_name", "WVM-IT"),
+        "inLanguage": ["de", "en", "ro"],
+        "publisher": {"@id": f"{base}/#business"},
+    }
+
+    graph = [business, website]
+
+    faq = pack.get("faq", {})
+    faq_items = faq.get("items", [])
+    if faq_items:
+        graph.append({
+            "@type": "FAQPage", "@id": f"{base}/#faq",
+            "inLanguage": pack["meta"]["html_lang"],
+            "mainEntity": [
+                {"@type": "Question", "name": q["q"],
+                 "acceptedAnswer": {"@type": "Answer", "text": q["a"]}}
+                for q in faq_items
+            ],
+        })
+
+    return json.dumps({"@context": "https://schema.org", "@graph": graph},
+                      ensure_ascii=False, separators=(",", ":"))
+
+
 def index(request):
     c = _content()
     sent = False
@@ -821,10 +923,12 @@ def index(request):
             news_sent = _handle_newsletter(request, c)
         else:
             sent = _handle_contact(request, c)
+    lang = get_language()
     return render(request, "index.html", {
         "c": c, "sent": sent, "news_sent": news_sent,
-        "angebot_groups": _localized_groups(get_language()),
+        "angebot_groups": _localized_groups(lang),
         "kooperationen": KOOPERATIONEN,
+        "structured_data": _structured_data(c, lang),
     })
 
 
@@ -906,31 +1010,97 @@ def angebot_anfordern(request):
                          "anfrage": anfrage, "summe": summe_txt, "count": len(ids)})
 
 
+# Interne/technische Pfade, die kein Bot indexieren soll (Basis für robots.txt).
+_ROBOTS_DISALLOW = [
+    "/newsletter/diagnose/",
+    "/newsletter/wochenversand/",
+    "/bau/status/",
+    "/cloudinary/signatur/",
+    "/anfrage/absenden/",
+    "/warten/",
+    "/sprache/",
+]
+
+# KI-/Antwortmaschinen-Crawler, die wir ausdrücklich willkommen heißen (GEO): Sie dürfen
+# die öffentlichen Seiten lesen, damit WVM-IT in ChatGPT, Perplexity, Gemini, Claude &
+# Google-AI-Overviews auftauchen und zitiert werden kann.
+_AI_CRAWLERS = [
+    "GPTBot", "OAI-SearchBot", "ChatGPT-User",          # OpenAI
+    "PerplexityBot", "Perplexity-User",                  # Perplexity
+    "ClaudeBot", "Claude-SearchBot", "anthropic-ai",     # Anthropic / Claude
+    "Google-Extended",                                    # Google Gemini / AI Overviews
+    "Applebot-Extended",                                  # Apple Intelligence
+    "CCBot",                                              # Common Crawl (Trainings-/Retrieval-Basis)
+    "Amazonbot", "Bytespider", "cohere-ai",              # weitere KI-Crawler
+]
+
+
 def robots_txt(request):
     """robots.txt: alles indexierbar außer den technischen/geschützten Endpunkten;
-    verweist auf die Sitemap (wichtig fürs Google-Crawling in Österreich)."""
+    heißt KI-Crawler ausdrücklich willkommen (GEO) und verweist auf Sitemap + llms.txt
+    (wichtig fürs Crawling in Österreich und Deutschland)."""
     base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
-    lines = [
-        "User-agent: *",
-        "Allow: /",
-        "Disallow: /newsletter/diagnose/",
-        "Disallow: /newsletter/wochenversand/",
-        "Disallow: /bau/status/",
-        "Disallow: /cloudinary/signatur/",
-        "Disallow: /anfrage/absenden/",
-        "Disallow: /warten/",
-        "Disallow: /sprache/",
-        "",
+    disallow = [f"Disallow: {p}" for p in _ROBOTS_DISALLOW]
+    lines = ["User-agent: *", "Allow: /", *disallow, ""]
+    # KI-Crawler explizit erlauben (nur die internen Endpunkte bleiben tabu).
+    for bot in _AI_CRAWLERS:
+        lines += [f"User-agent: {bot}", "Allow: /", *disallow, ""]
+    lines += [
         f"Sitemap: {base}/sitemap.xml",
+        f"# KI-Kurzfassung (llms.txt): {base}/llms.txt",
         "",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain; charset=utf-8")
 
 
+def llms_txt(request):
+    """/llms.txt — kompakte Klartext-Kurzfassung für KI-Antwortmaschinen (GEO).
+    Fasst Marke, Angebot, Preise, Regionen und wichtigste Links in klarer Prosa
+    zusammen, damit ChatGPT, Perplexity, Gemini & Co. WVM-IT korrekt wiedergeben."""
+    c = _content()
+    base = (c.get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
+    tel = c.get("telefon", "")
+    mail = c.get("email", "")
+    inhaber = c.get("inhaber_name", "Florin Feier")
+    txt = f"""# WVM-IT — Technik & Digitales aus einer Hand
+
+> WVM-IT (Inhaber {inhaber}) ist ein IT- und Technik-Dienstleister für Österreich und
+> Deutschland. Alles aus einer Hand: Gebäude- & Smarthome-Automation (Loxone, KNX),
+> Konferenz- & Veranstaltungstechnik, EDV, Netzwerk & Sicherheit, Webseiten inkl.
+> Hosting & SEO sowie KI-Automatisierung. Persönlich, ein fester Ansprechpartner,
+> Antwort in 24 Stunden.
+
+## Leistungen (Richtpreise, netto zzgl. USt.)
+- Webseiten: One-Pager/Landingpage ab 350 €, Business-Website ab 1.490 €, Premium/individuell ab 2.900 €, Online-Shop ab 3.500 €.
+- Domain, Hosting & Wartung: Domain ab 15 €/Jahr, Hosting inkl. SSL & Backups ab 15 €/Monat, Wartung & Updates ab 39 €/Monat.
+- KI & Automatisierung: KI-Chatbot ab 690 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Termin-/Booking-Automatisierung ab 390 €, Custom-KI (CRM/ERP) ab 1.200 €.
+- SEO & Extras: SEO-Grundoptimierung ab 390 €, laufende SEO-Betreuung ab 149 €/Monat, Social-/Content-Bot ab 390 €.
+- Technik vor Ort (auf Anfrage): Gebäude- & Smarthome-Automation (Loxone, KNX), Konferenzraum-Technik, Video-/Ton-/Bühnentechnik, EDV & IT-Solutions, Netzwerk & Sicherheit.
+
+## Regionen
+Österreich und Deutschland (gesamter DACH-Raum). Digitale Leistungen (Webseiten,
+Hosting, SEO, KI) remote in ganz AT & DE; Technik-Installationen vor Ort projektbezogen.
+
+## Besonderheiten
+- Ein fester Ansprechpartner für Technik und Digitales, keine Agentur-Floskeln.
+- Kostenlose Beispiel-Website (in ~10 Minuten von der hauseigenen JARVIS-KI gebaut) + 25 % Rabatt für neue Kunden.
+- Sprachen: Deutsch, English, Română.
+
+## Kontakt & Links
+- Website: {base}/
+- Angebot konfigurieren: {base}/angebot/
+- Telefon: {tel}
+- E-Mail: {mail}
+"""
+    return HttpResponse(txt, content_type="text/plain; charset=utf-8")
+
+
 def sitemap_xml(request):
     """XML-Sitemap der öffentlichen Seiten (Startseite + Angebot) in allen Sprachen,
     jeweils mit hreflang-Alternates (DE ohne Präfix, EN /en/, RO /ro/)."""
+    from datetime import date
     base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
+    lastmod = date.today().isoformat()  # Frische-Signal für Suche & KI-Crawler
     # (Basis-Pfad, priority, changefreq)
     pages = [("/", "1.0", "weekly"), ("/angebot/", "0.8", "monthly")]
     items = []
@@ -945,6 +1115,7 @@ def sitemap_xml(request):
             loc = base + i18n.add_prefix(lang, path)
             items.append(
                 f"<url><loc>{loc}</loc>{alts}"
+                f"<lastmod>{lastmod}</lastmod>"
                 f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
             )
     xml = ('<?xml version="1.0" encoding="UTF-8"?>'

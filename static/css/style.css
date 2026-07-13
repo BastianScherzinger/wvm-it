@@ -1045,7 +1045,17 @@ select.fld option{background:var(--surface);color:var(--ink)}
 .lang-opt.is-active{color:var(--on-accent);background:linear-gradient(140deg,var(--accent),var(--accent2));
   box-shadow:0 6px 16px -8px color-mix(in srgb,var(--accent) 70%,transparent)}
 .lang-opt:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:2px}
-@media (max-width:820px){ .nav-menu .lang-switch{align-self:center;margin-top:10px} }
+/* Bar-Umschalter (Mobile): auf Desktop versteckt, dort lebt er im Menü. */
+.nav-lang-mobile{display:none}
+@media (max-width:820px){
+  /* Auf Mobile den Umschalter DAUERHAFT in der Kopfleiste zeigen (nicht im Burger). */
+  .nav-lang-mobile{display:inline-flex;margin-left:auto}
+  .nav-lang-mobile .lang-switch{background:color-mix(in srgb,var(--surface) 82%,transparent)}
+  .nav-lang-mobile .lang-opt{min-width:36px;padding:8px 11px;font-size:13px}
+  .nav-burger{margin-left:12px}
+  /* Der zweite (im ausklappbaren Menü) entfällt auf Mobile, um Doppelung zu vermeiden. */
+  .nav-menu .lang-switch{display:none}
+}
 
 /* ── Cookie-/Consent-Banner ──────────────────────────────────────────────── */
 .cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:300;padding:14px;
@@ -1069,3 +1079,25 @@ select.fld option{background:var(--surface);color:var(--ink)}
   .cookie-actions .btn{flex:1 1 0;justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){ .cookie-banner{transition:none} }
+
+/* ── FAQ (SEO/GEO: sichtbare Antworten, Accordion) ─────────────────────────── */
+.faq{max-width:820px;margin:44px auto 0;display:grid;gap:12px}
+.faq-item{border:1px solid var(--line);border-radius:var(--radius-sm);
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));overflow:hidden;
+  transition:border-color .25s var(--ease)}
+.faq-item:hover{border-color:var(--line-2)}
+.faq-item[open]{border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.faq-q{cursor:pointer;list-style:none;display:flex;align-items:center;gap:16px;
+  justify-content:space-between;padding:20px 22px;font-family:"Space Grotesk",sans-serif;
+  font-weight:600;font-size:clamp(1rem,1.5vw,1.12rem);color:var(--ink);line-height:1.35}
+.faq-q::-webkit-details-marker{display:none}
+.faq-q:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:-3px;border-radius:var(--radius-sm)}
+.faq-ic{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  color:var(--accent2);border:1px solid var(--line-2);background:rgba(255,255,255,.03);
+  transition:transform .3s var(--ease),color .2s,border-color .2s,background .2s}
+.faq-ic svg{width:17px;height:17px}
+.faq-item[open] .faq-ic{transform:rotate(180deg);color:var(--on-accent);
+  background:linear-gradient(140deg,var(--accent),var(--accent2));border-color:transparent}
+.faq-a{padding:0 22px 20px;color:var(--ink-soft);font-size:15.5px;line-height:1.65;max-width:70ch}
+.faq-a p{margin:0}
+@media (prefers-reduced-motion:reduce){ .faq-ic{transition:none} }
