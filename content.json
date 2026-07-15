@@ -18,7 +18,7 @@
   "cta_text": "Projekt anfragen",
   "cta_sub": "Unverbindlich. Antwort in 24 Stunden.",
   "hero_bg": "/static/img/hero_bg.jpg",
-  "robot_image": "/static/img/robot.png",
+  "robot_image": "/static/img/robot.webp",
   "server_video": "/static/video/server.mp4",
   "server_poster": "/static/img/server_poster.jpg",
   "pc_video": "/static/video/pc.mp4",

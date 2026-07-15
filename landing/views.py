@@ -1061,38 +1061,39 @@ def llms_txt(request):
     base = (c.get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
     tel = c.get("telefon", "")
     mail = c.get("email", "")
+    tel_href = "tel:" + tel.replace(" ", "") if tel else ""
     inhaber = c.get("inhaber_name", "Florin Feier")
+    # Format nach llmstxt.org: H1, Blockquote-Zusammenfassung, dann H2-Abschnitte
+    # mit Markdown-Link-Listen ([Text](URL): Beschreibung) — nötig, damit KI-Agenten
+    # der Struktur folgen können.
     txt = f"""# WVM-IT — Technik & Digitales aus einer Hand
 
-> WVM-IT (Inhaber {inhaber}) ist ein IT- und Technik-Dienstleister für Österreich und
-> Deutschland. Alles aus einer Hand: Gebäude- & Smarthome-Automation (Loxone, KNX),
-> Konferenz- & Veranstaltungstechnik, EDV, Netzwerk & Sicherheit, Webseiten inkl.
-> Hosting & SEO sowie KI-Automatisierung. Persönlich, ein fester Ansprechpartner,
-> Antwort in 24 Stunden.
+> WVM-IT (Inhaber {inhaber}) ist ein IT- und Technik-Dienstleister für Österreich und Deutschland. Alles aus einer Hand: Gebäude- & Smarthome-Automation (Loxone, KNX), Konferenz- & Veranstaltungstechnik, EDV, Netzwerk & Sicherheit, Webseiten inkl. Hosting & SEO sowie KI-Automatisierung. Ein fester Ansprechpartner, Antwort in 24 Stunden.
 
-## Leistungen (Richtpreise, netto zzgl. USt.)
-- Webseiten: One-Pager/Landingpage ab 350 €, Business-Website ab 1.490 €, Premium/individuell ab 2.900 €, Online-Shop ab 3.500 €.
-- Domain, Hosting & Wartung: Domain ab 15 €/Jahr, Hosting inkl. SSL & Backups ab 15 €/Monat, Wartung & Updates ab 39 €/Monat.
-- KI & Automatisierung: KI-Chatbot ab 690 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Termin-/Booking-Automatisierung ab 390 €, Custom-KI (CRM/ERP) ab 1.200 €.
-- SEO & Extras: SEO-Grundoptimierung ab 390 €, laufende SEO-Betreuung ab 149 €/Monat, Social-/Content-Bot ab 390 €.
-- Technik vor Ort (auf Anfrage): Gebäude- & Smarthome-Automation (Loxone, KNX), Konferenzraum-Technik, Video-/Ton-/Bühnentechnik, EDV & IT-Solutions, Netzwerk & Sicherheit.
+## Seiten
+- [Startseite]({base}/): Überblick über alle Leistungen, Referenzen, Preise und Kontakt.
+- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen und ein Richtpreis-Angebot anfordern.
+
+## Leistungen & Richtpreise (netto zzgl. USt.)
+- [Webseiten]({base}/angebot/): One-Pager/Landingpage ab 350 €, Business-Website ab 1.490 €, Premium/individuell ab 2.900 €, Online-Shop ab 3.500 €.
+- [Domain, Hosting & Wartung]({base}/angebot/): Domain ab 15 €/Jahr, Hosting inkl. SSL & Backups ab 15 €/Monat, Wartung & Updates ab 39 €/Monat.
+- [KI & Automatisierung]({base}/angebot/): KI-Chatbot ab 690 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Termin-/Booking-Automatisierung ab 390 €, Custom-KI (CRM/ERP) ab 1.200 €.
+- [SEO & Extras]({base}/angebot/): SEO-Grundoptimierung ab 390 €, laufende SEO-Betreuung ab 149 €/Monat, Social-/Content-Bot ab 390 €.
+- [Technik vor Ort]({base}/#leistungen): Gebäude- & Smarthome-Automation (Loxone, KNX), Konferenzraum-Technik, Video-/Ton-/Bühnentechnik, EDV & IT-Solutions, Netzwerk & Sicherheit (projektbezogen auf Anfrage).
 
 ## Regionen
-Österreich und Deutschland (gesamter DACH-Raum). Digitale Leistungen (Webseiten,
-Hosting, SEO, KI) remote in ganz AT & DE; Technik-Installationen vor Ort projektbezogen.
+- [Österreich und Deutschland]({base}/): gesamter DACH-Raum; digitale Leistungen remote in ganz AT & DE, Technik-Installationen vor Ort projektbezogen.
 
 ## Besonderheiten
-- Ein fester Ansprechpartner für Technik und Digitales, keine Agentur-Floskeln.
-- Kostenlose Beispiel-Website (in ~10 Minuten von der hauseigenen JARVIS-KI gebaut) + 25 % Rabatt für neue Kunden.
-- Sprachen: Deutsch, English, Română.
+- [Kostenlose Beispiel-Website]({base}/#gratis): in ~10 Minuten von der hauseigenen JARVIS-KI gebaut, plus 25 % Rabatt für neue Kunden.
+- Ein fester Ansprechpartner für Technik und Digitales, keine Agentur-Floskeln. Sprachen: Deutsch, English, Română.
 
-## Kontakt & Links
-- Website: {base}/
-- Angebot konfigurieren: {base}/angebot/
-- Telefon: {tel}
-- E-Mail: {mail}
+## Kontakt
+- [Website]({base}/): {base}
+- [E-Mail](mailto:{mail}): {mail}
+- [Telefon]({tel_href}): {tel}
 """
-    return HttpResponse(txt, content_type="text/plain; charset=utf-8")
+    return HttpResponse(txt, content_type="text/markdown; charset=utf-8")
 
 
 def sitemap_xml(request):

@@ -42,8 +42,8 @@
   <meta name="twitter:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
   {% if c.hero_bg %}<link rel="preload" as="image" href="{{ c.hero_bg }}">{% endif %}
   <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
-  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
   <!-- Strukturierte Daten (SEO + GEO): @graph mit ProfessionalService (Local-SEO AT+DE,
        Preise als OfferCatalog), WebSite und FAQPage — server-seitig gebaut (views._structured_data). -->
@@ -338,6 +338,7 @@
       <video class="scrolly-video" id="scrollyVideoPc" playsinline muted preload="metadata"
              {% if c.pc_poster %}poster="{{ c.pc_poster }}"{% endif %}>
         {% if c.pc_video %}<source src="{{ c.pc_video }}" type="video/mp4">{% endif %}
+        <track kind="captions" src="{% static 'vtt/empty.vtt' %}" srclang="de" label="Ohne Ton">
       </video>
       <div class="scrolly-shade" aria-hidden="true"></div>
       <div class="wrap scrolly-overlay">
@@ -378,6 +379,7 @@
       <video class="scrolly-video" id="scrollyVideo" playsinline muted preload="metadata"
              {% if c.server_poster %}poster="{{ c.server_poster }}"{% endif %}>
         {% if c.server_video %}<source src="{{ c.server_video }}" type="video/mp4">{% endif %}
+        <track kind="captions" src="{% static 'vtt/empty.vtt' %}" srclang="de" label="Ohne Ton">
       </video>
       <div class="scrolly-shade" aria-hidden="true"></div>
       <div class="wrap scrolly-overlay">
@@ -511,15 +513,15 @@
       </header>
       <div class="refs">
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_smarthome.jpg' %}" alt="{{ t.referenzen.r1_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <div class="ref-img"><img src="{% static 'img/ref_smarthome.webp' %}" alt="{{ t.referenzen.r1_alt|safe }}" loading="lazy" width="1264" height="848"></div>
           <figcaption><strong>{{ t.referenzen.r1_h|safe }}</strong><span>{{ t.referenzen.r1_p|safe }}</span></figcaption>
         </figure>
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_konferenz.jpg' %}" alt="{{ t.referenzen.r2_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <div class="ref-img"><img src="{% static 'img/ref_konferenz.webp' %}" alt="{{ t.referenzen.r2_alt|safe }}" loading="lazy" width="1264" height="848"></div>
           <figcaption><strong>{{ t.referenzen.r2_h|safe }}</strong><span>{{ t.referenzen.r2_p|safe }}</span></figcaption>
         </figure>
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_buehne.jpg' %}" alt="{{ t.referenzen.r3_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <div class="ref-img"><img src="{% static 'img/ref_buehne.webp' %}" alt="{{ t.referenzen.r3_alt|safe }}" loading="lazy" width="1264" height="848"></div>
           <figcaption><strong>{{ t.referenzen.r3_h|safe }}</strong><span>{{ t.referenzen.r3_p|safe }}</span></figcaption>
         </figure>
       </div>
@@ -766,9 +768,9 @@
       <p>{{ t.footer.tagline|safe }}</p>
     </div>
     <nav class="foot-nav" aria-label="Footer">
-      <div><h4>{{ t.footer.col_leistungen|safe }}</h4><a href="#leistungen">{{ t.footer.l_smarthome|safe }}</a><a href="#leistungen">{{ t.footer.l_konferenz|safe }}</a><a href="#leistungen">{{ t.footer.l_edv|safe }}</a><a href="#leistungen">{{ t.footer.l_web|safe }}</a></div>
-      <div><h4>{{ t.footer.col_unternehmen|safe }}</h4><a href="#partner">{{ t.footer.u_partner|safe }}</a><a href="#kooperationen">{{ t.footer.u_koop|safe }}</a><a href="#preise">{{ t.footer.u_preise|safe }}</a><a href="#stimmen">{{ t.footer.u_stimmen|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
-      <div><h4>{{ t.footer.col_recht|safe }}</h4><a href="#impressum">{{ t.footer.impressum|safe }}</a><a href="#datenschutz">{{ t.footer.datenschutz|safe }}</a></div>
+      <div><h3>{{ t.footer.col_leistungen|safe }}</h3><a href="#leistungen">{{ t.footer.l_smarthome|safe }}</a><a href="#leistungen">{{ t.footer.l_konferenz|safe }}</a><a href="#leistungen">{{ t.footer.l_edv|safe }}</a><a href="#leistungen">{{ t.footer.l_web|safe }}</a></div>
+      <div><h3>{{ t.footer.col_unternehmen|safe }}</h3><a href="#partner">{{ t.footer.u_partner|safe }}</a><a href="#kooperationen">{{ t.footer.u_koop|safe }}</a><a href="#preise">{{ t.footer.u_preise|safe }}</a><a href="#stimmen">{{ t.footer.u_stimmen|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
+      <div><h3>{{ t.footer.col_recht|safe }}</h3><a href="#impressum">{{ t.footer.impressum|safe }}</a><a href="#datenschutz">{{ t.footer.datenschutz|safe }}</a></div>
     </nav>
   </div>
 
@@ -789,6 +791,6 @@
 </div>
 
 {% include 'cookie_banner.html' %}
-<script src="{% static 'js/main.js' %}" defer></script>
+<script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>
 </body>
 </html>

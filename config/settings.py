@@ -91,6 +91,13 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STORAGES = {
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
 }
+# Lange Cache-Lebensdauer für statische Assets (1 Jahr). Da die Dateinamen NICHT
+# gehasht sind, werden CSS/JS über einen Versions-Query (?v=ASSET_VERSION) im Template
+# cache-invalidiert; Bilder/Videos/Fonts sind stabil und dürfen dauerhaft im Cache bleiben.
+WHITENOISE_MAX_AGE = 31536000
+# Deploy-Version für Cache-Busting: Railway liefert den Git-Commit-SHA; sonst Fallback.
+ASSET_VERSION = (os.environ.get("RAILWAY_GIT_COMMIT_SHA")
+                 or os.environ.get("ASSET_VERSION") or "2026071500")[:12]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

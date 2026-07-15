@@ -13,6 +13,7 @@ Die Sprache selbst wird von Djangos LocaleMiddleware/i18n_patterns bestimmt (URL
 import copy
 from urllib.parse import quote
 
+from django.conf import settings
 from django.utils.translation import get_language
 
 from . import de as _de, en as _en, ro as _ro
@@ -96,4 +97,6 @@ def context_processor(request):
         "lang_switch": switch,
         "alt_paths": alts,
         "canonical_path": add_prefix(lang, base),
+        # Cache-Busting-Version für ?v= an CSS/JS-Links (siehe settings.ASSET_VERSION)
+        "asset_v": getattr(settings, "ASSET_VERSION", "1"),
     }

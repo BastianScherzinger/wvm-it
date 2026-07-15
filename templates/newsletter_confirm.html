@@ -8,10 +8,10 @@
   <meta name="theme-color" content="#0a0908">
   <meta name="robots" content="noindex,nofollow">
   <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
-  <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
   <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
 </head>
 <body class="ang-page">
@@ -223,6 +223,6 @@
 </footer>
 
 {% include 'cookie_banner.html' %}
-<script src="{% static 'js/main.js' %}" defer></script>
+<script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>
 </body>
 </html>
