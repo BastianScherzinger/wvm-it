@@ -20,10 +20,13 @@
 html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);
   line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
-h1,h2,h3,h4{font-family:"Space Grotesk","Inter",sans-serif;line-height:1.05;letter-spacing:-.02em;font-weight:600}
+h1,h2,h3,h4{font-family:"Space Grotesk","Inter",sans-serif;line-height:1.05;letter-spacing:-.02em;font-weight:600;text-wrap:balance}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
+p{overflow-wrap:break-word}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+/* Schnellere Taps (kein 300ms-Delay, kein Doppel-Tap-Zoom) auf allen Steuerelementen */
+a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbox"],input[type="radio"]{touch-action:manipulation}
 .skip{position:absolute;left:-999px;top:0;background:var(--accent);color:var(--on-accent);padding:10px 16px;border-radius:0 0 8px 0;z-index:200}
 .skip:focus{left:0}
 body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
@@ -357,7 +360,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .contact-form label{display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink)}
 .contact-form .opt{font-weight:400;color:var(--ink-dim)}
-.contact-form input,.contact-form textarea,.contact-form select{font:inherit;font-weight:400;font-size:15px;padding:13px 15px;min-height:48px;
+.contact-form input,.contact-form textarea,.contact-form select{font:inherit;font-weight:400;font-size:16px;padding:13px 15px;min-height:48px;
   border:1px solid var(--line-2);border-radius:12px;background:rgba(0,0,0,.25);color:var(--ink);transition:border-color .2s,box-shadow .2s}
 .contact-form textarea{min-height:112px;resize:vertical}
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--ink-dim)}
@@ -389,7 +392,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:32px;font-size:13px;color:var(--ink-dim)}
 
 /* ── Mobile Sticky-Leiste (Anrufen + Anfragen) ───────────────────────────── */
-.mobilebar{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:90;gap:10px}
+.mobilebar{display:none;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:90;gap:10px}
 .mobilebar a{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;font-weight:700;font-size:15px}
 .mobilebar svg{width:18px;height:18px;flex:0 0 auto}
 .mobilebar-call{flex:0 0 auto;min-width:128px;color:var(--ink);background:color-mix(in srgb,var(--surface) 92%,transparent);
@@ -439,13 +442,16 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   .price-grid{grid-template-columns:1fr;max-width:440px;margin-inline:auto}
   .contact{grid-template-columns:1fr}
   .mobilebar{display:flex}.foot{padding-bottom:96px}
-  .nav-phone{justify-content:center;margin-top:4px}
+  .nav-phone{justify-content:center;margin-top:4px;min-height:46px;padding:11px 15px}
 }
 @media (max-width:560px){
   .bento{grid-template-columns:1fr}.b-wide{grid-column:span 1}
   .f-row{grid-template-columns:1fr}.foot-nav{grid-template-columns:1fr 1fr}
   .contact-methods{grid-template-columns:1fr}
   .hero{padding:28px 0 48px}.hero-figure{width:min(86%,300px);height:clamp(260px,42vh,360px)}
+  /* Primärer Hero-CTA: volle Breite, leicht ertappbar mit dem Daumen */
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
@@ -562,7 +568,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .ang-lead .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .ang-lead label{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:14px}
 .ang-lead .opt{font-weight:400;color:var(--ink-dim)}
-.ang-lead input,.ang-lead textarea{font:inherit;font-weight:400;font-size:15px;padding:13px 14px;min-height:48px;color:var(--ink);
+.ang-lead input,.ang-lead textarea{font:inherit;font-weight:400;font-size:16px;padding:13px 14px;min-height:48px;color:var(--ink);
   background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;transition:border-color .2s,box-shadow .2s;width:100%}
 .ang-lead textarea{min-height:96px;resize:vertical}
 .ang-lead input::placeholder,.ang-lead textarea::placeholder{color:var(--ink-dim)}
@@ -600,7 +606,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   .ang-head{padding:112px 0 28px}
   /* Fixierte Summenleiste unten (springt zum Formular) */
   .ang-mobar[hidden]{display:none}
-  .ang-mobar{display:block;position:fixed;left:12px;right:12px;bottom:76px;z-index:88;
+  .ang-mobar{display:block;position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:88;
     background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border:1px solid var(--line-2);border-radius:16px;padding:11px 13px;box-shadow:0 20px 50px -18px rgba(0,0,0,.8)}
 }
@@ -668,9 +674,11 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   .wz-steps{gap:2px}
   .wz-step-t{display:none}
   .wz-step-n{width:32px;height:32px;font-size:14px}
+  /* Der Kreis bleibt kompakt, die Tap-Flaeche um ihn herum wird grosszuegiger */
+  .wz-step{padding:8px 2px}
   .wz-nav{flex-wrap:wrap;justify-content:center}
   .wz-run{order:-1;flex-basis:100%;margin-bottom:6px}
-  .wz-back,.wz-next{flex:1}
+  .wz-back,.wz-next{flex:1;min-height:48px}
   .wz-nav-spacer{display:none}
 }
 
@@ -744,10 +752,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .offer-form::before{content:"";position:absolute;left:16px;right:16px;top:0;height:2px;border-radius:2px;
   background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.85}
 .offer-row{display:flex;gap:10px}
-.offer-row input{flex:1;min-width:0;min-height:48px;font:inherit;font-weight:400;font-size:15px;padding:13px 15px;color:var(--ink);
+.offer-row input{flex:1;min-width:0;min-height:48px;font:inherit;font-weight:400;font-size:16px;padding:13px 15px;color:var(--ink);
   background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;transition:border-color .2s,box-shadow .2s}
 .offer-row .btn{flex:0 0 auto}
-.offer-wish{width:100%;min-height:48px;margin-top:10px;font:inherit;font-weight:400;font-size:14px;padding:13px 14px;color:var(--ink);
+.offer-wish{width:100%;min-height:48px;margin-top:10px;font:inherit;font-weight:400;font-size:16px;padding:13px 14px;color:var(--ink);
   background:var(--bg-2);border:1px solid var(--line);border-radius:12px;transition:border-color .2s,box-shadow .2s}
 .offer-row input::placeholder,.offer-wish::placeholder{color:var(--ink-dim)}
 .offer-row input:focus,.offer-wish:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
@@ -831,7 +839,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .fld-req{font-weight:700;color:var(--accent2)}
 /* Basis-Feld: Eingaben direkt mit .fld (Input/Select/Textarea) ODER .fld als Label-Hülle
    (Text-Span + verschachteltes Input), je nach Formular ,  beide Muster bleiben erhalten. */
-.fld{width:100%;min-height:48px;font:inherit;font-weight:400;font-size:14.5px;padding:13px 14px;color:var(--ink);
+.fld{width:100%;min-height:48px;font:inherit;font-weight:400;font-size:16px;padding:13px 14px;color:var(--ink);
   background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;
   transition:border-color .18s,box-shadow .18s,background .18s;min-width:0}
 textarea.fld{resize:vertical;line-height:1.55;min-height:96px}
@@ -855,7 +863,7 @@ label.fld{display:flex;flex-direction:column;gap:7px;min-height:0;background:non
   font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:auto}
 label.fld:hover,label.fld:focus-within{border-color:transparent}
 label.fld>span{color:var(--ink-soft)}
-label.fld input,label.fld textarea,label.fld select{width:100%;min-height:48px;font:inherit;font-weight:400;font-size:14.5px;
+label.fld input,label.fld textarea,label.fld select{width:100%;min-height:48px;font:inherit;font-weight:400;font-size:16px;
   padding:13px 14px;color:var(--ink);background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;
   transition:border-color .18s,box-shadow .18s}
 label.fld textarea{min-height:88px;resize:vertical;line-height:1.55}
@@ -866,7 +874,7 @@ label.fld input:focus,label.fld textarea:focus,label.fld select:focus{outline:no
 .chipset{display:flex;flex-wrap:wrap;gap:9px}
 .pick{position:relative;cursor:pointer}
 .pick input{position:absolute;opacity:0;width:0;height:0}
-.pick span{display:inline-flex;align-items:center;min-height:40px;font-size:13px;font-weight:600;color:var(--ink-soft);
+.pick span{display:inline-flex;align-items:center;min-height:44px;font-size:13px;font-weight:600;color:var(--ink-soft);
   padding:9px 16px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,.03);
   transition:border-color .18s,color .18s,background .18s,transform .18s var(--ease)}
 .pick:hover span{border-color:color-mix(in srgb,var(--accent) 45%,transparent);color:var(--ink)}
@@ -899,7 +907,7 @@ label.fld input:focus,label.fld textarea:focus,label.fld select:focus{outline:no
 .af-block .chipset{margin-top:12px}
 .af-sub{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
 label.fld-color{flex-direction:row;align-items:center;gap:10px}
-.fld-color input[type=color]{inline-size:44px;block-size:34px;min-height:0;padding:0;border:1px solid var(--line);border-radius:8px;background:none;cursor:pointer}
+.fld-color input[type=color]{inline-size:48px;block-size:40px;min-height:0;padding:0;border:1px solid var(--line);border-radius:8px;background:none;cursor:pointer}
 .af-upload{display:block;border:1.5px dashed color-mix(in srgb,var(--accent) 45%,var(--line));border-radius:14px;
   padding:22px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
 .af-upload:hover,.af-upload.drag{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,transparent)}
@@ -911,6 +919,10 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .af-uphint{margin-top:10px;font-size:13px;color:var(--accent2)}
 .af-submit{align-self:flex-start}
 .af-note{font-size:13px;color:var(--ink-soft);margin:-6px 0 0}
+@media (max-width:560px){
+  /* Letzter Schritt: Absenden-Button wie alle anderen Formulare volle Breite */
+  .af-submit{align-self:stretch;justify-content:center}
+}
 
 /* ── Anfrage-Wizard: Sektionen als Schritte (nutzt .wz-steps/.wz-progress/.wz-nav) ──
    Progressive Enhancement: ohne JS bleiben alle .af-section untereinander sichtbar
@@ -1114,14 +1126,14 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   /* Auf Mobile den Umschalter DAUERHAFT in der Kopfleiste zeigen (nicht im Burger). */
   .nav-lang-mobile{display:inline-flex;margin-left:auto}
   .nav-lang-mobile .lang-switch{background:color-mix(in srgb,var(--surface) 82%,transparent)}
-  .nav-lang-mobile .lang-opt{min-width:36px;padding:8px 11px;font-size:13px}
+  .nav-lang-mobile .lang-opt{min-width:36px;min-height:36px;padding:9px 11px;font-size:13px}
   .nav-burger{margin-left:12px}
   /* Der zweite (im ausklappbaren Menü) entfällt auf Mobile, um Doppelung zu vermeiden. */
   .nav-menu .lang-switch{display:none}
 }
 
 /* ── Cookie-/Consent-Banner ──────────────────────────────────────────────── */
-.cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:300;padding:14px;
+.cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:300;padding:14px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));
   transform:translateY(130%);transition:transform .32s var(--ease);pointer-events:none}
 .cookie-banner.show{transform:none;pointer-events:auto}
 .cookie-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap;
@@ -1139,7 +1151,7 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   .cookie-banner{padding:10px}
   .cookie-inner{padding:14px 16px;gap:12px}
   .cookie-actions{width:100%}
-  .cookie-actions .btn{flex:1 1 0;justify-content:center}
+  .cookie-actions .btn{flex:1 1 0;justify-content:center;min-height:46px;padding-top:12px;padding-bottom:12px}
 }
 @media (prefers-reduced-motion:reduce){ .cookie-banner{transition:none} }
 

@@ -49,6 +49,7 @@
       s.classList.toggle("is-done", idx < i);
     });
     if (bar) bar.style.width = (last > 0 ? (i / last) * 100 : 100).toFixed(2) + "%";
+    if (typeof updateMobar === "function") updateMobar();
     if (doScroll) scrollToWizard();
   }
 
@@ -81,6 +82,13 @@
   var countEl = document.getElementById("angCount");
   var submitEl = document.getElementById("angSubmit");
   var hintEl = document.getElementById("angHint");
+  // Mobile Sticky-Summenleiste: zeigt die laufende Summe, solange man noch
+  // Leistungen waehlt; auf dem letzten Schritt (Ihr Angebot) versteckt sie sich,
+  // weil die volle Aufschluesselung dort schon sichtbar ist.
+  var mobar = document.getElementById("angMobar");
+  var mobarCount = document.getElementById("angMobarCount");
+  var mobarSum = document.getElementById("angMobarSum");
+  var mobarBtn = document.getElementById("angMobarBtn");
 
   function eur(n) { return (n || 0).toLocaleString(NL); }
 
@@ -160,9 +168,21 @@
     if (countEl) countEl.textContent = label;
     if (submitEl) submitEl.classList.toggle("is-off", chosen.length === 0);
     if (hintEl) hintEl.hidden = chosen.length > 0;
+    if (mobarCount) mobarCount.textContent = label;
+    if (mobarSum) mobarSum.textContent = sum;
+    updateMobar();
+  }
+
+  function updateMobar() {
+    if (!mobar) return;
+    var anySelected = boxes.some(function (b) { return b.checked; });
+    // Nur zeigen, solange etwas gewaehlt ist UND man noch nicht auf dem letzten
+    // Schritt (Ihr Angebot) steht, dort ist die volle Summe schon sichtbar.
+    mobar.hidden = !anySelected || current === last;
   }
 
   boxes.forEach(function (b) { b.addEventListener("change", render); });
+  if (mobarBtn) mobarBtn.addEventListener("click", function () { show(last, true); });
 
   if (listEl) {
     listEl.addEventListener("click", function (e) {

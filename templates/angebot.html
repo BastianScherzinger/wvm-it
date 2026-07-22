@@ -2,7 +2,7 @@
 <html lang="{{ t.meta.html_lang }}">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{{ t.meta.angebot_title|safe }} | {{ c.site_name }}</title>
   <meta name="description" content="{{ t.meta.angebot_desc|safe }}">
   <meta name="theme-color" content="#0a0908">
@@ -221,6 +221,16 @@
             </section>
           </div>
         </form>
+        <!-- Mobile: sticky Summenleiste unten (klein, dezent), springt zum letzten Schritt -->
+        <div class="ang-mobar" id="angMobar" hidden>
+          <div class="ang-mobar-in">
+            <span class="ang-mobar-sum">
+              <span id="angMobarCount">{{ t.angebot_page.cart_count|safe }}</span>
+              <strong id="angMobarSum">0&nbsp;€</strong>
+            </span>
+            <button type="button" class="btn ang-mobar-cta" id="angMobarBtn">{{ t.angebot_page.to_offer|safe }}</button>
+          </div>
+        </div>
         {% endif %}
       </div>
     </div>
