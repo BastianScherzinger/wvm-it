@@ -413,11 +413,24 @@ _ANFRAGE_LABELS = {
     "zielgruppe": "Zielgruppe", "usp": "Besonderheit/USP", "mitarbeiter": "Team zeigen",
     "mitarbeiter_zahl": "Teamgröße", "stil": "Stil", "farbwelt": "Farbwelt",
     "akzent": "Akzentfarbe", "tonalitaet": "Tonalität", "ziel": "Ziel der Seite",
-    "sektionen": "Gewünschte Bereiche", "sprache": "Sprache", "stadt": "Standort",
+    "sektionen": "Gewünschte Bereiche", "stadt": "Standort",
     "adresse": "Adresse", "telefon": "Telefon", "kontaktmail": "Kontakt-E-Mail",
     "oeffnungszeiten": "Öffnungszeiten", "slogan": "Slogan",
     "aktuelle_website": "Aktuelle Website", "vorbilder": "Vorbilder", "extra": "Weitere Wünsche",
 }
+
+# Sprache der zu bauenden Seite (Wizard-Kacheln "site_lang", ersetzt die alte
+# Mehrfachauswahl-Checkbox "sprache"): {de,en,ro,multi}, DB-Check in wvm.build_jobs.
+_SITE_LANGS = ("de", "en", "ro", "multi")
+_SITE_LANG_LABELS = {
+    "de": "Nur Deutsch", "en": "Nur Englisch", "ro": "Nur Rumänisch",
+    "multi": "Mehrsprachig (DE + EN + RO mit Sprachumschalter)",
+}
+
+
+def _norm_site_lang(value) -> str:
+    v = (value or "").strip().lower()
+    return v if v in _SITE_LANGS else "de"
 
 
 def _compose_full_wunsch(request, hero_wunsch: str, name: str, images: list) -> str:
@@ -435,10 +448,12 @@ def _compose_full_wunsch(request, hero_wunsch: str, name: str, images: list) -> 
     if mit:
         zahl = g("mitarbeiter_zahl")
         parts.append(("Team zeigen: ja" + (f" ({zahl})" if zahl else "")) if mit == "ja" else "Team zeigen: nein")
-    for key in ("sektionen", "ziel", "sprache", "stil", "farbwelt", "tonalitaet"):
+    for key in ("sektionen", "ziel", "stil", "farbwelt", "tonalitaet"):
         vals = [v.strip() for v in request.POST.getlist(key) if v.strip()][:12]
         if vals:
             parts.append(f"{_ANFRAGE_LABELS[key]}: " + ", ".join(vals))
+    site_lang = _norm_site_lang(request.POST.get("site_lang"))
+    parts.append(f"Sprache der Seite: {_SITE_LANG_LABELS[site_lang]}")
     for key in ("akzent", "stadt", "adresse", "telefon", "kontaktmail", "oeffnungszeiten",
                 "slogan", "aktuelle_website", "vorbilder", "extra"):
         v = g(key)
@@ -610,13 +625,14 @@ def anfrage_absenden(request):
         return render(request, "anfrage_done.html", {"c": c, "ok": False})
     images = _parse_images(request)
     full = _compose_full_wunsch(request, hero_wunsch, name, images)
+    site_lang = _norm_site_lang(request.POST.get("site_lang"))
     try:
         from . import supa
         if supa.enabled():
             unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
             sid = supa.upsert_subscriber(email, full, consent_ip=_client_ip(request), unsub_token=unsub)
             if sid:
-                supa.enqueue_job(sid, email, full, images=images)
+                supa.enqueue_job(sid, email, full, images=images, site_lang=site_lang)
     except Exception as exc:
         print(f"[ANFRAGE-FEHLER] {exc}", flush=True)
     # Postfach-Notiz (best effort)

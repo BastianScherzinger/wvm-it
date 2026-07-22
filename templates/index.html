@@ -158,9 +158,19 @@
         <form class="offer-form offer-form-slim" id="newsForm" method="post" action="#gratis">
           {% csrf_token %}
           <input type="hidden" name="form" value="newsletter">
+          <div class="of-grid">
+            <div class="field">
+              <label class="fld-l" for="of-name">{{ t.offer.name_label|safe }} <span class="fld-opt">{{ t.offer.name_opt|safe }}</span></label>
+              <input id="of-name" class="fld" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.offer.name_ph|safe }}">
+            </div>
+            <div class="field">
+              <label class="fld-l" for="of-mail">{{ t.offer.mail_label|safe }}</label>
+              <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
+            </div>
+          </div>
           <div class="field">
-            <label class="fld-l" for="of-mail">{{ t.offer.mail_label|safe }}</label>
-            <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
+            <label class="fld-l" for="of-wunsch">{{ t.offer.wunsch_label|safe }} <span class="fld-opt">{{ t.offer.name_opt|safe }}</span></label>
+            <input id="of-wunsch" class="fld" type="text" name="wunsch" maxlength="200" placeholder="{{ t.offer.wunsch_ph|safe }}">
           </div>
           <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="#datenschutz">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
           <button class="btn btn-lg btn-magnetic offer-submit" type="submit">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>

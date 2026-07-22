@@ -56,19 +56,23 @@ def upsert_subscriber(email, wunsch="", consent_ip="", unsub_token=""):
         return None
 
 
-def enqueue_job(subscriber_id, email, wunsch="", images=None):
+def enqueue_job(subscriber_id, email, wunsch="", images=None, site_lang="de"):
     """Legt einen Bau-Auftrag (queued) an, aber nur wenn nicht schon einer offen ist.
-    images = Liste von Bild-URLs (Cloudinary), die JARVIS4 in die Seite einbauen kann."""
+    images = Liste von Bild-URLs (Cloudinary), die JARVIS4 in die Seite einbauen kann.
+    site_lang = gewünschte Sprache der zu bauenden Seite ('de'/'en'/'ro'/'multi'),
+    aus dem Wizard-Sprachkachel-Feld; Spalte wvm.build_jobs.site_lang (Check-Constraint,
+    Default 'de')."""
     if not enabled():
         return None
     import json as _json
+    site_lang = site_lang if site_lang in ("de", "en", "ro", "multi") else "de"
     # Doppel-Schutz: kein neuer Auftrag, solange einer offen ist ODER wenn in den letzten
     # 2 Tagen bereits eine Seite für denselben Abonnenten fertig gebaut wurde. Das verhindert
     # den häufigen Fall „Bestätigungslink später erneut geklickt / Formular erneut abgeschickt
     # → zweiter Bau + zweite Link-Mail zur selben Seite".
     sql = """
-        insert into wvm.build_jobs (subscriber_id, email, website_wunsch, images, status)
-        select %s, %s, %s, %s::jsonb, 'queued'
+        insert into wvm.build_jobs (subscriber_id, email, website_wunsch, images, status, site_lang)
+        select %s, %s, %s, %s::jsonb, 'queued', %s
         where not exists (
             select 1 from wvm.build_jobs
             where subscriber_id = %s
@@ -81,7 +85,7 @@ def enqueue_job(subscriber_id, email, wunsch="", images=None):
         with closing(_connect()) as conn:
             with conn.cursor() as cur:
                 cur.execute(sql, (subscriber_id, email, wunsch or "",
-                                  _json.dumps(images or []), subscriber_id))
+                                  _json.dumps(images or []), site_lang, subscriber_id))
                 created = cur.fetchone() is not None
             conn.commit()
             return created

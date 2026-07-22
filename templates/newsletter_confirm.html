@@ -15,6 +15,15 @@
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
 </head>
 <body class="ang-page">
+<script>
+  window.I18N = {
+    af: {
+      stepWord: "{{ t.confirm_page.step_word|default:'Schritt'|escapejs }}",
+      ofWord: "{{ t.confirm_page.of_word|default:'von'|escapejs }}",
+      restored: "{{ t.confirm_page.restored_notice|escapejs }}"
+    }
+  };
+</script>
 <a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
 
 <header class="nav" id="nav">
@@ -53,12 +62,24 @@
         </div>
       </div>
 
-      <form class="anfrage-form" method="post" action="{% url 'anfrage_absenden' %}" data-reveal>
+      <form class="anfrage-form" id="anfrageForm" method="post" action="{% url 'anfrage_absenden' %}" data-reveal novalidate>
         {% csrf_token %}
         <input type="hidden" name="t" value="{{ anfrage_token }}">
         <input type="hidden" name="bilder" id="bilderField" value="[]">
 
-        <section class="af-section">
+        <!-- Schritt-Anzeige (von anfrage.js aktiviert; ohne JS bleiben alle Schritte darunter sichtbar) -->
+        <ol class="wz-steps" id="afSteps">
+          <li class="wz-step is-active" data-goto="0"><span class="wz-step-n">1</span><span class="wz-step-t">{{ t.confirm_page.sec1_h|safe }}</span></li>
+          <li class="wz-step" data-goto="1"><span class="wz-step-n">2</span><span class="wz-step-t">{{ t.confirm_page.sec2_h|safe }}</span></li>
+          <li class="wz-step" data-goto="2"><span class="wz-step-n">3</span><span class="wz-step-t">{{ t.confirm_page.sec3_h|safe }}</span></li>
+          <li class="wz-step" data-goto="3"><span class="wz-step-n">4</span><span class="wz-step-t">{{ t.confirm_page.sec4_h|safe }}</span></li>
+          <li class="wz-step" data-goto="4"><span class="wz-step-n">5</span><span class="wz-step-t">{{ t.confirm_page.sec5_h|safe }}</span></li>
+          <li class="wz-step" data-goto="5"><span class="wz-step-n">6</span><span class="wz-step-t">{{ t.confirm_page.sec6_h|safe }}</span></li>
+        </ol>
+        <div class="wz-progress" aria-hidden="true"><span class="wz-bar" id="afBar"></span></div>
+        <p class="af-restore" id="afRestore" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg><span>{{ t.confirm_page.restored_notice|safe }}</span></p>
+
+        <section class="af-section is-active" data-step="0">
           <div class="af-section-head"><span class="af-num">1</span><div><h4>{{ t.confirm_page.sec1_h|safe }}</h4><p>{{ t.confirm_page.sec1_p|safe }}</p></div></div>
           <div class="af-grid">
             <label class="fld"><span>{{ t.confirm_page.f_titel|safe }}</span><input type="text" name="titel" required maxlength="120" placeholder="{{ t.confirm_page.f_titel_ph|safe }}"></label>
@@ -69,9 +90,14 @@
             <label class="fld"><span>{{ t.confirm_page.f_zielgruppe|safe }}</span><input type="text" name="zielgruppe" maxlength="160" placeholder="{{ t.confirm_page.f_zielgruppe_ph|safe }}"></label>
             <label class="fld"><span>{{ t.confirm_page.f_usp|safe }}</span><input type="text" name="usp" maxlength="160" placeholder="{{ t.confirm_page.f_usp_ph|safe }}"></label>
           </div>
+          <div class="wz-nav">
+            <button type="button" class="wz-back btn btn-ghost" disabled>{{ t.confirm_page.nav_back|safe }}</button>
+            <span class="wz-run" aria-live="polite"><span class="wz-run-count" data-run-count></span></span>
+            <button type="button" class="wz-next btn">{{ t.confirm_page.nav_next|safe }}</button>
+          </div>
         </section>
 
-        <section class="af-section">
+        <section class="af-section" data-step="1">
           <div class="af-section-head"><span class="af-num">2</span><div><h4>{{ t.confirm_page.sec2_h|safe }}</h4><p>{{ t.confirm_page.sec2_p|safe }}</p></div></div>
           <fieldset class="af-block">
             <legend>{{ t.confirm_page.sektionen_legend|safe }} <small>{{ t.confirm_page.sektionen_small|safe }}</small></legend>
@@ -79,23 +105,42 @@
               {% for opt in t.confirm_page.sektionen %}<label class="pick"><input type="checkbox" name="sektionen" value="{{ opt.v }}"{% if opt.c %} checked{% endif %}><span>{{ opt.l|safe }}</span></label>{% endfor %}
             </div>
           </fieldset>
-          <div class="af-two">
-            <fieldset class="af-block">
-              <legend>{{ t.confirm_page.ziel_legend|safe }}</legend>
-              <div class="chipset">
-                {% for opt in t.confirm_page.ziel %}<label class="pick"><input type="checkbox" name="ziel" value="{{ opt.v }}"{% if opt.c %} checked{% endif %}><span>{{ opt.l|safe }}</span></label>{% endfor %}
-              </div>
-            </fieldset>
-            <fieldset class="af-block">
-              <legend>{{ t.confirm_page.sprache_legend|safe }}</legend>
-              <div class="chipset">
-                {% for opt in t.confirm_page.sprache %}<label class="pick"><input type="checkbox" name="sprache" value="{{ opt.v }}"{% if opt.c %} checked{% endif %}><span>{{ opt.l|safe }}</span></label>{% endfor %}
-              </div>
-            </fieldset>
+          <fieldset class="af-block">
+            <legend>{{ t.confirm_page.site_lang_legend|safe }} <small>{{ t.confirm_page.site_lang_small|safe }}</small></legend>
+            <div class="langpick-grid" role="radiogroup" aria-label="{{ t.confirm_page.site_lang_legend|safe }}">
+              {% for opt in t.confirm_page.site_lang %}
+              <label class="langpick{% if opt.v == 'multi' %} langpick-feat{% endif %}">
+                <input type="radio" name="site_lang" value="{{ opt.v }}"{% if opt.v == lang %} checked{% endif %}>
+                <span class="langpick-card">
+                  {% if opt.badge %}<span class="langpick-badge">{{ opt.badge }}</span>{% endif %}
+                  <span class="langpick-flag" aria-hidden="true">{{ opt.flag }}</span>
+                  <span class="langpick-name">{{ opt.l }}</span>
+                  <span class="langpick-desc">{{ opt.d }}</span>
+                  {% if opt.v == 'multi' %}
+                  <span class="langpick-preview" aria-hidden="true">
+                    <span class="lang-switch"><span class="lang-opt is-active">DE</span><span class="lang-opt">EN</span><span class="lang-opt">RO</span></span>
+                  </span>
+                  {% endif %}
+                  <span class="langpick-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+                </span>
+              </label>
+              {% endfor %}
+            </div>
+          </fieldset>
+          <fieldset class="af-block">
+            <legend>{{ t.confirm_page.ziel_legend|safe }}</legend>
+            <div class="chipset">
+              {% for opt in t.confirm_page.ziel %}<label class="pick"><input type="checkbox" name="ziel" value="{{ opt.v }}"{% if opt.c %} checked{% endif %}><span>{{ opt.l|safe }}</span></label>{% endfor %}
+            </div>
+          </fieldset>
+          <div class="wz-nav">
+            <button type="button" class="wz-back btn btn-ghost">{{ t.confirm_page.nav_back|safe }}</button>
+            <span class="wz-run" aria-live="polite"><span class="wz-run-count" data-run-count></span></span>
+            <button type="button" class="wz-next btn">{{ t.confirm_page.nav_next|safe }}</button>
           </div>
         </section>
 
-        <section class="af-section">
+        <section class="af-section" data-step="2">
           <div class="af-section-head"><span class="af-num">3</span><div><h4>{{ t.confirm_page.sec3_h|safe }}</h4><p>{{ t.confirm_page.sec3_p|safe }}</p></div></div>
           <fieldset class="af-block">
             <legend>{{ t.confirm_page.stil_legend|safe }}</legend>
@@ -116,9 +161,14 @@
               {% for opt in t.confirm_page.tonalitaet %}<label class="pick"><input type="checkbox" name="tonalitaet" value="{{ opt.v }}"><span>{{ opt.l|safe }}</span></label>{% endfor %}
             </div>
           </fieldset>
+          <div class="wz-nav">
+            <button type="button" class="wz-back btn btn-ghost">{{ t.confirm_page.nav_back|safe }}</button>
+            <span class="wz-run" aria-live="polite"><span class="wz-run-count" data-run-count></span></span>
+            <button type="button" class="wz-next btn">{{ t.confirm_page.nav_next|safe }}</button>
+          </div>
         </section>
 
-        <section class="af-section">
+        <section class="af-section" data-step="3">
           <div class="af-section-head"><span class="af-num">4</span><div><h4>{{ t.confirm_page.sec4_h|safe }}</h4><p>{{ t.confirm_page.sec4_p|safe }}</p></div></div>
           <fieldset class="af-block">
             <legend>{{ t.confirm_page.team_legend|safe }}</legend>
@@ -141,9 +191,14 @@
             <label class="fld"><span>{{ t.confirm_page.f_zeiten|safe }}</span><input type="text" name="oeffnungszeiten" maxlength="160" placeholder="{{ t.confirm_page.f_zeiten_ph|safe }}"></label>
             <label class="fld"><span>{{ t.confirm_page.f_slogan|safe }} <small>{{ t.confirm_page.f_slogan_small|safe }}</small></span><input type="text" name="slogan" maxlength="160" placeholder="{{ t.confirm_page.f_slogan_ph|safe }}"></label>
           </div>
+          <div class="wz-nav">
+            <button type="button" class="wz-back btn btn-ghost">{{ t.confirm_page.nav_back|safe }}</button>
+            <span class="wz-run" aria-live="polite"><span class="wz-run-count" data-run-count></span></span>
+            <button type="button" class="wz-next btn">{{ t.confirm_page.nav_next|safe }}</button>
+          </div>
         </section>
 
-        <section class="af-section">
+        <section class="af-section" data-step="4">
           <div class="af-section-head"><span class="af-num">5</span><div><h4>{{ t.confirm_page.sec5_h|safe }}</h4><p>{{ t.confirm_page.sec5_p|safe }}</p></div></div>
           <label class="af-upload" id="uploadLabel">
             <input type="file" id="fileInput" accept="image/*" multiple hidden {% if not cloud_ready %}disabled{% endif %}>
@@ -151,19 +206,28 @@
           </label>
           <div class="af-thumbs" id="thumbs"></div>
           <p class="af-uphint" id="upHint" hidden>{{ t.confirm_page.uploading|safe }}</p>
+          <div class="wz-nav">
+            <button type="button" class="wz-back btn btn-ghost">{{ t.confirm_page.nav_back|safe }}</button>
+            <span class="wz-run" aria-live="polite"><span class="wz-run-count" data-run-count></span></span>
+            <button type="button" class="wz-next btn">{{ t.confirm_page.nav_next|safe }}</button>
+          </div>
         </section>
 
-        <section class="af-section">
+        <section class="af-section" data-step="5">
           <div class="af-section-head"><span class="af-num">6</span><div><h4>{{ t.confirm_page.sec6_h|safe }}</h4><p>{{ t.confirm_page.sec6_p|safe }}</p></div></div>
           <div class="af-grid">
             <label class="fld"><span>{{ t.confirm_page.f_website|safe }}</span><input type="url" name="aktuelle_website" maxlength="200" placeholder="{{ t.confirm_page.f_website_ph|safe }}"></label>
             <label class="fld"><span>{{ t.confirm_page.f_vorbilder|safe }}</span><input type="text" name="vorbilder" maxlength="200" placeholder="{{ t.confirm_page.f_vorbilder_ph|safe }}"></label>
           </div>
           <label class="fld"><span>{{ t.confirm_page.f_extra|safe }}</span><textarea name="extra" rows="3" maxlength="600" placeholder="{{ t.confirm_page.f_extra_ph|safe }}"></textarea></label>
+          <div class="wz-nav wz-nav-final">
+            <button type="button" class="wz-back btn btn-ghost">{{ t.confirm_page.nav_back|safe }}</button>
+            <span class="wz-run" aria-live="polite"><span class="wz-run-count" data-run-count></span></span>
+            <span class="wz-nav-spacer" aria-hidden="true"></span>
+          </div>
+          <button class="btn btn-lg btn-magnetic af-submit" type="submit" id="afSubmit">{{ t.confirm_page.submit|safe }}</button>
+          <p class="af-note">{{ t.confirm_page.note|safe }}</p>
         </section>
-
-        <button class="btn btn-lg btn-magnetic af-submit" type="submit" id="afSubmit">{{ t.confirm_page.submit|safe }}</button>
-        <p class="af-note">{{ t.confirm_page.note|safe }}</p>
       </form>
 
       <script>
@@ -224,5 +288,6 @@
 
 {% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>
+<script src="{% static 'js/anfrage.js' %}?v={{ asset_v }}" defer></script>
 </body>
 </html>

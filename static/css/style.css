@@ -357,8 +357,9 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .contact-form label{display:flex;flex-direction:column;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink)}
 .contact-form .opt{font-weight:400;color:var(--ink-dim)}
-.contact-form input,.contact-form textarea,.contact-form select{font:inherit;font-weight:400;font-size:15px;padding:13px 15px;
+.contact-form input,.contact-form textarea,.contact-form select{font:inherit;font-weight:400;font-size:15px;padding:13px 15px;min-height:48px;
   border:1px solid var(--line-2);border-radius:12px;background:rgba(0,0,0,.25);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+.contact-form textarea{min-height:112px;resize:vertical}
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--ink-dim)}
 .contact-form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);
   background-position:calc(100% - 20px) 19px,calc(100% - 15px) 19px;background-size:5px 5px;background-repeat:no-repeat}
@@ -544,10 +545,11 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .ang-ci-x{width:24px;height:24px;border-radius:50%;border:1px solid var(--line-2);background:rgba(255,255,255,.02);color:var(--ink-soft);
   font-size:17px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:all .18s;flex:0 0 auto}
 .ang-ci-x:hover{border-color:color-mix(in srgb,var(--accent) 55%,transparent);color:var(--ink);transform:scale(1.06)}
-.ang-totals{display:flex;flex-direction:column;gap:2px;margin-top:6px;padding-top:14px;border-top:1px dashed var(--line-2)}
+.ang-totals{display:flex;flex-direction:column;gap:2px;margin-top:10px;padding:14px 16px 6px;border-radius:14px;
+  background:color-mix(in srgb,var(--accent) 6%,transparent);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent)}
 .ang-total-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:6px 0}
 .ang-total-row span{font-size:14px;color:var(--ink-soft)}
-.ang-total-row strong{font-size:1.5rem;font-weight:700;color:var(--ink);font-family:"Space Grotesk",sans-serif;letter-spacing:-.02em}
+.ang-total-row strong{font-size:1.65rem;font-weight:700;color:var(--ink);font-family:"Space Grotesk",sans-serif;letter-spacing:-.02em}
 .ang-total-row strong small{font-size:.62em;font-weight:600;color:var(--ink-soft);margin-left:1px}
 .ang-total-row[data-total="once"] strong{color:var(--accent2)}
 .ang-total-note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--ink-soft);margin-top:8px;
@@ -560,8 +562,9 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .ang-lead .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .ang-lead label{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:14px}
 .ang-lead .opt{font-weight:400;color:var(--ink-dim)}
-.ang-lead input,.ang-lead textarea{font:inherit;font-weight:400;font-size:15px;padding:12px 14px;color:var(--ink);
+.ang-lead input,.ang-lead textarea{font:inherit;font-weight:400;font-size:15px;padding:13px 14px;min-height:48px;color:var(--ink);
   background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;transition:border-color .2s,box-shadow .2s;width:100%}
+.ang-lead textarea{min-height:96px;resize:vertical}
 .ang-lead input::placeholder,.ang-lead textarea::placeholder{color:var(--ink-dim)}
 .ang-lead input:focus,.ang-lead textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
 .ang-lead .check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400;font-size:12.5px;color:var(--ink-soft)}
@@ -652,7 +655,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .wz-nav-spacer{flex:0 0 auto;width:104px}
 .wz-run{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;text-align:center;min-width:0;flex:1}
 .wz-run-count{font-size:11.5px;color:var(--ink-soft)}
-.wz-run-sum{font-size:17px;font-weight:700;font-family:"Space Grotesk",sans-serif;color:var(--accent2);letter-spacing:-.01em}
+.wz-run-sum{font-size:18.5px;font-weight:700;font-family:"Space Grotesk",sans-serif;color:var(--accent2);letter-spacing:-.01em}
 
 /* Letzte Slide: Auswahl + Formular */
 .ang-final{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:2px}
@@ -741,15 +744,15 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .offer-form::before{content:"";position:absolute;left:16px;right:16px;top:0;height:2px;border-radius:2px;
   background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.85}
 .offer-row{display:flex;gap:10px}
-.offer-row input{flex:1;min-width:0;font:inherit;font-weight:400;font-size:15px;padding:13px 15px;color:var(--ink);
+.offer-row input{flex:1;min-width:0;min-height:48px;font:inherit;font-weight:400;font-size:15px;padding:13px 15px;color:var(--ink);
   background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;transition:border-color .2s,box-shadow .2s}
 .offer-row .btn{flex:0 0 auto}
-.offer-wish{width:100%;margin-top:10px;font:inherit;font-weight:400;font-size:14px;padding:11px 14px;color:var(--ink);
+.offer-wish{width:100%;min-height:48px;margin-top:10px;font:inherit;font-weight:400;font-size:14px;padding:13px 14px;color:var(--ink);
   background:var(--bg-2);border:1px solid var(--line);border-radius:12px;transition:border-color .2s,box-shadow .2s}
 .offer-row input::placeholder,.offer-wish::placeholder{color:var(--ink-dim)}
 .offer-row input:focus,.offer-wish:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
-.offer-consent{display:flex;gap:9px;align-items:flex-start;margin-top:12px;font-size:11.5px;line-height:1.5;color:var(--ink-soft)}
-.offer-consent input{width:16px;height:16px;margin-top:1px;flex:0 0 auto;accent-color:var(--accent)}
+.offer-consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:11.5px;line-height:1.5;color:var(--ink-soft)}
+.offer-consent input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:var(--accent)}
 .offer-consent a{color:var(--accent2);text-decoration:underline}
 .offer-foot{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;margin-top:13px}
 .offer-jarvis{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--ink-dim)}
@@ -823,25 +826,49 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .offer-form>.of-grid:first-of-type{margin-top:0}
 .of-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .of-grid .field{min-width:0}
-.fld-l{display:block;font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
+.fld-l{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:7px;letter-spacing:.01em}
 .fld-opt{font-weight:500;color:var(--ink-dim)}
 .fld-req{font-weight:700;color:var(--accent2)}
-.fld{width:100%;font:inherit;font-weight:400;font-size:14.5px;padding:11px 13px;color:var(--ink);
-  background:var(--bg-2);border:1px solid var(--line-2);border-radius:11px;transition:border-color .2s,box-shadow .2s;min-width:0}
-textarea.fld{resize:vertical;line-height:1.5}
+/* Basis-Feld: Eingaben direkt mit .fld (Input/Select/Textarea) ODER .fld als Label-Hülle
+   (Text-Span + verschachteltes Input), je nach Formular ,  beide Muster bleiben erhalten. */
+.fld{width:100%;min-height:48px;font:inherit;font-weight:400;font-size:14.5px;padding:13px 14px;color:var(--ink);
+  background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;
+  transition:border-color .18s,box-shadow .18s,background .18s;min-width:0}
+textarea.fld{resize:vertical;line-height:1.55;min-height:96px}
 .fld::placeholder{color:var(--ink-dim)}
+.fld:hover{border-color:var(--line-2)}
 .fld:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 28%,transparent)}
+.fld:disabled{opacity:.5;cursor:not-allowed}
 select.fld{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:36px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3ada2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 12px center;background-size:16px}
 select.fld option{background:var(--surface);color:var(--ink)}
-/* Chip-Auswahl (Mehrfach, reine Checkboxen ohne JS) */
-.chipset{display:flex;flex-wrap:wrap;gap:8px}
+/* Sanfte Fehler-/Erfolgszustände (Utility-Klassen, per JS/serverseitig setzbar) */
+.fld.is-invalid{border-color:color-mix(in srgb,#e0665c 65%,var(--line-2));box-shadow:0 0 0 3px color-mix(in srgb,#e0665c 20%,transparent)}
+.fld.is-valid{border-color:color-mix(in srgb,#3ecf8e 55%,var(--line-2))}
+.fld:not(:focus):invalid:not(:placeholder-shown){border-color:color-mix(in srgb,#e0665c 45%,var(--line-2))}
+.fld-msg{display:block;margin-top:7px;font-size:12px;line-height:1.4}
+.fld-msg-error{color:#e0857c}
+.fld-msg-hint{color:var(--ink-dim)}
+/* Label als Feld-Hülle: Text-Span oben, Eingabe darunter (af-Grid, Kooperationsformular ...) */
+label.fld{display:flex;flex-direction:column;gap:7px;min-height:0;background:none;border:0;padding:0;
+  font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:auto}
+label.fld:hover,label.fld:focus-within{border-color:transparent}
+label.fld>span{color:var(--ink-soft)}
+label.fld input,label.fld textarea,label.fld select{width:100%;min-height:48px;font:inherit;font-weight:400;font-size:14.5px;
+  padding:13px 14px;color:var(--ink);background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;
+  transition:border-color .18s,box-shadow .18s}
+label.fld textarea{min-height:88px;resize:vertical;line-height:1.55}
+label.fld input::placeholder,label.fld textarea::placeholder{color:var(--ink-dim)}
+label.fld input:focus,label.fld textarea:focus,label.fld select:focus{outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 28%,transparent)}
+/* Chip-Auswahl (Mehrfach, reine Checkboxen/Radios ohne JS) ,  größere, ruhige Tap-Fläche */
+.chipset{display:flex;flex-wrap:wrap;gap:9px}
 .pick{position:relative;cursor:pointer}
 .pick input{position:absolute;opacity:0;width:0;height:0}
-.pick span{display:inline-flex;align-items:center;font-size:12.5px;font-weight:600;color:var(--ink-soft);
-  padding:8px 13px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,.03);
-  transition:border-color .18s,color .18s,background .18s}
+.pick span{display:inline-flex;align-items:center;min-height:40px;font-size:13px;font-weight:600;color:var(--ink-soft);
+  padding:9px 16px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,.03);
+  transition:border-color .18s,color .18s,background .18s,transform .18s var(--ease)}
 .pick:hover span{border-color:color-mix(in srgb,var(--accent) 45%,transparent);color:var(--ink)}
 .pick input:checked+span{color:var(--on-accent);border-color:transparent;background:linear-gradient(150deg,var(--accent2),var(--accent))}
 .pick input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
@@ -866,13 +893,13 @@ select.fld option{background:var(--surface);color:var(--ink)}
 .anfrage-form{max-width:760px;margin:22px auto 0;display:flex;flex-direction:column;gap:20px;text-align:left}
 .af-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media (max-width:560px){.af-grid{grid-template-columns:1fr}}
-.af-block{border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:0;background:color-mix(in srgb,var(--paper) 60%,transparent)}
+.af-block{border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:0;background:color-mix(in srgb,var(--surface) 60%,transparent)}
 .af-block legend{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:.95rem;padding:0 6px;color:var(--ink)}
 .af-block legend small{color:var(--ink-soft);font-weight:400;font-family:Inter,sans-serif}
 .af-block .chipset{margin-top:12px}
 .af-sub{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
-.fld-color{flex-direction:row;align-items:center;gap:10px}
-.fld-color input[type=color]{inline-size:44px;block-size:34px;padding:0;border:1px solid var(--line);border-radius:8px;background:none;cursor:pointer}
+label.fld-color{flex-direction:row;align-items:center;gap:10px}
+.fld-color input[type=color]{inline-size:44px;block-size:34px;min-height:0;padding:0;border:1px solid var(--line);border-radius:8px;background:none;cursor:pointer}
 .af-upload{display:block;border:1.5px dashed color-mix(in srgb,var(--accent) 45%,var(--line));border-radius:14px;
   padding:22px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
 .af-upload:hover,.af-upload.drag{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,transparent)}
@@ -884,6 +911,47 @@ select.fld option{background:var(--surface);color:var(--ink)}
 .af-uphint{margin-top:10px;font-size:13px;color:var(--accent2)}
 .af-submit{align-self:flex-start}
 .af-note{font-size:13px;color:var(--ink-soft);margin:-6px 0 0}
+
+/* ── Anfrage-Wizard: Sektionen als Schritte (nutzt .wz-steps/.wz-progress/.wz-nav) ──
+   Progressive Enhancement: ohne JS bleiben alle .af-section untereinander sichtbar
+   (ihr bestehender border-top/padding-Rhythmus greift unverändert); erst .wz-on
+   (von anfrage.js gesetzt) blendet auf Ein-Schritt-pro-Ansicht um. */
+.anfrage-form.wz-on .af-section{display:none}
+.anfrage-form.wz-on .af-section.is-active{display:flex;animation:wzIn .34s var(--ease)}
+.anfrage-form .wz-steps{margin-bottom:6px}
+.anfrage-form .wz-nav{margin-top:6px}
+.af-restore{display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:12px;margin:-4px 0 4px;
+  border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);background:color-mix(in srgb,var(--accent) 7%,transparent);
+  font-size:13px;color:var(--ink-soft)}
+.af-restore svg{width:17px;height:17px;flex:none;color:var(--accent2)}
+
+/* ── Sprachwahl-Kacheln (site_lang) ──────────────────────────────────────── */
+.langpick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+@media (max-width:560px){.langpick-grid{grid-template-columns:1fr}}
+.langpick{position:relative;cursor:pointer;display:block;height:100%}
+.langpick input{position:absolute;opacity:0;width:0;height:0}
+.langpick-card{position:relative;display:flex;flex-direction:column;gap:6px;height:100%;padding:16px 40px 16px 18px;
+  border:1px solid var(--line);border-radius:15px;background:linear-gradient(180deg,var(--surface),var(--surface-2));
+  transition:transform .2s var(--ease),border-color .2s,box-shadow .2s}
+.langpick:hover .langpick-card{transform:translateY(-2px);border-color:var(--line-2)}
+.langpick-flag{font-size:26px;line-height:1}
+.langpick-name{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:15px;color:var(--ink)}
+.langpick-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+.langpick-badge{position:absolute;top:14px;right:14px;font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  white-space:nowrap;color:var(--on-accent);background:linear-gradient(150deg,var(--accent2),var(--accent));padding:4px 9px;border-radius:999px}
+.langpick-check{position:absolute;bottom:14px;right:14px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid var(--line-2);color:transparent;transition:all .2s var(--ease)}
+.langpick-check svg{width:13px;height:13px}
+.langpick input:checked+.langpick-card{border-color:color-mix(in srgb,var(--accent) 62%,transparent);
+  background:radial-gradient(120% 100% at 100% 0%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 60%),linear-gradient(180deg,var(--surface),var(--surface-2));
+  box-shadow:0 10px 26px -18px color-mix(in srgb,var(--accent) 55%,transparent)}
+.langpick input:checked+.langpick-card .langpick-check{border-color:transparent;color:var(--on-accent);
+  background:linear-gradient(150deg,var(--accent),var(--accent2))}
+.langpick input:focus-visible+.langpick-card{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:2px}
+.langpick-feat .langpick-card{border-color:color-mix(in srgb,var(--accent) 28%,transparent)}
+.langpick-preview{display:flex;margin-top:2px}
+.langpick-preview .lang-switch{pointer-events:none;background:rgba(255,255,255,.05)}
+.langpick-preview .lang-opt{padding:4px 8px;font-size:10.5px;min-width:24px}
 
 /* ── Inline-Angebot / Richtangebot (#angebot) ────────────────────────────── */
 .rb-head{max-width:760px}
@@ -905,7 +973,7 @@ select.fld option{background:var(--surface);color:var(--ink)}
 .rb-side{position:sticky;top:92px;display:flex;flex-direction:column;gap:12px}
 @media (max-width:920px){.rb-side{position:static}}
 .rb-card{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;
-  background:var(--paper);padding:20px 20px 22px;
+  background:var(--surface);padding:20px 20px 22px;
   box-shadow:0 1px 2px rgba(10,9,8,.05),0 18px 44px -24px rgba(10,9,8,.35)}
 .rb-card::before{content:"";position:absolute;inset:0 0 auto 0;block-size:3px;
   background:linear-gradient(90deg,var(--accent),var(--accent2))}
@@ -1014,15 +1082,9 @@ select.fld option{background:var(--surface);color:var(--ink)}
 .coop-join-ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .coop-join-copy h3{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.3rem,2.2vw,1.7rem);line-height:1.15;margin-bottom:8px}
 .coop-join-copy p{font-size:14.5px;color:var(--ink-soft);line-height:1.6}
-.coop-form{display:flex;flex-direction:column;gap:12px;min-width:0}
+.coop-form{display:flex;flex-direction:column;gap:14px;min-width:0}
 .coop-f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.coop-form .fld{display:flex;flex-direction:column;gap:6px;background:none;border:0;padding:0;width:100%;min-width:0}
-.coop-form .fld>span{font-size:12px;font-weight:600;color:var(--ink-soft)}
-.coop-form .fld input,.coop-form .fld textarea{width:100%;font:inherit;font-size:14.5px;padding:11px 13px;color:var(--ink);
-  background:var(--bg-2);border:1px solid var(--line-2);border-radius:11px;transition:border-color .2s,box-shadow .2s;min-width:0}
-.coop-form .fld textarea{resize:vertical;line-height:1.5}
-.coop-form .fld input::placeholder,.coop-form .fld textarea::placeholder{color:var(--ink-dim)}
-.coop-form .fld input:focus,.coop-form .fld textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 28%,transparent)}
+/* .fld-Feldstil kommt aus der globalen label.fld-Regel (siehe Feld-Primitives) */
 .coop-submit{margin-top:4px;align-self:flex-start}
 .coop-fine{font-size:12px;color:var(--ink-dim)}
 .coop-done{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:14px;
