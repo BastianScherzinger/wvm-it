@@ -14,6 +14,9 @@
 > Neu-Indexierung angemeldet und per IndexNow bei Bing, Yandex und Seznam gemeldet.
 > Die Nullmessung liegt in `docs/seo/BASELINE.md` , **7 Klicks und 54 Impressionen in
 > drei Monaten, ausschließlich über den Markennamen.**
+> **Stand 28.08.2026 (live):** Der Relaunch ist deployt — 57 URLs antworten öffentlich,
+> Sitemap und IndexNow (HTTP 200) sind auf dem neuen Bestand. **Noch nicht bei Google
+> angemeldet**: Search Console (Sitemap + neue URLs) ist der nächste manuelle Schritt.
 > **Stand 28.08.2026 (Relaunch):** Block S-A ist abgearbeitet , aus 2 rankbaren Seiten
 > sind 19 geworden (57 mit EN/RO). Der Schwerpunkt liegt jetzt auf EDV/IT statt auf
 > Webdesign; die Begründung steht in `docs/RELAUNCH-PLAN.md`. Offen bleiben F3

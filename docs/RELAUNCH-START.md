@@ -1,11 +1,10 @@
 # RELAUNCH START — Einstiegspunkt
 
-> **Hier anfangen.** Der Relaunch ist gebaut und geprüft, aber **noch nicht live**.
-> Er liegt auf dem Zweig `relaunch-2026-08`, nicht auf `main`, nicht gepusht.
+> **Hier anfangen.** Der Relaunch ist seit dem 28.08.2026 abends **live** auf
+> https://www.wvm-it.tech — gemergt, gepusht, deployt, per IndexNow gemeldet.
 >
-> **Der nächste Schritt ist keine Programmierarbeit, sondern eine Antwort:**
-> Florin muss die zwölf geschätzten EDV- und Ads-Preise bestätigen (§2).
-> Danach: mergen, deployen, IndexNow, Search Console.
+> **Der nächste Schritt ist Search Console** (Sitemap neu einreichen, neue URLs zur
+> Indexierung anmelden, §2b) und danach Block **S-G/S-T** aus `SEO-PLAN.md`.
 
 ---
 
@@ -14,10 +13,10 @@
 | | |
 |---|---|
 | **Datum** | 28.08.2026 |
-| **Zweig** | `relaunch-2026-08` — 6 Commits, `fb2de52` → `47a188f` |
+| **Zweig** | `relaunch-2026-08` — 7 Commits, `fb2de52` → `388a138`, per Fast-Forward auf `main` |
 | **Umfang** | 30 Dateien, +4.317 / −644 Zeilen |
-| **Gemergt?** | **Nein.** `main` ist unverändert, die Live-Seite zeigt den alten Stand |
-| **Gepusht?** | **Nein** |
+| **Gemergt?** | **Ja** — `main` steht auf `388a138` |
+| **Gepusht & live?** | **Ja** (28.08.2026, Railway-Deploy erfolgreich). Stichprobe über 14 URLs inkl. EN/RO: alle 200. Sitemap führt 57 URLs. IndexNow: 57 URLs mit HTTP 200 angenommen |
 | **Prüfung** | `python manage.py pruefe_seite` — grün über **57 URLs**, keine Warnung |
 | **Sprachen** | DE, EN, RO vollständig — **kein einziger Schlüssel erbt mehr von DE** |
 | **Lokal getestet** | alle 57 URLs antworten mit 200, Schema gültig, interne Links ohne 404 |
@@ -30,10 +29,15 @@ https://claude.ai/code/artifact/77a99169-9738-4966-b1d8-f54e9db27e8b
 
 ## 2. Was als Erstes passieren muss
 
-### a) Preise bestätigen lassen — blockiert den Deploy
+### a) Preise — von Bastian freigegeben, Florin bestätigt nachträglich
+
+**Erledigt am 28.08.2026:** Bastian hat die zwölf geschätzten Preise als „passt erstmal
+so" freigegeben, damit war der Deploy nicht länger blockiert. Sie sind live. Florins
+Gegenzeichnung steht weiter aus — wenn eine Zahl fällt, ändert sie sich nur in
+`landing/views.py::ANGEBOT_GROUPS`.
 
 Zwölf Positionen sind **geschätzt** (marktübliche Profi-Sätze AT/DE, auf ausdrückliche
-Anweisung). Sie stehen bereits in Texten, Preistabelle, Konfigurator und Schema.
+Anweisung). Sie stehen in Texten, Preistabelle, Konfigurator und Schema.
 
 | Position | Vorschlag | Einheit |
 |---|---|---|
@@ -54,16 +58,16 @@ Anweisung). Sie stehen bereits in Texten, Preistabelle, Konfigurator und Schema.
 Danach `python manage.py pruefe_seite` — der Befehl meldet jede Textstelle, an der noch
 die alte Zahl steht. Es gibt keine zweite Preisliste.
 
-### b) Deploy (wenn die Preise stehen)
+### b) Deploy — am 28.08.2026 durchgeführt
 
 ```
 git checkout main
-git merge relaunch-2026-08
-python manage.py pruefe_seite          # muss grün sein
+git merge relaunch-2026-08             # Fast-Forward auf 388a138
+python manage.py pruefe_seite          # grün: 57 URLs, 1098 Sprachschlüssel, 22 Preise
 git push origin main                   # Railway deployt automatisch
-python manage.py indexnow              # Bing/Yandex/Seznam
+python manage.py indexnow              # 57 URLs, HTTP 200
 ```
-Danach **von Hand**: Search Console öffnen, Sitemap neu einreichen, die neuen URLs zur
+**Noch offen und von Hand:** Search Console öffnen, Sitemap neu einreichen, die neuen URLs zur
 Indexierung anmelden. Die Property liegt im **dritten** Google-Konto (zusammen mit
 ruempelwerk, pystore, rtc-service) — weder …05 noch …69@gmail.com. Siehe `INDEXIERUNG.md`.
 
@@ -139,7 +143,7 @@ Leistungsumfang, Ablauf in drei Schritten, Preis, vier FAQ, Anfrageformular, Que
 
 | Punkt | Wer | Warum es offen ist |
 |---|---|---|
-| **Preise bestätigen** | Florin | Blockiert den Deploy. Liste in §2 |
+| **Preise gegenzeichnen** | Florin | Nicht mehr blockierend — Bastian hat sie am 28.08.2026 freigegeben, sie sind live. Liste in §2 |
 | **Anschrift** | Florin | Auf Wunsch später. Felder `adresse`/`plz`/`stadt` in `content.json` sind vorbereitet, ein Eintrag füllt Impressum, Schema und Kontaktseite gleichzeitig. **Ein Impressum ohne ladungsfähige Anschrift ist in Österreich abmahnfähig** |
 | **Loxone-/KNX-Partnerstatus** | Florin | Feld `partner_status` leer. Welcher Level genau muss dabeistehen |
 | **Gründungsjahr** | Florin | Feld `seit_jahr` leer. Starkes Vertrauenssignal bei einem IT-Dienstleister |
@@ -183,4 +187,5 @@ Leistungsumfang, Ablauf in drei Schritten, Preis, vier FAQ, Anfrageformular, Que
 |---|---|
 | 27.08.2026 | Umbau geplant (Design, Conversion) |
 | 28.08.2026 | Umbau live, Indexierung beantragt, Nullmessung festgehalten |
-| 28.08.2026 | **Relaunch**: vier Fragen beantwortet (Adresse später, Preise schätzen, fast alles remote, Loxone/KNX + Jahre), Positionierung auf EDV gedreht, Silo gebaut, alle drei Sprachen, Doku. Sechs Commits auf `relaunch-2026-08` |
+| 28.08.2026 | **Relaunch**: vier Fragen beantwortet (Adresse später, Preise schätzen, fast alles remote, Loxone/KNX + Jahre), Positionierung auf EDV gedreht, Silo gebaut, alle drei Sprachen, Doku. Sieben Commits auf `relaunch-2026-08` |
+| 28.08.2026 | **Live**: Preise freigegeben, `relaunch-2026-08` nach `main` gemergt, gepusht, Railway-Deploy erfolgreich, 57 URLs per IndexNow gemeldet. Offen bleibt die Search Console |

@@ -3,16 +3,20 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: Relaunch gebaut, Deploy offen
+## Stand: Relaunch live (28.08.2026)
 
 Am 28.08.2026 wurde die Positionierung gedreht: **Kern ist die EDV-/IT-Betreuung für
 Betriebe ohne eigene IT-Abteilung**, überwiegend per Fernwartung in ganz Österreich und
 Deutschland. Webseiten, SEO, Google Ads und KI sind das zweite Standbein, Technik vor
 Ort das dritte. Aus 2 rankbaren Seiten wurden 19 (57 mit EN/RO).
 
-**Der Relaunch ist gebaut, aber noch nicht live**: Zweig `relaunch-2026-08`, sechs
-Commits, nicht gemergt und nicht gepusht. Blockiert ist er von einer Antwort, nicht von
-Code — Florin muss die zwölf geschätzten EDV- und Ads-Preise bestätigen.
+**Der Relaunch ist live**: `relaunch-2026-08` (7 Commits) ist per Fast-Forward auf `main`,
+gepusht und von Railway deployt; die 57 URLs sind per IndexNow gemeldet. Bastian hat die
+zwölf geschätzten EDV- und Ads-Preise freigegeben („passt erstmal so"); Florins
+Gegenzeichnung steht noch aus, blockiert aber nichts mehr.
+
+**Nächster Schritt: Search Console** (Sitemap neu einreichen, neue URLs anmelden), danach
+Block S-G/S-T aus `docs/SEO-PLAN.md`.
 
 **Einstieg: `docs/RELAUNCH-START.md`** — Stand, Preisliste, Deploy-Schritte, offene Punkte.
 
