@@ -103,6 +103,7 @@
         {% else %}
         <form method="post" action="{% url 'angebot' %}#konfigurator" class="wz" id="angForm" novalidate>
           {% csrf_token %}
+          <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
 
           <!-- Schritt-Anzeige -->
           <ol class="wz-steps" id="wzSteps">

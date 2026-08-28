@@ -61,6 +61,7 @@
           <p class="tool-sub">{{ t.offer.card_sub|safe }}</p>
           <form class="offer-form offer-form-slim" id="newsForm" method="post" action="#top">
             {% csrf_token %}
+          <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
             <input type="hidden" name="form" value="newsletter">
             <div class="of-grid">
               <div class="field">
@@ -297,6 +298,7 @@
 
       <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
         {% csrf_token %}
+          <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
         <div class="rb-grid">
           <div class="rb-cats">
             {% for g in angebot_groups %}
@@ -668,6 +670,7 @@
         </div>
         <form class="coop-form" id="coopForm" method="post" action="{% url 'kooperation_anfordern' %}">
           {% csrf_token %}
+          <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
           <div class="coop-f-row">
             <label class="fld"><span>{{ t.koop.f_name|safe }}</span><input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="{{ t.koop.f_name_ph|safe }}"></label>
             <label class="fld"><span>{{ t.koop.f_firma|safe }}</span><input type="text" name="firma" maxlength="120" autocomplete="organization" placeholder="{{ t.koop.f_firma_ph|safe }}"></label>
@@ -817,6 +820,7 @@
       {% else %}
       <form class="contact-form" id="kontakt-form" method="post" action="#kontakt" data-reveal>
         {% csrf_token %}
+          <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
         <div class="f-row">
           <label>{{ t.kontakt.f_name|safe }}<input type="text" name="name" required autocomplete="name" placeholder="{{ t.kontakt.f_name_ph|safe }}"></label>
           <label>{{ t.kontakt.f_email|safe }}<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>

@@ -243,7 +243,12 @@
           if(urls.length>=8) return;
           pending++; setBusy(true);
           try{
-            var s=await (await fetch('{% url 'cloudinary_sign' %}')).json();
+            {# POST mit CSRF-Token: Die Upload-Signatur darf nicht per blossem Link
+               abrufbar sein, sonst laedt jeder Fremde auf unsere Rechnung hoch. #}
+            var s=await (await fetch('{% url 'cloudinary_sign' %}',{
+              method:'POST',
+              headers:{'X-CSRFToken':(document.querySelector('[name=csrfmiddlewaretoken]')||{}).value||''}
+            })).json();
             if(!s.ok) throw new Error('sign');
             var fd=new FormData();
             fd.append('file',file); fd.append('api_key',s.api_key);

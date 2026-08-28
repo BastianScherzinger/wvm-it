@@ -115,6 +115,24 @@ ASSET_VERSION = (os.environ.get("RAILWAY_GIT_COMMIT_SHA")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# ── Cache ────────────────────────────────────────────────────────────────────
+# Trägt die Zählerstände der Formular-Spam-Bremse (views._limit_erreicht).
+# Django voreingestellt sind 300 Einträge — bei etwas Verkehr fliegen die Zähler
+# dann wieder heraus, bevor das Zeitfenster abgelaufen ist, und die Bremse greift
+# genau dann nicht mehr, wenn sie gebraucht wird. Deshalb ausdrücklich größer.
+#
+# Der Speicher gilt je Prozess: Bei mehreren Web-Workern zählt jeder für sich, ein
+# Absender darf also im schlimmsten Fall (Anzahl Worker × Limit) durch. Für die
+# Größenordnung dieser Seite reicht das; sobald Redis verfügbar ist, gehört hier
+# ein gemeinsamer Speicher hin.
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "wvm-it",
+        "OPTIONS": {"MAX_ENTRIES": 20000, "CULL_FREQUENCY": 4},
+    }
+}
+
 # Hinter Railways HTTPS-Proxy korrektes Schema erkennen.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 

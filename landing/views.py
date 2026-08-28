@@ -442,9 +442,13 @@ def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="
 
 def _handle_angebot(request, c) -> bool:
     """Verarbeitet den Angebots-Konfigurator (POST). True = erfolgreich entgegengenommen."""
-    name = (request.POST.get("name") or "").strip()
-    email = (request.POST.get("email") or "").strip()
-    if not (name and email):
+    if _honigtopf(request):
+        return True             # Bot: so tun, als wäre alles gut, aber nichts mailen
+    if _limit_erreicht(request, "kontakt"):
+        return True
+    name = _feld(request, "name")
+    email = _feld(request, "email")
+    if not (name and _ist_email(email)):
         return False
     # Auswahl: mehrere Checkboxen name="item" ODER Fallback: kommagetrennt in "auswahl".
     ids = request.POST.getlist("item")
@@ -453,8 +457,8 @@ def _handle_angebot(request, c) -> bool:
     ids = [i for i in ids if i in _ANGEBOT_INDEX]
     if not ids:
         return False
-    telefon = (request.POST.get("telefon") or "").strip()
-    nachricht = (request.POST.get("nachricht") or "").strip()
+    telefon = _feld(request, "telefon")
+    nachricht = _feld(request, "nachricht")
     zeilen, once, mtl, yr, hat_anfrage = _angebot_summary(ids)
 
     summen = []
@@ -477,7 +481,7 @@ def _handle_angebot(request, c) -> bool:
         + "\nHinweis: Richtpreise, unverbindlich. Endpreis nach Gespräch.\n"
     )
     _send_mail_logged(
-        f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)", body,
+        _betreff(f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="ANGEBOT",
     )
     return True
@@ -485,13 +489,17 @@ def _handle_angebot(request, c) -> bool:
 
 def _handle_contact(request, c) -> bool:
     """Verarbeitet das Kontaktformular. True = erfolgreich entgegengenommen."""
-    name = (request.POST.get("name") or "").strip()
-    email = (request.POST.get("email") or "").strip()
-    nachricht = (request.POST.get("nachricht") or "").strip()
-    if not (name and email and nachricht):
+    if _honigtopf(request):
+        return True             # Bot: still verwerfen, aber wie Erfolg aussehen lassen
+    if _limit_erreicht(request, "kontakt"):
+        return True
+    name = _feld(request, "name")
+    email = _feld(request, "email")
+    nachricht = _feld(request, "nachricht")
+    if not (name and _ist_email(email) and nachricht):
         return False
-    telefon = (request.POST.get("telefon") or "").strip()
-    budget = (request.POST.get("budget") or "").strip()
+    telefon = _feld(request, "telefon")
+    budget = _feld(request, "budget")
     empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
     body = (
         f"Neue Anfrage über wvm-it.tech\n\n"
@@ -499,7 +507,7 @@ def _handle_contact(request, c) -> bool:
         f"Nachricht:\n{nachricht}\n"
     )
     _send_mail_logged(
-        f"Neue Projektanfrage von {name}", body,
+        _betreff(f"Neue Projektanfrage von {name}"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
     )
     return True
@@ -514,9 +522,87 @@ _NEWSLETTER_MAXAGE = 60 * 60 * 24 * 3  # Bestätigungslink 3 Tage gültig
 
 
 def _client_ip(request) -> str:
-    """Client-IP (hinter Railways Proxy erste Adresse aus X-Forwarded-For), als Consent-Nachweis."""
-    xff = (request.META.get("HTTP_X_FORWARDED_FOR") or "").split(",")[0].strip()
-    return xff or request.META.get("REMOTE_ADDR", "") or ""
+    """Client-IP als Consent-Nachweis und als Schlüssel der Spam-Bremse.
+
+    **Die LETZTE Adresse aus X-Forwarded-For, nicht die erste.** Ein Proxy hängt die
+    Adresse, von der er die Anfrage bekommen hat, hinten an. Alles davor stammt aus
+    dem Header, den der Client selbst geschickt hat — beliebig erfindbar. Wer die
+    erste Adresse nimmt, lässt jeden Absender seine eigene Kennung wählen: Die
+    Spam-Bremse zählt dann pro Fantasie-IP und greift nie, und der Consent-Nachweis
+    dokumentiert eine Adresse, die der Absender frei bestimmt hat.
+
+    Vor der App steht genau ein Proxy (Railway). Kommt die App je hinter eine weitere
+    Schicht, muss hier entsprechend weiter vorne gegriffen werden.
+    """
+    kette = [t.strip() for t in
+             (request.META.get("HTTP_X_FORWARDED_FOR") or "").split(",") if t.strip()]
+    return (kette[-1] if kette else "") or request.META.get("REMOTE_ADDR", "") or ""
+
+
+# ── Spam- und Missbrauchsschutz für alle Formulare ────────────────────────────
+# Jedes Formular auf dieser Seite löst eine E-Mail aus. Ohne Bremse ist das ein
+# Verstärker: ein Skript schickt tausend Anfragen, tausend Mails gehen raus, das
+# Absenderkonto landet auf einer Sperrliste — und danach kommt auch keine echte
+# Anfrage mehr an. Die drei Helfer hier hängen deshalb vor JEDEM Formular.
+#
+# Bewusst ohne Captcha: Die kostet erfahrungsgemäß mehr echte Anfragen, als sie
+# Spam verhindert. Honeypot plus IP-Bremse plus Feldlängen reichen gegen alles,
+# was nicht gezielt diese eine Seite angreift.
+
+_LIMITS = {                     # (Anfragen, Sekunden) je Bereich und IP
+    "anfrage":     (8, 15 * 60),    # Kurzformulare der Leistungsblöcke
+    "kontakt":     (5, 15 * 60),    # Kontakt- und Angebotsformular
+    "kooperation": (3, 60 * 60),    # verschickt Mail an eine FREMDE Adresse
+    "newsletter":  (5, 60 * 60),    # Double-Opt-in, verschickt an fremde Adresse
+}
+_FELD_MAX = {                   # Feldlängen. Alles Längere wird abgeschnitten.
+    "name": 120, "email": 254, "telefon": 40, "firma": 160,
+    "budget": 80, "nachricht": 4000, "wunsch": 4000, "quelle": 40,
+}
+
+
+def _limit_erreicht(request, bereich: str = "anfrage") -> bool:
+    """Zählt Absendungen je IP und Bereich im Zeitfenster. True = zu viele.
+
+    Getrennte Bereiche, weil die Formulare unterschiedlich gefährlich sind: Ein
+    Kurzformular mailt nur an uns selbst, die Kooperationsanfrage mailt an eine
+    Adresse, die der Absender bestimmt.
+    """
+    from django.core.cache import cache
+    limit, fenster = _LIMITS.get(bereich, _LIMITS["anfrage"])
+    schluessel = f"wvm-{bereich}-{_client_ip(request)}"
+    try:
+        anzahl = cache.get(schluessel, 0) + 1
+        cache.set(schluessel, anzahl, fenster)
+        if anzahl > limit:
+            print(f"[LIMIT] {bereich}: {anzahl} Versuche von {_client_ip(request)}",
+                  flush=True)
+            return True
+        return False
+    except Exception:
+        return False  # Cache kaputt? Dann lieber durchlassen als Anfragen verlieren.
+
+
+def _honigtopf(request) -> bool:
+    """True, wenn das unsichtbare Feld ausgefüllt ist — das tun nur automatische
+    Absender. Für den Absender sieht die Antwort danach aus wie ein Erfolg; ein
+    sichtbarer Fehler würde dem Skript nur verraten, wie es durchkommt."""
+    return bool((request.POST.get("hp") or "").strip())
+
+
+def _feld(request, name: str, grenze: int = 0) -> str:
+    """Ein POST-Feld, getrimmt und auf seine Höchstlänge gekürzt. Ohne Grenze
+    landet ein Megabyte Text ungeprüft in einer E-Mail."""
+    wert = (request.POST.get(name) or "").strip()
+    grenze = grenze or _FELD_MAX.get(name, 500)
+    return wert[:grenze]
+
+
+def _betreff(text: str) -> str:
+    """Betreffzeile ohne Zeilenumbrüche. Django wirft bei Umbrüchen im Betreff
+    zwar selbst einen Fehler (Header-Injection), aber der landet dann in
+    _send_mail_logged und die Anfrage geht still verloren. Lieber vorher säubern."""
+    return " ".join(str(text).split())[:180]
 
 
 def _subscriber_confirm(email: str, wunsch: str, ip: str) -> None:
@@ -675,10 +761,17 @@ def _compose_wunsch(request) -> str:
 def _handle_newsletter(request, c) -> bool:
     """Double-Opt-in Schritt 1: E-Mail prüfen und einen signierten Bestätigungslink mailen.
     Es wird noch KEIN Code ausgegeben und das Postfach noch NICHT benachrichtigt."""
-    email = (request.POST.get("email") or "").strip()
-    if not email or "@" not in email or " " in email:
+    # Schickt an eine Adresse, die der Absender bestimmt — gleiche Gefahr wie bei der
+    # Kooperationsanfrage: Ohne Bremse verschickt ein Skript über unsere Domain
+    # Bestätigungsmails an Fremde, und das Absenderkonto landet auf einer Sperrliste.
+    if _honigtopf(request):
+        return True
+    if _limit_erreicht(request, "newsletter"):
+        return True
+    email = _feld(request, "email")
+    if not _ist_email(email):
         return False
-    name = (request.POST.get("name") or "").strip()[:80]
+    name = _feld(request, "name")[:80]
     wunsch = _compose_wunsch(request)
     lang = i18n.norm_lang(get_language())
     # Angaben + Sprache kompakt + komprimiert in den signierten Link legen (kein DB-Zugriff noetig).
@@ -742,6 +835,15 @@ def newsletter_confirm(request):
 def cloudinary_sign(request):
     """Erzeugt eine kurzlebige, serverseitige Signatur für einen direkten Browser-Upload
     zu Cloudinary. Das Secret verlässt nie den Server; der Browser lädt danach direkt hoch."""
+    # Wer diese Signatur bekommt, darf in unseren Cloudinary-Ordner hochladen. Ohne
+    # Bremse ist das fremder Speicherplatz auf unsere Rechnung. Die Signatur gibt es
+    # deshalb nur per POST (nicht per Link aufrufbar) und nur begrenzt oft je IP.
+    # Diese Prüfung steht VOR der Konfigurationsprüfung, damit sie auch dann greift,
+    # wenn Cloudinary gerade nicht eingerichtet ist.
+    if request.method != "POST":
+        return JsonResponse({"ok": False, "error": "method"}, status=405)
+    if _limit_erreicht(request, "anfrage"):
+        return JsonResponse({"ok": False, "error": "limit"}, status=429)
     conf = _parse_cloudinary()
     if not conf.get("api_secret"):
         return JsonResponse({"ok": False, "error": "Cloudinary nicht konfiguriert"}, status=503)
@@ -1718,11 +1820,19 @@ def kooperation_anfordern(request):
     c = _content()
     if request.method != "POST":
         return JsonResponse({"ok": False}, status=405)
-    name = (request.POST.get("name") or "").strip()
-    email = (request.POST.get("email") or "").strip()
-    firma = (request.POST.get("firma") or "").strip()
-    nachricht = (request.POST.get("nachricht") or "").strip()
-    if not name or "@" not in email or " " in email:
+    # Dieser Endpunkt schickt eine Mail an eine Adresse, die der Absender selbst
+    # bestimmt (die Eingangsbestätigung). Ohne Bremse ist er ein Versandwerkzeug
+    # für Fremde — mit unserer Domain als Absender. Deshalb hier das engste Limit
+    # der ganzen Seite: drei Versuche je IP und Stunde.
+    if _honigtopf(request):
+        return JsonResponse({"ok": True})
+    if _limit_erreicht(request, "kooperation"):
+        return JsonResponse({"ok": True})
+    name = _feld(request, "name")
+    email = _feld(request, "email")
+    firma = _feld(request, "firma")
+    nachricht = _feld(request, "nachricht")
+    if not name or not _ist_email(email):
         return JsonResponse({"ok": False, "error": "eingabe"}, status=400)
     empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empf)
@@ -1731,7 +1841,7 @@ def kooperation_anfordern(request):
         f"Name:    {name}\nFirma:   {firma or '-'}\nE-Mail:  {email}\n\n"
         f"Nachricht:\n{nachricht or '-'}\n"
     )
-    _send_mail_logged(f"Kooperations-Anfrage von {name}", body, from_email, [empf], tag="KOOPERATION")
+    _send_mail_logged(_betreff(f"Kooperations-Anfrage von {name}"), body, from_email, [empf], tag="KOOPERATION")
     em = i18n.get_pack(get_language())["emails"]
     site = c.get("site_name", "WVM-IT")
     ack = em["kooperation_ack_body"].format(name=name, site=site, url=c.get("wvm_url", ""))
@@ -1754,8 +1864,6 @@ _ANFRAGE_QUELLEN = {
     "koop": "Kooperation",
     "rueckruf": "Rückruf",
 }
-_ANFRAGE_LIMIT = 8              # Anfragen ...
-_ANFRAGE_FENSTER = 15 * 60      # ... pro IP und 15 Minuten
 
 
 def _ist_email(wert: str) -> bool:
@@ -1764,19 +1872,6 @@ def _ist_email(wert: str) -> bool:
 
 def _ist_telefon(wert: str) -> bool:
     return len(re.sub(r"\D", "", wert)) >= 7
-
-
-def _limit_erreicht(request) -> bool:
-    """Einfache Bremse gegen Formular-Spam: zählt Anfragen je IP im Zeitfenster.
-    Bewusst ohne Captcha , die kostet mehr echte Anfragen als sie Spam verhindert."""
-    from django.core.cache import cache
-    schluessel = f"wvm-anfrage-{_client_ip(request)}"
-    try:
-        anzahl = cache.get(schluessel, 0) + 1
-        cache.set(schluessel, anzahl, _ANFRAGE_FENSTER)
-        return anzahl > _ANFRAGE_LIMIT
-    except Exception:
-        return False  # Cache kaputt? Dann lieber durchlassen als Anfragen verlieren.
 
 
 def leistung_anfrage(request):
