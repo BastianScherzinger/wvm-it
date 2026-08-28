@@ -25,6 +25,7 @@ urlpatterns += i18n_patterns(
     path("kooperation/anfordern/", views.kooperation_anfordern, name="kooperation_anfordern"),
     path("newsletter/bestaetigen/", views.newsletter_confirm, name="newsletter_confirm"),
     path("anfrage/absenden/", views.anfrage_absenden, name="anfrage_absenden"),
+    path("anfrage/leistung/", views.leistung_anfrage, name="leistung_anfrage"),
     path("warten/", views.warten, name="warten"),
     path("newsletter/abmelden/", views.newsletter_unsubscribe, name="newsletter_unsubscribe"),
     prefix_default_language=False,

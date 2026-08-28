@@ -235,6 +235,30 @@ _ANGEBOT_INDEX = {
 }
 
 
+def _startpreise(lang):
+    """Startpreis je Gruppe, abgeleitet aus ANGEBOT_GROUPS , der einzigen Preisquelle.
+    Die Leistungsblöcke auf der Startseite zeigen damit garantiert dieselben Zahlen wie
+    der Konfigurator; abgetippte Preise im Template gibt es bewusst nicht.
+    Ergebnis z. B. {'web': 'ab 350 €', 'infra': 'ab 15 €/Mt', 'technik': 'auf Anfrage'}."""
+    words = i18n.get_pack(lang).get("catalog_words", {})
+    ab = words.get("from", "ab")
+    sep = words.get("thousands", ".")
+    out = {}
+    for g in ANGEBOT_GROUPS:
+        einmalig = [it["once"] for it in g["items"] if it.get("once")]
+        monatlich = [it["mtl"] for it in g["items"] if it.get("mtl")]
+        jaehrlich = [it["yr"] for it in g["items"] if it.get("yr")]
+        if einmalig:
+            out[g["id"]] = f"{ab} {_thousands(min(einmalig), sep)} €"
+        elif monatlich:
+            out[g["id"]] = f"{ab} {min(monatlich)} {words.get('per_month', '€/Mt')}"
+        elif jaehrlich:
+            out[g["id"]] = f"{ab} {_thousands(min(jaehrlich), sep)} {words.get('per_year', '€/Jahr')}"
+        else:
+            out[g["id"]] = words.get("on_request", "auf Anfrage")
+    return out
+
+
 def _angebot_summary(ids):
     """Baut aus einer Liste von Item-IDs die Zusammenfassung + Summen — serverseitig,
     unabhängig von etwaigen Client-Werten. Gibt (zeilen, once, mtl, yr, hat_anfrage) zurück."""
@@ -940,8 +964,14 @@ def index(request):
         else:
             sent = _handle_contact(request, c)
     lang = get_language()
+    # Ohne JavaScript abgesendete Kurzanfragen kommen mit ?ok=<quelle> zurück , der
+    # betroffene Block zeigt dann seine Erfolgsmeldung (siehe leistung_anfrage).
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
     return render(request, "index.html", {
-        "c": c, "sent": sent, "news_sent": news_sent,
+        "c": c, "sent": sent, "news_sent": news_sent, "anfrage_ok": anfrage_ok,
+        "startpreise": _startpreise(lang),
         "angebot_groups": _localized_groups(lang),
         "kooperationen": KOOPERATIONEN,
         "structured_data": _structured_data(c, lang),
@@ -1167,6 +1197,111 @@ def kooperation_anfordern(request):
     ack = em["kooperation_ack_body"].format(name=name, site=site, url=c.get("wvm_url", ""))
     _send_mail_logged(em["kooperation_ack_subject"], ack, from_email, [email], tag="KOOPERATION-ACK")
     return JsonResponse({"ok": True})
+
+
+# ── Kurzanfragen aus den Leistungsblöcken (ein Endpunkt für alle) ─────────────
+# Jeder Leistungsblock auf der Startseite hat sein eigenes kleines Formular. Sie
+# laufen alle hier zusammen; die Herkunft steckt in 'quelle' und landet im Betreff,
+# damit im Postfach sofort sichtbar ist, worum es geht. Siehe docs/UMBAU-PLAN.md §4.
+_ANFRAGE_QUELLEN = {
+    "web": "Webdesign & Shop",
+    "hosting": "Hosting, Domain & Wartung",
+    "ki": "KI & Automatisierung",
+    "seo": "SEO & Sichtbarkeit",
+    "technik": "Technik vor Ort",
+    "koop": "Kooperation",
+    "rueckruf": "Rückruf",
+}
+_ANFRAGE_LIMIT = 8              # Anfragen ...
+_ANFRAGE_FENSTER = 15 * 60      # ... pro IP und 15 Minuten
+
+
+def _ist_email(wert: str) -> bool:
+    return wert.count("@") == 1 and " " not in wert and "." in wert.rsplit("@", 1)[-1]
+
+
+def _ist_telefon(wert: str) -> bool:
+    return len(re.sub(r"\D", "", wert)) >= 7
+
+
+def _limit_erreicht(request) -> bool:
+    """Einfache Bremse gegen Formular-Spam: zählt Anfragen je IP im Zeitfenster.
+    Bewusst ohne Captcha , die kostet mehr echte Anfragen als sie Spam verhindert."""
+    from django.core.cache import cache
+    schluessel = f"wvm-anfrage-{_client_ip(request)}"
+    try:
+        anzahl = cache.get(schluessel, 0) + 1
+        cache.set(schluessel, anzahl, _ANFRAGE_FENSTER)
+        return anzahl > _ANFRAGE_LIMIT
+    except Exception:
+        return False  # Cache kaputt? Dann lieber durchlassen als Anfragen verlieren.
+
+
+def leistung_anfrage(request):
+    """Nimmt eine Kurzanfrage entgegen: Freitext + EIN Kontaktweg (E-Mail oder Telefon).
+    Antwortet als JSON; ohne JavaScript leitet sie zurück auf den Block mit ?ok=<quelle>."""
+    c = _content()
+    quelle = (request.POST.get("quelle") or "").strip().lower()
+    ziel = reverse("index") + f"#leistung-{quelle}" if quelle in _ANFRAGE_QUELLEN else reverse("index")
+    will_json = request.headers.get("X-Requested-With") == "fetch"
+
+    def antwort(ok: bool, fehler: str = "", status: int = 200):
+        if will_json:
+            nutzlast = {"ok": ok} if ok else {"ok": False, "error": fehler}
+            return JsonResponse(nutzlast, status=status)
+        if ok:
+            return redirect(reverse("index") + f"?ok={quelle}#leistung-{quelle}")
+        return redirect(ziel + "?fehler=1" if "#" not in ziel else ziel)
+
+    if request.method != "POST":
+        return antwort(False, "methode", 405)
+    if quelle not in _ANFRAGE_QUELLEN:
+        return antwort(False, "quelle", 400)
+    if (request.POST.get("hp") or "").strip():        # Honeypot: nur Bots füllen das aus
+        return antwort(True)                          # still schlucken, kein Hinweis für den Bot
+    if _limit_erreicht(request):
+        return antwort(False, "limit", 429)
+
+    kontakt = (request.POST.get("kontakt") or "").strip()
+    if not (_ist_email(kontakt) or _ist_telefon(kontakt)):
+        return antwort(False, "kontakt", 400)
+    text = (request.POST.get("text") or "").strip()[:1200]
+    name = (request.POST.get("name") or "").strip()[:80]
+    zeit = (request.POST.get("zeit") or "").strip()[:80]   # nur beim Rückruf gesetzt
+    lang = i18n.norm_lang(get_language())
+
+    empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+    from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empf)
+    thema = _ANFRAGE_QUELLEN[quelle]
+    body = (
+        f"Neue Kurzanfrage über wvm-it.tech\n\n"
+        f"Thema:   {thema}\nName:    {name or '-'}\nKontakt: {kontakt}\n"
+        f"{'Zeit:    ' + zeit + chr(10) if zeit else ''}"
+        f"Sprache: {lang}\n\n"
+        f"Nachricht:\n{text or '-'}\n"
+    )
+    _send_mail_logged(f"[WVM] Anfrage: {thema}", body, from_email, [empf], tag="LEISTUNG")
+
+    # Bestätigung an den Absender , nur wenn er eine E-Mail hinterlassen hat.
+    if _ist_email(kontakt):
+        em = i18n.get_pack(lang)["emails"]
+        ack = em["leistung_ack_body"].format(
+            name=name or em["leistung_ack_fallback_name"], thema=thema,
+            site=c.get("site_name", "WVM-IT"), url=c.get("wvm_url", ""))
+        _send_mail_logged(em["leistung_ack_subject"].format(thema=thema), ack,
+                          from_email, [kontakt], tag="LEISTUNG-ACK")
+
+    # Zusätzlich in Supabase protokollieren, falls konfiguriert (best effort).
+    try:
+        from . import supa
+        if supa.enabled() and _ist_email(kontakt):
+            unsub = signing.dumps({"e": kontakt}, salt=_NEWSLETTER_UNSUB_SALT)
+            supa.upsert_subscriber(kontakt, f"[{thema}] {text}",
+                                   consent_ip=_client_ip(request), unsub_token=unsub)
+    except Exception as exc:
+        print(f"[LEISTUNG-LOG-FEHLER] {exc}", flush=True)
+
+    return antwort(True)
 
 
 def health(request):

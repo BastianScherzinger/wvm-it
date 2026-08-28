@@ -55,7 +55,8 @@
     numLocale: "{{ t.meta.num_locale }}",
     robot: [{% for m in t.hero.robot_msgs %}"{{ m|escapejs }}"{% if not forloop.last %},{% endif %}{% endfor %}],
     rb: { leistung: "{{ t.rb.js_leistung|escapejs }}", leistungen: "{{ t.rb.js_leistungen|escapejs }}", busy: "{{ t.rb.js_busy|escapejs }}", submit: "{{ t.rb.submit|escapejs }}", error: "{{ t.rb.js_error|escapejs }}" },
-    coop: { busy: "{{ t.koop.js_busy|escapejs }}", submit: "{{ t.koop.submit|escapejs }}", error: "{{ t.koop.js_error|escapejs }}" }
+    coop: { busy: "{{ t.koop.js_busy|escapejs }}", submit: "{{ t.koop.submit|escapejs }}", error: "{{ t.koop.js_error|escapejs }}" },
+    lb: { sending: "{{ t.lb.sending|escapejs }}", err_kontakt: "{{ t.lb.err_kontakt|escapejs }}", err_allg: "{{ t.lb.err_allg|escapejs }}" }
   };
 </script>
 <a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
@@ -71,13 +72,14 @@
     <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
-        <a href="#top">{{ t.nav.home|safe }}</a>
         <a href="#leistungen">{{ t.nav.leistungen|safe }}</a>
         <a href="#angebot">{{ t.nav.angebot|safe }}</a>
         <a href="#preise">{{ t.nav.preise|safe }}</a>
         <a href="#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
       {% include 'lang_switch.html' %}
+      <!-- Kontakt ist nie weiter als ein Klick entfernt: WhatsApp + Telefon + CTA -->
+      {% if c.whatsapp %}<a class="btn-wa nav-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener" aria-label="{{ t.ways.wa|safe }}">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
       {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
       <a class="btn btn-sm btn-magnetic nav-cta" href="#kontakt">{{ t.nav.cta|safe }}</a>
     </div>
@@ -85,8 +87,8 @@
 </header>
 
 <main id="main">
-  <!-- ── HERO ,  asymmetrischer Split: Text links, Roboter rechts, Tech-Backdrop ── -->
-  <section class="hero" id="top">
+  <!-- ── HERO: Kontaktwege links, Werkzeug rechts (siehe docs/UMBAU-PLAN.md §3) ── -->
+  <section class="hero on-dark" id="top">
     <div class="hero-bg" {% if c.hero_bg %}style="background-image:url('{{ c.hero_bg }}')"{% endif %} aria-hidden="true"></div>
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="wrap hero-grid">
@@ -94,104 +96,192 @@
         <span class="eyebrow"><span class="dot"></span>{{ t.hero.eyebrow|safe }}</span>
         <h1>{{ t.hero.headline|safe }}</h1>
         <p class="lead">{{ t.hero.subline|safe }}</p>
-        <div class="hero-cta">
-          <a class="btn btn-lg btn-magnetic" href="#gratis">{{ t.hero.cta|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+        <!-- Vier Wege, uns zu erreichen. WhatsApp zuerst, weil er am meisten genutzt wird. -->
+        <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+          {% if c.whatsapp %}
+          <a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">
+            {% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span>
+          </a>
+          {% endif %}
+          {% if c.telefon %}
+          <a class="way" href="tel:{{ c.telefon }}">
+            {% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span>
+          </a>
+          {% endif %}
+          <button class="way" type="button" data-rueckruf>
+            {% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span>
+          </button>
+          <a class="way" href="#kontakt">
+            {% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span>
+          </a>
         </div>
-        <p class="hero-note">{{ t.hero.note|safe }}</p>
+
+        <ul class="hero-trust">
+          <li>{% include 'icons.html' with name='clock' %}{{ t.trust.t1|safe }}</li>
+          <li>{% include 'icons.html' with name='gift' %}{{ t.trust.t2|safe }}</li>
+          <li>{% include 'icons.html' with name='check' %}{{ t.trust.t3|safe }}</li>
+          <li>{% include 'icons.html' with name='bolt' %}{{ t.trust.t4|safe }} {{ c.preis_ab }} €</li>
+        </ul>
       </div>
-      <div class="hero-figure" data-reveal>
-        <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="{{ t.hero.robot_aria|safe }}" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
-          <div class="hero-figure-glow" aria-hidden="true"></div>
-          <!-- 3D-Roboter (Spline) folgt der Maus; wird per JS auf Geräten mit WebGL eingehängt -->
-          <div class="robot-canvas" id="robotCanvas" aria-hidden="true">
-            <div class="robot-loader" id="robotLoader"><span class="spinner"></span><span class="robot-loadtxt">{{ t.hero.robot_loading|safe }}</span></div>
-          </div>
-          <!-- Fallback: freigestellter Roboter (ohne WebGL / reduced-motion) -->
-          {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="{{ c.site_name }}" class="robot robot-fallback" width="820" height="1098" fetchpriority="high">{% endif %}
-          <!-- Klickbar wie bei RTC: Sprechblase + einladender Hinweis -->
-          <div class="robot-bubble" id="robotBubble" aria-live="polite"></div>
-          <div class="robot-hint" id="robotHint" aria-hidden="true">{{ t.hero.robot_click|safe }}</div>
+
+      <!-- Werkzeug mit zwei Reitern: kostenlose Beispielseite ODER Richtpreis. -->
+      <div class="hero-tool" data-reveal aria-label="{{ t.tool.aria|safe }}">
+        <div class="tool-tabs" role="tablist" aria-label="{{ t.tool.aria|safe }}">
+          <button class="tool-tab is-active" role="tab" id="tab-gratis" aria-controls="panel-gratis" aria-selected="true" type="button">{{ t.tool.tab_gratis|safe }}</button>
+          <button class="tool-tab" role="tab" id="tab-preis" aria-controls="panel-preis" aria-selected="false" tabindex="-1" type="button">{{ t.tool.tab_preis|safe }}</button>
         </div>
-        <button class="robot-tap" id="robotTap" type="button">{{ t.hero.robot_click|safe }}</button>
-        <div class="hero-price-chip" aria-hidden="true"><span>{{ t.hero.chip_label|safe }}</span><strong>ab {{ c.preis_ab }} €</strong></div>
+
+        <div class="tool-panel" id="panel-gratis" role="tabpanel" aria-labelledby="tab-gratis" tabindex="0">
+          {% if news_sent %}
+          <div class="hero-offer-done">
+            <span class="offer-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div>
+              <strong>{{ t.offer.done_h|safe }}</strong>
+              <p>{{ t.offer.done_t|safe }}</p>
+            </div>
+          </div>
+          {% else %}
+          <span class="offer-card-badge">{{ t.offer.card_badge|safe }}</span>
+          <h2 class="tool-h">{{ t.offer.card_h|safe }}</h2>
+          <p class="tool-sub">{{ t.offer.card_sub|safe }}</p>
+          <form class="offer-form offer-form-slim" id="newsForm" method="post" action="#top">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="newsletter">
+            <div class="of-grid">
+              <div class="field">
+                <label class="fld-l" for="of-name">{{ t.offer.name_label|safe }} <span class="fld-opt">{{ t.offer.name_opt|safe }}</span></label>
+                <input id="of-name" class="fld" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.offer.name_ph|safe }}">
+              </div>
+              <div class="field">
+                <label class="fld-l" for="of-mail">{{ t.offer.mail_label|safe }}</label>
+                <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
+              </div>
+            </div>
+            <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="#datenschutz">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
+            <button class="btn btn-lg btn-magnetic offer-submit" type="submit">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <p class="tool-fine">{{ t.hero.note|safe }}</p>
+          </form>
+          {% endif %}
+        </div>
+
+        <div class="tool-panel" id="panel-preis" role="tabpanel" aria-labelledby="tab-preis" tabindex="0" hidden>
+          <h2 class="tool-h">{{ t.tool.preis_h|safe }}</h2>
+          <p class="tool-sub">{{ t.tool.preis_sub|safe }}</p>
+          <!-- Ohne JavaScript sind das schlichte Anker in den Konfigurator. -->
+          <div class="tool-picks">
+            <a class="tool-pick" href="#angebot" data-gruppe="web">{% include 'icons.html' with name='web' %}<span>{{ t.tool.preis_web|safe }}</span></a>
+            <a class="tool-pick" href="#angebot" data-gruppe="web">{% include 'icons.html' with name='cart' %}<span>{{ t.tool.preis_shop|safe }}</span></a>
+            <a class="tool-pick" href="#angebot" data-gruppe="ki">{% include 'icons.html' with name='ai' %}<span>{{ t.tool.preis_ki|safe }}</span></a>
+            <a class="tool-pick" href="#angebot" data-gruppe="infra">{% include 'icons.html' with name='host' %}<span>{{ t.tool.preis_host|safe }}</span></a>
+            <a class="tool-pick" href="#angebot" data-gruppe="extra">{% include 'icons.html' with name='seo' %}<span>{{ t.tool.preis_seo|safe }}</span></a>
+            <a class="tool-pick" href="#angebot" data-gruppe="technik">{% include 'icons.html' with name='home' %}<span>{{ t.tool.preis_technik|safe }}</span></a>
+          </div>
+          <a class="tool-alt" href="{% url 'angebot' %}">{{ t.tool.preis_alle|safe }}</a>
+        </div>
       </div>
     </div>
-    <a class="hero-scroll" href="#gratis" aria-label="{{ t.hero.scroll_aria|safe }}"><span></span></a>
+    <a class="hero-scroll" href="#zusagen" aria-label="{{ t.hero.scroll_aria|safe }}"><span></span></a>
   </section>
+  <!-- ── Zusagen: was wir wirklich halten können (keine Floskeln) ───────────── -->
+  <section class="promise" id="zusagen">
+    <div class="wrap promise-in">
+      <span class="promise-i">{% include 'icons.html' with name='clock' %}{{ t.trust.t1|safe }}</span>
+      <span class="promise-i">{% include 'icons.html' with name='gift' %}{{ t.trust.t2|safe }}</span>
+      <span class="promise-i">{% include 'icons.html' with name='check' %}{{ t.trust.t3|safe }}</span>
+      <span class="promise-i">{% include 'icons.html' with name='bolt' %}{{ t.trust.t4|safe }} {{ c.preis_ab }} €</span>
+      <span class="promise-i">{% include 'icons.html' with name='shield' %}{{ t.trust.t5|safe }}</span>
+    </div>
+  </section>
+  <!-- ── PROZESS (vertikale Timeline) ──────────────────────────────────────── -->
+  <section class="section" id="prozess">
+    <div class="wrap">
+      <!-- Beschreibt bewusst den Weg zur Anfrage, nicht den Projektablauf: er nimmt
+           die Unsicherheit vor dem ersten Kontakt (docs/UMBAU-PLAN.md §3, Sektion 4). -->
+      <header class="sec-head" data-reveal>
+        <h2 class="section-t">{{ t.ablauf.h|safe }}</h2>
+        <p class="section-lead">{{ t.ablauf.sub|safe }}</p>
+      </header>
+      <ol class="timeline">
+        <li class="tl-item" data-reveal><span class="tl-n">01</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='wa' %}</span>{{ t.ablauf.s1_h|safe }}</h3><p>{{ t.ablauf.s1_t|safe }}</p></div></li>
+        <li class="tl-item" data-reveal><span class="tl-n">02</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='consulting' %}</span>{{ t.ablauf.s2_h|safe }}</h3><p>{{ t.ablauf.s2_t|safe }}</p></div></li>
+        <li class="tl-item" data-reveal><span class="tl-n">03</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='check' %}</span>{{ t.ablauf.s3_h|safe }}</h3><p>{{ t.ablauf.s3_t|safe }}</p></div></li>
+        <li class="tl-item" data-reveal><span class="tl-n">04</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='rocket' %}</span>{{ t.ablauf.s4_h|safe }}</h3><p>{{ t.ablauf.s4_t|safe }}</p></div></li>
+      </ol>
+    </div>
+  </section>
+  <!-- ── LEISTUNGEN (Bento mit Rhythmus + Spotlight) ───────────────────────── -->
+  <section class="section" id="leistungen">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="section-t">{{ t.lb.h|safe }}</h2>
+        <p class="section-lead">{{ t.lb.sub|safe }}</p>
+      </header>
 
-  <!-- ── GRATIS-BLOCK: Newsletter + kostenlose JARVIS-Beispielseite (dunkles Band + Insel-Karte) ── -->
-  <section class="offer-sec" id="gratis">
-    <div class="offer-glow" aria-hidden="true"></div>
-    <div class="wrap offer-grid">
-      <div class="offer-pitch" data-reveal>
-        <span class="eyebrow eyebrow-dark"><span class="dot"></span>{{ t.offer.eyebrow|safe }}</span>
-        <h2 class="offer-h">{{ t.offer.h|safe }}</h2>
-        <p class="offer-lead">{{ t.offer.lead|safe }}</p>
-        <div class="offer-benefits">
-          <span class="offer-chip">{% include 'icons.html' with name='gift' %}{{ t.offer.chip_rabatt|safe }}</span>
-          <span class="offer-chip">{% include 'icons.html' with name='bolt' %}{{ t.offer.chip_speed|safe }}</span>
-        </div>
-        <ol class="offer-steps">
-          <li class="offer-step"><span class="offer-step-n">1</span><span class="offer-step-tx"><strong>{{ t.offer.step1_h|safe }}</strong><span>{{ t.offer.step1_t|safe }}</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">2</span><span class="offer-step-tx"><strong>{{ t.offer.step2_h|safe }}</strong><span>{{ t.offer.step2_t|safe }}</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">3</span><span class="offer-step-tx"><strong>{{ t.offer.step3_h|safe }}</strong><span>{{ t.offer.step3_t|safe }}</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">4</span><span class="offer-step-tx"><strong>{{ t.offer.step4_h|safe }}</strong><span>{{ t.offer.step4_t|safe }}</span></span></li>
-        </ol>
-        <p class="offer-note">
-          <span class="offer-note-ic" aria-hidden="true">{% include 'icons.html' with name='mail' %}</span>
-          <span><strong>{{ t.offer.note_strong|safe }}</strong> {{ t.offer.note_rest|safe }}</span>
-        </p>
+      <!-- Vier Blöcke, jeder mit eigenem Abschluss. Preise stammen aus ANGEBOT_GROUPS. -->
+      <div class="lb-list">
+        {% include 'leistung_block.html' with bid='web' icon='web' titel=t.lb.web_h lead=t.lb.web_lead p1=t.lb.web_p1 p2=t.lb.web_p2 p3=t.lb.web_p3 preis=startpreise.web ph=t.lb.web_ph %}
+        {% include 'leistung_block.html' with bid='hosting' icon='host' titel=t.lb.hosting_h lead=t.lb.hosting_lead p1=t.lb.hosting_p1 p2=t.lb.hosting_p2 p3=t.lb.hosting_p3 preis=startpreise.infra ph=t.lb.hosting_ph %}
+        {% include 'leistung_block.html' with bid='ki' icon='ai' titel=t.lb.ki_h lead=t.lb.ki_lead p1=t.lb.ki_p1 p2=t.lb.ki_p2 p3=t.lb.ki_p3 preis=startpreise.ki ph=t.lb.ki_ph %}
+        {% include 'leistung_block.html' with bid='seo' icon='seo' titel=t.lb.seo_h lead=t.lb.seo_lead p1=t.lb.seo_p1 p2=t.lb.seo_p2 p3=t.lb.seo_p3 preis=startpreise.extra ph=t.lb.seo_ph %}
       </div>
-      <div class="offer-card" data-reveal>
-        {% if news_sent %}
-        <div class="hero-offer-done">
-          <span class="offer-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div>
-            <strong>{{ t.offer.done_h|safe }}</strong>
-            <p>{{ t.offer.done_t|safe }}</p>
-          </div>
+    </div>
+  </section>
+  <!-- ── FÜR FIRMEN: Technik vor Ort (kürzer gehalten, ein gemeinsames Formular) ── -->
+  <section class="section section-alt" id="technik">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>{{ t.technik.eyebrow|safe }}</span>
+        <h2 class="section-t">{{ t.technik.h|safe }}</h2>
+        <p class="section-lead">{{ t.technik.sub|safe }}</p>
+      </header>
+      <div class="tk-grid">
+        <article class="tk-card spot" data-reveal data-spot>
+          <span class="lb-ic" aria-hidden="true">{% include 'icons.html' with name='home' %}</span>
+          <h3>{{ t.technik.k1_h|safe }}</h3>
+          <p>{{ t.technik.k1_t|safe }}</p>
+        </article>
+        <article class="tk-card spot" data-reveal data-spot>
+          <span class="lb-ic" aria-hidden="true">{% include 'icons.html' with name='conf' %}</span>
+          <h3>{{ t.technik.k2_h|safe }}</h3>
+          <p>{{ t.technik.k2_t|safe }}</p>
+        </article>
+        <article class="tk-card spot" data-reveal data-spot>
+          <span class="lb-ic" aria-hidden="true">{% include 'icons.html' with name='net' %}</span>
+          <h3>{{ t.technik.k3_h|safe }}</h3>
+          <p>{{ t.technik.k3_t|safe }}</p>
+        </article>
+      </div>
+      <div class="tk-ask" id="leistung-technik" data-reveal>
+        <div class="tk-ask-copy">
+          <h3>{{ t.technik.form_h|safe }}</h3>
+          <p>{{ t.technik.form_sub|safe }}</p>
+          <p class="lb-preis">{{ startpreise.technik }}</p>
         </div>
-        {% else %}
-        <span class="offer-card-badge">{{ t.offer.card_badge|safe }}</span>
-        <h3 class="offer-card-h">{{ t.offer.card_h|safe }}</h3>
-        <p class="offer-card-sub">{{ t.offer.card_sub|safe }}</p>
-        <form class="offer-form offer-form-slim" id="newsForm" method="post" action="#gratis">
+        <form class="lb-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage
+              {% if anfrage_ok == 'technik' %}data-done="1"{% endif %}>
           {% csrf_token %}
-          <input type="hidden" name="form" value="newsletter">
-          <div class="of-grid">
-            <div class="field">
-              <label class="fld-l" for="of-name">{{ t.offer.name_label|safe }} <span class="fld-opt">{{ t.offer.name_opt|safe }}</span></label>
-              <input id="of-name" class="fld" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.offer.name_ph|safe }}">
-            </div>
-            <div class="field">
-              <label class="fld-l" for="of-mail">{{ t.offer.mail_label|safe }}</label>
-              <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
-            </div>
+          <input type="hidden" name="quelle" value="technik">
+          <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+          <div class="field">
+            <label class="fld-l" for="lb-text-technik">{{ t.lb.text_ph|safe }}</label>
+            <input class="fld" id="lb-text-technik" type="text" name="text" maxlength="300" placeholder="{{ t.technik.text_ph|safe }}">
           </div>
           <div class="field">
-            <label class="fld-l" for="of-wunsch">{{ t.offer.wunsch_label|safe }} <span class="fld-opt">{{ t.offer.name_opt|safe }}</span></label>
-            <input id="of-wunsch" class="fld" type="text" name="wunsch" maxlength="200" placeholder="{{ t.offer.wunsch_ph|safe }}">
+            <label class="fld-l" for="lb-kontakt-technik">{{ t.lb.kontakt_ph|safe }}</label>
+            <input class="fld" id="lb-kontakt-technik" type="text" name="kontakt" required autocomplete="email" placeholder="{{ t.lb.kontakt_bsp|safe }}">
           </div>
-          <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="#datenschutz">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
-          <button class="btn btn-lg btn-magnetic offer-submit" type="submit">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="offer-foot">
-            <span class="offer-jarvis"><span class="jarvis-tag">{{ t.offer.foot_tag|safe }}</span> {{ t.offer.foot_rest|safe }} <em>{{ t.offer.foot_em|safe }}</em></span>
-            <a class="offer-alt" href="{% url 'angebot' %}">{{ t.offer.foot_alt|safe }}</a>
-          </div>
+          <button class="btn lb-submit" type="submit">{{ t.lb.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="lb-err" role="alert" hidden></p>
         </form>
-        {% endif %}
+        <div class="lb-done" {% if anfrage_ok != 'technik' %}hidden{% endif %}>
+          <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+          <strong>{{ t.lb.done_h|safe }}</strong>
+          <p>{{ t.lb.done_t|safe }}</p>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- ── Service-Marquee (sofort sichtbar, worum es geht + Bewegung) ────────── -->
-  <div class="marquee" aria-label="{{ t.marquee_aria|safe }}">
-    <div class="marquee-track">
-      {% for w in t.marquee %}<span>{{ w|safe }}</span><i>·</i>{% endfor %}
-      {% for w in t.marquee %}<span aria-hidden="true">{{ w|safe }}</span><i aria-hidden="true">·</i>{% endfor %}
-    </div>
-  </div>
-
   <!-- ── ANGEBOT (inline: Leistungen wählen, Richtpreis per E-Mail freischalten) ─ -->
   <section class="section rb-sec" id="angebot" aria-labelledby="rb-title">
     <div class="wrap">
@@ -332,7 +422,49 @@
     refresh();
   })();
   </script>
-
+  <!-- ── GRATIS-BLOCK: Newsletter + kostenlose JARVIS-Beispielseite (dunkles Band + Insel-Karte) ── -->
+  <section class="offer-sec" id="gratis">
+    <div class="offer-glow" aria-hidden="true"></div>
+    <div class="wrap offer-grid">
+      <div class="offer-pitch" data-reveal>
+        <span class="eyebrow eyebrow-dark"><span class="dot"></span>{{ t.offer.eyebrow|safe }}</span>
+        <h2 class="offer-h">{{ t.offer.h|safe }}</h2>
+        <p class="offer-lead">{{ t.offer.lead|safe }}</p>
+        <div class="offer-benefits">
+          <span class="offer-chip">{% include 'icons.html' with name='gift' %}{{ t.offer.chip_rabatt|safe }}</span>
+          <span class="offer-chip">{% include 'icons.html' with name='bolt' %}{{ t.offer.chip_speed|safe }}</span>
+        </div>
+        <ol class="offer-steps">
+          <li class="offer-step"><span class="offer-step-n">1</span><span class="offer-step-tx"><strong>{{ t.offer.step1_h|safe }}</strong><span>{{ t.offer.step1_t|safe }}</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">2</span><span class="offer-step-tx"><strong>{{ t.offer.step2_h|safe }}</strong><span>{{ t.offer.step2_t|safe }}</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">3</span><span class="offer-step-tx"><strong>{{ t.offer.step3_h|safe }}</strong><span>{{ t.offer.step3_t|safe }}</span></span></li>
+          <li class="offer-step"><span class="offer-step-n">4</span><span class="offer-step-tx"><strong>{{ t.offer.step4_h|safe }}</strong><span>{{ t.offer.step4_t|safe }}</span></span></li>
+        </ol>
+        <p class="offer-note">
+          <span class="offer-note-ic" aria-hidden="true">{% include 'icons.html' with name='mail' %}</span>
+          <span><strong>{{ t.offer.note_strong|safe }}</strong> {{ t.offer.note_rest|safe }}</span>
+        </p>
+      </div>
+      <!-- Das Formular selbst steht oben im Hero-Werkzeug; hier führt der Weg dorthin zurück. -->
+      <div class="offer-card offer-card-lean" data-reveal>
+        <span class="offer-card-badge">{{ t.offer.card_badge|safe }}</span>
+        <h3 class="offer-card-h">{{ t.offer.card_h|safe }}</h3>
+        <p class="offer-card-sub">{{ t.offer.card_sub|safe }}</p>
+        <a class="btn btn-lg btn-magnetic" href="#top">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="offer-foot">
+          <span class="offer-jarvis"><span class="jarvis-tag">{{ t.offer.foot_tag|safe }}</span> {{ t.offer.foot_rest|safe }}</span>
+          <a class="offer-alt" href="{% url 'angebot' %}">{{ t.offer.foot_alt|safe }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ── Service-Marquee (sofort sichtbar, worum es geht + Bewegung) ────────── -->
+  <div class="marquee" aria-label="{{ t.marquee_aria|safe }}">
+    <div class="marquee-track">
+      {% for w in t.marquee %}<span>{{ w|safe }}</span><i>·</i>{% endfor %}
+      {% for w in t.marquee %}<span aria-hidden="true">{{ w|safe }}</span><i aria-hidden="true">·</i>{% endfor %}
+    </div>
+  </div>
   <!-- ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── -->
   <section class="band">
     <div class="wrap band-in" data-reveal>
@@ -341,7 +473,6 @@
       <p class="band-p">{{ t.band1.p|safe }}</p>
     </div>
   </section>
-
   <!-- ── SCROLL-VIDEO 1, PC: Webseite baut sich auf, per Scroll gescrubbt ──── -->
   <section class="scrolly" id="aufbau" data-scrolly>
     <div class="scrolly-sticky">
@@ -360,7 +491,6 @@
       <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
     </div>
   </section>
-
   <!-- ── Vertrauens-Leiste + Kennzahlen ────────────────────────────────────── -->
   <section class="proof">
     <div class="wrap">
@@ -373,7 +503,6 @@
       </div>
     </div>
   </section>
-
   <!-- ── Trenner-Text: Überleitung zum Server-Raum ─────────────────────────── -->
   <section class="band">
     <div class="wrap band-in" data-reveal>
@@ -382,7 +511,6 @@
       <p class="band-p">{{ t.band2.p|safe }}</p>
     </div>
   </section>
-
   <!-- ── SCROLL-VIDEO 2 ,  Higgsfield-Rechenzentrum (Server-Raum), per Scroll gescrubbt ── -->
   <section class="scrolly" id="infrastruktur" data-scrolly>
     <div class="scrolly-sticky">
@@ -404,61 +532,6 @@
       <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
     </div>
   </section>
-
-  <!-- ── LEISTUNGEN (Bento mit Rhythmus + Spotlight) ───────────────────────── -->
-  <section class="section" id="leistungen">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <h2 class="section-t">{{ t.leistungen.h|safe }}</h2>
-        <p class="section-lead">{{ t.leistungen.lead|safe }}</p>
-      </header>
-
-      <div class="bento">
-        <article class="b-card b-wide b-feature spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='home' %}</div>
-          <h3>{{ t.leistungen.c1_h|safe }}</h3>
-          <p>{{ t.leistungen.c1_p|safe }}</p>
-          <ul class="b-tags">{% for tag in t.leistungen.c1_tags %}<li>{{ tag|safe }}</li>{% endfor %}</ul>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='conf' %}</div>
-          <h3>{{ t.leistungen.c2_h|safe }}</h3>
-          <p>{{ t.leistungen.c2_p|safe }}</p>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='av' %}</div>
-          <h3>{{ t.leistungen.c3_h|safe }}</h3>
-          <p>{{ t.leistungen.c3_p|safe }}</p>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='host' %}</div>
-          <h3>{{ t.leistungen.c4_h|safe }}</h3>
-          <p>{{ t.leistungen.c4_p|safe }}</p>
-        </article>
-        <article class="b-card b-tint spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='net' %}</div>
-          <h3>{{ t.leistungen.c5_h|safe }}</h3>
-          <p>{{ t.leistungen.c5_p|safe }}</p>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='web' %}</div>
-          <h3>{{ t.leistungen.c6_h|safe }}</h3>
-          <p>{{ t.leistungen.c6_p|safe }}</p>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='ai' %}</div>
-          <h3>{{ t.leistungen.c7_h|safe }}</h3>
-          <p>{{ t.leistungen.c7_p|safe }}</p>
-        </article>
-        <article class="b-card spot" data-reveal data-spot>
-          <div class="b-ic">{% include 'icons.html' with name='consulting' %}</div>
-          <h3>{{ t.leistungen.c8_h|safe }}</h3>
-          <p>{{ t.leistungen.c8_p|safe }}</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <!-- ── PARTNER / ALLES AUS EINER HAND ────────────────────────────────────── -->
   <section class="section section-alt" id="partner">
     <div class="wrap">
@@ -475,23 +548,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ── PROZESS (vertikale Timeline) ──────────────────────────────────────── -->
-  <section class="section" id="prozess">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <h2 class="section-t">{{ t.prozess.h|safe }}</h2>
-        <p class="section-lead">{{ t.prozess.lead|safe }}</p>
-      </header>
-      <ol class="timeline">
-        <li class="tl-item" data-reveal><span class="tl-n">01</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='consulting' %}</span>{{ t.prozess.s1_h|safe }}</h3><p>{{ t.prozess.s1_p|safe }}</p></div></li>
-        <li class="tl-item" data-reveal><span class="tl-n">02</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='web' %}</span>{{ t.prozess.s2_h|safe }}</h3><p>{{ t.prozess.s2_p|safe }}</p></div></li>
-        <li class="tl-item" data-reveal><span class="tl-n">03</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='bolt' %}</span>{{ t.prozess.s3_h|safe }}</h3><p>{{ t.prozess.s3_p|safe }}</p></div></li>
-        <li class="tl-item" data-reveal><span class="tl-n">04</span><div class="tl-body"><h3><span class="tl-ic">{% include 'icons.html' with name='rocket' %}</span>{{ t.prozess.s4_h|safe }}</h3><p>{{ t.prozess.s4_p|safe }}</p></div></li>
-      </ol>
-    </div>
-  </section>
-
   <!-- ── KI-HIGHLIGHT (Glass-Showcase, Split) ──────────────────────────────── -->
   <section class="section">
     <div class="wrap">
@@ -507,95 +563,23 @@
           </ul>
           <a class="btn btn-magnetic" href="#kontakt">{{ t.showcase.cta|safe }}</a>
         </div>
-        <div class="showcase-visual" aria-hidden="true">
-          <div class="orbit"><span class="core"></span><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i></div>
+        <!-- Der 3D-Assistent stand früher im Hero; dort gehört der Platz jetzt dem
+             Werkzeug. Hier illustriert er das Thema KI und bleibt anklickbar. -->
+        <div class="showcase-visual showcase-robot">
+          <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="{{ t.hero.robot_aria|safe }}" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
+            <div class="hero-figure-glow" aria-hidden="true"></div>
+            <div class="robot-canvas" id="robotCanvas" aria-hidden="true">
+              <div class="robot-loader" id="robotLoader"><span class="spinner"></span><span class="robot-loadtxt">{{ t.hero.robot_loading|safe }}</span></div>
+            </div>
+            {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="{{ c.site_name }}" class="robot robot-fallback" width="820" height="1098" loading="lazy">{% endif %}
+            <div class="robot-bubble" id="robotBubble" aria-live="polite"></div>
+            <div class="robot-hint" id="robotHint" aria-hidden="true">{{ t.hero.robot_click|safe }}</div>
+          </div>
+          <button class="robot-tap" id="robotTap" type="button">{{ t.hero.robot_click|safe }}</button>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- ── REFERENZEN (Beispiel-Projekte) ────────────────────────────────────── -->
-  <section class="section" id="referenzen">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <h2 class="section-t">{{ t.referenzen.h|safe }}</h2>
-        <p class="section-lead">{{ t.referenzen.lead|safe }}</p>
-      </header>
-      <div class="refs">
-        <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_smarthome.webp' %}" alt="{{ t.referenzen.r1_alt|safe }}" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>{{ t.referenzen.r1_h|safe }}</strong><span>{{ t.referenzen.r1_p|safe }}</span></figcaption>
-        </figure>
-        <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_konferenz.webp' %}" alt="{{ t.referenzen.r2_alt|safe }}" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>{{ t.referenzen.r2_h|safe }}</strong><span>{{ t.referenzen.r2_p|safe }}</span></figcaption>
-        </figure>
-        <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_buehne.webp' %}" alt="{{ t.referenzen.r3_alt|safe }}" loading="lazy" width="1264" height="848"></div>
-          <figcaption><strong>{{ t.referenzen.r3_h|safe }}</strong><span>{{ t.referenzen.r3_p|safe }}</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PREISE ────────────────────────────────────────────────────────────── -->
-  <section class="section section-alt" id="preise">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <h2 class="section-t">{{ t.preise.h|safe }}</h2>
-        <p class="section-lead">{{ t.preise.lead|safe }}</p>
-      </header>
-      <div class="price-grid">
-        <article class="price spot" data-reveal data-spot>
-          <h3>{{ t.preise.starter_h|safe }}</h3>
-          <p class="price-for">{{ t.preise.starter_for|safe }}</p>
-          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>{{ c.preis_ab }}<span class="cur">€</span></div>
-          <ul class="price-list">{% for li in t.preise.starter_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
-          <a class="btn btn-ghost" href="#kontakt">{{ t.preise.starter_cta|safe }}</a>
-        </article>
-        <article class="price price-featured spot" data-reveal data-spot>
-          <span class="badge">{{ t.preise.business_badge|safe }}</span>
-          <h3>{{ t.preise.business_h|safe }}</h3>
-          <p class="price-for">{{ t.preise.business_for|safe }}</p>
-          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>1.490<span class="cur">€</span></div>
-          <ul class="price-list">{% for li in t.preise.business_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
-          <a class="btn btn-magnetic" href="#kontakt">{{ t.preise.business_cta|safe }}</a>
-        </article>
-        <article class="price spot" data-reveal data-spot>
-          <h3>{{ t.preise.growth_h|safe }}</h3>
-          <p class="price-for">{{ t.preise.growth_for|safe }}</p>
-          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>89<span class="cur">{{ t.preise.growth_unit|safe }}</span></div>
-          <ul class="price-list">{% for li in t.preise.growth_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
-          <a class="btn btn-ghost" href="#kontakt">{{ t.preise.growth_cta|safe }}</a>
-        </article>
-      </div>
-      <p class="price-foot" data-reveal>{{ t.preise.foot|safe }}</p>
-    </div>
-  </section>
-
-  <!-- ── ÜBER UNS / GRÜNDER ────────────────────────────────────────────────── -->
-  <section class="section" id="ueber">
-    <div class="wrap founder" data-reveal>
-      <div class="founder-media">
-        {% if c.founder_image %}<img class="founder-photo" src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}, {{ c.site_name }}" width="640" height="640" loading="lazy">{% endif %}
-        <span class="founder-badge">{% if c.tagline %}{{ c.tagline }}{% else %}{{ t.ueber.badge_fallback|safe }}{% endif %}</span>
-      </div>
-      <div class="founder-body">
-        <h2 class="section-t">{{ t.ueber.h|safe }}</h2>
-        <p class="section-lead">{{ t.ueber.lead_pre|safe }} {{ c.site_name }} {{ t.ueber.lead_mid|safe }} {{ c.inhaber_name }}{{ t.ueber.lead_rest|safe }}</p>
-        <ul class="founder-points">
-          <li>{{ t.ueber.p1|safe }}</li>
-          <li>{{ t.ueber.p2|safe }}</li>
-          <li>{{ t.ueber.p3|safe }}</li>
-        </ul>
-        <div class="founder-contact">
-          {% if c.telefon %}<a class="founder-chip" href="tel:{{ c.telefon }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>{{ c.telefon }}</a>{% endif %}
-          {% if c.email %}<a class="founder-chip" href="mailto:{{ c.email }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>{{ c.email }}</a>{% endif %}
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ── TESTIMONIALS ──────────────────────────────────────────────────────── -->
   <section class="section section-alt" id="stimmen">
     <div class="wrap">
@@ -618,29 +602,79 @@
       </div>
     </div>
   </section>
-
-  <!-- ── FAQ (GEO: sichtbare Antworten + FAQPage-Schema für KI-Antwortmaschinen) ── -->
-  <section class="section" id="faq" aria-labelledby="faq-title">
+  <!-- ── REFERENZEN (Beispiel-Projekte) ────────────────────────────────────── -->
+  <section class="section" id="referenzen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>{{ t.faq.eyebrow|safe }}</span>
-        <h2 class="section-t" id="faq-title">{{ t.faq.h|safe }}</h2>
-        <p class="section-lead">{{ t.faq.lead|safe }}</p>
+        <h2 class="section-t">{{ t.referenzen.h|safe }}</h2>
+        <p class="section-lead">{{ t.referenzen.lead|safe }}</p>
       </header>
-      <div class="faq" data-reveal>
-        {% for item in t.faq.items %}
-        <details class="faq-item"{% if forloop.first %} open{% endif %}>
-          <summary class="faq-q">
-            <span>{{ item.q }}</span>
-            <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </summary>
-          <div class="faq-a"><p>{{ item.a }}</p></div>
-        </details>
-        {% endfor %}
+
+      <!-- Kernreferenz: eigenes Projekt, nachprüfbar, mit ehrlichem Partnerhinweis. -->
+      <article class="case" data-reveal>
+        <a class="case-shot" href="https://ruempelwerk-mitteldeutschland.de/" target="_blank" rel="noopener">
+          <img src="{% static 'img/ref_ruempelwerk.webp' %}" alt="{{ t.case.alt|safe }}" loading="lazy" width="1280" height="529">
+        </a>
+        <div class="case-body">
+          <span class="eyebrow"><span class="dot"></span>{{ t.case.eyebrow|safe }}</span>
+          <h3 class="case-h">{{ t.case.h|safe }}</h3>
+          <p class="case-rolle">{{ t.case.rolle|safe }}</p>
+          <p class="case-text">{{ t.case.text|safe }}</p>
+          <ul class="lb-points">
+            <li>{% include 'icons.html' with name='check' %}{{ t.case.p1|safe }}</li>
+            <li>{% include 'icons.html' with name='check' %}{{ t.case.p2|safe }}</li>
+            <li>{% include 'icons.html' with name='check' %}{{ t.case.p3|safe }}</li>
+          </ul>
+          <a class="btn btn-sm" href="https://ruempelwerk-mitteldeutschland.de/" target="_blank" rel="noopener">{{ t.case.link|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <p class="case-partner">{{ t.case.partner|safe }}</p>
+        </div>
+      </article>
+
+      <div class="refs">
+        <figure class="ref" data-reveal>
+          <div class="ref-img"><img src="{% static 'img/ref_smarthome.webp' %}" alt="{{ t.referenzen.r1_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>{{ t.referenzen.r1_h|safe }}</strong><span>{{ t.referenzen.r1_p|safe }}</span></figcaption>
+        </figure>
+        <figure class="ref" data-reveal>
+          <div class="ref-img"><img src="{% static 'img/ref_konferenz.webp' %}" alt="{{ t.referenzen.r2_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>{{ t.referenzen.r2_h|safe }}</strong><span>{{ t.referenzen.r2_p|safe }}</span></figcaption>
+        </figure>
+        <figure class="ref" data-reveal>
+          <div class="ref-img"><img src="{% static 'img/ref_buehne.webp' %}" alt="{{ t.referenzen.r3_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <figcaption><strong>{{ t.referenzen.r3_h|safe }}</strong><span>{{ t.referenzen.r3_p|safe }}</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
-
+  <!-- ── ÜBER UNS / GRÜNDER ────────────────────────────────────────────────── -->
+  <section class="section" id="ueber">
+    <div class="wrap founder" data-reveal>
+      <div class="founder-media">
+        {% if c.founder_image %}<img class="founder-photo" src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}, {{ c.site_name }}" width="640" height="640" loading="lazy">{% endif %}
+        <span class="founder-badge">{% if c.tagline %}{{ c.tagline }}{% else %}{{ t.ueber.badge_fallback|safe }}{% endif %}</span>
+      </div>
+      <div class="founder-body">
+        <h2 class="section-t">{{ t.ueber.h|safe }}</h2>
+        <p class="section-lead">{{ t.ueber.lead_pre|safe }} {{ c.site_name }} {{ t.ueber.lead_mid|safe }} {{ c.inhaber_name }}{{ t.ueber.lead_rest|safe }}</p>
+        <ul class="founder-points">
+          <li>{{ t.ueber.p1|safe }}</li>
+          <li>{{ t.ueber.p2|safe }}</li>
+          <li>{{ t.ueber.p3|safe }}</li>
+        </ul>
+        <!-- Die drei Zusagen, die wir wirklich halten (docs/UMBAU-PLAN.md, Entscheidung 10). -->
+        <ul class="hero-trust founder-trust">
+          <li>{% include 'icons.html' with name='clock' %}{{ t.trust.t1|safe }}</li>
+          <li>{% include 'icons.html' with name='gift' %}{{ t.trust.t2|safe }}</li>
+          <li>{% include 'icons.html' with name='check' %}{{ t.trust.t3|safe }}</li>
+        </ul>
+        <div class="founder-contact">
+          {% if c.whatsapp %}<a class="founder-chip" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
+          {% if c.telefon %}<a class="founder-chip" href="tel:{{ c.telefon }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>{{ c.telefon }}</a>{% endif %}
+          {% if c.email %}<a class="founder-chip" href="mailto:{{ c.email }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>{{ c.email }}</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- ── KOOPERATIONEN ─────────────────────────────────────────────────────── -->
   <section class="section" id="kooperationen">
     <div class="wrap">
@@ -718,7 +752,61 @@
     });
   })();
   </script>
-
+  <!-- ── PREISE ────────────────────────────────────────────────────────────── -->
+  <section class="section section-alt" id="preise">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="section-t">{{ t.preise.h|safe }}</h2>
+        <p class="section-lead">{{ t.preise.lead|safe }}</p>
+      </header>
+      <div class="price-grid">
+        <article class="price spot" data-reveal data-spot>
+          <h3>{{ t.preise.starter_h|safe }}</h3>
+          <p class="price-for">{{ t.preise.starter_for|safe }}</p>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>{{ c.preis_ab }}<span class="cur">€</span></div>
+          <ul class="price-list">{% for li in t.preise.starter_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
+          <a class="btn btn-ghost" href="#kontakt">{{ t.preise.starter_cta|safe }}</a>
+        </article>
+        <article class="price price-featured spot" data-reveal data-spot>
+          <span class="badge">{{ t.preise.business_badge|safe }}</span>
+          <h3>{{ t.preise.business_h|safe }}</h3>
+          <p class="price-for">{{ t.preise.business_for|safe }}</p>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>1.490<span class="cur">€</span></div>
+          <ul class="price-list">{% for li in t.preise.business_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
+          <a class="btn btn-magnetic" href="#kontakt">{{ t.preise.business_cta|safe }}</a>
+        </article>
+        <article class="price spot" data-reveal data-spot>
+          <h3>{{ t.preise.growth_h|safe }}</h3>
+          <p class="price-for">{{ t.preise.growth_for|safe }}</p>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>89<span class="cur">{{ t.preise.growth_unit|safe }}</span></div>
+          <ul class="price-list">{% for li in t.preise.growth_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
+          <a class="btn btn-ghost" href="#kontakt">{{ t.preise.growth_cta|safe }}</a>
+        </article>
+      </div>
+      <p class="price-foot" data-reveal>{{ t.preise.foot|safe }}</p>
+    </div>
+  </section>
+  <!-- ── FAQ (GEO: sichtbare Antworten + FAQPage-Schema für KI-Antwortmaschinen) ── -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>{{ t.faq.eyebrow|safe }}</span>
+        <h2 class="section-t" id="faq-title">{{ t.faq.h|safe }}</h2>
+        <p class="section-lead">{{ t.faq.lead|safe }}</p>
+      </header>
+      <div class="faq" data-reveal>
+        {% for item in t.faq.items %}
+        <details class="faq-item"{% if forloop.first %} open{% endif %}>
+          <summary class="faq-q">
+            <span>{{ item.q }}</span>
+            <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </summary>
+          <div class="faq-a"><p>{{ item.a }}</p></div>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
   <!-- ── KONTAKT ───────────────────────────────────────────────────────────── -->
   <section class="section section-alt" id="kontakt">
     <div class="wrap contact">
@@ -730,6 +818,7 @@
           {% if c.whatsapp %}<a class="cm cm-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
           {% if c.email %}<a class="cm" href="mailto:{{ c.email }}"><span class="cm-ic">{% include 'icons.html' with name='mail' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_mail|safe }}</strong><span>{{ c.email }}</span></span></a>{% endif %}
           <a class="cm" href="#kontakt-form"><span class="cm-ic">{% include 'icons.html' with name='consulting' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_form|safe }}</strong><span>{{ t.kontakt.m_form_sub|safe }}</span></span></a>
+          <button class="cm" type="button" data-rueckruf><span class="cm-ic">{% include 'icons.html' with name='clock' %}</span><span class="cm-t"><strong>{{ t.ways.callback|safe }}</strong><span>{{ t.rueckruf.zeit_4|safe }}</span></span></button>
         </div>
         <p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='clock' %}</span> {{ t.kontakt.avail|safe }}</p>
         {% if c.tagline %}<p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='shield' %}</span> {{ c.inhaber_name }}, {{ c.tagline }}.</p>{% endif %}
@@ -770,6 +859,43 @@
   </section>
 </main>
 
+<!-- ── Rückruf: kleiner Dialog, aus Nav, Hero und Mobil-Leiste erreichbar ───── -->
+<dialog class="rr-dlg" id="rueckrufDlg" aria-labelledby="rr-h">
+  <form class="lb-form rr-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage>
+    {% csrf_token %}
+    <input type="hidden" name="quelle" value="rueckruf">
+    <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+    <button class="rr-close" type="button" data-rr-close aria-label="{{ t.rueckruf.close|safe }}">&times;</button>
+    <h2 id="rr-h" class="tool-h">{{ t.rueckruf.h|safe }}</h2>
+    <p class="tool-sub">{{ t.rueckruf.sub|safe }}</p>
+    <div class="field">
+      <label class="fld-l" for="rr-name">{{ t.rueckruf.name|safe }}</label>
+      <input class="fld" id="rr-name" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.rueckruf.name_ph|safe }}">
+    </div>
+    <div class="field">
+      <label class="fld-l" for="rr-tel">{{ t.rueckruf.tel|safe }}</label>
+      <input class="fld" id="rr-tel" type="tel" name="kontakt" required autocomplete="tel" placeholder="{{ t.rueckruf.tel_ph|safe }}">
+    </div>
+    <div class="field">
+      <label class="fld-l" for="rr-zeit">{{ t.rueckruf.zeit|safe }}</label>
+      <select class="fld" id="rr-zeit" name="zeit">
+        <option>{{ t.rueckruf.zeit_1|safe }}</option>
+        <option>{{ t.rueckruf.zeit_2|safe }}</option>
+        <option>{{ t.rueckruf.zeit_3|safe }}</option>
+        <option selected>{{ t.rueckruf.zeit_4|safe }}</option>
+      </select>
+    </div>
+    <button class="btn btn-lg lb-submit" type="submit">{{ t.rueckruf.submit|safe }}</button>
+    <p class="lb-err" role="alert" hidden></p>
+  </form>
+  <div class="lb-done rr-done" hidden>
+    <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+    <strong>{{ t.rueckruf.done_h|safe }}</strong>
+    <p>{{ t.rueckruf.done_t|safe }}</p>
+    <button class="btn btn-sm" type="button" data-rr-close>{{ t.rueckruf.close|safe }}</button>
+  </div>
+</dialog>
+
 <!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
 <footer class="foot">
   <div class="wrap foot-top">
@@ -796,11 +922,13 @@
 </footer>
 
 <div class="mobilebar">
+  {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
   {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
-  <a class="mobilebar-cta" href="#kontakt">{{ t.nav.cta|safe }}</a>
+  <a class="mobilebar-cta" href="#top">{{ t.nav.cta|safe }}</a>
 </div>
 
 {% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>
+<script src="{% static 'js/anfrage-blocks.js' %}?v={{ asset_v }}" defer></script>
 </body>
 </html>

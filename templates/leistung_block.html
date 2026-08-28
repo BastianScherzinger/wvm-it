@@ -1,0 +1,50 @@
+{% comment %}
+Ein Leistungsblock mit eigenem Kurzformular (docs/UMBAU-PLAN.md §4, Aufgabe U4.2).
+
+Aufruf:
+  {% include 'leistung_block.html' with bid='web' icon='web' titel=t.lb.web_h
+     lead=t.lb.web_lead p1=… p2=… p3=… preis=startpreise.web ph=t.lb.web_ph %}
+
+bid  = Quelle der Anfrage (web|hosting|ki|seo|technik|koop) , steht später im Betreff.
+Das Formular funktioniert ohne JavaScript (normales POST + Redirect mit ?ok=<bid>);
+mit JavaScript wird es ohne Seitenwechsel abgeschickt (siehe static/js/anfrage-blocks.js).
+{% endcomment %}
+<article class="lb" id="leistung-{{ bid }}" data-reveal>
+  <div class="lb-copy">
+    <span class="lb-ic" aria-hidden="true">{% include 'icons.html' with name=icon %}</span>
+    <h3 class="lb-h">{{ titel|safe }}</h3>
+    <p class="lb-lead">{{ lead|safe }}</p>
+    <ul class="lb-points">
+      <li>{% include 'icons.html' with name='check' %}{{ p1|safe }}</li>
+      <li>{% include 'icons.html' with name='check' %}{{ p2|safe }}</li>
+      <li>{% include 'icons.html' with name='check' %}{{ p3|safe }}</li>
+    </ul>
+    <p class="lb-preis">{{ preis }}</p>
+  </div>
+
+  <div class="lb-ask">
+    <form class="lb-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage
+          {% if anfrage_ok == bid %}data-done="1"{% endif %}>
+      {% csrf_token %}
+      <input type="hidden" name="quelle" value="{{ bid }}">
+      {# Honeypot: für Menschen unsichtbar, Bots füllen ihn aus. #}
+      <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+      <div class="field">
+        <label class="fld-l" for="lb-text-{{ bid }}">{{ t.lb.text_ph|safe }}</label>
+        <input class="fld" id="lb-text-{{ bid }}" type="text" name="text" maxlength="300" placeholder="{{ ph|safe }}">
+      </div>
+      <div class="field">
+        <label class="fld-l" for="lb-kontakt-{{ bid }}">{{ t.lb.kontakt_ph|safe }}</label>
+        <input class="fld" id="lb-kontakt-{{ bid }}" type="text" name="kontakt" required
+               autocomplete="email" placeholder="{{ t.lb.kontakt_bsp|safe }}">
+      </div>
+      <button class="btn lb-submit" type="submit">{{ t.lb.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="lb-err" role="alert" hidden></p>
+    </form>
+    <div class="lb-done" {% if anfrage_ok != bid %}hidden{% endif %}>
+      <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+      <strong>{{ t.lb.done_h|safe }}</strong>
+      <p>{{ t.lb.done_t|safe }}</p>
+    </div>
+  </div>
+</article>
