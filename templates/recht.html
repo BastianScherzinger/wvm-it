@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% comment %}
+Impressum und Datenschutz als eigene, indexierbare URLs statt als Klapptext im
+Footer. Der Text kommt unverändert aus content.json — dort wird er gepflegt.
+{% endcomment %}
+{% block titel %}{{ titel|safe }}{% endblock %}
+{% block beschreibung %}{{ beschreibung|safe }}{% endblock %}
+{% block og_titel %}{{ titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ beschreibung|safe }}{% endblock %}
+{% block tw_titel %}{{ titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ beschreibung|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ h1|safe }}</span>
+    </nav>
+    <h1>{{ h1|safe }}</h1>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="rt-body">
+      {% if text %}{{ text|linebreaks }}{% else %}<p>{{ platzhalter|safe }}</p>{% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

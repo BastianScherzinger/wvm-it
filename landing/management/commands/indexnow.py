@@ -32,9 +32,8 @@ ENDPUNKT = "https://api.indexnow.org/indexnow"
 # Cloudflare vor api.indexnow.org antwortet ohne User-Agent mit Fehler 1010.
 UA = "WVM-IT-Website/1.0"
 
-# Dieselben Pfade wie in sitemap_xml , eine zweite Liste wäre die nächste Quelle,
-# die auseinanderläuft.
-PFADE = ("/", "/angebot/")
+# Dieselbe Quelle wie sitemap_xml (views._seiten_pfade) , eine zweite Liste wäre
+# die naechste Stelle, die auseinanderlaeuft.
 
 
 class Command(BaseCommand):
@@ -55,8 +54,9 @@ class Command(BaseCommand):
             return
 
         host = self._host()
+        from landing.views import _seiten_pfade
         urls = [f"https://{host}{i18n.add_prefix(lang, pfad)}"
-                for pfad in PFADE for lang in i18n.LANGS]
+                for pfad, _prio, _freq in _seiten_pfade() for lang in i18n.LANGS]
 
         self.stdout.write(f"Host: {host}")
         self.stdout.write(f"Schlüsseldatei: https://{host}/{schluessel}.txt")

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% comment %}
+/referenzen/ — nur belegbare Projekte mit Einverständnis des Kunden.
+Die Falldaten stehen in views.REFERENZEN, die Texte im Sprachpaket unter `case`.
+{% endcomment %}
+{% block titel %}{{ rs.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ rs.desc|safe }}{% endblock %}
+{% block og_titel %}{{ rs.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ rs.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ rs.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ rs.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+{% load static %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.footer.u_referenzen|safe }}</span>
+    </nav>
+    <h1>{{ rs.h1|safe }}</h1>
+    <p class="sp-kurz">{{ rs.kurz|safe }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="hb-intro" data-reveal>{{ rs.intro|safe }}</p>
+
+    {% for r in referenzen %}
+    <article class="rf" data-reveal>
+      <div class="rf-media">
+        <img src="{% static r.bild %}" alt="{{ t.case.alt|safe }}" width="1280" height="529" loading="lazy">
+      </div>
+      <div class="rf-copy">
+        <span class="eyebrow"><span class="dot"></span>{{ t.case.rolle|safe }}</span>
+        <h2 class="sp-h2">{{ t.case.h|safe }}</h2>
+        <p class="rf-text">{{ t.case.text|safe }}</p>
+        <ul class="sp-liste sp-liste-check">
+          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p1|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p2|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p3|safe }}</span></li>
+        </ul>
+        <p class="rf-partner">{{ t.case.partner|safe }}</p>
+        <a class="btn btn-ghost" href="{{ r.url }}" target="_blank" rel="noopener">{{ rs.ansehen|safe }}</a>
+      </div>
+    </article>
+    {% endfor %}
+
+    <div class="ks-block" data-reveal>
+      <h2 class="sp-h2">{{ rs.mehr_h|safe }}</h2>
+      <p>{{ rs.mehr_t|safe }}</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

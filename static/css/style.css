@@ -1533,3 +1533,145 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 @media (prefers-reduced-motion:reduce){
   .pb-l,.pb-l .ic-arrow{transition:none}
 }
+
+/* ============================================================================
+   RELAUNCH 2026-08 , Unterseiten des Leistungs-Silos
+   Hub, Leistungsseite, Kosten, Referenzen, Kontakt, Rechtstexte.
+   Alles auf denselben Tokens; der Seitenkopf ist ein dunkles Band (.on-dark),
+   damit die feste Kopfzeile darauf lesbar bleibt.
+   ========================================================================== */
+
+/* ── Seitenkopf ──────────────────────────────────────────────────────────── */
+.sp-top{padding:clamp(116px,13vw,156px) 0 clamp(44px,6vw,72px);background:
+  radial-gradient(60% 50% at 82% -10%, color-mix(in srgb,var(--accent) 13%,transparent), transparent 66%),
+  var(--bg)}
+.sp-top h1{font-size:clamp(1.95rem,4vw,3.1rem);margin-top:var(--s4);max-width:19ch;font-weight:700}
+.krume{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--ink-dim)}
+.krume a{color:var(--ink-soft);transition:color .2s}
+.krume a:hover{color:var(--accent-ink)}
+.krume [aria-current]{color:var(--ink)}
+.sp-top-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:clamp(28px,5vw,64px);align-items:end}
+/* Der Antwort-zuerst-Absatz: eine Goldlinie links macht sichtbar, dass hier die
+   eigentliche Antwort steht , und nicht die Einleitung zur Einleitung. */
+.sp-kurz{margin-top:var(--s5);padding-left:var(--s4);border-left:2px solid var(--accent);
+  color:var(--ink-soft);font-size:clamp(1.02rem,1.55vw,1.16rem);max-width:64ch}
+.sp-top .hero-ways{margin-top:var(--s5)}
+.sp-fakten{display:grid;gap:var(--s4);padding:var(--s5);border-radius:var(--radius-sm);
+  background:var(--tint);border:1px solid var(--line)}
+.sp-fakt-l{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-dim)}
+.sp-fakt-v{display:block;margin-top:5px;font-family:"Space Grotesk",sans-serif;font-size:22px;
+  font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+.sp-fakt-t{margin-top:6px;font-size:14px;color:var(--ink-soft)}
+
+/* ── Zweispalter: Inhalt links, Anfrage rechts ───────────────────────────── */
+.sp-grid{display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:clamp(32px,5vw,72px);align-items:start}
+.sp-intro{font-size:clamp(1.02rem,1.5vw,1.14rem);color:var(--ink-soft);max-width:68ch}
+.sp-h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.32rem,2.4vw,1.8rem);font-weight:700;
+  letter-spacing:-.022em;line-height:1.15;margin:clamp(40px,5vw,60px) 0 var(--s4)}
+.sp-main > .sp-h2:first-of-type{margin-top:clamp(32px,4vw,48px)}
+.sp-liste{list-style:none;display:grid;gap:11px;margin:0;padding:0;max-width:68ch}
+/* Probleme bekommen einen Gedankenstrich statt eines Hakens , es sind Befunde,
+   keine Vorteile. Derselbe Haken für beides würde die Hierarchie einebnen. */
+.sp-liste-problem li{position:relative;padding-left:26px;font-size:15.8px;color:var(--ink)}
+.sp-liste-problem li::before{content:"";position:absolute;left:0;top:12px;width:14px;height:2px;
+  background:var(--accent);border-radius:2px}
+.sp-liste-check li{display:flex;align-items:flex-start;gap:11px;font-size:15.8px;color:var(--ink)}
+.sp-liste-check svg{width:17px;height:17px;color:var(--accent2);flex:0 0 auto;margin-top:4px}
+.sp-ablauf{margin-top:var(--s5)}
+.sp-preis-text{font-size:15.8px;color:var(--ink-soft);max-width:68ch}
+.sp-fuss{margin-top:var(--s4);font-size:13.5px;color:var(--ink-dim);max-width:68ch}
+.sp-fuss a{color:var(--accent-ink);border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.sp-main .faq{margin-left:0;max-width:68ch}
+
+/* ── Anfrage-Karte (bleibt auf großen Schirmen im Blick) ─────────────────── */
+.sp-aside{position:sticky;top:104px}
+.ak{padding:clamp(22px,2.6vw,28px);border-radius:var(--radius);background:var(--surface);
+  border:1px solid var(--line);box-shadow:var(--shadow-lg)}
+.ak-h{font-family:"Space Grotesk",sans-serif;font-size:19px;font-weight:700;letter-spacing:-.018em;
+  line-height:1.2;margin-bottom:8px}
+.ak-sub{font-size:14.5px;color:var(--ink-soft);margin-bottom:var(--s5)}
+.ak-alt{margin-top:var(--s4);font-size:13.5px;color:var(--ink-dim)}
+.ak-alt a{color:var(--accent-ink);margin-left:8px;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.ak-done{padding:clamp(22px,2.6vw,28px);border-radius:var(--radius);background:var(--surface);
+  border:1px solid color-mix(in srgb,var(--wa) 40%,transparent);box-shadow:var(--shadow)}
+
+/* ── Leistungskarten (Hub, Querverweise, Kostenseite) ────────────────────── */
+.lk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,20px)}
+.lk{display:grid;align-content:start;gap:9px;padding:clamp(20px,2.4vw,26px);border-radius:var(--radius-sm);
+  background:var(--surface);border:1px solid var(--line);
+  transition:border-color .22s var(--ease),transform .22s var(--ease),box-shadow .22s var(--ease)}
+.lk:hover{border-color:color-mix(in srgb,var(--accent) 45%,transparent);transform:translateY(-2px);
+  box-shadow:var(--shadow)}
+.lk:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:3px}
+.lk-ic{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;
+  background:var(--accent-soft);color:var(--accent-ink);margin-bottom:3px}
+.lk-ic svg{width:20px;height:20px}
+.lk-h{font-family:"Space Grotesk",sans-serif;font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.lk-t{font-size:14.5px;color:var(--ink-soft);margin:0}
+.lk-p{font-family:"Space Grotesk",sans-serif;font-size:14.5px;font-weight:700;
+  font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+.lk-alle{margin-top:clamp(24px,3vw,36px)}
+.lk-alle > a:not(.btn){color:var(--accent-ink);font-weight:600;font-size:15px;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+
+/* ── Hub ─────────────────────────────────────────────────────────────────── */
+.hb-intro{font-size:clamp(1.04rem,1.6vw,1.2rem);color:var(--ink-soft);max-width:66ch;
+  margin-bottom:clamp(36px,5vw,56px)}
+.hb-block + .hb-block{margin-top:clamp(44px,6vw,76px)}
+.hb-head{max-width:60ch;margin-bottom:var(--s5)}
+.hb-h{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.35rem,2.5vw,1.85rem);font-weight:700;
+  letter-spacing:-.022em}
+.hb-t{margin-top:8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ── Kostenseite ─────────────────────────────────────────────────────────── */
+.ks-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);
+  margin-top:clamp(40px,5vw,64px)}
+.ks-block p{font-size:15.5px;color:var(--ink-soft);max-width:60ch}
+.ks-block .sp-h2{margin-top:0}
+.ks-liste-h{margin-top:clamp(48px,6vw,80px)}
+
+/* ── Referenzen ──────────────────────────────────────────────────────────── */
+.rf{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,56px);align-items:center;
+  padding:clamp(24px,3vw,38px);border-radius:var(--radius);background:var(--surface);
+  border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:clamp(28px,4vw,48px)}
+.rf-media img{border-radius:var(--radius-sm);border:1px solid var(--line);box-shadow:var(--shadow)}
+.rf-copy .sp-h2{margin-top:var(--s3)}
+.rf-text{font-size:15.5px;color:var(--ink-soft);margin-bottom:var(--s5);max-width:56ch}
+.rf-partner{margin:var(--s5) 0;font-size:13.5px;color:var(--ink-dim);max-width:56ch}
+
+/* ── Kontaktdaten und Rechtstexte ────────────────────────────────────────── */
+.kd{display:grid;gap:var(--s4);margin-top:var(--s5);max-width:56ch}
+.kd > div{display:grid;grid-template-columns:170px 1fr;gap:var(--s4);
+  padding-bottom:var(--s4);border-bottom:1px solid var(--line)}
+.kd dt{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-dim)}
+.kd dd{font-size:15.5px;color:var(--ink)}
+.kd dd a{color:var(--accent-ink)}
+.rt-body{max-width:76ch;font-size:15.5px;color:var(--ink-soft)}
+.rt-body p{margin-bottom:var(--s4)}
+
+@media (max-width:1080px){
+  .sp-grid{grid-template-columns:1fr}
+  .sp-aside{position:static;max-width:520px}
+  .sp-top-grid{grid-template-columns:1fr;align-items:start}
+  .lk-grid{grid-template-columns:repeat(2,1fr)}
+  .rf{grid-template-columns:1fr}
+  .ks-cols{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .lk-grid{grid-template-columns:1fr}
+  .sp-top h1{max-width:none}
+  .kd > div{grid-template-columns:1fr;gap:4px}
+}
+@media (prefers-reduced-motion:reduce){
+  .lk{transition:none}
+}
+
+/* Verweis vom Leistungsblock der Startseite auf die ausfuehrliche Seite. */
+.lb-mehr{display:inline-flex;align-items:center;gap:6px;margin-top:var(--s4);font-size:14.5px;
+  font-weight:600;color:var(--accent-ink);
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent);padding-bottom:2px;
+  transition:border-color .2s var(--ease)}
+.lb-mehr .ic-arrow{width:16px;height:16px;transition:transform .2s var(--ease)}
+.lb-mehr:hover{border-color:var(--accent)}
+.lb-mehr:hover .ic-arrow{transform:translateX(3px)}

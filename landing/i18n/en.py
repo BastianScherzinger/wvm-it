@@ -309,7 +309,7 @@ PACK = {
         "l_smarthome": "Smart Home &amp; KNX", "l_konferenz": "Conference &amp; AV tech",
         "l_edv": "IT &amp; security", "l_web": "Websites &amp; AI",
         "col_unternehmen": "Company",
-        "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_stimmen": "Testimonials", "u_shop": "Shop", "u_referenzen": "Case studies", "u_faq": "FAQ",
+        "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_alle": "All services", "u_shop": "Shop", "u_referenzen": "Case studies", "u_faq": "FAQ",
         "col_recht": "Legal",
         "impressum": "Imprint", "datenschutz": "Privacy", "datenschutz_full": "Privacy policy",
     },

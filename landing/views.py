@@ -16,14 +16,14 @@ from pathlib import Path
 from django.conf import settings
 from django.core import signing
 from django.core.mail import send_mail
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import i18n
+from . import i18n, leistungen
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -189,16 +189,15 @@ ANGEBOT_GROUPS = [
 # ── Problemband auf der Startseite ────────────────────────────────────────────
 # Sechs Sätze, die Kunden wirklich sagen. Die Texte stehen in den Sprachpaketen
 # unter "probleme" (<id>_q Frage, <id>_a Antwort, <id>_l Linktext); hier stehen nur
-# Reihenfolge, Icon und Ziel. Solange es keine eigenen Leistungsseiten gibt, zeigen
-# die Ziele auf die Blöcke der Startseite; in Block S-A wird an dieser einen Stelle
-# auf die neuen URLs umgestellt (docs/RELAUNCH-PLAN.md §5, R2.x).
+# Reihenfolge und Zielseite. Jede Zeile ist damit zugleich ein interner Link mit
+# sprechendem Anker auf die passende Leistungsseite (docs/RELAUNCH-PLAN.md §5).
 PROBLEME = [
-    {"id": "support", "ziel": "#leistung-it"},
-    {"id": "server", "ziel": "#leistung-it"},
-    {"id": "backup", "ziel": "#leistung-it"},
-    {"id": "wlan", "ziel": "#technik"},
-    {"id": "web", "ziel": "#leistung-web"},
-    {"id": "google", "ziel": "#leistung-seo"},
+    {"id": "support", "slug": "edv-it-betreuung"},
+    {"id": "server", "slug": "server-datensicherung"},
+    {"id": "backup", "slug": "server-datensicherung"},
+    {"id": "wlan", "slug": "netzwerk-wlan"},
+    {"id": "web", "slug": "webseite-erstellen"},
+    {"id": "google", "slug": "seo-betreuung"},
 ]
 
 
@@ -207,6 +206,7 @@ def _probleme(lang):
     texte = i18n.get_pack(lang).get("probleme", {})
     return [
         dict(p,
+             ziel=reverse("leistung", kwargs={"slug": p["slug"]}),
              q=texte.get(f"{p['id']}_q", ""),
              a=texte.get(f"{p['id']}_a", ""),
              l=texte.get(f"{p['id']}_l", ""))
@@ -1133,6 +1133,235 @@ def index(request):
     })
 
 
+# ══ Leistungs-Silo (docs/RELAUNCH-PLAN.md, Block S-A) ═════════════════════════
+# Alle Unterseiten ziehen aus derselben Datenquelle wie Sitemap, Navigation und
+# llms.txt: landing/leistungen.py fuer die Struktur, das Sprachpaket fuer die
+# Texte, ANGEBOT_GROUPS fuer jede Zahl.
+
+def _leistung_daten(eintrag, lang):
+    """Struktur + Texte + Preis-Label einer Leistung, fertig fuers Template."""
+    pack = i18n.get_pack(lang)
+    texte = pack.get("seiten", {}).get(eintrag["slug"], {})
+    preise = _itempreise(lang)
+    return dict(
+        eintrag,
+        url=reverse("leistung", kwargs={"slug": eintrag["slug"]}),
+        preis_label=preise.get(eintrag["preis"], ""),
+        **texte,
+    )
+
+
+def _alle_leistungen(lang):
+    return [_leistung_daten(e, lang) for e in leistungen.LEISTUNGEN]
+
+
+def _seiten_pfade():
+    """Alle oeffentlichen Basis-Pfade (ohne Sprachpraefix) fuer Sitemap und IndexNow.
+
+    Eine Quelle fuer beides — sonst meldet IndexNow Adressen, die in der Sitemap
+    fehlen, und die Search Console findet Seiten, die niemand verlinkt hat.
+    Rueckgabe: Liste aus (Pfad, Prioritaet, Aenderungshaeufigkeit)."""
+    pfade = [("/", "1.0", "weekly"),
+             ("/leistungen/", "0.9", "monthly"),
+             ("/kosten/", "0.9", "monthly"),
+             ("/referenzen/", "0.6", "monthly"),
+             ("/kontakt/", "0.7", "yearly"),
+             ("/angebot/", "0.8", "monthly")]
+    pfade += [(f"/leistungen/{l['slug']}/", l["prio"], "monthly")
+              for l in leistungen.LEISTUNGEN]
+    # Rechtstexte gehoeren in den Index (Anbieterkennzeichnung), aber ganz hinten.
+    pfade += [("/impressum/", "0.2", "yearly"), ("/datenschutz/", "0.2", "yearly")]
+    return pfade
+
+
+def _breadcrumb(base, teile):
+    """BreadcrumbList fuers Schema. teile = [(Name, Pfad), ...] ohne Startseite."""
+    eintraege = [{"@type": "ListItem", "position": 1, "name": "Start", "item": f"{base}/"}]
+    for i, (name, pfad) in enumerate(teile, start=2):
+        eintraege.append({"@type": "ListItem", "position": i, "name": name,
+                          "item": f"{base}{pfad}"})
+    return {"@type": "BreadcrumbList", "itemListElement": eintraege}
+
+
+def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id=""):
+    """@graph einer Unterseite: immer der Betrieb und die Website, dazu optional
+    Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben Entitaet
+    (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8)."""
+    base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
+    graph = json.loads(_structured_data(c, lang))["@graph"]
+    # Die FAQPage der Startseite gehoert nicht auf eine Unterseite.
+    graph = [k for k in graph if k.get("@type") != "FAQPage"]
+    for zusatz in (breadcrumb, service):
+        if zusatz:
+            graph.append(zusatz)
+    if faq:
+        graph.append({
+            "@type": "FAQPage", "@id": f"{base}{faq_id}#faq",
+            "inLanguage": i18n.get_pack(lang)["meta"]["html_lang"],
+            "mainEntity": [{"@type": "Question", "name": f["q"],
+                            "acceptedAnswer": {"@type": "Answer", "text": f["a"]}}
+                           for f in faq],
+        })
+    return json.dumps({"@context": "https://schema.org", "@graph": graph},
+                      ensure_ascii=False, separators=(",", ":"))
+
+
+def leistungen_hub(request):
+    """/leistungen/ — Einstieg in alle Leistungsseiten, nach Bereich gegliedert."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    hub = pack.get("hub", {})
+    alle = _alle_leistungen(lang)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    bereiche = [
+        {"id": b, "h": hub.get(f"{b}_h", ""), "t": hub.get(f"{b}_t", ""),
+         "posten": [l for l in alle if l.get("bereich") == b]}
+        for b in ("it", "sicht", "vorort")
+    ]
+    return render(request, "leistungen.html", {
+        "c": c, "hub": hub, "bereiche": bereiche,
+        "structured_data": _seiten_schema(
+            c, lang,
+            breadcrumb=_breadcrumb(base, [(pack["seite"]["leistungen"], reverse("leistungen"))])),
+    })
+
+
+def leistung_seite(request, slug):
+    """/leistungen/<slug>/ — eine Leistung, eine URL, ein Hauptkeyword."""
+    eintrag = leistungen.NACH_SLUG.get(slug)
+    if not eintrag:
+        raise Http404(slug)
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    seite = _leistung_daten(eintrag, lang)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = reverse("leistung", kwargs={"slug": slug})
+
+    # Service-Schema mit Angebot und Einsatzgebiet, verbunden mit #business.
+    posten = _ANGEBOT_INDEX.get(eintrag["preis"], {})
+    angebot = {"@type": "Offer", "priceCurrency": "EUR",
+               "availability": "https://schema.org/InStock", "url": f"{base}{pfad}"}
+    zahl = posten.get("once") or posten.get("mtl") or posten.get("yr") or posten.get("std")
+    if zahl:
+        angebot["price"] = str(zahl)
+    service = {
+        "@type": "Service", "@id": f"{base}{pfad}#service",
+        "name": seite.get("h1", ""), "description": seite.get("kurz", ""),
+        "provider": {"@id": f"{base}/#business"},
+        "areaServed": [{"@type": "Country", "name": "Österreich"},
+                       {"@type": "Country", "name": "Deutschland"}],
+        "offers": angebot,
+    }
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
+    return render(request, "leistung.html", {
+        "c": c, "seite": seite, "anfrage_ok": anfrage_ok,
+        "verwandte": [_leistung_daten(leistungen.NACH_SLUG[v], lang)
+                      for v in eintrag.get("verwandt", []) if v in leistungen.NACH_SLUG],
+        "preis_stand": _preis_stand(lang),
+        "structured_data": _seiten_schema(
+            c, lang, service=service, faq=seite.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [
+                (pack["seite"]["leistungen"], reverse("leistungen")),
+                (seite.get("h1", slug), pfad)])),
+    })
+
+
+def kosten(request):
+    """/kosten/ — beantwortet „Was kostet …?" mit der vollstaendigen Liste.
+    Die staerkste Einzelseite fuer Suche und KI-Antworten (SEO-PLAN.md, A10)."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    ks = pack.get("kosten_seite", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    return render(request, "kosten.html", {
+        "c": c, "ks": ks,
+        "angebot_groups": _localized_groups(lang),
+        "preis_stand": _preis_stand(lang),
+        "leistungen": _alle_leistungen(lang),
+        "structured_data": _seiten_schema(
+            c, lang,
+            breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kosten"), reverse("kosten"))])),
+    })
+
+
+# Referenzen: ausschliesslich Projekte, die es wirklich gibt und deren Kunden der
+# Nennung zugestimmt haben. Neue Eintraege brauchen beides (RELAUNCH-PLAN.md, E5).
+REFERENZEN = [
+    {"slug": "ruempelwerk", "bild": "img/ref_ruempelwerk.webp",
+     "url": "https://www.ruempelwerk-mitteldeutschland.de/"},
+]
+REFERENZEN_NACH_SLUG = {r["slug"]: r for r in REFERENZEN}
+
+
+def referenzen(request):
+    """/referenzen/ — Uebersicht."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    rs = pack.get("referenzen_seite", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    return render(request, "referenzen.html", {
+        "c": c, "rs": rs, "referenzen": REFERENZEN,
+        "structured_data": _seiten_schema(
+            c, lang,
+            breadcrumb=_breadcrumb(base, [(rs.get("h1", "Referenzen"), reverse("referenzen"))])),
+    })
+
+
+def kontakt(request):
+    """/kontakt/ — eigene URL mit allen Kontaktwegen und den Firmendaten."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    ks = pack.get("kontakt_seite", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
+    return render(request, "kontakt.html", {
+        "c": c, "ks": ks, "anfrage_ok": anfrage_ok,
+        "structured_data": _seiten_schema(
+            c, lang,
+            breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kontakt"), reverse("kontakt"))])),
+    })
+
+
+def _rechtsseite(request, art):
+    """Impressum und Datenschutz als eigene URLs statt als Klapptext im Footer:
+    Eine Anbieterkennzeichnung muss ohne Suchen erreichbar sein."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    recht = pack.get("recht", {})
+    fuss = pack.get("footer", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    ist_impressum = art == "impressum"
+    ueberschrift = fuss.get("impressum" if ist_impressum else "datenschutz_full", art)
+    return render(request, "recht.html", {
+        "c": c,
+        "h1": ueberschrift,
+        "titel": recht.get(f"{art}_titel", ueberschrift),
+        "beschreibung": recht.get(f"{art}_desc", ""),
+        "text": c.get("impressum" if ist_impressum else "datenschutz", ""),
+        "platzhalter": fuss.get("impressum_ph" if ist_impressum else "datenschutz_ph", ""),
+        "structured_data": _seiten_schema(
+            c, lang, breadcrumb=_breadcrumb(base, [(ueberschrift, reverse(art))])),
+    })
+
+
+def impressum(request):
+    return _rechtsseite(request, "impressum")
+
+
+def datenschutz(request):
+    return _rechtsseite(request, "datenschutz")
+
+
 def angebot(request):
     c = _content()
     sent = False
@@ -1303,8 +1532,9 @@ def sitemap_xml(request):
     from datetime import date
     base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
     lastmod = date.today().isoformat()  # Frische-Signal für Suche & KI-Crawler
-    # (Basis-Pfad, priority, changefreq)
-    pages = [("/", "1.0", "weekly"), ("/angebot/", "0.8", "monthly")]
+    # (Basis-Pfad, priority, changefreq) — aus derselben Quelle wie IndexNow,
+    # damit Sitemap und Meldung nie auseinanderlaufen.
+    pages = _seiten_pfade()
     items = []
     for path, pr, cf in pages:
         alts = "".join(
@@ -1399,7 +1629,15 @@ def leistung_anfrage(request):
     Antwortet als JSON; ohne JavaScript leitet sie zurück auf den Block mit ?ok=<quelle>."""
     c = _content()
     quelle = (request.POST.get("quelle") or "").strip().lower()
-    ziel = reverse("index") + f"#leistung-{quelle}" if quelle in _ANFRAGE_QUELLEN else reverse("index")
+    # Ohne JavaScript wird umgeleitet. Kommt die Anfrage von einer Unterseite, soll
+    # der Besucher auch dort wieder landen und nicht auf der Startseite — deshalb
+    # schickt jedes Formular seinen eigenen Pfad mit. Fremde Ziele werden verworfen.
+    zurueck = (request.POST.get("zurueck") or "").strip()
+    if not (zurueck.startswith("/") and url_has_allowed_host_and_scheme(
+            zurueck, allowed_hosts=None)):
+        zurueck = ""
+    anker = f"#leistung-{quelle}" if quelle in _ANFRAGE_QUELLEN else ""
+    ziel = (zurueck + "#anfrage") if zurueck else (reverse("index") + anker)
     will_json = request.headers.get("X-Requested-With") == "fetch"
 
     def antwort(ok: bool, fehler: str = "", status: int = 200):
@@ -1407,7 +1645,9 @@ def leistung_anfrage(request):
             nutzlast = {"ok": ok} if ok else {"ok": False, "error": fehler}
             return JsonResponse(nutzlast, status=status)
         if ok:
-            return redirect(reverse("index") + f"?ok={quelle}#leistung-{quelle}")
+            if zurueck:
+                return redirect(f"{zurueck}?ok={quelle}#anfrage")
+            return redirect(reverse("index") + f"?ok={quelle}{anker}")
         return redirect(ziel + "?fehler=1" if "#" not in ziel else ziel)
 
     if request.method != "POST":

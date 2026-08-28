@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% comment %}
+/kosten/ — die Antwort auf „Was kostet …?" (SEO-PLAN.md A10).
+Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
+{% endcomment %}
+{% block titel %}{{ ks.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ ks.desc|safe }}{% endblock %}
+{% block og_titel %}{{ ks.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ ks.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ ks.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ ks.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.nav.preise|safe }}</span>
+    </nav>
+    <h1>{{ ks.h1|safe }}</h1>
+    <p class="sp-kurz">{{ ks.kurz|safe }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="hb-intro" data-reveal>{{ ks.intro|safe }}</p>
+
+    <div class="pt" data-reveal>
+      <div class="pt-scroll">
+      <table class="pt-table">
+        <caption class="pt-cap">{{ t.preise.tab_cap|safe }} · {{ t.preise.stand|safe }} {{ preis_stand }}</caption>
+        <thead>
+          <tr><th scope="col">{{ t.preise.tab_leistung|safe }}</th><th scope="col">{{ t.preise.tab_preis|safe }}</th></tr>
+        </thead>
+        <tbody>
+          {% for g in angebot_groups %}
+          <tr class="pt-group"><th scope="rowgroup" colspan="2">{{ g.title }}</th></tr>
+            {% for it in g.items %}
+            <tr>
+              <th scope="row"><strong>{{ it.name }}</strong><span>{{ it.desc }}</span></th>
+              <td>{{ it.price_label }}</td>
+            </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <p class="pt-foot">{{ t.seite.preis_fuss|safe }}</p>
+
+    <div class="ks-cols">
+      <div class="ks-block" data-reveal>
+        <h2 class="sp-h2">{{ ks.warum_h|safe }}</h2>
+        <p>{{ ks.warum_t|safe }}</p>
+      </div>
+      <div class="ks-block" data-reveal>
+        <h2 class="sp-h2">{{ ks.fair_h|safe }}</h2>
+        <ul class="sp-liste sp-liste-check">
+          <li>{% include 'icons.html' with name='check' %}<span>{{ ks.fair_1|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ ks.fair_2|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ ks.fair_3|safe }}</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="sp-h2 ks-liste-h">{{ t.seite.leistungen|safe }}</h2>
+    <div class="lk-grid">
+      {% for l in leistungen %}
+      <a class="lk spot" href="{{ l.url }}" data-spot>
+        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=l.icon %}</span>
+        <h3 class="lk-h">{{ l.nav|safe }}</h3>
+        <p class="lk-t">{{ l.desc|safe }}</p>
+        <span class="lk-p">{{ l.preis_label }}</span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="lk-alle"><a class="btn btn-magnetic" href="{% url 'angebot' %}">{{ t.preise.tab_cta|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+  </div>
+</section>
+{% endblock %}

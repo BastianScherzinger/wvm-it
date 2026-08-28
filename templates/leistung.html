@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% comment %}
+Eine Leistung, eine URL, ein Hauptkeyword (docs/RELAUNCH-PLAN.md, R2.2).
+Struktur und Preis kommen aus landing/leistungen.py bzw. ANGEBOT_GROUPS, alle Texte
+aus dem Sprachpaket unter `seiten.<slug>`. Diese Vorlage enthält bewusst keinen
+einzigen festen Satz — sonst wäre sie nicht übersetzbar.
+{% endcomment %}
+{% block titel %}{{ seite.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ seite.desc|safe }}{% endblock %}
+{% block og_titel %}{{ seite.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ seite.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ seite.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ seite.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<article class="sp">
+
+  <!-- ── Kopf: Brotkrume, Antwort-zuerst-Absatz, Preis, Kontaktwege ────────── -->
+  <header class="sp-top on-dark">
+    <div class="wrap">
+      <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+        <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <a href="{% url 'leistungen' %}">{{ t.seite.leistungen|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ seite.nav|safe }}</span>
+      </nav>
+
+      <div class="sp-top-grid">
+        <div>
+          <h1>{{ seite.h1|safe }}</h1>
+          <!-- Antwort zuerst: Dieser Absatz beantwortet die Suchfrage vollständig
+               und ist das, was KI-Antwortmaschinen zitieren (SEO-PLAN.md, G1). -->
+          <p class="sp-kurz">{{ seite.kurz|safe }}</p>
+          <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+            {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+            {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+            <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+          </div>
+        </div>
+        <aside class="sp-fakten">
+          <div class="sp-fakt">
+            <span class="sp-fakt-l">{{ t.seite.preis_kurz|safe }}</span>
+            <strong class="sp-fakt-v">{{ seite.preis_label }}</strong>
+          </div>
+          <div class="sp-fakt">
+            <span class="sp-fakt-l">{% if seite.vor_ort %}{{ t.seite.vorort_h|safe }}{% else %}{{ t.seite.remote_h|safe }}{% endif %}</span>
+            <p class="sp-fakt-t">{% if seite.vor_ort %}{{ t.seite.vorort_t|safe }}{% else %}{{ t.seite.remote_t|safe }}{% endif %}</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Inhalt links, Anfrage rechts (mitlaufend) ─────────────────────────── -->
+  <section class="section">
+    <div class="wrap sp-grid">
+      <div class="sp-main">
+        <p class="sp-intro">{{ seite.intro|safe }}</p>
+
+        <h2 class="sp-h2">{{ seite.problem_h|safe }}</h2>
+        <ul class="sp-liste sp-liste-problem">
+          {% for z in seite.probleme %}<li>{{ z|safe }}</li>{% endfor %}
+        </ul>
+
+        <h2 class="sp-h2">{{ seite.leistung_h|safe }}</h2>
+        <ul class="sp-liste sp-liste-check">
+          {% for z in seite.leistungen %}<li>{% include 'icons.html' with name='check' %}<span>{{ z|safe }}</span></li>{% endfor %}
+        </ul>
+
+        <h2 class="sp-h2">{{ seite.ablauf_h|safe }}</h2>
+        <ol class="timeline sp-ablauf">
+          {% for s in seite.ablauf %}
+          <li class="tl-item"><span class="tl-n">{{ forloop.counter|stringformat:"02d" }}</span>
+            <div class="tl-body"><h3>{{ s.h|safe }}</h3><p>{{ s.t|safe }}</p></div></li>
+          {% endfor %}
+        </ol>
+
+        <h2 class="sp-h2">{{ seite.preis_h|safe }}</h2>
+        <p class="sp-preis-text">{{ seite.preis_t|safe }}</p>
+        <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
+          <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+
+        {% if seite.faq %}
+        <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
+        <div class="faq">
+          {% for f in seite.faq %}
+          <details class="faq-item"{% if forloop.first %} open{% endif %}>
+            <summary class="faq-q">
+              <span>{{ f.q|safe }}</span>
+              <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </summary>
+            <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+          </details>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="sp-aside">
+        {% include 'anfrage_karte.html' with bid=seite.quelle titel=seite.cta_h sub=seite.cta_t ph=seite.problem_h %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Querverlinkung: keine Seite ohne eingehende Links ─────────────────── -->
+  {% if verwandte %}
+  <section class="section section-alt">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="section-t">{{ t.seite.verwandt_h|safe }}</h2>
+      </header>
+      <div class="lk-grid">
+        {% for v in verwandte %}
+        <a class="lk spot" href="{{ v.url }}" data-reveal data-spot>
+          <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=v.icon %}</span>
+          <h3 class="lk-h">{{ v.nav|safe }}</h3>
+          <p class="lk-t">{{ v.desc|safe }}</p>
+          <span class="lk-p">{{ v.preis_label }}</span>
+        </a>
+        {% endfor %}
+      </div>
+      <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.zurueck|safe }}</a></p>
+    </div>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

@@ -21,7 +21,12 @@ from django.test import Client
 from landing import i18n
 from landing.views import ANGEBOT_GROUPS, _ANFRAGE_QUELLEN
 
-SEITEN = ["/", "/angebot/", "/en/", "/en/angebot/", "/ro/", "/ro/angebot/"]
+def _seiten():
+    """Alle öffentlichen URLs in allen Sprachen — aus derselben Quelle wie Sitemap
+    und IndexNow. Wer eine Seite ergänzt, bekommt sie hier automatisch geprüft."""
+    from landing.views import _seiten_pfade
+    return [i18n.add_prefix(lang, pfad)
+            for pfad, _prio, _freq in _seiten_pfade() for lang in i18n.LANGS]
 TITEL_MAX = 60
 DESC_MAX = 160
 
@@ -104,6 +109,33 @@ class Command(BaseCommand):
         if len(set(anzahl.values())) > 1:
             self.fehler.append(f"Unterschiedlich viele FAQ-Fragen je Sprache: {anzahl}")
         self.stdout.write(f"Sprachpakete geprüft ({len(basis)} Schlüssel, FAQ: {anzahl}).")
+        self._pruefe_seitentexte(pakete)
+
+    def _pruefe_seitentexte(self, pakete):
+        """Die Leistungsseiten bestehen zu großen Teilen aus Listen (Probleme,
+        Leistungen, Ablauf, FAQ). Listen werden vom Schlüsselvergleich nicht erfasst
+        — hier wird geprüft, dass jede Sprache gleich viele Einträge hat, sonst
+        fehlt auf der englischen Seite unbemerkt die halbe Antwort."""
+        from landing import leistungen as _l
+        felder = ("probleme", "leistungen", "ablauf", "faq")
+        fehlend, ungleich = [], []
+        for slug in _l.NACH_SLUG:
+            de = pakete["de"].get("seiten", {}).get(slug)
+            if not de:
+                fehlend.append(slug)
+                continue
+            for lang in ("en", "ro"):
+                fremd = i18n._RAW[lang].get("seiten", {}).get(slug)
+                if not fremd:
+                    continue        # erbt vollständig von DE — das meldet schon der Schlüsselvergleich
+                for feld in felder:
+                    if len(fremd.get(feld, de.get(feld, []))) != len(de.get(feld, [])):
+                        ungleich.append(f"{lang}/{slug}.{feld}")
+        for slug in fehlend:
+            self.fehler.append(f"Leistung '{slug}' hat keine deutschen Texte in seiten_de.py")
+        for eintrag in ungleich:
+            self.fehler.append(f"Unterschiedlich viele Einträge: {eintrag}")
+        self.stdout.write(f"Seitentexte geprüft ({len(_l.NACH_SLUG)} Leistungen).")
 
     # ── 2. Preise ────────────────────────────────────────────────────────────
     def _pruefe_preise(self):
@@ -115,26 +147,39 @@ class Command(BaseCommand):
                         erlaubt.add(int(it[feld]))
         # Summen, die die Seite bewusst bildet (Betreuungspaket = Hosting + Wartung).
         erlaubt.add(15 + 39)
+        # Startwert der laufenden Summe im Konfigurator, bevor etwas gewählt wurde.
+        erlaubt.add(0)
         client = _client()
-        seite = client.get("/").content.decode("utf-8")
-        # Zahlen unmittelbar vor einem Euro-Zeichen, mit oder ohne Tausenderpunkt.
-        gefunden = set()
-        for treffer in re.findall(r"(\d[\d.]{0,8})\s*(?:€|&euro;)", seite):
-            try:
-                gefunden.add(int(treffer.replace(".", "")))
-            except ValueError:
-                continue
-        unbekannt = sorted(z for z in gefunden if z not in erlaubt)
-        if unbekannt:
+        # Jede deutsche Seite wird geprüft, nicht nur die Startseite: Ein Preis, der
+        # nur im Fließtext einer Leistungsseite steht, ist genau der, der später
+        # widerspricht — und widersprüchliche Zahlen sind das stärkste Negativsignal
+        # für KI-Antwortmaschinen (docs/SEO-PLAN.md, G10).
+        from landing.views import _seiten_pfade
+        gefunden, unbekannt = set(), {}
+        for pfad, _p, _f in _seiten_pfade():
+            html = client.get(pfad).content.decode("utf-8")
+            zahlen = set()
+            for treffer in re.findall(r"(\d[\d.]{0,8})\s*(?:€|&euro;)", html):
+                try:
+                    zahlen.add(int(treffer.replace(".", "")))
+                except ValueError:
+                    continue
+            gefunden |= zahlen
+            fremd = sorted(z for z in zahlen if z not in erlaubt)
+            if fremd:
+                unbekannt[pfad] = fremd
+        for pfad, werte in unbekannt.items():
             self.fehler.append(
-                f"Preise auf der Startseite, die nicht aus ANGEBOT_GROUPS stammen: {unbekannt}")
-        self.stdout.write(f"Preise geprüft ({len(gefunden)} Zahlen auf der Startseite, "
+                f"{pfad}: Preise, die nicht aus ANGEBOT_GROUPS stammen: {werte}")
+        self.stdout.write(f"Preise geprüft ({len(gefunden)} verschiedene Zahlen, "
                           f"{len(erlaubt)} erlaubte Werte).")
 
     # ── 3. Seiten-Technik und Formulare ──────────────────────────────────────
     def _pruefe_seiten(self):
         client = _client()
-        for pfad in SEITEN:
+        geprueft = set()
+        seiten = _seiten()
+        for pfad in seiten:
             antwort = client.get(pfad)
             if antwort.status_code != 200:
                 self.fehler.append(f"{pfad} antwortet mit {antwort.status_code}")
@@ -172,10 +217,20 @@ class Command(BaseCommand):
             if 'rel="alternate"' not in html and "hreflang" not in html:
                 self.warnungen.append(f"{pfad}: keine hreflang-Angaben")
 
-            if pfad in ("/", "/en/", "/ro/"):
+            if 'data-anfrage' in html:
                 self._pruefe_formulare(pfad, html)
 
-        self.stdout.write(f"Seiten geprüft ({len(SEITEN)} URLs).")
+            # Interne Links duerfen nicht ins Leere zeigen. Ein toter Link im Silo
+            # kostet mehr als jede Optimierung bringt.
+            for ziel in set(re.findall(r'href="(/[^"#?]*)"', html)):
+                if ziel.startswith("/static/") or ziel in geprueft:
+                    continue
+                geprueft.add(ziel)
+                code = client.get(ziel).status_code
+                if code not in (200, 301, 302):
+                    self.fehler.append(f"{pfad}: interner Link {ziel} antwortet mit {code}")
+
+        self.stdout.write(f"Seiten geprüft ({len(seiten)} URLs).")
 
     def _pruefe_formulare(self, pfad, html):
         formulare = re.findall(r"<form[^>]*data-anfrage.*?</form>", html, re.S)
@@ -183,10 +238,14 @@ class Command(BaseCommand):
         # sonst gibt es einen Betreff, den niemand auslösen kann. 'koop' läuft über
         # einen eigenen Endpunkt und zählt hier nicht mit.
         vorhanden = set(re.findall(r'name="quelle" value="([a-z_]+)"', html))
-        fehlend = sorted(set(_ANFRAGE_QUELLEN) - vorhanden - {"koop"})
-        if fehlend:
-            self.fehler.append(
-                f"{pfad}: keine Kurzanfrage-Formulare für {', '.join(fehlend)}")
+        if pfad in ("/", "/en/", "/ro/"):
+            fehlend = sorted(set(_ANFRAGE_QUELLEN) - vorhanden - {"koop"})
+            if fehlend:
+                self.fehler.append(
+                    f"{pfad}: keine Kurzanfrage-Formulare für {', '.join(fehlend)}")
+        for q in vorhanden:
+            if q not in _ANFRAGE_QUELLEN:
+                self.fehler.append(f"{pfad}: unbekannte Anfrage-Quelle '{q}'")
         for form in formulare:
             if "csrfmiddlewaretoken" not in form:
                 self.fehler.append(f"{pfad}: Formular ohne CSRF-Token")

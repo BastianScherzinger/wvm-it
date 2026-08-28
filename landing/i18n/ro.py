@@ -309,7 +309,7 @@ PACK = {
         "l_smarthome": "Casă inteligentă &amp; KNX", "l_konferenz": "Conferință &amp; tehnică AV",
         "l_edv": "IT &amp; securitate", "l_web": "Site-uri web &amp; AI",
         "col_unternehmen": "Companie",
-        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_stimmen": "Testimoniale", "u_shop": "Magazin", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
+        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_alle": "Toate serviciile", "u_shop": "Magazin", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
         "col_recht": "Legal",
         "impressum": "Date legale", "datenschutz": "Confidențialitate", "datenschutz_full": "Politica de confidențialitate",
     },

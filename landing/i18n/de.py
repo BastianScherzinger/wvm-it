@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
-"""Deutsches Sprachpaket (Master). Alle übrigen Sprachen erben fehlende Schlüssel von hier."""
+"""Deutsches Sprachpaket (Master). Alle übrigen Sprachen erben fehlende Schlüssel von hier.
+
+Die Texte der Leistungsseiten stehen wegen ihres Umfangs in einer eigenen Datei
+(`seiten_de.py`) und hängen hier unter dem Schlüssel "seiten".
+"""
+
+from .seiten_de import SEITEN
 
 PACK = {
+    "seiten": SEITEN,
     "meta": {
         "html_lang": "de-AT",
         "locale": "de_AT",
@@ -309,7 +316,7 @@ PACK = {
         "l_smarthome": "Smarthome &amp; KNX", "l_konferenz": "Konferenz &amp; AV-Technik",
         "l_edv": "EDV &amp; Sicherheit", "l_web": "Webseiten &amp; KI",
         "col_unternehmen": "Unternehmen",
-        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_stimmen": "Stimmen", "u_shop": "Shop", "u_referenzen": "Referenzen", "u_faq": "Fragen &amp; Antworten",
+        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "Shop", "u_referenzen": "Referenzen", "u_faq": "Fragen &amp; Antworten",
         "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
         "impressum_ph": "<strong>Angaben gemäß Paragraf 5 TMG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt (E-Mail und Telefon), gegebenenfalls USt-IdNr. und Registereintrag.",
@@ -363,6 +370,84 @@ PACK = {
         "edv": {"name": "EDV & IT-Solutions", "desc": "Hardware, Server, Arbeitsplätze und Software, komplett betreut."},
         "netzwerk": {"name": "Netzwerk & Sicherheit", "desc": "Stabiles Netzwerk, Zutritt und Videoüberwachung."},
         "beratung": {"name": "Beratung aus einer Hand", "desc": "Ein fester Ansprechpartner für Technik und Digitales."},
+    },
+    # ── Gerüst der Unterseiten (Beschriftungen, die auf jeder Seite gleich sind) ──
+    "seite": {
+        "brotkrume": "Sie befinden sich hier",
+        "start": "Start",
+        "leistungen": "Leistungen",
+        "kurz_label": "Kurz gesagt",
+        "preis_kurz": "Einstiegspreis",
+        "faq_h": "Häufige Fragen",
+        "verwandt_h": "Das wird oft zusammen angefragt",
+        "zurueck": "Alle Leistungen ansehen",
+        "remote_h": "Per Fernwartung",
+        "remote_t": "Diese Leistung erbringen wir aus der Ferne &ndash; in ganz Österreich und Deutschland, ohne Anfahrtskosten.",
+        "vorort_h": "Einsatz vor Ort",
+        "vorort_t": "Diese Leistung lässt sich nicht aus der Ferne erbringen. Wir planen sie projektbezogen; Termin und Preis stehen vorher fest.",
+        "preis_fuss": "Richtpreise, netto zzgl. USt.",
+        "stand": "Stand:",
+        "alle_preise": "Alle Preise auf einen Blick",
+        "kontakt_alt": "Lieber direkt sprechen?",
+    },
+    "hub": {
+        "titel": "Leistungen: EDV, IT, Web und Technik | WVM-IT",
+        "desc": "Alle Leistungen von WVM-IT: IT-Betreuung ab 29 €/Monat, Webseiten ab 350 €, SEO ab 149 €/Monat, Technik vor Ort — in Österreich und Deutschland.",
+        "h1": "Was WVM-IT für Betriebe übernimmt",
+        "kurz": "WVM-IT betreut die EDV kleiner und mittlerer Betriebe in Österreich und Deutschland und übernimmt zusätzlich alles, was digital sichtbar macht: Webseiten, SEO, Google Ads und Automatisierung. Der Schwerpunkt liegt auf laufender IT-Betreuung ab 29 € je Arbeitsplatz und Monat, überwiegend per Fernwartung. Gebäude- und Veranstaltungstechnik kommen projektbezogen vor Ort dazu.",
+        "intro": "Elf Leistungen, drei Bereiche &ndash; und ein Ansprechpartner für alle. Was Sie hier finden, ist bewusst keine Liste von Schlagworten: Zu jeder Leistung gibt es eine eigene Seite mit dem, was enthalten ist, wie es abläuft und was es kostet.",
+        "it_h": "EDV und IT",
+        "it_t": "Der Kern: die laufende Technik Ihres Betriebs, überwiegend aus der Ferne betreut.",
+        "sicht_h": "Sichtbarkeit und Web",
+        "sicht_t": "Damit Sie auch gefunden werden von Menschen, die Sie noch nicht kennen.",
+        "vorort_h": "Technik vor Ort",
+        "vorort_t": "Was verkabelt, aufgebaut und eingemessen werden muss &ndash; projektbezogen.",
+    },
+    "kosten_seite": {
+        "titel": "Was kostet IT-Betreuung? Alle Preise | WVM-IT",
+        "desc": "Alle Preise von WVM-IT: IT-Betreuung ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., Webseite ab 350 €, SEO ab 149 €/Monat. Netto zzgl. USt.",
+        "h1": "Was kostet das? Alle Preise auf einer Seite",
+        "kurz": "Die laufende IT-Betreuung bei WVM-IT kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
+        "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt &ndash; und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",
+        "warum_h": "Warum bei manchem kein Preis steht",
+        "warum_t": "Bei Gebäudeautomation, Konferenz- und Veranstaltungstechnik hängt der Preis so stark an Raum, Bestand und Umfang, dass ein Startpreis nichts aussagen würde. Diese Arbeiten kalkulieren wir projektbezogen und nennen den Preis schriftlich nach einer Bestandsaufnahme &ndash; vor dem ersten Handgriff.",
+        "fair_h": "Was Sie von uns nicht bekommen",
+        "fair_1": "Keine Mindestlaufzeit über ein Quartal hinaus.",
+        "fair_2": "Keine Systeme, aus denen Sie nicht wieder herauskommen &ndash; Zugänge und Daten gehören Ihnen.",
+        "fair_3": "Keine Empfehlung, an der wir mehr verdienen als Sie sparen. Wenn sich etwas nicht lohnt, sagen wir es.",
+    },
+    "referenzen_seite": {
+        "titel": "Referenzen von WVM-IT",
+        "desc": "Was wir gebaut und betreut haben — belegbar und mit Einverständnis der Kunden: Website, SEO/GEO und Google Ads für Rümpelwerk Mitteldeutschland.",
+        "h1": "Referenzen",
+        "kurz": "WVM-IT zeigt hier ausschließlich Projekte, die wirklich existieren und deren Kunden der Nennung zugestimmt haben. Aktuell ist das Rümpelwerk Mitteldeutschland, für das wir Website, SEO/GEO und Google Ads gebaut haben und laufend betreuen.",
+        "intro": "Diese Seite ist kurz, und das hat einen Grund: Wir führen hier nur auf, was wir belegen können. Erfundene Kundenstimmen und ausgedachte Zahlen finden Sie bei uns nicht &ndash; auch nicht in kleiner Schrift.",
+        "mehr_h": "Warum hier nicht mehr steht",
+        "mehr_t": "Ein Teil unserer Arbeit sind Betriebe, deren EDV wir betreuen. Wer seine IT in fremde Hände gibt, will das selten öffentlich sehen. Wir fragen jeden Kunden einzeln und nennen niemanden ohne Zustimmung. Auf Wunsch stellen wir im Gespräch gerne einen Kontakt her.",
+        "ansehen": "Seite ansehen",
+    },
+    "kontakt_seite": {
+        "titel": "Kontakt zu WVM-IT",
+        "desc": "WVM-IT erreichen: WhatsApp, Telefon, Rückruf oder E-Mail. Antwort innerhalb von 24 Stunden an Werktagen, Betreuung in Österreich und Deutschland.",
+        "h1": "So erreichen Sie uns",
+        "kurz": "WVM-IT ist per WhatsApp, Telefon und E-Mail erreichbar; auf Wunsch rufen wir zurück. Anfragen beantworten wir an Werktagen innerhalb von 24 Stunden. Betreut werden Betriebe in ganz Österreich und Deutschland, überwiegend per Fernwartung.",
+        "intro": "Am schnellsten geht es per WhatsApp oder Telefon &ndash; ein Satz genügt, worum es geht. Wenn Sie lieber schreiben, nutzen Sie das Formular; es fragt nur nach dem, was wir wirklich brauchen.",
+        "wege_h": "Vier Wege, uns zu erreichen",
+        "zeiten_h": "Erreichbarkeit",
+        "zeiten_t": "Montag bis Freitag, 9 bis 18 Uhr. Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag &ndash; innerhalb von 24 Stunden, nicht innerhalb einer Woche.",
+        "daten_h": "Firmendaten",
+        "daten_fehlt": "Die vollständige Anschrift ergänzen wir hier, sobald der Firmensitz eingetragen ist. Bis dahin erreichen Sie uns über Telefon und E-Mail.",
+        "inhaber": "Inhaber",
+        "tel": "Telefon",
+        "mail": "E-Mail",
+        "gebiet": "Einsatzgebiet",
+        "gebiet_t": "Österreich und Deutschland",
+    },
+    "recht": {
+        "impressum_titel": "Impressum | WVM-IT",
+        "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT.",
+        "datenschutz_titel": "Datenschutzerklärung | WVM-IT",
+        "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer und Ihre Rechte.",
     },
     "angebot_page": {
         "eyebrow": "Angebots-Konfigurator",
@@ -671,6 +756,7 @@ PACK = {
         "kontakt_ph": "E-Mail oder Telefonnummer",
         "kontakt_bsp": "name@firma.at oder +43 …",
         "submit": "Anfragen",
+        "mehr": "Alles dazu ansehen",
         "sending": "Wird gesendet …",
         "done_h": "Angekommen",
         "done_t": "Wir melden uns innerhalb von 24 Stunden.",

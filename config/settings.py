@@ -72,6 +72,8 @@ TEMPLATES = [
             "django.template.context_processors.request",
             # Aktives Sprachpaket als {{ t.* }}, Sprachumschalter und hreflang-Alternates.
             "landing.i18n.context_processor",
+            # Footer-Navigation ins Leistungs-Silo (landing/context.py).
+            "landing.context.navigation",
         ]},
     },
 ]

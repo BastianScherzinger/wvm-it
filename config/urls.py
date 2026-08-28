@@ -24,6 +24,16 @@ urlpatterns = [
 # ── Öffentliche, indexierbare Seiten (mit /en/ bzw. /ro/; DE bleibt präfixlos) ────
 urlpatterns += i18n_patterns(
     path("", views.index, name="index"),
+    # ── Leistungs-Silo (docs/RELAUNCH-PLAN.md, Block S-A) ────────────────────
+    # Die Slugs sind in allen drei Sprachen gleich; das haelt die hreflang-
+    # Zuordnung eindeutig und spart uebersetzte URL-Muster (gettext).
+    path("leistungen/", views.leistungen_hub, name="leistungen"),
+    path("leistungen/<slug:slug>/", views.leistung_seite, name="leistung"),
+    path("kosten/", views.kosten, name="kosten"),
+    path("referenzen/", views.referenzen, name="referenzen"),
+    path("kontakt/", views.kontakt, name="kontakt"),
+    path("impressum/", views.impressum, name="impressum"),
+    path("datenschutz/", views.datenschutz, name="datenschutz"),
     path("angebot/", views.angebot, name="angebot"),
     path("angebot/anfordern/", views.angebot_anfordern, name="angebot_anfordern"),
     path("kooperation/anfordern/", views.kooperation_anfordern, name="kooperation_anfordern"),

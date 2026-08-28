@@ -1,0 +1,177 @@
+{% load static %}<!DOCTYPE html>
+<html lang="{{ t.meta.html_lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block titel %}{{ t.meta.seo_title|safe }}{% endblock %}</title>
+  <meta name="description" content="{% block beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="{{ c.site_name }} · {{ c.inhaber_name }}">
+  <!-- Google Search Console (URL-Praefix-Property www.wvm-it.tech) -->
+  <meta name="google-site-verification" content="uS_ethpPIsf2uk4Y8sNnoU214PvveZFVt6EjTzCfl7g">
+  <meta name="theme-color" content="#0a0908">
+  <link rel="canonical" href="{{ c.wvm_url }}{{ canonical_path }}">
+  {% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
+  {% endfor %}
+  <!-- Lokal-SEO: Österreich (Sitz) und Deutschland (Zielmarkt) -->
+  <meta name="geo.region" content="AT">
+  <meta name="geo.region" content="DE">
+  <meta name="geo.placename" content="Österreich, Deutschland">
+  <meta name="keywords" content="{% block keywords %}EDV-Betreuung, IT-Betreuung, IT-Dienstleister, Fernwartung, Netzwerk, Server, Datensicherung, Webseiten, SEO, Google Ads, Smarthome, Loxone, KNX, Österreich, Deutschland{% endblock %}">
+  <!-- Favicon / App-Icon -->
+  <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
+  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
+  <!-- 3D-Viewer (Spline) wird ERST nach Cookie-Einwilligung von main.js geladen (DSGVO). -->
+
+  <meta property="og:title" content="{% block og_titel %}{{ t.meta.seo_title|safe }}{% endblock %}">
+  <meta property="og:description" content="{% block og_beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ c.site_name }}">
+  <meta property="og:locale" content="{{ t.meta.locale }}">
+  {% if lang != 'de' %}<meta property="og:locale:alternate" content="de_AT">{% endif %}
+  {% if lang != 'en' %}<meta property="og:locale:alternate" content="en_US">{% endif %}
+  {% if lang != 'ro' %}<meta property="og:locale:alternate" content="ro_RO">{% endif %}
+  <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
+  <meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ c.site_name }} — {{ t.meta.og_image_alt_suffix|safe }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block tw_titel %}{{ t.meta.seo_title|safe }}{% endblock %}">
+  <meta name="twitter:description" content="{% block tw_beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
+  <meta name="twitter:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
+  {% if c.hero_bg %}<link rel="preload" as="image" href="{{ c.hero_bg }}">{% endif %}
+  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
+  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  <!-- Strukturierte Daten (SEO + GEO): @graph mit ProfessionalService (Local-SEO AT+DE,
+       Preise als OfferCatalog), WebSite und FAQPage — server-seitig gebaut (views._structured_data). -->
+  <script type="application/ld+json">{{ structured_data|safe }}</script>
+</head>
+<body>
+<script>
+  window.I18N = {
+    numLocale: "{{ t.meta.num_locale }}",
+    robot: [{% for m in t.hero.robot_msgs %}"{{ m|escapejs }}"{% if not forloop.last %},{% endif %}{% endfor %}],
+    rb: { leistung: "{{ t.rb.js_leistung|escapejs }}", leistungen: "{{ t.rb.js_leistungen|escapejs }}", busy: "{{ t.rb.js_busy|escapejs }}", submit: "{{ t.rb.submit|escapejs }}", error: "{{ t.rb.js_error|escapejs }}" },
+    coop: { busy: "{{ t.koop.js_busy|escapejs }}", submit: "{{ t.koop.submit|escapejs }}", error: "{{ t.koop.js_error|escapejs }}" },
+    lb: { sending: "{{ t.lb.sending|escapejs }}", err_kontakt: "{{ t.lb.err_kontakt|escapejs }}", err_allg: "{{ t.lb.err_allg|escapejs }}" }
+  };
+</script>
+<a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
+
+<!-- ── Navigation (Glass, einzeilig) ──────────────────────────────────────── -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="{% url 'index' %}" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
+      {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
+    </a>
+    <!-- Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) -->
+    <div class="nav-lang-mobile">{% include 'lang_switch.html' %}</div>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="navMenu">
+      <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
+        <a href="{% url 'leistungen' %}">{{ t.nav.leistungen|safe }}</a>
+        <a href="{% url 'kosten' %}">{{ t.nav.preise|safe }}</a>
+        <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
+        <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
+      </nav>
+      {% include 'lang_switch.html' %}
+      <!-- Kontakt ist nie weiter als ein Klick entfernt: WhatsApp + Telefon + CTA -->
+      {% if c.whatsapp %}<a class="btn-wa nav-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener" aria-label="{{ t.ways.wa|safe }}">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+      <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+{% block inhalt %}{% endblock %}
+</main>
+
+<!-- ── Rückruf: kleiner Dialog, aus Nav, Hero und Mobil-Leiste erreichbar ───── -->
+<dialog class="rr-dlg" id="rueckrufDlg" aria-labelledby="rr-h">
+  <form class="lb-form rr-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage>
+    {% csrf_token %}
+    <input type="hidden" name="quelle" value="rueckruf">
+    <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+    <button class="rr-close" type="button" data-rr-close aria-label="{{ t.rueckruf.close|safe }}">&times;</button>
+    <h2 id="rr-h" class="tool-h">{{ t.rueckruf.h|safe }}</h2>
+    <p class="tool-sub">{{ t.rueckruf.sub|safe }}</p>
+    <div class="field">
+      <label class="fld-l" for="rr-name">{{ t.rueckruf.name|safe }}</label>
+      <input class="fld" id="rr-name" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.rueckruf.name_ph|safe }}">
+    </div>
+    <div class="field">
+      <label class="fld-l" for="rr-tel">{{ t.rueckruf.tel|safe }}</label>
+      <input class="fld" id="rr-tel" type="tel" name="kontakt" required autocomplete="tel" placeholder="{{ t.rueckruf.tel_ph|safe }}">
+    </div>
+    <div class="field">
+      <label class="fld-l" for="rr-zeit">{{ t.rueckruf.zeit|safe }}</label>
+      <select class="fld" id="rr-zeit" name="zeit">
+        <option>{{ t.rueckruf.zeit_1|safe }}</option>
+        <option>{{ t.rueckruf.zeit_2|safe }}</option>
+        <option>{{ t.rueckruf.zeit_3|safe }}</option>
+        <option selected>{{ t.rueckruf.zeit_4|safe }}</option>
+      </select>
+    </div>
+    <button class="btn btn-lg lb-submit" type="submit">{{ t.rueckruf.submit|safe }}</button>
+    <p class="lb-err" role="alert" hidden></p>
+  </form>
+  <div class="lb-done rr-done" hidden>
+    <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+    <strong>{{ t.rueckruf.done_h|safe }}</strong>
+    <p>{{ t.rueckruf.done_t|safe }}</p>
+    <button class="btn btn-sm" type="button" data-rr-close>{{ t.rueckruf.close|safe }}</button>
+  </div>
+</dialog>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer class="foot">
+  <div class="wrap foot-top">
+    <div class="foot-brand">
+      <a class="brand" href="{% url 'index' %}">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
+      <p>{{ t.footer.tagline|safe }}</p>
+    </div>
+    <nav class="foot-nav" aria-label="Footer">
+      <div>
+        <h3>{{ t.footer.col_leistungen|safe }}</h3>
+        {% for l in footer_leistungen %}<a href="{{ l.url }}">{{ l.titel|safe }}</a>{% endfor %}
+        <a href="{% url 'leistungen' %}">{{ t.footer.u_alle|safe }}</a>
+      </div>
+      <div>
+        <h3>{{ t.footer.col_unternehmen|safe }}</h3>
+        <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
+        <a href="{% url 'kosten' %}">{{ t.footer.u_preise|safe }}</a>
+        <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
+        <a href="{% url 'index' %}#faq">{{ t.footer.u_faq|safe }}</a>
+        <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
+        {% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}
+      </div>
+      <div>
+        <h3>{{ t.footer.col_recht|safe }}</h3>
+        <a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a>
+        <a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a>
+      </div>
+    </nav>
+  </div>
+
+
+  <div class="wrap foot-bottom">
+    <span>© {{ c.jahr }} {{ c.site_name }}</span>
+    <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
+  </div>
+</footer>
+
+<div class="mobilebar">
+  {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
+  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
+  <a class="mobilebar-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
+</div>
+
+{% include 'cookie_banner.html' %}
+<script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>
+<script src="{% static 'js/anfrage-blocks.js' %}?v={{ asset_v }}" defer></script>
+</body>
+</html>

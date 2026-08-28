@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% comment %}Hub: Einstieg in alle Leistungsseiten, nach Bereich gegliedert (R2.3).{% endcomment %}
+{% block titel %}{{ hub.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ hub.desc|safe }}{% endblock %}
+{% block og_titel %}{{ hub.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ hub.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ hub.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ hub.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.seite.leistungen|safe }}</span>
+    </nav>
+    <h1>{{ hub.h1|safe }}</h1>
+    <p class="sp-kurz">{{ hub.kurz|safe }}</p>
+    <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+      {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+      <a class="way" href="{% url 'kontakt' %}">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="hb-intro" data-reveal>{{ hub.intro|safe }}</p>
+
+    {% for b in bereiche %}
+    <div class="hb-block" data-reveal>
+      <header class="hb-head">
+        <h2 class="hb-h">{{ b.h|safe }}</h2>
+        <p class="hb-t">{{ b.t|safe }}</p>
+      </header>
+      <div class="lk-grid">
+        {% for l in b.posten %}
+        <a class="lk spot" href="{{ l.url }}" data-spot>
+          <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=l.icon %}</span>
+          <h3 class="lk-h">{{ l.nav|safe }}</h3>
+          <p class="lk-t">{{ l.desc|safe }}</p>
+          <span class="lk-p">{{ l.preis_label }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+    <p class="lk-alle"><a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+  </div>
+</section>
+{% endblock %}

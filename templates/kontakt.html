@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% comment %}
+/kontakt/ — eigene URL mit allen Kontaktwegen und den Firmendaten (NAP).
+Sobald `adresse`/`plz`/`stadt` in content.json gepflegt sind, erscheinen sie hier,
+im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E6).
+{% endcomment %}
+{% block titel %}{{ ks.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ ks.desc|safe }}{% endblock %}
+{% block og_titel %}{{ ks.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ ks.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ ks.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ ks.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.nav.kontakt|safe }}</span>
+    </nav>
+    <h1>{{ ks.h1|safe }}</h1>
+    <p class="sp-kurz">{{ ks.kurz|safe }}</p>
+    <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+      {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+      <button class="way" type="button" data-rueckruf>{% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span></button>
+      <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap sp-grid">
+    <div class="sp-main">
+      <p class="sp-intro">{{ ks.intro|safe }}</p>
+
+      <h2 class="sp-h2">{{ ks.zeiten_h|safe }}</h2>
+      <p>{{ ks.zeiten_t|safe }}</p>
+
+      <h2 class="sp-h2">{{ ks.daten_h|safe }}</h2>
+      <dl class="kd">
+        <div><dt>{{ ks.inhaber|safe }}</dt><dd>{{ c.inhaber_name }}</dd></div>
+        {% if c.telefon %}<div><dt>{{ ks.tel|safe }}</dt><dd><a href="tel:{{ c.telefon }}">{{ c.telefon }}</a></dd></div>{% endif %}
+        {% if c.email %}<div><dt>{{ ks.mail|safe }}</dt><dd><a href="mailto:{{ c.email }}">{{ c.email }}</a></dd></div>{% endif %}
+        {% if c.adresse %}<div><dt>{{ t.footer.impressum|safe }}</dt><dd>{{ c.adresse }}{% if c.plz or c.stadt %}, {{ c.plz }} {{ c.stadt }}{% endif %}</dd></div>{% endif %}
+        <div><dt>{{ ks.gebiet|safe }}</dt><dd>{{ ks.gebiet_t|safe }}</dd></div>
+      </dl>
+      {% if not c.adresse %}<p class="sp-fuss">{{ ks.daten_fehlt|safe }}</p>{% endif %}
+
+      <p class="sp-fuss"><a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a> ·
+        <a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a></p>
+    </div>
+
+    <div class="sp-aside">
+      {% include 'anfrage_karte.html' with bid='it' titel=ks.wege_h sub=ks.intro ph=t.lb.text_ph %}
+    </div>
+  </div>
+</section>
+{% endblock %}
