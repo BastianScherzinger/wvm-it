@@ -440,6 +440,45 @@ def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="
         return False
 
 
+def _adresszeile(c) -> str:
+    """Sitz einzeilig für E-Mail-Signaturen. Leer, solange keine Anschrift gepflegt ist."""
+    ort = " ".join(x for x in [(c.get("plz") or "").strip(),
+                               (c.get("stadt") or "").strip()] if x)
+    return ", ".join(x for x in [(c.get("adresse") or "").strip(), ort] if x)
+
+
+def _eingangsbestaetigung(c, empfaenger: str, name: str, art: str, echo: str) -> None:
+    """Schickt dem Anfragenden eine Eingangsbestätigung.
+
+    Warum das nicht bloß Höflichkeit ist: Wer ein Formular absendet und danach nichts
+    hört, weiß nicht, ob die Nachricht angekommen ist — und fragt in der Zwischenzeit
+    beim Nächsten an. Die Kurzanfragen der Leistungsblöcke bestätigen längst; das
+    ausführliche Kontaktformular und der Konfigurator taten es nicht, also ausgerechnet
+    die beiden Wege, über die die ernsthaften Anfragen kommen.
+
+    `art` ist "kontakt" oder "angebot" und wählt die Vorlage. `echo` spiegelt zurück,
+    was abgeschickt wurde — das beantwortet die häufigste Rückfrage im Voraus.
+    """
+    if not _ist_email(empfaenger):
+        return
+    pack = i18n.get_pack(get_language())
+    em = pack["emails"]
+    anrede = (em["greeting_named"].format(name=name) if name else em["greeting"])
+    try:
+        _send_mail_logged(
+            _betreff(em[f"{art}_ack_subject"].format(site=c.get("site_name", "WVM-IT"))),
+            em[f"{art}_ack_body"].format(
+                anrede=anrede, site=c.get("site_name", "WVM-IT"),
+                inhaber=c.get("inhaber_name", ""), telefon=c.get("telefon", ""),
+                adresse=_adresszeile(c), url=c.get("wvm_url", ""), echo=echo),
+            getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", "")),
+            [empfaenger], tag=f"{art.upper()}-ACK")
+    except Exception as exc:
+        # Die Bestätigung darf die Anfrage selbst nie gefährden: Sie ist bereits im
+        # Postfach des Inhabers, wenn wir hier ankommen.
+        print(f"[{art.upper()}-ACK-FEHLER] {type(exc).__name__}: {exc}", flush=True)
+
+
 def _handle_angebot(request, c) -> bool:
     """Verarbeitet den Angebots-Konfigurator (POST). True = erfolgreich entgegengenommen."""
     if _honigtopf(request):
@@ -484,6 +523,8 @@ def _handle_angebot(request, c) -> bool:
         _betreff(f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="ANGEBOT",
     )
+    _eingangsbestaetigung(c, email, name, "angebot",
+                          "\n".join(zeilen) + ("\n\n" + "\n".join(summen) if summen else ""))
     return True
 
 
@@ -510,6 +551,7 @@ def _handle_contact(request, c) -> bool:
         _betreff(f"Neue Projektanfrage von {name}"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
     )
+    _eingangsbestaetigung(c, email, name, "kontakt", nachricht)
     return True
 
 

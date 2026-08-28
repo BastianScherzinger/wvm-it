@@ -819,6 +819,26 @@ PACK = {
         "text_ph": "Was ist geplant, und wo?",
     },
     "emails": {
+        "kontakt_ack_subject": "Ihre Anfrage bei {site} ist angekommen",
+        "kontakt_ack_body": (
+            "{anrede},\n\n"
+            "danke für Ihre Nachricht — sie ist bei uns angekommen. Wir sehen sie uns an "
+            "und melden uns an Werktagen innerhalb von 24 Stunden persönlich bei Ihnen.\n\n"
+            "Wenn es schneller gehen soll, rufen Sie einfach an: {telefon}.\n\n"
+            "Das haben Sie uns geschickt:\n{echo}\n\n"
+            "Freundliche Grüße\n{inhaber}\n{site}\n{adresse}\n{url}\n"
+        ),
+        "angebot_ack_subject": "Ihre Zusammenstellung bei {site}",
+        "angebot_ack_body": (
+            "{anrede},\n\n"
+            "danke, Ihre Zusammenstellung ist bei uns angekommen. Wir prüfen sie und "
+            "melden uns an Werktagen innerhalb von 24 Stunden mit einem verbindlichen "
+            "Angebot bei Ihnen.\n\n"
+            "Ihre Auswahl:\n{echo}\n\n"
+            "Die genannten Beträge sind Richtpreise netto zzgl. USt. Den verbindlichen "
+            "Preis nennen wir nach einem kurzen Gespräch.\n\n"
+            "Freundliche Grüße\n{inhaber}\n{site}\n{adresse}\n{url}\n"
+        ),
         "leistung_ack_subject": "Ihre Anfrage zu {thema}",
         "leistung_ack_fallback_name": "",
         "leistung_ack_body": (

@@ -814,6 +814,25 @@ PACK = {
         "text_ph": "Ce este planificat și unde?",
     },
     "emails": {
+        "kontakt_ack_subject": "Solicitarea dumneavoastră a ajuns la {site}",
+        "kontakt_ack_body": (
+            "{anrede},\n\n"
+            "vă mulțumim pentru mesaj — a ajuns la noi. Îl analizăm și revenim personal "
+            "în termen de 24 de ore în zilele lucrătoare.\n\n"
+            "Dacă este urgent, sunați-ne direct: {telefon}.\n\n"
+            "Acestea sunt datele trimise de dumneavoastră:\n{echo}\n\n"
+            "Cu stimă\n{inhaber}\n{site}\n{adresse}\n{url}\n"
+        ),
+        "angebot_ack_subject": "Selecția dumneavoastră la {site}",
+        "angebot_ack_body": (
+            "{anrede},\n\n"
+            "vă mulțumim, selecția dumneavoastră a ajuns la noi. O verificăm și revenim "
+            "cu o ofertă fermă în termen de 24 de ore în zilele lucrătoare.\n\n"
+            "Selecția dumneavoastră:\n{echo}\n\n"
+            "Sumele indicate sunt prețuri orientative, nete, plus TVA. Prețul ferm îl "
+            "comunicăm după o scurtă discuție.\n\n"
+            "Cu stimă\n{inhaber}\n{site}\n{adresse}\n{url}\n"
+        ),
         "leistung_ack_subject": "Cererea dumneavoastră despre {thema}",
         "leistung_ack_fallback_name": "",
         "leistung_ack_body": (

@@ -818,6 +818,25 @@ PACK = {
         "text_ph": "What is planned, and where?",
     },
     "emails": {
+        "kontakt_ack_subject": "Your enquiry has reached {site}",
+        "kontakt_ack_body": (
+            "{anrede},\n\n"
+            "thank you for your message — it has reached us. We will look at it and get "
+            "back to you personally within 24 hours on working days.\n\n"
+            "If it is urgent, simply call us: {telefon}.\n\n"
+            "This is what you sent us:\n{echo}\n\n"
+            "Kind regards\n{inhaber}\n{site}\n{adresse}\n{url}\n"
+        ),
+        "angebot_ack_subject": "Your selection at {site}",
+        "angebot_ack_body": (
+            "{anrede},\n\n"
+            "thank you, your selection has reached us. We will review it and come back "
+            "to you with a binding quote within 24 hours on working days.\n\n"
+            "Your selection:\n{echo}\n\n"
+            "The amounts shown are guide prices, net plus VAT. We will name the binding "
+            "price after a short conversation.\n\n"
+            "Kind regards\n{inhaber}\n{site}\n{adresse}\n{url}\n"
+        ),
         "leistung_ack_subject": "Your enquiry about {thema}",
         "leistung_ack_fallback_name": "",
         "leistung_ack_body": (
