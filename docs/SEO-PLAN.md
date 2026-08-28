@@ -8,6 +8,11 @@
 > **Angelegt:** 27.08.2026 · **Aufbau übernommen von:** `ruempelwerk-mitteldeutschland/seo-geo-plan/`
 > **Läuft parallel zu:** `UMBAU-PLAN.md` — Block S-F startet, sobald Phase 4 des Umbaus steht
 > **Eigene Skills:** `seo-audit` (Befund) · `seo-geo` (Umsetzung)
+>
+> **Stand 28.08.2026:** Der Umbau hat acht Aufgaben dieses Plans miterledigt
+> (F2, F4, F5, F6, F7, F11, G3, G4, G5). Der nächste Schritt ist **F1**, die
+> Nullmessung in der Search Console , sie braucht Bastians Zugang und ist die
+> Voraussetzung dafür, jede spätere Wirkung überhaupt belegen zu können.
 
 ---
 
@@ -90,16 +95,16 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 > und jede Änderung ist maschinell prüfbar. **Wirkung:** sofort, Voraussetzung für alles.
 
 - [ ] **F1 — Nullmessung.** Search-Console-Export (Suchanfragen, Seiten, Länder AT/DE getrennt), aktuelle Indexabdeckung, Ausgangsposition je Keyword nach `docs/seo/BASELINE.md`. Ohne Nullmessung ist später keine Wirkung belegbar
-- [ ] **F2 — Duplikat-Hosts prüfen und schließen.** Ist `wvm-it-production.up.railway.app` (oder eine andere Plattform-Subdomain) indexierbar? Falls ja: 301 auf die Hauptdomain. Ebenso `www` vs. ohne `www` eindeutig festlegen. *(Bei RTC-Service war genau das die Ursache für nur zwei indexierte Seiten)*
+- [x] **F2 — Duplikat-Hosts geschlossen** *(28.08.2026)*. Befund: `wvm-it-shop.up.railway.app` lieferte die Seite mit HTTP 200 und erlaubtem Crawling aus , ein vollständiger Zweitbestand. `KanonischerHostMiddleware` leitet jetzt jeden Neben-Host per **301** auf `www.wvm-it.tech` um (Pfad und Query bleiben erhalten), `wvm-it.tech` ohne `www` ebenso. `/health` ist ausgenommen, damit Railways Healthcheck weiter greift. Ziel kommt aus `KANONISCHER_HOST` oder ersatzweise aus `content.json`.
 - [ ] **F3 — Firmensitz und Adresse klären.** Echte Anschrift in `content.json` (heute Platzhalter in Impressum und Datenschutz), `PostalAddress` im Schema vervollständigen, Impressum/Datenschutz nachziehen. Ohne das kein Local-SEO und kein Unternehmensprofil
-- [ ] **F4 — Titel und Descriptions.** Für jede bestehende URL in allen drei Sprachen: Titel ≤ 60 Zeichen, Description ≤ 155, Hauptkeyword vorne, kein Marken-Präfix. *(Bei Rümpelwerk waren 62 von 70 Titeln zu lang — der schnellste Gewinn im Plan)*
-- [ ] **F5 — Preis-Konsistenz-Test.** Automatisierter Test: Jeder Preis, der irgendwo auf der Seite, im `llms.txt`, im Schema oder in einem Sprachpaket steht, muss aus `ANGEBOT_GROUPS` stammen. Abweichung = roter Test
-- [ ] **F6 — `check_seo` als Management-Command.** Prüft für jede URL: genau ein `<h1>`, Titel-/Description-Länge, gültiges JSON-LD, Alt-Texte, interne Links, hreflang-Vollständigkeit, keine 404 in der Sitemap. Vorbild: `ruempelwerk/apps/core/management/commands/`
-- [ ] **F7 — Sprachschlüssel-Test.** DE/EN/RO müssen dieselben Schlüssel haben (deckt sich mit U7.2)
+- [x] **F4 — Titel und Descriptions gekürzt** *(28.08.2026)*. Vorher: Titel bis 70 Zeichen, Descriptions bis 205. Jetzt alle sechs URLs im Rahmen (DE 53/154, EN 44/140, RO 37/145), Hauptkeyword vorne, Zahl in der Description. `pruefe_seite` meldet die Längen ab jetzt automatisch.
+- [x] **F5 — Preis-Konsistenz abgesichert** *(28.08.2026)*. `pruefe_seite` liest jede Zahl vor einem Euro-Zeichen aus der gerenderten Startseite und vergleicht sie mit `ANGEBOT_GROUPS`. Dabei aufgefallen und behoben: Das Betreuungspaket warb mit 89 €/Monat, der Konfigurator rechnete 15 + 39 = 54 €. Die Paketpreise kommen jetzt aus derselben Quelle. **Offen:** `llms.txt` wird noch nicht mitgeprüft.
+- [x] **F6 — Prüfbefehl steht** *(28.08.2026)*: `python manage.py pruefe_seite` prüft für alle sechs URLs genau ein `<h1>`, Titel- und Description-Länge, gültiges JSON-LD, Alt-Texte, hreflang, dazu Sprachpakete, Preise und die Formulare (CSRF, Honeypot, Quelle). Rückgabewert 1 bei Fehlern, damit ein Deploy daran scheitern kann. **Erweitern in Block S-A:** interne Links und 404-Prüfung der Sitemap, sobald es mehr als sechs URLs gibt.
+- [x] **F7 — Sprachschlüssel-Test läuft** *(28.08.2026)*, Teil von `pruefe_seite`: 739 Schlüssel je Sprache, gleiche FAQ-Anzahl, Meldung bei Schlüsseln, die eine Sprache von DE erbt.
 - [ ] **F8 — hreflang-Entscheidung dokumentieren.** Vorerst ein `de` für AT und DE (die Inhalte sind identisch). Erst wenn es eigene AT-/DE-Inhalte gibt, auf `de-AT`/`de-DE` aufteilen — vorher schafft es nur Duplikate
 - [ ] **F9 — `llms-full.txt`** ergänzen (Langfassung neben `llms.txt`), plus `.well-known/security.txt`. Auf die URL-Reihenfolge achten: Der Pfad `llms-full.txt` darf nicht von einem allgemeineren Muster verschluckt werden *(genau diese Falle steht in Rümpelwerks `config/urls.py` dokumentiert)*
 - [ ] **F10 — IndexNow.** Schlüsseldatei auf der Wurzel, Ping bei jedem Deploy → neue Seiten werden in Stunden statt Wochen gecrawlt
-- [ ] **F11 — Keyword-Map anlegen** (`docs/seo/KEYWORD-MAP.md`) mit Zuordnungsregeln: Marke → Startseite · Kostenfrage → `/kosten/` · Leistung ohne Ort → Leistungsseite · Leistung + Ort → Leistungsseite (keine eigene Ortsseite) · Land ohne Leistung → Startseite. **Ein Keyword, eine Zielseite**
+- [x] **F11 — Keyword-Map angelegt** *(28.08.2026)*: `docs/seo/KEYWORD-MAP.md` mit Zuordnungsregeln, 28 Startkeywords nach Kaufabsicht und Wettbewerb bewertet, Reihenfolge für Block S-A und den sechs Fragen, die in KI-Antworten auftauchen. **Nach dem ersten Search-Console-Export (F1) gegen echte Suchanfragen nachziehen.**
 - [ ] **F12 — Kein rankingrelevanter Inhalt hängt an JavaScript.** KI-Crawler rendern kein JS. Prüfen mit deaktiviertem JS: Alle Preise, Leistungstexte und FAQ müssen im HTML stehen
 
 ## Block S-A — Architektur
@@ -132,11 +137,11 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 
 - [ ] **G1 — Antwort-zuerst-Regel.** Jede Seite und jede FAQ beginnt mit zwei Sätzen, die die Frage vollständig beantworten — mit Zahl, Zeitraum, Region. Der Rest folgt darunter
 - [ ] **G2 — Antwortblock-Komponente** (`answer_block.html`): Frage als Überschrift, Antwort in ≤ 3 Sätzen, darunter Details. Auf allen Leistungsseiten einsetzen
-- [ ] **G3 — Zahlen statt Adjektive.** „ab 350 €", „Antwort in 24 Stunden", „Beispielseite in ~10 Minuten" — nie „günstig", „schnell", „professionell"
-- [ ] **G4 — Alle Preisangaben datiert** („Stand: August 2026"). Datierte Angaben werden bevorzugt zitiert
-- [ ] **G5 — Tabellen und Listen** statt Fließtext, wo immer es geht — sie werden deutlich häufiger extrahiert
+- [x] **G3 — Zahlen statt Adjektive** *(28.08.2026)*: Startseite trägt durchgehend konkrete Werte (ab 350 €, 15 €/Monat, 54 €/Monat, Antwort in 24 Stunden, Testseite in ~10 Minuten). Beim Ausbau der Unterseiten beibehalten.
+- [x] **G4 — Preise datiert** *(28.08.2026)*: Die Preistabelle trägt „Stand: <Monat> <Jahr>", serverseitig erzeugt und in allen drei Sprachen lokalisiert.
+- [x] **G5 — Tabelle steht** *(28.08.2026)*: vollständige Preisliste als echte `<table>` mit `<caption>` und Gruppenzeilen, direkt aus `ANGEBOT_GROUPS`. Auf schmalen Geräten scrollt sie im eigenen Container, nicht die Seite.
 - [ ] **G6 — Entitäts-Klarheit.** `sameAs` im Schema (GitHub, PyStore, LinkedIn, Google-Profil), einheitliche Schreibweise „WVM-IT" auf allen Kanälen, Person-Schema für Florin Feier mit Foto und Rolle
-- [ ] **G7 — FAQPage je Unterseite** aus dem jeweiligen Sprachpaket, nicht nur auf der Startseite
+- [ ] **G7 — FAQPage je Unterseite** aus dem jeweiligen Sprachpaket. *(Startseite: 10 Fragen in DE/EN/RO, seit 28.08.2026 im `@graph`.)*
 - [ ] **G8 — Service-Schema je Leistungsseite** (`Service` + `Offer` + `areaServed` AT/DE), verbunden mit `#business` im `@graph`
 - [ ] **G9 — `llms.txt` und `llms-full.txt` erweitern**, sobald das Silo steht: jede neue URL mit einem Satz Beschreibung
 - [ ] **G10 — Konsistenzprüfung.** Dieselbe Zahl auf Seite, Schema, `llms.txt` und in Ads. Wird durch F5 automatisch abgesichert

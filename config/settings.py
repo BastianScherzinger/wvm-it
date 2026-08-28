@@ -31,6 +31,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    # Zweitbestand vermeiden: Plattform-Subdomains 301 auf die Hauptdomain
+    # (siehe docs/SEO-PLAN.md, F2). Leerer Wert = aus, z. B. lokal.
+    "landing.middleware.KanonischerHostMiddleware",
     # Sprache aus URL-Präfix (/en/, /ro/) bzw. Cookie/Accept-Language auflösen.
     # MUSS vor CommonMiddleware stehen und aktiviert die Übersetzung pro Request.
     "django.middleware.locale.LocaleMiddleware",
@@ -48,6 +51,10 @@ MIDDLEWARE = [
 X_FRAME_OPTIONS = "DENY"
 # Referrer sparsam mitgeben (SEO-/Analytics-freundlich, aber datenschonend).
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+# Kanonischer Host fuer die 301-Umleitung von Neben-Hosts (Railway-Subdomain).
+# In der Produktion auf "www.wvm-it.tech" setzen; lokal leer lassen.
+KANONISCHER_HOST = os.environ.get("KANONISCHER_HOST", "").strip()
 
 ROOT_URLCONF = "config.urls"
 

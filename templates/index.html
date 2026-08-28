@@ -763,7 +763,7 @@
         <article class="price spot" data-reveal data-spot>
           <h3>{{ t.preise.starter_h|safe }}</h3>
           <p class="price-for">{{ t.preise.starter_for|safe }}</p>
-          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>{{ c.preis_ab }}<span class="cur">€</span></div>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>{{ pakete.starter }}<span class="cur">€</span></div>
           <ul class="price-list">{% for li in t.preise.starter_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
           <a class="btn btn-ghost" href="#kontakt">{{ t.preise.starter_cta|safe }}</a>
         </article>
@@ -771,19 +771,48 @@
           <span class="badge">{{ t.preise.business_badge|safe }}</span>
           <h3>{{ t.preise.business_h|safe }}</h3>
           <p class="price-for">{{ t.preise.business_for|safe }}</p>
-          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>1.490<span class="cur">€</span></div>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>{{ pakete.business }}<span class="cur">€</span></div>
           <ul class="price-list">{% for li in t.preise.business_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
           <a class="btn btn-magnetic" href="#kontakt">{{ t.preise.business_cta|safe }}</a>
         </article>
         <article class="price spot" data-reveal data-spot>
           <h3>{{ t.preise.growth_h|safe }}</h3>
           <p class="price-for">{{ t.preise.growth_for|safe }}</p>
-          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>89<span class="cur">{{ t.preise.growth_unit|safe }}</span></div>
+          <div class="price-tag"><span class="from">{{ t.preise.from|safe }}</span>{{ pakete.betreuung }}<span class="cur">{{ t.preise.growth_unit|safe }}</span></div>
           <ul class="price-list">{% for li in t.preise.growth_li %}<li>{{ li|safe }}</li>{% endfor %}</ul>
           <a class="btn btn-ghost" href="#kontakt">{{ t.preise.growth_cta|safe }}</a>
         </article>
       </div>
       <p class="price-foot" data-reveal>{{ t.preise.foot|safe }}</p>
+
+      <!-- Vollständige Preisliste aus ANGEBOT_GROUPS. Beantwortet „Was kostet …?"
+           ohne Formular und ist zugleich das stärkste GEO-Element der Seite:
+           eine datierte Tabelle mit konkreten Zahlen (siehe SEO-PLAN.md, G4/G5). -->
+      <div class="pt" data-reveal>
+        <h3 class="pt-h">{{ t.preise.tab_h|safe }}</h3>
+        <p class="pt-lead">{{ t.preise.tab_lead|safe }}</p>
+        <div class="pt-scroll">
+          <table class="pt-table">
+            <caption class="pt-cap">{{ t.preise.tab_cap|safe }} · {{ t.preise.stand|safe }} {{ preis_stand }}</caption>
+            <thead>
+              <tr><th scope="col">{{ t.preise.tab_leistung|safe }}</th><th scope="col">{{ t.preise.tab_preis|safe }}</th></tr>
+            </thead>
+            <tbody>
+              {% for g in angebot_groups %}
+              <tr class="pt-group"><th scope="rowgroup" colspan="2">{{ g.title }}</th></tr>
+                {% for it in g.items %}
+                <tr>
+                  <th scope="row"><strong>{{ it.name }}</strong><span>{{ it.desc }}</span></th>
+                  <td>{{ it.price_label }}</td>
+                </tr>
+                {% endfor %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <p class="pt-foot">{{ t.preise.tab_foot|safe }}</p>
+        <a class="btn btn-magnetic" href="#angebot">{{ t.preise.tab_cta|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
     </div>
   </section>
   <!-- ── FAQ (GEO: sichtbare Antworten + FAQPage-Schema für KI-Antwortmaschinen) ── -->
@@ -857,6 +886,21 @@
       {% endif %}
     </div>
   </section>
+  <!-- ── SCHLUSSBAND: letzte Ausfahrt vor dem Footer, alle vier Wege ────────── -->
+  <section class="closer on-dark">
+    <div class="wrap closer-in" data-reveal>
+      <div class="closer-copy">
+        <h2 class="closer-h">{{ t.schluss.h|safe }}</h2>
+        <p class="closer-sub">{{ t.schluss.sub|safe }}</p>
+      </div>
+      <div class="hero-ways closer-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+        {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+        {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+        <button class="way" type="button" data-rueckruf>{% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span></button>
+        <a class="way" href="#kontakt-form">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ── Rückruf: kleiner Dialog, aus Nav, Hero und Mobil-Leiste erreichbar ───── -->
@@ -904,8 +948,9 @@
       <p>{{ t.footer.tagline|safe }}</p>
     </div>
     <nav class="foot-nav" aria-label="Footer">
-      <div><h3>{{ t.footer.col_leistungen|safe }}</h3><a href="#leistungen">{{ t.footer.l_smarthome|safe }}</a><a href="#leistungen">{{ t.footer.l_konferenz|safe }}</a><a href="#leistungen">{{ t.footer.l_edv|safe }}</a><a href="#leistungen">{{ t.footer.l_web|safe }}</a></div>
-      <div><h3>{{ t.footer.col_unternehmen|safe }}</h3><a href="#partner">{{ t.footer.u_partner|safe }}</a><a href="#kooperationen">{{ t.footer.u_koop|safe }}</a><a href="#preise">{{ t.footer.u_preise|safe }}</a><a href="#stimmen">{{ t.footer.u_stimmen|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
+      {# Die Anker werden in Block S-A des SEO-Plans durch echte /leistungen/-URLs ersetzt. #}
+      <div><h3>{{ t.footer.col_leistungen|safe }}</h3><a href="#leistung-web">{{ t.lb.web_h|safe }}</a><a href="#leistung-hosting">{{ t.lb.hosting_h|safe }}</a><a href="#leistung-ki">{{ t.lb.ki_h|safe }}</a><a href="#leistung-seo">{{ t.lb.seo_h|safe }}</a><a href="#technik">{{ t.technik.h|safe }}</a></div>
+      <div><h3>{{ t.footer.col_unternehmen|safe }}</h3><a href="#referenzen">{{ t.footer.u_referenzen|safe }}</a><a href="#preise">{{ t.footer.u_preise|safe }}</a><a href="#faq">{{ t.footer.u_faq|safe }}</a><a href="#kooperationen">{{ t.footer.u_koop|safe }}</a><a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
       <div><h3>{{ t.footer.col_recht|safe }}</h3><a href="#impressum">{{ t.footer.impressum|safe }}</a><a href="#datenschutz">{{ t.footer.datenschutz|safe }}</a></div>
     </nav>
   </div>

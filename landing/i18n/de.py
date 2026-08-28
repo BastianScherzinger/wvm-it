@@ -6,11 +6,11 @@ PACK = {
         "html_lang": "de-AT",
         "locale": "de_AT",
         "num_locale": "de-DE",
-        "seo_title": "WVM-IT | Smarthome, Technik, EDV, Webseiten und KI in AT und DE",
-        "seo_desc": "WVM-IT: Smarthome mit Loxone und KNX, Konferenz- und Veranstaltungstechnik, EDV, Webseiten, Hosting, SEO und KI-Automatisierung – alles aus einer Hand in Österreich und Deutschland. Antwort in 24 h.",
+        "seo_title": "Website erstellen lassen ab 350 € | WVM-IT Österreich",
+        "seo_desc": "Webseiten, Hosting, KI-Automatisierung und SEO für Betriebe in Österreich und Deutschland. Kostenlose Beispiel-Seite in 10 Minuten, Antwort in 24 Stunden.",
         "og_image_alt_suffix": "Technik und Digitales aus einer Hand",
-        "angebot_title": "Angebot konfigurieren",
-        "angebot_desc": "Stellen Sie Ihr Angebot in wenigen Schritten selbst zusammen: Webseiten, Shop, Domain, Hosting, KI-Automatisierung, Bots und SEO. Transparente Richtpreise, unverbindlich, Antwort in 24 Stunden.",
+        "angebot_title": "Angebot konfigurieren, Richtpreis sofort",
+        "angebot_desc": "Leistungen antippen und Richtpreis in unter einer Minute sehen: Website ab 350 €, Hosting ab 15 €/Monat, KI ab 390 €. Unverbindlich, Antwort in 24 Stunden.",
         "angebot_og_desc": "Webseiten, KI, Automatisierung und mehr in wenigen Schritten zusammenstellen und Richtpreis sofort sehen.",
     },
     "lang": {"switch_aria": "Sprache wählen"},
@@ -205,6 +205,14 @@ PACK = {
         "r3_h": "Video-, Ton- &amp; Bühnentechnik", "r3_p": "Live-Events auf höchstem Niveau.",
     },
     "preise": {
+        "tab_h": "Alle Leistungen und Preise auf einen Blick",
+        "tab_lead": "Richtpreise, netto zzgl. USt. Was Sie hier sehen, rechnet auch der Konfigurator; es gibt nur eine Preisquelle.",
+        "tab_cap": "Preisliste WVM-IT",
+        "tab_leistung": "Leistung",
+        "tab_preis": "Preis",
+        "stand": "Stand:",
+        "tab_foot": "Projekte vor Ort (Smarthome, Konferenz- und Bühnentechnik, EDV, Netzwerk) rechnen wir nach Aufwand ab und nennen den Preis nach einem kurzen Gespräch.",
+        "tab_cta": "Eigenes Angebot zusammenstellen",
         "h": "Klare Pakete, faire Preise.",
         "lead": "Transparente Startpreise. Das passende Angebot stimmen wir im Gespräch auf Ihr Projekt ab.",
         "from": "ab",
@@ -254,6 +262,14 @@ PACK = {
              "a": "Ihren Richtpreis sehen Sie sofort im Online-Konfigurator. Auf Anfragen antworten wir werktags innerhalb von 24 Stunden mit einer ersten Einschätzung. Die Erstberatung ist unverbindlich und kostenlos."},
             {"q": "Bietet WVM-IT auch KI-Automatisierung und SEO?",
              "a": "Ja. Wir bauen KI-Chatbots, WhatsApp- und E-Mail-Automatisierungen sowie Termin-Bots und binden sie an bestehende Systeme wie CRM oder ERP an. Für die Sichtbarkeit sorgen SEO-Grundoptimierung ab 390 € und laufende SEO- und GEO-Betreuung, damit Sie in Google und in KI-Antworten wie ChatGPT und Perplexity gefunden werden."},
+            {"q": "Wie funktioniert die kostenlose Beispiel-Website?",
+             "a": "Sie tragen Ihre E-Mail-Adresse ein, wir fragen kurz Ihre Wünsche ab, und unsere JARVIS-Automatik baut daraus in etwa zehn Minuten eine echte Beispiel-Seite. Sie bekommen den Link per Mail und können sie in Ruhe ansehen. Das kostet nichts, verpflichtet zu nichts, und Sie sehen vorher, wie wir arbeiten."},
+            {"q": "Wie lange dauert es, bis meine Website online ist?",
+             "a": "Ein One-Pager steht in der Regel in ein bis zwei Wochen, eine mehrseitige Firmenseite in drei bis fünf Wochen. Entscheidend ist, wie schnell Texte, Bilder und Freigaben von Ihnen kommen; die Beispiel-Seite sehen Sie schon nach zehn Minuten. Eilige Termine sagen wir vorher zu oder ab, nicht hinterher."},
+            {"q": "Was kostet die laufende Betreuung einer Website?",
+             "a": "Hosting mit SSL und täglichen Sicherungen kostet 15 € im Monat, Wartung mit Updates und kleinen Änderungen 39 € im Monat, zusammen also 54 € monatlich. Die Domain kommt mit 15 € im Jahr dazu. Laufende SEO-Betreuung ist optional und beginnt bei 149 € im Monat."},
+            {"q": "Ich habe schon eine Website. Können Sie die übernehmen?",
+             "a": "Ja. Wir übernehmen bestehende Seiten in Hosting und Wartung, auch wenn sie jemand anderes gebaut hat, und sagen Ihnen vorher ehrlich, ob sich eine Überarbeitung lohnt oder ein Neubau günstiger kommt. Domain und Inhalte bleiben dabei immer Ihr Eigentum."},
         ],
     },
     "koop": {
@@ -302,7 +318,7 @@ PACK = {
         "l_smarthome": "Smarthome &amp; KNX", "l_konferenz": "Konferenz &amp; AV-Technik",
         "l_edv": "EDV &amp; Sicherheit", "l_web": "Webseiten &amp; KI",
         "col_unternehmen": "Unternehmen",
-        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_stimmen": "Stimmen", "u_shop": "Shop",
+        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_stimmen": "Stimmen", "u_shop": "Shop", "u_referenzen": "Referenzen", "u_faq": "Fragen &amp; Antworten",
         "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
         "impressum_ph": "<strong>Angaben gemäß Paragraf 5 TMG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt (E-Mail und Telefon), gegebenenfalls USt-IdNr. und Registereintrag.",
@@ -532,6 +548,10 @@ PACK = {
         "partner": "Umsetzung gemeinsam mit unserem Partner PyStore, der bei WVM-IT die Website-Kunden betreut.",
         "alt": "Startseite von Rümpelwerk Mitteldeutschland mit Preisrechner im Hero",
     },
+    "schluss": {
+        "h": "Reden wir über Ihr Projekt.",
+        "sub": "Ein Satz reicht. Wir melden uns innerhalb von 24 Stunden mit einer ehrlichen Einschätzung. Wir sagen auch, wenn etwas nicht sinnvoll ist.",
+    },
     "ways": {
         "wa": "WhatsApp",
         "wa_text": "Guten Tag, ich interessiere mich für ",
@@ -591,6 +611,15 @@ PACK = {
         "s4_t": "Wir bauen es, stellen es online und bleiben Ihr Ansprechpartner.",
     },
     "lb": {
+        "themen": {
+            "web": "Webseite und Online-Shop",
+            "hosting": "Domain, Hosting und Wartung",
+            "ki": "KI und Automatisierung",
+            "seo": "SEO und Sichtbarkeit",
+            "technik": "Technik vor Ort",
+            "koop": "Kooperation",
+            "rueckruf": "Ihren Rückruf",
+        },
         "h": "Was wir für Sie machen",
         "sub": "Jede Leistung mit klarem Startpreis. Fragen Sie direkt im jeweiligen Feld an.",
         "text_ph": "Worum geht es?",
@@ -646,7 +675,7 @@ PACK = {
         "leistung_ack_subject": "Ihre Anfrage zu {thema}",
         "leistung_ack_fallback_name": "",
         "leistung_ack_body": (
-            "Guten Tag {name},\n\n"
+            "{anrede},\n\n"
             "danke für Ihre Anfrage zum Thema {thema}. Sie ist bei uns angekommen, "
             "wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.\n\n"
             "Wenn es schneller gehen soll, erreichen Sie uns direkt per WhatsApp oder Telefon.\n\n"

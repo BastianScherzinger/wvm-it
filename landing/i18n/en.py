@@ -6,11 +6,11 @@ PACK = {
         "html_lang": "en",
         "locale": "en_US",
         "num_locale": "en-US",
-        "seo_title": "WVM-IT | Smart Home, AV, IT, Websites and AI in Austria & Germany",
-        "seo_desc": "WVM-IT: smart home with Loxone and KNX, conference and event technology, IT, websites, hosting, SEO and AI automation – everything from a single source in Austria and Germany. Reply within 24 h.",
+        "seo_title": "Website from €350 | WVM-IT Austria & Germany",
+        "seo_desc": "Websites, hosting, AI automation and SEO for small businesses in Austria and Germany. Free sample site in 10 minutes, reply within 24 hours.",
         "og_image_alt_suffix": "Technology and digital, from a single source",
-        "angebot_title": "Configure your quote",
-        "angebot_desc": "Put together your quote in just a few steps: websites, shop, domain, hosting, AI automation, bots and SEO. Transparent ballpark prices, no obligation, reply within 24 hours.",
+        "angebot_title": "Build your quote, see the price",
+        "angebot_desc": "Tap what you need and see your estimate in under a minute: website from €350, hosting from €15/month, AI from €390. No obligation, reply within 24 hours.",
         "angebot_og_desc": "Put together websites, AI, automation and more in a few steps and see your ballpark price instantly.",
     },
     "faq": {
@@ -30,6 +30,14 @@ PACK = {
              "a": "You see your guide price instantly in the online configurator. We reply to enquiries within 24 hours on business days with an initial assessment. The first consultation is free and without obligation."},
             {"q": "Does WVM-IT also offer AI automation and SEO?",
              "a": "Yes. We build AI chatbots, WhatsApp and email automations and booking bots, and connect them to existing systems such as CRM or ERP. For visibility we provide SEO groundwork from €390 and ongoing SEO and GEO support, so you are found in Google and in AI answers like ChatGPT and Perplexity."},
+            {"q": "How does the free sample website work?",
+             "a": "You enter your email address, we briefly ask what you have in mind, and our JARVIS automation builds a real sample page from it in about ten minutes. You get the link by email and can look at it in peace. It costs nothing, commits you to nothing, and you see how we work before you decide."},
+            {"q": "How long until my website is online?",
+             "a": "A one-pager is usually live within one to two weeks, a multi-page company site within three to five weeks. What decides the pace is how quickly copy, images and approvals reach us; the sample page is ready after ten minutes. We confirm or decline tight deadlines up front, not afterwards."},
+            {"q": "What does ongoing website support cost?",
+             "a": "Hosting with SSL and daily backups costs €15 per month, maintenance with updates and small changes €39 per month, so €54 a month together. The domain adds €15 per year. Ongoing SEO support is optional and starts at €149 per month."},
+            {"q": "I already have a website. Can you take it over?",
+             "a": "Yes. We take existing sites into hosting and maintenance even if someone else built them, and we tell you honestly whether a rework pays off or a rebuild is cheaper. The domain and the content always remain yours."},
         ],
     },
     "lang": {"switch_aria": "Choose language"},
@@ -224,6 +232,14 @@ PACK = {
         "r3_h": "Video, audio &amp; stage technology", "r3_p": "Live events at the highest level.",
     },
     "preise": {
+        "tab_h": "All services and prices at a glance",
+        "tab_lead": "Guide prices, net plus VAT. What you see here is what the configurator calculates; there is only one price source.",
+        "tab_cap": "WVM-IT price list",
+        "tab_leistung": "Service",
+        "tab_preis": "Price",
+        "stand": "As of:",
+        "tab_foot": "On-site projects (smart home, conference and stage technology, IT, network) are billed by effort; we name the price after a short call.",
+        "tab_cta": "Put together your own quote",
         "h": "Clear packages, fair prices.",
         "lead": "Transparent starting prices. We tailor the right offer to your project in a conversation.",
         "from": "from",
@@ -302,7 +318,7 @@ PACK = {
         "l_smarthome": "Smart Home &amp; KNX", "l_konferenz": "Conference &amp; AV tech",
         "l_edv": "IT &amp; security", "l_web": "Websites &amp; AI",
         "col_unternehmen": "Company",
-        "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_stimmen": "Testimonials", "u_shop": "Shop",
+        "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_stimmen": "Testimonials", "u_shop": "Shop", "u_referenzen": "Case studies", "u_faq": "FAQ",
         "col_recht": "Legal",
         "impressum": "Imprint", "datenschutz": "Privacy", "datenschutz_full": "Privacy policy",
     },
@@ -530,6 +546,10 @@ PACK = {
         "partner": "Delivered together with our partner PyStore, who looks after WVM-IT's website clients.",
         "alt": "Home page of Rümpelwerk Mitteldeutschland with the price calculator in the hero",
     },
+    "schluss": {
+        "h": "Let's talk about your project.",
+        "sub": "One sentence is enough. We reply within 24 hours with an honest assessment. That includes telling you when something is not worth doing.",
+    },
     "ways": {
         "wa": "WhatsApp",
         "wa_text": "Hello, I am interested in ",
@@ -589,6 +609,15 @@ PACK = {
         "s4_t": "We build it, put it online and stay your point of contact.",
     },
     "lb": {
+        "themen": {
+            "web": "website and online shop",
+            "hosting": "domain, hosting and maintenance",
+            "ki": "AI and automation",
+            "seo": "SEO and visibility",
+            "technik": "on-site technology",
+            "koop": "a partnership",
+            "rueckruf": "your call-back",
+        },
         "h": "What we do for you",
         "sub": "Every service with a clear starting price. Ask right inside the block.",
         "text_ph": "What is it about?",
@@ -644,7 +673,7 @@ PACK = {
         "leistung_ack_subject": "Your enquiry about {thema}",
         "leistung_ack_fallback_name": "",
         "leistung_ack_body": (
-            "Hello {name},\n\n"
+            "{anrede},\n\n"
             "thank you for your enquiry about {thema}. It has reached us and we will "
             "get back to you personally within 24 hours.\n\n"
             "If it needs to be quicker, reach us directly by WhatsApp or phone.\n\n"

@@ -6,11 +6,11 @@ PACK = {
         "html_lang": "ro",
         "locale": "ro_RO",
         "num_locale": "ro-RO",
-        "seo_title": "WVM-IT | Casă inteligentă, tehnică, IT, site-uri web și AI în AT și DE",
-        "seo_desc": "WVM-IT: casă inteligentă cu Loxone și KNX, tehnică pentru conferințe și evenimente, IT, site-uri web, găzduire, SEO și automatizare AI – totul dintr-o singură sursă în Austria și Germania. Răspuns în 24 h.",
+        "seo_title": "Site web de la 350 € | WVM-IT Austria",
+        "seo_desc": "Site-uri web, găzduire, automatizare IA și SEO pentru firme din Austria și Germania. Pagină de probă gratuită în 10 minute, răspuns în 24 de ore.",
         "og_image_alt_suffix": "Tehnică și digital dintr-o singură sursă",
-        "angebot_title": "Configurează-ți oferta",
-        "angebot_desc": "Alcătuiește-ți oferta în câțiva pași: site-uri web, magazin, domeniu, găzduire, automatizare AI, boți și SEO. Prețuri orientative transparente, fără obligații, răspuns în 24 de ore.",
+        "angebot_title": "Configurați oferta, vedeți prețul",
+        "angebot_desc": "Atingeți ce vă trebuie și vedeți prețul în mai puțin de un minut: site de la 350 €, găzduire de la 15 €/lună, IA de la 390 €. Fără obligații.",
         "angebot_og_desc": "Alcătuiește site-uri web, AI, automatizări și altele în câțiva pași și vezi prețul orientativ imediat.",
     },
     "faq": {
@@ -30,6 +30,14 @@ PACK = {
              "a": "Prețul orientativ îl vezi imediat în configuratorul online. Răspundem solicitărilor în 24 de ore în zilele lucrătoare, cu o primă evaluare. Prima consultanță este gratuită și fără obligații."},
             {"q": "WVM-IT oferă și automatizare AI și SEO?",
              "a": "Da. Construim chatboți AI, automatizări WhatsApp și e-mail și boți de programare și îi conectăm la sisteme existente precum CRM sau ERP. Pentru vizibilitate oferim optimizare SEO de bază de la 390 € și suport SEO și GEO continuu, ca să fii găsit în Google și în răspunsuri AI precum ChatGPT și Perplexity."},
+            {"q": "Cum funcționează pagina de probă gratuită?",
+             "a": "Introduceți adresa de e-mail, vă întrebăm pe scurt ce vă doriți, iar automatizarea noastră JARVIS construiește din asta o pagină reală în circa zece minute. Primiți linkul pe e-mail și o puteți privi în liniște. Nu costă nimic și nu vă obligă la nimic."},
+            {"q": "Cât durează până când site-ul meu este online?",
+             "a": "Un one-pager este de regulă gata în una-două săptămâni, un site de firmă cu mai multe pagini în trei-cinci săptămâni. Decisiv este cât de repede primim texte, imagini și aprobări; pagina de probă o vedeți deja după zece minute. Termenele strânse le confirmăm sau le refuzăm dinainte, nu ulterior."},
+            {"q": "Cât costă întreținerea continuă a unui site?",
+             "a": "Găzduirea cu SSL și copii de siguranță zilnice costă 15 € pe lună, întreținerea cu actualizări și modificări mici 39 € pe lună, deci 54 € lunar împreună. Domeniul adaugă 15 € pe an. Suportul SEO continuu este opțional și pornește de la 149 € pe lună."},
+            {"q": "Am deja un site. Îl puteți prelua?",
+             "a": "Da. Preluăm site-uri existente în găzduire și întreținere, chiar dacă le-a construit altcineva, și vă spunem sincer dacă merită o refacere sau dacă un site nou iese mai ieftin. Domeniul și conținutul rămân întotdeauna ale dumneavoastră."},
         ],
     },
     "lang": {"switch_aria": "Alege limba"},
@@ -224,6 +232,14 @@ PACK = {
         "r3_h": "Tehnică video, de sunet &amp; de scenă", "r3_p": "Evenimente live la cel mai înalt nivel.",
     },
     "preise": {
+        "tab_h": "Toate serviciile și prețurile dintr-o privire",
+        "tab_lead": "Prețuri orientative, net plus TVA. Ce vedeți aici calculează și configuratorul; există o singură sursă de preț.",
+        "tab_cap": "Lista de prețuri WVM-IT",
+        "tab_leistung": "Serviciu",
+        "tab_preis": "Preț",
+        "stand": "Actualizat:",
+        "tab_foot": "Proiectele la fața locului (casă inteligentă, tehnică de conferință și scenă, IT, rețea) se facturează după efort; prețul îl comunicăm după o scurtă discuție.",
+        "tab_cta": "Alcătuiți-vă propria ofertă",
         "h": "Pachete clare, prețuri corecte.",
         "lead": "Prețuri de start transparente. Oferta potrivită o stabilim într-o discuție, în funcție de proiectul tău.",
         "from": "de la",
@@ -302,7 +318,7 @@ PACK = {
         "l_smarthome": "Casă inteligentă &amp; KNX", "l_konferenz": "Conferință &amp; tehnică AV",
         "l_edv": "IT &amp; securitate", "l_web": "Site-uri web &amp; AI",
         "col_unternehmen": "Companie",
-        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_stimmen": "Testimoniale", "u_shop": "Magazin",
+        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_stimmen": "Testimoniale", "u_shop": "Magazin", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
         "col_recht": "Legal",
         "impressum": "Date legale", "datenschutz": "Confidențialitate", "datenschutz_full": "Politica de confidențialitate",
     },
@@ -530,6 +546,10 @@ PACK = {
         "partner": "Realizat împreună cu partenerul nostru PyStore, care se ocupă de clienții web ai WVM-IT.",
         "alt": "Pagina principală Rümpelwerk Mitteldeutschland cu calculatorul de preț",
     },
+    "schluss": {
+        "h": "Să discutăm despre proiectul dumneavoastră.",
+        "sub": "O propoziție este de ajuns. Revenim în 24 de ore cu o evaluare sinceră. Vă spunem și atunci când ceva nu merită făcut.",
+    },
     "ways": {
         "wa": "WhatsApp",
         "wa_text": "Bună ziua, mă interesează ",
@@ -589,6 +609,15 @@ PACK = {
         "s4_t": "Construim, punem online și rămânem persoana dumneavoastră de contact.",
     },
     "lb": {
+        "themen": {
+            "web": "site web și magazin online",
+            "hosting": "domeniu, găzduire și întreținere",
+            "ki": "IA și automatizare",
+            "seo": "SEO și vizibilitate",
+            "technik": "tehnică la fața locului",
+            "koop": "un parteneriat",
+            "rueckruf": "apelul dumneavoastră",
+        },
         "h": "Ce facem pentru dumneavoastră",
         "sub": "Fiecare serviciu cu un preț de pornire clar. Întrebați direct în secțiunea respectivă.",
         "text_ph": "Despre ce este vorba?",
@@ -644,7 +673,7 @@ PACK = {
         "leistung_ack_subject": "Cererea dumneavoastră despre {thema}",
         "leistung_ack_fallback_name": "",
         "leistung_ack_body": (
-            "Bună ziua {name},\n\n"
+            "{anrede},\n\n"
             "vă mulțumim pentru cererea privind {thema}. A ajuns la noi și revenim "
             "personal în cel mult 24 de ore.\n\n"
             "Dacă este urgent, ne găsiți direct pe WhatsApp sau la telefon.\n\n"

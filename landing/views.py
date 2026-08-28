@@ -259,6 +259,41 @@ def _startpreise(lang):
     return out
 
 
+def _paketpreise():
+    """Die drei Preispakete auf der Startseite, gerechnet aus ANGEBOT_GROUPS.
+
+    Vorher standen 1.490 und 89 fest im Template , der Konfigurator rechnete für die
+    Betreuung aber 15 + 39 = 54 €/Monat. Wer den Widerspruch bemerkt, springt ab, und
+    KI-Antwortmaschinen bestrafen widersprüchliche Zahlen (siehe SEO-PLAN.md, Block S-F).
+    Deshalb kommen die Zahlen jetzt aus derselben Quelle wie überall sonst."""
+    p = _ANGEBOT_INDEX
+    starter = p.get("onepager", {}).get("once", 350)
+    business = p.get("business", {}).get("once", 1490)
+    betreuung = p.get("hosting", {}).get("mtl", 15) + p.get("wartung", {}).get("mtl", 39)
+    return {
+        "starter": _eur(starter),
+        "business": _eur(business),
+        "betreuung": _eur(betreuung),
+    }
+
+
+def _preis_stand(lang):
+    """'Stand: August 2026' , datierte Preise werden von KI-Systemen bevorzugt zitiert
+    und nehmen dem Besucher die Sorge, eine veraltete Zahl zu lesen."""
+    from datetime import date
+    monate = {
+        "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli",
+               "August", "September", "Oktober", "November", "Dezember"],
+        "en": ["January", "February", "March", "April", "May", "June", "July",
+               "August", "September", "October", "November", "December"],
+        "ro": ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie",
+               "august", "septembrie", "octombrie", "noiembrie", "decembrie"],
+    }
+    heute = date.today()
+    namen = monate.get(i18n.norm_lang(lang), monate["de"])
+    return f"{namen[heute.month - 1]} {heute.year}"
+
+
 def _angebot_summary(ids):
     """Baut aus einer Liste von Item-IDs die Zusammenfassung + Summen — serverseitig,
     unabhängig von etwaigen Client-Werten. Gibt (zeilen, once, mtl, yr, hat_anfrage) zurück."""
@@ -972,6 +1007,8 @@ def index(request):
     return render(request, "index.html", {
         "c": c, "sent": sent, "news_sent": news_sent, "anfrage_ok": anfrage_ok,
         "startpreise": _startpreise(lang),
+        "pakete": _paketpreise(),
+        "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
         "kooperationen": KOOPERATIONEN,
         "structured_data": _structured_data(c, lang),
@@ -1284,11 +1321,16 @@ def leistung_anfrage(request):
 
     # Bestätigung an den Absender , nur wenn er eine E-Mail hinterlassen hat.
     if _ist_email(kontakt):
-        em = i18n.get_pack(lang)["emails"]
+        pack = i18n.get_pack(lang)
+        em = pack["emails"]
+        anrede = em["greeting_named"].format(name=name) if name else em["greeting"]
+        # Der Betreff an uns bleibt deutsch (Postfach), der Kunde liest sein Thema
+        # in seiner Sprache.
+        thema_kunde = pack.get("lb", {}).get("themen", {}).get(quelle, thema)
         ack = em["leistung_ack_body"].format(
-            name=name or em["leistung_ack_fallback_name"], thema=thema,
+            anrede=anrede, thema=thema_kunde,
             site=c.get("site_name", "WVM-IT"), url=c.get("wvm_url", ""))
-        _send_mail_logged(em["leistung_ack_subject"].format(thema=thema), ack,
+        _send_mail_logged(em["leistung_ack_subject"].format(thema=thema_kunde), ack,
                           from_email, [kontakt], tag="LEISTUNG-ACK")
 
     # Zusätzlich in Supabase protokollieren, falls konfiguriert (best effort).
