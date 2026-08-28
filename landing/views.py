@@ -1478,52 +1478,151 @@ def robots_txt(request):
     lines += [
         f"Sitemap: {base}/sitemap.xml",
         f"# KI-Kurzfassung (llms.txt): {base}/llms.txt",
+        f"# KI-Langfassung: {base}/llms-full.txt",
         "",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain; charset=utf-8")
 
 
+def _llms_kopf(c, base):
+    """Erste Zeilen von llms.txt und llms-full.txt , die Kurzfassung, die eine
+    KI zitiert, wenn sie nur einen Absatz übernimmt."""
+    inhaber = c.get("inhaber_name", "Florin Feier")
+    return (
+        f"# WVM-IT , EDV und IT-Betreuung für Betriebe\n\n"
+        f"> WVM-IT (Inhaber {inhaber}) betreut die EDV kleiner und mittlerer Betriebe in "
+        f"Österreich und Deutschland: Arbeitsplätze, Server, Netzwerk, E-Mail und "
+        f"Datensicherung, überwiegend per Fernwartung. Die laufende IT-Betreuung kostet "
+        f"ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe 95 € je Stunde, Einsätze vor "
+        f"Ort 120 € je Stunde zzgl. Anfahrt. Dazu kommen Webseiten ab 350 €, SEO ab "
+        f"149 €/Monat, Google Ads ab 199 €/Monat und KI-Automatisierung ab 390 €. "
+        f"Gebäudeautomation (Loxone, KNX) sowie Konferenz- und Veranstaltungstechnik "
+        f"werden projektbezogen vor Ort umgesetzt. Ein fester Ansprechpartner, Antwort "
+        f"innerhalb von 24 Stunden. Alle Preise sind Richtpreise netto zzgl. USt.\n"
+    )
+
+
+def _llms_seiten(base, lang):
+    """Zeile je Leistungsseite: [Titel](URL): erster Satz der Kurzfassung."""
+    pack = i18n.get_pack(lang)
+    texte = pack.get("seiten", {})
+    zeilen = []
+    for eintrag in leistungen.LEISTUNGEN:
+        seite = texte.get(eintrag["slug"], {})
+        satz = (seite.get("kurz", "") or "").split(". ")[0].strip()
+        if satz and not satz.endswith("."):
+            satz += "."
+        zeilen.append(f"- [{seite.get('nav', eintrag['slug'])}]"
+                      f"({base}/leistungen/{eintrag['slug']}/): {satz}")
+    return zeilen
+
+
 def llms_txt(request):
-    """/llms.txt — kompakte Klartext-Kurzfassung für KI-Antwortmaschinen (GEO).
-    Fasst Marke, Angebot, Preise, Regionen und wichtigste Links in klarer Prosa
-    zusammen, damit ChatGPT, Perplexity, Gemini & Co. WVM-IT korrekt wiedergeben."""
+    """/llms.txt , kompakte Klartext-Fassung für KI-Antwortmaschinen (GEO).
+
+    Aufbau nach llmstxt.org: H1, Blockquote-Zusammenfassung, dann H2-Abschnitte mit
+    Markdown-Link-Listen. Der Inhalt kommt aus derselben Quelle wie die Seiten selbst
+    , eine abgetippte zweite Fassung wäre die erste Stelle, an der Zahlen auseinander
+    laufen (docs/SEO-PLAN.md, G9/G10)."""
     c = _content()
     base = (c.get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
     tel = c.get("telefon", "")
     mail = c.get("email", "")
     tel_href = "tel:" + tel.replace(" ", "") if tel else ""
-    inhaber = c.get("inhaber_name", "Florin Feier")
-    # Format nach llmstxt.org: H1, Blockquote-Zusammenfassung, dann H2-Abschnitte
-    # mit Markdown-Link-Listen ([Text](URL): Beschreibung) — nötig, damit KI-Agenten
-    # der Struktur folgen können.
-    txt = f"""# WVM-IT — Technik & Digitales aus einer Hand
 
-> WVM-IT (Inhaber {inhaber}) ist ein IT- und Technik-Dienstleister für Österreich und Deutschland. Alles aus einer Hand: Gebäude- & Smarthome-Automation (Loxone, KNX), Konferenz- & Veranstaltungstechnik, EDV, Netzwerk & Sicherheit, Webseiten inkl. Hosting & SEO sowie KI-Automatisierung. Ein fester Ansprechpartner, Antwort in 24 Stunden.
+    zeilen = [_llms_kopf(c, base), "\n## Seiten"]
+    zeilen += [
+        f"- [Startseite]({base}/): Überblick, Kontaktwege und die häufigsten Fragen.",
+        f"- [Alle Leistungen]({base}/leistungen/): Einstieg in die elf Leistungsseiten.",
+        f"- [Preise]({base}/kosten/): vollständige Preisliste mit Stand-Datum.",
+        f"- [Referenzen]({base}/referenzen/): belegte Projekte mit Einverständnis der Kunden.",
+        f"- [Kontakt]({base}/kontakt/): WhatsApp, Telefon, Rückruf, E-Mail.",
+        f"- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen, Richtpreis sofort.",
+        "\n## Leistungen",
+    ]
+    zeilen += _llms_seiten(base, "de")
+    zeilen += [
+        "\n## Preise (Richtpreise, netto zzgl. USt.)",
+        "- IT-Betreuung: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, Datensicherung ab 49 €/Monat.",
+        "- Support: 95 €/Stunde per Fernwartung, 120 €/Stunde vor Ort zzgl. Anfahrt.",
+        "- Einmalig: Arbeitsplatz einrichten ab 190 €, Microsoft 365 ab 290 €, IT-Sicherheitscheck ab 490 €, Firewall/VPN ab 690 €, Netzwerk/WLAN ab 890 €.",
+        "- Webseiten: One-Pager ab 350 €, Business-Website ab 1.490 €, Premium ab 2.900 €, Shop ab 3.500 €.",
+        "- Betrieb: Hosting 15 €/Monat, Wartung 39 €/Monat, Domain 15 €/Jahr.",
+        "- Sichtbarkeit: SEO einmalig ab 390 €, SEO-Betreuung ab 149 €/Monat, Google Ads Einrichtung ab 490 €, Ads-Betreuung ab 199 €/Monat.",
+        "- KI: Terminautomatisierung ab 390 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Chatbot ab 690 €, CRM-/ERP-Anbindung ab 1.200 €.",
+        "- Gebäudeautomation, Konferenz- und Veranstaltungstechnik: projektbezogen nach Bestandsaufnahme.",
+        "\n## Regionen",
+        f"- [Österreich und Deutschland]({base}/leistungen/edv-it-betreuung/): Fernwartung, Überwachung, "
+        "Datensicherung, Webseiten, SEO und Ads laufen ortsunabhängig im gesamten DACH-Raum. "
+        "Einsätze vor Ort werden projektbezogen vereinbart.",
+        "\n## Besonderheiten",
+        f"- [Kostenlose Beispiel-Website]({base}/leistungen/webseite-erstellen/): in etwa zehn Minuten "
+        "von der hauseigenen JARVIS-Automatik gebaut, ohne Verpflichtung.",
+        "- Ein fester Ansprechpartner statt Ticketsystem. Sprachen: Deutsch, English, Română.",
+        "- Keine erfundenen Bewertungen: Es werden nur Referenzen genannt, die zugestimmt haben.",
+        "\n## Kontakt",
+        f"- [Website]({base}/): {base}",
+        f"- [E-Mail](mailto:{mail}): {mail}",
+        f"- [Telefon]({tel_href}): {tel}",
+        "",
+    ]
+    return HttpResponse("\n".join(zeilen), content_type="text/markdown; charset=utf-8")
 
-## Seiten
-- [Startseite]({base}/): Überblick über alle Leistungen, Referenzen, Preise und Kontakt.
-- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen und ein Richtpreis-Angebot anfordern.
 
-## Leistungen & Richtpreise (netto zzgl. USt.)
-- [Webseiten]({base}/angebot/): One-Pager/Landingpage ab 350 €, Business-Website ab 1.490 €, Premium/individuell ab 2.900 €, Online-Shop ab 3.500 €.
-- [Domain, Hosting & Wartung]({base}/angebot/): Domain ab 15 €/Jahr, Hosting inkl. SSL & Backups ab 15 €/Monat, Wartung & Updates ab 39 €/Monat.
-- [KI & Automatisierung]({base}/angebot/): KI-Chatbot ab 690 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Termin-/Booking-Automatisierung ab 390 €, Custom-KI (CRM/ERP) ab 1.200 €.
-- [SEO & Extras]({base}/angebot/): SEO-Grundoptimierung ab 390 €, laufende SEO-Betreuung ab 149 €/Monat, Social-/Content-Bot ab 390 €.
-- [Technik vor Ort]({base}/#leistungen): Gebäude- & Smarthome-Automation (Loxone, KNX), Konferenzraum-Technik, Video-/Ton-/Bühnentechnik, EDV & IT-Solutions, Netzwerk & Sicherheit (projektbezogen auf Anfrage).
+def llms_full_txt(request):
+    """/llms-full.txt , die Langfassung: jede Leistungsseite als Klartext.
 
-## Regionen
-- [Österreich und Deutschland]({base}/): gesamter DACH-Raum; digitale Leistungen remote in ganz AT & DE, Technik-Installationen vor Ort projektbezogen.
+    Damit kann ein Sprachmodell die vollständige Antwort übernehmen, ohne die Seite
+    rendern zu müssen , KI-Crawler führen kein JavaScript aus (SEO-PLAN.md, F9/F12)."""
+    c = _content()
+    base = (c.get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
+    pack = i18n.get_pack("de")
+    texte = pack.get("seiten", {})
+    aus = [_llms_kopf(c, base)]
 
-## Besonderheiten
-- [Kostenlose Beispiel-Website]({base}/#gratis): in ~10 Minuten von der hauseigenen JARVIS-KI gebaut, plus 25 % Rabatt für neue Kunden.
-- Ein fester Ansprechpartner für Technik und Digitales, keine Agentur-Floskeln. Sprachen: Deutsch, English, Română.
+    def sauber(wert):
+        return (wert or "").replace("&ndash;", "–").replace("&amp;", "&").replace("&nbsp;", " ")
 
-## Kontakt
-- [Website]({base}/): {base}
-- [E-Mail](mailto:{mail}): {mail}
-- [Telefon]({tel_href}): {tel}
-"""
-    return HttpResponse(txt, content_type="text/markdown; charset=utf-8")
+    for eintrag in leistungen.LEISTUNGEN:
+        s = texte.get(eintrag["slug"], {})
+        aus.append(f"\n\n## {sauber(s.get('h1'))}")
+        aus.append(f"URL: {base}/leistungen/{eintrag['slug']}/")
+        aus.append(f"\n{sauber(s.get('kurz'))}")
+        aus.append(f"\n{sauber(s.get('intro'))}")
+        aus.append(f"\n### {sauber(s.get('problem_h'))}")
+        aus += [f"- {sauber(z)}" for z in s.get("probleme", [])]
+        aus.append(f"\n### {sauber(s.get('leistung_h'))}")
+        aus += [f"- {sauber(z)}" for z in s.get("leistungen", [])]
+        aus.append(f"\n### {sauber(s.get('ablauf_h'))}")
+        aus += [f"{i}. {sauber(x.get('h'))}: {sauber(x.get('t'))}"
+                for i, x in enumerate(s.get("ablauf", []), start=1)]
+        aus.append(f"\n### {sauber(s.get('preis_h'))}")
+        aus.append(sauber(s.get("preis_t")))
+        aus.append("\n### Häufige Fragen")
+        for f in s.get("faq", []):
+            aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+
+    aus.append("\n\n## Häufige Fragen zum Unternehmen")
+    for f in pack.get("faq", {}).get("items", []):
+        aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+    aus.append("")
+    return HttpResponse("\n".join(aus), content_type="text/markdown; charset=utf-8")
+
+
+def security_txt(request):
+    """/.well-known/security.txt , wohin eine Sicherheitsmeldung gehen soll.
+    Kostet nichts und ist bei einem IT-Dienstleister schlicht erwartbar."""
+    c = _content()
+    from datetime import date, timedelta
+    ablauf = date.today().replace(year=date.today().year + 1)
+    zeilen = [
+        f"Contact: mailto:{c.get('email', '')}",
+        f"Expires: {ablauf.isoformat()}T00:00:00.000Z",
+        "Preferred-Languages: de, en",
+        f"Canonical: {(c.get('wvm_url') or '').rstrip('/')}/.well-known/security.txt",
+        "",
+    ]
+    return HttpResponse("\n".join(zeilen), content_type="text/plain; charset=utf-8")
 
 
 def sitemap_xml(request):

@@ -12,7 +12,12 @@ urlpatterns = [
     path("newsletter/wochenversand/", views.newsletter_weekly, name="newsletter_weekly"),
     path("newsletter/diagnose/", views.newsletter_diag, name="newsletter_diag"),
     path("robots.txt", views.robots_txt, name="robots_txt"),
+    # Reihenfolge zaehlt: Die Langfassung steht VOR dem allgemeinen .txt-Muster
+    # weiter unten, damit sie nicht davon verschluckt wird (dieselbe Falle steht
+    # in ruempelwerks config/urls.py dokumentiert).
     path("llms.txt", views.llms_txt, name="llms_txt"),
+    path("llms-full.txt", views.llms_full_txt, name="llms_full_txt"),
+    path(".well-known/security.txt", views.security_txt, name="security_txt"),
     # IndexNow-Nachweisdatei. Das Muster ist bewusst eng (nur Hex, feste Laenge),
     # damit es keine kuenftige .txt-Route verschluckt , genau diese Falle steht in
     # ruempelwerks config/urls.py dokumentiert.
