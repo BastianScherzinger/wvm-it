@@ -1542,7 +1542,10 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
    ========================================================================== */
 
 /* ── Seitenkopf ──────────────────────────────────────────────────────────── */
-.sp-top{padding:clamp(116px,13vw,156px) 0 clamp(44px,6vw,72px);background:
+/* Die Kopfzeile ist sticky, aber im Fluss (siehe .nav) , sie ueberlagert den
+   Seitenkopf also nicht. Deshalb reicht hier derselbe Innenabstand wie im Hero
+   (38px) plus etwas Luft, nicht die Hoehe einer festen Leiste. */
+.sp-top{padding:clamp(44px,6vw,76px) 0 clamp(44px,6vw,72px);background:
   radial-gradient(60% 50% at 82% -10%, color-mix(in srgb,var(--accent) 13%,transparent), transparent 66%),
   var(--bg)}
 .sp-top h1{font-size:clamp(1.95rem,4vw,3.1rem);margin-top:var(--s4);max-width:19ch;font-weight:700}

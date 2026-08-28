@@ -23,8 +23,8 @@ PACK = {
     "lang": {"switch_aria": "Sprache wählen"},
     "cookie": {
         "aria": "Cookie-Hinweis",
-        "title": "Wir respektieren deine Privatsphäre",
-        "body": "Wir verwenden nur technisch notwendige Cookies, damit die Seite funktioniert. Für den interaktiven 3D-Assistenten binden wir zusätzlich externe Inhalte ein — diese laden wir erst mit deiner Zustimmung. Details in der",
+        "title": "Wir respektieren Ihre Privatsphäre",
+        "body": "Wir verwenden nur technisch notwendige Cookies, damit die Seite funktioniert. Für den interaktiven 3D-Assistenten binden wir zusätzlich externe Inhalte ein — diese laden wir erst mit Ihrer Zustimmung. Details in der",
         "link": "Datenschutzerklärung",
         "accept": "Alle akzeptieren",
         "decline": "Nur notwendige",
@@ -66,34 +66,34 @@ PACK = {
     },
     "offer": {
         "eyebrow": "Gratis für neue Kunden",
-        "h": "Deine kostenlose Beispiel-Website. In etwa 10 Minuten.",
-        "lead": "Trag rechts nur deine E-Mail ein. Danach fragen wir kurz deine Wünsche ab, unsere JARVIS-KI baut dir sofort eine echte Beispiel-Seite, du sicherst dir 25% Rabatt, und wir setzen sie gemeinsam mit dir perfekt um.",
-        "chip_rabatt": "25% Rabatt auf deine Website",
+        "h": "Ihre kostenlose Beispiel-Website. In etwa 10 Minuten.",
+        "lead": "Tragen Sie rechts nur Ihre E-Mail ein. Danach fragen wir kurz Ihre Wünsche ab, unsere JARVIS-KI baut Ihnen sofort eine echte Beispiel-Seite, Sie sichern sich 25% Rabatt, und wir setzen sie gemeinsam mit Ihnen um.",
+        "chip_rabatt": "25% Rabatt auf Ihre Website",
         "chip_speed": "Gratis Beispiel-Seite in ~10 Min",
         "step1_h": "E-Mail eintragen",
-        "step1_t": "Nur die E-Mail. Danach fragen wir in Ruhe deine Wünsche ab (Art, Farben, Bilder …).",
-        "step2_h": "JARVIS baut deine Seite",
-        "step2_t": "Unsere KI erstellt automatisch eine echte Beispiel-Website nach deinen Angaben.",
+        "step1_t": "Nur die E-Mail. Danach fragen wir in Ruhe Ihre Wünsche ab (Art, Farben, Bilder …).",
+        "step2_h": "JARVIS baut Ihre Seite",
+        "step2_t": "Unsere KI erstellt automatisch eine echte Beispiel-Website nach Ihren Angaben.",
         "step3_h": "Link + 25%-Code per Mail",
-        "step3_t": "Du bekommst den Link zur Seite und deinen Rabattcode.",
-        "step4_h": "Wir passen sie mit dir an",
-        "step4_t": "Wir arbeiten komplett mit dir zusammen und sind für dich da, bis alles genau passt.",
+        "step3_t": "Sie bekommen den Link zur Seite und Ihren Rabattcode.",
+        "step4_h": "Wir passen sie mit Ihnen an",
+        "step4_t": "Wir arbeiten eng mit Ihnen zusammen und bleiben dran, bis alles genau passt.",
         "note_strong": "Inklusive Referenz-Newsletter:",
-        "note_rest": "ca. 1&#215;/Woche zeigen wir dir echte Projekte, die wir gebaut haben, als Inspiration. Jederzeit mit einem Klick abbestellbar.",
+        "note_rest": "ca. 1&#215;/Woche zeigen wir Ihnen echte Projekte, die wir gebaut haben. Jederzeit mit einem Klick abbestellbar.",
         "done_h": "Fast geschafft!",
-        "done_t": "Wir haben dir eine E-Mail geschickt. Bestätige den Link darin, dann sind dein 25%-Code und deine kostenlose Beispiel-Website unterwegs. Schau ggf. kurz im Spam-Ordner nach.",
+        "done_t": "Wir haben Ihnen eine E-Mail geschickt. Bestätigen Sie den Link darin, dann sind Ihr 25%-Code und Ihre kostenlose Beispiel-Website unterwegs. Sehen Sie gegebenenfalls kurz im Spam-Ordner nach.",
         "card_badge": "JARVIS free",
         "card_h": "Gratis-Website anfordern",
-        "card_sub": "Trag nur deine E-Mail ein. Deine Wünsche zur Seite fragen wir gleich danach in Ruhe ab.",
-        "mail_label": "Deine E-Mail",
-        "name_label": "Dein Name", "name_opt": "(optional)", "name_ph": "Wie dürfen wir dich nennen?",
-        "wunsch_label": "Kurz: was schwebt dir vor?", "wunsch_ph": "z. B. Farben, Stil, was gezeigt werden soll (optional)",
+        "card_sub": "Tragen Sie nur Ihre E-Mail ein. Ihre Wünsche zur Seite fragen wir gleich danach in Ruhe ab.",
+        "mail_label": "Ihre E-Mail",
+        "name_label": "Ihr Name", "name_opt": "(optional)", "name_ph": "Wie dürfen wir Sie ansprechen?",
+        "wunsch_label": "Kurz: was schwebt Ihnen vor?", "wunsch_ph": "z. B. Farben, Stil, was gezeigt werden soll (optional)",
         "consent_pre": "Ich möchte die kostenlose Beispiel-Website, meinen 25%-Code und den wöchentlichen Referenz-Newsletter (ca. 1&#215;/Woche, jederzeit abbestellbar) erhalten und stimme der",
         "consent_link": "Datenschutzerklärung",
         "consent_post": "zu.",
         "submit": "Gratis-Website sichern",
         "foot_tag": "JARVIS-KI",
-        "foot_rest": "Deine Beispiel-Seite baut unsere Automatik.",
+        "foot_rest": "Ihre Beispiel-Seite baut unsere Automatik.",
         "foot_em": "Logo &amp; Video folgen.",
         "foot_alt": "Oder direkt Angebot berechnen →",
     },
@@ -275,16 +275,16 @@ PACK = {
         "h": "Gemeinsam mehr möglich machen.",
         "lead": "Wir arbeiten mit ausgewählten Partnern zusammen, die unseren Anspruch an Qualität und Verlässlichkeit teilen. Hier stellen wir sie vor.",
         "empty": "Bald stellen wir hier unsere Kooperationspartner vor.",
-        "join_h": "Willst du unser Kooperationspartner werden?",
-        "join_p": "Ob Technik, Design, Vertrieb oder eine ganz neue Idee: Wenn du glaubst, dass wir gut zusammenpassen, schreib uns kurz. Wir melden uns zeitnah.",
-        "f_name": "Name *", "f_name_ph": "Dein Name",
+        "join_h": "Möchten Sie unser Kooperationspartner werden?",
+        "join_p": "Ob Technik, Design, Vertrieb oder eine ganz neue Idee: Wenn Sie glauben, dass wir gut zusammenpassen, schreiben Sie uns kurz. Wir melden uns zeitnah.",
+        "f_name": "Name *", "f_name_ph": "Ihr Name",
         "f_firma": "Firma", "f_firma_ph": "optional",
         "f_email": "E-Mail *",
-        "f_msg": "Worum geht es? *", "f_msg_ph": "Kurz: worin ihr stark seid und wie eine Zusammenarbeit aussehen könnte.",
+        "f_msg": "Worum geht es? *", "f_msg_ph": "Kurz: worin Sie stark sind und wie eine Zusammenarbeit aussehen könnte.",
         "submit": "Kooperation anfragen",
-        "fine": "Unverbindlich. Wir behandeln deine Angaben vertraulich.",
-        "done_h": "Danke! Deine Anfrage ist unterwegs.",
-        "done_p": "Wir schauen sie uns an und melden uns zeitnah bei dir.",
+        "fine": "Unverbindlich. Wir behandeln Ihre Angaben vertraulich.",
+        "done_h": "Danke! Ihre Anfrage ist unterwegs.",
+        "done_p": "Wir sehen sie uns an und melden uns zeitnah bei Ihnen.",
         "js_busy": "Wird gesendet …",
         "js_error": "Das hat gerade nicht geklappt. Bitte in einem Moment erneut versuchen.",
     },
@@ -590,29 +590,29 @@ PACK = {
     },
     "anfrage_done": {
         "title_ok": "Anfrage erhalten", "title_fail": "Link ungültig",
-        "ok_h_pre": "Danke", "ok_h_post": "! Deine Anfrage ist da.",
-        "ok_p": "Wir bauen jetzt deine <strong>kostenlose Beispiel-Website</strong> und schicken dir den Link per E-Mail, sobald sie fertig ist. Sie bleibt <strong>1 Woche live</strong> — danach melden wir uns, um sie gemeinsam mit dir final umzusetzen.",
+        "ok_h_pre": "Danke", "ok_h_post": "! Ihre Anfrage ist da.",
+        "ok_p": "Wir bauen jetzt Ihre <strong>kostenlose Beispiel-Website</strong> und schicken Ihnen den Link per E-Mail, sobald sie fertig ist. Sie bleibt <strong>1 Woche live</strong> — danach melden wir uns, um sie gemeinsam mit Ihnen umzusetzen.",
         "ok_home": "Zur Startseite", "ok_offer": "Angebot ansehen",
         "fail_h": "Der Link ist abgelaufen.",
-        "fail_p": "Bitte melde dich noch einmal an, dann bekommst du einen frischen Bestätigungslink und kannst den Bogen erneut ausfüllen.",
+        "fail_p": "Bitte melden Sie sich noch einmal an, dann bekommen Sie einen frischen Bestätigungslink und können den Bogen erneut ausfüllen.",
         "fail_retry": "Erneut anmelden", "fail_home": "Zur Startseite",
     },
     "unsub": {
         "title": "Newsletter abgemeldet",
-        "ok_h": "Du bist abgemeldet.",
-        "ok_p": "Wir schicken dir keinen Newsletter mehr. Schade, dass du gehst, du bist jederzeit wieder herzlich willkommen.",
+        "ok_h": "Sie sind abgemeldet.",
+        "ok_p": "Wir schicken Ihnen keinen Newsletter mehr. Schade, dass Sie gehen — Sie sind jederzeit wieder willkommen.",
         "ok_home": "Zur Startseite",
         "fail_h": "Abmeldung nicht möglich.",
-        "fail_pre": "Dieser Abmeldelink ist ungültig. Schreib uns kurz an",
-        "fail_post": ", dann nehmen wir dich manuell heraus.",
+        "fail_pre": "Dieser Abmeldelink ist ungültig. Schreiben Sie uns kurz an",
+        "fail_post": ", dann nehmen wir Sie manuell heraus.",
         "fail_home": "Zur Startseite",
     },
     "wait": {
-        "title": "Deine Website wird gebaut",
-        "h1": "Deine Website wird gebaut …",
+        "title": "Ihre Website wird gebaut",
+        "h1": "Ihre Website wird gebaut …",
         "name_thanks": "Danke, {name}!",
         "name_pre": "Danke, ", "name_post": "!",
-        "sub": "Lass dieses Fenster offen. Sobald deine Seite fertig ist, erscheint hier automatisch der Link — meist in wenigen Minuten.",
+        "sub": "Lassen Sie dieses Fenster offen. Sobald Ihre Seite fertig ist, erscheint hier automatisch der Link — meist in wenigen Minuten.",
         "step1": "In der Warteschlange",
         "step2": "JARVIS schreibt &amp; baut die Seite",
         "step3": "Geht online",
@@ -826,48 +826,48 @@ PACK = {
         ),
         "greeting_named": "Hallo {name}",
         "greeting": "Hallo",
-        "nl_confirm_subject": "Bitte bestätige deine Anmeldung bei {site}",
+        "nl_confirm_subject": "Bitte bestätigen Sie Ihre Anmeldung bei {site}",
         "nl_confirm_body": (
             "{anrede},\n\n"
-            "fast geschafft. Bitte bestätige deine Anmeldung bei {site} mit einem Klick:\n\n"
+            "fast geschafft. Bitte bestätigen Sie Ihre Anmeldung bei {site} mit einem Klick:\n\n"
             "{link}\n\n"
-            "Danach bekommst du deinen 25%-Rabattcode und deine kostenlose Beispiel-Website. "
-            "Außerdem erhältst du ca. einmal pro Woche unseren Referenz-Newsletter (jederzeit abbestellbar).\n"
-            "Der Link ist 3 Tage gültig. Falls du dich nicht angemeldet hast, ignoriere diese E-Mail einfach.\n"
+            "Danach bekommen Sie Ihren 25%-Rabattcode und Ihre kostenlose Beispiel-Website. "
+            "Außerdem erhalten Sie ca. einmal pro Woche unseren Referenz-Newsletter (jederzeit abbestellbar).\n"
+            "Der Link ist 3 Tage gültig. Falls Sie sich nicht angemeldet haben, ignorieren Sie diese E-Mail einfach.\n"
         ),
-        "nl_welcome_subject": "Willkommen bei {site}: dein 25%-Code",
+        "nl_welcome_subject": "Willkommen bei {site}: Ihr 25%-Code",
         "nl_welcome_body": (
             "{anrede},\n\n"
-            "danke, dass du deine Anmeldung bestätigt hast. Als Dankeschön:\n\n"
-            "  Dein Rabattcode: {code}  (25 % auf deine erste Website)\n\n"
-            "Außerdem erstellen wir dir eine kostenlose Beispiel-Website und schicken sie dir "
-            "in Kürze zu, damit du direkt siehst, was möglich ist. Danach setzen wir sie "
-            "gemeinsam mit dir um, bis alles genau passt.\n\n"
+            "danke, dass Sie Ihre Anmeldung bestätigt haben. Als Dankeschön:\n\n"
+            "  Ihr Rabattcode: {code}  (25 % auf Ihre erste Website)\n\n"
+            "Außerdem erstellen wir Ihnen eine kostenlose Beispiel-Website und schicken sie Ihnen "
+            "in Kürze zu, damit Sie direkt sehen, was möglich ist. Danach setzen wir sie "
+            "gemeinsam mit Ihnen um, bis alles genau passt.\n\n"
             "{wunsch_line}"
-            "Du bekommst ab jetzt außerdem etwa einmal pro Woche unseren Referenz-Newsletter "
-            "mit echten Projekten von uns. Du kannst ihn jederzeit über den Link am Ende jeder "
+            "Sie bekommen ab jetzt außerdem etwa einmal pro Woche unseren Referenz-Newsletter "
+            "mit echten Projekten von uns. Sie können ihn jederzeit über den Link am Ende jeder "
             "Mail wieder abbestellen.\n\n"
-            "Bis bald,\ndein Team von {site}\n{url}\n"
+            "Freundliche Grüße\nIhr Team von {site}\n{url}\n"
         ),
-        "nl_welcome_wunsch": "Deine Angaben an uns: {wunsch}\n\n",
+        "nl_welcome_wunsch": "Ihre Angaben an uns: {wunsch}\n\n",
         "angebot_kunde_subject": "Ihr Richtangebot von {site}",
         "angebot_kunde_body": (
             "Hallo,\n\ndanke für Ihr Interesse. Hier Ihr unverbindliches Richtangebot von {site}:\n\n"
             "{lines}\n\nRichtpreis: {summe}{anfrage_line}\n\n"
             "Das ist ein grober Richtwert; das genaue Angebot stimmen wir kurz mit Ihnen ab. "
             "Antworten Sie einfach auf diese Mail.\n\n"
-            "Beste Grüße\ndein Team von {site}\n{url}\n"
+            "Freundliche Grüße\nIhr Team von {site}\n{url}\n"
         ),
         "angebot_anfrage_line": "\n(einzelne Positionen klären wir kurz mit Ihnen)",
         "angebot_sum_once": "einmalig ab {n} €",
         "angebot_sum_mtl": "monatlich ab {n} €",
         "angebot_sum_yr": "jährlich ab {n} €",
         "angebot_sum_request": "auf Anfrage",
-        "kooperation_ack_subject": "Danke für deine Kooperations-Anfrage",
+        "kooperation_ack_subject": "Danke für Ihre Kooperations-Anfrage",
         "kooperation_ack_body": (
-            "Hallo {name},\n\ndanke für dein Interesse an einer Kooperation mit {site}. "
-            "Wir sehen uns deine Nachricht an und melden uns zeitnah bei dir.\n\n"
-            "Beste Grüße\ndein Team von {site}\n{url}\n"
+            "Hallo {name},\n\ndanke für Ihr Interesse an einer Kooperation mit {site}. "
+            "Wir sehen uns Ihre Nachricht an und melden uns zeitnah bei Ihnen.\n\n"
+            "Freundliche Grüße\nIhr Team von {site}\n{url}\n"
         ),
     },
 }
