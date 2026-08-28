@@ -9,12 +9,13 @@
 > **Läuft parallel zu:** `UMBAU-PLAN.md` — Block S-F startet, sobald Phase 4 des Umbaus steht
 > **Eigene Skills:** `seo-audit` (Befund) · `seo-geo` (Umsetzung)
 >
-> **Stand 28.08.2026:** Zehn Aufgaben dieses Plans sind erledigt
-> (F2, F4, F5, F6, F7, F10, F11, G3, G4, G5). Die sechs URLs sind per IndexNow zum
-> Crawlen angemeldet (Bing, Yandex, Seznam , und damit ChatGPTs Websuche).
-> **Was jetzt blockiert: F1.** Der Search-Console-Export braucht das Google-Konto,
-> in dem die Property liegt; ohne ihn lässt sich keine spätere Wirkung belegen.
-> Danach **F3** (echte Anschrift), dann Block S-A mit `/kosten/` als erster Seite.
+> **Stand 28.08.2026:** Elf Aufgaben dieses Plans sind erledigt
+> (F1, F2, F4, F5, F6, F7, F10, F11, G3, G4, G5). Die sechs URLs sind bei Google zur
+> Neu-Indexierung angemeldet und per IndexNow bei Bing, Yandex und Seznam gemeldet.
+> Die Nullmessung liegt in `docs/seo/BASELINE.md` , **7 Klicks und 54 Impressionen in
+> drei Monaten, ausschließlich über den Markennamen.**
+> **Als Nächstes: F3** (echte Anschrift), danach **Block S-A** mit `/kosten/` als
+> erster Seite , das ist der Punkt, an dem aus Markenanfragen Leistungsanfragen werden.
 
 ---
 
@@ -96,7 +97,7 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 > **Ziel:** Die Seite sagt überall dasselbe und das Wahre, wir wissen, wo wir stehen,
 > und jede Änderung ist maschinell prüfbar. **Wirkung:** sofort, Voraussetzung für alles.
 
-- [~] **F1 — Nullmessung, teilweise.** Was ohne Konto messbar war, steht fest: **Bing führt am 28.08.2026 sechs URLs** für `site:wvm-it.tech` (noch mit den alten Titeln , der Neu-Crawl läuft seit der IndexNow-Meldung). **Es fehlt der Search-Console-Export** (Suchanfragen, Seiten, Länder AT/DE getrennt, Indexabdeckung). Die Property liegt in einem Google-Konto, das auf diesem Rechner nicht angemeldet ist , weder `…05@gmail.com` noch `…69@gmail.com` haben Zugriff, auch nicht auf `sc-domain:ruempelwerk-mitteldeutschland.de`. **Ohne diesen Export ist später keine Wirkung belegbar.**
+- [x] **F1 — Nullmessung steht** *(28.08.2026, `docs/seo/BASELINE.md`)*. Drei Monate: **7 Klicks, 54 Impressionen, CTR 13 %, Ø Position 13,9.** Entscheidender Befund: Es gab **drei** Suchanfragen, alle über den Markennamen (`wvm`, `wwwwvm`, `vm it`) , **null** Impressionen für irgendeine Leistung. Für Menschen mit Kaufabsicht existiert die Seite bei Google bisher nicht. Index: 6 von 6 Seiten, 0 Fehler, keine manuellen Maßnahmen. Bing: 6 Ergebnisse. Nächste Messung Ende September, gleiche Property, gleicher Zeitraum.
 - [x] **F2 — Duplikat-Hosts geschlossen** *(28.08.2026)*. Befund: `wvm-it-shop.up.railway.app` lieferte die Seite mit HTTP 200 und erlaubtem Crawling aus , ein vollständiger Zweitbestand. `KanonischerHostMiddleware` leitet jetzt jeden Neben-Host per **301** auf `www.wvm-it.tech` um (Pfad und Query bleiben erhalten), `wvm-it.tech` ohne `www` ebenso. `/health` ist ausgenommen, damit Railways Healthcheck weiter greift. Ziel kommt aus `KANONISCHER_HOST` oder ersatzweise aus `content.json`.
 - [ ] **F3 — Firmensitz und Adresse klären.** Echte Anschrift in `content.json` (heute Platzhalter in Impressum und Datenschutz), `PostalAddress` im Schema vervollständigen, Impressum/Datenschutz nachziehen. Ohne das kein Local-SEO und kein Unternehmensprofil
 - [x] **F4 — Titel und Descriptions gekürzt** *(28.08.2026)*. Vorher: Titel bis 70 Zeichen, Descriptions bis 205. Jetzt alle sechs URLs im Rahmen (DE 53/154, EN 44/140, RO 37/145), Hauptkeyword vorne, Zahl in der Description. `pruefe_seite` meldet die Längen ab jetzt automatisch.

@@ -1,9 +1,10 @@
 # UMBAU START — Einstiegspunkt
 
 > **Der Umbau ist abgeschlossen und seit 28.08.2026 live.**
-> Die URLs sind bei Bing, Yandex und Seznam zum Crawlen angemeldet; für Google fehlt
-> ein Schritt, den nur Bastian tun kann — **`docs/INDEXIERUNG.md`**, etwa 10 Minuten.
-> Danach übernimmt der SEO-Plan (`docs/SEO-PLAN.md`, Aufgabe **F1**).
+> Alle sechs URLs sind bei Google zur Neu-Indexierung angemeldet und bei Bing, Yandex
+> und Seznam gemeldet; die Nullmessung steht in `docs/seo/BASELINE.md`.
+> **Als Nächstes übernimmt der SEO-Plan** (`docs/SEO-PLAN.md`): **F3** (echte Anschrift),
+> dann Block S-A mit `/kosten/` als erster Seite.
 
 ---
 
@@ -12,17 +13,18 @@
 | | |
 |---|---|
 | **Planung** | abgeschlossen 27.08.2026 |
-| **Umbau** | **fertig**, 47 von 50 Aufgaben erledigt, 1 teilweise, 2 bewusst offen |
+| **Umbau** | **fertig**, 48 von 50 Aufgaben erledigt, 1 teilweise (Mobil am Gerät), 1 bewusst offen (Kooperationsformular) |
 | **Live seit** | 28.08.2026, Commit `60d3064` auf `main` |
 | **Prüfung** | `python manage.py pruefe_seite` , grün |
-| **Nächster Schritt** | `docs/INDEXIERUNG.md` abarbeiten (Google), dann `docs/SEO-PLAN.md` **F1** (Nullmessung) und **F3** (echte Anschrift) |
+| **Indexierung** | Google: 6 von 6 Seiten indexiert, alle zur Neu-Indexierung beantragt, Live-Test bestanden. Bing/Yandex/Seznam: per IndexNow gemeldet |
+| **Nullmessung** | `docs/seo/BASELINE.md` , 7 Klicks, 54 Impressionen, 3 Suchanfragen (alle Marke) |
+| **Nächster Schritt** | `docs/SEO-PLAN.md`: **F3** (echte Anschrift), danach Block S-A mit `/kosten/` |
 
 ### Was offen blieb, und warum
 
 | Aufgabe | Stand |
 |---|---|
 | **U7.4** Mobilansicht | Analytisch geprüft (keine festen Breiten, Touch-Ziele ≥ 44 px, eigene Regeln ab 1080/820/560 px). **Der Blick auf einem echten Handy fehlt** , das Chrome-Fenster ließ sich hier nicht unter 1280 px verkleinern. |
-| **U8.3** Indexierung | **Teilweise erledigt.** Die sechs URLs sind per IndexNow bei Bing, Yandex und Seznam angemeldet (HTTP 202) — und damit auch für ChatGPTs Websuche, die auf Bings Index aufsetzt. Bing führt aktuell 6 Ergebnisse für `site:wvm-it.tech`. **Google fehlt:** weder …05 noch …69@gmail.com haben Zugriff auf eine Search-Console-Property. Vollständige Anleitung in **`docs/INDEXIERUNG.md`** (10 Minuten). |
 | **U5.5** Kooperationsformular | Bewusst auf seinem eigenen, funktionierenden Endpunkt belassen. |
 
 ### Ebenfalls zu bestätigen
@@ -88,3 +90,4 @@ Partnerhinweis auf PyStore, Florin Feier als Gesicht, 10 FAQ-Fragen.
 | 28.08.2026 | Phasen 6–7 und SEO-Fundament: Preisliste mit Stand-Datum, Preiswiderspruch behoben (89 → 54 €), FAQ auf 10 Fragen, Schlussband, Footer, `pruefe_seite`, Titel/Descriptions gekürzt, 301 für die Plattform-Subdomain, Keyword-Map (Commit 60d3064) |
 | 28.08.2026 | **Live auf www.wvm-it.tech**, Rauchtest bestanden |
 | 28.08.2026 | IndexNow eingerichtet und ausgelöst: sechs URLs bei Bing/Yandex/Seznam angemeldet (HTTP 202), Schlüsseldatei live, `docs/INDEXIERUNG.md` angelegt (Commit 8f39efa) |
+| 28.08.2026 | Search Console (Property `https://www.wvm-it.tech/`): Sitemap neu eingereicht und gelesen, **alle sechs URLs zur Indexierung beantragt**, Live-Test der Startseite bestanden, Nullmessung in `docs/seo/BASELINE.md` festgehalten |

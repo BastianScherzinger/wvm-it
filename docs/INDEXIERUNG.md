@@ -1,8 +1,8 @@
-# Indexierung — Stand und was noch von Hand nötig ist
+# Indexierung — Stand
 
-> **Stand 28.08.2026.** Die sechs öffentlichen URLs sind bei Bing, Yandex und Seznam
-> zum Crawlen angemeldet. Für **Google** fehlt ein Schritt, den nur Bastian tun kann:
-> Er braucht das Google-Konto, in dem die Search-Console-Property liegt.
+> **Stand 28.08.2026, abgeschlossen.** Die sechs öffentlichen URLs sind bei Google zur
+> Neu-Indexierung angemeldet und bei Bing, Yandex und Seznam gemeldet. Die Nullmessung
+> liegt in `docs/seo/BASELINE.md`.
 
 ---
 
@@ -10,12 +10,14 @@
 
 | | |
 |---|---|
-| **IndexNow eingerichtet** | Schlüsseldatei live unter `https://www.wvm-it.tech/7c389c96c2fa831f8a352eb042495707.txt`, Befehl `python manage.py indexnow` |
-| **Erste Meldung abgesetzt** | 28.08.2026, alle sechs URLs, mit **HTTP 202** angenommen |
+| **Google Search Console** | Property `https://www.wvm-it.tech/` (URL-Präfix, verifiziert). Sitemap am 28.08.2026 neu eingereicht und gelesen (vorher zuletzt 16.07.), **alle sechs URLs zur Indexierung beantragt** |
+| **Live-Test der Startseite** | „URL ist für Google verfügbar", „Seite kann indexiert werden" — Google kann die neue Fassung abrufen |
+| **Index bei Google** | 6 von 6 Seiten indexiert, 0 nicht indexiert, keine Probleme in 90 Tagen, keine manuellen Maßnahmen |
+| **IndexNow** | Schlüsseldatei live, Befehl `python manage.py indexnow`, erste Meldung mit **HTTP 202** angenommen (Bing, Yandex, Seznam) |
 | **Sitemap** | `https://www.wvm-it.tech/sitemap.xml`, in `robots.txt` verlinkt, alle drei Sprachen mit hreflang |
-| **Zweitbestand geschlossen** | `wvm-it-shop.up.railway.app` leitet mit 301 auf die Hauptdomain um — vorher ein voll crawlbarer Doppelgänger |
+| **Zweitbestand geschlossen** | `wvm-it-shop.up.railway.app` leitet mit 301 auf die Hauptdomain um |
 | **KI-Crawler** | GPTBot, ClaudeBot, PerplexityBot und weitere sind in `robots.txt` namentlich erlaubt |
-| **Ausgangsstand Bing** | `site:wvm-it.tech` → **6 Ergebnisse** (noch mit den alten Titeln; der Neu-Crawl läuft) |
+| **Nullmessung** | `docs/seo/BASELINE.md` — 7 Klicks, 54 Impressionen, drei Suchanfragen, alle über den Markennamen |
 
 ### Warum IndexNow und nicht „einfach bei Google einreichen"
 
@@ -29,42 +31,29 @@ dieser Meldung hängt also der GEO-Kanal, nicht bloß eine zweite Suchmaschine.
 
 ---
 
-## Was Bastian tun muss (etwa 10 Minuten)
+## Was als Nächstes ansteht
 
-Weder `bastian.scherzinger05@gmail.com` noch `bastian.scherzinger69@gmail.com` haben
-Zugriff auf eine Search-Console-Property — auch nicht auf
-`sc-domain:ruempelwerk-mitteldeutschland.de`. Die Properties liegen also in einem
-dritten Google-Konto.
+Die Indexierung selbst ist erledigt. Google braucht jetzt Zeit — beantragte URLs werden
+üblicherweise innerhalb weniger Tage neu gecrawlt. Zwei Dinge lohnen sich danach:
 
-**1. Im richtigen Konto anmelden** und prüfen, ob es eine Property für wvm-it.tech gibt:
+**In etwa einer Woche nachsehen**, ob die neuen Titel in den Suchergebnissen stehen:
+`site:wvm-it.tech` bei Google, oder in der Search Console unter Leistung. Steht dort noch
+„WVM-IT | Smarthome, Technik, EDV …" statt „Website erstellen lassen ab 350 €", war der
+Crawl noch nicht durch.
 
-- https://search.google.com/search-console
+**Ende September die zweite Messung ziehen** (Leistung → 3 Monate → Export). Die Werte
+gegen `docs/seo/BASELINE.md` halten. Wichtig: Die Suchanfragen-Tabelle ist nach Klicks
+sortiert — einmal zusätzlich nach Impressionen sortieren, dort stehen die Anfragen, für
+die wir schon in Sichtweite sind.
 
-**2a. Falls die Property existiert:**
+### Eine Überlegung fürs Protokoll
 
-| Schritt | Wo |
-|---|---|
-| Sitemap einreichen | Sitemaps → „Neue Sitemap hinzufügen" → `sitemap.xml` → Senden |
-| Startseite prüfen lassen | oben ins URL-Prüftool `https://www.wvm-it.tech/` eingeben → **Indexierung beantragen** |
-| Für die anderen fünf wiederholen | `/angebot/`, `/en/`, `/en/angebot/`, `/ro/`, `/ro/angebot/` |
-| **Nullmessung ziehen** | Leistung → Suchanfragen → Export. **Wichtig: einmal nach Klicks und einmal nach Impressionen sortieren** — die Tabelle ist standardmäßig nach Klicks sortiert, und die interessanten Longtail-Anfragen stehen weiter hinten |
-
-**2b. Falls es keine Property gibt**, neu anlegen — am besten als **Domain-Property**
-(`wvm-it.tech`), weil sie www und ohne-www zusammen abdeckt:
-
-1. Property hinzufügen → Domain → `wvm-it.tech`
-2. Google zeigt einen TXT-Eintrag → beim Domain-Anbieter in die DNS-Einträge eintragen
-3. Verifizieren, dann wie unter 2a fortfahren
-
-Alternativ als URL-Präfix-Property `https://www.wvm-it.tech/`: Dort geht die
-Verifizierung per HTML-Tag. Ein solches Tag liegt bereits in `templates/index.html`
-(`google-site-verification`), gehört aber zu einer anderen Property — Google gibt bei
-der Einrichtung ein eigenes aus, das dann zusätzlich eingebaut werden muss.
-
-**3. Den Export ablegen** unter `docs/seo/BASELINE.md`. Damit ist Aufgabe **F1** des
-SEO-Plans erledigt, und alles Weitere kann daran gemessen werden.
-
----
+Die Property ist eine **URL-Präfix-Property** (`https://www.wvm-it.tech/`). Sie deckt
+genau diesen Host ab. Eine **Domain-Property** (`wvm-it.tech`) würde zusätzlich alle
+Subdomains und die Variante ohne `www` einschließen und wäre der sauberere Zuschnitt —
+sie wird aber per DNS-Eintrag verifiziert, braucht also Zugriff beim Domain-Anbieter.
+Solange die 301-Umleitung steht, ist der Unterschied klein; beim nächsten Anfassen der
+DNS-Einträge lohnt sich der Wechsel.
 
 ## Nach jedem größeren Deploy
 

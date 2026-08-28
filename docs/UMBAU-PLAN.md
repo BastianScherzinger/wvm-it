@@ -255,7 +255,7 @@ Legende: `[ ]` offen · `[x]` erledigt. Eine Aufgabe gilt erst als erledigt, wen
 
 - [x] **U8.1** Deployed am 28.08.2026 (Commit 60d3064). Rauchtest live: alle sieben URLs antworten mit 200, die Plattform-Subdomain leitet mit 301 auf www.wvm-it.tech um, `/health` bleibt 200, eine echte Testanfrage über den Web-Block wurde mit `{ok:true}` angenommen. **Zu bestätigen:** ob die Mail im Postfach ankommt , die Testanfrage ging an bastian.scherzinger69@gmail.com.
 - [x] **U8.2** Vorher/Nachher im Verlauf dieses Umbaus festgehalten (Screenshots im Sitzungsprotokoll); der Vorher-Zustand ist über Commit c30c8bf jederzeit wieder herstellbar.
-- [ ] **U8.3** Search Console , **braucht Bastians Konto**: Die Property `wvm-it.tech` liegt nicht unter dem hier angemeldeten Google-Konto (…05@gmail.com), sondern vermutlich unter …69@gmail.com. Zu tun: einloggen, `sitemap.xml` neu einreichen, für `/` eine Indexierung beantragen und den Suchanfragen-Export für **F1** ziehen (nach Klicks *und* nach Impressionen sortiert).
+- [x] **U8.3** Search Console erledigt *(28.08.2026)*: Property `https://www.wvm-it.tech/` (URL-Präfix, verifiziert). Sitemap neu eingereicht , zuletzt gelesen jetzt 28.08. statt 16.07. **Alle sechs URLs zur Indexierung beantragt.** Live-Test der Startseite: „URL ist für Google verfügbar, Seite kann indexiert werden". Index 6 von 6, null Fehler, keine manuellen Maßnahmen. Nullmessung in `docs/seo/BASELINE.md` , damit ist auch SEO-Aufgabe F1 erledigt.
 - [x] **U8.4** Übergeben: `SEO-PLAN.md` trägt neun erledigte Aufgaben (F2, F4, F5, F6, F7, F11, G3, G4, G5), `docs/seo/KEYWORD-MAP.md` steht. Nächster Schritt dort ist **F1** (Nullmessung) und danach **F3** (echte Anschrift).
 
 ---
