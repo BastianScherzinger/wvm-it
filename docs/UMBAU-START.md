@@ -1,5 +1,9 @@
 # UMBAU START — Einstiegspunkt
 
+> **Veraltet.** Dieses Dokument beschreibt den Umbau vom 28.08.2026 (Design und
+> Conversion). Danach kam der **Relaunch**, der die Positionierung auf EDV/IT gedreht
+> und das Leistungs-Silo gebaut hat , der aktuelle Einstieg ist ****.
+>
 > **Der Umbau ist abgeschlossen und seit 28.08.2026 live.**
 > Alle sechs URLs sind bei Google zur Neu-Indexierung angemeldet und bei Bing, Yandex
 > und Seznam gemeldet; die Nullmessung steht in `docs/seo/BASELINE.md`.

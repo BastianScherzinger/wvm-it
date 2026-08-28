@@ -14,8 +14,10 @@
 > Neu-Indexierung angemeldet und per IndexNow bei Bing, Yandex und Seznam gemeldet.
 > Die Nullmessung liegt in `docs/seo/BASELINE.md` , **7 Klicks und 54 Impressionen in
 > drei Monaten, ausschließlich über den Markennamen.**
-> **Als Nächstes: F3** (echte Anschrift), danach **Block S-A** mit `/kosten/` als
-> erster Seite , das ist der Punkt, an dem aus Markenanfragen Leistungsanfragen werden.
+> **Stand 28.08.2026 (Relaunch):** Block S-A ist abgearbeitet , aus 2 rankbaren Seiten
+> sind 19 geworden (57 mit EN/RO). Der Schwerpunkt liegt jetzt auf EDV/IT statt auf
+> Webdesign; die Begründung steht in `docs/RELAUNCH-PLAN.md`. Offen bleiben F3
+> (echte Anschrift), F8, F12 und die Blöcke S-G und S-T.
 
 ---
 
@@ -115,21 +117,21 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 > **Ziel:** Aus 2 rankbaren Seiten werden ~12 Hauptseiten (×3 Sprachen).
 > **Wirkung:** 6–12 Wochen. Der größte Hebel des Plans.
 
-- [ ] **A1 — Seiten-Gerüst.** `landing/data/services.py` mit Slug, Titel, Keyword, Ab-Preis, FAQ-Bezug je Leistung — eine Datenquelle, aus der Seite, Schema, Sitemap und Navigation gespeist werden
-- [ ] **A2 — Hub `/leistungen/`** mit Einstieg in alle sieben Leistungsseiten
-- [ ] **A3 — `/leistungen/webseite-erstellen/`** — Hauptkeyword „Website erstellen lassen Österreich". Enthält die Gratis-Testseite als Einstieg
-- [ ] **A4 — `/leistungen/hosting-wartung/`** — „Website Hosting Wartung Österreich"
-- [ ] **A5 — `/leistungen/ki-automatisierung/`** — „KI Chatbot für Unternehmen", „WhatsApp Automatisierung" (wenig umkämpft, hohe Nachfrage)
-- [ ] **A6 — `/leistungen/seo-betreuung/`** — „SEO Betreuung Österreich"; hier gehört die Rümpelwerk-Fallstudie verlinkt, das ist der Beleg
-- [ ] **A7 — `/leistungen/smarthome-knx-loxone/`** — „Loxone Partner", „KNX Installation"; Marge hoch, Wettbewerb dünn
-- [ ] **A8 — `/leistungen/konferenztechnik/`** — „Konferenzraum Technik", „Veranstaltungstechnik"
-- [ ] **A9 — `/leistungen/edv-netzwerk/`** — „EDV Betreuung Firmen", „Netzwerk und Videoüberwachung"
-- [ ] **A10 — `/kosten/`** — beantwortet „Was kostet eine Website / ein Chatbot / SEO?" mit Tabelle aus `ANGEBOT_GROUPS` und Stand-Datum. Die stärkste Einzelseite für Suche **und** KI-Antworten
-- [ ] **A11 — `/referenzen/` + erste Fallstudie Rümpelwerk**: Ausgangslage, Umsetzung (Website, SEO/GEO, Ads), belegbares Ergebnis, Partnerhinweis PyStore. Nur, was wirklich stimmt
-- [ ] **A12 — `/kontakt/`** als eigene URL mit vollständigen NAP-Daten (Name, Adresse, Telefon) — identisch zu Impressum und Schema
-- [ ] **A13 — Interne Verlinkung.** Jede Leistungsseite verlinkt: Hub, `/kosten/`, eine Fallstudie, zwei verwandte Leistungen. Keine Seite ohne eingehende Links
-- [ ] **A14 — Sitemap dynamisch** aus `services.py` statt fester Liste; Breadcrumb-Schema auf allen Unterseiten
-- [ ] **A15 — Navigation und Footer** auf das Silo umstellen (Platzhalter aus U6.4 füllen)
+- [x] **A1 — Seiten-Gerüst.** *(28.08.2026)* `landing/leistungen.py` steht: Slug, Bereich, Icon, Anfrage-Quelle, Preis-ID, Vor-Ort-Kennzeichen, Querverweise und Sitemap-Priorität aus einer Quelle.
+- [x] **A2 — Hub `/leistungen/`** *(28.08.2026)* live, nach drei Bereichen gegliedert.
+- [x] **A3 — `/leistungen/webseite-erstellen/`** *(28.08.2026)* live.
+- [x] **A4 — `/leistungen/hosting-wartung/`** *(28.08.2026)* live.
+- [x] **A5 — `/leistungen/ki-automatisierung/`** *(28.08.2026)* live.
+- [x] **A6 — `/leistungen/seo-betreuung/`** *(28.08.2026)* live, mit Rümpelwerk als Beleg.
+- [x] **A7 — `/leistungen/smarthome-knx-loxone/`** *(28.08.2026)* live.
+- [x] **A8 — `/leistungen/konferenztechnik/`** *(28.08.2026)* live.
+- [x] **A9 — `/leistungen/edv-netzwerk/`** *(28.08.2026)* ersetzt durch **vier** eigene Seiten, weil EDV das Kerngeschäft ist: `edv-it-betreuung`, `server-datensicherung`, `netzwerk-wlan`, `it-sicherheit`. Dazu neu `google-ads`.
+- [x] **A10 — `/kosten/`** *(28.08.2026)* live, Tabelle aus `ANGEBOT_GROUPS` mit Stand-Datum.
+- [x] **A11 — `/referenzen/`** *(28.08.2026)* live, nur Rümpelwerk — keine Fallstudien-Unterseite, solange es nur eine Referenz gibt.
+- [x] **A12 — `/kontakt/`** *(28.08.2026)* live, adressbereit. Zusätzlich `/impressum/` und `/datenschutz/` als eigene URLs.
+- [x] **A13 — Interne Verlinkung.** *(28.08.2026)* Problemband, Leistungsblöcke, Hub, Footer und Querverweise; `pruefe_seite` prüft jeden internen Link auf 404.
+- [x] **A14 — Sitemap dynamisch** *(28.08.2026)* aus `views._seiten_pfade()`, gemeinsam mit IndexNow. Breadcrumb-Schema auf allen Unterseiten.
+- [x] **A15 — Navigation und Footer** *(28.08.2026)* auf das Silo umgestellt.
 - [ ] **A16 — Regionsfrage bewusst entscheiden.** Erst wenn die Leistungsseiten indexiert sind und die Search Console echte Ortsanfragen zeigt, wird über einzelne Regionsseiten entschieden — und dann nur mit echtem lokalem Inhalt (Referenzen, Anfahrt, Ansprechpartner vor Ort). **Keine Ortsseiten auf Vorrat**
 
 ## Block S-G — GEO (KI-Antwortmaschinen)

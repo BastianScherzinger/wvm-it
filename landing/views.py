@@ -46,6 +46,7 @@ _FALLBACK = {
     "land": "AT",
     "seit_jahr": "",
     "partner_status": "",
+    "profile": [],
     "cta_text": "Projekt anfragen",
     "cta_sub": "Unverbindlich · Antwort in 24 h",
     "hero_image": "",
@@ -1044,8 +1045,7 @@ def _structured_data(c, lang):
         "priceRange": f"ab {c.get('preis_ab', '350')} EUR",
         "currenciesAccepted": "EUR",
         "paymentAccepted": "Überweisung, Rechnung",
-        "founder": {"@type": "Person", "name": c.get("inhaber_name", "Florin Feier"),
-                    "jobTitle": "Inhaber"},
+        "founder": {"@id": f"{base}/#inhaber"},
         # Solange keine echte Anschrift vorliegt, steht hier nur das Land. Eine
         # erfundene oder halbe Adresse waere ein falsches Local-Signal; sobald
         # content.json 'adresse'/'plz'/'stadt' traegt, wird das Schema vollstaendig.
@@ -1058,10 +1058,14 @@ def _structured_data(c, lang):
         }.items() if v},
         "areaServed": area_served,
         "availableLanguage": ["de", "en", "ro"],
-        "knowsAbout": ["Smarthome", "Gebäudeautomation", "Loxone", "KNX",
-                       "Konferenztechnik", "Veranstaltungstechnik", "Bühnentechnik",
-                       "EDV", "Netzwerksicherheit", "Webentwicklung", "Hosting",
-                       "SEO", "GEO", "KI-Automatisierung"],
+        # Reihenfolge nach Gewicht: Das Kerngeschäft steht vorne, damit die
+        # Entität nicht als Webagentur mit IT-Nebengeschäft gelesen wird.
+        "knowsAbout": ["EDV-Betreuung", "IT-Betreuung", "Managed IT", "Fernwartung",
+                       "Serverwartung", "Datensicherung", "Netzwerk", "WLAN",
+                       "Firewall", "VPN", "IT-Sicherheit", "Microsoft 365",
+                       "Webentwicklung", "Hosting", "SEO", "GEO", "Google Ads",
+                       "KI-Automatisierung", "Smarthome", "Gebäudeautomation",
+                       "Loxone", "KNX", "Konferenztechnik", "Veranstaltungstechnik"],
         "contactPoint": {
             "@type": "ContactPoint", "contactType": "customer service",
             "telephone": c.get("telefon", ""), "email": c.get("email", ""),
@@ -1086,7 +1090,24 @@ def _structured_data(c, lang):
         "publisher": {"@id": f"{base}/#business"},
     }
 
-    graph = [business, website]
+    # Eigene Person-Entität statt eines eingebetteten Objekts: Nur so lässt sich
+    # der Inhaber von mehreren Stellen aus referenzieren (SEO-PLAN.md, G6).
+    # `sameAs` bleibt bewusst leer, solange keine echten Profile vorliegen —
+    # ein erfundener Link wäre schlimmer als gar keiner.
+    inhaber = {
+        "@type": "Person", "@id": f"{base}/#inhaber",
+        "name": c.get("inhaber_name", "Florin Feier"),
+        "jobTitle": "Inhaber",
+        "worksFor": {"@id": f"{base}/#business"},
+        "knowsLanguage": ["de", "en", "ro"],
+    }
+    if c.get("founder_image"):
+        inhaber["image"] = f"{base}{c['founder_image']}"
+    profile = [u.strip() for u in (c.get("profile") or []) if u and u.strip()]
+    if profile:
+        business["sameAs"] = profile
+
+    graph = [business, inhaber, website]
 
     faq = pack.get("faq", {})
     faq_items = faq.get("items", [])

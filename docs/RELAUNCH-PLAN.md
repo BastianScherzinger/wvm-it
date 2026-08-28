@@ -5,6 +5,11 @@
 > Wer ein Problem googelt, soll hier die Lösung finden. SEO überregional für
 > **ganz Österreich und Deutschland**, nicht lokal. Seriös, nicht „KI-generiert".
 >
+> **Stand 28.08.2026: Phasen 0 bis 6 sind umgesetzt.** Elf Leistungsseiten, Hub,
+> Kosten-, Referenzen-, Kontakt-, Impressums- und Datenschutzseite stehen in DE, EN
+> und RO — 57 URLs, `pruefe_seite` grün. Offen ist nur noch der Deploy (Phase 7)
+> und die Bestätigung der geschätzten Preise durch den Inhaber (§7).
+>
 > **Vorgänger:** `UMBAU-PLAN.md` (Design/Conversion, abgeschlossen) ·
 > `SEO-PLAN.md` (Blöcke S-F bis S-T, Block S-A wird hier ausgeführt und neu gewichtet)
 
@@ -103,30 +108,30 @@ mindestens zwei eingehende interne Links besitzt und genau ein Hauptkeyword trä
 ## 3. Phasen
 
 ### Phase 0 — Fundament (Daten, Preise, Felder)
-- [ ] **R0.1** Neue Preisgruppe `it` in `ANGEBOT_GROUPS` (EDV/IT) + Google-Ads-Positionen
-- [ ] **R0.2** Neues Preisfeld `std` (Stundensatz) durch `_make_price_label`, `_startpreise`,
+- [x] **R0.1** Neue Preisgruppe `it` in `ANGEBOT_GROUPS` (EDV/IT) + Google-Ads-Positionen
+- [x] **R0.2** Neues Preisfeld `std` (Stundensatz) durch `_make_price_label`, `_startpreise`,
       `_angebot_summary`, `_structured_data` und `pruefe_seite` durchziehen
-- [ ] **R0.3** `catalog_items` für alle neuen Positionen in DE/EN/RO
-- [ ] **R0.4** `content.json`: `seit_jahr`, `partner_status`, `adresse`-Slots, neue `seo_title`/`seo_desc`
-- [ ] **R0.5** `pruefe_seite` grün halten
+- [x] **R0.3** `catalog_items` für alle neuen Positionen in DE/EN/RO
+- [x] **R0.4** `content.json`: `seit_jahr`, `partner_status`, `adresse`-Slots, neue `seo_title`/`seo_desc`
+- [x] **R0.5** `pruefe_seite` grün halten
 
 ### Phase 1 — Startseite, oberes Drittel
-- [ ] **R1.1** Hero neu: Eyebrow, H1, Subline, Vertrauenszeile (DE/EN/RO)
-- [ ] **R1.2** Problemband „Das kennen Sie?" — sechs echte Probleme, jedes verlinkt auf seine Lösung
-- [ ] **R1.3** Florin nach oben: Gesicht + Zitat direkt unter dem Hero statt weit unten
-- [ ] **R1.4** Regionssiegel AT/DE (Flaggen) als ehrliche Reichweitenangabe, nicht als Fake-Zertifikat
-- [ ] **R1.5** Erfundene Kundenstimmen entfernen, Abschnitt durch belegbare Fakten ersetzen
-- [ ] **R1.6** Leistungsblöcke neu gewichten: EDV/IT zuerst, Ads als eigener Block
-- [ ] **R1.7** FAQ auf EDV umgewichten (heute 10 Fragen, überwiegend Website)
-- [ ] **R1.8** Titel/Description der Startseite auf EDV drehen
+- [x] **R1.1** Hero neu: Eyebrow, H1, Subline, Vertrauenszeile (DE/EN/RO)
+- [x] **R1.2** Problemband „Das kennen Sie?" — sechs echte Probleme, jedes verlinkt auf seine Lösung
+- [x] **R1.3** Florin nach oben: Gesicht + Zitat direkt unter dem Hero statt weit unten
+- [x] **R1.4** Regionssiegel AT/DE (Flaggen) als ehrliche Reichweitenangabe, nicht als Fake-Zertifikat
+- [x] **R1.5** Erfundene Kundenstimmen entfernen, Abschnitt durch belegbare Fakten ersetzen
+- [x] **R1.6** Leistungsblöcke neu gewichten: EDV/IT zuerst, Ads als eigener Block
+- [x] **R1.7** FAQ auf EDV umgewichten (heute 10 Fragen, überwiegend Website)
+- [x] **R1.8** Titel/Description der Startseite auf EDV drehen
 
 ### Phase 2 — Seiten-Infrastruktur
-- [ ] **R2.1** `landing/data/leistungen.py` — eine Datenquelle für Slug, Keyword, Titel, Preis, FAQ, Querverweise
-- [ ] **R2.2** Generisches `templates/leistung.html` + View + URLs (mit `/en/`, `/ro/`)
-- [ ] **R2.3** Hub `/leistungen/`
-- [ ] **R2.4** Sitemap dynamisch aus der Datenquelle; Breadcrumb- und `Service`-Schema je Seite
-- [ ] **R2.5** Navigation und Footer auf das Silo umstellen
-- [ ] **R2.6** `pruefe_seite` auf alle Seiten erweitern: interne Links, 404-Prüfung, Sitemap-Abgleich
+- [x] **R2.1** `landing/data/leistungen.py` — eine Datenquelle für Slug, Keyword, Titel, Preis, FAQ, Querverweise
+- [x] **R2.2** Generisches `templates/leistung.html` + View + URLs (mit `/en/`, `/ro/`)
+- [x] **R2.3** Hub `/leistungen/`
+- [x] **R2.4** Sitemap dynamisch aus der Datenquelle; Breadcrumb- und `Service`-Schema je Seite
+- [x] **R2.5** Navigation und Footer auf das Silo umstellen
+- [x] **R2.6** `pruefe_seite` auf alle Seiten erweitern: interne Links, 404-Prüfung, Sitemap-Abgleich
 
 ### Phase 3 — Inhalte der elf Leistungsseiten (DE)
 Reihenfolge nach Ertrag: EDV → Netzwerk → Server/Backup → IT-Sicherheit → Ads → SEO →
@@ -134,20 +139,20 @@ KI → Website → Hosting → Smarthome → Konferenztechnik.
 Je Seite: Antwort-zuerst-Absatz, Problemliste, Leistungsumfang, Ablauf, Preis, 3–5 FAQ, CTA.
 
 ### Phase 4 — Kosten, Referenzen, Kontakt
-- [ ] **R4.1** `/kosten/` — vollständige Tabelle, Stand-Datum, „Was kostet …"-Fragen beantwortet
-- [ ] **R4.2** `/referenzen/` + `/referenzen/ruempelwerk/` (nur Belegbares)
-- [ ] **R4.3** `/kontakt/` mit allen Kontaktwegen, adressbereit
+- [x] **R4.1** `/kosten/` — vollständige Tabelle, Stand-Datum, „Was kostet …"-Fragen beantwortet
+- [x] **R4.2** `/referenzen/` + `/referenzen/ruempelwerk/` (nur Belegbares)
+- [x] **R4.3** `/kontakt/` mit allen Kontaktwegen, adressbereit
 
 ### Phase 5 — Englisch und Rumänisch
 Alle neuen Seiten und Schlüssel in `en.py` und `ro.py`. Keine Seite gilt als fertig,
 solange eine Sprache erbt.
 
 ### Phase 6 — GEO und Technik
-- [ ] **R6.1** `llms.txt` neu (EDV zuerst) + `llms-full.txt`
-- [ ] **R6.2** `.well-known/security.txt`
-- [ ] **R6.3** FAQPage je Unterseite, `Service`+`Offer`+`areaServed` je Leistung
-- [ ] **R6.4** Prüfen, dass kein rankingrelevanter Inhalt an JavaScript hängt (SEO-Plan F12)
-- [ ] **R6.5** IndexNow nach dem Deploy, Search Console von Hand
+- [x] **R6.1** `llms.txt` neu (EDV zuerst) + `llms-full.txt`
+- [x] **R6.2** `.well-known/security.txt`
+- [x] **R6.3** FAQPage je Unterseite, `Service`+`Offer`+`areaServed` je Leistung
+- [x] **R6.4** Prüfen, dass kein rankingrelevanter Inhalt an JavaScript hängt (SEO-Plan F12)
+- [ ] **R6.5** IndexNow nach dem Deploy, Search Console von Hand *(erst nach dem Deploy möglich)*
 
 ### Phase 7 — Design, Prüfung, Deploy
 - [ ] **R7.1** Design-Durchgang über alle neuen Bausteine (`design-pro`)
@@ -210,9 +215,40 @@ kaufbereite Anfragen bei dünnem Wettbewerb:
 
 ## 7. Preise, die Florin gegenzeichnen muss
 
-Geschätzt nach marktüblichen Profi-Sätzen in AT/DE (E4). Bis zur Bestätigung gilt jede
-Zahl als vorläufig. Die verbindliche Liste steht nach Phase 0 in `ANGEBOT_GROUPS` und
-wird hier gespiegelt.
+Geschätzt nach marktüblichen Profi-Sätzen in AT/DE (E4). **Bis zur Bestätigung gilt jede
+Zahl als vorläufig.** Sie stehen alle in `landing/views.py::ANGEBOT_GROUPS`; eine Änderung
+dort zieht Seiten, Tabelle, Schema und `llms.txt` gleichzeitig nach.
+
+| Position | Vorschlag | Einheit |
+|---|---|---|
+| Laufende IT-Betreuung je Arbeitsplatz | **29 €** | pro Monat |
+| IT-Support und Fernwartung | **95 €** | pro Stunde |
+| Datensicherung, täglich geprüft | **49 €** | pro Monat |
+| Server-Betreuung und Überwachung | **89 €** | pro Monat und Server |
+| Microsoft 365 einrichten und betreuen | **290 €** | einmalig |
+| Neuen Arbeitsplatz einrichten | **190 €** | einmalig |
+| Netzwerk und WLAN einrichten | **890 €** | ab, einmalig |
+| Firewall und VPN einrichten | **690 €** | ab, einmalig |
+| IT-Sicherheitscheck | **490 €** | einmalig, mit Bericht |
+| Vor-Ort-Einsatz | **120 €** | pro Stunde zzgl. Anfahrt |
+| Google Ads einrichten | **490 €** | einmalig |
+| Google Ads betreuen | **199 €** | pro Monat zzgl. Budget |
+
+Die übrigen Preise (Webseiten, Hosting, KI, SEO) sind unverändert und bereits bestätigt.
+
+**Wenn eine Zahl nicht stimmt:** in `ANGEBOT_GROUPS` ändern, `python manage.py pruefe_seite`
+laufen lassen — der Befehl meldet jede Stelle, an der noch die alte Zahl im Text steht.
+
+## 7b. Was noch offen ist
+
+| Punkt | Warum es offen ist |
+|---|---|
+| **Anschrift** | Auf Wunsch später (Antwort auf Frage 1). Bis dahin kein Ortsanspruch im Schema, kein Unternehmensprofil. Alle Stellen ziehen aus `content.json` → `adresse`/`plz`/`stadt`; ein Eintrag genügt. **Hinweis bleibt: Ein Impressum ohne ladungsfähige Anschrift ist in Österreich abmahnfähig.** |
+| **Gründungsjahr** | Feld `seit_jahr` in `content.json` ist angelegt und rendert erst, wenn es gefüllt ist. |
+| **Loxone-/KNX-Partnerstatus** | Feld `partner_status` ebenso. Erst eintragen, wenn der Status wirklich besteht — welcher genau (Loxone Silver/Gold, KNX-Partner) muss dabeistehen. |
+| **Profile für `sameAs`** | Feld `profile` (Liste) in `content.json`. Sobald LinkedIn oder ein Google-Unternehmensprofil existiert, dort eintragen — das ist das stärkste Entitäts-Signal (SEO-PLAN G6). |
+| **Referenzbilder** | Die drei Bilder unter „Ein Eindruck unserer Arbeit" auf der Startseite: Wenn das keine eigenen Projektfotos sind, gehört die Überschrift geändert oder der Abschnitt entfernt. |
+| **Mailversand** | Weiterhin ungeprüft, ob Anfragen wirklich im Postfach ankommen. |
 
 ---
 

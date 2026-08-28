@@ -1,41 +1,55 @@
 # WVM-IT — Arbeitsanweisung
 
-Premium-Landingpage für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway,
-dreisprachig DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
+Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
+DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: Umbau fertig, SEO ist dran
+## Stand: Relaunch gebaut, Deploy offen
 
-Die Startseite wurde am 28.08.2026 zur Conversion-Seite umgebaut und ist live
-(47 von 50 Aufgaben, `docs/UMBAU-START.md` hat den Endstand). **Der nächste Schritt
-ist `docs/SEO-PLAN.md`, Aufgabe F1.**
+Am 28.08.2026 wurde die Positionierung gedreht: **Kern ist die EDV-/IT-Betreuung für
+Betriebe ohne eigene IT-Abteilung**, überwiegend per Fernwartung in ganz Österreich und
+Deutschland. Webseiten, SEO, Google Ads und KI sind das zweite Standbein, Technik vor
+Ort das dritte. Aus 2 rankbaren Seiten wurden 19 (57 mit EN/RO).
 
-- `docs/UMBAU-START.md` , Stand, offene Punkte, was auf der Seite steht
-- `docs/UMBAU-PLAN.md` , Design-System, Seitenbauplan, Formular-Architektur
-- `docs/SEO-PLAN.md` , vier Blöcke S-F bis S-T mit Stand
-- `docs/seo/KEYWORD-MAP.md` , ein Keyword, eine Zielseite
+**Einstieg: `docs/RELAUNCH-PLAN.md`** — Befund, die sieben Entscheidungen, Phasenstand,
+die Preisliste zum Gegenzeichnen (§7) und was noch offen ist (§7b).
 
-**Vor jedem Deploy:** `python manage.py pruefe_seite` (Sprachpakete, Preise,
-Seiten-Technik, Formulare , Rückgabewert 1 bei Fehlern).
-**Nach jedem Deploy mit neuen oder geänderten URLs:** `python manage.py indexnow`
-(meldet Bing/Yandex/Seznam; Google braucht die Search Console, siehe `docs/INDEXIERUNG.md`).
+- `docs/RELAUNCH-PLAN.md` — der aktuelle Plan, hier zuerst nachsehen
+- `docs/SEO-PLAN.md` — Blöcke S-F bis S-T; S-A ist abgearbeitet, S-G und S-T offen
+- `docs/seo/KEYWORD-MAP.md` — ein Keyword, eine Zielseite (EDV zuerst)
+- `docs/seo/BASELINE.md` — Nullmessung, nächste Messung Ende September
+- `docs/UMBAU-PLAN.md` / `docs/UMBAU-START.md` — der vorige Umbau (Design, Conversion)
 
-Skills: `redesign-existing-projects`, `design-pro`, für SEO `seo-audit` und `seo-geo`.
+**Vor jedem Deploy:** `python manage.py pruefe_seite` — prüft 57 URLs auf `<h1>`,
+Titel-/Description-Länge, JSON-LD, Alt-Texte, hreflang, jeden internen Link, jeden Preis
+auf jeder Seite, die Formulare und gleiche Listenlängen in allen drei Sprachpaketen.
+Rückgabewert 1 bei Fehlern.
+**Nach jedem Deploy mit neuen URLs:** `python manage.py indexnow` (Bing/Yandex/Seznam;
+Google braucht die Search Console, siehe `docs/INDEXIERUNG.md`).
+
+Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
 
 ## Was beim Arbeiten heil bleiben muss
 
 | Bereich | Regel |
 |---|---|
-| Preise | `landing/views.py::ANGEBOT_GROUPS` ist die **einzige** Preisquelle — auch für Schema, `llms.txt` und alle Texte |
+| Preise | `landing/views.py::ANGEBOT_GROUPS` ist die **einzige** Preisquelle — auch für Schema, Preistabelle, `llms.txt` und jeden Fließtext. Felder: `once`, `mtl`, `yr`, `std` (Stundensatz), `anfrage` |
+| Leistungen | `landing/leistungen.py` ist die einzige Strukturquelle: Slug, Bereich, Icon, Anfrage-Quelle, Preis-ID, Vor-Ort-Kennzeichen, Querverweise, Sitemap-Priorität. Texte in `landing/i18n/seiten_{de,en,ro}.py` |
+| URLs | Sitemap und IndexNow ziehen beide aus `views._seiten_pfade()`. Wegfallende URLs nur mit 301 |
 | JARVIS-Pipeline | `anfrage_absenden` → `supa.enqueue_job` → `warten` → `bau_status` nicht verändern |
-| Sprachen | Keine Texte direkt ins Template. Alles über `t.*` aus `landing/i18n/{de,en,ro}.py`; alle drei Pakete brauchen dieselben Schlüssel |
-| URLs | `/` und `/angebot/` (je + `/en/`, `/ro/`) bleiben bestehen; Wegfall nur mit 301 |
+| Sprachen | Keine Texte direkt ins Template. Alles über `t.*`; **alle drei Pakete vollständig** — aktuell erbt kein einziger Schlüssel |
 | Cookies | Spline/3D lädt erst nach Einwilligung. Keine Tracking-Skripte ohne neue Einwilligung |
 | Recht | Jede neue Datenverarbeitung muss in `content.json` → Datenschutz stehen |
+| Wahrheit | Keine erfundenen Bewertungen, Zertifikate, Partnerlevel oder Kundenzahlen. `seit_jahr`, `partner_status` und `profile` in `content.json` rendern nur, wenn sie gefüllt sind |
 
 ## Aufbau
 
-- `content.json` — Marke, Kontakt, Rechtstexte (mit Fallback in `views.py`)
-- `landing/views.py` — alle Views, Preiskatalog, Schema (`_structured_data`), robots/llms/sitemap
-- `landing/i18n/` — Sprachpakete, `de.py` ist der Master
-- `templates/index.html` — Startseite · `templates/angebot.html` — Konfigurator
-- `static/css/style.css` — Hauptstil (Tokens ziehen in `tokens.css` um, siehe Umbau-Phase 1)
+- `content.json` — Marke, Kontakt, Rechtstexte, Anschrift-Slots (mit Fallback in `views.py`)
+- `landing/views.py` — alle Views, Preiskatalog, Problemband, Schema, robots/llms/sitemap
+- `landing/leistungen.py` — Struktur des Leistungs-Silos
+- `landing/context.py` — Footer-Navigation ins Silo
+- `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
+- `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
+- `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·
+  `kontakt.html` · `recht.html` — die Unterseiten
+- `templates/anfrage_karte.html` — Anfrageformular der Unterseiten (ein Endpunkt, Honeypot)
+- `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang

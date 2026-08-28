@@ -220,6 +220,7 @@
         {% include 'leistung_block.html' with bid='hosting' slug='hosting-wartung' icon='server' titel=t.lb.hosting_h lead=t.lb.hosting_lead p1=t.lb.hosting_p1 p2=t.lb.hosting_p2 p3=t.lb.hosting_p3 preis=startpreise.infra ph=t.lb.hosting_ph %}
         {% include 'leistung_block.html' with bid='ki' slug='ki-automatisierung' icon='ai' titel=t.lb.ki_h lead=t.lb.ki_lead p1=t.lb.ki_p1 p2=t.lb.ki_p2 p3=t.lb.ki_p3 preis=startpreise.ki ph=t.lb.ki_ph %}
       </div>
+      <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.zurueck|safe }}</a></p>
     </div>
   </section>
   <!-- ── FÜR FIRMEN: Technik vor Ort (kürzer gehalten, ein gemeinsames Formular) ── -->

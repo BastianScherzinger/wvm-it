@@ -2,111 +2,120 @@
 
 > **Regel:** Jedes Keyword hat **genau eine** Zielseite. Kommen zwei in Frage, wird
 > entschieden, nicht offengelassen. Das ist die Absicherung gegen Kannibalisierung,
-> sobald Block S-A die Seitenzahl vervielfacht.
+> jetzt wo aus 2 rankbaren Seiten 19 geworden sind.
 >
-> **Angelegt:** 28.08.2026 · **Datenbasis:** noch keine (Search-Console-Export steht aus,
-> siehe Aufgabe F1). Die Zuordnung unten ist die geplante Struktur; nach dem ersten
-> Export wird sie gegen echte Suchanfragen nachgezogen (T9).
+> **Angelegt:** 28.08.2026 · **Neu gewichtet:** 28.08.2026 (Relaunch, EDV zuerst)
+> **Datenbasis:** noch keine echten Suchanfragen. Die Nullmessung (`BASELINE.md`) zeigt
+> ausschließlich Markensuchen. Nach dem nächsten Search-Console-Export (Ende September)
+> wird diese Tabelle gegen echte Anfragen nachgezogen (SEO-PLAN T9).
+>
+> **Stand der Zielseiten:** Alle unten genannten URLs sind gebaut und live.
 
 ---
 
 ## Zuordnungsregeln (in dieser Reihenfolge anwenden)
 
 1. **Marke** (`wvm-it`, `wvm it`, `florin feier`) → Startseite `/`
-2. **Kostenfrage ohne Ort** („was kostet eine website") → `/kosten/`
+2. **Kostenfrage ohne Ort** („was kostet it betreuung") → `/kosten/`
 3. **Leistung ohne Ort** → die zugehörige Leistungsseite
-4. **Leistung + Ort** → die Leistungsseite, **keine** eigene Ortsseite (siehe A16)
-5. **Werkzeug-Suche** („website baukasten", „website testen") → `/` (Hero-Werkzeug)
+4. **Leistung + Ort** → die Leistungsseite, **keine** eigene Ortsseite (SEO-PLAN A16)
+5. **Werkzeug-Suche** („website testen", „beispielseite") → `/` (Hero-Werkzeug)
 6. **Ort ohne Leistung** → Startseite, solange es keine Regionsseiten gibt
 7. **Kein Bezug zum Angebot** → keine Zielseite, nicht optimieren
 
 ---
 
-## Startliste
+## EDV und IT — der neue Schwerpunkt
 
-Bewertet nach **Kaufabsicht** (K = kauft bald, I = informiert sich) und Wettbewerb.
-Zuerst arbeiten wir die Zeilen mit K und niedrigem Wettbewerb ab — dort kommen die
-ersten Anfragen her.
+Kaufbereite Anfragen bei dünnem Wettbewerb. **Hier zuerst arbeiten.**
 
-### Website (höchstes Volumen, höchster Wettbewerb)
+| Keyword | Absicht | Wettbewerb | Zielseite |
+|---|---|---|---|
+| edv betreuung firma | K | niedrig | `/leistungen/edv-it-betreuung/` |
+| it betreuung kleine unternehmen | K | niedrig | `/leistungen/edv-it-betreuung/` |
+| externe it abteilung | K | **niedrig** | `/leistungen/edv-it-betreuung/` |
+| it dienstleister österreich | K | mittel | `/leistungen/edv-it-betreuung/` |
+| it support fernwartung firma | K | **sehr niedrig** | `/leistungen/edv-it-betreuung/` |
+| edv dienstleister ohne eigene it | K | **sehr niedrig** | `/leistungen/edv-it-betreuung/` |
+| was kostet it betreuung | I→K | niedrig | `/kosten/` |
+| it betreuung preise pro arbeitsplatz | K | **niedrig** | `/kosten/` |
+| serverwartung firma | K | niedrig | `/leistungen/server-datensicherung/` |
+| datensicherung unternehmen | K | mittel | `/leistungen/server-datensicherung/` |
+| backup lösung kleine firma | K | niedrig | `/leistungen/server-datensicherung/` |
+| server überwachung monitoring firma | K | **niedrig** | `/leistungen/server-datensicherung/` |
+| wlan ausleuchtung firma | K | **sehr niedrig** | `/leistungen/netzwerk-wlan/` |
+| firewall vpn einrichten firma | K | niedrig | `/leistungen/netzwerk-wlan/` |
+| netzwerk installieren betrieb | K | niedrig | `/leistungen/netzwerk-wlan/` |
+| it sicherheitscheck kmu | K | **niedrig** | `/leistungen/it-sicherheit/` |
+| it sicherheit kleine unternehmen | I→K | mittel | `/leistungen/it-sicherheit/` |
+
+## Sichtbarkeit — Web, SEO, Ads, KI
 
 | Keyword | Absicht | Wettbewerb | Zielseite |
 |---|---|---|---|
 | website erstellen lassen | K | hoch | `/leistungen/webseite-erstellen/` |
 | website erstellen lassen österreich | K | mittel | `/leistungen/webseite-erstellen/` |
-| homepage erstellen lassen kosten | K | mittel | `/kosten/` |
-| was kostet eine website | I→K | mittel | `/kosten/` |
 | webdesign für kleine unternehmen | K | mittel | `/leistungen/webseite-erstellen/` |
 | günstige website für handwerker | K | **niedrig** | `/leistungen/webseite-erstellen/` |
-| website ohne monatliche kosten | K | niedrig | `/kosten/` |
+| homepage erstellen lassen kosten | K | mittel | `/kosten/` |
+| was kostet eine website | I→K | mittel | `/kosten/` |
 | kostenlose website vorschau | K | **sehr niedrig** | `/` (Hero-Werkzeug) |
-
-### Hosting und Betreuung (kleine Volumina, aber wiederkehrender Umsatz)
-
-| Keyword | Absicht | Wettbewerb | Zielseite |
-|---|---|---|---|
-| website wartung kosten | K | niedrig | `/leistungen/hosting-wartung/` |
-| webseite betreuen lassen | K | **niedrig** | `/leistungen/hosting-wartung/` |
-| hosting österreich kmu | K | mittel | `/leistungen/hosting-wartung/` |
-| website umziehen lassen | K | **niedrig** | `/leistungen/hosting-wartung/` |
-
-### KI und Automatisierung (wachsend, kaum umkämpft — hier zuerst investieren)
-
-| Keyword | Absicht | Wettbewerb | Zielseite |
-|---|---|---|---|
-| ki chatbot für unternehmen | K | mittel | `/leistungen/ki-automatisierung/` |
-| whatsapp automatisierung firma | K | **niedrig** | `/leistungen/ki-automatisierung/` |
-| terminbuchung automatisieren | K | **niedrig** | `/leistungen/ki-automatisierung/` |
-| chatbot website einbauen kosten | K | niedrig | `/kosten/` |
-| ki für kleine unternehmen | I | mittel | `/leistungen/ki-automatisierung/` |
-
-### SEO (Beleg vorhanden: Rümpelwerk)
-
-| Keyword | Absicht | Wettbewerb | Zielseite |
-|---|---|---|---|
 | seo betreuung österreich | K | mittel | `/leistungen/seo-betreuung/` |
 | seo agentur kleine unternehmen | K | mittel | `/leistungen/seo-betreuung/` |
 | bei chatgpt gefunden werden | I→K | **sehr niedrig** | `/leistungen/seo-betreuung/` |
 | geo optimierung website | I | **sehr niedrig** | `/leistungen/seo-betreuung/` |
+| google ads betreuung österreich | K | mittel | `/leistungen/google-ads/` |
+| google ads agentur kleine firma | K | mittel | `/leistungen/google-ads/` |
+| google ads einrichten lassen kosten | K | niedrig | `/leistungen/google-ads/` |
+| website wartung kosten | K | niedrig | `/leistungen/hosting-wartung/` |
+| webseite betreuen lassen | K | **niedrig** | `/leistungen/hosting-wartung/` |
+| website umziehen lassen | K | **niedrig** | `/leistungen/hosting-wartung/` |
+| ki chatbot für unternehmen | K | mittel | `/leistungen/ki-automatisierung/` |
+| whatsapp automatisierung firma | K | **niedrig** | `/leistungen/ki-automatisierung/` |
+| terminbuchung automatisieren | K | **niedrig** | `/leistungen/ki-automatisierung/` |
+| chatbot website einbauen kosten | K | niedrig | `/kosten/` |
 
-### Technik vor Ort (höchste Marge, dünner Wettbewerb)
+## Technik vor Ort
 
 | Keyword | Absicht | Wettbewerb | Zielseite |
 |---|---|---|---|
 | loxone partner österreich | K | niedrig | `/leistungen/smarthome-knx-loxone/` |
 | knx installation firma | K | niedrig | `/leistungen/smarthome-knx-loxone/` |
 | smarthome nachrüsten kosten | I→K | mittel | `/leistungen/smarthome-knx-loxone/` |
+| loxone oder knx | I | niedrig | `/leistungen/smarthome-knx-loxone/` |
 | konferenzraum technik ausstatten | K | **niedrig** | `/leistungen/konferenztechnik/` |
-| veranstaltungstechnik mieten firma | K | mittel | `/leistungen/konferenztechnik/` |
-| edv betreuung firma österreich | K | niedrig | `/leistungen/edv-netzwerk/` |
-| videoüberwachung firma installieren | K | mittel | `/leistungen/edv-netzwerk/` |
+| veranstaltungstechnik firma | K | mittel | `/leistungen/konferenztechnik/` |
+| besprechungsraum videokonferenz einrichten | K | **niedrig** | `/leistungen/konferenztechnik/` |
 
 ---
 
 ## Was zuerst?
 
-Nach Aufwand-pro-Anfrage geordnet — das ist die Reihenfolge, in der Block S-A
-abgearbeitet werden sollte:
+Nach Aufwand pro erwarteter Anfrage. Die Seiten stehen alle; ab jetzt geht es um
+Inhalte, die nachwachsen, und um Belege:
 
-1. **`/kosten/`** — beantwortet die häufigste Frage überhaupt, braucht keinen neuen
-   Inhalt (die Tabelle steht schon auf der Startseite) und ist zugleich das stärkste
-   GEO-Element. Höchster Ertrag pro Stunde.
-2. **`/leistungen/ki-automatisierung/`** — echte Nachfrage, kaum jemand optimiert dafür.
-3. **`/leistungen/webseite-erstellen/`** — höchstes Volumen, dafür längerer Atem;
-   die kostenlose Testseite ist hier das Argument, das kein Mitbewerber hat.
-4. **`/leistungen/smarthome-knx-loxone/`** — wenig Wettbewerb, hohe Auftragswerte.
-5. Rest nach Kapazität.
+1. **`/leistungen/edv-it-betreuung/`** stärken — das ist die Seite, die den Umsatz
+   trägt. Zwei bis drei Beiträge im `/aktuelles/`-Bereich, die darauf verlinken.
+2. **`/kosten/`** aktuell halten. Preisänderungen laufen über `ANGEBOT_GROUPS`,
+   das Stand-Datum erzeugt sich selbst.
+3. **`/leistungen/google-ads/`** und **`/leistungen/seo-betreuung/`** mit der
+   Rümpelwerk-Fallstudie verknüpfen, sobald belastbare Zahlen vorliegen.
+4. **Ortsanfragen abwarten** (SEO-PLAN A16): Erst wenn die Search Console echte
+   Ortssuchen zeigt, wird über Regionsseiten entschieden — und dann nur mit echtem
+   lokalem Inhalt.
 
 ## Fragen, für die es eine Antwort auf der Seite geben muss (GEO)
 
-Diese Formulierungen tippen Menschen in ChatGPT und Perplexity. Jede muss auf der
-Zielseite in den ersten zwei Sätzen beantwortet sein (Regel G1):
+Jede muss auf der Zielseite in den ersten zwei Sätzen beantwortet sein (Regel G1).
+Stand 28.08.2026: alle beantwortet.
 
-- „Was kostet eine Website für einen kleinen Betrieb in Österreich?"
-- „Wer baut Websites für Handwerksbetriebe in Österreich?"
-- „Was kostet ein KI-Chatbot für eine Firma?"
-- „Wie lange dauert es, eine Website erstellen zu lassen?"
-- „Was kostet die laufende Betreuung einer Website?"
-- „Wer installiert Loxone oder KNX in Österreich?"
-
-Stand 28.08.2026: Alle sechs sind bereits im FAQ der Startseite beantwortet.
+| Frage | Antwort steht auf |
+|---|---|
+| „Was kostet IT-Betreuung für eine kleine Firma?" | `/kosten/`, `/leistungen/edv-it-betreuung/` |
+| „Wer übernimmt die EDV für Betriebe ohne IT-Abteilung?" | `/leistungen/edv-it-betreuung/` |
+| „Wie funktioniert IT-Betreuung per Fernwartung?" | `/leistungen/edv-it-betreuung/` |
+| „Was kostet eine Website für einen kleinen Betrieb in Österreich?" | `/kosten/`, `/leistungen/webseite-erstellen/` |
+| „Was kostet ein KI-Chatbot für eine Firma?" | `/leistungen/ki-automatisierung/` |
+| „Wie oft sollte ein Backup getestet werden?" | `/leistungen/server-datensicherung/` |
+| „Loxone oder KNX?" | `/leistungen/smarthome-knx-loxone/` |
+| „Was kostet Google-Ads-Betreuung?" | `/leistungen/google-ads/` |
