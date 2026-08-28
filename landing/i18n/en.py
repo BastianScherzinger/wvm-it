@@ -6,9 +6,11 @@ here under the key "seiten".
 """
 
 from .seiten_en import SEITEN
+from .regionen_en import REGIONEN
 
 PACK = {
     "seiten": SEITEN,
+    "regionen": REGIONEN,
     "meta": {
         "html_lang": "en",
         "locale": "en_US",
@@ -413,6 +415,20 @@ PACK = {
         "partner_label": "Partner status",
     },
     "seite": {
+        "regionen_titel": "Regions",
+        "regionen_h1": "Where we come in person — and where we work remotely",
+        "regionen_meta_titel": "IT services in Upper Austria and Salzburg | WVM-IT",
+        "regionen_meta_desc": "On-site IT services in Vöcklabruck, at Lake Atter, in Gmunden, Bad Ischl, Wels, Salzburg and Linz — remote maintenance across Austria and Germany.",
+        "regionen_kurz": "Our base is in Lenzing in the Vöcklabruck district. For work that needs someone on site we travel within roughly an hour. Everything that can be done remotely we handle across Austria and Germany.",
+        "regionen_intro": "These pages exist for the places we genuinely drive to — with the real distance and what typically comes up there on site. Everything else needs no local page: remote maintenance, monitoring, backups, websites, SEO and ads are independent of location.",
+        "regionen_fern": "Your town is not listed? For ongoing support that makes no difference — it runs by secured remote maintenance across Austria and Germany. Distance only matters for work that needs someone there in person.",
+        "alle_leistungen": "See all services",
+        "rg_entfernung": "Distance from Lenzing",
+        "rg_fahrzeit": "Driving time",
+        "rg_bezirk": "Region",
+        "rg_vor_ort_hinweis": "On-site appointments are arranged in advance, with a price. On-site work is charged at 120 € per hour plus travel.",
+        "rg_schwerpunkt": "Most asked for in this region",
+        "rg_weitere": "Other places in the catchment area",
         "brotkrume": "You are here",
         "start": "Home",
         "leistungen": "Services",

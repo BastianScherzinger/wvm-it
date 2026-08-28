@@ -1684,3 +1684,55 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .lb-mehr .ic-arrow{width:16px;height:16px;transition:transform .2s var(--ease)}
 .lb-mehr:hover{border-color:var(--accent)}
 .lb-mehr:hover .ic-arrow{transform:translateX(3px)}
+
+/* ── Regionsseiten (docs/AUSBAU-2026-08.md, P6) ───────────────────────────────
+   Die Zahlen oben sind der Kern dieser Seiten: Entfernung und Fahrzeit sind das,
+   was ein Anrufer zuerst wissen will. Deshalb stehen sie als eigene Faktenzeile
+   im dunklen Kopf und nicht irgendwo im Fliesstext. */
+.rg-fakten{display:flex;flex-wrap:wrap;gap:10px 34px;margin:22px 0 0;padding:0}
+.rg-fakten div{margin:0}
+.rg-fakten dt{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 3px}
+.rg-fakten dd{margin:0;font-size:20px;font-weight:650;color:var(--ink)}
+
+/* Zwei Karten nebeneinander: "wir kommen" gegen "laeuft ohne Anfahrt". Diese
+   Gegenueberstellung IST der Inhalt einer Regionsseite , sie beantwortet die
+   Frage, die eine reine Ortsseite offen laesst. */
+.rg-zwei{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:38px 0}
+.rg-karte{border:1px solid var(--line);border-radius:16px;padding:26px 24px;background:var(--surface)}
+.rg-karte h2{font-size:20px;margin:0 0 14px;line-height:1.3}
+.rg-karte-ort{border-left:3px solid var(--accent)}
+.rg-karte p{margin:0 0 12px;line-height:1.75;color:var(--ink-soft)}
+.rg-hinweis{font-size:13.5px;color:var(--ink-soft);margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.lk-mini{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.lk-mini a{display:inline-block;font-size:13.5px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink-soft)}
+.lk-mini a:hover,.lk-mini a:focus-visible{border-color:var(--accent);color:var(--ink)}
+
+.rg-schwerpunkt{border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:0 0 38px;background:var(--surface)}
+.rg-sw-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 12px}
+.rg-sw-link{display:flex;gap:16px;align-items:flex-start;text-decoration:none;color:inherit}
+.rg-sw-link strong{display:block;font-size:17px;margin-bottom:4px}
+.rg-sw-t{display:block;font-size:14.5px;color:var(--ink-soft);line-height:1.65}
+.rg-sw-link:hover strong,.rg-sw-link:focus-visible strong{color:var(--accent)}
+
+.rg-weitere{margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+.rg-weitere h2{font-size:17px;margin:0 0 14px}
+.rg-weitere ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.rg-weitere a{display:inline-flex;gap:8px;align-items:baseline;padding:9px 15px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);font-size:14.5px}
+.rg-weitere a span{color:var(--ink-soft);font-size:12.5px}
+.rg-weitere a:hover,.rg-weitere a:focus-visible{border-color:var(--accent)}
+
+/* Hub */
+.rg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin:34px 0}
+.rg-kachel{display:block;border:1px solid var(--line);border-radius:16px;padding:24px 22px;text-decoration:none;color:inherit;background:var(--surface)}
+.rg-kachel:hover,.rg-kachel:focus-visible{border-color:var(--accent)}
+.rg-km{display:inline-block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.rg-h{font-size:21px;margin:0 0 10px}
+.rg-t{font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin:0 0 14px}
+.rg-bez{font-size:13px;color:var(--ink-soft)}
+.rg-fern{margin:30px 0 0;padding:20px 22px;border:1px dashed var(--line);border-radius:14px;color:var(--ink-soft);line-height:1.75;font-size:15px}
+
+@media (max-width:760px){
+  .rg-zwei{grid-template-columns:1fr;gap:16px}
+  .rg-fakten{gap:10px 24px}
+  .rg-fakten dd{font-size:18px}
+}

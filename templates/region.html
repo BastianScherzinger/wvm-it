@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% comment %}
+Eine Regionsseite (docs/AUSBAU-2026-08.md, P6).
+
+Der Aufbau ist bewusst anders als bei den Leistungsseiten: Oben steht die
+nachpruefbare Entfernung, dann die Trennung zwischen "wofuer wir kommen" und
+"was ohne Anfahrt laeuft". Genau diese Trennung ist der Inhalt, den nur eine
+Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
+{% endcomment %}
+{% block titel %}{{ region.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ region.desc|safe }}{% endblock %}
+{% block og_titel %}{{ region.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ region.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ region.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ region.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ region.ort }}</span>
+    </nav>
+    <h1>{{ region.h1|safe }}</h1>
+    <p class="sp-kurz">{{ region.kurz|safe }}</p>
+
+    {% comment %}Die Zahlen stehen ganz oben, weil sie die erste Frage beantworten.{% endcomment %}
+    <dl class="rg-fakten">
+      <div><dt>{{ t.seite.rg_entfernung|safe }}</dt><dd>{{ region.km }} km</dd></div>
+      <div><dt>{{ t.seite.rg_fahrzeit|safe }}</dt><dd>{{ region.fahrzeit }} min</dd></div>
+      <div><dt>{{ t.seite.rg_bezirk|safe }}</dt><dd>{{ region.bezirk }}</dd></div>
+    </dl>
+
+    <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+      {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+      <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap sp-wrap">
+    <p class="sp-intro" data-reveal>{{ region.intro|safe }}</p>
+    <p class="sp-intro" data-reveal>{{ region.wirtschaft|safe }}</p>
+
+    <div class="rg-zwei">
+      <div class="rg-karte rg-karte-ort" data-reveal>
+        <h2>{{ region.vor_ort_h|safe }}</h2>
+        <ul class="sp-liste">
+          {% for p in region.vor_ort %}<li>{{ p|safe }}</li>{% endfor %}
+        </ul>
+        <p class="rg-hinweis">{{ t.seite.rg_vor_ort_hinweis|safe }}</p>
+      </div>
+      <div class="rg-karte rg-karte-fern" data-reveal>
+        <h2>{{ region.remote_h|safe }}</h2>
+        <p>{{ region.remote|safe }}</p>
+        <ul class="lk-mini">
+          {% for l in leistungen_liste %}<li><a href="{{ l.url }}">{{ l.nav|safe }}</a></li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    {% if schwerpunkt %}
+    <aside class="rg-schwerpunkt" data-reveal>
+      <p class="rg-sw-label">{{ t.seite.rg_schwerpunkt|safe }}</p>
+      <a class="rg-sw-link" href="{{ schwerpunkt.url }}">
+        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=schwerpunkt.icon %}</span>
+        <span>
+          <strong>{{ schwerpunkt.nav|safe }}</strong>
+          <span class="rg-sw-t">{{ schwerpunkt.desc|safe }}</span>
+        </span>
+      </a>
+    </aside>
+    {% endif %}
+
+    <div class="sp-faq" data-reveal>
+      <h2>{{ t.seite.faq_h|safe }}</h2>
+      {% for f in region.faq %}
+      <details class="fq">
+        <summary>{{ f.q|safe }}</summary>
+        <div class="fq-a"><p>{{ f.a|safe }}</p></div>
+      </details>
+      {% endfor %}
+    </div>
+
+    {% comment %}
+    Die Quelle bleibt 'it' — im Postfach soll die Leistung stehen, nicht der Ort.
+    Woher die Anfrage kam, steckt bereits in `zurueck` und damit in der Mail.
+    {% endcomment %}
+    {% include 'anfrage_karte.html' with bid='it' titel=region.anfrage_h sub=region.kurz ph=t.lb.text_ph %}
+
+    <nav class="rg-weitere" aria-label="{{ t.seite.regionen_titel|safe }}">
+      <h2>{{ t.seite.rg_weitere|safe }}</h2>
+      <ul>
+        {% for r in alle_regionen %}
+        <li><a href="{% url 'region' slug=r.slug %}">{{ r.ort }}<span>{{ r.km }} km</span></a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</section>
+{% endblock %}

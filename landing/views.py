@@ -23,7 +23,7 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import i18n, leistungen
+from . import i18n, leistungen, regionen
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -1357,6 +1357,9 @@ def _seiten_pfade():
              ("/angebot/", "0.8", "monthly")]
     pfade += [(f"/leistungen/{l['slug']}/", l["prio"], "monthly")
               for l in leistungen.LEISTUNGEN]
+    pfade += [("/it-service/", "0.7", "monthly")]
+    pfade += [(f"/it-service/{r['slug']}/", r["prio"], "monthly")
+              for r in regionen.REGIONEN]
     # Rechtstexte gehoeren in den Index (Anbieterkennzeichnung), aber ganz hinten.
     pfade += [("/impressum/", "0.2", "yearly"), ("/datenschutz/", "0.2", "yearly")]
     return pfade
@@ -1455,6 +1458,74 @@ def leistung_seite(request, slug):
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"]["leistungen"], reverse("leistungen")),
                 (seite.get("h1", slug), pfad)])),
+    })
+
+
+def _region_daten(eintrag, lang):
+    """Stammdaten aus regionen.py plus Texte aus dem Sprachpaket, zu einem Dict."""
+    texte = i18n.get_pack(lang).get("regionen", {}).get(eintrag["slug"], {})
+    return {**eintrag, **texte}
+
+
+def region_seite(request, slug):
+    """/it-service/<slug>/ — eine Region, eine URL.
+
+    Diese Seiten gibt es erst, seit ein echter Firmensitz vorliegt (28.08.2026).
+    Ohne ihn wären sie Doorway-Pages gewesen; siehe Kopf von `landing/regionen.py`
+    und `docs/SEO-PLAN.md` A16. Das Schema meldet deshalb ausdrücklich einen
+    `areaServed` mit dem Ort UND einen Anbieter, der woanders sitzt — beides wahr.
+    """
+    eintrag = regionen.NACH_SLUG.get(slug)
+    if not eintrag:
+        raise Http404(slug)
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    region = _region_daten(eintrag, lang)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = reverse("region", kwargs={"slug": slug})
+
+    service = {
+        "@type": "Service", "@id": f"{base}{pfad}#service",
+        "name": region.get("h1", ""), "description": region.get("kurz", ""),
+        "serviceType": "IT-Dienstleistung",
+        "provider": {"@id": f"{base}/#business"},
+        # Der Ort ist das Einsatzgebiet, nicht der Sitz. Ein zweiter Sitz im Schema
+        # wäre eine Falschangabe und genau das, was Google als Doorway-Signal liest.
+        "areaServed": {"@type": "City", "name": region.get("ort", ""),
+                       "address": {"@type": "PostalAddress",
+                                   "postalCode": region.get("plz", ""),
+                                   "addressLocality": region.get("ort", ""),
+                                   "addressCountry": "AT"}},
+    }
+    schwerpunkt = leistungen.NACH_SLUG.get(eintrag.get("schwerpunkt", ""))
+    return render(request, "region.html", {
+        "c": c, "region": region,
+        "schwerpunkt": _leistung_daten(schwerpunkt, lang) if schwerpunkt else None,
+        "alle_regionen": [_region_daten(r, lang) for r in regionen.REGIONEN
+                          if r["slug"] != slug],
+        "leistungen_liste": [_leistung_daten(l, lang) for l in leistungen.LEISTUNGEN
+                             if not l.get("vor_ort")][:6],
+        "structured_data": _seiten_schema(
+            c, lang, service=service, faq=region.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [
+                (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen")),
+                (region.get("ort", slug), pfad)])),
+    })
+
+
+def regionen_hub(request):
+    """/it-service/ — Überblick über die Orte, an die tatsächlich jemand hinfährt."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    return render(request, "regionen.html", {
+        "c": c,
+        "regionen": [_region_daten(r, lang) for r in regionen.REGIONEN],
+        "structured_data": _seiten_schema(
+            c, lang, breadcrumb=_breadcrumb(base, [
+                (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen"))])),
     })
 
 

@@ -34,6 +34,12 @@ urlpatterns += i18n_patterns(
     # Zuordnung eindeutig und spart uebersetzte URL-Muster (gettext).
     path("leistungen/", views.leistungen_hub, name="leistungen"),
     path("leistungen/<slug:slug>/", views.leistung_seite, name="leistung"),
+    # ── Regionen (docs/AUSBAU-2026-08.md, P6) ───────────────────────────────
+    # Erst seit es einen echten Firmensitz gibt; ohne den waeren das
+    # Doorway-Pages. Eigener Pfad statt /leistungen/<ort>/, damit Leistung
+    # und Ort sich nicht um dasselbe Muster streiten.
+    path("it-service/", views.regionen_hub, name="regionen"),
+    path("it-service/<slug:slug>/", views.region_seite, name="region"),
     path("kosten/", views.kosten, name="kosten"),
     path("referenzen/", views.referenzen, name="referenzen"),
     path("kontakt/", views.kontakt, name="kontakt"),

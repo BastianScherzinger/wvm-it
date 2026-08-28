@@ -6,9 +6,11 @@ Die Texte der Leistungsseiten stehen wegen ihres Umfangs in einer eigenen Datei
 """
 
 from .seiten_de import SEITEN
+from .regionen_de import REGIONEN
 
 PACK = {
     "seiten": SEITEN,
+    "regionen": REGIONEN,
     "meta": {
         "html_lang": "de-AT",
         "locale": "de_AT",
@@ -375,6 +377,20 @@ PACK = {
     },
     # ── Gerüst der Unterseiten (Beschriftungen, die auf jeder Seite gleich sind) ──
     "seite": {
+        "regionen_titel": "Regionen",
+        "regionen_h1": "Wo wir vor Ort sind — und wo wir aus der Ferne arbeiten",
+        "regionen_meta_titel": "IT-Service in Oberösterreich und Salzburg | WVM-IT",
+        "regionen_meta_desc": "IT-Service vor Ort in Vöcklabruck, am Attersee, in Gmunden, Bad Ischl, Wels, Salzburg und Linz — Fernwartung in ganz Österreich und Deutschland.",
+        "regionen_kurz": "Unser Sitz ist in Lenzing im Bezirk Vöcklabruck. Für Arbeiten, bei denen jemand vor Ort sein muss, fahren wir im Umkreis von rund einer Stunde. Alles, was aus der Ferne geht, betreuen wir in ganz Österreich und Deutschland.",
+        "regionen_intro": "Diese Seiten gibt es für die Orte, an die tatsächlich jemand von uns hinfährt — mit der echten Entfernung und dem, was dort vor Ort typischerweise ansteht. Für alles Übrige braucht es keine Ortsseite: Fernwartung, Überwachung, Datensicherung, Webseiten, SEO und Ads sind ortsunabhängig.",
+        "regionen_fern": "Ihr Ort ist nicht dabei? Für die laufende Betreuung spielt das keine Rolle — sie läuft per gesicherter Fernwartung in ganz Österreich und Deutschland. Nur für Arbeiten, bei denen jemand mit den Händen anpacken muss, ist die Entfernung ein Thema.",
+        "alle_leistungen": "Alle Leistungen ansehen",
+        "rg_entfernung": "Entfernung ab Lenzing",
+        "rg_fahrzeit": "Fahrzeit",
+        "rg_bezirk": "Region",
+        "rg_vor_ort_hinweis": "Termine vor Ort vereinbaren wir vorher, mit Preis. Einsätze vor Ort rechnen wir mit 120 € je Stunde zzgl. Anfahrt ab.",
+        "rg_schwerpunkt": "Am häufigsten gefragt in dieser Region",
+        "rg_weitere": "Weitere Orte im Einzugsgebiet",
         "brotkrume": "Sie befinden sich hier",
         "start": "Start",
         "leistungen": "Leistungen",

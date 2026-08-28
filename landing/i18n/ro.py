@@ -2,9 +2,11 @@
 """Pachet de limbă română. Cheile lipsă revin automat la germană (de.py)."""
 
 from .seiten_ro import SEITEN
+from .regionen_ro import REGIONEN
 
 PACK = {
     "seiten": SEITEN,
+    "regionen": REGIONEN,
     "meta": {
         "html_lang": "ro",
         "locale": "ro_RO",
@@ -409,6 +411,20 @@ PACK = {
         "partner_label": "Statut de partener",
     },
     "seite": {
+        "regionen_titel": "Regiuni",
+        "regionen_h1": "Unde venim la fața locului — și unde lucrăm de la distanță",
+        "regionen_meta_titel": "Servicii IT în Austria Superioară și Salzburg | WVM-IT",
+        "regionen_meta_desc": "Servicii IT la fața locului în Vöcklabruck, la Attersee, în Gmunden, Bad Ischl, Wels, Salzburg și Linz — mentenanță la distanță în toată Austria și Germania.",
+        "regionen_kurz": "Sediul nostru este în Lenzing, districtul Vöcklabruck. Pentru lucrările care necesită prezență la fața locului ne deplasăm pe o rază de aproximativ o oră. Tot ce se poate face de la distanță acoperim în toată Austria și Germania.",
+        "regionen_intro": "Aceste pagini există pentru localitățile în care chiar ne deplasăm — cu distanța reală și cu ceea ce apare de obicei acolo. Pentru restul nu este nevoie de o pagină locală: mentenanța la distanță, monitorizarea, copiile de siguranță, site-urile, SEO și reclamele sunt independente de loc.",
+        "regionen_fern": "Localitatea dumneavoastră nu apare? Pentru asistența curentă nu contează — aceasta se desfășoară prin mentenanță securizată la distanță, în toată Austria și Germania. Distanța contează doar pentru lucrările care necesită prezență fizică.",
+        "alle_leistungen": "Vedeți toate serviciile",
+        "rg_entfernung": "Distanța de la Lenzing",
+        "rg_fahrzeit": "Timp de deplasare",
+        "rg_bezirk": "Regiune",
+        "rg_vor_ort_hinweis": "Întâlnirile la fața locului se programează dinainte, cu preț. Intervențiile la fața locului se tarifează cu 120 € pe oră, plus deplasarea.",
+        "rg_schwerpunkt": "Cel mai des solicitat în această regiune",
+        "rg_weitere": "Alte localități din zonă",
         "brotkrume": "Vă aflați aici",
         "start": "Acasă",
         "leistungen": "Servicii",

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% comment %}
+Hub der Regionsseiten (docs/AUSBAU-2026-08.md, P6). Bewusst kurz: Er ordnet die
+Orte nach Entfernung und macht die eine Aussage, die alle teilen — vor Ort im
+Umkreis, per Fernwartung ueberall.
+{% endcomment %}
+{% block titel %}{{ t.seite.regionen_meta_titel|safe }}{% endblock %}
+{% block beschreibung %}{{ t.seite.regionen_meta_desc|safe }}{% endblock %}
+{% block og_titel %}{{ t.seite.regionen_meta_titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ t.seite.regionen_meta_desc|safe }}{% endblock %}
+{% block tw_titel %}{{ t.seite.regionen_meta_titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ t.seite.regionen_meta_desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.seite.regionen_titel|safe }}</span>
+    </nav>
+    <h1>{{ t.seite.regionen_h1|safe }}</h1>
+    <p class="sp-kurz">{{ t.seite.regionen_kurz|safe }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="hb-intro" data-reveal>{{ t.seite.regionen_intro|safe }}</p>
+
+    <div class="rg-grid">
+      {% for r in regionen %}
+      <a class="rg-kachel spot" href="{% url 'region' slug=r.slug %}" data-spot>
+        <span class="rg-km">{{ r.km }} km · {{ r.fahrzeit }} min</span>
+        <h2 class="rg-h">{{ r.ort }}</h2>
+        <p class="rg-t">{{ r.desc|safe }}</p>
+        <span class="rg-bez">{{ r.bezirk }}</span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="rg-fern" data-reveal>{{ t.seite.regionen_fern|safe }}</p>
+    <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a></p>
+  </div>
+</section>
+{% endblock %}
