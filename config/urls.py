@@ -1,6 +1,6 @@
 """URL-Konfiguration — mehrsprachige Landing-Page (DE ohne Präfix, EN /en/, RO /ro/)."""
 from django.conf.urls.i18n import i18n_patterns
-from django.urls import path
+from django.urls import path, re_path
 
 from landing import views
 
@@ -13,6 +13,10 @@ urlpatterns = [
     path("newsletter/diagnose/", views.newsletter_diag, name="newsletter_diag"),
     path("robots.txt", views.robots_txt, name="robots_txt"),
     path("llms.txt", views.llms_txt, name="llms_txt"),
+    # IndexNow-Nachweisdatei. Das Muster ist bewusst eng (nur Hex, feste Laenge),
+    # damit es keine kuenftige .txt-Route verschluckt , genau diese Falle steht in
+    # ruempelwerks config/urls.py dokumentiert.
+    re_path(r"^(?P<key>[0-9a-f]{8,128})\.txt$", views.indexnow_key, name="indexnow_key"),
     path("sitemap.xml", views.sitemap_xml, name="sitemap_xml"),
     path("health", views.health, name="health"),
 ]

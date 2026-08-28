@@ -52,6 +52,11 @@ X_FRAME_OPTIONS = "DENY"
 # Referrer sparsam mitgeben (SEO-/Analytics-freundlich, aber datenschonend).
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
+# IndexNow-Schluessel (Bing/Yandex/Seznam). Er ist absichtlich oeffentlich: Der Dienst
+# prueft die Verfuegungsgewalt ueber die Domain, indem er ihn unter /<schluessel>.txt
+# abruft. Ueber Env ueberschreibbar, falls er einmal gewechselt werden soll.
+INDEXNOW_KEY = os.environ.get("INDEXNOW_KEY", "7c389c96c2fa831f8a352eb042495707").strip()
+
 # Kanonischer Host fuer die 301-Umleitung von Neben-Hosts (Railway-Subdomain).
 # In der Produktion auf "www.wvm-it.tech" setzen; lokal leer lassen.
 KANONISCHER_HOST = os.environ.get("KANONISCHER_HOST", "").strip()

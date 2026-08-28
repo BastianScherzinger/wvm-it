@@ -1346,5 +1346,22 @@ def leistung_anfrage(request):
     return antwort(True)
 
 
+def indexnow_key(request, key):
+    """Liefert die IndexNow-Nachweisdatei unter /<schluessel>.txt.
+
+    IndexNow prüft die Verfügungsgewalt über die Domain, indem es diese Datei abruft:
+    Ihr Inhalt muss exakt der Schlüssel aus der Meldung sein. Der Schlüssel ist deshalb
+    öffentlich , das ist kein Versehen, sondern das Verfahren.
+
+    Ein fremder Wert bekommt 404 statt der Datei mit dem echten Schlüssel; sonst würde
+    jeder beliebige Aufruf die Prüfung bestehen.
+    """
+    from django.http import Http404
+    erwartet = (getattr(settings, "INDEXNOW_KEY", "") or "").strip()
+    if not erwartet or not hmac.compare_digest(key, erwartet):
+        raise Http404
+    return HttpResponse(erwartet, content_type="text/plain; charset=utf-8")
+
+
 def health(request):
     return HttpResponse("ok", content_type="text/plain")
