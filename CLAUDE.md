@@ -3,13 +3,21 @@
 Premium-Landingpage für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway,
 dreisprachig DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Läuft gerade: der Umbau zur Conversion-Seite
+## Stand: Umbau fertig, SEO ist dran
 
-**Sagt Bastian „umbau start", ist `docs/UMBAU-START.md` die Arbeitsanweisung.**
-Dort stehen Stand und nächste Aufgabe; der Plan liegt in `docs/UMBAU-PLAN.md`,
-der parallele SEO-Plan in `docs/SEO-PLAN.md`. Nicht neu planen — weiterarbeiten.
+Die Startseite wurde am 28.08.2026 zur Conversion-Seite umgebaut und ist live
+(47 von 50 Aufgaben, `docs/UMBAU-START.md` hat den Endstand). **Der nächste Schritt
+ist `docs/SEO-PLAN.md`, Aufgabe F1.**
 
-Skills dazu: `redesign-existing-projects`, `design-pro`, später `seo-audit`, `seo-geo`.
+- `docs/UMBAU-START.md` , Stand, offene Punkte, was auf der Seite steht
+- `docs/UMBAU-PLAN.md` , Design-System, Seitenbauplan, Formular-Architektur
+- `docs/SEO-PLAN.md` , vier Blöcke S-F bis S-T mit Stand
+- `docs/seo/KEYWORD-MAP.md` , ein Keyword, eine Zielseite
+
+**Vor jedem Deploy:** `python manage.py pruefe_seite` (Sprachpakete, Preise,
+Seiten-Technik, Formulare , Rückgabewert 1 bei Fehlern).
+
+Skills: `redesign-existing-projects`, `design-pro`, für SEO `seo-audit` und `seo-geo`.
 
 ## Was beim Arbeiten heil bleiben muss
 

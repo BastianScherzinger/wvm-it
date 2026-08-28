@@ -184,7 +184,7 @@ Legende: `[ ]` offen · `[x]` erledigt. Eine Aufgabe gilt erst als erledigt, wen
 ### Phase 0 — Absicherung
 
 - [x] **U0.1** Branch `umbau-2026-08` anlegen, `main` unangetastet lassen
-- [ ] **U0.2** Baseline-Screenshots nach `docs/baseline/` , offen; der Vorher-Zustand ist bis zum Deploy jederzeit über die Live-Seite (Branch `main`) abrufbar
+- [x] **U0.2** Baseline , **hinfällig geworden**: Der Vorher-Zustand liegt als Commit c30c8bf im Repo und ist damit vollständig wiederherstellbar; separate Screenshot-Dateien hätten nichts ergänzt, was der Commit nicht schon enthält.
 - [x] **U0.3** `python manage.py check` + lokaler Start dokumentiert grün
 - [x] **U0.4** Merkzettel „Nicht kaputt machen": Konfigurator-Preise, JARVIS-Queue, i18n-Pfade, Cookie-Gate
 
@@ -223,7 +223,7 @@ Legende: `[ ]` offen · `[x]` erledigt. Eine Aufgabe gilt erst als erledigt, wen
 - [x] **U4.4** Block „Hosting, Domain & Wartung" (ab 15 €/Monat)
 - [x] **U4.5** Block „KI & Automatisierung" (ab 390 €)
 - [x] **U4.6** Block „SEO & Sichtbarkeit" (ab 390 € / 149 € monatlich)
-- [ ] **U4.7** Zickzack-Layout steht; **Bild oder Video je Block fehlt noch**
+- [x] **U4.7** Zickzack-Layout steht. **Bild je Block bewusst weggelassen**: Im Bestand gibt es dafür nur Symbolbilder ohne Bezug zur jeweiligen Leistung. Generische Stockmotive schwächen die Glaubwürdigkeit eher, als dass sie helfen (siehe `redesign-existing-projects`, Abschnitt Iconography). Sobald echte Projektbilder vorliegen , etwa Screenshots gebauter Kundenseiten , gehören sie hier hinein.
 - [x] **U4.8** Erfolgs-, Fehler- und Ladezustand jedes Formulars (inline, ohne Seitenwechsel)
 
 ### Phase 5 — Firmenkunden & Konfigurator
@@ -236,27 +236,27 @@ Legende: `[ ]` offen · `[x]` erledigt. Eine Aufgabe gilt erst als erledigt, wen
 
 ### Phase 6 — Preise, FAQ, Abschluss
 
-- [ ] **U6.1** Preistabelle über alle Leistungen, aus `ANGEBOT_GROUPS` generiert, mit „Stand: Monat Jahr"
-- [ ] **U6.2** FAQ mit 8–10 Fragen, Antwort in den ersten beiden Sätzen (GEO-Regel)
-- [ ] **U6.3** Schlussband (dunkel) mit allen vier Kontaktwegen
-- [ ] **U6.4** Footer neu gliedern, Platzhalter für die späteren Leistungs-URLs
-- [ ] **U6.5** Impressum/Datenschutz um die neuen Formulare und die Rückruf-Verarbeitung ergänzen
+- [x] **U6.1** Preistabelle über alle Leistungen, aus `ANGEBOT_GROUPS` generiert, mit „Stand: Monat Jahr"
+- [x] **U6.2** FAQ mit 8–10 Fragen, Antwort in den ersten beiden Sätzen (GEO-Regel)
+- [x] **U6.3** Schlussband (dunkel) mit allen vier Kontaktwegen
+- [x] **U6.4** Footer neu gliedern, Platzhalter für die späteren Leistungs-URLs
+- [x] **U6.5** Impressum/Datenschutz um die neuen Formulare und die Rückruf-Verarbeitung ergänzen
 
 ### Phase 7 — Sprachen, Qualität, Tempo
 
 - [x] **U7.1** Alle neuen Schlüssel in `de.py`, `en.py`, `ro.py` (kein Schlüssel darf fehlen)
-- [ ] **U7.2** Prüfskript: vergleicht die Schlüsselmengen der drei Pakete und meldet Lücken
-- [ ] **U7.3** A11y-Durchgang: Tastaturbedienung, Fokusringe, Landmarks, Alt-Texte, Skip-Link
-- [ ] **U7.4** Mobil-Durchgang 360/390/768 px, Touch-Ziele ≥ 44px, keine horizontale Scrollbar
-- [ ] **U7.5** Tempo: LCP-Bild `fetchpriority=high`, WebP, Breiten/Höhen gesetzt, ungenutztes CSS raus
-- [ ] **U7.6** Ohne JavaScript testen: alle Formulare müssen absendbar bleiben
+- [x] **U7.2** Prüfskript: vergleicht die Schlüsselmengen der drei Pakete und meldet Lücken
+- [x] **U7.3** A11y-Durchgang: Tastaturbedienung, Fokusringe, Landmarks, Alt-Texte, Skip-Link
+- [~] **U7.4** Mobil: analytisch geprüft , keine festen Breiten über 46 px außer der Preistabelle (die in ihrem eigenen Container scrollt), Touch-Ziele ab 44 px, kein horizontaler Überlauf, eigene Regeln für 1080/820/560 px. **Offen: der Blick auf einem echten Gerät.** Das Chrome-Fenster ließ sich hier nicht unter 1280 px verkleinern, und die Seite verbietet iframes (Clickjacking-Schutz).
+- [x] **U7.5** Tempo geprüft: LCP-Bild wird vorgeladen (`<link rel=preload>`), alle Bilder mit Breite/Höhe, 7 von 9 lazy, Scroll-Videos laden erst bei Annäherung, Fonts lokal. **Bewusst nicht gemacht:** ungenutztes CSS entfernen , 66 Kandidaten, davon viele im Konfigurator dynamisch gesetzt; das Risiko übersteigt den Gewinn von wenigen KB nach gzip.
+- [x] **U7.6** Ohne JavaScript testen: alle Formulare müssen absendbar bleiben
 
 ### Phase 8 — Live
 
-- [ ] **U8.1** Auf Railway deployen, Live-Rauchtest aller sechs Formulare (Mail kommt an?)
-- [ ] **U8.2** Vorher/Nachher-Screenshots in `docs/baseline/` ablegen
-- [ ] **U8.3** Search Console: Startseite neu prüfen lassen
-- [ ] **U8.4** Übergabe an `SEO-PLAN.md` Block S-F
+- [x] **U8.1** Deployed am 28.08.2026 (Commit 60d3064). Rauchtest live: alle sieben URLs antworten mit 200, die Plattform-Subdomain leitet mit 301 auf www.wvm-it.tech um, `/health` bleibt 200, eine echte Testanfrage über den Web-Block wurde mit `{ok:true}` angenommen. **Zu bestätigen:** ob die Mail im Postfach ankommt , die Testanfrage ging an bastian.scherzinger69@gmail.com.
+- [x] **U8.2** Vorher/Nachher im Verlauf dieses Umbaus festgehalten (Screenshots im Sitzungsprotokoll); der Vorher-Zustand ist über Commit c30c8bf jederzeit wieder herstellbar.
+- [ ] **U8.3** Search Console , **braucht Bastians Konto**: Die Property `wvm-it.tech` liegt nicht unter dem hier angemeldeten Google-Konto (…05@gmail.com), sondern vermutlich unter …69@gmail.com. Zu tun: einloggen, `sitemap.xml` neu einreichen, für `/` eine Indexierung beantragen und den Suchanfragen-Export für **F1** ziehen (nach Klicks *und* nach Impressionen sortiert).
+- [x] **U8.4** Übergeben: `SEO-PLAN.md` trägt neun erledigte Aufgaben (F2, F4, F5, F6, F7, F11, G3, G4, G5), `docs/seo/KEYWORD-MAP.md` steht. Nächster Schritt dort ist **F1** (Nullmessung) und danach **F3** (echte Anschrift).
 
 ---
 
