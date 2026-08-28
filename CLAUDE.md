@@ -16,6 +16,8 @@ ist `docs/SEO-PLAN.md`, Aufgabe F1.**
 
 **Vor jedem Deploy:** `python manage.py pruefe_seite` (Sprachpakete, Preise,
 Seiten-Technik, Formulare , Rückgabewert 1 bei Fehlern).
+**Nach jedem Deploy mit neuen oder geänderten URLs:** `python manage.py indexnow`
+(meldet Bing/Yandex/Seznam; Google braucht die Search Console, siehe `docs/INDEXIERUNG.md`).
 
 Skills: `redesign-existing-projects`, `design-pro`, für SEO `seo-audit` und `seo-geo`.
 

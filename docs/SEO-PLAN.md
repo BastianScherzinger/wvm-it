@@ -9,10 +9,12 @@
 > **Läuft parallel zu:** `UMBAU-PLAN.md` — Block S-F startet, sobald Phase 4 des Umbaus steht
 > **Eigene Skills:** `seo-audit` (Befund) · `seo-geo` (Umsetzung)
 >
-> **Stand 28.08.2026:** Der Umbau hat acht Aufgaben dieses Plans miterledigt
-> (F2, F4, F5, F6, F7, F11, G3, G4, G5). Der nächste Schritt ist **F1**, die
-> Nullmessung in der Search Console , sie braucht Bastians Zugang und ist die
-> Voraussetzung dafür, jede spätere Wirkung überhaupt belegen zu können.
+> **Stand 28.08.2026:** Zehn Aufgaben dieses Plans sind erledigt
+> (F2, F4, F5, F6, F7, F10, F11, G3, G4, G5). Die sechs URLs sind per IndexNow zum
+> Crawlen angemeldet (Bing, Yandex, Seznam , und damit ChatGPTs Websuche).
+> **Was jetzt blockiert: F1.** Der Search-Console-Export braucht das Google-Konto,
+> in dem die Property liegt; ohne ihn lässt sich keine spätere Wirkung belegen.
+> Danach **F3** (echte Anschrift), dann Block S-A mit `/kosten/` als erster Seite.
 
 ---
 
@@ -94,7 +96,7 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 > **Ziel:** Die Seite sagt überall dasselbe und das Wahre, wir wissen, wo wir stehen,
 > und jede Änderung ist maschinell prüfbar. **Wirkung:** sofort, Voraussetzung für alles.
 
-- [ ] **F1 — Nullmessung.** Search-Console-Export (Suchanfragen, Seiten, Länder AT/DE getrennt), aktuelle Indexabdeckung, Ausgangsposition je Keyword nach `docs/seo/BASELINE.md`. Ohne Nullmessung ist später keine Wirkung belegbar
+- [~] **F1 — Nullmessung, teilweise.** Was ohne Konto messbar war, steht fest: **Bing führt am 28.08.2026 sechs URLs** für `site:wvm-it.tech` (noch mit den alten Titeln , der Neu-Crawl läuft seit der IndexNow-Meldung). **Es fehlt der Search-Console-Export** (Suchanfragen, Seiten, Länder AT/DE getrennt, Indexabdeckung). Die Property liegt in einem Google-Konto, das auf diesem Rechner nicht angemeldet ist , weder `…05@gmail.com` noch `…69@gmail.com` haben Zugriff, auch nicht auf `sc-domain:ruempelwerk-mitteldeutschland.de`. **Ohne diesen Export ist später keine Wirkung belegbar.**
 - [x] **F2 — Duplikat-Hosts geschlossen** *(28.08.2026)*. Befund: `wvm-it-shop.up.railway.app` lieferte die Seite mit HTTP 200 und erlaubtem Crawling aus , ein vollständiger Zweitbestand. `KanonischerHostMiddleware` leitet jetzt jeden Neben-Host per **301** auf `www.wvm-it.tech` um (Pfad und Query bleiben erhalten), `wvm-it.tech` ohne `www` ebenso. `/health` ist ausgenommen, damit Railways Healthcheck weiter greift. Ziel kommt aus `KANONISCHER_HOST` oder ersatzweise aus `content.json`.
 - [ ] **F3 — Firmensitz und Adresse klären.** Echte Anschrift in `content.json` (heute Platzhalter in Impressum und Datenschutz), `PostalAddress` im Schema vervollständigen, Impressum/Datenschutz nachziehen. Ohne das kein Local-SEO und kein Unternehmensprofil
 - [x] **F4 — Titel und Descriptions gekürzt** *(28.08.2026)*. Vorher: Titel bis 70 Zeichen, Descriptions bis 205. Jetzt alle sechs URLs im Rahmen (DE 53/154, EN 44/140, RO 37/145), Hauptkeyword vorne, Zahl in der Description. `pruefe_seite` meldet die Längen ab jetzt automatisch.
@@ -103,7 +105,7 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 - [x] **F7 — Sprachschlüssel-Test läuft** *(28.08.2026)*, Teil von `pruefe_seite`: 739 Schlüssel je Sprache, gleiche FAQ-Anzahl, Meldung bei Schlüsseln, die eine Sprache von DE erbt.
 - [ ] **F8 — hreflang-Entscheidung dokumentieren.** Vorerst ein `de` für AT und DE (die Inhalte sind identisch). Erst wenn es eigene AT-/DE-Inhalte gibt, auf `de-AT`/`de-DE` aufteilen — vorher schafft es nur Duplikate
 - [ ] **F9 — `llms-full.txt`** ergänzen (Langfassung neben `llms.txt`), plus `.well-known/security.txt`. Auf die URL-Reihenfolge achten: Der Pfad `llms-full.txt` darf nicht von einem allgemeineren Muster verschluckt werden *(genau diese Falle steht in Rümpelwerks `config/urls.py` dokumentiert)*
-- [ ] **F10 — IndexNow.** Schlüsseldatei auf der Wurzel, Ping bei jedem Deploy → neue Seiten werden in Stunden statt Wochen gecrawlt
+- [x] **F10 — IndexNow steht und wurde ausgelöst** *(28.08.2026)*. Schlüsseldatei unter `/<schluessel>.txt` (Muster eng auf Hex begrenzt, damit es keine andere `.txt`-Route verschluckt), Befehl `python manage.py indexnow [--trocken]` meldet die sechs öffentlichen URLs aus derselben Quelle wie die Sitemap. Erste Meldung am 28.08.2026 mit **HTTP 202** angenommen. Das bedient Bing, Yandex und Seznam , und damit auch die Websuche von ChatGPT, die auf Bings Index aufsetzt. **Google wird davon nicht bedient.**
 - [x] **F11 — Keyword-Map angelegt** *(28.08.2026)*: `docs/seo/KEYWORD-MAP.md` mit Zuordnungsregeln, 28 Startkeywords nach Kaufabsicht und Wettbewerb bewertet, Reihenfolge für Block S-A und den sechs Fragen, die in KI-Antworten auftauchen. **Nach dem ersten Search-Console-Export (F1) gegen echte Suchanfragen nachziehen.**
 - [ ] **F12 — Kein rankingrelevanter Inhalt hängt an JavaScript.** KI-Crawler rendern kein JS. Prüfen mit deaktiviertem JS: Alle Preise, Leistungstexte und FAQ müssen im HTML stehen
 
