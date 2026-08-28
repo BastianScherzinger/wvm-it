@@ -418,6 +418,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .foot{border-top:1px solid var(--line);background:var(--bg-2);padding:64px 0 120px}
 .foot-top{display:grid;grid-template-columns:1.2fr 2fr;gap:48px;padding-bottom:40px;border-bottom:1px solid var(--line)}
 .foot-brand p{color:var(--ink-soft);font-size:14.5px;margin-top:16px;max-width:38ch}
+.foot-slogan{color:var(--ink);font-size:15px;font-weight:600;margin-top:14px;max-width:34ch;line-height:1.5}
+.vt-sitz{margin-top:12px;font-size:14.5px;line-height:1.7;color:var(--ink-soft)}
+.vt-sitz strong{color:var(--ink);font-weight:600}
+.foot-nap{color:var(--ink-soft);font-size:14px;line-height:1.7;margin-top:18px;font-style:normal;max-width:38ch}
+.foot-nap a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid transparent}
+.foot-nap a:hover,.foot-nap a:focus-visible{color:var(--ink);border-bottom-color:currentColor}
 .foot-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .foot-nav h3{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:14px;font-family:"Inter",sans-serif;font-weight:600}
 .foot-nav a{display:block;color:var(--ink-soft);font-size:14.5px;padding:5px 0;transition:color .18s}

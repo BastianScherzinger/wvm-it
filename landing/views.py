@@ -979,9 +979,18 @@ def newsletter_diag(request):
                         content_type="application/json; charset=utf-8")
 
 
-# Städte, die WVM-IT in Österreich und Deutschland bedient (Local-/GEO-Signal).
-_AREA_CITIES = ["Wien", "Graz", "Linz", "Salzburg", "Innsbruck", "Klagenfurt",
-                "München", "Stuttgart", "Frankfurt am Main", "Berlin"]
+# Zwei getrennte Listen, weil zwei verschiedene Zusagen dahinterstehen:
+#
+# _VOR_ORT_ORTE  — Einzugsgebiet für Arbeiten, bei denen jemand hinfahren muss
+#                  (Technik vor Ort, Smarthome, Veranstaltungstechnik). Alles im
+#                  Umkreis von rund einer Fahrstunde um den Sitz in Lenzing.
+# _AREA_CITIES   — Ballungsräume, die per Fernwartung bedient werden. Ohne die
+#                  Fernwartung wäre diese Liste eine Lüge; mit ihr ist sie wahr.
+_VOR_ORT_ORTE = ["Lenzing", "Vöcklabruck", "Attnang-Puchheim", "Schörfling am Attersee",
+                 "Seewalchen am Attersee", "Timelkam", "Gmunden", "Vöcklamarkt",
+                 "Frankenmarkt", "Mondsee", "Bad Ischl", "Wels", "Salzburg"]
+_AREA_CITIES = ["Linz", "Wien", "Graz", "Innsbruck", "Klagenfurt",
+                "München", "Stuttgart", "Nürnberg", "Frankfurt am Main", "Berlin"]
 
 
 def _structured_data(c, lang):
@@ -1027,8 +1036,12 @@ def _structured_data(c, lang):
                 offer["priceSpecification"] = spez
             offers.append(offer)
 
+    # Reihenfolge ist Aussage: erst die beiden Länder (Fernwartung), dann das
+    # Einzugsgebiet vor Ort, dann die per Fernwartung bedienten Ballungsräume.
     area_served = ([{"@type": "Country", "name": "Österreich"},
-                    {"@type": "Country", "name": "Deutschland"}]
+                    {"@type": "Country", "name": "Deutschland"},
+                    {"@type": "State", "name": "Oberösterreich"}]
+                   + [{"@type": "City", "name": ort} for ort in _VOR_ORT_ORTE]
                    + [{"@type": "City", "name": city} for city in _AREA_CITIES])
 
     business = {
@@ -1036,7 +1049,17 @@ def _structured_data(c, lang):
         "@id": f"{base}/#business",
         "name": c.get("site_name", "WVM-IT"),
         "legalName": f"WVM-IT, {c.get('inhaber_name', 'Florin Feier')}",
-        "description": pack["meta"]["seo_desc"],
+        # Die Langbeschreibung ist das, was KI-Systeme als Selbstauskunft zitieren.
+        # Sie steht im Sprachpaket, damit EN und RO nicht auf Deutsch antworten.
+        "description": pack["meta"].get("firmen_desc") or pack["meta"]["seo_desc"],
+        "slogan": pack["meta"].get("slogan") or c.get("slogan", ""),
+        # Dieselben Kategorien, die auch im Google-Unternehmensprofil stehen. Profil
+        # und Website sagen damit dasselbe — genau das ist das Entitäts-Signal
+        # (SEO-PLAN G6). Als Klartext statt als Wikidata-Verweis: eine falsche
+        # Q-Nummer wäre schlimmer als gar keine.
+        "additionalType": ["IT-Berater", "IT-Service", "Webdesigner", "Computerservice",
+                           "Computersicherheitsdienst", "Automatisierungsunternehmen",
+                           "Veranstaltungstechnik"],
         "url": f"{base}/",
         "logo": f"{base}{c.get('logo_mark', '')}",
         "image": f"{base}{c.get('hero_bg', '')}",
@@ -1509,6 +1532,15 @@ def _llms_kopf(c, base):
     """Erste Zeilen von llms.txt und llms-full.txt , die Kurzfassung, die eine
     KI zitiert, wenn sie nur einen Absatz übernimmt."""
     inhaber = c.get("inhaber_name", "Florin Feier")
+    # Sitz und Kontakt gehören in denselben Absatz wie die Leistung: Wenn eine KI nur
+    # einen Block übernimmt, soll sie sagen können, WO die Firma sitzt und WIE man sie
+    # erreicht. Ohne das wird WVM-IT als ortlose Web-Adresse zitiert.
+    ort = " ".join(x for x in [(c.get("plz") or "").strip(),
+                               (c.get("stadt") or "").strip()] if x)
+    sitz = ", ".join(x for x in [(c.get("adresse") or "").strip(), ort,
+                                 "Österreich"] if x)
+    standort = (f"Sitz: {sitz}. Telefon {c.get('telefon','')}, "
+                f"E-Mail {c.get('email','')}.\n") if sitz else ""
     return (
         f"# WVM-IT , EDV und IT-Betreuung für Betriebe\n\n"
         f"> WVM-IT (Inhaber {inhaber}) betreut die EDV kleiner und mittlerer Betriebe in "
@@ -1519,7 +1551,10 @@ def _llms_kopf(c, base):
         f"149 €/Monat, Google Ads ab 199 €/Monat und KI-Automatisierung ab 390 €. "
         f"Gebäudeautomation (Loxone, KNX) sowie Konferenz- und Veranstaltungstechnik "
         f"werden projektbezogen vor Ort umgesetzt. Ein fester Ansprechpartner, Antwort "
-        f"innerhalb von 24 Stunden. Alle Preise sind Richtpreise netto zzgl. USt.\n"
+        f"innerhalb von 24 Stunden. Alle Preise sind Richtpreise netto zzgl. USt. "
+        f"{standort}"
+        f"Vor Ort im Einzugsgebiet Vöcklabruck, Attersee, Gmunden, Wels, Linz und "
+        f"Salzburg; alles Übrige per Fernwartung in ganz Österreich und Deutschland.\n"
     )
 
 

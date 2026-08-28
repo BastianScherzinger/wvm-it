@@ -169,6 +169,14 @@
         <div class="vt-region">
           <h3>{{ t.vertrauen.region_h|safe }}</h3>
           <p>{{ t.vertrauen.region_t|safe }}</p>
+          {% comment %}
+          Der Sitz gehört sichtbar auf die Startseite, nicht nur ins Impressum: Er ist
+          das Signal, dass hinter der Fernwartung eine erreichbare Firma steht. Steht
+          in derselben Schreibweise wie im Footer, im Schema und im Google-Profil.
+          {% endcomment %}
+          {% if c.adresse %}<p class="vt-sitz">{{ t.vertrauen.sitz_label|safe }}
+            <strong>{{ c.adresse }}, {{ c.plz }} {{ c.stadt }}</strong>{% if c.region %} ({{ c.region }}){% endif %}.
+            {{ t.vertrauen.sitz_zusatz|safe }}</p>{% endif %}
           <p class="vt-flags">
             <span class="fl fl-at" role="img" aria-label="{{ t.vertrauen.at|safe }}"></span>{{ t.vertrauen.at|safe }}
             <span class="fl fl-de" role="img" aria-label="{{ t.vertrauen.de|safe }}"></span>{{ t.vertrauen.de|safe }}

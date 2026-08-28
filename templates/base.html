@@ -132,7 +132,23 @@
   <div class="wrap foot-top">
     <div class="foot-brand">
       <a class="brand" href="{% url 'index' %}">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
+      {% if t.meta.slogan %}<p class="foot-slogan">{{ t.meta.slogan|safe }}</p>{% endif %}
       <p>{{ t.footer.tagline|safe }}</p>
+      {% comment %}
+      NAP , Name, Anschrift, Telefon in identischer Schreibweise auf jeder Seite und
+      in jedem Verzeichnis. Das ist das Standard-Signal für lokale Suche; Abweichungen
+      zwischen Website, Google-Profil und Branchenbuch kosten Sichtbarkeit.
+      Erscheint erst, wenn die Anschrift in content.json gepflegt ist.
+      {% endcomment %}
+      {% if c.adresse %}
+      <address class="foot-nap">
+        {{ c.site_name }}<br>
+        {{ c.adresse }}<br>
+        {{ c.plz }} {{ c.stadt }}{% if c.region %}, {{ c.region }}{% endif %}<br>
+        {% if c.telefon %}<a href="tel:{{ c.telefon }}">{{ c.telefon }}</a><br>{% endif %}
+        {% if c.email %}<a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}
+      </address>
+      {% endif %}
     </div>
     <nav class="foot-nav" aria-label="Footer">
       <div>
