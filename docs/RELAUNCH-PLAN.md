@@ -5,6 +5,12 @@
 > Wer ein Problem googelt, soll hier die Lösung finden. SEO überregional für
 > **ganz Österreich und Deutschland**, nicht lokal. Seriös, nicht „KI-generiert".
 >
+> **Einstieg und aktueller Stand: `docs/RELAUNCH-START.md`.** Dieses Dokument hier ist
+> der Plan mit der Begründung; dort steht, was noch zu tun ist.
+>
+> **Bericht für den Inhaber** (Preisliste zum Gegenzeichnen):
+> https://claude.ai/code/artifact/77a99169-9738-4966-b1d8-f54e9db27e8b
+>
 > **Stand 28.08.2026: Phasen 0 bis 6 sind umgesetzt.** Elf Leistungsseiten, Hub,
 > Kosten-, Referenzen-, Kontakt-, Impressums- und Datenschutzseite stehen in DE, EN
 > und RO — 57 URLs, `pruefe_seite` grün. Offen ist nur noch der Deploy (Phase 7)

@@ -10,10 +10,14 @@ Betriebe ohne eigene IT-Abteilung**, überwiegend per Fernwartung in ganz Öster
 Deutschland. Webseiten, SEO, Google Ads und KI sind das zweite Standbein, Technik vor
 Ort das dritte. Aus 2 rankbaren Seiten wurden 19 (57 mit EN/RO).
 
-**Einstieg: `docs/RELAUNCH-PLAN.md`** — Befund, die sieben Entscheidungen, Phasenstand,
-die Preisliste zum Gegenzeichnen (§7) und was noch offen ist (§7b).
+**Der Relaunch ist gebaut, aber noch nicht live**: Zweig `relaunch-2026-08`, sechs
+Commits, nicht gemergt und nicht gepusht. Blockiert ist er von einer Antwort, nicht von
+Code — Florin muss die zwölf geschätzten EDV- und Ads-Preise bestätigen.
 
-- `docs/RELAUNCH-PLAN.md` — der aktuelle Plan, hier zuerst nachsehen
+**Einstieg: `docs/RELAUNCH-START.md`** — Stand, Preisliste, Deploy-Schritte, offene Punkte.
+
+- `docs/RELAUNCH-START.md` — **hier zuerst nachsehen**
+- `docs/RELAUNCH-PLAN.md` — Befund, die sieben Entscheidungen, Phasenstand
 - `docs/SEO-PLAN.md` — Blöcke S-F bis S-T; S-A ist abgearbeitet, S-G und S-T offen
 - `docs/seo/KEYWORD-MAP.md` — ein Keyword, eine Zielseite (EDV zuerst)
 - `docs/seo/BASELINE.md` — Nullmessung, nächste Messung Ende September
