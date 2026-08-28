@@ -30,15 +30,22 @@ _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 _FALLBACK = {
     "site_name": "WVM-IT",
     "brand_short": "WVM",
-    "headline": "Aus einer Idee wird digitale Infrastruktur.",
-    "subline": "Wir bauen Webseiten, Hosting, KI-Automatisierungen und SEO, die für Sie arbeiten.",
+    "headline": "Die IT-Abteilung für Betriebe, die keine haben.",
+    "subline": "Wir übernehmen die komplette EDV Ihres Betriebs — per Fernwartung in ganz Österreich und Deutschland.",
     "akzent": "#6d5efc",
     "akzent2": "#22d3ee",
-    "branche": "Digitalagentur",
+    "branche": "IT-Dienstleister",
     "stadt": "",
     "telefon": "",
     "email": "kontakt@wvm-it.tech",
+    # Anschrift, Gruendungsjahr und Partnerstatus bleiben leer, bis die echten Werte
+    # vorliegen. Alles, was daran haengt (Impressum, PostalAddress, Kontaktseite),
+    # rendert erst dann , siehe docs/RELAUNCH-PLAN.md, E5 und E6.
     "adresse": "",
+    "plz": "",
+    "land": "AT",
+    "seit_jahr": "",
+    "partner_status": "",
     "cta_text": "Projekt anfragen",
     "cta_sub": "Unverbindlich · Antwort in 24 h",
     "hero_image": "",
@@ -101,6 +108,29 @@ def set_language(request, lang):
 # die E-Mail wird serverseitig NEU aus dieser Tabelle berechnet — kein Client-Trust).
 # once = einmalig (€), mtl = pro Monat (€), yr = pro Jahr (€), anfrage = Preis auf Anfrage.
 ANGEBOT_GROUPS = [
+    # EDV und IT stehen bewusst an erster Stelle: Das ist das Kerngeschaeft (siehe
+    # docs/RELAUNCH-PLAN.md, Entscheidung E1). Die Reihenfolge dieser Liste bestimmt
+    # die Reihenfolge im Konfigurator, in der Preistabelle und im Schema.
+    #
+    # "start" sagt, aus welchem Feld der Ab-Preis der Gruppe gebildet wird. Ohne Angabe
+    # gewinnt "once"; bei laufender Betreuung ist der Monatspreis die ehrlichere Zahl.
+    {
+        "id": "it", "title": "EDV & IT-Betreuung", "icon": "host", "short": "EDV & IT",
+        "from_label": "ab 29 €/Mt", "start": "mtl",
+        "sub": "Damit die Technik läuft, ohne dass Sie sich kümmern.",
+        "items": [
+            {"id": "it_betreuung", "name": "Laufende IT-Betreuung je Arbeitsplatz", "desc": "Updates, Überwachung, Hilfe bei Störungen — pro PC und Monat.", "mtl": 29, "popular": True, "icon": "care"},
+            {"id": "it_support", "name": "IT-Support & Fernwartung", "desc": "Hilfe, wenn etwas nicht geht. Meist per Fernwartung, meist am selben Tag.", "std": 95, "icon": "consulting"},
+            {"id": "backup", "name": "Datensicherung, täglich geprüft", "desc": "Automatische Sicherung, überwacht, Wiederherstellung getestet.", "mtl": 49, "icon": "shield"},
+            {"id": "server_care", "name": "Server-Betreuung & Überwachung", "desc": "Ein Server, rund um die Uhr im Blick. Wir sehen den Ausfall vor Ihnen.", "mtl": 89, "icon": "server"},
+            {"id": "m365", "name": "Microsoft 365 einrichten & betreuen", "desc": "E-Mail, Teams, OneDrive: sauber aufgesetzt und übergeben.", "once": 290, "icon": "mail"},
+            {"id": "arbeitsplatz", "name": "Neuen Arbeitsplatz einrichten", "desc": "PC, Programme, Konten, Drucker — einsatzbereit übergeben.", "once": 190, "icon": "web"},
+            {"id": "netzwerk_setup", "name": "Netzwerk & WLAN einrichten", "desc": "Ausgemessen, geplant, aufgebaut. Auch für Hallen und mehrere Etagen.", "once": 890, "icon": "net"},
+            {"id": "firewall", "name": "Firewall & VPN einrichten", "desc": "Sicherer Zugriff von außen, geschütztes Netz nach innen.", "once": 690, "icon": "shield"},
+            {"id": "sicherheitscheck", "name": "IT-Sicherheitscheck", "desc": "Einmalige Prüfung mit schriftlichem Bericht und Maßnahmenliste.", "once": 490, "icon": "gauge"},
+            {"id": "vor_ort", "name": "Vor-Ort-Einsatz", "desc": "Wenn es ohne Hände vor Ort nicht geht, zzgl. Anfahrt.", "std": 120, "icon": "home"},
+        ],
+    },
     {
         "id": "web", "title": "Webseiten & Shop", "icon": "web", "short": "Webseiten", "from_label": "ab 350 €",
         "sub": "Ihr digitaler Auftritt, sauber gebaut.",
@@ -131,12 +161,14 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "extra", "title": "Bots, SEO & Custom", "icon": "rocket", "short": "Extras", "from_label": "ab 390 €",
-        "sub": "Der letzte Schliff für mehr Sichtbarkeit.",
+        "id": "extra", "title": "SEO, Google Ads & Custom", "icon": "rocket", "short": "SEO & Ads", "from_label": "ab 199 €/Mt",
+        "sub": "Gefunden werden — bei Google und in KI-Antworten.",
         "items": [
+            {"id": "seo", "name": "SEO-Grundoptimierung", "desc": "Einmalig sauber für Google und KI-Antworten aufgestellt.", "once": 390, "icon": "seo"},
+            {"id": "seo_care", "name": "Laufende SEO-Betreuung", "desc": "Monat für Monat besser ranken, mit monatlichem Bericht.", "mtl": 149, "popular": True, "icon": "gauge"},
+            {"id": "ads_setup", "name": "Google Ads einrichten", "desc": "Konto, Kampagnen, Conversion-Messung — sauber aufgesetzt.", "once": 490, "icon": "rocket"},
+            {"id": "ads_care", "name": "Google Ads betreuen", "desc": "Laufende Optimierung und Bericht, zzgl. Ihres Werbebudgets.", "mtl": 199, "icon": "gauge"},
             {"id": "bot", "name": "Social- / Content-Bot", "desc": "Automatischer Content für Ihre Kanäle.", "once": 390, "icon": "bot"},
-            {"id": "seo", "name": "SEO-Grundoptimierung", "desc": "Einmalig sauber für Google aufgestellt.", "once": 390, "icon": "seo"},
-            {"id": "seo_care", "name": "Laufende SEO-Betreuung", "desc": "Monat für Monat besser ranken.", "mtl": 149, "icon": "gauge"},
             {"id": "custom", "name": "Custom-Software / individuell", "desc": "Ihre Idee, individuell umgesetzt.", "anfrage": True, "icon": "consulting"},
         ],
     },
@@ -153,6 +185,34 @@ ANGEBOT_GROUPS = [
         ],
     },
 ]
+
+# ── Problemband auf der Startseite ────────────────────────────────────────────
+# Sechs Sätze, die Kunden wirklich sagen. Die Texte stehen in den Sprachpaketen
+# unter "probleme" (<id>_q Frage, <id>_a Antwort, <id>_l Linktext); hier stehen nur
+# Reihenfolge, Icon und Ziel. Solange es keine eigenen Leistungsseiten gibt, zeigen
+# die Ziele auf die Blöcke der Startseite; in Block S-A wird an dieser einen Stelle
+# auf die neuen URLs umgestellt (docs/RELAUNCH-PLAN.md §5, R2.x).
+PROBLEME = [
+    {"id": "support", "ziel": "#leistung-it"},
+    {"id": "server", "ziel": "#leistung-it"},
+    {"id": "backup", "ziel": "#leistung-it"},
+    {"id": "wlan", "ziel": "#technik"},
+    {"id": "web", "ziel": "#leistung-web"},
+    {"id": "google", "ziel": "#leistung-seo"},
+]
+
+
+def _probleme(lang):
+    """Problemband in der aktiven Sprache: Frage, Antwort, Linktext, Ziel."""
+    texte = i18n.get_pack(lang).get("probleme", {})
+    return [
+        dict(p,
+             q=texte.get(f"{p['id']}_q", ""),
+             a=texte.get(f"{p['id']}_a", ""),
+             l=texte.get(f"{p['id']}_l", ""))
+        for p in PROBLEME
+    ]
+
 
 # ── Kooperationen (erweiterbar) ───────────────────────────────────────────────
 # Neue Kooperationspartner einfach als weiteren Eintrag ergänzen (logo = Pfad unter
@@ -191,6 +251,10 @@ def _make_price_label(it, words) -> str:
         parts.append(f"{it['mtl']} {words.get('per_month', '€/Mt')}")
     if it.get("yr"):
         parts.append(f"{_thousands(it['yr'], sep)} {words.get('per_year', '€/Jahr')}")
+    # Stundensatz: die ehrliche Einheit fuer Support- und Vor-Ort-Arbeit. Sie wird
+    # nirgends aufsummiert (man weiss vorher nicht, wie viele Stunden es werden).
+    if it.get("std"):
+        parts.append(f"{it['std']} {words.get('per_hour', '€/Std.')}")
     return (words.get("from", "ab") + " " + " + ".join(parts)) if parts else "-"
 
 
@@ -245,18 +309,41 @@ def _startpreise(lang):
     sep = words.get("thousands", ".")
     out = {}
     for g in ANGEBOT_GROUPS:
-        einmalig = [it["once"] for it in g["items"] if it.get("once")]
-        monatlich = [it["mtl"] for it in g["items"] if it.get("mtl")]
-        jaehrlich = [it["yr"] for it in g["items"] if it.get("yr")]
-        if einmalig:
-            out[g["id"]] = f"{ab} {_thousands(min(einmalig), sep)} €"
-        elif monatlich:
-            out[g["id"]] = f"{ab} {min(monatlich)} {words.get('per_month', '€/Mt')}"
-        elif jaehrlich:
-            out[g["id"]] = f"{ab} {_thousands(min(jaehrlich), sep)} {words.get('per_year', '€/Jahr')}"
+        preise = {
+            "once": [it["once"] for it in g["items"] if it.get("once")],
+            "mtl": [it["mtl"] for it in g["items"] if it.get("mtl")],
+            "yr": [it["yr"] for it in g["items"] if it.get("yr")],
+            "std": [it["std"] for it in g["items"] if it.get("std")],
+        }
+        # Die Gruppe darf sagen, welche Einheit ihren Ab-Preis bildet: Bei laufender
+        # Betreuung ist "ab 29 €/Mt" ehrlicher als der kleinste Einmalbetrag.
+        reihenfolge = ["once", "mtl", "yr", "std"]
+        bevorzugt = g.get("start")
+        if bevorzugt in reihenfolge and preise[bevorzugt]:
+            reihenfolge = [bevorzugt] + [f for f in reihenfolge if f != bevorzugt]
+        einheit = {
+            "once": "€",
+            "mtl": words.get("per_month", "€/Mt"),
+            "yr": words.get("per_year", "€/Jahr"),
+            "std": words.get("per_hour", "€/Std."),
+        }
+        for feld in reihenfolge:
+            if preise[feld]:
+                out[g["id"]] = f"{ab} {_thousands(min(preise[feld]), sep)} {einheit[feld]}".rstrip()
+                break
         else:
             out[g["id"]] = words.get("on_request", "auf Anfrage")
     return out
+
+
+def _itempreise(lang):
+    """Preis-Label je Position, z. B. {'ads_setup': 'ab 490 €'}.
+
+    Der Ab-Preis einer ganzen Gruppe passt nicht überall: Der Google-Ads-Block soll
+    seinen eigenen Einstieg zeigen, nicht den kleinsten Preis der Gruppe 'extra'."""
+    words = i18n.get_pack(lang).get("catalog_words", {})
+    return {it["id"]: _make_price_label(it, words)
+            for g in ANGEBOT_GROUPS for it in g["items"]}
 
 
 def _paketpreise():
@@ -313,6 +400,10 @@ def _angebot_summary(ids):
             mtl += it["mtl"]; teile.append(f"{it['mtl']} €/Monat")
         if it.get("yr"):
             yr += it["yr"]; teile.append(f"{it['yr']} €/Jahr")
+        if it.get("std"):
+            # Stundensaetze werden nicht summiert — der Umfang steht erst nach dem
+            # Gespraech fest. Die Position taucht im Angebot auf, die Summe bleibt ehrlich.
+            teile.append(f"{it['std']} €/Std."); hat_anfrage = True
         preis = ", ".join(teile) if teile else "-"
         zeilen.append(f"- {it['gruppe']}: {it['name']} ({preis})")
     return zeilen, once, mtl, yr, hat_anfrage
@@ -910,13 +1001,29 @@ def _structured_data(c, lang):
                    "serviceType": g["title"], "provider": {"@id": f"{base}/#business"}}
             offer = {"@type": "Offer", "itemOffered": svc,
                      "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}
-            price = it.get("once") or it.get("mtl") or it.get("yr")
+            price = it.get("once") or it.get("mtl") or it.get("yr") or it.get("std")
             if price:
                 offer["price"] = str(price)
-                offer["priceSpecification"] = {
+                spez = {
                     "@type": "PriceSpecification", "price": str(price),
                     "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
                 }
+                # Wiederkehrende und stundenweise Preise werden ausgezeichnet, damit
+                # Suchmaschinen und KI-Antworten "29 €" nicht als Endpreis lesen.
+                if it.get("std"):
+                    spez = {"@type": "UnitPriceSpecification", "price": str(price),
+                            "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
+                            "unitCode": "HUR", "unitText": "Stunde"}
+                elif it.get("mtl"):
+                    spez = {"@type": "UnitPriceSpecification", "price": str(price),
+                            "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
+                            "unitCode": "MON", "unitText": "Monat",
+                            "billingIncrement": 1, "billingDuration": 1}
+                elif it.get("yr"):
+                    spez = {"@type": "UnitPriceSpecification", "price": str(price),
+                            "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
+                            "unitCode": "ANN", "unitText": "Jahr"}
+                offer["priceSpecification"] = spez
             offers.append(offer)
 
     area_served = ([{"@type": "Country", "name": "Österreich"},
@@ -939,7 +1046,16 @@ def _structured_data(c, lang):
         "paymentAccepted": "Überweisung, Rechnung",
         "founder": {"@type": "Person", "name": c.get("inhaber_name", "Florin Feier"),
                     "jobTitle": "Inhaber"},
-        "address": {"@type": "PostalAddress", "addressCountry": "AT"},
+        # Solange keine echte Anschrift vorliegt, steht hier nur das Land. Eine
+        # erfundene oder halbe Adresse waere ein falsches Local-Signal; sobald
+        # content.json 'adresse'/'plz'/'stadt' traegt, wird das Schema vollstaendig.
+        "address": {k: v for k, v in {
+            "@type": "PostalAddress",
+            "streetAddress": (c.get("adresse") or "").strip(),
+            "postalCode": (c.get("plz") or "").strip(),
+            "addressLocality": (c.get("stadt") or "").strip(),
+            "addressCountry": (c.get("land") or "AT").strip(),
+        }.items() if v},
         "areaServed": area_served,
         "availableLanguage": ["de", "en", "ro"],
         "knowsAbout": ["Smarthome", "Gebäudeautomation", "Loxone", "KNX",
@@ -1007,6 +1123,8 @@ def index(request):
     return render(request, "index.html", {
         "c": c, "sent": sent, "news_sent": news_sent, "anfrage_ok": anfrage_ok,
         "startpreise": _startpreise(lang),
+        "preise_item": _itempreise(lang),
+        "probleme": _probleme(lang),
         "pakete": _paketpreise(),
         "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
@@ -1241,7 +1359,9 @@ def kooperation_anfordern(request):
 # laufen alle hier zusammen; die Herkunft steckt in 'quelle' und landet im Betreff,
 # damit im Postfach sofort sichtbar ist, worum es geht. Siehe docs/UMBAU-PLAN.md §4.
 _ANFRAGE_QUELLEN = {
+    "it": "EDV & IT-Betreuung",
     "web": "Webdesign & Shop",
+    "ads": "Google Ads",
     "hosting": "Hosting, Domain & Wartung",
     "ki": "KI & Automatisierung",
     "seo": "SEO & Sichtbarkeit",

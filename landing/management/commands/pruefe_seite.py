@@ -26,6 +26,24 @@ TITEL_MAX = 60
 DESC_MAX = 160
 
 
+def _client():
+    """Testclient, der unter dem kanonischen Host anfragt.
+
+    Zwei Weiterleitungen stehen sonst vor jeder Prüfung: `KanonischerHostMiddleware`
+    schickt 'testserver' per 301 auf die Hauptdomain, und SECURE_SSL_REDIRECT schickt
+    http auf https. Die Prüfung meldete dann sechsmal 301 statt echter Befunde und lief
+    nur mit DEBUG=true — also ausgerechnet nicht so, wie die Seite in Produktion läuft.
+    Deshalb: kanonischer Host als SERVER_NAME und https als Schema."""
+    from landing.middleware import KanonischerHostMiddleware
+    ziel = KanonischerHostMiddleware._ziel_bestimmen()
+    class HttpsClient(Client):
+        def get(self, pfad, *a, **kw):
+            kw.setdefault("secure", True)
+            return super().get(pfad, *a, **kw)
+
+    return HttpsClient(SERVER_NAME=ziel) if ziel else HttpsClient()
+
+
 def _schluessel(d, praefix=""):
     """Alle Schlüsselpfade eines verschachtelten Dicts, z. B. 'hero.headline'."""
     raus = set()
@@ -92,12 +110,12 @@ class Command(BaseCommand):
         erlaubt = set()
         for g in ANGEBOT_GROUPS:
             for it in g["items"]:
-                for feld in ("once", "mtl", "yr"):
+                for feld in ("once", "mtl", "yr", "std"):
                     if it.get(feld):
                         erlaubt.add(int(it[feld]))
         # Summen, die die Seite bewusst bildet (Betreuungspaket = Hosting + Wartung).
         erlaubt.add(15 + 39)
-        client = Client()
+        client = _client()
         seite = client.get("/").content.decode("utf-8")
         # Zahlen unmittelbar vor einem Euro-Zeichen, mit oder ohne Tausenderpunkt.
         gefunden = set()
@@ -115,7 +133,7 @@ class Command(BaseCommand):
 
     # ── 3. Seiten-Technik und Formulare ──────────────────────────────────────
     def _pruefe_seiten(self):
-        client = Client()
+        client = _client()
         for pfad in SEITEN:
             antwort = client.get(pfad)
             if antwort.status_code != 200:
@@ -161,9 +179,14 @@ class Command(BaseCommand):
 
     def _pruefe_formulare(self, pfad, html):
         formulare = re.findall(r"<form[^>]*data-anfrage.*?</form>", html, re.S)
-        if len(formulare) < len(_ANFRAGE_QUELLEN) - 1:   # koop läuft über einen eigenen Endpunkt
+        # Jede Anfrage-Quelle muss auch wirklich ein Formular auf der Seite haben —
+        # sonst gibt es einen Betreff, den niemand auslösen kann. 'koop' läuft über
+        # einen eigenen Endpunkt und zählt hier nicht mit.
+        vorhanden = set(re.findall(r'name="quelle" value="([a-z_]+)"', html))
+        fehlend = sorted(set(_ANFRAGE_QUELLEN) - vorhanden - {"koop"})
+        if fehlend:
             self.fehler.append(
-                f"{pfad}: nur {len(formulare)} Kurzanfrage-Formulare gefunden")
+                f"{pfad}: keine Kurzanfrage-Formulare für {', '.join(fehlend)}")
         for form in formulare:
             if "csrfmiddlewaretoken" not in form:
                 self.fehler.append(f"{pfad}: Formular ohne CSRF-Token")
