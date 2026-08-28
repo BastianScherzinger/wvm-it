@@ -26,7 +26,8 @@ def _seiten():
     und IndexNow. Wer eine Seite ergänzt, bekommt sie hier automatisch geprüft."""
     from landing.views import _seiten_pfade
     return [i18n.add_prefix(lang, pfad)
-            for pfad, _prio, _freq in _seiten_pfade() for lang in i18n.LANGS]
+            for pfad, _prio, _freq, mehr in _seiten_pfade()
+            for lang in (i18n.LANGS if mehr else ('de',))]
 TITEL_MAX = 60
 DESC_MAX = 160
 
@@ -156,7 +157,7 @@ class Command(BaseCommand):
         # für KI-Antwortmaschinen (docs/SEO-PLAN.md, G10).
         from landing.views import _seiten_pfade
         gefunden, unbekannt = set(), {}
-        for pfad, _p, _f in _seiten_pfade():
+        for pfad, _p, _f, _mehr in _seiten_pfade():
             html = client.get(pfad).content.decode("utf-8")
             zahlen = set()
             for treffer in re.findall(r"(\d[\d.]{0,8})\s*(?:€|&euro;)", html):

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% comment %}
+Ein Fachbeitrag (docs/AUSBAU-2026-08.md, P7).
+
+Der Aufbau folgt der Antwort-zuerst-Regel: Die Frage steht als H1, direkt darunter
+die vollstaendige Antwort in einem hervorgehobenen Absatz. Wer nur diesen Absatz
+liest — Mensch oder KI —, hat trotzdem eine brauchbare Auskunft. Erst danach die
+Begruendung in Abschnitten.
+{% endcomment %}
+{% block titel %}{{ beitrag.meta_titel|safe }}{% endblock %}
+{% block beschreibung %}{{ beitrag.desc|safe }}{% endblock %}
+{% block og_titel %}{{ beitrag.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ beitrag.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ beitrag.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ beitrag.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <a href="{% url 'aktuelles' %}">Aktuelles</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ beitrag.titel|truncatechars:40 }}</span>
+    </nav>
+    <h1>{{ beitrag.titel|safe }}</h1>
+    <p class="bt-meta">
+      <time datetime="{{ beitrag.datum }}">{{ beitrag.datum }}</time>
+      <span aria-hidden="true">·</span>
+      <span>{{ beitrag.lesezeit }} Min. Lesezeit</span>
+      <span aria-hidden="true">·</span>
+      <span>{{ c.inhaber_name }}</span>
+    </p>
+  </div>
+</header>
+
+<article class="section">
+  <div class="wrap sp-wrap">
+    {% comment %}Der Absatz, den eine KI-Antwort zitiert. Deshalb steht er zuerst.{% endcomment %}
+    <p class="bt-antwort" data-reveal>{{ beitrag.antwort|safe }}</p>
+
+    {% for a in beitrag.abschnitte %}
+    <section class="bt-abschnitt" data-reveal>
+      <h2>{{ a.h|safe }}</h2>
+      <p>{{ a.t|safe }}</p>
+    </section>
+    {% endfor %}
+
+    {% if beitrag.fazit %}
+    <p class="bt-fazit" data-reveal><strong>Kurz gesagt:</strong> {{ beitrag.fazit|safe }}</p>
+    {% endif %}
+
+    {% if thema %}
+    <aside class="rg-schwerpunkt" data-reveal>
+      <p class="rg-sw-label">Passende Leistung</p>
+      <a class="rg-sw-link" href="{{ thema.url }}">
+        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=thema.icon %}</span>
+        <span>
+          <strong>{{ thema.nav|safe }}</strong>
+          <span class="rg-sw-t">{{ thema.desc|safe }}</span>
+        </span>
+      </a>
+    </aside>
+    {% endif %}
+
+    {% include 'anfrage_karte.html' with bid='it' titel='Frage zum Thema? Kurz schildern, wir antworten.' sub='Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.' ph=t.lb.text_ph %}
+
+    <nav class="rg-weitere" aria-label="Weitere Beiträge">
+      <h2>Weitere Beiträge</h2>
+      <ul>
+        {% for b in weitere %}<li><a href="{{ b.url }}">{{ b.titel|truncatechars:52 }}</a></li>{% endfor %}
+      </ul>
+    </nav>
+  </div>
+</article>
+{% endblock %}

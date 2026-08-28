@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% comment %}Uebersicht der Fachbeitraege (docs/AUSBAU-2026-08.md, P7).{% endcomment %}
+{% block titel %}Fachbeiträge zu EDV, IT und Technik | WVM-IT{% endblock %}
+{% block beschreibung %}Antworten auf die Fragen, die Betriebe vor einer IT-Entscheidung stellen: Kosten, Datensicherung, WLAN, IT-Sicherheit, Gebäudeautomation.{% endblock %}
+{% block og_titel %}Fachbeiträge zu EDV, IT und Technik{% endblock %}
+{% block og_beschreibung %}Antworten auf die Fragen, die Betriebe vor einer IT-Entscheidung stellen.{% endblock %}
+{% block tw_titel %}Fachbeiträge zu EDV, IT und Technik{% endblock %}
+{% block tw_beschreibung %}Antworten auf die Fragen, die Betriebe vor einer IT-Entscheidung stellen.{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Aktuelles</span>
+    </nav>
+    <h1>Antworten statt Werbetexte</h1>
+    <p class="sp-kurz">Hier stehen die Fragen, die uns Betriebe vor einer Entscheidung stellen — mit der Antwort gleich im ersten Absatz. Kein Beitrag ohne echte Frage dahinter, keine Zahl ohne Beleg.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="rg-grid">
+      {% for b in beitraege %}
+      <a class="rg-kachel spot" href="{{ b.url }}" data-spot>
+        <span class="rg-km">{{ b.datum }} · {{ b.lesezeit }} Min.</span>
+        <h2 class="rg-h">{{ b.titel|safe }}</h2>
+        <p class="rg-t">{{ b.desc|safe }}</p>
+      </a>
+      {% endfor %}
+    </div>
+    <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a></p>
+  </div>
+</section>
+{% endblock %}

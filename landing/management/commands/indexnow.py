@@ -56,7 +56,8 @@ class Command(BaseCommand):
         host = self._host()
         from landing.views import _seiten_pfade
         urls = [f"https://{host}{i18n.add_prefix(lang, pfad)}"
-                for pfad, _prio, _freq in _seiten_pfade() for lang in i18n.LANGS]
+                for pfad, _prio, _freq, mehr in _seiten_pfade()
+                for lang in (i18n.LANGS if mehr else ("de",))]
 
         self.stdout.write(f"Host: {host}")
         self.stdout.write(f"Schlüsseldatei: https://{host}/{schluessel}.txt")

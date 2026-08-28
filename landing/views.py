@@ -23,7 +23,7 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import i18n, leistungen, regionen
+from . import beitraege, i18n, leistungen, regionen
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -1348,20 +1348,33 @@ def _seiten_pfade():
 
     Eine Quelle fuer beides — sonst meldet IndexNow Adressen, die in der Sitemap
     fehlen, und die Search Console findet Seiten, die niemand verlinkt hat.
-    Rueckgabe: Liste aus (Pfad, Prioritaet, Aenderungshaeufigkeit)."""
-    pfade = [("/", "1.0", "weekly"),
-             ("/leistungen/", "0.9", "monthly"),
-             ("/kosten/", "0.9", "monthly"),
-             ("/referenzen/", "0.6", "monthly"),
-             ("/kontakt/", "0.7", "yearly"),
-             ("/angebot/", "0.8", "monthly")]
-    pfade += [(f"/leistungen/{l['slug']}/", l["prio"], "monthly")
+
+    Rueckgabe: Liste aus (Pfad, Prioritaet, Aenderungshaeufigkeit, mehrsprachig).
+
+    Das vierte Feld ist noetig, seit es die Fachbeitraege gibt: Sie liegen
+    ausserhalb von i18n_patterns und existieren nur auf Deutsch (Begruendung im
+    Kopf von landing/beitraege.py). Ohne diese Unterscheidung wuerden Sitemap und
+    IndexNow /en/aktuelles/… und /ro/aktuelles/… melden — Adressen, die es nicht
+    gibt. Nichts kostet Vertrauen bei einem Crawler so schnell wie eine Sitemap
+    voller 404."""
+    pfade = [("/", "1.0", "weekly", True),
+             ("/leistungen/", "0.9", "monthly", True),
+             ("/kosten/", "0.9", "monthly", True),
+             ("/referenzen/", "0.6", "monthly", True),
+             ("/kontakt/", "0.7", "yearly", True),
+             ("/angebot/", "0.8", "monthly", True)]
+    pfade += [(f"/leistungen/{l['slug']}/", l["prio"], "monthly", True)
               for l in leistungen.LEISTUNGEN]
-    pfade += [("/it-service/", "0.7", "monthly")]
-    pfade += [(f"/it-service/{r['slug']}/", r["prio"], "monthly")
+    pfade += [("/it-service/", "0.7", "monthly", True)]
+    pfade += [(f"/it-service/{r['slug']}/", r["prio"], "monthly", True)
               for r in regionen.REGIONEN]
+    # Nur Deutsch — daher False:
+    pfade += [("/aktuelles/", "0.6", "weekly", False)]
+    pfade += [(f"/aktuelles/{b['slug']}/", b["prio"], "yearly", False)
+              for b in beitraege.BEITRAEGE]
     # Rechtstexte gehoeren in den Index (Anbieterkennzeichnung), aber ganz hinten.
-    pfade += [("/impressum/", "0.2", "yearly"), ("/datenschutz/", "0.2", "yearly")]
+    pfade += [("/impressum/", "0.2", "yearly", True),
+              ("/datenschutz/", "0.2", "yearly", True)]
     return pfade
 
 
@@ -1458,6 +1471,71 @@ def leistung_seite(request, slug):
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"]["leistungen"], reverse("leistungen")),
                 (seite.get("h1", slug), pfad)])),
+    })
+
+
+def _beitrag_daten(eintrag):
+    """Stammdaten aus beitraege.py plus Texte. Nur Deutsch — siehe Kopf von
+    `landing/beitraege.py`, Abschnitt „Warum diese Seiten NUR auf Deutsch erscheinen"."""
+    from .i18n.beitraege_de import BEITRAEGE as TEXTE
+    daten = {**eintrag, **TEXTE.get(eintrag["slug"], {})}
+    daten["url"] = reverse("beitrag", kwargs={"slug": eintrag["slug"]})
+    return daten
+
+
+def beitrag_seite(request, slug):
+    """/aktuelles/<slug>/ — ein Fachbeitrag, eine URL, eine beantwortete Frage.
+
+    Eigene URLs statt einer Sammelseite: Bei Rümpelwerk war genau das der beste
+    Hebel pro investierter Stunde (docs/SEO-PLAN.md, T1). Eine Sammelseite kann
+    für ein Thema ranken, zehn Beiträge auf zehn URLs für zehn Fragen.
+    """
+    eintrag = beitraege.NACH_SLUG.get(slug)
+    if not eintrag:
+        raise Http404(slug)
+    c = _content()
+    beitrag = _beitrag_daten(eintrag)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = beitrag["url"]
+
+    # Article-Schema mit echtem Datum und benanntem Autor: Beides sind Signale,
+    # die eine KI-Antwort braucht, um einen Absatz überhaupt zuzuordnen (G6).
+    artikel = {
+        "@type": "Article", "@id": f"{base}{pfad}#article",
+        "headline": beitrag.get("titel", ""),
+        "description": beitrag.get("antwort", "")[:300],
+        "datePublished": eintrag.get("datum", ""),
+        "dateModified": eintrag.get("geaendert") or eintrag.get("datum", ""),
+        "inLanguage": "de-AT",
+        "author": {"@id": f"{base}/#inhaber"},
+        "publisher": {"@id": f"{base}/#business"},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": f"{base}{pfad}"},
+        "about": {"@id": f"{base}/#business"},
+    }
+    thema = leistungen.NACH_SLUG.get(eintrag.get("thema", ""))
+    return render(request, "beitrag.html", {
+        "c": c, "beitrag": beitrag,
+        "thema": _leistung_daten(thema, "de") if thema else None,
+        "weitere": [_beitrag_daten(b) for b in beitraege.BEITRAEGE
+                    if b["slug"] != slug][:3],
+        "structured_data": _seiten_schema(
+            c, "de", service=artikel,
+            breadcrumb=_breadcrumb(base, [
+                ("Aktuelles", reverse("aktuelles")),
+                (beitrag.get("titel", slug), pfad)])),
+    })
+
+
+def aktuelles(request):
+    """/aktuelles/ — Übersicht der Fachbeiträge, neueste zuerst."""
+    c = _content()
+    base = (c.get("wvm_url") or "").rstrip("/")
+    liste = sorted((_beitrag_daten(b) for b in beitraege.BEITRAEGE),
+                   key=lambda b: b.get("datum", ""), reverse=True)
+    return render(request, "aktuelles.html", {
+        "c": c, "beitraege": liste,
+        "structured_data": _seiten_schema(
+            c, "de", breadcrumb=_breadcrumb(base, [("Aktuelles", reverse("aktuelles"))])),
     })
 
 
@@ -1906,7 +1984,17 @@ def sitemap_xml(request):
     # damit Sitemap und Meldung nie auseinanderlaufen.
     pages = _seiten_pfade()
     items = []
-    for path, pr, cf in pages:
+    for path, pr, cf, mehrsprachig in pages:
+        if not mehrsprachig:
+            # Einsprachige Seite (Fachbeitraege): genau ein Eintrag, keine
+            # hreflang-Alternates. Ein Alternate auf eine Seite, die es nicht
+            # gibt, ist schlimmer als gar keiner.
+            items.append(
+                f"<url><loc>{base}{path}</loc>"
+                f"<lastmod>{lastmod}</lastmod>"
+                f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
+            )
+            continue
         alts = "".join(
             f'<xhtml:link rel="alternate" hreflang="{a["hreflang"]}" '
             f'href="{base}{i18n.add_prefix(a["code"], path)}"/>'
