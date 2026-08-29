@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% comment %}
+IT-Sicherheits-Selbsttest (docs/SEO-AUSBAU-3.md, W2).
+
+Zwei Dinge, die diese Seite von den üblichen „Sicherheitschecks" unterscheiden:
+
+1. **Kein Formularzwang vor dem Ergebnis.** Es gibt keine E-Mail-Abfrage, kein
+   Absenden an uns und keine Speicherung. Genau das macht die Seite teilbar —
+   und Teilbarkeit ist ihr einziger Zweck.
+2. **Das Ergebnis ist eine Reihenfolge, keine Note.** Die offenen Punkte stehen
+   nach Schadenpotenzial sortiert, mit dem Satz, was daran hängt.
+
+Technisch ein GET-Formular: Das Ergebnis steht in der Adresse, ist verschickbar
+und funktioniert ohne JavaScript. Gerechnet wird ausschließlich auf dem Server.
+{% endcomment %}
+{% block titel %}{{ st.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ st.desc|safe }}{% endblock %}
+{% comment %}
+Ergebnis-Adressen tragen Parameter und sind Varianten derselben Seite. Damit
+Google nicht zehn Fassungen indexiert, steht auf jeder Ergebnisansicht noindex;
+die Seite selbst (ohne Parameter) bleibt indexierbar. Das Canonical in base.html
+zeigt ohnehin immer auf die parameterlose Adresse.
+{% endcomment %}
+{% comment %}
+Die Bedingung steht INNERHALB des Blocks. Ein {% block %} innerhalb eines
+{% if %} wäre wirkungslos: Django sammelt Blöcke beim Parsen, unabhängig davon,
+ob die Bedingung zur Laufzeit zutrifft — die Seite stünde dann immer auf noindex.
+{% endcomment %}
+{% block robots %}{% if gezeigt %}noindex,follow{% else %}index,follow,max-image-preview:large{% endif %}{% endblock %}
+{% block og_titel %}{{ st.h1|safe }}{% endblock %}
+{% block og_beschreibung %}{{ st.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ st.h1|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ st.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ st.h1|safe }}</span>
+    </nav>
+    <h1>{{ st.h1|safe }}</h1>
+    <p class="sp-kurz">{{ st.kurz|safe }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap sp-wrap">
+    <p class="sp-intro" data-reveal>{{ st.intro|safe }}</p>
+
+    <aside class="ts-hinweis" data-reveal>
+      <h2>{{ st.hinweis_h|safe }}</h2>
+      <p>{{ st.hinweis_t|safe }}</p>
+    </aside>
+
+    <form class="ts-form" method="get" action="{% url 'sicherheitstest' %}">
+      <ol class="ts-fragen">
+        {% for f in fragen %}
+        <li class="ts-frage">
+          <fieldset>
+            <legend class="ts-q">{{ f.q|safe }}</legend>
+            <p class="ts-hilfe">{{ f.hilfe|safe }}</p>
+            <div class="ts-optionen">
+              <label class="ts-opt"><input type="radio" name="{{ f.id }}" value="ja" {% if f.antwort == 'ja' %}checked{% endif %}><span>{{ st.ja|safe }}</span></label>
+              <label class="ts-opt"><input type="radio" name="{{ f.id }}" value="nein" {% if f.antwort == 'nein' %}checked{% endif %}><span>{{ st.nein|safe }}</span></label>
+              <label class="ts-opt"><input type="radio" name="{{ f.id }}" value="unklar" {% if f.antwort == 'unklar' %}checked{% endif %}><span>{{ st.unklar|safe }}</span></label>
+            </div>
+          </fieldset>
+        </li>
+        {% endfor %}
+      </ol>
+      <div class="ts-knoepfe">
+        <button class="btn btn-lg" type="submit">{{ st.btn|safe }}</button>
+        {% if gezeigt %}<a class="btn btn-ghost" href="{% url 'sicherheitstest' %}">{{ st.neu|safe }}</a>{% endif %}
+      </div>
+    </form>
+
+    {% if gezeigt %}
+    <section class="ts-ergebnis ts-{{ stufe }}" id="ergebnis" aria-live="polite">
+      <h2 class="ts-erg-h">{{ st.ergebnis_h|safe }}</h2>
+      <p class="ts-punkte">
+        <strong>{{ punkte }}</strong>
+        <span>{{ st.punkte_l|safe }}</span>
+      </p>
+      {% if not vollstaendig %}<p class="ts-teil">{{ st.unbeantwortet|safe }}</p>{% endif %}
+
+      <h3 class="ts-stufe-h">
+        {% if stufe == 'rot' %}{{ st.stufen.rot_h|safe }}
+        {% elif stufe == 'gelb' %}{{ st.stufen.gelb_h|safe }}
+        {% else %}{{ st.stufen.gruen_h|safe }}{% endif %}
+      </h3>
+      <p class="ts-stufe-t">
+        {% if stufe == 'rot' %}{{ st.stufen.rot_t|safe }}
+        {% elif stufe == 'gelb' %}{{ st.stufen.gelb_t|safe }}
+        {% else %}{{ st.stufen.gruen_t|safe }}{% endif %}
+      </p>
+
+      {% if offen %}
+      <h3 class="ts-offen-h">{{ st.offen_h|safe }}</h3>
+      <p class="ts-offen-t">{{ st.offen_t|safe }}</p>
+      <ol class="ts-offen">
+        {% for o in offen %}
+        <li>
+          <h4>{{ o.q|safe }}</h4>
+          <p>{{ o.nein_t|safe }}</p>
+          {% if o.leistung %}
+          <p class="ts-leistung"><span>{{ st.leistung_h|safe }}:</span>
+            <a href="{{ o.leistung.url }}">{{ o.leistung.nav|safe }}</a></p>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p class="ts-alles-gut">{{ st.alles_gut|safe }}</p>
+      {% endif %}
+    </section>
+    {% endif %}
+
+    <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
+    <div class="faq">
+      {% for f in st.faq %}
+      <details class="faq-item"{% if forloop.first %} open{% endif %}>
+        <summary class="faq-q">
+          <span>{{ f.q|safe }}</span>
+          <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+      </details>
+      {% endfor %}
+    </div>
+    <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
+      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
+      <a href="{% url 'notfall' %}">{{ t.notfall.h1|safe }}</a></p>
+
+    {% include 'anfrage_karte.html' with bid='it' titel=st.cta_h sub=st.cta_t ph=st.offen_h %}
+  </div>
+</section>
+{% endblock %}

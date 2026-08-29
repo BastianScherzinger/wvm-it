@@ -47,6 +47,10 @@ urlpatterns += i18n_patterns(
     # ── Notfall (docs/SEO-AUSBAU-3.md, W3) ──────────────────────────────────
     # Kurzer, merkbarer Pfad: Diese Adresse wird im Ernstfall abgetippt.
     path("it-notfall/", views.notfall, name="notfall"),
+    # ── Sicherheits-Selbsttest (docs/SEO-AUSBAU-3.md, W2) ───────────────────
+    # Antworten kommen als GET-Parameter und werden nicht gespeichert; deshalb
+    # gibt es hier bewusst keinen POST-Endpunkt.
+    path("it-sicherheit-test/", views.sicherheitstest, name="sicherheitstest"),
     # ── Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3) ─────────────────────────
     # Eigene Suchabsicht: Jemand steht vor einer Entscheidung und hat noch
     # keinen Anbieter gewaehlt. Deshalb kein Unterpfad von /leistungen/.

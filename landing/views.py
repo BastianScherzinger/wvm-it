@@ -23,7 +23,7 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import beitraege, branchen, i18n, leistungen, regionen, vergleiche
+from . import beitraege, branchen, i18n, leistungen, regionen, selbsttest, vergleiche
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -1503,6 +1503,7 @@ def _seiten_pfade():
     # maximaler Dringlichkeit gesucht, und sie ist der einzige Einstieg fuer
     # Menschen mit sofortigem Bedarf.
     pfade += [("/it-notfall/", "0.8", "monthly", True)]
+    pfade += [("/it-sicherheit-test/", "0.7", "monthly", True)]
     pfade += [("/vergleich/", "0.7", "monthly", True)]
     pfade += [(f"/vergleich/{v['slug']}/", v["prio"], "monthly", True)
               for v in vergleiche.VERGLEICHE]
@@ -1706,6 +1707,71 @@ def branche_seite(request, slug):
             breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
                 (seite.get("nav", slug), pfad)])),
+    })
+
+
+# ══ IT-Sicherheits-Selbsttest (docs/SEO-AUSBAU-3.md, W2) ══════════════════════
+# Zehn Fragen, Ergebnis sofort, ohne E-Mail-Abfrage und ohne Speicherung.
+# Warum das so sein muss, steht im Kopf von landing/selbsttest.py.
+
+_TEST_ANTWORTEN = ("ja", "nein", "unklar")
+
+
+def sicherheitstest(request):
+    """/it-sicherheit-test/ — zehn Fragen, sofortiges Ergebnis, nichts gespeichert.
+
+    Die Antworten kommen als GET-Parameter und werden **nicht** protokolliert.
+    Der Aufruf hinterlässt außer dem üblichen Zugriffsprotokoll des Servers keine
+    Spur; deshalb entsteht auch keine neue Datenverarbeitung, die in `content.json`
+    beschrieben werden müsste."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    st = pack.get("selbsttest", {})
+    texte = {f["id"]: f for f in st.get("fragen", [])}
+
+    antworten, punkte, beantwortet = {}, 0, 0
+    for frage in selbsttest.FRAGEN:
+        wert = (request.GET.get(frage["id"]) or "").strip().lower()
+        if wert not in _TEST_ANTWORTEN:
+            wert = ""
+        antworten[frage["id"]] = wert
+        if wert:
+            beantwortet += 1
+        if wert == "ja":
+            punkte += frage["gewicht"]
+
+    # Offene Punkte: alles, was nicht mit Ja beantwortet wurde — „weiß nicht"
+    # zählt hier wie ein Nein, weil Unwissen dieselbe Wirkung hat.
+    offen = [
+        dict(texte.get(f["id"], {}), gewicht=f["gewicht"],
+             antwort=antworten[f["id"]],
+             leistung=_leistung_daten(leistungen.NACH_SLUG[f["leistung"]], lang)
+             if f["leistung"] in leistungen.NACH_SLUG else None)
+        for f in sorted(selbsttest.FRAGEN, key=lambda f: -f["gewicht"])
+        if antworten[f["id"]] in ("nein", "unklar")
+    ]
+
+    fragen = [dict(texte.get(f["id"], {}), gewicht=f["gewicht"],
+                   antwort=antworten[f["id"]], nummer=i)
+              for i, f in enumerate(selbsttest.FRAGEN, start=1)]
+
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = reverse("sicherheitstest")
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
+    return render(request, "selbsttest.html", {
+        "c": c, "st": st, "fragen": fragen, "offen": offen,
+        "anfrage_ok": anfrage_ok,
+        "gezeigt": beantwortet > 0,
+        "vollstaendig": beantwortet == len(selbsttest.FRAGEN),
+        "punkte": punkte, "max_punkte": selbsttest.MAX_PUNKTE,
+        "stufe": selbsttest.stufe(punkte),
+        "preis_stand": _preis_stand(lang),
+        "structured_data": _seiten_schema(
+            c, lang, faq=st.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [(st.get("h1", "Selbsttest"), pfad)])),
     })
 
 
@@ -2316,6 +2382,8 @@ def llms_txt(request):
         "Microsoft 365 oder Google Workspace — mit Rechenweg.",
         f"- [IT-Notfall]({base}/it-notfall/): was in den ersten 30 Minuten zu tun ist — "
         "Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Gerät.",
+        f"- [IT-Sicherheits-Selbsttest]({base}/it-sicherheit-test/): zehn Fragen, Ergebnis "
+        "sofort, ohne E-Mail-Abfrage und ohne Speicherung.",
         f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
         f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
         "\n## Leistungen",
@@ -2805,6 +2873,9 @@ def _such_index(lang):
         (reverse("notfall"), pack.get("notfall", {}).get("h1", ""),
          pack.get("notfall", {}).get("kurz", ""),
          pack.get("notfall", {}).get("eilt_h", "")),
+        (reverse("sicherheitstest"), pack.get("selbsttest", {}).get("h1", ""),
+         pack.get("selbsttest", {}).get("kurz", ""),
+         pack.get("selbsttest", {}).get("ergebnis_h", "")),
         (reverse("regionen"), pack["seite"]["regionen_h1"],
          pack["seite"]["regionen_kurz"], pack["seite"]["regionen_titel"]),
         (reverse("kontakt"), pack.get("kontakt_seite", {}).get("h1", ""),

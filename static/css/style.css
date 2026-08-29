@@ -1950,3 +1950,60 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .nav-notfall{position:relative;padding-left:16px!important}
 .nav-notfall::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
   width:8px;height:8px;border-radius:50%;background:#c2503a}
+
+/* ============================================================================
+   SICHERHEITS-SELBSTTEST  (docs/SEO-AUSBAU-3.md, W2)
+   Kein Formularzwang vor dem Ergebnis — dementsprechend keine Gestaltung, die
+   nach Verkaufstrichter aussieht. Ruhige Karten, klare Radiogruppen.
+   ========================================================================== */
+.ts-hinweis{margin:0 0 30px;padding:20px 22px;border:1px dashed var(--line-2);border-radius:14px;
+  background:var(--surface)}
+.ts-hinweis h2{font-size:17px;margin:0 0 8px}
+.ts-hinweis p{color:var(--ink-soft);line-height:1.7;margin:0;font-size:14.5px}
+
+.ts-fragen{list-style:none;margin:0 0 24px;padding:0;counter-reset:tsq;display:grid;gap:14px}
+.ts-frage{counter-increment:tsq}
+.ts-frage fieldset{border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+  background:var(--surface);margin:0}
+.ts-q{font-family:"Space Grotesk","Inter",sans-serif;font-size:16.5px;font-weight:600;
+  line-height:1.45;padding:0;display:block}
+.ts-q::before{content:counter(tsq) ". ";color:var(--accent-ink)}
+.ts-hilfe{font-size:13px;color:var(--ink-dim);line-height:1.6;margin:8px 0 14px}
+.ts-optionen{display:flex;flex-wrap:wrap;gap:8px}
+.ts-opt{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;
+  border:1px solid var(--line-2);cursor:pointer;font-size:14.5px;transition:border-color .18s,background .18s}
+.ts-opt input{accent-color:var(--accent);width:16px;height:16px}
+.ts-opt:hover{border-color:color-mix(in srgb,var(--accent) 60%,transparent)}
+.ts-opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.ts-knoepfe{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+
+.ts-ergebnis{border:1px solid var(--line);border-radius:18px;padding:28px 26px;margin:0 0 40px;
+  background:var(--surface);border-top:4px solid var(--line-2);scroll-margin-top:96px}
+.ts-rot{border-top-color:#c2503a}
+.ts-gelb{border-top-color:var(--accent)}
+.ts-gruen{border-top-color:#3f8f5f}
+.ts-erg-h{font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-dim);
+  font-family:"Inter",sans-serif;font-weight:600;margin:0 0 12px}
+.ts-punkte{display:flex;align-items:baseline;gap:10px;margin:0 0 18px}
+.ts-punkte strong{font-family:"Space Grotesk","Inter",sans-serif;font-size:46px;line-height:1;
+  font-weight:600;letter-spacing:-.03em}
+.ts-punkte span{color:var(--ink-soft);font-size:14.5px}
+.ts-teil{font-size:14px;color:var(--ink-dim);margin:-10px 0 18px}
+.ts-stufe-h{font-size:22px;margin:0 0 10px}
+.ts-stufe-t{color:var(--ink-soft);line-height:1.75;margin:0 0 26px}
+.ts-offen-h{font-size:17px;margin:0 0 8px}
+.ts-offen-t{font-size:14px;color:var(--ink-soft);line-height:1.7;margin:0 0 18px}
+.ts-offen{list-style:none;margin:0;padding:0;counter-reset:tso;display:grid;gap:14px}
+.ts-offen li{counter-increment:tso;position:relative;padding:16px 18px 16px 54px;
+  border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.ts-offen li::before{content:counter(tso);position:absolute;left:16px;top:15px;
+  width:26px;height:26px;display:grid;place-items:center;border-radius:50%;
+  background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:700;
+  font-family:"Space Grotesk","Inter",sans-serif}
+.ts-offen h4{font-size:16px;margin:0 0 8px;line-height:1.4}
+.ts-offen p{font-size:14.5px;color:var(--ink-soft);line-height:1.7;margin:0}
+.ts-leistung{margin-top:10px!important;font-size:13.5px}
+.ts-leistung span{color:var(--ink-dim)}
+.ts-leistung a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+.ts-alles-gut{color:var(--ink-soft);line-height:1.75;margin:0;padding:18px 20px;
+  border-radius:12px;background:var(--accent-soft)}
