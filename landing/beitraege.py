@@ -70,6 +70,41 @@ BEITRAEGE = [
 
     {"slug": "loxone-oder-knx", "datum": "2026-08-29",
      "thema": "smarthome-knx-loxone", "lesezeit": 5, "prio": "0.6"},
+
+    # ── Zweite Staffel (docs/SEO-AUSBAU-3.md, N2) ────────────────────────────
+    # Zehn weitere Fragen mit echter Suchabsicht. Drei davon (Wechsel,
+    # Fernwartung, Zugänge) beantworten dieselbe unausgesprochene Frage aus
+    # verschiedenen Richtungen: Was gebe ich aus der Hand, wenn ich jemanden
+    # an meine IT lasse? Genau die hält Wechselwillige am häufigsten auf.
+    {"slug": "microsoft-365-lizenz-kleine-firma", "datum": "2026-08-29",
+     "thema": "edv-it-betreuung", "lesezeit": 6, "prio": "0.8"},
+
+    {"slug": "was-kostet-ein-serverausfall", "datum": "2026-08-29",
+     "thema": "server-datensicherung", "lesezeit": 5, "prio": "0.8"},
+
+    {"slug": "it-dienstleister-wechseln", "datum": "2026-08-29",
+     "thema": "edv-it-betreuung", "lesezeit": 6, "prio": "0.8"},
+
+    {"slug": "fernwartung-was-sieht-der-dienstleister", "datum": "2026-08-29",
+     "thema": "edv-it-betreuung", "lesezeit": 6, "prio": "0.7"},
+
+    {"slug": "wie-viele-arbeitsplaetze-eigener-server", "datum": "2026-08-29",
+     "thema": "server-datensicherung", "lesezeit": 5, "prio": "0.7"},
+
+    {"slug": "phishing-mails-erkennen", "datum": "2026-08-29",
+     "thema": "it-sicherheit", "lesezeit": 6, "prio": "0.8"},
+
+    {"slug": "aufbewahrungsfristen-oesterreich", "datum": "2026-08-29",
+     "thema": "server-datensicherung", "lesezeit": 6, "prio": "0.7"},
+
+    {"slug": "alte-windows-version-im-betrieb", "datum": "2026-08-29",
+     "thema": "it-sicherheit", "lesezeit": 5, "prio": "0.7"},
+
+    {"slug": "zugaenge-fuer-it-dienstleister", "datum": "2026-08-29",
+     "thema": "it-sicherheit", "lesezeit": 5, "prio": "0.7"},
+
+    {"slug": "homeoffice-sicher-anbinden", "datum": "2026-08-29",
+     "thema": "netzwerk-wlan", "lesezeit": 6, "prio": "0.7"},
 ]
 
 NACH_SLUG = {b["slug"]: b for b in BEITRAEGE}

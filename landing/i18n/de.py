@@ -331,7 +331,7 @@ PACK = {
     "mobilebar": {"call": "Anrufen"},
     # ── Fehlerseiten (docs/SEO-AUSBAU-3.md, T1) ──────────────────────────────
     # Eine 404 ist kein technischer Endpunkt, sondern ein Besucher mit einer
-    # Absicht und einer falschen Adresse. Deshalb steht hier nicht „Fehler 404",
+    # Absicht und einer falschen Adresse. Deshalb steht hier nicht „Fehler 404“,
     # sondern der Weg weiter: Suche, die fünf gefragtesten Leistungen, die Orte.
     "fehler": {
         "titel_404": "Seite nicht gefunden | WVM-IT",
