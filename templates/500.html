@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% comment %}
+Eigene 500-Seite (docs/SEO-AUSBAU-3.md, T1).
+
+Bewusst karg: Wenn diese Seite gebraucht wird, ist im Zweifel schon etwas kaputt.
+Sie zieht deshalb nur Marke, Sprache und die Kontaktwege — keine Listen, keine
+Preise, keine Datenquellen, die selbst fehlschlagen könnten.
+{% endcomment %}
+{% block titel %}{{ t.fehler.titel_500|safe }}{% endblock %}
+{% block beschreibung %}{{ t.fehler.kurz_500|safe }}{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block og_titel %}{{ t.fehler.h1_500|safe }}{% endblock %}
+{% block og_beschreibung %}{{ t.fehler.kurz_500|safe }}{% endblock %}
+{% block tw_titel %}{{ t.fehler.h1_500|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ t.fehler.kurz_500|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <p class="err-code" aria-hidden="true">500</p>
+    <h1>{{ t.fehler.h1_500|safe }}</h1>
+    <p class="sp-kurz">{{ t.fehler.kurz_500|safe }}</p>
+    <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+      {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+      <a class="way" href="{% url 'index' %}">{% include 'icons.html' with name='check' %}<span>{{ t.fehler.zur_start|safe }}</span></a>
+    </div>
+  </div>
+</header>
+{% endblock %}

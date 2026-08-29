@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% comment %}
+Interne Suche (docs/SEO-AUSBAU-3.md, T6).
+
+Serverseitig, ohne Index und ohne fremden Dienst — durchsucht werden Überschrift
+und Antwortabsatz jeder Seite (views._such_index). Die Seite selbst steht auf
+`noindex`: Suchergebnisseiten im Index sind Seiten ohne eigenen Inhalt.
+{% endcomment %}
+{% block titel %}{{ t.suche.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ t.suche.desc|safe }}{% endblock %}
+{% block robots %}noindex,follow{% endblock %}
+{% block og_titel %}{{ t.suche.h1|safe }}{% endblock %}
+{% block og_beschreibung %}{{ t.suche.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ t.suche.h1|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ t.suche.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.suche.h1|safe }}</span>
+    </nav>
+    <h1>{{ t.suche.h1|safe }}</h1>
+    <p class="sp-kurz">{{ t.suche.kurz|safe }}</p>
+
+    <form class="such-form" action="{% url 'suche' %}" method="get" role="search">
+      <label class="fld-l" for="such-q">{{ t.suche.label|safe }}</label>
+      <div class="such-zeile">
+        <input class="fld" id="such-q" type="search" name="q" maxlength="80" value="{{ frage }}"
+               placeholder="{{ t.suche.ph|safe }}" autocomplete="off" autofocus>
+        <button class="btn" type="submit">{{ t.suche.btn|safe }}</button>
+      </div>
+    </form>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap sp-wrap">
+    {% if frage %}
+      {% if treffer %}
+        <p class="such-anzahl"><strong>{{ anzahl }}</strong> {{ t.suche.treffer_label|safe }} „{{ frage }}"</p>
+        <ol class="such-liste">
+          {% for tr in treffer %}
+          <li class="such-item">
+            <a href="{{ tr.url }}">
+              <span class="such-typ">{{ tr.typ|safe }}</span>
+              <h2 class="such-h">{{ tr.titel|safe }}</h2>
+              <p class="such-t">{{ tr.text|safe }}</p>
+              <span class="such-url">{{ tr.url }}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ol>
+      {% else %}
+        <div class="such-leer">
+          <h2>{{ t.suche.keine_h|safe }} „{{ frage }}"</h2>
+          <p>{{ t.suche.keine_t|safe }}</p>
+          <p class="lk-alle">
+            <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
+            <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
+            <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
+          </p>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="such-leer">
+        <h2>{{ t.suche.leer_h|safe }}</h2>
+        <p class="lk-alle">
+          <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
+          <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
+          <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1779,6 +1779,9 @@ def angebot_anfordern(request):
 
 # Interne/technische Pfade, die kein Bot indexieren soll (Basis für robots.txt).
 _ROBOTS_DISALLOW = [
+    # Suchergebnisseiten gehoeren nicht in den Index (die Seite selbst traegt
+    # zusaetzlich `noindex`; robots.txt spart den Crawl-Aufwand).
+    "/suche/",
     "/newsletter/diagnose/",
     "/newsletter/wochenversand/",
     "/bau/status/",
@@ -2255,3 +2258,129 @@ def indexnow_key(request, key):
 
 def health(request):
     return HttpResponse("ok", content_type="text/plain")
+
+
+# ══ Fehlerseiten (docs/SEO-AUSBAU-3.md, T1) ═══════════════════════════════════
+# Bis hierher lieferte Django seine nackte Standard-404 aus: weiße Seite, ein Satz,
+# kein Weg zurück. Jeder Besucher, der auf einer veralteten Adresse landet — aus
+# einem alten Index, einer alten Mail, einem Tippfehler —, war damit verloren.
+# Die eigene Seite gibt ihm dieselbe Navigation wie jede andere Seite, dazu die
+# Suche, die fünf meistgesuchten Leistungen und die Orte.
+
+def fehler_404(request, exception=None):
+    """Eigene 404-Seite in der Sprache des Besuchers.
+
+    Wichtig: Der Status bleibt 404. Eine „hilfreiche" Fehlerseite mit Status 200
+    ist eine Soft-404 — Google wertet sie als Duplikat der Startseite und wirft
+    dafür andere Seiten aus dem Index."""
+    c = _content()
+    lang = get_language()
+    return render(request, "404.html", {
+        "c": c,
+        "leistungen_liste": [_leistung_daten(leistungen.NACH_SLUG[s], lang)
+                             for s in leistungen.FOOTER_SLUGS
+                             if s in leistungen.NACH_SLUG],
+        "regionen_liste": [_region_daten(r, lang) for r in regionen.REGIONEN],
+        "structured_data": _seiten_schema(c, lang),
+    }, status=404)
+
+
+def fehler_500(request):
+    """Eigene 500-Seite. Bewusst ohne Datenzugriff über `_content()` hinaus:
+    Wenn hier noch etwas fehlschlägt, sieht der Besucher gar nichts mehr."""
+    try:
+        c = _content()
+    except Exception:                                   # pragma: no cover
+        c = dict(_FALLBACK)
+    return render(request, "500.html", {"c": c, "structured_data": "{}"}, status=500)
+
+
+# ══ Interne Suche (docs/SEO-AUSBAU-3.md, T6) ══════════════════════════════════
+# Ab rund 150 URLs findet niemand mehr etwas über die Navigation allein. Die Suche
+# läuft vollständig serverseitig über denselben Datenbestand wie Sitemap und
+# llms.txt — kein Index, keine Datenbank, kein fremder Dienst.
+
+def _such_index(lang):
+    """Alle durchsuchbaren Seiten als (url, titel, text, typ).
+
+    Speist sich aus den Strukturquellen, nicht aus einer gepflegten Liste: Wer eine
+    Leistung, eine Region oder einen Beitrag ergänzt, findet sie ohne weiteres Zutun
+    auch über die Suche. Durchsucht werden Titel und Antwortabsatz — nicht der
+    gesamte Fließtext, damit ein Treffer etwas bedeutet."""
+    pack = i18n.get_pack(lang)
+    eintraege = []
+
+    for eintrag in leistungen.LEISTUNGEN:
+        daten = _leistung_daten(eintrag, lang)
+        eintraege.append((daten["url"], daten.get("h1", ""), daten.get("kurz", ""),
+                          pack["seite"]["leistungen"]))
+    for eintrag in regionen.REGIONEN:
+        daten = _region_daten(eintrag, lang)
+        eintraege.append((reverse("region", kwargs={"slug": eintrag["slug"]}),
+                          daten.get("h1", ""), daten.get("kurz", ""),
+                          pack["seite"]["regionen_titel"]))
+    # Fachbeiträge gibt es nur auf Deutsch (siehe Kopf von landing/beitraege.py);
+    # auf EN/RO tauchen sie deshalb auch in der Suche nicht auf.
+    if i18n.norm_lang(lang) == "de":
+        for eintrag in beitraege.BEITRAEGE:
+            daten = _beitrag_daten(eintrag)
+            eintraege.append((daten["url"], daten.get("titel", ""),
+                              daten.get("antwort", ""), "Aktuelles"))
+
+    hub = pack.get("hub", {})
+    ks = pack.get("kosten_seite", {})
+    eintraege += [
+        (reverse("leistungen"), hub.get("h1", ""), hub.get("kurz", ""),
+         pack["seite"]["leistungen"]),
+        (reverse("kosten"), ks.get("h1", ""), ks.get("kurz", ""),
+         pack["nav"]["preise"]),
+        (reverse("regionen"), pack["seite"]["regionen_h1"],
+         pack["seite"]["regionen_kurz"], pack["seite"]["regionen_titel"]),
+        (reverse("kontakt"), pack.get("kontakt_seite", {}).get("h1", ""),
+         pack.get("kontakt_seite", {}).get("kurz", ""), pack["nav"]["kontakt"]),
+    ]
+    return [e for e in eintraege if e[1]]
+
+
+_SUCH_STOPP = {"und", "oder", "der", "die", "das", "ein", "eine", "für", "von", "mit",
+               "the", "and", "for", "with", "de", "la", "si", "și"}
+
+
+def suche(request):
+    """/suche/?q=… — einfache Volltextsuche über Titel und Antwortabsätze.
+
+    Bewertung: Ein Begriff im Titel wiegt schwerer als einer im Text, ein Treffer am
+    Wortanfang schwerer als mitten im Wort. Das reicht bei 150 Seiten vollkommen und
+    ist in null Millisekunden gerechnet — jede Indexlösung wäre hier Aufwand ohne
+    Gegenwert.
+
+    Die Seite steht bewusst auf `noindex`: Suchergebnisseiten im Index sind seit je
+    ein Qualitätsproblem, und Google nennt sie ausdrücklich als Beispiel für Seiten
+    mit wenig eigenem Wert."""
+    c = _content()
+    lang = get_language()
+    frage = (request.GET.get("q") or "").strip()[:80]
+    begriffe = [w for w in re.split(r"[^\wäöüßÄÖÜéèáâîșț]+", frage.lower())
+                if len(w) > 2 and w not in _SUCH_STOPP]
+
+    treffer = []
+    if begriffe:
+        for url, titel, text, typ in _such_index(lang):
+            titel_l, text_l = titel.lower(), text.lower()
+            punkte = 0
+            for w in begriffe:
+                if w in titel_l:
+                    punkte += 10 + (5 if re.search(rf"\b{re.escape(w)}", titel_l) else 0)
+                if w in text_l:
+                    punkte += 3 + (2 if re.search(rf"\b{re.escape(w)}", text_l) else 0)
+            if punkte:
+                treffer.append({"url": url, "titel": titel, "typ": typ,
+                                "text": text[:260] + ("…" if len(text) > 260 else ""),
+                                "punkte": punkte})
+        treffer.sort(key=lambda t: -t["punkte"])
+
+    return render(request, "suche.html", {
+        "c": c, "frage": frage, "treffer": treffer[:20],
+        "anzahl": len(treffer),
+        "structured_data": _seiten_schema(c, lang),
+    })

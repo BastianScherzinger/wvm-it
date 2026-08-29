@@ -327,6 +327,42 @@ PACK = {
         "datenschutz_ph": "<strong>Platzhalter.</strong> Vor Veröffentlichung eine DSGVO-konforme Datenschutzerklärung einsetzen (Verantwortlicher, Hosting, Kontaktformular, Cookies und Tracking, Betroffenenrechte).",
     },
     "mobilebar": {"call": "Anrufen"},
+    # ── Fehlerseiten (docs/SEO-AUSBAU-3.md, T1) ──────────────────────────────
+    # Eine 404 ist kein technischer Endpunkt, sondern ein Besucher mit einer
+    # Absicht und einer falschen Adresse. Deshalb steht hier nicht „Fehler 404",
+    # sondern der Weg weiter: Suche, die fünf gefragtesten Leistungen, die Orte.
+    "fehler": {
+        "titel_404": "Seite nicht gefunden | WVM-IT",
+        "desc_404": "Diese Adresse gibt es nicht mehr. Hier finden Sie die gefragtesten Leistungen, die Preisübersicht und den direkten Draht zu uns.",
+        "h1_404": "Diese Seite gibt es nicht (mehr)",
+        "kurz_404": "Die Adresse stimmt nicht — vertippt, veraltet oder von uns umgezogen. Damit der Weg nicht hier endet: Unten stehen die Leistungen, nach denen am häufigsten gesucht wird, dazu die Preisübersicht und der direkte Draht zu uns.",
+        "suche_h": "Wonach suchen Sie?",
+        "suche_ph": "z. B. Datensicherung, WLAN, Preise",
+        "suche_btn": "Suchen",
+        "leistungen_h": "Am häufigsten gesucht",
+        "orte_h": "Vor Ort in dieser Region",
+        "hilfe_h": "Es eilt?",
+        "hilfe_t": "Wenn gerade etwas steht, ist ein Anruf schneller als jede Seite. Wir melden uns an Werktagen innerhalb von 24 Stunden — bei einer Störung meist innerhalb von Minuten.",
+        "titel_500": "Technischer Fehler | WVM-IT",
+        "h1_500": "Da ist bei uns etwas schiefgelaufen",
+        "kurz_500": "Diese Seite konnte gerade nicht ausgeliefert werden. Der Fehler liegt bei uns, nicht bei Ihnen. Versuchen Sie es in einigen Minuten noch einmal — oder melden Sie sich direkt, dann kümmern wir uns sofort.",
+        "zur_start": "Zur Startseite",
+    },
+    # ── Interne Suche (docs/SEO-AUSBAU-3.md, T6) ─────────────────────────────
+    "suche": {
+        "titel": "Suche | WVM-IT",
+        "desc": "Alle Seiten von WVM-IT durchsuchen: Leistungen, Preise, Regionen, Branchen und Fachbeiträge.",
+        "h1": "Suche",
+        "kurz": "Ein Wort genügt — gesucht wird in den Überschriften und den Antwortabsätzen aller Seiten.",
+        "ph": "z. B. Datensicherung, WLAN, Preise",
+        "btn": "Suchen",
+        "label": "Suchbegriff",
+        "treffer_label": "Treffer für",
+        "keine_h": "Kein Treffer für",
+        "keine_t": "Versuchen Sie es mit einem einzelnen Wort statt einer ganzen Frage — oder gehen Sie über die Leistungsübersicht. Wenn Sie nicht fündig werden, schreiben Sie uns einfach: Wir antworten auch auf Fragen, zu denen es keine Seite gibt.",
+        "leer_h": "Wonach suchen Sie?",
+        "typ": "Bereich",
+    },
     "catalog_words": {
         "from": "ab", "on_request": "auf Anfrage",
         "per_month": "€/Mt", "per_year": "€/Jahr", "per_hour": "€/Std.",

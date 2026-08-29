@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% comment %}
+Eigene 404-Seite (docs/SEO-AUSBAU-3.md, T1).
+
+Der Status bleibt 404 — die Seite ist hilfreich, aber sie behauptet nicht, es gäbe
+hier einen Inhalt. Eine hilfreiche Seite mit Status 200 wäre eine Soft-404, und die
+kostet Indexplätze statt welche zu gewinnen.
+
+Alles auf dieser Seite ist ein Weg weiter: Suche, die fünf meistgesuchten
+Leistungen, die Orte im Einzugsgebiet, der direkte Draht.
+{% endcomment %}
+{% block titel %}{{ t.fehler.titel_404|safe }}{% endblock %}
+{% block beschreibung %}{{ t.fehler.desc_404|safe }}{% endblock %}
+{% block robots %}noindex,follow{% endblock %}
+{% block og_titel %}{{ t.fehler.h1_404|safe }}{% endblock %}
+{% block og_beschreibung %}{{ t.fehler.desc_404|safe }}{% endblock %}
+{% block tw_titel %}{{ t.fehler.h1_404|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ t.fehler.desc_404|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <p class="err-code" aria-hidden="true">404</p>
+    <h1>{{ t.fehler.h1_404|safe }}</h1>
+    <p class="sp-kurz">{{ t.fehler.kurz_404|safe }}</p>
+
+    <form class="such-form such-form-err" action="{% url 'suche' %}" method="get" role="search">
+      <label class="fld-l" for="err-q">{{ t.fehler.suche_h|safe }}</label>
+      <div class="such-zeile">
+        <input class="fld" id="err-q" type="search" name="q" maxlength="80"
+               placeholder="{{ t.fehler.suche_ph|safe }}" autocomplete="off">
+        <button class="btn" type="submit">{{ t.fehler.suche_btn|safe }}</button>
+      </div>
+    </form>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <header class="sec-head">
+      <h2 class="section-t">{{ t.fehler.leistungen_h|safe }}</h2>
+    </header>
+    <div class="lk-grid">
+      {% for l in leistungen_liste %}
+      <a class="lk spot" href="{{ l.url }}" data-spot>
+        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=l.icon %}</span>
+        <h3 class="lk-h">{{ l.nav|safe }}</h3>
+        <p class="lk-t">{{ l.desc|safe }}</p>
+        <span class="lk-p">{{ l.preis_label }}</span>
+      </a>
+      {% endfor %}
+    </div>
+    <p class="lk-alle">
+      <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
+      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a>
+    </p>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap err-unten">
+    <nav class="rg-weitere" aria-label="{{ t.seite.regionen_titel|safe }}">
+      <h2>{{ t.fehler.orte_h|safe }}</h2>
+      <ul>
+        {% for r in regionen_liste %}
+        <li><a href="{% url 'region' slug=r.slug %}">{{ r.ort }}<span>{{ r.km }} km</span></a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <aside class="err-hilfe">
+      <h2>{{ t.fehler.hilfe_h|safe }}</h2>
+      <p>{{ t.fehler.hilfe_t|safe }}</p>
+      <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+        {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+        {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+        <a class="way" href="{% url 'kontakt' %}">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+      </div>
+      <p class="lk-alle"><a href="{% url 'index' %}">{{ t.fehler.zur_start|safe }}</a></p>
+    </aside>
+  </div>
+</section>
+{% endblock %}

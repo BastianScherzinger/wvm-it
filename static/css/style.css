@@ -1736,3 +1736,42 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   .rg-fakten{gap:10px 24px}
   .rg-fakten dd{font-size:18px}
 }
+
+/* ============================================================================
+   FEHLERSEITEN UND SUCHE  (docs/SEO-AUSBAU-3.md, T1 + T6)
+   Beide Seiten sind Umleitungen zurück in den Inhalt, keine Sackgassen:
+   dieselbe Navigation, dieselben Karten, dieselben Kontaktwege wie überall.
+   ========================================================================== */
+.err-code{font-family:"Space Grotesk","Inter",sans-serif;font-size:clamp(56px,12vw,104px);
+  line-height:1;font-weight:600;letter-spacing:-.04em;color:var(--accent);opacity:.5;margin:0 0 6px}
+.err-unten{display:grid;grid-template-columns:1.35fr .95fr;gap:34px;align-items:start}
+.err-unten .rg-weitere{margin-top:0;padding-top:0;border-top:0}
+.err-hilfe{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:var(--surface)}
+.err-hilfe h2{font-size:19px;margin:0 0 10px}
+.err-hilfe p{font-size:14.5px;line-height:1.72;color:var(--ink-soft);margin:0 0 16px}
+
+/* Suchfeld: eine Zeile, der Knopf klebt am Feld — auf Mobile stapelt es. */
+.such-form{margin:26px 0 4px;max-width:560px}
+.such-form-err{margin-top:30px}
+.such-zeile{display:flex;gap:10px;margin-top:8px}
+.such-zeile .fld{flex:1 1 auto;min-width:0}
+.such-zeile .btn{flex:0 0 auto}
+.such-anzahl{font-size:14.5px;color:var(--ink-soft);margin:0 0 20px}
+.such-liste{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.such-item a{display:block;border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+  background:var(--surface);text-decoration:none;color:inherit;transition:border-color .2s var(--ease)}
+.such-item a:hover,.such-item a:focus-visible{border-color:var(--accent)}
+.such-typ{display:inline-block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent-ink);margin-bottom:8px}
+.such-h{font-size:19px;margin:0 0 8px;line-height:1.3}
+.such-t{font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin:0 0 10px}
+.such-url{font-size:12.5px;color:var(--ink-dim)}
+.such-leer{border:1px dashed var(--line-2);border-radius:16px;padding:28px 24px;background:var(--surface)}
+.such-leer h2{font-size:20px;margin:0 0 12px}
+.such-leer p{color:var(--ink-soft);line-height:1.75;margin:0 0 12px}
+
+@media (max-width:760px){
+  .err-unten{grid-template-columns:1fr;gap:24px}
+  .such-zeile{flex-direction:column}
+  .such-zeile .btn{width:100%}
+}

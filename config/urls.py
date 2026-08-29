@@ -46,6 +46,10 @@ urlpatterns += i18n_patterns(
     path("it-service/", views.regionen_hub, name="regionen"),
     path("it-service/<slug:slug>/", views.region_seite, name="region"),
     path("kosten/", views.kosten, name="kosten"),
+    # ── Interne Suche (docs/SEO-AUSBAU-3.md, T6) ────────────────────────────
+    # Steht in i18n_patterns, weil sie in der Sprache des Besuchers sucht; sie
+    # taucht aber weder in Sitemap noch in IndexNow auf und traegt `noindex`.
+    path("suche/", views.suche, name="suche"),
     path("referenzen/", views.referenzen, name="referenzen"),
     path("kontakt/", views.kontakt, name="kontakt"),
     path("impressum/", views.impressum, name="impressum"),
@@ -60,3 +64,11 @@ urlpatterns += i18n_patterns(
     path("newsletter/abmelden/", views.newsletter_unsubscribe, name="newsletter_unsubscribe"),
     prefix_default_language=False,
 )
+
+# ── Fehlerseiten (docs/SEO-AUSBAU-3.md, T1) ─────────────────────────────────
+# Django wuerde sonst seine nackte Standardseite ausliefern. Die eigenen Seiten
+# bringen Navigation, Suche und die gefragtesten Leistungen mit — und behalten
+# dabei den Status 404 bzw. 500 (eine hilfreiche Seite mit Status 200 waere eine
+# Soft-404 und kostet Indexplaetze).
+handler404 = "landing.views.fehler_404"
+handler500 = "landing.views.fehler_500"
