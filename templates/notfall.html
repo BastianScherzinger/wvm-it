@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% comment %}
+Notfall-Seite (docs/SEO-AUSBAU-3.md, W3).
+
+Die Reihenfolge ist umgekehrt zu jeder anderen Seite: Kontaktwege ganz oben,
+dann die eine Regel, dann die vier Fälle als Handlungsanweisung. Kein Absatz
+über uns oberhalb der Falte — wer hier landet, hat gerade ein Problem und
+keine Zeit für eine Unternehmensvorstellung.
+
+Jeder Fall trägt ein HowTo-Schema (views._howto_schema); die Schritte im HTML
+und die Schritte im Schema kommen aus derselben Liste.
+{% endcomment %}
+{% block titel %}{{ nf.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ nf.desc|safe }}{% endblock %}
+{% block og_titel %}{{ nf.h1|safe }}{% endblock %}
+{% block og_beschreibung %}{{ nf.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ nf.h1|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ nf.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark nf-top">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ nf.h1|safe }}</span>
+    </nav>
+    <h1>{{ nf.h1|safe }}</h1>
+
+    {% comment %}Die Kontaktwege stehen VOR dem Antwortabsatz — bewusst.{% endcomment %}
+    <div class="nf-sofort">
+      <p class="nf-sofort-h">{{ nf.eilt_h|safe }}</p>
+      <div class="nf-wege">
+        {% if c.telefon %}<a class="btn btn-lg nf-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+        {% if c.whatsapp %}<a class="btn-wa nf-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+        <a class="btn btn-ghost" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+      </div>
+      <p class="nf-sofort-t">{{ nf.eilt_t|safe }}</p>
+    </div>
+
+    <p class="sp-kurz">{{ nf.kurz|safe }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap sp-wrap">
+    <aside class="nf-regel" data-reveal>
+      <h2>{{ nf.regel_h|safe }}</h2>
+      <p>{{ nf.regel_t|safe }}</p>
+    </aside>
+
+    <p class="sp-intro" data-reveal>{{ nf.intro|safe }}</p>
+
+    {% comment %}Sprungmarken: auf dem Telefon der schnellste Weg zum eigenen Fall.{% endcomment %}
+    <nav class="nf-sprung" aria-label="{{ nf.schritte_h|safe }}">
+      <ul>
+        {% for fall in nf.faelle %}
+        <li><a href="#{{ fall.id }}">{% include 'icons.html' with name=fall.icon %}<span>{{ fall.h|safe }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {% for fall in nf.faelle %}
+    <section class="nf-fall" id="{{ fall.id }}" data-reveal>
+      <h2 class="nf-fall-h">
+        <span class="nf-fall-ic" aria-hidden="true">{% include 'icons.html' with name=fall.icon %}</span>
+        {{ fall.h|safe }}
+      </h2>
+      <p class="nf-fall-kurz">{{ fall.kurz|safe }}</p>
+
+      <h3 class="nf-h3">{{ nf.schritte_h|safe }}</h3>
+      <ol class="nf-schritte">
+        {% for s in fall.schritte %}<li>{{ s|safe }}</li>{% endfor %}
+      </ol>
+
+      <h3 class="nf-h3">{{ nf.nicht_h|safe }}</h3>
+      <ul class="nf-nicht">
+        {% for s in fall.nicht %}<li>{{ s|safe }}</li>{% endfor %}
+      </ul>
+    </section>
+    {% endfor %}
+
+    <h2 class="sp-h2">{{ nf.danach_h|safe }}</h2>
+    <p class="sp-preis-text">{{ nf.danach_t|safe }}</p>
+    <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
+      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+
+    <aside class="nf-regel nf-regel-kunde" data-reveal>
+      <h2>{{ nf.kunde_h|safe }}</h2>
+      <p>{{ nf.kunde_t|safe }}</p>
+    </aside>
+
+    <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
+    <div class="faq">
+      {% for f in nf.faq %}
+      <details class="faq-item"{% if forloop.first %} open{% endif %}>
+        <summary class="faq-q">
+          <span>{{ f.q|safe }}</span>
+          <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+      </details>
+      {% endfor %}
+    </div>
+
+    {% include 'anfrage_karte.html' with bid='it' titel=nf.cta_h sub=nf.cta_t ph=nf.schritte_h %}
+
+    <nav class="rg-weitere" aria-label="{{ t.seite.regionen_titel|safe }}">
+      <h2>{{ t.seite.rg_weitere|safe }}</h2>
+      <ul>
+        {% for r in regionen_liste %}
+        <li><a href="{% url 'region' slug=r.slug %}">{{ r.ort }}<span>{{ r.fahrzeit }} min</span></a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</section>
+{% endblock %}

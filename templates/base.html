@@ -79,6 +79,11 @@
         <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
         <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
         <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
+        {% comment %}
+        Der Notfall-Link steht in der Hauptnavigation, nicht im Footer: Wer ihn
+        braucht, sucht ihn oben und nicht nach dreimal Scrollen (W3).
+        {% endcomment %}
+        <a class="nav-notfall" href="{% url 'notfall' %}">{{ t.notfall.h1|safe|truncatewords:2 }}</a>
       </nav>
       {% include 'lang_switch.html' %}
       <!-- Kontakt ist nie weiter als ein Klick entfernt: WhatsApp + Telefon + CTA -->
@@ -166,6 +171,7 @@
         <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
         <a href="{% url 'aktuelles' %}">Aktuelles</a>
         <a href="{% url 'rechner' %}">{{ t.rechner.h1|safe }}</a>
+        <a href="{% url 'notfall' %}">{{ t.notfall.h1|safe|truncatewords:2 }}</a>
         <a href="{% url 'vergleiche' %}">{{ t.vergleiche_seite.vergleiche_titel|safe }}</a>
         <a href="{% url 'index' %}#faq">{{ t.footer.u_faq|safe }}</a>
         <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>

@@ -44,6 +44,9 @@ urlpatterns += i18n_patterns(
     # sind drei verschiedene Suchabsichten und duerfen sich kein Muster teilen.
     path("branchen/", views.branchen_hub, name="branchen"),
     path("branchen/<slug:slug>/", views.branche_seite, name="branche"),
+    # ── Notfall (docs/SEO-AUSBAU-3.md, W3) ──────────────────────────────────
+    # Kurzer, merkbarer Pfad: Diese Adresse wird im Ernstfall abgetippt.
+    path("it-notfall/", views.notfall, name="notfall"),
     # ── Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3) ─────────────────────────
     # Eigene Suchabsicht: Jemand steht vor einer Entscheidung und hat noch
     # keinen Anbieter gewaehlt. Deshalb kein Unterpfad von /leistungen/.

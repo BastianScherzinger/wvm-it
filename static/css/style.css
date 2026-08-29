@@ -1890,3 +1890,63 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 @media (max-width:760px){
   .vg-zwei{grid-template-columns:1fr;gap:16px}
 }
+
+/* ============================================================================
+   NOTFALL-SEITE  (docs/SEO-AUSBAU-3.md, W3)
+   Umgekehrte Reihenfolge: Kontaktwege stehen über dem Text. Größere Schrift,
+   größere Ziele, kein Zierrat — diese Seite wird unter Druck bedient, oft
+   einhändig auf dem Telefon.
+   ========================================================================== */
+.nf-top{padding-bottom:44px}
+.nf-sofort{margin:22px 0 26px;padding:22px 22px 18px;border-radius:18px;
+  border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);
+  background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.nf-sofort-h{font-family:"Space Grotesk","Inter",sans-serif;font-size:19px;font-weight:600;
+  margin:0 0 14px;letter-spacing:-.01em}
+.nf-wege{display:flex;flex-wrap:wrap;gap:12px}
+.nf-call{font-size:17px;font-variant-numeric:tabular-nums}
+.nf-wa{display:inline-flex;align-items:center;gap:.5em;padding:13px 22px;border-radius:999px;
+  background:var(--wa);color:var(--wa-ink);font-weight:700;font-size:15px}
+.nf-wa svg{width:18px;height:18px}
+.nf-sofort-t{margin-top:14px;font-size:14px;color:var(--ink-soft);line-height:1.65}
+
+.nf-regel{margin:0 0 34px;padding:22px 24px;border-radius:16px;background:var(--surface);
+  border:1px solid var(--line);border-left:3px solid var(--accent)}
+.nf-regel h2{font-size:19px;margin:0 0 10px}
+.nf-regel p{color:var(--ink-soft);line-height:1.75;margin:0;font-size:15.5px}
+.nf-regel-kunde{border-left-color:var(--line-2);margin-top:34px}
+
+.nf-sprung{margin:0 0 40px}
+.nf-sprung ul{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.nf-sprung a{display:flex;gap:10px;align-items:center;padding:14px 16px;border-radius:12px;
+  border:1px solid var(--line);background:var(--surface);text-decoration:none;color:var(--ink);
+  font-size:15px;line-height:1.35;transition:border-color .2s var(--ease)}
+.nf-sprung a:hover,.nf-sprung a:focus-visible{border-color:var(--accent)}
+.nf-sprung svg{width:20px;height:20px;flex:0 0 auto;color:var(--accent-ink)}
+
+.nf-fall{margin:0 0 44px;scroll-margin-top:96px}
+.nf-fall-h{display:flex;gap:12px;align-items:center;font-size:clamp(21px,3.4vw,27px);margin:0 0 10px}
+.nf-fall-ic{flex:0 0 auto;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;
+  background:var(--accent-soft);color:var(--accent-ink)}
+.nf-fall-ic svg{width:22px;height:22px}
+.nf-fall-kurz{color:var(--ink-soft);line-height:1.75;margin:0 0 18px}
+.nf-h3{font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-dim);
+  font-family:"Inter",sans-serif;font-weight:600;margin:22px 0 12px}
+.nf-schritte{margin:0;padding:0;list-style:none;counter-reset:nfs;display:grid;gap:10px}
+.nf-schritte li{counter-increment:nfs;position:relative;padding:14px 18px 14px 54px;
+  border:1px solid var(--line);border-radius:12px;background:var(--surface);
+  line-height:1.7;color:var(--ink)}
+.nf-schritte li::before{content:counter(nfs);position:absolute;left:16px;top:12px;
+  width:26px;height:26px;display:grid;place-items:center;border-radius:50%;
+  background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:700;
+  font-family:"Space Grotesk","Inter",sans-serif}
+.nf-nicht{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.nf-nicht li{position:relative;padding:10px 16px 10px 34px;line-height:1.7;color:var(--ink-soft);
+  font-size:15px}
+.nf-nicht li::before{content:"×";position:absolute;left:12px;top:8px;font-size:18px;
+  line-height:1.4;color:#b4442e;font-weight:700}
+/* Notfall-Link in der Hauptnavigation: sichtbar, aber nicht laut. */
+.nav-notfall{position:relative;padding-left:16px!important}
+.nav-notfall::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:8px;height:8px;border-radius:50%;background:#c2503a}

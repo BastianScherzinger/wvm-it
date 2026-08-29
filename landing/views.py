@@ -1499,6 +1499,10 @@ def _seiten_pfade():
     pfade += [("/branchen/", "0.8", "monthly", True)]
     pfade += [(f"/branchen/{b['slug']}/", b["prio"], "monthly", True)
               for b in branchen.BRANCHEN]
+    # Die Notfallseite bekommt eine hohe Prioritaet: Sie wird selten, aber mit
+    # maximaler Dringlichkeit gesucht, und sie ist der einzige Einstieg fuer
+    # Menschen mit sofortigem Bedarf.
+    pfade += [("/it-notfall/", "0.8", "monthly", True)]
     pfade += [("/vergleich/", "0.7", "monthly", True)]
     pfade += [(f"/vergleich/{v['slug']}/", v["prio"], "monthly", True)
               for v in vergleiche.VERGLEICHE]
@@ -1702,6 +1706,56 @@ def branche_seite(request, slug):
             breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
                 (seite.get("nav", slug), pfad)])),
+    })
+
+
+# ══ Notfall-Seite (docs/SEO-AUSBAU-3.md, W3) ══════════════════════════════════
+# Die einzige Seite, auf der niemand liest. Wer hier landet, hat ein Problem,
+# das jetzt gelöst werden muss — deshalb Kontaktwege zuerst und Schritte statt
+# Absätzen. Für Suchmaschinen ist sie zugleich der einzige Seitentyp, der einen
+# klaren Anlass für sofortiges Handeln trägt.
+
+def _howto_schema(base, pfad, fall, sprache):
+    """`HowTo` je Notfall — genau das Format, das Google als Schritt-für-Schritt-
+    Ergebnis ausspielt (SEO-AUSBAU-3.md, S2).
+
+    Bewusst OHNE `estimatedCost` und `totalTime`: Beides wäre bei einem Notfall
+    geraten, und ein geratener Wert im Schema ist schlechter als kein Wert."""
+    return {
+        "@type": "HowTo",
+        "@id": f"{base}{pfad}#howto-{fall['id']}",
+        "name": fall.get("h", ""),
+        "description": fall.get("kurz", ""),
+        "inLanguage": sprache,
+        "step": [{"@type": "HowToStep", "position": i, "name": schritt[:110],
+                  "text": schritt, "url": f"{base}{pfad}#{fall['id']}"}
+                 for i, schritt in enumerate(fall.get("schritte", []), start=1)],
+    }
+
+
+def notfall(request):
+    """/it-notfall/ — die ersten dreißig Minuten, vier Fälle, kein Werbetext."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    nf = pack.get("notfall", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = reverse("notfall")
+    sprache = pack["meta"]["html_lang"]
+
+    graph = json.loads(_seiten_schema(
+        c, lang, faq=nf.get("faq") or [], faq_id=pfad,
+        breadcrumb=_breadcrumb(base, [(nf.get("h1", "Notfall"), pfad)])))
+    graph["@graph"] += [_howto_schema(base, pfad, fall, sprache)
+                        for fall in nf.get("faelle", [])]
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
+    return render(request, "notfall.html", {
+        "c": c, "nf": nf, "anfrage_ok": anfrage_ok,
+        "preis_stand": _preis_stand(lang),
+        "regionen_liste": [_region_daten(r, lang) for r in regionen.REGIONEN],
+        "structured_data": json.dumps(graph, ensure_ascii=False, separators=(",", ":")),
     })
 
 
@@ -2260,6 +2314,8 @@ def llms_txt(request):
         "Produktion und Vereinen technisch anders ist.",
         f"- [Vergleiche]({base}/vergleich/): Betreuung oder Stunden, Server oder Cloud, "
         "Microsoft 365 oder Google Workspace — mit Rechenweg.",
+        f"- [IT-Notfall]({base}/it-notfall/): was in den ersten 30 Minuten zu tun ist — "
+        "Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Gerät.",
         f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
         f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
         "\n## Leistungen",
@@ -2353,6 +2409,20 @@ def llms_full_txt(request):
         aus.append(f"\n**{sauber(b.get('preis_h'))}**\n{sauber(b.get('preis_t'))}")
         for f in b.get("faq", []):
             aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+
+    # Notfall: Für eine KI-Antwort auf „was tun bei Ransomware" ist die Schrittfolge
+    # das Zitierfähige — deshalb steht sie hier vollständig und nummeriert.
+    nf = pack.get("notfall", {})
+    aus.append("\n\n## IT-Notfall: die ersten 30 Minuten")
+    aus.append(f"URL: {base}/it-notfall/")
+    aus.append(f"\n{sauber(nf.get('kurz'))}")
+    aus.append(f"\n**{sauber(nf.get('regel_h'))}**\n{sauber(nf.get('regel_t'))}")
+    for fall in nf.get("faelle", []):
+        aus.append(f"\n### {sauber(fall.get('h'))}")
+        aus.append(sauber(fall.get("kurz")))
+        aus += [f"{i}. {sauber(z)}" for i, z in enumerate(fall.get("schritte", []), start=1)]
+        aus.append(f"\n**{sauber(nf.get('nicht_h'))}**")
+        aus += [f"- {sauber(z)}" for z in fall.get("nicht", [])]
 
     # Vergleiche: das Format, das Antwortmaschinen am häufigsten zitieren. In der
     # Langfassung steht die Tabelle als Aufzählung — eine HTML-Tabelle ist für ein
@@ -2732,6 +2802,9 @@ def _such_index(lang):
          pack["nav"]["preise"]),
         (reverse("rechner"), pack.get("rechner", {}).get("h1", ""),
          pack.get("rechner", {}).get("kurz", ""), pack["nav"]["preise"]),
+        (reverse("notfall"), pack.get("notfall", {}).get("h1", ""),
+         pack.get("notfall", {}).get("kurz", ""),
+         pack.get("notfall", {}).get("eilt_h", "")),
         (reverse("regionen"), pack["seite"]["regionen_h1"],
          pack["seite"]["regionen_kurz"], pack["seite"]["regionen_titel"]),
         (reverse("kontakt"), pack.get("kontakt_seite", {}).get("h1", ""),
