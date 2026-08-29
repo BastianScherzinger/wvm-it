@@ -2888,6 +2888,9 @@ def llms_txt(request):
         "Datensicherung, Webseiten, SEO und Ads laufen ortsunabhängig im gesamten DACH-Raum. "
         "Einsätze vor Ort werden projektbezogen vereinbart.",
         *_llms_regionen(base, "de"),
+        "\n## Checklisten (jeder Punkt mit Begründung)",
+        *[f"- [{_checkliste_daten(k)['titel']}]({base}/checkliste/{k['slug']}/): "
+          f"{_checkliste_daten(k).get('kurz', '')}" for k in checklisten.CHECKLISTEN],
         "\n## Glossar (Definition jeweils im ersten Satz)",
         *_llms_glossar(base),
         "\n## Fachbeiträge (Antwort jeweils im ersten Absatz)",
