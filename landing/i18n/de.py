@@ -471,6 +471,10 @@ PACK = {
     },
     # ── Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3) ──────────────────────────
     "vergleiche_seite": {
+        "methode_h": "Wie wir vergleichen",
+        "methode_t": "Drei Regeln halten diese Seiten zusammen. Erstens: Jede Gegenüberstellung nennt ausdrücklich, wann die andere Variante gewinnt — und zwar in einem eigenen, gleich großen Block, nicht in einem Halbsatz am Ende. Zweitens: Wo eine Entscheidung an einer Zahl hängt, steht der Rechenweg dabei, damit Sie ihn mit Ihren eigenen Werten nachvollziehen können. Drittens: Preise fremder Anbieter stehen hier nicht. Sie ändern sich, und eine veraltete Zahl über einen Dritten ist schlechter als keine — wir verweisen stattdessen auf das, was der Anbieter selbst sagt.",
+        "auswahl_h": "Warum genau diese drei",
+        "auswahl_t": "Es sind die drei Entscheidungen, die in Erstgesprächen am häufigsten offen sind. Sie haben eines gemeinsam: Man kann sie nicht sinnvoll treffen, ohne den eigenen Betrieb anzusehen — deshalb steht auf jeder Seite die Frage, an der es hängt, und nicht eine Empfehlung. Fehlt Ihnen ein Vergleich, schreiben Sie uns; wir ergänzen ihn, wenn die Frage öfter kommt.",
         "titel": "IT-Entscheidungen im Vergleich | WVM-IT",
         "desc": "Betreuung oder Stunden, Server oder Cloud, Microsoft 365 oder Google: die Gegenüberstellungen, die vor der Anbieterwahl anstehen.",
         "h1": "Die Entscheidungen, die vor der Anbieterwahl stehen",

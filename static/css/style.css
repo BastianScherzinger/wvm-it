@@ -2208,3 +2208,9 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   background:var(--accent-soft);color:var(--accent-ink)}
 .wt-wz-ic svg{width:18px;height:18px}
 @media (max-width:980px){ .wt-grid{grid-template-columns:1fr} }
+/* Methodik-Absätze auf den Hub-Seiten: erklären, wie und warum — der Teil, der
+   eine Übersichtsseite von einer Linkliste unterscheidet. */
+.vg-methode{margin:40px 0 0;padding-top:28px;border-top:1px solid var(--line)}
+.vg-methode h2{font-size:18px;margin:0 0 10px}
+.vg-methode h2+p{margin-bottom:24px}
+.vg-methode p{color:var(--ink-soft);line-height:1.8;font-size:15px;max-width:74ch}

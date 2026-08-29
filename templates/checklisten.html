@@ -33,6 +33,20 @@
       {% endfor %}
     </div>
 
+    {% comment %}
+    Nur Deutsch, deshalb steht der Text hier und nicht im Sprachpaket - wie bei
+    den Fachbeitraegen und beim Glossar (Begruendung im Kopf von
+    landing/checklisten.py).
+    {% endcomment %}
+    <div class="vg-methode" data-reveal>
+      <h2>Warum jeder Punkt eine Begründung trägt</h2>
+      <p>Eine Checkliste ohne Begründungen wird abgehakt, nicht abgearbeitet. Wer nicht weiß, warum ein Punkt draufsteht, kann nicht beurteilen, ob er in seinem Fall wirklich zutrifft — und hakt ihn im Zweifel ab, weil es schneller geht. Deshalb steht hinter jedem Punkt ein Satz dazu, was passiert, wenn man ihn überspringt. Das macht die Listen länger und den Durchgang kürzer.</p>
+      <h2>Warum es kein PDF gibt</h2>
+      <p>Ein PDF hinter einem Formular ist der Standardweg, um an eine E-Mail-Adresse zu kommen. Wir haben uns dagegen entschieden, und zwar aus einem praktischen Grund: Was man verschenkt, wird weitergegeben; was man eintauscht, wird einmal heruntergeladen und nie geteilt. Dazu kommt, dass eine Seite verlinkbar, durchsuchbar und auf dem Telefon lesbar ist. Drucken lässt sie sich trotzdem — die Seite bringt eigene Druckregeln mit, die Navigation, Formulare und Videos wegblenden und die Kästchen als echte Kästchen zeichnen.</p>
+      <h2>Was diese Listen nicht sind</h2>
+      <p>Sie ersetzen keine Bestandsaufnahme. Eine Liste kann nur nach Dingen fragen, die man kennt — sie findet nicht den Server, von dem niemand mehr weiß, und nicht die Freigabe, die seit dem letzten Umzug ins Leere zeigt. Dafür braucht es einen Blick in die Systeme. Was die Listen leisten: Sie sorgen dafür, dass die bekannten Dinge nicht liegen bleiben, und das ist in den meisten Betrieben der größere Teil.</p>
+    </div>
+
     <p class="lk-alle">
       <a href="{% url 'wissen' %}">Glossar</a> ·
       <a href="{% url 'aktuelles' %}">Fachbeiträge</a> ·

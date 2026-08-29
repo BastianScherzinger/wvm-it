@@ -35,6 +35,13 @@
       {% endfor %}
     </div>
 
+    <div class="vg-methode" data-reveal>
+      <h2>{{ vs.methode_h|safe }}</h2>
+      <p>{{ vs.methode_t|safe }}</p>
+      <h2>{{ vs.auswahl_h|safe }}</h2>
+      <p>{{ vs.auswahl_t|safe }}</p>
+    </div>
+
     <p class="lk-alle">
       <a href="{% url 'rechner' %}">{{ t.rechner.h1|safe }}</a> ·
       <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·

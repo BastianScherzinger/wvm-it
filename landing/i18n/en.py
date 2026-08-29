@@ -500,6 +500,10 @@ PACK = {
         "software_hinweis": "Specialist software stays with its vendor — we look after everything underneath.",
     },
     "vergleiche_seite": {
+        "methode_h": "How we compare",
+        "methode_t": "Three rules hold these pages together. First: every comparison states explicitly when the other option wins — in its own block of equal size, not in a half-sentence at the end. Second: where a decision hangs on a number, the arithmetic is shown, so you can follow it with your own figures. Third: no third-party prices appear here. They change, and an out-of-date figure about somebody else is worse than none — we point to what the vendor itself says instead.",
+        "auswahl_h": "Why exactly these three",
+        "auswahl_t": "These are the three decisions most often still open in a first conversation. They have one thing in common: they cannot be made sensibly without looking at the business in question — which is why each page states the question it hangs on rather than a recommendation. If a comparison you need is missing, write to us; we add it when the question comes up more than once.",
         "titel": "IT decisions compared | WVM-IT",
         "desc": "Contract or hourly, server or cloud, Microsoft 365 or Google: the comparisons that come before choosing a provider.",
         "h1": "The decisions that come before choosing a provider",

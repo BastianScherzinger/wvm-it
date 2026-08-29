@@ -496,6 +496,10 @@ PACK = {
         "software_hinweis": "Software-ul specializat rămâne la producător — noi ne ocupăm de tot ce este dedesubt.",
     },
     "vergleiche_seite": {
+        "methode_h": "Cum comparăm",
+        "methode_t": "Trei reguli țin aceste pagini împreună. Prima: fiecare comparație spune explicit când câștigă cealaltă variantă — într-un bloc propriu, de aceeași mărime, nu într-o jumătate de frază la final. A doua: acolo unde o decizie depinde de o cifră, apare și calculul, ca să îl puteți urmări cu propriile valori. A treia: prețurile altor furnizori nu apar aici. Ele se schimbă, iar o cifră învechită despre un terț este mai rea decât niciuna — trimitem în schimb la ce spune furnizorul însuși.",
+        "auswahl_h": "De ce exact acestea trei",
+        "auswahl_t": "Sunt cele trei decizii care rămân cel mai des deschise într-o primă discuție. Au un lucru în comun: nu pot fi luate rezonabil fără a privi firma respectivă — de aceea fiecare pagină formulează întrebarea de care depinde, nu o recomandare. Dacă vă lipsește o comparație, scrieți-ne; o adăugăm dacă întrebarea revine.",
         "titel": "Decizii IT în comparație | WVM-IT",
         "desc": "Contract sau pe ore, server sau cloud, Microsoft 365 sau Google: comparațiile care preced alegerea unui furnizor.",
         "h1": "Deciziile care preced alegerea unui furnizor",

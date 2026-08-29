@@ -5,6 +5,7 @@
 > jetzt wo aus 2 rankbaren Seiten 19 geworden sind.
 >
 > **Angelegt:** 28.08.2026 · **Neu gewichtet:** 28.08.2026 (Relaunch, EDV zuerst)
+> · **Fortgeschrieben:** 29.08.2026 um Branchen, Vergleiche, Werkzeuge und Glossar (M5)
 > **Datenbasis:** noch keine echten Suchanfragen. Die Nullmessung (`BASELINE.md`) zeigt
 > ausschließlich Markensuchen. Nach dem nächsten Search-Console-Export (Ende September)
 > wird diese Tabelle gegen echte Anfragen nachgezogen (SEO-PLAN T9).
@@ -21,7 +22,16 @@
 4. **Leistung + Ort** → die Leistungsseite, **keine** eigene Ortsseite (SEO-PLAN A16)
 5. **Werkzeug-Suche** („website testen", „beispielseite") → `/` (Hero-Werkzeug)
 6. **Ort ohne Leistung** → Startseite, solange es keine Regionsseiten gibt
-7. **Kein Bezug zum Angebot** → keine Zielseite, nicht optimieren
+7. **Branche + Leistung** („it für steuerberater") → die Branchenseite, nicht die
+   Leistungsseite. Die Branchenseite verlinkt auf die Leistung, umgekehrt wäre die
+   Suchabsicht nur halb bedient
+8. **Entscheidungsfrage mit zwei Optionen** („server oder cloud") → die
+   Vergleichsseite. Niemals eine Leistungsseite: Wer vergleicht, hat sich noch
+   nicht entschieden, und eine Leistungsseite beantwortet nur eine Hälfte
+9. **Begriffsfrage** („was ist vpn", „raid erklärt") → die Glossarseite
+10. **Notlage** („ransomware was tun", „server ausgefallen") → `/it-notfall/`
+11. **Rechenfrage mit eigenen Zahlen** („it kosten berechnen") → `/kosten/rechner/`
+12. **Kein Bezug zum Angebot** → keine Zielseite, nicht optimieren
 
 ---
 
@@ -89,6 +99,72 @@ Kaufbereite Anfragen bei dünnem Wettbewerb. **Hier zuerst arbeiten.**
 
 ---
 
+## Branchen (neu, 29.08.2026)
+
+Die Suchabsicht „versteht ihr meine Branche" ist eine eigene — sie landete
+vorher auf keiner Seite. Wettbewerb durchweg niedrig, weil die meisten
+IT-Dienstleister ihre Branchenkompetenz behaupten statt sie darzustellen.
+
+| Keyword | Absicht | Wettbewerb | Zielseite |
+|---|---|---|---|
+| it für steuerberater | K | **niedrig** | `/branchen/steuerberater-kanzleien/` |
+| edv kanzlei datev betreuung | K | **sehr niedrig** | `/branchen/steuerberater-kanzleien/` |
+| it für handwerksbetriebe | K | niedrig | `/branchen/handwerk-baugewerbe/` |
+| digitalisierung handwerk baustelle | I→K | mittel | `/branchen/handwerk-baugewerbe/` |
+| it arztpraxis dsgvo | I→K | mittel | `/branchen/arztpraxen-therapie/` |
+| praxis edv betreuung | K | **niedrig** | `/branchen/arztpraxen-therapie/` |
+| wlan hotel einrichten | K | niedrig | `/branchen/hotellerie-gastronomie/` |
+| gästewlan trennen betrieb | I | **sehr niedrig** | `/branchen/hotellerie-gastronomie/` |
+| netzwerk produktionshalle | K | **niedrig** | `/branchen/produktion-gewerbe/` |
+| maschinensteuerung altes windows | I | **sehr niedrig** | `/branchen/produktion-gewerbe/` |
+| it für vereine | I→K | **sehr niedrig** | `/branchen/vereine-gemeinden/` |
+
+## Entscheidungsfragen (neu, 29.08.2026)
+
+Hohe Absicht, aber noch kein Anbieter gewählt. Für Featured Snippets und
+KI-Antworten das wertvollste Format — deshalb steht auf jeder dieser Seiten die
+Gegenüberstellung als Tabelle.
+
+| Keyword | Absicht | Wettbewerb | Zielseite |
+|---|---|---|---|
+| it wartungsvertrag oder stundenabrechnung | I→K | **niedrig** | `/vergleich/it-betreuung-vs-stundenabrechnung/` |
+| lohnt sich it wartungsvertrag | I | niedrig | `/vergleich/it-betreuung-vs-stundenabrechnung/` |
+| eigener server oder cloud firma | I | mittel | `/vergleich/server-vs-cloud/` |
+| ab wann eigener server sinnvoll | I | niedrig | `/aktuelles/wie-viele-arbeitsplaetze-eigener-server/` |
+| microsoft 365 oder google workspace | I | mittel | `/vergleich/microsoft365-vs-google-workspace/` |
+| welche microsoft 365 lizenz kleine firma | I | niedrig | `/aktuelles/microsoft-365-lizenz-kleine-firma/` |
+
+## Werkzeuge und Notlagen (neu, 29.08.2026)
+
+| Keyword | Absicht | Wettbewerb | Zielseite |
+|---|---|---|---|
+| it kosten berechnen firma | I→K | **niedrig** | `/kosten/rechner/` |
+| it sicherheit selbsttest kmu | I | **sehr niedrig** | `/it-sicherheit-test/` |
+| ransomware was tun firma | **Notlage** | mittel | `/it-notfall/` |
+| server ausgefallen was tun | **Notlage** | niedrig | `/it-notfall/` |
+| postfach gehackt firma was tun | **Notlage** | mittel | `/it-notfall/` |
+| it dienstleister wechseln checkliste | I→K | **sehr niedrig** | `/checkliste/it-dienstleister-wechseln/` |
+| it jahrescheck checkliste | I | **sehr niedrig** | `/checkliste/it-jahrescheck/` |
+
+## Begriffe (Glossar, neu 29.08.2026)
+
+Reine Informationsabsicht, niedriger Wettbewerb, hoher GEO-Wert: Eine korrekte
+Definition mit Praxisbezug ist genau das, was eine KI-Antwort übernimmt.
+**Erwartung dämpfen:** Diese Seiten bringen Sichtbarkeit, aber selten direkte
+Anfragen. Sie sind der Einstieg, nicht der Abschluss.
+
+| Keyword | Zielseite |
+|---|---|
+| was ist fernwartung | `/wissen/fernwartung/` |
+| vpn einfach erklärt | `/wissen/vpn/` |
+| was ist managed services | `/wissen/managed-services/` |
+| raid ist kein backup | `/wissen/raid/` |
+| was ist ransomware | `/wissen/ransomware/` |
+| terminalserver erklärung | `/wissen/terminalserver/` |
+| netzwerksegmentierung kleine firma | `/wissen/netzwerksegmentierung/` |
+| nas oder server | `/wissen/nas/` |
+| was ist ein sla | `/wissen/sla/` |
+
 ## Was zuerst?
 
 Nach Aufwand pro erwarteter Anfrage. Die Seiten stehen alle; ab jetzt geht es um
@@ -119,3 +195,10 @@ Stand 28.08.2026: alle beantwortet.
 | „Wie oft sollte ein Backup getestet werden?" | `/leistungen/server-datensicherung/` |
 | „Loxone oder KNX?" | `/leistungen/smarthome-knx-loxone/` |
 | „Was kostet Google-Ads-Betreuung?" | `/leistungen/google-ads/` |
+| „Was ist bei der IT in einer Kanzlei anders?" | `/branchen/steuerberater-kanzleien/` |
+| „Lohnt sich ein IT-Vertrag oder Abrechnung nach Stunden?" | `/vergleich/it-betreuung-vs-stundenabrechnung/` |
+| „Eigener Server oder Cloud?" | `/vergleich/server-vs-cloud/` |
+| „Was tun bei einem Ransomware-Befall?" | `/it-notfall/` |
+| „Worauf achten beim Wechsel des IT-Dienstleisters?" | `/checkliste/it-dienstleister-wechseln/`, `/aktuelles/it-dienstleister-wechseln/` |
+| „Was sieht der Dienstleister bei einer Fernwartung?" | `/wissen/fernwartung/`, `/aktuelles/fernwartung-was-sieht-der-dienstleister/` |
+| „Wie lange muss ein Betrieb in Österreich Daten aufbewahren?" | `/aktuelles/aufbewahrungsfristen-oesterreich/` |
