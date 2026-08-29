@@ -137,9 +137,40 @@ class Command(BaseCommand):
         for eintrag in ungleich:
             self.fehler.append(f"Unterschiedlich viele Einträge: {eintrag}")
         self.stdout.write(f"Seitentexte geprüft ({len(_l.NACH_SLUG)} Leistungen).")
+        self._pruefe_glossar()
         self._pruefe_listen("branchen", ("anders", "leistungen", "faq"))
         self._pruefe_listen("vergleiche", ("tabelle", "fuer_a", "fuer_b", "faq"))
         self._pruefe_listen("regionen", ("vor_ort", "faq"))
+
+    def _pruefe_glossar(self):
+        """Die Bedingung, unter der es das Glossar überhaupt gibt: **250 eigene
+        Wörter je Eintrag** (docs/SEO-AUSBAU-3.md, W5). Ohne diese Prüfung wird
+        die Regel beim nächsten schnell ergänzten Begriff gebrochen, und dann
+        entsteht genau der dünne Seitenbestand, den der Plan verbietet.
+
+        Gezählt werden nur die eigenen Textfelder — Überschriften der Abschnitte
+        zählen mit, weil sie Inhalt tragen; Navigationstexte nicht."""
+        from landing import glossar as _g
+        from landing.i18n.glossar_de import BEGRIFFE as TEXTE
+        MINDEST = 250
+        kuerzeste = None
+        for eintrag in _g.BEGRIFFE:
+            b = TEXTE.get(eintrag["slug"])
+            if not b:
+                self.fehler.append(
+                    f"Begriff '{eintrag['slug']}' hat keine Texte in glossar_de.py")
+                continue
+            teile = [b.get("kurz", ""), b.get("praxis", ""), b.get("irrtum", "")]
+            teile += [a.get("h", "") + " " + a.get("t", "") for a in b.get("abschnitte", [])]
+            worte = len(" ".join(teile).split())
+            if kuerzeste is None or worte < kuerzeste[1]:
+                kuerzeste = (eintrag["slug"], worte)
+            if worte < MINDEST:
+                self.fehler.append(
+                    f"Glossar '{eintrag['slug']}': {worte} Wörter (mindestens {MINDEST})")
+        if kuerzeste:
+            self.stdout.write(f"Glossar geprüft ({len(_g.BEGRIFFE)} Begriffe, "
+                              f"kürzester: {kuerzeste[0]} mit {kuerzeste[1]} Wörtern).")
 
     def _pruefe_listen(self, schluessel, felder):
         """Dieselbe Prüfung wie für die Leistungsseiten, für jeden weiteren

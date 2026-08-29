@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% comment %}
+Ein Glossareintrag (docs/SEO-AUSBAU-3.md, W5).
+
+Reihenfolge mit Absicht: Definition, Erklärung, **Praxisbezug**, verbreiteter
+Irrtum. Der Praxisbezug ist der Pflichtteil — ohne ihn wäre der Eintrag eine
+Lexikonkopie und damit genau die dünne Seite, die der Plan verbietet. Der
+Irrtum ist der Absatz, wegen dessen jemand die Seite weiterschickt.
+
+Das `DefinedTerm`-Schema (views.begriff_seite) zieht seine Beschreibung aus
+demselben `kurz`-Feld, das oben steht.
+{% endcomment %}
+{% block titel %}{{ begriff.meta_titel|safe }}{% endblock %}
+{% block beschreibung %}{{ begriff.desc|safe }}{% endblock %}
+{% block og_titel %}{{ begriff.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ begriff.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ begriff.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ begriff.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<article class="sp">
+  <header class="sp-top on-dark">
+    <div class="wrap">
+      <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+        <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <a href="{% url 'wissen' %}">Wissen</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ begriff.titel }}</span>
+      </nav>
+      <p class="gl-label">Begriff</p>
+      <h1>{{ begriff.titel|safe }}</h1>
+      <p class="sp-kurz">{{ begriff.kurz|safe }}</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap sp-wrap">
+      {% for a in begriff.abschnitte %}
+      <section class="bt-abschnitt" data-reveal>
+        <h2>{{ a.h|safe }}</h2>
+        <p>{{ a.t|safe }}</p>
+      </section>
+      {% endfor %}
+
+      <section class="gl-praxis" data-reveal>
+        <h2>In der Praxis</h2>
+        <p>{{ begriff.praxis|safe }}</p>
+        <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
+          <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+      </section>
+
+      <section class="gl-irrtum" data-reveal>
+        <h2>Der verbreitete Irrtum</h2>
+        <p>{{ begriff.irrtum|safe }}</p>
+      </section>
+
+      {% if leistung %}
+      <aside class="rg-schwerpunkt" data-reveal>
+        <p class="rg-sw-label">Passende Leistung</p>
+        <a class="rg-sw-link" href="{{ leistung.url }}">
+          <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=leistung.icon %}</span>
+          <span>
+            <strong>{{ leistung.nav|safe }}</strong>
+            <span class="rg-sw-t">{{ leistung.desc|safe }}</span>
+          </span>
+        </a>
+      </aside>
+      {% endif %}
+
+      {% include 'anfrage_karte.html' with bid='it' titel='Frage dazu? Kurz schildern, wir antworten.' sub='Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.' ph=t.lb.text_ph %}
+
+      <nav class="rg-weitere" aria-label="Verwandte Begriffe">
+        <h2>Verwandte Begriffe</h2>
+        <ul>
+          {% for v in verwandt %}<li><a href="{{ v.url }}">{{ v.titel }}</a></li>{% endfor %}
+          <li><a href="{% url 'wissen' %}">Alle Begriffe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</article>
+{% endblock %}

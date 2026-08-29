@@ -16,6 +16,11 @@ urlpatterns = [
     # /ro/-Varianten. Begruendung im Kopf von landing/beitraege.py.
     path("aktuelles/", views.aktuelles, name="aktuelles"),
     path("aktuelles/<slug:slug>/", views.beitrag_seite, name="beitrag"),
+    # ── Glossar (docs/SEO-AUSBAU-3.md, W5) ──────────────────────────────────
+    # Wie die Fachbeitraege bewusst ausserhalb von i18n_patterns: nur Deutsch.
+    # Begruendung im Kopf von landing/glossar.py.
+    path("wissen/", views.wissen, name="wissen"),
+    path("wissen/<slug:slug>/", views.begriff_seite, name="begriff"),
     path("robots.txt", views.robots_txt, name="robots_txt"),
     # Reihenfolge zaehlt: Die Langfassung steht VOR dem allgemeinen .txt-Muster
     # weiter unten, damit sie nicht davon verschluckt wird (dieselbe Falle steht

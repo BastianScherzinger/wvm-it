@@ -23,7 +23,7 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import beitraege, branchen, i18n, leistungen, regionen, selbsttest, vergleiche
+from . import beitraege, branchen, glossar, i18n, leistungen, regionen, selbsttest, vergleiche
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -1610,6 +1610,10 @@ def _seiten_pfade():
               for r in regionen.REGIONEN]
     # Nur Deutsch — daher False:
     pfade += [("/aktuelles/", "0.6", "weekly", False)]
+    # Glossar ebenfalls nur Deutsch (Begruendung im Kopf von landing/glossar.py).
+    pfade += [("/wissen/", "0.6", "monthly", False)]
+    pfade += [(f"/wissen/{b['slug']}/", b["prio"], "yearly", False)
+              for b in glossar.BEGRIFFE]
     pfade += [(f"/aktuelles/{b['slug']}/", b["prio"], "yearly", False)
               for b in beitraege.BEITRAEGE]
     # Rechtstexte gehoeren in den Index (Anbieterkennzeichnung), aber ganz hinten.
@@ -1805,6 +1809,83 @@ def branche_seite(request, slug):
             breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
                 (seite.get("nav", slug), pfad)])),
+    })
+
+
+# ══ Glossar (docs/SEO-AUSBAU-3.md, W5 + S6) ═══════════════════════════════════
+# Begriffserklärungen sind eine eigene Suchabsicht. Die Regel, die diese Seiten
+# von einem üblichen Glossar unterscheidet, steht im Kopf von landing/glossar.py:
+# 250+ eigene Wörter und ein Praxisbezug je Eintrag — sonst entstehen genau die
+# dünnen Seiten, die dieser Plan an anderer Stelle verbietet.
+# Nur Deutsch, begründete Ausnahme wie bei den Fachbeiträgen.
+
+def _begriff_daten(eintrag):
+    from .i18n.glossar_de import BEGRIFFE as TEXTE
+    daten = {**eintrag, **TEXTE.get(eintrag["slug"], {})}
+    daten["url"] = reverse("begriff", kwargs={"slug": eintrag["slug"]})
+    return daten
+
+
+def _defined_term_set(base):
+    """`DefinedTermSet` mit allen Begriffen — der Rahmen, auf den die einzelnen
+    `DefinedTerm`-Einträge verweisen (S6). Ohne ihn stünden vierzehn lose
+    Definitionen im Netz, die nichts miteinander zu tun haben."""
+    return {
+        "@type": "DefinedTermSet",
+        "@id": f"{base}/wissen/#glossar",
+        "name": "IT-Glossar von WVM-IT",
+        "inLanguage": "de-AT",
+        "hasDefinedTerm": [{"@id": f"{base}/wissen/{b['slug']}/#term"}
+                           for b in glossar.BEGRIFFE],
+    }
+
+
+def begriff_seite(request, slug):
+    """/wissen/<slug>/ — ein Begriff, eine URL, eine Definition."""
+    eintrag = glossar.NACH_SLUG.get(slug)
+    if not eintrag:
+        raise Http404(slug)
+    c = _content()
+    begriff = _begriff_daten(eintrag)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = begriff["url"]
+
+    term = {
+        "@type": "DefinedTerm",
+        "@id": f"{base}{pfad}#term",
+        "name": begriff.get("titel", eintrag["begriff"]),
+        "description": begriff.get("kurz", ""),
+        "inDefinedTermSet": {"@id": f"{base}/wissen/#glossar"},
+        "url": f"{base}{pfad}",
+        "inLanguage": "de-AT",
+    }
+    leistung = leistungen.NACH_SLUG.get(eintrag.get("leistung", ""))
+    return render(request, "begriff.html", {
+        "c": c, "begriff": begriff,
+        "leistung": _leistung_daten(leistung, "de") if leistung else None,
+        "verwandt": [_begriff_daten(glossar.NACH_SLUG[v])
+                     for v in eintrag.get("verwandt", []) if v in glossar.NACH_SLUG],
+        "preis_stand": _preis_stand("de"),
+        "structured_data": _seiten_schema(
+            c, "de", service=term,
+            breadcrumb=_breadcrumb(base, [
+                ("Wissen", reverse("wissen")),
+                (begriff.get("titel", slug), pfad)])),
+    })
+
+
+def wissen(request):
+    """/wissen/ — alle Begriffe alphabetisch, mit der Definition als Vorschau."""
+    c = _content()
+    base = (c.get("wvm_url") or "").rstrip("/")
+    liste = sorted((_begriff_daten(b) for b in glossar.BEGRIFFE),
+                   key=lambda b: b.get("titel", "").lower())
+    graph = json.loads(_seiten_schema(
+        c, "de", breadcrumb=_breadcrumb(base, [("Wissen", reverse("wissen"))])))
+    graph["@graph"].append(_defined_term_set(base))
+    return render(request, "wissen.html", {
+        "c": c, "begriffe": liste,
+        "structured_data": json.dumps(graph, ensure_ascii=False, separators=(",", ":")),
     })
 
 
@@ -2444,6 +2525,20 @@ def _llms_vergleiche(base, lang):
     return zeilen
 
 
+def _llms_glossar(base):
+    """Zeile je Glossareintrag: Begriff und Definition.
+
+    Für eine KI ist ein Glossar die günstigste Möglichkeit, einen Begriff korrekt
+    zu erklären UND dabei eine Quelle zu nennen — deshalb steht hier die ganze
+    Definition und nicht der erste Satz davon."""
+    zeilen = []
+    for eintrag in glossar.BEGRIFFE:
+        g = _begriff_daten(eintrag)
+        zeilen.append(f"- [{g.get('titel', eintrag['slug'])}]"
+                      f"({base}/wissen/{eintrag['slug']}/): {g.get('kurz', '')}")
+    return zeilen
+
+
 def _llms_beitraege(base):
     """Zeile je Fachbeitrag: die Frage als Titel, die Antwort als Beschreibung.
 
@@ -2492,6 +2587,8 @@ def llms_txt(request):
         "sofort, ohne E-Mail-Abfrage und ohne Speicherung.",
         f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
         f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
+        f"- [Glossar]({base}/wissen/): vierzehn Begriffe mit Definition, Praxisbezug und dem "
+        "jeweils verbreiteten Irrtum.",
         "\n## Leistungen",
     ]
     zeilen += _llms_seiten(base, "de")
@@ -2515,6 +2612,8 @@ def llms_txt(request):
         "Datensicherung, Webseiten, SEO und Ads laufen ortsunabhängig im gesamten DACH-Raum. "
         "Einsätze vor Ort werden projektbezogen vereinbart.",
         *_llms_regionen(base, "de"),
+        "\n## Glossar (Definition jeweils im ersten Satz)",
+        *_llms_glossar(base),
         "\n## Fachbeiträge (Antwort jeweils im ersten Absatz)",
         *_llms_beitraege(base),
         "\n## Besonderheiten",
@@ -2658,6 +2757,20 @@ def llms_full_txt(request):
             aus.append(f"\n**{sauber(a.get('h'))}**\n{sauber(a.get('t'))}")
         if b.get("fazit"):
             aus.append(f"\nKurz gesagt: {sauber(b.get('fazit'))}")
+
+    # Glossar: Definition, Praxis und Irrtum. Der Irrtums-Absatz ist der Teil, den
+    # ein Sprachmodell sonst nirgends findet — er korrigiert eine verbreitete
+    # Fehlannahme, statt sie zu wiederholen.
+    aus.append("\n\n## Glossar")
+    for eintrag in glossar.BEGRIFFE:
+        g = _begriff_daten(eintrag)
+        aus.append(f"\n### {sauber(g.get('titel'))}")
+        aus.append(f"URL: {base}/wissen/{eintrag['slug']}/")
+        aus.append(f"\n{sauber(g.get('kurz'))}")
+        for a in g.get("abschnitte", []):
+            aus.append(f"\n**{sauber(a.get('h'))}**\n{sauber(a.get('t'))}")
+        aus.append(f"\n**In der Praxis**\n{sauber(g.get('praxis'))}")
+        aus.append(f"\n**Verbreiteter Irrtum**\n{sauber(g.get('irrtum'))}")
 
     aus.append("\n\n## Häufige Fragen zum Unternehmen")
     for f in pack.get("faq", {}).get("items", []):
@@ -2960,6 +3073,10 @@ def _such_index(lang):
             daten = _beitrag_daten(eintrag)
             eintraege.append((daten["url"], daten.get("titel", ""),
                               daten.get("antwort", ""), "Aktuelles"))
+        for eintrag in glossar.BEGRIFFE:
+            daten = _begriff_daten(eintrag)
+            eintraege.append((daten["url"], daten.get("titel", ""),
+                              daten.get("kurz", ""), "Wissen"))
 
     hub = pack.get("hub", {})
     ks = pack.get("kosten_seite", {})

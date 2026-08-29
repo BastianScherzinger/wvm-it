@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% comment %}
+Glossar-Übersicht (docs/SEO-AUSBAU-3.md, W5).
+
+Die Definition steht schon in der Übersicht — nicht nur der Begriff. Wer nur
+wissen wollte, was RAID ist, hat die Antwort damit ohne einen weiteren Klick;
+das ist die freundlichere Variante und kostet uns nichts.
+{% endcomment %}
+{% block titel %}IT-Glossar: Begriffe verständlich erklärt | WVM-IT{% endblock %}
+{% block beschreibung %}Vierzehn IT-Begriffe, die in Angeboten vorkommen — mit Definition, Praxisbezug für kleine Betriebe und dem jeweils verbreiteten Irrtum.{% endblock %}
+{% block og_titel %}IT-Glossar: Begriffe verständlich erklärt{% endblock %}
+{% block og_beschreibung %}Definition, Praxisbezug und der verbreitete Irrtum — je Begriff.{% endblock %}
+{% block tw_titel %}IT-Glossar: Begriffe verständlich erklärt{% endblock %}
+{% block tw_beschreibung %}Definition, Praxisbezug und der verbreitete Irrtum — je Begriff.{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Wissen</span>
+    </nav>
+    <h1>Die Begriffe, die in IT-Angeboten stehen</h1>
+    <p class="sp-kurz">Vierzehn Begriffe, die in Angeboten und Gesprächen vorkommen und selten erklärt werden — jeweils mit der Definition, mit dem, was der Begriff in einem Betrieb mit fünfzehn Leuten konkret bedeutet, und mit dem Irrtum, der sich hartnäckig hält.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap sp-wrap">
+    <p class="sp-intro" data-reveal>Ein Glossar ist nur dann nützlich, wenn es mehr sagt als das Lexikon. Deshalb steht hinter jedem Eintrag ein Praxisabsatz: was er kostet, wo er schiefgeht, wann er sich lohnt. Wenn Sie einen Begriff vermissen, schreiben Sie uns — wir ergänzen ihn.</p>
+
+    <ol class="gl-liste">
+      {% for b in begriffe %}
+      <li class="gl-item">
+        <a href="{{ b.url }}">
+          <h2 class="gl-h">{{ b.titel }}</h2>
+          <p class="gl-t">{{ b.kurz|safe|truncatewords:34 }}</p>
+        </a>
+      </li>
+      {% endfor %}
+    </ol>
+
+    <p class="lk-alle">
+      <a href="{% url 'aktuelles' %}">Fachbeiträge</a> ·
+      <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
+      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a>
+    </p>
+  </div>
+</section>
+{% endblock %}
