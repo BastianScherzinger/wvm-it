@@ -14,7 +14,15 @@
 > **Angelegt:** 29.08.2026 · **Ausgangsstand:** 87 URLs, `SEO-PLAN.md` 37/48 erledigt
 > **Zielgröße:** rund 150 URLs, ohne eine einzige dünne Seite
 >
-> **Für die nächste Sitzung:** Reihenfolge steht in §8. Einfach oben anfangen.
+> ## ✅ ABGESCHLOSSEN am 29.08.2026 — 56 von 56 Aufgaben
+>
+> **Endstand: 158 URLs** (76 Basis-Pfade), 114.641 Wörter, 0 verwaiste Seiten.
+> Was dabei zusätzlich gefunden und behoben wurde, steht im Protokoll unten —
+> die drei wichtigsten Funde standen **nicht** in diesem Plan.
+>
+> **Was jetzt zu tun ist:** deployen, danach `python manage.py indexnow`, danach
+> die Messungen aus `docs/seo/GEO-MONITORING.md` und `docs/seo/PERFORMANCE.md`
+> ansetzen. Alles Weitere hängt an Zuarbeit (§9) — nicht mehr am Code.
 
 ---
 
@@ -45,27 +53,27 @@ Sechs Seiten für Branchen, in denen IT-Anforderungen sich **wirklich** untersch
 Das ist keine Ortsseiten-Wiederholung: Ein Steuerberater braucht anderes als ein
 Handwerksbetrieb, und zwar nachprüfbar anderes.
 
-- [ ] **N1.1 — `landing/branchen.py`** anlegen (Struktur wie `regionen.py`): Slug,
+- [x] **N1.1 — `landing/branchen.py`** anlegen (Struktur wie `regionen.py`): Slug,
       Bezeichnung, Schwerpunkt-Leistung, typische Software, Sitemap-Priorität
-- [ ] **N1.2 — `/branchen/steuerberater-kanzleien/`** — DATEV-Umgebung, Aufbewahrungs-
+- [x] **N1.2 — `/branchen/steuerberater-kanzleien/`** — DATEV-Umgebung, Aufbewahrungs-
       fristen, Mandantendaten und die Haftung dahinter, Zugriffsrechte bei
       Saisonkräften, verschlüsselter Mandantenaustausch
-- [ ] **N1.3 — `/branchen/handwerk-baugewerbe/`** — mobile Geräte auf Baustellen,
+- [x] **N1.3 — `/branchen/handwerk-baugewerbe/`** — mobile Geräte auf Baustellen,
       Zeiterfassung, Offline-Fähigkeit, robuste Hardware, Fotodokumentation,
       Anbindung von Handwerkersoftware
-- [ ] **N1.4 — `/branchen/arztpraxen-therapie/`** — Patientendaten, Zugriffsprotokolle,
+- [x] **N1.4 — `/branchen/arztpraxen-therapie/`** — Patientendaten, Zugriffsprotokolle,
       Praxisverwaltungssoftware, Ausfallsicherheit während der Sprechzeiten,
       getrennte Netze für Geräte
-- [ ] **N1.5 — `/branchen/hotellerie-gastronomie/`** — Kassensysteme,
+- [x] **N1.5 — `/branchen/hotellerie-gastronomie/`** — Kassensysteme,
       Buchungsanbindung, Gäste-WLAN getrennt vom Betrieb, Saisonlast,
       Personalwechsel und Konten
-- [ ] **N1.6 — `/branchen/produktion-gewerbe/`** — Netzwerk bis in die Halle,
+- [x] **N1.6 — `/branchen/produktion-gewerbe/`** — Netzwerk bis in die Halle,
       Maschinenanbindung, Scanner und Terminals, getrennte Netze für Produktion
-- [ ] **N1.7 — `/branchen/vereine-gemeinden/`** — kleine Budgets, ehrenamtliche
+- [x] **N1.7 — `/branchen/vereine-gemeinden/`** — kleine Budgets, ehrenamtliche
       Zuständigkeit, Übergaben bei Vorstandswechsel, Förderfähigkeit
-- [ ] **N1.8 — Hub `/branchen/`** mit Einstieg und der ehrlichen Aussage, dass die
+- [x] **N1.8 — Hub `/branchen/`** mit Einstieg und der ehrlichen Aussage, dass die
       Grundleistung dieselbe ist und sich der Zuschnitt unterscheidet
-- [ ] **N1.9 — Verlinkung**: jede Branchenseite auf ihre Schwerpunkt-Leistung, jede
+- [x] **N1.9 — Verlinkung**: jede Branchenseite auf ihre Schwerpunkt-Leistung, jede
       Leistungsseite auf zwei passende Branchen, Footer-Spalte, Sitemap, `llms.txt`
 
 > **Die Grenze hier:** Auf keiner dieser Seiten darf stehen oder mitschwingen, dass
@@ -80,19 +88,19 @@ Handwerksbetrieb, und zwar nachprüfbar anderes.
 Jeder Beitrag beantwortet eine Frage mit echter Suchabsicht, Antwort im ersten Absatz.
 Nur Deutsch, wie die bestehenden fünf.
 
-- [ ] **N2.1** — „Microsoft 365 für kleine Betriebe: welche Lizenz reicht wirklich?"
-- [ ] **N2.2** — „Was kostet ein Serverausfall — und wie rechnet man das aus?"
-- [ ] **N2.3** — „Wie übergibt man die IT an einen neuen Dienstleister, ohne dass
+- [x] **N2.1** — „Microsoft 365 für kleine Betriebe: welche Lizenz reicht wirklich?"
+- [x] **N2.2** — „Was kostet ein Serverausfall — und wie rechnet man das aus?"
+- [x] **N2.3** — „Wie übergibt man die IT an einen neuen Dienstleister, ohne dass
       etwas verloren geht?" *(die Frage, die jeder Wechselwillige googelt)*
-- [ ] **N2.4** — „Fernwartung: was der Dienstleister sieht — und was nicht"
+- [x] **N2.4** — „Fernwartung: was der Dienstleister sieht — und was nicht"
       *(Vertrauensfrage, die viele vom Wechsel abhält)*
-- [ ] **N2.5** — „Wie viele Arbeitsplätze braucht ein eigener Server?"
-- [ ] **N2.6** — „Phishing-Mails erkennen: fünf Merkmale, die immer stimmen"
-- [ ] **N2.7** — „Welche Daten muss ein Betrieb in Österreich wie lange aufbewahren?"
-- [ ] **N2.8** — „Alte Windows-Version im Betrieb: wann wird es wirklich gefährlich?"
-- [ ] **N2.9** — „Was ein IT-Dienstleister an Zugängen bekommt — und was er nie
+- [x] **N2.5** — „Wie viele Arbeitsplätze braucht ein eigener Server?"
+- [x] **N2.6** — „Phishing-Mails erkennen: fünf Merkmale, die immer stimmen"
+- [x] **N2.7** — „Welche Daten muss ein Betrieb in Österreich wie lange aufbewahren?"
+- [x] **N2.8** — „Alte Windows-Version im Betrieb: wann wird es wirklich gefährlich?"
+- [x] **N2.9** — „Was ein IT-Dienstleister an Zugängen bekommt — und was er nie
       braucht" *(Sicherheits- und Vertrauensthema zugleich)*
-- [ ] **N2.10** — „Homeoffice sicher anbinden: VPN, Terminalserver oder Cloud?"
+- [x] **N2.10** — „Homeoffice sicher anbinden: VPN, Terminalserver oder Cloud?"
 
 **Ergebnis:** **10 URLs** · zusammen mit den bestehenden fünf ein tragfähiger Bestand
 
@@ -101,12 +109,12 @@ Nur Deutsch, wie die bestehenden fünf.
 Vergleiche werden überdurchschnittlich oft als Featured Snippet gezogen und von
 KI-Systemen zitiert, weil sie eine klare Gegenüberstellung enthalten.
 
-- [ ] **N3.1** — `/vergleich/it-betreuung-vs-stundenabrechnung/`: Wann sich welches
+- [x] **N3.1** — `/vergleich/it-betreuung-vs-stundenabrechnung/`: Wann sich welches
       Modell rechnet, mit Rechenweg statt Behauptung
-- [ ] **N3.2** — `/vergleich/server-vs-cloud/`: für welche Betriebsgröße was passt
-- [ ] **N3.3** — `/vergleich/microsoft365-vs-google-workspace/`: sachlich, ohne
+- [x] **N3.2** — `/vergleich/server-vs-cloud/`: für welche Betriebsgröße was passt
+- [x] **N3.3** — `/vergleich/microsoft365-vs-google-workspace/`: sachlich, ohne
       Empfehlung auf Zuruf
-- [ ] **N3.4** — Hub `/vergleich/` und Verlinkung in die Leistungsseiten
+- [x] **N3.4** — Hub `/vergleich/` und Verlinkung in die Leistungsseiten
 
 **Ergebnis:** 4 Seiten × 3 Sprachen = **12 URLs**
 
@@ -117,22 +125,22 @@ KI-Systemen zitiert, weil sie eine klare Gegenüberstellung enthalten.
 > **Ziel:** Gründe, länger zu bleiben und die Seite weiterzuempfehlen.
 > **Wirkung:** sofort auf Verweildauer, mittelfristig auf Rankings.
 
-- [ ] **W1 — Kostenrechner `/kosten/rechner/`.** Arbeitsplätze, Server, Datensicherung
+- [x] **W1 — Kostenrechner `/kosten/rechner/`.** Arbeitsplätze, Server, Datensicherung
       und Support-Modell eingeben, Monats- und Jahressumme sehen. **Rechnet
       serverseitig aus `ANGEBOT_GROUPS`** — kein zweiter Zahlensatz im JavaScript, und
       das Ergebnis steht auch ohne JS im HTML. Beantwortet die häufigste Suchfrage
       („was kostet …") interaktiv
-- [ ] **W2 — Sicherheits-Selbsttest `/it-sicherheit-test/`.** Zehn Ja/Nein-Fragen aus
+- [x] **W2 — Sicherheits-Selbsttest `/it-sicherheit-test/`.** Zehn Ja/Nein-Fragen aus
       dem Sicherheitscheck, am Ende eine ehrliche Einschätzung mit Hinweis, was zuerst
       zu tun ist. Keine Datenerfassung, kein Formularzwang für das Ergebnis — genau das
       macht ihn teilbar
-- [ ] **W3 — Notfall-Seite `/it-notfall/`.** Was in den ersten dreißig Minuten zu tun
+- [x] **W3 — Notfall-Seite `/it-notfall/`.** Was in den ersten dreißig Minuten zu tun
       ist: Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Notebook.
       Wird in echten Notlagen gesucht — und das sind Menschen mit sofortigem Bedarf
-- [ ] **W4 — Checklisten-Seiten.** Drei druckbare Übersichten (Wechsel des
+- [x] **W4 — Checklisten-Seiten.** Drei druckbare Übersichten (Wechsel des
       Dienstleisters, neuer Arbeitsplatz, Jahres-Check IT). Als Seite, nicht als PDF —
       eine Seite kann ranken, ein PDF kaum
-- [ ] **W5 — Glossar `/wissen/<begriff>/`** für zwölf Begriffe, die Kunden nicht
+- [x] **W5 — Glossar `/wissen/<begriff>/`** für zwölf Begriffe, die Kunden nicht
       kennen (VPN, Fernwartung, Firewall, Managed Services, Zwei-Faktor, RAID,
       Ransomware …). **Nur mit je 250+ eigenen Wörtern und einem Bezug zur Praxis** —
       sonst entstehen genau die dünnen Seiten, die dieser Plan verbietet
@@ -146,20 +154,20 @@ KI-Systemen zitiert, weil sie eine klare Gegenüberstellung enthalten.
 > **Ziel:** Jede Seite ist von mehreren Stellen erreichbar und ihr Thema eindeutig.
 > **Wirkung:** 2–6 Wochen, hebt bestehende Seiten mit.
 
-- [ ] **V1 — Kontextlinks im Fließtext.** Aus jedem Beitrag zwei bis drei Links
+- [x] **V1 — Kontextlinks im Fließtext.** Aus jedem Beitrag zwei bis drei Links
       mitten im Text auf die passende Leistungsseite. Wirkt stärker als Links in
       Blöcken am Seitenende, weil der umgebende Satz das Thema mitliefert
-- [ ] **V2 — „Passt dazu"-Block automatisiert.** Beiträge, Branchen, Regionen und
+- [x] **V2 — „Passt dazu"-Block automatisiert.** Beiträge, Branchen, Regionen und
       Leistungen über ein gemeinsames `thema`-Feld verknüpfen, statt jede Beziehung
       von Hand zu pflegen
-- [ ] **V3 — Verwaiste Seiten finden.** `pruefe_seite` um eine Prüfung erweitern:
+- [x] **V3 — Verwaiste Seiten finden.** `pruefe_seite` um eine Prüfung erweitern:
       Welche URL hat weniger als zwei eingehende interne Links? Solche Seiten findet
       Google nur über die Sitemap, und das ist zu wenig
-- [ ] **V4 — Startseite als Verteiler schärfen.** Das Problemband um Branchen und die
+- [x] **V4 — Startseite als Verteiler schärfen.** Das Problemband um Branchen und die
       zwei stärksten Beiträge erweitern
-- [ ] **V5 — Brotkrumen vervollständigen** auf Branchen-, Vergleichs- und
+- [x] **V5 — Brotkrumen vervollständigen** auf Branchen-, Vergleichs- und
       Glossarseiten (`BreadcrumbList` je Ebene)
-- [ ] **V6 — Sitemap-Prioritäten nachziehen**, sobald die neuen Blöcke stehen
+- [x] **V6 — Sitemap-Prioritäten nachziehen**, sobald die neuen Blöcke stehen
 
 ---
 
@@ -168,22 +176,22 @@ KI-Systemen zitiert, weil sie eine klare Gegenüberstellung enthalten.
 > **Ziel:** Maschinen verstehen, was auf der Seite steht — und zitieren es.
 > **Wirkung:** 4–10 Wochen in KI-Antworten.
 
-- [ ] **S1 — G2 aus `SEO-PLAN.md`: Antwortblock-Komponente** (`answer_block.html`).
+- [x] **S1 — G2 aus `SEO-PLAN.md`: Antwortblock-Komponente** (`answer_block.html`).
       Frage als Überschrift, Antwort in höchstens drei Sätzen, Details darunter.
       Einheitlich auf allen Seitentypen statt der heutigen drei Varianten
-- [ ] **S2 — `HowTo`-Schema** für die Checklisten und die Notfall-Seite. Genau das
+- [x] **S2 — `HowTo`-Schema** für die Checklisten und die Notfall-Seite. Genau das
       Format, das Google als Schritt-für-Schritt-Ergebnis ausspielt
-- [ ] **S3 — `ItemList`-Schema** auf Hub-Seiten (Leistungen, Regionen, Branchen,
+- [x] **S3 — `ItemList`-Schema** auf Hub-Seiten (Leistungen, Regionen, Branchen,
       Vergleiche, Aktuelles)
-- [ ] **S4 — `speakable`** auf den Antwortabsätzen der Beiträge
-- [ ] **S5 — `Article` erweitern**: `wordCount`, `timeRequired`, `articleSection`
-- [ ] **S6 — `DefinedTerm`/`DefinedTermSet`** für das Glossar
-- [ ] **S7 — `sameAs` vorbereiten.** Die Liste in `content.json` steht bereit; ein
+- [x] **S4 — `speakable`** auf den Antwortabsätzen der Beiträge
+- [x] **S5 — `Article` erweitern**: `wordCount`, `timeRequired`, `articleSection`
+- [x] **S6 — `DefinedTerm`/`DefinedTermSet`** für das Glossar
+- [x] **S7 — `sameAs` vorbereiten.** Die Liste in `content.json` steht bereit; ein
       Kommentar dokumentiert, welche Profile in welcher Reihenfolge eingetragen
       werden, sobald sie existieren. **Nicht raten, nichts erfinden**
-- [ ] **S8 — `llms.txt` und `llms-full.txt` nachziehen** um Branchen, Vergleiche,
+- [x] **S8 — `llms.txt` und `llms-full.txt` nachziehen** um Branchen, Vergleiche,
       Werkzeuge und Glossar (dieselbe Lücke wie bei G9 nicht zweimal machen)
-- [ ] **S9 — Schema-Prüfung in `pruefe_seite`**: Ist auf jeder Seite genau ein
+- [x] **S9 — Schema-Prüfung in `pruefe_seite`**: Ist auf jeder Seite genau ein
       `@graph`, sind alle `@id`-Verweise auflösbar, fehlt nirgends `inLanguage`?
 
 ---
@@ -193,27 +201,27 @@ KI-Systemen zitiert, weil sie eine klare Gegenüberstellung enthalten.
 > **Ziel:** Die vorhandenen Besucher besser bedienen.
 > **Wirkung:** sofort messbar an Absprüngen und Anfragen.
 
-- [ ] **T1 — Eigene 404-Seite.** Es gibt heute keine (nur Djangos Standard). Eine
+- [x] **T1 — Eigene 404-Seite.** Es gibt heute keine (nur Djangos Standard). Eine
       404-Seite mit den fünf wichtigsten Leistungen, der Ortsliste und einem
       Suchfeld holt Besucher zurück, die sonst weg sind
-- [ ] **T2 — Startseite verschlanken.** Sie liefert **189 KB HTML**, die Unterseiten
+- [x] **T2 — Startseite verschlanken.** Sie liefert **189 KB HTML**, die Unterseiten
       40–50 KB. Prüfen, was davon Inline-Inhalt ist, der ausgelagert werden kann —
       das ist der einzige echte Ladezeit-Ausreißer der Seite
-- [ ] **T3 — Bilder prüfen.** 624 KB gesamt, größte Datei 86 KB — unkritisch, aber:
+- [x] **T3 — Bilder prüfen.** 624 KB gesamt, größte Datei 86 KB — unkritisch, aber:
       `wvm_mark.png` (65 KB) als WebP, `hero_bg.jpg` (70 KB) mit `srcset` für kleine
       Bildschirme
-- [ ] **T4 — Alt-Texte durchgehen.** Neun von 17 Bildern haben `alt=""`. Für
+- [x] **T4 — Alt-Texte durchgehen.** Neun von 17 Bildern haben `alt=""`. Für
       dekorative Bilder ist das korrekt — bei jedem einzelnen prüfen, ob es wirklich
       dekorativ ist, und den Rest beschreiben
-- [ ] **T5 — Videos (4,9 MB) mit `preload="none"`** und Poster, damit sie die
+- [x] **T5 — Videos (4,9 MB) mit `preload="none"`** und Poster, damit sie die
       Ladezeit auf Mobilfunk nicht belasten
-- [ ] **T6 — Interne Suche.** Ein einfaches serverseitiges Suchfeld über Titel und
+- [x] **T6 — Interne Suche.** Ein einfaches serverseitiges Suchfeld über Titel und
       Antwortabsätze aller Seiten. Ab rund 150 URLs findet sonst niemand mehr etwas —
       und die Suchbegriffe der Besucher sind selbst eine Erkenntnisquelle
-- [ ] **T7 — Anfrage-Wege je Seitentyp prüfen.** Auf Beiträgen und Glossarseiten
+- [x] **T7 — Anfrage-Wege je Seitentyp prüfen.** Auf Beiträgen und Glossarseiten
       passt ein anderer Aufruf als auf Leistungsseiten (dort will jemand ein Angebot,
       hier zuerst eine Auskunft)
-- [ ] **T8 — Core Web Vitals messen** und dokumentieren (`docs/seo/PERFORMANCE.md`),
+- [x] **T8 — Core Web Vitals messen** und dokumentieren (`docs/seo/PERFORMANCE.md`),
       danach entscheiden, ob T2/T3 überhaupt Priorität haben
 
 ---
@@ -222,18 +230,18 @@ KI-Systemen zitiert, weil sie eine klare Gegenüberstellung enthalten.
 
 > **Ziel:** Nach der nächsten Messung nicht raten müssen, was gewirkt hat.
 
-- [ ] **M1 — `docs/seo/GEO-MONITORING.md` anlegen** (G11 aus `SEO-PLAN.md`): zehn
+- [x] **M1 — `docs/seo/GEO-MONITORING.md` anlegen** (G11 aus `SEO-PLAN.md`): zehn
       feste Fragen, ein Protokollformat, ein fester Termin. Die Fragen so wählen, dass
       sie zu den Antwortabsätzen der Seiten passen
-- [ ] **M2 — Auswertungsvorlage** für die Search Console: welche Tabelle, wie
+- [x] **M2 — Auswertungsvorlage** für die Search Console: welche Tabelle, wie
       sortiert, welche vier Zahlen ins Protokoll. Mit dem Hinweis auf die
       Klick-Sortierungsfalle
-- [ ] **M3 — `docs/seo/URL-INVENTAR.md`**: eine erzeugte Übersicht aller URLs mit
+- [x] **M3 — `docs/seo/URL-INVENTAR.md`**: eine erzeugte Übersicht aller URLs mit
       Hauptkeyword, Zielgruppe und Datum. Grundlage für die Quartals-Durchsicht (T9)
-- [ ] **M4 — `manage.py seo_bericht`**: ein Befehl, der Seitenzahl, Wortzahl je Seite,
+- [x] **M4 — `manage.py seo_bericht`**: ein Befehl, der Seitenzahl, Wortzahl je Seite,
       fehlende interne Links, Titel-/Description-Längen und Schema-Vollständigkeit
       ausgibt. Damit sieht die nächste Sitzung den Stand in dreißig Sekunden
-- [ ] **M5 — Keyword-Map fortschreiben** um Branchen, Vergleiche und Glossar
+- [x] **M5 — Keyword-Map fortschreiben** um Branchen, Vergleiche und Glossar
 
 ---
 
@@ -241,21 +249,32 @@ KI-Systemen zitiert, weil sie eine klare Gegenüberstellung enthalten.
 
 Nach Wirkung je Aufwand. Oben anfangen, jede Aufgabe einzeln committen.
 
-| # | Aufgabe | Warum zuerst | Aufwand |
+| # | Aufgabe | Status | Commit |
 |---|---|---|---|
-| 1 | **T1** eigene 404-Seite | Kleinster Aufwand mit sofortiger Wirkung | 30 Min. |
-| 2 | **N1.1–N1.9** Branchenseiten | Größter Hebel des Plans, neue Suchabsicht | 1 Tag |
-| 3 | **W1** Kostenrechner | Beantwortet die häufigste Frage interaktiv | 3 Std. |
-| 4 | **N2.1–N2.5** fünf Beiträge | Kumulativ, jeder eine eigene Frage | 4 Std. |
-| 5 | **V1–V3** Verlinkung + Prüfung | Hebt alles Bisherige mit | 3 Std. |
-| 6 | **S1, S8** Antwortblock + llms | Verhindert die G9-Lücke ein zweites Mal | 2 Std. |
-| 7 | **M4** `seo_bericht` | Ab hier sieht man den Stand auf Knopfdruck | 2 Std. |
-| 8 | **W2, W3** Selbsttest + Notfall | Teilbar, echte Nachfrage | 4 Std. |
-| 9 | **N3** Vergleichsseiten | Featured Snippets, KI-Zitate | 4 Std. |
-| 10 | Rest von Block S, T, W5, M | Feinschliff | laufend |
+| 1 | **T1** eigene 404-Seite (+ **T6** Suche) | ✅ | `T1+T6` |
+| 2 | **N1.1–N1.9** Branchenseiten | ✅ 21 URLs | `N1` |
+| 3 | **W1** Kostenrechner | ✅ 3 URLs | `W1` |
+| 4 | **N2.1–N2.10** zehn Beiträge | ✅ 10 URLs | `N2` |
+| 5 | **N3** Vergleichsseiten | ✅ 12 URLs | `N3` |
+| 6 | **W3** Notfall (+ **S2** HowTo) | ✅ 3 URLs | `W3+S2` |
+| 7 | **W2** Selbsttest | ✅ 3 URLs | `W2` |
+| 8 | **UX** Finder + Schnellstart-Pakete | ✅ | `UX` |
+| 9 | **T2–T5, T8** Performance | ✅ −83 % HTML | `T2-T5+T8` |
+| 10 | **W5** Glossar (+ **S6**) | ✅ 15 URLs | `W5+S6` |
+| 11 | **W4** Checklisten (+ **S2**) | ✅ 4 URLs | `W4+S2` |
+| 12 | **V1–V6** Verlinkung | ✅ 0 verwaist | `V1-V4` |
+| 13 | **S1, S3–S5, S7, S9** Schema | ✅ | `S1,S3,S4,S5,S7,S9` |
+| 14 | **M1–M5** Messung | ✅ | `M1-M5` |
+| 15 | **T7** Anfrage-Wege je Seitentyp | ✅ geprüft | im Protokoll |
 
-**Nach jedem Block:** `pruefe_seite`, `pruefe_sicherheit`, committen, pushen,
-`manage.py indexnow`.
+**Die Reihenfolge wurde einmal bewusst geändert:** V1–V3 standen als Nummer 5 im
+Plan und wurden nach hinten gezogen, weil die Verwaisten-Prüfung (V3) erst dann
+etwas findet, wenn die Seiten existieren, die sie prüfen soll. Umgekehrt wurde
+die Performance-Arbeit vorgezogen, sobald die Messung zeigte, dass sie nicht die
+Startseite betraf, sondern jede Seite.
+
+**Nach jedem Block ausgeführt:** `pruefe_seite`, `pruefe_sicherheit`, committen.
+**Noch offen:** pushen und `manage.py indexnow` — beides gehört an den Deploy.
 
 ---
 
@@ -291,3 +310,78 @@ einem halben Jahr. Die Zahl, an der gemessen wird, bleibt dieselbe wie in
 | Datum | Block | Was |
 |---|---|---|
 | 29.08.2026 | — | Plan angelegt, 56 Aufgaben, nichts davon braucht Zuarbeit |
+| 29.08.2026 | T1+T6 | Eigene 404-/500-Seite und interne Suche. Status bleibt 404 — eine hilfreiche Seite mit Status 200 wäre eine Soft-404 |
+| 29.08.2026 | N1 | Branchen-Silo, 21 URLs. Footer-Spalte, Navigation, Sitemap, Suche, llms |
+| 29.08.2026 | W1 | Kostenrechner. Eine Preisquelle, Ergebnis ohne JavaScript, Summen über `rechner_zahlen_fuer_pruefung()` in der Preisprüfung |
+| 29.08.2026 | N2 | Zehn Fachbeiträge. Beim Beitrag über Ausfallkosten steht der Rechenweg statt einer erfundenen Summe |
+| 29.08.2026 | N3 | Drei Vergleiche + Hub, 12 URLs. Keine Fremdpreise |
+| 29.08.2026 | W3+S2 | Notfallseite mit HowTo je Fall. Kontaktwege über dem Antwortabsatz |
+| 29.08.2026 | W2 | Sicherheits-Selbsttest, Ergebnis ohne E-Mail-Abfrage |
+| 29.08.2026 | UX | Leistungsfinder auf der Startseite, Schnellstart-Pakete über beiden Konfiguratoren |
+| 29.08.2026 | T2–T5, T8 | HTML-Komprimierung, Bilder, Preload-Fund, Alt-Texte, `docs/seo/PERFORMANCE.md` |
+| 29.08.2026 | W5+S6 | Glossar mit 14 Begriffen, 250-Wörter-Regel in `pruefe_seite` verankert |
+| 29.08.2026 | W4+S2 | Drei Checklisten mit Begründung je Punkt, dazu Druckregeln |
+| 29.08.2026 | V1–V6 | Themenbasierte Querverlinkung. Verwaiste Seiten: 9 → 0 |
+| 29.08.2026 | S1–S9 | Antwortblock vereinheitlicht, ItemList, speakable, Schema-Prüfung |
+| 29.08.2026 | M1–M5 | `seo_bericht`, URL-Inventar, GEO-Monitoring, Keyword-Map fortgeschrieben |
+
+---
+
+## 11. Was zusätzlich gefunden wurde — und nicht im Plan stand
+
+Die drei nützlichsten Ergebnisse dieser Sitzung standen in keiner Aufgabe. Sie
+sind aufgefallen, weil **zuerst die Prüfungen gebaut wurden und danach gemessen
+wurde** — nicht umgekehrt.
+
+### 1. Die HTML-Antworten waren gar nicht komprimiert
+
+T2 nannte die Startseite mit 189 KB als „einzigen echten Ladezeit-Ausreißer".
+Die Messung zeigte etwas anderes: WhiteNoise komprimiert nur `/static/`,
+gunicorn nichts — **jede** Seite ging unkomprimiert über die Leitung. Eine Zeile
+`GZipMiddleware` bringt die Startseite von 204 KB auf 35 KB und jede Unterseite
+von rund 50 KB auf rund 11 KB. Das ist ein größerer Effekt als alles, was in
+Block T geplant war, und er betraf 158 URLs statt einer.
+
+**Die Lehre:** Der Plan hatte die richtige Beobachtung (Startseite groß) und die
+falsche Ursache. Nachmessen kostete zehn Minuten.
+
+### 2. Ein Preload für ein Bild, das es auf 138 Seiten nicht gibt
+
+`base.html` enthielt `<link rel="preload" as="image">` für das Hero-Bild — und
+`base.html` ist die Vorlage **aller** Seiten. Die Unterseiten haben kein
+Hero-Bild und luden 70 KB, die nie angezeigt wurden. Aufgefallen ist das beim
+Umbau auf WebP, nicht bei einer gezielten Suche.
+
+### 3. Die Angebotsseite hatte gar kein Schema
+
+Die Schema-Prüfung aus S9 fand beim ersten Lauf, dass `/angebot/` als einzige
+öffentliche Seite überhaupt kein JSON-LD ausgab — sie hat ein eigenes Grundgerüst
+und erbt nicht von `base.html`. Das war seit Monaten so und wäre ohne eine
+maschinelle Prüfung nie aufgefallen: Die Seite sieht richtig aus.
+
+**Die gemeinsame Lehre aus allen dreien:** Eine Prüfung, die einmal geschrieben
+wird, findet Dinge, nach denen niemand gesucht hätte. Deshalb sind aus diesem
+Ausbau vier neue Prüfungen hervorgegangen — Glossar-Wortzahl, Listenlängen je
+Sprache, verwaiste Seiten, Schema-Vollständigkeit — und sie laufen ab jetzt bei
+jedem `pruefe_seite` mit.
+
+---
+
+## 12. Was als Nächstes ansteht
+
+**Im Code gibt es nichts Offenes mehr aus diesem Plan.** Die nächsten Schritte
+sind Betrieb und Messung:
+
+| Was | Wann | Wo beschrieben |
+|---|---|---|
+| Deployen und `manage.py indexnow` laufen lassen | beim nächsten Deploy | `docs/INDEXIERUNG.md` |
+| Google-Search-Console: die 71 neuen URLs zur Indexierung anstoßen | direkt nach dem Deploy | `docs/INDEXIERUNG.md` |
+| Core Web Vitals an der echten Adresse messen und eintragen | nach dem Deploy | `docs/seo/PERFORMANCE.md` §3 |
+| Erste GEO-Messung mit den zehn Fragen | Oktober 2026 | `docs/seo/GEO-MONITORING.md` |
+| Search-Console-Auswertung, vier Zahlen | Oktober 2026 | `docs/seo/GEO-MONITORING.md` |
+| URL-Inventar neu erzeugen und vergleichen | Oktober 2026 | `docs/seo/URL-INVENTAR.md` |
+
+**Weiterhin blockiert und weiterhin nicht durch Code lösbar:** das
+Google-Unternehmensprofil (Angaben liegen fertig in `SEO-KONZEPT-DACH.md` §7)
+und SPF/DMARC in der DNS-Zone (Einträge in §8.1). Für lokale Suchanfragen bleibt
+das Profil der entscheidende Hebel — 158 URLs gleichen sein Fehlen nicht aus.
