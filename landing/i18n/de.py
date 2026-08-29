@@ -676,6 +676,53 @@ PACK = {
         "cta_t": "Schreiben Sie uns, welche Punkte bei Ihnen offen geblieben sind. Wir sagen Ihnen an Werktagen innerhalb von 24 Stunden, was davon wirklich dringend ist — und was warten kann.",
         "leistung_h": "Passende Leistung",
     },
+    # ── Leistungsfinder auf der Startseite (UX, docs/SEO-AUSBAU-3.md V4) ─────
+    # Sechs Absichten, mit denen jemand ankommt. Zwei davon führen bewusst nicht
+    # auf eine Leistungsseite: Wer ein akutes Problem hat, will keine Leistung
+    # lesen, und wer nach dem Preis sucht, will rechnen.
+    "finder": {
+        "eyebrow": "Direkt zum Ziel",
+        "h": "Womit können wir anfangen?",
+        "lead": "Sechs Wege, je nachdem, warum Sie hier sind. Jeder führt in einem Klick dorthin, wo die Antwort steht — nicht auf eine weitere Übersichtsseite.",
+        "wege": {
+            "notfall": {"h": "Es geht gerade etwas nicht",
+                        "t": "Ausfall, Verschlüsselung, gehacktes Postfach: die ersten 30 Minuten, Schritt für Schritt."},
+            "betreuung": {"h": "Wir brauchen jemanden für die IT",
+                          "t": "Laufende Betreuung für Betriebe ohne eigene IT-Abteilung, ab 29 € je Arbeitsplatz und Monat."},
+            "preis": {"h": "Was würde das kosten?",
+                      "t": "Arbeitsplätze und Server eintragen, Monats- und Jahressumme sofort sehen."},
+            "angebot": {"h": "Richtangebot zusammenstellen",
+                        "t": "Leistungen antippen, Richtpreis erhalten. In unter einer Minute, unverbindlich."},
+            "web": {"h": "Wir brauchen eine Webseite",
+                    "t": "Von der Landingpage bis zum Shop — gebaut, gehostet und betreut aus einer Hand."},
+            "branche": {"h": "Was heißt das für meine Branche?",
+                        "t": "Kanzlei, Handwerk, Praxis, Hotel, Produktion, Verein: was jeweils technisch anders ist."},
+        },
+    },
+    # ── Schnellstart-Pakete für den Konfigurator (UX) ─────────────────────────
+    # Namen und Untertitel; die Zusammensetzung steht in views.STARTPAKETE, die
+    # Preise ausschließlich in ANGEBOT_GROUPS.
+    "startpakete": {
+        "h": "Schneller Start: typische Zusammenstellungen",
+        "lead": "Ein Klick setzt die Haken für einen häufigen Bedarf. Danach ergänzen oder wegnehmen Sie, was bei Ihnen anders ist — das Paket ist ein Startpunkt, keine Vorgabe.",
+        "enthalten": "Enthält",
+        "aria": "Vorauswahl setzen",
+        "leeren": "Auswahl zurücksetzen",
+        "pakete": {
+            "it_basis": {"name": "Laufende IT-Betreuung",
+                         "sub": "Für Betriebe ohne eigene IT: Arbeitsplätze betreut, Sicherung überwacht, Hilfe im Störungsfall."},
+            "it_server": {"name": "IT mit eigenem Server",
+                          "sub": "Wie oben, zusätzlich mit Server-Überwachung rund um die Uhr."},
+            "it_sicher": {"name": "Sicherheit zuerst",
+                          "sub": "Prüfung mit Bericht, Firewall und VPN, überwachte Datensicherung."},
+            "web_start": {"name": "Webseite starten",
+                          "sub": "Eine starke Seite, gehostet und gewartet — der kleinste sinnvolle Umfang."},
+            "web_pro": {"name": "Webseite, die gefunden wird",
+                        "sub": "Mehrseitige Website mit SEO-Grundlage, Hosting und Wartung."},
+            "sichtbar": {"name": "Mehr Anfragen bekommen",
+                         "sub": "Laufende SEO-Betreuung plus Google Ads, eingerichtet und betreut."},
+        },
+    },
     "hub": {
         "titel": "Leistungen: EDV, IT, Web und Technik | WVM-IT",
         "desc": "Alle Leistungen von WVM-IT: IT-Betreuung ab 29 €/Monat, Webseiten ab 350 €, SEO ab 149 €/Monat, Technik vor Ort — in Österreich und Deutschland.",

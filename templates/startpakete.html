@@ -1,0 +1,41 @@
+{% comment %}
+Schnellstart über dem Konfigurator (UX-Ausbau 2026-08).
+
+Warum es das gibt: Der Konfigurator zeigt über dreißig Positionen. Wer zum
+ersten Mal darauf schaut, weiß nicht, wo er anfangen soll — und genau dort
+brechen die meisten ab. Ein Klick setzt hier die Haken für einen typischen
+Bedarf; danach wird nur noch ergänzt oder weggenommen.
+
+Zwei Regeln:
+* **Kein Preis auf der Kachel.** Die Summe entsteht aus den gesetzten Haken und
+  wird an genau einer Stelle angezeigt. Ein zweiter Preis auf der Kachel wäre
+  eine zweite Preisquelle.
+* **Der Inhalt steht sichtbar drauf.** Ein Paket, dessen Zusammensetzung man
+  erst nach dem Klick sieht, ist eine Wundertüte und kein Einstieg.
+
+Ohne JavaScript funktioniert es genauso: Die Kacheln sind Links auf
+?paket=<id>, und der Server setzt die Haken beim Rendern (views._paket_items).
+
+Parameter: `ziel` = Pfad, auf den die Kacheln ohne JavaScript verlinken.
+{% endcomment %}
+<div class="pk" data-startpakete>
+  <h3 class="pk-h">{{ t.startpakete.h|safe }}</h3>
+  <p class="pk-lead">{{ t.startpakete.lead|safe }}</p>
+  <div class="pk-grid">
+    {% for p in startpakete %}
+    <a class="pk-karte{% if p.id == paket_aktiv %} is-aktiv{% endif %}"
+       href="{{ ziel }}?paket={{ p.id }}#konfigurator"
+       data-paket="{{ p.ids }}" data-paket-id="{{ p.id }}"
+       aria-label="{{ t.startpakete.aria|safe }}: {{ p.name }}">
+      <span class="pk-ic" aria-hidden="true">{% include 'icons.html' with name=p.icon %}</span>
+      <strong class="pk-name">{{ p.name }}</strong>
+      <span class="pk-sub">{{ p.sub }}</span>
+      <span class="pk-inhalt">
+        <span class="pk-inhalt-l">{{ t.startpakete.enthalten|safe }}:</span>
+        {% for n in p.namen %}<span class="pk-pos">{{ n }}</span>{% endfor %}
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+  <p class="pk-reset"><a href="{{ ziel }}#konfigurator" data-paket-reset>{{ t.startpakete.leeren|safe }}</a></p>
+</div>

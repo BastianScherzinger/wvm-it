@@ -2007,3 +2007,75 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .ts-leistung a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
 .ts-alles-gut{color:var(--ink-soft);line-height:1.75;margin:0;padding:18px 20px;
   border-radius:12px;background:var(--accent-soft)}
+
+/* ============================================================================
+   LEISTUNGSFINDER + SCHNELLSTART-PAKETE  (UX-Ausbau 2026-08)
+   Beide beantworten dieselbe Frage an zwei Stellen: "Wo fange ich an?"
+   Der Finder tut es für die Website, die Pakete für den Konfigurator.
+   ========================================================================== */
+.fd-sec{padding-top:var(--s8)}
+.fd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:34px}
+.fd-karte{position:relative;display:block;padding:26px 24px 54px;border-radius:18px;
+  border:1px solid var(--line);background:var(--surface);text-decoration:none;color:inherit;
+  box-shadow:var(--shadow);transition:transform .22s var(--ease),border-color .22s var(--ease),box-shadow .22s var(--ease)}
+.fd-karte:hover,.fd-karte:focus-visible{transform:translateY(-3px);border-color:var(--accent);
+  box-shadow:var(--shadow-lg)}
+.fd-ic{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;
+  background:var(--accent-soft);color:var(--accent-ink);margin-bottom:16px}
+.fd-ic svg{width:23px;height:23px}
+.fd-h{font-size:19px;margin:0 0 9px;line-height:1.3}
+.fd-t{font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin:0}
+.fd-pfeil{position:absolute;left:24px;bottom:22px;width:22px;height:22px;color:var(--accent-ink);
+  transition:transform .22s var(--ease)}
+.fd-pfeil svg{width:22px;height:22px}
+.fd-karte:hover .fd-pfeil{transform:translateX(4px)}
+/* Der dringende Weg trägt als einziger einen roten Punkt — nicht mehr. */
+.fd-karte-eilig{border-left:3px solid #c2503a}
+.fd-karte-eilig .fd-ic{background:rgba(194,80,58,.12);color:#a03f2c}
+
+.pk{margin:0 0 40px}
+.pk-h{font-size:20px;margin:0 0 8px}
+.pk-lead{font-size:14.5px;color:var(--ink-soft);line-height:1.7;margin:0 0 20px;max-width:70ch}
+.pk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.pk-karte{display:block;padding:20px 20px 18px;border-radius:16px;border:1px solid var(--line);
+  background:var(--surface);text-decoration:none;color:inherit;cursor:pointer;
+  transition:border-color .2s var(--ease),background .2s var(--ease)}
+.pk-karte:hover,.pk-karte:focus-visible{border-color:var(--accent)}
+.pk-karte.is-aktiv{border-color:var(--accent);background:var(--accent-soft);
+  box-shadow:0 0 0 1px var(--accent) inset}
+.pk-ic{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;
+  background:var(--tint-2);color:var(--accent-ink);margin-bottom:12px}
+.pk-ic svg{width:19px;height:19px}
+.pk-name{display:block;font-family:"Space Grotesk","Inter",sans-serif;font-size:16.5px;
+  margin-bottom:6px;line-height:1.35}
+.pk-sub{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:12px}
+.pk-inhalt{display:block;font-size:12.5px;line-height:1.9;color:var(--ink-dim);
+  padding-top:10px;border-top:1px solid var(--line)}
+.pk-inhalt-l{display:block;letter-spacing:.05em;text-transform:uppercase;font-size:11px;
+  margin-bottom:4px}
+.pk-pos{display:inline-block;margin-right:6px}
+.pk-pos+.pk-pos::before{content:"· ";color:var(--line-2)}
+.pk-reset{margin-top:14px;font-size:13.5px}
+.pk-reset a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px}
+.pk-reset a:hover{color:var(--ink)}
+
+/* ── Zustände nachgezogen (design-pro §3/§4: Fokus, Touch-Ziele) ──────────────
+   Die neuen Karten und Radiogruppen bekommen einen echten Fokus-Ring statt nur
+   einer Randfarbe — eine Randfarbe allein ist für Tastaturbedienung zu leise.
+   Die Antwortknöpfe des Selbsttests erreichen auf Mobile 44 px Höhe. */
+.fd-karte:focus-visible,.pk-karte:focus-visible,.nf-sprung a:focus-visible,
+.such-item a:focus-visible,.kr-teaser:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:3px}
+.ts-opt:focus-within{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);
+  outline-offset:2px}
+@media (max-width:760px){
+  .ts-opt{padding:12px 18px;min-height:44px}
+  .ts-optionen{gap:10px}
+  .nf-wege .btn,.nf-wege .btn-wa{min-height:48px}
+  .fd-karte{padding:22px 20px 50px}
+}
+/* Einblenden und Scrollen respektieren die Systemeinstellung. */
+@media (prefers-reduced-motion: reduce){
+  .fd-karte,.pk-karte,.such-item a,.kr-teaser{transition:none}
+  .fd-karte:hover,.fd-karte:focus-visible{transform:none}
+}

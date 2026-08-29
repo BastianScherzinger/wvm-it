@@ -187,6 +187,99 @@ ANGEBOT_GROUPS = [
     },
 ]
 
+# ── Schnellstart-Pakete für den Konfigurator ─────────────────────────────────
+# Der Konfigurator zeigt über dreißig Positionen. Wer zum ersten Mal darauf
+# schaut, weiß nicht, wo er anfangen soll — und genau dort brechen die meisten
+# ab. Die Startpakete sind der Einstieg davor: ein Klick setzt die Haken für
+# einen typischen Bedarf, danach wird nur noch ergänzt oder weggenommen.
+#
+# Sie enthalten KEINE Preise und KEINE eigenen Positionen: Jedes Paket ist eine
+# Liste von IDs aus ANGEBOT_GROUPS. Damit kann ein Paket auch nichts kosten, was
+# es nicht gibt, und ein geänderter Preis wirkt sofort überall.
+#
+# Ohne JavaScript funktioniert es genauso: Die Kacheln sind Links auf
+# /angebot/?paket=<id>, und der Server setzt die Haken beim Rendern.
+STARTPAKETE = [
+    {"id": "it_basis", "icon": "care",
+     "items": ["it_betreuung", "backup", "it_support"]},
+    {"id": "it_server", "icon": "server",
+     "items": ["it_betreuung", "server_care", "backup"]},
+    {"id": "it_sicher", "icon": "shield",
+     "items": ["sicherheitscheck", "firewall", "backup"]},
+    {"id": "web_start", "icon": "web",
+     "items": ["onepager", "hosting", "wartung"]},
+    {"id": "web_pro", "icon": "rocket",
+     "items": ["business", "hosting", "wartung", "seo"]},
+    {"id": "sichtbar", "icon": "seo",
+     "items": ["seo_care", "ads_setup", "ads_care"]},
+]
+
+_PAKET_NACH_ID = {p["id"]: p for p in STARTPAKETE}
+
+
+def _paket_items(request):
+    """IDs, die durch `?paket=<id>` vorbelegt werden sollen.
+
+    Ein unbekannter Wert ergibt eine leere Menge — der Konfigurator startet dann
+    wie immer ohne Vorauswahl, statt mit einer Fehlermeldung."""
+    paket = _PAKET_NACH_ID.get((request.GET.get("paket") or "").strip().lower())
+    if not paket:
+        return set()
+    return {i for i in paket["items"] if i in _ANGEBOT_INDEX}
+
+
+def _startpakete(lang):
+    """Pakete mit übersetztem Namen und den Namen der enthaltenen Positionen.
+
+    Die Positionsnamen stehen sichtbar auf der Kachel: Ein Paket, dessen Inhalt
+    man erst nach dem Klick sieht, ist eine Wundertüte und kein Einstieg."""
+    pack = i18n.get_pack(lang)
+    texte = pack.get("startpakete", {}).get("pakete", {})
+    citems = pack.get("catalog_items", {})
+    raus = []
+    for paket in STARTPAKETE:
+        posten = [_ANGEBOT_INDEX[i] for i in paket["items"] if i in _ANGEBOT_INDEX]
+        raus.append({
+            **paket,
+            "name": texte.get(paket["id"], {}).get("name", paket["id"]),
+            "sub": texte.get(paket["id"], {}).get("sub", ""),
+            "namen": [citems.get(p["id"], {}).get("name", p["name"]) for p in posten],
+            # Für das Skript: dieselbe Liste, nur maschinenlesbar.
+            "ids": " ".join(p["id"] for p in posten),
+        })
+    return raus
+
+
+# ── Leistungsfinder auf der Startseite ───────────────────────────────────────
+# Sechs Absichten, mit denen jemand auf die Seite kommt, und je ein Ziel dafür.
+# Der Unterschied zum Problemband weiter unten: Dort stehen Sätze, die Kunden
+# sagen; hier stehen die Wege, die sie danach gehen wollen — einschließlich der
+# beiden, die nicht zu einer Leistungsseite führen (Notfall und Preis).
+FINDER = [
+    {"id": "notfall", "icon": "bolt", "route": "notfall", "dringend": True},
+    {"id": "betreuung", "icon": "care", "route": "leistung", "slug": "edv-it-betreuung"},
+    {"id": "preis", "icon": "gauge", "route": "rechner"},
+    {"id": "angebot", "icon": "check", "route": "angebot"},
+    {"id": "web", "icon": "web", "route": "leistung", "slug": "webseite-erstellen"},
+    {"id": "branche", "icon": "consulting", "route": "branchen"},
+]
+
+
+def _finder(lang):
+    """Die sechs Einstiege mit Text und fertiger URL."""
+    texte = i18n.get_pack(lang).get("finder", {}).get("wege", {})
+    raus = []
+    for eintrag in FINDER:
+        if eintrag["route"] == "leistung":
+            url = reverse("leistung", kwargs={"slug": eintrag["slug"]})
+        else:
+            url = reverse(eintrag["route"])
+        raus.append({**eintrag, "url": url,
+                     "h": texte.get(eintrag["id"], {}).get("h", ""),
+                     "t": texte.get(eintrag["id"], {}).get("t", "")})
+    return raus
+
+
 # ── Problemband auf der Startseite ────────────────────────────────────────────
 # Sechs Sätze, die Kunden wirklich sagen. Die Texte stehen in den Sprachpaketen
 # unter "probleme" (<id>_q Frage, <id>_a Antwort, <id>_l Linktext); hier stehen nur
@@ -1443,6 +1536,11 @@ def index(request):
         "startpreise": _startpreise(lang),
         "preise_item": _itempreise(lang),
         "probleme": _probleme(lang),
+        "finder": _finder(lang),
+        "startpakete": _startpakete(lang),
+        "paket_items": _paket_items(request),
+        "paket_aktiv": (request.GET.get("paket") or "").strip().lower(),
+        "paket_ziel": reverse("angebot"),
         "pakete": _paketpreise(),
         "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
@@ -2118,11 +2216,19 @@ def datenschutz(request):
 
 def angebot(request):
     c = _content()
+    lang = get_language()
     sent = False
     if request.method == "POST":
         sent = _handle_angebot(request, c)
     return render(request, "angebot.html", {
-        "c": c, "sent": sent, "groups": _localized_groups(get_language())})
+        "c": c, "sent": sent, "groups": _localized_groups(lang),
+        # Schnellstart: ein Klick setzt die Haken eines typischen Bedarfs.
+        # Ohne JavaScript kommt die Vorauswahl ueber ?paket=<id> vom Server.
+        "startpakete": _startpakete(lang),
+        "paket_items": _paket_items(request),
+        "paket_aktiv": (request.GET.get("paket") or "").strip().lower(),
+        "paket_ziel": reverse("angebot"),
+    })
 
 
 def angebot_anfordern(request):

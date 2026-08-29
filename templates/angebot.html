@@ -101,6 +101,8 @@
           </div>
         </div>
         {% else %}
+        {% include 'startpakete.html' with ziel=paket_ziel %}
+
         <form method="post" action="{% url 'angebot' %}#konfigurator" class="wz" id="angForm" novalidate>
           {% csrf_token %}
           <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
@@ -137,6 +139,7 @@
                 {% for it in g.items %}
                 <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
                   <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
+                         {% if it.id in paket_items %}checked{% endif %}
                          data-name="{{ it.name }}" data-group="{{ g.title }}"
                          data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
                          data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
@@ -294,5 +297,6 @@
 {% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>
 <script src="{% static 'js/angebot.js' %}?v={{ asset_v }}" defer></script>
+<script src="{% static 'js/startpakete.js' %}?v={{ asset_v }}" defer></script>
 </body>
 </html>

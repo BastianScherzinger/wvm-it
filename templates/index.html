@@ -108,6 +108,35 @@
       <span class="promise-i">{% include 'icons.html' with name='shield' %}{{ t.trust.t5|safe }}</span>
     </div>
   </section>
+  <!-- ── LEISTUNGSFINDER ────────────────────────────────────────────────────
+       Der erste Block nach den Zusagen: sechs Absichten, mit denen jemand
+       ankommt, und je ein Ziel dafuer. Zwei davon fuehren bewusst NICHT auf
+       eine Leistungsseite , wer ein akutes Problem hat, will keine Leistung
+       lesen, und wer nach dem Preis sucht, will rechnen. Quelle: views.FINDER.
+       Das Problemband darunter bleibt: Es spricht die an, die noch nicht
+       wissen, wie ihr Problem heisst. -->
+  <section class="section fd-sec" id="finder" aria-labelledby="fd-title">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>{{ t.finder.eyebrow|safe }}</span>
+        <h2 class="section-t" id="fd-title">{{ t.finder.h|safe }}</h2>
+        <p class="section-lead">{{ t.finder.lead|safe }}</p>
+      </header>
+      <div class="fd-grid">
+        {% for w in finder %}
+        <a class="fd-karte{% if w.dringend %} fd-karte-eilig{% endif %} spot" href="{{ w.url }}" data-spot data-reveal>
+          <span class="fd-ic" aria-hidden="true">{% include 'icons.html' with name=w.icon %}</span>
+          <h3 class="fd-h">{{ w.h|safe }}</h3>
+          <p class="fd-t">{{ w.t|safe }}</p>
+          <span class="fd-pfeil" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   <!-- ── PROBLEMBAND ────────────────────────────────────────────────────────
        Das erste, was nach dem Hero kommt: nicht was wir anbieten, sondern was beim
        Leser gerade kaputt ist. Jede Zeile ist zugleich ein interner Link mit
@@ -296,6 +325,8 @@
         <p class="section-lead">{{ t.rb.lead|safe }}</p>
       </header>
 
+      {% include 'startpakete.html' with ziel=paket_ziel %}
+
       <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
         {% csrf_token %}
           <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
@@ -310,7 +341,8 @@
               <div class="rb-items">
                 {% for it in g.items %}
                 <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
-                  <input class="ang-check rb-check" type="checkbox" name="item" value="{{ it.id }}"
+                  <input class="ang-check rb-check" type="checkbox" id="rb-{{ it.id }}" name="item" value="{{ it.id }}"
+                         {% if it.id in paket_items %}checked{% endif %}
                          data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
                          data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
                   <span class="ang-item-box">
@@ -860,4 +892,9 @@
       </div>
     </div>
   </section>
+{% endblock %}
+
+{% block extra_js %}
+{% comment %}Nur hier gebraucht: setzt die Haken der Schnellstart-Pakete.{% endcomment %}
+<script src="{% static 'js/startpakete.js' %}?v={{ asset_v }}" defer></script>
 {% endblock %}
