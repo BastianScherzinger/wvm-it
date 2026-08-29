@@ -85,12 +85,21 @@ class Command(BaseCommand):
 
     # ── Prüfungen ─────────────────────────────────────────────────────────────
 
+    # Aus einer durchgelassenen Kontaktanfrage entstehen ZWEI Mails: die Anfrage an
+    # den Inhaber und die Eingangsbestätigung an den Absender. Wer hier nur die
+    # Anfragen zählt, übersieht genau die Verdopplung, die eine Spam-Welle teuer
+    # macht — deshalb wird weiter in Mails gerechnet und der Faktor benannt.
+    MAILS_JE_KONTAKTANFRAGE = 2
+
     def _formular_bremse(self):
         c = self._frisch()
         for _ in range(9):
             c.post("/", {"name": "Bot", "email": "a@b.de", "nachricht": "x"})
         n = len(mail.outbox)
-        self._melde("Kontaktformular, 9 Versuche", f"{n} Mails", "höchstens 5", n <= 5)
+        grenze = 5 * self.MAILS_JE_KONTAKTANFRAGE
+        self._melde("Kontaktformular, 9 Versuche", f"{n} Mails",
+                    f"höchstens {grenze} (5 Anfragen à {self.MAILS_JE_KONTAKTANFRAGE} Mails)",
+                    n <= grenze)
 
         c = self._frisch()
         for i in range(9):
@@ -119,8 +128,10 @@ class Command(BaseCommand):
             c.post("/", {"name": "B", "email": "a@b.de", "nachricht": "x"},
                    HTTP_X_FORWARDED_FOR=f"9.9.9.{i}, 10.0.0.1")
         n = len(mail.outbox)
+        grenze = 5 * self.MAILS_JE_KONTAKTANFRAGE
         self._melde("Kontaktformular, 9x mit erfundener IP", f"{n} Mails",
-                    "höchstens 5", n <= 5)
+                    f"höchstens {grenze} — die erfundene IP darf nichts ändern",
+                    n <= grenze)
 
     def _feldlaengen(self):
         c = self._frisch()

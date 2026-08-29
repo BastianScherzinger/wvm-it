@@ -1,6 +1,6 @@
 # SEO-Ausbau 3 — der Plan, der ohne Zuarbeit läuft
 
-> **Was dieser Plan ist:** 42 Aufgaben, die **vollständig ohne Zuarbeit von Bastian
+> **Was dieser Plan ist:** 56 Aufgaben in sechs Blöcken, die **vollständig ohne Zuarbeit von Bastian
 > oder Florin** umsetzbar sind. Kein Google-Konto, keine DNS-Zone, keine Kundendaten,
 > keine Zugänge, keine Freigaben. Alles, was hier steht, lässt sich mit dem Repository
 > allein bauen, prüfen und deployen.
@@ -290,4 +290,4 @@ einem halben Jahr. Die Zahl, an der gemessen wird, bleibt dieselbe wie in
 
 | Datum | Block | Was |
 |---|---|---|
-| 29.08.2026 | — | Plan angelegt, 42 Aufgaben, nichts davon braucht Zuarbeit |
+| 29.08.2026 | — | Plan angelegt, 56 Aufgaben, nichts davon braucht Zuarbeit |

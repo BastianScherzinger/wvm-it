@@ -16,7 +16,7 @@ Sitz **Waldstraße 19/1, 4860 Lenzing**.
 
 ### Wenn du hier neu anfängst
 
-1. **`docs/SEO-AUSBAU-3.md`** — **der aktuelle Arbeitsplan.** 42 Aufgaben, die
+1. **`docs/SEO-AUSBAU-3.md`** — **der aktuelle Arbeitsplan.** 56 Aufgaben, die
    **ohne jede Zuarbeit** umsetzbar sind. Reihenfolge steht in §8, oben anfangen.
 2. `docs/AUSBAU-2026-08.md` — was am 28./29.08. gebaut wurde und was noch offen ist
 3. `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Messgrößen
@@ -28,7 +28,7 @@ warten, sondern `SEO-AUSBAU-3.md` abarbeiten:
 
 ### Alle Dokumente
 
-- `docs/SEO-AUSBAU-3.md` — **der offene Arbeitsplan**, 42 Aufgaben ohne Zuarbeit
+- `docs/SEO-AUSBAU-3.md` — **der offene Arbeitsplan**, 56 Aufgaben ohne Zuarbeit
 - `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Keyword-Ebenen, NAP, Messgrößen
 - `docs/AKQUISE-SOFORT.md` — was kurzfristig Anfragen bringt (und warum SEO das nicht ist)
 - `docs/RELAUNCH-START.md` — der Relaunch vom 28.08.
