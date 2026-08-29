@@ -51,6 +51,10 @@ urlpatterns += i18n_patterns(
     path("it-service/", views.regionen_hub, name="regionen"),
     path("it-service/<slug:slug>/", views.region_seite, name="region"),
     path("kosten/", views.kosten, name="kosten"),
+    # ── Kostenrechner (docs/SEO-AUSBAU-3.md, W1) ────────────────────────────
+    # Unterhalb von /kosten/, weil er dieselbe Frage beantwortet — nur
+    # interaktiv und auf den eigenen Betrieb bezogen.
+    path("kosten/rechner/", views.rechner, name="rechner"),
     # ── Interne Suche (docs/SEO-AUSBAU-3.md, T6) ────────────────────────────
     # Steht in i18n_patterns, weil sie in der Sprache des Besuchers sucht; sie
     # taucht aber weder in Sitemap noch in IndexNow auf und traegt `noindex`.

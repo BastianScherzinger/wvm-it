@@ -1795,3 +1795,60 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .br-ehrlich h2{font-size:19px;margin:0 0 10px}
 .br-ehrlich p{color:var(--ink-soft);line-height:1.75;margin:0 0 12px;font-size:15px}
 .rg-kachel .lk-ic{display:inline-flex;margin-bottom:12px}
+
+/* ============================================================================
+   KOSTENRECHNER  (docs/SEO-AUSBAU-3.md, W1)
+   Links die Eingaben, rechts das Ergebnis — auf Mobile untereinander, das
+   Ergebnis klebt dann am oberen Rand, damit die Zahl beim Tippen sichtbar bleibt.
+   ========================================================================== */
+.kr{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:34px 0 0;align-items:start}
+.kr-h{font-size:20px;margin:0 0 20px}
+.kr-h3{font-size:16px;margin:26px 0 12px}
+.kr-eingaben{border:1px solid var(--line);border-radius:18px;padding:26px 24px;background:var(--surface)}
+.kr-feld{margin-bottom:20px}
+.kr-num{max-width:180px}
+.kr-hint{font-size:13px;color:var(--ink-dim);line-height:1.6;margin-top:6px}
+.kr-nojs{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.kr-schalter{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:15px;line-height:1.5}
+.kr-schalter input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent);flex:0 0 auto}
+
+.kr-ergebnis{display:block;border:1px solid var(--line);border-radius:18px;padding:26px 24px;
+  background:var(--surface-2);position:sticky;top:96px}
+.kr-summe{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding-bottom:16px;
+  border-bottom:1px solid var(--line)}
+.kr-summe-v{font-family:"Space Grotesk","Inter",sans-serif;font-size:clamp(38px,7vw,54px);
+  line-height:1;font-weight:600;letter-spacing:-.03em}
+.kr-summe-e{font-size:24px;font-weight:600;color:var(--accent-ink)}
+.kr-summe-l{font-size:14px;color:var(--ink-soft);margin-left:auto}
+.kr-zeile{display:flex;justify-content:space-between;gap:16px;padding:10px 0;font-size:15px;
+  border-bottom:1px solid var(--line);color:var(--ink-soft)}
+.kr-zeile strong{color:var(--ink);white-space:nowrap}
+.kr-tabelle{width:100%;border-collapse:collapse;font-size:14px}
+.kr-tabelle th{text-align:left;font-weight:500;color:var(--ink);padding:8px 10px 8px 0;
+  font-family:"Inter",sans-serif}
+.kr-tabelle td{padding:8px 0;color:var(--ink-soft);white-space:nowrap}
+.kr-t-summe{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.kr-t-once th::after{content:" ·";color:var(--ink-dim)}
+.kr-leer{font-size:14px;color:var(--ink-dim);padding:10px 0}
+.kr-vergleich{margin-top:24px;padding-top:20px;border-top:1px solid var(--line-2)}
+.kr-vergleich p{font-size:14.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:10px}
+.kr-schwelle{margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--accent-soft);
+  color:var(--ink);font-size:14px;line-height:1.65}
+.kr-schwelle strong{font-size:17px}
+.kr-hinweis{margin-top:20px;font-size:13px;color:var(--ink-dim);line-height:1.65}
+
+@media (max-width:860px){
+  .kr{grid-template-columns:1fr;gap:20px}
+  .kr-ergebnis{position:static}
+}
+/* Einstieg in den Rechner, oberhalb der Preistabelle (W1). */
+.kr-teaser{display:flex;gap:16px;align-items:center;margin:0 0 34px;padding:20px 22px;
+  border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:16px;
+  background:var(--surface);text-decoration:none;color:inherit;transition:border-color .2s var(--ease)}
+.kr-teaser:hover,.kr-teaser:focus-visible{border-color:var(--accent)}
+.kr-teaser strong{display:block;font-size:18px;margin-bottom:5px;font-family:"Space Grotesk","Inter",sans-serif}
+.kr-teaser-t{display:block;font-size:14.5px;color:var(--ink-soft);line-height:1.65}
+.kr-teaser-ic{flex:0 0 auto;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;
+  background:var(--accent-soft);color:var(--accent-ink)}
+.kr-teaser-ic svg{width:22px;height:22px}
+.kr-teaser .ic-arrow{flex:0 0 auto;width:20px;height:20px;margin-left:auto;color:var(--accent-ink)}

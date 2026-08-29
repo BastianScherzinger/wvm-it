@@ -27,6 +27,19 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
   <div class="wrap">
     <p class="hb-intro" data-reveal>{{ ks.intro|safe }}</p>
 
+    {% comment %}
+    Der Rechner steht ueber der Tabelle: Wer hier landet, will meist nicht die
+    ganze Liste lesen, sondern eine Zahl fuer den eigenen Betrieb (W1).
+    {% endcomment %}
+    <a class="kr-teaser" href="{% url 'rechner' %}" data-reveal>
+      <span class="kr-teaser-ic" aria-hidden="true">{% include 'icons.html' with name='gauge' %}</span>
+      <span>
+        <strong>{{ t.rechner.h1|safe }}</strong>
+        <span class="kr-teaser-t">{{ t.rechner.kurz|safe }}</span>
+      </span>
+      <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
     <div class="pt" data-reveal>
       <div class="pt-scroll">
       <table class="pt-table">

@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %}
+Kostenrechner (docs/SEO-AUSBAU-3.md, W1).
+
+Zwei Regeln halten diese Seite zusammen:
+
+1. **Es gibt genau eine Preisquelle.** Gerechnet wird in views._rechner_rechnen()
+   aus ANGEBOT_GROUPS. Das Skript bekommt dieselben Sätze als JSON-Block
+   (#rechner-saetze) — es besitzt keine eigene Zahl. Wer hier eine Zahl ins
+   Markup schreibt, legt die zweite Preisquelle an.
+2. **Das Ergebnis steht ohne JavaScript im HTML.** Das Formular ist ein
+   GET-Formular; ohne Skript führt „Neu berechnen" zum selben Ergebnis, nur mit
+   einem Seitenaufruf dazwischen.
+{% endcomment %}
+{% block titel %}{{ rs.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ rs.desc|safe }}{% endblock %}
+{% block og_titel %}{{ rs.h1|safe }}{% endblock %}
+{% block og_beschreibung %}{{ rs.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ rs.h1|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ rs.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <a href="{% url 'kosten' %}">{{ t.nav.preise|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ rs.ergebnis_h|safe }}</span>
+    </nav>
+    <h1>{{ rs.h1|safe }}</h1>
+    <p class="sp-kurz">{{ rs.kurz|safe }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="sp-intro" data-reveal>{{ rs.intro|safe }}</p>
+
+    {{ saetze|json_script:"rechner-saetze" }}
+
+    <form class="kr" method="get" action="{% url 'rechner' %}" id="krForm">
+      <div class="kr-eingaben">
+        <h2 class="kr-h">{{ rs.form_h|safe }}</h2>
+
+        <div class="kr-feld">
+          <label class="fld-l" for="kr-ap">{{ rs.ap_l|safe }}</label>
+          <input class="fld kr-num" id="kr-ap" type="number" name="ap" inputmode="numeric"
+                 min="0" max="250" step="1" value="{{ werte.ap }}" data-kr="ap">
+          <p class="kr-hint">{{ rs.ap_h|safe }}</p>
+        </div>
+
+        <div class="kr-feld">
+          <label class="fld-l" for="kr-srv">{{ rs.srv_l|safe }}</label>
+          <input class="fld kr-num" id="kr-srv" type="number" name="srv" inputmode="numeric"
+                 min="0" max="20" step="1" value="{{ werte.srv }}" data-kr="srv">
+          <p class="kr-hint">{{ rs.srv_h|safe }}</p>
+        </div>
+
+        <div class="kr-feld kr-feld-schalter">
+          <label class="kr-schalter" for="kr-backup">
+            <input id="kr-backup" type="checkbox" name="backup" value="1" data-kr="backup"
+                   {% if werte.backup %}checked{% endif %}>
+            <span>{{ rs.backup_l|safe }}</span>
+          </label>
+          <p class="kr-hint">{{ rs.backup_h|safe }}</p>
+        </div>
+
+        <div class="kr-feld">
+          <label class="fld-l" for="kr-neu">{{ rs.neu_l|safe }}</label>
+          <input class="fld kr-num" id="kr-neu" type="number" name="neu" inputmode="numeric"
+                 min="0" max="50" step="1" value="{{ werte.neu }}" data-kr="neu">
+          <p class="kr-hint">{{ rs.neu_h|safe }}</p>
+        </div>
+
+        <div class="kr-feld kr-feld-schalter">
+          <label class="kr-schalter" for="kr-m365">
+            <input id="kr-m365" type="checkbox" name="m365" value="1" data-kr="m365"
+                   {% if werte.m365 %}checked{% endif %}>
+            <span>{{ rs.m365_l|safe }}</span>
+          </label>
+          <p class="kr-hint">{{ rs.m365_h|safe }}</p>
+        </div>
+
+        <div class="kr-feld">
+          <label class="fld-l" for="kr-std">{{ rs.std_l|safe }}</label>
+          <input class="fld kr-num" id="kr-std" type="number" name="std" inputmode="numeric"
+                 min="0" max="40" step="1" value="{{ werte.std }}" data-kr="std">
+          <p class="kr-hint">{{ rs.std_h|safe }}</p>
+        </div>
+
+        <button class="btn btn-lg" type="submit">{{ rs.btn|safe }}</button>
+        <p class="kr-hint kr-nojs">{{ rs.ohne_js|safe }}</p>
+      </div>
+
+      <output class="kr-ergebnis" for="kr-ap kr-srv kr-backup kr-neu kr-m365 kr-std" aria-live="polite">
+        <h2 class="kr-h">{{ rs.ergebnis_h|safe }}</h2>
+
+        <div class="kr-summe">
+          <span class="kr-summe-v" data-kr-out="mtl">{{ e.mtl }}</span>
+          <span class="kr-summe-e">€</span>
+          <span class="kr-summe-l">{{ rs.mtl_l|safe }}</span>
+        </div>
+        <div class="kr-zeile">
+          <span>{{ rs.jahr_l|safe }}</span>
+          <strong><span data-kr-out="jahr">{{ e.jahr }}</span> €</strong>
+        </div>
+        <div class="kr-zeile">
+          <span>{{ rs.once_l|safe }}</span>
+          <strong><span data-kr-out="once">{{ e.once }}</span> €</strong>
+        </div>
+
+        <h3 class="kr-h3">{{ rs.posten_h|safe }}</h3>
+        <table class="kr-tabelle">
+          {% comment %}
+          Alle Posten stehen im HTML, auch die mit Menge 0 — sie sind nur
+          ausgeblendet. So muss das Skript keine Zeilen bauen und kennt keine
+          Bezeichnung; die Übersetzung bleibt an genau einer Stelle.
+          {% endcomment %}
+          <tbody data-kr-posten>
+            {% for p in e.laufend %}
+            <tr {% if not p.menge %}hidden{% endif %}><th scope="row" data-kr-id="{{ p.id }}">{{ p.name }}</th><td>{{ p.menge }} × {{ p.satz }} €</td><td class="kr-t-summe">{{ p.summe }} €</td></tr>
+            {% endfor %}
+            {% for p in e.einmalig %}
+            <tr class="kr-t-once" {% if not p.menge %}hidden{% endif %}><th scope="row" data-kr-id="{{ p.id }}">{{ p.name }}</th><td>{{ p.menge }} × {{ p.satz }} €</td><td class="kr-t-summe">{{ p.summe }} €</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <p class="kr-leer" data-kr-leer {% if not e.leer %}hidden{% endif %}>{{ rs.leer|safe }}</p>
+
+        <div class="kr-vergleich">
+          <h3 class="kr-h3">{{ rs.vergleich_h|safe }}</h3>
+          <p>{{ rs.vergleich_t|safe }}</p>
+          <div class="kr-zeile">
+            <span>{{ rs.vergleich_l|safe }}</span>
+            <strong><span data-kr-out="vergleich_mtl">{{ e.vergleich_mtl }}</span> €</strong>
+          </div>
+          <p class="kr-schwelle">
+            <strong><span data-kr-out="schwelle">{{ e.schwelle }}</span> {{ rs.schwelle_l|safe }}</strong><br>
+            {{ rs.schwelle_t|safe }}
+          </p>
+          <p class="lk-alle"><a href="{% url 'kosten' %}">{{ rs.zur_preisliste|safe }}</a></p>
+        </div>
+
+        <p class="kr-hinweis">{{ rs.hinweis|safe }} {{ t.seite.stand|safe }} {{ preis_stand }}</p>
+      </output>
+    </form>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap sp-grid">
+    <div class="sp-main">
+      <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
+      <div class="faq">
+        {% for f in rs.faq %}
+        <details class="faq-item"{% if forloop.first %} open{% endif %}>
+          <summary class="faq-q">
+            <span>{{ f.q|safe }}</span>
+            <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </summary>
+          <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="sp-aside">
+      {% include 'anfrage_karte.html' with bid='it' titel=rs.cta_h sub=rs.cta_t ph=rs.form_h %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/kostenrechner.js' %}?v={{ asset_v }}" defer></script>
+{% endblock %}

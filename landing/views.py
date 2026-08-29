@@ -365,6 +365,136 @@ def _paketpreise():
     }
 
 
+# ── Kostenrechner (docs/SEO-AUSBAU-3.md, W1) ─────────────────────────────────
+# Der Rechner LIEST ANGEBOT_GROUPS, er kopiert sie nicht. Es gibt keinen zweiten
+# Zahlensatz — weder hier noch im JavaScript: Das Skript bekommt dieselben Werte
+# als JSON-Block aus dem gerenderten HTML (templates/rechner.html).
+#
+# Die Lehre aus Rümpelwerk (docs/preise-und-rechner.md dort): Sobald zwei Stellen
+# rechnen, laufen sie auseinander — dort wichen 9,6 % aller Eingabekombinationen
+# um 1 € ab, weil Python und JavaScript unterschiedlich runden. Deshalb rechnet
+# hier der Server, und das Ergebnis steht auch ohne JavaScript im HTML.
+
+_RECHNER_FELDER = [
+    # id        Preis-ID aus ANGEBOT_GROUPS   Feld      Höchstwert  Vorbelegung
+    {"id": "ap",     "preis": "it_betreuung",  "feld": "mtl",  "max": 250, "vor": 5},
+    {"id": "srv",    "preis": "server_care",   "feld": "mtl",  "max": 20,  "vor": 1},
+    {"id": "backup", "preis": "backup",        "feld": "mtl",  "max": 1,   "vor": 1},
+    {"id": "neu",    "preis": "arbeitsplatz",  "feld": "once", "max": 50,  "vor": 0},
+    {"id": "m365",   "preis": "m365",          "feld": "once", "max": 1,   "vor": 0},
+    # Nur für den Vergleich: Stunden ohne Vertrag. Wird nicht zur Summe addiert.
+    {"id": "std",    "preis": "it_support",    "feld": "std",  "max": 40,  "vor": 2},
+]
+_RECHNER_NACH_ID = {f["id"]: f for f in _RECHNER_FELDER}
+
+
+def _rechner_werte(quelle):
+    """Eingaben aus dem QueryDict lesen, begrenzen und auf ganze Zahlen bringen.
+
+    Alles, was keine Zahl ist, fällt auf die Vorbelegung zurück — der Rechner darf
+    an einer manipulierten Adresse nicht abstürzen und auch keine Fantasiesumme
+    zeigen."""
+    werte = {}
+    for feld in _RECHNER_FELDER:
+        roh = (quelle.get(feld["id"]) or "").strip()
+        if roh == "":
+            werte[feld["id"]] = feld["vor"]
+            continue
+        try:
+            zahl = int(float(roh.replace(",", ".")))
+        except ValueError:
+            zahl = feld["vor"]
+        werte[feld["id"]] = max(0, min(zahl, feld["max"]))
+    return werte
+
+
+def _rechner_rechnen(werte, lang="de"):
+    """Die eine Rechnung. Jede Zahl stammt aus ANGEBOT_GROUPS, keine steht hier.
+
+    Rückgabe: laufende Posten, einmalige Posten, Monats-, Jahres- und Einmalsumme
+    sowie der Vergleich mit der Abrechnung nach Stunden."""
+    pack = i18n.get_pack(lang)
+    namen = pack.get("catalog_items", {})
+
+    def posten(feld_id, menge):
+        feld = _RECHNER_NACH_ID[feld_id]
+        it = _ANGEBOT_INDEX[feld["preis"]]
+        satz = int(it.get(feld["feld"]) or 0)
+        return {
+            "id": feld_id,
+            "name": namen.get(it["id"], {}).get("name", it["name"]),
+            "satz": satz, "menge": menge, "summe": satz * menge,
+        }
+
+    laufend = [posten("ap", werte["ap"]), posten("srv", werte["srv"]),
+               posten("backup", werte["backup"])]
+    einmalig = [posten("neu", werte["neu"]), posten("m365", werte["m365"])]
+    mtl = sum(p["summe"] for p in laufend)
+    once = sum(p["summe"] for p in einmalig)
+    stundensatz = int(_ANGEBOT_INDEX["it_support"]["std"])
+    return {
+        # Alle Posten, auch die mit Menge 0: Das Skript blendet sie nur ein und aus,
+        # statt Zeilen nachzubauen — sonst müsste es die Bezeichnungen kennen und
+        # damit die Übersetzung ein zweites Mal führen.
+        "laufend": laufend, "einmalig": einmalig,
+        "leer": not any(p["menge"] for p in laufend + einmalig),
+        "mtl": mtl, "jahr": mtl * 12, "once": once,
+        "stundensatz": stundensatz,
+        "vergleich_mtl": stundensatz * werte["std"],
+        "vergleich_jahr": stundensatz * werte["std"] * 12,
+        # Ab wie vielen Stunden im Monat die Betreuung günstiger ist als die
+        # Abrechnung nach Aufwand. Ohne diese Zahl ist der Vergleich Werbung.
+        "schwelle": (mtl + stundensatz - 1) // stundensatz if stundensatz else 0,
+    }
+
+
+def rechner_zahlen_fuer_pruefung():
+    """Alle Zahlen, die die Standard-Ansicht des Rechners vor einem €-Zeichen zeigt.
+
+    `pruefe_seite` erlaubt nur Preise aus ANGEBOT_GROUPS. Der Rechner bildet aber
+    bewusst Summen — genau wie das Betreuungspaket (Hosting + Wartung). Damit die
+    Prüfung Summen nicht mit erfundenen Preisen verwechselt, liefert der Rechner
+    seine eigenen Zahlen hier ab, statt sie in der Prüfung ein zweites Mal zu
+    berechnen."""
+    from django.http import QueryDict
+    e = _rechner_rechnen(_rechner_werte(QueryDict("")))
+    zahlen = {e["mtl"], e["jahr"], e["once"], e["vergleich_mtl"], e["vergleich_jahr"]}
+    zahlen |= {p["summe"] for p in e["laufend"] + e["einmalig"]}
+    return {int(z) for z in zahlen}
+
+
+def rechner(request):
+    """/kosten/rechner/ — was die laufende IT im eigenen Betrieb kostet.
+
+    Ein GET-Formular, kein POST: Die Eingaben stehen in der Adresse, das Ergebnis
+    lässt sich verschicken, und die Seite funktioniert ohne JavaScript vollständig.
+    Das Skript rechnet nur mit, damit die Zahl beim Tippen mitläuft — es benutzt
+    dieselben Sätze aus dem JSON-Block, keine eigenen."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    rs = pack.get("rechner", {})
+    werte = _rechner_werte(request.GET)
+    ergebnis = _rechner_rechnen(werte, lang)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = reverse("rechner")
+
+    # Die Sätze für das mitlaufende Skript — dieselbe Quelle, nur als JSON.
+    saetze = {f["id"]: {"satz": int(_ANGEBOT_INDEX[f["preis"]].get(f["feld"]) or 0),
+                        "max": f["max"]} for f in _RECHNER_FELDER}
+
+    return render(request, "rechner.html", {
+        "c": c, "rs": rs, "werte": werte, "e": ergebnis, "saetze": saetze,
+        "felder": _RECHNER_FELDER,
+        "preis_stand": _preis_stand(lang),
+        "structured_data": _seiten_schema(
+            c, lang, faq=rs.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [
+                (pack["nav"]["preise"], reverse("kosten")),
+                (rs.get("h1", "Rechner"), pfad)])),
+    })
+
+
 def _preis_stand(lang):
     """'Stand: August 2026' , datierte Preise werden von KI-Systemen bevorzugt zitiert
     und nehmen dem Besucher die Sorge, eine veraltete Zahl zu lesen."""
@@ -1365,6 +1495,7 @@ def _seiten_pfade():
              ("/angebot/", "0.8", "monthly", True)]
     pfade += [(f"/leistungen/{l['slug']}/", l["prio"], "monthly", True)
               for l in leistungen.LEISTUNGEN]
+    pfade += [("/kosten/rechner/", "0.8", "monthly", True)]
     pfade += [("/branchen/", "0.8", "monthly", True)]
     pfade += [(f"/branchen/{b['slug']}/", b["prio"], "monthly", True)
               for b in branchen.BRANCHEN]
@@ -2036,6 +2167,8 @@ def llms_txt(request):
         f"- [Startseite]({base}/): Überblick, Kontaktwege und die häufigsten Fragen.",
         f"- [Alle Leistungen]({base}/leistungen/): Einstieg in die elf Leistungsseiten.",
         f"- [Preise]({base}/kosten/): vollständige Preisliste mit Stand-Datum.",
+        f"- [Kostenrechner]({base}/kosten/rechner/): Arbeitsplätze, Server und Datensicherung "
+        "eingeben, Monats- und Jahressumme sofort sehen. Rechnet aus derselben Preisliste.",
         f"- [Referenzen]({base}/referenzen/): belegte Projekte mit Einverständnis der Kunden.",
         f"- [Kontakt]({base}/kontakt/): WhatsApp, Telefon, Rückruf, E-Mail.",
         f"- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen, Richtpreis sofort.",
@@ -2480,6 +2613,8 @@ def _such_index(lang):
          bs.get("branchen_titel", "")),
         (reverse("kosten"), ks.get("h1", ""), ks.get("kurz", ""),
          pack["nav"]["preise"]),
+        (reverse("rechner"), pack.get("rechner", {}).get("h1", ""),
+         pack.get("rechner", {}).get("kurz", ""), pack["nav"]["preise"]),
         (reverse("regionen"), pack["seite"]["regionen_h1"],
          pack["seite"]["regionen_kurz"], pack["seite"]["regionen_titel"]),
         (reverse("kontakt"), pack.get("kontakt_seite", {}).get("h1", ""),
