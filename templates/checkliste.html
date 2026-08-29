@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% comment %}
+Eine Checkliste (docs/SEO-AUSBAU-3.md, W4).
+
+Zwei Dinge sind hier anders als bei den üblichen Checklisten im Netz:
+
+1. **Jeder Punkt hat ein „warum".** Ohne Begründung arbeitet niemand eine Liste
+   ab, die er nicht selbst geschrieben hat.
+2. **Kein Formular davor und kein PDF dahinter.** Die Liste steht vollständig
+   auf der Seite; gedruckt wird sie über die Druckregeln in style.css.
+
+Die Kästchen sind echte Checkboxen ohne Namen: Sie werden nie abgesendet und
+nirgends gespeichert — sie sind zum Abhaken beim Durcharbeiten da, auf Papier
+wie am Bildschirm.
+{% endcomment %}
+{% block titel %}{{ liste.meta_titel|safe }}{% endblock %}
+{% block beschreibung %}{{ liste.desc|safe }}{% endblock %}
+{% block og_titel %}{{ liste.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ liste.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ liste.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ liste.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<article class="sp">
+  <header class="sp-top on-dark">
+    <div class="wrap">
+      <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+        <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <a href="{% url 'checklisten' %}">Checklisten</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ liste.titel|truncatechars:40 }}</span>
+      </nav>
+      <p class="gl-label">Checkliste · {{ liste.anzahl }} Punkte</p>
+      <h1>{{ liste.titel|safe }}</h1>
+      <p class="sp-kurz">{{ liste.kurz|safe }}</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap sp-wrap">
+      <p class="sp-intro" data-reveal>{{ liste.intro|safe }}</p>
+
+      <div class="ck" id="liste">
+        {% for g in liste.gruppen %}
+        <section class="ck-gruppe" data-reveal>
+          <h2 class="ck-gruppe-h">{{ g.h|safe }}</h2>
+          <ul class="ck-punkte">
+            {% for p in g.punkte %}
+            <li class="ck-punkt">
+              <label>
+                <input type="checkbox" class="ck-box">
+                <span class="ck-text">
+                  <span class="ck-t">{{ p.t|safe }}</span>
+                  <span class="ck-warum">{{ p.warum|safe }}</span>
+                </span>
+              </label>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endfor %}
+      </div>
+
+      <section class="gl-praxis" data-reveal>
+        <h2>Und dann?</h2>
+        <p>{{ liste.danach|safe }}</p>
+        <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
+          <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+      </section>
+
+      <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
+      <div class="faq">
+        {% for f in liste.faq %}
+        <details class="faq-item"{% if forloop.first %} open{% endif %}>
+          <summary class="faq-q">
+            <span>{{ f.q|safe }}</span>
+            <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </summary>
+          <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+        </details>
+        {% endfor %}
+      </div>
+
+      {% if leistung or beitrag %}
+      <aside class="rg-schwerpunkt" data-reveal>
+        <p class="rg-sw-label">Passt dazu</p>
+        {% if leistung %}
+        <a class="rg-sw-link" href="{{ leistung.url }}">
+          <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=leistung.icon %}</span>
+          <span><strong>{{ leistung.nav|safe }}</strong>
+            <span class="rg-sw-t">{{ leistung.desc|safe }}</span></span>
+        </a>
+        {% endif %}
+        {% if beitrag %}
+        <a class="rg-sw-link ck-beitrag" href="{{ beitrag.url }}">
+          <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name='consulting' %}</span>
+          <span><strong>{{ beitrag.titel|safe }}</strong>
+            <span class="rg-sw-t">{{ beitrag.desc|safe }}</span></span>
+        </a>
+        {% endif %}
+      </aside>
+      {% endif %}
+
+      {% include 'anfrage_karte.html' with bid='it' titel='Punkt offen geblieben? Kurz schildern.' sub='Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.' ph=t.lb.text_ph %}
+
+      <nav class="rg-weitere" aria-label="Weitere Checklisten">
+        <h2>Weitere Checklisten</h2>
+        <ul>
+          {% for w in weitere %}<li><a href="{{ w.url }}">{{ w.titel }}</a></li>{% endfor %}
+          <li><a href="{% url 'wissen' %}">Glossar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</article>
+{% endblock %}

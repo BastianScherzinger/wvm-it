@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% comment %}Übersicht der Checklisten (docs/SEO-AUSBAU-3.md, W4).{% endcomment %}
+{% block titel %}Checklisten für die IT im Betrieb | WVM-IT{% endblock %}
+{% block beschreibung %}Drei Listen zum Abhaken und Ausdrucken: Dienstleister wechseln, neuen Arbeitsplatz einrichten, IT-Jahrescheck. Ohne Formular, ohne PDF-Download.{% endblock %}
+{% block og_titel %}Checklisten für die IT im Betrieb{% endblock %}
+{% block og_beschreibung %}Drei Listen zum Abhaken: Dienstleister wechseln, Arbeitsplatz einrichten, Jahrescheck.{% endblock %}
+{% block tw_titel %}Checklisten für die IT im Betrieb{% endblock %}
+{% block tw_beschreibung %}Drei Listen zum Abhaken: Dienstleister wechseln, Arbeitsplatz einrichten, Jahrescheck.{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Checklisten</span>
+    </nav>
+    <h1>Listen, die man wirklich abarbeiten kann</h1>
+    <p class="sp-kurz">Drei Situationen, in denen man leicht etwas vergisst — und drei Listen dafür. Jeder Punkt trägt eine Begründung, warum er draufsteht: Ohne die arbeitet niemand eine Liste ab, die er nicht selbst geschrieben hat. Es gibt kein Formular davor und keinen Download dahinter; alles steht auf der Seite und lässt sich drucken.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap sp-wrap">
+    <div class="rg-grid">
+      {% for l in listen %}
+      <a class="rg-kachel spot" href="{{ l.url }}" data-spot data-reveal>
+        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=l.icon %}</span>
+        <span class="rg-km">{{ l.anzahl }} Punkte</span>
+        <h2 class="rg-h">{{ l.titel }}</h2>
+        <p class="rg-t">{{ l.desc|safe }}</p>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="lk-alle">
+      <a href="{% url 'wissen' %}">Glossar</a> ·
+      <a href="{% url 'aktuelles' %}">Fachbeiträge</a> ·
+      <a href="{% url 'sicherheitstest' %}">{{ t.selbsttest.h1|safe }}</a> ·
+      <a href="{% url 'notfall' %}">{{ t.notfall.h1|safe }}</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

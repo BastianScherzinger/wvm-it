@@ -23,7 +23,8 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import beitraege, branchen, glossar, i18n, leistungen, regionen, selbsttest, vergleiche
+from . import (beitraege, branchen, checklisten, glossar, i18n, leistungen, regionen,
+               selbsttest, vergleiche)
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -1610,6 +1611,10 @@ def _seiten_pfade():
               for r in regionen.REGIONEN]
     # Nur Deutsch — daher False:
     pfade += [("/aktuelles/", "0.6", "weekly", False)]
+    # Checklisten ebenfalls nur Deutsch.
+    pfade += [("/checkliste/", "0.6", "monthly", False)]
+    pfade += [(f"/checkliste/{k['slug']}/", k["prio"], "yearly", False)
+              for k in checklisten.CHECKLISTEN]
     # Glossar ebenfalls nur Deutsch (Begruendung im Kopf von landing/glossar.py).
     pfade += [("/wissen/", "0.6", "monthly", False)]
     pfade += [(f"/wissen/{b['slug']}/", b["prio"], "yearly", False)
@@ -1809,6 +1814,78 @@ def branche_seite(request, slug):
             breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
                 (seite.get("nav", slug), pfad)])),
+    })
+
+
+# ══ Checklisten (docs/SEO-AUSBAU-3.md, W4 + S2) ═══════════════════════════════
+# Als Seite, nicht als PDF, und ohne Formular davor. Begründung im Kopf von
+# landing/checklisten.py. Jede Liste trägt ein HowTo-Schema aus denselben
+# Punkten, die auch im HTML stehen.
+
+def _checkliste_daten(eintrag):
+    from .i18n.checklisten_de import CHECKLISTEN as TEXTE
+    daten = {**eintrag, **TEXTE.get(eintrag["slug"], {})}
+    daten["url"] = reverse("checkliste", kwargs={"slug": eintrag["slug"]})
+    daten["anzahl"] = sum(len(g.get("punkte", [])) for g in daten.get("gruppen", []))
+    return daten
+
+
+def checkliste_seite(request, slug):
+    """/checkliste/<slug>/ — eine Liste zum Abhaken und Ausdrucken."""
+    eintrag = checklisten.NACH_SLUG.get(slug)
+    if not eintrag:
+        raise Http404(slug)
+    c = _content()
+    liste = _checkliste_daten(eintrag)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = liste["url"]
+
+    # Ein HowTo mit Abschnitten: `HowToSection` je Gruppe, darin die Schritte.
+    # Das ist die Form, die Google für gegliederte Anleitungen erwartet — eine
+    # flache Schrittliste würde die Gliederung verlieren, die den Nutzen ausmacht.
+    schritte, position = [], 0
+    for gruppe in liste.get("gruppen", []):
+        unter = []
+        for punkt in gruppe.get("punkte", []):
+            position += 1
+            unter.append({"@type": "HowToStep", "position": position,
+                          "name": punkt.get("t", "")[:110],
+                          "text": punkt.get("t", ""),
+                          "url": f"{base}{pfad}#liste"})
+        schritte.append({"@type": "HowToSection", "name": gruppe.get("h", ""),
+                         "itemListElement": unter})
+    howto = {
+        "@type": "HowTo", "@id": f"{base}{pfad}#howto",
+        "name": liste.get("titel", ""), "description": liste.get("kurz", ""),
+        "inLanguage": "de-AT", "step": schritte,
+    }
+    leistung = leistungen.NACH_SLUG.get(eintrag.get("leistung", ""))
+    beitrag = beitraege.NACH_SLUG.get(eintrag.get("beitrag") or "")
+    return render(request, "checkliste.html", {
+        "c": c, "liste": liste,
+        "leistung": _leistung_daten(leistung, "de") if leistung else None,
+        "beitrag": _beitrag_daten(beitrag) if beitrag else None,
+        "weitere": [_checkliste_daten(k) for k in checklisten.CHECKLISTEN
+                    if k["slug"] != slug],
+        "preis_stand": _preis_stand("de"),
+        "structured_data": _seiten_schema(
+            c, "de", service=howto, faq=liste.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [
+                ("Checklisten", reverse("checklisten")),
+                (liste.get("titel", slug), pfad)])),
+    })
+
+
+def checklisten_hub(request):
+    """/checkliste/ — die drei Listen im Überblick."""
+    c = _content()
+    base = (c.get("wvm_url") or "").rstrip("/")
+    return render(request, "checklisten.html", {
+        "c": c,
+        "listen": [_checkliste_daten(k) for k in checklisten.CHECKLISTEN],
+        "structured_data": _seiten_schema(
+            c, "de", breadcrumb=_breadcrumb(base, [
+                ("Checklisten", reverse("checklisten"))])),
     })
 
 
@@ -2589,6 +2666,8 @@ def llms_txt(request):
         f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
         f"- [Glossar]({base}/wissen/): vierzehn Begriffe mit Definition, Praxisbezug und dem "
         "jeweils verbreiteten Irrtum.",
+        f"- [Checklisten]({base}/checkliste/): Dienstleister wechseln, Arbeitsplatz einrichten, "
+        "IT-Jahrescheck — jeder Punkt mit Begründung.",
         "\n## Leistungen",
     ]
     zeilen += _llms_seiten(base, "de")
@@ -2757,6 +2836,20 @@ def llms_full_txt(request):
             aus.append(f"\n**{sauber(a.get('h'))}**\n{sauber(a.get('t'))}")
         if b.get("fazit"):
             aus.append(f"\nKurz gesagt: {sauber(b.get('fazit'))}")
+
+    # Checklisten: Für eine KI ist die Punkteliste samt Begründung das
+    # Zitierfähige — sie beantwortet „was muss ich beim Wechsel beachten"
+    # vollständig und in der richtigen Reihenfolge.
+    aus.append("\n\n## Checklisten")
+    for eintrag in checklisten.CHECKLISTEN:
+        k = _checkliste_daten(eintrag)
+        aus.append(f"\n### {sauber(k.get('titel'))}")
+        aus.append(f"URL: {base}/checkliste/{eintrag['slug']}/")
+        aus.append(f"\n{sauber(k.get('kurz'))}")
+        for gruppe in k.get("gruppen", []):
+            aus.append(f"\n**{sauber(gruppe.get('h'))}**")
+            aus += [f"- {sauber(p.get('t'))} — {sauber(p.get('warum'))}"
+                    for p in gruppe.get("punkte", [])]
 
     # Glossar: Definition, Praxis und Irrtum. Der Irrtums-Absatz ist der Teil, den
     # ein Sprachmodell sonst nirgends findet — er korrigiert eine verbreitete
@@ -3077,6 +3170,10 @@ def _such_index(lang):
             daten = _begriff_daten(eintrag)
             eintraege.append((daten["url"], daten.get("titel", ""),
                               daten.get("kurz", ""), "Wissen"))
+        for eintrag in checklisten.CHECKLISTEN:
+            daten = _checkliste_daten(eintrag)
+            eintraege.append((daten["url"], daten.get("titel", ""),
+                              daten.get("kurz", ""), "Checklisten"))
 
     hub = pack.get("hub", {})
     ks = pack.get("kosten_seite", {})

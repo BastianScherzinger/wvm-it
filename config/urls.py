@@ -19,6 +19,10 @@ urlpatterns = [
     # ── Glossar (docs/SEO-AUSBAU-3.md, W5) ──────────────────────────────────
     # Wie die Fachbeitraege bewusst ausserhalb von i18n_patterns: nur Deutsch.
     # Begruendung im Kopf von landing/glossar.py.
+    # ── Checklisten (docs/SEO-AUSBAU-3.md, W4) ──────────────────────────────
+    # Als Seite, nicht als PDF - eine Seite kann ranken, ein PDF kaum.
+    path("checkliste/", views.checklisten_hub, name="checklisten"),
+    path("checkliste/<slug:slug>/", views.checkliste_seite, name="checkliste"),
     path("wissen/", views.wissen, name="wissen"),
     path("wissen/<slug:slug>/", views.begriff_seite, name="begriff"),
     path("robots.txt", views.robots_txt, name="robots_txt"),
