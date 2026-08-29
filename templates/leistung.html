@@ -103,6 +103,32 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
     </div>
   </section>
 
+  <!-- ── „Passt dazu": alles zum selben Thema (V1/V2) ──────────────────────
+       Der Block wird nicht gepflegt, sondern aus dem gemeinsamen Thema
+       erzeugt (views._passt_dazu). Ein neuer Beitrag ist damit ab dem Anlegen
+       von seiner Leistungsseite verlinkt, ohne dass jemand daran denkt. -->
+  {% if passt_dazu %}
+  <section class="section">
+    <div class="wrap sp-wrap">
+      <header class="sec-head sec-head-links" data-reveal>
+        <h2 class="section-t">{{ t.seite.passt_dazu_h|safe }}</h2>
+        <p class="section-lead">{{ t.seite.passt_dazu_t|safe }}</p>
+      </header>
+      <ul class="pd-liste">
+        {% for p in passt_dazu %}
+        <li class="pd-item">
+          <a href="{{ p.url }}">
+            <span class="pd-typ">{{ p.typ }}</span>
+            <span class="pd-h">{{ p.titel|safe }}</span>
+            <span class="pd-t">{{ p.text|safe|truncatewords:26 }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
   <!-- ── Querverlinkung: keine Seite ohne eingehende Links ─────────────────── -->
   {% if verwandte %}
   <section class="section section-alt">

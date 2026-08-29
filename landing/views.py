@@ -1517,6 +1517,27 @@ def _structured_data(c, lang):
                       ensure_ascii=False, separators=(",", ":"))
 
 
+# Die beiden Beiträge mit der größten Suchnachfrage. Bewusst fest gewählt und
+# nicht „die neuesten": Auf der Startseite steht der Platz zur Verfügung, der am
+# meisten Gewicht überträgt — der gehört den Fragen, die am häufigsten gestellt
+# werden, nicht dem zuletzt Geschriebenen (docs/SEO-AUSBAU-3.md, V4).
+_STARTSEITE_BEITRAEGE = ["was-kostet-it-betreuung", "it-dienstleister-wechseln"]
+
+
+def _wissen_teaser():
+    """Zwei Beiträge und die drei Werkzeuge für den Verteilerblock der Startseite."""
+    posten = [_beitrag_daten(beitraege.NACH_SLUG[s])
+              for s in _STARTSEITE_BEITRAEGE if s in beitraege.NACH_SLUG]
+    return {
+        "beitraege": posten,
+        "werkzeuge": [
+            {"url": reverse("rechner"), "icon": "gauge", "schluessel": "rechner"},
+            {"url": reverse("sicherheitstest"), "icon": "shield", "schluessel": "selbsttest"},
+            {"url": reverse("checklisten"), "icon": "check", "schluessel": "checklisten"},
+        ],
+    }
+
+
 def index(request):
     c = _content()
     sent = False
@@ -1538,6 +1559,11 @@ def index(request):
         "preise_item": _itempreise(lang),
         "probleme": _probleme(lang),
         "finder": _finder(lang),
+        # V4: Die Startseite ist die stärkste Seite der Domain. Was von hier
+        # verlinkt wird, bekommt Gewicht — deshalb stehen hier die beiden
+        # meistgesuchten Beiträge und die drei Werkzeuge, nicht ein
+        # „mehr erfahren" auf eine weitere Übersichtsseite.
+        "wissen_teaser": _wissen_teaser(),
         "startpakete": _startpakete(lang),
         "paket_items": _paket_items(request),
         "paket_aktiv": (request.GET.get("paket") or "").strip().lower(),
@@ -1712,6 +1738,10 @@ def leistung_seite(request, slug):
         anfrage_ok = ""
     return render(request, "leistung.html", {
         "c": c, "seite": seite, "anfrage_ok": anfrage_ok,
+        # V1/V2: alles, was zum selben Thema gehört — Beiträge, Vergleiche,
+        # Branchen, Checklisten, Begriffe. Ohne diesen Block hängen die
+        # Fachbeiträge an genau einem eingehenden Link (siehe V3-Prüfung).
+        "passt_dazu": _passt_dazu(slug, lang),
         "verwandte": [_leistung_daten(leistungen.NACH_SLUG[v], lang)
                       for v in eintrag.get("verwandt", []) if v in leistungen.NACH_SLUG],
         "preis_stand": _preis_stand(lang),
@@ -1815,6 +1845,61 @@ def branche_seite(request, slug):
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
                 (seite.get("nav", slug), pfad)])),
     })
+
+
+# ══ „Passt dazu" über ein gemeinsames Thema (docs/SEO-AUSBAU-3.md, V2) ════════
+# Bis hierher wurde jede Querverbindung von Hand gepflegt — und prompt hingen
+# die zehn neuen Fachbeiträge an genau einem eingehenden Link (gefunden von der
+# V3-Prüfung in pruefe_seite). Statt jede Beziehung einzeln nachzutragen, gibt
+# es jetzt eine Zuordnung über das Thema, das die Seitentypen ohnehin schon
+# tragen: `thema` bei Beiträgen, `leistung` bei Glossar und Checklisten,
+# `schwerpunkt` bei Branchen und Regionen.
+#
+# Der Vorteil ist nicht die Bequemlichkeit, sondern die Vollständigkeit: Ein
+# neuer Beitrag ist ab dem Anlegen von seiner Leistungsseite verlinkt, ohne
+# dass jemand daran denken muss.
+
+def _thema_index(lang):
+    """thema-Slug → {typ: [Einträge]}. Der Slug ist immer eine Leistung."""
+    index = {}
+
+    def dazu(thema, typ, eintrag):
+        if thema:
+            index.setdefault(thema, {}).setdefault(typ, []).append(eintrag)
+
+    for b in beitraege.BEITRAEGE:
+        dazu(b.get("thema"), "beitraege", _beitrag_daten(b))
+    for g in glossar.BEGRIFFE:
+        dazu(g.get("leistung"), "begriffe", _begriff_daten(g))
+    for k in checklisten.CHECKLISTEN:
+        dazu(k.get("leistung"), "checklisten", _checkliste_daten(k))
+    for br in branchen.BRANCHEN:
+        dazu(br.get("schwerpunkt"), "branchen", _branche_daten(br, lang))
+    for v in vergleiche.VERGLEICHE:
+        for slug in v.get("leistungen", []):
+            dazu(slug, "vergleiche", _vergleich_daten(v, lang))
+    return index
+
+
+def _passt_dazu(thema, lang, ohne=None):
+    """Die Liste für den „Passt dazu"-Block einer Seite.
+
+    Reihenfolge ist Absicht: Beiträge zuerst (sie beantworten eine Frage),
+    dann Vergleiche, Branchen, Checklisten, Begriffe. Höchstens sechs Einträge —
+    ein Block mit zwanzig Links verteilt kein Gewicht, er verdünnt es."""
+    eintraege = _thema_index(lang).get(thema, {})
+    raus = []
+    for typ, wort in (("beitraege", "Beitrag"), ("vergleiche", "Vergleich"),
+                      ("branchen", "Branche"), ("checklisten", "Checkliste"),
+                      ("begriffe", "Begriff")):
+        for e in eintraege.get(typ, []):
+            if e.get("url") == ohne:
+                continue
+            raus.append({"url": e.get("url"),
+                         "titel": e.get("titel") or e.get("nav") or e.get("h1", ""),
+                         "text": (e.get("antwort") or e.get("kurz") or e.get("desc") or ""),
+                         "typ": wort})
+    return raus[:6]
 
 
 # ══ Checklisten (docs/SEO-AUSBAU-3.md, W4 + S2) ═══════════════════════════════
@@ -2156,6 +2241,23 @@ def _beitrag_daten(eintrag):
     return daten
 
 
+def _weitere_beitraege(slug, thema, anzahl=4):
+    """Beiträge zum selben Thema zuerst, danach mit den neuesten aufgefüllt.
+
+    Die vorherige Fassung nahm schlicht die ersten drei der Liste — mit dem
+    Ergebnis, dass Beitrag Nummer sechs bis fünfzehn nie von einem anderen
+    Beitrag verlinkt wurde. Genau das hat die V3-Prüfung sichtbar gemacht."""
+    gleiche = [b for b in beitraege.BEITRAEGE
+               if b["slug"] != slug and b.get("thema") == thema]
+    rest = [b for b in beitraege.BEITRAEGE
+            if b["slug"] != slug and b.get("thema") != thema]
+    # Auffüllen ab der Position des aktuellen Beitrags, damit über den ganzen
+    # Bestand hinweg jeder einmal drankommt statt immer die ersten drei.
+    versatz = next((i for i, b in enumerate(rest) if b["slug"] > slug), 0)
+    rest = rest[versatz:] + rest[:versatz]
+    return [_beitrag_daten(b) for b in (gleiche + rest)[:anzahl]]
+
+
 def beitrag_seite(request, slug):
     """/aktuelles/<slug>/ — ein Fachbeitrag, eine URL, eine beantwortete Frage.
 
@@ -2189,8 +2291,10 @@ def beitrag_seite(request, slug):
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag,
         "thema": _leistung_daten(thema, "de") if thema else None,
-        "weitere": [_beitrag_daten(b) for b in beitraege.BEITRAEGE
-                    if b["slug"] != slug][:3],
+        # V2: zuerst die Beiträge zum selben Thema, danach mit den neuesten
+        # aufgefüllt. Vorher standen hier immer dieselben drei — die Beiträge
+        # weiter hinten in der Liste bekamen dadurch nie einen eingehenden Link.
+        "weitere": _weitere_beitraege(slug, eintrag.get("thema")),
         "structured_data": _seiten_schema(
             c, "de", service=artikel,
             breadcrumb=_breadcrumb(base, [

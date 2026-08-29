@@ -825,6 +825,44 @@ Die Varianten stehen in content.json (T3).
       </div>
     </div>
   </section>
+  <!-- ── VERTEILERBLOCK: Beitraege + Werkzeuge (V4) ─────────────────────────
+       Die Startseite ist die staerkste Seite der Domain; was von hier
+       verlinkt wird, bekommt Gewicht. Deshalb stehen hier die zwei
+       meistgesuchten Fragen und die drei Werkzeuge - und nicht ein
+       "mehr erfahren" auf eine weitere Uebersichtsseite. -->
+  <section class="section wt-sec" id="wissen" aria-labelledby="wt-title">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <span class="eyebrow"><span class="dot"></span>{{ t.wissen.eyebrow|safe }}</span>
+        <h2 class="section-t" id="wt-title">{{ t.wissen.h|safe }}</h2>
+        <p class="section-lead">{{ t.wissen.lead|safe }}</p>
+      </header>
+
+      <div class="wt-grid">
+        {% for b in wissen_teaser.beitraege %}
+        <a class="wt-beitrag spot" href="{{ b.url }}" data-spot data-reveal>
+          <span class="wt-typ">{{ b.lesezeit }} Min. Lesezeit</span>
+          <h3 class="wt-h">{{ b.titel|safe }}</h3>
+          <p class="wt-t">{{ b.antwort|safe|truncatewords:32 }}</p>
+        </a>
+        {% endfor %}
+
+        <div class="wt-werkzeuge" data-reveal>
+          {% for w in wissen_teaser.werkzeuge %}
+          <a class="wt-wz" href="{{ w.url }}">
+            <span class="wt-wz-ic" aria-hidden="true">{% include 'icons.html' with name=w.icon %}</span>
+            <span>
+              <strong>{% if w.schluessel == 'rechner' %}{{ t.wissen.rechner_h|safe }}{% elif w.schluessel == 'selbsttest' %}{{ t.wissen.selbsttest_h|safe }}{% else %}{{ t.wissen.checklisten_h|safe }}{% endif %}</strong>
+              <span>{% if w.schluessel == 'rechner' %}{{ t.wissen.rechner_t|safe }}{% elif w.schluessel == 'selbsttest' %}{{ t.wissen.selbsttest_t|safe }}{% else %}{{ t.wissen.checklisten_t|safe }}{% endif %}</span>
+            </span>
+          </a>
+          {% endfor %}
+          <p class="lk-alle"><a href="{% url 'aktuelles' %}">{{ t.wissen.alle|safe }}</a> · <a href="{% url 'wissen' %}">Glossar</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── FAQ (GEO: sichtbare Antworten + FAQPage-Schema für KI-Antwortmaschinen) ── -->
   <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="wrap">

@@ -447,6 +447,8 @@ PACK = {
         "partner_label": "Statut de partener",
     },
     "seite": {
+        "passt_dazu_h": "Se potrivește aici",
+        "passt_dazu_t": "Articole, comparații și termeni exact pe această temă — scrise pentru firme aflate în fața aceleiași decizii.",
         "regionen_titel": "Regiuni",
         "regionen_h1": "Unde venim la fața locului — și unde lucrăm de la distanță",
         "regionen_meta_titel": "Servicii IT în Austria Superioară și Salzburg | WVM-IT",
@@ -733,6 +735,18 @@ PACK = {
             "sichtbar": {"name": "Mai multe cereri",
                          "sub": "Asistență SEO curentă plus Google Ads, configurate și administrate."},
         },
+    },
+    "wissen": {
+        "eyebrow": "De citit mai departe",
+        "h": "Răspunsuri înainte să întrebați",
+        "lead": "Cele două întrebări care ni se pun cel mai des — și trei instrumente care vă ajută fără o discuție. Totul liber accesibil, fără formular înainte.",
+        "rechner_h": "Calculator de costuri",
+        "rechner_t": "Introduceți stațiile și serverele, vedeți totalul lunar și anual.",
+        "selbsttest_h": "Autotest de securitate",
+        "selbsttest_t": "Zece întrebări, rezultat imediat, fără adresă de e-mail.",
+        "checklisten_h": "Liste de verificare",
+        "checklisten_t": "Schimbarea furnizorului, stație nouă, verificarea anuală.",
+        "alle": "Toate articolele",
     },
     "hub": {
         "titel": "Servicii: IT, web și tehnică | WVM-IT",

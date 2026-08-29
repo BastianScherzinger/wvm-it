@@ -2161,3 +2161,50 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   details>summary{list-style:none}
   details .faq-a{display:block!important}
 }
+
+/* ── „Passt dazu"-Block (docs/SEO-AUSBAU-3.md, V1/V2) ─────────────────────────
+   Eine Liste, keine Kachelwand: Diese Verweise sind Lesestoff, keine Angebote,
+   und sollen die Leistungskarten darunter nicht optisch verdrängen. */
+.sec-head-links{margin-bottom:20px}
+.pd-liste{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+.pd-item a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:12px;
+  background:var(--surface);text-decoration:none;color:inherit;height:100%;
+  transition:border-color .2s var(--ease)}
+.pd-item a:hover,.pd-item a:focus-visible{border-color:var(--accent)}
+.pd-item a:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);
+  outline-offset:3px}
+.pd-typ{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent-ink);margin-bottom:7px}
+.pd-h{display:block;font-family:"Space Grotesk","Inter",sans-serif;font-size:15.5px;
+  line-height:1.4;margin-bottom:6px}
+.pd-t{display:block;font-size:13.5px;line-height:1.65;color:var(--ink-soft)}
+
+/* ── Verteilerblock der Startseite (docs/SEO-AUSBAU-3.md, V4) ─────────────────
+   Zwei Beiträge groß, drei Werkzeuge als Spalte daneben: Die Beiträge tragen
+   den Inhalt, die Werkzeuge sind der Weg zur eigenen Zahl. */
+.wt-grid{display:grid;grid-template-columns:1fr 1fr .9fr;gap:16px;margin-top:34px;align-items:start}
+.wt-beitrag{display:block;padding:26px 24px;border-radius:18px;border:1px solid var(--line);
+  background:var(--surface);text-decoration:none;color:inherit;box-shadow:var(--shadow);
+  transition:transform .22s var(--ease),border-color .22s var(--ease)}
+.wt-beitrag:hover,.wt-beitrag:focus-visible{transform:translateY(-3px);border-color:var(--accent)}
+.wt-beitrag:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);
+  outline-offset:3px}
+.wt-typ{display:block;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--accent-ink);margin-bottom:10px}
+.wt-h{font-size:19px;margin:0 0 10px;line-height:1.32}
+.wt-t{font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin:0}
+.wt-werkzeuge{display:grid;gap:8px;align-content:start}
+.wt-wz{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:12px;
+  border:1px solid var(--line);background:var(--surface);text-decoration:none;color:inherit;
+  transition:border-color .18s var(--ease)}
+.wt-wz:hover,.wt-wz:focus-visible{border-color:var(--accent)}
+.wt-wz:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);
+  outline-offset:2px}
+.wt-wz strong{display:block;font-size:15px;margin-bottom:3px;
+  font-family:"Space Grotesk","Inter",sans-serif}
+.wt-wz span span{display:block;font-size:13px;line-height:1.6;color:var(--ink-soft)}
+.wt-wz-ic{flex:0 0 auto;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;
+  background:var(--accent-soft);color:var(--accent-ink)}
+.wt-wz-ic svg{width:18px;height:18px}
+@media (max-width:980px){ .wt-grid{grid-template-columns:1fr} }

@@ -236,6 +236,11 @@ class Command(BaseCommand):
         client = _client()
         geprueft = set()
         seiten = _seiten()
+        # V3: Wer verlinkt wen? Eine Seite, die nur in der Sitemap steht, findet
+        # Google zwar — sie bekommt aber kein Gewicht und wird als unwichtig
+        # eingestuft. Gezählt werden verschiedene QUELLSEITEN je Ziel, nicht
+        # Vorkommen: Zehn Links von derselben Seite sind ein Link.
+        eingehend = {}
         for pfad in seiten:
             antwort = client.get(pfad)
             if antwort.status_code != 200:
@@ -280,7 +285,11 @@ class Command(BaseCommand):
             # Interne Links duerfen nicht ins Leere zeigen. Ein toter Link im Silo
             # kostet mehr als jede Optimierung bringt.
             for ziel in set(re.findall(r'href="(/[^"#?]*)"', html)):
-                if ziel.startswith("/static/") or ziel in geprueft:
+                if ziel.startswith("/static/"):
+                    continue
+                if ziel != pfad:
+                    eingehend.setdefault(ziel, set()).add(pfad)
+                if ziel in geprueft:
                     continue
                 geprueft.add(ziel)
                 code = client.get(ziel).status_code
@@ -288,6 +297,32 @@ class Command(BaseCommand):
                     self.fehler.append(f"{pfad}: interner Link {ziel} antwortet mit {code}")
 
         self.stdout.write(f"Seiten geprüft ({len(seiten)} URLs).")
+        self._pruefe_verwaist(seiten, eingehend)
+
+    def _pruefe_verwaist(self, seiten, eingehend):
+        """V3 aus docs/SEO-AUSBAU-3.md: Welche Seite hat weniger als zwei
+        eingehende interne Links?
+
+        Solche Seiten findet Google nur über die Sitemap. Sie werden gecrawlt,
+        aber als unwichtig eingestuft — und genau das ist bei einer Seite, die
+        man extra geschrieben hat, die teuerste Art zu scheitern.
+
+        Es ist eine **Warnung**, kein Fehler: Es gibt begründete Einzelfälle
+        (etwa Rechtstexte, die bewusst nur im Footer stehen). Wer eine neue
+        Seite ergänzt und diese Warnung sieht, hat die Verlinkung vergessen."""
+        schwach = sorted(
+            (p for p in seiten
+             if len(eingehend.get(p, ())) < 2 and not p.startswith(("/en/", "/ro/"))),
+            key=lambda p: len(eingehend.get(p, ())))
+        for pfad in schwach:
+            anzahl = len(eingehend.get(pfad, ()))
+            self.warnungen.append(
+                f"{pfad}: nur {anzahl} eingehende interne Link{'s' if anzahl != 1 else ''} "
+                f"(empfohlen mindestens 2)")
+        gesamt = sum(1 for p in seiten if not p.startswith(("/en/", "/ro/")))
+        self.stdout.write(
+            f"Verlinkung geprüft ({gesamt} deutsche URLs, {len(schwach)} mit weniger "
+            f"als zwei eingehenden Links).")
 
     def _pruefe_formulare(self, pfad, html):
         formulare = re.findall(r"<form[^>]*data-anfrage.*?</form>", html, re.S)

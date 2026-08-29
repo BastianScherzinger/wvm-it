@@ -418,6 +418,8 @@ PACK = {
     },
     # ── Gerüst der Unterseiten (Beschriftungen, die auf jeder Seite gleich sind) ──
     "seite": {
+        "passt_dazu_h": "Passt dazu",
+        "passt_dazu_t": "Beiträge, Vergleiche und Begriffe zu genau diesem Thema — geschrieben für Betriebe, die vor derselben Entscheidung stehen.",
         "regionen_titel": "Regionen",
         "regionen_h1": "Wo wir vor Ort sind — und wo wir aus der Ferne arbeiten",
         "regionen_meta_titel": "IT-Service in Oberösterreich und Salzburg | WVM-IT",
@@ -723,6 +725,19 @@ PACK = {
             "sichtbar": {"name": "Mehr Anfragen bekommen",
                          "sub": "Laufende SEO-Betreuung plus Google Ads, eingerichtet und betreut."},
         },
+    },
+    # ── Verteilerblock der Startseite (docs/SEO-AUSBAU-3.md, V4) ─────────────
+    "wissen": {
+        "eyebrow": "Zum Nachlesen",
+        "h": "Antworten, bevor Sie fragen",
+        "lead": "Die zwei Fragen, die uns am häufigsten gestellt werden — und drei Werkzeuge, die Ihnen ohne Gespräch weiterhelfen. Alles frei zugänglich, ohne Formular davor.",
+        "rechner_h": "Kostenrechner",
+        "rechner_t": "Arbeitsplätze und Server eintragen, Monats- und Jahressumme sehen.",
+        "selbsttest_h": "Sicherheits-Selbsttest",
+        "selbsttest_t": "Zehn Fragen, Ergebnis sofort, ohne E-Mail-Abfrage.",
+        "checklisten_h": "Checklisten",
+        "checklisten_t": "Dienstleister wechseln, Arbeitsplatz einrichten, Jahrescheck.",
+        "alle": "Alle Fachbeiträge",
     },
     "hub": {
         "titel": "Leistungen: EDV, IT, Web und Technik | WVM-IT",

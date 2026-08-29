@@ -451,6 +451,8 @@ PACK = {
         "partner_label": "Partner status",
     },
     "seite": {
+        "passt_dazu_h": "Related reading",
+        "passt_dazu_t": "Articles, comparisons and terms on exactly this topic — written for businesses facing the same decision.",
         "regionen_titel": "Regions",
         "regionen_h1": "Where we come in person — and where we work remotely",
         "regionen_meta_titel": "IT services in Upper Austria and Salzburg | WVM-IT",
@@ -737,6 +739,18 @@ PACK = {
             "sichtbar": {"name": "Get more enquiries",
                          "sub": "Ongoing SEO support plus Google Ads, set up and managed."},
         },
+    },
+    "wissen": {
+        "eyebrow": "Further reading",
+        "h": "Answers before you ask",
+        "lead": "The two questions we are asked most often — and three tools that help without a conversation. All freely accessible, with no form in front.",
+        "rechner_h": "Cost calculator",
+        "rechner_t": "Enter workstations and servers, see the monthly and annual totals.",
+        "selbsttest_h": "Security self-test",
+        "selbsttest_t": "Ten questions, result immediately, no email address.",
+        "checklisten_h": "Checklists",
+        "checklisten_t": "Switch provider, set up a workstation, annual check.",
+        "alle": "All articles",
     },
     "hub": {
         "titel": "Services: IT, web and technology | WVM-IT",
