@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% comment %}Hub der Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3.4).{% endcomment %}
+{% block titel %}{{ vs.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ vs.desc|safe }}{% endblock %}
+{% block og_titel %}{{ vs.h1|safe }}{% endblock %}
+{% block og_beschreibung %}{{ vs.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ vs.h1|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ vs.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ vs.vergleiche_titel|safe }}</span>
+    </nav>
+    <h1>{{ vs.h1|safe }}</h1>
+    <p class="sp-kurz">{{ vs.kurz|safe }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="sp-intro" data-reveal>{{ vs.intro|safe }}</p>
+
+    <div class="rg-grid">
+      {% for v in vergleiche %}
+      <a class="rg-kachel spot" href="{{ v.url }}" data-spot data-reveal>
+        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=v.icon %}</span>
+        <span class="vg-paar">{{ v.a_h|safe }} <span aria-hidden="true">/</span> {{ v.b_h|safe }}</span>
+        <h2 class="rg-h">{{ v.nav|safe }}</h2>
+        <p class="rg-t">{{ v.desc|safe }}</p>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="lk-alle">
+      <a href="{% url 'rechner' %}">{{ t.rechner.h1|safe }}</a> ·
+      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
+      <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

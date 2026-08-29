@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% comment %}
+Eine Vergleichsseite (docs/SEO-AUSBAU-3.md, N3).
+
+Reihenfolge mit Absicht: Antwort, Tabelle, dann ZWEI gleich große Blöcke —
+„wann A passt" und „wann B passt". Der zweite Block ist der, der diese Seite
+von Werbung unterscheidet; er steht deshalb gleichberechtigt daneben und nicht
+kleingedruckt darunter.
+
+Die Tabelle liegt in einem eigenen Scroll-Behälter: Eine Tabelle mit drei
+Spalten und langen Zellen ist der häufigste Grund dafür, dass eine Seite auf
+dem Telefon seitlich wackelt.
+{% endcomment %}
+{% block titel %}{{ seite.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ seite.desc|safe }}{% endblock %}
+{% block og_titel %}{{ seite.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ seite.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ seite.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ seite.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<article class="sp">
+  <header class="sp-top on-dark">
+    <div class="wrap">
+      <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+        <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <a href="{% url 'vergleiche' %}">{{ vs.vergleiche_titel|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ seite.nav|safe }}</span>
+      </nav>
+      <h1>{{ seite.h1|safe }}</h1>
+      <p class="sp-kurz">{{ seite.kurz|safe }}</p>
+      <div class="vg-koepfe" aria-hidden="true">
+        <span class="vg-kopf vg-kopf-a">{{ seite.a_h|safe }}</span>
+        <span class="vg-gegen">/</span>
+        <span class="vg-kopf vg-kopf-b">{{ seite.b_h|safe }}</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap sp-wrap">
+      <p class="sp-intro" data-reveal>{{ seite.intro|safe }}</p>
+
+      <h2 class="sp-h2">{{ seite.tabelle_h|safe }}</h2>
+      <div class="vg-tab-wrap" tabindex="0" role="region" aria-label="{{ seite.tabelle_h|safe }}">
+        <table class="vg-tab">
+          <thead>
+            <tr>
+              <th scope="col">{{ vs.kriterium|safe }}</th>
+              <th scope="col">{{ seite.a_h|safe }}</th>
+              <th scope="col">{{ seite.b_h|safe }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for z in seite.tabelle %}
+            <tr>
+              <th scope="row">{{ z.k|safe }}</th>
+              <td>{{ z.a|safe }}</td>
+              <td>{{ z.b|safe }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="sp-fuss">{{ vs.tabelle_hinweis|safe }}</p>
+
+      {% comment %}Zwei gleich große Blöcke — siehe Kopf dieser Datei.{% endcomment %}
+      <div class="vg-zwei">
+        <div class="vg-karte vg-karte-a" data-reveal>
+          <h2>{{ seite.fuer_a_h|safe }}</h2>
+          <ul class="sp-liste sp-liste-check">
+            {% for z in seite.fuer_a %}<li>{% include 'icons.html' with name='check' %}<span>{{ z|safe }}</span></li>{% endfor %}
+          </ul>
+        </div>
+        <div class="vg-karte vg-karte-b" data-reveal>
+          <h2>{{ seite.fuer_b_h|safe }}</h2>
+          <ul class="sp-liste sp-liste-check">
+            {% for z in seite.fuer_b %}<li>{% include 'icons.html' with name='check' %}<span>{{ z|safe }}</span></li>{% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="sp-h2">{{ seite.rechnung_h|safe }}</h2>
+      <p class="sp-preis-text">{{ seite.rechnung_t|safe }}</p>
+      <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
+        <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+
+      {% if seite.rechner %}
+      <a class="kr-teaser" href="{% url 'rechner' %}" data-reveal>
+        <span class="kr-teaser-ic" aria-hidden="true">{% include 'icons.html' with name='gauge' %}</span>
+        <span>
+          <strong>{{ vs.rechner_h|safe }}</strong>
+          <span class="kr-teaser-t">{{ vs.rechner_t|safe }}</span>
+        </span>
+        <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      {% endif %}
+
+      <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
+      <div class="faq">
+        {% for f in seite.faq %}
+        <details class="faq-item"{% if forloop.first %} open{% endif %}>
+          <summary class="faq-q">
+            <span>{{ f.q|safe }}</span>
+            <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </summary>
+          <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+        </details>
+        {% endfor %}
+      </div>
+
+      {% include 'anfrage_karte.html' with bid=seite.quelle titel=seite.cta_h sub=seite.cta_t ph=vs.kriterium %}
+
+      <nav class="rg-weitere" aria-label="{{ vs.andere_h|safe }}">
+        <h2>{{ vs.andere_h|safe }}</h2>
+        <ul>
+          {% for v in andere %}<li><a href="{{ v.url }}">{{ v.nav|safe }}</a></li>{% endfor %}
+          {% for l in leistungen_liste %}<li><a href="{{ l.url }}">{{ l.nav|safe }}</a></li>{% endfor %}
+          <li><a href="{% url 'vergleiche' %}">{{ vs.alle|safe }}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</article>
+{% endblock %}

@@ -23,7 +23,7 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import beitraege, branchen, i18n, leistungen, regionen
+from . import beitraege, branchen, i18n, leistungen, regionen, vergleiche
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -1499,6 +1499,9 @@ def _seiten_pfade():
     pfade += [("/branchen/", "0.8", "monthly", True)]
     pfade += [(f"/branchen/{b['slug']}/", b["prio"], "monthly", True)
               for b in branchen.BRANCHEN]
+    pfade += [("/vergleich/", "0.7", "monthly", True)]
+    pfade += [(f"/vergleich/{v['slug']}/", v["prio"], "monthly", True)
+              for v in vergleiche.VERGLEICHE]
     pfade += [("/it-service/", "0.7", "monthly", True)]
     pfade += [(f"/it-service/{r['slug']}/", r["prio"], "monthly", True)
               for r in regionen.REGIONEN]
@@ -1698,6 +1701,72 @@ def branche_seite(request, slug):
             c, lang, service=service, faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
+                (seite.get("nav", slug), pfad)])),
+    })
+
+
+# ══ Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3) ═══════════════════════════════
+# Eine andere Suchabsicht als Leistung, Branche oder Ort: Hier steht jemand vor
+# einer Entscheidung und hat noch keinen Anbieter gewählt. Die Regel im Kopf von
+# landing/vergleiche.py gilt für jede dieser Seiten — ein Vergleich, der immer
+# zum eigenen Angebot führt, ist keiner.
+
+def _vergleich_daten(eintrag, lang):
+    texte = i18n.get_pack(lang).get("vergleiche", {}).get(eintrag["slug"], {})
+    return dict(
+        eintrag,
+        url=reverse("vergleich", kwargs={"slug": eintrag["slug"]}),
+        **texte,
+    )
+
+
+def vergleiche_hub(request):
+    """/vergleich/ — Einstieg in die Gegenüberstellungen."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    vs = pack.get("vergleiche_seite", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    return render(request, "vergleiche.html", {
+        "c": c, "vs": vs,
+        "vergleiche": [_vergleich_daten(v, lang) for v in vergleiche.VERGLEICHE],
+        "structured_data": _seiten_schema(
+            c, lang, breadcrumb=_breadcrumb(base, [
+                (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche"))])),
+    })
+
+
+def vergleich_seite(request, slug):
+    """/vergleich/<slug>/ — eine Entscheidung, zwei Wege, ein Rechenweg.
+
+    Das Schema meldet hier bewusst KEIN `Service` und kein `Offer`: Die Seite
+    verkauft nichts, sie stellt gegenüber. Sie bekommt stattdessen die FAQPage
+    und die Brotkrume — das ist auch das, was Antwortmaschinen davon brauchen."""
+    eintrag = vergleiche.NACH_SLUG.get(slug)
+    if not eintrag:
+        raise Http404(slug)
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    vs = pack.get("vergleiche_seite", {})
+    seite = _vergleich_daten(eintrag, lang)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = seite["url"]
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
+    return render(request, "vergleich.html", {
+        "c": c, "vs": vs, "seite": seite, "anfrage_ok": anfrage_ok,
+        "leistungen_liste": [_leistung_daten(leistungen.NACH_SLUG[s], lang)
+                             for s in eintrag.get("leistungen", [])
+                             if s in leistungen.NACH_SLUG],
+        "andere": [_vergleich_daten(v, lang) for v in vergleiche.VERGLEICHE
+                   if v["slug"] != slug],
+        "preis_stand": _preis_stand(lang),
+        "structured_data": _seiten_schema(
+            c, lang, faq=seite.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [
+                (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche")),
                 (seite.get("nav", slug), pfad)])),
     })
 
@@ -2134,6 +2203,21 @@ def _llms_branchen(base, lang):
     return zeilen
 
 
+def _llms_vergleiche(base, lang):
+    """Zeile je Vergleichsseite: die Entscheidungsfrage und die Antwort darauf.
+
+    Vergleiche sind das Format, das Antwortmaschinen am häufigsten zitieren, weil
+    sie eine Frage vollständig und strukturiert beantworten. Deshalb steht hier
+    der ganze Kurz-Absatz und nicht nur der erste Satz."""
+    texte = i18n.get_pack(lang).get("vergleiche", {})
+    zeilen = []
+    for eintrag in vergleiche.VERGLEICHE:
+        seite = texte.get(eintrag["slug"], {})
+        zeilen.append(f"- [{seite.get('h1', eintrag['slug'])}]"
+                      f"({base}/vergleich/{eintrag['slug']}/): {seite.get('kurz', '')}")
+    return zeilen
+
+
 def _llms_beitraege(base):
     """Zeile je Fachbeitrag: die Frage als Titel, die Antwort als Beschreibung.
 
@@ -2174,6 +2258,8 @@ def llms_txt(request):
         f"- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen, Richtpreis sofort.",
         f"- [Branchen]({base}/branchen/): was in Kanzleien, Handwerk, Praxen, Hotellerie, "
         "Produktion und Vereinen technisch anders ist.",
+        f"- [Vergleiche]({base}/vergleich/): Betreuung oder Stunden, Server oder Cloud, "
+        "Microsoft 365 oder Google Workspace — mit Rechenweg.",
         f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
         f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
         "\n## Leistungen",
@@ -2191,6 +2277,8 @@ def llms_txt(request):
         "- Gebäudeautomation, Konferenz- und Veranstaltungstechnik: projektbezogen nach Bestandsaufnahme.",
         "\n## Branchen (gleiche Leistung, anderer Zuschnitt)",
         *_llms_branchen(base, "de"),
+        "\n## Entscheidungen im Vergleich",
+        *_llms_vergleiche(base, "de"),
         "\n## Regionen",
         f"- Sitz: {_adresszeile(c)}, Österreich. Vor Ort im Umkreis von rund einer Fahrstunde.",
         f"- [Österreich und Deutschland]({base}/leistungen/edv-it-betreuung/): Fernwartung, Überwachung, "
@@ -2264,6 +2352,28 @@ def llms_full_txt(request):
         aus += [f"- {sauber(z)}" for z in b.get("leistungen", [])]
         aus.append(f"\n**{sauber(b.get('preis_h'))}**\n{sauber(b.get('preis_t'))}")
         for f in b.get("faq", []):
+            aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+
+    # Vergleiche: das Format, das Antwortmaschinen am häufigsten zitieren. In der
+    # Langfassung steht die Tabelle als Aufzählung — eine HTML-Tabelle ist für ein
+    # Sprachmodell schwerer zu lesen als „Kriterium: A / B".
+    vtexte = pack.get("vergleiche", {})
+    aus.append("\n\n## Entscheidungen im Vergleich")
+    for eintrag in vergleiche.VERGLEICHE:
+        v = vtexte.get(eintrag["slug"], {})
+        aus.append(f"\n### {sauber(v.get('h1'))}")
+        aus.append(f"URL: {base}/vergleich/{eintrag['slug']}/")
+        aus.append(f"\n{sauber(v.get('kurz'))}")
+        aus.append(f"\n**{sauber(v.get('tabelle_h'))}** "
+                   f"({sauber(v.get('a_h'))} / {sauber(v.get('b_h'))})")
+        aus += [f"- {sauber(z.get('k'))}: {sauber(z.get('a'))} / {sauber(z.get('b'))}"
+                for z in v.get("tabelle", [])]
+        aus.append(f"\n**{sauber(v.get('fuer_a_h'))}**")
+        aus += [f"- {sauber(z)}" for z in v.get("fuer_a", [])]
+        aus.append(f"\n**{sauber(v.get('fuer_b_h'))}**")
+        aus += [f"- {sauber(z)}" for z in v.get("fuer_b", [])]
+        aus.append(f"\n**{sauber(v.get('rechnung_h'))}**\n{sauber(v.get('rechnung_t'))}")
+        for f in v.get("faq", []):
             aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
 
     # Einsatzgebiet: Die Langfassung trägt hier die Fakten, die eine KI für eine
@@ -2590,6 +2700,10 @@ def _such_index(lang):
         daten = _branche_daten(eintrag, lang)
         eintraege.append((daten["url"], daten.get("h1", ""), daten.get("kurz", ""),
                           pack["branchen_seite"]["branchen_titel"]))
+    for eintrag in vergleiche.VERGLEICHE:
+        daten = _vergleich_daten(eintrag, lang)
+        eintraege.append((daten["url"], daten.get("h1", ""), daten.get("kurz", ""),
+                          pack["vergleiche_seite"]["vergleiche_titel"]))
     for eintrag in regionen.REGIONEN:
         daten = _region_daten(eintrag, lang)
         eintraege.append((reverse("region", kwargs={"slug": eintrag["slug"]}),
@@ -2611,6 +2725,9 @@ def _such_index(lang):
          pack["seite"]["leistungen"]),
         (reverse("branchen"), bs.get("h1", ""), bs.get("kurz", ""),
          bs.get("branchen_titel", "")),
+        (reverse("vergleiche"), pack["vergleiche_seite"].get("h1", ""),
+         pack["vergleiche_seite"].get("kurz", ""),
+         pack["vergleiche_seite"].get("vergleiche_titel", "")),
         (reverse("kosten"), ks.get("h1", ""), ks.get("kurz", ""),
          pack["nav"]["preise"]),
         (reverse("rechner"), pack.get("rechner", {}).get("h1", ""),

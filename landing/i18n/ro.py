@@ -4,11 +4,13 @@
 from .seiten_ro import SEITEN
 from .regionen_ro import REGIONEN
 from .branchen_ro import BRANCHEN
+from .vergleiche_ro import VERGLEICHE
 
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
     "branchen": BRANCHEN,
+    "vergleiche": VERGLEICHE,
     "meta": {
         "html_lang": "ro",
         "locale": "ro_RO",
@@ -489,6 +491,21 @@ PACK = {
         "andere_h": "Alte domenii",
         "alle": "Vedeți toate domeniile",
         "software_hinweis": "Software-ul specializat rămâne la producător — noi ne ocupăm de tot ce este dedesubt.",
+    },
+    "vergleiche_seite": {
+        "titel": "Decizii IT în comparație | WVM-IT",
+        "desc": "Contract sau pe ore, server sau cloud, Microsoft 365 sau Google: comparațiile care preced alegerea unui furnizor.",
+        "h1": "Deciziile care preced alegerea unui furnizor",
+        "kurz": "Înainte ca cineva să caute un furnizor IT, în cameră stă de obicei o altă întrebare: contract de asistență sau facturare pe ore? Server în firmă sau cloud? Microsoft 365 sau Google Workspace? Pe aceste pagini se află comparațiile cu calculul la vedere — inclusiv cazurile în care răspunsul este împotriva ofertei noastre.",
+        "intro": "Fiecare dintre aceste pagini spune explicit când cealaltă variantă este cea corectă. O comparație care duce mereu la propria ofertă nu este o comparație, ci reclamă cu tabel.",
+        "vergleiche_titel": "Comparații",
+        "tabelle_hinweis": "Tabelul se derulează lateral.",
+        "kriterium": "Criteriu",
+        "andere_h": "Alte comparații",
+        "alle": "Vedeți toate comparațiile",
+        "leistungen_h": "Servicii potrivite",
+        "rechner_h": "Calculați cu cifrele dumneavoastră",
+        "rechner_t": "În calculatorul de costuri introduceți stațiile de lucru, serverele și backupul și vedeți totalul lunar și anual — calculat din aceeași listă de prețuri ca aici.",
     },
     "hub": {
         "titel": "Servicii: IT, web și tehnică | WVM-IT",

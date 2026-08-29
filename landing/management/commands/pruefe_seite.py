@@ -138,6 +138,7 @@ class Command(BaseCommand):
             self.fehler.append(f"Unterschiedlich viele Einträge: {eintrag}")
         self.stdout.write(f"Seitentexte geprüft ({len(_l.NACH_SLUG)} Leistungen).")
         self._pruefe_listen("branchen", ("anders", "leistungen", "faq"))
+        self._pruefe_listen("vergleiche", ("tabelle", "fuer_a", "fuer_b", "faq"))
         self._pruefe_listen("regionen", ("vor_ort", "faq"))
 
     def _pruefe_listen(self, schluessel, felder):

@@ -1852,3 +1852,41 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   background:var(--accent-soft);color:var(--accent-ink)}
 .kr-teaser-ic svg{width:22px;height:22px}
 .kr-teaser .ic-arrow{flex:0 0 auto;width:20px;height:20px;margin-left:auto;color:var(--accent-ink)}
+
+/* ============================================================================
+   VERGLEICHSSEITEN  (docs/SEO-AUSBAU-3.md, N3)
+   Die beiden "wann passt was"-Blöcke sind bewusst gleich groß und gleich
+   gestaltet — der zweite ist der, der aus Werbung einen Vergleich macht.
+   ========================================================================== */
+.vg-koepfe{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px}
+.vg-kopf{display:inline-block;padding:7px 14px;border-radius:999px;font-size:13.5px;
+  border:1px solid var(--line-2);color:var(--ink)}
+.vg-kopf-a{border-color:color-mix(in srgb,var(--accent) 60%,transparent)}
+.vg-gegen{color:var(--ink-dim);font-size:14px}
+.vg-paar{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--accent-ink);margin:10px 0 8px}
+
+/* Dreispaltige Tabelle: eigener Scroll-Behälter, damit die Seite selbst nie
+   seitlich wackelt (dieselbe Regel wie bei der Preistabelle). */
+.vg-tab-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface);
+  margin:0 0 10px;-webkit-overflow-scrolling:touch}
+.vg-tab-wrap:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.vg-tab{width:100%;min-width:640px;border-collapse:collapse;font-size:14.5px}
+.vg-tab thead th{text-align:left;font-family:"Inter",sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:.03em;text-transform:uppercase;color:var(--ink-dim);
+  padding:14px 16px;border-bottom:1px solid var(--line-2);background:var(--surface-2)}
+.vg-tab tbody th{text-align:left;font-family:"Inter",sans-serif;font-weight:600;color:var(--ink);
+  padding:14px 16px;width:26%;vertical-align:top}
+.vg-tab td{padding:14px 16px;color:var(--ink-soft);line-height:1.6;vertical-align:top;width:37%}
+.vg-tab tbody tr+tr th,.vg-tab tbody tr+tr td{border-top:1px solid var(--line)}
+.vg-tab tbody td:first-of-type{background:color-mix(in srgb,var(--accent) 4%,transparent)}
+
+.vg-zwei{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:34px 0}
+.vg-karte{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:var(--surface)}
+.vg-karte h2{font-size:19px;margin:0 0 16px;line-height:1.3}
+.vg-karte-a{border-top:3px solid var(--accent)}
+.vg-karte-b{border-top:3px solid var(--line-2)}
+
+@media (max-width:760px){
+  .vg-zwei{grid-template-columns:1fr;gap:16px}
+}

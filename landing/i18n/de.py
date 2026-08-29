@@ -8,11 +8,13 @@ Die Texte der Leistungsseiten stehen wegen ihres Umfangs in einer eigenen Datei
 from .seiten_de import SEITEN
 from .regionen_de import REGIONEN
 from .branchen_de import BRANCHEN
+from .vergleiche_de import VERGLEICHE
 
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
     "branchen": BRANCHEN,
+    "vergleiche": VERGLEICHE,
     "meta": {
         "html_lang": "de-AT",
         "locale": "de_AT",
@@ -463,6 +465,22 @@ PACK = {
         "andere_h": "Andere Branchen",
         "alle": "Alle Branchen ansehen",
         "software_hinweis": "Fachsoftware bleibt beim Hersteller — wir betreuen alles darunter.",
+    },
+    # ── Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3) ──────────────────────────
+    "vergleiche_seite": {
+        "titel": "IT-Entscheidungen im Vergleich | WVM-IT",
+        "desc": "Betreuung oder Stunden, Server oder Cloud, Microsoft 365 oder Google: die Gegenüberstellungen, die vor der Anbieterwahl anstehen.",
+        "h1": "Die Entscheidungen, die vor der Anbieterwahl stehen",
+        "kurz": "Bevor jemand einen IT-Dienstleister sucht, steht meistens eine andere Frage im Raum: Betreuung im Vertrag oder Abrechnung nach Stunden? Server im Haus oder Cloud? Microsoft 365 oder Google Workspace? Auf diesen Seiten stehen die Gegenüberstellungen mit dem Rechenweg — einschließlich der Fälle, in denen die Antwort gegen unser eigenes Angebot ausfällt.",
+        "intro": "Jede dieser Seiten nennt ausdrücklich, wann die andere Variante die richtige ist. Ein Vergleich, der immer zum eigenen Angebot führt, ist keiner — er ist Werbung mit Tabelle.",
+        "vergleiche_titel": "Vergleiche",
+        "tabelle_hinweis": "Die Tabelle ist quer scrollbar.",
+        "kriterium": "Kriterium",
+        "andere_h": "Weitere Vergleiche",
+        "alle": "Alle Vergleiche ansehen",
+        "leistungen_h": "Passende Leistungen",
+        "rechner_h": "Mit den eigenen Zahlen rechnen",
+        "rechner_t": "Im Kostenrechner tragen Sie Arbeitsplätze, Server und Datensicherung ein und sehen die Monats- und Jahressumme — gerechnet aus derselben Preisliste wie hier.",
     },
     "hub": {
         "titel": "Leistungen: EDV, IT, Web und Technik | WVM-IT",

@@ -8,11 +8,13 @@ here under the key "seiten".
 from .seiten_en import SEITEN
 from .regionen_en import REGIONEN
 from .branchen_en import BRANCHEN
+from .vergleiche_en import VERGLEICHE
 
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
     "branchen": BRANCHEN,
+    "vergleiche": VERGLEICHE,
     "meta": {
         "html_lang": "en",
         "locale": "en_US",
@@ -493,6 +495,21 @@ PACK = {
         "andere_h": "Other industries",
         "alle": "See all industries",
         "software_hinweis": "Specialist software stays with its vendor — we look after everything underneath.",
+    },
+    "vergleiche_seite": {
+        "titel": "IT decisions compared | WVM-IT",
+        "desc": "Contract or hourly, server or cloud, Microsoft 365 or Google: the comparisons that come before choosing a provider.",
+        "h1": "The decisions that come before choosing a provider",
+        "kurz": "Before anyone looks for an IT provider, a different question is usually on the table: support contract or hourly billing? Server on site or cloud? Microsoft 365 or Google Workspace? These pages set out the comparisons with the arithmetic — including the cases where the answer goes against our own offering.",
+        "intro": "Every one of these pages says explicitly when the other option is the right one. A comparison that always leads to your own offering is not a comparison; it is advertising with a table.",
+        "vergleiche_titel": "Comparisons",
+        "tabelle_hinweis": "The table scrolls sideways.",
+        "kriterium": "Criterion",
+        "andere_h": "Further comparisons",
+        "alle": "See all comparisons",
+        "leistungen_h": "Related services",
+        "rechner_h": "Run it with your own figures",
+        "rechner_t": "In the cost calculator you enter workstations, servers and backups and see the monthly and annual totals — calculated from the same price list as here.",
     },
     "hub": {
         "titel": "Services: IT, web and technology | WVM-IT",

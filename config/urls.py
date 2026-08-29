@@ -44,6 +44,11 @@ urlpatterns += i18n_patterns(
     # sind drei verschiedene Suchabsichten und duerfen sich kein Muster teilen.
     path("branchen/", views.branchen_hub, name="branchen"),
     path("branchen/<slug:slug>/", views.branche_seite, name="branche"),
+    # ── Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3) ─────────────────────────
+    # Eigene Suchabsicht: Jemand steht vor einer Entscheidung und hat noch
+    # keinen Anbieter gewaehlt. Deshalb kein Unterpfad von /leistungen/.
+    path("vergleich/", views.vergleiche_hub, name="vergleiche"),
+    path("vergleich/<slug:slug>/", views.vergleich_seite, name="vergleich"),
     # ── Regionen (docs/AUSBAU-2026-08.md, P6) ───────────────────────────────
     # Erst seit es einen echten Firmensitz gibt; ohne den waeren das
     # Doorway-Pages. Eigener Pfad statt /leistungen/<ort>/, damit Leistung

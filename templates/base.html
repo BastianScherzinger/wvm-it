@@ -74,6 +74,7 @@
       <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
         <a href="{% url 'leistungen' %}">{{ t.nav.leistungen|safe }}</a>
         <a href="{% url 'branchen' %}">{{ t.branchen_seite.branchen_titel|safe }}</a>
+        <a href="{% url 'vergleiche' %}">{{ t.vergleiche_seite.vergleiche_titel|safe }}</a>
         <a href="{% url 'kosten' %}">{{ t.nav.preise|safe }}</a>
         <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
         <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
@@ -164,6 +165,8 @@
         <a href="{% url 'kosten' %}">{{ t.footer.u_preise|safe }}</a>
         <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
         <a href="{% url 'aktuelles' %}">Aktuelles</a>
+        <a href="{% url 'rechner' %}">{{ t.rechner.h1|safe }}</a>
+        <a href="{% url 'vergleiche' %}">{{ t.vergleiche_seite.vergleiche_titel|safe }}</a>
         <a href="{% url 'index' %}#faq">{{ t.footer.u_faq|safe }}</a>
         <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
         {% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}
