@@ -3,8 +3,10 @@
 > **Hier anfangen.** Der Relaunch ist seit dem 28.08.2026 abends **live** auf
 > https://www.wvm-it.tech — gemergt, gepusht, deployt, per IndexNow gemeldet.
 >
-> **Der nächste Schritt ist Search Console** (Sitemap neu einreichen, neue URLs zur
-> Indexierung anmelden, §2b) und danach Block **S-G/S-T** aus `SEO-PLAN.md`.
+> **Dieses Dokument beschreibt den Relaunch vom 28.08.2026 und ist damit
+> abgeschlossen.** Was danach kam — Firmensitz, Regionsseiten, Fachbeiträge,
+> Formular-Schutz, SEO-Konzept —, steht in **`AUSBAU-2026-08.md`**; dort auch die
+> Liste, was noch offen ist und bei wem. Die Seite umfasst inzwischen **87 URLs**.
 
 ---
 

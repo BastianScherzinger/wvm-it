@@ -9,18 +9,25 @@
 > **Läuft parallel zu:** `UMBAU-PLAN.md` — Block S-F startet, sobald Phase 4 des Umbaus steht
 > **Eigene Skills:** `seo-audit` (Befund) · `seo-geo` (Umsetzung)
 >
-> **Stand 28.08.2026:** Elf Aufgaben dieses Plans sind erledigt
-> (F1, F2, F4, F5, F6, F7, F10, F11, G3, G4, G5). Die sechs URLs sind bei Google zur
-> Neu-Indexierung angemeldet und per IndexNow bei Bing, Yandex und Seznam gemeldet.
-> Die Nullmessung liegt in `docs/seo/BASELINE.md` , **7 Klicks und 54 Impressionen in
-> drei Monaten, ausschließlich über den Markennamen.**
-> **Stand 28.08.2026 (live):** Der Relaunch ist deployt — 57 URLs antworten öffentlich,
-> Sitemap und IndexNow (HTTP 200) sind auf dem neuen Bestand. **Noch nicht bei Google
-> angemeldet**: Search Console (Sitemap + neue URLs) ist der nächste manuelle Schritt.
-> **Stand 28.08.2026 (Relaunch):** Block S-A ist abgearbeitet , aus 2 rankbaren Seiten
-> sind 19 geworden (57 mit EN/RO). Der Schwerpunkt liegt jetzt auf EDV/IT statt auf
-> Webdesign; die Begründung steht in `docs/RELAUNCH-PLAN.md`. Offen bleiben F3
-> (echte Anschrift), F8, F12 und die Blöcke S-G und S-T.
+> **Stand 29.08.2026 — der Ausbau ist live.** **87 URLs** sind öffentlich; Sitemap und
+> IndexNow (87 URLs, HTTP 200) tragen den vollen Bestand.
+>
+> **37 von 48 Aufgaben sind erledigt**, eine begonnen, zehn offen. Seit dem Relaunch dazugekommen:
+> der **Firmensitz Lenzing** (F3) — der alles Weitere erst möglich machte —, **sieben
+> Regionsseiten** (A16), **fünf Fachbeiträge** (T1), die Aufnahme aller neuen Seiten in
+> `llms.txt`/`llms-full.txt` (G9) sowie der Formular-Schutz mit eigenem Prüfbefehl.
+>
+> Bei Google sind vier Kernseiten zur Indexierung angemeldet, dann war das Tageskontingent
+> erschöpft; die übrigen folgen mit rund zehn pro Tag.
+>
+> **Die Ausgangslage bleibt der Maßstab** (`docs/seo/BASELINE.md`): 7 Klicks, 54
+> Impressionen, **drei Suchanfragen — alle über den Markennamen**. Nächste Messung Ende
+> September, gleiche Property, gleicher Zeitraum.
+>
+> **Was noch offen ist, liegt größtenteils außerhalb des Codes:** das
+> Google-Unternehmensprofil (T4), Bewertungen (T5), Verzeichniseinträge (T6), Fallstudien
+> (T3) und die fehlenden SPF-/DMARC-Einträge. Details und Zuständigkeiten in
+> `AUSBAU-2026-08.md`, Marktanalyse und Reihenfolge in `SEO-KONZEPT-DACH.md`.
 
 ---
 
@@ -104,16 +111,17 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 
 - [x] **F1 — Nullmessung steht** *(28.08.2026, `docs/seo/BASELINE.md`)*. Drei Monate: **7 Klicks, 54 Impressionen, CTR 13 %, Ø Position 13,9.** Entscheidender Befund: Es gab **drei** Suchanfragen, alle über den Markennamen (`wvm`, `wwwwvm`, `vm it`) , **null** Impressionen für irgendeine Leistung. Für Menschen mit Kaufabsicht existiert die Seite bei Google bisher nicht. Index: 6 von 6 Seiten, 0 Fehler, keine manuellen Maßnahmen. Bing: 6 Ergebnisse. Nächste Messung Ende September, gleiche Property, gleicher Zeitraum.
 - [x] **F2 — Duplikat-Hosts geschlossen** *(28.08.2026)*. Befund: `wvm-it-shop.up.railway.app` lieferte die Seite mit HTTP 200 und erlaubtem Crawling aus , ein vollständiger Zweitbestand. `KanonischerHostMiddleware` leitet jetzt jeden Neben-Host per **301** auf `www.wvm-it.tech` um (Pfad und Query bleiben erhalten), `wvm-it.tech` ohne `www` ebenso. `/health` ist ausgenommen, damit Railways Healthcheck weiter greift. Ziel kommt aus `KANONISCHER_HOST` oder ersatzweise aus `content.json`.
-- [ ] **F3 — Firmensitz und Adresse klären.** Echte Anschrift in `content.json` (heute Platzhalter in Impressum und Datenschutz), `PostalAddress` im Schema vervollständigen, Impressum/Datenschutz nachziehen. Ohne das kein Local-SEO und kein Unternehmensprofil
+- [x] **F3 — Firmensitz eingetragen** *(29.08.2026)*. **Waldstraße 19/1, 4860 Lenzing** steht jetzt an neun Stellen gleichzeitig: `content.json`, Impressum (die beiden Platzhalter sind raus, stattdessen Gewerbebehörde BH Vöcklabruck und die anwendbare Rechtsvorschrift), Footer-NAP auf **jeder** Seite, Kontaktseite, Vertrauensblock der Startseite, `PostalAddress` im Schema, `llms.txt`, `llms-full.txt` und die E-Mail-Signaturen. Damit ist Local-SEO überhaupt erst möglich — und A16 neu zu entscheiden. **Offen bleiben UID und Kammer** (Felder vorbereitet, Florin muss sie nennen)
 - [x] **F4 — Titel und Descriptions gekürzt** *(28.08.2026)*. Vorher: Titel bis 70 Zeichen, Descriptions bis 205. Jetzt alle sechs URLs im Rahmen (DE 53/154, EN 44/140, RO 37/145), Hauptkeyword vorne, Zahl in der Description. `pruefe_seite` meldet die Längen ab jetzt automatisch.
 - [x] **F5 — Preis-Konsistenz abgesichert** *(28.08.2026)*. `pruefe_seite` liest jede Zahl vor einem Euro-Zeichen aus der gerenderten Startseite und vergleicht sie mit `ANGEBOT_GROUPS`. Dabei aufgefallen und behoben: Das Betreuungspaket warb mit 89 €/Monat, der Konfigurator rechnete 15 + 39 = 54 €. Die Paketpreise kommen jetzt aus derselben Quelle. **Offen:** `llms.txt` wird noch nicht mitgeprüft.
 - [x] **F6 — Prüfbefehl steht** *(28.08.2026)*: `python manage.py pruefe_seite` prüft für alle sechs URLs genau ein `<h1>`, Titel- und Description-Länge, gültiges JSON-LD, Alt-Texte, hreflang, dazu Sprachpakete, Preise und die Formulare (CSRF, Honeypot, Quelle). Rückgabewert 1 bei Fehlern, damit ein Deploy daran scheitern kann. **Erweitern in Block S-A:** interne Links und 404-Prüfung der Sitemap, sobald es mehr als sechs URLs gibt.
 - [x] **F7 — Sprachschlüssel-Test läuft** *(28.08.2026)*, Teil von `pruefe_seite`: 739 Schlüssel je Sprache, gleiche FAQ-Anzahl, Meldung bei Schlüsseln, die eine Sprache von DE erbt.
-- [ ] **F8 — hreflang-Entscheidung dokumentieren.** Vorerst ein `de` für AT und DE (die Inhalte sind identisch). Erst wenn es eigene AT-/DE-Inhalte gibt, auf `de-AT`/`de-DE` aufteilen — vorher schafft es nur Duplikate
-- [ ] **F9 — `llms-full.txt`** ergänzen (Langfassung neben `llms.txt`), plus `.well-known/security.txt`. Auf die URL-Reihenfolge achten: Der Pfad `llms-full.txt` darf nicht von einem allgemeineren Muster verschluckt werden *(genau diese Falle steht in Rümpelwerks `config/urls.py` dokumentiert)*
+- [x] **F8 — dokumentiert** *(29.08.2026)*. Es bleibt bei **einem `de`** für Österreich und Deutschland: Die Inhalte sind identisch, eine Aufteilung in `de-AT`/`de-DE` erzeugte nur Duplikate ohne eigenen Nutzen. Aufgeteilt wird erst, wenn es echte länderspezifische Inhalte gibt (etwa unterschiedliche Preise oder Rechtstexte).
+  Neu seit den Fachbeiträgen ist ein zweiter Fall: **einsprachige Seiten**. Sie liegen außerhalb von `i18n_patterns` und bekommen in der Sitemap **keine** hreflang-Alternates — ein Alternate auf eine Seite, die es nicht gibt, ist schlimmer als gar keiner. Gesteuert über das vierte Feld `mehrsprachig` aus `views._seiten_pfade()`
+- [x] **F9 — erledigt** *(28.08.2026, live geprüft am 29.08.)*. `/llms.txt`, `/llms-full.txt` und `/.well-known/security.txt` antworten alle mit 200; die URL-Reihenfolge trägt. Beide llms-Dateien werden aus der Datenquelle erzeugt und nennen seit dem 29.08. auch Sitz und Kontakt im Kopfabsatz
 - [x] **F10 — IndexNow steht und wurde ausgelöst** *(28.08.2026)*. Schlüsseldatei unter `/<schluessel>.txt` (Muster eng auf Hex begrenzt, damit es keine andere `.txt`-Route verschluckt), Befehl `python manage.py indexnow [--trocken]` meldet die sechs öffentlichen URLs aus derselben Quelle wie die Sitemap. Erste Meldung am 28.08.2026 mit **HTTP 202** angenommen. Das bedient Bing, Yandex und Seznam , und damit auch die Websuche von ChatGPT, die auf Bings Index aufsetzt. **Google wird davon nicht bedient.**
 - [x] **F11 — Keyword-Map angelegt** *(28.08.2026)*: `docs/seo/KEYWORD-MAP.md` mit Zuordnungsregeln, 28 Startkeywords nach Kaufabsicht und Wettbewerb bewertet, Reihenfolge für Block S-A und den sechs Fragen, die in KI-Antworten auftauchen. **Nach dem ersten Search-Console-Export (F1) gegen echte Suchanfragen nachziehen.**
-- [ ] **F12 — Kein rankingrelevanter Inhalt hängt an JavaScript.** KI-Crawler rendern kein JS. Prüfen mit deaktiviertem JS: Alle Preise, Leistungstexte und FAQ müssen im HTML stehen
+- [x] **F12 — geprüft** *(29.08.2026)*. Vier Seitentypen roh abgerufen, ohne JavaScript auszuführen: `/leistungen/edv-it-betreuung/` (18 Preisangaben, H1, 4.750 Zeichen Fließtext, alle vier FAQ-Fragen im Markup), `/kosten/` (27 Preisangaben), `/it-service/attersee/`, `/aktuelles/was-kostet-it-betreuung/`. **Nichts Rankingrelevantes hängt an JavaScript** — KI-Crawler sehen dieselben Inhalte wie Google
 
 ## Block S-A — Architektur
 
@@ -135,7 +143,10 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 - [x] **A13 — Interne Verlinkung.** *(28.08.2026)* Problemband, Leistungsblöcke, Hub, Footer und Querverweise; `pruefe_seite` prüft jeden internen Link auf 404.
 - [x] **A14 — Sitemap dynamisch** *(28.08.2026)* aus `views._seiten_pfade()`, gemeinsam mit IndexNow. Breadcrumb-Schema auf allen Unterseiten.
 - [x] **A15 — Navigation und Footer** *(28.08.2026)* auf das Silo umgestellt.
-- [ ] **A16 — Regionsfrage bewusst entscheiden.** Erst wenn die Leistungsseiten indexiert sind und die Search Console echte Ortsanfragen zeigt, wird über einzelne Regionsseiten entschieden — und dann nur mit echtem lokalem Inhalt (Referenzen, Anfahrt, Ansprechpartner vor Ort). **Keine Ortsseiten auf Vorrat**
+- [x] **A16 — entschieden und umgesetzt** *(29.08.2026)*. Die Bedingung dieser Aufgabe war „nur mit echtem lokalem Inhalt". Genau die war bis zum 28.08. nicht erfüllbar, weil es keinen Firmensitz gab. Mit der Anschrift in Lenzing gibt es zum ersten Mal Inhalt, den nur eine Ortsseite tragen kann: **echte Straßenentfernung, echte Fahrzeit, und die Trennung zwischen dem, wofür jemand hinfährt, und dem, was per Fernwartung läuft**.
+  **Sieben Orte** unter `/it-service/<slug>/`, begrenzt auf rund eine Fahrstunde: Vöcklabruck (6 km), Attersee (8), Gmunden (22), Bad Ischl (38), Wels (40), Salzburg (55), Linz (60). Wien, Graz und die deutschen Städte stehen bewusst **nicht** dabei — dorthin geht Fernwartung, dafür gibt es die Leistungsseiten.
+  Die Regel gegen Doorway-Pages steht im Kopf von `landing/regionen.py`: **Zwei Seiten dürfen sich nicht durch Austausch des Ortsnamens ineinander überführen lassen.** Jede trägt eigenen Inhalt (Industrie in Vöcklabruck, Saison-WLAN am Attersee, gewachsene Netzwerke in Gmunden, Veranstaltungsräume in Bad Ischl, Hallen und Messe in Wels, Haftung für fremde Daten in Salzburg, Antwortzeiten der Großanbieter in Linz).
+  Im Schema ist `areaServed` der **Ort**, der Anbieter sitzt weiterhin in Lenzing — ein zweiter Sitz wäre eine Falschangabe und genau das Doorway-Signal. Keine Referenz behauptet, solange keine mit Einverständnis vorliegt
 
 ## Block S-G — GEO (KI-Antwortmaschinen)
 
@@ -143,16 +154,16 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 > „Wer baut Websites für kleine Betriebe in Österreich?" oder „Was kostet ein
 > KI-Chatbot?", bekommt WVM-IT namentlich genannt. **Wirkung:** 4–10 Wochen.
 
-- [ ] **G1 — Antwort-zuerst-Regel.** Jede Seite und jede FAQ beginnt mit zwei Sätzen, die die Frage vollständig beantworten — mit Zahl, Zeitraum, Region. Der Rest folgt darunter
+- [x] **G1 — durchgezogen** *(29.08.2026)*. Auf allen 87 Seiten: Leistungsseiten öffnen mit `kurz`, Regionsseiten mit `kurz` plus Entfernung/Fahrzeit als Faktenzeile, Fachbeiträge mit `antwort`. Jeweils zwei bis drei Sätze mit Zahl und Region, ganz oben, vor jeder Begründung — das ist der Absatz, den eine KI-Antwort übernimmt
 - [ ] **G2 — Antwortblock-Komponente** (`answer_block.html`): Frage als Überschrift, Antwort in ≤ 3 Sätzen, darunter Details. Auf allen Leistungsseiten einsetzen
 - [x] **G3 — Zahlen statt Adjektive** *(28.08.2026)*: Startseite trägt durchgehend konkrete Werte (ab 350 €, 15 €/Monat, 54 €/Monat, Antwort in 24 Stunden, Testseite in ~10 Minuten). Beim Ausbau der Unterseiten beibehalten.
 - [x] **G4 — Preise datiert** *(28.08.2026)*: Die Preistabelle trägt „Stand: <Monat> <Jahr>", serverseitig erzeugt und in allen drei Sprachen lokalisiert.
 - [x] **G5 — Tabelle steht** *(28.08.2026)*: vollständige Preisliste als echte `<table>` mit `<caption>` und Gruppenzeilen, direkt aus `ANGEBOT_GROUPS`. Auf schmalen Geräten scrollt sie im eigenen Container, nicht die Seite.
 - [ ] **G6 — Entitäts-Klarheit.** `sameAs` im Schema (GitHub, PyStore, LinkedIn, Google-Profil), einheitliche Schreibweise „WVM-IT" auf allen Kanälen, Person-Schema für Florin Feier mit Foto und Rolle
-- [ ] **G7 — FAQPage je Unterseite** aus dem jeweiligen Sprachpaket. *(Startseite: 10 Fragen in DE/EN/RO, seit 28.08.2026 im `@graph`.)*
-- [ ] **G8 — Service-Schema je Leistungsseite** (`Service` + `Offer` + `areaServed` AT/DE), verbunden mit `#business` im `@graph`
-- [ ] **G9 — `llms.txt` und `llms-full.txt` erweitern**, sobald das Silo steht: jede neue URL mit einem Satz Beschreibung
-- [ ] **G10 — Konsistenzprüfung.** Dieselbe Zahl auf Seite, Schema, `llms.txt` und in Ads. Wird durch F5 automatisch abgesichert
+- [x] **G7 — steht** *(live geprüft 29.08.2026)*. Jede Leistungsseite trägt vier FAQ im `@graph` (`/leistungen/edv-it-betreuung/` geprüft: `FAQPage` mit 4 Fragen), jede Regionsseite drei, dazu die 10 der Startseite — in allen drei Sprachen aus dem jeweiligen Paket
+- [x] **G8 — steht** *(live geprüft 29.08.2026)*. `Service` mit `offers` und `areaServed`, über `provider` an `#business` gehängt. Auf Regionsseiten trägt derselbe Block den Ort als `areaServed`; auf Beiträgen steht stattdessen `Article` mit `datePublished` und der Person-Entität als Autor
+- [x] **G9 — erledigt** *(29.08.2026)*. Befund beim Nachprüfen: Die zwölf neuen URLs standen in Sitemap und IndexNow, aber **nicht** in den beiden Dateien, aus denen sich KI-Antwortmaschinen bedienen — und der Abschnitt „Regionen" beschrieb noch den Zustand ohne Firmensitz. Jetzt trägt `llms.txt` je Regionsseite Ort, Entfernung und Fahrzeit und je Beitrag die Frage samt vollständigem Antwortabsatz; `llms-full.txt` wuchs von 45 auf 76 KB und enthält Einsatzgebiet und Fachbeiträge im Volltext. Beides wird weiterhin aus der Datenquelle erzeugt, nicht abgetippt
+- [x] **G10 — maschinell abgesichert** *(29.08.2026)*. `pruefe_seite` liest jede Zahl vor einem €-Zeichen aus **allen 87 gerenderten Seiten** und vergleicht sie mit `ANGEBOT_GROUPS`; Rückgabewert 1 bei Abweichung. Der Prüfer hat sich beim Schreiben der Fachbeiträge selbst bewährt: Er fing zwei Marktangaben ab, die nicht aus der Preisquelle stammten
 - [ ] **G11 — GEO-Monitoring.** Monatlich zehn feste Fragen an ChatGPT, Perplexity und Google AI Overview stellen und protokollieren, ob und wie WVM-IT genannt wird (`docs/seo/GEO-MONITORING.md`)
 
 ## Block S-T — Autorität
@@ -160,8 +171,9 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 > **Ziel:** Aus einer gut gebauten Seite wird eine Quelle, die wächst und von außen
 > bestätigt wird. **Wirkung:** 3–9 Monate, dafür dauerhaft.
 
-- [ ] **T1 — Beiträge bekommen eigene URLs.** `/aktuelles/<slug>/` statt einer Sammelseite, mit `Article`-Schema und Autor. *(Bei Rümpelwerk der beste Hebel pro investierter Stunde)*
-- [ ] **T2 — Redaktionsplan**: zwei Beiträge im Monat, die echte Fragen beantworten („Was kostet eine Website in Österreich 2026?", „Loxone oder KNX?", „Chatbot: wann lohnt er sich?")
+- [x] **T1 — umgesetzt** *(29.08.2026)*. `/aktuelles/<slug>/` mit `Article`-Schema, echtem `datePublished` und der bestehenden Person-Entität als Autor. Fünf Beiträge stehen.
+  **Bewusst nur auf Deutsch:** Die Beiträge liegen außerhalb von `i18n_patterns`. Nach „Was kostet IT-Betreuung" sucht in diesem Markt niemand auf Englisch oder Rumänisch. Damit daraus kein Schaden wird, ist die Einsprachigkeit ausdrücklich modelliert — `_seiten_pfade()` hat ein viertes Feld `mehrsprachig`, und Sitemap wie IndexNow melden für diese Pfade nur die deutsche Adresse ohne hreflang-Alternates. Sonst stünden dort `/en/aktuelles/…`-Adressen, die es nicht gibt
+- [~] **T2 — begonnen** *(29.08.2026)*. Fünf Beiträge live, jeder zu einer Frage mit echter Suchabsicht: Kosten der IT-Betreuung, Datensicherung prüfen, WLAN im Betrieb, IT-Sicherheit für kleine Firmen, Loxone oder KNX. **Der Takt von zwei Beiträgen im Monat muss sich noch bewähren** — Vorschläge für September stehen in `SEO-KONZEPT-DACH.md` §12
 - [ ] **T3 — Fallstudien ausbauen**: nach Rümpelwerk je eine für Rhein-Neckar (3D-Showroom), RTC-Service, FSH GmbH — jeweils mit Einverständnis des Kunden
 - [ ] **T4 — Google-Unternehmensprofil** für den österreichischen Firmensitz anlegen und pflegen (setzt F3 voraus)
 - [ ] **T5 — Erste echte Bewertungen einsammeln** — erst danach darf ein Bewertungsblock auf die Seite. Nichts erfinden

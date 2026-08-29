@@ -1866,6 +1866,40 @@ def _llms_seiten(base, lang):
     return zeilen
 
 
+def _llms_regionen(base, lang):
+    """Zeile je Regionsseite: Ort, Entfernung, Fahrzeit.
+
+    Die Zahlen gehoeren hier hinein, nicht nur auf die Seite: Wenn eine KI gefragt
+    wird "Gibt es IT-Betreuung in Gmunden?", ist die brauchbare Antwort nicht "ja",
+    sondern "ja, Sitz 22 km entfernt, laufender Betrieb ohnehin per Fernwartung"."""
+    texte = i18n.get_pack(lang).get("regionen", {})
+    zeilen = []
+    for eintrag in regionen.REGIONEN:
+        seite = texte.get(eintrag["slug"], {})
+        satz = (seite.get("kurz", "") or "").split(". ")[0].strip()
+        if satz and not satz.endswith("."):
+            satz += "."
+        zeilen.append(
+            f"- [{eintrag['ort']}]({base}/it-service/{eintrag['slug']}/): "
+            f"{eintrag['km']} km ab Lenzing, rund {eintrag['fahrzeit']} Minuten. {satz}")
+    return zeilen
+
+
+def _llms_beitraege(base):
+    """Zeile je Fachbeitrag: die Frage als Titel, die Antwort als Beschreibung.
+
+    Genau dieses Paar ist das, was eine KI-Antwort uebernimmt , deshalb steht hier
+    der volle Antwortabsatz und nicht eine Zusammenfassung davon."""
+    from .i18n.beitraege_de import BEITRAEGE as TEXTE
+    zeilen = []
+    for eintrag in beitraege.BEITRAEGE:
+        t = TEXTE.get(eintrag["slug"], {})
+        zeilen.append(
+            f"- [{t.get('titel', eintrag['slug'])}]({base}/aktuelles/{eintrag['slug']}/): "
+            f"{t.get('antwort', '')}")
+    return zeilen
+
+
 def llms_txt(request):
     """/llms.txt , kompakte Klartext-Fassung für KI-Antwortmaschinen (GEO).
 
@@ -1887,6 +1921,8 @@ def llms_txt(request):
         f"- [Referenzen]({base}/referenzen/): belegte Projekte mit Einverständnis der Kunden.",
         f"- [Kontakt]({base}/kontakt/): WhatsApp, Telefon, Rückruf, E-Mail.",
         f"- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen, Richtpreis sofort.",
+        f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
+        f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
         "\n## Leistungen",
     ]
     zeilen += _llms_seiten(base, "de")
@@ -1901,9 +1937,13 @@ def llms_txt(request):
         "- KI: Terminautomatisierung ab 390 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Chatbot ab 690 €, CRM-/ERP-Anbindung ab 1.200 €.",
         "- Gebäudeautomation, Konferenz- und Veranstaltungstechnik: projektbezogen nach Bestandsaufnahme.",
         "\n## Regionen",
+        f"- Sitz: {_adresszeile(c)}, Österreich. Vor Ort im Umkreis von rund einer Fahrstunde.",
         f"- [Österreich und Deutschland]({base}/leistungen/edv-it-betreuung/): Fernwartung, Überwachung, "
         "Datensicherung, Webseiten, SEO und Ads laufen ortsunabhängig im gesamten DACH-Raum. "
         "Einsätze vor Ort werden projektbezogen vereinbart.",
+        *_llms_regionen(base, "de"),
+        "\n## Fachbeiträge (Antwort jeweils im ersten Absatz)",
+        *_llms_beitraege(base),
         "\n## Besonderheiten",
         f"- [Kostenlose Beispiel-Website]({base}/leistungen/webseite-erstellen/): in etwa zehn Minuten "
         "von der hauseigenen JARVIS-Automatik gebaut, ohne Verpflichtung.",
@@ -1950,6 +1990,45 @@ def llms_full_txt(request):
         aus.append("\n### Häufige Fragen")
         for f in s.get("faq", []):
             aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+
+    # Einsatzgebiet: Die Langfassung trägt hier die Fakten, die eine KI für eine
+    # ortsbezogene Frage braucht — Entfernung, Fahrzeit und die Trennung zwischen
+    # Arbeiten vor Ort und Fernwartung. Auf „Gibt es IT-Betreuung in Gmunden?" ist
+    # die brauchbare Antwort nicht „ja", sondern „ja, Sitz 22 km entfernt, der
+    # laufende Betrieb ohnehin per Fernwartung".
+    rtexte = pack.get("regionen", {})
+    aus.append("\n\n## Einsatzgebiet")
+    aus.append(f"Sitz: {_adresszeile(c)}, Österreich. Arbeiten, die jemanden vor Ort "
+               "erfordern, decken wir im Umkreis von rund einer Fahrstunde ab; alles "
+               "Übrige läuft per gesicherter Fernwartung in ganz Österreich und Deutschland.")
+    for eintrag in regionen.REGIONEN:
+        r = rtexte.get(eintrag["slug"], {})
+        aus.append(f"\n### {sauber(r.get('h1'))}")
+        aus.append(f"URL: {base}/it-service/{eintrag['slug']}/")
+        aus.append(f"Entfernung ab Lenzing: {eintrag['km']} km, rund "
+                   f"{eintrag['fahrzeit']} Minuten Fahrzeit.")
+        aus.append(f"\n{sauber(r.get('kurz'))}")
+        aus.append(f"\n**{sauber(r.get('vor_ort_h'))}**")
+        aus += [f"- {sauber(z)}" for z in r.get("vor_ort", [])]
+        aus.append(f"\n**{sauber(r.get('remote_h'))}**\n{sauber(r.get('remote'))}")
+        for f in r.get("faq", []):
+            aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+
+    # Fachbeiträge: nur Deutsch (siehe Kopf von landing/beitraege.py), deshalb
+    # unabhängig von der Sprache dieser Datei. Der Antwortabsatz steht zuerst —
+    # das ist der Teil, den eine KI-Antwort übernimmt.
+    from .i18n.beitraege_de import BEITRAEGE as BTEXTE
+    aus.append("\n\n## Fachbeiträge")
+    for eintrag in beitraege.BEITRAEGE:
+        b = BTEXTE.get(eintrag["slug"], {})
+        aus.append(f"\n### {sauber(b.get('titel'))}")
+        aus.append(f"URL: {base}/aktuelles/{eintrag['slug']}/ "
+                   f"(veröffentlicht {eintrag['datum']})")
+        aus.append(f"\n{sauber(b.get('antwort'))}")
+        for a in b.get("abschnitte", []):
+            aus.append(f"\n**{sauber(a.get('h'))}**\n{sauber(a.get('t'))}")
+        if b.get("fazit"):
+            aus.append(f"\nKurz gesagt: {sauber(b.get('fazit'))}")
 
     aus.append("\n\n## Häufige Fragen zum Unternehmen")
     for f in pack.get("faq", {}).get("items", []):
