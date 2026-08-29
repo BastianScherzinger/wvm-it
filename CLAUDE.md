@@ -20,17 +20,24 @@ Block S-G/S-T aus `docs/SEO-PLAN.md`.
 
 **Einstieg: `docs/RELAUNCH-START.md`** — Stand, Preisliste, Deploy-Schritte, offene Punkte.
 
-- `docs/RELAUNCH-START.md` — **hier zuerst nachsehen**
+- `docs/AUSBAU-2026-08.md` — **hier zuerst nachsehen**: Ausbau vom 28./29.08., Phasen,
+  Protokoll und die Liste, was noch offen ist und bei wem
+- `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Keyword-Ebenen, NAP, Messgrößen
+- `docs/AKQUISE-SOFORT.md` — was kurzfristig Anfragen bringt (und warum SEO das nicht ist)
+- `docs/RELAUNCH-START.md` — der Relaunch vom 28.08.
 - `docs/RELAUNCH-PLAN.md` — Befund, die sieben Entscheidungen, Phasenstand
 - `docs/SEO-PLAN.md` — Blöcke S-F bis S-T; S-A ist abgearbeitet, S-G und S-T offen
 - `docs/seo/KEYWORD-MAP.md` — ein Keyword, eine Zielseite (EDV zuerst)
 - `docs/seo/BASELINE.md` — Nullmessung, nächste Messung Ende September
 - `docs/UMBAU-PLAN.md` / `docs/UMBAU-START.md` — der vorige Umbau (Design, Conversion)
 
-**Vor jedem Deploy:** `python manage.py pruefe_seite` — prüft 57 URLs auf `<h1>`,
+**Vor jedem Deploy:** `python manage.py pruefe_seite` — prüft 87 URLs auf `<h1>`,
 Titel-/Description-Länge, JSON-LD, Alt-Texte, hreflang, jeden internen Link, jeden Preis
 auf jeder Seite, die Formulare und gleiche Listenlängen in allen drei Sprachpaketen.
 Rückgabewert 1 bei Fehlern.
+**Ebenfalls vor jedem Deploy:** `python manage.py pruefe_sicherheit` — löst alle fünf
+Formulare wirklich aus und zählt die entstehenden Mails: Spam-Bremse je Bereich,
+Honeypot, Feldlängen, Betreff-Säuberung, Upload-Signatur. Zehn Prüfungen.
 **Nach jedem Deploy mit neuen URLs:** `python manage.py indexnow` (Bing/Yandex/Seznam;
 Google braucht die Search Console, siehe `docs/INDEXIERUNG.md`).
 
@@ -54,6 +61,8 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `content.json` — Marke, Kontakt, Rechtstexte, Anschrift-Slots (mit Fallback in `views.py`)
 - `landing/views.py` — alle Views, Preiskatalog, Problemband, Schema, robots/llms/sitemap
 - `landing/leistungen.py` — Struktur des Leistungs-Silos
+- `landing/regionen.py` — Struktur der Regionsseiten (`/it-service/<slug>/`)
+- `landing/beitraege.py` — Struktur der Fachbeiträge (`/aktuelles/<slug>/`, **nur DE**)
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
