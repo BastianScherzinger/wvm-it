@@ -3,30 +3,38 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: Relaunch live (28.08.2026)
+## Stand: 87 URLs live (29.08.2026)
 
-Am 28.08.2026 wurde die Positionierung gedreht: **Kern ist die EDV-/IT-Betreuung für
-Betriebe ohne eigene IT-Abteilung**, überwiegend per Fernwartung in ganz Österreich und
-Deutschland. Webseiten, SEO, Google Ads und KI sind das zweite Standbein, Technik vor
-Ort das dritte. Aus 2 rankbaren Seiten wurden 19 (57 mit EN/RO).
+**Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend
+per Fernwartung in ganz Österreich und Deutschland. Webseiten, SEO, Google Ads und KI
+sind das zweite Standbein, Technik vor Ort das dritte.
 
-**Der Relaunch ist live**: `relaunch-2026-08` (7 Commits) ist per Fast-Forward auf `main`,
-gepusht und von Railway deployt; die 57 URLs sind per IndexNow gemeldet. Bastian hat die
-zwölf geschätzten EDV- und Ads-Preise freigegeben („passt erstmal so"); Florins
-Gegenzeichnung steht noch aus, blockiert aber nichts mehr.
+Aus 2 rankbaren Seiten wurden **87 URLs**: elf Leistungsseiten, sieben Regionsseiten
+(`/it-service/`), fünf Fachbeiträge (`/aktuelles/`, nur DE), dazu Kosten, Referenzen,
+Kontakt, Recht — die meisten davon in DE/EN/RO. Alles live, per IndexNow gemeldet,
+Sitz **Waldstraße 19/1, 4860 Lenzing**.
 
-**Nächster Schritt: Search Console** (Sitemap neu einreichen, neue URLs anmelden), danach
-Block S-G/S-T aus `docs/SEO-PLAN.md`.
+### Wenn du hier neu anfängst
 
-**Einstieg: `docs/RELAUNCH-START.md`** — Stand, Preisliste, Deploy-Schritte, offene Punkte.
+1. **`docs/SEO-AUSBAU-3.md`** — **der aktuelle Arbeitsplan.** 42 Aufgaben, die
+   **ohne jede Zuarbeit** umsetzbar sind. Reihenfolge steht in §8, oben anfangen.
+2. `docs/AUSBAU-2026-08.md` — was am 28./29.08. gebaut wurde und was noch offen ist
+3. `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Messgrößen
 
-- `docs/AUSBAU-2026-08.md` — **hier zuerst nachsehen**: Ausbau vom 28./29.08., Phasen,
-  Protokoll und die Liste, was noch offen ist und bei wem
+**Zwei Blocker liegen außerhalb des Codes** und warten auf Zuarbeit — nicht darauf
+warten, sondern `SEO-AUSBAU-3.md` abarbeiten:
+- **Google-Unternehmensprofil** (Florin; Angaben fertig in `SEO-KONZEPT-DACH.md` §7)
+- **SPF/DMARC** (Bastian, DNS-Zone; fertige Einträge in §8.1)
+
+### Alle Dokumente
+
+- `docs/SEO-AUSBAU-3.md` — **der offene Arbeitsplan**, 42 Aufgaben ohne Zuarbeit
 - `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Keyword-Ebenen, NAP, Messgrößen
 - `docs/AKQUISE-SOFORT.md` — was kurzfristig Anfragen bringt (und warum SEO das nicht ist)
 - `docs/RELAUNCH-START.md` — der Relaunch vom 28.08.
 - `docs/RELAUNCH-PLAN.md` — Befund, die sieben Entscheidungen, Phasenstand
-- `docs/SEO-PLAN.md` — Blöcke S-F bis S-T; S-A ist abgearbeitet, S-G und S-T offen
+- `docs/SEO-PLAN.md` — der Plan bis 29.08.: **37 von 48 erledigt**, 1 begonnen, 10 offen
+  (die offenen brauchen fast alle Zuarbeit — deshalb gibt es `SEO-AUSBAU-3.md`)
 - `docs/seo/KEYWORD-MAP.md` — ein Keyword, eine Zielseite (EDV zuerst)
 - `docs/seo/BASELINE.md` — Nullmessung, nächste Messung Ende September
 - `docs/UMBAU-PLAN.md` / `docs/UMBAU-START.md` — der vorige Umbau (Design, Conversion)
