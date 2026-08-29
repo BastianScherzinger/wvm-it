@@ -53,6 +53,7 @@ PACK = {
         "cta_angebot": "Angebot berechnen",
     },
     "hero": {
+        "robot_alt": "Interaktiver 3D-Assistent von WVM-IT",
         "eyebrow": "EDV &amp; IT-Betreuung · Österreich und Deutschland",
         "headline": "Die IT-Abteilung für Betriebe, die keine haben.",
         "subline": "Server, Netzwerk, Arbeitsplätze, E-Mail und Datensicherung: Wir übernehmen die laufende EDV Ihres Betriebs &ndash; per Fernwartung in ganz Österreich und Deutschland. Dazu Webseite, SEO und Google Ads aus derselben Hand.",
@@ -887,6 +888,7 @@ PACK = {
         "js_per_month": "€/Mt", "js_per_year": "€/Jahr",
     },
     "confirm_page": {
+        "bild_alt": "Hochgeladenes Bild",
         "title_ok": "Anmeldung bestätigt",
         "title_fail": "Bestätigung fehlgeschlagen",
         "meta_desc": "Bestätigung deiner Newsletter-Anmeldung.",

@@ -80,6 +80,7 @@ PACK = {
         "cta_angebot": "Calculate a quote",
     },
     "hero": {
+        "robot_alt": "Interactive 3D assistant by WVM-IT",
         "eyebrow": "IT support &amp; management · Austria and Germany",
         "headline": "The IT department for businesses that don't have one.",
         "subline": "Servers, network, workstations, email and backups: we take on the day-to-day IT of your business &ndash; remotely, across Austria and Germany. Plus website, SEO and Google Ads from the same hands.",
@@ -898,6 +899,7 @@ PACK = {
         "js_per_month": "€/mo", "js_per_year": "€/yr",
     },
     "confirm_page": {
+        "bild_alt": "Uploaded image",
         "title_ok": "Registration confirmed",
         "title_fail": "Confirmation failed",
         "meta_desc": "Confirmation of your newsletter registration.",

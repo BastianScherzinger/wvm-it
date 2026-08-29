@@ -1,9 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block preload %}
+{% comment %}
+Das Hero-Bild ist auf der Startseite das LCP-Element und wird deshalb vorgeladen
+- getrennt nach Bildschirmbreite, damit ein Telefon 9 KB statt 70 KB laedt.
+Die Varianten stehen in content.json (T3).
+{% endcomment %}
+{% if c.hero_bg_640 %}<link rel="preload" as="image" href="{{ c.hero_bg_640 }}" media="(max-width:700px)" fetchpriority="high">{% endif %}
+{% if c.hero_bg_960 %}<link rel="preload" as="image" href="{{ c.hero_bg_960 }}" media="(min-width:701px) and (max-width:1100px)" fetchpriority="high">{% endif %}
+{% if c.hero_bg_webp %}<link rel="preload" as="image" href="{{ c.hero_bg_webp }}" media="(min-width:1101px)" fetchpriority="high">{% endif %}
+{% endblock %}
+
 {% block inhalt %}
   <!-- ── HERO: Kontaktwege links, Werkzeug rechts (siehe docs/UMBAU-PLAN.md §3) ── -->
   <section class="hero on-dark" id="top">
-    <div class="hero-bg" {% if c.hero_bg %}style="background-image:url('{{ c.hero_bg }}')"{% endif %} aria-hidden="true"></div>
+    {% comment %}
+    Drei Groessen als CSS-Variablen; die Media-Queries in style.css waehlen aus.
+    Jede Variable ist ein image-set aus WebP und JPEG - Browser ohne WebP nehmen
+    das JPEG, Browser ohne image-set die Deklaration darueber (T3).
+    {% endcomment %}
+    <div class="hero-bg" aria-hidden="true" {% if c.hero_bg %}style="
+      background-image:url('{{ c.hero_bg }}');
+      --hero-s:image-set(url('{{ c.hero_bg_640 }}') type('image/webp'), url('{{ c.hero_bg }}') type('image/jpeg'));
+      --hero-m:image-set(url('{{ c.hero_bg_960 }}') type('image/webp'), url('{{ c.hero_bg }}') type('image/jpeg'));
+      --hero-l:image-set(url('{{ c.hero_bg_webp }}') type('image/webp'), url('{{ c.hero_bg }}') type('image/jpeg'));"{% endif %}></div>
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div class="hero-copy" data-reveal>
@@ -514,7 +534,7 @@
   <!-- ── SCROLL-VIDEO 1, PC: Webseite baut sich auf, per Scroll gescrubbt ──── -->
   <section class="scrolly" id="aufbau" data-scrolly>
     <div class="scrolly-sticky">
-      <video class="scrolly-video" id="scrollyVideoPc" playsinline muted preload="metadata"
+      <video class="scrolly-video" id="scrollyVideoPc" playsinline muted preload="none"
              {% if c.pc_poster %}poster="{{ c.pc_poster }}"{% endif %}>
         {% if c.pc_video %}<source src="{{ c.pc_video }}" type="video/mp4">{% endif %}
         <track kind="captions" src="{% static 'vtt/empty.vtt' %}" srclang="de" label="Ohne Ton">
@@ -552,7 +572,7 @@
   <!-- ── SCROLL-VIDEO 2 ,  Higgsfield-Rechenzentrum (Server-Raum), per Scroll gescrubbt ── -->
   <section class="scrolly" id="infrastruktur" data-scrolly>
     <div class="scrolly-sticky">
-      <video class="scrolly-video" id="scrollyVideo" playsinline muted preload="metadata"
+      <video class="scrolly-video" id="scrollyVideo" playsinline muted preload="none"
              {% if c.server_poster %}poster="{{ c.server_poster }}"{% endif %}>
         {% if c.server_video %}<source src="{{ c.server_video }}" type="video/mp4">{% endif %}
         <track kind="captions" src="{% static 'vtt/empty.vtt' %}" srclang="de" label="Ohne Ton">
@@ -609,7 +629,7 @@
             <div class="robot-canvas" id="robotCanvas" aria-hidden="true">
               <div class="robot-loader" id="robotLoader"><span class="spinner"></span><span class="robot-loadtxt">{{ t.hero.robot_loading|safe }}</span></div>
             </div>
-            {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="{{ c.site_name }}" class="robot robot-fallback" width="820" height="1098" loading="lazy">{% endif %}
+            {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="{{ t.hero.robot_alt|safe }}" class="robot robot-fallback" width="820" height="1098" loading="lazy">{% endif %}
             <div class="robot-bubble" id="robotBubble" aria-live="polite"></div>
             <div class="robot-hint" id="robotHint" aria-hidden="true">{{ t.hero.robot_click|safe }}</div>
           </div>

@@ -13,7 +13,7 @@
   "email": "support@wvm-it.tech",
   "adresse": "Waldstraße 19/1",
   "inhaber_name": "Florin Feier",
-  "logo_mark": "/static/img/wvm_mark.png",
+  "logo_mark": "/static/img/wvm_mark.webp",
   "founder_image": "/static/img/florin.jpg",
   "cta_text": "Projekt anfragen",
   "cta_sub": "Unverbindlich. Antwort in 24 Stunden.",
@@ -42,5 +42,9 @@
   "beschreibung": "WVM-IT verbindet Menschen mit Informationstechnologie. Von unserem Standort in Lenzing in Oberösterreich betreuen wir Unternehmen und Privatkunden mit IT- und Digitallösungen aus einer Hand: EDV, Netzwerk und IT-Sicherheit, professionelle Webseiten, Hosting und SEO, KI-Automatisierung, Smarthome und Gebäudeautomation sowie Konferenz-, Video-, Ton- und Veranstaltungstechnik. Der laufende Betrieb läuft überwiegend per Fernwartung in ganz Österreich und Deutschland; Arbeiten vor Ort übernehmen wir im Einzugsgebiet rund um den Attersee, Vöcklabruck, Gmunden, Wels, Linz und Salzburg.",
   "versprechen": "Technik soll verständlich sein, zuverlässig funktionieren und einen echten Mehrwert schaffen. Deshalb bekommen unsere Kunden persönliche Beratung, klare Kommunikation und einen festen Ansprechpartner — von der ersten Idee über die Umsetzung bis zur laufenden Betreuung.",
   "uid": "",
-  "kammer": ""
+  "kammer": "",
+  "logo_mark_png": "/static/img/wvm_mark_128.png",
+  "hero_bg_webp": "/static/img/hero_bg.webp",
+  "hero_bg_960": "/static/img/hero_bg_960.webp",
+  "hero_bg_640": "/static/img/hero_bg_640.webp"
 }

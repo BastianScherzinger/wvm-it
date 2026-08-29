@@ -76,6 +76,7 @@ PACK = {
         "cta_angebot": "Calculează o ofertă",
     },
     "hero": {
+        "robot_alt": "Asistent 3D interactiv de la WVM-IT",
         "eyebrow": "Suport IT &amp; administrare · Austria și Germania",
         "headline": "Departamentul IT pentru firmele care nu au unul.",
         "subline": "Servere, rețea, posturi de lucru, e-mail și copii de siguranță: preluăm IT-ul curent al firmei dumneavoastră &ndash; la distanță, în toată Austria și Germania. Plus site, SEO și Google Ads din aceeași mână.",
@@ -894,6 +895,7 @@ PACK = {
         "js_per_month": "€/lună", "js_per_year": "€/an",
     },
     "confirm_page": {
+        "bild_alt": "Imagine încărcată",
         "title_ok": "Înregistrare confirmată",
         "title_fail": "Confirmare eșuată",
         "meta_desc": "Confirmarea înregistrării tale la newsletter.",

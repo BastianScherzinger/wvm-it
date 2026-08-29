@@ -2079,3 +2079,11 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   .fd-karte,.pk-karte,.such-item a,.kr-teaser{transition:none}
   .fd-karte:hover,.fd-karte:focus-visible{transform:none}
 }
+
+/* ── Hero-Bild nach Bildschirmbreite (docs/SEO-AUSBAU-3.md, T3) ───────────────
+   Die drei Varianten kommen als Custom Properties aus dem Template (Quelle:
+   content.json). Steht keine davon zur Verfügung, bleibt die JPEG-Deklaration
+   aus dem style-Attribut stehen — die Reihenfolge ist deshalb Absicht. */
+@media (max-width:700px){ .hero-bg{background-image:var(--hero-s)} }
+@media (min-width:701px) and (max-width:1100px){ .hero-bg{background-image:var(--hero-m)} }
+@media (min-width:1101px){ .hero-bg{background-image:var(--hero-l)} }

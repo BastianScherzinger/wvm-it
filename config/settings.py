@@ -30,6 +30,16 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # HTML komprimieren (docs/SEO-AUSBAU-3.md, T2). WhiteNoise komprimiert nur
+    # statische Dateien; die HTML-Antworten gingen bis hierher unkomprimiert
+    # ueber die Leitung - bei der Startseite rund 200 KB statt rund 30 KB.
+    #
+    # Zur Risikoabwaegung (BREACH): Die Seite hat keine Anmeldung, keine
+    # Sessions und keine Geheimnisse in den Antworten. Das einzige Token ist der
+    # CSRF-Wert, und den maskiert Django seit 4.1 je Anfrage neu - genau gegen
+    # diese Angriffsklasse. GZipMiddleware steht direkt hinter SecurityMiddleware
+    # und damit vor allem, was Inhalt erzeugt.
+    "django.middleware.gzip.GZipMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     # Zweitbestand vermeiden: Plattform-Subdomains 301 auf die Hauptdomain
     # (siehe docs/SEO-PLAN.md, F2). Leerer Wert = aus, z. B. lokal.

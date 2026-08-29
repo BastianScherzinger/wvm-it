@@ -19,8 +19,14 @@
   <meta name="geo.placename" content="Österreich, Deutschland">
   <meta name="keywords" content="{% block keywords %}EDV-Betreuung, IT-Betreuung, IT-Dienstleister, Fernwartung, Netzwerk, Server, Datensicherung, Webseiten, SEO, Google Ads, Smarthome, Loxone, KNX, Österreich, Deutschland{% endblock %}">
   <!-- Favicon / App-Icon -->
-  <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
-  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
+  {% comment %}
+  Favicon: WebP zuerst (2,7 KB statt 65 KB), PNG als Rueckfall fuer Browser, die
+  WebP als Favicon nicht annehmen. Das Apple-Touch-Icon bleibt PNG - iOS nimmt
+  kein WebP dafuer (docs/SEO-AUSBAU-3.md, T3).
+  {% endcomment %}
+  <link rel="icon" type="image/webp" href="{% static 'img/wvm_mark.webp' %}" sizes="any">
+  <link rel="icon" type="image/png" href="{% static 'img/wvm_mark_128.png' %}" sizes="128x128">
+  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark_128.png' %}">
   <!-- 3D-Viewer (Spline) wird ERST nach Cookie-Einwilligung von main.js geladen (DSGVO). -->
 
   <meta property="og:title" content="{% block og_titel %}{{ t.meta.seo_title|safe }}{% endblock %}">
@@ -40,7 +46,12 @@
   <meta name="twitter:title" content="{% block tw_titel %}{{ t.meta.seo_title|safe }}{% endblock %}">
   <meta name="twitter:description" content="{% block tw_beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
   <meta name="twitter:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
-  {% if c.hero_bg %}<link rel="preload" as="image" href="{{ c.hero_bg }}">{% endif %}
+  {% comment %}
+  Vorladen NUR dort, wo das Bild auch vorkommt. Bis hierher stand dieser Preload
+  auf jeder Seite - die Unterseiten haben aber gar kein Hero-Bild und luden 70 KB,
+  die niemand anzeigt. Die Startseite fuellt den Block (T3/T8).
+  {% endcomment %}
+  {% block preload %}{% endblock %}
   <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">

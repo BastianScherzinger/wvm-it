@@ -20,7 +20,8 @@
     af: {
       stepWord: "{{ t.confirm_page.step_word|default:'Schritt'|escapejs }}",
       ofWord: "{{ t.confirm_page.of_word|default:'von'|escapejs }}",
-      restored: "{{ t.confirm_page.restored_notice|escapejs }}"
+      restored: "{{ t.confirm_page.restored_notice|escapejs }}",
+      bild_alt: "{{ t.confirm_page.bild_alt|escapejs }}"
     }
   };
 </script>
@@ -258,7 +259,7 @@
             var j=await r.json();
             if(j.secure_url){ urls.push(j.secure_url); sync();
               var t=document.createElement('div'); t.className='af-thumb';
-              t.innerHTML='<img src="'+j.secure_url+'" alt="">'; thumbs.appendChild(t);
+              t.innerHTML='<img src="'+j.secure_url+'" alt="'+((window.I18N&&window.I18N.af&&window.I18N.af.bild_alt)||'Bild')+'">'; thumbs.appendChild(t);
             }
           }catch(e){ /* still: einzelnes Bild schlägt fehl, Rest läuft weiter */ }
           finally{ pending--; if(pending<=0) setBusy(false); }
