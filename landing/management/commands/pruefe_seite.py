@@ -137,6 +137,25 @@ class Command(BaseCommand):
         for eintrag in ungleich:
             self.fehler.append(f"Unterschiedlich viele Einträge: {eintrag}")
         self.stdout.write(f"Seitentexte geprüft ({len(_l.NACH_SLUG)} Leistungen).")
+        self._pruefe_listen("branchen", ("anders", "leistungen", "faq"))
+        self._pruefe_listen("regionen", ("vor_ort", "faq"))
+
+    def _pruefe_listen(self, schluessel, felder):
+        """Dieselbe Prüfung wie für die Leistungsseiten, für jeden weiteren
+        Seitentyp mit Listen im Text. Ohne sie fällt erst im fertigen HTML auf,
+        dass die rumänische Fassung zwei Aufzählungspunkte weniger hat — und
+        genau dort steht auf den Branchenseiten der Grund, warum es sie gibt."""
+        de = i18n._RAW["de"].get(schluessel, {})
+        for slug, deutsch in de.items():
+            for lang in ("en", "ro"):
+                fremd = i18n._RAW[lang].get(schluessel, {}).get(slug)
+                if not fremd:
+                    continue            # erbt vollständig von DE
+                for feld in felder:
+                    if len(fremd.get(feld, deutsch.get(feld, []))) != len(deutsch.get(feld, [])):
+                        self.fehler.append(
+                            f"Unterschiedlich viele Einträge: {lang}/{schluessel}/{slug}.{feld}")
+        self.stdout.write(f"Listen geprüft ({schluessel}: {len(de)} Seiten).")
 
     # ── 2. Preise ────────────────────────────────────────────────────────────
     def _pruefe_preise(self):

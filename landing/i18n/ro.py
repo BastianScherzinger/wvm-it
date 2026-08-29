@@ -3,10 +3,12 @@
 
 from .seiten_ro import SEITEN
 from .regionen_ro import REGIONEN
+from .branchen_ro import BRANCHEN
 
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
+    "branchen": BRANCHEN,
     "meta": {
         "html_lang": "ro",
         "locale": "ro_RO",
@@ -472,6 +474,21 @@ PACK = {
         "stand": "Valabil:",
         "alle_preise": "Toate prețurile dintr-o privire",
         "kontakt_alt": "Preferați să vorbiți direct?",
+    },
+    "branchen_seite": {
+        "titel": "IT pentru domeniul dumneavoastră | WVM-IT",
+        "desc": "IT pe domenii: cabinete de contabilitate, meșteșuguri, cabinete medicale, hoteluri, producție, asociații. Ce diferă — și ce rămâne la fel.",
+        "h1": "IT pe domenii: ce este cu adevărat diferit",
+        "kurz": "WVM-IT se ocupă de firme din toate domeniile cu aceleași unelte — dar nu cu aceeași croială. Un cabinet de contabilitate are nevoie de termene de arhivare și separarea clienților, o firmă de construcții are nevoie de aparate care rezistă o zi pe șantier, un hotel are nevoie de o rețea pentru oaspeți care ține în august. Aceste pagini arată ce este tehnic diferit în fiecare caz.",
+        "intro": "Serviciul de bază este peste tot același: stații de lucru, servere, rețea, backup, securitate. Diferă croiala — ce cerință vine prima, ce sistem dă ritmul și unde o defecțiune costă cel mai mult. Despre asta sunt aceste pagini.",
+        "ehrlich_h": "Ce nu apare aici, în mod deliberat",
+        "ehrlich_t": "Niciuna dintre aceste pagini nu pretinde experiență pe care nu o putem dovedi. Ceea ce citiți este cunoaștere profesională despre domeniu — nu afirmația că avem deja un client acolo. De îndată ce există o referință cu acordul clientului, ea apare cu nume pe pagina noastră de referințe și nicăieri altundeva.",
+        "branchen_titel": "Domenii",
+        "schwerpunkt_h": "Cel mai des solicitat în acest domeniu",
+        "weitere_h": "Servicii potrivite",
+        "andere_h": "Alte domenii",
+        "alle": "Vedeți toate domeniile",
+        "software_hinweis": "Software-ul specializat rămâne la producător — noi ne ocupăm de tot ce este dedesubt.",
     },
     "hub": {
         "titel": "Servicii: IT, web și tehnică | WVM-IT",

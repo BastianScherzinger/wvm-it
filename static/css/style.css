@@ -425,6 +425,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .foot-nap a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid transparent}
 .foot-nap a:hover,.foot-nap a:focus-visible{color:var(--ink);border-bottom-color:currentColor}
 .foot-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (min-width:1000px){.foot-nav{grid-template-columns:repeat(5,1fr);gap:18px}}
 .foot-nav h3{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:14px;font-family:"Inter",sans-serif;font-weight:600}
 .foot-nav a{display:block;color:var(--ink-soft);font-size:14.5px;padding:5px 0;transition:color .18s}
 .foot-nav a:hover{color:var(--accent2)}
@@ -1775,3 +1776,22 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   .such-zeile{flex-direction:column}
   .such-zeile .btn{width:100%}
 }
+
+/* ============================================================================
+   BRANCHENSEITEN  (docs/SEO-AUSBAU-3.md, N1)
+   Der `anders`-Block ist der Grund, warum es diese Seiten gibt — er bekommt
+   deshalb eine eigene Auszeichnung und steht optisch vor der Leistungsliste.
+   ========================================================================== */
+.br-anders{list-style:none;margin:0 0 34px;padding:0;display:grid;gap:12px;counter-reset:br}
+.br-anders li{counter-increment:br;position:relative;padding:16px 18px 16px 56px;
+  border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;
+  background:var(--surface);line-height:1.7;color:var(--ink-soft)}
+.br-anders li::before{content:counter(br,decimal-leading-zero);position:absolute;left:18px;top:16px;
+  font-family:"Space Grotesk","Inter",sans-serif;font-size:14px;font-weight:600;color:var(--accent-ink);
+  letter-spacing:-.01em}
+.lk-stark{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.br-ehrlich{margin:38px 0 0;padding:24px 24px 20px;border:1px dashed var(--line-2);
+  border-radius:16px;background:var(--surface)}
+.br-ehrlich h2{font-size:19px;margin:0 0 10px}
+.br-ehrlich p{color:var(--ink-soft);line-height:1.75;margin:0 0 12px;font-size:15px}
+.rg-kachel .lk-ic{display:inline-flex;margin-bottom:12px}

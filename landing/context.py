@@ -8,7 +8,7 @@ Aufruf, nicht beim Laden des Moduls.
 from django.urls import reverse
 from django.utils.translation import get_language
 
-from . import leistungen, regionen
+from . import branchen, i18n, leistungen, regionen
 
 
 def navigation(request):
@@ -33,4 +33,16 @@ def navigation(request):
     for eintrag in regionen.REGIONEN[:4]:
         orte.append({"url": reverse("region", kwargs={"slug": eintrag["slug"]}),
                      "titel": eintrag["ort"]})
-    return {"footer_leistungen": posten, "footer_regionen": orte}
+    # Die vier gefragtesten Branchen in den Footer: Sie sind die Grundverlinkung
+    # des Branchen-Silos und zugleich der Einstieg fuer Besucher, die sich eher
+    # ueber ihre eigene Branche einordnen als ueber eine Leistungsbezeichnung.
+    fach = []
+    for eintrag in branchen.FOOTER_SLUGS:
+        b_eintrag = branchen.NACH_SLUG.get(eintrag)
+        if not b_eintrag:
+            continue
+        texte = i18n.get_pack(lang).get("branchen", {}).get(eintrag, {})
+        fach.append({"url": reverse("branche", kwargs={"slug": eintrag}),
+                     "titel": texte.get("nav", eintrag)})
+    return {"footer_leistungen": posten, "footer_regionen": orte,
+            "footer_branchen": fach}

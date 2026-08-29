@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% comment %}
+Eine Branchenseite (docs/SEO-AUSBAU-3.md, N1).
+
+Der Aufbau unterscheidet sich bewusst von der Leistungsseite: Dort steht
+„was wir machen", hier steht „was bei Ihnen anders ist". Deshalb kommt der
+`anders`-Block VOR der Leistungsliste — er ist der Grund, warum diese Seite
+existiert, und die Leistungsliste wäre ohne ihn austauschbar.
+
+Struktur aus landing/branchen.py, Texte aus branchen_{de,en,ro}.py, jede Zahl
+aus ANGEBOT_GROUPS. Kein fester Satz in dieser Vorlage — sonst nicht übersetzbar.
+{% endcomment %}
+{% block titel %}{{ seite.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ seite.desc|safe }}{% endblock %}
+{% block og_titel %}{{ seite.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ seite.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ seite.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ seite.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<article class="sp">
+
+  <header class="sp-top on-dark">
+    <div class="wrap">
+      <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+        <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <a href="{% url 'branchen' %}">{{ bs.branchen_titel|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ seite.nav|safe }}</span>
+      </nav>
+
+      <div class="sp-top-grid">
+        <div>
+          <h1>{{ seite.h1|safe }}</h1>
+          {% comment %}Antwort zuerst — der Absatz, den eine KI-Antwort zitiert.{% endcomment %}
+          <p class="sp-kurz">{{ seite.kurz|safe }}</p>
+          <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+            {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+            {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+            <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+          </div>
+        </div>
+        <aside class="sp-fakten">
+          <div class="sp-fakt">
+            <span class="sp-fakt-l">{{ t.seite.preis_kurz|safe }}</span>
+            <strong class="sp-fakt-v">{{ seite.preis_label }}</strong>
+          </div>
+          {% if schwerpunkt %}
+          <div class="sp-fakt">
+            <span class="sp-fakt-l">{{ bs.schwerpunkt_h|safe }}</span>
+            <p class="sp-fakt-t"><a href="{{ schwerpunkt.url }}">{{ schwerpunkt.nav|safe }}</a></p>
+          </div>
+          {% endif %}
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap sp-grid">
+      <div class="sp-main">
+        <p class="sp-intro">{{ seite.intro|safe }}</p>
+
+        {% comment %}
+        Der Kern der Seite: Wenn diese Liste auf eine andere Branche passt, ist
+        die Seite falsch geschrieben (siehe Kopf von landing/branchen.py).
+        {% endcomment %}
+        <h2 class="sp-h2">{{ seite.anders_h|safe }}</h2>
+        <ul class="br-anders">
+          {% for z in seite.anders %}<li>{{ z|safe }}</li>{% endfor %}
+        </ul>
+
+        <h2 class="sp-h2">{{ seite.leistung_h|safe }}</h2>
+        <ul class="sp-liste sp-liste-check">
+          {% for z in seite.leistungen %}<li>{% include 'icons.html' with name='check' %}<span>{{ z|safe }}</span></li>{% endfor %}
+        </ul>
+
+        <h2 class="sp-h2">{{ seite.software_h|safe }}</h2>
+        <p class="sp-preis-text">{{ seite.software_t|safe }}</p>
+
+        <h2 class="sp-h2">{{ seite.risiko_h|safe }}</h2>
+        <p class="sp-preis-text">{{ seite.risiko_t|safe }}</p>
+
+        <h2 class="sp-h2">{{ seite.preis_h|safe }}</h2>
+        <p class="sp-preis-text">{{ seite.preis_t|safe }}</p>
+        <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
+          <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+
+        {% if seite.faq %}
+        <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
+        <div class="faq">
+          {% for f in seite.faq %}
+          <details class="faq-item"{% if forloop.first %} open{% endif %}>
+            <summary class="faq-q">
+              <span>{{ f.q|safe }}</span>
+              <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </summary>
+            <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+          </details>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="sp-aside">
+        {% include 'anfrage_karte.html' with bid=seite.quelle titel=seite.cta_h sub=seite.cta_t ph=seite.anders_h %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="section-t">{{ bs.weitere_h|safe }}</h2>
+      </header>
+      <div class="lk-grid">
+        {% if schwerpunkt %}
+        <a class="lk spot lk-stark" href="{{ schwerpunkt.url }}" data-reveal data-spot>
+          <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=schwerpunkt.icon %}</span>
+          <h3 class="lk-h">{{ schwerpunkt.nav|safe }}</h3>
+          <p class="lk-t">{{ schwerpunkt.desc|safe }}</p>
+          <span class="lk-p">{{ schwerpunkt.preis_label }}</span>
+        </a>
+        {% endif %}
+        {% for v in weitere %}
+        <a class="lk spot" href="{{ v.url }}" data-reveal data-spot>
+          <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=v.icon %}</span>
+          <h3 class="lk-h">{{ v.nav|safe }}</h3>
+          <p class="lk-t">{{ v.desc|safe }}</p>
+          <span class="lk-p">{{ v.preis_label }}</span>
+        </a>
+        {% endfor %}
+      </div>
+
+      <nav class="rg-weitere" aria-label="{{ bs.andere_h|safe }}">
+        <h2>{{ bs.andere_h|safe }}</h2>
+        <ul>
+          {% for b in andere %}<li><a href="{{ b.url }}">{{ b.nav|safe }}</a></li>{% endfor %}
+          <li><a href="{% url 'branchen' %}">{{ bs.alle|safe }}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</article>
+{% endblock %}

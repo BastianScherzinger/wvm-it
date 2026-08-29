@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% comment %}
+Hub der Branchenseiten (docs/SEO-AUSBAU-3.md, N1.8).
+
+Der Hub sagt zwei Dinge ausdrücklich: dass die Grundleistung überall dieselbe
+ist und sich nur der Zuschnitt unterscheidet — und dass hier kein Kunde
+behauptet wird, den es nicht gibt. Beides steht sichtbar auf der Seite, nicht
+nur im Quelltext.
+{% endcomment %}
+{% block titel %}{{ bs.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ bs.desc|safe }}{% endblock %}
+{% block og_titel %}{{ bs.h1|safe }}{% endblock %}
+{% block og_beschreibung %}{{ bs.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ bs.h1|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ bs.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ bs.branchen_titel|safe }}</span>
+    </nav>
+    <h1>{{ bs.h1|safe }}</h1>
+    <p class="sp-kurz">{{ bs.kurz|safe }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="sp-intro" data-reveal>{{ bs.intro|safe }}</p>
+
+    <div class="rg-grid">
+      {% for b in branchen %}
+      <a class="rg-kachel spot" href="{{ b.url }}" data-spot data-reveal>
+        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=b.icon %}</span>
+        <h2 class="rg-h">{{ b.nav|safe }}</h2>
+        <p class="rg-t">{{ b.desc|safe }}</p>
+        <span class="rg-bez">{{ b.preis_label }}</span>
+      </a>
+      {% endfor %}
+    </div>
+
+    <aside class="br-ehrlich" data-reveal>
+      <h2>{{ bs.ehrlich_h|safe }}</h2>
+      <p>{{ bs.ehrlich_t|safe }}</p>
+      <p class="lk-alle">
+        <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a> ·
+        <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
+        <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a>
+      </p>
+    </aside>
+  </div>
+</section>
+{% endblock %}

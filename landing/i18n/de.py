@@ -7,10 +7,12 @@ Die Texte der Leistungsseiten stehen wegen ihres Umfangs in einer eigenen Datei
 
 from .seiten_de import SEITEN
 from .regionen_de import REGIONEN
+from .branchen_de import BRANCHEN
 
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
+    "branchen": BRANCHEN,
     "meta": {
         "html_lang": "de-AT",
         "locale": "de_AT",
@@ -443,6 +445,24 @@ PACK = {
         "stand": "Stand:",
         "alle_preise": "Alle Preise auf einen Blick",
         "kontakt_alt": "Lieber direkt sprechen?",
+    },
+    # ── Branchen-Silo (docs/SEO-AUSBAU-3.md, N1) ─────────────────────────────
+    # Der Hub und die Beschriftungen, die auf jeder Branchenseite gleich sind.
+    # Die Seitentexte selbst stehen in branchen_{de,en,ro}.py.
+    "branchen_seite": {
+        "titel": "IT für Ihre Branche | WVM-IT",
+        "desc": "IT-Betreuung nach Branche: Kanzleien, Handwerk, Praxen, Hotellerie, Produktion, Vereine. Was jeweils anders ist — und was gleich bleibt.",
+        "h1": "IT nach Branche: was jeweils anders ist",
+        "kurz": "WVM-IT betreut Betriebe aller Branchen mit demselben Werkzeugkasten — aber nicht mit demselben Zuschnitt. Eine Kanzlei braucht Aufbewahrungsfristen und Mandantentrennung, ein Handwerksbetrieb Geräte, die einen Baustellentag überstehen, ein Hotel ein Gästenetz, das im August trägt. Auf diesen Seiten steht, was in der jeweiligen Branche technisch wirklich anders ist.",
+        "intro": "Die Grundleistung ist überall dieselbe: Arbeitsplätze, Server, Netzwerk, Datensicherung, Sicherheit. Unterschiedlich ist der Zuschnitt — welche Anforderung zuerst kommt, welches System den Takt vorgibt und wo ein Ausfall am teuersten ist. Genau darum geht es hier.",
+        "ehrlich_h": "Was hier ausdrücklich nicht steht",
+        "ehrlich_t": "Auf keiner dieser Seiten behaupten wir Erfahrung, die wir nicht belegen können. Was Sie lesen, ist Fachwissen über die Branche — nicht die Aussage, dass wir dort bereits einen Kunden hätten. Sobald eine Referenz mit Einverständnis des Kunden vorliegt, steht sie namentlich auf unserer Referenzseite und nirgendwo sonst.",
+        "branchen_titel": "Branchen",
+        "schwerpunkt_h": "Am häufigsten gefragt in dieser Branche",
+        "weitere_h": "Passende Leistungen",
+        "andere_h": "Andere Branchen",
+        "alle": "Alle Branchen ansehen",
+        "software_hinweis": "Fachsoftware bleibt beim Hersteller — wir betreuen alles darunter.",
     },
     "hub": {
         "titel": "Leistungen: EDV, IT, Web und Technik | WVM-IT",

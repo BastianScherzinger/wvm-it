@@ -7,10 +7,12 @@ here under the key "seiten".
 
 from .seiten_en import SEITEN
 from .regionen_en import REGIONEN
+from .branchen_en import BRANCHEN
 
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
+    "branchen": BRANCHEN,
     "meta": {
         "html_lang": "en",
         "locale": "en_US",
@@ -476,6 +478,21 @@ PACK = {
         "stand": "As of:",
         "alle_preise": "All prices at a glance",
         "kontakt_alt": "Prefer to talk?",
+    },
+    "branchen_seite": {
+        "titel": "IT for your industry | WVM-IT",
+        "desc": "IT support by industry: practices, trades, medical practices, hospitality, manufacturing, associations. What differs — and what stays the same.",
+        "h1": "IT by industry: what is genuinely different",
+        "kurz": "WVM-IT looks after businesses in every industry with the same toolbox — but not with the same fit. A tax practice needs retention periods and client separation, a trades business needs devices that survive a day on site, a hotel needs a guest network that holds up in August. These pages set out what is technically different in each case.",
+        "intro": "The core service is the same everywhere: workstations, servers, network, backups, security. What differs is the fit — which requirement comes first, which system sets the pace, and where an outage is most expensive. That is what these pages are about.",
+        "ehrlich_h": "What deliberately does not appear here",
+        "ehrlich_t": "None of these pages claims experience we cannot prove. What you read is professional knowledge about the industry — not a statement that we already have a client there. As soon as a reference exists with the client's consent, it appears by name on our references page and nowhere else.",
+        "branchen_titel": "Industries",
+        "schwerpunkt_h": "Most frequently requested in this industry",
+        "weitere_h": "Related services",
+        "andere_h": "Other industries",
+        "alle": "See all industries",
+        "software_hinweis": "Specialist software stays with its vendor — we look after everything underneath.",
     },
     "hub": {
         "titel": "Services: IT, web and technology | WVM-IT",

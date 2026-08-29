@@ -23,7 +23,7 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import beitraege, i18n, leistungen, regionen
+from . import beitraege, branchen, i18n, leistungen, regionen
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -1365,6 +1365,9 @@ def _seiten_pfade():
              ("/angebot/", "0.8", "monthly", True)]
     pfade += [(f"/leistungen/{l['slug']}/", l["prio"], "monthly", True)
               for l in leistungen.LEISTUNGEN]
+    pfade += [("/branchen/", "0.8", "monthly", True)]
+    pfade += [(f"/branchen/{b['slug']}/", b["prio"], "monthly", True)
+              for b in branchen.BRANCHEN]
     pfade += [("/it-service/", "0.7", "monthly", True)]
     pfade += [(f"/it-service/{r['slug']}/", r["prio"], "monthly", True)
               for r in regionen.REGIONEN]
@@ -1471,6 +1474,100 @@ def leistung_seite(request, slug):
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"]["leistungen"], reverse("leistungen")),
                 (seite.get("h1", slug), pfad)])),
+    })
+
+
+# ══ Branchen-Silo (docs/SEO-AUSBAU-3.md, N1) ══════════════════════════════════
+# Die dritte Frage vor einer Anfrage — nach „Was macht ihr?" (Leistung) und
+# „Kommt ihr zu uns?" (Region) — lautet: „Versteht ihr, wie es bei uns läuft?"
+# Genau dafür gibt es diese Seiten. Die Grenze steht im Kopf von landing/branchen.py:
+# Fachwissen darstellen ja, Erfahrung behaupten nein.
+
+def _branche_daten(eintrag, lang):
+    """Struktur + Texte + Preis-Label einer Branche, fertig fuers Template."""
+    texte = i18n.get_pack(lang).get("branchen", {}).get(eintrag["slug"], {})
+    preise = _itempreise(lang)
+    return dict(
+        eintrag,
+        url=reverse("branche", kwargs={"slug": eintrag["slug"]}),
+        preis_label=preise.get(eintrag["preis"], ""),
+        **texte,
+    )
+
+
+def _alle_branchen(lang):
+    return [_branche_daten(e, lang) for e in branchen.BRANCHEN]
+
+
+def branchen_hub(request):
+    """/branchen/ — Einstieg in die Branchenseiten.
+
+    Der Hub sagt ausdrücklich, dass die Grundleistung dieselbe ist und sich nur
+    der Zuschnitt unterscheidet. Ohne diesen Satz läse sich die Seitengruppe wie
+    sechs verschiedene Angebote, und das wäre nicht wahr."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    bs = pack.get("branchen_seite", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    return render(request, "branchen.html", {
+        "c": c, "bs": bs, "branchen": _alle_branchen(lang),
+        "structured_data": _seiten_schema(
+            c, lang, breadcrumb=_breadcrumb(base, [
+                (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
+    })
+
+
+def branche_seite(request, slug):
+    """/branchen/<slug>/ — eine Branche, eine URL, ein Zuschnitt.
+
+    Das Service-Schema meldet `serviceType` mit dem Branchenbezug und `audience`
+    als `BusinessAudience` — das ist die maschinenlesbare Entsprechung dessen,
+    was die Seite sagt: dieselbe Leistung, andere Zielgruppe."""
+    eintrag = branchen.NACH_SLUG.get(slug)
+    if not eintrag:
+        raise Http404(slug)
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    bs = pack.get("branchen_seite", {})
+    seite = _branche_daten(eintrag, lang)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = seite["url"]
+
+    posten = _ANGEBOT_INDEX.get(eintrag["preis"], {})
+    angebot = {"@type": "Offer", "priceCurrency": "EUR",
+               "availability": "https://schema.org/InStock", "url": f"{base}{pfad}"}
+    zahl = posten.get("once") or posten.get("mtl") or posten.get("yr") or posten.get("std")
+    if zahl:
+        angebot["price"] = str(zahl)
+    service = {
+        "@type": "Service", "@id": f"{base}{pfad}#service",
+        "name": seite.get("h1", ""), "description": seite.get("kurz", ""),
+        "serviceType": "IT-Dienstleistung",
+        "provider": {"@id": f"{base}/#business"},
+        "audience": {"@type": "BusinessAudience", "name": seite.get("nav", slug)},
+        "areaServed": [{"@type": "Country", "name": "Österreich"},
+                       {"@type": "Country", "name": "Deutschland"}],
+        "offers": angebot,
+    }
+    schwerpunkt = leistungen.NACH_SLUG.get(eintrag.get("schwerpunkt", ""))
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
+    return render(request, "branche.html", {
+        "c": c, "bs": bs, "seite": seite, "anfrage_ok": anfrage_ok,
+        "schwerpunkt": _leistung_daten(schwerpunkt, lang) if schwerpunkt else None,
+        "weitere": [_leistung_daten(leistungen.NACH_SLUG[s], lang)
+                    for s in eintrag.get("leistungen", []) if s in leistungen.NACH_SLUG],
+        "andere": [_branche_daten(b, lang) for b in branchen.BRANCHEN
+                   if b["slug"] != slug],
+        "preis_stand": _preis_stand(lang),
+        "structured_data": _seiten_schema(
+            c, lang, service=service, faq=seite.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [
+                (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
+                (seite.get("nav", slug), pfad)])),
     })
 
 
@@ -1888,6 +1985,24 @@ def _llms_regionen(base, lang):
     return zeilen
 
 
+def _llms_branchen(base, lang):
+    """Zeile je Branchenseite: Branche, gefolgt vom ersten Satz der Kurzfassung.
+
+    Fuer eine KI ist das die Antwort auf „Betreut ihr auch Arztpraxen?" — und sie
+    faellt bewusst so aus, wie sie auf der Seite steht: Zuschnitt und Fachwissen,
+    keine behauptete Referenz."""
+    texte = i18n.get_pack(lang).get("branchen", {})
+    zeilen = []
+    for eintrag in branchen.BRANCHEN:
+        seite = texte.get(eintrag["slug"], {})
+        satz = (seite.get("kurz", "") or "").split(". ")[0].strip()
+        if satz and not satz.endswith("."):
+            satz += "."
+        nav = (seite.get("nav", eintrag["slug"]) or "").replace("&amp;", "&")
+        zeilen.append(f"- [{nav}]({base}/branchen/{eintrag['slug']}/): {satz}")
+    return zeilen
+
+
 def _llms_beitraege(base):
     """Zeile je Fachbeitrag: die Frage als Titel, die Antwort als Beschreibung.
 
@@ -1924,6 +2039,8 @@ def llms_txt(request):
         f"- [Referenzen]({base}/referenzen/): belegte Projekte mit Einverständnis der Kunden.",
         f"- [Kontakt]({base}/kontakt/): WhatsApp, Telefon, Rückruf, E-Mail.",
         f"- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen, Richtpreis sofort.",
+        f"- [Branchen]({base}/branchen/): was in Kanzleien, Handwerk, Praxen, Hotellerie, "
+        "Produktion und Vereinen technisch anders ist.",
         f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
         f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
         "\n## Leistungen",
@@ -1939,6 +2056,8 @@ def llms_txt(request):
         "- Sichtbarkeit: SEO einmalig ab 390 €, SEO-Betreuung ab 149 €/Monat, Google Ads Einrichtung ab 490 €, Ads-Betreuung ab 199 €/Monat.",
         "- KI: Terminautomatisierung ab 390 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Chatbot ab 690 €, CRM-/ERP-Anbindung ab 1.200 €.",
         "- Gebäudeautomation, Konferenz- und Veranstaltungstechnik: projektbezogen nach Bestandsaufnahme.",
+        "\n## Branchen (gleiche Leistung, anderer Zuschnitt)",
+        *_llms_branchen(base, "de"),
         "\n## Regionen",
         f"- Sitz: {_adresszeile(c)}, Österreich. Vor Ort im Umkreis von rund einer Fahrstunde.",
         f"- [Österreich und Deutschland]({base}/leistungen/edv-it-betreuung/): Fernwartung, Überwachung, "
@@ -1992,6 +2111,26 @@ def llms_full_txt(request):
         aus.append(sauber(s.get("preis_t")))
         aus.append("\n### Häufige Fragen")
         for f in s.get("faq", []):
+            aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+
+    # Branchen: dieselbe Leistung, anderer Zuschnitt. Für eine KI-Antwort ist der
+    # `anders`-Block der zitierfähige Teil — er ist der einzige, den es nur hier gibt.
+    btexte = pack.get("branchen", {})
+    aus.append("\n\n## Branchen")
+    aus.append("Die Grundleistung ist in allen Branchen dieselbe; unterschiedlich ist der "
+               "Zuschnitt. WVM-IT behauptet auf diesen Seiten keine Kunden in der jeweiligen "
+               "Branche — dargestellt wird Fachwissen, keine Referenz.")
+    for eintrag in branchen.BRANCHEN:
+        b = btexte.get(eintrag["slug"], {})
+        aus.append(f"\n### {sauber(b.get('h1'))}")
+        aus.append(f"URL: {base}/branchen/{eintrag['slug']}/")
+        aus.append(f"\n{sauber(b.get('kurz'))}")
+        aus.append(f"\n**{sauber(b.get('anders_h'))}**")
+        aus += [f"- {sauber(z)}" for z in b.get("anders", [])]
+        aus.append(f"\n**{sauber(b.get('leistung_h'))}**")
+        aus += [f"- {sauber(z)}" for z in b.get("leistungen", [])]
+        aus.append(f"\n**{sauber(b.get('preis_h'))}**\n{sauber(b.get('preis_t'))}")
+        for f in b.get("faq", []):
             aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
 
     # Einsatzgebiet: Die Langfassung trägt hier die Fakten, die eine KI für eine
@@ -2314,6 +2453,10 @@ def _such_index(lang):
         daten = _leistung_daten(eintrag, lang)
         eintraege.append((daten["url"], daten.get("h1", ""), daten.get("kurz", ""),
                           pack["seite"]["leistungen"]))
+    for eintrag in branchen.BRANCHEN:
+        daten = _branche_daten(eintrag, lang)
+        eintraege.append((daten["url"], daten.get("h1", ""), daten.get("kurz", ""),
+                          pack["branchen_seite"]["branchen_titel"]))
     for eintrag in regionen.REGIONEN:
         daten = _region_daten(eintrag, lang)
         eintraege.append((reverse("region", kwargs={"slug": eintrag["slug"]}),
@@ -2329,9 +2472,12 @@ def _such_index(lang):
 
     hub = pack.get("hub", {})
     ks = pack.get("kosten_seite", {})
+    bs = pack.get("branchen_seite", {})
     eintraege += [
         (reverse("leistungen"), hub.get("h1", ""), hub.get("kurz", ""),
          pack["seite"]["leistungen"]),
+        (reverse("branchen"), bs.get("h1", ""), bs.get("kurz", ""),
+         bs.get("branchen_titel", "")),
         (reverse("kosten"), ks.get("h1", ""), ks.get("kurz", ""),
          pack["nav"]["preise"]),
         (reverse("regionen"), pack["seite"]["regionen_h1"],

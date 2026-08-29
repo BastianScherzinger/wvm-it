@@ -73,6 +73,7 @@
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
         <a href="{% url 'leistungen' %}">{{ t.nav.leistungen|safe }}</a>
+        <a href="{% url 'branchen' %}">{{ t.branchen_seite.branchen_titel|safe }}</a>
         <a href="{% url 'kosten' %}">{{ t.nav.preise|safe }}</a>
         <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
         <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
@@ -166,6 +167,11 @@
         <a href="{% url 'index' %}#faq">{{ t.footer.u_faq|safe }}</a>
         <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
         {% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}
+      </div>
+      <div>
+        <h3>{{ t.branchen_seite.branchen_titel|safe }}</h3>
+        {% for b in footer_branchen %}<a href="{{ b.url }}">{{ b.titel|safe }}</a>{% endfor %}
+        <a href="{% url 'branchen' %}">{{ t.branchen_seite.alle|safe }}</a>
       </div>
       <div>
         <h3>{{ t.seite.regionen_titel|safe }}</h3>
