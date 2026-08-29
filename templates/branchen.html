@@ -23,7 +23,7 @@ nur im Quelltext.
       <span aria-current="page">{{ bs.branchen_titel|safe }}</span>
     </nav>
     <h1>{{ bs.h1|safe }}</h1>
-    <p class="sp-kurz">{{ bs.kurz|safe }}</p>
+    {% include 'antwort.html' with text=bs.kurz %}
   </div>
 </header>
 

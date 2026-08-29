@@ -38,7 +38,7 @@ und die Schritte im Schema kommen aus derselben Liste.
       <p class="nf-sofort-t">{{ nf.eilt_t|safe }}</p>
     </div>
 
-    <p class="sp-kurz">{{ nf.kurz|safe }}</p>
+    {% include 'antwort.html' with text=nf.kurz %}
   </div>
 </header>
 

@@ -31,7 +31,7 @@ Zwei Regeln halten diese Seite zusammen:
       <span aria-current="page">{{ rs.ergebnis_h|safe }}</span>
     </nav>
     <h1>{{ rs.h1|safe }}</h1>
-    <p class="sp-kurz">{{ rs.kurz|safe }}</p>
+    {% include 'antwort.html' with text=rs.kurz %}
   </div>
 </header>
 

@@ -19,7 +19,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       <span aria-current="page">{{ t.nav.preise|safe }}</span>
     </nav>
     <h1>{{ ks.h1|safe }}</h1>
-    <p class="sp-kurz">{{ ks.kurz|safe }}</p>
+    {% include 'antwort.html' with text=ks.kurz %}
   </div>
 </header>
 

@@ -30,7 +30,7 @@ dem Telefon seitlich wackelt.
         <span aria-current="page">{{ seite.nav|safe }}</span>
       </nav>
       <h1>{{ seite.h1|safe }}</h1>
-      <p class="sp-kurz">{{ seite.kurz|safe }}</p>
+      {% include 'antwort.html' with text=seite.kurz %}
       <div class="vg-koepfe" aria-hidden="true">
         <span class="vg-kopf vg-kopf-a">{{ seite.a_h|safe }}</span>
         <span class="vg-gegen">/</span>

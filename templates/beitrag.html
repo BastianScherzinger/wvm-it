@@ -38,7 +38,7 @@ Begruendung in Abschnitten.
 <article class="section">
   <div class="wrap sp-wrap">
     {% comment %}Der Absatz, den eine KI-Antwort zitiert. Deshalb steht er zuerst.{% endcomment %}
-    <p class="bt-antwort" data-reveal>{{ beitrag.antwort|safe }}</p>
+    <div data-reveal>{% include 'antwort.html' with text=beitrag.antwort stil='bt-antwort' %}</div>
 
     {% for a in beitrag.abschnitte %}
     <section class="bt-abschnitt" data-reveal>

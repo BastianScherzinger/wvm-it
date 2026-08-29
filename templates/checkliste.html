@@ -33,7 +33,7 @@ wie am Bildschirm.
       </nav>
       <p class="gl-label">Checkliste · {{ liste.anzahl }} Punkte</p>
       <h1>{{ liste.titel|safe }}</h1>
-      <p class="sp-kurz">{{ liste.kurz|safe }}</p>
+      {% include 'antwort.html' with text=liste.kurz %}
     </div>
   </header>
 

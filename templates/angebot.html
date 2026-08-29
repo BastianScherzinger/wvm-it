@@ -11,8 +11,10 @@
   {% endfor %}
   <meta name="robots" content="index,follow">
   <meta name="geo.region" content="AT">
-  <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
-  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
+  {% comment %}Wie in base.html: WebP zuerst, PNG als Rueckfall (T3).{% endcomment %}
+  <link rel="icon" type="image/webp" href="{% static 'img/wvm_mark.webp' %}" sizes="any">
+  <link rel="icon" type="image/png" href="{% static 'img/wvm_mark_128.png' %}" sizes="128x128">
+  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark_128.png' %}">
   <meta property="og:title" content="{{ t.meta.angebot_title|safe }} | {{ c.site_name }}">
   <meta property="og:description" content="{{ t.meta.angebot_og_desc|safe }}">
   <meta property="og:type" content="website">
@@ -25,6 +27,12 @@
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  {% comment %}
+  Diese Seite hat ein eigenes Grundgeruest und erbt deshalb nicht von base.html —
+  und hatte als einzige oeffentliche Seite gar kein JSON-LD. Gefunden hat das die
+  Schema-Pruefung aus SEO-AUSBAU-3.md (S9), nicht ein Mensch.
+  {% endcomment %}
+  <script type="application/ld+json">{{ structured_data|safe }}</script>
 </head>
 <body class="ang-page">
 <script>

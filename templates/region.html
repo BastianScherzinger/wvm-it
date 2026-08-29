@@ -25,7 +25,7 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
       <span aria-current="page">{{ region.ort }}</span>
     </nav>
     <h1>{{ region.h1|safe }}</h1>
-    <p class="sp-kurz">{{ region.kurz|safe }}</p>
+    {% include 'antwort.html' with text=region.kurz %}
 
     {% comment %}Die Zahlen stehen ganz oben, weil sie die erste Frage beantworten.{% endcomment %}
     <dl class="rg-fakten">

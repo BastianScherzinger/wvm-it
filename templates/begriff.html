@@ -30,7 +30,7 @@ demselben `kurz`-Feld, das oben steht.
       </nav>
       <p class="gl-label">Begriff</p>
       <h1>{{ begriff.titel|safe }}</h1>
-      <p class="sp-kurz">{{ begriff.kurz|safe }}</p>
+      {% include 'antwort.html' with text=begriff.kurz %}
     </div>
   </header>
 

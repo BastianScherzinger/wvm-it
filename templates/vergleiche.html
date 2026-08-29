@@ -16,7 +16,7 @@
       <span aria-current="page">{{ vs.vergleiche_titel|safe }}</span>
     </nav>
     <h1>{{ vs.h1|safe }}</h1>
-    <p class="sp-kurz">{{ vs.kurz|safe }}</p>
+    {% include 'antwort.html' with text=vs.kurz %}
   </div>
 </header>
 

@@ -266,11 +266,14 @@ class Command(BaseCommand):
                 self.warnungen.append(
                     f"{pfad}: Description {len(desc.group(1))} Zeichen (empfohlen ≤ {DESC_MAX})")
 
-            for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
+            bloecke = re.findall(r'<script type="application/ld\+json">(.*?)</script>',
+                                 html, re.S)
+            for block in bloecke:
                 try:
                     json.loads(block)
                 except json.JSONDecodeError as exc:
                     self.fehler.append(f"{pfad}: ungültiges JSON-LD ({exc})")
+            self._pruefe_schema(pfad, bloecke, set(seiten))
 
             for img in re.findall(r"<img [^>]*>", html):
                 if "alt=" not in img:
@@ -298,6 +301,77 @@ class Command(BaseCommand):
 
         self.stdout.write(f"Seiten geprüft ({len(seiten)} URLs).")
         self._pruefe_verwaist(seiten, eingehend)
+
+    def _pruefe_schema(self, pfad, bloecke, bekannte_seiten):
+        """S9 aus docs/SEO-AUSBAU-3.md: drei Dinge, die im Schema still kaputtgehen.
+
+        1. **Genau ein `@graph` je Seite.** Zwei Blöcke bedeuten zwei Entitäten
+           für denselben Betrieb; Google entscheidet dann selbst, welcher gilt.
+        2. **Jeder `@id`-Verweis muss auflösbar sein.** Auflösbar heißt: entweder
+           im selben `@graph` definiert **oder** auf einer Seite dieser Website,
+           die es tatsächlich gibt. Seitenübergreifende Verweise sind in JSON-LD
+           ausdrücklich vorgesehen und der Grund, warum das Glossar überhaupt ein
+           `DefinedTermSet` hat — was hier gefunden werden soll, ist der Verweis
+           auf einen Anker, den niemand definiert, und der Verweis auf eine URL,
+           die es nicht gibt.
+        3. **`inLanguage` auf den sprachtragenden Knoten.** Ohne sie ordnet eine
+           Antwortmaschine bei drei Sprachfassungen die falsche zu.
+        """
+        if len(bloecke) != 1:
+            self.fehler.append(
+                f"{pfad}: {len(bloecke)} JSON-LD-Blöcke statt genau einem")
+            return
+        try:
+            daten = json.loads(bloecke[0])
+        except json.JSONDecodeError:
+            return                      # hat schon der Aufrufer gemeldet
+        graph = daten.get("@graph")
+        if not isinstance(graph, list):
+            self.fehler.append(f"{pfad}: JSON-LD ohne @graph")
+            return
+
+        # Alle vergebenen @id einsammeln — auch die in verschachtelten Knoten.
+        vergeben, verweise = set(), []
+
+        def durchgehen(knoten, ist_definition):
+            if isinstance(knoten, dict):
+                kennung = knoten.get("@id")
+                if kennung:
+                    # Ein Knoten mit @type definiert, ein Knoten NUR mit @id verweist.
+                    if knoten.get("@type") or (ist_definition and len(knoten) > 1):
+                        vergeben.add(kennung)
+                    else:
+                        verweise.append(kennung)
+                for schluessel, wert in knoten.items():
+                    if schluessel != "@id":
+                        durchgehen(wert, False)
+            elif isinstance(knoten, list):
+                for eintrag in knoten:
+                    durchgehen(eintrag, ist_definition)
+
+        for knoten in graph:
+            durchgehen(knoten, True)
+
+        def auflösbar(kennung):
+            if kennung in vergeben:
+                return True                     # im selben @graph definiert
+            # Sonst: zeigt der Verweis auf eine Seite, die es wirklich gibt?
+            ohne_anker = kennung.split("#", 1)[0]
+            seitenpfad = re.sub(r"^https?://[^/]+", "", ohne_anker) or "/"
+            return seitenpfad in bekannte_seiten
+
+        for kennung in sorted(k for k in set(verweise) if not auflösbar(k)):
+            self.fehler.append(f"{pfad}: @id-Verweis '{kennung}' zeigt ins Leere")
+
+        # inLanguage: auf den Knoten, die Text tragen. ProfessionalService und
+        # Person tragen keinen — dort wäre die Angabe bedeutungslos.
+        braucht_sprache = {"WebSite", "Article", "FAQPage", "HowTo",
+                           "DefinedTerm", "DefinedTermSet"}
+        for knoten in graph:
+            if isinstance(knoten, dict) and knoten.get("@type") in braucht_sprache:
+                if not knoten.get("inLanguage"):
+                    self.fehler.append(
+                        f"{pfad}: {knoten['@type']} ohne inLanguage")
 
     def _pruefe_verwaist(self, seiten, eingehend):
         """V3 aus docs/SEO-AUSBAU-3.md: Welche Seite hat weniger als zwei

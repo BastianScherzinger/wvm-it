@@ -1,0 +1,19 @@
+{% comment %}
+Der Antwortabsatz (docs/SEO-AUSBAU-3.md, S1).
+
+Bis hierher gab es drei Varianten desselben Absatzes: `sp-kurz` auf den
+Leistungs-, Branchen- und Regionsseiten, `bt-antwort` auf den Beiträgen und
+noch eine dritte Form auf der Kostenseite. Inhaltlich war es überall dasselbe —
+**die vollständige Antwort auf die Frage, wegen der jemand hier gelandet ist,
+in zwei bis drei Sätzen, vor allem anderen.**
+
+Diese Komponente ist die eine Form dafür. Sie trägt zwei Dinge, die von außen
+gebraucht werden:
+
+* die Klasse `.antwort` — darauf zeigt `speakable` im Schema (S4). Wer die
+  Klasse hier entfernt, macht die Angabe im Schema zu einer Lüge.
+* die Ankermarke `#antwort` — damit lässt sich der Absatz direkt verlinken.
+
+Parameter: `text` (Pflicht), `stil` (optional, zusätzliche CSS-Klasse).
+{% endcomment %}
+<p class="antwort {{ stil|default:'sp-kurz' }}" id="antwort">{{ text|safe }}</p>

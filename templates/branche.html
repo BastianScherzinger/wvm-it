@@ -34,7 +34,7 @@ aus ANGEBOT_GROUPS. Kein fester Satz in dieser Vorlage — sonst nicht übersetz
         <div>
           <h1>{{ seite.h1|safe }}</h1>
           {% comment %}Antwort zuerst — der Absatz, den eine KI-Antwort zitiert.{% endcomment %}
-          <p class="sp-kurz">{{ seite.kurz|safe }}</p>
+          {% include 'antwort.html' with text=seite.kurz %}
           <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
             {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
             {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}

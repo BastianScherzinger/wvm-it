@@ -41,7 +41,7 @@ ob die Bedingung zur Laufzeit zutrifft — die Seite stünde dann immer auf noin
       <span aria-current="page">{{ st.h1|safe }}</span>
     </nav>
     <h1>{{ st.h1|safe }}</h1>
-    <p class="sp-kurz">{{ st.kurz|safe }}</p>
+    {% include 'antwort.html' with text=st.kurz %}
   </div>
 </header>
 

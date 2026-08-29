@@ -31,7 +31,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
           <h1>{{ seite.h1|safe }}</h1>
           <!-- Antwort zuerst: Dieser Absatz beantwortet die Suchfrage vollständig
                und ist das, was KI-Antwortmaschinen zitieren (SEO-PLAN.md, G1). -->
-          <p class="sp-kurz">{{ seite.kurz|safe }}</p>
+          {% include 'antwort.html' with text=seite.kurz %}
           <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
             {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
             {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}

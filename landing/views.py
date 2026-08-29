@@ -1494,9 +1494,25 @@ def _structured_data(c, lang):
     }
     if c.get("founder_image"):
         inhaber["image"] = f"{base}{c['founder_image']}"
+    # ── `sameAs` (docs/SEO-AUSBAU-3.md, S7) ──────────────────────────────────
+    # Die Liste steht in content.json unter "profile" und ist leer, solange es
+    # keine echten Profile gibt. Ein erfundener oder geratener Link wäre nicht
+    # nur wertlos, sondern schädlich: `sameAs` ist eine Identitätsbehauptung,
+    # und eine falsche zerstört genau das Vertrauen, das sie herstellen soll.
+    #
+    # Reihenfolge beim Eintragen, sobald die Profile existieren (die ersten
+    # beiden zählen für Local-SEO deutlich mehr als der Rest):
+    #   1. Google-Unternehmensprofil (steht in SEO-KONZEPT-DACH.md §7 bereit,
+    #      blockiert durch die Anmeldung — nicht durch den Code)
+    #   2. LinkedIn-Unternehmensseite
+    #   3. Firmen-A-B-C / WKO-Firmenverzeichnis (AT)
+    #   4. Facebook- oder Instagram-Seite, falls gepflegt
+    # Eintragen heißt: URL in content.json → "profile" ergänzen, sonst nichts.
+    # Der Rest passiert hier automatisch, inklusive Ausgabe im @graph.
     profile = [u.strip() for u in (c.get("profile") or []) if u and u.strip()]
     if profile:
         business["sameAs"] = profile
+        inhaber["sameAs"] = [u for u in profile if "linkedin." in u.lower()]
 
     graph = [business, inhaber, website]
 
@@ -1653,6 +1669,39 @@ def _seiten_pfade():
     return pfade
 
 
+def _itemlist(base, pfad, name, posten):
+    """`ItemList` für eine Hub-Seite (docs/SEO-AUSBAU-3.md, S3).
+
+    Ein Hub ist für eine Suchmaschine sonst eine Seite mit vielen Links und ohne
+    erkennbare Ordnung. Die `ItemList` sagt: Das hier ist eine benannte Liste,
+    sie hat diese Einträge, und sie sind so sortiert wie im HTML.
+
+    `posten` ist eine Liste aus (Name, Pfad) — genau die Reihenfolge, in der die
+    Einträge auch auf der Seite stehen. Eine andere Reihenfolge wäre eine Angabe,
+    die sich am HTML widerlegen lässt."""
+    return {
+        "@type": "ItemList",
+        "@id": f"{base}{pfad}#liste",
+        "name": name,
+        "numberOfItems": len(posten),
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": eintrag_name,
+             "url": f"{base}{eintrag_pfad}"}
+            for i, (eintrag_name, eintrag_pfad) in enumerate(posten, start=1)
+        ],
+    }
+
+
+def _mit_itemlist(schema_json, itemlist):
+    """Hängt eine ItemList in ein bereits gebautes @graph. Getrennte Funktion,
+    weil `_seiten_schema` einen JSON-String zurückgibt und die Hub-Views sonst
+    alle dasselbe Auspacken und Einpacken wiederholen müssten."""
+    graph = json.loads(schema_json)
+    graph["@graph"].append(itemlist)
+    return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
+
+
 def _breadcrumb(base, teile):
     """BreadcrumbList fuers Schema. teile = [(Name, Pfad), ...] ohne Startseite."""
     eintraege = [{"@type": "ListItem", "position": 1, "name": "Start", "item": f"{base}/"}]
@@ -1700,9 +1749,12 @@ def leistungen_hub(request):
     ]
     return render(request, "leistungen.html", {
         "c": c, "hub": hub, "bereiche": bereiche,
-        "structured_data": _seiten_schema(
-            c, lang,
-            breadcrumb=_breadcrumb(base, [(pack["seite"]["leistungen"], reverse("leistungen"))])),
+        "structured_data": _mit_itemlist(
+            _seiten_schema(c, lang, breadcrumb=_breadcrumb(
+                base, [(pack["seite"]["leistungen"], reverse("leistungen"))])),
+            _itemlist(base, reverse("leistungen"), hub.get("h1", ""),
+                      [(l.get("nav", l["slug"]), l["url"])
+                       for b in bereiche for l in b["posten"]])),
     })
 
 
@@ -1786,11 +1838,14 @@ def branchen_hub(request):
     pack = i18n.get_pack(lang)
     bs = pack.get("branchen_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
+    liste = _alle_branchen(lang)
     return render(request, "branchen.html", {
-        "c": c, "bs": bs, "branchen": _alle_branchen(lang),
-        "structured_data": _seiten_schema(
-            c, lang, breadcrumb=_breadcrumb(base, [
+        "c": c, "bs": bs, "branchen": liste,
+        "structured_data": _mit_itemlist(
+            _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
+            _itemlist(base, reverse("branchen"), bs.get("h1", ""),
+                      [(b.get("nav", b["slug"]), b["url"]) for b in liste])),
     })
 
 
@@ -1965,12 +2020,14 @@ def checklisten_hub(request):
     """/checkliste/ — die drei Listen im Überblick."""
     c = _content()
     base = (c.get("wvm_url") or "").rstrip("/")
+    listen = [_checkliste_daten(k) for k in checklisten.CHECKLISTEN]
     return render(request, "checklisten.html", {
-        "c": c,
-        "listen": [_checkliste_daten(k) for k in checklisten.CHECKLISTEN],
-        "structured_data": _seiten_schema(
-            c, "de", breadcrumb=_breadcrumb(base, [
+        "c": c, "listen": listen,
+        "structured_data": _mit_itemlist(
+            _seiten_schema(c, "de", breadcrumb=_breadcrumb(base, [
                 ("Checklisten", reverse("checklisten"))])),
+            _itemlist(base, reverse("checklisten"), "Checklisten",
+                      [(k.get("titel", k["slug"]), k["url"]) for k in listen])),
     })
 
 
@@ -2042,8 +2099,10 @@ def wissen(request):
     base = (c.get("wvm_url") or "").rstrip("/")
     liste = sorted((_begriff_daten(b) for b in glossar.BEGRIFFE),
                    key=lambda b: b.get("titel", "").lower())
-    graph = json.loads(_seiten_schema(
-        c, "de", breadcrumb=_breadcrumb(base, [("Wissen", reverse("wissen"))])))
+    graph = json.loads(_mit_itemlist(
+        _seiten_schema(c, "de", breadcrumb=_breadcrumb(base, [("Wissen", reverse("wissen"))])),
+        _itemlist(base, reverse("wissen"), "IT-Glossar",
+                  [(b.get("titel", b["slug"]), b["url"]) for b in liste])))
     graph["@graph"].append(_defined_term_set(base))
     return render(request, "wissen.html", {
         "c": c, "begriffe": liste,
@@ -2188,12 +2247,14 @@ def vergleiche_hub(request):
     pack = i18n.get_pack(lang)
     vs = pack.get("vergleiche_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
+    liste = [_vergleich_daten(v, lang) for v in vergleiche.VERGLEICHE]
     return render(request, "vergleiche.html", {
-        "c": c, "vs": vs,
-        "vergleiche": [_vergleich_daten(v, lang) for v in vergleiche.VERGLEICHE],
-        "structured_data": _seiten_schema(
-            c, lang, breadcrumb=_breadcrumb(base, [
+        "c": c, "vs": vs, "vergleiche": liste,
+        "structured_data": _mit_itemlist(
+            _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche"))])),
+            _itemlist(base, reverse("vergleiche"), vs.get("h1", ""),
+                      [(v.get("nav", v["slug"]), v["url"]) for v in liste])),
     })
 
 
@@ -2275,6 +2336,18 @@ def beitrag_seite(request, slug):
 
     # Article-Schema mit echtem Datum und benanntem Autor: Beides sind Signale,
     # die eine KI-Antwort braucht, um einen Absatz überhaupt zuzuordnen (G6).
+    #
+    # S4/S5 aus SEO-AUSBAU-3.md kommen hier dazu:
+    # * `speakable` zeigt auf `.antwort` — den Absatz, den templates/antwort.html
+    #   rendert. Wer dort die Klasse entfernt, macht diese Angabe zur Lüge.
+    # * `wordCount` und `timeRequired` werden aus dem tatsächlichen Text
+    #   berechnet, nicht geschätzt. Eine geratene Zahl im Schema ist schlechter
+    #   als keine — sie lässt sich nachprüfen.
+    worte = len(" ".join(
+        [beitrag.get("antwort", ""), beitrag.get("fazit", "")]
+        + [a.get("h", "") + " " + a.get("t", "") for a in beitrag.get("abschnitte", [])]
+    ).split())
+    thema = leistungen.NACH_SLUG.get(eintrag.get("thema", ""))
     artikel = {
         "@type": "Article", "@id": f"{base}{pfad}#article",
         "headline": beitrag.get("titel", ""),
@@ -2286,8 +2359,15 @@ def beitrag_seite(request, slug):
         "publisher": {"@id": f"{base}/#business"},
         "mainEntityOfPage": {"@type": "WebPage", "@id": f"{base}{pfad}"},
         "about": {"@id": f"{base}/#business"},
+        "wordCount": worte,
+        # ISO-8601-Dauer. Die Lesezeit steht auch sichtbar auf der Seite; beide
+        # kommen aus demselben Feld in landing/beitraege.py.
+        "timeRequired": f"PT{int(eintrag.get('lesezeit') or 5)}M",
+        "articleSection": (_leistung_daten(thema, "de").get("nav", "")
+                           if thema else "Aktuelles"),
+        "speakable": {"@type": "SpeakableSpecification",
+                      "cssSelector": [".antwort", "h1"]},
     }
-    thema = leistungen.NACH_SLUG.get(eintrag.get("thema", ""))
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag,
         "thema": _leistung_daten(thema, "de") if thema else None,
@@ -2311,8 +2391,11 @@ def aktuelles(request):
                    key=lambda b: b.get("datum", ""), reverse=True)
     return render(request, "aktuelles.html", {
         "c": c, "beitraege": liste,
-        "structured_data": _seiten_schema(
-            c, "de", breadcrumb=_breadcrumb(base, [("Aktuelles", reverse("aktuelles"))])),
+        "structured_data": _mit_itemlist(
+            _seiten_schema(c, "de", breadcrumb=_breadcrumb(
+                base, [("Aktuelles", reverse("aktuelles"))])),
+            _itemlist(base, reverse("aktuelles"), "Fachbeiträge",
+                      [(b.get("titel", b["slug"]), b["url"]) for b in liste])),
     })
 
 
@@ -2375,12 +2458,16 @@ def regionen_hub(request):
     lang = get_language()
     pack = i18n.get_pack(lang)
     base = (c.get("wvm_url") or "").rstrip("/")
+    liste = [_region_daten(r, lang) for r in regionen.REGIONEN]
     return render(request, "regionen.html", {
-        "c": c,
-        "regionen": [_region_daten(r, lang) for r in regionen.REGIONEN],
-        "structured_data": _seiten_schema(
-            c, lang, breadcrumb=_breadcrumb(base, [
+        "c": c, "regionen": liste,
+        "structured_data": _mit_itemlist(
+            _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen"))])),
+            _itemlist(base, reverse("regionen"),
+                      pack["seite"].get("regionen_h1", "Regionen"),
+                      [(r.get("ort", r["slug"]),
+                        reverse("region", kwargs={"slug": r["slug"]})) for r in liste])),
     })
 
 
@@ -2482,8 +2569,14 @@ def angebot(request):
     sent = False
     if request.method == "POST":
         sent = _handle_angebot(request, c)
+    base = (c.get("wvm_url") or "").rstrip("/")
     return render(request, "angebot.html", {
         "c": c, "sent": sent, "groups": _localized_groups(lang),
+        # Diese Seite hatte als einzige oeffentliche Seite gar kein Schema —
+        # gefunden von der S9-Pruefung, nicht von einem Menschen.
+        "structured_data": _seiten_schema(
+            c, lang, breadcrumb=_breadcrumb(
+                base, [(i18n.get_pack(lang)["nav"]["angebot"], reverse("angebot"))])),
         # Schnellstart: ein Klick setzt die Haken eines typischen Bedarfs.
         # Ohne JavaScript kommt die Vorauswahl ueber ?paket=<id> vom Server.
         "startpakete": _startpakete(lang),
