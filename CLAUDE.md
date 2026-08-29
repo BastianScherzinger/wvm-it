@@ -54,6 +54,8 @@ Zuarbeit und lässt sich hier nicht lösen:
 - `docs/seo/PERFORMANCE.md` — Messung, Änderungen, offene CWV-Messung (T2–T5, T8)
 - `docs/seo/GEO-MONITORING.md` — zehn feste Fragen, Protokoll, Quartalstermin (M1/M2)
 - `docs/seo/URL-INVENTAR.md` — erzeugte Übersicht aller URLs (M3)
+- `docs/DEPLOY.md` — **wo die Seite läuft und wie sie dorthin kommt.** Railway-Projekt
+  heißt `webseiten`, nicht `wvm-it`; Push auf `main` deployt automatisch
 - `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Keyword-Ebenen, NAP, Messgrößen
 - `docs/AKQUISE-SOFORT.md` — was kurzfristig Anfragen bringt (und warum SEO das nicht ist)
 - `docs/RELAUNCH-START.md` — der Relaunch vom 28.08.
