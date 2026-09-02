@@ -49,7 +49,37 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 ## Messung
 
 <!-- messung:anfang -->
-_Wird vom Werkzeug geschrieben._
+**Messung vom 02.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-02a) — **Gesamtstand 80,0 von 100**, Reifegrad „Solide“. 231 von 244 Regeln an 158 URLs und 118 Dateien (24.653 Zeilen) geprüft.
+
+| Bereich | Wert | Reifegrad |
+|---|---:|---|
+| Code-Qualität & Projektreife | **58** | Lückenhaft |
+| GEO — KI-Sichtbarkeit | **64** | Brauchbar |
+| Konversion | **74** | Brauchbar |
+| Vorlagen-Konformität | **75** | Solide |
+| Sicherheit | **81** | Solide |
+| Performance & Core Web Vitals | **82** | Solide |
+| SEO — Inhalt | **82** | Solide |
+| Substanz & Reichweite | **90** | Referenz |
+| Betrieb & Auslieferung | **92** | Referenz |
+| Recht & Vertrauen | **92** | Referenz |
+| SEO — Technik | **94** | Referenz |
+| Barrierefreiheit | **96** | Referenz |
+
+Keine Sperre greift.
+
+Quelltext: 118 Dateien, **448 Befunde**, davon 9 kritisch und 375 wichtig.
+
+Kritische Befunde:
+
+- **Keine Beinahe-Duplikate zwischen Seiten** (`IS21`) — 6 Seitenpaare über 60 Prozent Textgleichheit, höchster Wert 100% (verglichen wurden die ersten 60 von 158 Seiten): /impressum/ = /en/impressum/ (100%), /impressum/ = /ro/impressum/ (100%), /en/impressum/ = /ro/impressum/ (100%), /datenschut
+- **Automatische Tests sind vorhanden** (`PJ02`) — keine einzige Testfunktion im Projekt — jede Änderung ist ein Blindflug
+- **Es gibt keinen kritischen Datei-Befund** (`PJ05`) — 9 kritische Befunde: landing/management/commands/indexnow.py:48 Ausnahme wird verschluckt, landing/management/commands/pruefe_seite.py:72 Ausnahme wird verschluckt, landing/management/commands/seo_bericht.py:55 Ausnahme wird verschluckt, la
+- **Antwort zuerst: der erste Absatz beantwortet die Frage** (`GE23`) — 14 von 158 Seiten beginnen mit einer zitierfähigen Antwort — schwach: / (weder Definition noch Zahl), /kontakt/ (weder Definition noch Zahl), /en/kontakt/ (weder Definition noch Zahl), /ro/kontakt/ (weder Definition noch Zahl), /angebot/ (w
+- **Umfang passt zur Aufgabe der Seite** (`IS18`) — Unter dem Umfang, den ihre Aufgabe verlangt: 55 von 84 Seiten — /leistungen/ (328/600 W), /vergleich/ (288/900 W), /en/leistungen/ (330/600 W), /ro/leistungen/ (377/600 W), /leistungen/google-ads/ (583/600 W) … (+50)
+- **Kein nennenswerter Anteil dünner Seiten** (`IS19`) — 7% der Seiten sind dünn (11 von 158): /kontakt/ (140 W), /en/kontakt/ (149 W), /ro/kontakt/ (145 W), /impressum/ (137 W), /en/impressum/ (137 W) … (+6)
+- **Die Qualitätssicherung der Vorlage ist verdrahtet** (`VL19`) — Prüfbefehle: pruefe_seite, pruefe_sicherheit, seo_bericht; 0 Testfunktionen in 0 Dateien: 3 von 7 QS-Bausteinen erfüllt — es fehlt: echte Testdateien, mindestens 30 Testfunktionen, CI-Lauf bei jedem Push, Fehler-Monitoring (Sentry o. ä.)
+- **Keine Nutzseite ist von der Startseite aus unerreichbar** (`TS23`) — 82 Seiten sind über interne Links nicht erreichbar: /en/kontakt/, /ro/kontakt/, /en/angebot/, /ro/angebot/, /en/impressum/ … (+77)
 <!-- messung:ende -->
 
 ## Die drei wichtigsten offenen Punkte

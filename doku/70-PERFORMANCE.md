@@ -6,9 +6,9 @@ status: teilweise
 fortschritt: 82
 zusammenfassung: PageSpeed Startseite 97 mobil / 100 Desktop, HTML seit 29.08. komprimiert; mittlere Antwortzeit im Crawl 1.550 ms, kein srcset, CLS auf Desktop-Unterseiten bis 0,23.
 offen: 7
-pagespeed_mobil: 97
-pagespeed_desktop: 100
-antwortzeit_ms: 480
+pagespeed_mobil: 100
+pagespeed_desktop: 95
+antwortzeit_ms: 7109
 quellen: docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
 
