@@ -4,7 +4,7 @@ titel: SEO und GEO
 stand: 2026-09-03
 status: teilweise
 fortschritt: 80
-zusammenfassung: SEO-Ausbau 3 abgeschlossen (56/56), SEO-Technik 94, SEO-Inhalt 82, GEO 64; erste Messung Oktober 2026, Suchanfragen ohne Marke am 29.08. null.
+zusammenfassung: SEO-Ausbau 3 abgeschlossen (56/56), SEO-Technik 94, SEO-Inhalt 87, GEO 70; erste Messung Oktober 2026, Suchanfragen ohne Marke am 29.08. null.
 offen: 12
 quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/GEO-MONITORING.md, docs/seo/KEYWORD-MAP.md, docs/seo/BASELINE.md
 ---
@@ -27,7 +27,7 @@ quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/
 
 **Ausgangslage** (`../docs/seo/BASELINE.md`, Search Console, drei Monate bis 28.08.2026): **7 Klicks, 54 Impressionen, CTR 13 %, Ø Position 13,9, drei Suchanfragen — `wvm`, `wwwwvm`, `vm it`, alle Markenname, null Impressionen für irgendeine Leistung.** Index 6 von 6, Bing `site:` 6 Ergebnisse, CWV „nicht genügend Nutzungsdaten".
 
-**Messung vom 02.09.2026 (Regelstand 2026-09-02a):** SEO — Technik **93,6** (Referenz) · SEO — Inhalt **82,2** (Solide) · GEO — KI-Sichtbarkeit **63,6** (Brauchbar) · Substanz **90,1** (Referenz). Sichtbarkeit selbst (Klicks, Positionen) misst keine der 244 Regeln — dafür ist die Search Console zuständig, siehe [50-LOCAL-SEO.md](50-LOCAL-SEO.md).
+**Messung vom 03.09.2026 (Regelstand 2026-09-03a):** SEO — Technik **93,6** (Referenz) · SEO — Inhalt **86,7** (Solide) · GEO — KI-Sichtbarkeit **69,6** (Brauchbar) · Substanz **90,1** (Referenz). Sichtbarkeit selbst (Klicks, Positionen) misst keine der 244 Regeln — dafür ist die Search Console zuständig, siehe [50-LOCAL-SEO.md](50-LOCAL-SEO.md).
 
 ## Technik
 

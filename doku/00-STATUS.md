@@ -40,7 +40,7 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 | Technik | teilweise | 58 | Django 5.0.6 auf Railway mit drei eigenen Prüfbefehlen, aber ohne eine einzige Testfunktion, ohne CI und ohne Lockfile. | [10-TECHNIK.md](10-TECHNIK.md) |
 | Design | teilweise | 96 | Design-System vom 27.08.2026 steht (hell, Gold als einziger Akzent, `.on-dark`); Mobilansicht nie am Gerät geprüft, Lighthouse meldet 32 Kontrastelemente. | [20-DESIGN.md](20-DESIGN.md) |
 | Inhalte | teilweise | 90 | 158 URLs in acht Silos mit 114.641 Wörtern; 55 von 84 Seiten unter dem Zielumfang ihrer Seitenart, keine Über-uns-Seite, keine AGB. | [30-INHALTE.md](30-INHALTE.md) |
-| SEO und GEO | teilweise | 80 | SEO-Ausbau 3 abgeschlossen (56/56), SEO-Technik 94, SEO-Inhalt 82, GEO 64; erste Messung Oktober 2026, Suchanfragen ohne Marke am 29.08. null. | [40-SEO.md](40-SEO.md) |
+| SEO und GEO | teilweise | 80 | SEO-Ausbau 3 abgeschlossen (56/56), SEO-Technik 94, SEO-Inhalt 87, GEO 70; erste Messung Oktober 2026, Suchanfragen ohne Marke am 29.08. null. | [40-SEO.md](40-SEO.md) |
 | Local SEO | teilweise | 50 | Search Console eingerichtet und NAP überall zeichengleich; Google-Unternehmensprofil, Bewertungen und Verzeichniseinträge fehlen — alles beim Kunden. | [50-LOCAL-SEO.md](50-LOCAL-SEO.md) |
 | Ads | nicht zutreffend | — | Für WVM-IT laufen keine Google Ads; Landingpages stünden bereit, Konto, Conversion-Tag und Danke-Seite fehlen. | [60-ADS.md](60-ADS.md) |
 | Performance | teilweise | 82 | PageSpeed Startseite 97 mobil / 100 Desktop, HTML seit 29.08. komprimiert; mittlere Antwortzeit im Crawl 1.550 ms, kein srcset, CLS auf Desktop-Unterseiten bis 0,23. | [70-PERFORMANCE.md](70-PERFORMANCE.md) |
