@@ -100,3 +100,17 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 | 28.08.2026 | **Duplikat-Host geschlossen** (F2): `wvm-it-shop.up.railway.app` leitet mit 301 auf die Hauptdomain um (am 02.09.2026 nachgeprüft) | `../docs/SEO-PLAN.md` |
 | 28.08.2026 | **Search Console eingerichtet** (Property `https://www.wvm-it.tech/`, Konto `bastian.scherzinger05@gmail.com` — am 03.09.2026 nachgeprüft), Sitemap neu eingereicht, sechs URLs zur Indexierung beantragt, **Nullmessung** in `docs/seo/BASELINE.md` festgehalten; IndexNow eingerichtet und ausgelöst (HTTP 202) | `../docs/INDEXIERUNG.md` |
 | 27.08.2026 | Design-System festgelegt (Tokens, Typografie, Komponentenregeln), `UMBAU-PLAN.md` und `SEO-PLAN.md` angelegt | `../docs/UMBAU-PLAN.md` §2 |
+
+## Bewertung der Messpunkte
+
+<!-- bewertung:anfang -->
+| Punkt | Zustand | Grund | seit |
+|---|---|---|---|
+<!-- bewertung:ende -->
+
+## Eigene Punkte
+
+<!-- eigenepunkte:anfang -->
+| Punkt | Titel | Bereich | Zustand | Beleg | seit |
+|---|---|---|---|---|---|
+<!-- eigenepunkte:ende -->
