@@ -1,15 +1,17 @@
 ---
 bereich: inhalte
 titel: Inhalte
-stand: 2026-09-02
+stand: 2026-09-03
 status: teilweise
-fortschritt: 85
+fortschritt: 90
 zusammenfassung: 158 URLs in acht Silos mit 114.641 Wörtern; 55 von 84 Seiten unter dem Zielumfang ihrer Seitenart, keine Über-uns-Seite, keine AGB.
 offen: 8
 quellen: CLAUDE.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
 ---
 
 # Inhalte
+
+*Woran sich der Fortschritt bemisst: am gemessenen Bereichswert **Substanz** des Laufs vom 02.09.2026 (Regelstand `2026-09-02a`), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße.*
 
 ## Seitenbestand
 

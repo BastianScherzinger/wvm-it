@@ -1,15 +1,17 @@
 ---
 bereich: technik
 titel: Technik
-stand: 2026-09-02
+stand: 2026-09-03
 status: teilweise
-fortschritt: 60
+fortschritt: 58
 zusammenfassung: Django 5.0.6 auf Railway mit drei eigenen Prüfbefehlen, aber ohne eine einzige Testfunktion, ohne CI und ohne Lockfile.
 offen: 9
 quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
 ---
 
 # Technik
+
+*Woran sich der Fortschritt bemisst: am gemessenen Bereichswert **Code-Qualität** des Laufs vom 02.09.2026 (Regelstand `2026-09-02a`), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße.*
 
 ## Stack
 

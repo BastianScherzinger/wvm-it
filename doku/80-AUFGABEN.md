@@ -1,15 +1,17 @@
 ---
 bereich: aufgaben
 titel: Aufgaben
-stand: 2026-09-02
+stand: 2026-09-03
 status: teilweise
-fortschritt: 50
+fortschritt: 30
 zusammenfassung: Im Code nichts mehr aus den Plänen offen; neu aus der Messung: Tests (0 Funktionen), 82 unerreichbare Seiten, 9 kritische Datei-Befunde, Sicherheitsköpfe.
 offen: 8
 quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
 ---
 
 # Aufgaben
+
+*Woran sich der Fortschritt bemisst: am Anteil der erledigten an allen in dieser Datei geführten Aufgaben — „Erledigt“ gegen „Erledigt + Offen + Fehlt + Beim Kunden“, auf Zehner gerundet. „Verbesserungsmöglichkeiten“ zählen nicht mit, sie sind Kür, keine Zusage. Bei allen sechs betreuten Seiten dieselbe Rechnung.*
 
 > **Ausgangspunkt:** Aus den Plänen im Projekt ist im Code nichts mehr offen — `SEO-AUSBAU-3.md`
 > steht auf 56 von 56. Alles unten kommt entweder aus der **Messung vom 02.09.2026
@@ -96,5 +98,5 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 | 28.08.2026 | **Umbau live** (Commit `60d3064`): helle Basis mit dunklen Bändern, vier Kontaktwege über der Falz, Hero-Widget mit zwei Reitern, Kurzformular je Leistungsblock über einen Endpunkt, sichtbare Preise mit Stand-Datum, FAQ, Kontrast auf ≥ 4,5:1; 48 von 50 Aufgaben | `../docs/UMBAU-START.md` |
 | 28.08.2026 | **Sicherheit** (P2): Rate-Limiting auf alle fünf Formulare statt auf eins, Honeypot überall, Feldlängen begrenzt, X-Forwarded-For-Lücke geschlossen, Prüfbefehl `pruefe_sicherheit` | `../docs/AUSBAU-2026-08.md` |
 | 28.08.2026 | **Duplikat-Host geschlossen** (F2): `wvm-it-shop.up.railway.app` leitet mit 301 auf die Hauptdomain um (am 02.09.2026 nachgeprüft) | `../docs/SEO-PLAN.md` |
-| 28.08.2026 | **Search Console eingerichtet** (Property `https://www.wvm-it.tech/`, drittes Google-Konto), Sitemap neu eingereicht, sechs URLs zur Indexierung beantragt, **Nullmessung** in `docs/seo/BASELINE.md` festgehalten; IndexNow eingerichtet und ausgelöst (HTTP 202) | `../docs/INDEXIERUNG.md` |
+| 28.08.2026 | **Search Console eingerichtet** (Property `https://www.wvm-it.tech/`, Konto `bastian.scherzinger05@gmail.com` — am 03.09.2026 nachgeprüft), Sitemap neu eingereicht, sechs URLs zur Indexierung beantragt, **Nullmessung** in `docs/seo/BASELINE.md` festgehalten; IndexNow eingerichtet und ausgelöst (HTTP 202) | `../docs/INDEXIERUNG.md` |
 | 27.08.2026 | Design-System festgelegt (Tokens, Typografie, Komponentenregeln), `UMBAU-PLAN.md` und `SEO-PLAN.md` angelegt | `../docs/UMBAU-PLAN.md` §2 |

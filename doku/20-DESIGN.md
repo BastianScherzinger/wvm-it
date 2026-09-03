@@ -1,15 +1,17 @@
 ---
 bereich: design
 titel: Design
-stand: 2026-09-02
+stand: 2026-09-03
 status: teilweise
-fortschritt: 80
+fortschritt: 96
 zusammenfassung: Design-System vom 27.08.2026 steht (hell, Gold als einziger Akzent, `.on-dark`); Mobilansicht nie am Gerät geprüft, Lighthouse meldet 32 Kontrastelemente.
 offen: 4
 quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---
 
 # Design
+
+*Woran sich der Fortschritt bemisst: am gemessenen Bereichswert **Barrierefreiheit** des Laufs vom 02.09.2026 (Regelstand `2026-09-02a`), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße.*
 
 ## Gestaltungslinie
 

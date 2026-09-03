@@ -1,21 +1,23 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-02
+stand: 2026-09-03
 status: teilweise
-fortschritt: 25
+fortschritt: 50
 zusammenfassung: Search Console eingerichtet und NAP überall zeichengleich; Google-Unternehmensprofil, Bewertungen und Verzeichniseinträge fehlen — alles beim Kunden.
 offen: 6
 unternehmensprofil: nein
 search_console: ja
-gsc_property: https://www.wvm-it.tech/ (URL-Präfix)
-gsc_konto: drittes Google-Konto (zusammen mit Rümpelwerk, PyStore, RTC-Service) — weder …05 noch …69@gmail.com
+gsc_property: https://www.wvm-it.tech/
+gsc_konto: bastian.scherzinger05@gmail.com
 bewertung: nicht dokumentiert
 bewertungen_anzahl: 0
 quellen: docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/BASELINE.md, docs/AUSBAU-2026-08.md, docs/AKQUISE-SOFORT.md
 ---
 
 # Local SEO
+
+*Woran sich der Fortschritt bemisst: an vier Punkten zu je 25 — Unternehmensprofil vorhanden · Search Console verbunden · Bewertungen vorhanden · NAP überall gleich. Bei allen sechs betreuten Seiten dieselben vier Punkte.*
 
 Local SEO ist für WVM-IT seit dem 28.08.2026 überhaupt erst möglich: Bis dahin hatte die Seite keinen Firmensitz (`address` enthielt nur `addressCountry: AT`), und Ortsseiten wären Doorway-Pages gewesen. Mit **Waldstraße 19/1, 4860 Lenzing** (Bezirk Vöcklabruck, Oberösterreich) gibt es ein echtes Einzugsgebiet — Nische 2 des Konzepts, „der schnellste Kunde": Wer `it service vöcklabruck` sucht, sieht zuerst die Kartenergebnisse, und die gewinnt kein Ranking, sondern das Unternehmensprofil.
 
@@ -42,14 +44,14 @@ Während der Wartezeit: Fotos, Leistungen mit Preisen, Beschreibung. Nach Freisc
 
 | | |
 |---|---|
-| **Property** | `https://www.wvm-it.tech/` — **URL-Präfix**, verifiziert (Meta-Tag auf der Startseite, Commit `149b221`) |
-| **Konto** | das **dritte Google-Konto** von Bastian (zusammen mit Rümpelwerk, PyStore, RTC-Service); weder …05 noch …69@gmail.com. Kein Passwort hier |
+| **Property** | `https://www.wvm-it.tech/` — eine **URL-Präfix**-Property, keine `sc-domain`; verifiziert über das Meta-Tag auf der Startseite (Commit `149b221`). Genau diese Zeichenkette steht in `sites.json` des Werkzeugs (geprüft 03.09.2026); der Hinweis „URL-Präfix" gehört in diesen Fließtext, nicht in den Kopfwert, weil das Werkzeug ihn wörtlich vergleicht |
+| **Konto** | **`bastian.scherzinger05@gmail.com`** — am 03.09.2026 einzeln nachgeprüft: dort liegen alle sieben Properties, das zweite Konto (`…69@gmail.com`) hat keine einzige. Die frühere Angabe „drittes Google-Konto, weder …05 noch …69" war falsch. Kein Passwort hier |
 | **Sitemap** | am 28.08.2026 neu eingereicht (zuvor gelesen 16.07.2026), damals 6 bzw. 57 URLs; die **158er-Sitemap vom 29.08. wurde noch nicht neu eingereicht** |
 | **Indexierung beantragt** | 28.08.: alle 6 URLs; 29.08.: 4 Kern-URLs, dann Tageskontingent (~10/Tag) erschöpft; **71 neue URLs vom 29.08. noch offen** |
 | **Index (28.08.2026)** | 6 von 6, 0 nicht indexiert, keine Probleme in 90 Tagen, keine manuellen Maßnahmen; Live-Test Startseite „kann indexiert werden" |
 | **Nullmessung** (3 Monate bis 28.08.2026) | 7 Klicks · 54 Impressionen · CTR 13 % · Ø Position 13,9 · drei Suchanfragen (`wwwwvm` 1 Klick/3 Impr., `wvm` 0/11 Pos. 41,9, `vm it` 0/1 Pos. 86) · **0 Suchanfragen mit Leistungsbezug** |
 | **Property-Zuschnitt** | Eine Domain-Property (`wvm-it.tech`) würde Subdomains und die Variante ohne `www` einschließen, braucht aber DNS-Verifizierung — beim nächsten Anfassen der DNS-Zone lohnt sich der Wechsel (`../docs/INDEXIERUNG.md`) |
-| **Im Werkzeug** | `pystore-overview` kann die Search Console anbinden (Dienstkonto oder OAuth), es sind aber keine Zugangsdaten hinterlegt — dort steht „nicht verbunden", keine Null |
+| **Im Werkzeug** | `pystore-overview` ist seit dem 03.09.2026 **per OAuth** an die Search Console angebunden (Cloud-Projekt `gen-lang-client-0179494625`); Property und Konto sind eingetragen und geprüft |
 
 **Auswertung** (`../docs/seo/GEO-MONITORING.md` M2, vierteljährlich, nächste **Oktober 2026**, Vorab-Messung Ende September gegen `BASELINE.md`): Leistung → Suchanfragen, drei Monate gegen drei davor; **nach Impressionen sortieren, Position 8–25 filtern** — die Tabelle ist nach Klicks sortiert, und dort steht der Longtail auf Seite 2. Vier Zahlen: Suchanfragen ohne Markennamen (am 29.08.2026 **null** — die eine Zahl, an der das Projekt gemessen wird) · indexierte Seiten (muss dem URL-Inventar entsprechen) · Impressionen gesamt · Seiten mit Impressionen.
 
@@ -89,7 +91,7 @@ https://www.wvm-it.tech
 | # | Punkt | Wer | Quelle |
 |---|---|---|---|
 | 1 | **Google-Unternehmensprofil anlegen und verifizieren** — der entscheidende lokale Hebel | **Florin** | Konzept §7, AKQUISE-SOFORT Kanal 1 |
-| 2 | Sitemap (158 URLs) neu einreichen, 71 neue URLs anstoßen, täglich ~10 | Bastian (Browser, drittes Konto) | Ausbau 3 §12 |
+| 2 | Sitemap (158 URLs) neu einreichen, 71 neue URLs anstoßen, täglich ~10 | Bastian (Browser, Konto `…05@gmail.com`) | Ausbau 3 §12 |
 | 3 | Erste Bewertungen einsammeln — erst nach Freischaltung des Profils | Florin | T5 |
 | 4 | WKO Firmen A–Z, Herold, Bing Places, Apple Business Connect mit identischer NAP | Bastian | T6, Konzept §7 |
 | 5 | `sameAs` füllen, sobald Profile existieren; Geokoordinaten ins Schema | Bastian, nach 1 | `GE11`, `GE22` |

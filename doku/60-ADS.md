@@ -1,10 +1,10 @@
 ---
 bereich: ads
 titel: Google Ads
-stand: 2026-09-02
+stand: 2026-09-03
 status: nicht zutreffend
 zusammenfassung: Für WVM-IT laufen keine Google Ads; Landingpages stünden bereit, Konto, Conversion-Tag und Danke-Seite fehlen.
-offen: 0
+offen: 6
 quellen: docs/AKQUISE-SOFORT.md, docs/RELAUNCH-START.md, docs/recht-und-cookies.md
 ---
 

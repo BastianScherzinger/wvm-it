@@ -1,18 +1,20 @@
 ---
 bereich: performance
 titel: Performance
-stand: 2026-09-02
+stand: 2026-09-03
 status: teilweise
 fortschritt: 82
 zusammenfassung: PageSpeed Startseite 97 mobil / 100 Desktop, HTML seit 29.08. komprimiert; mittlere Antwortzeit im Crawl 1.550 ms, kein srcset, CLS auf Desktop-Unterseiten bis 0,23.
 offen: 7
-pagespeed_mobil: 100
-pagespeed_desktop: 95
-antwortzeit_ms: 7109
+pagespeed_mobil: 99
+pagespeed_desktop: 98
+antwortzeit_ms: 6790
 quellen: docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
 
 # Performance
+
+*Woran sich der Fortschritt bemisst: am gemessenen Tempo-Wert des Laufs vom 02.09.2026 (PageSpeed mobil doppelt, Desktop einfach gewichtet), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße.*
 
 ## Messwerte
 

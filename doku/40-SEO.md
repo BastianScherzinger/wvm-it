@@ -1,7 +1,7 @@
 ---
 bereich: seo
 titel: SEO und GEO
-stand: 2026-09-02
+stand: 2026-09-03
 status: teilweise
 fortschritt: 80
 zusammenfassung: SEO-Ausbau 3 abgeschlossen (56/56), SEO-Technik 94, SEO-Inhalt 82, GEO 64; erste Messung Oktober 2026, Suchanfragen ohne Marke am 29.08. null.
@@ -10,6 +10,8 @@ quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/
 ---
 
 # SEO und GEO
+
+*Woran sich der Fortschritt bemisst: am Mittel der drei gemessenen Bereichswerte **SEO-Technik, SEO-Inhalt und GEO** des Laufs vom 02.09.2026 (Regelstand `2026-09-02a`), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße. Nennt die Datei zusätzlich einen Planfortschritt (etwa „52 von 73 Aufgaben“), steht der im Abschnitt „Stand“ — er misst den Plan, nicht die Seite.*
 
 ## Stand
 

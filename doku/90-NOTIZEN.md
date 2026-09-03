@@ -1,7 +1,7 @@
 ---
 bereich: notizen
 titel: Notizen
-stand: 2026-09-02
+stand: 2026-09-03
 status: vollständig
 fortschritt: 100
 zusammenfassung: Pfad- und Namensfallen, vierzehn Widersprüche zwischen Doku, Code und Messung, Verweise.
@@ -24,7 +24,7 @@ quellen: CLAUDE.md, docs/DEPLOY.md, docs/seo/PERFORMANCE.md, docs/mehrsprachigke
 - **Kein Tracking, keine externen Requests vor Einwilligung.** Schriften selbst gehostet, Spline lädt erst nach `wvm_consent=all`, Cloudinary nur nutzerinitiiert. Notwendige Cookies: `wvm_lang`, `wvm_consent`, `csrftoken`. Ein Google-Tag bräuchte eine neue Einwilligungsstufe und einen Eintrag in der Datenschutzerklärung.
 - **Die Seite nutzt kein Django-ORM** — keine Migrationen, keine eigene Datenbank. `psycopg2` dient nur dem direkten Postgres-Zugriff auf die gemeinsame Supabase-Datenbank (Schema `wvm`, über den Pooler, weil die REST-Daten-API im Free-Tier mit HTTP 402 gesperrt ist). Ohne `WVM_DB_URL` sind alle Aufrufe stille No-Ops, die Seite läuft weiter.
 - **Die JARVIS-Pipeline hängt an dieser Seite:** `anfrage_absenden` → `supa.enqueue_job` → `warten` → `bau_status`. Laut `CLAUDE.md` nicht verändern.
-- **Search-Console-Property liegt im dritten Google-Konto** (zusammen mit Rümpelwerk, PyStore, RTC-Service) — weder …05 noch …69@gmail.com. Details in [50-LOCAL-SEO.md](50-LOCAL-SEO.md), keine Zugangsdaten in dieser Doku.
+- **Search-Console-Property liegt im Konto `bastian.scherzinger05@gmail.com`** — am 03.09.2026 einzeln nachgeprüft: dort liegen alle sieben Properties (auch Rümpelwerk, PyStore, RTC-Service), das zweite Konto (`…69@gmail.com`) hat keine einzige. Die frühere Angabe „drittes Google-Konto, weder …05 noch …69“ war falsch. Details in [50-LOCAL-SEO.md](50-LOCAL-SEO.md), keine Zugangsdaten in dieser Doku.
 
 ## Namens- und Pfadfallen
 
