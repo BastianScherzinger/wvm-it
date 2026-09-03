@@ -87,7 +87,9 @@ class Command(BaseCommand):
             text = fehler.read().decode("utf-8", "replace")[:200]
         except Exception as fehler:                       # Netzfehler, DNS, Timeout
             self.stderr.write(self.style.ERROR(f"Meldung fehlgeschlagen: {fehler}"))
-            return "1"
+            # SystemExit statt `return "1"` , sonst endet der Prozess mit 0 und ein
+            # Ablauf, der auf den Exitcode schaut, haelt die Meldung fuer geglueckt.
+            raise SystemExit(1)
 
         # 200 = angenommen, 202 = angenommen, Schlüssel wird noch geprüft.
         if code in (200, 202):
@@ -95,7 +97,7 @@ class Command(BaseCommand):
                 f"\n{len(urls)} URLs gemeldet (HTTP {code}). Google ist damit NICHT bedient."))
             return None
         self.stderr.write(self.style.ERROR(f"\nUnerwartete Antwort HTTP {code}: {text}"))
-        return "1"
+        raise SystemExit(1)
 
     @staticmethod
     def _host():

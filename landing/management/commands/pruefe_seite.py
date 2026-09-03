@@ -10,7 +10,11 @@ Deckt vier Dinge ab, die man von Hand zuverlässig vergisst
                    gültiges JSON-LD, Alt-Texte, hreflang, keine leeren Links.
 4. Formulare     , jedes Anfrageformular hat CSRF-Token, Honeypot und Quelle.
 
-Rückgabewert 1, wenn etwas fehlschlägt , damit ein Deploy daran scheitern kann.
+Bei einem Fehler endet der Prozess mit Rückgabewert 1 (`raise SystemExit(1)`),
+damit ein Deploy daran scheitern kann. Das ist kein Schmuck, sondern die Bremse:
+`pruefe_seite && git push` läuft sonst auch mit dreißig Fehlern durch. Ein bloßes
+`return "1"` genügt dafür nicht — Django gibt den Rückgabewert von `handle()` nur
+aus und beendet den Prozess trotzdem mit 0.
 """
 import json
 import re
@@ -85,7 +89,10 @@ class Command(BaseCommand):
             for f in self.fehler:
                 self.stdout.write(self.style.ERROR(f"  FEHLER: {f}"))
             self.stdout.write(self.style.ERROR(f"\n{len(self.fehler)} Fehler gefunden."))
-            return "1"
+            # SystemExit statt `return "1"`: Django schreibt einen Rückgabewert nur
+            # auf stdout und beendet den Prozess trotzdem mit 0. Die Bremse, die
+            # CLAUDE.md und docs/DEPLOY.md versprechen, wirkte damit nie.
+            raise SystemExit(1)
         self.stdout.write(self.style.SUCCESS("Alles in Ordnung."))
         return None
 
