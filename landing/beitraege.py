@@ -58,6 +58,23 @@ geaendert   optional, letzte inhaltliche Überarbeitung
 thema       Slug der Leistung, zu der der Beitrag gehört (Querverweis + Silo)
 lesezeit    Minuten, ehrlich geschätzt (rund 200 Wörter je Minute)
 prio        Priorität in der Sitemap
+
+Warum bei keinem Beitrag `geaendert` steht (Stand 04.09.2026)
+------------------------------------------------------------
+Ein Prüfstand hat gemeldet, alle Beiträge trügen dasselbe `dateModified`, und
+ein bei jedem Deploy hochspringendes Datum vermutet. Das zweite trifft nicht zu
+— das Datum kommt aus den Feldern hier, nicht aus `date.today()`. Das erste
+trifft zu, und es ist richtig so: Der Nachweis für eine Überarbeitung ist der
+Commit-Verlauf der Textquelle, und
+
+    git log --format=%cs -- landing/i18n/beitraege_de.py
+
+nennt genau zwei Tage — beide der 29.08.2026, der Tag der Veröffentlichung.
+Seither hat niemand einen Beitragstext angefasst. Ein `geaendert`, das trotzdem
+ein neueres Datum behauptete, wäre erfunden; die Sitemap (`views._stand_fuer()`)
+und der `WebPage`-Knoten im Schema würden es beide weitertragen. Wer einen
+Beitrag überarbeitet, trägt hier das Datum nach — dann steht es an beiden
+Stellen zugleich, weil beide aus diesem Feld lesen.
 """
 
 BEITRAEGE = [

@@ -2003,7 +2003,7 @@ _HUB_META = {
 
 
 def _webpage(base, pfad, lang, titel, beschreibung, bild="", *,
-             speakable=False, autor=False):
+             speakable=False, autor=False, datum=""):
     """Der `WebPage`-Knoten einer einzelnen Seite (Verbesserungslauf 13, Schritt 27).
 
     Bis hierher kam `WebPage` im Graphen nur als Verweisziel vor
@@ -2055,11 +2055,30 @@ def _webpage(base, pfad, lang, titel, beschreibung, bild="", *,
     # Urheber, und das sagt `publisher` am Website-Knoten bereits.
     if autor:
         knoten["author"] = {"@id": f"{base}/#inhaber"}
+    # ── Datumsangaben (Verbesserungslauf 13, Schritt 29) ─────────────────────
+    # `dateModified` kommt aus **derselben** Funktion, die auch das `<lastmod>`
+    # der Sitemap liefert. Zwei Quellen waeren hier der eigentliche Fehler:
+    # Sagen Sitemap und Schema verschiedene Daten ueber dieselbe Seite, ist das
+    # schlimmer als gar keine Angabe — ein Crawler, der einen Widerspruch
+    # bemerkt, glaubt beiden Feldern nicht mehr.
+    #
+    # `_stand_fuer` arbeitet mit Pfaden ohne Sprachpraefix; die drei
+    # Sprachfassungen einer Seite teilen sich einen Stand, weil sie im selben
+    # Zug gepflegt werden. Wo kein Stand belegt ist, bleibt das Feld weg.
+    stand = _stand_fuer(i18n.strip_prefix(pfad)[1])
+    if stand:
+        knoten["dateModified"] = stand
+    # `datePublished` gibt es nur dort, wo ein echtes Veroeffentlichungsdatum
+    # gepflegt wird (die Fachbeitraege). Fuer Glossar, Checklisten und
+    # Vergleiche ist nur der Stand belegt — ein daraus abgeleitetes
+    # Veroeffentlichungsdatum waere eine erfundene Angabe.
+    if datum:
+        knoten["datePublished"] = datum
     return knoten
 
 
 def _seiten_schema(c, lang, *, pfad="", titel="", beschreibung="", bild="",
-                   speakable=False, autor=False,
+                   speakable=False, autor=False, datum="",
                    breadcrumb=None, service=None, faq=None, faq_id=""):
     """@graph einer Unterseite: immer der Betrieb und die Website, dazu optional
     Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben Entitaet
@@ -2074,7 +2093,7 @@ def _seiten_schema(c, lang, *, pfad="", titel="", beschreibung="", bild="",
     graph = [k for k in graph if k.get("@type") != "FAQPage"]
     if pfad:
         graph.append(_webpage(base, pfad, lang, titel, beschreibung, bild,
-                              speakable=speakable, autor=autor))
+                              speakable=speakable, autor=autor, datum=datum))
     for zusatz in (breadcrumb, service):
         if zusatz:
             graph.append(zusatz)
@@ -2765,7 +2784,7 @@ def beitrag_seite(request, slug):
         "structured_data": _seiten_schema(
             c, "de", pfad=pfad, titel=beitrag.get("meta_titel", ""),
             beschreibung=beitrag.get("desc", ""), speakable=True, autor=True,
-            service=artikel,
+            datum=eintrag.get("datum", ""), service=artikel,
             breadcrumb=_breadcrumb(base, [
                 ("Aktuelles", reverse("aktuelles")),
                 (beitrag.get("titel", slug), pfad)])),

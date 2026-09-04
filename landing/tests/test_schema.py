@@ -13,11 +13,12 @@ ob es mit dem übereinstimmt, was auf der Seite wirklich steht.
 """
 import json
 import re
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from django.test import SimpleTestCase
 
-from landing import i18n
+from landing import beitraege, i18n
 from landing.tests import seiten_client
 from landing.views import _content, _seiten_pfade, _structured_data
 
@@ -356,6 +357,102 @@ class SpeakableTest(SimpleTestCase):
                 ist_ratgeber_detail = any(
                     ohne.startswith(p) and ohne != p for p in ratgeber)
                 self.assertEqual("author" in seite, ist_ratgeber_detail)
+
+
+class DatumsangabenTest(SimpleTestCase):
+    """Schritt 29 — die Daten im Schema, in der Sitemap und im Modul sind dieselben.
+
+    Ein Datum ist die einzige Angabe im Schema, die eine Suchmaschine gegen eine
+    zweite eigene Quelle halten kann: das `<lastmod>` derselben Adresse in der
+    Sitemap. Widersprechen sich beide, verliert nicht das eine Feld an Gewicht,
+    sondern die Domain an Glaubwürdigkeit."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cl = seiten_client()
+        cls.seiten = {}
+        for pfad, _prio, _freq, mehrsprachig in _seiten_pfade():
+            for lang in (i18n.LANGS if mehrsprachig else ("de",)):
+                adresse = i18n.add_prefix(lang, pfad)
+                cls.seiten[adresse] = graph_von(
+                    cl.get(adresse).content.decode("utf-8"))
+        cls.lastmod = cls._lastmod_der_sitemap(cl)
+
+    @staticmethod
+    def _lastmod_der_sitemap(cl):
+        """Adresse → `<lastmod>` aus allen Segmenten. `/sitemap.xml` ist ein
+        **Index** (Schritt 22) und führt selbst keine Seitenadressen."""
+        ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+        index = ET.fromstring(cl.get("/sitemap.xml").content)
+        stand = {}
+        for eintrag in index.findall(f"{ns}sitemap"):
+            segment = eintrag.find(f"{ns}loc").text
+            pfad = "/" + segment.split("/", 3)[-1]
+            for url in ET.fromstring(cl.get(pfad).content).findall(f"{ns}url"):
+                lastmod = url.find(f"{ns}lastmod")
+                if lastmod is None:
+                    continue
+                adresse = "/" + url.find(f"{ns}loc").text.split("/", 3)[-1]
+                stand[adresse] = lastmod.text
+        return stand
+
+    def test_kein_beitrag_wurde_vor_seiner_veroeffentlichung_geaendert(self):
+        """`geaendert` liegt nie vor `datum`.
+
+        Verhindert den einen Tippfehler, der bei diesen beiden Feldern wirklich
+        passiert: ein Änderungsdatum, das älter ist als die Veröffentlichung.
+        Google meldet das als widersprüchliche Angabe, und im Suchergebnis steht
+        dann ein Datum aus der Vergangenheit."""
+        for eintrag in beitraege.BEITRAEGE:
+            with self.subTest(slug=eintrag["slug"]):
+                geaendert = eintrag.get("geaendert") or ""
+                if geaendert:
+                    self.assertGreaterEqual(geaendert, eintrag["datum"])
+
+    def test_datemodified_ist_nie_aelter_als_datepublished(self):
+        """Auf jeder Seite gilt `dateModified >= datePublished`.
+
+        Dieselbe Prüfung eine Ebene weiter: im fertig gerenderten Graphen, wo
+        beide Werte aus verschiedenen Funktionen zusammenkommen."""
+        for adresse, graph in self.seiten.items():
+            seite = knoten(graph, "WebPage")
+            if "datePublished" in seite and "dateModified" in seite:
+                with self.subTest(adresse=adresse):
+                    self.assertGreaterEqual(seite["dateModified"],
+                                            seite["datePublished"])
+
+    def test_schema_und_sitemap_nennen_dasselbe_datum(self):
+        """`dateModified` im Graphen und `<lastmod>` in der Sitemap sind gleich.
+
+        Das ist der Kern dieses Schritts: **eine** Quelle für beides
+        (`views._stand_fuer`). Baut jemand später eine zweite Ableitung ein,
+        behaupten Sitemap und Schema verschiedene Daten über dieselbe Seite —
+        und dieser Test wird rot, bevor ein Crawler es bemerkt."""
+        geprueft = 0
+        for adresse, graph in self.seiten.items():
+            stand = knoten(graph, "WebPage").get("dateModified")
+            if adresse in self.lastmod and stand:
+                with self.subTest(adresse=adresse):
+                    self.assertEqual(stand, self.lastmod[adresse])
+                geprueft += 1
+        # Ein Test, der nichts vergleicht, ist grün und wertlos.
+        self.assertGreater(geprueft, 100,
+                           "zu wenige Adressen verglichen — Sitemap-Auswertung kaputt?")
+
+    def test_die_beitraege_bleiben_article(self):
+        """Die fünfzehn Fachbeiträge tragen `Article`, die übrigen Ratgeber nicht.
+
+        Festgehalten als Entscheidung: Vergleichs-, Glossar- und
+        Checklistenseiten führen `Service`, `DefinedTerm` und `HowTo`. Das ist
+        die **passendere** Auszeichnung, nicht die fehlende — sie auf `Article`
+        umzustellen wäre ein Verlust an Genauigkeit. Das E-E-A-T-Signal
+        (Verfasser, Datum) tragen sie über den WebPage-Knoten."""
+        for adresse, graph in self.seiten.items():
+            ohne = re.sub(r"^/(en|ro)/", "/", adresse)
+            with self.subTest(adresse=adresse):
+                ist_beitrag = ohne.startswith("/aktuelles/") and ohne != "/aktuelles/"
+                self.assertEqual(bool(knoten(graph, "Article")), ist_beitrag)
 
 
 class SuchfunktionImSchemaTest(SimpleTestCase):
