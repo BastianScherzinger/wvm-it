@@ -36,7 +36,15 @@ urlpatterns = [
     # damit es keine kuenftige .txt-Route verschluckt , genau diese Falle steht in
     # ruempelwerks config/urls.py dokumentiert.
     re_path(r"^(?P<key>[0-9a-f]{8,128})\.txt$", views.indexnow_key, name="indexnow_key"),
+    # ── Sitemap: Index + zehn Segmente (landing/sitemaps.py) ────────────────
+    # /sitemap.xml liefert seit Schritt 22 den Index. Die Adresse bleibt, weil
+    # sie in robots.txt steht und bei Bing/Yandex/Seznam gemeldet ist; ein Index
+    # an derselben Stelle ist der vorgesehene Weg. Das Segmentmuster ist eng
+    # gefasst (nur Kleinbuchstaben), damit es keine kuenftige .xml-Route
+    # verschluckt - dieselbe Falle wie bei der IndexNow-Schluesseldatei oben.
     path("sitemap.xml", views.sitemap_xml, name="sitemap_xml"),
+    re_path(r"^sitemap-(?P<name>[a-z]+)\.xml$", views.sitemap_segment_xml,
+            name="sitemap_segment_xml"),
     path("health", views.health, name="health"),
 ]
 

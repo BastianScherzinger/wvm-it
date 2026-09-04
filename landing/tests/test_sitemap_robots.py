@@ -18,12 +18,31 @@ from datetime import date
 
 from django.test import SimpleTestCase
 
-from landing import i18n
+from landing import i18n, sitemaps
 from landing.tests import seiten_client
 from landing.views import _ROBOTS_DISALLOW, _content, _seiten_pfade, _stand_fuer
 
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 XHTML_NS = "{http://www.w3.org/1999/xhtml}"
+
+
+def alle_sitemap_eintraege(client):
+    """Jedes `<url>` aus **allen** Segmenten, über den Index eingesammelt.
+
+    Seit Schritt 22 liegt unter `/sitemap.xml` der Index; die Adressen stehen in
+    zehn Segmenten. Die Tests prüfen weiter den Gesamtbestand — sie holen ihn
+    aber genau so, wie ein Crawler es täte: Index lesen, jedem `<loc>` folgen.
+    Fehlt ein Segment im Index, fehlen seine Adressen hier ebenso, und die
+    Mengenprüfung schlägt an."""
+    index = ET.fromstring(client.get("/sitemap.xml").content)
+    eintraege = []
+    for teil in index.findall(f"{SITEMAP_NS}sitemap"):
+        adresse = teil.find(f"{SITEMAP_NS}loc").text
+        pfad = adresse[adresse.index("/sitemap-"):]
+        antwort = client.get(pfad)
+        assert antwort.status_code == 200, f"{pfad} antwortet {antwort.status_code}"
+        eintraege += ET.fromstring(antwort.content).findall(f"{SITEMAP_NS}url")
+    return eintraege
 
 # Antwort-Crawler, ohne die es keine Erwähnung in einer KI-Antwort gibt. Ein
 # `Disallow: /` für einen dieser Namen schließt die Seite aus ChatGPT, Perplexity
@@ -45,9 +64,7 @@ class SitemapTest(SimpleTestCase):
         super().setUpClass()
         cls.client_https = seiten_client()
         cls.basis = (_content().get("wvm_url") or "").rstrip("/")
-        antwort = cls.client_https.get("/sitemap.xml")
-        cls.wurzel = ET.fromstring(antwort.content)
-        cls.eintraege = cls.wurzel.findall(f"{SITEMAP_NS}url")
+        cls.eintraege = alle_sitemap_eintraege(cls.client_https)
         cls.adressen = [e.find(f"{SITEMAP_NS}loc").text for e in cls.eintraege]
 
     def test_jede_adresse_der_sitemap_antwortet(self):
@@ -170,6 +187,116 @@ class SitemapTest(SimpleTestCase):
                 self.assertTrue((wert.text or "").strip(), f"{adresse}: <{feld}> ist leer")
 
 
+class SitemapIndexTest(SimpleTestCase):
+    """Der Index und seine zehn Segmente (Schritt 22).
+
+    Das teuerste denkbare Versagen ist hier lautlos: Der Index ist wohlgeformt,
+    aber ein Segment fehlt — und ein Sechstel des Bestands verschwindet aus der
+    Meldung, ohne dass irgendwo ein Fehler entsteht. Deshalb prüft diese Klasse
+    die Vereinigung aller Segmente gegen `_seiten_pfade()` in **beide**
+    Richtungen und zusätzlich, dass jedes Segment einzeln erreichbar ist."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client_https = seiten_client()
+        cls.basis = (_content().get("wvm_url") or "").rstrip("/")
+        cls.antwort = cls.client_https.get("/sitemap.xml")
+        cls.wurzel = ET.fromstring(cls.antwort.content)
+
+    def test_sitemap_xml_ist_ein_index(self):
+        """Verhindert: eine Adresse, die Bing und Yandex bereits gemeldet ist, ändert ihren Typ.
+
+        `/sitemap.xml` steht in `robots.txt` und ist bei drei Suchdiensten
+        eingereicht. Sie darf weiter existieren und muss ein gültiges Dokument
+        liefern — ein `sitemapindex` ist dort der vorgesehene Inhalt. Ein 404
+        oder ein leerer Index würde alle 158 Adressen auf einen Schlag
+        abmelden."""
+        self.assertEqual(self.antwort.status_code, 200)
+        self.assertEqual(self.wurzel.tag, f"{SITEMAP_NS}sitemapindex",
+                         f"/sitemap.xml liefert <{self.wurzel.tag}> statt eines Index")
+        self.assertTrue(self.antwort["Content-Type"].startswith("application/xml"),
+                        f"/sitemap.xml: Content-Type {self.antwort['Content-Type']!r}")
+
+    def test_index_nennt_jedes_bekannte_segment_genau_einmal(self):
+        """Verhindert: ein Segment, das es gibt, das aber niemand findet.
+
+        `sitemaps.SEGMENTE` und der Index müssen sich decken. Fehlt ein Eintrag,
+        crawlt niemand die Adressen dieses Silos; steht einer doppelt drin, meldet
+        die Search Console dieselben Seiten zweimal."""
+        genannt = [t.find(f"{SITEMAP_NS}loc").text for t in
+                   self.wurzel.findall(f"{SITEMAP_NS}sitemap")]
+        erwartet = [f"{self.basis}/sitemap-{n}.xml" for n in sitemaps.SEGMENTE]
+        self.assertEqual(sorted(genannt), sorted(erwartet),
+                         f"nur im Index: {sorted(set(genannt) - set(erwartet))}, "
+                         f"nur in sitemaps.SEGMENTE: {sorted(set(erwartet) - set(genannt))}")
+        self.assertEqual(len(genannt), len(set(genannt)), "Segment doppelt im Index")
+
+    def test_jedes_segment_antwortet_und_ist_ein_urlset(self):
+        """Verhindert: ein Index, der auf ein Segment zeigt, das 404 liefert.
+
+        Für einen Crawler ist ein toter Verweis im Index dasselbe wie eine
+        fehlende Sitemap — nur mit zusätzlichem Vertrauensverlust. Die Prüfung
+        ruft jedes Segment wirklich ab."""
+        for name in sitemaps.SEGMENTE:
+            antwort = self.client_https.get(f"/sitemap-{name}.xml")
+            self.assertEqual(antwort.status_code, 200, f"/sitemap-{name}.xml antwortet nicht")
+            wurzel = ET.fromstring(antwort.content)
+            self.assertEqual(wurzel.tag, f"{SITEMAP_NS}urlset",
+                             f"/sitemap-{name}.xml liefert <{wurzel.tag}>")
+            self.assertTrue(wurzel.findall(f"{SITEMAP_NS}url"),
+                            f"/sitemap-{name}.xml ist leer")
+
+    def test_unbekanntes_segment_liefert_404(self):
+        """Verhindert: ein leeres, aber gültiges `urlset` unter jeder erfundenen Adresse.
+
+        Das Muster in `config/urls.py` fasst jedes `/sitemap-<wort>.xml`. Ohne
+        Prüfung des Namens läge unter `/sitemap-quatsch.xml` eine leere Sitemap
+        mit Status 200 — beliebig viele davon, alle indexierbar."""
+        self.assertEqual(self.client_https.get("/sitemap-gibtesnicht.xml").status_code, 404)
+
+    def test_segmente_zusammen_ergeben_genau_den_alten_bestand(self):
+        """Verhindert: ein Silo fällt aus der Sitemap, ohne dass es auffällt.
+
+        Das ist die zentrale Prüfung der Segmentierung. Vor Schritt 22 stand die
+        Gesamtmenge in einer Datei; jetzt verteilt sie sich auf zehn. Die
+        Vereinigung muss dieselbe Menge sein wie zuvor — sonst hat die
+        Segmentierung Adressen verloren, und niemand merkt es, weil jedes
+        einzelne Segment für sich gültig aussieht."""
+        adressen = [e.find(f"{SITEMAP_NS}loc").text
+                    for e in alle_sitemap_eintraege(self.client_https)]
+        erwartet = {self.basis + i18n.add_prefix(lang, pfad)
+                    for pfad, _p, _f, mehr in _seiten_pfade()
+                    for lang in (i18n.LANGS if mehr else ("de",))}
+        self.assertEqual(set(adressen), erwartet,
+                         f"nur in den Segmenten: {sorted(set(adressen) - erwartet)[:5]}, "
+                         f"nur im Bestand: {sorted(erwartet - set(adressen))[:5]}")
+        self.assertEqual(len(adressen), len(erwartet),
+                         "eine Adresse steht in zwei Segmenten")
+
+    def test_jeder_basispfad_gehoert_genau_einem_segment(self):
+        """Verhindert: ein neues Silo, das in kein Segment fällt.
+
+        `_segment_fuer()` muss für jeden Pfad aus `_seiten_pfade()` einen Namen
+        liefern, den `SEGMENTE` kennt. Gäbe es einen unbekannten Namen, wäre der
+        Pfad in keinem Segment und damit aus der Sitemap verschwunden — der
+        Rückfall auf `kern` ist genau dagegen gebaut."""
+        for pfad, _p, _f, _m in _seiten_pfade():
+            name = sitemaps._segment_fuer(pfad)
+            self.assertIn(name, sitemaps.SEGMENTE,
+                          f"{pfad}: Segment '{name}' steht nicht in SEGMENTE")
+
+    def test_kostenrechner_liegt_bei_den_werkzeugen_nicht_unter_kosten(self):
+        """Verhindert einen Präfix-Treffer, der `/kosten/rechner/` falsch einsortiert.
+
+        `/kosten/rechner/` beginnt mit `/kosten/`. Würde die Zuordnung allein
+        über Präfixe laufen, landete der Rechner im Kern-Segment — und die
+        Segmentgrenzen wären ab dem ersten neuen Unterpfad unzuverlässig."""
+        self.assertEqual(sitemaps._segment_fuer("/kosten/rechner/"), "werkzeuge")
+        self.assertEqual(sitemaps._segment_fuer("/kosten/"), "kern")
+        self.assertEqual(sitemaps._segment_fuer("/"), "kern")
+
+
 class LastmodTest(SimpleTestCase):
     """`lastmod` — das Feld, das mehr schadet als nützt, wenn es lügt.
 
@@ -186,9 +313,8 @@ class LastmodTest(SimpleTestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.client_https = seiten_client()
-        wurzel = ET.fromstring(cls.client_https.get("/sitemap.xml").content)
         cls.staende = {}
-        for eintrag in wurzel.findall(f"{SITEMAP_NS}url"):
+        for eintrag in alle_sitemap_eintraege(cls.client_https):
             wert = eintrag.find(f"{SITEMAP_NS}lastmod")
             cls.staende[eintrag.find(f"{SITEMAP_NS}loc").text] = (
                 wert.text if wert is not None else None)

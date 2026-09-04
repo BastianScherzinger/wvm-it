@@ -24,7 +24,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
 from . import (beitraege, branchen, checklisten, glossar, i18n, leistungen, regionen,
-               selbsttest, vergleiche)
+               selbsttest, sitemaps, vergleiche)
 
 # Ziel aller Meldungen dieser Datei. Der Name "landing.views" hängt unter dem
 # Logger "landing", den config/settings.py auf stdout legt — dieselbe Rinne, in
@@ -3324,46 +3324,87 @@ def security_txt(request):
     return HttpResponse("\n".join(zeilen), content_type="text/plain; charset=utf-8")
 
 
-def sitemap_xml(request):
-    """XML-Sitemap der öffentlichen Seiten (Startseite + Angebot) in allen Sprachen,
-    jeweils mit hreflang-Alternates (DE ohne Präfix, EN /en/, RO /ro/).
+def _sitemap_basis(request):
+    """Die kanonische Adresse, unter der die Sitemap ihre Einträge nennt."""
+    return (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
 
-    `lastmod` kommt seit Schritt 21 aus `_stand_fuer()` und ist je Adresse das
-    echte Datum der letzten inhaltlichen Änderung. Wo keins belegt ist, entfällt
-    das Feld: ein fehlendes `lastmod` ist ehrlicher als ein falsches."""
-    base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
-    # (Basis-Pfad, priority, changefreq) — aus derselben Quelle wie IndexNow,
-    # damit Sitemap und Meldung nie auseinanderlaufen.
-    pages = _seiten_pfade()
+
+def _sitemap_eintraege(segment):
+    """Die `<url>`-Elemente eines Segments als Zeichenkette.
+
+    Die hreflang-Alternates bleiben unverändert, wie sie vor der Segmentierung
+    waren: vier `xhtml:link` je mehrsprachiger Adresse, keine bei den drei
+    einsprachigen Silos. Sie zu verlieren wäre der teuerste denkbare Rückschritt
+    — Google ordnet die Sprachfassungen dann einander nicht mehr zu."""
+    basis = segment.basis
     items = []
-    for path, pr, cf, mehrsprachig in pages:
-        stand = _stand_fuer(path)
+    for eintrag in segment.items():
+        pfad, mehrsprachig = eintrag[0], eintrag[3]
+        pr, cf = segment.priority(eintrag), segment.changefreq(eintrag)
+        stand = segment.lastmod(pfad)
         lastmod = f"<lastmod>{stand}</lastmod>" if stand else ""
         if not mehrsprachig:
             # Einsprachige Seite (Fachbeitraege): genau ein Eintrag, keine
             # hreflang-Alternates. Ein Alternate auf eine Seite, die es nicht
             # gibt, ist schlimmer als gar keiner.
             items.append(
-                f"<url><loc>{base}{path}</loc>{lastmod}"
+                f"<url><loc>{segment.location(pfad)}</loc>{lastmod}"
                 f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
             )
             continue
         alts = "".join(
             f'<xhtml:link rel="alternate" hreflang="{a["hreflang"]}" '
-            f'href="{base}{i18n.add_prefix(a["code"], path)}"/>'
+            f'href="{basis}{i18n.add_prefix(a["code"], pfad)}"/>'
             for a in ({"code": "de", "hreflang": "de"}, {"code": "en", "hreflang": "en"},
                       {"code": "ro", "hreflang": "ro"}, {"code": "de", "hreflang": "x-default"})
         )
         for lang in ("de", "en", "ro"):
-            loc = base + i18n.add_prefix(lang, path)
             items.append(
-                f"<url><loc>{loc}</loc>{alts}{lastmod}"
+                f"<url><loc>{segment.location(pfad, lang)}</loc>{alts}{lastmod}"
                 f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
             )
+    return "".join(items)
+
+
+def sitemap_xml(request):
+    """Der Sitemap-**Index** unter `/sitemap.xml` — er nennt die zehn Segmente.
+
+    Diese Adresse steht in `robots.txt` und ist bei Bing, Yandex und Seznam
+    gemeldet; ein Index an derselben Stelle ist der vorgesehene Weg. Es entfällt
+    keine URL, also braucht es auch keine 301.
+
+    Der Gewinn liegt in der Search Console: Sie zählt je eingereichter Sitemap,
+    wie viele Adressen indexiert sind. Eine einzige Datei ergibt eine einzige
+    Zahl für 158 URLs — segmentiert steht dort, welches Silo hängt."""
+    basis = _sitemap_basis(request)
+    teile = []
+    for klasse in sitemaps.SEGMENT_KLASSEN:
+        segment = klasse(basis)
+        stand = segment.neuester_stand()
+        lastmod = f"<lastmod>{stand}</lastmod>" if stand else ""
+        teile.append(f"<sitemap><loc>{segment.adresse()}</loc>{lastmod}</sitemap>")
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>'
+           '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+           + "".join(teile) + "</sitemapindex>")
+    return HttpResponse(xml, content_type="application/xml; charset=utf-8")
+
+
+def sitemap_segment_xml(request, name):
+    """Ein Sitemap-Segment unter `/sitemap-<name>.xml`.
+
+    Die Pfade kommen aus derselben `_seiten_pfade()` wie zuvor; das Segment
+    filtert nur. `lastmod` stammt aus `_stand_fuer()` (Schritt 21) und ist je
+    Adresse das echte Datum der letzten inhaltlichen Änderung. Wo keins belegt
+    ist, entfällt das Feld: ein fehlendes `lastmod` ist ehrlicher als ein
+    falsches."""
+    klasse = sitemaps.SEGMENTE.get(name)
+    if klasse is None:
+        raise Http404("unbekanntes Sitemap-Segment")
+    segment = klasse(_sitemap_basis(request))
     xml = ('<?xml version="1.0" encoding="UTF-8"?>'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
            'xmlns:xhtml="http://www.w3.org/1999/xhtml">'
-           + "".join(items) + "</urlset>")
+           + _sitemap_eintraege(segment) + "</urlset>")
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 
