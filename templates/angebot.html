@@ -132,22 +132,7 @@ unter den fuenf, die ihn einbinden.
 
               <div class="ang-item-grid">
                 {% for it in g.items %}
-                <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
-                  <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
-                         {% if it.id in paket_items %}checked{% endif %}
-                         data-name="{{ it.name }}" data-group="{{ g.title }}"
-                         data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
-                  <span class="ang-item-box">
-                    <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
-                    <span class="ang-item-main">
-                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
-                      <span class="ang-item-desc">{{ it.desc }}</span>
-                    </span>
-                    <span class="ang-item-price">{{ it.price_label }}</span>
-                    <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-                  </span>
-                </label>
+                {% include 'teile/angebot.html' with posten=it gruppe=g praefix='it-' zusatz_klasse='' mit_gruppe=True %}
                 {% endfor %}
               </div>
 

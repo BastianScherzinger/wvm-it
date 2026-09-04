@@ -360,21 +360,7 @@ Die Varianten stehen in content.json (T3).
               </legend>
               <div class="rb-items">
                 {% for it in g.items %}
-                <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
-                  <input class="ang-check rb-check" type="checkbox" id="rb-{{ it.id }}" name="item" value="{{ it.id }}"
-                         {% if it.id in paket_items %}checked{% endif %}
-                         data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
-                  <span class="ang-item-box">
-                    <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
-                    <span class="ang-item-main">
-                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
-                      <span class="ang-item-desc">{{ it.desc }}</span>
-                    </span>
-                    <span class="ang-item-price">{{ it.price_label }}</span>
-                    <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-                  </span>
-                </label>
+                {% include 'teile/angebot.html' with posten=it praefix='rb-' zusatz_klasse=' rb-check' mit_gruppe=False %}
                 {% endfor %}
               </div>
             </fieldset>

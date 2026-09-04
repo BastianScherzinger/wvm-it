@@ -1,0 +1,49 @@
+{% comment %}
+Ein Posten des Angebotskatalogs — der Baustein, der bis zum Verbesserungslauf 13
+zweimal im Projekt stand: `index.html` (Kurz-Konfigurator `.rb`) und
+`angebot.html` (Schritt-Assistent `.wz`). Beide Fassungen waren bereits
+auseinandergelaufen: nur eine trug `data-name`/`data-group`.
+
+Der Rahmen um die Posten bleibt getrennt. Er ist kein doppelter Block, sondern
+sind zwei verschiedene Bauteile — ein einspaltiges Formular mit Seitenkarte und
+ein mehrstufiger Assistent. Sie zusammenzuziehen hiesse, eine der beiden Seiten
+umzugestalten; das ist verboten.
+
+Aufrufform:
+
+    {% include 'teile/angebot.html' with posten=it gruppe=g praefix='rb-' zusatz_klasse=' rb-check' mit_gruppe=False %}
+
+  posten          ein Eintrag aus `g.items` (Pflicht)
+  gruppe          die Kategorie; nur noetig, wenn `mit_gruppe` wahr ist
+  praefix         Vorsilbe der Element-Kennung: 'rb-' auf der Startseite,
+                  'it-' auf /angebot/. Zwei Konfiguratoren auf einer Seite
+                  duerften sonst dieselbe id tragen.
+  zusatz_klasse   zusaetzliche Klasse am Ankreuzfeld, mit fuehrendem Leerzeichen
+  mit_gruppe      True fuegt `data-name`/`data-group` hinzu — `angebot.js`
+                  baut daraus die Warenkorbzeile; das Skript der Startseite
+                  rechnet nur und braucht die Namen nicht
+
+Die Preise stehen ausschliesslich in `views.ANGEBOT_GROUPS`; dieser Baustein
+gibt sie aus und besitzt keine eigene Zahl. Was `pruefe_seite` an Preisen auf
+den Seiten findet, kommt durch dieses Markup.
+
+Fuer KV14 (Preisrahmen, Nutzenpunkte, Zeitzusage, tel:-Link, Formularweg auf
+den drei Leistungs-Hubs) ist hier bewusst nichts vorbereitet: Jedes davon waere
+ein neues sichtbares Element und damit eine Aufbauaenderung. Der Vorschlag steht
+im Bericht zum Verbesserungslauf 13.
+{% endcomment %}<label class="ang-item{% if posten.popular %} ang-item-pop{% endif %}">
+                  <input class="ang-check{{ zusatz_klasse }}" type="checkbox" id="{{ praefix }}{{ posten.id }}" name="item" value="{{ posten.id }}"
+                         {% if posten.id in paket_items %}checked{% endif %}
+{% if mit_gruppe %}                         data-name="{{ posten.name }}" data-group="{{ gruppe.title }}"
+{% endif %}                         data-once="{{ posten.once|default:0 }}" data-mtl="{{ posten.mtl|default:0 }}"
+                         data-yr="{{ posten.yr|default:0 }}" data-anfrage="{% if posten.anfrage %}1{% else %}0{% endif %}">
+                  <span class="ang-item-box">
+                    <span class="ang-item-ic">{% include 'icons.html' with name=posten.icon %}</span>
+                    <span class="ang-item-main">
+                      <span class="ang-item-name">{{ posten.name }}{% if posten.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
+                      <span class="ang-item-desc">{{ posten.desc }}</span>
+                    </span>
+                    <span class="ang-item-price">{{ posten.price_label }}</span>
+                    <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+                  </span>
+                </label>
