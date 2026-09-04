@@ -35,7 +35,10 @@ man in einem Angebotsvergleich wirklich wissen will.
   <div class="wrap ub-kopf">
     {% if c.founder_image %}
     <figure class="ub-portrait" data-reveal>
-      <img src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}, {{ t.ueber.h1|striptags }}"
+      <img src="{{ c.founder_image }}"
+           srcset="/static/img/florin_320.jpg 320w, /static/img/florin_480.jpg 480w, {{ c.founder_image }} 640w"
+           sizes="(max-width: 720px) 70vw, 320px"
+           alt="{{ c.inhaber_name }}, {{ t.ueber.h1|striptags }}"
            width="640" height="640" loading="lazy" decoding="async">
       <figcaption>{{ c.inhaber_name }} &middot; {{ c.site_name }}</figcaption>
     </figure>

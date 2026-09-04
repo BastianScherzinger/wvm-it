@@ -4,6 +4,7 @@
   {% include 'kopf_klein.html' with titel=seiten_titel %}
 </head>
 <body class="ang-page">
+{% include 'icons_sprite.html' %}
 <a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
 
 <header class="nav" id="nav">
@@ -11,7 +12,7 @@
     <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <!-- Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) -->
+    {% comment %} Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) {% endcomment %}
     <div class="nav-lang-mobile">{% include 'lang_switch.html' %}</div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">

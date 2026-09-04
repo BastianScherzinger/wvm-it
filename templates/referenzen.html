@@ -31,7 +31,15 @@ Die Falldaten stehen in views.REFERENZEN, die Texte im Sprachpaket unter `case`.
     {% for r in referenzen %}
     <article class="rf" data-reveal>
       <div class="rf-media">
-        <img src="{% static r.bild %}" alt="{{ t.case.alt|safe }}" width="1280" height="529" loading="lazy">
+        {% comment %}
+        Das erste Bild dieser Seite steht ueber der Falz und ist ihr LCP-Element.
+        `loading="lazy"` darauf verzoegert genau das Bild, auf das die Messung
+        wartet (Messung PF17/PF18) — deshalb faellt es beim ersten Durchlauf weg
+        und bekommt stattdessen die hohe Ladepriorität.
+        {% endcomment %}
+        <img src="{% static r.bild %}"
+             {% if forloop.first %}fetchpriority="high" decoding="async"{% else %}loading="lazy" decoding="async"{% endif %}
+             alt="{{ t.case.alt|safe }}" width="1280" height="529">
       </div>
       <div class="rf-copy">
         <span class="eyebrow"><span class="dot"></span>{{ t.case.rolle|safe }}</span>

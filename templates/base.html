@@ -7,18 +7,18 @@
   <meta name="description" content="{% block beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
   <meta name="robots" content="{% block robots %}index,follow,max-image-preview:large{% endblock %}">
   <meta name="author" content="{{ c.site_name }} · {{ c.inhaber_name }}">
-  <!-- Google Search Console (URL-Praefix-Property www.wvm-it.tech) -->
+  {% comment %} Google Search Console (URL-Praefix-Property www.wvm-it.tech) {% endcomment %}
   <meta name="google-site-verification" content="uS_ethpPIsf2uk4Y8sNnoU214PvveZFVt6EjTzCfl7g">
   <meta name="theme-color" content="#0a0908">
   <link rel="canonical" href="{% block canonical %}{{ c.wvm_url }}{{ canonical_path }}{% endblock %}">
   {% block alternates %}{% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
   {% endfor %}{% endblock %}
-  <!-- Lokal-SEO: Österreich (Sitz) und Deutschland (Zielmarkt) -->
+  {% comment %} Lokal-SEO: Österreich (Sitz) und Deutschland (Zielmarkt) {% endcomment %}
   <meta name="geo.region" content="AT">
   <meta name="geo.region" content="DE">
   <meta name="geo.placename" content="Österreich, Deutschland">
   <meta name="keywords" content="{% block keywords %}EDV-Betreuung, IT-Betreuung, IT-Dienstleister, Fernwartung, Netzwerk, Server, Datensicherung, Webseiten, SEO, Google Ads, Smarthome, Loxone, KNX, Österreich, Deutschland{% endblock %}">
-  <!-- Favicon / App-Icon -->
+  {% comment %} Favicon / App-Icon {% endcomment %}
   {% comment %}
   Favicon: WebP zuerst (2,7 KB statt 65 KB), PNG als Rueckfall fuer Browser, die
   WebP als Favicon nicht annehmen. Das Apple-Touch-Icon bleibt PNG - iOS nimmt
@@ -33,7 +33,7 @@
   keiner (Messung GE32, BT06).
   {% endcomment %}
   <link rel="alternate" type="application/atom+xml" title="{{ c.site_name }} — Ratgeber" href="{% url 'feed' %}">
-  <!-- 3D-Viewer (Spline) wird ERST nach Cookie-Einwilligung von main.js geladen (DSGVO). -->
+  {% comment %} 3D-Viewer (Spline) wird ERST nach Cookie-Einwilligung von main.js geladen (DSGVO). {% endcomment %}
 
   <meta property="og:title" content="{% block og_titel %}{{ t.meta.seo_title|safe }}{% endblock %}">
   <meta property="og:description" content="{% block og_beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
@@ -58,15 +58,25 @@
   die niemand anzeigt. Die Startseite fuellt den Block (T3/T8).
   {% endcomment %}
   {% block preload %}{% endblock %}
-  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
+  {% comment %} Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
-  <!-- Strukturierte Daten (SEO + GEO): @graph mit ProfessionalService (Local-SEO AT+DE,
-       Preise als OfferCatalog), WebSite und FAQPage — server-seitig gebaut (views._structured_data). -->
+  {% comment %}
+  Der eingebettete Block: Er traegt die Akzentfarben aus content.json — und seit
+  dem 05.09.2026 auch die Bewegungsreduzierung. Die steht zwar in style.css,
+  aber erst ab Zeile 500: Wer die Systemeinstellung „Bewegung reduzieren" gesetzt
+  hat, sieht bis zum Eintreffen des Stilblatts trotzdem die erste
+  Einblendbewegung. Das ist genau der Moment, um den es geht — die Einstellung
+  wird meist wegen Schwindel oder Migraene gesetzt, nicht aus Geschmack.
+  {% endcomment %}
+  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}[data-reveal]{opacity:1;transform:none}}</style>
+  {% comment %} Strukturierte Daten (SEO + GEO): @graph mit ProfessionalService (Local-SEO AT+DE,
+       Preise als OfferCatalog), WebSite und FAQPage — server-seitig gebaut (views._structured_data). {% endcomment %}
   <script type="application/ld+json" nonce="{{ request.csp_nonce }}">{{ structured_data|safe }}</script>
 </head>
 <body>
+{% include 'icons_sprite.html' %}
 <script nonce="{{ request.csp_nonce }}">
   window.I18N = {
     numLocale: "{{ t.meta.num_locale }}",
@@ -78,13 +88,13 @@
 </script>
 <a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
 
-<!-- ── Navigation (Glass, einzeilig) ──────────────────────────────────────── -->
+{% comment %} ── Navigation (Glass, einzeilig) ──────────────────────────────────────── {% endcomment %}
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a class="brand" href="{% url 'index' %}" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <!-- Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) -->
+    {% comment %} Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) {% endcomment %}
     <div class="nav-lang-mobile">{% include 'lang_switch.html' %}</div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
@@ -103,7 +113,7 @@
         <a class="nav-notfall" href="{% url 'notfall' %}">{{ t.notfall.h1|safe|truncatewords:2 }}</a>
       </nav>
       {% include 'lang_switch.html' %}
-      <!-- Kontakt ist nie weiter als ein Klick entfernt: WhatsApp + Telefon + CTA -->
+      {% comment %} Kontakt ist nie weiter als ein Klick entfernt: WhatsApp + Telefon + CTA {% endcomment %}
       {% if c.whatsapp %}<a class="btn-wa nav-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener" aria-label="{{ t.ways.wa|safe }}">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
       {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
       <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
@@ -115,7 +125,7 @@
 {% block inhalt %}{% endblock %}
 </main>
 
-<!-- ── Rückruf: kleiner Dialog, aus Nav, Hero und Mobil-Leiste erreichbar ───── -->
+{% comment %} ── Rückruf: kleiner Dialog, aus Nav, Hero und Mobil-Leiste erreichbar ───── {% endcomment %}
 <dialog class="rr-dlg" id="rueckrufDlg" aria-labelledby="rr-h">
   <form class="lb-form rr-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage>
     {% csrf_token %}
@@ -153,7 +163,7 @@
   </div>
 </dialog>
 
-<!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+{% comment %} ── FOOTER ──────────────────────────────────────────────────────────────── {% endcomment %}
 <footer class="foot">
   <div class="wrap foot-top">
     <div class="foot-brand">

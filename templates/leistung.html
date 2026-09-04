@@ -15,7 +15,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
 {% block inhalt %}
 <article class="sp">
 
-  <!-- ── Kopf: Brotkrume, Antwort-zuerst-Absatz, Preis, Kontaktwege ────────── -->
+  {% comment %} ── Kopf: Brotkrume, Antwort-zuerst-Absatz, Preis, Kontaktwege ────────── {% endcomment %}
   <header class="sp-top on-dark">
     <div class="wrap">
       <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
@@ -29,8 +29,8 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
       <div class="sp-top-grid">
         <div>
           <h1>{{ seite.h1|safe }}</h1>
-          <!-- Antwort zuerst: Dieser Absatz beantwortet die Suchfrage vollständig
-               und ist das, was KI-Antwortmaschinen zitieren (SEO-PLAN.md, G1). -->
+          {% comment %} Antwort zuerst: Dieser Absatz beantwortet die Suchfrage vollständig
+               und ist das, was KI-Antwortmaschinen zitieren (SEO-PLAN.md, G1). {% endcomment %}
           {% include 'antwort.html' with text=seite.kurz %}
           <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
             {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
@@ -52,7 +52,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
     </div>
   </header>
 
-  <!-- ── Inhalt links, Anfrage rechts (mitlaufend) ─────────────────────────── -->
+  {% comment %} ── Inhalt links, Anfrage rechts (mitlaufend) ─────────────────────────── {% endcomment %}
   <section class="section">
     <div class="wrap sp-grid">
       <div class="sp-main">
@@ -103,10 +103,10 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
     </div>
   </section>
 
-  <!-- ── „Passt dazu": alles zum selben Thema (V1/V2) ──────────────────────
+  {% comment %} ── „Passt dazu": alles zum selben Thema (V1/V2) ──────────────────────
        Der Block wird nicht gepflegt, sondern aus dem gemeinsamen Thema
        erzeugt (views._passt_dazu). Ein neuer Beitrag ist damit ab dem Anlegen
-       von seiner Leistungsseite verlinkt, ohne dass jemand daran denkt. -->
+       von seiner Leistungsseite verlinkt, ohne dass jemand daran denkt. {% endcomment %}
   {% if passt_dazu %}
   <section class="section">
     <div class="wrap sp-wrap">
@@ -129,7 +129,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
   </section>
   {% endif %}
 
-  <!-- ── Querverlinkung: keine Seite ohne eingehende Links ─────────────────── -->
+  {% comment %} ── Querverlinkung: keine Seite ohne eingehende Links ─────────────────── {% endcomment %}
   {% if verwandte %}
   <section class="section section-alt">
     <div class="wrap">

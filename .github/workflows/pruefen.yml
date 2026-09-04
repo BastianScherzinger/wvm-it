@@ -1,0 +1,70 @@
+# Prueflauf bei jedem Push und bei jedem Pull Request.
+#
+# Warum es das gibt (Messung VL19): Das Projekt hat vier starke Pruefbefehle —
+# pruefe_seite, pruefe_sicherheit, seo_bericht, stand_schreiben. Sie liefen nur,
+# wenn jemand daran dachte. Genau deshalb war /angebot/ monatelang ohne JSON-LD:
+# Die Pruefung, die es gefunden haette, gab es noch nicht, und als es sie gab,
+# lief sie nicht automatisch.
+#
+# Der Lauf braucht keine Datenbank und keine Geheimnisse: Die Seite ist
+# datenbankfrei, und ohne EMAIL_HOST schreibt Django Mails in die Konsole.
+name: Pruefen
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Dieselbe Fassung wie in runtime.txt — ein CI-Lauf auf einer anderen
+      # Fassung prueft nicht das, was deployt wird.
+      PYTHON_VERSION: "3.12"
+      DEBUG: "False"
+      SECRET_KEY: "nur-fuer-den-pruef-lauf-nicht-in-produktion-verwenden-0123456789"
+      ALLOWED_HOSTS: "*"
+      # Leer lassen: Sonst leitet die Host-Middleware jede Anfrage im Prueflauf
+      # auf die Live-Domain um, und pruefe_seite sieht lauter 301.
+      KANONISCHER_HOST: ""
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Abhaengigkeiten
+        # Aus dem Lockfile, nicht aus requirements.txt: Der Prueflauf soll genau
+        # das bauen, was auch deployt wird (requirements.lock).
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.lock
+
+      - name: Konfiguration
+        run: python manage.py check --deploy --fail-level ERROR
+
+      - name: Testsuite
+        run: python -X utf8 manage.py test landing.tests -v 1
+
+      - name: Alle Seiten, Preise, Schema, Verlinkung
+        run: python -X utf8 manage.py pruefe_seite
+
+      - name: Formulare und Missbrauchsschutz
+        run: python -X utf8 manage.py pruefe_sicherheit
+
+      - name: Aenderungsdaten aktuell
+        # Meldet mit Rueckgabe 1, wenn jemand Inhalte geaendert hat, ohne
+        # `manage.py stand_schreiben` laufen zu lassen — dann truege die Sitemap
+        # ein Datum, das nicht mehr stimmt.
+        run: python -X utf8 manage.py stand_schreiben --pruefen
+
+      - name: Bestandsbericht
+        # Nicht als Tor, sondern als Protokoll: Die Zahlen stehen danach im
+        # Lauf-Log und lassen sich zwischen zwei Staenden vergleichen.
+        run: python -X utf8 manage.py seo_bericht

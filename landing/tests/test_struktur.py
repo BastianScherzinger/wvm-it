@@ -3,7 +3,7 @@
 Glossar, Checklisten, Fachbeiträge.
 
 Jeder Test leitet seine Erwartung aus einer anderen Datenquelle ab (Icon-Liste
-aus templates/icons.html, Anfrage-Quellen aus views._ANFRAGE_QUELLEN, ...) ,
+aus templates/icons_sprite.html, Anfrage-Quellen aus views._ANFRAGE_QUELLEN, ...) ,
 nie aus einer selbst eingetippten Liste, damit ein neuer Eintrag diese Tests
 nicht bricht, solange er den Regeln der jeweiligen Datei folgt.
 """
@@ -22,10 +22,18 @@ _BEREICHE_ERLAUBT = {"it", "sicht", "vorort"}  # siehe views.leistungen_hub
 
 
 def _bekannte_icons():
-    """Alle Icon-Namen, die templates/icons.html tatsächlich zeichnet."""
-    pfad = Path(settings.BASE_DIR) / "templates" / "icons.html"
+    """Alle Icon-Namen, die es wirklich gibt.
+
+    Seit dem 05.09.2026 stehen die Formen als Symbolsatz in
+    templates/icons_sprite.html; templates/icons.html verweist nur noch darauf.
+    Vorher standen sie als lange if/elif-Kette in icons.html — genau dieser Test
+    hat den Wechsel gemeldet, weil er danach eine leere Menge bekam.
+    """
+    pfad = Path(settings.BASE_DIR) / "templates" / "icons_sprite.html"
     text = pfad.read_text(encoding="utf-8")
-    return set(re.findall(r"name == '([a-z_]+)'", text))
+    namen = set(re.findall(r'<symbol id="i-([a-z_]+)"', text))
+    assert namen, "templates/icons_sprite.html enthält keine Symbole"
+    return namen
 
 
 class LeistungenStrukturTest(SimpleTestCase):

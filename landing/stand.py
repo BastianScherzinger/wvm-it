@@ -31,7 +31,7 @@ damit die letzte belastbare Aussage über den Bestand.
 STAND_FALLBACK = "2026-09-05"
 
 STAND = {
-    "/": "2026-09-04",
+    "/": "2026-09-05",
     "/agb/": "2026-09-05",
     "/aktuelles/": "2026-09-05",
     "/aktuelles/alte-windows-version-im-betrieb/": "2026-09-05",
@@ -64,7 +64,7 @@ STAND = {
     "/checkliste/neuer-arbeitsplatz/": "2026-09-05",
     "/datenschutz/": "2026-09-05",
     "/impressum/": "2026-09-05",
-    "/it-notfall/": "2026-09-04",
+    "/it-notfall/": "2026-09-05",
     "/it-service/": "2026-09-05",
     "/it-service/attersee/": "2026-09-05",
     "/it-service/bad-ischl/": "2026-09-05",
@@ -75,7 +75,7 @@ STAND = {
     "/it-service/wels/": "2026-09-05",
     "/it-sicherheit-test/": "2026-08-29",
     "/kontakt/": "2026-09-05",
-    "/kosten/": "2026-09-04",
+    "/kosten/": "2026-09-05",
     "/kosten/rechner/": "2026-08-29",
     "/leistungen/": "2026-09-05",
     "/leistungen/edv-it-betreuung/": "2026-09-05",

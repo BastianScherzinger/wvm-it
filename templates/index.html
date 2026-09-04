@@ -12,7 +12,7 @@ Die Varianten stehen in content.json (T3).
 {% endblock %}
 
 {% block inhalt %}
-  <!-- ── HERO: Kontaktwege links, Werkzeug rechts (siehe docs/UMBAU-PLAN.md §3) ── -->
+  {% comment %} ── HERO: Kontaktwege links, Werkzeug rechts (siehe docs/UMBAU-PLAN.md §3) ── {% endcomment %}
   <section class="hero on-dark" id="top">
     {% comment %}
     Drei Groessen als CSS-Variablen; die Media-Queries in style.css waehlen aus.
@@ -31,7 +31,7 @@ Die Varianten stehen in content.json (T3).
         <h1>{{ t.hero.headline|safe }}</h1>
         <p class="lead">{{ t.hero.subline|safe }}</p>
 
-        <!-- Vier Wege, uns zu erreichen. WhatsApp zuerst, weil er am meisten genutzt wird. -->
+        {% comment %} Vier Wege, uns zu erreichen. WhatsApp zuerst, weil er am meisten genutzt wird. {% endcomment %}
         <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
           {% if c.whatsapp %}
           <a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">
@@ -59,7 +59,7 @@ Die Varianten stehen in content.json (T3).
         </ul>
       </div>
 
-      <!-- Werkzeug mit zwei Reitern: kostenlose Beispielseite ODER Richtpreis. -->
+      {% comment %} Werkzeug mit zwei Reitern: kostenlose Beispielseite ODER Richtpreis. {% endcomment %}
       <div class="hero-tool" data-reveal aria-label="{{ t.tool.aria|safe }}">
         <div class="tool-tabs" role="tablist" aria-label="{{ t.tool.aria|safe }}">
           <button class="tool-tab is-active" role="tab" id="tab-gratis" aria-controls="panel-gratis" aria-selected="true" type="button">{{ t.tool.tab_gratis|safe }}</button>
@@ -104,7 +104,7 @@ Die Varianten stehen in content.json (T3).
         <div class="tool-panel" id="panel-preis" role="tabpanel" aria-labelledby="tab-preis" tabindex="0" hidden>
           <h2 class="tool-h">{{ t.tool.preis_h|safe }}</h2>
           <p class="tool-sub">{{ t.tool.preis_sub|safe }}</p>
-          <!-- Ohne JavaScript sind das schlichte Anker in den Konfigurator. -->
+          {% comment %} Ohne JavaScript sind das schlichte Anker in den Konfigurator. {% endcomment %}
           <div class="tool-picks">
             <a class="tool-pick" href="#angebot" data-gruppe="web">{% include 'icons.html' with name='web' %}<span>{{ t.tool.preis_web|safe }}</span></a>
             <a class="tool-pick" href="#angebot" data-gruppe="web">{% include 'icons.html' with name='cart' %}<span>{{ t.tool.preis_shop|safe }}</span></a>
@@ -119,7 +119,7 @@ Die Varianten stehen in content.json (T3).
     </div>
     <a class="hero-scroll" href="#zusagen" aria-label="{{ t.hero.scroll_aria|safe }}"><span></span></a>
   </section>
-  <!-- ── Zusagen: was wir wirklich halten können (keine Floskeln) ───────────── -->
+  {% comment %} ── Zusagen: was wir wirklich halten können (keine Floskeln) ───────────── {% endcomment %}
   <section class="promise" id="zusagen">
     <div class="wrap promise-in">
       <span class="promise-i">{% include 'icons.html' with name='clock' %}{{ t.trust.t1|safe }}</span>
@@ -129,13 +129,13 @@ Die Varianten stehen in content.json (T3).
       <span class="promise-i">{% include 'icons.html' with name='shield' %}{{ t.trust.t5|safe }}</span>
     </div>
   </section>
-  <!-- ── LEISTUNGSFINDER ────────────────────────────────────────────────────
+  {% comment %} ── LEISTUNGSFINDER ────────────────────────────────────────────────────
        Der erste Block nach den Zusagen: sechs Absichten, mit denen jemand
        ankommt, und je ein Ziel dafuer. Zwei davon fuehren bewusst NICHT auf
        eine Leistungsseite , wer ein akutes Problem hat, will keine Leistung
        lesen, und wer nach dem Preis sucht, will rechnen. Quelle: views.FINDER.
        Das Problemband darunter bleibt: Es spricht die an, die noch nicht
-       wissen, wie ihr Problem heisst. -->
+       wissen, wie ihr Problem heisst. {% endcomment %}
   <section class="section fd-sec" id="finder" aria-labelledby="fd-title">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -158,12 +158,12 @@ Die Varianten stehen in content.json (T3).
     </div>
   </section>
 
-  <!-- ── PROBLEMBAND ────────────────────────────────────────────────────────
+  {% comment %} ── PROBLEMBAND ────────────────────────────────────────────────────────
        Das erste, was nach dem Hero kommt: nicht was wir anbieten, sondern was beim
        Leser gerade kaputt ist. Jede Zeile ist zugleich ein interner Link mit
        sprechendem Anker , siehe docs/RELAUNCH-PLAN.md §5. Die Ziele stehen in
        landing/views.py::PROBLEME und werden in Phase 2 auf die Leistungsseiten
-       umgestellt, ohne dass hier etwas zu ändern wäre. -->
+       umgestellt, ohne dass hier etwas zu ändern wäre. {% endcomment %}
   <section class="section section-alt" id="probleme">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -186,14 +186,17 @@ Die Varianten stehen in content.json (T3).
     </div>
   </section>
 
-  <!-- ── WER DAHINTERSTEHT ──────────────────────────────────────────────────
+  {% comment %} ── WER DAHINTERSTEHT ──────────────────────────────────────────────────
        Das Gesicht steht bewusst weit oben: Wer seine EDV aus der Hand gibt, will
        wissen, wem. Gründungsjahr und Partnerstatus rendern nur, wenn sie in
-       content.json wirklich eingetragen sind (RELAUNCH-PLAN.md, E5). -->
+       content.json wirklich eingetragen sind (RELAUNCH-PLAN.md, E5). {% endcomment %}
   <section class="vt on-dark" id="ueber">
     <div class="wrap vt-grid">
       <figure class="vt-media" data-reveal>
-        {% if c.founder_image %}<img class="vt-photo" src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}, Inhaber von {{ c.site_name }}" width="640" height="640" loading="lazy">{% endif %}
+        {% if c.founder_image %}<img class="vt-photo" src="{{ c.founder_image }}"
+               srcset="/static/img/florin_320.jpg 320w, /static/img/florin_480.jpg 480w, {{ c.founder_image }} 640w"
+               sizes="(max-width: 720px) 60vw, 320px"
+               alt="{{ c.inhaber_name }}, Inhaber von {{ c.site_name }}" width="640" height="640" loading="lazy" decoding="async">{% endif %}
         <figcaption class="vt-cap">
           <strong>{{ c.inhaber_name }}</strong>
           <span>{% if c.tagline %}{{ c.tagline }}{% else %}{{ t.ueber.badge_fallback|safe }}{% endif %}</span>
@@ -243,11 +246,11 @@ Die Varianten stehen in content.json (T3).
     </div>
   </section>
 
-  <!-- ── PROZESS (vertikale Timeline) ──────────────────────────────────────── -->
+  {% comment %} ── PROZESS (vertikale Timeline) ──────────────────────────────────────── {% endcomment %}
   <section class="section" id="prozess">
     <div class="wrap">
-      <!-- Beschreibt bewusst den Weg zur Anfrage, nicht den Projektablauf: er nimmt
-           die Unsicherheit vor dem ersten Kontakt (docs/UMBAU-PLAN.md §3, Sektion 4). -->
+      {% comment %} Beschreibt bewusst den Weg zur Anfrage, nicht den Projektablauf: er nimmt
+           die Unsicherheit vor dem ersten Kontakt (docs/UMBAU-PLAN.md §3, Sektion 4). {% endcomment %}
       <header class="sec-head" data-reveal>
         <h2 class="section-t">{{ t.ablauf.h|safe }}</h2>
         <p class="section-lead">{{ t.ablauf.sub|safe }}</p>
@@ -260,7 +263,7 @@ Die Varianten stehen in content.json (T3).
       </ol>
     </div>
   </section>
-  <!-- ── LEISTUNGEN (Bento mit Rhythmus + Spotlight) ───────────────────────── -->
+  {% comment %} ── LEISTUNGEN (Bento mit Rhythmus + Spotlight) ───────────────────────── {% endcomment %}
   <section class="section" id="leistungen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -268,9 +271,9 @@ Die Varianten stehen in content.json (T3).
         <p class="section-lead">{{ t.lb.sub|safe }}</p>
       </header>
 
-      <!-- Sechs Blöcke, jeder mit eigenem Abschluss. Preise stammen aus ANGEBOT_GROUPS.
+      {% comment %} Sechs Blöcke, jeder mit eigenem Abschluss. Preise stammen aus ANGEBOT_GROUPS.
            Die Reihenfolge bildet die Gewichtung des Betriebs ab: EDV zuerst, dann die
-           Sichtbarkeits-Familie (Webseite, SEO, Ads), zuletzt Betrieb und KI. -->
+           Sichtbarkeits-Familie (Webseite, SEO, Ads), zuletzt Betrieb und KI. {% endcomment %}
       <div class="lb-list">
         {% include 'leistung_block.html' with bid='it' slug='edv-it-betreuung' icon='host' titel=t.lb.it_h lead=t.lb.it_lead p1=t.lb.it_p1 p2=t.lb.it_p2 p3=t.lb.it_p3 preis=startpreise.it ph=t.lb.it_ph %}
         {% include 'leistung_block.html' with bid='web' slug='webseite-erstellen' icon='web' titel=t.lb.web_h lead=t.lb.web_lead p1=t.lb.web_p1 p2=t.lb.web_p2 p3=t.lb.web_p3 preis=startpreise.web ph=t.lb.web_ph %}
@@ -282,7 +285,7 @@ Die Varianten stehen in content.json (T3).
       <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.zurueck|safe }}</a></p>
     </div>
   </section>
-  <!-- ── FÜR FIRMEN: Technik vor Ort (kürzer gehalten, ein gemeinsames Formular) ── -->
+  {% comment %} ── FÜR FIRMEN: Technik vor Ort (kürzer gehalten, ein gemeinsames Formular) ── {% endcomment %}
   <section class="section section-alt" id="technik">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -338,7 +341,7 @@ Die Varianten stehen in content.json (T3).
       </div>
     </div>
   </section>
-  <!-- ── ANGEBOT (inline: Leistungen wählen, Richtpreis per E-Mail freischalten) ─ -->
+  {% comment %} ── ANGEBOT (inline: Leistungen wählen, Richtpreis per E-Mail freischalten) ─ {% endcomment %}
   <section class="section rb-sec" id="angebot" aria-labelledby="rb-title">
     <div class="wrap">
       <header class="sec-head rb-head" data-reveal>
@@ -483,7 +486,7 @@ Die Varianten stehen in content.json (T3).
     refresh();
   })();
   </script>
-  <!-- ── GRATIS-BLOCK: Newsletter + kostenlose JARVIS-Beispielseite (dunkles Band + Insel-Karte) ── -->
+  {% comment %} ── GRATIS-BLOCK: Newsletter + kostenlose JARVIS-Beispielseite (dunkles Band + Insel-Karte) ── {% endcomment %}
   <section class="offer-sec" id="gratis">
     <div class="offer-glow" aria-hidden="true"></div>
     <div class="wrap offer-grid">
@@ -506,7 +509,7 @@ Die Varianten stehen in content.json (T3).
           <span><strong>{{ t.offer.note_strong|safe }}</strong> {{ t.offer.note_rest|safe }}</span>
         </p>
       </div>
-      <!-- Das Formular selbst steht oben im Hero-Werkzeug; hier führt der Weg dorthin zurück. -->
+      {% comment %} Das Formular selbst steht oben im Hero-Werkzeug; hier führt der Weg dorthin zurück. {% endcomment %}
       <div class="offer-card offer-card-lean" data-reveal>
         <span class="offer-card-badge">{{ t.offer.card_badge|safe }}</span>
         <h3 class="offer-card-h">{{ t.offer.card_h|safe }}</h3>
@@ -519,14 +522,14 @@ Die Varianten stehen in content.json (T3).
       </div>
     </div>
   </section>
-  <!-- ── Service-Marquee (sofort sichtbar, worum es geht + Bewegung) ────────── -->
+  {% comment %} ── Service-Marquee (sofort sichtbar, worum es geht + Bewegung) ────────── {% endcomment %}
   <div class="marquee" aria-label="{{ t.marquee_aria|safe }}">
     <div class="marquee-track">
       {% for w in t.marquee %}<span>{{ w|safe }}</span><i>·</i>{% endfor %}
       {% for w in t.marquee %}<span aria-hidden="true">{{ w|safe }}</span><i aria-hidden="true">·</i>{% endfor %}
     </div>
   </div>
-  <!-- ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── -->
+  {% comment %} ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── {% endcomment %}
   <section class="band">
     <div class="wrap band-in" data-reveal>
       <span class="band-kick">{{ t.band1.kick|safe }}</span>
@@ -534,7 +537,7 @@ Die Varianten stehen in content.json (T3).
       <p class="band-p">{{ t.band1.p|safe }}</p>
     </div>
   </section>
-  <!-- ── SCROLL-VIDEO 1, PC: Webseite baut sich auf, per Scroll gescrubbt ──── -->
+  {% comment %} ── SCROLL-VIDEO 1, PC: Webseite baut sich auf, per Scroll gescrubbt ──── {% endcomment %}
   <section class="scrolly" id="aufbau" data-scrolly>
     <div class="scrolly-sticky">
       <video class="scrolly-video" id="scrollyVideoPc" playsinline muted preload="none"
@@ -552,7 +555,7 @@ Die Varianten stehen in content.json (T3).
       <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
     </div>
   </section>
-  <!-- ── Vertrauens-Leiste + Kennzahlen ────────────────────────────────────── -->
+  {% comment %} ── Vertrauens-Leiste + Kennzahlen ────────────────────────────────────── {% endcomment %}
   <section class="proof">
     <div class="wrap">
       <p class="proof-line" data-reveal>{{ t.proof.line|safe }}</p>
@@ -564,7 +567,7 @@ Die Varianten stehen in content.json (T3).
       </div>
     </div>
   </section>
-  <!-- ── Trenner-Text: Überleitung zum Server-Raum ─────────────────────────── -->
+  {% comment %} ── Trenner-Text: Überleitung zum Server-Raum ─────────────────────────── {% endcomment %}
   <section class="band">
     <div class="wrap band-in" data-reveal>
       <span class="band-kick">{{ t.band2.kick|safe }}</span>
@@ -572,7 +575,7 @@ Die Varianten stehen in content.json (T3).
       <p class="band-p">{{ t.band2.p|safe }}</p>
     </div>
   </section>
-  <!-- ── SCROLL-VIDEO 2 ,  Higgsfield-Rechenzentrum (Server-Raum), per Scroll gescrubbt ── -->
+  {% comment %} ── SCROLL-VIDEO 2 ,  Higgsfield-Rechenzentrum (Server-Raum), per Scroll gescrubbt ── {% endcomment %}
   <section class="scrolly" id="infrastruktur" data-scrolly>
     <div class="scrolly-sticky">
       <video class="scrolly-video" id="scrollyVideo" playsinline muted preload="none"
@@ -593,7 +596,7 @@ Die Varianten stehen in content.json (T3).
       <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
     </div>
   </section>
-  <!-- ── PARTNER / ALLES AUS EINER HAND ────────────────────────────────────── -->
+  {% comment %} ── PARTNER / ALLES AUS EINER HAND ────────────────────────────────────── {% endcomment %}
   <section class="section section-alt" id="partner">
     <div class="wrap">
       <header class="sec-head sec-head-center" data-reveal>
@@ -609,7 +612,7 @@ Die Varianten stehen in content.json (T3).
       </div>
     </div>
   </section>
-  <!-- ── KI-HIGHLIGHT (Glass-Showcase, Split) ──────────────────────────────── -->
+  {% comment %} ── KI-HIGHLIGHT (Glass-Showcase, Split) ──────────────────────────────── {% endcomment %}
   <section class="section">
     <div class="wrap">
       <div class="showcase" data-reveal>
@@ -624,8 +627,8 @@ Die Varianten stehen in content.json (T3).
           </ul>
           <a class="btn btn-magnetic" href="#kontakt">{{ t.showcase.cta|safe }}</a>
         </div>
-        <!-- Der 3D-Assistent stand früher im Hero; dort gehört der Platz jetzt dem
-             Werkzeug. Hier illustriert er das Thema KI und bleibt anklickbar. -->
+        {% comment %} Der 3D-Assistent stand früher im Hero; dort gehört der Platz jetzt dem
+             Werkzeug. Hier illustriert er das Thema KI und bleibt anklickbar. {% endcomment %}
         <div class="showcase-visual showcase-robot">
           <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="{{ t.hero.robot_aria|safe }}" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
             <div class="hero-figure-glow" aria-hidden="true"></div>
@@ -641,8 +644,8 @@ Die Varianten stehen in content.json (T3).
       </div>
     </div>
   </section>
-  <!-- ── TESTIMONIALS ──────────────────────────────────────────────────────── -->
-  <!-- ── REFERENZEN (Beispiel-Projekte) ────────────────────────────────────── -->
+  {% comment %} ── TESTIMONIALS ──────────────────────────────────────────────────────── {% endcomment %}
+  {% comment %} ── REFERENZEN (Beispiel-Projekte) ────────────────────────────────────── {% endcomment %}
   <section class="section" id="referenzen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -650,10 +653,13 @@ Die Varianten stehen in content.json (T3).
         <p class="section-lead">{{ t.referenzen.lead|safe }}</p>
       </header>
 
-      <!-- Kernreferenz: eigenes Projekt, nachprüfbar, mit ehrlichem Partnerhinweis. -->
+      {% comment %} Kernreferenz: eigenes Projekt, nachprüfbar, mit ehrlichem Partnerhinweis. {% endcomment %}
       <article class="case" data-reveal>
         <a class="case-shot" href="https://ruempelwerk-mitteldeutschland.de/" target="_blank" rel="noopener">
-          <img src="{% static 'img/ref_ruempelwerk.webp' %}" alt="{{ t.case.alt|safe }}" loading="lazy" width="1280" height="529">
+          <img src="{% static 'img/ref_ruempelwerk.webp' %}"
+               srcset="{% static 'img/ref_ruempelwerk_640.webp' %} 640w, {% static 'img/ref_ruempelwerk_960.webp' %} 960w, {% static 'img/ref_ruempelwerk.webp' %} 1280w"
+               sizes="(max-width: 720px) 100vw, (max-width: 1100px) 60vw, 620px"
+               alt="{{ t.case.alt|safe }}" loading="lazy" decoding="async" width="1280" height="529">
         </a>
         <div class="case-body">
           <span class="eyebrow"><span class="dot"></span>{{ t.case.eyebrow|safe }}</span>
@@ -672,22 +678,31 @@ Die Varianten stehen in content.json (T3).
 
       <div class="refs">
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_smarthome.webp' %}" alt="{{ t.referenzen.r1_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <div class="ref-img"><img src="{% static 'img/ref_smarthome.webp' %}"
+            srcset="{% static 'img/ref_smarthome_640.webp' %} 640w, {% static 'img/ref_smarthome_960.webp' %} 960w, {% static 'img/ref_smarthome.webp' %} 1264w"
+            sizes="(max-width: 720px) 100vw, (max-width: 1100px) 45vw, 400px"
+            alt="{{ t.referenzen.r1_alt|safe }}" loading="lazy" decoding="async" width="1264" height="848"></div>
           <figcaption><strong>{{ t.referenzen.r1_h|safe }}</strong><span>{{ t.referenzen.r1_p|safe }}</span></figcaption>
         </figure>
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_konferenz.webp' %}" alt="{{ t.referenzen.r2_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <div class="ref-img"><img src="{% static 'img/ref_konferenz.webp' %}"
+            srcset="{% static 'img/ref_konferenz_640.webp' %} 640w, {% static 'img/ref_konferenz_960.webp' %} 960w, {% static 'img/ref_konferenz.webp' %} 1264w"
+            sizes="(max-width: 720px) 100vw, (max-width: 1100px) 45vw, 400px"
+            alt="{{ t.referenzen.r2_alt|safe }}" loading="lazy" decoding="async" width="1264" height="848"></div>
           <figcaption><strong>{{ t.referenzen.r2_h|safe }}</strong><span>{{ t.referenzen.r2_p|safe }}</span></figcaption>
         </figure>
         <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_buehne.webp' %}" alt="{{ t.referenzen.r3_alt|safe }}" loading="lazy" width="1264" height="848"></div>
+          <div class="ref-img"><img src="{% static 'img/ref_buehne.webp' %}"
+            srcset="{% static 'img/ref_buehne_640.webp' %} 640w, {% static 'img/ref_buehne_960.webp' %} 960w, {% static 'img/ref_buehne.webp' %} 1264w"
+            sizes="(max-width: 720px) 100vw, (max-width: 1100px) 45vw, 400px"
+            alt="{{ t.referenzen.r3_alt|safe }}" loading="lazy" decoding="async" width="1264" height="848"></div>
           <figcaption><strong>{{ t.referenzen.r3_h|safe }}</strong><span>{{ t.referenzen.r3_p|safe }}</span></figcaption>
         </figure>
       </div>
     </div>
   </section>
-  <!-- ── ÜBER UNS / GRÜNDER ────────────────────────────────────────────────── -->
-  <!-- ── KOOPERATIONEN ─────────────────────────────────────────────────────── -->
+  {% comment %} ── ÜBER UNS / GRÜNDER ────────────────────────────────────────────────── {% endcomment %}
+  {% comment %} ── KOOPERATIONEN ─────────────────────────────────────────────────────── {% endcomment %}
   <section class="section" id="kooperationen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -714,7 +729,7 @@ Die Varianten stehen in content.json (T3).
         {% endfor %}
       </div>
 
-      <!-- Partner werden -->
+      {% comment %} Partner werden {% endcomment %}
       <div class="coop-join" id="partner-werden" data-reveal>
         <div class="coop-join-copy">
           <span class="coop-join-ic" aria-hidden="true">{% include 'icons.html' with name='handshake' %}</span>
@@ -766,7 +781,7 @@ Die Varianten stehen in content.json (T3).
     });
   })();
   </script>
-  <!-- ── PREISE ────────────────────────────────────────────────────────────── -->
+  {% comment %} ── PREISE ────────────────────────────────────────────────────────────── {% endcomment %}
   <section class="section section-alt" id="preise">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -799,9 +814,9 @@ Die Varianten stehen in content.json (T3).
       </div>
       <p class="price-foot" data-reveal>{{ t.preise.foot|safe }}</p>
 
-      <!-- Vollständige Preisliste aus ANGEBOT_GROUPS. Beantwortet „Was kostet …?"
+      {% comment %} Vollständige Preisliste aus ANGEBOT_GROUPS. Beantwortet „Was kostet …?"
            ohne Formular und ist zugleich das stärkste GEO-Element der Seite:
-           eine datierte Tabelle mit konkreten Zahlen (siehe SEO-PLAN.md, G4/G5). -->
+           eine datierte Tabelle mit konkreten Zahlen (siehe SEO-PLAN.md, G4/G5). {% endcomment %}
       <div class="pt" data-reveal>
         <h3 class="pt-h">{{ t.preise.tab_h|safe }}</h3>
         <p class="pt-lead">{{ t.preise.tab_lead|safe }}</p>
@@ -829,11 +844,11 @@ Die Varianten stehen in content.json (T3).
       </div>
     </div>
   </section>
-  <!-- ── VERTEILERBLOCK: Beitraege + Werkzeuge (V4) ─────────────────────────
+  {% comment %} ── VERTEILERBLOCK: Beitraege + Werkzeuge (V4) ─────────────────────────
        Die Startseite ist die staerkste Seite der Domain; was von hier
        verlinkt wird, bekommt Gewicht. Deshalb stehen hier die zwei
        meistgesuchten Fragen und die drei Werkzeuge - und nicht ein
-       "mehr erfahren" auf eine weitere Uebersichtsseite. -->
+       "mehr erfahren" auf eine weitere Uebersichtsseite. {% endcomment %}
   <section class="section wt-sec" id="wissen" aria-labelledby="wt-title">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -867,7 +882,7 @@ Die Varianten stehen in content.json (T3).
     </div>
   </section>
 
-  <!-- ── FAQ (GEO: sichtbare Antworten + FAQPage-Schema für KI-Antwortmaschinen) ── -->
+  {% comment %} ── FAQ (GEO: sichtbare Antworten + FAQPage-Schema für KI-Antwortmaschinen) ── {% endcomment %}
   <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -888,7 +903,7 @@ Die Varianten stehen in content.json (T3).
       </div>
     </div>
   </section>
-  <!-- ── KONTAKT ───────────────────────────────────────────────────────────── -->
+  {% comment %} ── KONTAKT ───────────────────────────────────────────────────────────── {% endcomment %}
   <section class="section section-alt" id="kontakt">
     <div class="wrap contact">
       <div class="contact-info" data-reveal>
@@ -940,7 +955,7 @@ Die Varianten stehen in content.json (T3).
       {% endif %}
     </div>
   </section>
-  <!-- ── SCHLUSSBAND: letzte Ausfahrt vor dem Footer, alle vier Wege ────────── -->
+  {% comment %} ── SCHLUSSBAND: letzte Ausfahrt vor dem Footer, alle vier Wege ────────── {% endcomment %}
   <section class="closer on-dark">
     <div class="wrap closer-in" data-reveal>
       <div class="closer-copy">

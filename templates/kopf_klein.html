@@ -29,14 +29,23 @@ Parameter: `titel` (Pflicht), `robots` (Vorgabe noindex,nofollow), `kanonisch`
   <meta property="og:locale" content="{{ t.meta.locale }}">
   <meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
   <meta name="twitter:card" content="summary_large_image">
-  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
+  {% comment %} Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="icon" type="image/webp" href="{% static 'img/wvm_mark.webp' %}" sizes="any">
   <link rel="icon" type="image/png" href="{% static 'img/wvm_mark_128.png' %}" sizes="128x128">
   <link rel="apple-touch-icon" href="{% static 'img/wvm_mark_128.png' %}">
   <link rel="alternate" type="application/atom+xml" title="{{ c.site_name }} — Ratgeber" href="{% url 'feed' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  {% comment %}
+  Der eingebettete Block: Er traegt die Akzentfarben aus content.json — und seit
+  dem 05.09.2026 auch die Bewegungsreduzierung. Die steht zwar in style.css,
+  aber erst ab Zeile 500: Wer die Systemeinstellung „Bewegung reduzieren" gesetzt
+  hat, sieht bis zum Eintreffen des Stilblatts trotzdem die erste
+  Einblendbewegung. Das ist genau der Moment, um den es geht — die Einstellung
+  wird meist wegen Schwindel oder Migraene gesetzt, nicht aus Geschmack.
+  {% endcomment %}
+  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}[data-reveal]{opacity:1;transform:none}}</style>
   {% comment %}
   Auch eine Seite mit noindex gehört in den Graphen: Wer den Link teilt oder ihn
   einer Antwortmaschine vorlegt, soll erkennen, zu welchem Betrieb er gehört.

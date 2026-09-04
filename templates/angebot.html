@@ -23,7 +23,7 @@
   <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
   {% if c.hero_bg %}<meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
-  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
+  {% comment %} Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
@@ -35,6 +35,7 @@
   <script type="application/ld+json" nonce="{{ request.csp_nonce }}">{{ structured_data|safe }}</script>
 </head>
 <body class="ang-page">
+{% include 'icons_sprite.html' %}
 <script nonce="{{ request.csp_nonce }}">
   window.I18N = {
     numLocale: "{{ t.meta.num_locale }}",
@@ -48,13 +49,13 @@
 </script>
 <a class="skip" href="#konfigurator">{{ t.nav.skip_konfigurator|safe }}</a>
 
-<!-- ── Navigation ──────────────────────────────────────────────────────────── -->
+{% comment %} ── Navigation ──────────────────────────────────────────────────────────── {% endcomment %}
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <!-- Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) -->
+    {% comment %} Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) {% endcomment %}
     <div class="nav-lang-mobile">{% include 'lang_switch.html' %}</div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
@@ -73,11 +74,11 @@
 </header>
 
 <main id="main">
-  <!-- ── KOPF: Überschrift links, Konfigurator rechts ──────────────────────── -->
+  {% comment %} ── KOPF: Überschrift links, Konfigurator rechts ──────────────────────── {% endcomment %}
   <section class="section ang-top-sec" id="konfigurator">
     <div class="wrap ang-top">
 
-      <!-- Links: Überschrift -->
+      {% comment %} Links: Überschrift {% endcomment %}
       <div class="ang-top-copy" data-reveal>
         <span class="eyebrow"><span class="dot"></span>{{ t.angebot_page.eyebrow|safe }}</span>
         <h1>{{ t.angebot_page.h1|safe }}</h1>
@@ -96,7 +97,7 @@
         {% endif %}
       </div>
 
-      <!-- Rechts: das Angebot mit den Buttons -->
+      {% comment %} Rechts: das Angebot mit den Buttons {% endcomment %}
       <div class="ang-top-config" data-reveal>
         {% if sent %}
         <div class="ang-sent">
@@ -115,7 +116,7 @@
           {% csrf_token %}
           {% include 'honigtopf.html' %}
 
-          <!-- Schritt-Anzeige -->
+          {% comment %} Schritt-Anzeige {% endcomment %}
           <ol class="wz-steps" id="wzSteps">
             {% for g in groups %}
             <li class="wz-step{% if forloop.first %} is-active{% endif %}" data-goto="{{ forloop.counter0 }}">
@@ -130,7 +131,7 @@
           </ol>
           <div class="wz-progress" aria-hidden="true"><span class="wz-bar" id="wzBar"></span></div>
 
-          <!-- Slides -->
+          {% comment %} Slides {% endcomment %}
           <div class="wz-panels">
             {% for g in groups %}
             <section class="wz-panel{% if forloop.first %} is-active{% endif %}" data-step="{{ forloop.counter0 }}" data-kat="{{ g.id }}" aria-label="{{ g.title }}">
@@ -175,7 +176,7 @@
             </section>
             {% endfor %}
 
-            <!-- Slide: Ihr Angebot -->
+            {% comment %} Slide: Ihr Angebot {% endcomment %}
             <section class="wz-panel" data-step="{{ groups|length }}" aria-label="{{ t.angebot_page.last_h|safe }}">
               <div class="wz-panel-head">
                 <span class="wz-panel-ic">{% include 'icons.html' with name='check' %}</span>
@@ -234,7 +235,7 @@
           </div>
         {% include 'datenschutzhinweis.html' %}
         </form>
-        <!-- Mobile: sticky Summenleiste unten (klein, dezent), springt zum letzten Schritt -->
+        {% comment %} Mobile: sticky Summenleiste unten (klein, dezent), springt zum letzten Schritt {% endcomment %}
         <div class="ang-mobar" id="angMobar" hidden>
           <div class="ang-mobar-in">
             <span class="ang-mobar-sum">
@@ -249,7 +250,7 @@
     </div>
   </section>
 
-  <!-- ── PREISLISTE (volle Übersicht, darunter) ────────────────────────────── -->
+  {% comment %} ── PREISLISTE (volle Übersicht, darunter) ────────────────────────────── {% endcomment %}
   <section class="section section-alt" id="preisliste">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -279,7 +280,7 @@
   </section>
 </main>
 
-<!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+{% comment %} ── FOOTER ──────────────────────────────────────────────────────────────── {% endcomment %}
 <footer class="foot">
   <div class="wrap foot-top">
     <div class="foot-brand">

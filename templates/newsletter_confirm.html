@@ -4,6 +4,7 @@
   {% include 'kopf_klein.html' with titel=seiten_titel %}
 </head>
 <body class="ang-page">
+{% include 'icons_sprite.html' %}
 <script nonce="{{ request.csp_nonce }}">
   window.I18N = {
     af: {
@@ -21,7 +22,7 @@
     <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
-    <!-- Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) -->
+    {% comment %} Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) {% endcomment %}
     <div class="nav-lang-mobile">{% include 'lang_switch.html' %}</div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
@@ -57,7 +58,7 @@
         <input type="hidden" name="t" value="{{ anfrage_token }}">
         <input type="hidden" name="bilder" id="bilderField" value="[]">
 
-        <!-- Schritt-Anzeige (von anfrage.js aktiviert; ohne JS bleiben alle Schritte darunter sichtbar) -->
+        {% comment %} Schritt-Anzeige (von anfrage.js aktiviert; ohne JS bleiben alle Schritte darunter sichtbar) {% endcomment %}
         <ol class="wz-steps" id="afSteps">
           <li class="wz-step is-active" data-goto="0"><span class="wz-step-n">1</span><span class="wz-step-t">{{ t.confirm_page.sec1_h|safe }}</span></li>
           <li class="wz-step" data-goto="1"><span class="wz-step-n">2</span><span class="wz-step-t">{{ t.confirm_page.sec2_h|safe }}</span></li>

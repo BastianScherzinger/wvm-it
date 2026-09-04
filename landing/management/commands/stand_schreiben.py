@@ -21,7 +21,7 @@ from datetime import date, timezone, datetime
 from pathlib import Path
 
 from django.conf import settings
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
 from landing import views
 
@@ -153,8 +153,9 @@ class Command(BaseCommand):
         alt = ziel.read_text(encoding="utf-8")
         muster = re.compile(r"(# <stand:anfang>\n).*?(\n# <stand:ende>)", re.S)
         if not muster.search(alt):
-            self.stderr.write("Marken <stand:anfang>/<stand:ende> fehlen in landing/stand.py.")
-            return "1"
+            # CommandError statt eines Rueckgabewerts: Nur so wird daraus ein
+            # Rueckgabewert 1 des Prozesses, an dem ein CI-Lauf scheitern kann.
+            raise CommandError("Marken <stand:anfang>/<stand:ende> fehlen in landing/stand.py.")
         geschrieben = muster.sub(lambda m: m.group(1) + neu + m.group(2), alt)
 
         # Der Fallback-Tag ändert sich täglich; für den Vergleich zählt er nicht,
@@ -165,8 +166,9 @@ class Command(BaseCommand):
         veraltet = ohne_fallback(geschrieben) != ohne_fallback(alt)
         if opt["pruefen"]:
             if veraltet:
-                self.stderr.write("landing/stand.py ist veraltet — `manage.py stand_schreiben` laufen lassen.")
-                return "1"
+                raise CommandError(
+                    "landing/stand.py ist veraltet — `manage.py stand_schreiben` laufen lassen. "
+                    "Sonst tragen Sitemap und Schema ein Aenderungsdatum, das nicht mehr stimmt.")
             self.stdout.write(f"landing/stand.py ist aktuell ({len(stand)} Pfade).")
             return None
 
