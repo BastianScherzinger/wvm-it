@@ -76,6 +76,52 @@ class AlleSeitenTest(SimpleTestCase):
         self.assertEqual(len(set(p for p, *_ in pfade)), len(pfade),
                          "ein Pfad steht doppelt in _seiten_pfade()")
 
+    def test_kein_interner_link_zeigt_auf_eine_nicht_existierende_kennung(self):
+        """Verhindert einen Sprunglink, der nirgends landet (Schritt 35).
+
+        Das ist der Fehler, den niemand bemerkt: Der Link ist da, er ist
+        anklickbar, der Browser meldet nichts — es passiert nur nichts. Genau so
+        standen fünf Jahre alte Reste der Einseiter-Fassung im Bestand:
+        `#datenschutz` an der Einwilligungszeile von drei Formularen und im
+        Cookie-Hinweis, `/#impressum` im Footer von `/angebot/`. Keine dieser
+        Kennungen gab es irgendwo — die Rechtstexte liegen seit dem Umbau unter
+        eigenen Adressen. Auf `/angebot/` war damit weder Impressum noch
+        Datenschutzerklärung erreichbar.
+
+        Geprüft werden beide Formen getrennt, weil sie verschiedene Ziele
+        meinen: `href="#x"` zeigt auf dieselbe Seite, `href="/#x"` auf die
+        Startseite. Wer beides gegen dieselbe Seite hielte, würde die Hälfte der
+        Fälle falsch beurteilen."""
+        kennungen = {}
+
+        def ids_von(adresse):
+            if adresse not in kennungen:
+                html = self.client_https.get(adresse).content.decode("utf-8")
+                kennungen[adresse] = set(re.findall(r'\sid="([^"]+)"', html))
+            return kennungen[adresse]
+
+        tot, geprueft = [], 0
+        for adresse in alle_adressen():
+            html = self.client_https.get(adresse).content.decode("utf-8")
+            eigene = set(re.findall(r'\sid="([^"]+)"', html))
+            # Die Startseite in der Sprache dieser Adresse — dorthin zeigt "/#x".
+            start = i18n.add_prefix(i18n.strip_prefix(adresse)[0], "/")
+            for anker in re.findall(r'href="#([^"]+)"', html):
+                geprueft += 1
+                if anker not in eigene:
+                    tot.append(f"{adresse}: #{anker}")
+            for anker in re.findall(r'href="/#([^"]+)"', html):
+                geprueft += 1
+                if anker not in ids_von(start):
+                    tot.append(f"{adresse}: /#{anker} (nicht auf {start})")
+        self.assertEqual(tot, [], f"{len(tot)} Sprunglinks zeigen auf eine "
+                                  f"Kennung, die es nicht gibt: {tot[:10]}")
+        # Ohne diese Zeile wäre der Test grün, sobald das Muster einmal nicht
+        # mehr greift — er prüfte dann nichts mehr und sagte es nicht.
+        self.assertGreater(geprueft, 100,
+                           f"nur {geprueft} Sprunglinks gefunden — das Muster "
+                           f"greift nicht mehr")
+
     def test_einsprachige_silos_haben_keine_sprachvarianten(self):
         """Verhindert: /en/wissen/vpn/ — eine Adresse, die es nicht gibt.
 

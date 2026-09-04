@@ -335,7 +335,11 @@ PACK = {
         "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "Shop", "u_referenzen": "Referenzen", "u_faq": "Fragen &amp; Antworten",
         "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
-        "impressum_ph": "<strong>Angaben gemäß Paragraf 5 TMG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt (E-Mail und Telefon), gegebenenfalls USt-IdNr. und Registereintrag.",
+        # Schritt 35: Hier stand „Angaben gemäß Paragraf 5 TMG" — deutsches
+        # Recht. Der Betrieb sitzt in Österreich, und das tatsächliche
+        # Impressum in content.json beruft sich korrekt auf § 5 ECG und
+        # § 25 MedienG. Der Platzhalter sagt jetzt dasselbe.
+        "impressum_ph": "<strong>Offenlegung gemäß § 5 ECG und § 25 MedienG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, Inhaber oder vertretungsberechtigte Person, Kontakt (E-Mail und Telefon), Unternehmensgegenstand, Gewerbebehörde, gegebenenfalls UID-Nummer und Firmenbucheintrag.",
         "datenschutz_ph": "<strong>Platzhalter.</strong> Vor Veröffentlichung eine DSGVO-konforme Datenschutzerklärung einsetzen (Verantwortlicher, Hosting, Kontaktformular, Cookies und Tracking, Betroffenenrechte).",
         # Dritte Rechtsseite (Schritt 32). Die Überschrift steht hier und nicht
         # im `recht`-Block, weil `_rechtsseite` sie von hier holt — dieselbe
@@ -1230,6 +1234,10 @@ PACK = {
         "sending": "Wird gesendet …",
         "done_h": "Angekommen",
         "done_t": "Wir melden uns innerhalb von 24 Stunden.",
+        # Schritt 35: Der Satz steht als Fliesstext in einem vorhandenen Absatz
+        # der Anfrage-Karte und des Rueckruf-Dialogs — bewusst ohne Link, weil
+        # ein zusaetzlicher Link die Linkzahl der Seite aendern wuerde.
+        "datenschutz_hinweis": "Ihre Angaben verwenden wir ausschließlich zur Bearbeitung dieser Anfrage; Näheres steht in der Datenschutzerklärung.",
         "err_kontakt": "Bitte eine E-Mail-Adresse oder Telefonnummer eintragen.",
         "err_allg": "Das hat nicht geklappt. Bitte per WhatsApp oder Telefon melden.",
         "ab": "ab",

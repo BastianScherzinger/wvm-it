@@ -1180,6 +1180,8 @@ PACK = {
         "sending": "Sending …",
         "done_h": "Received",
         "done_t": "We will get back to you within 24 hours.",
+        # Step 35 — see de.py for the reasoning (no link on purpose).
+        "datenschutz_hinweis": "We use your details solely to process this enquiry; the privacy policy has the particulars.",
         "err_kontakt": "Please enter an email address or a phone number.",
         "err_allg": "That did not work. Please reach us by WhatsApp or phone.",
         "ab": "from",

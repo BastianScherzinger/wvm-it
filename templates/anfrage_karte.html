@@ -32,7 +32,14 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     <button class="btn lb-submit" type="submit">{{ t.lb.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <p class="lb-err" role="alert" hidden></p>
 
-    <p class="ak-alt">{{ t.seite.kontakt_alt|safe }}
+    {% comment %}
+    Schritt 35: Der Datenschutzhinweis steht als Fliesstext im vorhandenen
+    Absatz — kein neues Element, kein zusaetzlicher Link. Von zehn
+    POST-Formularen der Seite nannten vier den Datenschutz; dieses hier steht
+    auf elf Unterseiten und war das groesste der sechs Loecher (Befund KV05).
+    Dass ein Link an dieser Stelle die bessere Loesung waere, steht im Bericht.
+    {% endcomment %}
+    <p class="ak-alt">{{ t.lb.datenschutz_hinweis|safe }} {{ t.seite.kontakt_alt|safe }}
       {% if c.whatsapp %}<a href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{{ t.ways.wa|safe }}</a>{% endif %}
       {% if c.telefon %}<a href="tel:{{ c.telefon }}">{{ c.telefon }}</a>{% endif %}
     </p>

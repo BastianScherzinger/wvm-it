@@ -5,7 +5,7 @@ den externen 3D-Assistenten (Spline) nachlädt. „Nur notwendige" => wvm_consen
   <div class="cookie-inner">
     <div class="cookie-text">
       <strong>{{ t.cookie.title|safe }}</strong>
-      <p>{{ t.cookie.body|safe }} <a href="/#datenschutz">{{ t.cookie.link|safe }}</a>.</p>
+      <p>{{ t.cookie.body|safe }} <a href="{% url 'datenschutz' %}">{{ t.cookie.link|safe }}</a>.</p>
     </div>
     <div class="cookie-actions">
       <button type="button" class="btn btn-ghost btn-sm cookie-decline" id="cookieDecline">{{ t.cookie.decline|safe }}</button>

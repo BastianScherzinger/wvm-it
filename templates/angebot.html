@@ -213,7 +213,7 @@
                   </div>
                   <label>{{ t.angebot_page.f_phone|safe }} <span class="opt">{{ t.angebot_page.f_opt|safe }}</span><input type="tel" name="telefon" autocomplete="tel" placeholder="{{ t.angebot_page.f_phone_ph|safe }}"></label>
                   <label>{{ t.angebot_page.f_msg|safe }} <span class="opt">{{ t.angebot_page.f_opt|safe }}</span><textarea name="nachricht" rows="3" placeholder="{{ t.angebot_page.f_msg_ph|safe }}"></textarea></label>
-                  <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.angebot_page.consent_pre|safe }} <a href="/#datenschutz">{{ t.angebot_page.consent_link|safe }}</a> {{ t.angebot_page.consent_post|safe }}</label>
+                  <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.angebot_page.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.angebot_page.consent_link|safe }}</a> {{ t.angebot_page.consent_post|safe }}</label>
                   <button class="btn btn-lg btn-magnetic ang-submit" type="submit" id="angSubmit">
                     {{ t.angebot_page.submit|safe }}
                     <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -289,7 +289,15 @@
     <nav class="foot-nav" aria-label="Footer">
       <div><h4>{{ t.footer.col_leistungen|safe }}</h4><a href="/#leistungen">{{ t.footer.l_smarthome|safe }}</a><a href="/#leistungen">{{ t.footer.l_konferenz|safe }}</a><a href="/#leistungen">{{ t.footer.l_edv|safe }}</a><a href="/#leistungen">{{ t.footer.l_web|safe }}</a></div>
       <div><h4>{{ t.footer.col_unternehmen|safe }}</h4><a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a><a href="/#preise">{{ t.footer.u_preise|safe }}</a><a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
-      <div><h4>{{ t.footer.col_recht|safe }}</h4><a href="/#impressum">{{ t.footer.impressum|safe }}</a><a href="/#datenschutz">{{ t.footer.datenschutz|safe }}</a></div>
+      {% comment %}
+      Schritt 35: Diese beiden Links zeigten auf /#impressum und /#datenschutz —
+      Kennungen, die es seit dem Umbau nirgends mehr gibt. Damit war /angebot/
+      die einzige oeffentliche Seite ohne erreichbaren Impressums- und
+      Datenschutzlink (Befunde RE02 und RE05), und auf /en/angebot/ fuehrte der
+      Klick zusaetzlich auf die deutsche Startseite. `{% templatetag openblock %} url {% templatetag closeblock %}` statt eines festen
+      Pfades: nur so stimmt das Sprachpraefix. Es bleiben dieselben zwei Links.
+      {% endcomment %}
+      <div><h4>{{ t.footer.col_recht|safe }}</h4><a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a><a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a></div>
     </nav>
   </div>
   <div class="wrap foot-bottom">

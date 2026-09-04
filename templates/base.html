@@ -129,7 +129,12 @@
     <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
     <button class="rr-close" type="button" data-rr-close aria-label="{{ t.rueckruf.close|safe }}">&times;</button>
     <h2 id="rr-h" class="tool-h">{{ t.rueckruf.h|safe }}</h2>
-    <p class="tool-sub">{{ t.rueckruf.sub|safe }}</p>
+    {% comment %}
+    Schritt 35: Der Datenschutzhinweis als Fliesstext im vorhandenen Absatz.
+    Der Rueckruf-Dialog steht auf jeder Seite, die von base.html erbt, und war
+    damit das am weitesten verbreitete Formular ohne Hinweis.
+    {% endcomment %}
+    <p class="tool-sub">{{ t.rueckruf.sub|safe }} {{ t.lb.datenschutz_hinweis|safe }}</p>
     <div class="field">
       <label class="fld-l" for="rr-name">{{ t.rueckruf.name|safe }}</label>
       <input class="fld" id="rr-name" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.rueckruf.name_ph|safe }}">

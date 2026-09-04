@@ -1176,6 +1176,8 @@ PACK = {
         "sending": "Se trimite …",
         "done_h": "Am primit",
         "done_t": "Revenim în cel mult 24 de ore.",
+        # Pasul 35 — motivarea în de.py (intenționat fără link).
+        "datenschutz_hinweis": "Folosim datele dumneavoastră exclusiv pentru soluționarea acestei solicitări; detaliile se află în politica de confidențialitate.",
         "err_kontakt": "Vă rugăm să introduceți o adresă de e-mail sau un număr de telefon.",
         "err_allg": "Nu a funcționat. Contactați-ne pe WhatsApp sau telefonic.",
         "ab": "de la",
