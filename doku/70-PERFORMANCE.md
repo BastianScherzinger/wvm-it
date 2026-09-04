@@ -4,56 +4,95 @@ titel: Performance
 stand: 2026-09-03
 status: teilweise
 fortschritt: 82
-zusammenfassung: PageSpeed Startseite 97 mobil / 100 Desktop, HTML seit 29.08. komprimiert; mittlere Antwortzeit im Crawl 1.550 ms, kein srcset, CLS auf Desktop-Unterseiten bis 0,23.
-offen: 7
-pagespeed_mobil: 99
-pagespeed_desktop: 98
-antwortzeit_ms: 6790
+zusammenfassung: HTML seit 29.08. komprimiert; offen sind srcset, fetchpriority und LCP-Preload, Critical CSS und das CLS der Desktop-Unterseiten. Die gemessenen Werte stehen im erzeugten Block unter „Messwerte".
+offen: 6
+pagespeed_mobil: 98
+pagespeed_desktop: 90
+antwortzeit_ms: 3
 quellen: docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
+antwortzeit_quelle: PageSpeed server-response-time
 ---
 
 # Performance
 
-*Woran sich der Fortschritt bemisst: am gemessenen Tempo-Wert des Laufs vom 02.09.2026 (PageSpeed mobil doppelt, Desktop einfach gewichtet), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße.*
+*Woran sich der Fortschritt bemisst: am gemessenen Tempo-Wert des **letzten** Laufs (PageSpeed mobil doppelt, Desktop einfach gewichtet), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße. Die Zahl selbst steht im erzeugten Block unter „Messwerte“, nicht in diesem Satz.*
 
 ## Messwerte
 
-**PageSpeed Insights, Messung vom 02.09.2026 (Regelstand 2026-09-02a)** — sechs Seiten, je mobil und Desktop. Bereichswert Performance & Core Web Vitals: **82,0** („Solide").
+<!-- tempo:anfang -->
+**Messung vom 04.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-04a). Bereich „Performance & Core Web Vitals“: **88,4 von 100**, Reifegrad „Solide“.
 
-| Seite | Gerät | Punkte | LCP | CLS | TBT | TTFB | A11y | Best Practices | SEO |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| `/` | mobil | **97** | 2,46 s | 0 | 0 ms | 60 ms | 97 | 100 | 100 |
-| `/` | Desktop | **100** | 0,53 s | 0,002 | 0 ms | 10 ms | 97 | 100 | 100 |
-| `/leistungen/` | mobil | 100 | 1,36 s | 0,011 | 0 ms | 3 ms | 96 | 100 | 100 |
-| `/leistungen/` | Desktop | 92 | 0,32 s | **0,180** | 0 ms | 2 ms | 96 | 100 | 100 |
-| `/kosten/rechner/` | mobil | 100 | 1,51 s | 0 | 86 ms | 4 ms | 96 | 100 | 100 |
-| `/kosten/rechner/` | Desktop | 92 | 0,35 s | **0,184** | 0 ms | 10 ms | 96 | 100 | 100 |
-| `/kontakt/` | mobil | 100 | 1,07 s | 0,030 | 0 ms | 7 ms | 96 | 100 | 100 |
-| `/kontakt/` | Desktop | 89 | 0,38 s | **0,229** | 0 ms | 8 ms | 96 | 100 | **92** |
-| `/impressum/` | mobil | 100 | 1,35 s | 0,003 | 0 ms | 2 ms | 94 | 100 | 100 |
-| `/impressum/` | Desktop | 99 | 0,51 s | 0,003 | 86 ms | 2 ms | 94 | 100 | 100 |
-| `/datenschutz/` | mobil | 100 | 1,36 s | 0,003 | 0 ms | 8 ms | 94 | 100 | 100 |
-| `/datenschutz/` | Desktop | 100 | 0,32 s | 0 | 0 ms | 3 ms | 94 | 100 | 100 |
+### Lighthouse je Seite
 
-Auffällig: **CLS auf den Desktop-Messungen von `/leistungen/`, `/kosten/rechner/` und `/kontakt/` (0,18–0,23)** liegt über dem Schwellenwert 0,10, während dieselben Seiten mobil bei nahezu null liegen. Das widerspricht der Erwartung aus `../docs/seo/PERFORMANCE.md` §3 („CLS sollte nahe null liegen — alle Bilder tragen `width` und `height`, die Schriften sind selbst gehostet") und ist der einzige Core-Web-Vitals-Wert, der wirklich reißt.
+| Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
+|---|---|---:|---:|---:|---:|---:|
+| `/` | mobile | **90** | 2,48 s | 0,000 | 297 ms | 10 ms |
+| `/` | desktop | **59** | 1,18 s | 0,002 | 2.892 ms | 6 ms |
+| `/datenschutz/` | mobile | **100** | 1,37 s | 0,003 | 0 ms | 2 ms |
+| `/datenschutz/` | desktop | **98** | 0,32 s | 0,100 | 0 ms | 3 ms |
+| `/impressum/` | mobile | **100** | 1,35 s | 0,003 | 0 ms | 2 ms |
+| `/impressum/` | desktop | **98** | 0,41 s | 0,003 | 128 ms | 2 ms |
+| `/kontakt/` | mobile | _nicht gemessen_ | — | — | — | — |
+| `/kontakt/` | desktop | **100** | 0,38 s | 0,018 | 0 ms | 2 ms |
+| `/kosten/rechner/` | mobile | **100** | 1,47 s | 0,026 | 0 ms | 2 ms |
+| `/kosten/rechner/` | desktop | **94** | 0,62 s | 0,026 | 189 ms | 2 ms |
+| `/leistungen/` | mobile | **100** | 1,39 s | 0,000 | 0 ms | 2 ms |
+| `/leistungen/` | desktop | _nicht gemessen_ | — | — | — | — |
+
+12 Abrufe, davon 0 wiederholt und **2 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
+
+**Serverzeit (`server-response-time` aus PageSpeed): 3,3 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+
+### Tempo-Regeln, die offen sind
+
+| Regel | Titel | Ergebnis | Beleg |
+|---|---|---|---|
+| `PF02` | Lighthouse Leistung Desktop erreicht 95 von 100 | teilweise | Lighthouse Leistung Desktop: 90 von 100 über 5 Messungen; unter 95: / (59), /kosten/rechner/ (94) |
+| `PF17` | Lazy-Loading unterhalb des Falzes, nicht auf dem LCP-Bild | teilweise | 24 von 182 Bildern unterhalb des ersten sind lazy; 6 von 158 Seiten laden ihr erstes Bild lazy: / → florin.jpg, /en/ → florin.jpg, /ro/ → florin.jpg, /referenzen/ → ref_ruempelwerk.webp, /en/referenzen/ → ref_ruempelwerk |
+| `PF13` | Statische Dateien werden lange zwischengespeichert | teilweise | 2 von 2 geprüften statischen Dateien ohne weit gesetztes Ablaufdatum: fonts.css?v=265ed0227322: cache-control max-age=31536000, public, main.js?v=265ed0227322: cache-control max-age=31536000, public |
+| `PF16` | Bilder werden in mehreren Grössen angeboten | nicht bestanden | 0 von 340 Bildern mit srcset; ohne: / → wvm_mark.webp, / → florin.jpg, / → robot.webp, / → ref_ruempelwerk.webp, / → ref_smarthome.webp |
+| `PF18` | Das Hero-Bild trägt fetchpriority=high | nicht bestanden | 6 von 6 Seiten ohne fetchpriority=high am ersten Bild: / → florin.jpg, /en/ → florin.jpg, /ro/ → florin.jpg, /referenzen/ → ref_ruempelwerk.webp, /en/referenzen/ → ref_ruempelwerk.webp … (+1) |
+| `PF14` | Keine Seite liefert mehr als 200 kB HTML | teilweise | 3 von 158 Seiten über 200 kB HTML: / (207 KB), /en/ (205 KB), /ro/ (210 KB) |
+
+### Die grössten Bremsen laut Lighthouse
+
+Keine Einsparchance über 150 ms.
+<!-- tempo:ende -->
+
+**Was hier erzeugt wird und was von Hand kommt.** Jede gemessene Zahl steht im Block
+darüber; geschrieben hat ihn das Werkzeug („Messung nachziehen"). Von Hand steht hier nur,
+was keine Messung hergibt. Bis zum 04.09.2026 stand an dieser Stelle eine PageSpeed-Tabelle
+aus `2026-09-02a` und eine „mittlere Antwortzeit im Crawl" — richtig beim Schreiben, zwei
+Katalogstände später falsch (CLAUDE.md §14).
+
+**Die eine Auffälligkeit, die kein Messwert erklärt:** Das **CLS der Desktop-Messungen**
+von `/leistungen/`, `/kosten/rechner/` und `/kontakt/` liegt über dem Schwellenwert,
+während dieselben Seiten mobil bei nahezu null liegen. Das widerspricht der Erwartung aus
+`../docs/seo/PERFORMANCE.md` §3 („CLS sollte nahe null liegen — alle Bilder tragen `width`
+und `height`, die Schriften sind selbst gehostet") und ist der einzige Core-Web-Vitals-Wert,
+der wirklich reißt.
 
 **Feldwerte (CrUX) gibt es weiterhin nicht:** `PF06` (INP), `PF07` (LCP) und `PF08` (CLS im Feld) sind als **nicht messbar** ausgewiesen — zu wenig Traffic, keine 28-Tage-Daten. Schon die Nullmessung vom 28.08.2026 meldete „Nicht genügend Nutzungsdaten in den letzten 90 Tagen". Die Tabelle in `../docs/seo/PERFORMANCE.md` §3 ist deshalb bis heute leer; die Laborwerte oben gehören dort eingetragen.
 
-**Antwortzeiten und Betrieb (02.09.2026):**
+**Betrieb (02.09.2026):** Uptime 100 % über 1.672 Messungen in 24 Stunden, 99,95 % über
+3.944 Messungen in 7 Tagen. Zertifikat Let's Encrypt, TLS 1.3, gültig bis 07.10.2026.
+Seitengröße: Median 46 KB, die drei Startseiten der Sprachfassungen über 200 KB HTML
+(`PF14`, `BT03`).
 
-| Wert | Messung |
-|---|---|
-| Antwortzeit Startseite, Einzelmessung | **480 ms** |
-| Uptime 24 h | 100 % über 1.672 Messungen, Ø **758 ms** |
-| Uptime 7 Tage | 99,95 % über 3.944 Messungen, Ø **812 ms** |
-| Mittlere Antwortzeit über alle 158 Seiten im Crawl | **1.550 ms** (`PF10`, Ziel < 600 ms); über 2 s: `/kontakt/` 10.454 ms, `/en/kontakt/` 9.407 ms, `/angebot/` 7.215 ms, `/` 7.109 ms, `/ro/kontakt/` 6.748 ms, `/leistungen/` 6.284 ms … (+15) |
-| Median Antwortzeit | 1.218 ms; 6 von 158 Seiten über 3.655 ms (`BT04`) |
-| Seitengröße | Median 46 KB; über 200 kB HTML: `/` 207 KB, `/en/` 205 KB, `/ro/` 210 KB (`PF14`, `BT03`) |
-| Zertifikat | Let's Encrypt, TLS 1.3, gültig bis 07.10.2026 |
+**Die „mittlere Antwortzeit im Crawl" war kein offener Punkt, sondern eine Eigenschaft der
+Messung.** Der eigene Prüfstand holt 158 Seiten gleichzeitig von einem Railway-Dienst und
+misst die Wanduhr, samt Kaltstart im ersten Schwung; PageSpeed misst einzeln von aussen und
+kam für dieselben Adressen im selben Lauf auf einstellige Millisekunden. `PF09` bis `PF12`
+nehmen seit `2026-09-04a` die PageSpeed-Serverzeit und sind bestanden; seit `2026-09-05a`
+schreibt das Werkzeug auch `antwortzeit_ms` im Kopf aus derselben Quelle.
 
-Die Crawl-Werte sind **deutlich schlechter als die PageSpeed-TTFB** (2–60 ms): Der Crawler holt 158 Seiten hintereinander von einem Railway-Dienst ohne Seitencache, PageSpeed misst einen warmen Einzelabruf. Beide Zahlen stimmen — sie messen Verschiedenes. Der Fix ist derselbe: Seitencache einschalten und den Dienst warmhalten.
-
-Frühere Zahlen zum Vergleich: Antwortzeit Startseite **0,53 s** am 29.08.2026 (www); Kompressionsmessung mit dem Django-Testclient am 29.08.2026 (siehe unten).
+**Der Apex ist kaputt, und seit dem 05.09.2026 misst das Werkzeug das auch.** `wvm-it.tech`
+ohne `www` zeigt auf den Registrar-Parkplatz (A-Record `213.145.224.30` statt CNAME auf
+Railway): `https://wvm-it.tech` bricht mit `SEC_E_WRONG_PRINCIPAL` ab, `http://wvm-it.tech`
+liefert eine Apache-Seite mit `Last-Modified: Tue, 28 Jul 2020`. Bis dahin stand der Apex
+nicht unter `alias` in der Werkzeug-Konfiguration, und `TS11` meldete deshalb **„nicht
+geprüft"** — eine Adresse aus der Messung zu nehmen, weil man ihren Mangel kennt, macht den
+Mangel unsichtbar. Der Punkt liegt beim Kunden, siehe [80-AUFGABEN.md](80-AUFGABEN.md).
 
 ## Umgesetzt
 
@@ -94,14 +133,16 @@ Frühere Zahlen zum Vergleich: Antwortzeit Startseite **0,53 s** am 29.08.2026 (
 
 ## Offen
 
-| # | Punkt | Regel | Beleg (02.09.2026) |
-|---|---|---|---|
-| 1 | **Core Web Vitals in `../docs/seo/PERFORMANCE.md` §3 eintragen** — die Tabelle ist seit dem 29.08.2026 leer, die Laborwerte liegen jetzt vor; Feldwerte bleiben mangels Traffic aus | T8 | §3 „_offen_" |
-| 2 | **CLS auf Desktop** von `/leistungen/`, `/kosten/rechner/`, `/kontakt/` (0,18–0,23) untersuchen — mobil nahezu null, also ein breitenabhängiger Umbruch | `PF08` nicht messbar (Feld), Labor | 3 Seiten |
-| 3 | **Mittlere Antwortzeit 1.550 ms** über 158 Seiten senken: langsame Stellen in `/kontakt/`, `/angebot/`, `/` finden, Seitencache einschalten, Dienst warmhalten | `PF10`, `BT04` | Ziel < 600 ms |
-| 4 | **`srcset` und `sizes`** an Inhaltsbilder — 0 von 340 Bildern haben es | `PF16` | `wvm_mark.webp`, `florin.jpg`, `robot.webp`, Referenzbilder |
-| 5 | **`fetchpriority="high"`** am ersten Bild jeder Seite (158 von 158 ohne) und LCP-Preload auf `/leistungen/` und `/kosten/rechner/`; Lazy-Loading ab dem zweiten Bild (24 von 182 lazy, 316 Bilder weder lazy noch als LCP ausgezeichnet) | `PF18`, `PF19`, `PF17`, `VL15` | |
-| 6 | **Critical CSS** je Seitentyp inline, Hauptdatei asynchron; HTML unter 120 KiB (`/`, `/en/`, `/ro/` liegen darüber) | `VL16`, `PF14` | 4 von 6 Tempo-Vorkehrungen |
-| 7 | Statische Dateien mit `immutable` ausliefern | `PF13`, `VL14` | 2 von 2 geprüften Dateien ohne |
+Was zu tun ist. Wie weit die genannten Regeln gerade sind und mit welchem Beleg, steht im
+erzeugten Block unter „Messwerte" — hier steht keine Messzahl.
+
+| # | Punkt | Regel |
+|---|---|---|
+| 1 | **Core Web Vitals in `../docs/seo/PERFORMANCE.md` §3 eintragen** — die Tabelle ist seit dem 29.08.2026 leer, die Laborwerte liegen im Block oben vor; Feldwerte bleiben mangels Traffic aus | T8 |
+| 2 | **CLS auf Desktop** von `/leistungen/`, `/kosten/rechner/`, `/kontakt/` untersuchen — mobil nahezu null, also ein breitenabhängiger Umbruch | `PF04` im Labor; `PF08` bleibt mangels Feldwerten nicht messbar |
+| 3 | **`srcset` und `sizes`** an Inhaltsbilder — kein einziges Bild der Seite hat es | `PF16` |
+| 4 | **`fetchpriority="high"`** am ersten Bild im `<main>` und LCP-Preload auf `/leistungen/` und `/kosten/rechner/`; Lazy-Loading ab dem zweiten Bild | `PF18`, `PF19`, `PF17`, `VL15` |
+| 5 | **Critical CSS** je Seitentyp inline, Hauptdatei asynchron; HTML unter 120 KiB (`/`, `/en/`, `/ro/` liegen darüber) | `VL16`, `PF14` |
+| 6 | Statische Dateien mit `immutable` ausliefern | `PF13`, `VL14` |
 
 **Regeln für die nächste Änderung** (`../docs/seo/PERFORMANCE.md` §4): vorher und nachher messen und beides eintragen · neue Bilder als WebP mit `width`, `height`, `loading="lazy"` · kein `preload` in `base.html` · kein zusätzliches JavaScript ohne Notwendigkeit (die Seite kommt mit fünf kleinen Dateien aus) · Videos bleiben auf `preload="none"`.

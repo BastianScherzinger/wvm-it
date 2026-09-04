@@ -1,7 +1,7 @@
 ---
 bereich: status
 titel: WVM-IT — Stand
-stand: 2026-09-03
+stand: 2026-09-04
 status: teilweise
 fortschritt: 80
 zusammenfassung: Vollausbau auf 158 URLs abgeschlossen (56/56), Gesamtstand 80,0 „Solide"; schwächster Bereich Code-Qualität 58 (keine einzige Testfunktion), blockiert beim Kunden bleiben Unternehmensprofil, SPF/DMARC und Apex-DNS.
@@ -51,17 +51,17 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 ## Messung
 
 <!-- messung:anfang -->
-**Messung vom 03.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-03a) — **Gesamtstand 81,1 von 100**, Reifegrad „Solide“. 231 von 244 Regeln an 158 URLs und 129 Dateien (25.773 Zeilen) geprüft.
+**Messung vom 04.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-04a) — **Gesamtstand 85,1 von 100**, Reifegrad „Solide“. 231 von 244 Regeln an 158 URLs und 159 Dateien (34.430 Zeilen) geprüft.
 
 | Bereich | Wert | Reifegrad |
 |---|---:|---|
-| Code-Qualität & Projektreife | **49** | Lückenhaft |
 | GEO — KI-Sichtbarkeit | **70** | Brauchbar |
 | Konversion | **74** | Brauchbar |
-| Vorlagen-Konformität | **75** | Solide |
 | Sicherheit | **81** | Solide |
-| Performance & Core Web Vitals | **86** | Solide |
+| Vorlagen-Konformität | **84** | Solide |
+| Code-Qualität & Projektreife | **85** | Solide |
 | SEO — Inhalt | **87** | Solide |
+| Performance & Core Web Vitals | **88** | Solide |
 | Substanz & Reichweite | **90** | Referenz |
 | Betrieb & Auslieferung | **91** | Referenz |
 | Recht & Vertrauen | **92** | Referenz |
@@ -70,16 +70,12 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 
 Keine Sperre greift.
 
-Quelltext: 129 Dateien, **448 Befunde**, davon 9 kritisch und 375 wichtig.
+Quelltext: 159 Dateien, **430 Befunde**, davon 0 kritisch und 378 wichtig.
 
 Kritische Befunde:
 
-- **Automatische Tests sind vorhanden** (`PJ02`) — keine einzige Testfunktion im Projekt — jede Änderung ist ein Blindflug
-- **Es gibt keinen kritischen Datei-Befund** (`PJ05`) — 9 kritische Befunde: landing/management/commands/indexnow.py:48 Ausnahme wird verschluckt, landing/management/commands/pruefe_seite.py:72 Ausnahme wird verschluckt, landing/management/commands/seo_bericht.py:55 Ausnahme wird verschluckt, la
-- **Das Arbeitsverzeichnis ist sauber** (`PJ15`) — 10 unversionierte Änderungen auf Zweig main: M doku/00-STATUS.md, M doku/10-TECHNIK.md, M doku/20-DESIGN.md, M doku/30-INHALTE.md, M doku/40-SEO.md … (+5)
 - **Umfang passt zur Aufgabe der Seite** (`IS18`) — Unter dem Umfang, den ihre Aufgabe verlangt: 55 von 84 Seiten — /leistungen/ (328/600 W), /vergleich/ (288/900 W), /en/leistungen/ (330/600 W), /ro/leistungen/ (377/600 W), /leistungen/google-ads/ (583/600 W) … (+50)
 - **Kein nennenswerter Anteil dünner Seiten** (`IS19`) — 7% der Seiten sind dünn (11 von 158): /kontakt/ (140 W), /en/kontakt/ (149 W), /ro/kontakt/ (145 W), /impressum/ (137 W), /en/impressum/ (137 W) … (+6)
-- **Die Qualitätssicherung der Vorlage ist verdrahtet** (`VL19`) — Prüfbefehle: pruefe_seite, pruefe_sicherheit, seo_bericht; 0 Testfunktionen in 0 Dateien: 3 von 7 QS-Bausteinen erfüllt — es fehlt: echte Testdateien, mindestens 30 Testfunktionen, CI-Lauf bei jedem Push, Fehler-Monitoring (Sentry o. ä.)
 - **Keine Nutzseite ist von der Startseite aus unerreichbar** (`TS23`) — 82 Seiten sind über interne Links nicht erreichbar: /en/kontakt/, /ro/kontakt/, /en/angebot/, /ro/angebot/, /en/impressum/ … (+77)
 - **Antwort zuerst: der erste Absatz beantwortet die Frage** (`GE23`) — 78 von 158 Seiten beginnen mit einer zitierfähigen Antwort — schwach: / (weder Definition noch Zahl), /en/kontakt/ (weder Definition noch Zahl), /ro/kontakt/ (weder Definition noch Zahl), /en/angebot/ (weder Definition noch Zahl), /ro/angeb
 <!-- messung:ende -->
