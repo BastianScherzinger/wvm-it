@@ -19,7 +19,7 @@ from django.core import signing
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.utils import translation
+from django.utils import timezone, translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
@@ -611,7 +611,6 @@ def rechner(request):
 def _preis_stand(lang):
     """'Stand: August 2026' , datierte Preise werden von KI-Systemen bevorzugt zitiert
     und nehmen dem Besucher die Sorge, eine veraltete Zahl zu lesen."""
-    from datetime import date
     monate = {
         "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli",
                "August", "September", "Oktober", "November", "Dezember"],
@@ -620,7 +619,11 @@ def _preis_stand(lang):
         "ro": ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie",
                "august", "septembrie", "octombrie", "noiembrie", "decembrie"],
     }
-    heute = date.today()
+    # timezone.localdate() statt date.today(): USE_TZ ist an, und date.today()
+    # nimmt die Uhr des Containers. Auf Railway läuft die auf UTC — am ersten
+    # Tag eines Monats stünde vor 01:00 Ortszeit noch der Vormonat auf jeder
+    # Preisseite und im Schema.
+    heute = timezone.localdate()
     namen = monate.get(i18n.norm_lang(lang), monate["de"])
     return f"{namen[heute.month - 1]} {heute.year}"
 
@@ -1369,13 +1372,16 @@ def _weekly_html(refs, c, unsub_url):
 
 def _send_weekly(force=False):
     """Verschickt den Wochen-Newsletter an aktive Abonnenten. Idempotent pro ISO-Woche."""
-    from datetime import date
-
     from . import supa
     if not supa.enabled():
         return {"ok": False, "msg": "keine DB"}
     c = _content()
-    y, w, _ = date.today().isocalendar()
+    # timezone.localdate() statt date.today(): Der Schlüssel entscheidet, ob
+    # diese Woche schon gesendet wurde. Der Auslöser ist ein APScheduler-Job in
+    # Europe/Berlin (landing/scheduler.py), die Container-Uhr läuft auf UTC —
+    # zwischen 23:00 und 24:00 Ortszeit fielen beide auf verschiedene Wochen,
+    # und der Newsletter ginge ein zweites Mal hinaus.
+    y, w, _ = timezone.localdate().isocalendar()
     run_key = f"{y}-W{w:02d}"
     if not force and not supa.claim_newsletter_run(run_key):
         return {"ok": True, "sent": 0, "msg": "diese Woche bereits gesendet", "run": run_key}
@@ -2697,7 +2703,25 @@ def angebot(request):
 def angebot_anfordern(request):
     """Inline-Richtangebot: berechnet die Summe serverseitig (autoritativ), schickt dem Kunden
     sein Richtangebot + benachrichtigt den Inhaber und speichert die Einwilligung (weitere
-    Angebote). Antwortet als JSON, damit der Preis im Frontend erst nach E-Mail sichtbar wird."""
+    Angebote). Antwortet als JSON, damit der Preis im Frontend erst nach E-Mail sichtbar wird.
+
+    Woher die Daten kommen:
+
+    * Die Positionen kommen als IDs aus dem Formular und werden gegen
+      ``_ANGEBOT_INDEX`` gefiltert — den Index über ``ANGEBOT_GROUPS``, die einzige
+      Preisquelle des Projekts. Eine unbekannte ID fällt heraus, statt in der Mail
+      als Position zu erscheinen, auf die sich später jemand beruft.
+    * Jede Zahl wird hier neu aus dieser Tabelle addiert. Kein Betrag aus dem
+      Formular geht ein; der Preis im Frontend ist nur eine Anzeige.
+    * Namen und Texte kommen aus dem aktiven Sprachpaket (``i18n.get_pack``), der
+      Empfänger der Notiz aus ``KONTAKT_EMPFAENGER`` bzw. ``content.json``.
+    * Vor dem Versand stehen ``_honigtopf`` und ``_limit_erreicht`` im Bereich
+      ``kontakt`` — derselbe Bereich wie im Konfigurator, also dasselbe Limit.
+
+    Über 80 Zeilen lang. Sie bleibt eine Funktion: Preisrechnung, Versand und
+    Einwilligung gehören zu einem Vorgang, und jede Trennung erzeugte eine zweite
+    Stelle, an der eine Zahl entstehen kann.
+    """
     c = _content()
     if request.method != "POST":
         return JsonResponse({"ok": False}, status=405)
@@ -3040,7 +3064,17 @@ def llms_full_txt(request):
     """/llms-full.txt , die Langfassung: jede Leistungsseite als Klartext.
 
     Damit kann ein Sprachmodell die vollständige Antwort übernehmen, ohne die Seite
-    rendern zu müssen , KI-Crawler führen kein JavaScript aus (SEO-PLAN.md, F9/F12)."""
+    rendern zu müssen , KI-Crawler führen kein JavaScript aus (SEO-PLAN.md, F9/F12).
+
+    Woher die Daten kommen: ausschliesslich aus denselben Quellen, aus denen auch die
+    Seiten selbst entstehen — ``leistungen.LEISTUNGEN`` für die Struktur, das deutsche
+    Sprachpaket (``i18n.get_pack("de")``) für die Texte, ``ANGEBOT_GROUPS`` für jede
+    Zahl und ``i18n.beitraege_de`` für die Fachbeiträge. Eine abgetippte zweite
+    Fassung wäre die erste Stelle, an der Preise auseinanderlaufen — und ausgerechnet
+    diese Datei ist die, aus der eine KI zitiert.
+
+    Über 80 Zeilen lang und bewusst geradeaus geschrieben: Der Aufbau der Datei ist
+    ihre Reihenfolge, jede Zerlegung machte sie schwerer zu lesen, nicht leichter."""
     c = _content()
     base = (c.get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
     pack = i18n.get_pack("de")
@@ -3203,8 +3237,11 @@ def security_txt(request):
     """/.well-known/security.txt , wohin eine Sicherheitsmeldung gehen soll.
     Kostet nichts und ist bei einem IT-Dienstleister schlicht erwartbar."""
     c = _content()
-    from datetime import date, timedelta
-    ablauf = date.today().replace(year=date.today().year + 1)
+    # timezone.localdate() statt date.today() — der Wert wird ausgeliefert und
+    # von Sicherheitsforschern gelesen. `timedelta` stand hier im Import, ohne
+    # je benutzt zu werden.
+    heute = timezone.localdate()
+    ablauf = heute.replace(year=heute.year + 1)
     zeilen = [
         f"Contact: mailto:{c.get('email', '')}",
         f"Expires: {ablauf.isoformat()}T00:00:00.000Z",
@@ -3344,7 +3381,24 @@ def _ist_telefon(wert: str) -> bool:
 
 def leistung_anfrage(request):
     """Nimmt eine Kurzanfrage entgegen: Freitext + EIN Kontaktweg (E-Mail oder Telefon).
-    Antwortet als JSON; ohne JavaScript leitet sie zurück auf den Block mit ?ok=<quelle>."""
+    Antwortet als JSON; ohne JavaScript leitet sie zurück auf den Block mit ?ok=<quelle>.
+
+    Woher die Daten kommen (alles serverseitig, nichts aus dem Formular wird geglaubt):
+
+    * ``quelle`` wird gegen ``_ANFRAGE_QUELLEN`` geprüft — die Liste stammt aus
+      ``landing/leistungen.py`` und ist zugleich der Anker, auf den zurückgeleitet
+      wird. Ein unbekannter Wert wird verworfen, nicht übernommen.
+    * ``zurueck`` muss ein eigener Pfad sein (``url_has_allowed_host_and_scheme``),
+      sonst landet der Besucher auf der Startseite. Sonst wäre das Formular eine
+      offene Weiterleitung auf fremde Adressen.
+    * Der Empfänger kommt aus ``KONTAKT_EMPFAENGER`` bzw. ``content.json``, nie aus
+      dem Formular; die Bestätigung geht an den mitgeschickten Kontaktweg.
+    * Vor allem anderen stehen ``_honigtopf`` und ``_limit_erreicht`` im Bereich
+      ``anfrage`` — wie bei jedem Formular dieser Seite.
+
+    Über 80 Zeilen lang, und das bleibt sie: Aufteilen hiesse, den Ablauf zwischen
+    zwei Stellen zu verteilen, die nur zusammen einen Sinn ergeben.
+    """
     c = _content()
     quelle = (request.POST.get("quelle") or "").strip().lower()
     # Ohne JavaScript wird umgeleitet. Kommt die Anfrage von einer Unterseite, soll
@@ -3435,7 +3489,6 @@ def indexnow_key(request, key):
     Ein fremder Wert bekommt 404 statt der Datei mit dem echten Schlüssel; sonst würde
     jeder beliebige Aufruf die Prüfung bestehen.
     """
-    from django.http import Http404
     erwartet = (getattr(settings, "INDEXNOW_KEY", "") or "").strip()
     if not erwartet or not hmac.compare_digest(key, erwartet):
         raise Http404
