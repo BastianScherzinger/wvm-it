@@ -1,3 +1,7 @@
-{% comment %}Sprachumschalter DE/EN/RO — ein Klick, merkt die Wahl per Cookie (/sprache/<lang>/).{% endcomment %}<div class="lang-switch" role="group" aria-label="{{ t.lang.switch_aria }}">
-  {% for l in lang_switch %}<a class="lang-opt{% if l.active %} is-active{% endif %}" href="{{ l.url }}" hreflang="{{ l.code }}" lang="{{ l.code }}"{% if l.active %} aria-current="true"{% endif %} title="{{ l.name }}">{{ l.label }}</a>{% endfor %}
+{% comment %}Sprachumschalter DE/EN/RO. Das href zeigt seit Schritt 34 direkt auf die
+Zieladresse (`l.path`) statt auf /sprache/<code>/ — der liegt in _ROBOTS_DISALLOW und war
+damit der einzige, fuer Crawler gesperrte Weg in den EN-/RO-Bestand. Das Cookie setzt
+weiterhin /sprache/<code>/: Ein Klickabfaenger in static/js/main.js lenkt Klicks auf
+.lang-opt dorthin um. Crawler folgen dem href, Menschen dem Skript.{% endcomment %}<div class="lang-switch" role="group" aria-label="{{ t.lang.switch_aria }}">
+  {% for l in lang_switch %}<a class="lang-opt{% if l.active %} is-active{% endif %}" href="{{ l.path }}" hreflang="{{ l.code }}" lang="{{ l.code }}"{% if l.active %} aria-current="true"{% endif %} title="{{ l.name }}" aria-label="{{ l.name }}">{{ l.label }}</a>{% endfor %}
 </div>

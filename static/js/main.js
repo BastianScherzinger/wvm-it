@@ -272,4 +272,33 @@
       btn.addEventListener("pointerleave", () => { btn.style.transform = ""; });
     });
   }
+
+  /* ── 7) SPRACHUMSCHALTER ,  Klick geht ueber /sprache/<code>/ ─────────────
+     Das href der drei Links zeigt seit Schritt 34 direkt auf die Zieladresse
+     (/kontakt/, /en/kontakt/, /ro/kontakt/) — vorher stand dort
+     /sprache/<code>/?next=…, und weil dieser Pfad in robots.txt gesperrt ist,
+     war er fuer Crawler eine Sackgasse: Die 82 fremdsprachigen Seiten hatten
+     damit keinen einzigen echten internen Link.
+
+     Fuer Menschen bleibt der alte Weg noetig. Nur /sprache/<code>/ setzt das
+     Sprach-Cookie; ohne das Cookie schickt LocalePrefsMiddleware jemanden, der
+     auf /en/… auf „DE" klickt, sofort wieder nach /en/… zurueck. Dieser
+     Abfaenger stellt genau das heutige Verhalten wieder her.
+
+     Ohne JavaScript verhaelt sich die Seite wie vor dem Umschalter: EN und RO
+     funktionieren (das URL-Praefix schlaegt das Cookie), DE folgt der
+     Browsersprache. Die Abwaegung steht im Bericht zu Schritt 34. */
+  document.querySelectorAll(".lang-opt").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      // Neuer Tab, Mittelklick, Modifiertaste: nicht abfangen — dann soll der
+      // Browser das href nehmen, so wie ihn der Nutzer angewiesen hat.
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey ||
+          e.shiftKey || e.altKey) return;
+      const code = a.getAttribute("hreflang");
+      if (!code) return;
+      e.preventDefault();
+      const ziel = a.getAttribute("href") + window.location.search;
+      window.location.href = "/sprache/" + code + "/?next=" + encodeURIComponent(ziel);
+    });
+  });
 })();

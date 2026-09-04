@@ -388,3 +388,102 @@ class FeedTest(SimpleTestCase):
         Alt-Texte prüfen und die Sitemap ihn zur Indexierung anmelden."""
         pfade = {p for p, _prio, _freq, _mehr in _seiten_pfade()}
         self.assertNotIn("/feed/", pfade, "/feed/ steht in _seiten_pfade()")
+
+
+class SprachumschalterTest(SimpleTestCase):
+    """Der einzige Weg in den EN-/RO-Bestand (Schritt 34).
+
+    Bis zu diesem Schritt zeigte das `href` der drei Umschalter-Links auf
+    `/sprache/<code>/?next=…`. Dieser Pfad steht in `views._ROBOTS_DISALLOW` —
+    damit hingen alle 82 fremdsprachigen Seiten an einem für Crawler gesperrten
+    Umleitungspfad und sonst an nichts: `hreflang` ordnet Fassungen einander zu,
+    es verlinkt sie nicht. Diese Klasse hält den Zustand fest, in dem das
+    behoben ist, und schlägt an, sobald jemand das `href` zurückdreht."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client_https = seiten_client()
+
+    def test_jede_seite_verlinkt_die_anderen_sprachen_direkt(self):
+        """Verhindert: 82 Seiten, auf die kein einziger crawlbarer Link zeigt.
+
+        Ein `href` auf `/sprache/en/?next=…` ist für einen Crawler kein Weg nach
+        `/en/kontakt/`: Er darf den Pfad nicht abrufen und erfährt das Ziel nie.
+        Geprüft wird deshalb das gerenderte HTML auf die echten Zieladressen —
+        auf mehreren Seitentypen, weil der Umschalter aus `base.html` kommt und
+        ein Template, das davon abweicht, sonst unbemerkt bliebe."""
+        for pfad in ("/kontakt/", "/", "/leistungen/", "/it-service/voecklabruck/"):
+            antwort = self.client_https.get(pfad)
+            self.assertEqual(antwort.status_code, 200,
+                             f"{pfad} antwortet nicht — die Probe liefe ins Leere")
+            html = antwort.content.decode("utf-8")
+            for sprache in ("en", "ro"):
+                ziel = i18n.add_prefix(sprache, pfad)
+                self.assertIn(f'href="{ziel}"', html,
+                              f"{pfad}: kein direkter Link auf {ziel} — der "
+                              f"Sprachumschalter zeigt wieder auf /sprache/")
+
+    def test_die_verlinkten_sprachadressen_antworten_ohne_umleitung(self):
+        """Verhindert: einen Link, der zwar crawlbar ist, aber auf eine Weiterleitung zeigt.
+
+        Ein `href`, hinter dem eine 301 oder 302 steht, ist nur die halbe
+        Verlinkung: Google folgt ihr zwar, wertet aber die Zwischenadresse als
+        eigene URL. Hier fällt zugleich auf, wenn `LocalePrefsMiddleware` einmal
+        auch ohne Cookie umleitet — dann liefen alle drei Links im Kreis."""
+        for pfad in ("/kontakt/", "/", "/leistungen/"):
+            for sprache in i18n.LANGS:
+                ziel = i18n.add_prefix(sprache, pfad)
+                code = self.client_https.get(ziel).status_code
+                self.assertEqual(code, 200,
+                                 f"{ziel} antwortet mit {code} statt 200 — der "
+                                 f"Sprachlink zeigt auf eine Umleitung")
+
+    def test_einsprachige_seiten_verlinken_die_sprachstartseite(self):
+        """Verhindert 32 tote Links auf Glossar, Beiträgen und Checklisten.
+
+        Diese drei Silos liegen ausserhalb von `i18n_patterns` und gibt es nur
+        auf Deutsch. `add_prefix('en', '/wissen/phishing/')` liefert trotzdem
+        einen Pfad — und der antwortet mit 404. Solange das `href` auf
+        `/sprache/en/?next=…` zeigte, fiel das nicht auf; als echter Link ist es
+        genau der Fehler, den `pruefe_seite` als „interner Link antwortet mit
+        404" meldet. Der Umschalter zeigt dort deshalb auf `/en/` bzw. `/ro/`."""
+        for pfad in ("/wissen/phishing/", "/checkliste/", "/aktuelles/"):
+            antwort = self.client_https.get(pfad)
+            self.assertEqual(antwort.status_code, 200, f"{pfad} antwortet nicht")
+            html = antwort.content.decode("utf-8")
+            for sprache in ("en", "ro"):
+                self.assertNotIn(f'href="/{sprache}{pfad}"', html,
+                                 f"{pfad}: Umschalter verlinkt /{sprache}{pfad} — "
+                                 f"diese Adresse gibt es nicht")
+                self.assertIn(f'href="/{sprache}/"', html,
+                              f"{pfad}: kein Rückfall auf die Startseite /{sprache}/")
+
+    def test_der_cookie_weg_bleibt_bestehen(self):
+        """Verhindert: eine Sprachwahl, die keine zwei Seiten weit hält.
+
+        Nur `/sprache/<code>/` setzt das Sprach-Cookie; ohne dieses Cookie
+        schickt `LocalePrefsMiddleware` jemanden mit englischer Browsersprache
+        auf jeder Seite wieder nach `/en/…`. Der Klickabfänger in `main.js`
+        führt Menschen weiter über diesen Weg — verschwindet er, wäre das aus
+        dem HTML allein nicht mehr zu sehen."""
+        from django.conf import settings
+        antwort = self.client_https.get("/sprache/de/?next=/kontakt/")
+        self.assertEqual(antwort.status_code, 302,
+                         "/sprache/de/ leitet nicht mehr weiter")
+        self.assertEqual(antwort["Location"], "/kontakt/",
+                         f"/sprache/de/ zeigt auf {antwort['Location']} statt /kontakt/")
+        keks = antwort.cookies.get(settings.LANGUAGE_COOKIE_NAME)
+        self.assertIsNotNone(keks, "/sprache/de/ setzt kein Sprach-Cookie")
+        self.assertEqual(keks.value, "de", f"das Cookie trägt {keks.value!r} statt 'de'")
+
+    def test_fremde_ziele_landen_nicht_im_next_parameter(self):
+        """Verhindert eine offene Weiterleitung über den Sprachumschalter.
+
+        `?next=` kommt aus der Adresszeile und ist damit Fremdeingabe. Ohne
+        Prüfung wäre `/sprache/de/?next=https://fremd.example/` ein Link, der auf
+        unserer Domain beginnt und auf einer fremden endet — die klassische Form
+        einer Phishing-Weiterleitung."""
+        antwort = self.client_https.get("/sprache/de/?next=https://fremd.example/")
+        self.assertEqual(antwort["Location"], "/",
+                         f"fremdes Ziel übernommen: {antwort['Location']}")

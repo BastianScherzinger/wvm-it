@@ -11,10 +11,12 @@ Die Sprache selbst wird von Djangos LocaleMiddleware/i18n_patterns bestimmt (URL
 /en/, /ro/ bzw. Cookie/Accept-Language); hier lesen wir sie nur über get_language() aus.
 """
 import copy
+from functools import lru_cache
 from urllib.parse import quote
 
 from django.conf import settings
-from django.utils.translation import get_language
+from django.urls import Resolver404, resolve
+from django.utils.translation import get_language, override
 
 from . import de as _de, en as _en, ro as _ro
 
@@ -70,6 +72,34 @@ def add_prefix(lang, base_path):
     return "/" + lang + (base_path if base_path.startswith("/") else "/" + base_path)
 
 
+@lru_cache(maxsize=512)
+def _adresse_existiert(lang, pfad):
+    """Gibt es diese Adresse überhaupt? Gefragt wird die URL-Konfiguration selbst.
+
+    Nötig, seit das `href` des Sprachumschalters direkt auf die Zieladresse zeigt
+    (Schritt 34). Drei Silos liegen bewusst **ausserhalb** von `i18n_patterns`
+    und gibt es nur auf Deutsch: Fachbeiträge, Glossar, Checklisten (Begründung
+    im Kopf von `landing/beitraege.py`). `add_prefix('en', '/wissen/phishing/')`
+    liefert trotzdem klaglos einen Pfad — nur antwortet der mit 404. Solange das
+    `href` auf `/sprache/en/?next=…` zeigte, fiel das niemandem auf; als echter
+    Link wäre es auf 32 Seiten ein toter Link, den `pruefe_seite` zu Recht meldet.
+
+    Gefragt wird `resolve()` und keine zweite Liste: `config/urls.py` ist die
+    einzige Stelle, die weiss, welche Adresse es gibt. Das `override` ist
+    Pflicht — `i18n_patterns` prüft das Präfix gegen die **aktive** Sprache, ein
+    `resolve('/en/kontakt/')` unter aktivem Deutsch schlüge sonst fehl.
+
+    Das Ergebnis hängt nur an der URL-Konfiguration und ändert sich zur Laufzeit
+    nicht; der Zwischenspeicher ist deshalb sicher und wegen der Obergrenze auch
+    dann harmlos, wenn jemand die Seite mit erfundenen Adressen beschiesst."""
+    try:
+        with override(lang):
+            resolve(pfad)
+    except Resolver404:
+        return False
+    return True
+
+
 def context_processor(request):
     """Stellt jedem Template t (aktives Paket), lang, den Sprachumschalter und die
     hreflang-Alternates bereit."""
@@ -82,10 +112,27 @@ def context_processor(request):
     switch, alts = [], []
     for l in LANGS:
         target = add_prefix(l, base)
+        # Wohin der Umschalter zeigt, wenn es die Seite in dieser Sprache nicht
+        # gibt: auf die Startseite der Sprache. Betrifft die drei einsprachigen
+        # Silos und jede Fehlerseite. Vorher zeigte der Klick dort auf eine 404 —
+        # das Ziel wurde nur nie geprüft, weil es hinter einer Umleitung lag.
+        ziel = target if _adresse_existiert(l, target) else add_prefix(l, "/")
         switch.append({
             "code": l, "label": LANG_LABELS[l], "name": LANG_NAMES[l],
             "active": (l == lang),
-            "url": "/sprache/" + l + "/?next=" + quote(target + suffix, safe=""),
+            # `path` ist das echte Ziel und steht seit Schritt 34 im `href` des
+            # Umschalters. Grund: `url` zeigt auf /sprache/<code>/, und dieser
+            # Pfad steht in `views._ROBOTS_DISALLOW` — solange er im `href`
+            # stand, war er der einzige Weg in den EN-/RO-Bestand, und damit
+            # waren 82 Seiten fuer Crawler nur ueber einen gesperrten
+            # Umleitungspfad erreichbar (hreflang ist kein Verlinkungssignal).
+            "path": ziel,
+            # `url` bleibt: Es ist der Weg, der das Sprach-Cookie setzt. Der
+            # Klickabfaenger in static/js/main.js schickt Menschen weiterhin
+            # hierher, damit die Wahl ueber die naechste Seite hinaus haelt.
+            # Dasselbe Ziel wie `path` — zwei Felder, die auseinanderlaufen,
+            # waeren zwei verschiedene Antworten auf denselben Klick.
+            "url": "/sprache/" + l + "/?next=" + quote(ziel + suffix, safe=""),
         })
         alts.append({"code": l, "hreflang": PACKS[l]["meta"]["html_lang"], "path": target})
     # x-default zeigt auf die deutsche (Standard-)Variante
