@@ -152,6 +152,34 @@ class SchutzkoepfeTest(SimpleTestCase):
         self.assertIn("max-age=", hsts)
         self.assertNotIn("max-age=0", hsts)
 
+    def test_kopf_permissions_policy(self):
+        """Verhindert, dass ein eingebettetes Fremdskript nach Standort, Kamera
+        oder Mikrofon fragen darf.
+
+        Ohne den Kopf gilt die Voreinstellung des Browsers, und die erlaubt
+        genau das — die Abfrage erscheint dann im Namen dieser Seite. Sie
+        braucht keine der Schnittstellen. Geprüft wird auf die leere Liste
+        ``()``; ein ``geolocation=(self)`` wäre schon wieder eine Erlaubnis.
+        """
+        policy = self.antwort.headers.get("Permissions-Policy", "")
+        for schnittstelle in ("geolocation", "camera", "microphone",
+                              "payment", "usb", "browsing-topics"):
+            self.assertIn(schnittstelle + "=()", policy,
+                          f"{schnittstelle} ist in Permissions-Policy nicht gesperrt: {policy!r}")
+
+    def test_permissions_policy_auch_auf_umleitungen(self):
+        """Hält fest, dass die Schutzkopf-Middleware jede Antwort anfasst, nicht
+        nur die gerenderte Seite.
+
+        Der praktische Fall: die 301 der ``KanonischerHostMiddleware``. Sässe die
+        neue Middleware an der falschen Stelle der Liste — nämlich hinter der
+        umleitenden — käme sie bei Weiterleitungen nie zum Zug, und der Fehler
+        fiele an der Startseite nicht auf.
+        """
+        antwort = seiten_client(SERVER_NAME="wvm-it-shop.up.railway.app").get("/")
+        self.assertEqual(antwort.status_code, 301)
+        self.assertIn("geolocation=()", antwort.headers.get("Permissions-Policy", ""))
+
 
 class CookieFlagsTest(SimpleTestCase):
     """Das einzige Cookie, das die Seite technisch setzt: ``csrftoken``."""

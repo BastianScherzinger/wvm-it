@@ -30,6 +30,11 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # Direkt hinter SecurityMiddleware: die Schutzkoepfe, die Django selbst nicht
+    # mitbringt (Permissions-Policy). Sie leitet nichts um und liest den Request
+    # nicht - sie schreibt nur auf die fertige Antwort, und zwar auf jede,
+    # Umleitungen und Fehlerseiten eingeschlossen.
+    "landing.middleware.SchutzkoepfeMiddleware",
     # HTML komprimieren (docs/SEO-AUSBAU-3.md, T2). WhiteNoise komprimiert nur
     # statische Dateien; die HTML-Antworten gingen bis hierher unkomprimiert
     # ueber die Leitung - bei der Startseite rund 200 KB statt rund 30 KB.

@@ -101,6 +101,55 @@ class KanonischerHostMiddleware:
         return self.get_response(request)
 
 
+class SchutzkoepfeMiddleware:
+    """Setzt die Schutzköpfe, die Django selbst nicht mitbringt.
+
+    Django deckt über ``SecurityMiddleware`` und ``XFrameOptionsMiddleware``
+    bereits ``X-Content-Type-Options``, ``Referrer-Policy``,
+    ``Strict-Transport-Security`` und ``X-Frame-Options`` ab. Für alles darüber
+    hinaus gibt es keinen Schalter — es muss auf die Antwort geschrieben werden.
+
+    Heute ist das ``Permissions-Policy``. Der Kopf sagt dem Browser, welche
+    Geräte-Schnittstellen auf dieser Seite überhaupt angefragt werden dürfen —
+    für das Dokument selbst und für alles, was es einbettet. Ohne den Kopf gilt
+    die Voreinstellung des Browsers, und die erlaubt dem eingebetteten
+    Fremdskript, nach Standort, Kamera und Mikrofon zu fragen. Diese Seite
+    braucht keines davon: kein Kartenfeld mit Standortabfrage, kein Video-Upload,
+    keine Bezahlung im Browser.
+
+    ``browsing-topics=()`` ist kein Sicherheits-, sondern ein Datenschutzwert:
+    Er nimmt die Seite aus Chromes Themen-Werbe-API heraus. Wer nichts sendet,
+    nimmt stillschweigend teil.
+
+    Die Klasse heißt bewusst allgemein und trägt die Köpfe in einem Dict: Sie ist
+    die Stelle, an die weitere Antwortköpfe gehören (etwa eine
+    Content-Security-Policy), damit dafür keine vierte Middleware entsteht.
+
+    Wichtig: Sie leitet nichts um und liest den Request nicht. Die beiden
+    Klassen darüber in dieser Datei tun beides — ein Fehler *dort* macht die
+    Seite unerreichbar oder erzeugt eine Umleitungsschleife. Diese Klasse hier
+    fasst nur die fertige Antwort an, und auch die nur, wenn der Kopf noch
+    fehlt: Ein Kopf, den eine View bewusst selbst gesetzt hat, bleibt stehen.
+    """
+
+    KOEPFE = {
+        "Permissions-Policy": (
+            "geolocation=(), camera=(), microphone=(), "
+            "payment=(), usb=(), browsing-topics=()"
+        ),
+    }
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        for name, wert in self.KOEPFE.items():
+            if name not in response:
+                response[name] = wert
+        return response
+
+
 class LocalePrefsMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
