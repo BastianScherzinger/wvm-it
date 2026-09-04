@@ -465,6 +465,69 @@ class AngebotTest(FormularTestBasis):
         self.assertEqual(mail.outbox[0].to, ["anna@example.org"])
         self.assertEqual(mail.outbox[1].to, [empfaenger()])
 
+    def test_richtangebot_honigtopf_mailt_nicht(self):
+        """Verhindert: ein Versandrelais, dessen Bot-Falle nur Kulisse ist.
+
+        Das unsichtbare Feld `hp` steht seit jeher im Formular
+        (`templates/index.html`) — serverseitig wurde es an diesem Endpunkt aber
+        nie gelesen. Ein Skript, das stumpf jedes Feld ausfüllt, kam also durch,
+        und weil die Zieladresse frei wählbar ist, verschickte es Mails mit
+        unserer Domain als Absender. Genau dafür landet ein Absenderkonto auf
+        einer Sperrliste, und danach kommt auch keine echte Anfrage mehr an.
+
+        Die Antwort muss dabei wie ein Erfolg aussehen: Ein sichtbarer Fehler
+        verriete dem Skript nur, welches Feld es weglassen muss."""
+        antwort = self.client_https.post("/angebot/anfordern/", {
+            "email": "bot@example.org", "item": ["it_betreuung"], "hp": "gefüllt",
+        })
+        self.assertEqual(antwort.status_code, 200)
+        self.assertTrue(antwort.json().get("ok"))
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_richtangebot_bremse_greift_wie_bei_den_uebrigen_formularen(self):
+        """Verhindert: den einen Endpunkt, an dem die Spam-Bremse fehlt.
+
+        Alle anderen Formulare zählen Absendungen je IP; dieser tat es nicht.
+        Eine Bremse, die vier von fünf Türen sichert, ist keine — der Angreifer
+        nimmt die fünfte.
+
+        Gezählt wird gegen dasselbe Limit wie beim Konfigurator (`kontakt`),
+        ausdrücklich aus `_LIMITS` statt als Zahl im Test: Wer das Limit später
+        anpasst, soll es an einer Stelle tun und nicht zwei Wahrheiten
+        hinterlassen."""
+        limit, _fenster = _LIMITS["kontakt"]
+        for i in range(limit + 4):
+            self.client_https.post("/angebot/anfordern/", {
+                "email": f"o{i}@example.org", "item": ["it_betreuung"],
+            })
+        self.assertLessEqual(len(mail.outbox), limit * MAILS_JE_ANFRAGE)
+
+    def test_richtangebot_mit_unvollstaendiger_adresse_wird_abgewiesen(self):
+        """Verhindert: einen Versandversuch an eine Adresse, die es nicht gibt.
+
+        Geprüft wurde hier nur, ob irgendwo ein `@` steht. Damit gingen `a@b`
+        (keine Domain) und `a@b@c` (zwei `@`) durch: Der Server versucht zu
+        versenden, der Mailserver lehnt ab, und weil `_send_mail_logged` nie an
+        den Besucher durchreicht, sieht der Absender einen Erfolg und wartet auf
+        ein Angebot, das nie kommt. Zusätzlich entstand für jede solche Adresse
+        ein Lead-Eintrag, den niemand mehr erreichen kann.
+
+        Die Antwort sagt jetzt auch, woran es lag — sonst sieht der Absender nur
+        dasselbe rote Feld wie bei jedem anderen Tippfehler."""
+        for adresse, grund in (("a@b", "keine-domain"),
+                               ("a@b@c.de", "mehrere-at"),
+                               ("keinatzeichen.de", "kein-at"),
+                               ("", "leer")):
+            with self.subTest(adresse=adresse):
+                mail.outbox = []
+                antwort = self.client_https.post("/angebot/anfordern/", {
+                    "email": adresse, "item": ["it_betreuung"],
+                })
+                self.assertEqual(antwort.status_code, 400)
+                self.assertEqual(antwort.json().get("error"), "email")
+                self.assertEqual(antwort.json().get("grund"), grund)
+                self.assertEqual(len(mail.outbox), 0)
+
 
 @MAIL_IM_SPEICHER
 class KooperationTest(FormularTestBasis):

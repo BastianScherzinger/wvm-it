@@ -38,6 +38,7 @@ class Command(BaseCommand):
         self._feldlaengen()
         self._betreff()
         self._kooperation()
+        self._richtangebot()
         self._upload_signatur()
 
         if self.fehler:
@@ -169,6 +170,36 @@ class Command(BaseCommand):
         # Je durchgelassener Anfrage entstehen zwei Mails (an uns + Bestätigung).
         self._melde("Kooperation, 8 Versuche", f"{n} Mails",
                     "höchstens 6 (3 Anfragen à 2 Mails)", n <= 6)
+
+    def _richtangebot(self):
+        """Das Richtangebot der Startseite (`/angebot/anfordern/`).
+
+        Es verschickt an eine Adresse, die der Absender frei bestimmt — dieselbe
+        Klasse wie die Kooperationsanfrage, und damit derselbe Missbrauchsfall:
+        ein Versandrelais mit unserer Domain als Absender. Bis hierher lief
+        dieser Endpunkt als einziger ohne Spam-Bremse und ohne serverseitige
+        Honigtopf-Auswertung, und er stand in dieser Prüfung nicht drin.
+
+        Gezählt wird in Mails, nicht in Anfragen: Je durchgelassener Absendung
+        entstehen zwei (Angebot an den Interessenten, Notiz an uns).
+        """
+        c = self._frisch()
+        for i in range(9):
+            c.post("/angebot/anfordern/",
+                   {"email": f"o{i}@example.org", "item": ["it_betreuung"]})
+        n = len(mail.outbox)
+        grenze = 5 * self.MAILS_JE_KONTAKTANFRAGE
+        self._melde("Richtangebot, 9 Versuche", f"{n} Mails",
+                    f"höchstens {grenze} (5 Anfragen à {self.MAILS_JE_KONTAKTANFRAGE} Mails)",
+                    n <= grenze)
+
+        # Der Honigtopf steht seit jeher im Formular (templates/index.html), er
+        # wurde serverseitig nur nie gelesen. Ein Bot füllt jedes Feld aus.
+        c = self._frisch()
+        c.post("/angebot/anfordern/",
+               {"email": "bot@example.org", "item": ["it_betreuung"], "hp": "gefüllt"})
+        n = len(mail.outbox)
+        self._melde("Honeypot Richtangebot", f"{n} Mails", "0", n == 0)
 
     def _upload_signatur(self):
         """Die Cloudinary-Signatur erlaubt Uploads auf unsere Rechnung — sie darf

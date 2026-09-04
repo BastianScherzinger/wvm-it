@@ -2701,9 +2701,27 @@ def angebot_anfordern(request):
     c = _content()
     if request.method != "POST":
         return JsonResponse({"ok": False}, status=405)
+    # Honigtopf und Spam-Bremse — dieselbe Reihenfolge und derselbe Bereich wie
+    # im Konfigurator (`_handle_angebot`), also auch dasselbe Limit und
+    # Zeitfenster; eine eigene Zahl an dieser Stelle wäre eine zweite Wahrheit.
+    #
+    # Ausgewertet wird nicht sofort abgebrochen, sondern erst unten der Versand
+    # übersprungen: Die Antwort behält damit ihre Form (Summen, Anzahl), und ein
+    # Skript erfährt nicht, woran es gescheitert ist. Genau so hält es
+    # `_honigtopf` in seinem Docstring fest.
+    verwerfen = _honigtopf(request) or _limit_erreicht(request, "kontakt")
     email = (request.POST.get("email") or "").strip()
-    if not email or "@" not in email or " " in email:
-        return JsonResponse({"ok": False, "error": "email"}, status=400)
+    if not _ist_email(email):
+        # `_ist_email` statt der bisherigen Prüfung `"@" not in email`: Die liess
+        # "a@b" und "a@b@c" durch — Adressen, an die nie eine Mail ankommt, die
+        # aber einen Versandversuch und einen Lead-Eintrag auslösten.
+        #
+        # `grund` sagt, WAS an der Adresse nicht stimmt. Bewusst als Kennung und
+        # nicht als Satz: Fliesstext gehört nach Projektregel in die drei
+        # Sprachpakete, nicht in eine JSON-Antwort. `error` bleibt unverändert
+        # "email", damit vorhandene Auswertungen weiter greifen.
+        return JsonResponse({"ok": False, "error": "email",
+                             "grund": _email_grund(email)}, status=400)
     consent = (request.POST.get("angebote") or "").strip().lower() in ("1", "on", "true", "ja", "yes")
     ids = [i for i in request.POST.getlist("item") if i in _ANGEBOT_INDEX][:40]
     lang = i18n.norm_lang(get_language())
@@ -2736,7 +2754,7 @@ def angebot_anfordern(request):
     summe_txt = " · ".join(teile) if teile else em["angebot_sum_request"]
     site = c.get("site_name", "WVM-IT")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
-    if ids:
+    if ids and not verwerfen:
         anfrage_line = em["angebot_anfrage_line"] if anfrage else ""
         kunde = em["angebot_kunde_body"].format(
             site=site, lines="\n".join(lines), summe=summe_txt,
@@ -2750,7 +2768,7 @@ def angebot_anfordern(request):
                 + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}\n"
             )
             _send_mail_logged(f"Angebots-Anfrage: {email}", notify, from_email, [empf], tag="ANGEBOT-NOTIFY")
-    if consent:
+    if consent and not verwerfen:
         try:
             from . import supa
             if supa.enabled():
@@ -3292,6 +3310,32 @@ _ANFRAGE_QUELLEN = {
 
 def _ist_email(wert: str) -> bool:
     return wert.count("@") == 1 and " " not in wert and "." in wert.rsplit("@", 1)[-1]
+
+
+def _email_grund(wert: str) -> str:
+    """Kennung dafür, WORAN `_ist_email` gescheitert ist — für die JSON-Antwort.
+
+    Eine Absage, die nur „error: email" sagt, hilft niemandem: Der Absender sieht
+    dasselbe Feld rot, ganz gleich ob er das @ vergessen, die Adresse
+    doppelt eingefügt oder ein Leerzeichen mitkopiert hat. Und beim
+    Richtangebot ist das der Unterschied zwischen einem Interessenten, der es
+    noch einmal versucht, und einem, der weiterklickt.
+
+    Bewusst eine Kennung und kein Satz: Fliesstext gehört nach Projektregel in
+    die drei Sprachpakete (`landing/i18n/`), nicht in eine JSON-Antwort. Die
+    Kennungen sind sprachneutral und lassen sich dort später ausformulieren.
+    """
+    if not wert:
+        return "leer"
+    if " " in wert:
+        return "leerzeichen"
+    if wert.count("@") == 0:
+        return "kein-at"
+    if wert.count("@") > 1:
+        return "mehrere-at"
+    if "." not in wert.rsplit("@", 1)[-1]:
+        return "keine-domain"
+    return "unbekannt"
 
 
 def _ist_telefon(wert: str) -> bool:
