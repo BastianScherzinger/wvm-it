@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% comment %}
+Die eigene Adresse nach einer erfolgreichen Absendung (Schritt 31).
+
+Sie erbt von `base.html` und traegt damit denselben Kopf, dieselbe Navigation,
+denselben Fussbereich und dieselbe Brotkrume wie jede andere Seite — kein
+zweites Geruest. `anfrage_done.html` bleibt davon unberuehrt: Das ist die
+Antwortseite des Detailbogens und hat eine andere Aufgabe.
+
+Der Text kommt aus `t.lb.done_h` und `t.lb.done_t` — denselben zwei Saetzen, die
+der JavaScript-Weg seit jeher inline zeigt. Beide Wege sagen damit dasselbe.
+{% endcomment %}
+{% block titel %}{{ titel|safe }}{% endblock %}
+{% block beschreibung %}{{ beschreibung|safe }}{% endblock %}
+{% comment %}
+noindex: Eine Danke-Seite hat kein Suchergebnis, das jemandem nuetzt, und wer sie
+ueber die Suche faende, haette nie ein Formular abgeschickt. follow: Ihre Links
+sollen trotzdem zaehlen.
+{% endcomment %}
+{% block robots %}noindex,follow{% endblock %}
+{% block og_titel %}{{ titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ beschreibung|safe }}{% endblock %}
+{% block tw_titel %}{{ titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ beschreibung|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ h1|safe }}</span>
+    </nav>
+    <h1>{{ h1|safe }}</h1>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="rt-body">
+      {% comment %}
+      Bewusst ohne die Klasse `.antwort`: Die ist das Ziel von `speakable` im
+      Schema und gehoert dem Antwort-zuerst-Absatz einer Inhaltsseite. Hier
+      steht eine Bestaetigung, keine Antwort auf eine Suchfrage.
+      {% endcomment %}
+      <p>{{ text|safe }}</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

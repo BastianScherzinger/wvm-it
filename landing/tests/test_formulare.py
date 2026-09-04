@@ -27,12 +27,14 @@ Zwei Fallen, die diese Datei bewusst umgeht
    CSRF-Test ohne `enforce_csrf_checks=True` bewiese gar nichts.
 """
 import os
+import re
 
 from django.core import mail
 from django.core import signing
 from django.core.cache import cache
 from django.test import SimpleTestCase, override_settings
 
+from landing import i18n
 from landing.tests import kanonischer_host, seiten_client
 from landing.views import _ANFRAGE_SALT, _LIMITS, _content
 
@@ -54,6 +56,12 @@ MAILS_JE_ANFRAGE = 2
 # sind, woran sich von außen ablesen lässt, ob eine Absendung angenommen wurde.
 KONTAKT_ERFOLG = "form-sent"
 NEWSLETTER_ERFOLG = "hero-offer-done"
+
+# Die eigene Adresse, auf der ein Abschluss ohne JavaScript endet (Schritt 31).
+# Sie steht hier als Konstante, weil an ihr zwei Dinge hängen, die sonst
+# stillschweigend auseinanderlaufen: der Zielort der Weiterleitung und das Ziel,
+# das in Search Console und Werbekonto eingetragen ist.
+DANKE = "/anfrage/danke/"
 
 
 def empfaenger() -> str:
@@ -127,9 +135,10 @@ class KontaktformularTest(FormularTestBasis):
             "name": "Anna Beispiel", "email": "anna@example.org",
             "telefon": "+43 660 1234567", "nachricht": "Wir brauchen IT-Betreuung.",
         })
-        self.assertEqual(antwort.status_code, 200)
-        self.assertIn(KONTAKT_ERFOLG, antwort.content.decode("utf-8"),
-                      "gültige Anfrage zeigt keine Bestätigung")
+        self.assertEqual(antwort.status_code, 302,
+                         "die gültige Anfrage leitet nicht auf die Danke-Seite weiter")
+        self.assertEqual(antwort["Location"], DANKE + "?q=kontakt",
+                         f"Weiterleitung zeigt auf {antwort['Location']}")
         self.assertEqual(len(mail.outbox), MAILS_JE_ANFRAGE)
         an_uns, an_absender = mail.outbox
         self.assertEqual(an_uns.to, [empfaenger()])
@@ -149,9 +158,10 @@ class KontaktformularTest(FormularTestBasis):
             "name": "Bot", "email": "bot@example.org", "nachricht": "Werbung",
             "hp": "ausgefüllt",
         })
-        self.assertEqual(antwort.status_code, 200)
-        self.assertIn(KONTAKT_ERFOLG, antwort.content.decode("utf-8"),
-                      "der Honigtopf verrät sich: der Bot sieht einen Fehler")
+        self.assertEqual(antwort.status_code, 302,
+                         "der Honigtopf verrät sich: der Bot sieht einen Fehler")
+        self.assertEqual(antwort["Location"], DANKE + "?q=kontakt",
+                         "der Bot landet woanders als ein echter Absender")
         self.assertEqual(len(mail.outbox), 0,
                          "der Honigtopf hat gegriffen, aber es ging trotzdem Post raus")
 
@@ -663,3 +673,92 @@ class CsrfTest(SimpleTestCase):
                              f"(HTTP {antwort.status_code})")
         self.assertEqual(len(mail.outbox), 0,
                          "ein POST ohne CSRF-Token hat eine Mail ausgelöst")
+
+
+@MAIL_IM_SPEICHER
+class DankeSeiteTest(FormularTestBasis):
+    """Die eigene Adresse nach einer Absendung (`/anfrage/danke/`, Schritt 31).
+
+    Ohne eigene Adresse lässt sich ein Abschluss weder in der Search Console
+    noch in einem Werbekonto zählen — beide messen Seitenaufrufe, keine
+    Formularereignisse. Der Weg dorthin ist zugleich der einzige, auf dem dieses
+    Projekt Geld verdient; deshalb steht in jedem Fall unten auch die Zahl der
+    Mails, nicht nur der Statuscode."""
+
+    def test_ohne_javascript_endet_die_kurzanfrage_auf_der_danke_seite(self):
+        """Verhindert: einen Abschluss, den niemand zählen kann.
+
+        Der Weg ohne JavaScript kam bis Schritt 31 mit `?ok=<quelle>` an den
+        Ausgangsblock zurück — dieselbe Adresse wie vorher. In der Search
+        Console und in einem Werbekonto sieht das aus wie ein Besucher, der die
+        Seite zweimal angesehen hat, und nicht wie eine Anfrage."""
+        antwort = self.client_https.post("/anfrage/leistung/", {
+            "quelle": "it", "kontakt": "anna@example.org", "name": "Anna",
+            "text": "Wir suchen laufende Betreuung.",
+        })
+        self.assertEqual(antwort.status_code, 302,
+                         "die Kurzanfrage ohne JavaScript leitet nicht weiter")
+        self.assertEqual(antwort["Location"], DANKE + "?q=it",
+                         f"Weiterleitung zeigt auf {antwort['Location']}")
+        self.assertEqual(len(mail.outbox), MAILS_JE_ANFRAGE,
+                         "die Weiterleitung hat die Mails gekostet")
+
+    def test_mit_javascript_bleibt_die_antwort_unveraendert_json(self):
+        """Verhindert: die Danke-Seite im Hintergrund statt der Inline-Bestätigung.
+
+        Die Kurzformulare schicken ihren POST per `fetch` und erwarten JSON.
+        Bekämen sie stattdessen eine 302, folgte `fetch` ihr still, lieferte den
+        HTML-Text der Danke-Seite zurück, und der Block im Vordergrund zeigte
+        einen Fehler — obwohl die Anfrage angekommen ist. Das ist die Bedingung,
+        unter der Schritt 31 überhaupt abgenommen wurde."""
+        antwort = self.client_https.post("/anfrage/leistung/", {
+            "quelle": "it", "kontakt": "anna@example.org", "name": "Anna",
+            "text": "Wir suchen laufende Betreuung.",
+        }, HTTP_X_REQUESTED_WITH="fetch")
+        self.assertEqual(antwort.status_code, 200,
+                         "der JavaScript-Weg bekommt keine 200 mehr")
+        self.assertTrue(antwort.json().get("ok"))
+        self.assertEqual(len(mail.outbox), MAILS_JE_ANFRAGE,
+                         "beide Wege müssen dieselbe Zahl Mails erzeugen")
+
+    def test_die_danke_seite_traegt_noindex_und_bleibt_crawlbar(self):
+        """Verhindert zwei entgegengesetzte Fehler an derselben Seite.
+
+        Ohne `noindex` landet die Danke-Seite im Index und erscheint als
+        Suchergebnis, das niemandem nützt. Stünde sie umgekehrt in
+        `robots.txt`, dürfte Google sie gar nicht abrufen — und ein Ziel, das
+        nicht abgerufen werden darf, lässt sich in der Search Console und in
+        einem Werbekonto nicht einrichten. Beides zusammen ist der Punkt."""
+        from landing.views import _ROBOTS_DISALLOW, _seiten_pfade
+        for sprache in i18n.LANGS:
+            adresse = i18n.add_prefix(sprache, DANKE)
+            antwort = self.client_https.get(adresse)
+            self.assertEqual(antwort.status_code, 200, f"{adresse} antwortet nicht")
+            html = antwort.content.decode("utf-8")
+            self.assertIn('content="noindex,follow"', html,
+                          f"{adresse} trägt kein noindex")
+            self.assertEqual(len(re.findall(r"<h1[\s>]", html)), 1,
+                             f"{adresse} hat nicht genau ein <h1>")
+        self.assertNotIn(DANKE, _ROBOTS_DISALLOW,
+                         "die Danke-Seite ist in robots.txt gesperrt — dann lässt "
+                         "sich der Abschluss nicht mehr als Ziel einrichten")
+        self.assertNotIn(DANKE, {p for p, *_ in _seiten_pfade()},
+                         "eine noindex-Seite gehört nicht in die Sitemap")
+
+    def test_neuladen_der_bestaetigung_verschickt_nichts_erneut(self):
+        """Verhindert: dieselbe Anfrage zweimal im Postfach, weil jemand F5 drückt.
+
+        Vor Schritt 31 blieb nach dem Absenden ein POST in der Adresszeile
+        stehen. Ein Neuladen fragte „Formular erneut senden?" — und wer bestätigt
+        hat, erzeugte eine zweite Anfrage samt zweiter Bestätigungsmail. Post/
+        Redirect/Get macht daraus ein GET, das nichts auslöst."""
+        self.client_https.post("/", {
+            "name": "Anna Beispiel", "email": "anna@example.org",
+            "nachricht": "Wir brauchen IT-Betreuung.",
+        })
+        self.assertEqual(len(mail.outbox), MAILS_JE_ANFRAGE)
+        for _ in range(3):
+            antwort = self.client_https.get(DANKE + "?q=kontakt")
+            self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(len(mail.outbox), MAILS_JE_ANFRAGE,
+                         "das Neuladen der Danke-Seite hat erneut gemailt")

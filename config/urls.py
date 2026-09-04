@@ -101,6 +101,13 @@ urlpatterns += i18n_patterns(
     path("newsletter/bestaetigen/", views.newsletter_confirm, name="newsletter_confirm"),
     path("anfrage/absenden/", views.anfrage_absenden, name="anfrage_absenden"),
     path("anfrage/leistung/", views.leistung_anfrage, name="leistung_anfrage"),
+    # ── Danke-Seite (Verbesserungslauf 13, Schritt 31) ──────────────────────
+    # Innerhalb von i18n_patterns, weil jeder Abschluss in der Sprache endet,
+    # in der er begonnen hat. Sie traegt `noindex,follow` und steht bewusst
+    # NICHT in `views._ROBOTS_DISALLOW`: Ein gesperrter Pfad laesst sich in der
+    # Search Console und in einem Werbekonto nicht als Ziel einrichten.
+    # Begruendung ausfuehrlich im Kopf von `views.anfrage_danke`.
+    path("anfrage/danke/", views.anfrage_danke, name="anfrage_danke"),
     path("warten/", views.warten, name="warten"),
     path("newsletter/abmelden/", views.newsletter_unsubscribe, name="newsletter_unsubscribe"),
     prefix_default_language=False,

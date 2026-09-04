@@ -27,6 +27,9 @@ PACK = {
         "angebot_title": "Build your quote, see the price instantly",
         "angebot_desc": "Tap what you need and see your estimate in under a minute: IT support from €29/month, website from €350, SEO from €149/month. No obligation.",
         "angebot_og_desc": "Put together websites, AI, automation and more in a few steps and see your ballpark price instantly.",
+        # Thank-you page (/en/anfrage/danke/, step 31) — see de.py for the reasoning.
+        "danke_title": "Enquiry received | WVM-IT",
+        "danke_desc": "Your enquiry has reached WVM-IT. We will get back to you within 24 hours.",
     },
     "faq": {
         "eyebrow": "FAQ",

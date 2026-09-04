@@ -1745,6 +1745,13 @@ def index(request):
             news_sent = _handle_newsletter(request, c)
         else:
             sent = _handle_contact(request, c)
+            if sent:
+                # Post/Redirect/Get statt Neu-Rendern (Schritt 31). Zwei Gründe:
+                # Der Abschluss bekommt eine eigene, zählbare Adresse, und F5 auf
+                # der Bestätigung verschickt die Anfrage nicht noch einmal.
+                # Bei `sent = False` (unvollständig ausgefüllt) wird weiter neu
+                # gerendert — sonst wäre die Eingabe des Besuchers weg.
+                return redirect(reverse("anfrage_danke") + "?q=kontakt")
     lang = get_language()
     # Ohne JavaScript abgesendete Kurzanfragen kommen mit ?ok=<quelle> zurück , der
     # betroffene Block zeigt dann seine Erfolgsmeldung (siehe leistung_anfrage).
@@ -3076,6 +3083,59 @@ def datenschutz(request):
     return _rechtsseite(request, "datenschutz")
 
 
+def anfrage_danke(request):
+    """/anfrage/danke/ — die eigene Adresse nach einer erfolgreichen Absendung.
+
+    Warum es sie gibt: Bis hierher hatte kein einziger Abschluss dieser Seite
+    eine eigene URL. Das Kontaktformular der Startseite rendert dieselbe Seite
+    neu, die Kurzanfrage kam mit ``?ok=<quelle>`` zurück, und nur der
+    Detailbogen leitete auf ``/warten/`` — das steht in ``_ROBOTS_DISALLOW``.
+    Ohne eigene Adresse lässt sich ein Abschluss weder in der Search Console
+    noch in einem Werbekonto als Ziel zählen: Beide messen Seitenaufrufe, nicht
+    Formularereignisse.
+
+    Sie trägt ``noindex,follow`` (Block ``robots`` in ``anfrage_danke.html``):
+    Eine Danke-Seite gehört nicht in den Index — sie hat kein Suchergebnis, das
+    jemandem nützt, und wer sie über die Suche fände, hätte nie ein Formular
+    abgeschickt. Ihre Links sollen aber zählen, deshalb ``follow``.
+
+    Sie steht **nicht** in ``_ROBOTS_DISALLOW``, und das ist Absicht: Ein
+    gesperrter Pfad darf von Google gar nicht erst abgerufen werden, und ein
+    Ziel, das nicht abgerufen werden darf, lässt sich auch nicht als Ziel
+    einrichten. ``noindex`` erreicht dasselbe, ohne das kaputtzumachen.
+
+    Sie steht ebenso **nicht** in ``_seiten_pfade()``: Was ``noindex`` trägt,
+    gehört nicht in die Sitemap — sonst meldet die Sitemap eine Adresse zur
+    Indexierung an, die die Seite selbst der Indexierung entzieht.
+
+    ``?q=<quelle>`` sagt, aus welchem Formular der Abschluss kam. Der Wert wird
+    nicht ausgegeben, sondern steht nur in der Adresse — dort kann ein
+    Werbekonto oder die Search Console ihn auswerten, ohne dass Fremdeingabe
+    jemals ins HTML gelangt."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    meta = pack["meta"]
+    base = (c.get("wvm_url") or "").rstrip("/")
+    # Kein neuer Text, wo einer da ist: `lb.done_h`/`lb.done_t` sind seit jeher
+    # die Bestätigung des JavaScript-Wegs. Beide Wege sagen damit dasselbe.
+    ueberschrift = pack.get("lb", {}).get("done_h", "")
+    titel = meta.get("danke_title", "")
+    beschreibung = meta.get("danke_desc", "")
+    return render(request, "anfrage_danke.html", {
+        "c": c,
+        "h1": ueberschrift,
+        "titel": titel,
+        "beschreibung": beschreibung,
+        "text": pack.get("lb", {}).get("done_t", ""),
+        "structured_data": _seiten_schema(
+            c, lang, pfad=reverse("anfrage_danke"), titel=titel,
+            beschreibung=beschreibung,
+            breadcrumb=_breadcrumb(base, [(ueberschrift,
+                                           reverse("anfrage_danke"))], lang)),
+    })
+
+
 def angebot(request):
     c = _content()
     lang = get_language()
@@ -3977,9 +4037,15 @@ def leistung_anfrage(request):
             nutzlast = {"ok": ok} if ok else {"ok": False, "error": fehler}
             return JsonResponse(nutzlast, status=status)
         if ok:
-            if zurueck:
-                return redirect(f"{zurueck}?ok={quelle}#anfrage")
-            return redirect(reverse("index") + f"?ok={quelle}{anker}")
+            # Seit Schritt 31 endet der Weg ohne JavaScript auf einer eigenen
+            # Adresse statt mit `?ok=<quelle>` am Ausgangsblock: Nur eine eigene
+            # Adresse lässt sich als Ziel zählen. `quelle` ist an dieser Stelle
+            # bereits gegen `_ANFRAGE_QUELLEN` geprüft und damit kein Fremdwert.
+            # Der JSON-Weg (`will_json`) bleibt oben unverändert — die
+            # Inline-Bestätigung des Skripts ist eine andere Sache als eine
+            # Seite, und wer ihr die 302 unterschöbe, zeigte die Danke-Seite im
+            # Hintergrund statt der Bestätigung im Block.
+            return redirect(reverse("anfrage_danke") + f"?q={quelle}")
         return redirect(ziel + "?fehler=1" if "#" not in ziel else ziel)
 
     if request.method != "POST":

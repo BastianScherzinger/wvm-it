@@ -23,6 +23,9 @@ PACK = {
         "angebot_title": "Configurați oferta, vedeți prețul",
         "angebot_desc": "Atingeți ce vă trebuie și vedeți prețul în mai puțin de un minut: administrare IT de la 29 €/lună, site de la 350 €, SEO de la 149 €/lună. Fără obligații.",
         "angebot_og_desc": "Alcătuiește site-uri web, AI, automatizări și altele în câțiva pași și vezi prețul orientativ imediat.",
+        # Pagina de mulțumire (/ro/anfrage/danke/, pasul 31) — motivarea în de.py.
+        "danke_title": "Cerere primită | WVM-IT",
+        "danke_desc": "Cererea dumneavoastră a ajuns la WVM-IT. Revenim în cel mult 24 de ore.",
     },
     "faq": {
         "eyebrow": "Întrebări frecvente",

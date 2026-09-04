@@ -27,6 +27,13 @@ PACK = {
         "angebot_title": "Angebot zusammenstellen, Richtpreis sofort",
         "angebot_desc": "Leistungen antippen und Richtpreis in unter einer Minute sehen: IT-Betreuung ab 29 €/Monat, Website ab 350 €, SEO ab 149 €/Monat. Unverbindlich.",
         "angebot_og_desc": "Webseiten, KI, Automatisierung und mehr in wenigen Schritten zusammenstellen und Richtpreis sofort sehen.",
+        # Danke-Seite (/anfrage/danke/, Schritt 31). Sie trägt `noindex` und
+        # taucht deshalb in keinem Suchergebnis auf; Titel und Beschreibung
+        # stehen trotzdem hier, weil eine Seite ohne beides im Browser-Tab und
+        # in jedem geteilten Link namenlos wäre. Die 24 Stunden sind dieselbe
+        # Zusage wie in `lb.done_t` — eine zweite Zahl gäbe es hier nicht.
+        "danke_title": "Anfrage angekommen | WVM-IT",
+        "danke_desc": "Ihre Anfrage ist bei WVM-IT eingegangen. Wir melden uns innerhalb von 24 Stunden.",
     },
     "lang": {"switch_aria": "Sprache wählen"},
     "cookie": {
