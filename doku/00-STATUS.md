@@ -51,31 +51,35 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 ## Messung
 
 <!-- messung:anfang -->
-**Messung vom 04.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-04a) — **Gesamtstand 85,1 von 100**, Reifegrad „Solide“. 231 von 244 Regeln an 158 URLs und 159 Dateien (34.430 Zeilen) geprüft.
+**Messung vom 04.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-05a) — **Gesamtstand 81,9 von 100**, Reifegrad „Solide“. 233 von 244 Regeln an 158 URLs und 129 Dateien (25.865 Zeilen) geprüft.
 
 | Bereich | Wert | Reifegrad |
 |---|---:|---|
+| Code-Qualität & Projektreife | **56** | Lückenhaft |
 | GEO — KI-Sichtbarkeit | **70** | Brauchbar |
 | Konversion | **74** | Brauchbar |
+| Vorlagen-Konformität | **77** | Solide |
 | Sicherheit | **81** | Solide |
-| Vorlagen-Konformität | **84** | Solide |
-| Code-Qualität & Projektreife | **85** | Solide |
-| SEO — Inhalt | **87** | Solide |
+| SEO — Inhalt | **88** | Solide |
+| SEO — Technik | **88** | Solide |
 | Performance & Core Web Vitals | **88** | Solide |
-| Substanz & Reichweite | **90** | Referenz |
-| Betrieb & Auslieferung | **91** | Referenz |
+| Betrieb & Auslieferung | **92** | Referenz |
 | Recht & Vertrauen | **92** | Referenz |
-| SEO — Technik | **94** | Referenz |
 | Barrierefreiheit | **96** | Referenz |
+| Substanz & Reichweite | **98** | Referenz |
 
 Keine Sperre greift.
 
-Quelltext: 159 Dateien, **430 Befunde**, davon 0 kritisch und 378 wichtig.
+Quelltext: 129 Dateien, **448 Befunde**, davon 9 kritisch und 375 wichtig.
 
 Kritische Befunde:
 
-- **Umfang passt zur Aufgabe der Seite** (`IS18`) — Unter dem Umfang, den ihre Aufgabe verlangt: 55 von 84 Seiten — /leistungen/ (328/600 W), /vergleich/ (288/900 W), /en/leistungen/ (330/600 W), /ro/leistungen/ (377/600 W), /leistungen/google-ads/ (583/600 W) … (+50)
+- **Alle Domainvarianten landen auf einer Adresse** (`TS11`) — 0 von 1 Nebenadressen landen dauerhaft auf der Hauptadresse — offen: https://wvm-it.tech: SSLError — kein Verbindungsaufbau
+- **Automatische Tests sind vorhanden** (`PJ02`) — keine einzige Testfunktion im Projekt — jede Änderung ist ein Blindflug
+- **Es gibt keinen kritischen Datei-Befund** (`PJ05`) — 9 kritische Befunde: landing/management/commands/indexnow.py:48 Ausnahme wird verschluckt, landing/management/commands/pruefe_seite.py:72 Ausnahme wird verschluckt, landing/management/commands/seo_bericht.py:55 Ausnahme wird verschluckt, la
 - **Kein nennenswerter Anteil dünner Seiten** (`IS19`) — 7% der Seiten sind dünn (11 von 158): /kontakt/ (140 W), /en/kontakt/ (149 W), /ro/kontakt/ (145 W), /impressum/ (137 W), /en/impressum/ (137 W) … (+6)
+- **Umfang passt zur Aufgabe der Seite** (`IS18`) — Unter dem Umfang, den ihre Aufgabe verlangt: 59 von 99 Seiten — /leistungen/ (328/600 W), /vergleich/ (288/900 W), /en/leistungen/ (330/600 W), /ro/leistungen/ (377/600 W), /leistungen/google-ads/ (583/600 W) … (+54)
+- **Die Qualitätssicherung der Vorlage ist verdrahtet** (`VL19`) — Prüfbefehle: pruefe_seite, pruefe_sicherheit, seo_bericht; 0 Testfunktionen in 0 Dateien: 3 von 7 QS-Bausteinen erfüllt — es fehlt: echte Testdateien, mindestens 30 Testfunktionen, CI-Lauf bei jedem Push, Fehler-Monitoring (Sentry o. ä.)
 - **Keine Nutzseite ist von der Startseite aus unerreichbar** (`TS23`) — 82 Seiten sind über interne Links nicht erreichbar: /en/kontakt/, /ro/kontakt/, /en/angebot/, /ro/angebot/, /en/impressum/ … (+77)
 - **Antwort zuerst: der erste Absatz beantwortet die Frage** (`GE23`) — 78 von 158 Seiten beginnen mit einer zitierfähigen Antwort — schwach: / (weder Definition noch Zahl), /en/kontakt/ (weder Definition noch Zahl), /ro/kontakt/ (weder Definition noch Zahl), /en/angebot/ (weder Definition noch Zahl), /ro/angeb
 <!-- messung:ende -->
