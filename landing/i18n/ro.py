@@ -329,6 +329,8 @@ PACK = {
         "datenschutz_ph": "Politica de confidențialitate apare aici de îndată ce este finalizată.",
         "col_recht": "Legal",
         "impressum": "Date legale", "datenschutz": "Confidențialitate", "datenschutz_full": "Politica de confidențialitate",
+        "barrierefreiheit": "Declarație de accesibilitate",
+        "barrierefreiheit_ph": "Declarația de accesibilitate apare aici de îndată ce este finalizată.",
     },
     "mobilebar": {"call": "Sună"},
     "fehler": {
@@ -862,6 +864,8 @@ PACK = {
         "impressum_desc": "Date de identificare și informații despre furnizor pentru WVM-IT.",
         "datenschutz_titel": "Politica de confidențialitate | WVM-IT",
         "datenschutz_desc": "Cum prelucrează WVM-IT datele cu caracter personal: scop, temei legal, durată de stocare și drepturile dumneavoastră.",
+        "barrierefreiheit_titel": "Declarație de accesibilitate | WVM-IT",
+        "barrierefreiheit_desc": "În ce măsură site-ul respectă WCAG 2.1 AA, limitările cunoscute și cum ne puteți semnala o barieră.",
     },
     "angebot_page": {
         "eyebrow": "Configurator de ofertă",

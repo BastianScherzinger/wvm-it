@@ -442,13 +442,24 @@ class LastmodTest(SimpleTestCase):
         Eintrag trotzdem das heutige Datum, ist wieder eine Uhr im Spiel statt
         einer gepflegten Angabe. (Sollte an einem Tag wirklich ein Text geändert
         UND sein Stand nachgezogen worden sein, ist dieser Test an genau diesem
-        Tag zu Recht rot und der erwartete Wert einzutragen.)"""
+        Tag zu Recht rot und der erwartete Wert einzutragen.)
+
+        Genau dieser Fall ist am 04.09.2026 eingetreten: Die Erklärung zur
+        Barrierefreiheit ist an diesem Tag entstanden (Schritt 32), und ihr
+        Stand ist deshalb zu Recht der Tag selbst. Sie steht unten namentlich
+        als Ausnahme. Der Test bleibt dadurch scharf — eine wieder eingebaute
+        Uhr träfe **alle** Einträge, nicht diese drei Adressen; und sobald der
+        04.09.2026 vorbei ist, greift die Ausnahme ohnehin ins Leere."""
+        # Basis-Pfade, deren Text an dem Tag entstanden ist, den ihr Stand nennt.
+        AM_TAG_ENTSTANDEN = ("/barrierefreiheit/",)
         heute = date.today().isoformat()
         von_heute = sorted(a for a, w in self.staende.items() if w == heute)
+        unerklaert = [a for a in von_heute
+                      if not any(a.endswith(p) for p in AM_TAG_ENTSTANDEN)]
         self.assertEqual(
-            von_heute, [],
-            f"{len(von_heute)} Einträge tragen das heutige Datum {heute}: "
-            f"{von_heute[:5]}")
+            unerklaert, [],
+            f"{len(unerklaert)} Einträge tragen das heutige Datum {heute}, ohne "
+            f"dass ihr Text heute entstanden ist: {unerklaert[:5]}")
 
     def test_jeder_stand_ist_ein_gueltiges_datum_in_der_vergangenheit(self):
         """Verhindert ein Datum in falschem Format oder in der Zukunft.

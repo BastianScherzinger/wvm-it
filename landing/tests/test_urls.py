@@ -66,10 +66,11 @@ class AlleSeitenTest(SimpleTestCase):
         Der Test oben prüft jede *vorhandene* Adresse. Fällt eine Zeile aus
         `_seiten_pfade()` heraus, prüft er einfach weniger und bleibt grün —
         während vierzehn Glossarseiten aus Sitemap und IndexNow verschwinden.
-        Deshalb steht die Zahl hier ausgeschrieben: 76 Basis-Pfade (CLAUDE.md)."""
+        Deshalb steht die Zahl hier ausgeschrieben: 76 Basis-Pfade (CLAUDE.md),
+        seit Schritt 32 dazu die Erklärung zur Barrierefreiheit — also 77."""
         pfade = _seiten_pfade()
-        self.assertEqual(len(pfade), 76,
-                         f"{len(pfade)} Basis-Pfade statt 76 — ein Silo fehlt oder "
+        self.assertEqual(len(pfade), 77,
+                         f"{len(pfade)} Basis-Pfade statt 77 — ein Silo fehlt oder "
                          f"ist dazugekommen")
         self.assertEqual(len(set(p for p, *_ in pfade)), len(pfade),
                          "ein Pfad steht doppelt in _seiten_pfade()")
@@ -143,6 +144,48 @@ class PflichtseitenTest(SimpleTestCase):
             self.assertIn(erster_absatz, html,
                           f"{adresse}: der Datenschutztext aus content.json fehlt")
             self.assertIn("DSGVO", html, f"{adresse}: kein Bezug auf die DSGVO")
+
+
+    def test_barrierefreiheitserklaerung_steht_in_allen_sprachen(self):
+        """Verhindert: eine Rechtsseite, die es nur als Route gibt.
+
+        Seit Juni 2025 gehört die Erklärung zur Barrierefreiheit zum
+        elektronischen Geschäftsverkehr. Sie nützt nur, wenn sie erreichbar ist,
+        genau ein `<h1>` trägt, sich selbst als `canonical` benennt — sonst
+        zeigt die englische Fassung auf die deutsche — und wenn ihr Text
+        wirklich aus `content.json` kommt statt aus dem Platzhalter, den
+        `recht.html` bei leerem Text klaglos rendert. Denselben Platzhalterpfad
+        prüfen die beiden Tests darüber für Impressum und Datenschutz."""
+        erster_absatz = self.inhalt["barrierefreiheit"].split("\n")[0].strip()
+        self.assertTrue(erster_absatz, "content.json führt keine Erklärung")
+        basis = (self.inhalt.get("wvm_url") or "").rstrip("/")
+        for lang in i18n.LANGS:
+            adresse = i18n.add_prefix(lang, "/barrierefreiheit/")
+            antwort = self.client_https.get(adresse)
+            self.assertEqual(antwort.status_code, 200, f"{adresse} antwortet nicht")
+            html = antwort.content.decode("utf-8")
+            self.assertEqual(len(re.findall(r"<h1[\s>]", html)), 1,
+                             f"{adresse} hat nicht genau ein <h1>")
+            self.assertIn(erster_absatz, html,
+                          f"{adresse}: der Erklärungstext aus content.json fehlt")
+            self.assertIn(f'rel="canonical" href="{basis}{adresse}"', html,
+                          f"{adresse}: canonical zeigt nicht auf sich selbst")
+            self.assertIn("WCAG", html, f"{adresse}: kein Bezug auf die WCAG")
+
+    def test_barrierefreiheitserklaerung_nennt_einen_rueckmeldeweg(self):
+        """Verhindert eine Erklärung, die niemandem sagt, wohin er sich wenden soll.
+
+        Der Rückmeldeweg ist der einzige Teil der Erklärung, der für den
+        Betroffenen unmittelbar etwas bewirkt: Ohne ihn ist sie eine
+        Selbstauskunft ohne Adressaten. Geprüft wird gegen `content.json`, damit
+        eine geänderte Telefonnummer nicht nur im Footer, sondern auch hier
+        nachgezogen wird."""
+        html = self.client_https.get("/barrierefreiheit/").content.decode("utf-8")
+        for feld in ("email", "telefon"):
+            wert = (self.inhalt.get(feld) or "").strip()
+            self.assertTrue(wert, f"content.json führt kein Feld '{feld}'")
+            self.assertIn(wert, html,
+                          f"die Erklärung nennt {feld} nicht — kein Rückmeldeweg")
 
 
 class TechnischeDateienTest(SimpleTestCase):

@@ -95,6 +95,10 @@ urlpatterns += i18n_patterns(
     path("kontakt/", views.kontakt, name="kontakt"),
     path("impressum/", views.impressum, name="impressum"),
     path("datenschutz/", views.datenschutz, name="datenschutz"),
+    # ── Erklaerung zur Barrierefreiheit (Verbesserungslauf 13, Schritt 32) ──
+    # Dritte Rechtsseite, dieselbe Bauweise wie die beiden darueber: eigene,
+    # indexierbare Adresse, Text aus content.json, Template `recht.html`.
+    path("barrierefreiheit/", views.barrierefreiheit, name="barrierefreiheit"),
     path("angebot/", views.angebot, name="angebot"),
     path("angebot/anfordern/", views.angebot_anfordern, name="angebot_anfordern"),
     path("kooperation/anfordern/", views.kooperation_anfordern, name="kooperation_anfordern"),

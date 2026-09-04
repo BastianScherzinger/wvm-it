@@ -1864,7 +1864,13 @@ def _seiten_pfade():
               for b in beitraege.BEITRAEGE]
     # Rechtstexte gehoeren in den Index (Anbieterkennzeichnung), aber ganz hinten.
     pfade += [("/impressum/", "0.2", "yearly", True),
-              ("/datenschutz/", "0.2", "yearly", True)]
+              ("/datenschutz/", "0.2", "yearly", True),
+              # Dritte Rechtsseite (Schritt 32). Sie steht hier aus demselben
+              # Grund wie die beiden darueber: Eine Erklaerung zur
+              # Barrierefreiheit nuetzt nur, wenn sie zu finden ist, und ein
+              # Eintrag in der Sitemap ist der einzige Weg, auf dem sie
+              # gefunden wird, solange kein Fusszeilen-Link auf sie zeigt.
+              ("/barrierefreiheit/", "0.2", "yearly", True)]
     return pfade
 
 
@@ -1896,6 +1902,7 @@ _STAND_SEITEN = {
     "/it-sicherheit-test/": "2026-08-29",  # templates/selbsttest.html, 02d8c8a
     "/impressum/": "2026-08-28",          # templates/recht.html, 47a188f
     "/datenschutz/": "2026-08-28",        # templates/recht.html, 47a188f
+    "/barrierefreiheit/": "2026-09-04",   # content.json, Schritt 32 (neu)
 }
 
 # (Pfad-Präfix, Strukturmodul-Index) — die sechs Silos mit `stand`-Feld je Eintrag.
@@ -3049,24 +3056,41 @@ def kontakt(request):
     })
 
 
+# Die Rechtsseiten und woher ihre drei Bausteine kommen:
+# art -> (Schlüssel der Überschrift im `footer`-Block, Schlüssel des Textes in
+#         content.json, Schlüssel des Platzhaltertextes im `footer`-Block).
+# Als Tabelle statt als Kette von `if`: Mit der Erklärung zur Barrierefreiheit
+# (Schritt 32) ist es die dritte Seite dieser Art, und ab der dritten wird aus
+# einer Fallunterscheidung eine Liste, die man erweitern kann, ohne die View zu
+# lesen. Titel und Description liegen bei allen dreien unter `recht.<art>_titel`
+# bzw. `recht.<art>_desc` und brauchen deshalb keine Spalte.
+_RECHTSSEITEN = {
+    "impressum": ("impressum", "impressum", "impressum_ph"),
+    "datenschutz": ("datenschutz_full", "datenschutz", "datenschutz_ph"),
+    "barrierefreiheit": ("barrierefreiheit", "barrierefreiheit",
+                         "barrierefreiheit_ph"),
+}
+
+
 def _rechtsseite(request, art):
-    """Impressum und Datenschutz als eigene URLs statt als Klapptext im Footer:
-    Eine Anbieterkennzeichnung muss ohne Suchen erreichbar sein."""
+    """Impressum, Datenschutz und die Erklärung zur Barrierefreiheit als eigene
+    URLs statt als Klapptext im Footer: Eine Anbieterkennzeichnung muss ohne
+    Suchen erreichbar sein, und für die anderen beiden gilt dasselbe."""
     c = _content()
     lang = get_language()
     pack = i18n.get_pack(lang)
     recht = pack.get("recht", {})
     fuss = pack.get("footer", {})
     base = (c.get("wvm_url") or "").rstrip("/")
-    ist_impressum = art == "impressum"
-    ueberschrift = fuss.get("impressum" if ist_impressum else "datenschutz_full", art)
+    kopf_key, text_key, platzhalter_key = _RECHTSSEITEN[art]
+    ueberschrift = fuss.get(kopf_key, art)
     return render(request, "recht.html", {
         "c": c,
         "h1": ueberschrift,
         "titel": recht.get(f"{art}_titel", ueberschrift),
         "beschreibung": recht.get(f"{art}_desc", ""),
-        "text": c.get("impressum" if ist_impressum else "datenschutz", ""),
-        "platzhalter": fuss.get("impressum_ph" if ist_impressum else "datenschutz_ph", ""),
+        "text": c.get(text_key, ""),
+        "platzhalter": fuss.get(platzhalter_key, ""),
         "structured_data": _seiten_schema(
             c, lang, pfad=reverse(art),
             titel=recht.get(f"{art}_titel", ueberschrift),
@@ -3081,6 +3105,20 @@ def impressum(request):
 
 def datenschutz(request):
     return _rechtsseite(request, "datenschutz")
+
+
+def barrierefreiheit(request):
+    """/barrierefreiheit/ — die Erklärung zur Barrierefreiheit (Schritt 32).
+
+    Sie nutzt `recht.html` als dritten Modus statt eines eigenen Templates:
+    Titel, H1, Brotkrume und Textkörper baut das Template bereits aus Variablen,
+    ein viertes Gerüst wäre eine zweite Bauweise ohne Gewinn.
+
+    Der Text steht in `content.json` unter `barrierefreiheit`, wie Impressum und
+    Datenschutzerklärung auch — das ist die Stelle, an der Rechtstexte dieses
+    Projekts gepflegt werden, und damit die einzige, die jemand ohne Python
+    ändern kann."""
+    return _rechtsseite(request, "barrierefreiheit")
 
 
 def anfrage_danke(request):

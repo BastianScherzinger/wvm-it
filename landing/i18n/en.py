@@ -333,6 +333,8 @@ PACK = {
         "datenschutz_ph": "The privacy policy will appear here as soon as it has been finalised.",
         "col_recht": "Legal",
         "impressum": "Imprint", "datenschutz": "Privacy", "datenschutz_full": "Privacy policy",
+        "barrierefreiheit": "Accessibility statement",
+        "barrierefreiheit_ph": "The accessibility statement will appear here as soon as it has been finalised.",
     },
     "mobilebar": {"call": "Call"},
     "fehler": {
@@ -866,6 +868,8 @@ PACK = {
         "impressum_desc": "Legal notice and provider identification for WVM-IT.",
         "datenschutz_titel": "Privacy policy | WVM-IT",
         "datenschutz_desc": "How WVM-IT processes personal data: purpose, legal basis, retention and your rights.",
+        "barrierefreiheit_titel": "Accessibility statement | WVM-IT",
+        "barrierefreiheit_desc": "How far this site meets WCAG 2.1 AA, the known limitations, and how to report a barrier to us.",
     },
     "angebot_page": {
         "eyebrow": "Quote configurator",

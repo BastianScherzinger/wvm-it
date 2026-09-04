@@ -337,6 +337,11 @@ PACK = {
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
         "impressum_ph": "<strong>Angaben gemäß Paragraf 5 TMG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt (E-Mail und Telefon), gegebenenfalls USt-IdNr. und Registereintrag.",
         "datenschutz_ph": "<strong>Platzhalter.</strong> Vor Veröffentlichung eine DSGVO-konforme Datenschutzerklärung einsetzen (Verantwortlicher, Hosting, Kontaktformular, Cookies und Tracking, Betroffenenrechte).",
+        # Dritte Rechtsseite (Schritt 32). Die Überschrift steht hier und nicht
+        # im `recht`-Block, weil `_rechtsseite` sie von hier holt — dieselbe
+        # Stelle wie bei Impressum und Datenschutzerklärung.
+        "barrierefreiheit": "Erklärung zur Barrierefreiheit",
+        "barrierefreiheit_ph": "<strong>Platzhalter.</strong> Vor Veröffentlichung die Erklärung zur Barrierefreiheit einsetzen (Geltungsbereich, Stand der Vereinbarkeit, bekannte Einschränkungen, Rückmeldeweg, Durchsetzungsverfahren).",
     },
     "mobilebar": {"call": "Anrufen"},
     # ── Fehlerseiten (docs/SEO-AUSBAU-3.md, T1) ──────────────────────────────
@@ -860,6 +865,8 @@ PACK = {
         "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT.",
         "datenschutz_titel": "Datenschutzerklärung | WVM-IT",
         "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer und Ihre Rechte.",
+        "barrierefreiheit_titel": "Erklärung zur Barrierefreiheit | WVM-IT",
+        "barrierefreiheit_desc": "Stand der Vereinbarkeit mit WCAG 2.1 AA, die bekannten Einschränkungen und der Weg, uns eine Barriere zu melden.",
     },
     "angebot_page": {
         "eyebrow": "Angebots-Konfigurator",
