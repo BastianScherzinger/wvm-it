@@ -956,7 +956,9 @@ PACK = {
         "bild_alt": "Imagine încărcată",
         "title_ok": "Înregistrare confirmată",
         "title_fail": "Confirmare eșuată",
-        "meta_desc": "Confirmarea înregistrării tale la newsletter.",
+        # Siehe de.py: eigene Beschreibung statt eines Satzes, den eine Vorschau
+        # mit dem Startseitentext auffüllt.
+        "meta_desc": "Confirmarea înscrierii la newsletterul WVM-IT. Apoi se deschide pe această pagină formularul scurt pentru pagina ta de probă gratuită.",
         "ok_h_pre": "Confirmat", "ok_h_post": "! A mai rămas un singur pas scurt.",
         "ok_p": "<strong>Codul tău de 25% reducere</strong> e pe drum prin e-mail. Ca să-ți construim <strong>site-ul demonstrativ gratuit</strong> (rămâne live 1 săptămână) exact pe potrivă, completează te rugăm pe scurt acest formular — cu cât bifezi mai mult, cu atât rezultatul e mai bun.",
         "code_aria": "Codul tău de reducere", "code_label": "Codul tău",

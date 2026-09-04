@@ -960,7 +960,9 @@ PACK = {
         "bild_alt": "Uploaded image",
         "title_ok": "Registration confirmed",
         "title_fail": "Confirmation failed",
-        "meta_desc": "Confirmation of your newsletter registration.",
+        # Siehe de.py: eigene Beschreibung statt eines Satzes, den eine Vorschau
+        # mit dem Startseitentext auffüllt.
+        "meta_desc": "Confirmation of your WVM-IT newsletter registration. The short form for your free sample site then opens on this page.",
         "ok_h_pre": "Confirmed", "ok_h_post": "! Just one short step to go.",
         "ok_p": "Your <strong>25% discount code</strong> is on its way by email. So we can build your <strong>free sample website</strong> (stays live for 1 week) to fit perfectly, please fill in this short form — the more you click, the better the result.",
         "code_aria": "Your discount code", "code_label": "Your code",

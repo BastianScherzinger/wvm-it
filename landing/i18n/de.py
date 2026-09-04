@@ -975,7 +975,11 @@ PACK = {
         "bild_alt": "Hochgeladenes Bild",
         "title_ok": "Anmeldung bestätigt",
         "title_fail": "Bestätigung fehlgeschlagen",
-        "meta_desc": "Bestätigung deiner Newsletter-Anmeldung.",
+        # Eigene Beschreibung, 110–160 Zeichen: Der frühere Satz war mit 41
+        # Zeichen so kurz, dass eine Vorschau ihn mit dem Startseitentext
+        # auffüllt. Beschreibt beide Zweige der Seite — den bestätigten und den
+        # abgelaufenen Link — und sagt nichts zu, was die Seite nicht tut.
+        "meta_desc": "Bestätigung der Newsletter-Anmeldung bei WVM-IT. Danach öffnet sich auf dieser Seite der kurze Bogen für deine kostenlose Beispielseite.",
         "ok_h_pre": "Bestätigt", "ok_h_post": "! Nur noch ein kurzer Schritt.",
         "ok_p": "Dein <strong>25%-Rabattcode</strong> ist per E-Mail unterwegs. Damit wir deine <strong>kostenlose Beispiel-Website</strong> (bleibt 1 Woche live) genau passend bauen, füll bitte kurz diesen Bogen aus — je mehr du anklickst, desto besser das Ergebnis.",
         "code_aria": "Dein Rabattcode", "code_label": "Dein Code",

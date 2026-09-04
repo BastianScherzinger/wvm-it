@@ -40,10 +40,22 @@ PFLICHT_META_PROP = ("og:title", "og:description", "og:type", "og:site_name",
                      "og:locale", "og:url", "og:image", "og:image:width",
                      "og:image:height", "og:image:alt")
 
+# Spanne für die Beschreibung der vier noindex-Dokumente. `pruefe_seite` prüft
+# die Länge nur für die Adressen aus `_seiten_pfade()` — diese vier stehen dort
+# nicht, also prüft sie sonst niemand.
+DESC_MIN = 110
+DESC_MAX = 160
+
 
 def _meta_namen(html: str) -> set:
     """Alle `name`- und `property`-Werte der `<meta>`-Elemente einer Seite."""
     return set(re.findall(r'<meta\s+(?:name|property)="([^"]+)"', html))
+
+
+def _description(html: str) -> str:
+    """Der Inhalt der Meta-Description — leer, wenn keine da ist."""
+    treffer = re.search(r'<meta name="description" content="(.*?)">', html, re.S)
+    return treffer.group(1) if treffer else ""
 
 
 class KopfbausteinTest(SimpleTestCase):
@@ -68,8 +80,16 @@ class KopfbausteinTest(SimpleTestCase):
         hat es zwei Umbauten lang niemand gesehen. Ohne `charset` rät der Browser
         die Kodierung (Umlaute brechen), ohne `viewport` zeigt ein Handy die
         Desktop-Breite, ohne `canonical` zählt eine Adresse mit `?t=…` als eigene
-        Seite."""
+        Seite.
+
+        Seit Schritt 51 prüft der Test zusätzlich die Beschreibung. Der
+        Kopfbaustein fällt auf `t.meta.seo_desc` zurück, wenn der Einbindende
+        `kopf_desc` weglässt — dann trägt eine Bestätigungsseite den Werbetext
+        der Startseite, und der steht in der Vorschau jedes geteilten Links.
+        Zwei Dokumente mit derselben Beschreibung sind derselbe Fehler, nur
+        leiser."""
         fehlt = []
+        beschreibungen = {}
         for pfad in SOLODOKUMENTE:
             html = self._html(pfad)
             for stueck, wonach in (
@@ -81,7 +101,29 @@ class KopfbausteinTest(SimpleTestCase):
                     fehlt.append(f"{pfad}: {wonach}")
             if not re.search(r"<title>\s*\S", html):
                 fehlt.append(f"{pfad}: title leer")
+            beschreibungen.setdefault(_description(html), []).append(pfad)
         self.assertEqual(fehlt, [], f"Kopfangaben fehlen: {fehlt}")
+
+        geteilt = {text: wo for text, wo in beschreibungen.items() if len(wo) > 1}
+        self.assertEqual(geteilt, {},
+                         f"Dokumente teilen sich eine Beschreibung: {geteilt}")
+
+    def test_die_vier_dienstseiten_haben_eine_beschreibung_in_voller_laenge(self):
+        """Verhindert: eine Beschreibung, die eine Vorschau selbst auffüllt.
+
+        `confirm_page.meta_desc` war bis Schritt 51 einundvierzig Zeichen lang
+        („Bestätigung deiner Newsletter-Anmeldung."). Ein so kurzer Satz wird von
+        Google und von den Vorschaudiensten mit Text aus der Seite ergänzt — bei
+        einer Seite mit Rabattcode und Formular kommt dabei nichts Brauchbares
+        heraus. `pruefe_seite` erreicht diese vier Adressen nicht, weil sie nicht
+        in `_seiten_pfade()` stehen; ohne diesen Test prüft die Länge niemand."""
+        daneben = []
+        for pfad in OHNE_INDEX:
+            text = _description(self._html(pfad))
+            if not DESC_MIN <= len(text) <= DESC_MAX:
+                daneben.append(f"{pfad}: {len(text)} Zeichen")
+        self.assertEqual(daneben, [],
+                         f"Beschreibung ausserhalb {DESC_MIN}–{DESC_MAX} Zeichen: {daneben}")
 
     def test_solodokumente_tragen_den_vollstaendigen_open_graph_satz(self):
         """Verhindert: ein geteilter Link ohne Vorschaubild oder mit falschen Maßen.

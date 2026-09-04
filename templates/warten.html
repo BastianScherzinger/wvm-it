@@ -21,8 +21,11 @@
     <div class="wrap wait-wrap" data-status-url="{% if status_token %}{% url 'bau_status' %}?t={{ status_token }}{% endif %}">
       <div class="wait-card" data-reveal>
         <div class="wait-orb" id="waitOrb"><span class="wait-orb-core" aria-hidden="true"></span></div>
-        <h1 id="waitTitle">{{ t.wait.h1|safe }}{% if name %}<br><span class="wait-name">{{ t.wait.name_pre|safe }}{{ name }}{{ t.wait.name_post|safe }}</span>{% endif %}</h1>
-        <p class="wait-sub" id="waitSub">{{ t.wait.sub|safe }}</p>
+        {# aria-live: Beide Texte werden vom Statusabruf unten ersetzt, sobald die
+           Seite fertig gebaut ist oder der Bau scheitert. Ohne Live-Region
+           erfaehrt ein Screenreader davon nichts — die Seite laedt nicht neu. #}
+        <h1 id="waitTitle" aria-live="polite">{{ t.wait.h1|safe }}{% if name %}<br><span class="wait-name">{{ t.wait.name_pre|safe }}{{ name }}{{ t.wait.name_post|safe }}</span>{% endif %}</h1>
+        <p class="wait-sub" id="waitSub" aria-live="polite">{{ t.wait.sub|safe }}</p>
 
         <ol class="wait-steps" id="waitSteps">
           <li class="wait-step" data-s="1"><span class="wait-dot" aria-hidden="true"></span>{{ t.wait.step1|safe }}</li>
