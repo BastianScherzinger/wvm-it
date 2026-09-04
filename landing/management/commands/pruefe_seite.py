@@ -227,8 +227,15 @@ class Command(BaseCommand):
         # widerspricht — und widersprüchliche Zahlen sind das stärkste Negativsignal
         # für KI-Antwortmaschinen (docs/SEO-PLAN.md, G10).
         from landing.views import _seiten_pfade
+        # `llms.txt` und `llms-full.txt` stehen bewusst mit in dieser Liste,
+        # obwohl sie keine HTML-Seiten sind und nicht in `_seiten_pfade()` gehören
+        # (Verbesserungslauf 13, Schritt 25). Sie enthielten die Preise bis dahin
+        # als abgetippte Zahlen, und keine Prüfung sah hin — ausgerechnet in dem
+        # Text, den eine Antwortmaschine wörtlich übernimmt. Das Suchmuster
+        # ('Zahl vor €') greift in Klartext genauso wie in HTML.
+        ziele = [p for p, _p, _f, _mehr in _seiten_pfade()] + ["/llms.txt", "/llms-full.txt"]
         gefunden, unbekannt = set(), {}
-        for pfad, _p, _f, _mehr in _seiten_pfade():
+        for pfad in ziele:
             html = client.get(pfad).content.decode("utf-8")
             zahlen = set()
             for treffer in re.findall(r"(\d[\d.]{0,8})\s*(?:€|&euro;)", html):
@@ -243,8 +250,8 @@ class Command(BaseCommand):
         for pfad, werte in unbekannt.items():
             self.fehler.append(
                 f"{pfad}: Preise, die nicht aus ANGEBOT_GROUPS stammen: {werte}")
-        self.stdout.write(f"Preise geprüft ({len(gefunden)} verschiedene Zahlen, "
-                          f"{len(erlaubt)} erlaubte Werte).")
+        self.stdout.write(f"Preise geprüft ({len(gefunden)} verschiedene Zahlen auf "
+                          f"{len(ziele)} Adressen, {len(erlaubt)} erlaubte Werte).")
 
     # ── 3. Seiten-Technik und Formulare ──────────────────────────────────────
     def _pruefe_seiten(self):

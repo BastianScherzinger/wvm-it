@@ -3000,9 +3000,28 @@ def robots_txt(request):
     return HttpResponse("\n".join(lines), content_type="text/plain; charset=utf-8")
 
 
+def _llms_betrag(kennung, feld):
+    """Eine Zahl aus `ANGEBOT_GROUPS`, deutsch formatiert, ohne Währungszeichen.
+
+    Bis Schritt 25 standen die Beträge in `llms.txt` als Stringliteral im Text —
+    obwohl die Projektregel `ANGEBOT_GROUPS` als einzige Preisquelle festlegt und
+    `pruefe_seite` jede Preiszahl auf jeder HTML-Seite prüft. `llms.txt` war
+    davon ausgenommen: Eine Preisänderung konnte hier unbemerkt auseinanderlaufen
+    — ausgerechnet in dem Text, den eine Antwortmaschine wörtlich übernimmt und
+    aus dem sie zitiert, ohne die Seite je gerendert zu haben.
+
+    Die Formatierung ist dieselbe wie im HTML (`_eur`, deutsche
+    Tausendertrennung): '1.490', nicht '1490'. Eine Zahl, die in der KI-Antwort
+    anders aussieht als auf der Seite, ist für den Leser ein Widerspruch."""
+    return _eur(_ANGEBOT_INDEX[kennung][feld])
+
+
 def _llms_kopf(c, base):
     """Erste Zeilen von llms.txt und llms-full.txt , die Kurzfassung, die eine
-    KI zitiert, wenn sie nur einen Absatz übernimmt."""
+    KI zitiert, wenn sie nur einen Absatz übernimmt.
+
+    Jeder Betrag darin kommt über `_llms_betrag()` aus `ANGEBOT_GROUPS`. Der
+    Satzbau ist derselbe wie zuvor; nur die Zahlen sind keine Literale mehr."""
     inhaber = c.get("inhaber_name", "Florin Feier")
     # Sitz und Kontakt gehören in denselben Absatz wie die Leistung: Wenn eine KI nur
     # einen Block übernimmt, soll sie sagen können, WO die Firma sitzt und WIE man sie
@@ -3018,9 +3037,13 @@ def _llms_kopf(c, base):
         f"> WVM-IT (Inhaber {inhaber}) betreut die EDV kleiner und mittlerer Betriebe in "
         f"Österreich und Deutschland: Arbeitsplätze, Server, Netzwerk, E-Mail und "
         f"Datensicherung, überwiegend per Fernwartung. Die laufende IT-Betreuung kostet "
-        f"ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe 95 € je Stunde, Einsätze vor "
-        f"Ort 120 € je Stunde zzgl. Anfahrt. Dazu kommen Webseiten ab 350 €, SEO ab "
-        f"149 €/Monat, Google Ads ab 199 €/Monat und KI-Automatisierung ab 390 €. "
+        f"ab {_llms_betrag('it_betreuung', 'mtl')} € je Arbeitsplatz und Monat, einzelne "
+        f"Hilfe {_llms_betrag('it_support', 'std')} € je Stunde, Einsätze vor "
+        f"Ort {_llms_betrag('vor_ort', 'std')} € je Stunde zzgl. Anfahrt. Dazu kommen "
+        f"Webseiten ab {_llms_betrag('onepager', 'once')} €, SEO ab "
+        f"{_llms_betrag('seo_care', 'mtl')} €/Monat, Google Ads ab "
+        f"{_llms_betrag('ads_care', 'mtl')} €/Monat und KI-Automatisierung ab "
+        f"{_llms_betrag('termin', 'once')} €. "
         f"Gebäudeautomation (Loxone, KNX) sowie Konferenz- und Veranstaltungstechnik "
         f"werden projektbezogen vor Ort umgesetzt. Ein fester Ansprechpartner, Antwort "
         f"innerhalb von 24 Stunden. Alle Preise sind Richtpreise netto zzgl. USt. "
@@ -3130,9 +3153,16 @@ def llms_txt(request):
     """/llms.txt , kompakte Klartext-Fassung für KI-Antwortmaschinen (GEO).
 
     Aufbau nach llmstxt.org: H1, Blockquote-Zusammenfassung, dann H2-Abschnitte mit
-    Markdown-Link-Listen. Der Inhalt kommt aus derselben Quelle wie die Seiten selbst
-    , eine abgetippte zweite Fassung wäre die erste Stelle, an der Zahlen auseinander
-    laufen (docs/SEO-PLAN.md, G9/G10)."""
+    Markdown-Link-Listen.
+
+    Der Inhalt kommt aus denselben Quellen wie die Seiten selbst: die Struktur aus
+    den Strukturmodulen, die Texte aus dem deutschen Sprachpaket und **jeder
+    Betrag über `_llms_betrag()` aus `ANGEBOT_GROUPS`** (docs/SEO-PLAN.md, G9/G10;
+    Verbesserungslauf 13, Schritt 25). Bis dahin standen die Preise hier als
+    Stringliteral — abgetippt, ungeprüft und damit die erste Stelle, an der Zahlen
+    auseinanderlaufen konnten. Seit Schritt 25 prüft `pruefe_seite._pruefe_preise`
+    zusätzlich `llms.txt` und `llms-full.txt`, sodass ein abweichender Betrag den
+    Deploy stoppt, statt in einer KI-Antwort aufzutauchen."""
     c = _content()
     base = (c.get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
     tel = c.get("telefon", "")
@@ -3167,14 +3197,36 @@ def llms_txt(request):
     ]
     zeilen += _llms_seiten(base, "de")
     zeilen += [
+        # Jede Zahl im folgenden Block kommt aus ANGEBOT_GROUPS. Der Satzbau ist
+        # Wort fuer Wort derselbe wie zuvor; nur die Betraege sind keine Literale
+        # mehr (Schritt 25). `pruefe_seite._pruefe_preise` prueft diese Datei
+        # seither mit, damit eine Preisaenderung vor dem Deploy auffaellt.
         "\n## Preise (Richtpreise, netto zzgl. USt.)",
-        "- IT-Betreuung: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, Datensicherung ab 49 €/Monat.",
-        "- Support: 95 €/Stunde per Fernwartung, 120 €/Stunde vor Ort zzgl. Anfahrt.",
-        "- Einmalig: Arbeitsplatz einrichten ab 190 €, Microsoft 365 ab 290 €, IT-Sicherheitscheck ab 490 €, Firewall/VPN ab 690 €, Netzwerk/WLAN ab 890 €.",
-        "- Webseiten: One-Pager ab 350 €, Business-Website ab 1.490 €, Premium ab 2.900 €, Shop ab 3.500 €.",
-        "- Betrieb: Hosting 15 €/Monat, Wartung 39 €/Monat, Domain 15 €/Jahr.",
-        "- Sichtbarkeit: SEO einmalig ab 390 €, SEO-Betreuung ab 149 €/Monat, Google Ads Einrichtung ab 490 €, Ads-Betreuung ab 199 €/Monat.",
-        "- KI: Terminautomatisierung ab 390 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Chatbot ab 690 €, CRM-/ERP-Anbindung ab 1.200 €.",
+        f"- IT-Betreuung: ab {_llms_betrag('it_betreuung', 'mtl')} €/Monat je Arbeitsplatz, "
+        f"Server ab {_llms_betrag('server_care', 'mtl')} €/Monat, "
+        f"Datensicherung ab {_llms_betrag('backup', 'mtl')} €/Monat.",
+        f"- Support: {_llms_betrag('it_support', 'std')} €/Stunde per Fernwartung, "
+        f"{_llms_betrag('vor_ort', 'std')} €/Stunde vor Ort zzgl. Anfahrt.",
+        f"- Einmalig: Arbeitsplatz einrichten ab {_llms_betrag('arbeitsplatz', 'once')} €, "
+        f"Microsoft 365 ab {_llms_betrag('m365', 'once')} €, "
+        f"IT-Sicherheitscheck ab {_llms_betrag('sicherheitscheck', 'once')} €, "
+        f"Firewall/VPN ab {_llms_betrag('firewall', 'once')} €, "
+        f"Netzwerk/WLAN ab {_llms_betrag('netzwerk_setup', 'once')} €.",
+        f"- Webseiten: One-Pager ab {_llms_betrag('onepager', 'once')} €, "
+        f"Business-Website ab {_llms_betrag('business', 'once')} €, "
+        f"Premium ab {_llms_betrag('premium', 'once')} €, "
+        f"Shop ab {_llms_betrag('shop', 'once')} €.",
+        f"- Betrieb: Hosting {_llms_betrag('hosting', 'mtl')} €/Monat, "
+        f"Wartung {_llms_betrag('wartung', 'mtl')} €/Monat, "
+        f"Domain {_llms_betrag('domain', 'yr')} €/Jahr.",
+        f"- Sichtbarkeit: SEO einmalig ab {_llms_betrag('seo', 'once')} €, "
+        f"SEO-Betreuung ab {_llms_betrag('seo_care', 'mtl')} €/Monat, "
+        f"Google Ads Einrichtung ab {_llms_betrag('ads_setup', 'once')} €, "
+        f"Ads-Betreuung ab {_llms_betrag('ads_care', 'mtl')} €/Monat.",
+        f"- KI: Terminautomatisierung ab {_llms_betrag('termin', 'once')} €, "
+        f"WhatsApp-/E-Mail-Automatisierung ab {_llms_betrag('wa_auto', 'once')} €, "
+        f"Chatbot ab {_llms_betrag('chatbot', 'once')} €, "
+        f"CRM-/ERP-Anbindung ab {_llms_betrag('custom_ki', 'once')} €.",
         "- Gebäudeautomation, Konferenz- und Veranstaltungstechnik: projektbezogen nach Bestandsaufnahme.",
         "\n## Branchen (gleiche Leistung, anderer Zuschnitt)",
         *_llms_branchen(base, "de"),
