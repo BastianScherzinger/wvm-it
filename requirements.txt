@@ -3,3 +3,7 @@ gunicorn==22.0.0
 whitenoise==6.7.0
 psycopg2-binary==2.9.9
 APScheduler==3.10.4
+# Fehler-Monitoring. Wird nur eingeschaltet, wenn SENTRY_DSN in der Umgebung
+# steht (config/settings.py, Abschnitt "Fehler-Monitoring") - ohne die Variable
+# liegt das Paket ungenutzt im Image und kostet nichts als Platz.
+sentry-sdk==2.68.1

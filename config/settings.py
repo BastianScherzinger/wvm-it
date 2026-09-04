@@ -234,3 +234,38 @@ LOGGING = {
         "django.request": {"handlers": ["stdout"], "level": "WARNING", "propagate": False},
     },
 }
+
+# ── Fehler-Monitoring (optional) ─────────────────────────────────────────────
+# Eine Protokollzeile hilft nur dem, der gerade hinschaut. Wirft eine Ansicht im
+# Betrieb eine 500, steht sie seit der Protokollierung oben zwar im Log - aber
+# niemand erfaehrt davon. Diese paar Zeilen schliessen die Luecke, sobald ein
+# DSN in der Umgebung steht.
+#
+# Drei Bedingungen, und jede hat einen Grund:
+#
+# * Nur wenn SENTRY_DSN gesetzt ist. Ohne die Variable aendert sich gar nichts;
+#   genau in diesem Zustand ist der Schritt abgenommen worden. Der DSN gehoert
+#   in die Railway-Umgebung, nicht ins Repo.
+# * Nur wenn DEBUG aus ist. Auf einer Entwicklungsmaschine sind Ausnahmen die
+#   Arbeit selbst - sie in ein Betriebs-Postfach zu schicken macht das Postfach
+#   unbrauchbar.
+# * Der Import steht IM if. Faellt das Paket einmal aus der Installation,
+#   startet die Seite trotzdem; ein ImportError auf Modulebene machte sie
+#   unerreichbar - fuer ein Werkzeug, das nur zuschauen soll.
+#
+# send_default_pii=False ist Pflicht, nicht Geschmack: Diese Seite verarbeitet
+# Anfragedaten (Name, Telefon, Nachricht). Ein Monitoring, das sie mitschickt,
+# waere eine neue Datenverarbeitung und muesste nach Projektregel in
+# content.json unter Datenschutz stehen. Mit False entsteht keine.
+#
+# traces_sample_rate=0 schaltet die Leistungsmessung ab. Gesucht sind Fehler,
+# nicht Zeitreihen - und jede Spur waere eine weitere Uebertragung.
+SENTRY_DSN = os.environ.get("SENTRY_DSN", "").strip()
+if SENTRY_DSN and not DEBUG:
+    import sentry_sdk
+
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        traces_sample_rate=0,
+        send_default_pii=False,
+    )

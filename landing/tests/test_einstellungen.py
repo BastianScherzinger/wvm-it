@@ -345,3 +345,38 @@ class CspTest(SimpleTestCase):
         self.assertEqual(antwort.status_code, 301)
         self.assertIn("frame-ancestors 'none'",
                       antwort.headers.get("Content-Security-Policy", ""))
+
+
+class FehlerMonitoringTest(SimpleTestCase):
+    """Das Fehler-Monitoring — und vor allem sein ausgeschalteter Zustand.
+
+    Die Seite verarbeitet Anfragedaten: Name, Telefonnummer, freier Text. Ein
+    Monitoring, das die mitschickt, wäre eine neue Datenverarbeitung und müsste
+    nach Projektregel in ``content.json`` unter Datenschutz stehen. Deshalb ist
+    der abgeschaltete Zustand hier kein Nebenfall, sondern der geprüfte
+    Normalzustand: Ohne ``SENTRY_DSN`` in der Umgebung verlässt nichts diesen
+    Server.
+    """
+
+    def test_ohne_dsn_ist_kein_sentry_client_aktiv(self):
+        """Verhindert, dass Anfragedaten unbemerkt zu einem Fremdanbieter gehen.
+
+        Der Fehler, gegen den das steht: jemand ruft ``sentry_sdk.init()``
+        bedingungslos auf — etwa beim Nachbau der Konfiguration in einem
+        Skript — und ab da schickt jede unbehandelte Ausnahme ihren Kontext
+        hinaus. Auf einer Seite mit Kontaktformular ist das eine Datenpanne,
+        keine Bequemlichkeit.
+
+        Der Test läuft nur ohne ``SENTRY_DSN`` in der Umgebung; steht die
+        Variable, ist das Einschalten ja gewollt.
+        """
+        if os.environ.get("SENTRY_DSN", "").strip():
+            self.skipTest("SENTRY_DSN ist gesetzt — das Monitoring soll hier laufen")
+        self.assertEqual(settings.SENTRY_DSN, "",
+                         "SENTRY_DSN steht in den Settings, obwohl die Umgebung keinen liefert")
+        try:
+            import sentry_sdk
+        except ImportError:
+            return  # Nicht installiert — dann erst recht kein Client.
+        self.assertFalse(sentry_sdk.get_client().is_active(),
+                         "Ein Sentry-Client ist aktiv, obwohl kein DSN gesetzt ist")

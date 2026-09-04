@@ -83,6 +83,37 @@ Stehen in `README.md` unter „Deploy (Railway)". Ergänzend zu beachten:
 | `DEBUG` | `False`. Sonst greifen die Sicherheits-Header und `SECURE_SSL_REDIRECT` nicht |
 | `INDEXNOW_KEY` | Öffentlich, das ist Teil des Verfahrens. Ändern nur zusammen mit der Nachweisdatei |
 | `EMAIL_HOST` u. a. | Ohne SMTP werden Anfragen nur geloggt — der Besucher bekommt trotzdem eine Bestätigungsseite, aber niemand erfährt von der Anfrage |
+| `SENTRY_DSN` | **Optional, noch nicht gesetzt.** Leer = kein Fehler-Monitoring; die Seite läuft unverändert. Gesetzt = unbehandelte Ausnahmen werden gemeldet (siehe unten) |
+
+## Fehler-Monitoring (Sentry)
+
+Angelegt 04.09.2026. **Ohne `SENTRY_DSN` in der Railway-Umgebung ändert sich
+nichts** — das ist der Zustand, in dem die Änderung abgenommen wurde und in dem
+sie heute läuft. Es entsteht keine Datenverarbeitung, und `content.json` →
+Datenschutz braucht keinen neuen Absatz.
+
+Zum Einschalten:
+
+1. Bei Sentry ein Projekt vom Typ *Django* anlegen und den DSN kopieren.
+2. In Railway (`webseiten` → Service `wvm-it` → Umgebung `shop`) die Variable
+   `SENTRY_DSN` auf diesen Wert setzen. Der Dienst startet neu.
+3. Eine Adresse aufrufen, die absichtlich eine 500 wirft, und prüfen, ob das
+   Ereignis in Sentry ankommt. **Ohne DSN lässt sich das nicht zeigen** —
+   dieser Schritt gehört dem, der die Variable setzt.
+
+Fest verdrahtet in `config/settings.py`, Abschnitt „Fehler-Monitoring":
+
+* `send_default_pii=False` — die Seite verarbeitet Anfragedaten (Name,
+  Telefon, freier Text). Würden die mitgeschickt, wäre das eine **neue**
+  Datenverarbeitung und müsste nach Projektregel in `content.json` unter
+  Datenschutz stehen. Wer den Schalter umlegt, muss den Datenschutztext
+  nachziehen — sonst stimmt er nicht mehr.
+* `traces_sample_rate=0` — gesucht sind Fehler, nicht Zeitreihen.
+* Die Initialisierung steht hinter `if SENTRY_DSN and not DEBUG`, der Import
+  ebenfalls: Fehlt das Paket einmal, startet die Seite trotzdem.
+
+Dass die Meldung wirklich ankommt, lässt sich ohne DSN nicht zeigen — Punkt 3
+ist deshalb ausdrücklich **nicht** abgehakt.
 
 ## Protokoll
 
