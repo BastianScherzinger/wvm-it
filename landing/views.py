@@ -547,7 +547,11 @@ def _rechner_rechnen(werte, lang="de"):
     }
 
 
-def rechner_zahlen_fuer_pruefung():
+# Unterstrich, weil es KEINE Ansicht ist: Ohne ihn zaehlt jede Pruefung, die
+# oeffentliche Funktionen in views.py mit den URL-Mustern abgleicht, diese
+# Funktion als Ansicht ohne Route (Messung PJ10). Genutzt von
+# manage.py pruefe_seite.
+def _rechner_zahlen_fuer_pruefung():
     """Alle Zahlen, die die Standard-Ansicht des Rechners vor einem €-Zeichen zeigt.
 
     `pruefe_seite` erlaubt nur Preise aus ANGEBOT_GROUPS. Der Rechner bildet aber
@@ -3439,11 +3443,33 @@ def _sitemap_klasse(pfad):
     return "kern"
 
 
+# ── Bilder in der Sitemap (Messung TS19) ─────────────────────────────────────
+# Nur die Seiten, die wirklich ein eigenes, inhaltstragendes Bild zeigen. Das
+# Logo zaehlt nicht, Icons zaehlen nicht: Eine Bild-Sitemap, in der auf jeder
+# Seite dasselbe Markenzeichen steht, sagt einer Bildersuche nichts — sie macht
+# die Datei nur groesser und die Angabe wertlos.
+SITEMAP_BILDER = {
+    "/": ["img/hero_bg.jpg", "img/florin.jpg", "img/ref_ruempelwerk.webp",
+          "img/ref_smarthome.webp", "img/ref_konferenz.webp", "img/ref_buehne.webp"],
+    "/referenzen/": ["img/ref_ruempelwerk.webp"],
+    "/ueber-uns/": ["img/florin.jpg"],
+}
+
+
+def _bild_block(base, pfad):
+    """<image:image>-Eintraege eines Pfads, leer wenn die Seite keine eigenen Bilder hat."""
+    from django.templatetags.static import static
+    return "".join(
+        f"<image:image><image:loc>{base}{static(datei)}</image:loc></image:image>"
+        for datei in SITEMAP_BILDER.get(pfad, []))
+
+
 def _sitemap_eintraege(base, pfade):
     """<url>-Bloecke fuer eine Liste von (Pfad, prio, changefreq, mehrsprachig)."""
     items = []
     for path, pr, cf, mehrsprachig in pfade:
         lastmod = stand.datum(path)
+        bilder = _bild_block(base, path)
         if not mehrsprachig:
             # Einsprachige Seite (Fachbeitraege, Glossar, Checklisten): genau ein
             # Eintrag, keine hreflang-Alternates. Ein Alternate auf eine Seite,
@@ -3451,7 +3477,7 @@ def _sitemap_eintraege(base, pfade):
             items.append(
                 f"<url><loc>{base}{path}</loc>"
                 f"<lastmod>{lastmod}</lastmod>"
-                f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
+                f"<changefreq>{cf}</changefreq><priority>{pr}</priority>{bilder}</url>"
             )
             continue
         alts = "".join(
@@ -3465,7 +3491,7 @@ def _sitemap_eintraege(base, pfade):
             items.append(
                 f"<url><loc>{loc}</loc>{alts}"
                 f"<lastmod>{lastmod}</lastmod>"
-                f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
+                f"<changefreq>{cf}</changefreq><priority>{pr}</priority>{bilder}</url>"
             )
     return items
 
@@ -3502,7 +3528,8 @@ def sitemap_segment(request, klasse):
     pfade = [p for p in _seiten_pfade() if _sitemap_klasse(p[0]) == klasse]
     xml = ('<?xml version="1.0" encoding="UTF-8"?>'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-           'xmlns:xhtml="http://www.w3.org/1999/xhtml">'
+           'xmlns:xhtml="http://www.w3.org/1999/xhtml" '
+           'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">'
            + "".join(_sitemap_eintraege(base, pfade)) + "</urlset>")
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 

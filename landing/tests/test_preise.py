@@ -11,7 +11,7 @@ from landing import leistungen
 from landing.views import (ANGEBOT_GROUPS, STARTPAKETE, _ANGEBOT_INDEX,
                            _RECHNER_NACH_ID, _eur, _make_price_label,
                            _paketpreise, _rechner_rechnen, _rechner_werte,
-                           _thousands, rechner_zahlen_fuer_pruefung)
+                           _thousands, _rechner_zahlen_fuer_pruefung)
 
 _PREISFELDER = ("once", "mtl", "yr", "std")
 
@@ -176,7 +176,7 @@ class KostenrechnerTest(SimpleTestCase):
             self.assertGreaterEqual(wert, 0)
 
     def test_rechner_zahlen_fuer_pruefung_deckt_alle_summen_ab(self):
-        zahlen = rechner_zahlen_fuer_pruefung()
+        zahlen = _rechner_zahlen_fuer_pruefung()
         ergebnis = _rechner_rechnen(_rechner_werte(QueryDict("")))
         self.assertIn(ergebnis["mtl"], zahlen)
         self.assertIn(ergebnis["jahr"], zahlen)

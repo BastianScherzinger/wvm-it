@@ -133,6 +133,32 @@ STORAGES = {
 # gehasht sind, werden CSS/JS über einen Versions-Query (?v=ASSET_VERSION) im Template
 # cache-invalidiert; Bilder/Videos/Fonts sind stabil und dürfen dauerhaft im Cache bleiben.
 WHITENOISE_MAX_AGE = 31536000
+
+
+def _immutable_file_test(path, url):
+    """Welche statischen Dateien duerfen `Cache-Control: immutable` tragen?
+
+    `immutable` sagt einem Browser: Frag nie wieder nach, auch nicht mit einem
+    bedingten Abruf. Das ist nur zulaessig, wenn sich der Inhalt unter dieser
+    Adresse **nie** aendert.
+
+    Die Dateinamen sind hier NICHT gehasht (bewusst, siehe STORAGES oben).
+    Deshalb bekommen es nur Dateien, die im Bestand nicht ueberschrieben, sondern
+    ersetzt werden: Schriften, Bilder und Videos. Wird ein Bild ausgetauscht,
+    bekommt es einen neuen Namen — so wie `florin_320.jpg` neben `florin.jpg`.
+
+    **CSS und JavaScript bleiben aussen vor.** Sie werden im Bestand ueberschrieben
+    und haengen an der Versions-Abfrage `?v=` im Template; ein Browser, der die
+    Datei ohne Abfrage geholt hat, saesse sonst ein Jahr auf einem alten Stand.
+    """
+    return path.rsplit(".", 1)[-1].lower() in {
+        "woff2", "woff", "ttf", "otf",
+        "webp", "avif", "jpg", "jpeg", "png", "gif", "ico", "svg",
+        "mp4", "webm",
+    }
+
+
+WHITENOISE_IMMUTABLE_FILE_TEST = _immutable_file_test
 # Deploy-Version für Cache-Busting: Railway liefert den Git-Commit-SHA; sonst Fallback.
 ASSET_VERSION = (os.environ.get("RAILWAY_GIT_COMMIT_SHA")
                  or os.environ.get("ASSET_VERSION") or "2026071500")[:12]

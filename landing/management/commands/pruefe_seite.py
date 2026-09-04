@@ -204,8 +204,8 @@ class Command(BaseCommand):
         # Der Kostenrechner (SEO-AUSBAU-3.md, W1) bildet ebenfalls Summen. Er liefert
         # die Zahlen seiner Standard-Ansicht selbst — sie hier ein zweites Mal zu
         # berechnen wäre genau die Doppelung, die diese Prüfung verhindern soll.
-        from landing.views import rechner_zahlen_fuer_pruefung
-        erlaubt |= rechner_zahlen_fuer_pruefung()
+        from landing.views import _rechner_zahlen_fuer_pruefung
+        erlaubt |= _rechner_zahlen_fuer_pruefung()
         # Startwert der laufenden Summe im Konfigurator, bevor etwas gewählt wurde.
         erlaubt.add(0)
         client = _client()
