@@ -70,7 +70,7 @@ class Command(BaseCommand):
             html = antwort.content.decode("utf-8")
             titel = re.search(r"<title>(.*?)</title>", html, re.S)
             desc = re.search(r'<meta name="description" content="(.*?)"', html, re.S)
-            schema = re.findall(r'<script type="application/ld\+json">(.*?)</script>',
+            schema = re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>',
                                 html, re.S)
             arten = set()
             for block in schema:

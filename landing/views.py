@@ -24,7 +24,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
 from . import (beitraege, branchen, checklisten, glossar, i18n, leistungen, regionen,
-               selbsttest, vergleiche)
+               selbsttest, stand, vergleiche)
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -1449,6 +1449,14 @@ def _structured_data(c, lang):
         }.items() if v},
         "areaServed": area_served,
         "availableLanguage": ["de", "en", "ro"],
+        # Koordinaten des Firmensitzes (Messung GE22/GE09). Bewusst der
+        # Ortsmittelpunkt von Lenzing, nicht eine auf sechs Nachkommastellen
+        # eingemessene Hausnummer: Der Wert ist eine oeffentliche Ortsangabe und
+        # auf rund einen Kilometer genau — eine vorgetaeuschte Punktgenauigkeit
+        # waere dieselbe Sorte Behauptung wie eine erfundene Bewertung.
+        "geo": {"@type": "GeoCoordinates", "latitude": 47.9714, "longitude": 13.6206,
+                "addressCountry": "AT"},
+        "hasMap": "https://www.openstreetmap.org/search?query=Lenzing%20Ober%C3%B6sterreich",
         # Reihenfolge nach Gewicht: Das Kerngeschäft steht vorne, damit die
         # Entität nicht als Webagentur mit IT-Nebengeschäft gelesen wird.
         "knowsAbout": ["EDV-Betreuung", "IT-Betreuung", "Managed IT", "Fernwartung",
@@ -1479,6 +1487,15 @@ def _structured_data(c, lang):
         "name": c.get("site_name", "WVM-IT"),
         "inLanguage": ["de", "en", "ro"],
         "publisher": {"@id": f"{base}/#business"},
+        # Die interne Suche gibt es seit dem 29.08.2026 unter /suche/?q= — im
+        # Graphen stand sie bisher nicht (Messung GE14). Der Knoten sagt einer
+        # Suchmaschine, dass die Seite durchsuchbar ist und wie.
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {"@type": "EntryPoint",
+                       "urlTemplate": f"{base}/suche/?q={{search_term_string}}"},
+            "query-input": "required name=search_term_string",
+        },
     }
 
     # Eigene Person-Entität statt eines eingebetteten Objekts: Nur so lässt sich
@@ -1531,6 +1548,20 @@ def _structured_data(c, lang):
 
     return json.dumps({"@context": "https://schema.org", "@graph": graph},
                       ensure_ascii=False, separators=(",", ":"))
+
+
+def _startseiten_schema(c, lang):
+    """Der Graph der Startseite — wie `_structured_data`, plus ihr WebPage-Knoten.
+
+    Die Startseite geht nicht durch `_seiten_schema` (sie hat keine Brotkrume),
+    haette sonst also als einzige Seite keinen WebPage-Knoten und kein
+    `dateModified`.
+    """
+    base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
+    url = base + i18n.add_prefix(i18n.norm_lang(lang), "/")
+    graph = json.loads(_structured_data(c, lang))
+    graph["@graph"].append(_webpage_knoten(base, lang, url.rstrip("/") + "/", None))
+    return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
 
 
 # Die beiden Beiträge mit der größten Suchnachfrage. Bewusst fest gewählt und
@@ -1588,7 +1619,7 @@ def index(request):
         "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
         "kooperationen": KOOPERATIONEN,
-        "structured_data": _structured_data(c, lang),
+        "structured_data": _startseiten_schema(c, lang),
     })
 
 
@@ -1637,6 +1668,10 @@ def _seiten_pfade():
     pfade += [(f"/leistungen/{l['slug']}/", l["prio"], "monthly", True)
               for l in leistungen.LEISTUNGEN]
     pfade += [("/kosten/rechner/", "0.8", "monthly", True)]
+    # Ueber uns gehoert in den Index: Bei einem IT-Dienstleister ist die Frage
+    # nach der Person ein Kaufsignal, keine Pflichtuebung. Die Danke-Seite steht
+    # bewusst NICHT hier — sie traegt noindex.
+    pfade += [("/ueber-uns/", "0.6", "yearly", True)]
     pfade += [("/branchen/", "0.8", "monthly", True)]
     pfade += [(f"/branchen/{b['slug']}/", b["prio"], "monthly", True)
               for b in branchen.BRANCHEN]
@@ -1664,8 +1699,15 @@ def _seiten_pfade():
     pfade += [(f"/aktuelles/{b['slug']}/", b["prio"], "yearly", False)
               for b in beitraege.BEITRAEGE]
     # Rechtstexte gehoeren in den Index (Anbieterkennzeichnung), aber ganz hinten.
-    pfade += [("/impressum/", "0.2", "yearly", True),
-              ("/datenschutz/", "0.2", "yearly", True)]
+    # Vierter Wert False: Sie gibt es nur auf Deutsch (siehe _RECHTSSEITEN). Die
+    # Adressen /en/impressum/ und /ro/impressum/ existieren zwar, tragen aber
+    # noindex und ein canonical auf die deutsche Fassung — sie in die Sitemap zu
+    # schreiben hiesse, Google um die Indexierung von Seiten zu bitten, die man
+    # ihm im selben Atemzug verbietet.
+    pfade += [("/impressum/", "0.2", "yearly", False),
+              ("/datenschutz/", "0.2", "yearly", False),
+              ("/agb/", "0.2", "yearly", False),
+              ("/barrierefreiheit/", "0.2", "yearly", False)]
     return pfade
 
 
@@ -1711,14 +1753,60 @@ def _breadcrumb(base, teile):
     return {"@type": "BreadcrumbList", "itemListElement": eintraege}
 
 
+def _seiten_url(base, breadcrumb):
+    """Die Adresse der aktuellen Seite — aus dem letzten Brotkrumen-Glied.
+
+    Der Weg ueber die Brotkrume spart es, `pfad=` an rund zwanzig Aufrufstellen
+    von `_seiten_schema` durchzureichen: Das letzte Glied IST die aktuelle Seite,
+    und wo keine Brotkrume gebaut wird, ist es die Startseite.
+    """
+    if breadcrumb:
+        glieder = breadcrumb.get("itemListElement") or []
+        if glieder:
+            return glieder[-1].get("item") or f"{base}/"
+    return f"{base}/"
+
+
+def _webpage_knoten(base, lang, url, breadcrumb):
+    """Der WebPage-Knoten, den bis zum 05.09.2026 keine Seite hatte (VL10).
+
+    Er ist der Anker, an dem alles andere haengt: Er nennt die Adresse der Seite,
+    verbindet sie mit der Website-Entitaet, traegt das **echte** Aenderungsdatum
+    aus landing/stand.py — und zeigt mit `speakable` auf den Antwortabsatz, den
+    templates/antwort.html auf jedem Seitentyp mit der Klasse `.antwort` setzt.
+    Vorher trugen 15 von 158 Seiten diese Angabe, obwohl der Absatz ueberall steht.
+    """
+    pfad = url[len(base):] or "/"
+    # Sprachvarianten teilen sich das Datum ihres deutschen Basis-Pfads.
+    # strip_prefix gibt ein Paar (Sprache, Pfad) zurueck — hier zaehlt der Pfad.
+    basis_pfad = i18n.strip_prefix(pfad)[1]
+    knoten = {
+        "@type": "WebPage", "@id": f"{url}#webpage", "url": url,
+        "isPartOf": {"@id": f"{base}/#website"},
+        "about": {"@id": f"{base}/#business"},
+        "inLanguage": i18n.get_pack(lang)["meta"]["html_lang"],
+        "dateModified": stand.datum(basis_pfad),
+        "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".antwort"]},
+    }
+    if breadcrumb:
+        knoten["breadcrumb"] = {"@id": f"{url}#breadcrumb"}
+    return knoten
+
+
 def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id=""):
-    """@graph einer Unterseite: immer der Betrieb und die Website, dazu optional
-    Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben Entitaet
-    (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8)."""
+    """@graph einer Unterseite: immer der Betrieb, die Website und die Seite selbst,
+    dazu optional Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben
+    Entitaet (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8)."""
     base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
     graph = json.loads(_structured_data(c, lang))["@graph"]
     # Die FAQPage der Startseite gehoert nicht auf eine Unterseite.
     graph = [k for k in graph if k.get("@type") != "FAQPage"]
+    url = _seiten_url(base, breadcrumb)
+    graph.append(_webpage_knoten(base, lang, url, breadcrumb))
+    if breadcrumb:
+        # Eine @id, damit der WebPage-Knoten sie referenzieren kann statt sie zu
+        # wiederholen — sonst zeigt der Verweis ins Leere (Messung GE07/VL10).
+        breadcrumb = dict(breadcrumb, **{"@id": f"{url}#breadcrumb"})
     for zusatz in (breadcrumb, service):
         if zusatz:
             graph.append(zusatz)
@@ -2054,8 +2142,17 @@ def _defined_term_set(base):
         "@id": f"{base}/wissen/#glossar",
         "name": "IT-Glossar von WVM-IT",
         "inLanguage": "de-AT",
-        "hasDefinedTerm": [{"@id": f"{base}/wissen/{b['slug']}/#term"}
-                           for b in glossar.BEGRIFFE],
+        # Vollstaendige Knoten statt blosser @id-Verweise: Ein Verweis auf einen
+        # Knoten, der nur auf einer ANDEREN Seite steht, laesst sich im Graphen
+        # dieser Seite nicht aufloesen (Messung GE07/VL10) — vierzehn offene
+        # Verweise je Glossarseite. Mit @type, Name und Adresse ist jeder Eintrag
+        # ein eigener Knoten; auf der Seite des Begriffs verschmilzt er mit der
+        # ausfuehrlichen Fassung, weil beide dieselbe @id tragen.
+        "hasDefinedTerm": [
+            {"@type": "DefinedTerm", "@id": f"{base}/wissen/{b['slug']}/#term",
+             "name": _begriff_daten(b).get("titel", b["slug"]),
+             "url": f"{base}/wissen/{b['slug']}/"}
+            for b in glossar.BEGRIFFE],
     }
 
 
@@ -2079,17 +2176,23 @@ def begriff_seite(request, slug):
         "inLanguage": "de-AT",
     }
     leistung = leistungen.NACH_SLUG.get(eintrag.get("leistung", ""))
+    # Der Begriff verweist mit `inDefinedTermSet` auf das Glossar. Bis zum
+    # 05.09.2026 lag dieser Knoten nur auf /wissen/ — der Verweis zeigte auf den
+    # vierzehn Begriffsseiten also ins Leere (Messung GE07/VL10). Er kostet
+    # wenige Zeilen und gehoert auf jede Seite, die ihn referenziert.
+    graph = json.loads(_seiten_schema(
+        c, "de", service=term,
+        breadcrumb=_breadcrumb(base, [
+            ("Wissen", reverse("wissen")),
+            (begriff.get("titel", slug), pfad)])))
+    graph["@graph"].append(_defined_term_set(base))
     return render(request, "begriff.html", {
         "c": c, "begriff": begriff,
         "leistung": _leistung_daten(leistung, "de") if leistung else None,
         "verwandt": [_begriff_daten(glossar.NACH_SLUG[v])
                      for v in eintrag.get("verwandt", []) if v in glossar.NACH_SLUG],
         "preis_stand": _preis_stand("de"),
-        "structured_data": _seiten_schema(
-            c, "de", service=term,
-            breadcrumb=_breadcrumb(base, [
-                ("Wissen", reverse("wissen")),
-                (begriff.get("titel", slug), pfad)])),
+        "structured_data": json.dumps(graph, ensure_ascii=False, separators=(",", ":")),
     })
 
 
@@ -2532,8 +2635,93 @@ def kontakt(request):
     })
 
 
+# ── Rechtstexte ──────────────────────────────────────────────────────────────
+# Vier Seiten aus einer Vorlage. Die Ueberschrift kommt aus der Fussleiste des
+# Sprachpakets, der Text aus content.json — dort wird er gepflegt.
+#
+# Alle vier stehen **nur auf Deutsch**, weil sie sich auf oesterreichisches Recht
+# beziehen. Die Adressen /en/… und /ro/… gibt es trotzdem: Sie liegen in
+# i18n_patterns, und wer den Sprachumschalter benutzt, soll nicht ins Leere
+# laufen. Fuer Suchmaschinen waeren sie aber wortgleiche Zweitfassungen — die
+# Messung fand sechs Seitenpaare mit 100 Prozent Textgleichheit (IS21). Deshalb
+# tragen sie `noindex` und ein `canonical` auf die deutsche Fassung, und in der
+# Sitemap steht nur diese. Das ist die Entscheidung, nicht das Liegenlassen:
+# uebersetzen waere die Alternative, aber eine uebersetzte Anbieterkennzeichnung
+# ohne juristische Pruefung waere schlechter als eine ehrlich deutsche.
+_RECHTSSEITEN = {
+    "impressum": ("impressum", "impressum", "impressum_ph"),
+    "datenschutz": ("datenschutz", "datenschutz_full", "datenschutz_ph"),
+    "agb": ("agb", "agb", ""),
+    "barrierefreiheit": ("barrierefreiheit", "barrierefreiheit", ""),
+}
+
+
+def anfrage_danke(request):
+    """/anfrage/danke/ — der Abschluss als eigene Adresse (Messung KV07).
+
+    Ohne eigene URL laesst sich kein Abschluss messen; die eingeblendete Meldung
+    auf der Ausgangsseite ist zwar der angenehmere Weg fuer alle, deren Browser
+    JavaScript ausfuehrt, aber sie hinterlaesst keine Spur. Seit dem 05.09.2026
+    landet jede Anfrage ohne JavaScript hier — und wer mit JavaScript anfragt,
+    bekommt weiter die Meldung an Ort und Stelle.
+
+    `?q=` nennt das Thema der Anfrage; ein unbekannter Wert wird verworfen statt
+    ausgegeben (die Seite gehoert sonst zu den Stellen, an denen sich fremder
+    Text einschleusen laesst).
+    """
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    dk = pack.get("danke", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    quelle = (request.GET.get("q") or "").strip().lower()
+    return render(request, "danke.html", {
+        "c": c,
+        "kurz": dk.get("kurz", "").format(telefon=c.get("telefon", "")),
+        "quelle_name": _ANFRAGE_QUELLEN.get(quelle, ""),
+        "structured_data": _seiten_schema(
+            c, lang, breadcrumb=_breadcrumb(
+                base, [(dk.get("h1", "Danke"), reverse("anfrage_danke"))])),
+    })
+
+
+def ueber_uns(request):
+    """/ueber-uns/ — wer hinter dem Betrieb steht (Messung VL11).
+
+    Bei einem Dienstleister, dem man Zugang zu allen Systemen gibt, ist das keine
+    Nebenseite. Sie traegt deshalb den Person-Knoten aus dem Graphen sichtbar
+    nach: benannte Person, echte Anschrift, fuenf Grundsaetze — und vier Dinge,
+    die ausdruecklich nicht getan werden.
+    """
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    ub = pack.get("ueber", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    adresse = _adresszeile(c)
+    pfad = reverse("ueber_uns")
+    # AboutPage statt der blossen WebPage: Der Seitentyp sagt einer
+    # Antwortmaschine, dass hier die Selbstauskunft der Entitaet steht.
+    ueber = {
+        "@type": "AboutPage", "@id": f"{base}{pfad}#aboutpage",
+        "url": f"{base}{pfad}",
+        "mainEntity": {"@id": f"{base}/#business"},
+        "about": {"@id": f"{base}/#inhaber"},
+    }
+    return render(request, "ueber_uns.html", {
+        "c": c,
+        "adresse": adresse,
+        "kurz": ub.get("kurz", "").format(inhaber=c.get("inhaber_name", "Florin Feier"),
+                                          adresse=adresse),
+        "sitz_t": ub.get("sitz_t", "").format(adresse=adresse),
+        "structured_data": _seiten_schema(
+            c, lang, service=ueber,
+            breadcrumb=_breadcrumb(base, [(ub.get("h1", "Über uns"), pfad)])),
+    })
+
+
 def _rechtsseite(request, art):
-    """Impressum und Datenschutz als eigene URLs statt als Klapptext im Footer:
+    """Eine Rechtsseite als eigene URL statt als Klapptext im Footer:
     Eine Anbieterkennzeichnung muss ohne Suchen erreichbar sein."""
     c = _content()
     lang = get_language()
@@ -2541,15 +2729,24 @@ def _rechtsseite(request, art):
     recht = pack.get("recht", {})
     fuss = pack.get("footer", {})
     base = (c.get("wvm_url") or "").rstrip("/")
-    ist_impressum = art == "impressum"
-    ueberschrift = fuss.get("impressum" if ist_impressum else "datenschutz_full", art)
+    feld, fuss_key, ph_key = _RECHTSSEITEN[art]
+    ueberschrift = fuss.get(fuss_key, art)
+    deutsch = reverse(art)
+    if lang != "de":
+        # Die deutsche Adresse ist die kanonische; reverse() liefert hier den
+        # praefigierten Pfad, deshalb das Praefix abschneiden. strip_prefix gibt
+        # ein Paar (Sprache, Pfad) zurueck.
+        deutsch = i18n.strip_prefix(deutsch)[1]
     return render(request, "recht.html", {
         "c": c,
         "h1": ueberschrift,
         "titel": recht.get(f"{art}_titel", ueberschrift),
         "beschreibung": recht.get(f"{art}_desc", ""),
-        "text": c.get("impressum" if ist_impressum else "datenschutz", ""),
-        "platzhalter": fuss.get("impressum_ph" if ist_impressum else "datenschutz_ph", ""),
+        "text": c.get(feld, ""),
+        "platzhalter": fuss.get(ph_key, "") if ph_key else "",
+        # Nur die deutsche Fassung gehoert in den Index.
+        "nur_deutsch": lang != "de",
+        "kanonisch": deutsch,
         "structured_data": _seiten_schema(
             c, lang, breadcrumb=_breadcrumb(base, [(ueberschrift, reverse(art))])),
     })
@@ -2561,6 +2758,14 @@ def impressum(request):
 
 def datenschutz(request):
     return _rechtsseite(request, "datenschutz")
+
+
+def agb(request):
+    return _rechtsseite(request, "agb")
+
+
+def barrierefreiheit(request):
+    return _rechtsseite(request, "barrierefreiheit")
 
 
 def angebot(request):
@@ -2694,6 +2899,9 @@ def robots_txt(request):
     for bot in _AI_CRAWLERS:
         lines += [f"User-agent: {bot}", "Allow: /", *disallow, ""]
     lines += [
+        # Der Index; die vier Segmente stehen darin und brauchen hier keine
+        # eigene Zeile. Wer sie doch einzeln nennt, laesst Crawler dieselben
+        # Adressen zweimal holen.
         f"Sitemap: {base}/sitemap.xml",
         f"# KI-Kurzfassung (llms.txt): {base}/llms.txt",
         f"# KI-Langfassung: {base}/llms-full.txt",
@@ -3088,21 +3296,54 @@ def security_txt(request):
     return HttpResponse("\n".join(zeilen), content_type="text/plain; charset=utf-8")
 
 
-def sitemap_xml(request):
-    """XML-Sitemap der öffentlichen Seiten (Startseite + Angebot) in allen Sprachen,
-    jeweils mit hreflang-Alternates (DE ohne Präfix, EN /en/, RO /ro/)."""
-    from datetime import date
-    base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
-    lastmod = date.today().isoformat()  # Frische-Signal für Suche & KI-Crawler
-    # (Basis-Pfad, priority, changefreq) — aus derselben Quelle wie IndexNow,
-    # damit Sitemap und Meldung nie auseinanderlaufen.
-    pages = _seiten_pfade()
+# ══ Sitemap: Index + vier Segmente (Messung VL07, TS16, PJ13) ═════════════════
+# Bis zum 05.09.2026 gab es eine einzige Datei mit 158 Eintraegen, und jeder trug
+# `date.today()`. Beides ist behoben:
+#
+# 1. **Segmente statt einer Liste.** /sitemap.xml ist jetzt ein Index auf vier
+#    Dateien. Der Nutzen ist nicht die Groesse — 158 URLs passen zwanzigfach in
+#    eine Datei —, sondern die Auswertung: In der Search Console steht danach je
+#    Segment, wie viele Seiten erfasst und wie viele indexiert sind. Ein Einbruch
+#    beim Ratgeber sieht dann anders aus als einer bei den Leistungen.
+# 2. **Echtes Datum je Seite** aus landing/stand.py statt des Tagesdatums.
+#
+# Die alte Adresse bleibt die Einstiegsadresse: Sie ist in der Search Console
+# eingereicht und steht in robots.txt.
+
+SITEMAP_KLASSEN = [
+    ("kern", ("/", "/leistungen/", "/kosten/", "/kosten/rechner/", "/referenzen/",
+              "/kontakt/", "/angebot/", "/ueber-uns/", "/it-notfall/",
+              "/it-sicherheit-test/", "/impressum/", "/datenschutz/", "/agb/",
+              "/barrierefreiheit/")),
+    ("leistungen", ("/leistungen/",)),
+    ("silos", ("/branchen/", "/vergleich/", "/it-service/")),
+    ("ratgeber", ("/aktuelles/", "/wissen/", "/checkliste/")),
+]
+
+
+def _sitemap_klasse(pfad):
+    """Welchem Segment ein Basis-Pfad gehoert. Die Kernseiten stehen namentlich
+    in der ersten Klasse; alles andere entscheidet der Praefix."""
+    for name, muster in SITEMAP_KLASSEN:
+        if name == "kern":
+            if pfad in muster:
+                return name
+            continue
+        for m in muster:
+            if pfad.startswith(m):
+                return name
+    return "kern"
+
+
+def _sitemap_eintraege(base, pfade):
+    """<url>-Bloecke fuer eine Liste von (Pfad, prio, changefreq, mehrsprachig)."""
     items = []
-    for path, pr, cf, mehrsprachig in pages:
+    for path, pr, cf, mehrsprachig in pfade:
+        lastmod = stand.datum(path)
         if not mehrsprachig:
-            # Einsprachige Seite (Fachbeitraege): genau ein Eintrag, keine
-            # hreflang-Alternates. Ein Alternate auf eine Seite, die es nicht
-            # gibt, ist schlimmer als gar keiner.
+            # Einsprachige Seite (Fachbeitraege, Glossar, Checklisten): genau ein
+            # Eintrag, keine hreflang-Alternates. Ein Alternate auf eine Seite,
+            # die es nicht gibt, ist schlimmer als gar keiner.
             items.append(
                 f"<url><loc>{base}{path}</loc>"
                 f"<lastmod>{lastmod}</lastmod>"
@@ -3122,10 +3363,43 @@ def sitemap_xml(request):
                 f"<lastmod>{lastmod}</lastmod>"
                 f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
             )
+    return items
+
+
+def _sitemap_basis(request):
+    return (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
+
+
+def sitemap_xml(request):
+    """/sitemap.xml — Index auf die vier Segmente."""
+    base = _sitemap_basis(request)
+    pfade = _seiten_pfade()
+    items = []
+    for name, _ in SITEMAP_KLASSEN:
+        eigene = [p for p in pfade if _sitemap_klasse(p[0]) == name]
+        if not eigene:
+            continue
+        # Das Datum des Segments ist das juengste seiner Seiten — so sieht ein
+        # Crawler am Index, welcher Teil sich bewegt hat, ohne alle vier zu holen.
+        lastmod = max(stand.datum(p[0]) for p in eigene)
+        items.append(f"<sitemap><loc>{base}/sitemap-{name}.xml</loc>"
+                     f"<lastmod>{lastmod}</lastmod></sitemap>")
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>'
+           '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+           + "".join(items) + "</sitemapindex>")
+    return HttpResponse(xml, content_type="application/xml; charset=utf-8")
+
+
+def sitemap_segment(request, klasse):
+    """/sitemap-<klasse>.xml — ein Segment mit hreflang-Alternates je Eintrag."""
+    if klasse not in dict(SITEMAP_KLASSEN):
+        raise Http404(klasse)
+    base = _sitemap_basis(request)
+    pfade = [p for p in _seiten_pfade() if _sitemap_klasse(p[0]) == klasse]
     xml = ('<?xml version="1.0" encoding="UTF-8"?>'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
            'xmlns:xhtml="http://www.w3.org/1999/xhtml">'
-           + "".join(items) + "</urlset>")
+           + "".join(_sitemap_eintraege(base, pfade)) + "</urlset>")
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 
@@ -3210,9 +3484,11 @@ def leistung_anfrage(request):
             nutzlast = {"ok": ok} if ok else {"ok": False, "error": fehler}
             return JsonResponse(nutzlast, status=status)
         if ok:
-            if zurueck:
-                return redirect(f"{zurueck}?ok={quelle}#anfrage")
-            return redirect(reverse("index") + f"?ok={quelle}{anker}")
+            # Ohne JavaScript auf die Danke-Seite: eigene Adresse, eigener
+            # Abschluss, messbar (Messung KV07). Mit JavaScript faengt
+            # anfrage-blocks.js den Versand ab und zeigt die Meldung an Ort und
+            # Stelle — dieser Zweig wird dann gar nicht erreicht.
+            return redirect(reverse("anfrage_danke") + f"?q={quelle}")
         return redirect(ziel + "?fehler=1" if "#" not in ziel else ziel)
 
     if request.method != "POST":

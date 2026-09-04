@@ -30,6 +30,11 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # Content-Security-Policy (durchgesetzt, mit Nonce) und Permissions-Policy.
+    # Steht bewusst weit aussen: Sie setzt die Nonce, bevor irgendeine andere
+    # Schicht antworten kann, und die Koepfe auf jede Antwort — auch auf die
+    # Weiterleitungen der Host- und Sprachschichten darunter.
+    "landing.middleware.SicherheitskoepfeMiddleware",
     # HTML komprimieren (docs/SEO-AUSBAU-3.md, T2). WhiteNoise komprimiert nur
     # statische Dateien; die HTML-Antworten gingen bis hierher unkomprimiert
     # ueber die Leitung - bei der Startseite rund 200 KB statt rund 30 KB.
@@ -59,6 +64,15 @@ MIDDLEWARE = [
 ]
 
 X_FRAME_OPTIONS = "DENY"
+# Das CSRF-Cookie wird von keinem Skript gelesen — alle Formulare senden das
+# versteckte Feld csrfmiddlewaretoken mit, auch die per fetch() abgeschickten
+# (sie bauen ihren Rumpf aus new FormData(form)). Damit kann das Cookie für
+# Skripte gesperrt werden (Messung SI16).
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = "Lax"
+SESSION_COOKIE_SAMESITE = "Lax"
+LANGUAGE_COOKIE_SAMESITE = "Lax"
+LANGUAGE_COOKIE_HTTPONLY = False  # der Umschalter liest ihn nicht, das Cookie ist rein informativ
 # Referrer sparsam mitgeben (SEO-/Analytics-freundlich, aber datenschonend).
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
@@ -170,5 +184,15 @@ if not DEBUG:
     # da nur www.wvm-it.tech per HTTPS bedient wird (die Apex-/übrige Subdomains nicht
     # versehentlich mit-erfassen). Per Env feinjustierbar.
     SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", "31536000"))
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "False").strip().lower() in ("1", "true", "yes")
+    #
+    # Stand 05.09.2026 auf True gezogen: Es gibt keine Subdomain, die absichtlich
+    # ohne HTTPS bedient wird — wvm-it-shop.up.railway.app leitet seit dem
+    # 28.08.2026 per 301 auf die Hauptdomain um und spricht dabei HTTPS. Bleibt
+    # per Umgebungsvariable abschaltbar, falls doch einmal eine Subdomain ohne
+    # Zertifikat gebraucht wird.
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "True").strip().lower() in ("1", "true", "yes")
+    # preload erst einschalten, wenn die Apex-Domain wvm-it.tech auf Railway zeigt
+    # (doku/80-AUFGABEN.md, „Beim Kunden" Nr. 3). Solange sie beim Registrar
+    # parkt, würde ein Eintrag in der Preload-Liste sie dauerhaft unerreichbar
+    # machen — und aus dieser Liste kommt man nur schwer wieder heraus.
     SECURE_HSTS_PRELOAD = os.environ.get("SECURE_HSTS_PRELOAD", "False").strip().lower() in ("1", "true", "yes")

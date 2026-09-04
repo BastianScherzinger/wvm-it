@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% comment %}
+/ueber-uns/ — einer der beiden Pflicht-Seitentypen, die bis zum 05.09.2026
+fehlten (Messung VL11). Bei einem IT-Dienstleister, dem man Zugang zu allem gibt,
+ist die Frage „wer ist das eigentlich" keine Nebensache, sondern die Bedingung.
+
+Die Seite behauptet nichts, was nicht belegbar ist: kein Gründungsjahr, keine
+Kundenzahl, kein Partnerlevel, keine Bewertung. Was sie hat, ist eine benannte
+Person, eine echte Anschrift und fünf Grundsätze, an denen man uns messen kann —
+dazu vier Dinge, die wir ausdrücklich nicht tun. Das Letzte ist meist das, was
+man in einem Angebotsvergleich wirklich wissen will.
+{% endcomment %}
+{% block titel %}{{ t.ueber.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ t.ueber.desc|safe }}{% endblock %}
+{% block og_titel %}{{ t.ueber.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ t.ueber.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ t.ueber.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ t.ueber.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+{% load static %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.ueber.h1|safe }}</span>
+    </nav>
+    <h1>{{ t.ueber.h1|safe }}</h1>
+    {% include 'antwort.html' with text=kurz %}
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap ub-kopf">
+    {% if c.founder_image %}
+    <figure class="ub-portrait" data-reveal>
+      <img src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}, {{ t.ueber.h1|striptags }}"
+           width="640" height="640" loading="lazy" decoding="async">
+      <figcaption>{{ c.inhaber_name }} &middot; {{ c.site_name }}</figcaption>
+    </figure>
+    {% endif %}
+    <div class="ub-intro" data-reveal>
+      <p class="hb-intro">{{ t.ueber.intro|safe }}</p>
+      <ul class="sp-liste sp-liste-check ub-fakten">
+        <li>{% include 'icons.html' with name='home' %}<span>{{ adresse }}</span></li>
+        {% if c.telefon %}<li>{% include 'icons.html' with name='phone' %}<a href="tel:{{ c.telefon }}">{{ c.telefon }}</a></li>{% endif %}
+        {% if c.email %}<li>{% include 'icons.html' with name='mail' %}<a href="mailto:{{ c.email }}">{{ c.email }}</a></li>{% endif %}
+        <li>{% include 'icons.html' with name='clock' %}<span>{{ t.ueber.sprachen_t|safe }}</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <h2 class="sp-h2">{{ t.ueber.grundsatz_h|safe }}</h2>
+    <ol class="sp-ablauf" data-reveal>
+      {% for g in t.ueber.grundsaetze %}
+      <li><h3>{{ g.0|safe }}</h3><p>{{ g.1|safe }}</p></li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="sp-h2">{{ t.ueber.nicht_h|safe }}</h2>
+    <ul class="sp-liste ub-nicht" data-reveal>
+      {% for n in t.ueber.nichts %}<li>{{ n|safe }}</li>{% endfor %}
+    </ul>
+
+    <div class="ub-zwei" data-reveal>
+      <div>
+        <h2 class="sp-h2">{{ t.ueber.sitz_h|safe }}</h2>
+        <p>{{ sitz_t|safe }}</p>
+        <p><a class="btn btn-ghost" href="{% url 'regionen' %}">{{ t.seite.regionen_h1|default:t.ueber.sitz_h|safe }}</a></p>
+      </div>
+      <div>
+        <h2 class="sp-h2">{{ t.ueber.sprachen_h|safe }}</h2>
+        <p>{{ t.ueber.sprachen_t|safe }}</p>
+        <p><a class="btn btn-ghost" href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    {% include 'anfrage_karte.html' with bid='it' titel=t.ueber.cta_h sub=t.ueber.cta_t ph=t.lb.text_bsp %}
+  </div>
+</section>
+{% endblock %}

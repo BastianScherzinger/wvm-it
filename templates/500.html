@@ -19,7 +19,7 @@ Preise, keine Datenquellen, die selbst fehlschlagen könnten.
   <div class="wrap">
     <p class="err-code" aria-hidden="true">500</p>
     <h1>{{ t.fehler.h1_500|safe }}</h1>
-    <p class="sp-kurz">{{ t.fehler.kurz_500|safe }}</p>
+    {% include 'antwort.html' with text=t.fehler.kurz_500 %}
     <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
       {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
       {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}

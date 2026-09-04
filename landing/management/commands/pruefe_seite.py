@@ -266,7 +266,7 @@ class Command(BaseCommand):
                 self.warnungen.append(
                     f"{pfad}: Description {len(desc.group(1))} Zeichen (empfohlen ≤ {DESC_MAX})")
 
-            bloecke = re.findall(r'<script type="application/ld\+json">(.*?)</script>',
+            bloecke = re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>',
                                  html, re.S)
             for block in bloecke:
                 try:

@@ -12,8 +12,8 @@ SEITEN = {
     # ══ IT ════════════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "IT support &amp; management",
-        "titel": "IT support for small businesses | WVM-IT",
-        "desc": "An outsourced IT department for small and mid-sized businesses: from €29 per workstation and month, support from €95/hr, remote across Austria and Germany.",
+        "titel": "IT support & management from €29/mo | WVM-IT",
+        "desc": "An outsourced IT department for small and mid-sized businesses: from €29 per workstation and month, support from €95/hr. Request a free quote now.",
         "h1": "IT support for businesses without an IT department",
         "kurz": "WVM-IT takes on the day-to-day IT of small and mid-sized businesses in Austria and Germany: workstations, servers, email, printers, updates and backups. Ongoing support costs from €29 per workstation and month, individual help without a contract from €95 per hour. We answer within 24 hours and work mostly remotely — the route to you runs over a secured connection rather than the motorway.",
         "intro": "In most businesses under fifty staff there is no IT department. There is somebody who “knows a bit about computers” — and who actually has another job to do. As long as nothing happens, that works. It shows the moment the office printer stops while quotes have to go out, or when a program the whole company depends on refuses to start after a Windows update. That is the gap we close: you get a number, an email address and one contact who knows how your technology is put together.",
@@ -57,8 +57,8 @@ SEITEN = {
 
     "server-datensicherung": {
         "nav": "Servers &amp; backups",
-        "titel": "Server management & backups | WVM-IT",
-        "desc": "Server monitoring from €89/month, verified backups from €49/month. We see the fault before the business stops — across Austria and Germany.",
+        "titel": "Server management & backup from €49/mo | WVM-IT",
+        "desc": "Server monitoring from €89/month, verified backups from €49/month. We spot the failure before the business stops. Request a quote today.",
         "h1": "Server management and backups that hold when it matters",
         "kurz": "WVM-IT monitors business servers around the clock and runs backups so that they also work when it counts: backed up daily, every backup checked, the restore tested regularly. Server management costs from €89 per month, monitored backups from €49 per month. Everything is handled remotely across Austria and Germany.",
         "intro": "Almost every business has a backup. Considerably fewer know when it last ran, and hardly any have ever tried to get something back out of it. That becomes apparent exactly once — on the day it matters. A backup that has never been restored is not a backup, it is a hope. So we treat it as a part of the business that needs checking, not as a setting that was switched on at some point.",
@@ -102,8 +102,8 @@ SEITEN = {
 
     "netzwerk-wlan": {
         "nav": "Network &amp; Wi-Fi",
-        "titel": "Business network & Wi-Fi installation | WVM-IT",
-        "desc": "Network and Wi-Fi surveyed, planned and installed — from €890, including workshops and multiple floors. Firewall and VPN from €690.",
+        "titel": "Network & Wi-Fi setup from €890 | WVM-IT",
+        "desc": "Network and Wi-Fi surveyed, planned and installed — from €890, including workshops and multiple floors. Request a free quote now.",
         "h1": "A network and Wi-Fi that also works in the workshop",
         "kurz": "WVM-IT plans, surveys and builds business networks: structured cabling, Wi-Fi with gap-free coverage, separate networks for guests and operations, firewall and VPN for access from outside. Setting up network and Wi-Fi costs from €890, firewall and VPN from €690. Planning happens remotely, building happens on site.",
         "intro": "Wi-Fi problems are almost always answered with another access point. Usually that makes it worse: two devices on the same channel interfere with each other, and the client attaches itself to the wrong one. A network that holds is not built from more hardware but from a survey, a plan and clean channel allocation. In workshops, older buildings and across several floors that is the difference between “it works” and “it works, except at the back on the left”.",
@@ -147,8 +147,8 @@ SEITEN = {
 
     "it-sicherheit": {
         "nav": "IT security",
-        "titel": "IT security for small businesses | WVM-IT",
-        "desc": "IT security check from €490 with a written report and a list of actions. Firewall and VPN from €690. For businesses in Austria and Germany.",
+        "titel": "IT security check from €490 | WVM-IT",
+        "desc": "IT security check from €490 with a written report and a list of actions. Firewall and VPN from €690. Request a quote today.",
         "h1": "IT security sized for a business, not for a corporation",
         "kurz": "WVM-IT reviews the IT security of small and mid-sized businesses and implements the measures that genuinely help: permissions, passwords, firewall, VPN, updates, verified backups. The one-off IT security check costs from €490 and ends with a written report and a list of actions; firewall and VPN are set up from €690. Reviews and support are delivered remotely across Austria and Germany.",
         "intro": "Most damage in small businesses is not caused by a targeted attack but by everyday things: a password that works everywhere, the account of somebody who left long ago, a machine without updates, a backup that is worthless. You do not need a corporate security concept to fix that. You need somebody to look systematically once and then work through the points that actually prevent damage.",
@@ -194,7 +194,7 @@ SEITEN = {
     "webseite-erstellen": {
         "nav": "Website &amp; shop",
         "titel": "Have a website built from €350 | WVM-IT",
-        "desc": "Websites for businesses in Austria and Germany: one-pager from €350, company site from €1,490, shop from €3,500. Free sample site first.",
+        "desc": "Websites for businesses in Austria and Germany: one-pager from €350, company site from €1,490, shop from €3,500. Request a quote today.",
         "h1": "Have a website built — and see what you get first",
         "kurz": "WVM-IT builds websites for businesses in Austria and Germany: a one-pager from €350, a multi-page company site from €1,490, a premium site with animations from €2,900, an online shop from €3,500. Beforehand we build a real sample page free of charge so you can see how we work before you decide. Hosting and maintenance together cost €54 per month.",
         "intro": "The most common disappointment with a new website is not the way it looks but the silence afterwards. It looks good, it was expensive, and nothing happens. That is almost never the design; it is that the site was not built for somebody to get in touch: the phone number is at the very bottom, there are no prices, the form has nine fields. We build in the other direction — starting from the goal.",
@@ -238,8 +238,8 @@ SEITEN = {
 
     "seo-betreuung": {
         "nav": "SEO support",
-        "titel": "SEO support for small businesses | WVM-IT",
-        "desc": "Get found on Google and in AI answers: SEO groundwork from €390, ongoing support from €149/month, with a monthly report.",
+        "titel": "SEO support from €149/month | WVM-IT",
+        "desc": "Get found on Google and in AI answers: SEO groundwork from €390, ongoing support from €149/month. Request a free quote now.",
         "h1": "SEO support: getting found by people who do not know you yet",
         "kurz": "WVM-IT brings businesses forward on Google and in AI answers such as ChatGPT and Perplexity: technical foundations, one page per service, content that genuinely answers search questions, and monthly measurement. The one-off groundwork costs from €390, ongoing support from €149 per month. The work is location-independent for clients in Austria and Germany.",
         "intro": "The most common finding on small company sites is always the same: they are found — but only under their own company name. That is, by people who already know the company. For everybody who has a problem and searches for the solution, the site does not exist. The reason is rarely the technology. It is that every service sits in paragraphs on a single page, and Google cannot rank paragraphs, only pages.",
@@ -283,8 +283,8 @@ SEITEN = {
 
     "google-ads": {
         "nav": "Google Ads",
-        "titel": "Google Ads management for businesses | WVM-IT",
-        "desc": "Google Ads setup from €490, ongoing management from €199/month plus budget. With conversion tracking and a report you can actually read.",
+        "titel": "Google Ads management from €199/mo | WVM-IT",
+        "desc": "Google Ads setup from €490, ongoing management from €199/month plus budget, with conversion tracking and a monthly report. Request a quote today.",
         "h1": "Google Ads that bring enquiries — not just clicks",
         "kurz": "WVM-IT sets up Google Ads accounts and runs them: campaigns, search terms, ads, negative keywords and above all conversion tracking that actually works. Setup costs from €490, ongoing management from €199 per month plus your advertising budget. The work is location-independent for businesses in Austria and Germany.",
         "intro": "Ads are the fastest route to enquiries — and the fastest way to burn money. The difference is almost never the ad itself but whether what comes out at the end is measured. Anybody counting only clicks is optimising for visits. Anybody measuring enquiries can switch off search terms that are expensive and bring nothing — and in practice that is most of them.",
@@ -328,8 +328,8 @@ SEITEN = {
 
     "hosting-wartung": {
         "nav": "Hosting &amp; maintenance",
-        "titel": "Hosting & maintenance for company sites | WVM-IT",
-        "desc": "Hosting with SSL and daily backups from €15/month, maintenance from €39/month, domain from €15/year. Also for sites somebody else built.",
+        "titel": "Hosting & maintenance from €15/mo | WVM-IT",
+        "desc": "Hosting with SSL and daily backups from €15/month, maintenance from €39/month, domain from €15/year. Request a free quote now.",
         "h1": "Hosting and maintenance: so the site runs when nobody is looking",
         "kurz": "WVM-IT runs and maintains company websites: hosting with SSL and daily backups from €15 per month, maintenance with updates and small changes from €39 per month, domain from €15 per year — together €54 per month. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
         "intro": "A website is not a purchase, it is a piece of operating equipment. Certificates expire, systems need security updates, contact forms eventually stop working quietly. That rarely shows immediately — usually only when no enquiry has arrived for weeks and somebody goes looking. Maintenance is the cheapest insurance against exactly those weeks.",
@@ -373,8 +373,8 @@ SEITEN = {
 
     "ki-automatisierung": {
         "nav": "AI automation",
-        "titel": "AI automation for businesses | WVM-IT",
-        "desc": "Chatbots, WhatsApp and booking automation for businesses: booking from €390, chatbot from €690, CRM and ERP integration from €1,200.",
+        "titel": "AI automation from €390 | WVM-IT",
+        "desc": "Chatbots, WhatsApp and booking automation for businesses: booking from €390, chatbot from €690, CRM integration from €1,200. Request a quote.",
         "h1": "AI automation: let technology do the work that repeats",
         "kurz": "WVM-IT builds automation for repetitive work in businesses: a chatbot that takes enquiries at night, booking and appointment flows, automatic replies by WhatsApp and email, and connections to existing systems. Booking automation costs from €390, an AI chatbot from €690, an integration with CRM or ERP from €1,200. Everything is delivered remotely across Austria and Germany.",
         "intro": "Automation pays off not where it looks impressive but where the same movement happens twenty times a day: answering the same question, entering the same appointment, writing the same confirmation. So we never start with the technology but with the question of which five minutes repeat most often. Everything else is a toy with an invoice attached.",
@@ -419,8 +419,8 @@ SEITEN = {
     # ══ On site ═══════════════════════════════════════════════════════════════
     "smarthome-knx-loxone": {
         "nav": "Smart home, Loxone &amp; KNX",
-        "titel": "Smart home with Loxone & KNX | WVM-IT",
-        "desc": "Building automation with Loxone and KNX: lighting, heating, shading, access and security in one system. Planned, programmed and maintained.",
+        "titel": "Smart home with Loxone & KNX in Austria | WVM-IT",
+        "desc": "Building automation with Loxone and KNX: lighting, heating, shading, access and security in one system. Request a free quote now.",
         "h1": "Building automation with Loxone and KNX",
         "kurz": "WVM-IT plans, programmes and maintains building automation with Loxone and KNX: lighting, heating, shading, access, security and media technology in one system. Installations of this kind are calculated per project and built on site — we quote after a short conversation and a survey, not before.",
         "intro": "In building automation the result is not decided by the hardware but by the programming. The same devices can produce a system nobody understands, which gets operated by hand again after the first summer — or one that simply does what you expect. So we plan the behaviour first and the parts list second.",
@@ -464,10 +464,10 @@ SEITEN = {
 
     "konferenztechnik": {
         "nav": "Conference technology",
-        "titel": "Conference & event technology | WVM-IT",
-        "desc": "Equipping meeting rooms and events: displays, cameras, microphones, sound and control. Planned, installed, calibrated.",
-        "h1": "Conference, sound and event technology that works at the push of a button",
-        "kurz": "WVM-IT equips meeting rooms and events: displays, cameras, microphones, sound, lighting and a control system somebody who did not install it can also operate. Planning, installation and calibration happen per project on site; we quote after surveying the room.",
+        "titel": "Conference room technology from €120/hr | WVM-IT",
+        "desc": "Equipping meeting rooms: displays, cameras, microphones, sound and control at the push of a button. On-site from €120/hr. Request a quote.",
+        "h1": "Meeting room technology that gets a meeting started on time",
+        "kurz": "WVM-IT equips meeting and training rooms with technology: displays, cameras, microphones, sound and a control system somebody who did not install it can also operate. A typical meeting room is finished in one to two days, provided the cabling is in place. Planning and calibration happen on site; on-site work is billed at €120 per hour plus travel, and we quote the project price after a site visit. For halls, stages and live events there's a dedicated page: Event technology.",
         "intro": "The measure of conference technology is not what it can do but whether a meeting starts on time. Most rooms fail on the same small things: the wrong cable is on the table, the camera shows the wall, the other side cannot understand the sound. So we calibrate rooms and reduce operation to a single visible path — everything else disappears into the technology.",
         "problem_h": "The rooms we are talking about",
         "probleme": [
@@ -505,5 +505,104 @@ SEITEN = {
         ],
         "cta_h": "Which room is it about?",
         "cta_t": "Size, use and what is already there — that is all we need for a first assessment. A reply within 24 hours.",
+    },
+
+    "veranstaltungstechnik": {
+        "nav": "Event technology",
+        "titel": "Video, sound &amp; stage technology in Austria | WVM-IT",
+        "desc": "Event technology for halls, clubs, municipalities and hotels: sound, light, video and stage. On-site from €120/hr. Request a quote.",
+        "h1": "Video, sound and stage technology for halls and events",
+        "kurz": "WVM-IT plans, installs and supports event technology in Upper Austria and beyond: sound, light, video and stage technology for halls, clubhouses, community centres, hotels and company events. Fixed installations are quoted per project after a site visit; on-site work is billed at €120 per hour plus travel unless a fixed price is agreed. We reply to enquiries within 24 hours.",
+        "intro": "In most halls there is technology somebody once set up and that nobody has really understood since. There are three remote controls, two of them without batteries, and a mixer that only one particular person is allowed to touch. As long as that person has time, it works. The evening it goes wrong is always the evening a hundred people are sitting in the room. We build systems somebody can operate the first time they see them — and document what is connected where.",
+        "problem_h": "What usually holds a hall back",
+        "probleme": [
+            "The sound is too loud up front and unintelligible at the back — the system was never calibrated.",
+            "Every event starts with twenty minutes of looking for cables and a call to “the one who knows how it works”.",
+            "Talks, live music and a film night all get the same settings, even though they are three different jobs.",
+            "Feedback from wireless microphones because frequencies and positions were never planned.",
+            "The technology depends on one person; if they're unavailable, the event doesn't happen.",
+        ],
+        "leistung_h": "What we take on",
+        "leistungen": [
+            "Sound: speakers, amplifiers, mixer — planned for the room, not picked from a catalogue",
+            "Wireless microphones: frequency planning, quantity, charging stations, so nothing interferes",
+            "Lighting: general light, stage light, simple scenes at the push of a button instead of desk operation",
+            "Video: projection or display, feed from laptop, camera and streaming connection",
+            "Stage: signal paths, connection panels, power distribution, order behind the stage",
+            "Briefing and a short written guide — one page, laminated, next to the desk",
+            "Support for individual events: setup, running the evening, takedown",
+        ],
+        "ablauf_h": "How a hall becomes reliable again",
+        "ablauf": [
+            {"h": "A visit to the room, not a call", "t": "We listen to the room and see what's there. Reverberation, seating plan, stage height and existing cabling decide the result more than the speaker brand."},
+            {"h": "Concept with equipment list and price", "t": "You get a solution matched to the events that actually happen at your venue. What exists and still works stays — we don't replace things just to sell something."},
+            {"h": "Setup, calibration, briefing", "t": "Installation, sound calibration in the empty and the occupied room, fixed presets for the typical occasions. At the end there's a short briefing and a guide that still makes sense in two years."},
+            {"h": "Staying reachable afterwards", "t": "Before a bigger event we're happy to check in again on request. If something still comes up, you can reach us at +43 676 3808501."},
+        ],
+        "preis_h": "Why there is no starting price here",
+        "preis_t": "Between sound for a club hall and a stage with light, video and streaming lie orders of magnitude; a starting price here would be a number that says nothing. We look at the room and calculate per project with an equipment list. On-site work is billed at €120 per hour plus travel unless a fixed price is agreed; remote planning and coordination at €95 per hour. Estimated prices, net plus VAT.",
+        "faq": [
+            {"q": "What does event technology for a hall cost?",
+             "a": "That depends almost entirely on the room size and what the room needs to do. Intelligible speech sound for a club hall is a different project from a stage with lighting and a video feed. After a site visit you get an equipment list with a price — before that, any figure would be a guess. On-site work is billed at €120 per hour plus travel."},
+            {"q": "Do you upgrade existing equipment, or does everything need to be new?",
+             "a": "Most halls have more usable equipment than the people using them think. Often what's missing isn't the technology but the calibration, sensible cabling and operation that doesn't overwhelm anyone. We first check what the existing equipment can do."},
+            {"q": "Do you also support individual events?",
+             "a": "Yes, per project: planning, setup, operation during the event, takedown. Scope, timeframe and price are agreed in writing beforehand, so there's no surprise on the invoice at the end."},
+            {"q": "Can you record or stream an event?",
+             "a": "Yes. We plan the camera, vision mixing and the connection to a streaming service; the limiting factor is almost always the building's internet connection, not the technology in the hall. We check that beforehand, not on the day of the event."},
+            {"q": "How far do you travel?",
+             "a": "We're based in Lenzing in the Vöcklabruck district. We're regularly on the road in the Salzkammergut and around Vöcklabruck, Gmunden, Wels, Linz and Salzburg; beyond that we calculate travel openly and state it before you commit."},
+        ],
+        "cta_h": "What's happening at your venue?",
+        "cta_t": "Hall size, the usual events and what technology is already there — that is all we need for a first assessment. A reply within 24 hours.",
+    },
+
+    "it-beratung": {
+        "nav": "IT consulting",
+        "titel": "IT consulting from €95/hr | WVM-IT",
+        "desc": "IT consulting with no vendor ties: assessment, concept, quote comparison and support — €95 per hour. Request a free consultation now.",
+        "h1": "IT consulting for businesses that need to make a decision",
+        "kurz": "WVM-IT advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. Consulting costs €95 per hour, on-site appointments €120 per hour plus travel. We reply to enquiries within 24 hours — even when the honest answer is that the investment isn't worth it.",
+        "intro": "The most expensive IT decisions are rarely the wrong devices. They're the decisions nobody made: the server that keeps running for another year because nobody knows what comes next; the software chosen because one vendor called first; the two quotes you can't compare because they describe different things. Here, consulting doesn't mean a presentation. It means someone looks at what you have, listens to what you're planning, and writes down what that means for your technology.",
+        "problem_h": "When consulting pays off",
+        "probleme": [
+            "There are two or three quotes on the table, and nobody in-house can compare them on technical merit.",
+            "A server, a phone system or a piece of software is reaching end of life, and what replaces it is still open.",
+            "The business is growing, moving or building — and this time the technology is meant to be planned in advance.",
+            "The current provider is the only one who knows how everything fits together.",
+            "IT costs are rising, but nobody can say exactly what for.",
+        ],
+        "leistung_h": "What consulting with us covers",
+        "leistungen": [
+            "Assessment: devices, servers, network, licences, contracts, access — recorded in writing",
+            "Evaluation: what still holds up, what's a risk, what costs more than it delivers",
+            "A concept with a sequence and a rough cost estimate, not a wish list",
+            "Quote comparison: outside quotes placed side by side and brought to the same scope",
+            "Support through tendering, selection and implementation — even when someone else carries it out",
+            "Handover of all documents, so the decision stays in-house rather than with us",
+        ],
+        "ablauf_h": "How consulting works",
+        "ablauf": [
+            {"h": "Initial conversation, free of charge", "t": "Thirty to forty minutes by phone or video call. Afterwards we both know whether there's anything to advise on at all, and what it would cost. We don't bill this time."},
+            {"h": "Assessment", "t": "We look at what's actually there — usually remotely, on site for building and event technology. The result is an overview that rarely exists in this form beforehand."},
+            {"h": "Written concept", "t": "You receive a document with findings, recommendation, sequence and cost range. It's written so you can also hand it to another provider — that's the point of independent consulting."},
+            {"h": "Implementation — with us or without us", "t": "If you give us the implementation, we credit the consulting hours to the project. If you give it to someone else, that's not a problem: the concept belongs to you."},
+        ],
+        "preis_h": "What consulting costs",
+        "preis_t": "Consulting costs €95 per hour, on-site appointments €120 per hour plus travel. The initial conversation is free. An assessment with a written concept typically takes between half a day and two days of effort for a typical business; we state the estimate beforehand and either keep to it or let you know before it's exceeded. If you give us the implementation, we credit the consulting hours. Estimated prices, net plus VAT.",
+        "faq": [
+            {"q": "What does IT consulting cost?",
+             "a": "€95 per hour, €120 per hour plus travel on site; the initial conversation is free. A full assessment with a written concept for a business with ten to thirty workstations usually takes between four and sixteen hours. We state the range before starting."},
+            {"q": "Are you tied to any manufacturer?",
+             "a": "No. We work with partners where it's technically necessary — for building automation and event technology, for example — but we get no payment for recommending a particular product. If a recommendation happens to be financially interesting for us, we say so in the concept."},
+            {"q": "Do you also advise when another provider does the implementation?",
+             "a": "Yes, that's explicitly intended. A concept that only works with us wouldn't be consulting, it would be a sales pitch. You get the documents in a form any competent provider can work from."},
+            {"q": "Can you review a quote we already have?",
+             "a": "Yes, and that's the most common reason people come to us. We bring the quotes to the same scope, point out what's missing or duplicated, and tell you which questions to ask before signing. Two to three hours is usually enough."},
+            {"q": "What if your recommendation is to do nothing?",
+             "a": "Then that's what the concept says. It happens regularly that a system still has two good years left and the money is better spent elsewhere. Consulting that always leads to an investment isn't consulting."},
+        ],
+        "cta_h": "What decision are you facing?",
+        "cta_t": "Describe in two sentences what's coming up — an ageing server, a move, two quotes you can't compare. We'll get back to you within 24 hours with an assessment of whether and how much consulting that needs.",
     },
 }

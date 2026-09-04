@@ -22,7 +22,7 @@ Leistungen, die Orte im Einzugsgebiet, der direkte Draht.
   <div class="wrap">
     <p class="err-code" aria-hidden="true">404</p>
     <h1>{{ t.fehler.h1_404|safe }}</h1>
-    <p class="sp-kurz">{{ t.fehler.kurz_404|safe }}</p>
+    {% include 'antwort.html' with text=t.fehler.kurz_404 %}
 
     <form class="such-form such-form-err" action="{% url 'suche' %}" method="get" role="search">
       <label class="fld-l" for="err-q">{{ t.fehler.suche_h|safe }}</label>

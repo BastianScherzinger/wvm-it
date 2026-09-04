@@ -15,8 +15,8 @@ BEITRAEGE = {
 
     "was-kostet-it-betreuung": {
         "titel": "Was kostet IT-Betreuung für eine kleine Firma?",
-        "meta_titel": "Was kostet IT-Betreuung für kleine Firmen? | WVM-IT",
-        "desc": "IT-Betreuung kostet ab 29 € je Arbeitsplatz und Monat, Support ohne Vertrag 95 €/Std. Was in den Paketen steckt und ab wann sich welche Variante rechnet.",
+        "meta_titel": "IT-Betreuung: Kosten ab 29 €/Monat je Platz | WVM-IT",
+        "desc": "IT-Betreuung kostet ab 29 € je Arbeitsplatz und Monat, Support ohne Vertrag 95 €/Std. Ab wann sich welche Variante rechnet — jetzt nachlesen.",
         "antwort": "Laufende IT-Betreuung wird in Österreich und Deutschland üblicherweise je Arbeitsplatz und Monat abgerechnet; bei uns beginnt sie bei 29 €. Wer keinen Vertrag will, zahlt Hilfe nach Aufwand — bei uns 95 € je Stunde aus der Ferne und 120 € je Stunde vor Ort zuzüglich Anfahrt. Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung meist günstiger, weil sie sich schon rechnet, wenn sie einen einzigen Ausfalltag im Jahr verhindert.",
         "abschnitte": [
             {"h": "Die zwei Abrechnungsarten",
@@ -35,8 +35,8 @@ BEITRAEGE = {
 
     "datensicherung-richtig-pruefen": {
         "titel": "Woran erkennt man, ob die Datensicherung wirklich funktioniert?",
-        "meta_titel": "Datensicherung prüfen: Der einzige Test, der zählt | WVM-IT",
-        "desc": "Eine Sicherung ohne getestete Wiederherstellung ist keine Sicherung. Wie Sie in einer Stunde herausfinden, ob Ihre Daten im Ernstfall wirklich zurückkommen.",
+        "meta_titel": "Datensicherung prüfen: der eine Test, der zählt | WVM-IT",
+        "desc": "Eine Sicherung ohne getestete Wiederherstellung ist keine Sicherung. So finden Sie in einer Stunde heraus, ob Ihre Daten zurückkommen. Jetzt nachlesen.",
         "antwort": "Es gibt genau einen Test, der zählt: eine echte Wiederherstellung. Suchen Sie eine Datei, die vor mindestens vier Wochen gelöscht oder geändert wurde, und stellen Sie sie aus der Sicherung wieder her — vollständig, lesbar, mit dem richtigen Stand. Alles andere, insbesondere ein grüner Haken in der Sicherungssoftware, sagt nur, dass ein Kopiervorgang durchgelaufen ist. Ob das Ergebnis brauchbar ist, sagt er nicht.",
         "abschnitte": [
             {"h": "Warum der grüne Haken nichts beweist",
@@ -55,8 +55,8 @@ BEITRAEGE = {
 
     "wlan-im-betrieb-planen": {
         "titel": "Warum bricht das WLAN im Betrieb zusammen, obwohl die Leitung schnell ist?",
-        "meta_titel": "WLAN im Betrieb richtig planen | WVM-IT",
-        "desc": "Wenn das Firmen-WLAN unter Last zusammenbricht, liegt es fast nie an der Internetleitung. Was wirklich dahintersteckt und wie eine Planung abläuft.",
+        "meta_titel": "WLAN im Betrieb planen: keine Aussetzer mehr | WVM-IT",
+        "desc": "Wenn das Firmen-WLAN unter Last zusammenbricht, liegt es fast nie an der Internetleitung. Was wirklich dahintersteckt — jetzt nachlesen.",
         "antwort": "In den allermeisten Fällen liegt es nicht an der Internetleitung, sondern an der Zahl gleichzeitiger Geräte auf zu wenigen Zugangspunkten. Ein einzelner Router bedient eine Handvoll Geräte gut und dreißig schlecht — unabhängig davon, ob dahinter 50 oder 500 Mbit hängen. Die Lösung ist deshalb selten ein teurerer Vertrag, sondern eine geplante Ausleuchtung mit mehreren Zugangspunkten und ein sauber getrenntes Gastnetz.",
         "abschnitte": [
             {"h": "Der Denkfehler mit der Bandbreite",
@@ -75,8 +75,8 @@ BEITRAEGE = {
 
     "it-sicherheit-kleine-firma": {
         "titel": "Was muss eine kleine Firma bei der IT-Sicherheit wirklich tun?",
-        "meta_titel": "IT-Sicherheit für kleine Firmen: Die fünf Punkte | WVM-IT",
-        "desc": "Fünf Maßnahmen, die in kleinen Betrieben den größten Unterschied machen — und die drei Lücken, die wir bei fast jeder Bestandsaufnahme finden.",
+        "meta_titel": "IT-Sicherheit für kleine Firmen: die 5 Punkte | WVM-IT",
+        "desc": "Fünf Maßnahmen, die in kleinen Betrieben den größten Unterschied machen, und die drei Lücken, die wir immer wieder finden. Jetzt nachlesen.",
         "antwort": "Fünf Dinge bringen in kleinen Betrieben den größten Sicherheitsgewinn: eine Datensicherung mit getesteter Wiederherstellung, Zwei-Faktor-Anmeldung für E-Mail und Fernzugriff, aktuelle Updates auf allen Geräten, das Sperren von Konten ausgeschiedener Mitarbeiter und ein festgelegter Ablauf für den Ernstfall. Diese fünf Punkte kosten wenig und verhindern den Großteil dessen, was tatsächlich passiert. Ein Sicherheitscheck, der sie systematisch prüft, kostet 490 € und liefert einen schriftlichen Bericht.",
         "abschnitte": [
             {"h": "Was wirklich passiert — und was nicht",
@@ -95,8 +95,8 @@ BEITRAEGE = {
 
     "loxone-oder-knx": {
         "titel": "Loxone oder KNX — was passt für welches Gebäude?",
-        "meta_titel": "Loxone oder KNX? Die ehrliche Gegenüberstellung | WVM-IT",
-        "desc": "Beide Systeme steuern Licht, Heizung und Beschattung. Wo die Unterschiede wirklich liegen — und welches System für welches Vorhaben sinnvoller ist.",
+        "meta_titel": "Loxone oder KNX: das passende System finden | WVM-IT",
+        "desc": "Beide Systeme steuern Licht, Heizung und Beschattung. Wo die Unterschiede wirklich liegen und welches System zu Ihrem Gebäude passt. Jetzt nachlesen.",
         "antwort": "KNX ist ein herstellerübergreifender Standard: Geräte verschiedener Hersteller arbeiten zusammen, die Anlage ist langlebig und unabhängig von einer einzelnen Firma, dafür ist Planung und Programmierung aufwendiger. Loxone ist ein System aus einer Hand: schneller eingerichtet, günstiger im Einstieg, dafür an einen Hersteller gebunden. Für ein Wohnhaus mit klarem Umfang ist Loxone meist der wirtschaftlichere Weg, für größere Gebäude, gemischte Gewerke und lange Nutzungsdauer spricht mehr für KNX.",
         "abschnitte": [
             {"h": "Der eigentliche Unterschied ist nicht die Technik",
@@ -121,8 +121,8 @@ BEITRAEGE = {
 
     "microsoft-365-lizenz-kleine-firma": {
         "titel": "Microsoft 365 für kleine Betriebe: welche Lizenz reicht wirklich?",
-        "meta_titel": "Microsoft 365: Welche Lizenz reicht? | WVM-IT",
-        "desc": "Business Basic, Standard oder Premium? Woran Sie festmachen, welche Microsoft-365-Lizenz Ihr Betrieb wirklich braucht — und wo Geld liegen bleibt.",
+        "meta_titel": "Microsoft 365 ab 290 €: welche Lizenz reicht? | WVM-IT",
+        "desc": "Business Basic, Standard oder Premium? Woran Sie festmachen, welche Microsoft-365-Lizenz Ihr Betrieb wirklich braucht. Jetzt nachlesen.",
         "antwort": "Für die meisten kleinen Betriebe reicht Business Standard: E-Mail mit eigener Domain, Teams, OneDrive und die installierten Office-Programme auf dem Rechner. Business Basic genügt, wenn ausschließlich im Browser gearbeitet wird — was in der Praxis selten stimmt, sobald jemand Excel ernsthaft benutzt. Business Premium lohnt sich, sobald Geräte verwaltet, Zugriffe erzwungen und Notebooks verschlüsselt werden sollen; das ist weniger eine Frage der Betriebsgröße als der Datenart. Die Einrichtung kostet bei uns einmalig 290 €, die Lizenzen selbst kommen von Microsoft und werden monatlich je Benutzer abgerechnet.",
         "abschnitte": [
             {"h": "Die eine Frage, die die Lizenz entscheidet",
@@ -141,8 +141,8 @@ BEITRAEGE = {
 
     "was-kostet-ein-serverausfall": {
         "titel": "Was kostet ein Serverausfall — und wie rechnet man das aus?",
-        "meta_titel": "Was kostet ein Serverausfall? So rechnen Sie | WVM-IT",
-        "desc": "Der Rechenweg für die Kosten eines IT-Ausfalls: verlorene Arbeitsstunden, Nacharbeit, verpasste Aufträge. Mit der Zahl lässt sich jede IT-Ausgabe begründen.",
+        "meta_titel": "Serverausfall: so rechnen Sie die Kosten aus | WVM-IT",
+        "desc": "Der Rechenweg für die Kosten eines IT-Ausfalls: verlorene Arbeitsstunden, Nacharbeit, verpasste Aufträge. Mit eigenen Zahlen — jetzt nachlesen.",
         "antwort": "Die Kosten eines Ausfalls berechnen sich aus drei Posten: den bezahlten, aber nicht nutzbaren Arbeitsstunden, der Nacharbeit danach und den Aufträgen, die in dieser Zeit nicht angenommen werden konnten. Der erste Posten ist der einzige, den man exakt kennt — Zahl der betroffenen Mitarbeiter mal Ausfallstunden mal Ihren durchschnittlichen Stundensatz. Bei zehn Mitarbeitern und einem halben Tag Stillstand sind das rund vierzig verlorene Arbeitsstunden, und diese Zahl ist in fast jedem Betrieb höher als die Jahreskosten der Vorsorge, die den Ausfall verhindert hätte.",
         "abschnitte": [
             {"h": "Posten 1: die bezahlte, aber unproduktive Zeit",
@@ -161,8 +161,8 @@ BEITRAEGE = {
 
     "it-dienstleister-wechseln": {
         "titel": "Wie übergibt man die IT an einen neuen Dienstleister, ohne dass etwas verloren geht?",
-        "meta_titel": "IT-Dienstleister wechseln: die Übergabeliste | WVM-IT",
-        "desc": "Was Sie beim Wechsel des IT-Dienstleisters herausverlangen müssen: Zugänge, Lizenzen, Dokumentation, Domains. Die Liste, bevor Sie kündigen.",
+        "meta_titel": "IT-Dienstleister wechseln ohne Datenverlust | WVM-IT",
+        "desc": "Was Sie beim Wechsel des IT-Dienstleisters herausverlangen müssen: Zugänge, Lizenzen, Dokumentation, Domains. Vor der Kündigung — jetzt nachlesen.",
         "antwort": "Der Wechsel gelingt, wenn die Übergabe vor der Kündigung geklärt ist — nicht danach. Verlangen Sie schriftlich: alle Administratorzugänge zu Server, Netzwerk, Microsoft 365 und Firewall, die Inhaberschaft an Domain und Hosting, die Lizenzunterlagen, eine Liste aller Geräte mit Standort und Seriennummer sowie die Zugangsdaten zu allen Verträgen, die auf Ihren Betrieb laufen. Solange das Verhältnis funktioniert, bekommen Sie diese Liste in ein paar Tagen; nach einer Kündigung kann daraus ein Monat werden.",
         "abschnitte": [
             {"h": "Warum die Reihenfolge über den Aufwand entscheidet",
@@ -181,8 +181,8 @@ BEITRAEGE = {
 
     "fernwartung-was-sieht-der-dienstleister": {
         "titel": "Fernwartung: was der Dienstleister sieht — und was nicht",
-        "meta_titel": "Fernwartung: Was sieht der Dienstleister? | WVM-IT",
-        "desc": "Wer per Fernwartung zugreift, sieht Ihren Bildschirm — mehr nicht. Was technisch möglich ist, was protokolliert wird und was Sie verlangen sollten.",
+        "meta_titel": "Fernwartung: 4 Dinge, die Sie verlangen sollten | WVM-IT",
+        "desc": "Wer per Fernwartung zugreift, sieht Ihren Bildschirm — mehr nicht. Was protokolliert wird und was Sie verlangen sollten. Jetzt nachlesen.",
         "antwort": "Bei einer Sitzung mit Ihrer Zustimmung sieht der Techniker genau das, was auf Ihrem Bildschirm steht — nicht mehr. Sie sehen die Sitzung mit, können jederzeit abbrechen, und ohne Ihre Freigabe kommt niemand auf das Gerät. Anders ist es bei der Wartung von Servern: Dort besteht ein dauerhafter Zugang, weil Updates nachts laufen müssen. Genau deshalb gehört dieser Zugang protokolliert, auf benannte Personen ausgestellt und im Auftragsverarbeitungsvertrag beschrieben — nicht als gemeinsames Passwort, das alle kennen.",
         "abschnitte": [
             {"h": "Der Unterschied zwischen Sitzung und Dauerzugang",
@@ -201,8 +201,8 @@ BEITRAEGE = {
 
     "wie-viele-arbeitsplaetze-eigener-server": {
         "titel": "Wie viele Arbeitsplätze braucht ein eigener Server?",
-        "meta_titel": "Ab wann lohnt sich ein eigener Server? | WVM-IT",
-        "desc": "Nicht die Mitarbeiterzahl entscheidet über einen eigenen Server, sondern die Software. Wann sich Hardware im Haus lohnt und wann die Cloud günstiger ist.",
+        "meta_titel": "Eigener Server: die 3 Fragen vor dem Kauf | WVM-IT",
+        "desc": "Nicht die Mitarbeiterzahl entscheidet über einen eigenen Server, sondern die Software. Wann sich Hardware im Haus lohnt. Jetzt nachlesen.",
         "antwort": "Die Zahl der Arbeitsplätze ist nicht der entscheidende Punkt — es gibt Betriebe mit dreißig Leuten ohne Server und Betriebe mit fünf, die einen brauchen. Entscheidend ist die Software: Sobald eine Warenwirtschaft, eine Branchenlösung oder eine Datenbank eine zentrale Installation verlangt, brauchen Sie einen Server, und zwar unabhängig von der Betriebsgröße. Wird ausschließlich mit Office, Mail und Dateien gearbeitet, ist die Cloud in aller Regel günstiger und wartungsärmer. Ein betreuter Server kostet bei uns ab 89 € im Monat, dazu kommt die Hardware.",
         "abschnitte": [
             {"h": "Die drei Fragen, die die Antwort geben",
@@ -221,8 +221,8 @@ BEITRAEGE = {
 
     "phishing-mails-erkennen": {
         "titel": "Phishing-Mails erkennen: fünf Merkmale, die immer stimmen",
-        "meta_titel": "Phishing erkennen: 5 Merkmale, die immer stimmen | WVM-IT",
-        "desc": "Rechtschreibfehler sind kein Merkmal mehr. Fünf Kennzeichen, an denen Sie eine Phishing-Mail auch dann erkennen, wenn sie perfekt formuliert ist.",
+        "meta_titel": "Phishing-Mails erkennen: 5 Merkmale, die zählen | WVM-IT",
+        "desc": "Rechtschreibfehler sind kein Merkmal mehr. Fünf Kennzeichen, an denen Sie eine Phishing-Mail auch fehlerfrei erkennen. Jetzt nachlesen.",
         "antwort": "Verlassen Sie sich nicht auf Rechtschreibung — heutige Phishing-Mails sind fehlerfrei. Die fünf Merkmale, die bleiben: erstens ein Zeitdruck, der keinen sachlichen Grund hat; zweitens ein Link, dessen tatsächliches Ziel nicht zum Absender passt; drittens die Aufforderung, sich anzumelden oder Daten zu bestätigen; viertens eine Abweichung vom üblichen Weg („ausnahmsweise auf dieses Konto“); fünftens ein Anhang, den Sie nicht erwartet haben. Trifft eines davon zu, prüfen Sie über einen zweiten Weg — anrufen, nicht antworten.",
         "abschnitte": [
             {"h": "Merkmal 1: künstlicher Zeitdruck",
@@ -243,8 +243,8 @@ BEITRAEGE = {
 
     "aufbewahrungsfristen-oesterreich": {
         "titel": "Welche Daten muss ein Betrieb in Österreich wie lange aufbewahren?",
-        "meta_titel": "Aufbewahrungsfristen in Österreich: Überblick | WVM-IT",
-        "desc": "Sieben Jahre für Bücher und Belege, länger bei Grundstücken und laufenden Verfahren. Was das für Server, Datensicherung und alte Software bedeutet.",
+        "meta_titel": "Aufbewahrungsfristen Österreich: 7 Jahre Regel | WVM-IT",
+        "desc": "Sieben Jahre für Bücher und Belege, länger bei Grundstücken und laufenden Verfahren. Was das für Server und Sicherung bedeutet. Jetzt nachlesen.",
         "antwort": "Der Grundsatz in Österreich: Bücher, Aufzeichnungen und Belege sind sieben Jahre aufzubewahren, gerechnet ab dem Ende des Kalenderjahres, für das die letzte Eintragung erfolgt ist (§ 132 BAO). Länger gilt es unter anderem bei Unterlagen zu Grundstücken und solange ein Verfahren anhängig ist. Für die IT ist dabei entscheidend, dass die Frist für die **Lesbarkeit** gilt, nicht für das Gerät: Wer nach fünf Jahren den Server wechselt, muss die alten Bestände weiterhin öffnen können — auch dann, wenn es das Programm dazu nicht mehr gibt.",
         "abschnitte": [
             {"h": "Was das für einen Serverwechsel bedeutet",
@@ -263,8 +263,8 @@ BEITRAEGE = {
 
     "alte-windows-version-im-betrieb": {
         "titel": "Alte Windows-Version im Betrieb: wann wird es wirklich gefährlich?",
-        "meta_titel": "Altes Windows im Betrieb: ab wann gefährlich? | WVM-IT",
-        "desc": "Gefährlich wird ein System nicht mit dem Alter, sondern mit dem Ende der Updates. Was dann zu tun ist — und wann Abtrennen besser ist als Austauschen.",
+        "meta_titel": "Altes Windows im Betrieb: 3 Fragen vor dem Tausch | WVM-IT",
+        "desc": "Gefährlich wird ein System nicht mit dem Alter, sondern mit dem Ende der Updates. Ablösen oder abtrennen — was jetzt zu tun ist. Jetzt nachlesen.",
         "antwort": "Der Punkt ist nicht das Alter, sondern das Ende der Sicherheitsupdates. Ab dem Tag, an dem keine Updates mehr erscheinen, wird jede neu entdeckte Lücke dauerhaft offen bleiben — und öffentlich bekannte Lücken werden binnen Tagen automatisiert ausgenutzt. Ein solches System gehört entweder abgelöst oder in ein eigenes, abgetrenntes Netz, in dem es nur noch mit dem sprechen darf, mit dem es sprechen muss. Für Maschinensteuerungen ist die zweite Variante der Normalfall, nicht der Notbehelf.",
         "abschnitte": [
             {"h": "Warum „läuft doch“ kein Argument ist",
@@ -283,8 +283,8 @@ BEITRAEGE = {
 
     "zugaenge-fuer-it-dienstleister": {
         "titel": "Was ein IT-Dienstleister an Zugängen bekommt — und was er nie braucht",
-        "meta_titel": "Welche Zugänge braucht der IT-Dienstleister? | WVM-IT",
-        "desc": "Welche Zugänge ein IT-Dienstleister wirklich benötigt, welche er nie braucht und wie Sie die Vergabe so regeln, dass sie einen Wechsel übersteht.",
+        "meta_titel": "IT-Dienstleister: 4 Regeln für die Zugangsvergabe | WVM-IT",
+        "desc": "Welche Zugänge ein IT-Dienstleister wirklich benötigt, welche er nie braucht und wie die Vergabe einen Wechsel übersteht. Jetzt nachlesen.",
         "antwort": "Ein IT-Dienstleister braucht Administratorzugang zu Servern, Netzwerkgeräten, Firewall und dem Verwaltungsbereich Ihrer Microsoft-365-Umgebung — also zu der Technik, die er betreiben soll. Er braucht nicht: Ihr persönliches E-Mail-Passwort, Zugang zum Online-Banking, Zugriff auf Personalakten oder das Passwort der Geschäftsführung. Der Unterschied ist einfach zu merken: Technik ja, Inhalte nein. Alles, was er bekommt, sollte auf eine benannte Person ausgestellt, mit Zwei-Faktor-Anmeldung geschützt und protokolliert sein.",
         "abschnitte": [
             {"h": "Was er braucht — und wofür",
@@ -303,8 +303,8 @@ BEITRAEGE = {
 
     "homeoffice-sicher-anbinden": {
         "titel": "Homeoffice sicher anbinden: VPN, Terminalserver oder Cloud?",
-        "meta_titel": "Homeoffice anbinden: VPN, Terminal oder Cloud? | WVM-IT",
-        "desc": "Drei Wege ins Firmennetz im Vergleich: Wann ein VPN passt, wann ein Terminalserver die bessere Wahl ist und wann es beides nicht braucht.",
+        "meta_titel": "Homeoffice anbinden: 3 Wege im Vergleich | WVM-IT",
+        "desc": "Drei Wege ins Firmennetz im Vergleich: wann ein VPN passt und wann ein Terminalserver die bessere Wahl ist. Jetzt nachlesen.",
         "antwort": "Die Wahl hängt daran, wo die Daten liegen und wie schwer sie sind. Liegt alles in Microsoft 365 oder einer Webanwendung, brauchen Sie weder VPN noch Terminalserver — dann genügen Zwei-Faktor-Anmeldung und verwaltete Geräte. Liegt eine Fachanwendung auf einem Server im Haus, ist ein Terminalserver meist die bessere Wahl als ein VPN, weil nur Bildschirminhalte übertragen werden und keine Daten auf dem heimischen Rechner landen. Ein VPN passt dort, wo einzelne Dienste im Firmennetz erreichbar sein müssen. Firewall und VPN richten wir ab 690 € ein.",
         "abschnitte": [
             {"h": "VPN: der Tunnel ins Firmennetz",

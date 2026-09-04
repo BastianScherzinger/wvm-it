@@ -20,7 +20,7 @@ Umkreis, per Fernwartung ueberall.
       <span aria-current="page">{{ t.seite.regionen_titel|safe }}</span>
     </nav>
     <h1>{{ t.seite.regionen_h1|safe }}</h1>
-    <p class="sp-kurz">{{ t.seite.regionen_kurz|safe }}</p>
+    {% include 'antwort.html' with text=t.seite.regionen_kurz %}
   </div>
 </header>
 

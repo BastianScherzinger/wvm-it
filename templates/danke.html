@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% comment %}
+/anfrage/danke/ — der Abschluss als eigene Adresse.
+
+Bis zum 05.09.2026 endete jede Anfrage in einer eingeblendeten Meldung auf
+derselben Seite. Das ist ohne JavaScript kein Abschluss, den man messen kann
+(Messung KV07), und es verschenkt den Augenblick: Wer gerade angefragt hat, ist
+der aufmerksamste Besucher des Tages — dieser Platz gehoert nicht einem Haken,
+sondern der Antwort auf „und jetzt?".
+
+`noindex`: Die Seite gehoert nicht in die Trefferliste, aber sehr wohl in den
+Fluss (`follow`), damit die Verweise von hier zaehlen.
+{% endcomment %}
+{% block titel %}{{ t.danke.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ t.danke.desc|safe }}{% endblock %}
+{% block og_titel %}{{ t.danke.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ t.danke.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ t.danke.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ t.danke.desc|safe }}{% endblock %}
+{% block robots %}noindex,follow{% endblock %}
+{% block alternates %}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.danke.h1|safe }}</span>
+    </nav>
+    <p class="dk-mark" aria-hidden="true">{% include 'icons.html' with name='check' %}</p>
+    <h1>{{ t.danke.h1|safe }}</h1>
+    {% include 'antwort.html' with text=kurz %}
+    {% if quelle_name %}<p class="dk-thema">{{ t.danke.thema_label|safe }}: <strong>{{ quelle_name }}</strong></p>{% endif %}
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="sp-h2">{{ t.danke.schritte_h|safe }}</h2>
+    <ol class="sp-ablauf" data-reveal>
+      <li><h3>{{ t.danke.s1_h|safe }}</h3><p>{{ t.danke.s1_t|safe }}</p></li>
+      <li><h3>{{ t.danke.s2_h|safe }}</h3><p>{{ t.danke.s2_t|safe }}</p></li>
+      <li><h3>{{ t.danke.s3_h|safe }}</h3><p>{{ t.danke.s3_t|safe }}</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <h2 class="sp-h2">{{ t.danke.warten_h|safe }}</h2>
+    <p class="hb-intro">{{ t.danke.warten_t|safe }}</p>
+    <div class="wt-grid" data-reveal>
+      <a class="wt-karte" href="{% url 'rechner' %}">
+        <span class="wt-ic" aria-hidden="true">{% include 'icons.html' with name='gauge' %}</span>
+        <strong>{{ t.danke.w1_h|safe }}</strong>
+        <span>{{ t.danke.w1_t|safe }}</span>
+      </a>
+      <a class="wt-karte" href="{% url 'sicherheitstest' %}">
+        <span class="wt-ic" aria-hidden="true">{% include 'icons.html' with name='shield' %}</span>
+        <strong>{{ t.danke.w2_h|safe }}</strong>
+        <span>{{ t.danke.w2_t|safe }}</span>
+      </a>
+      <a class="wt-karte" href="{% url 'leistungen' %}">
+        <span class="wt-ic" aria-hidden="true">{% include 'icons.html' with name='host' %}</span>
+        <strong>{{ t.danke.w3_h|safe }}</strong>
+        <span>{{ t.danke.w3_t|safe }}</span>
+      </a>
+    </div>
+
+    <div class="ks-block" data-reveal>
+      <h2 class="sp-h2">{{ t.danke.dringend_h|safe }}</h2>
+      <p>{{ t.danke.dringend_t|safe }}</p>
+      <p class="dk-wege">
+        {% if c.telefon %}<a class="btn" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
+        <a class="btn btn-ghost" href="{% url 'notfall' %}">{{ t.danke.notfall|safe }}</a>
+        <a class="btn btn-ghost" href="{% url 'index' %}">{{ t.danke.zurueck|safe }}</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

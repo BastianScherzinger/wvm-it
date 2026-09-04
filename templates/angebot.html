@@ -32,10 +32,10 @@
   und hatte als einzige oeffentliche Seite gar kein JSON-LD. Gefunden hat das die
   Schema-Pruefung aus SEO-AUSBAU-3.md (S9), nicht ein Mensch.
   {% endcomment %}
-  <script type="application/ld+json">{{ structured_data|safe }}</script>
+  <script type="application/ld+json" nonce="{{ request.csp_nonce }}">{{ structured_data|safe }}</script>
 </head>
 <body class="ang-page">
-<script>
+<script nonce="{{ request.csp_nonce }}">
   window.I18N = {
     numLocale: "{{ t.meta.num_locale }}",
     ang: {

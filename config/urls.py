@@ -37,6 +37,10 @@ urlpatterns = [
     # ruempelwerks config/urls.py dokumentiert.
     re_path(r"^(?P<key>[0-9a-f]{8,128})\.txt$", views.indexnow_key, name="indexnow_key"),
     path("sitemap.xml", views.sitemap_xml, name="sitemap_xml"),
+    # Die vier Segmente hinter dem Index. Das Muster ist eng gefasst, damit es
+    # keine kuenftige .xml-Route verschluckt.
+    re_path(r"^sitemap-(?P<klasse>kern|leistungen|silos|ratgeber)\.xml$",
+            views.sitemap_segment, name="sitemap_segment"),
     path("health", views.health, name="health"),
 ]
 
@@ -82,8 +86,18 @@ urlpatterns += i18n_patterns(
     path("suche/", views.suche, name="suche"),
     path("referenzen/", views.referenzen, name="referenzen"),
     path("kontakt/", views.kontakt, name="kontakt"),
+    # Wer hinter dem Betrieb steht — Pflicht-Seitentyp und bei einem
+    # IT-Dienstleister ein Kaufsignal.
+    path("ueber-uns/", views.ueber_uns, name="ueber_uns"),
+    # Der Abschluss als eigene Adresse (noindex, aber follow).
+    path("anfrage/danke/", views.anfrage_danke, name="anfrage_danke"),
     path("impressum/", views.impressum, name="impressum"),
     path("datenschutz/", views.datenschutz, name="datenschutz"),
+    # AGB und Barrierefreiheitserklaerung: zwei Pflicht-Seitentypen, die bis zum
+    # 05.09.2026 fehlten. Die Erklaerung ist ausserdem eine gesetzliche Pflicht,
+    # sofern der Betrieb nicht als Kleinstunternehmen ausgenommen ist.
+    path("agb/", views.agb, name="agb"),
+    path("barrierefreiheit/", views.barrierefreiheit, name="barrierefreiheit"),
     path("angebot/", views.angebot, name="angebot"),
     path("angebot/anfordern/", views.angebot_anfordern, name="angebot_anfordern"),
     path("kooperation/anfordern/", views.kooperation_anfordern, name="kooperation_anfordern"),

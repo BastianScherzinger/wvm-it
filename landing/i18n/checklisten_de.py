@@ -18,8 +18,8 @@ CHECKLISTEN = {
 
     "it-dienstleister-wechseln": {
         "titel": "Checkliste: IT-Dienstleister wechseln",
-        "meta_titel": "Checkliste: IT-Dienstleister wechseln | WVM-IT",
-        "desc": "Was Sie herausverlangen müssen, bevor Sie kündigen: Zugänge, Domain, Lizenzen, Dokumentation. Zum Abhaken und Ausdrucken.",
+        "meta_titel": "IT-Dienstleister wechseln: 3 Listen zum Abhaken | WVM-IT",
+        "desc": "Was Sie herausverlangen müssen, bevor Sie kündigen: Zugänge, Domain, Lizenzen, Dokumentation. Zum Ausdrucken — jetzt Checkliste ansehen.",
         "kurz": "Diese Liste geht vor der Kündigung durch, nicht danach — das ist der Unterschied zwischen einer Woche Aufwand und einem Monat. Sie enthält alles, was ein neuer Dienstleister braucht und was Ihnen ohnehin gehört: Zugänge, Inhaberschaften, Lizenzen und die Dokumentation. Arbeiten Sie sie ab, solange das Verhältnis zum bisherigen Anbieter noch funktioniert.",
         "intro": "Der häufigste Fehler beim Anbieterwechsel ist die Reihenfolge: erst kündigen, dann nach den Zugängen fragen. Ab der Kündigung arbeitet der bisherige Dienstleister an einem Auftrag, der ihm nichts mehr einbringt — Rückfragen dauern dann Wochen statt Tage. Rechtlich haben Sie in aller Regel Anspruch auf Ihre Daten und Zugänge, aber ein Anspruch ist kein Zugang.",
         "gruppen": [
@@ -72,8 +72,8 @@ CHECKLISTEN = {
 
     "neuer-arbeitsplatz": {
         "titel": "Checkliste: neuen Arbeitsplatz einrichten",
-        "meta_titel": "Checkliste: neuen Arbeitsplatz einrichten | WVM-IT",
-        "desc": "Vom Gerät bis zum Konto: was ein einsatzbereiter Arbeitsplatz braucht — und was am ersten Arbeitstag fertig sein muss.",
+        "meta_titel": "Checkliste: neuer Arbeitsplatz in 1–2 Stunden | WVM-IT",
+        "desc": "Vom Gerät bis zum Konto: was ein einsatzbereiter Arbeitsplatz braucht — und was am ersten Arbeitstag fertig sein muss. Checkliste ansehen.",
         "kurz": "Diese Liste sorgt dafür, dass ein neuer Mitarbeiter am ersten Tag arbeiten kann, statt auf die IT zu warten. Sie ist bewusst zweigeteilt: Was vor dem ersten Tag erledigt sein muss, und was am ersten Tag gemeinsam passiert. Der zweite Teil wird meistens vergessen — und ist der Grund, warum Einarbeitung an der Technik hängen bleibt.",
         "intro": "In Betrieben ohne eigene IT-Abteilung dauert die Einrichtung eines Arbeitsplatzes typischerweise deshalb Tage, weil niemand vorher weiß, was gebraucht wird. Der Ablauf lässt sich einmal aufschreiben und danach in einer Stunde abarbeiten. Genau das ist diese Liste.",
         "gruppen": [
@@ -128,8 +128,8 @@ CHECKLISTEN = {
 
     "it-jahrescheck": {
         "titel": "Checkliste: IT-Jahrescheck",
-        "meta_titel": "Checkliste: IT-Jahrescheck für Betriebe | WVM-IT",
-        "desc": "Einmal im Jahr durchgehen: Sicherung, Zugänge, Verträge, Geräte, Lizenzen. Die Liste, die den Großteil aller IT-Überraschungen verhindert.",
+        "meta_titel": "IT-Jahrescheck: die Liste für einen halben Tag | WVM-IT",
+        "desc": "Einmal im Jahr durchgehen: Sicherung, Zugänge, Verträge, Geräte, Lizenzen. Verhindert den Großteil aller IT-Überraschungen. Checkliste ansehen.",
         "kurz": "Einmal im Jahr, am besten zu einem festen Termin: Diese Liste geht die Punkte durch, die still veralten und genau dann auffallen, wenn es teuer ist. Sie braucht etwa einen halben Tag und verhindert den Großteil dessen, was sonst als „plötzlicher“ IT-Vorfall erscheint. Am wirksamsten ist sie, wenn sie im selben Monat wie der Jahresabschluss läuft — dann wird sie nicht vergessen.",
         "intro": "Fast alles, was in der IT eines kleinen Betriebs schiefgeht, hat sich vorher angekündigt: eine Platte mit Fehlern, eine Sicherung, die seit Monaten nicht mehr durchläuft, ein Konto eines längst ausgeschiedenen Mitarbeiters, ein auslaufendes Zertifikat. Der Jahrescheck ist der Termin, an dem diese Dinge auffallen, solange sie noch Termine und keine Notfälle sind.",
         "gruppen": [

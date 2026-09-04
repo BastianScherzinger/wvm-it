@@ -20,7 +20,7 @@ Die Falldaten stehen in views.REFERENZEN, die Texte im Sprachpaket unter `case`.
       <span aria-current="page">{{ t.footer.u_referenzen|safe }}</span>
     </nav>
     <h1>{{ rs.h1|safe }}</h1>
-    <p class="sp-kurz">{{ rs.kurz|safe }}</p>
+    {% include 'antwort.html' with text=rs.kurz %}
   </div>
 </header>
 

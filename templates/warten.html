@@ -57,7 +57,7 @@
   </div>
 </footer>
 
-<script>
+<script nonce="{{ request.csp_nonce }}">
   window.I18N = {
     wait: {
       done_title: "{{ t.wait.js_done_title|escapejs }}", done_sub: "{{ t.wait.js_done_sub|escapejs }}",
@@ -68,7 +68,7 @@
 </script>
 {% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>
-<script>
+<script nonce="{{ request.csp_nonce }}">
 (function(){
   var W=(window.I18N&&window.I18N.wait)||{};
   // Failsafe: Reveal-Elemente sofort sichtbar machen — diese Seite darf NIE „schwarz"

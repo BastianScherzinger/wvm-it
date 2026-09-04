@@ -23,7 +23,7 @@ und Antwortabsatz jeder Seite (views._such_index). Die Seite selbst steht auf
       <span aria-current="page">{{ t.suche.h1|safe }}</span>
     </nav>
     <h1>{{ t.suche.h1|safe }}</h1>
-    <p class="sp-kurz">{{ t.suche.kurz|safe }}</p>
+    {% include 'antwort.html' with text=t.suche.kurz %}
 
     <form class="such-form" action="{% url 'suche' %}" method="get" role="search">
       <label class="fld-l" for="such-q">{{ t.suche.label|safe }}</label>

@@ -20,7 +20,7 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
       <span aria-current="page">{{ t.nav.kontakt|safe }}</span>
     </nav>
     <h1>{{ ks.h1|safe }}</h1>
-    <p class="sp-kurz">{{ ks.kurz|safe }}</p>
+    {% include 'antwort.html' with text=ks.kurz %}
     <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
       {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
       {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}

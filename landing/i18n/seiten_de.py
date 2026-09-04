@@ -19,8 +19,8 @@ SEITEN = {
     # ══ EDV & IT ══════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "EDV &amp; IT-Betreuung",
-        "titel": "EDV- & IT-Betreuung für Betriebe | WVM-IT",
-        "desc": "Externe IT-Abteilung für kleine und mittlere Betriebe: ab 29 €/Monat je Arbeitsplatz, Support ab 95 €/Std., per Fernwartung in ganz AT und DE.",
+        "titel": "EDV- & IT-Betreuung ab 29 €/Monat | WVM-IT",
+        "desc": "Externe IT-Abteilung für kleine und mittlere Betriebe: ab 29 €/Monat je Arbeitsplatz, Support ab 95 €/Std. Jetzt unverbindlich anfragen.",
         "h1": "EDV- und IT-Betreuung für Betriebe ohne eigene IT-Abteilung",
         "kurz": "WVM-IT übernimmt die laufende EDV kleiner und mittlerer Betriebe in Österreich und Deutschland: Arbeitsplätze, Server, E-Mail, Drucker, Updates und Datensicherung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag ab 95 € je Stunde. Wir melden uns innerhalb von 24 Stunden und arbeiten überwiegend per Fernwartung — der Weg zu Ihnen führt über eine gesicherte Verbindung statt über die Autobahn.",
         "intro": "In den meisten Betrieben unter fünfzig Mitarbeitern gibt es keine IT-Abteilung. Es gibt jemanden, der sich „ein bisschen auskennt“ — und der eigentlich etwas anderes zu tun hätte. Solange nichts passiert, funktioniert das. Es fällt erst auf, wenn der Drucker im Büro streikt, während gleichzeitig die Angebote raus müssen, oder wenn nach einem Windows-Update ein Programm nicht mehr startet, das der ganze Betrieb braucht. Genau diese Lücke schließen wir: Sie bekommen eine Nummer, eine E-Mail-Adresse und einen festen Ansprechpartner, der weiß, wie Ihre Technik aufgebaut ist.",
@@ -64,8 +64,8 @@ SEITEN = {
 
     "server-datensicherung": {
         "nav": "Server &amp; Datensicherung",
-        "titel": "Server & Datensicherung für Firmen | WVM-IT",
-        "desc": "Server-Überwachung ab 89 €/Monat, geprüfte Datensicherung ab 49 €/Monat. Wir sehen den Ausfall, bevor der Betrieb steht — in ganz AT und DE.",
+        "titel": "Server-Betreuung & Backup ab 49 €/Monat | WVM-IT",
+        "desc": "Server-Überwachung ab 89 €/Monat, geprüfte Datensicherung ab 49 €/Monat. Wir sehen den Ausfall, bevor der Betrieb steht. Jetzt Angebot anfordern.",
         "h1": "Server-Betreuung und Datensicherung, die im Ernstfall hält",
         "kurz": "WVM-IT überwacht Firmenserver rund um die Uhr und betreibt die Datensicherung so, dass sie im Ernstfall auch funktioniert: täglich gesichert, jede Sicherung geprüft, die Wiederherstellung regelmäßig getestet. Die Server-Betreuung kostet ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Betreut wird per Fernzugriff in ganz Österreich und Deutschland.",
         "intro": "Fast jeder Betrieb hat eine Datensicherung. Deutlich weniger Betriebe wissen, wann sie zuletzt gelaufen ist, und die wenigsten haben je versucht, etwas daraus zurückzuholen. Das fällt genau einmal auf — an dem Tag, an dem es darauf ankommt. Eine Sicherung, die noch nie zurückgespielt wurde, ist keine Sicherung, sondern eine Hoffnung. Wir behandeln sie deshalb wie einen Betriebsteil, der geprüft gehört, und nicht wie eine Einstellung, die irgendwann einmal gesetzt wurde.",
@@ -109,8 +109,8 @@ SEITEN = {
 
     "netzwerk-wlan": {
         "nav": "Netzwerk &amp; WLAN",
-        "titel": "Netzwerk & WLAN für Firmen einrichten | WVM-IT",
-        "desc": "Netzwerk und WLAN ausgemessen, geplant und aufgebaut — ab 890 €, auch für Hallen und mehrere Etagen. Firewall und VPN ab 690 €.",
+        "titel": "Netzwerk & WLAN einrichten ab 890 € | WVM-IT",
+        "desc": "Netzwerk und WLAN ausgemessen, geplant und aufgebaut — ab 890 €, auch für Hallen und mehrere Etagen. Jetzt unverbindlich anfragen.",
         "h1": "Netzwerk und WLAN, das auch in der Halle trägt",
         "kurz": "WVM-IT plant, misst und baut Firmennetzwerke: strukturierte Verkabelung, WLAN mit lückenloser Abdeckung, getrennte Netze für Gäste und Betrieb, Firewall und VPN für den Zugriff von außen. Netzwerk und WLAN einrichten kostet ab 890 €, Firewall und VPN ab 690 €. Geplant wird aus der Ferne, gebaut wird vor Ort.",
         "intro": "WLAN-Probleme werden fast immer mit einem weiteren Zugangspunkt beantwortet. Meistens wird es davon schlechter: Zwei Geräte auf demselben Kanal stören sich gegenseitig, und das Endgerät hängt sich an das falsche. Ein Netz, das trägt, entsteht nicht durch mehr Hardware, sondern durch eine Messung, einen Plan und saubere Kanalvergabe. Bei Hallen, Altbau und mehreren Etagen ist das der Unterschied zwischen „läuft“ und „läuft, außer hinten links“.",
@@ -154,8 +154,8 @@ SEITEN = {
 
     "it-sicherheit": {
         "nav": "IT-Sicherheit",
-        "titel": "IT-Sicherheit für Betriebe | WVM-IT",
-        "desc": "IT-Sicherheitscheck ab 490 € mit schriftlichem Bericht und Maßnahmenliste. Firewall und VPN ab 690 €. Für Betriebe in Österreich und Deutschland.",
+        "titel": "IT-Sicherheitscheck ab 490 € | WVM-IT",
+        "desc": "IT-Sicherheitscheck ab 490 € mit schriftlichem Bericht und Maßnahmenliste. Firewall und VPN ab 690 €. Jetzt Angebot anfordern.",
         "h1": "IT-Sicherheit, die zu einem Betrieb passt — nicht zu einem Konzern",
         "kurz": "WVM-IT prüft die IT-Sicherheit kleiner und mittlerer Betriebe und setzt die Maßnahmen um, die wirklich etwas bringen: Rechte, Passwörter, Firewall, VPN, Updates, geprüfte Sicherungen. Der einmalige IT-Sicherheitscheck kostet ab 490 € und endet mit einem schriftlichen Bericht samt Maßnahmenliste; Firewall und VPN richten wir ab 690 € ein. Geprüft und betreut wird per Fernzugriff in Österreich und Deutschland.",
         "intro": "Die meisten Schäden in kleinen Betrieben entstehen nicht durch einen gezielten Angriff, sondern durch Alltägliches: ein Passwort, das überall gilt, ein Konto eines längst ausgeschiedenen Mitarbeiters, ein Rechner ohne Updates, eine Sicherung, die nichts taugt. Man braucht kein Sicherheitskonzept nach Konzernmaßstab, um das abzustellen. Man braucht jemanden, der einmal systematisch nachsieht und danach die Punkte abarbeitet, die tatsächlich Schaden verhindern.",
@@ -201,7 +201,7 @@ SEITEN = {
     "webseite-erstellen": {
         "nav": "Webseite erstellen",
         "titel": "Webseite erstellen lassen ab 350 € | WVM-IT",
-        "desc": "Webseiten für Betriebe in Österreich und Deutschland: One-Pager ab 350 €, Firmenseite ab 1.490 €, Shop ab 3.500 €. Kostenlose Testseite vorab.",
+        "desc": "Webseiten für Betriebe in Österreich und Deutschland: One-Pager ab 350 €, Firmenseite ab 1.490 €, Shop ab 3.500 €. Jetzt Angebot anfordern.",
         "h1": "Webseite erstellen lassen — und vorher sehen, was Sie bekommen",
         "kurz": "WVM-IT baut Webseiten für Betriebe in Österreich und Deutschland: ein One-Pager ab 350 €, eine mehrseitige Firmenseite ab 1.490 €, eine Premium-Seite mit Animationen ab 2.900 €, ein Online-Shop ab 3.500 €. Vorab bauen wir kostenlos eine echte Beispielseite, damit Sie sehen, wie wir arbeiten, bevor Sie sich entscheiden. Hosting und Wartung kosten zusammen 54 € im Monat.",
         "intro": "Die häufigste Enttäuschung mit einer neuen Webseite ist nicht das Aussehen, sondern die Stille danach. Sie sieht gut aus, sie ist teuer gewesen, und es passiert nichts. Das liegt fast nie am Design, sondern daran, dass die Seite nicht dafür gebaut wurde, dass jemand Kontakt aufnimmt: Die Telefonnummer steht ganz unten, es gibt keine Preise, das Formular hat neun Felder. Wir bauen in die andere Richtung — vom Ziel her.",
@@ -245,8 +245,8 @@ SEITEN = {
 
     "seo-betreuung": {
         "nav": "SEO-Betreuung",
-        "titel": "SEO-Betreuung für Betriebe | WVM-IT",
-        "desc": "Bei Google und in KI-Antworten gefunden werden: SEO-Grundoptimierung ab 390 €, laufende Betreuung ab 149 €/Monat, mit monatlichem Bericht.",
+        "titel": "SEO-Betreuung ab 149 €/Monat | WVM-IT",
+        "desc": "Bei Google und in KI-Antworten gefunden werden: SEO-Grundoptimierung ab 390 €, laufende Betreuung ab 149 €/Monat. Jetzt unverbindlich anfragen.",
         "h1": "SEO-Betreuung: gefunden werden von Leuten, die Sie noch nicht kennen",
         "kurz": "WVM-IT bringt Betriebe bei Google und in KI-Antworten wie ChatGPT und Perplexity nach vorn: technische Grundlagen, eine eigene Seite je Leistung, Inhalte, die Suchfragen wirklich beantworten, und monatliche Messung. Die einmalige Grundoptimierung kostet ab 390 €, die laufende Betreuung ab 149 € im Monat. Gearbeitet wird ortsunabhängig für Kunden in Österreich und Deutschland.",
         "intro": "Der häufigste Befund bei kleinen Firmenseiten ist immer derselbe: Sie werden gefunden — aber nur über den eigenen Firmennamen. Also von Leuten, die die Firma ohnehin kennen. Für alle, die ein Problem haben und nach der Lösung suchen, existiert die Seite nicht. Der Grund ist selten die Technik. Er liegt darin, dass alle Leistungen auf einer einzigen Seite in Absätzen stehen, und Google keine Absätze platzieren kann, sondern nur Seiten.",
@@ -290,8 +290,8 @@ SEITEN = {
 
     "google-ads": {
         "nav": "Google Ads",
-        "titel": "Google Ads Betreuung für Betriebe | WVM-IT",
-        "desc": "Google Ads einrichten ab 490 €, laufende Betreuung ab 199 €/Monat zzgl. Budget. Mit Conversion-Messung und verständlichem Monatsbericht.",
+        "titel": "Google Ads Betreuung ab 199 €/Monat | WVM-IT",
+        "desc": "Google Ads einrichten ab 490 €, laufende Betreuung ab 199 €/Monat zzgl. Budget, mit Conversion-Messung und Monatsbericht. Jetzt Angebot anfordern.",
         "h1": "Google Ads, die Anfragen bringen — nicht nur Klicks",
         "kurz": "WVM-IT richtet Google-Ads-Konten ein und betreut sie laufend: Kampagnen, Suchbegriffe, Anzeigen, ausschließende Begriffe und vor allem eine funktionierende Conversion-Messung. Die Einrichtung kostet ab 490 €, die laufende Betreuung ab 199 € im Monat zuzüglich Ihres Werbebudgets. Betreut wird ortsunabhängig für Betriebe in Österreich und Deutschland.",
         "intro": "Anzeigen sind der schnellste Weg zu Anfragen — und der schnellste Weg, Geld zu verbrennen. Der Unterschied liegt fast nie an der Anzeige selbst, sondern daran, ob gemessen wird, was hinten herauskommt. Wer nur Klicks zählt, optimiert auf Besuche. Wer Anfragen misst, kann Suchbegriffe abschalten, die teuer sind und nichts bringen — und das sind erfahrungsgemäß die meisten.",
@@ -335,8 +335,8 @@ SEITEN = {
 
     "hosting-wartung": {
         "nav": "Hosting &amp; Wartung",
-        "titel": "Hosting & Wartung für Firmenseiten | WVM-IT",
-        "desc": "Hosting mit SSL und täglichen Sicherungen ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr. Auch für Seiten, die jemand anderes gebaut hat.",
+        "titel": "Hosting & Wartung ab 15 €/Monat | WVM-IT",
+        "desc": "Hosting mit SSL und täglichen Sicherungen ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr. Jetzt unverbindlich anfragen.",
         "h1": "Hosting und Wartung: damit die Seite auch läuft, wenn niemand hinsieht",
         "kurz": "WVM-IT betreibt und wartet Firmenseiten: Hosting mit SSL und täglichen Sicherungen ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat, Domain ab 15 € im Jahr — zusammen 54 € im Monat. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
         "intro": "Eine Webseite ist keine Anschaffung, sondern ein Betriebsmittel. Zertifikate laufen ab, Systeme brauchen Sicherheits-Updates, Kontaktformulare hören irgendwann still auf zu funktionieren. Das fällt selten sofort auf — meistens erst dann, wenn wochenlang keine Anfrage mehr kam und jemand nachsieht. Wartung ist die günstigste Versicherung gegen genau diese Wochen.",
@@ -380,8 +380,8 @@ SEITEN = {
 
     "ki-automatisierung": {
         "nav": "KI-Automatisierung",
-        "titel": "KI-Automatisierung für Unternehmen | WVM-IT",
-        "desc": "Chatbots, WhatsApp- und Termin-Automatisierung für Betriebe: Terminbuchung ab 390 €, Chatbot ab 690 €, Anbindung an CRM und ERP ab 1.200 €.",
+        "titel": "KI-Automatisierung ab 390 € | WVM-IT",
+        "desc": "Chatbots, WhatsApp- und Termin-Automatisierung für Betriebe: Terminbuchung ab 390 €, Chatbot ab 690 €, CRM-Anbindung ab 1.200 €. Jetzt anfragen.",
         "h1": "KI-Automatisierung: die Arbeit, die sich wiederholt, macht die Technik",
         "kurz": "WVM-IT baut Automatisierungen für wiederkehrende Arbeit in Betrieben: einen Chatbot, der nachts Anfragen entgegennimmt, Termin- und Buchungsabläufe, automatische Antworten per WhatsApp und E-Mail sowie Anbindungen an vorhandene Systeme. Terminautomatisierung kostet ab 390 €, ein KI-Chatbot ab 690 €, eine Anbindung an CRM oder ERP ab 1.200 €. Umgesetzt wird ortsunabhängig in Österreich und Deutschland.",
         "intro": "Automatisierung lohnt sich nicht dort, wo sie beeindruckend aussieht, sondern dort, wo dieselbe Handbewegung jeden Tag zwanzigmal passiert: dieselbe Frage beantworten, denselben Termin eintragen, dieselbe Bestätigung schreiben. Deshalb fangen wir nie mit der Technik an, sondern mit der Frage, welche fünf Minuten sich am häufigsten wiederholen. Alles andere ist Spielerei mit Rechnung.",
@@ -426,8 +426,8 @@ SEITEN = {
     # ══ Technik vor Ort ═══════════════════════════════════════════════════════
     "smarthome-knx-loxone": {
         "nav": "Smarthome, Loxone &amp; KNX",
-        "titel": "Smarthome mit Loxone & KNX | WVM-IT",
-        "desc": "Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt und Sicherheit in einem System. Geplant, programmiert und betreut.",
+        "titel": "Smarthome mit Loxone & KNX in Österreich | WVM-IT",
+        "desc": "Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt und Sicherheit in einem System. Jetzt unverbindlich anfragen.",
         "h1": "Gebäudeautomation mit Loxone und KNX",
         "kurz": "WVM-IT plant, programmiert und betreut Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt, Sicherheit und Medientechnik in einem System. Anlagen dieser Art werden projektbezogen kalkuliert und vor Ort aufgebaut — den Preis nennen wir nach einem kurzen Gespräch und einer Bestandsaufnahme, nicht vorher.",
         "intro": "Bei Gebäudeautomation entscheidet nicht die Hardware über das Ergebnis, sondern die Programmierung. Dieselben Geräte können eine Anlage ergeben, die niemand versteht und die nach dem ersten Sommer wieder von Hand bedient wird — oder eine, die einfach tut, was man erwartet. Deshalb planen wir zuerst die Abläufe und erst danach die Komponentenliste.",
@@ -471,10 +471,10 @@ SEITEN = {
 
     "konferenztechnik": {
         "nav": "Konferenztechnik",
-        "titel": "Konferenz- & Veranstaltungstechnik | WVM-IT",
-        "desc": "Besprechungsräume und Veranstaltungen technisch ausstatten: Displays, Kameras, Mikrofone, Ton und Steuerung. Geplant, installiert, eingemessen.",
-        "h1": "Konferenz-, Ton- und Veranstaltungstechnik, die auf Knopfdruck funktioniert",
-        "kurz": "WVM-IT stattet Besprechungsräume und Veranstaltungen technisch aus: Displays, Kameras, Mikrofone, Ton, Licht und eine Steuerung, die auch jemand bedienen kann, der sie nicht eingebaut hat. Geplant, installiert und eingemessen wird projektbezogen vor Ort; den Preis nennen wir nach einer Bestandsaufnahme des Raums.",
+        "titel": "Konferenzraum-Technik ab 120 €/Std | WVM-IT",
+        "desc": "Besprechungsräume ausstatten: Displays, Kameras, Mikrofone, Ton und Steuerung auf einem Knopf. Vor Ort ab 120 €/Std. Jetzt anfragen.",
+        "h1": "Konferenzraum-Technik, mit der eine Besprechung pünktlich anfängt",
+        "kurz": "WVM-IT stattet Besprechungs- und Schulungsräume technisch aus: Displays, Kameras, Mikrofone, Ton und eine Steuerung, die auch jemand bedienen kann, der sie nicht eingebaut hat. Ein üblicher Besprechungsraum ist an ein bis zwei Tagen fertig, sofern die Verkabelung liegt. Geplant und eingemessen wird vor Ort, Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab; den Projektpreis nennen wir nach der Besichtigung. Für Säle, Bühnen und Live-Veranstaltungen gibt es die eigene Seite Veranstaltungstechnik.",
         "intro": "Der Maßstab für Konferenztechnik ist nicht, was sie kann, sondern ob eine Besprechung pünktlich anfängt. Die meisten Räume scheitern an denselben Kleinigkeiten: Das falsche Kabel liegt am Tisch, die Kamera zeigt die Wand, den Ton versteht die Gegenseite nicht. Deshalb messen wir Räume ein und bauen die Bedienung auf einen einzigen sichtbaren Weg — alles andere verschwindet in der Technik.",
         "problem_h": "Die Räume, um die es geht",
         "probleme": [
@@ -512,5 +512,104 @@ SEITEN = {
         ],
         "cta_h": "Um welchen Raum geht es?",
         "cta_t": "Größe, Nutzung und was heute schon da ist — mehr brauchen wir für eine erste Einschätzung nicht. Antwort innerhalb von 24 Stunden.",
+    },
+
+    "veranstaltungstechnik": {
+        "nav": "Veranstaltungstechnik",
+        "titel": "Video-, Ton- & Bühnentechnik in Oberösterreich | WVM-IT",
+        "desc": "Veranstaltungstechnik für Säle, Vereine, Gemeinden und Hotels: Ton, Licht, Video und Bühne. Vor Ort ab 120 €/Std. Jetzt anfragen.",
+        "h1": "Video-, Ton- und Bühnentechnik für Säle und Veranstaltungen",
+        "kurz": "WVM-IT plant, installiert und betreut Veranstaltungstechnik in Oberösterreich und darüber hinaus: Beschallung, Licht, Video- und Bühnentechnik für Säle, Vereinsheime, Gemeindezentren, Hotels und Firmenveranstaltungen. Fest eingebaute Anlagen kalkulieren wir projektbezogen nach Besichtigung, Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab, sofern kein Festpreis vereinbart ist. Auf eine Anfrage antworten wir innerhalb von 24 Stunden.",
+        "intro": "In den meisten Sälen steht Technik, die einmal jemand aufgebaut hat und die seitdem niemand mehr versteht. Es gibt drei Fernbedienungen, zwei davon ohne Batterien, und einen Mischer, an dem nur ein bestimmter Mensch etwas verstellen darf. Solange dieser Mensch Zeit hat, geht das gut. Der Abend, an dem es schiefgeht, ist immer der Abend, an dem hundert Leute im Raum sitzen. Wir bauen Anlagen so, dass sie auch jemand bedienen kann, der sie zum ersten Mal sieht — und dokumentieren, was wo angeschlossen ist.",
+        "problem_h": "Woran es in Sälen meistens hängt",
+        "probleme": [
+            "Der Ton ist vorne zu laut und hinten unverständlich — die Anlage wurde nie eingemessen.",
+            "Jede Veranstaltung beginnt mit zwanzig Minuten Kabelsuche und einem Anruf beim „der kennt sich aus“.",
+            "Für Vorträge, Livemusik und Filmabend gibt es dieselbe Einstellung, obwohl das drei verschiedene Anforderungen sind.",
+            "Rückkopplungen bei Funkmikrofonen, weil Frequenzen und Positionen nie geplant wurden.",
+            "Die Technik hängt an einer Person; fällt sie aus, fällt die Veranstaltung aus.",
+        ],
+        "leistung_h": "Was wir übernehmen",
+        "leistungen": [
+            "Beschallung: Lautsprecher, Verstärker, Mischpult — geplant für den Raum, nicht aus dem Katalog",
+            "Funkmikrofone: Frequenzplanung, Anzahl, Ladeplätze, damit nichts einstreut",
+            "Licht: Grundlicht, Bühnenlicht, einfache Szenen auf Knopfdruck statt Pultbedienung",
+            "Video: Projektion oder Display, Zuspielung von Laptop, Kamera und Streaming-Anbindung",
+            "Bühne: Signalwege, Anschlussfelder, Stromverteilung, Ordnung hinter der Bühne",
+            "Einweisung und schriftliche Kurzanleitung — eine Seite, laminiert, neben dem Pult",
+            "Betreuung einzelner Veranstaltungen: Aufbau, Betrieb während des Abends, Abbau",
+        ],
+        "ablauf_h": "Wie ein Saal wieder verlässlich wird",
+        "ablauf": [
+            {"h": "Termin im Raum, nicht am Telefon", "t": "Wir hören uns den Raum an und sehen, was vorhanden ist. Nachhall, Sitzplan, Bühnenhöhe und die vorhandene Verkabelung entscheiden mehr über das Ergebnis als die Marke der Lautsprecher."},
+            {"h": "Konzept mit Geräteliste und Preis", "t": "Sie bekommen eine Lösung, die zu den Veranstaltungen passt, die bei Ihnen tatsächlich stattfinden. Was vorhanden ist und taugt, bleibt — wir ersetzen nichts, um etwas zu verkaufen."},
+            {"h": "Aufbau, Einmessung, Einweisung", "t": "Installation, Einmessung des Tons im besetzten und leeren Raum, feste Voreinstellungen für die typischen Anlässe. Am Ende steht eine kurze Einweisung und eine Anleitung, die auch in zwei Jahren noch verständlich ist."},
+            {"h": "Danach erreichbar bleiben", "t": "Vor einer größeren Veranstaltung sehen wir auf Wunsch noch einmal nach. Kommt trotzdem etwas dazwischen, erreichen Sie uns unter +43 676 3808501."},
+        ],
+        "preis_h": "Warum hier kein Ab-Preis steht",
+        "preis_t": "Zwischen einer Beschallung für einen Vereinssaal und einer Bühne mit Licht, Video und Streaming liegen Größenordnungen; ein Startpreis an dieser Stelle wäre eine Zahl ohne Aussage. Wir sehen uns den Raum an und kalkulieren projektbezogen mit Geräteliste. Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab, sofern kein Festpreis vereinbart ist; Planung und Abstimmung aus der Ferne mit 95 € je Stunde. Richtpreise, netto zzgl. USt.",
+        "faq": [
+            {"q": "Was kostet Veranstaltungstechnik für einen Saal?",
+             "a": "Das hängt fast vollständig an der Raumgröße und daran, was der Raum können soll. Eine verständliche Sprachbeschallung für einen Vereinssaal ist ein anderes Projekt als eine Bühne mit Licht und Videozuspielung. Nach der Besichtigung bekommen Sie eine Geräteliste mit Preis — vorher wäre jede Zahl geraten. Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab."},
+            {"q": "Rüsten Sie vorhandene Technik nach oder muss alles neu?",
+             "a": "In den meisten Sälen ist mehr brauchbares Material vorhanden, als die Nutzer glauben. Häufig fehlt nicht die Technik, sondern die Einmessung, eine sinnvolle Verkabelung und eine Bedienung, die niemanden überfordert. Wir sehen zuerst nach, was das Vorhandene hergibt."},
+            {"q": "Betreuen Sie auch einzelne Veranstaltungen?",
+             "a": "Ja, projektbezogen: Planung, Aufbau, Betrieb während der Veranstaltung, Abbau. Umfang, Zeitrahmen und Preis legen wir vorher schriftlich fest, damit am Ende keine Überraschung auf der Rechnung steht."},
+            {"q": "Können Sie eine Veranstaltung auch aufzeichnen oder streamen?",
+             "a": "Ja. Kamera, Bildregie und die Anbindung an einen Streaming-Dienst planen wir mit; der begrenzende Faktor ist fast immer die Internetleitung im Haus, nicht die Technik im Saal. Das prüfen wir vorher, nicht am Veranstaltungstag."},
+            {"q": "Wie weit fahren Sie?",
+             "a": "Unser Sitz ist in Lenzing im Bezirk Vöcklabruck. Im Salzkammergut, im Raum Vöcklabruck, Gmunden, Wels, Linz und Salzburg sind wir regelmäßig unterwegs; darüber hinaus rechnen wir die Anfahrt offen aus und nennen sie vor der Zusage."},
+        ],
+        "cta_h": "Was findet bei Ihnen statt?",
+        "cta_t": "Saalgröße, die üblichen Veranstaltungen und was heute schon an Technik da ist — mehr brauchen wir für eine erste Einschätzung nicht. Antwort innerhalb von 24 Stunden.",
+    },
+
+    "it-beratung": {
+        "nav": "IT-Beratung",
+        "titel": "IT-Beratung ab 95 €/Std | WVM-IT",
+        "desc": "IT-Beratung ohne Herstellerbindung: Bestandsaufnahme, Konzept, Angebotsvergleich und Begleitung — 95 € je Stunde. Jetzt unverbindlich anfragen.",
+        "h1": "IT-Beratung für Betriebe, die eine Entscheidung treffen müssen",
+        "kurz": "WVM-IT berät kleine und mittlere Betriebe in Österreich und Deutschland vor Investitionen in IT und Gebäudetechnik: Bestandsaufnahme, schriftliches Konzept, Vergleich fremder Angebote und Begleitung bei der Umsetzung. Die Beratung kostet 95 € je Stunde, Termine vor Ort 120 € je Stunde zuzüglich Anfahrt. Auf Anfragen antworten wir innerhalb von 24 Stunden — auch dann, wenn die ehrliche Antwort lautet, dass sich die Investition nicht lohnt.",
+        "intro": "Die teuersten IT-Entscheidungen sind selten die falschen Geräte. Es sind die Entscheidungen, die niemand getroffen hat: der Server, der noch ein Jahr mitläuft, weil keiner weiß, was danach kommt; die Software, die ausgesucht wurde, weil ein Anbieter zuerst angerufen hat; die zwei Angebote, die man nicht vergleichen kann, weil sie verschiedene Dinge beschreiben. Beratung heißt hier nicht Präsentation. Sie heißt: jemand sieht sich an, was Sie haben, hört zu, was Sie vorhaben, und schreibt auf, was das für Ihre Technik bedeutet.",
+        "problem_h": "Wann eine Beratung sich rechnet",
+        "probleme": [
+            "Es liegen zwei oder drei Angebote vor, und keiner im Haus kann sie fachlich vergleichen.",
+            "Ein Server, eine Telefonanlage oder eine Software läuft aus, und der Nachfolger ist offen.",
+            "Der Betrieb wächst, zieht um oder baut — und die Technik soll diesmal vorher geplant sein.",
+            "Der bisherige Dienstleister ist der Einzige, der weiß, wie alles zusammenhängt.",
+            "Die IT-Kosten steigen, aber niemand kann sagen, wofür genau.",
+        ],
+        "leistung_h": "Was eine Beratung bei uns umfasst",
+        "leistungen": [
+            "Bestandsaufnahme: Geräte, Server, Netzwerk, Lizenzen, Verträge, Zugänge — schriftlich festgehalten",
+            "Bewertung: was trägt noch, was ist ein Risiko, was kostet mehr als es bringt",
+            "Konzept mit Reihenfolge und grober Kostenschätzung, nicht mit einer Wunschliste",
+            "Angebotsvergleich: fremde Angebote nebeneinandergelegt und auf denselben Umfang gebracht",
+            "Begleitung bei Ausschreibung, Auswahl und Umsetzung — auch, wenn ein anderer sie ausführt",
+            "Übergabe aller Unterlagen, damit die Entscheidung im Haus bleibt und nicht bei uns",
+        ],
+        "ablauf_h": "Wie eine Beratung abläuft",
+        "ablauf": [
+            {"h": "Erstgespräch, kostenfrei", "t": "Dreißig bis vierzig Minuten am Telefon oder per Videokonferenz. Danach wissen wir beide, ob es überhaupt etwas zu beraten gibt und was es kosten würde. Diese Zeit stellen wir nicht in Rechnung."},
+            {"h": "Bestandsaufnahme", "t": "Wir sehen uns an, was tatsächlich da ist — meistens per Fernzugriff, bei Gebäude- und Veranstaltungstechnik vor Ort. Am Ende steht eine Übersicht, die es in dieser Form vorher selten gibt."},
+            {"h": "Schriftliches Konzept", "t": "Sie bekommen ein Dokument mit Befund, Empfehlung, Reihenfolge und Kostenrahmen. Es ist so geschrieben, dass Sie es auch einem anderen Dienstleister vorlegen können — das ist der Punkt einer unabhängigen Beratung."},
+            {"h": "Umsetzung — mit uns oder ohne uns", "t": "Wenn Sie die Umsetzung an uns geben, rechnen wir die Beratungsstunden auf das Projekt an. Wenn Sie sie an jemand anderen geben, ist das kein Problem: Das Konzept gehört Ihnen."},
+        ],
+        "preis_h": "Was Beratung kostet",
+        "preis_t": "Die Beratung kostet 95 € je Stunde, Termine vor Ort 120 € je Stunde zuzüglich Anfahrt. Das Erstgespräch ist kostenfrei. Eine Bestandsaufnahme mit schriftlichem Konzept liegt bei einem üblichen Betrieb erfahrungsgemäß zwischen einem halben und zwei Tagen Aufwand; die Schätzung nennen wir vorher und halten sie ein oder melden uns, bevor sie überschritten wird. Vergeben Sie die Umsetzung an uns, rechnen wir die Beratungsstunden an. Richtpreise, netto zzgl. USt.",
+        "faq": [
+            {"q": "Was kostet eine IT-Beratung?",
+             "a": "95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt; das Erstgespräch ist kostenfrei. Eine vollständige Bestandsaufnahme mit schriftlichem Konzept liegt bei einem Betrieb mit zehn bis dreißig Arbeitsplätzen meist zwischen vier und sechzehn Stunden. Den Rahmen nennen wir vor Beginn."},
+            {"q": "Sind Sie an Hersteller gebunden?",
+             "a": "Nein. Wir arbeiten mit Partnern zusammen, wo es fachlich nötig ist — bei Gebäudeautomation und Veranstaltungstechnik etwa —, aber wir bekommen keine Vergütung dafür, dass wir ein bestimmtes Produkt empfehlen. Wenn eine Empfehlung für uns finanziell interessant ist, sagen wir das im Konzept dazu."},
+            {"q": "Beraten Sie auch, wenn ein anderer Dienstleister die Umsetzung macht?",
+             "a": "Ja, das ist ausdrücklich vorgesehen. Ein Konzept, das nur mit uns funktioniert, wäre keine Beratung, sondern ein Angebot. Sie bekommen die Unterlagen so, dass jeder fachkundige Dienstleister danach arbeiten kann."},
+            {"q": "Können Sie ein vorliegendes Angebot prüfen?",
+             "a": "Ja, und das ist der häufigste Anlass. Wir bringen die Angebote auf denselben Leistungsumfang, benennen, was fehlt oder doppelt drinsteht, und sagen Ihnen, welche Fragen Sie vor der Unterschrift stellen sollten. Dafür reichen meist zwei bis drei Stunden."},
+            {"q": "Was, wenn Ihre Empfehlung lautet, nichts zu tun?",
+             "a": "Dann steht das so im Konzept. Es kommt regelmäßig vor, dass eine Anlage noch zwei Jahre trägt und das Geld anderswo besser aufgehoben ist. Eine Beratung, die immer zu einer Investition führt, ist keine."},
+        ],
+        "cta_h": "Vor welcher Entscheidung stehen Sie?",
+        "cta_t": "Beschreiben Sie in zwei Sätzen, was ansteht — ein auslaufender Server, ein Umbau, zwei Angebote, die Sie nicht vergleichen können. Wir melden uns innerhalb von 24 Stunden mit einer Einschätzung, ob und wie viel Beratung das braucht.",
     },
 }

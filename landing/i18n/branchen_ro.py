@@ -13,8 +13,8 @@ BRANCHEN = {
 
     "steuerberater-kanzleien": {
         "nav": "Contabilitate &amp; avocatură",
-        "titel": "IT pentru cabinete de contabilitate | WVM-IT",
-        "desc": "IT pentru cabinete: mediu DATEV, separarea clienților, termene de arhivare, backup verificat. De la 29 € per stație și lună.",
+        "titel": "IT pentru cabinete în Austria, de la 29 € | WVM-IT",
+        "desc": "IT pentru cabinete: mediu DATEV, separarea clienților, termene de arhivare, backup verificat, de la 29 € per stație. Solicitați o ofertă acum.",
         "h1": "IT pentru cabinete de contabilitate și avocatură",
         "kurz": "WVM-IT se ocupă de IT-ul cabinetelor de contabilitate, avocatură și audit din Austria și Germania: stații de lucru, mediul DATEV sau al software-ului de cabinet, datele clienților și backupul din spate. Asistența curentă costă de la 29 € per stație și lună, verificarea unică de securitate IT 490 €. Lucrăm preponderent prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu întrerupe munca.",
         "intro": "Într-un cabinet, IT-ul nu este un instrument, ci arhiva. Ce se află pe servere reprezintă patrimoniul altora sub formă de cifre — și este supus unor termene pe care nimeni nu le poate suspenda. De aceea tehnologia are aici alt rol decât într-o firmă care seara închide calculatoarele: trebuie să funcționeze demonstrabil, nu doar aparent.",
@@ -57,8 +57,8 @@ BRANCHEN = {
 
     "handwerk-baugewerbe": {
         "nav": "Meșteșuguri &amp; construcții",
-        "titel": "IT pentru firme de construcții și meșteșuguri | WVM-IT",
-        "desc": "IT pentru meserii și construcții: aparate pentru șantier, pontaj, software de branșă, documentare foto. De la 29 € per stație și lună.",
+        "titel": "IT pentru construcții în Austria, de la 29 € | WVM-IT",
+        "desc": "IT pentru meserii și construcții: aparate pentru șantier, pontaj, software de branșă, documentare foto, de la 29 € per stație. Contactați-ne acum.",
         "h1": "IT pentru firme meșteșugărești și de construcții",
         "kurz": "WVM-IT se ocupă de IT-ul firmelor meșteșugărești și de construcții din Austria și Germania: stații de birou, servere, software de branșă, aparate mobile pe șantier și legătura dintre ele. Asistența curentă costă de la 29 € per stație și lună, o rețea cu WLAN pentru atelier și depozit de la 890 €. Munca zilnică se face prin mentenanță la distanță; construirea și măsurarea se fac la fața locului.",
         "intro": "În meserii, jumătate din firmă nu lucrează acolo unde se află IT-ul. În birou stau două-trei persoane cu oferte, facturi și programări; afară sunt montatori cu un telefon, o tabletă și o conexiune care în unele zile pur și simplu nu există. Tehnologia trebuie să servească ambele părți — astfel încât seara nimeni să nu retasteze totul.",
@@ -101,8 +101,8 @@ BRANCHEN = {
 
     "arztpraxen-therapie": {
         "nav": "Cabinete medicale &amp; terapie",
-        "titel": "IT pentru cabinete medicale și de terapie | WVM-IT",
-        "desc": "IT pentru cabinete: date ale pacienților, jurnale de acces, rețele separate pentru aparate, siguranță în timpul consultațiilor. Verificare 490 €.",
+        "titel": "Verificare de securitate IT pentru cabinete, 490 € | WVM-IT",
+        "desc": "IT pentru cabinete medicale și de terapie: date ale pacienților, jurnale de acces, rețele separate, siguranță în program. Verificare 490 €. Solicitați acum.",
         "h1": "IT pentru cabinete medicale, stomatologice și de terapie",
         "kurz": "WVM-IT se ocupă de IT-ul cabinetelor medicale, stomatologice și de terapie din Austria și Germania: stații de lucru, mediul software-ului de cabinet, rețele separate pentru aparatura medicală, drepturi de acces și backupul din spate. Verificarea unică de securitate IT costă 490 €, asistența curentă de la 29 € per stație și lună. Lucrăm prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu oprește consultația.",
         "intro": "Un cabinet are două însușiri care împreună sunt pretențioase: prelucrează cea mai sensibilă categorie de date care există și nu are voie să stea între orele opt și douăsprezece. Împreună, asta înseamnă că tehnologia nu trebuie să fie spectaculoasă, ci plictisitor de fiabilă — și că fiecare modificare se face în afara programului de consultații.",
@@ -145,8 +145,8 @@ BRANCHEN = {
 
     "hotellerie-gastronomie": {
         "nav": "Hoteluri &amp; restaurante",
-        "titel": "IT și WLAN pentru hoteluri și restaurante | WVM-IT",
-        "desc": "IT pentru hotel și restaurant: WLAN pentru oaspeți separat de operare, casă de marcat, rezervări, sezon. Rețea de la 890 €.",
+        "titel": "Rețea WLAN pentru hoteluri în Austria, de la 890 € | WVM-IT",
+        "desc": "IT pentru hotel și restaurant: WLAN pentru oaspeți separat de operare, casă de marcat, rezervări, sezon. Rețea de la 890 €. Solicitați o ofertă.",
         "h1": "IT, WLAN și tehnică pentru hoteluri și restaurante",
         "kurz": "WVM-IT planifică și întreține tehnica hotelurilor, pensiunilor și restaurantelor din Austria și Germania: WLAN pentru oaspeți separat de rețeaua de operare, casă de marcat, conexiuni de rezervare, stații de lucru și backup. O rețea măsurată cu WLAN costă de la 890 €, asistența curentă de la 29 € per stație și lună. Planificarea se face la distanță; construirea și măsurarea, la fața locului.",
         "intro": "În ospitalitate, IT-ul face parte din produs. Oaspetele evaluează WLAN-ul ca pe micul dejun și o face public. În același timp, pe aceeași linie atârnă lucruri care nu au nicio legătură cu oaspetele: casa de marcat, contabilitatea, pontajul, camerele. Separarea curată a acestor două lumi nu este un rafinament, ci baza.",
@@ -189,8 +189,8 @@ BRANCHEN = {
 
     "produktion-gewerbe": {
         "nav": "Producție &amp; industrie",
-        "titel": "IT pentru producție și firme industriale | WVM-IT",
-        "desc": "IT pentru producție: rețea până în hală, scanere și terminale, rețele separate pentru mașini, siguranță. Rețea de la 890 €.",
+        "titel": "Rețea pentru firme de producție, de la 890 € | WVM-IT",
+        "desc": "IT pentru producție: rețea până în hală, scanere și terminale, rețele separate pentru mașini, siguranță, de la 890 €. Solicitați o ofertă acum.",
         "h1": "IT și rețele pentru producție și firme industriale",
         "kurz": "WVM-IT planifică și întreține IT-ul firmelor de producție și industriale din Austria și Germania: rețea până în hală, rețele separate pentru mașini, scanere și terminale, servere, stații de lucru și backup. O rețea de hală măsurată costă de la 890 €, administrarea unui server de la 89 € pe lună. Munca zilnică se face prin mentenanță la distanță; construirea și măsurarea, la fața locului.",
         "intro": "Într-o firmă de producție, IT-ul nu se termină la ușa biroului. Continuă în hală, în depozit, la mașină — și acolo sunt alte reguli: praf, metal, vibrații, uși de hală care schimbă imaginea radio de fiecare dată când se deschid. Iar o mașină care trebuie să funcționeze zece ani nu se schimbă pentru că a îmbătrânit un sistem de operare.",
@@ -233,8 +233,8 @@ BRANCHEN = {
 
     "vereine-gemeinden": {
         "nav": "Asociații &amp; primării",
-        "titel": "IT pentru asociații și primării | WVM-IT",
-        "desc": "IT pentru asociații și instituții comunale: predarea la schimbarea conducerii, bugete mici, site, tehnică în sală. De la 95 € pe oră.",
+        "titel": "IT pentru asociații în Austria, de la 95 € pe oră | WVM-IT",
+        "desc": "IT pentru asociații și primării: predarea la schimbarea conducerii, bugete mici, site, tehnică în sală, de la 95 € pe oră. Contactați-ne acum.",
         "h1": "IT pentru asociații, primării și organizații de voluntari",
         "kurz": "WVM-IT sprijină asociații, instituții comunale și organizații conduse de voluntari din Austria și Germania: accese și conturi care supraviețuiesc unei schimbări de conducere, site și e-mail, backup, precum și tehnică în sală și în camera de ședințe. Facturăm de regulă după timpul lucrat, cu 95 € pe oră, în locul unui contract curent — asta se potrivește mai bine unui buget aprobat o dată pe an.",
         "intro": "Într-o asociație nimeni nu se ocupă de tehnică cu normă întreagă. Există cineva care se pricepe și o face — până predă funcția. Exact aici se pierde mai mult decât prin orice defecțiune tehnică: parole, accesul la domeniu, listele de membri, contul la furnizorul de e-mail. Nu din rea intenție, ci pentru că nu a fost niciodată scris.",

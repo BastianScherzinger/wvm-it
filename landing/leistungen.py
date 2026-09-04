@@ -38,6 +38,10 @@ LEISTUNGEN = [
      "vor_ort": False, "prio": "0.8",
      "verwandt": ["edv-it-betreuung", "server-datensicherung", "netzwerk-wlan"]},
 
+    {"slug": "it-beratung", "bereich": "it", "icon": "consulting", "quelle": "it", "preis": "it_support",
+     "vor_ort": False, "prio": "0.8",
+     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"]},
+
     {"slug": "webseite-erstellen", "bereich": "sicht", "icon": "web", "quelle": "web", "preis": "onepager",
      "vor_ort": False, "prio": "0.9",
      "verwandt": ["seo-betreuung", "hosting-wartung", "google-ads"]},
@@ -64,7 +68,11 @@ LEISTUNGEN = [
 
     {"slug": "konferenztechnik", "bereich": "vorort", "icon": "conf", "quelle": "technik", "preis": "konferenz",
      "vor_ort": True, "prio": "0.7",
-     "verwandt": ["smarthome-knx-loxone", "netzwerk-wlan", "edv-it-betreuung"]},
+     "verwandt": ["smarthome-knx-loxone", "veranstaltungstechnik", "netzwerk-wlan"]},
+
+    {"slug": "veranstaltungstechnik", "bereich": "vorort", "icon": "av", "quelle": "technik", "preis": "buehne",
+     "vor_ort": True, "prio": "0.7",
+     "verwandt": ["konferenztechnik", "smarthome-knx-loxone", "netzwerk-wlan"]},
 ]
 
 NACH_SLUG = {l["slug"]: l for l in LEISTUNGEN}

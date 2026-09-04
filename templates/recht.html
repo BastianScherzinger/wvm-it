@@ -9,6 +9,17 @@ Footer. Der Text kommt unverändert aus content.json — dort wird er gepflegt.
 {% block og_beschreibung %}{{ beschreibung|safe }}{% endblock %}
 {% block tw_titel %}{{ titel|safe }}{% endblock %}
 {% block tw_beschreibung %}{{ beschreibung|safe }}{% endblock %}
+{% comment %}
+Die Rechtstexte gibt es nur auf Deutsch (Begruendung in views._RECHTSSEITEN).
+Die englische und die rumaenische Adresse zeigen denselben deutschen Text — fuer
+Suchmaschinen waeren das wortgleiche Zweitfassungen. Deshalb: kein Index, und das
+canonical zeigt auf die deutsche Fassung. hreflang faellt weg, weil es keine
+uebersetzten Fassungen gibt, auf die es verweisen koennte.
+{% endcomment %}
+{% block robots %}{% if nur_deutsch %}noindex,follow{% else %}index,follow,max-image-preview:large{% endif %}{% endblock %}
+{% block canonical %}{{ c.wvm_url }}{% if nur_deutsch %}{{ kanonisch }}{% else %}{{ canonical_path }}{% endif %}{% endblock %}
+{% block alternates %}{% if not nur_deutsch %}{% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
+  {% endfor %}{% endif %}{% endblock %}
 
 {% block inhalt %}
 <header class="sp-top on-dark">

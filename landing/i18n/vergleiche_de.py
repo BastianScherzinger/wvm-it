@@ -18,8 +18,8 @@ VERGLEICHE = {
     # ══ Laufende Betreuung oder Abrechnung nach Stunden ═══════════════════════
     "it-betreuung-vs-stundenabrechnung": {
         "nav": "Betreuung oder Stunden",
-        "titel": "IT-Betreuung oder Stundenabrechnung? | WVM-IT",
-        "desc": "Laufender Vertrag oder Abrechnung nach Aufwand: der Rechenweg, ab wann sich welches Modell trägt — mit den Zahlen, die Sie selbst nachrechnen können.",
+        "titel": "IT-Vertrag oder Stunden: Rechenweg in 2 Schritten | WVM-IT",
+        "desc": "Laufender Vertrag oder Abrechnung nach Aufwand: der Rechenweg, ab wann sich welches Modell trägt, mit Ihren eigenen Zahlen. Jetzt durchrechnen lassen.",
         "h1": "Laufende IT-Betreuung oder Abrechnung nach Stunden?",
         "kurz": "Die Entscheidung hängt an einer einzigen Zahl: wie viele Supportstunden Sie im Monat tatsächlich brauchen. Bei uns kostet die laufende Betreuung ab 29 € je Arbeitsplatz und Monat, Hilfe ohne Vertrag 95 € je Stunde. Ab etwa drei Stunden Support im Monat ist die Betreuung günstiger — und darin sind Überwachung, Updates und geprüfte Datensicherung bereits enthalten, die bei Stundenabrechnung niemand bezahlt und deshalb niemand macht.",
         "intro": "Der Unterschied zwischen den beiden Modellen ist kleiner beim Preis und größer beim Verhalten. Wer nach Stunden abrechnet, verdient an Störungen; wer monatlich betreut, verdient daran, dass keine auftreten. Das ist kein moralisches Argument, sondern eine Aussage darüber, welche Arbeit in welchem Modell überhaupt stattfindet.",
@@ -68,8 +68,8 @@ VERGLEICHE = {
     # ══ Eigener Server oder Cloud ═════════════════════════════════════════════
     "server-vs-cloud": {
         "nav": "Server oder Cloud",
-        "titel": "Eigener Server oder Cloud? Der Vergleich | WVM-IT",
-        "desc": "Server im Haus oder Cloud: Woran die Entscheidung wirklich hängt — Software, Datenmengen, Leitung und die Frage, wie lange ein Ausfall dauern darf.",
+        "titel": "Server oder Cloud: die Entscheidung in 3 Kriterien | WVM-IT",
+        "desc": "Server im Haus oder Cloud: Woran die Entscheidung hängt — Software, Datenmengen, Leitung, Ausfalldauer. Jetzt kostenlos beraten lassen.",
         "h1": "Eigener Server oder Cloud — was passt zu welchem Betrieb?",
         "kurz": "Die Entscheidung hängt nicht an der Betriebsgröße, sondern an drei Dingen: ob eine Anwendung eine zentrale Installation verlangt, wie groß die Dateien sind, mit denen mehrere gleichzeitig arbeiten, und wie gut Ihre Internetleitung ist. Verlangt keine Anwendung einen Server und liegen keine großen Dateien an, ist die Cloud fast immer günstiger und wartungsärmer. Sobald eine Fachanwendung zentral laufen muss, brauchen Sie einen Server — im Haus oder gemietet im Rechenzentrum. Ein betreuter Server kostet bei uns ab 89 € im Monat.",
         "intro": "„Cloud oder eigener Server“ wird oft als Glaubensfrage geführt und ist in Wahrheit eine Frage der Anwendungen. Die Technik folgt der Software, nicht umgekehrt — und die dritte Möglichkeit, ein gemieteter Server im Rechenzentrum, wird in dieser Diskussion regelmäßig vergessen, obwohl sie für viele Betriebe die passende ist.",
@@ -118,8 +118,8 @@ VERGLEICHE = {
     # ══ Microsoft 365 oder Google Workspace ═══════════════════════════════════
     "microsoft365-vs-google-workspace": {
         "nav": "Microsoft 365 oder Google",
-        "titel": "Microsoft 365 oder Google Workspace? | WVM-IT",
-        "desc": "Der sachliche Vergleich für kleine Betriebe: Wo die beiden Pakete sich wirklich unterscheiden — und woran die Entscheidung in der Praxis hängt.",
+        "titel": "Microsoft 365 oder Google: Setup ab 290 € | WVM-IT",
+        "desc": "Microsoft 365 oder Google Workspace für kleine Betriebe: der sachliche Vergleich, wo beide Pakete sich unterscheiden. Jetzt beraten lassen.",
         "h1": "Microsoft 365 oder Google Workspace — was passt zu einem kleinen Betrieb?",
         "kurz": "Beide Pakete können, was ein Betrieb braucht: E-Mail mit eigener Domain, Ablage, Kalender, Videobesprechungen und gemeinsames Arbeiten an Dokumenten. Der Unterschied liegt in zwei Punkten: Microsoft 365 bringt die installierten Office-Programme mit und ist die naheliegende Wahl, wenn Fachsoftware, Vorlagen oder Buchhaltung an Word und Excel hängen. Google Workspace ist im Browser schneller und einfacher, solange niemand auf komplexe Excel-Dateien oder Office-Vorlagen angewiesen ist. Die Einrichtung von Microsoft 365 kostet bei uns einmalig 290 €.",
         "intro": "Diese Frage wird selten technisch entschieden und meistens von der Umgebung: Womit arbeiten Ihre Kunden, Ihre Steuerberatung, Ihre Fachsoftware? Wer täglich Dateien austauscht, spart sich viel Ärger, wenn er dasselbe Format benutzt wie die Gegenseite. Preise nennen wir hier bewusst nicht — beide Anbieter ändern ihre Pakete, und eine veraltete Zahl über einen Dritten wäre schlechter als keine.",

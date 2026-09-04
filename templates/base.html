@@ -10,9 +10,9 @@
   <!-- Google Search Console (URL-Praefix-Property www.wvm-it.tech) -->
   <meta name="google-site-verification" content="uS_ethpPIsf2uk4Y8sNnoU214PvveZFVt6EjTzCfl7g">
   <meta name="theme-color" content="#0a0908">
-  <link rel="canonical" href="{{ c.wvm_url }}{{ canonical_path }}">
-  {% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
-  {% endfor %}
+  <link rel="canonical" href="{% block canonical %}{{ c.wvm_url }}{{ canonical_path }}{% endblock %}">
+  {% block alternates %}{% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
+  {% endfor %}{% endblock %}
   <!-- Lokal-SEO: Österreich (Sitz) und Deutschland (Zielmarkt) -->
   <meta name="geo.region" content="AT">
   <meta name="geo.region" content="DE">
@@ -58,10 +58,10 @@
   <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
   <!-- Strukturierte Daten (SEO + GEO): @graph mit ProfessionalService (Local-SEO AT+DE,
        Preise als OfferCatalog), WebSite und FAQPage — server-seitig gebaut (views._structured_data). -->
-  <script type="application/ld+json">{{ structured_data|safe }}</script>
+  <script type="application/ld+json" nonce="{{ request.csp_nonce }}">{{ structured_data|safe }}</script>
 </head>
 <body>
-<script>
+<script nonce="{{ request.csp_nonce }}">
   window.I18N = {
     numLocale: "{{ t.meta.num_locale }}",
     robot: [{% for m in t.hero.robot_msgs %}"{{ m|escapejs }}"{% if not forloop.last %},{% endif %}{% endfor %}],
@@ -203,8 +203,11 @@
       </div>
       <div>
         <h3>{{ t.footer.col_recht|safe }}</h3>
+        <a href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}</a>
         <a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a>
         <a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a>
+        <a href="{% url 'agb' %}">{{ t.footer.agb|safe }}</a>
+        <a href="{% url 'barrierefreiheit' %}">{{ t.footer.barrierefreiheit|safe }}</a>
       </div>
     </nav>
   </div>

@@ -70,6 +70,38 @@ def add_prefix(lang, base_path):
     return "/" + lang + (base_path if base_path.startswith("/") else "/" + base_path)
 
 
+# ── Gibt es diesen Pfad in dieser Sprache? ───────────────────────────────────
+# Drei Silos liegen bewusst ausserhalb von i18n_patterns und existieren nur auf
+# Deutsch: Fachbeitraege, Glossar, Checklisten (Begruendung im Kopf von
+# landing/beitraege.py). Bis zum 05.09.2026 hat der Kopf dieser Seiten trotzdem
+# hreflang-Verweise auf /en/… und /ro/… ausgegeben — Adressen, die mit 404
+# antworten. Das ist schlimmer als gar kein hreflang: Google verwirft eine
+# hreflang-Gruppe, in der ein Glied nicht auflöst, vollstaendig.
+#
+# Die Sitemap wusste es bereits richtig (viertes Feld in views._seiten_pfade()),
+# der Seitenkopf nicht. Statt die Liste ein zweites Mal zu pflegen, wird hier
+# gefragt, was der URL-Router sagt: Loest der praefigierte Pfad auf, gibt es die
+# Sprachfassung. Eine zweite Liste waere eine zweite Wahrheit.
+_UEBERSETZT = {}
+
+
+def hat_sprachfassung(base_path, lang):
+    """True, wenn es base_path in dieser Sprache als eigene Adresse gibt."""
+    if lang == "de":
+        return True
+    schluessel = (base_path, lang)
+    if schluessel not in _UEBERSETZT:
+        from django.urls import Resolver404, resolve
+        from django.utils import translation
+        try:
+            with translation.override(lang):
+                resolve(add_prefix(lang, base_path))
+            _UEBERSETZT[schluessel] = True
+        except Resolver404:
+            _UEBERSETZT[schluessel] = False
+    return _UEBERSETZT[schluessel]
+
+
 def context_processor(request):
     """Stellt jedem Template t (aktives Paket), lang, den Sprachumschalter und die
     hreflang-Alternates bereit."""
@@ -81,15 +113,31 @@ def context_processor(request):
 
     switch, alts = [], []
     for l in LANGS:
-        target = add_prefix(l, base)
+        vorhanden = hat_sprachfassung(base, l)
+        # Gibt es die Seite in der Sprache nicht, fuehrt der Umschalter auf die
+        # Startseite dieser Sprache statt in einen 404.
+        target = add_prefix(l, base if vorhanden else "/")
         switch.append({
             "code": l, "label": LANG_LABELS[l], "name": LANG_NAMES[l],
-            "active": (l == lang),
-            "url": "/sprache/" + l + "/?next=" + quote(target + suffix, safe=""),
+            "active": (l == lang), "gleiche_seite": vorhanden,
+            # **Direkter Link statt Umleitung ueber /sprache/<lang>/.** Die alte
+            # Fassung schickte jeden Sprachwechsel durch einen Endpunkt, der in
+            # robots.txt gesperrt ist — dadurch war der gesamte fremdsprachige
+            # Bestand (82 Seiten) ueber interne Links nicht erreichbar, weder fuer
+            # Crawler noch fuer jemanden, der Links kopiert. Die Sprachwahl wird
+            # jetzt beim Ankommen auf der praefigierten Adresse gemerkt
+            # (landing.middleware.LocalePrefsMiddleware).
+            "url": target + (suffix if vorhanden else ""),
         })
-        alts.append({"code": l, "hreflang": PACKS[l]["meta"]["html_lang"], "path": target})
-    # x-default zeigt auf die deutsche (Standard-)Variante
-    alts.append({"code": "x-default", "hreflang": "x-default", "path": add_prefix("de", base)})
+        if vorhanden:
+            alts.append({"code": l, "hreflang": PACKS[l]["meta"]["html_lang"], "path": target})
+    # x-default zeigt auf die deutsche (Standard-)Variante. Bei einer Seite, die
+    # es nur auf Deutsch gibt, entfaellt die Gruppe ganz: Ein einzelnes
+    # Selbstverweis-hreflang sagt nichts, was das canonical nicht schon sagt.
+    if len(alts) > 1:
+        alts.append({"code": "x-default", "hreflang": "x-default", "path": add_prefix("de", base)})
+    else:
+        alts = []
 
     return {
         "t": pack,
