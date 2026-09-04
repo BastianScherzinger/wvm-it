@@ -17,6 +17,7 @@ Aufrufe:
     python manage.py indexnow              # melden
 """
 import json
+import logging
 import urllib.error
 import urllib.request
 
@@ -24,6 +25,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 from landing import i18n
+
+logger = logging.getLogger(__name__)
 
 # Ein Endpunkt genügt , er verteilt an alle teilnehmenden Dienste (Bing, Yandex,
 # Seznam, Naver). Mehrere anzusprechen gilt als Mehrfachmeldung.
@@ -108,5 +111,11 @@ class Command(BaseCommand):
             daten = _json.loads((Path(settings.BASE_DIR) / "content.json").read_text(encoding="utf-8"))
             roh = (daten.get("wvm_url") or "").strip()
         except Exception:
+            # Rückgabe bleibt "" und damit greift der fest verdrahtete Wert
+            # unten — der Ablauf ist unverändert. Ohne diese Meldung meldet der
+            # Befehl bei kaputter content.json aber stillschweigend eine
+            # Domain, die niemand hier eingetragen hat.
+            logger.exception("content.json nicht lesbar — IndexNow meldet an den "
+                             "fest verdrahteten Host")
             roh = ""
         return roh.replace("https://", "").replace("http://", "").rstrip("/") or "www.wvm-it.tech"

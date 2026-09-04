@@ -9,6 +9,7 @@ wird sie still geloggt. In beiden Fällen sieht der Besucher eine Erfolgsmeldung
 """
 import hmac
 import json
+import logging
 import os
 import re
 from pathlib import Path
@@ -25,6 +26,19 @@ from django.utils.translation import get_language
 
 from . import (beitraege, branchen, checklisten, glossar, i18n, leistungen, regionen,
                selbsttest, vergleiche)
+
+# Ziel aller Meldungen dieser Datei. Der Name "landing.views" hängt unter dem
+# Logger "landing", den config/settings.py auf stdout legt — dieselbe Rinne, in
+# die bisher die print-Aufrufe gingen, aber mit Zeitmarke, Schweregrad und der
+# Möglichkeit, sie umzulenken oder abzuschalten.
+#
+# Wichtig zur Einordnung dieser Änderung: Sie ergänzt ausschliesslich Meldungen.
+# Kein einziger try/except-Block hat einen anderen Ablauf als vorher — jeder
+# fängt dieselben Ausnahmen ab und gibt dasselbe zurück. Das ist die Auflage
+# beim JARVIS-Pfad (anfrage_absenden → supa.enqueue_job → warten → bau_status),
+# und weil sie dort gilt, gilt sie hier überall: eine Zeile mehr im Protokoll,
+# sonst nichts.
+logger = logging.getLogger(__name__)
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -83,7 +97,13 @@ def _content() -> dict:
         if isinstance(loaded, dict):
             data.update(loaded)
     except Exception:
-        pass
+        # Bis hierher die einzige Stelle der Datei ohne jede Meldung — und die
+        # folgenreichste: Ist content.json kaputt, läuft die Seite still mit
+        # _FALLBACK weiter. Impressum leer, Telefonnummer leer, Anschrift leer,
+        # und alles davon sieht aus wie eine bewusst leere Pflege.
+        logger.exception("content.json nicht lesbar (%s) — die Seite läuft mit dem "
+                         "Notinhalt weiter: kein Impressum, keine Anschrift, "
+                         "keine Telefonnummer", _CONTENT)
     data["whatsapp"] = _whatsapp(data.get("telefon", ""))
     return data
 
@@ -697,10 +717,11 @@ def _eingangsbestaetigung(c, empfaenger: str, name: str, art: str, echo: str) ->
                 adresse=_adresszeile(c), url=c.get("wvm_url", ""), echo=echo),
             getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", "")),
             [empfaenger], tag=f"{art.upper()}-ACK")
-    except Exception as exc:
+    except Exception:
         # Die Bestätigung darf die Anfrage selbst nie gefährden: Sie ist bereits im
         # Postfach des Inhabers, wenn wir hier ankommen.
-        print(f"[{art.upper()}-ACK-FEHLER] {type(exc).__name__}: {exc}", flush=True)
+        logger.exception("Eingangsbestätigung (%s) an %s nicht versendet",
+                         art, empfaenger)
 
 
 def _handle_angebot(request, c) -> bool:
@@ -841,12 +862,17 @@ def _limit_erreicht(request, bereich: str = "anfrage") -> bool:
         anzahl = cache.get(schluessel, 0) + 1
         cache.set(schluessel, anzahl, fenster)
         if anzahl > limit:
-            print(f"[LIMIT] {bereich}: {anzahl} Versuche von {_client_ip(request)}",
-                  flush=True)
+            logger.warning("Spam-Bremse greift: %s, %d Versuche von %s",
+                           bereich, anzahl, _client_ip(request))
             return True
         return False
     except Exception:
-        return False  # Cache kaputt? Dann lieber durchlassen als Anfragen verlieren.
+        # Rückgabe bleibt False: Cache kaputt? Dann lieber durchlassen als
+        # Anfragen verlieren. Neu ist nur die Meldung — ohne sie ist die
+        # Spam-Bremse komplett aus, und niemand erfährt davon.
+        logger.exception("Spam-Bremse ausgefallen (Bereich %s) — jede Absendung "
+                         "kommt bis auf Weiteres durch", bereich)
+        return False
 
 
 def _honigtopf(request) -> bool:
@@ -880,8 +906,8 @@ def _subscriber_confirm(email: str, wunsch: str, ip: str) -> None:
             return
         unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
         supa.upsert_subscriber(email, wunsch, consent_ip=ip, unsub_token=unsub)
-    except Exception as exc:
-        print(f"[SUBSCRIBER-CONFIRM-FEHLER] {exc}", flush=True)
+    except Exception:
+        logger.exception("Abonnent konnte nach dem Opt-in nicht bestätigt werden")
 
 
 def _parse_cloudinary() -> dict:
@@ -902,6 +928,10 @@ def _parse_images(request) -> list:
         try:
             urls = json.loads(raw)
         except Exception:
+            # Fremdeingabe — Müll ist hier der Normalfall und kein Betriebsfehler.
+            # Deshalb debug und nicht warning: sichtbar, wenn jemand nachsieht,
+            # aber ohne das Betriebsprotokoll zu füllen.
+            logger.debug("Feld 'bilder' ist kein gültiges JSON — wird verworfen")
             urls = []
     out = []
     for u in urls if isinstance(urls, list) else []:
@@ -1081,6 +1111,12 @@ def newsletter_confirm(request):
                 from . import supa
                 already = supa.subscriber_status(email) in ("confirmed", "active")
             except Exception:
+                # Rückgabe bleibt False — der Ablauf ändert sich nicht. Die
+                # Meldung sagt, was das kostet: Fällt Supabase aus, gilt der
+                # Abonnent als neu, und die Willkommensmail geht ein zweites
+                # Mal hinaus. Genau das soll die Abfrage darüber verhindern.
+                logger.exception("Abonnenten-Status für %s nicht abrufbar — die "
+                                 "Willkommensmail kann dadurch doppelt gehen", email)
                 already = False
             if not already:
                 _newsletter_deliver(email, wunsch, c, name=name, lang=tlang)
@@ -1090,6 +1126,11 @@ def newsletter_confirm(request):
                                           salt=_ANFRAGE_SALT, compress=True)
             ok = True
     except Exception:  # BadSignature, SignatureExpired, kaputtes Token
+        # Der Block umschliesst auch den Mailversand: Ein Versandfehler sieht
+        # für den Besucher aus wie „Link ungültig". Am Ablauf ändert sich
+        # nichts, aber im Protokoll steht jetzt, welcher der beiden Fälle es
+        # war — sonst ist die Beschwerde „Ihr Link geht nicht" nicht klärbar.
+        logger.warning("Newsletter-Bestätigung fehlgeschlagen", exc_info=True)
         ok = False
     return render(request, "newsletter_confirm.html", {
         "c": c, "ok": ok, "code": _newsletter_code(),
@@ -1135,6 +1176,9 @@ def anfrage_absenden(request):
     try:
         data = signing.loads(token, salt=_ANFRAGE_SALT, max_age=_NEWSLETTER_MAXAGE)
     except Exception:
+        # Abgelaufenes oder verstümmeltes Token — der Regelfall, wenn jemand
+        # einen alten Link wieder aufruft. Deshalb info und nicht error.
+        logger.info("Detailbogen mit ungültigem oder abgelaufenem Token aufgerufen")
         return render(request, "anfrage_done.html", {"c": c, "ok": False})
     email = (data.get("e") or "").strip()
     name = (data.get("n") or "").strip()
@@ -1152,8 +1196,11 @@ def anfrage_absenden(request):
             sid = supa.upsert_subscriber(email, full, consent_ip=_client_ip(request), unsub_token=unsub)
             if sid:
                 supa.enqueue_job(sid, email, full, images=images, site_lang=site_lang)
-    except Exception as exc:
-        print(f"[ANFRAGE-FEHLER] {exc}", flush=True)
+    except Exception:
+        # JARVIS-Pfad: Der Ablauf bleibt unangetastet (Projektregel). Geändert
+        # ist nur die Meldung — aus print wird logger, mit Zeitmarke und
+        # Schweregrad. Was hier verloren geht, ist der Bau-Auftrag selbst.
+        logger.exception("Bau-Auftrag für %s konnte nicht angelegt werden", email)
     # Postfach-Notiz (best effort)
     try:
         empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
@@ -1164,7 +1211,11 @@ def anfrage_absenden(request):
                 f"Name: {name or '-'}\nE-Mail: {email}\nBilder: {len(images)}\n\n{full}\n",
                 from_email, [empfaenger], tag="ANFRAGE-NOTIFY")
     except Exception:
-        pass
+        # _send_mail_logged meldet den Versandfehler bereits selbst; hier kann
+        # nur noch scheitern, was davor steht (Empfänger ermitteln, Text
+        # bauen). Ohne diese Zeile bliebe genau das lautlos.
+        logger.exception("Postfach-Notiz zum Detailbogen konnte nicht "
+                         "vorbereitet werden")
     # Auf die Live-Status-Warteseite schicken (pollt bis die Seite gebaut + live ist),
     # in der Sprache des Kunden (präfixierte URL).
     status_token = signing.dumps({"e": email, "n": name, "l": lang}, salt=_STATUS_SALT, compress=True)
@@ -1182,6 +1233,9 @@ def warten(request):
         data = signing.loads(token, salt=_STATUS_SALT, max_age=_NEWSLETTER_MAXAGE)
         name = (data.get("n") or "").strip()
     except Exception:
+        # JARVIS-Pfad, Ablauf unverändert: ohne gültiges Token zeigt die
+        # Warteseite nur ihren Rahmen. info, weil ein alter Link der Regelfall ist.
+        logger.info("Warteseite ohne gültiges Status-Token aufgerufen")
         token = ""
     return render(request, "warten.html", {"c": c, "status_token": token, "name": name})
 
@@ -1194,6 +1248,10 @@ def bau_status(request):
         data = signing.loads(token, salt=_STATUS_SALT, max_age=_NEWSLETTER_MAXAGE)
         email = (data.get("e") or "").strip()
     except Exception:
+        # JARVIS-Pfad, Ablauf unverändert (Status 400 bleibt). Die Warteseite
+        # pollt im Sekundentakt — deshalb debug, sonst füllt ein einziger
+        # offener Tab mit altem Token das Protokoll.
+        logger.debug("bau_status ohne gültiges Token abgefragt")
         return JsonResponse({"state": "unknown"}, status=400)
     state, url = "queued", ""
     try:
@@ -1203,8 +1261,10 @@ def bau_status(request):
             if job:
                 state = job.get("status") or "queued"
                 url = job.get("site_url") or ""
-    except Exception as exc:
-        print(f"[BAU-STATUS-FEHLER] {exc}", flush=True)
+    except Exception:
+        # JARVIS-Pfad: aus print wird logger, sonst nichts. Der Zustand bleibt
+        # "queued", die Warteseite dreht sich weiter.
+        logger.exception("Bau-Status für %s nicht abrufbar", email)
     return JsonResponse({"state": state, "url": url})
 
 
@@ -1222,6 +1282,12 @@ def newsletter_unsubscribe(request):
                 supa.set_subscriber_status(email, "unsubscribed")
             ok = True
     except Exception:
+        # Die folgenreichste der stillen Stellen: Der Block umschliesst auch
+        # set_subscriber_status. Fällt Supabase aus, wird eine Abmeldung nicht
+        # gespeichert — und der Abonnent bekommt weiter Post, obwohl er
+        # widersprochen hat. Am Ablauf ändert sich hier nichts; die Meldung ist
+        # das Einzige, woran das überhaupt auffallen kann.
+        logger.exception("Newsletter-Abmeldung konnte nicht gespeichert werden")
         ok = False
     return render(request, "newsletter_unsub.html", {"c": c, "ok": ok})
 
@@ -2649,8 +2715,9 @@ def angebot_anfordern(request):
                 unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
                 supa.upsert_subscriber(email, "Angebot-Interesse: " + summe_txt,
                                        consent_ip=_client_ip(request), unsub_token=unsub)
-        except Exception as exc:
-            print(f"[ANGEBOT-LEAD-FEHLER] {exc}", flush=True)
+        except Exception:
+            logger.exception("Angebots-Interessent %s konnte nicht gespeichert werden",
+                             email)
     return JsonResponse({"ok": True, "once": once, "mtl": mtl, "yr": yr,
                          "anfrage": anfrage, "summe": summe_txt, "count": len(ids)})
 
@@ -3265,8 +3332,9 @@ def leistung_anfrage(request):
             unsub = signing.dumps({"e": kontakt}, salt=_NEWSLETTER_UNSUB_SALT)
             supa.upsert_subscriber(kontakt, f"[{thema}] {text}",
                                    consent_ip=_client_ip(request), unsub_token=unsub)
-    except Exception as exc:
-        print(f"[LEISTUNG-LOG-FEHLER] {exc}", flush=True)
+    except Exception:
+        logger.exception("Leistungsanfrage zu %s konnte nicht protokolliert werden",
+                         thema)
 
     return antwort(True)
 

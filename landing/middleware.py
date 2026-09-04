@@ -11,6 +11,7 @@ einmalig auf /en/ oder /ro/ umgeleitet. Deutsch bleibt ohne Präfix.
 Wichtig: Suchmaschinen-Bots werden NIE umgeleitet, damit '/' die deutsche Canonical bleibt.
 Präfix-URLs werden nie angefasst (keine Redirect-Schleifen).
 """
+import logging
 import re
 import secrets
 
@@ -18,6 +19,8 @@ from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
 from .i18n import LANGS
+
+logger = logging.getLogger(__name__)
 
 _BOT = re.compile(
     r"bot|crawl|spider|slurp|bing|yandex|baidu|duckduck|facebookexternalhit|embedly|"
@@ -88,6 +91,13 @@ class KanonischerHostMiddleware:
                     (Path(settings.BASE_DIR) / "content.json").read_text(encoding="utf-8"))
                 ziel = (daten.get("wvm_url") or "").strip()
             except Exception:
+                # Rückgabe bleibt "" — die Middleware schaltet sich damit ab,
+                # so war es vorher und so bleibt es. Neu ist die Meldung: Ohne
+                # sie fällt die gesamte 301-Kanonisierung lautlos aus, und die
+                # Railway-Subdomain wird wieder zum zweiten indexierbaren
+                # Bestand (siehe Docstring dieser Klasse).
+                logger.exception("Kanonischer Host nicht aus content.json ermittelbar — "
+                                 "die 301-Umleitung von Neben-Hosts ist damit aus")
                 ziel = ""
         return ziel.replace("https://", "").replace("http://", "").rstrip("/")
 
