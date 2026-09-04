@@ -59,6 +59,11 @@ _FALLBACK = {
     "adresse": "",
     "plz": "",
     "land": "AT",
+    # Geokoordinaten der Anschrift. Leer im Notinhalt: Eine Koordinate ohne die
+    # zugehoerige Anschrift ist eine Ortsangabe ohne Ort, und `_structured_data`
+    # rendert den `geo`-Knoten nur, wenn beide Werte gefuellt sind.
+    "geo_lat": "",
+    "geo_lon": "",
     "seit_jahr": "",
     "partner_status": "",
     "profile": [],
@@ -88,6 +93,18 @@ def _whatsapp(tel: str) -> str:
     elif digits.startswith("0"):
         digits = "49" + digits[1:]
     return digits if len(digits) >= 8 else ""
+
+
+def _e164(tel: str) -> str:
+    """Telefonnummer in E.164 ('+436763808501') — oder '' bei unbrauchbarer Eingabe.
+
+    Sichtbar steht die Nummer mit Leerzeichen ('+43 676 3808501'), weil sie so
+    lesbar ist. Im Schema gehoert sie ohne: schema.org/telephone erwartet die
+    waehlbare Form, und ein Assistent, der die sichtbare Schreibweise waehlt,
+    scheitert an den Leerzeichen. Baut auf `_whatsapp` auf — dieselbe
+    Normalisierung, nur mit fuehrendem Plus."""
+    digits = _whatsapp(tel)
+    return f"+{digits}" if digits else ""
 
 
 def _content() -> dict:
@@ -1546,7 +1563,7 @@ def _structured_data(c, lang):
         "url": f"{base}/",
         "logo": f"{base}{c.get('logo_mark', '')}",
         "image": f"{base}{c.get('hero_bg', '')}",
-        "telephone": c.get("telefon", ""),
+        "telephone": _e164(c.get("telefon", "")) or c.get("telefon", ""),
         "email": c.get("email", ""),
         "priceRange": f"ab {c.get('preis_ab', '350')} EUR",
         "currenciesAccepted": "EUR",
@@ -1574,9 +1591,13 @@ def _structured_data(c, lang):
                        "Loxone", "KNX", "Konferenztechnik", "Veranstaltungstechnik"],
         "contactPoint": {
             "@type": "ContactPoint", "contactType": "customer service",
-            "telephone": c.get("telefon", ""), "email": c.get("email", ""),
+            "telephone": _e164(c.get("telefon", "")) or c.get("telefon", ""),
+            "email": c.get("email", ""),
             "areaServed": ["AT", "DE"], "availableLanguage": ["de", "en", "ro"],
         },
+        # Belegt durch den sichtbaren Text der Kontaktseite: „Montag bis Freitag,
+        # 9 bis 18 Uhr" (landing/i18n/de.py, `kontakt_seite.zeiten_t`). Schema und
+        # Seite sagen damit dasselbe; ohne diesen Beleg bliebe das Feld weg.
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -1624,6 +1645,33 @@ def _structured_data(c, lang):
     #   4. Facebook- oder Instagram-Seite, falls gepflegt
     # Eintragen heißt: URL in content.json → "profile" ergänzen, sonst nichts.
     # Der Rest passiert hier automatisch, inklusive Ausgabe im @graph.
+    # ── Geokoordinaten (Verbesserungslauf 13, Schritt 26) ────────────────────
+    # `geo` ist die eindeutigste Ortsangabe, die es gibt: Eine Anschrift muss ein
+    # Kartendienst erst aufloesen, eine Koordinate nicht. Die Werte sind **keine**
+    # erfundene Angabe, sondern die Geokodierung der belegten Anschrift
+    # (Waldstraße 19/1, 4860 Lenzing — content.json, Impressum):
+    #   Quelle:    Nominatim/OpenStreetMap, abgefragt am 04.09.2026
+    #              (ODbL 1.0), Treffer „19, Waldstraße, … Lenzing an der Ager,
+    #              Bezirk Vöcklabruck, Oberösterreich, 4860, Österreich"
+    #   roh:       47.9701953 / 13.6040023
+    #   uebernommen: 47.9702 / 13.6040 (vier Nachkommastellen, rund 11 m)
+    #   Gegenprobe: Rueckwaertssuche auf 47.9702/13.6040 liefert dieselbe
+    #              Anschrift zurueck — Waldstraße 19, 4860.
+    # Vier Nachkommastellen mit Absicht: Sieben wuerden eine Praezision behaupten,
+    # die eine Gebaeude-Geokodierung nicht hat.
+    #
+    # Gerendert wird der Knoten **nur**, wenn beide Werte gefuellt sind — dieselbe
+    # Bauweise wie bei `profile`, `seit_jahr` und `partner_status`. Ein
+    # `geo`-Knoten mit leeren Zahlen waere schlimmer als keiner.
+    lat, lon = str(c.get("geo_lat") or "").strip(), str(c.get("geo_lon") or "").strip()
+    if lat and lon:
+        try:
+            business["geo"] = {"@type": "GeoCoordinates",
+                               "latitude": float(lat), "longitude": float(lon)}
+        except ValueError:
+            logger.warning("geo_lat/geo_lon in content.json sind keine Zahlen "
+                           "(%r/%r) — der geo-Knoten bleibt weg", lat, lon)
+
     profile = [u.strip() for u in (c.get("profile") or []) if u and u.strip()]
     if profile:
         business["sameAs"] = profile
