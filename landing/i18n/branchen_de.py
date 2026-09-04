@@ -23,7 +23,7 @@ BRANCHEN = {
     "steuerberater-kanzleien": {
         "nav": "Steuerberater &amp; Kanzleien",
         "titel": "IT für Steuerberater und Kanzleien | WVM-IT",
-        "desc": "IT-Betreuung für Kanzleien: DATEV-Umgebung, Mandantentrennung, Aufbewahrungsfristen, geprüfte Sicherung. Ab 29 € je Arbeitsplatz und Monat.",
+        "desc": "IT-Betreuung für Kanzleien: DATEV-Umgebung, Mandantentrennung, Aufbewahrungsfristen, geprüfte Sicherung. Ab 29 € je Arbeitsplatz und Monat. Angebot anfordern.",
         "h1": "IT-Betreuung für Steuerberater und Kanzleien",
         "kurz": "WVM-IT betreut die EDV von Steuerberatungs-, Rechtsanwalts- und Wirtschaftsprüfungskanzleien in Österreich und Deutschland: Arbeitsplätze, DATEV- und Kanzleisoftware-Umgebung, Mandantendaten und die Sicherung dahinter. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, der einmalige IT-Sicherheitscheck 490 €. Betreut wird überwiegend per Fernwartung — was in einer Kanzlei ohnehin der einzige Weg ist, der die Arbeit nicht unterbricht.",
         "intro": "In einer Kanzlei ist die IT kein Hilfsmittel, sondern das Archiv. Was auf den Servern liegt, ist fremdes Vermögen in Zahlenform — und es unterliegt Fristen, die niemand aussetzen kann. Deshalb hat Technik hier eine andere Rolle als in einem Betrieb, der abends den Rechner ausschaltet: Sie muss nachweisbar funktionieren, nicht nur gefühlt.",
@@ -68,7 +68,7 @@ BRANCHEN = {
     "handwerk-baugewerbe": {
         "nav": "Handwerk &amp; Bau",
         "titel": "IT für Handwerksbetriebe und Baugewerbe | WVM-IT",
-        "desc": "IT für Handwerk und Bau: Geräte für die Baustelle, Zeiterfassung, Handwerkersoftware, Fotodokumentation. Ab 29 € je Arbeitsplatz und Monat.",
+        "desc": "IT für Handwerk und Bau: Geräte für die Baustelle, Zeiterfassung, Handwerkersoftware, Fotodokumentation. Ab 29 € je Arbeitsplatz und Monat. Angebot anfordern.",
         "h1": "IT für Handwerksbetriebe und das Baugewerbe",
         "kurz": "WVM-IT betreut die EDV von Handwerks- und Bauunternehmen in Österreich und Deutschland: Büroarbeitsplätze, Server, Handwerkersoftware, mobile Geräte auf der Baustelle und die Verbindung dazwischen. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein Netzwerk samt WLAN für Werkstatt und Lager ab 890 €. Der laufende Betrieb läuft per Fernwartung, gebaut und ausgemessen wird vor Ort.",
         "intro": "Im Handwerk arbeitet die Hälfte des Betriebs nicht dort, wo die IT steht. Im Büro sitzen zwei, drei Leute mit Angeboten, Rechnungen und Terminen; draußen sind Monteure mit einem Telefon, einem Tablet und einer Verbindung, die es an manchen Tagen nicht gibt. Die Technik muss beide Seiten bedienen — und zwar so, dass niemand abends noch einmal alles abtippt.",
@@ -113,7 +113,7 @@ BRANCHEN = {
     "arztpraxen-therapie": {
         "nav": "Arztpraxen &amp; Therapie",
         "titel": "IT für Arztpraxen und Therapiepraxen | WVM-IT",
-        "desc": "IT für Praxen: Patientendaten, Zugriffsprotokolle, getrennte Netze für Geräte, Ausfallsicherheit in der Sprechzeit. Sicherheitscheck 490 €.",
+        "desc": "IT für Praxen: Patientendaten, Zugriffsprotokolle, getrennte Netze für Geräte, Ausfallsicherheit in der Sprechzeit. Sicherheitscheck 490 €. Beratung anfragen.",
         "h1": "IT für Arztpraxen, Therapie- und Gesundheitsbetriebe",
         "kurz": "WVM-IT betreut die EDV von Arzt-, Zahnarzt- und Therapiepraxen in Österreich und Deutschland: Arbeitsplätze, Praxisverwaltungssoftware, getrennte Netze für medizinische Geräte, Zugriffsrechte und die Sicherung dahinter. Der einmalige IT-Sicherheitscheck kostet 490 €, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat. Gearbeitet wird per Fernwartung — in einer Praxis ist das der einzige Weg, der die Sprechstunde nicht anhält.",
         "intro": "Eine Praxis hat zwei Eigenschaften, die zusammen anspruchsvoll sind: Sie verarbeitet die sensibelste Datenkategorie, die es gibt, und sie darf zwischen acht und zwölf Uhr nicht stillstehen. Beides zugleich bedeutet, dass Technik hier nicht spektakulär sein muss, sondern langweilig zuverlässig — und dass jede Änderung außerhalb der Sprechzeit passiert.",
@@ -158,7 +158,7 @@ BRANCHEN = {
     "hotellerie-gastronomie": {
         "nav": "Hotellerie &amp; Gastro",
         "titel": "IT und WLAN für Hotels und Gastronomie | WVM-IT",
-        "desc": "IT für Hotel und Gastronomie: Gäste-WLAN getrennt vom Betrieb, Kassensystem, Buchungsanbindung, Saisonlast. Netzwerk ab 890 €.",
+        "desc": "IT für Hotel und Gastronomie: Gäste-WLAN getrennt vom Betrieb, Kassensystem, Buchungsanbindung, Saisonlast. Netzwerk ab 890 €. Angebot anfordern.",
         "h1": "IT, WLAN und Technik für Hotellerie und Gastronomie",
         "kurz": "WVM-IT plant und betreut die Technik von Hotels, Pensionen und Gastronomiebetrieben in Österreich und Deutschland: Gäste-WLAN getrennt vom Betriebsnetz, Kassensystem, Buchungsanbindung, Arbeitsplätze und Datensicherung. Ein ausgemessenes Netzwerk mit WLAN kostet ab 890 €, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat. Geplant wird aus der Ferne, gebaut und eingemessen wird vor Ort.",
         "intro": "Im Gastgewerbe ist die IT Teil des Produkts. Ein Gast bewertet das WLAN wie das Frühstück, und er tut es öffentlich. Gleichzeitig hängen an derselben Leitung Dinge, die mit dem Gast nichts zu tun haben: Kasse, Buchhaltung, Zeiterfassung, Kameras. Diese beiden Welten sauber zu trennen ist keine Feinheit, sondern die Grundlage.",
@@ -203,7 +203,7 @@ BRANCHEN = {
     "produktion-gewerbe": {
         "nav": "Produktion &amp; Gewerbe",
         "titel": "IT für Produktion und Gewerbebetriebe | WVM-IT",
-        "desc": "IT für Produktion: Netzwerk bis in die Halle, Scanner und Terminals, getrennte Netze für Maschinen, Ausfallsicherheit. Netzwerk ab 890 €.",
+        "desc": "IT für Produktion: Netzwerk bis in die Halle, Scanner und Terminals, getrennte Netze für Maschinen, Ausfallsicherheit. Netzwerk ab 890 €. Angebot anfordern.",
         "h1": "IT und Netzwerk für Produktion und Gewerbebetriebe",
         "kurz": "WVM-IT plant und betreut die IT von Produktions- und Gewerbebetrieben in Österreich und Deutschland: Netzwerk bis in die Halle, getrennte Netze für Maschinen, Scanner und Terminals, Server, Arbeitsplätze und Datensicherung. Ein ausgemessenes Hallennetz kostet ab 890 €, die Server-Betreuung ab 89 € im Monat. Der laufende Betrieb läuft per Fernwartung, gebaut und eingemessen wird vor Ort.",
         "intro": "In einem Produktionsbetrieb endet die IT nicht an der Bürotür. Sie geht weiter in die Halle, ans Lager, an die Maschine — und dort gelten andere Regeln: Staub, Metall, Erschütterung, Hallentore, die das Funkbild jedes Mal ändern, wenn sie aufgehen. Und eine Maschine, die zehn Jahre laufen soll, wird nicht ausgetauscht, weil ein Betriebssystem alt geworden ist.",
@@ -248,7 +248,7 @@ BRANCHEN = {
     "vereine-gemeinden": {
         "nav": "Vereine &amp; Gemeinden",
         "titel": "IT für Vereine und Gemeinden | WVM-IT",
-        "desc": "IT für Vereine und kommunale Einrichtungen: Übergaben bei Vorstandswechsel, kleine Budgets, Website, Technik im Saal. Ab 95 € je Stunde.",
+        "desc": "IT für Vereine und kommunale Einrichtungen: Übergaben bei Vorstandswechsel, kleine Budgets, Website, Technik im Saal. Ab 95 € je Stunde. Angebot anfordern.",
         "h1": "IT für Vereine, Gemeinden und ehrenamtliche Organisationen",
         "kurz": "WVM-IT unterstützt Vereine, Gemeindeeinrichtungen und ehrenamtlich geführte Organisationen in Österreich und Deutschland: Zugänge und Konten, die einen Vorstandswechsel überstehen, Website und E-Mail, Datensicherung sowie Technik in Saal und Sitzungszimmer. Abgerechnet wird meist nach Aufwand mit 95 € je Stunde statt über einen laufenden Vertrag — das passt besser zu einem Budget, das jährlich beschlossen wird.",
         "intro": "In einem Verein ist niemand hauptberuflich für die Technik zuständig. Es gibt jemanden, der es kann, und der macht es — bis er das Amt abgibt. Genau an dieser Stelle geht in Vereinen mehr verloren als durch jeden technischen Defekt: Passwörter, Domainzugänge, Mitgliederlisten, das Konto beim E-Mail-Anbieter. Nicht durch böse Absicht, sondern weil es nie aufgeschrieben wurde.",

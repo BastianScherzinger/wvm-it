@@ -12,7 +12,7 @@ VERGLEICHE = {
     "it-betreuung-vs-stundenabrechnung": {
         "nav": "Contract sau pe ore",
         "titel": "Contract de asistență IT sau plata pe ore? | WVM-IT",
-        "desc": "Contract curent sau facturare după timp: calculul care arată ce model se justifică — cu cifre pe care le puteți verifica singur.",
+        "desc": "Contract curent sau facturare după timp: calculul care arată ce model se justifică — cu cifre verificabile. Comparați variantele.",
         "h1": "Asistență IT curentă sau facturare pe ore?",
         "kurz": "Decizia depinde de un singur număr: câte ore de suport aveți nevoie efectiv pe lună. La noi asistența curentă costă de la 29 € per stație și lună, ajutorul fără contract 95 € pe oră. De la aproximativ trei ore de suport pe lună contractul este mai ieftin — iar în el sunt deja incluse supravegherea, actualizările și backupul verificat, pe care la facturarea pe ore nu le plătește nimeni și, prin urmare, nu le face nimeni.",
         "intro": "Diferența dintre cele două modele este mai mică la preț și mai mare la comportament. Cine facturează pe ore câștigă din defecțiuni; cine asigură asistență lunară câștigă din faptul că nu apar. Nu este un argument moral, ci o afirmație despre ce muncă are loc în ce model.",
@@ -61,7 +61,7 @@ VERGLEICHE = {
     "server-vs-cloud": {
         "nav": "Server sau cloud",
         "titel": "Server propriu sau cloud? Comparația | WVM-IT",
-        "desc": "Server în firmă sau cloud: de ce depinde cu adevărat decizia — software, volum de date, conexiune și cât poate dura o avarie.",
+        "desc": "Server în firmă sau cloud: de ce depinde decizia — software, volum de date, conexiune și cât poate dura o avarie. Comparați variantele.",
         "h1": "Server propriu sau cloud — ce se potrivește cărei firme?",
         "kurz": "Decizia nu depinde de mărimea firmei, ci de trei lucruri: dacă o aplicație cere o instalare centrală, cât de mari sunt fișierele la care lucrează mai mulți simultan și cât de bună este conexiunea la internet. Dacă nicio aplicație nu cere un server și nu există fișiere mari, cloudul este aproape întotdeauna mai ieftin și cu mai puțină întreținere. De îndată ce o aplicație de business trebuie să ruleze central, aveți nevoie de un server — în firmă sau închiriat într-un centru de date. Un server administrat costă la noi de la 89 € pe lună.",
         "intro": "„Cloud sau server propriu” este adesea o dispută de convingeri și este în realitate o chestiune de aplicații. Infrastructura urmează software-ul, nu invers — iar a treia posibilitate, un server închiriat într-un centru de date, este uitată constant în această discuție, deși pentru multe firme este cea potrivită.",
@@ -110,7 +110,7 @@ VERGLEICHE = {
     "microsoft365-vs-google-workspace": {
         "nav": "Microsoft 365 sau Google",
         "titel": "Microsoft 365 sau Google Workspace? | WVM-IT",
-        "desc": "Comparația obiectivă pentru firme mici: unde diferă cu adevărat cele două pachete — și de ce depinde decizia în practică.",
+        "desc": "Comparația obiectivă pentru firme mici: unde diferă cu adevărat cele două pachete — și de ce depinde decizia. Comparați pachetele.",
         "h1": "Microsoft 365 sau Google Workspace — ce se potrivește unei firme mici?",
         "kurz": "Ambele pachete acoperă ce are nevoie o firmă: e-mail pe domeniu propriu, stocare, calendar, ședințe video și lucru în comun la documente. Diferența stă în două puncte: Microsoft 365 include programele Office instalate și este alegerea evidentă când software-ul de business, șabloanele sau contabilitatea depind de Word și Excel. Google Workspace este mai rapid și mai simplu în browser, atâta timp cât nimeni nu depinde de fișiere Excel complexe sau de șabloane Office. Configurarea Microsoft 365 costă la noi o singură dată 290 €.",
         "intro": "Această întrebare se decide rareori tehnic și cel mai adesea din mediu: cu ce lucrează clienții dumneavoastră, contabilitatea, software-ul de branșă? Cine schimbă zilnic fișiere își economisește mult necaz folosind același format ca partea cealaltă. Nu dăm aici prețuri în mod deliberat — ambii furnizori își schimbă pachetele, iar o cifră învechită despre un terț ar fi mai rea decât niciuna.",

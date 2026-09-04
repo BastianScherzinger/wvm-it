@@ -12,7 +12,7 @@ VERGLEICHE = {
     "it-betreuung-vs-stundenabrechnung": {
         "nav": "Contract or hourly",
         "titel": "IT support contract or hourly billing? | WVM-IT",
-        "desc": "Ongoing contract or billing by effort: the arithmetic that shows which model pays off — with figures you can check yourself.",
+        "desc": "Ongoing contract or billing by effort: the arithmetic that shows which model pays off — with figures you can check yourself. Compare both models.",
         "h1": "Ongoing IT support or billing by the hour?",
         "kurz": "The decision hangs on a single number: how many support hours you actually need per month. With us ongoing support costs from €29 per workstation and month, help without a contract €95 per hour. From roughly three support hours a month the contract is cheaper — and it already includes monitoring, updates and verified backups, which under hourly billing nobody pays for and therefore nobody does.",
         "intro": "The difference between the two models is smaller in price and larger in behaviour. Whoever bills by the hour earns from faults; whoever supports monthly earns from there being none. That is not a moral argument but a statement about which work takes place in which model at all.",
@@ -61,7 +61,7 @@ VERGLEICHE = {
     "server-vs-cloud": {
         "nav": "Server or cloud",
         "titel": "Own server or cloud? The comparison | WVM-IT",
-        "desc": "Server on site or cloud: what the decision really depends on — software, data volumes, your connection and how long an outage may last.",
+        "desc": "Server on site or cloud: what the decision really depends on — software, data volumes, connection and how long an outage may last. Compare the options.",
         "h1": "Own server or cloud — what suits which business?",
         "kurz": "The decision does not depend on company size but on three things: whether an application requires a central installation, how large the files are that several people work on at once, and how good your internet connection is. If no application needs a server and there are no large files, the cloud is nearly always cheaper and lower-maintenance. As soon as a business application has to run centrally, you need a server — on site or rented in a data centre. A managed server costs from €89 per month with us.",
         "intro": "„Cloud or own server\" is often argued as a matter of belief and is in truth a question of applications. The infrastructure follows the software, not the other way round — and the third option, a rented server in a data centre, is regularly forgotten in this discussion although it is the right answer for many businesses.",
@@ -110,7 +110,7 @@ VERGLEICHE = {
     "microsoft365-vs-google-workspace": {
         "nav": "Microsoft 365 or Google",
         "titel": "Microsoft 365 or Google Workspace? | WVM-IT",
-        "desc": "The factual comparison for small businesses: where the two packages genuinely differ — and what the decision hangs on in practice.",
+        "desc": "The factual comparison for small businesses: where the two packages genuinely differ — and what the decision hangs on. Compare both packages.",
         "h1": "Microsoft 365 or Google Workspace — what suits a small business?",
         "kurz": "Both packages do what a business needs: email on your own domain, storage, calendars, video meetings and shared editing. The difference lies in two points: Microsoft 365 includes the installed Office applications and is the obvious choice when business software, templates or bookkeeping depend on Word and Excel. Google Workspace is faster and simpler in the browser as long as nobody relies on complex Excel files or Office templates. Setting up Microsoft 365 costs €290 as a one-off with us.",
         "intro": "This question is rarely decided on technical grounds and mostly by the surroundings: what do your clients, your accountant, your business software use? Anyone exchanging files daily saves a lot of trouble by using the same format as the other side. We deliberately quote no prices here — both vendors change their packages, and an out-of-date figure about a third party is worse than none.",

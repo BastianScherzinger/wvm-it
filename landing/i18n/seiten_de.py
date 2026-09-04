@@ -19,8 +19,8 @@ SEITEN = {
     # ══ EDV & IT ══════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "EDV &amp; IT-Betreuung",
-        "titel": "EDV- & IT-Betreuung für Betriebe | WVM-IT",
-        "desc": "Externe IT-Abteilung für kleine und mittlere Betriebe: ab 29 €/Monat je Arbeitsplatz, Support ab 95 €/Std., per Fernwartung in ganz AT und DE.",
+        "titel": "EDV-Betreuung ab 29 €/Monat je Arbeitsplatz | WVM-IT",
+        "desc": "Externe IT-Abteilung für kleine und mittlere Betriebe: ab 29 €/Monat je Arbeitsplatz, Support ab 95 €/Std., per Fernwartung in AT und DE. Angebot anfordern.",
         "h1": "EDV- und IT-Betreuung für Betriebe ohne eigene IT-Abteilung",
         "kurz": "WVM-IT übernimmt die laufende EDV kleiner und mittlerer Betriebe in Österreich und Deutschland: Arbeitsplätze, Server, E-Mail, Drucker, Updates und Datensicherung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag ab 95 € je Stunde. Wir melden uns innerhalb von 24 Stunden und arbeiten überwiegend per Fernwartung — der Weg zu Ihnen führt über eine gesicherte Verbindung statt über die Autobahn.",
         "intro": "In den meisten Betrieben unter fünfzig Mitarbeitern gibt es keine IT-Abteilung. Es gibt jemanden, der sich „ein bisschen auskennt“ — und der eigentlich etwas anderes zu tun hätte. Solange nichts passiert, funktioniert das. Es fällt erst auf, wenn der Drucker im Büro streikt, während gleichzeitig die Angebote raus müssen, oder wenn nach einem Windows-Update ein Programm nicht mehr startet, das der ganze Betrieb braucht. Genau diese Lücke schließen wir: Sie bekommen eine Nummer, eine E-Mail-Adresse und einen festen Ansprechpartner, der weiß, wie Ihre Technik aufgebaut ist.",
@@ -65,7 +65,7 @@ SEITEN = {
     "server-datensicherung": {
         "nav": "Server &amp; Datensicherung",
         "titel": "Server & Datensicherung für Firmen | WVM-IT",
-        "desc": "Server-Überwachung ab 89 €/Monat, geprüfte Datensicherung ab 49 €/Monat. Wir sehen den Ausfall, bevor der Betrieb steht — in ganz AT und DE.",
+        "desc": "Server-Überwachung ab 89 €/Monat, geprüfte Datensicherung ab 49 €/Monat: Wir sehen den Ausfall, bevor der Betrieb steht. Angebot anfordern.",
         "h1": "Server-Betreuung und Datensicherung, die im Ernstfall hält",
         "kurz": "WVM-IT überwacht Firmenserver rund um die Uhr und betreibt die Datensicherung so, dass sie im Ernstfall auch funktioniert: täglich gesichert, jede Sicherung geprüft, die Wiederherstellung regelmäßig getestet. Die Server-Betreuung kostet ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Betreut wird per Fernzugriff in ganz Österreich und Deutschland.",
         "intro": "Fast jeder Betrieb hat eine Datensicherung. Deutlich weniger Betriebe wissen, wann sie zuletzt gelaufen ist, und die wenigsten haben je versucht, etwas daraus zurückzuholen. Das fällt genau einmal auf — an dem Tag, an dem es darauf ankommt. Eine Sicherung, die noch nie zurückgespielt wurde, ist keine Sicherung, sondern eine Hoffnung. Wir behandeln sie deshalb wie einen Betriebsteil, der geprüft gehört, und nicht wie eine Einstellung, die irgendwann einmal gesetzt wurde.",
@@ -110,7 +110,7 @@ SEITEN = {
     "netzwerk-wlan": {
         "nav": "Netzwerk &amp; WLAN",
         "titel": "Netzwerk & WLAN für Firmen einrichten | WVM-IT",
-        "desc": "Netzwerk und WLAN ausgemessen, geplant und aufgebaut — ab 890 €, auch für Hallen und mehrere Etagen. Firewall und VPN ab 690 €.",
+        "desc": "Netzwerk und WLAN ausgemessen, geplant und aufgebaut — ab 890 €, auch für Hallen und mehrere Etagen. Firewall und VPN ab 690 €. Termin vereinbaren.",
         "h1": "Netzwerk und WLAN, das auch in der Halle trägt",
         "kurz": "WVM-IT plant, misst und baut Firmennetzwerke: strukturierte Verkabelung, WLAN mit lückenloser Abdeckung, getrennte Netze für Gäste und Betrieb, Firewall und VPN für den Zugriff von außen. Netzwerk und WLAN einrichten kostet ab 890 €, Firewall und VPN ab 690 €. Geplant wird aus der Ferne, gebaut wird vor Ort.",
         "intro": "WLAN-Probleme werden fast immer mit einem weiteren Zugangspunkt beantwortet. Meistens wird es davon schlechter: Zwei Geräte auf demselben Kanal stören sich gegenseitig, und das Endgerät hängt sich an das falsche. Ein Netz, das trägt, entsteht nicht durch mehr Hardware, sondern durch eine Messung, einen Plan und saubere Kanalvergabe. Bei Hallen, Altbau und mehreren Etagen ist das der Unterschied zwischen „läuft“ und „läuft, außer hinten links“.",
@@ -155,7 +155,7 @@ SEITEN = {
     "it-sicherheit": {
         "nav": "IT-Sicherheit",
         "titel": "IT-Sicherheit für Betriebe | WVM-IT",
-        "desc": "IT-Sicherheitscheck ab 490 € mit schriftlichem Bericht und Maßnahmenliste. Firewall und VPN ab 690 €. Für Betriebe in Österreich und Deutschland.",
+        "desc": "IT-Sicherheitscheck ab 490 € mit schriftlichem Bericht und Maßnahmenliste, Firewall und VPN ab 690 €, in AT und DE. Sicherheitscheck anfragen.",
         "h1": "IT-Sicherheit, die zu einem Betrieb passt — nicht zu einem Konzern",
         "kurz": "WVM-IT prüft die IT-Sicherheit kleiner und mittlerer Betriebe und setzt die Maßnahmen um, die wirklich etwas bringen: Rechte, Passwörter, Firewall, VPN, Updates, geprüfte Sicherungen. Der einmalige IT-Sicherheitscheck kostet ab 490 € und endet mit einem schriftlichen Bericht samt Maßnahmenliste; Firewall und VPN richten wir ab 690 € ein. Geprüft und betreut wird per Fernzugriff in Österreich und Deutschland.",
         "intro": "Die meisten Schäden in kleinen Betrieben entstehen nicht durch einen gezielten Angriff, sondern durch Alltägliches: ein Passwort, das überall gilt, ein Konto eines längst ausgeschiedenen Mitarbeiters, ein Rechner ohne Updates, eine Sicherung, die nichts taugt. Man braucht kein Sicherheitskonzept nach Konzernmaßstab, um das abzustellen. Man braucht jemanden, der einmal systematisch nachsieht und danach die Punkte abarbeitet, die tatsächlich Schaden verhindern.",
@@ -201,7 +201,7 @@ SEITEN = {
     "webseite-erstellen": {
         "nav": "Webseite erstellen",
         "titel": "Webseite erstellen lassen ab 350 € | WVM-IT",
-        "desc": "Webseiten für Betriebe in Österreich und Deutschland: One-Pager ab 350 €, Firmenseite ab 1.490 €, Shop ab 3.500 €. Kostenlose Testseite vorab.",
+        "desc": "Webseiten für Betriebe in Österreich und Deutschland: One-Pager ab 350 €, Firmenseite ab 1.490 €, Shop ab 3.500 €. Kostenlose Testseite anfordern.",
         "h1": "Webseite erstellen lassen — und vorher sehen, was Sie bekommen",
         "kurz": "WVM-IT baut Webseiten für Betriebe in Österreich und Deutschland: ein One-Pager ab 350 €, eine mehrseitige Firmenseite ab 1.490 €, eine Premium-Seite mit Animationen ab 2.900 €, ein Online-Shop ab 3.500 €. Vorab bauen wir kostenlos eine echte Beispielseite, damit Sie sehen, wie wir arbeiten, bevor Sie sich entscheiden. Hosting und Wartung kosten zusammen 54 € im Monat.",
         "intro": "Die häufigste Enttäuschung mit einer neuen Webseite ist nicht das Aussehen, sondern die Stille danach. Sie sieht gut aus, sie ist teuer gewesen, und es passiert nichts. Das liegt fast nie am Design, sondern daran, dass die Seite nicht dafür gebaut wurde, dass jemand Kontakt aufnimmt: Die Telefonnummer steht ganz unten, es gibt keine Preise, das Formular hat neun Felder. Wir bauen in die andere Richtung — vom Ziel her.",
@@ -246,7 +246,7 @@ SEITEN = {
     "seo-betreuung": {
         "nav": "SEO-Betreuung",
         "titel": "SEO-Betreuung für Betriebe | WVM-IT",
-        "desc": "Bei Google und in KI-Antworten gefunden werden: SEO-Grundoptimierung ab 390 €, laufende Betreuung ab 149 €/Monat, mit monatlichem Bericht.",
+        "desc": "Bei Google und in KI-Antworten gefunden werden: SEO-Grundoptimierung ab 390 €, laufende Betreuung ab 149 €/Monat mit Bericht. Angebot anfordern.",
         "h1": "SEO-Betreuung: gefunden werden von Leuten, die Sie noch nicht kennen",
         "kurz": "WVM-IT bringt Betriebe bei Google und in KI-Antworten wie ChatGPT und Perplexity nach vorn: technische Grundlagen, eine eigene Seite je Leistung, Inhalte, die Suchfragen wirklich beantworten, und monatliche Messung. Die einmalige Grundoptimierung kostet ab 390 €, die laufende Betreuung ab 149 € im Monat. Gearbeitet wird ortsunabhängig für Kunden in Österreich und Deutschland.",
         "intro": "Der häufigste Befund bei kleinen Firmenseiten ist immer derselbe: Sie werden gefunden — aber nur über den eigenen Firmennamen. Also von Leuten, die die Firma ohnehin kennen. Für alle, die ein Problem haben und nach der Lösung suchen, existiert die Seite nicht. Der Grund ist selten die Technik. Er liegt darin, dass alle Leistungen auf einer einzigen Seite in Absätzen stehen, und Google keine Absätze platzieren kann, sondern nur Seiten.",
@@ -291,7 +291,7 @@ SEITEN = {
     "google-ads": {
         "nav": "Google Ads",
         "titel": "Google Ads Betreuung für Betriebe | WVM-IT",
-        "desc": "Google Ads einrichten ab 490 €, laufende Betreuung ab 199 €/Monat zzgl. Budget. Mit Conversion-Messung und verständlichem Monatsbericht.",
+        "desc": "Google Ads einrichten ab 490 €, laufende Betreuung ab 199 €/Monat zzgl. Budget, mit Conversion-Messung und Monatsbericht. Angebot anfordern.",
         "h1": "Google Ads, die Anfragen bringen — nicht nur Klicks",
         "kurz": "WVM-IT richtet Google-Ads-Konten ein und betreut sie laufend: Kampagnen, Suchbegriffe, Anzeigen, ausschließende Begriffe und vor allem eine funktionierende Conversion-Messung. Die Einrichtung kostet ab 490 €, die laufende Betreuung ab 199 € im Monat zuzüglich Ihres Werbebudgets. Betreut wird ortsunabhängig für Betriebe in Österreich und Deutschland.",
         "intro": "Anzeigen sind der schnellste Weg zu Anfragen — und der schnellste Weg, Geld zu verbrennen. Der Unterschied liegt fast nie an der Anzeige selbst, sondern daran, ob gemessen wird, was hinten herauskommt. Wer nur Klicks zählt, optimiert auf Besuche. Wer Anfragen misst, kann Suchbegriffe abschalten, die teuer sind und nichts bringen — und das sind erfahrungsgemäß die meisten.",
@@ -336,7 +336,7 @@ SEITEN = {
     "hosting-wartung": {
         "nav": "Hosting &amp; Wartung",
         "titel": "Hosting & Wartung für Firmenseiten | WVM-IT",
-        "desc": "Hosting mit SSL und täglichen Sicherungen ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr. Auch für Seiten, die jemand anderes gebaut hat.",
+        "desc": "Hosting mit SSL und täglichen Sicherungen ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr — auch für fremde Seiten. Umzug anfragen.",
         "h1": "Hosting und Wartung: damit die Seite auch läuft, wenn niemand hinsieht",
         "kurz": "WVM-IT betreibt und wartet Firmenseiten: Hosting mit SSL und täglichen Sicherungen ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat, Domain ab 15 € im Jahr — zusammen 54 € im Monat. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
         "intro": "Eine Webseite ist keine Anschaffung, sondern ein Betriebsmittel. Zertifikate laufen ab, Systeme brauchen Sicherheits-Updates, Kontaktformulare hören irgendwann still auf zu funktionieren. Das fällt selten sofort auf — meistens erst dann, wenn wochenlang keine Anfrage mehr kam und jemand nachsieht. Wartung ist die günstigste Versicherung gegen genau diese Wochen.",
@@ -381,7 +381,7 @@ SEITEN = {
     "ki-automatisierung": {
         "nav": "KI-Automatisierung",
         "titel": "KI-Automatisierung für Unternehmen | WVM-IT",
-        "desc": "Chatbots, WhatsApp- und Termin-Automatisierung für Betriebe: Terminbuchung ab 390 €, Chatbot ab 690 €, Anbindung an CRM und ERP ab 1.200 €.",
+        "desc": "Chatbots, WhatsApp- und Termin-Automatisierung: Terminbuchung ab 390 €, Chatbot ab 690 €, Anbindung an CRM und ERP ab 1.200 €. Angebot anfordern.",
         "h1": "KI-Automatisierung: die Arbeit, die sich wiederholt, macht die Technik",
         "kurz": "WVM-IT baut Automatisierungen für wiederkehrende Arbeit in Betrieben: einen Chatbot, der nachts Anfragen entgegennimmt, Termin- und Buchungsabläufe, automatische Antworten per WhatsApp und E-Mail sowie Anbindungen an vorhandene Systeme. Terminautomatisierung kostet ab 390 €, ein KI-Chatbot ab 690 €, eine Anbindung an CRM oder ERP ab 1.200 €. Umgesetzt wird ortsunabhängig in Österreich und Deutschland.",
         "intro": "Automatisierung lohnt sich nicht dort, wo sie beeindruckend aussieht, sondern dort, wo dieselbe Handbewegung jeden Tag zwanzigmal passiert: dieselbe Frage beantworten, denselben Termin eintragen, dieselbe Bestätigung schreiben. Deshalb fangen wir nie mit der Technik an, sondern mit der Frage, welche fünf Minuten sich am häufigsten wiederholen. Alles andere ist Spielerei mit Rechnung.",
@@ -427,7 +427,7 @@ SEITEN = {
     "smarthome-knx-loxone": {
         "nav": "Smarthome, Loxone &amp; KNX",
         "titel": "Smarthome mit Loxone & KNX | WVM-IT",
-        "desc": "Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt und Sicherheit in einem System. Geplant, programmiert und betreut.",
+        "desc": "Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt und Sicherheit in einem System, geplant und betreut. Beratung anfragen.",
         "h1": "Gebäudeautomation mit Loxone und KNX",
         "kurz": "WVM-IT plant, programmiert und betreut Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt, Sicherheit und Medientechnik in einem System. Anlagen dieser Art werden projektbezogen kalkuliert und vor Ort aufgebaut — den Preis nennen wir nach einem kurzen Gespräch und einer Bestandsaufnahme, nicht vorher.",
         "intro": "Bei Gebäudeautomation entscheidet nicht die Hardware über das Ergebnis, sondern die Programmierung. Dieselben Geräte können eine Anlage ergeben, die niemand versteht und die nach dem ersten Sommer wieder von Hand bedient wird — oder eine, die einfach tut, was man erwartet. Deshalb planen wir zuerst die Abläufe und erst danach die Komponentenliste.",
@@ -472,7 +472,7 @@ SEITEN = {
     "konferenztechnik": {
         "nav": "Konferenztechnik",
         "titel": "Konferenz- & Veranstaltungstechnik | WVM-IT",
-        "desc": "Besprechungsräume und Veranstaltungen technisch ausstatten: Displays, Kameras, Mikrofone, Ton und Steuerung. Geplant, installiert, eingemessen.",
+        "desc": "Besprechungsräume und Veranstaltungen technisch ausstatten: Displays, Kameras, Mikrofone, Ton und Steuerung, eingemessen. Angebot anfordern.",
         "h1": "Konferenz-, Ton- und Veranstaltungstechnik, die auf Knopfdruck funktioniert",
         "kurz": "WVM-IT stattet Besprechungsräume und Veranstaltungen technisch aus: Displays, Kameras, Mikrofone, Ton, Licht und eine Steuerung, die auch jemand bedienen kann, der sie nicht eingebaut hat. Geplant, installiert und eingemessen wird projektbezogen vor Ort; den Preis nennen wir nach einer Bestandsaufnahme des Raums.",
         "intro": "Der Maßstab für Konferenztechnik ist nicht, was sie kann, sondern ob eine Besprechung pünktlich anfängt. Die meisten Räume scheitern an denselben Kleinigkeiten: Das falsche Kabel liegt am Tisch, die Kamera zeigt die Wand, den Ton versteht die Gegenseite nicht. Deshalb messen wir Räume ein und bauen die Bedienung auf einen einzigen sichtbaren Weg — alles andere verschwindet in der Technik.",

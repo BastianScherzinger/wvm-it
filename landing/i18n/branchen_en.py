@@ -14,7 +14,7 @@ BRANCHEN = {
     "steuerberater-kanzleien": {
         "nav": "Tax &amp; law practices",
         "titel": "IT for tax and law practices | WVM-IT",
-        "desc": "IT support for practices: DATEV environment, client separation, retention periods, verified backups. From €29 per workstation and month.",
+        "desc": "IT support for practices: DATEV environment, client separation, retention periods, verified backups. From €29 per workstation and month. Request a quote.",
         "h1": "IT support for tax advisers and law practices",
         "kurz": "WVM-IT looks after the IT of tax, law and audit practices in Austria and Germany: workstations, the DATEV or practice-software environment, client data and the backups behind it. Ongoing support costs from €29 per workstation and month, the one-off IT security check €490. Work is done mostly by remote maintenance — in a practice that is the only route that does not interrupt the work.",
         "intro": "In a practice, IT is not a tool but the archive. What sits on the servers is other people's assets in numerical form — and it is subject to deadlines nobody can suspend. That gives technology a different role than in a business that switches the computers off at night: it has to work demonstrably, not just apparently.",
@@ -58,7 +58,7 @@ BRANCHEN = {
     "handwerk-baugewerbe": {
         "nav": "Trades &amp; construction",
         "titel": "IT for trades and construction firms | WVM-IT",
-        "desc": "IT for trades and construction: devices for the site, time tracking, trade software, photo records. From €29 per workstation and month.",
+        "desc": "IT for trades and construction: devices for the site, time tracking, trade software, photo records. From €29 per workstation and month. Request a quote.",
         "h1": "IT for trades businesses and the construction sector",
         "kurz": "WVM-IT looks after the IT of trades and construction firms in Austria and Germany: office workstations, servers, trade software, mobile devices on site and the link between them. Ongoing support costs from €29 per workstation and month; a measured network with Wi-Fi for workshop and store starts at €890. Day-to-day work runs by remote maintenance; building and surveying happen on site.",
         "intro": "In the trades, half the business does not work where the IT sits. Two or three people handle quotes, invoices and appointments in the office; outside there are fitters with a phone, a tablet and a connection that on some days simply is not there. The technology has to serve both sides — in a way that does not have anyone retyping everything in the evening.",
@@ -102,7 +102,7 @@ BRANCHEN = {
     "arztpraxen-therapie": {
         "nav": "Medical &amp; therapy practices",
         "titel": "IT for medical and therapy practices | WVM-IT",
-        "desc": "IT for practices: patient data, access logs, separate networks for devices, resilience during consulting hours. Security check €490.",
+        "desc": "IT for practices: patient data, access logs, separate networks for devices, resilience during consulting hours. Security check €490. Request a quote.",
         "h1": "IT for medical, dental and therapy practices",
         "kurz": "WVM-IT looks after the IT of medical, dental and therapy practices in Austria and Germany: workstations, the practice management environment, separate networks for medical devices, access rights and the backups behind them. The one-off IT security check costs €490, ongoing support from €29 per workstation and month. Work is done by remote maintenance — in a practice that is the only route that does not halt the consulting hour.",
         "intro": "A practice has two properties that are demanding in combination: it processes the most sensitive category of data there is, and it cannot stand still between eight and twelve. Together that means technology here does not need to be spectacular but reliably dull — and that every change happens outside consulting hours.",
@@ -146,7 +146,7 @@ BRANCHEN = {
     "hotellerie-gastronomie": {
         "nav": "Hotels &amp; hospitality",
         "titel": "IT and Wi-Fi for hotels and hospitality | WVM-IT",
-        "desc": "IT for hotels and restaurants: guest Wi-Fi separated from operations, POS, booking links, seasonal load. Network from €890.",
+        "desc": "IT for hotels and restaurants: guest Wi-Fi separated from operations, POS, booking links, seasonal load. Network from €890. Request a quote.",
         "h1": "IT, Wi-Fi and technology for hotels and hospitality",
         "kurz": "WVM-IT plans and looks after the technology of hotels, guesthouses and hospitality businesses in Austria and Germany: guest Wi-Fi separated from the operational network, POS systems, booking connections, workstations and backups. A measured network with Wi-Fi starts at €890, ongoing support at €29 per workstation and month. Planning is done remotely; building and surveying happen on site.",
         "intro": "In hospitality, IT is part of the product. Guests rate the Wi-Fi the way they rate breakfast, and they do it publicly. At the same time the same line carries things that have nothing to do with the guest: point of sale, accounts, time tracking, cameras. Separating those two worlds cleanly is not a refinement but the foundation.",
@@ -190,7 +190,7 @@ BRANCHEN = {
     "produktion-gewerbe": {
         "nav": "Manufacturing &amp; industry",
         "titel": "IT for manufacturing and industrial firms | WVM-IT",
-        "desc": "IT for manufacturing: network into the hall, scanners and terminals, separate networks for machines, resilience. Network from €890.",
+        "desc": "IT for manufacturing: network into the hall, scanners and terminals, separate networks for machines, resilience. Network from €890. Request a quote.",
         "h1": "IT and networks for manufacturing and industrial businesses",
         "kurz": "WVM-IT plans and looks after the IT of manufacturing and industrial businesses in Austria and Germany: networks reaching into the hall, separate networks for machines, scanners and terminals, servers, workstations and backups. A measured hall network starts at €890, managed servers at €89 per month. Day-to-day work runs by remote maintenance; building and surveying happen on site.",
         "intro": "In a manufacturing business, IT does not stop at the office door. It carries on into the hall, the store, the machine — and different rules apply there: dust, metal, vibration, roller doors that change the radio picture every time they open. And a machine meant to run for ten years does not get replaced because an operating system has aged.",
@@ -234,7 +234,7 @@ BRANCHEN = {
     "vereine-gemeinden": {
         "nav": "Associations &amp; municipalities",
         "titel": "IT for associations and municipalities | WVM-IT",
-        "desc": "IT for clubs and municipal bodies: handovers at committee changes, small budgets, website, hall technology. From €95 per hour.",
+        "desc": "IT for clubs and municipal bodies: handovers at committee changes, small budgets, website, hall technology. From €95 per hour. Request a quote.",
         "h1": "IT for associations, municipalities and volunteer organisations",
         "kurz": "WVM-IT supports associations, municipal bodies and volunteer-run organisations in Austria and Germany: accounts and credentials that survive a change of committee, website and email, backups, plus technology in halls and meeting rooms. We usually bill by the hour at €95 rather than through an ongoing contract — that fits a budget decided once a year.",
         "intro": "In an association nobody looks after the technology full time. There is someone who can do it, and they do — until they hand over the office. More is lost at that point than through any technical defect: passwords, domain access, membership lists, the account with the email provider. Not through ill will, but because it was never written down.",

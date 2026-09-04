@@ -311,3 +311,170 @@ class NurDeutscheModuleTest(SimpleTestCase):
                              if PLATZHALTER.search(wert))
             self.assertEqual(treffer, [],
                              f"{name}.py enthält Platzhalter: {treffer[:8]}")
+
+
+# ── Meta-Angaben (Schritt 43) ────────────────────────────────────────────────
+# Titel und Description stehen in den Sprachpaketen und in `seiten_*.py`, werden
+# aber erst im `head` sichtbar — geprüft wird deshalb die gerenderte Seite. Die
+# Grenzen sind enger als die Vorgabe des Plans (30–65 / 110–175): `pruefe_seite`
+# bricht ab TITEL_MAX bzw. DESC_MAX ab, und zwei Prüfungen mit verschiedenen
+# Obergrenzen wären eine Falle für den Nächsten.
+TITEL_MIN = 30
+DESC_MIN = 110
+
+# Der letzte Satz einer Description soll eine Handlungsaufforderung sein. Wo das
+# Verb in diesem Satz steht, ist eine Frage der Sprache und nicht der Qualität:
+# Deutsch stellt den Infinitiv ans Ende („Angebot anfordern."), Englisch und
+# Rumänisch den Imperativ an den Anfang („Request a quote.", „Cereți o ofertă.").
+# Deshalb wird der Schlusssatz herausgelöst und auf beide Stellungen geprüft —
+# eine Regel, die nur die deutsche Stellung kennt, wäre in zwei von drei Sprachen
+# unerfüllbar und würde dort zu unnatürlichen Sätzen zwingen.
+LETZTER_SATZ = re.compile(r"([^.!?]+)[.!?]\s*$")
+
+# Infinitiv am Satzende (Deutsch).
+AUFFORDERUNG_ENDE = re.compile(
+    r"(anfordern|anfragen|vergleichen|vereinbaren|berechnen|ansehen|lesen|"
+    r"testen|anrufen|starten|prüfen|melden|sichern|schreiben|rechnen|holen|"
+    r"abhaken|durchgehen|nachschlagen|klären|sprechen)\s*$", re.I)
+
+# Imperativ am Satzanfang (Englisch, Rumänisch).
+AUFFORDERUNG_ANFANG = re.compile(
+    r"^(request|compare|arrange|calculate|book|read|test|call|check|get|see|"
+    r"ask|find|talk|tell|send|start|print|work|take|"
+    r"solicitați|comparați|programați|calculați|citiți|testați|sunați|"
+    r"verificați|cereți|vedeți|aflați|scrieți|alegeți|începeți|listați|"
+    r"parcurgeți|tipăriți)\b", re.I)
+
+
+def _hat_aufforderung(text):
+    """Wahr, wenn der Schlusssatz zu einer Handlung auffordert."""
+    satz = LETZTER_SATZ.search(text or "")
+    if not satz:
+        return False
+    satz = satz.group(1).strip()
+    return bool(AUFFORDERUNG_ENDE.search(satz) or AUFFORDERUNG_ANFANG.search(satz))
+
+
+class MetaAngabenTest(SimpleTestCase):
+    """Titel und Description jeder Adresse — Länge, Eindeutigkeit, Aufforderung.
+
+    Diese Prüfung rendert den Bestand einmal und wertet nur den `head` aus. Sie
+    steht hier und nicht in `pruefe_seite`, weil sie beim Ändern eines
+    Sprachpakets sofort anschlagen soll: Ein Titel, der nur in einer der drei
+    Sprachen nachgezogen wurde, ist genau der Fehler, den niemand sieht.
+    """
+
+    maxDiff = None
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        from landing.management.commands.pruefe_seite import _client, _seiten
+        titel = re.compile(r"<title>(.*?)</title>", re.S)
+        besch = re.compile(r'<meta name="description" content="(.*?)"', re.S)
+        eins = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S)
+        marke = re.compile(r"<[^>]+>")
+        client = _client()
+        cls.kopf = []
+        for pfad in _seiten():
+            antwort = client.get(pfad)
+            if antwort.status_code != 200:
+                continue
+            html = antwort.content.decode("utf-8", "replace")
+            t = titel.search(html)
+            d = besch.search(html)
+            h = eins.search(html)
+            cls.kopf.append((
+                pfad,
+                t.group(1).strip() if t else "",
+                d.group(1).strip() if d else "",
+                marke.sub("", h.group(1)).strip() if h else ""))
+
+    def test_kein_titel_steht_auf_zwei_adressen(self):
+        """Verhindert: zwei Seiten, die in der Trefferliste gleich heißen.
+
+        Bis zum 04.09.2026 trugen drei Titel je zwei Adressen — darunter die
+        englische Startseite und `/en/leistungen/edv-it-betreuung/`. Google
+        wählt in so einem Fall selbst aus, welche der beiden er zeigt, und die
+        andere verliert ihr Wort. Der Fehler entsteht immer gleich: Ein Titel
+        wird von der Startseite auf die Leistungsseite kopiert, weil beide
+        dieselbe Leistung beschreiben."""
+        doppelt = {}
+        for pfad, titel, _desc, _h1 in self.kopf:
+            doppelt.setdefault(titel, []).append(pfad)
+        treffer = sorted(f"{titel!r}: {pfade}"
+                         for titel, pfade in doppelt.items() if len(pfade) > 1)
+        self.assertEqual(treffer, [], f"{len(treffer)} doppelte Titel: {treffer}")
+
+    def test_keine_description_steht_auf_zwei_adressen(self):
+        """Verhindert: dieselbe Vorschau unter zwei verschiedenen Ergebnissen.
+
+        Dieselbe Ursache wie oben, nur eine Zeile tiefer. Betroffen waren
+        `unsub`, `wait` und `anfrage_done`, die gar keine eigene Description
+        hatten und deshalb die der Startseite erbten — sichtbar wird das erst,
+        wenn jemand einen solchen Link teilt."""
+        doppelt = {}
+        for pfad, _titel, desc, _h1 in self.kopf:
+            doppelt.setdefault(desc, []).append(pfad)
+        treffer = sorted(f"{desc[:60]!r}: {pfade}"
+                         for desc, pfade in doppelt.items() if len(pfade) > 1)
+        self.assertEqual(treffer, [],
+                         f"{len(treffer)} doppelte Descriptions: {treffer}")
+
+    def test_jeder_titel_liegt_in_der_zielspanne(self):
+        """Verhindert: einen Titel, den die Trefferliste abschneidet oder auffüllt.
+
+        Unter 30 Zeichen verschenkt der Titel Platz, den Google sonst mit einem
+        selbst gewählten Text füllt; über der Obergrenze von `pruefe_seite`
+        schneidet er ab, und zwar am Ende — dort, wo bei dieser Seite der
+        Ortsname steht."""
+        from landing.management.commands.pruefe_seite import TITEL_MAX
+        zu_kurz = sorted(f"{len(titel):3d} {pfad}: {titel!r}"
+                         for pfad, titel, _d, _h in self.kopf
+                         if not TITEL_MIN <= len(titel) <= TITEL_MAX)
+        self.assertEqual(zu_kurz, [],
+                         f"{len(zu_kurz)} Titel außerhalb {TITEL_MIN}–{TITEL_MAX}: "
+                         f"{zu_kurz}")
+
+    def test_jede_description_liegt_in_der_zielspanne(self):
+        """Verhindert: eine Vorschauzeile, die die Frage des Suchenden nicht beantwortet.
+
+        Elf Descriptions lagen unter 110 Zeichen — Platz, den die Trefferliste
+        hergibt und der ungenutzt blieb. Die Obergrenze ist dieselbe wie in
+        `pruefe_seite`, damit nicht zwei Prüfungen verschiedene Zahlen
+        verlangen."""
+        from landing.management.commands.pruefe_seite import DESC_MAX
+        daneben = sorted(f"{len(desc):3d} {pfad}: {desc!r}"
+                         for pfad, _t, desc, _h in self.kopf
+                         if not DESC_MIN <= len(desc) <= DESC_MAX)
+        self.assertEqual(daneben, [],
+                         f"{len(daneben)} Descriptions außerhalb {DESC_MIN}–{DESC_MAX}: "
+                         f"{daneben}")
+
+    def test_jede_description_endet_mit_einer_handlungsaufforderung(self):
+        """Verhindert: eine Vorschau, die beschreibt, statt zum Klick zu führen.
+
+        Drei von 158 Descriptions endeten mit einem Verb, das etwas von der
+        lesenden Person verlangt. Eine Description ist die einzige Zeile, mit
+        der diese Seite in der Trefferliste um den Klick wirbt; sie zu Ende zu
+        beschreiben, ohne zu sagen, was als Nächstes zu tun ist, verschenkt
+        genau diese Zeile."""
+        ohne = sorted(f"{pfad}: {desc[-45:]!r}"
+                      for pfad, _t, desc, _h in self.kopf
+                      if not _hat_aufforderung(desc))
+        self.assertEqual(ohne, [],
+                         f"{len(ohne)} Descriptions ohne Handlungsaufforderung: {ohne}")
+
+    def test_kein_titel_ist_mit_seiner_ueberschrift_wortgleich(self):
+        """Verhindert: zweimal denselben Satz für zwei verschiedene Aufgaben.
+
+        Titel und H1 haben verschiedene Leser: Der Titel wirbt in einer Liste
+        fremder Ergebnisse um den Klick, die H1 bestätigt der bereits
+        angekommenen Person, dass sie richtig ist. Sind sie wortgleich, ist
+        eine von beiden Aufgaben unerledigt — betroffen waren sechs Seiten,
+        darunter Impressum und Datenschutz in allen drei Sprachen."""
+        gleich = sorted(f"{pfad}: {h1!r}"
+                        for pfad, titel, _d, h1 in self.kopf
+                        if h1 and (h1 == titel or titel.split(" | ")[0].strip() == h1))
+        self.assertEqual(gleich, [],
+                         f"{len(gleich)} Seiten mit H1 = Titel: {gleich}")

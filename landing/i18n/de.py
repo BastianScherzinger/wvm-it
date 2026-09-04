@@ -20,12 +20,12 @@ PACK = {
         "locale": "de_AT",
         "num_locale": "de-DE",
         "seo_title": "EDV & IT-Betreuung für Betriebe | WVM-IT",
-        "seo_desc": "Externe IT-Abteilung für Betriebe in Österreich und Deutschland: Betreuung ab 29 €/Monat je Arbeitsplatz, Support ab 95 €/Std., Antwort in 24 Stunden.",
+        "seo_desc": "Externe IT-Abteilung für Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz, Support ab 95 €/Std., Antwort in 24 Std. Angebot anfordern.",
         "slogan": "Wir verbinden Menschen mit Informationstechnologie.",
         "firmen_desc": "WVM-IT verbindet Menschen mit Informationstechnologie. Von unserem Standort in Lenzing in Oberösterreich betreuen wir Unternehmen und Privatkunden mit IT- und Digitallösungen aus einer Hand: EDV, Netzwerk und IT-Sicherheit, professionelle Webseiten, Hosting und SEO, KI-Automatisierung, Smarthome und Gebäudeautomation sowie Konferenz-, Video-, Ton- und Veranstaltungstechnik. Der laufende Betrieb läuft überwiegend per Fernwartung in ganz Österreich und Deutschland; Arbeiten vor Ort übernehmen wir im Einzugsgebiet rund um Vöcklabruck, den Attersee, Gmunden, Wels, Linz und Salzburg. Technik soll verständlich sein, zuverlässig funktionieren und einen echten Mehrwert schaffen — dafür gibt es persönliche Beratung, klare Kommunikation und einen festen Ansprechpartner.",
         "og_image_alt_suffix": "EDV, IT und Digitales für Betriebe",
         "angebot_title": "Angebot zusammenstellen, Richtpreis sofort",
-        "angebot_desc": "Leistungen antippen und Richtpreis in unter einer Minute sehen: IT-Betreuung ab 29 €/Monat, Website ab 350 €, SEO ab 149 €/Monat. Unverbindlich.",
+        "angebot_desc": "Leistungen antippen und Richtpreis in unter einer Minute sehen: IT-Betreuung ab 29 €/Monat, Website ab 350 €, SEO ab 149 €/Monat. Richtpreis berechnen.",
         "angebot_og_desc": "Webseiten, KI, Automatisierung und mehr in wenigen Schritten zusammenstellen und Richtpreis sofort sehen.",
         # Danke-Seite (/anfrage/danke/, Schritt 31). Sie trägt `noindex` und
         # taucht deshalb in keinem Suchergebnis auf; Titel und Beschreibung
@@ -439,7 +439,7 @@ PACK = {
         "regionen_titel": "Regionen",
         "regionen_h1": "Wo wir vor Ort sind — und wo wir aus der Ferne arbeiten",
         "regionen_meta_titel": "IT-Service in Oberösterreich und Salzburg | WVM-IT",
-        "regionen_meta_desc": "IT-Service vor Ort in Vöcklabruck, am Attersee, in Gmunden, Bad Ischl, Wels, Salzburg und Linz — Fernwartung in ganz Österreich und Deutschland.",
+        "regionen_meta_desc": "IT-Service vor Ort in Vöcklabruck, am Attersee, in Gmunden, Bad Ischl, Wels, Salzburg und Linz — Fernwartung in AT und DE. Termin vereinbaren.",
         "regionen_kurz": "Unser Sitz ist in Lenzing im Bezirk Vöcklabruck. Für Arbeiten, bei denen jemand vor Ort sein muss, fahren wir im Umkreis von rund einer Stunde. Alles, was aus der Ferne geht, betreuen wir in ganz Österreich und Deutschland.",
         "regionen_intro": "Diese Seiten gibt es für die Orte, an die tatsächlich jemand von uns hinfährt — mit der echten Entfernung und dem, was dort vor Ort typischerweise ansteht. Für alles Übrige braucht es keine Ortsseite: Fernwartung, Überwachung, Datensicherung, Webseiten, SEO und Ads sind ortsunabhängig.",
         "regionen_fern": "Ihr Ort ist nicht dabei? Für die laufende Betreuung spielt das keine Rolle — sie läuft per gesicherter Fernwartung in ganz Österreich und Deutschland. Nur für Arbeiten, bei denen jemand mit den Händen anpacken muss, ist die Entfernung ein Thema.",
@@ -471,8 +471,8 @@ PACK = {
     # Der Hub und die Beschriftungen, die auf jeder Branchenseite gleich sind.
     # Die Seitentexte selbst stehen in branchen_{de,en,ro}.py.
     "branchen_seite": {
-        "titel": "IT für Ihre Branche | WVM-IT",
-        "desc": "IT-Betreuung nach Branche: Kanzleien, Handwerk, Praxen, Hotellerie, Produktion, Vereine. Was jeweils anders ist — und was gleich bleibt.",
+        "titel": "IT für Ihre Branche: sechs Bereiche | WVM-IT",
+        "desc": "IT-Betreuung nach Branche: Kanzleien, Handwerk, Praxen, Hotellerie, Produktion, Vereine. Was jeweils anders ist — und was gleich bleibt. Ihre Branche ansehen.",
         "h1": "IT nach Branche: was jeweils anders ist",
         "kurz": "WVM-IT betreut Betriebe aller Branchen mit demselben Werkzeugkasten — aber nicht mit demselben Zuschnitt. Eine Kanzlei braucht Aufbewahrungsfristen und Mandantentrennung, ein Handwerksbetrieb Geräte, die einen Baustellentag überstehen, ein Hotel ein Gästenetz, das im August trägt. Auf diesen Seiten steht, was in der jeweiligen Branche technisch wirklich anders ist.",
         "intro": "Die Grundleistung ist überall dieselbe: Arbeitsplätze, Server, Netzwerk, Datensicherung, Sicherheit. Unterschiedlich ist der Zuschnitt — welche Anforderung zuerst kommt, welches System den Takt vorgibt und wo ein Ausfall am teuersten ist. Genau darum geht es hier.",
@@ -492,7 +492,7 @@ PACK = {
         "auswahl_h": "Warum genau diese drei",
         "auswahl_t": "Es sind die drei Entscheidungen, die in Erstgesprächen am häufigsten offen sind. Sie haben eines gemeinsam: Man kann sie nicht sinnvoll treffen, ohne den eigenen Betrieb anzusehen — deshalb steht auf jeder Seite die Frage, an der es hängt, und nicht eine Empfehlung. Fehlt Ihnen ein Vergleich, schreiben Sie uns; wir ergänzen ihn, wenn die Frage öfter kommt.",
         "titel": "IT-Entscheidungen im Vergleich | WVM-IT",
-        "desc": "Betreuung oder Stunden, Server oder Cloud, Microsoft 365 oder Google: die Gegenüberstellungen, die vor der Anbieterwahl anstehen.",
+        "desc": "Betreuung oder Stunden, Server oder Cloud, Microsoft 365 oder Google: die Gegenüberstellungen, die vor der Anbieterwahl anstehen. Vergleiche ansehen.",
         "h1": "Die Entscheidungen, die vor der Anbieterwahl stehen",
         "kurz": "Bevor jemand einen IT-Dienstleister sucht, steht meistens eine andere Frage im Raum: Betreuung im Vertrag oder Abrechnung nach Stunden? Server im Haus oder Cloud? Microsoft 365 oder Google Workspace? Auf diesen Seiten stehen die Gegenüberstellungen mit dem Rechenweg — einschließlich der Fälle, in denen die Antwort gegen unser eigenes Angebot ausfällt.",
         "intro": "Jede dieser Seiten nennt ausdrücklich, wann die andere Variante die richtige ist. Ein Vergleich, der immer zum eigenen Angebot führt, ist keiner — er ist Werbung mit Tabelle.",
@@ -512,7 +512,7 @@ PACK = {
     # der vier Fälle folgt der Häufigkeit, mit der danach gesucht wird.
     "notfall": {
         "titel": "IT-Notfall: die ersten 30 Minuten | WVM-IT",
-        "desc": "Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Notebook: was in den ersten 30 Minuten zu tun ist — und was Sie auf keinen Fall tun sollten.",
+        "desc": "Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Notebook: was in den ersten 30 Minuten zu tun ist — und was nicht. Jetzt anrufen.",
         "h1": "IT-Notfall: was in den ersten 30 Minuten zu tun ist",
         "kurz": "Bei einem IT-Notfall entscheiden die ersten Minuten über den Schaden. Die wichtigste Regel gilt in allen vier Fällen: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden. Danach Hilfe holen. Wir sind an Werktagen unter der unten stehenden Nummer erreichbar und beginnen per Fernwartung meist innerhalb von Minuten.",
         "eilt_h": "Es eilt — hier entlang",
@@ -618,7 +618,7 @@ PACK = {
     # Genau das macht ihn teilbar — siehe Kopf von landing/selbsttest.py.
     "selbsttest": {
         "titel": "IT-Sicherheit: Selbsttest in 10 Fragen | WVM-IT",
-        "desc": "Zehn Ja-Nein-Fragen zur IT-Sicherheit Ihres Betriebs, Ergebnis sofort und ohne E-Mail-Abfrage — mit der Reihenfolge, in der Sie anfangen sollten.",
+        "desc": "Zehn Ja-Nein-Fragen zur IT-Sicherheit Ihres Betriebs, Ergebnis sofort und ohne E-Mail-Abfrage — mit der richtigen Reihenfolge. Selbsttest starten.",
         "h1": "Wie sicher ist die IT in Ihrem Betrieb?",
         "kurz": "Zehn Fragen, ehrlich beantwortet, ergeben ein brauchbares Bild — und vor allem eine Reihenfolge. Sie bekommen das Ergebnis sofort, ohne E-Mail-Adresse und ohne dass etwas gespeichert wird. Der Test ersetzt keine Prüfung; er zeigt Ihnen, wo eine Prüfung anfangen müsste.",
         "intro": "Antworten Sie so, wie es heute wirklich ist, nicht wie es sein sollte. „Weiß nicht“ ist eine gültige Antwort und für das Ergebnis genauso aussagekräftig wie ein Nein — in der IT-Sicherheit ist Unwissen dasselbe wie Unsicherheit, nur unangenehmer zu bemerken.",
@@ -761,7 +761,7 @@ PACK = {
     },
     "hub": {
         "titel": "Leistungen: EDV, IT, Web und Technik | WVM-IT",
-        "desc": "Alle Leistungen von WVM-IT: IT-Betreuung ab 29 €/Monat, Webseiten ab 350 €, SEO ab 149 €/Monat, Technik vor Ort — in Österreich und Deutschland.",
+        "desc": "Alle Leistungen von WVM-IT: IT-Betreuung ab 29 €/Monat, Webseiten ab 350 €, SEO ab 149 €/Monat, Technik vor Ort in AT und DE. Angebot anfordern.",
         "h1": "Was WVM-IT für Betriebe übernimmt",
         "kurz": "WVM-IT betreut die EDV kleiner und mittlerer Betriebe in Österreich und Deutschland und übernimmt zusätzlich alles, was digital sichtbar macht: Webseiten, SEO, Google Ads und Automatisierung. Der Schwerpunkt liegt auf laufender IT-Betreuung ab 29 € je Arbeitsplatz und Monat, überwiegend per Fernwartung. Gebäude- und Veranstaltungstechnik kommen projektbezogen vor Ort dazu.",
         "intro": "Elf Leistungen, drei Bereiche &ndash; und ein Ansprechpartner für alle. Was Sie hier finden, ist bewusst keine Liste von Schlagworten: Zu jeder Leistung gibt es eine eigene Seite mit dem, was enthalten ist, wie es abläuft und was es kostet.",
@@ -774,7 +774,7 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "Was kostet IT-Betreuung? Alle Preise | WVM-IT",
-        "desc": "Alle Preise von WVM-IT: IT-Betreuung ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., Webseite ab 350 €, SEO ab 149 €/Monat. Netto zzgl. USt.",
+        "desc": "Alle Preise von WVM-IT: IT-Betreuung ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., Webseite ab 350 €, SEO ab 149 €/Monat. Preise vergleichen.",
         "h1": "Was kostet das? Alle Preise auf einer Seite",
         "kurz": "Die laufende IT-Betreuung bei WVM-IT kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
         "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt &ndash; und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",
@@ -789,8 +789,8 @@ PACK = {
     # Rechnet serverseitig aus ANGEBOT_GROUPS. Hier stehen nur Beschriftungen —
     # keine einzige Zahl, sonst gäbe es eine zweite Preisquelle.
     "rechner": {
-        "titel": "IT-Kosten berechnen | WVM-IT",
-        "desc": "Was kostet die IT-Betreuung für Ihren Betrieb? Arbeitsplätze, Server und Datensicherung eingeben, Monats- und Jahressumme sofort sehen.",
+        "titel": "IT-Kosten für Ihren Betrieb berechnen | WVM-IT",
+        "desc": "Was kostet die IT-Betreuung für Ihren Betrieb? Arbeitsplätze, Server und Datensicherung eingeben, Monats- und Jahressumme sofort sehen. Jetzt berechnen.",
         "h1": "Was kostet die IT-Betreuung für Ihren Betrieb?",
         "kurz": "Geben Sie ein, wie viele Arbeitsplätze und Server Sie haben und ob die Datensicherung überwacht werden soll — Sie sehen sofort die Monats- und die Jahressumme. Gerechnet wird mit denselben Richtpreisen, die auch auf unserer Preisseite und in unseren Angeboten stehen; eine zweite Preisliste gibt es nicht.",
         "intro": "Der Rechner beantwortet die Frage, die vor jeder Anfrage steht: Was kommt da monatlich auf uns zu? Er zeigt zusätzlich, ab wann sich eine laufende Betreuung gegenüber der Abrechnung nach Stunden rechnet — mit dem Rechenweg, nicht mit einer Behauptung. Alle Angaben sind Richtpreise netto zzgl. USt. und ersetzen kein Angebot.",
@@ -838,8 +838,8 @@ PACK = {
         "zur_preisliste": "Vollständige Preisliste ansehen",
     },
     "referenzen_seite": {
-        "titel": "Referenzen von WVM-IT",
-        "desc": "Was wir gebaut und betreut haben — belegbar und mit Einverständnis der Kunden: Website, SEO/GEO und Google Ads für Rümpelwerk Mitteldeutschland.",
+        "titel": "Referenzen: umgesetzte Projekte | WVM-IT",
+        "desc": "Was wir gebaut und betreut haben — mit Einverständnis der Kunden: Website, SEO/GEO und Google Ads für Rümpelwerk Mitteldeutschland. Projekt ansehen.",
         "h1": "Referenzen",
         "kurz": "WVM-IT zeigt hier ausschließlich Projekte, die wirklich existieren und deren Kunden der Nennung zugestimmt haben. Aktuell ist das Rümpelwerk Mitteldeutschland, für das wir Website, SEO/GEO und Google Ads gebaut haben und laufend betreuen.",
         "intro": "Diese Seite ist kurz, und das hat einen Grund: Wir führen hier nur auf, was wir belegen können. Erfundene Kundenstimmen und ausgedachte Zahlen finden Sie bei uns nicht &ndash; auch nicht in kleiner Schrift.",
@@ -848,8 +848,8 @@ PACK = {
         "ansehen": "Seite ansehen",
     },
     "kontakt_seite": {
-        "titel": "Kontakt zu WVM-IT",
-        "desc": "WVM-IT erreichen: WhatsApp, Telefon, Rückruf oder E-Mail. Antwort innerhalb von 24 Stunden an Werktagen, Betreuung in Österreich und Deutschland.",
+        "titel": "Kontakt zu WVM-IT in Lenzing | WVM-IT",
+        "desc": "WVM-IT erreichen: WhatsApp, Telefon, Rückruf oder E-Mail. Antwort innerhalb von 24 Stunden an Werktagen, Sitz in 4860 Lenzing. Jetzt anfragen.",
         "h1": "So erreichen Sie uns",
         "kurz": "WVM-IT ist per WhatsApp, Telefon und E-Mail erreichbar; auf Wunsch rufen wir zurück. Anfragen beantworten wir an Werktagen innerhalb von 24 Stunden. Betreut werden Betriebe in ganz Österreich und Deutschland, überwiegend per Fernwartung.",
         "intro": "Am schnellsten geht es per WhatsApp oder Telefon &ndash; ein Satz genügt, worum es geht. Wenn Sie lieber schreiben, nutzen Sie das Formular; es fragt nur nach dem, was wir wirklich brauchen.",
@@ -881,7 +881,7 @@ PACK = {
     "ueber": {
         "nav": "Über uns",
         "titel": "Über uns: Florin Feier, IT aus Lenzing | WVM-IT",
-        "desc": "Wer hinter WVM-IT steht: Florin Feier, Inhaber, Sitz in Lenzing in Oberösterreich. Ein Ansprechpartner, überwiegend Fernwartung, drei Sprachen.",
+        "desc": "Wer hinter WVM-IT steht: Florin Feier, Inhaber, Sitz in Lenzing in Oberösterreich. Ein Ansprechpartner, drei Sprachen. Jetzt anrufen.",
         "h1": "Ein Ansprechpartner für die ganze Technik.",
         "antwort": "Hinter WVM-IT steht Florin Feier, Inhaber, mit Sitz in Lenzing in Oberösterreich. Betriebe ohne eigene IT-Abteilung bekommen hier einen festen Ansprechpartner für ihre gesamte Technik — überwiegend per Fernwartung in ganz Österreich und Deutschland, im Einzugsgebiet rund um Vöcklabruck auch vor Ort.",
         "fakt_sitz_l": "Sitz",
@@ -912,12 +912,12 @@ PACK = {
         "schluss_t": "Hier stehen keine Auszeichnungen, keine Zertifikate, keine Kundenzahlen und keine Sternebewertungen. Nicht aus Zurückhaltung, sondern weil sie sich nicht belegen lassen — und eine Zahl, die niemand nachprüfen kann, ist keine Auskunft, sondern Dekoration. Was belegbar ist, steht in der Anbieterkennzeichnung, in den Referenzen und in den Preisen, und zwar vollständig.",
     },
     "recht": {
-        "impressum_titel": "Impressum | WVM-IT",
-        "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT.",
-        "datenschutz_titel": "Datenschutzerklärung | WVM-IT",
-        "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer und Ihre Rechte.",
-        "barrierefreiheit_titel": "Erklärung zur Barrierefreiheit | WVM-IT",
-        "barrierefreiheit_desc": "Stand der Vereinbarkeit mit WCAG 2.1 AA, die bekannten Einschränkungen und der Weg, uns eine Barriere zu melden.",
+        "impressum_titel": "Impressum und Anbieterkennzeichnung | WVM-IT",
+        "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT: Inhaber, Anschrift in Lenzing, Kontaktdaten und die gesetzlichen Pflichtangaben. Angaben ansehen.",
+        "datenschutz_titel": "Datenschutz: wie WVM-IT Daten verarbeitet | WVM-IT",
+        "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer, Empfänger und Ihre Rechte nach der DSGVO. Erklärung lesen.",
+        "barrierefreiheit_titel": "Barrierefreiheit dieser Website: Stand | WVM-IT",
+        "barrierefreiheit_desc": "Stand der Vereinbarkeit mit WCAG 2.1 AA, die bekannten Einschränkungen und der Weg, uns eine Barriere zu melden. Erklärung lesen.",
     },
     "angebot_page": {
         "eyebrow": "Angebots-Konfigurator",
@@ -1060,6 +1060,10 @@ PACK = {
         "fail_retry": "Erneut anmelden", "fail_home": "Zur Startseite",
     },
     "anfrage_done": {
+        # Eigene Beschreibung statt der geerbten der Startseite: Die Seite trägt
+        # zwar noindex, wird aber geteilt — und in der Vorschau eines geteilten
+        # Links stünde sonst der Werbetext der Startseite (Schritt 43).
+        "meta_desc": "Ihre Anfrage bei WVM-IT ist eingegangen. Wir bauen die kostenlose Beispielseite und melden uns innerhalb von 24 Stunden per E-Mail.",
         "title_ok": "Anfrage erhalten", "title_fail": "Link ungültig",
         "ok_h_pre": "Danke", "ok_h_post": "! Ihre Anfrage ist da.",
         "ok_p": "Wir bauen jetzt Ihre <strong>kostenlose Beispiel-Website</strong> und schicken Ihnen den Link per E-Mail, sobald sie fertig ist. Sie bleibt <strong>1 Woche live</strong> — danach melden wir uns, um sie gemeinsam mit Ihnen umzusetzen.",
@@ -1069,6 +1073,7 @@ PACK = {
         "fail_retry": "Erneut anmelden", "fail_home": "Zur Startseite",
     },
     "unsub": {
+        "meta_desc": "Abmeldung vom Newsletter von WVM-IT. Sie bekommen keine weiteren Nachrichten und können sich jederzeit wieder anmelden.",
         "title": "Newsletter abgemeldet",
         "ok_h": "Sie sind abgemeldet.",
         "ok_p": "Wir schicken Ihnen keinen Newsletter mehr. Schade, dass Sie gehen — Sie sind jederzeit wieder willkommen.",
@@ -1079,6 +1084,7 @@ PACK = {
         "fail_home": "Zur Startseite",
     },
     "wait": {
+        "meta_desc": "Ihre Beispielseite wird gerade gebaut. Sobald sie fertig ist, erscheint der Link auf dieser Seite und kommt zusätzlich per E-Mail.",
         "title": "Ihre Website wird gebaut",
         "h1": "Ihre Website wird gebaut …",
         "name_thanks": "Danke, {name}!",

@@ -1,7 +1,7 @@
 {% load static %}<!DOCTYPE html>
 <html lang="{{ t.meta.html_lang }}">
 <head>
-{% include 'teile/kopf.html' with kopf_titel=t.unsub.title kopf_robots="noindex,nofollow" %}
+{% include 'teile/kopf.html' with kopf_titel=t.unsub.title kopf_desc=t.unsub.meta_desc kopf_robots="noindex,nofollow" %}
   <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">

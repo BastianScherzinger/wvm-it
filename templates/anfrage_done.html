@@ -1,7 +1,7 @@
 {% load static %}<!DOCTYPE html>
 <html lang="{{ t.meta.html_lang }}">
 <head>
-{% if ok %}{% include 'teile/kopf.html' with kopf_titel=t.anfrage_done.title_ok kopf_robots="noindex,nofollow" %}{% else %}{% include 'teile/kopf.html' with kopf_titel=t.anfrage_done.title_fail kopf_robots="noindex,nofollow" %}{% endif %}
+{% if ok %}{% include 'teile/kopf.html' with kopf_titel=t.anfrage_done.title_ok kopf_desc=t.anfrage_done.meta_desc kopf_robots="noindex,nofollow" %}{% else %}{% include 'teile/kopf.html' with kopf_titel=t.anfrage_done.title_fail kopf_desc=t.anfrage_done.meta_desc kopf_robots="noindex,nofollow" %}{% endif %}
   <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">

@@ -2020,14 +2020,15 @@ _HUB_META = {
     "aktuelles": ("Fachbeiträge zu EDV, IT und Technik | WVM-IT",
                   "Antworten auf die Fragen, die Betriebe vor einer IT-Entscheidung "
                   "stellen: Kosten, Datensicherung, WLAN, IT-Sicherheit, "
-                  "Gebäudeautomation."),
+                  "Gebäudeautomation. Jetzt nachlesen."),
     "checklisten": ("Checklisten für die IT im Betrieb | WVM-IT",
                     "Drei Listen zum Abhaken und Ausdrucken: Dienstleister wechseln, "
-                    "neuen Arbeitsplatz einrichten, IT-Jahrescheck. Ohne Formular, "
-                    "ohne PDF-Download."),
+                    "neuen Arbeitsplatz einrichten, IT-Jahrescheck. Ohne Formular. "
+                    "Listen durchgehen."),
     "wissen": ("IT-Glossar: Begriffe verständlich erklärt | WVM-IT",
                "Vierzehn IT-Begriffe, die in Angeboten vorkommen — mit Definition, "
-               "Praxisbezug für kleine Betriebe und dem jeweils verbreiteten Irrtum."),
+               "Praxisbezug für kleine Betriebe und dem verbreiteten Irrtum. "
+               "Begriffe nachschlagen."),
 }
 
 

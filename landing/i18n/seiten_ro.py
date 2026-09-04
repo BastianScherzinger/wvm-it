@@ -14,8 +14,8 @@ SEITEN = {
     # ══ IT ════════════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "Suport IT &amp; administrare",
-        "titel": "Administrare IT pentru firme | WVM-IT",
-        "desc": "Departament IT extern pentru firme mici și mijlocii: de la 29 €/lună per post de lucru, suport de la 95 €/oră, la distanță în toată Austria și Germania.",
+        "titel": "Administrare IT de la 29 €/lună per post | WVM-IT",
+        "desc": "Departament IT extern pentru firme mici și mijlocii: de la 29 €/lună per post, suport de la 95 €/oră, la distanță în AT și DE. Cereți o ofertă.",
         "h1": "Administrare IT pentru firmele fără departament IT propriu",
         "kurz": "WVM-IT preia IT-ul curent al firmelor mici și mijlocii din Austria și Germania: posturi de lucru, servere, e-mail, imprimante, actualizări și copii de siguranță. Administrarea curentă costă de la 29 € per post de lucru și lună, ajutorul punctual fără contract de la 95 € pe oră. Răspundem în 24 de ore și lucrăm în cea mai mare parte la distanță — drumul spre dumneavoastră trece printr-o conexiune securizată, nu pe autostradă.",
         "intro": "În majoritatea firmelor sub cincizeci de angajați nu există departament IT. Există cineva care „se pricepe un pic” — și care de fapt ar avea altceva de făcut. Cât timp nu se întâmplă nimic, merge. Se vede abia când imprimanta din birou se blochează exact când trebuie trimise ofertele, sau când după o actualizare Windows nu mai pornește un program de care depinde toată firma. Exact acest gol îl acoperim: primiți un număr, o adresă de e-mail și o persoană de contact care știe cum e construită tehnica dumneavoastră.",
@@ -60,7 +60,7 @@ SEITEN = {
     "server-datensicherung": {
         "nav": "Servere &amp; copii de siguranță",
         "titel": "Servere și copii de siguranță pentru firme | WVM-IT",
-        "desc": "Monitorizare server de la 89 €/lună, copii de siguranță verificate de la 49 €/lună. Vedem defecțiunea înainte ca activitatea să se oprească.",
+        "desc": "Monitorizare server de la 89 €/lună, copii de siguranță verificate de la 49 €/lună. Vedem defecțiunea înainte ca activitatea să se oprească. Cereți o ofertă.",
         "h1": "Administrare de server și copii de siguranță care rezistă la nevoie",
         "kurz": "WVM-IT supraveghează serverele firmelor non-stop și operează copiile de siguranță astfel încât ele să funcționeze și la nevoie: salvate zilnic, fiecare salvare verificată, restaurarea testată periodic. Administrarea serverului costă de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Totul se administrează la distanță în toată Austria și Germania.",
         "intro": "Aproape orice firmă are o copie de siguranță. Considerabil mai puține știu când a rulat ultima dată, iar cele mai puține au încercat vreodată să recupereze ceva din ea. Asta se observă exact o singură dată — în ziua în care contează. O salvare care nu a fost niciodată restaurată nu este o salvare, ci o speranță. De aceea o tratăm ca pe o parte a firmei care trebuie verificată, nu ca pe o setare bifată cândva.",
@@ -105,7 +105,7 @@ SEITEN = {
     "netzwerk-wlan": {
         "nav": "Rețea &amp; Wi-Fi",
         "titel": "Rețea și Wi-Fi pentru firme | WVM-IT",
-        "desc": "Rețea și Wi-Fi măsurate, planificate și montate — de la 890 €, inclusiv hale și mai multe etaje. Firewall și VPN de la 690 €.",
+        "desc": "Rețea și Wi-Fi măsurate, planificate și montate — de la 890 €, inclusiv hale și mai multe etaje. Firewall și VPN de la 690 €. Cereți o ofertă.",
         "h1": "Rețea și Wi-Fi care rezistă și în hală",
         "kurz": "WVM-IT planifică, măsoară și construiește rețele pentru firme: cablare structurată, Wi-Fi cu acoperire fără goluri, rețele separate pentru oaspeți și activitate, firewall și VPN pentru accesul din exterior. Configurarea rețelei și a Wi-Fi-ului costă de la 890 €, firewall și VPN de la 690 €. Planificarea se face de la distanță, construcția la fața locului.",
         "intro": "Problemele de Wi-Fi primesc aproape întotdeauna ca răspuns încă un punct de acces. De obicei devine mai rău: două echipamente pe același canal se deranjează reciproc, iar dispozitivul se conectează la cel greșit. O rețea care rezistă nu se naște din mai mult hardware, ci dintr-o măsurare, un plan și o distribuție curată a canalelor. La hale, clădiri vechi și mai multe etaje aceasta este diferența dintre „merge” și „merge, în afară de colțul din spate”.",
@@ -150,7 +150,7 @@ SEITEN = {
     "it-sicherheit": {
         "nav": "Securitate IT",
         "titel": "Securitate IT pentru firme | WVM-IT",
-        "desc": "Verificare de securitate IT de la 490 €, cu raport scris și listă de măsuri. Firewall și VPN de la 690 €. Pentru firme din Austria și Germania.",
+        "desc": "Verificare de securitate IT de la 490 €, cu raport scris și listă de măsuri. Firewall și VPN de la 690 €, în AT și DE. Cereți o verificare.",
         "h1": "Securitate IT pe măsura unei firme — nu a unui concern",
         "kurz": "WVM-IT verifică securitatea IT a firmelor mici și mijlocii și implementează măsurile care chiar contează: drepturi, parole, firewall, VPN, actualizări, copii de siguranță verificate. Verificarea unică de securitate IT costă de la 490 € și se încheie cu un raport scris și o listă de măsuri; firewall și VPN le configurăm de la 690 €. Verificarea și administrarea se fac la distanță, în Austria și Germania.",
         "intro": "Cele mai multe pagube din firmele mici nu apar dintr-un atac țintit, ci din lucruri banale: o parolă valabilă peste tot, contul unui angajat plecat demult, un calculator fără actualizări, o salvare care nu valorează nimic. Nu e nevoie de un concept de securitate la scară de corporație pentru a opri asta. E nevoie de cineva care să se uite o dată sistematic și apoi să rezolve punctele care chiar previn pagube.",
@@ -195,8 +195,8 @@ SEITEN = {
     # ══ Vizibilitate ══════════════════════════════════════════════════════════
     "webseite-erstellen": {
         "nav": "Site web &amp; magazin",
-        "titel": "Site web de la 350 € | WVM-IT",
-        "desc": "Site-uri pentru firme din Austria și Germania: one-pager de la 350 €, site de firmă de la 1.490 €, magazin de la 3.500 €. Pagină de probă gratuită.",
+        "titel": "Creare site web de la 350 € pentru firme | WVM-IT",
+        "desc": "Site-uri pentru firme din Austria și Germania: one-pager de la 350 €, site de firmă de la 1.490 €, magazin de la 3.500 €. Cereți o pagină de probă.",
         "h1": "Site web la comandă — și vedeți dinainte ce primiți",
         "kurz": "WVM-IT construiește site-uri pentru firme din Austria și Germania: un one-pager de la 350 €, un site de firmă cu mai multe pagini de la 1.490 €, o pagină premium cu animații de la 2.900 €, un magazin online de la 3.500 €. În prealabil construim gratuit o pagină de probă reală, ca să vedeți cum lucrăm înainte să vă decideți. Găzduirea și întreținerea costă împreună 54 € pe lună.",
         "intro": "Cea mai frecventă dezamăgire legată de un site nou nu este aspectul, ci liniștea de după. Arată bine, a costat, și nu se întâmplă nimic. Cauza nu e aproape niciodată designul, ci faptul că pagina nu a fost construită pentru ca cineva să ia legătura: numărul de telefon e jos de tot, prețuri nu există, formularul are nouă câmpuri. Noi construim în direcția inversă — pornind de la scop.",
@@ -241,7 +241,7 @@ SEITEN = {
     "seo-betreuung": {
         "nav": "Administrare SEO",
         "titel": "Administrare SEO pentru firme | WVM-IT",
-        "desc": "Să fiți găsit pe Google și în răspunsurile AI: optimizare SEO de bază de la 390 €, administrare curentă de la 149 €/lună, cu raport lunar.",
+        "desc": "Să fiți găsit pe Google și în răspunsurile AI: optimizare SEO de bază de la 390 €, administrare curentă de la 149 €/lună, cu raport lunar. Cereți o ofertă.",
         "h1": "Administrare SEO: să vă găsească oamenii care nu vă cunosc încă",
         "kurz": "WVM-IT aduce firmele în față pe Google și în răspunsuri AI precum ChatGPT și Perplexity: baze tehnice, câte o pagină pentru fiecare serviciu, conținut care chiar răspunde la întrebările de căutare și măsurare lunară. Optimizarea unică de bază costă de la 390 €, administrarea curentă de la 149 € pe lună. Lucrăm independent de loc pentru clienți din Austria și Germania.",
         "intro": "Cea mai frecventă constatare la site-urile mici de firmă este mereu aceeași: sunt găsite — dar numai după numele propriu al firmei. Adică de oameni care oricum cunosc firma. Pentru toți cei care au o problemă și caută soluția, pagina nu există. Cauza este rareori tehnica. Este faptul că toate serviciile stau în paragrafe pe o singură pagină, iar Google nu poate clasa paragrafe, ci doar pagini.",
@@ -286,7 +286,7 @@ SEITEN = {
     "google-ads": {
         "nav": "Google Ads",
         "titel": "Administrare Google Ads pentru firme | WVM-IT",
-        "desc": "Configurare Google Ads de la 490 €, administrare curentă de la 199 €/lună plus buget. Cu măsurarea conversiilor și raport lunar clar.",
+        "desc": "Configurare Google Ads de la 490 €, administrare curentă de la 199 €/lună plus buget. Cu măsurarea conversiilor și raport lunar clar. Cereți o ofertă.",
         "h1": "Google Ads care aduc solicitări — nu doar clicuri",
         "kurz": "WVM-IT configurează conturi Google Ads și le administrează în continuare: campanii, cuvinte de căutare, anunțuri, cuvinte excluse și, mai ales, o măsurare a conversiilor care chiar funcționează. Configurarea costă de la 490 €, administrarea curentă de la 199 € pe lună plus bugetul dumneavoastră de publicitate. Lucrăm independent de loc pentru firme din Austria și Germania.",
         "intro": "Reclamele sunt calea cea mai rapidă spre solicitări — și calea cea mai rapidă de a arde bani. Diferența nu stă aproape niciodată în anunț, ci în faptul dacă se măsoară ce iese la capăt. Cine numără doar clicuri optimizează pentru vizite. Cine măsoară solicitări poate opri cuvintele de căutare care sunt scumpe și nu aduc nimic — iar din experiență acestea sunt majoritatea.",
@@ -331,7 +331,7 @@ SEITEN = {
     "hosting-wartung": {
         "nav": "Găzduire &amp; întreținere",
         "titel": "Găzduire și întreținere pentru site-uri | WVM-IT",
-        "desc": "Găzduire cu SSL și copii zilnice de la 15 €/lună, întreținere de la 39 €/lună, domeniu de la 15 €/an. Și pentru site-uri construite de altcineva.",
+        "desc": "Găzduire cu SSL și copii zilnice de la 15 €/lună, întreținere de la 39 €/lună, domeniu de la 15 €/an. Și pentru site-uri străine. Cereți o ofertă.",
         "h1": "Găzduire și întreținere: ca pagina să meargă și când nu se uită nimeni",
         "kurz": "WVM-IT operează și întreține site-uri de firmă: găzduire cu SSL și copii zilnice de siguranță de la 15 € pe lună, întreținere cu actualizări și modificări mici de la 39 € pe lună, domeniu de la 15 € pe an — împreună 54 € pe lună. Preluăm și site-uri construite de altcineva și le administrăm independent de loc, în Austria și Germania.",
         "intro": "Un site web nu este o achiziție, ci un mijloc de lucru. Certificatele expiră, sistemele au nevoie de actualizări de securitate, formularele de contact se opresc la un moment dat în tăcere. Asta se observă rar imediat — de obicei abia când n-a mai venit nicio solicitare de săptămâni și cineva verifică. Întreținerea este cea mai ieftină asigurare împotriva exact acestor săptămâni.",
@@ -376,7 +376,7 @@ SEITEN = {
     "ki-automatisierung": {
         "nav": "Automatizare AI",
         "titel": "Automatizare AI pentru firme | WVM-IT",
-        "desc": "Chatboți, automatizare WhatsApp și programări pentru firme: programări de la 390 €, chatbot de la 690 €, integrare CRM/ERP de la 1.200 €.",
+        "desc": "Chatboți, automatizare WhatsApp și programări pentru firme: programări de la 390 €, chatbot de la 690 €, integrare CRM/ERP de la 1.200 €. Cereți o ofertă.",
         "h1": "Automatizare AI: munca ce se repetă o face tehnica",
         "kurz": "WVM-IT construiește automatizări pentru munca repetitivă din firme: un chatbot care preia solicitări noaptea, fluxuri de programare, răspunsuri automate pe WhatsApp și e-mail, precum și conexiuni cu sistemele existente. Automatizarea programărilor costă de la 390 €, un chatbot AI de la 690 €, o integrare cu CRM sau ERP de la 1.200 €. Totul se realizează la distanță, în Austria și Germania.",
         "intro": "Automatizarea nu merită acolo unde arată impresionant, ci acolo unde aceeași mișcare se repetă de douăzeci de ori pe zi: același răspuns la aceeași întrebare, aceeași programare, aceeași confirmare. De aceea nu pornim niciodată de la tehnică, ci de la întrebarea care cinci minute se repetă cel mai des. Restul este jucărie cu factură.",
@@ -422,7 +422,7 @@ SEITEN = {
     "smarthome-knx-loxone": {
         "nav": "Casă inteligentă, Loxone &amp; KNX",
         "titel": "Casă inteligentă cu Loxone și KNX | WVM-IT",
-        "desc": "Automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces și securitate într-un singur sistem. Planificat, programat, întreținut.",
+        "desc": "Automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces și securitate într-un singur sistem. Cereți o consultație.",
         "h1": "Automatizarea clădirilor cu Loxone și KNX",
         "kurz": "WVM-IT planifică, programează și întreține automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces, securitate și tehnică media într-un singur sistem. Astfel de instalații se calculează pe proiect și se montează la fața locului — prețul îl comunicăm după o scurtă discuție și o evaluare, nu înainte.",
         "intro": "La automatizarea clădirilor rezultatul nu îl decide hardware-ul, ci programarea. Aceleași echipamente pot da o instalație pe care nimeni nu o înțelege și care după prima vară se operează iar manual — sau una care pur și simplu face ce te aștepți. De aceea planificăm întâi comportamentul și abia apoi lista de componente.",
@@ -467,7 +467,7 @@ SEITEN = {
     "konferenztechnik": {
         "nav": "Tehnică de conferință",
         "titel": "Tehnică de conferință și evenimente | WVM-IT",
-        "desc": "Dotarea sălilor de ședințe și a evenimentelor: ecrane, camere, microfoane, sunet și control. Planificat, instalat, calibrat.",
+        "desc": "Dotarea sălilor de ședințe și a evenimentelor: ecrane, camere, microfoane, sunet și control. Planificat, instalat, calibrat. Cereți o ofertă.",
         "h1": "Tehnică de conferință, sunet și scenă care merge la o apăsare de buton",
         "kurz": "WVM-IT dotează săli de ședințe și evenimente: ecrane, camere, microfoane, sunet, lumină și un sistem de control pe care îl poate folosi și cineva care nu l-a montat. Planificarea, instalarea și calibrarea se fac pe proiect, la fața locului; prețul îl comunicăm după evaluarea încăperii.",
         "intro": "Măsura tehnicii de conferință nu este ce poate, ci dacă o ședință începe la timp. Cele mai multe săli eșuează la aceleași mărunțișuri: pe masă e cablul greșit, camera arată peretele, iar cei de la distanță nu înțeleg sunetul. De aceea calibrăm încăperile și reducem operarea la un singur drum vizibil — restul dispare în tehnică.",

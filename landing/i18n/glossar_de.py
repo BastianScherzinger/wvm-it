@@ -20,7 +20,7 @@ BEGRIFFE = {
     "fernwartung": {
         "titel": "Fernwartung",
         "meta_titel": "Fernwartung: was das ist und wie sie abläuft | WVM-IT",
-        "desc": "Fernwartung heißt: Der Techniker arbeitet über eine gesicherte Verbindung auf Ihrem Gerät, statt anzufahren. Was dabei passiert und was nicht.",
+        "desc": "Fernwartung heißt: Der Techniker arbeitet über eine gesicherte Verbindung auf Ihrem Gerät, statt anzufahren. Was dabei passiert und was nicht. Hier nachlesen.",
         "kurz": "Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt vor Ort zu erscheinen. Bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht — Sie sehen alles mit und können jederzeit abbrechen. Für Server gibt es zusätzlich dauerhafte Wartungszugänge, weil Updates außerhalb der Arbeitszeit laufen müssen.",
         "abschnitte": [
             {"h": "Wie eine Sitzung abläuft",
@@ -35,7 +35,7 @@ BEGRIFFE = {
     "vpn": {
         "titel": "VPN",
         "meta_titel": "VPN einfach erklärt — für Betriebe | WVM-IT",
-        "desc": "Ein VPN verbindet ein Gerät so mit dem Firmennetz, als stünde es im Büro. Wann das die richtige Lösung ist — und wann ein Terminalserver besser passt.",
+        "desc": "Ein VPN verbindet ein Gerät so mit dem Firmennetz, als stünde es im Büro. Wann das die richtige Lösung ist und wann ein Terminalserver passt. Hier nachlesen.",
         "kurz": "Ein VPN (Virtual Private Network) baut einen verschlüsselten Tunnel zwischen einem Gerät und dem Firmennetz auf. Das Gerät verhält sich danach, als stünde es im Büro: Es erreicht Netzlaufwerke, Drucker und Server. Genau das ist zugleich der Haken — der heimische Rechner wird damit Teil Ihres Netzes, mit allem, was darauf läuft.",
         "abschnitte": [
             {"h": "Was ein VPN technisch tut",
@@ -50,7 +50,7 @@ BEGRIFFE = {
     "firewall": {
         "titel": "Firewall",
         "meta_titel": "Firewall im Betrieb: was sie leistet | WVM-IT",
-        "desc": "Eine Firewall entscheidet, welcher Netzverkehr durchgelassen wird. Warum der Router vom Anbieter dafür meist nicht genügt.",
+        "desc": "Eine Firewall entscheidet, welcher Netzverkehr durchgelassen wird. Warum der Router vom Anbieter dafür meist nicht genügt. Hier nachlesen.",
         "kurz": "Eine Firewall steht zwischen Ihrem Netz und dem Internet und entscheidet anhand von Regeln, welcher Verkehr durchgelassen wird — in beide Richtungen. In einem Betrieb übernimmt sie zusätzlich die Trennung der internen Netze voneinander und stellt die VPN-Verbindungen bereit. Der Router vom Internetanbieter kann das erste, aber selten das zweite und dritte.",
         "abschnitte": [
             {"h": "Nach innen und nach außen",
@@ -65,7 +65,7 @@ BEGRIFFE = {
     "managed-services": {
         "titel": "Managed Services",
         "meta_titel": "Managed Services: was steckt dahinter? | WVM-IT",
-        "desc": "Managed Services heißt: fester Monatspreis, feste Leistung, Vorbeugung inklusive. Woran Sie erkennen, ob wirklich etwas dahintersteht.",
+        "desc": "Managed Services heißt: fester Monatspreis, feste Leistung, Vorbeugung inklusive. Woran Sie erkennen, ob wirklich etwas dahintersteht. Hier nachlesen.",
         "kurz": "Managed Services bezeichnet die laufende Betreuung von IT zu einem festen Preis je Zeitraum — statt Abrechnung nach Aufwand im Störungsfall. Der entscheidende Unterschied ist nicht der Preis, sondern die Interessenlage: Wer monatlich betreut, verdient daran, dass wenig ausfällt. Enthalten sein müssen Updates, Überwachung, Benutzerverwaltung und die geprüfte Datensicherung.",
         "abschnitte": [
             {"h": "Woran man ein leeres Angebot erkennt",
@@ -80,7 +80,7 @@ BEGRIFFE = {
     "zwei-faktor-authentifizierung": {
         "titel": "Zwei-Faktor-Authentifizierung",
         "meta_titel": "Zwei-Faktor-Anmeldung: wie sie funktioniert | WVM-IT",
-        "desc": "Zwei-Faktor bedeutet: Passwort plus ein zweiter Nachweis. Die Maßnahme mit dem besten Verhältnis von Aufwand zu Wirkung in der IT-Sicherheit.",
+        "desc": "Zwei-Faktor bedeutet: Passwort plus ein zweiter Nachweis. Die Maßnahme mit dem besten Verhältnis von Aufwand zu Wirkung. Hier nachlesen.",
         "kurz": "Zwei-Faktor-Authentifizierung verlangt neben dem Passwort einen zweiten Nachweis — meist eine Bestätigung in einer App auf dem Telefon oder einen zeitlich begrenzten Code. Wer das Passwort abfängt, kommt damit trotzdem nicht hinein. Es ist die einzelne Maßnahme mit dem besten Verhältnis von Aufwand zu Wirkung, die es in der IT-Sicherheit gibt, und sie kostet in den meisten Umgebungen nichts außer der Einrichtung.",
         "abschnitte": [
             {"h": "Welcher zweite Faktor taugt",
@@ -95,7 +95,7 @@ BEGRIFFE = {
     "raid": {
         "titel": "RAID",
         "meta_titel": "RAID: Festplattenverbund erklärt | WVM-IT",
-        "desc": "Ein RAID verteilt Daten auf mehrere Festplatten, damit der Ausfall einer Platte den Betrieb nicht stoppt. Warum es trotzdem keine Datensicherung ist.",
+        "desc": "Ein RAID verteilt Daten auf mehrere Festplatten, damit der Ausfall einer Platte den Betrieb nicht stoppt. Warum es keine Datensicherung ist. Hier nachlesen.",
         "kurz": "RAID bezeichnet einen Verbund mehrerer Festplatten, der den Ausfall einzelner Platten überstehen kann, ohne dass der Betrieb stehen bleibt. Es erhöht die Verfügbarkeit, nicht die Sicherheit der Daten: Gelöschtes, Überschriebenes und Verschlüsseltes wird sofort auf allen Platten gelöscht, überschrieben und verschlüsselt. Ein RAID ersetzt deshalb keine Datensicherung — es verhindert nur eine bestimmte Art von Ausfall.",
         "abschnitte": [
             {"h": "Was ein RAID abfängt und was nicht",
@@ -110,7 +110,7 @@ BEGRIFFE = {
     "backup": {
         "titel": "Backup",
         "meta_titel": "Backup: was eine gute Datensicherung ausmacht | WVM-IT",
-        "desc": "Eine Sicherung ist erst dann eine, wenn schon einmal etwas daraus zurückgeholt wurde. Die drei Fragen, die den Unterschied machen.",
+        "desc": "Eine Sicherung ist erst dann eine, wenn schon einmal etwas daraus zurückgeholt wurde. Die drei Fragen, die den Unterschied machen. Hier nachlesen.",
         "kurz": "Ein Backup ist eine Kopie der Daten, aus der sich im Schadensfall der Betrieb wiederherstellen lässt. Entscheidend ist nicht, dass die Sicherung läuft, sondern dass sie sich zurückspielen lässt — eine Sicherung, aus der noch nie etwas zurückgeholt wurde, ist keine Sicherung, sondern eine Hoffnung. Mindestens eine Kopie gehört getrennt vom Netzwerk aufbewahrt.",
         "abschnitte": [
             {"h": "Die drei Fragen, die zählen",
@@ -125,7 +125,7 @@ BEGRIFFE = {
     "ransomware": {
         "titel": "Ransomware",
         "meta_titel": "Ransomware: wie ein Angriff wirklich abläuft | WVM-IT",
-        "desc": "Ransomware verschlüsselt Daten und fordert Lösegeld. Wie ein Angriff abläuft, warum die Sicherung mitverschlüsselt wird und was vorher hilft.",
+        "desc": "Ransomware verschlüsselt Daten und fordert Lösegeld. Wie ein Angriff abläuft, warum die Sicherung mitverschlüsselt wird und was hilft. Hier nachlesen.",
         "kurz": "Ransomware ist Schadsoftware, die Daten verschlüsselt und für die Entschlüsselung Geld fordert. Der Angriff beginnt fast immer harmlos — mit einem Anhang, einem gestohlenen Passwort oder einem offenen Fernzugang — und läuft dann tage- bis wochenlang unbemerkt, bevor verschlüsselt wird. In dieser Zeit werden gezielt die erreichbaren Datensicherungen mit vernichtet, weil sie das Geschäftsmodell stören.",
         "abschnitte": [
             {"h": "Der Ablauf, den fast alle Fälle teilen",
@@ -140,7 +140,7 @@ BEGRIFFE = {
     "terminalserver": {
         "titel": "Terminalserver",
         "meta_titel": "Terminalserver: wann er sich lohnt | WVM-IT",
-        "desc": "Beim Terminalserver läuft die Anwendung zentral, übertragen werden nur Bild und Tastatur. Wann das schneller und datenschutzfreundlicher ist als ein VPN.",
+        "desc": "Beim Terminalserver läuft die Anwendung zentral, übertragen werden nur Bild und Tastatur. Wann das schneller ist als ein VPN. Hier nachlesen.",
         "kurz": "Auf einem Terminalserver laufen Programme zentral, während an den Arbeitsplätzen nur Bildschirminhalt, Tastatur und Maus übertragen werden. Für Fachanwendungen mit großen Datenbeständen ist das deutlich schneller als der Zugriff über ein VPN, weil keine Dateien über die Leitung wandern. Zugleich bleibt auf dem Gerät des Nutzers nichts liegen — was ihn im Homeoffice datenschutzfreundlicher macht.",
         "abschnitte": [
             {"h": "Warum Kanzleien und Praxen ihn einsetzen",
@@ -155,7 +155,7 @@ BEGRIFFE = {
     "phishing": {
         "titel": "Phishing",
         "meta_titel": "Phishing: woran man es erkennt | WVM-IT",
-        "desc": "Phishing sind Nachrichten, die zur Herausgabe von Daten verleiten. Die Merkmale, die auch bei fehlerfreien Mails stimmen.",
+        "desc": "Phishing sind Nachrichten, die zur Herausgabe von Daten verleiten. Die Merkmale, die auch bei fehlerfreien Mails stimmen. Hier nachlesen.",
         "kurz": "Phishing bezeichnet Nachrichten, die vorgeben, von einem vertrauenswürdigen Absender zu stammen, um an Zugangsdaten oder Geld zu kommen. Rechtschreibfehler taugen längst nicht mehr als Erkennungsmerkmal — heutige Nachrichten sind fehlerfrei und oft auf den Empfänger zugeschnitten. Verlässlich sind stattdessen: künstlicher Zeitdruck, ein Linkziel, das nicht zum Absender passt, und jede Abweichung vom üblichen Ablauf.",
         "abschnitte": [
             {"h": "Die Merkmale, die bleiben",
@@ -170,7 +170,7 @@ BEGRIFFE = {
     "netzwerksegmentierung": {
         "titel": "Netzwerksegmentierung",
         "meta_titel": "Netzwerksegmentierung: Netze trennen | WVM-IT",
-        "desc": "Getrennte Netze verhindern, dass jedes Gerät jedes andere erreicht. Warum das meist ohne neue Hardware geht.",
+        "desc": "Getrennte Netze verhindern, dass jedes Gerät im Betrieb jedes andere erreicht. Warum das meist ohne neue Hardware geht und wo man anfängt. Hier nachlesen.",
         "kurz": "Netzwerksegmentierung bedeutet, ein Firmennetz in mehrere getrennte Bereiche zu unterteilen, die nur über kontrollierte Übergänge miteinander sprechen. Typisch sind eigene Bereiche für Büro, Produktion oder Kasse, Gäste-WLAN und Geräte, die keine Updates mehr bekommen. In den meisten Betrieben ist dafür keine neue Hardware nötig — die vorhandenen Switches können es bereits, es wurde nur nie eingerichtet.",
         "abschnitte": [
             {"h": "Warum ein flaches Netz teuer wird",
@@ -185,7 +185,7 @@ BEGRIFFE = {
     "nas": {
         "titel": "NAS",
         "meta_titel": "NAS im Betrieb: wofür es taugt | WVM-IT",
-        "desc": "Ein NAS ist ein Netzwerkspeicher für gemeinsame Dateien. Wofür es sich eignet, wofür nicht — und warum es kein Server ist.",
+        "desc": "Ein NAS ist ein Netzwerkspeicher für gemeinsame Dateien. Wofür es sich eignet, wofür nicht — und warum es kein Server ist. Hier nachlesen.",
         "kurz": "Ein NAS (Network Attached Storage) ist ein Gerät, das Festplatten im Netz zur Verfügung stellt — für gemeinsame Dateiablage, oft auch als Ziel für Datensicherungen. Es ist kein Server: Es führt keine Fachanwendungen aus und verwaltet keine Benutzerkonten des Betriebs. Für Dateien in einem kleinen Betrieb ist es die einfachste Lösung, für alles darüber hinaus die falsche.",
         "abschnitte": [
             {"h": "Wofür ein NAS die richtige Wahl ist",
@@ -200,7 +200,7 @@ BEGRIFFE = {
     "sla": {
         "titel": "SLA (Service Level Agreement)",
         "meta_titel": "SLA: welche Zusagen wirklich zählen | WVM-IT",
-        "desc": "Ein SLA legt Reaktionszeiten und Erreichbarkeit schriftlich fest. Der Unterschied zwischen Reaktionszeit und Wiederherstellungszeit — und warum er zählt.",
+        "desc": "Ein SLA legt Reaktionszeiten und Erreichbarkeit schriftlich fest. Der Unterschied zwischen Reaktions- und Wiederherstellungszeit. Hier nachlesen.",
         "kurz": "Ein Service Level Agreement ist die schriftliche Vereinbarung darüber, wie schnell und in welchem Umfang ein Dienstleister reagiert. Der wichtigste Unterschied darin ist der zwischen Reaktionszeit — wann sich jemand meldet — und Wiederherstellungszeit — wann wieder gearbeitet werden kann. Nur die zweite interessiert den Betrieb, und nur die erste steht in den meisten Vereinbarungen.",
         "abschnitte": [
             {"h": "Was in einem brauchbaren SLA steht",
@@ -215,7 +215,7 @@ BEGRIFFE = {
     "monitoring": {
         "titel": "Monitoring",
         "meta_titel": "Monitoring: Ausfälle vorher sehen | WVM-IT",
-        "desc": "Monitoring heißt: Speicherplatz, Auslastung und Festplatten werden überwacht, bevor etwas ausfällt. Was überwacht gehört und was Lärm ist.",
+        "desc": "Monitoring heißt: Speicherplatz, Auslastung und Festplatten werden überwacht, bevor etwas ausfällt. Was überwacht gehört und was Lärm ist. Hier nachlesen.",
         "kurz": "Monitoring ist die laufende Überwachung von Systemen auf Zustände, die zu einem Ausfall führen — volle Festplatten, defekte Platten in einem Verbund, gescheiterte Sicherungen, nicht mehr erreichbare Dienste. Der Sinn ist nicht, den Ausfall zu melden, sondern ihn vorher zu verhindern. Ein Monitoring, dessen Meldungen niemand liest, ist keines.",
         "abschnitte": [
             {"h": "Was in einem kleinen Betrieb überwacht gehört",
