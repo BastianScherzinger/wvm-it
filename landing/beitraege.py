@@ -44,6 +44,11 @@ Regeln
    Firmen. Wo ein Beispiel nötig ist, wird es als Beispiel gekennzeichnet.
 5. **Datum ist echt.** `datum` ist der Tag der Veröffentlichung und wandert ins
    `Article`-Schema. Wird ein Beitrag überarbeitet, kommt `geaendert` dazu.
+   Dieselben beiden Felder ergeben über `views._stand_fuer()` auch das
+   `<lastmod>` in der Sitemap — deshalb kein Datum setzen, das nicht stimmt:
+   ein `lastmod`, das der Crawler als falsch erkennt, wertet Google für die
+   ganze Domain ab. Ein eigenes `stand`-Feld wie in den anderen Strukturmodulen
+   braucht es hier folglich nicht; `geaendert or datum` ist bereits der Stand.
 
 Felder
 ------

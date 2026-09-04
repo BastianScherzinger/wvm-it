@@ -30,52 +30,70 @@ begriff     Der Begriff selbst, wie er im Fließtext steht
 leistung    Slug der Leistung, zu der der Begriff gehört (Querverweis ins Silo)
 verwandt    Zwei bis drei weitere Glossar-Slugs
 prio        Priorität in der Sitemap
+stand       Tag der letzten **inhaltlichen** Änderung, ISO (YYYY-MM-DD). Wird zum
+            `<lastmod>` der Sitemap (`views._stand_fuer()`) und ist von Hand zu
+            pflegen. Startwert ist der Commit, der `landing/i18n/glossar_de.py`
+            angelegt hat (dcf266f, 2026-08-29).
 """
 
 BEGRIFFE = [
     {"slug": "fernwartung", "begriff": "Fernwartung", "leistung": "edv-it-betreuung",
-     "verwandt": ["vpn", "terminalserver", "managed-services"], "prio": "0.6"},
+     "verwandt": ["vpn", "terminalserver", "managed-services"], "prio": "0.6",
+     "stand": "2026-08-29"},
 
     {"slug": "vpn", "begriff": "VPN", "leistung": "netzwerk-wlan",
-     "verwandt": ["firewall", "fernwartung", "terminalserver"], "prio": "0.6"},
+     "verwandt": ["firewall", "fernwartung", "terminalserver"], "prio": "0.6",
+     "stand": "2026-08-29"},
 
     {"slug": "firewall", "begriff": "Firewall", "leistung": "it-sicherheit",
-     "verwandt": ["vpn", "netzwerksegmentierung", "ransomware"], "prio": "0.6"},
+     "verwandt": ["vpn", "netzwerksegmentierung", "ransomware"], "prio": "0.6",
+     "stand": "2026-08-29"},
 
     {"slug": "managed-services", "begriff": "Managed Services", "leistung": "edv-it-betreuung",
-     "verwandt": ["fernwartung", "sla", "monitoring"], "prio": "0.6"},
+     "verwandt": ["fernwartung", "sla", "monitoring"], "prio": "0.6",
+     "stand": "2026-08-29"},
 
     {"slug": "zwei-faktor-authentifizierung", "begriff": "Zwei-Faktor-Authentifizierung",
      "leistung": "it-sicherheit",
-     "verwandt": ["phishing", "ransomware", "vpn"], "prio": "0.6"},
+     "verwandt": ["phishing", "ransomware", "vpn"], "prio": "0.6",
+     "stand": "2026-08-29"},
 
     {"slug": "raid", "begriff": "RAID", "leistung": "server-datensicherung",
-     "verwandt": ["backup", "nas", "monitoring"], "prio": "0.5"},
+     "verwandt": ["backup", "nas", "monitoring"], "prio": "0.5",
+     "stand": "2026-08-29"},
 
     {"slug": "backup", "begriff": "Backup", "leistung": "server-datensicherung",
-     "verwandt": ["raid", "ransomware", "nas"], "prio": "0.7"},
+     "verwandt": ["raid", "ransomware", "nas"], "prio": "0.7",
+     "stand": "2026-08-29"},
 
     {"slug": "ransomware", "begriff": "Ransomware", "leistung": "it-sicherheit",
-     "verwandt": ["backup", "phishing", "firewall"], "prio": "0.7"},
+     "verwandt": ["backup", "phishing", "firewall"], "prio": "0.7",
+     "stand": "2026-08-29"},
 
     {"slug": "terminalserver", "begriff": "Terminalserver", "leistung": "server-datensicherung",
-     "verwandt": ["vpn", "fernwartung", "managed-services"], "prio": "0.5"},
+     "verwandt": ["vpn", "fernwartung", "managed-services"], "prio": "0.5",
+     "stand": "2026-08-29"},
 
     {"slug": "phishing", "begriff": "Phishing", "leistung": "it-sicherheit",
-     "verwandt": ["zwei-faktor-authentifizierung", "ransomware", "backup"], "prio": "0.6"},
+     "verwandt": ["zwei-faktor-authentifizierung", "ransomware", "backup"], "prio": "0.6",
+     "stand": "2026-08-29"},
 
     {"slug": "netzwerksegmentierung", "begriff": "Netzwerksegmentierung",
      "leistung": "netzwerk-wlan",
-     "verwandt": ["firewall", "vpn", "ransomware"], "prio": "0.5"},
+     "verwandt": ["firewall", "vpn", "ransomware"], "prio": "0.5",
+     "stand": "2026-08-29"},
 
     {"slug": "nas", "begriff": "NAS", "leistung": "server-datensicherung",
-     "verwandt": ["backup", "raid", "terminalserver"], "prio": "0.5"},
+     "verwandt": ["backup", "raid", "terminalserver"], "prio": "0.5",
+     "stand": "2026-08-29"},
 
     {"slug": "sla", "begriff": "SLA (Service Level Agreement)", "leistung": "edv-it-betreuung",
-     "verwandt": ["managed-services", "monitoring", "fernwartung"], "prio": "0.5"},
+     "verwandt": ["managed-services", "monitoring", "fernwartung"], "prio": "0.5",
+     "stand": "2026-08-29"},
 
     {"slug": "monitoring", "begriff": "Monitoring", "leistung": "server-datensicherung",
-     "verwandt": ["managed-services", "sla", "raid"], "prio": "0.5"},
+     "verwandt": ["managed-services", "sla", "raid"], "prio": "0.5",
+     "stand": "2026-08-29"},
 ]
 
 NACH_SLUG = {b["slug"]: b for b in BEGRIFFE}

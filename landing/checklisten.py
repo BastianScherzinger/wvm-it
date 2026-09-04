@@ -23,20 +23,24 @@ icon        Name aus templates/icons.html
 leistung    Slug der Leistung, zu der die Liste gehört
 beitrag     optional: Slug eines Fachbeitrags, der dasselbe Thema vertieft
 prio        Priorität in der Sitemap
+stand       Tag der letzten **inhaltlichen** Änderung, ISO (YYYY-MM-DD). Wird zum
+            `<lastmod>` der Sitemap (`views._stand_fuer()`) und ist von Hand zu
+            pflegen. Startwert ist der Commit, der `landing/i18n/checklisten_de.py`
+            angelegt hat (8e83af7, 2026-08-29).
 """
 
 CHECKLISTEN = [
     {"slug": "it-dienstleister-wechseln", "icon": "handshake",
      "leistung": "edv-it-betreuung", "beitrag": "it-dienstleister-wechseln",
-     "prio": "0.7"},
+     "prio": "0.7", "stand": "2026-08-29"},
 
     {"slug": "neuer-arbeitsplatz", "icon": "web",
      "leistung": "edv-it-betreuung", "beitrag": None,
-     "prio": "0.6"},
+     "prio": "0.6", "stand": "2026-08-29"},
 
     {"slug": "it-jahrescheck", "icon": "calendar",
      "leistung": "it-sicherheit", "beitrag": "phishing-mails-erkennen",
-     "prio": "0.7"},
+     "prio": "0.7", "stand": "2026-08-29"},
 ]
 
 NACH_SLUG = {c["slug"]: c for c in CHECKLISTEN}

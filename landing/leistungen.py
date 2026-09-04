@@ -19,51 +19,57 @@ vor_ort   True = Einsatz vor Ort nötig; wird auf der Seite ehrlich ausgewiesen,
           weil fast alles andere per Fernwartung läuft (RELAUNCH-PLAN.md, E2)
 verwandt  Zwei bis drei Slugs für die Querverlinkung am Seitenende
 prio      Priorität in der Sitemap
+stand     Tag der letzten **inhaltlichen** Änderung dieser Seite, ISO (YYYY-MM-DD).
+          `views._stand_fuer()` macht daraus das `<lastmod>` der Sitemap. Von Hand
+          gepflegt und nur dann, wenn sich der Text wirklich geändert hat — ein
+          Datum, das bei jedem Deploy hochspringt, wertet Google für die ganze
+          Domain ab. Startwert ist der letzte Commit, der `landing/i18n/seiten_de.py`
+          angefasst hat (291b3ba, 2026-08-28): dort stehen die Texte dieser Seiten.
 """
 
 LEISTUNGEN = [
     {"slug": "edv-it-betreuung", "bereich": "it", "icon": "host", "quelle": "it", "preis": "it_betreuung",
-     "vor_ort": False, "prio": "0.9",
+     "vor_ort": False, "prio": "0.9", "stand": "2026-08-28",
      "verwandt": ["server-datensicherung", "netzwerk-wlan", "it-sicherheit"]},
 
     {"slug": "server-datensicherung", "bereich": "it", "icon": "server", "quelle": "it", "preis": "backup",
-     "vor_ort": False, "prio": "0.8",
+     "vor_ort": False, "prio": "0.8", "stand": "2026-08-28",
      "verwandt": ["edv-it-betreuung", "it-sicherheit", "hosting-wartung"]},
 
     {"slug": "netzwerk-wlan", "bereich": "it", "icon": "net", "quelle": "it", "preis": "netzwerk_setup",
-     "vor_ort": True, "prio": "0.8",
+     "vor_ort": True, "prio": "0.8", "stand": "2026-08-28",
      "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"]},
 
     {"slug": "it-sicherheit", "bereich": "it", "icon": "shield", "quelle": "it", "preis": "sicherheitscheck",
-     "vor_ort": False, "prio": "0.8",
+     "vor_ort": False, "prio": "0.8", "stand": "2026-08-28",
      "verwandt": ["edv-it-betreuung", "server-datensicherung", "netzwerk-wlan"]},
 
     {"slug": "webseite-erstellen", "bereich": "sicht", "icon": "web", "quelle": "web", "preis": "onepager",
-     "vor_ort": False, "prio": "0.9",
+     "vor_ort": False, "prio": "0.9", "stand": "2026-08-28",
      "verwandt": ["seo-betreuung", "hosting-wartung", "google-ads"]},
 
     {"slug": "seo-betreuung", "bereich": "sicht", "icon": "seo", "quelle": "seo", "preis": "seo",
-     "vor_ort": False, "prio": "0.9",
+     "vor_ort": False, "prio": "0.9", "stand": "2026-08-28",
      "verwandt": ["google-ads", "webseite-erstellen", "ki-automatisierung"]},
 
     {"slug": "google-ads", "bereich": "sicht", "icon": "rocket", "quelle": "ads", "preis": "ads_setup",
-     "vor_ort": False, "prio": "0.8",
+     "vor_ort": False, "prio": "0.8", "stand": "2026-08-28",
      "verwandt": ["seo-betreuung", "webseite-erstellen", "hosting-wartung"]},
 
     {"slug": "hosting-wartung", "bereich": "sicht", "icon": "domain", "quelle": "hosting", "preis": "hosting",
-     "vor_ort": False, "prio": "0.7",
+     "vor_ort": False, "prio": "0.7", "stand": "2026-08-28",
      "verwandt": ["webseite-erstellen", "server-datensicherung", "edv-it-betreuung"]},
 
     {"slug": "ki-automatisierung", "bereich": "sicht", "icon": "ai", "quelle": "ki", "preis": "termin",
-     "vor_ort": False, "prio": "0.8",
+     "vor_ort": False, "prio": "0.8", "stand": "2026-08-28",
      "verwandt": ["webseite-erstellen", "seo-betreuung", "edv-it-betreuung"]},
 
     {"slug": "smarthome-knx-loxone", "bereich": "vorort", "icon": "home", "quelle": "technik", "preis": "smarthome",
-     "vor_ort": True, "prio": "0.8",
+     "vor_ort": True, "prio": "0.8", "stand": "2026-08-28",
      "verwandt": ["konferenztechnik", "netzwerk-wlan", "edv-it-betreuung"]},
 
     {"slug": "konferenztechnik", "bereich": "vorort", "icon": "conf", "quelle": "technik", "preis": "konferenz",
-     "vor_ort": True, "prio": "0.7",
+     "vor_ort": True, "prio": "0.7", "stand": "2026-08-28",
      "verwandt": ["smarthome-knx-loxone", "netzwerk-wlan", "edv-it-betreuung"]},
 ]
 

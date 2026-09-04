@@ -40,36 +40,40 @@ km          Straßenkilometer ab Lenzing, gerundet
 fahrzeit    Fahrzeit in Minuten ab Lenzing, gerundet
 schwerpunkt Slug der Leistung, die dort am ehesten gefragt ist (Querverweis)
 prio        Priorität in der Sitemap
+stand       Tag der letzten **inhaltlichen** Änderung, ISO (YYYY-MM-DD). Wird zum
+            `<lastmod>` der Sitemap (`views._stand_fuer()`) und ist von Hand zu
+            pflegen. Startwert ist der Commit, der `landing/i18n/regionen_de.py`
+            angelegt hat (cd7df7b, 2026-08-29).
 """
 
 REGIONEN = [
     {"slug": "voecklabruck", "ort": "Vöcklabruck", "plz": "4840",
      "bezirk": "Bezirk Vöcklabruck", "km": 6, "fahrzeit": 10,
-     "schwerpunkt": "edv-it-betreuung", "prio": "0.8"},
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.8", "stand": "2026-08-29"},
 
     {"slug": "attersee", "ort": "Attersee-Region", "plz": "4863",
      "bezirk": "Bezirk Vöcklabruck", "km": 8, "fahrzeit": 12,
-     "schwerpunkt": "netzwerk-wlan", "prio": "0.7"},
+     "schwerpunkt": "netzwerk-wlan", "prio": "0.7", "stand": "2026-08-29"},
 
     {"slug": "gmunden", "ort": "Gmunden", "plz": "4810",
      "bezirk": "Bezirk Gmunden", "km": 22, "fahrzeit": 25,
-     "schwerpunkt": "edv-it-betreuung", "prio": "0.7"},
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.7", "stand": "2026-08-29"},
 
     {"slug": "bad-ischl", "ort": "Bad Ischl", "plz": "4820",
      "bezirk": "Salzkammergut", "km": 38, "fahrzeit": 40,
-     "schwerpunkt": "konferenztechnik", "prio": "0.6"},
+     "schwerpunkt": "konferenztechnik", "prio": "0.6", "stand": "2026-08-29"},
 
     {"slug": "wels", "ort": "Wels", "plz": "4600",
      "bezirk": "Oberösterreich", "km": 40, "fahrzeit": 35,
-     "schwerpunkt": "edv-it-betreuung", "prio": "0.7"},
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.7", "stand": "2026-08-29"},
 
     {"slug": "salzburg", "ort": "Salzburg", "plz": "5020",
      "bezirk": "Land Salzburg", "km": 55, "fahrzeit": 45,
-     "schwerpunkt": "it-sicherheit", "prio": "0.7"},
+     "schwerpunkt": "it-sicherheit", "prio": "0.7", "stand": "2026-08-29"},
 
     {"slug": "linz", "ort": "Linz", "plz": "4020",
      "bezirk": "Oberösterreich", "km": 60, "fahrzeit": 50,
-     "schwerpunkt": "edv-it-betreuung", "prio": "0.7"},
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.7", "stand": "2026-08-29"},
 ]
 
 NACH_SLUG = {r["slug"]: r for r in REGIONEN}

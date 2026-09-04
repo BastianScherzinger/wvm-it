@@ -12,13 +12,15 @@ ausgelieferte XML und ruft jede darin genannte Adresse wirklich ab.
 """
 # Die Standardbibliothek genügt hier: Geparst wird ausschließlich das XML, das
 # der eigene View im selben Prozess gerade erzeugt hat — keine fremde Eingabe.
+import re
 import xml.etree.ElementTree as ET
+from datetime import date
 
 from django.test import SimpleTestCase
 
 from landing import i18n
 from landing.tests import seiten_client
-from landing.views import _ROBOTS_DISALLOW, _content, _seiten_pfade
+from landing.views import _ROBOTS_DISALLOW, _content, _seiten_pfade, _stand_fuer
 
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 XHTML_NS = "{http://www.w3.org/1999/xhtml}"
@@ -153,13 +155,116 @@ class SitemapTest(SimpleTestCase):
         `lastmod` ist der Grund, aus dem ein Crawler eine bekannte Seite erneut
         holt. Ohne die Angabe entscheidet er nach eigenem Gutdünken, und eine
         gerade überarbeitete Seite bleibt wochenlang in der alten Fassung im
-        Index."""
+        Index.
+
+        Seit Schritt 21 kommt der Wert aus `views._stand_fuer()`. Wer einen
+        neuen Seitentyp anlegt und dort kein Datum hinterlegt, bekommt einen
+        Eintrag ohne `lastmod` — und genau darauf schlägt diese Prüfung an."""
         for eintrag in self.eintraege:
             adresse = eintrag.find(f"{SITEMAP_NS}loc").text
             for feld in ("lastmod", "changefreq", "priority"):
                 wert = eintrag.find(f"{SITEMAP_NS}{feld}")
-                self.assertIsNotNone(wert, f"{adresse}: kein <{feld}>")
+                self.assertIsNotNone(
+                    wert, f"{adresse}: kein <{feld}> — fehlt der Stand in "
+                          f"views._stand_fuer()?")
                 self.assertTrue((wert.text or "").strip(), f"{adresse}: <{feld}> ist leer")
+
+
+class LastmodTest(SimpleTestCase):
+    """`lastmod` — das Feld, das mehr schadet als nützt, wenn es lügt.
+
+    Bis Schritt 21 trug jeder der 158 Einträge `date.today()`. Für einen Crawler
+    heißt das: Bei jedem Deploy hat sich der komplette Bestand geändert. Diese
+    Behauptung widerlegt er beim ersten Abgleich mit dem tatsächlichen Inhalt —
+    und wertet das Feld danach für die **ganze Domain** ab, auch dort, wo es
+    stimmt. Deshalb prüfen die folgenden Tests nicht, dass ein Datum da ist,
+    sondern dass es ein echtes ist."""
+
+    ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client_https = seiten_client()
+        wurzel = ET.fromstring(cls.client_https.get("/sitemap.xml").content)
+        cls.staende = {}
+        for eintrag in wurzel.findall(f"{SITEMAP_NS}url"):
+            wert = eintrag.find(f"{SITEMAP_NS}lastmod")
+            cls.staende[eintrag.find(f"{SITEMAP_NS}loc").text] = (
+                wert.text if wert is not None else None)
+
+    def test_lastmod_ist_nicht_fuer_alle_seiten_gleich(self):
+        """Verhindert den Rückfall auf ein einziges Datum für den ganzen Bestand.
+
+        Genau das war der Zustand vor Schritt 21: ein `date.today()`, an alle
+        158 Einträge gehängt. Wer `_stand_fuer()` durch einen konstanten Wert
+        ersetzt, stellt ihn wieder her — der Test schlägt dann an.
+
+        Geprüft wird auf **mindestens zwei** verschiedene Werte, nicht auf mehr:
+        Der Bestand ist am 28. und 29.08.2026 entstanden, und mehr Datumswerte
+        gibt es nicht, ohne welche zu erfinden."""
+        werte = {w for w in self.staende.values() if w}
+        self.assertGreaterEqual(
+            len(werte), 2,
+            f"alle Sitemap-Einträge tragen dasselbe lastmod: {sorted(werte)}")
+
+    def test_kein_lastmod_ist_das_heutige_datum(self):
+        """Verhindert ein `lastmod`, das mit dem Deploy-Tag mitwandert.
+
+        Kein Text dieser Seite ist heute geändert worden — die Stände stehen
+        von Hand in den Strukturmodulen und in `views._STAND_SEITEN`. Trägt ein
+        Eintrag trotzdem das heutige Datum, ist wieder eine Uhr im Spiel statt
+        einer gepflegten Angabe. (Sollte an einem Tag wirklich ein Text geändert
+        UND sein Stand nachgezogen worden sein, ist dieser Test an genau diesem
+        Tag zu Recht rot und der erwartete Wert einzutragen.)"""
+        heute = date.today().isoformat()
+        von_heute = sorted(a for a, w in self.staende.items() if w == heute)
+        self.assertEqual(
+            von_heute, [],
+            f"{len(von_heute)} Einträge tragen das heutige Datum {heute}: "
+            f"{von_heute[:5]}")
+
+    def test_jeder_stand_ist_ein_gueltiges_datum_in_der_vergangenheit(self):
+        """Verhindert ein Datum in falschem Format oder in der Zukunft.
+
+        `lastmod` muss nach der Sitemap-Spezifikation W3C-Datetime sein;
+        '29.08.2026' ist es nicht und macht den Eintrag ungültig. Ein Datum in
+        der Zukunft — der klassische Tippfehler in der Jahreszahl — ist für
+        einen Crawler ein Grund, dem Feld nicht mehr zu glauben."""
+        heute = date.today()
+        for adresse, wert in self.staende.items():
+            if wert is None:
+                continue
+            self.assertRegex(wert, self.ISO, f"{adresse}: lastmod '{wert}' ist kein ISO-Datum")
+            self.assertLessEqual(date.fromisoformat(wert), heute,
+                                 f"{adresse}: lastmod '{wert}' liegt in der Zukunft")
+
+    def test_fachbeitraege_erben_ihr_datum_aus_beitraege_py(self):
+        """Verhindert, dass Sitemap und Article-Schema verschiedene Daten nennen.
+
+        Das `Article`-Schema jedes Beitrags zieht `datePublished`/`dateModified`
+        aus `beitraege.py`. Nennt die Sitemap für dieselbe Adresse ein anderes
+        Datum, widersprechen sich zwei Angaben derselben Seite — und der Crawler
+        entscheidet, welcher er glaubt. `_stand_fuer()` muss dieselbe Regel
+        anwenden: Überarbeitung schlägt Veröffentlichung."""
+        from landing import beitraege
+        for eintrag in beitraege.BEITRAEGE:
+            pfad = f"/aktuelles/{eintrag['slug']}/"
+            self.assertEqual(_stand_fuer(pfad),
+                             eintrag.get("geaendert") or eintrag["datum"],
+                             f"{pfad}: Stand weicht von beitraege.py ab")
+
+    def test_unbekannter_pfad_liefert_keinen_erfundenen_stand(self):
+        """Verhindert einen Notbehelf-Wert für Adressen ohne gepflegtes Datum.
+
+        Ein fehlendes `lastmod` ist ehrlicher als ein erfundenes. Gäbe
+        `_stand_fuer()` für einen unbekannten Pfad etwa das heutige Datum
+        zurück, wäre der alte Fehler durch die Hintertür wieder da — jede neue
+        Seite käme mit einer Frischebehauptung, die niemand geprüft hat."""
+        for pfad in ("/gibt-es-nicht/", "/leistungen/gibt-es-nicht/",
+                     "/aktuelles/gibt-es-nicht/", "/wissen/gibt-es-nicht/"):
+            self.assertIsNone(_stand_fuer(pfad),
+                              f"{pfad}: _stand_fuer() erfindet einen Wert")
 
 
 class RobotsTest(SimpleTestCase):

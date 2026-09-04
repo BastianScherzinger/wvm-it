@@ -34,20 +34,27 @@ preis       ID einer Position aus views.ANGEBOT_GROUPS — von dort kommt die Za
 leistungen  Zwei bis drei Leistungs-Slugs für die Querverlinkung
 rechner     True = Verweis auf den Kostenrechner ist auf dieser Seite sinnvoll
 prio        Priorität in der Sitemap
+stand       Tag der letzten **inhaltlichen** Änderung, ISO (YYYY-MM-DD). Wird zum
+            `<lastmod>` der Sitemap (`views._stand_fuer()`) und ist von Hand zu
+            pflegen. Startwert ist der Commit, der `landing/i18n/vergleiche_de.py`
+            angelegt hat (82d8bc3, 2026-08-29).
 """
 
 VERGLEICHE = [
     {"slug": "it-betreuung-vs-stundenabrechnung", "icon": "gauge",
      "quelle": "it", "preis": "it_betreuung", "rechner": True,
-     "leistungen": ["edv-it-betreuung", "server-datensicherung"], "prio": "0.8"},
+     "leistungen": ["edv-it-betreuung", "server-datensicherung"], "prio": "0.8",
+     "stand": "2026-08-29"},
 
     {"slug": "server-vs-cloud", "icon": "server",
      "quelle": "it", "preis": "server_care", "rechner": True,
-     "leistungen": ["server-datensicherung", "edv-it-betreuung"], "prio": "0.8"},
+     "leistungen": ["server-datensicherung", "edv-it-betreuung"], "prio": "0.8",
+     "stand": "2026-08-29"},
 
     {"slug": "microsoft365-vs-google-workspace", "icon": "mail",
      "quelle": "it", "preis": "m365", "rechner": False,
-     "leistungen": ["edv-it-betreuung", "hosting-wartung"], "prio": "0.7"},
+     "leistungen": ["edv-it-betreuung", "hosting-wartung"], "prio": "0.7",
+     "stand": "2026-08-29"},
 ]
 
 NACH_SLUG = {v["slug"]: v for v in VERGLEICHE}

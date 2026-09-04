@@ -35,32 +35,43 @@ leistungen  Zwei bis drei weitere Leistungs-Slugs für die Querverlinkung
 quelle      Anfrage-Quelle des Formulars (muss in views._ANFRAGE_QUELLEN stehen)
 preis       ID einer Position aus views.ANGEBOT_GROUPS — von dort kommt die Zahl
 prio        Priorität in der Sitemap
+stand       Tag der letzten **inhaltlichen** Änderung, ISO (YYYY-MM-DD). Wird zum
+            `<lastmod>` der Sitemap (`views._stand_fuer()`) und ist von Hand zu
+            pflegen: ein Datum, das bei jedem Deploy hochspringt, ist wertlos.
+            Startwert ist der Commit, der `landing/i18n/branchen_de.py` angelegt
+            hat (02bba4a, 2026-08-29) — dort stehen die Texte dieser Seiten.
 """
 
 BRANCHEN = [
     {"slug": "steuerberater-kanzleien", "icon": "consulting",
      "schwerpunkt": "it-sicherheit", "quelle": "it", "preis": "it_betreuung",
-     "leistungen": ["edv-it-betreuung", "server-datensicherung"], "prio": "0.8"},
+     "leistungen": ["edv-it-betreuung", "server-datensicherung"], "prio": "0.8",
+     "stand": "2026-08-29"},
 
     {"slug": "handwerk-baugewerbe", "icon": "cog",
      "schwerpunkt": "edv-it-betreuung", "quelle": "it", "preis": "it_betreuung",
-     "leistungen": ["netzwerk-wlan", "server-datensicherung"], "prio": "0.8"},
+     "leistungen": ["netzwerk-wlan", "server-datensicherung"], "prio": "0.8",
+     "stand": "2026-08-29"},
 
     {"slug": "arztpraxen-therapie", "icon": "shield",
      "schwerpunkt": "it-sicherheit", "quelle": "it", "preis": "sicherheitscheck",
-     "leistungen": ["server-datensicherung", "netzwerk-wlan"], "prio": "0.8"},
+     "leistungen": ["server-datensicherung", "netzwerk-wlan"], "prio": "0.8",
+     "stand": "2026-08-29"},
 
     {"slug": "hotellerie-gastronomie", "icon": "net",
      "schwerpunkt": "netzwerk-wlan", "quelle": "it", "preis": "netzwerk_setup",
-     "leistungen": ["edv-it-betreuung", "webseite-erstellen"], "prio": "0.8"},
+     "leistungen": ["edv-it-betreuung", "webseite-erstellen"], "prio": "0.8",
+     "stand": "2026-08-29"},
 
     {"slug": "produktion-gewerbe", "icon": "industrie",
      "schwerpunkt": "netzwerk-wlan", "quelle": "it", "preis": "netzwerk_setup",
-     "leistungen": ["server-datensicherung", "edv-it-betreuung"], "prio": "0.7"},
+     "leistungen": ["server-datensicherung", "edv-it-betreuung"], "prio": "0.7",
+     "stand": "2026-08-29"},
 
     {"slug": "vereine-gemeinden", "icon": "handshake",
      "schwerpunkt": "edv-it-betreuung", "quelle": "it", "preis": "it_support",
-     "leistungen": ["webseite-erstellen", "konferenztechnik"], "prio": "0.6"},
+     "leistungen": ["webseite-erstellen", "konferenztechnik"], "prio": "0.6",
+     "stand": "2026-08-29"},
 ]
 
 NACH_SLUG = {b["slug"]: b for b in BRANCHEN}

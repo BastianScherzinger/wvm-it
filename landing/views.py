@@ -1783,6 +1783,78 @@ def _seiten_pfade():
     return pfade
 
 
+# ── Änderungsdatum je Adresse (docs: Verbesserungslauf 13, Schritt 21) ────────
+# Der Stand der Seiten ohne eigenes Strukturmodul: Hubs, Werkzeuge, Einzelseiten.
+# Jeder Wert ist der Tag der letzten **inhaltlichen** Änderung, belegt über den
+# letzten Commit, der die zugehörige Textquelle angefasst hat — nicht der letzte
+# Commit überhaupt: Die CSP-Umstellung vom 04.09.2026 hat `templates/index.html`
+# und `templates/angebot.html` berührt, ohne ein Wort am Inhalt zu ändern, und
+# ein `lastmod`, das daraufhin hochspringt, ist genau die Falschmeldung, die
+# dieser Mechanismus vermeiden soll.
+#
+# Von Hand gepflegt. Wer einen Text ändert, zieht hier das Datum nach.
+_STAND_SEITEN = {
+    "/": "2026-08-29",                    # landing/i18n/de.py, 4ed4adb
+    "/leistungen/": "2026-08-29",         # templates/leistungen.html, 02d8c8a
+    "/kosten/": "2026-08-29",             # templates/kosten.html, 02d8c8a
+    "/kosten/rechner/": "2026-08-29",     # templates/rechner.html, 02d8c8a
+    "/referenzen/": "2026-08-28",         # templates/referenzen.html, 47a188f
+    "/kontakt/": "2026-08-28",            # templates/kontakt.html, 47a188f
+    "/angebot/": "2026-08-29",            # templates/angebot.html, 02d8c8a
+    "/branchen/": "2026-08-29",           # templates/branchen.html, 02d8c8a
+    "/vergleich/": "2026-08-29",          # templates/vergleiche.html, 4ed4adb
+    "/it-service/": "2026-08-29",         # templates/regionen.html, cd7df7b
+    "/aktuelles/": "2026-08-29",          # templates/aktuelles.html, def7255
+    "/wissen/": "2026-08-29",             # templates/wissen.html, dcf266f
+    "/checkliste/": "2026-08-29",         # templates/checklisten.html, 4ed4adb
+    "/it-notfall/": "2026-08-29",         # templates/notfall.html, 02d8c8a
+    "/it-sicherheit-test/": "2026-08-29",  # templates/selbsttest.html, 02d8c8a
+    "/impressum/": "2026-08-28",          # templates/recht.html, 47a188f
+    "/datenschutz/": "2026-08-28",        # templates/recht.html, 47a188f
+}
+
+# (Pfad-Präfix, Strukturmodul-Index) — die sechs Silos mit `stand`-Feld je Eintrag.
+_STAND_SILOS = (
+    ("/leistungen/", leistungen.NACH_SLUG),
+    ("/branchen/", branchen.NACH_SLUG),
+    ("/vergleich/", vergleiche.NACH_SLUG),
+    ("/it-service/", regionen.NACH_SLUG),
+    ("/wissen/", glossar.NACH_SLUG),
+    ("/checkliste/", checklisten.NACH_SLUG),
+)
+
+
+def _stand_fuer(pfad):
+    """Änderungsdatum einer Adresse als ISO-String — oder `None`, wenn keins belegt ist.
+
+    Bewusst **neben** `_seiten_pfade()` und nicht als fünftes Feld darin: Vier
+    Werkzeuge entpacken deren Vierertupel (`sitemap_xml`, `indexnow`,
+    `pruefe_seite`, `seo_bericht`). Ein zusätzliches Feld bräche jede dieser
+    Entpackungen auf einmal; eine getrennte Funktion bricht nichts.
+
+    Warum es die Funktion überhaupt gibt: Vorher trug jeder der 158
+    Sitemap-Einträge `date.today()`. Ein `lastmod`, das sich bei jedem Deploy
+    für den gesamten Bestand ändert, ist für Google nachweislich falsch — und
+    ein Feld, dem er nicht traut, ignoriert er dann für die ganze Domain. Ein
+    fehlendes `lastmod` ist ehrlicher als ein erfundenes; deshalb `None` statt
+    eines Notbehelfs, wo kein belegter Wert vorliegt.
+
+    Der Pfad kommt ohne Sprachpräfix herein (so, wie ihn `_seiten_pfade()`
+    führt). Die drei Sprachfassungen einer Seite teilen sich einen Stand: Sie
+    werden im selben Zug gepflegt."""
+    fest = _STAND_SEITEN.get(pfad)
+    if fest:
+        return fest
+    if pfad.startswith("/aktuelles/") and pfad != "/aktuelles/":
+        eintrag = beitraege.NACH_SLUG.get(pfad.strip("/").split("/")[-1], {})
+        # Ueberarbeitung schlaegt Veroeffentlichung — genau wie im Article-Schema.
+        return eintrag.get("geaendert") or eintrag.get("datum") or None
+    for praefix, index in _STAND_SILOS:
+        if pfad.startswith(praefix) and pfad != praefix:
+            return index.get(pfad.strip("/").split("/")[-1], {}).get("stand") or None
+    return None
+
+
 def _itemlist(base, pfad, name, posten):
     """`ItemList` für eine Hub-Seite (docs/SEO-AUSBAU-3.md, S3).
 
@@ -3254,22 +3326,25 @@ def security_txt(request):
 
 def sitemap_xml(request):
     """XML-Sitemap der öffentlichen Seiten (Startseite + Angebot) in allen Sprachen,
-    jeweils mit hreflang-Alternates (DE ohne Präfix, EN /en/, RO /ro/)."""
-    from datetime import date
+    jeweils mit hreflang-Alternates (DE ohne Präfix, EN /en/, RO /ro/).
+
+    `lastmod` kommt seit Schritt 21 aus `_stand_fuer()` und ist je Adresse das
+    echte Datum der letzten inhaltlichen Änderung. Wo keins belegt ist, entfällt
+    das Feld: ein fehlendes `lastmod` ist ehrlicher als ein falsches."""
     base = (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
-    lastmod = date.today().isoformat()  # Frische-Signal für Suche & KI-Crawler
     # (Basis-Pfad, priority, changefreq) — aus derselben Quelle wie IndexNow,
     # damit Sitemap und Meldung nie auseinanderlaufen.
     pages = _seiten_pfade()
     items = []
     for path, pr, cf, mehrsprachig in pages:
+        stand = _stand_fuer(path)
+        lastmod = f"<lastmod>{stand}</lastmod>" if stand else ""
         if not mehrsprachig:
             # Einsprachige Seite (Fachbeitraege): genau ein Eintrag, keine
             # hreflang-Alternates. Ein Alternate auf eine Seite, die es nicht
             # gibt, ist schlimmer als gar keiner.
             items.append(
-                f"<url><loc>{base}{path}</loc>"
-                f"<lastmod>{lastmod}</lastmod>"
+                f"<url><loc>{base}{path}</loc>{lastmod}"
                 f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
             )
             continue
@@ -3282,8 +3357,7 @@ def sitemap_xml(request):
         for lang in ("de", "en", "ro"):
             loc = base + i18n.add_prefix(lang, path)
             items.append(
-                f"<url><loc>{loc}</loc>{alts}"
-                f"<lastmod>{lastmod}</lastmod>"
+                f"<url><loc>{loc}</loc>{alts}{lastmod}"
                 f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
             )
     xml = ('<?xml version="1.0" encoding="UTF-8"?>'
