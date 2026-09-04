@@ -857,7 +857,6 @@ PACK = {
         "zeiten_h": "Erreichbarkeit",
         "zeiten_t": "Montag bis Freitag, 9 bis 18 Uhr. Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag &ndash; innerhalb von 24 Stunden, nicht innerhalb einer Woche.",
         "daten_h": "Firmendaten",
-        "daten_fehlt": "Die vollständige Anschrift ergänzen wir hier, sobald der Firmensitz eingetragen ist. Bis dahin erreichen Sie uns über Telefon und E-Mail.",
         "inhaber": "Inhaber",
         "tel": "Telefon",
         "mail": "E-Mail",

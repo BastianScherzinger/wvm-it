@@ -852,7 +852,6 @@ PACK = {
         "zeiten_h": "Disponibilitate",
         "zeiten_t": "Luni până vineri, 9:00–18:00. Solicitările din afara acestui interval primesc răspuns în următoarea zi lucrătoare &ndash; în 24 de ore, nu într-o săptămână.",
         "daten_h": "Date de firmă",
-        "daten_fehlt": "Adresa completă o adăugăm aici de îndată ce sediul firmei este înregistrat. Până atunci ne găsiți la telefon și pe e-mail.",
         "inhaber": "Proprietar",
         "tel": "Telefon",
         "mail": "E-mail",

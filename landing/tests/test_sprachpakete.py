@@ -17,8 +17,11 @@ richtig, solange Lücken normal waren; heute erbt laut CLAUDE.md kein einziger
 Schlüssel mehr. Ab hier ist eine Lücke deshalb rot: Der Zustand ist erreicht und
 wird festgenagelt, nicht erst wieder erarbeitet.
 """
+import json
 import re
+from pathlib import Path
 
+from django.conf import settings
 from django.test import SimpleTestCase
 
 from landing import beitraege, branchen, checklisten, glossar, i18n, leistungen, regionen, vergleiche
@@ -213,6 +216,43 @@ class TextwerteTest(SimpleTestCase):
                              if PLATZHALTER.search(wert))
             self.assertEqual(treffer, [],
                              f"{lang}.py enthält Platzhalter: {treffer[:8]}")
+
+    def test_keine_unersetzten_platzhalter_in_content_json(self):
+        """Verhindert: '[Straße und Hausnummer]' im Datenschutztext der Livesite.
+
+        Genau das stand dort bis zum 04.09.2026 — im Abschnitt „1.
+        Verantwortlicher", also auf der Seite, die die Verantwortlichkeit für
+        die Datenverarbeitung benennt, während die echte Anschrift drei Zeilen
+        weiter im Impressum korrekt stand. Kein Prüfbefehl sah das: `pruefe_seite`
+        liest Struktur, nicht Fließtext. Die Rechtstexte liegen in `content.json`
+        und damit außerhalb der Sprachpaketprüfung darüber — deshalb hier noch
+        einmal dieselbe Suche über dieselbe Regel."""
+        daten = json.loads(
+            (Path(settings.BASE_DIR) / "content.json").read_text(encoding="utf-8"))
+        treffer = sorted(f"{pfad}: {PLATZHALTER.search(wert).group(0)}"
+                         for pfad, wert in texte(daten).items()
+                         if PLATZHALTER.search(wert))
+        self.assertEqual(treffer, [],
+                         f"content.json enthält Platzhalter: {treffer[:8]}")
+
+    def test_die_anschrift_steht_im_datenschutztext(self):
+        """Verhindert: zwei verschiedene Anschriften auf derselben Website.
+
+        Die Anschrift steht an drei Stellen — `content.json` als Feld, im
+        Impressumstext und im Datenschutztext unter „Verantwortlicher". Die
+        beiden Fließtexte sind Kopien; wird das Feld einmal geändert (Umzug),
+        bleiben sie stehen und widersprechen ihm. Der Platzhaltertest oben
+        merkt davon nichts: `Waldstraße 19/1` ist kein Platzhalter, auch wenn
+        die Firma längst woanders sitzt."""
+        daten = json.loads(
+            (Path(settings.BASE_DIR) / "content.json").read_text(encoding="utf-8"))
+        strasse = daten.get("adresse", "").strip()
+        self.assertTrue(strasse, "content.json führt keine Anschrift")
+        for feld in ("datenschutz", "impressum"):
+            self.assertIn(
+                strasse, daten.get(feld, ""),
+                f"content.json → {feld} nennt nicht die Anschrift aus 'adresse' "
+                f"({strasse!r}) — die Seite führt damit zwei verschiedene Sitze")
 
 
 class NurDeutscheModuleTest(SimpleTestCase):

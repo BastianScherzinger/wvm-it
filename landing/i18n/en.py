@@ -856,7 +856,6 @@ PACK = {
         "zeiten_h": "Availability",
         "zeiten_t": "Monday to Friday, 9am to 6pm. Enquiries outside those hours are answered on the next business day &ndash; within 24 hours, not within a week.",
         "daten_h": "Company details",
-        "daten_fehlt": "The full postal address will be added here once the registered office is on file. Until then you can reach us by phone and email.",
         "inhaber": "Owner",
         "tel": "Phone",
         "mail": "Email",
