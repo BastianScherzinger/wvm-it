@@ -35,10 +35,21 @@ def graph_von(html: str) -> list:
     return json.loads(treffer.group(1))["@graph"]
 
 
+# Schema.org kennt unter `WebPage` genauere Unterarten. Benutzt wird bisher
+# genau eine: `AboutPage` auf /ueber-uns/ (Schritt 33). Für jede Prüfung, die
+# „den Knoten dieser Seite" meint, zählen beide — sonst wäre die Über-uns-Seite
+# die einzige des Bestands, die aus allen Schema-Prüfungen herausfiele, und
+# zwar ausgerechnet, weil ihr Schema **genauer** ist.
+SEITENTYPEN = ("WebPage", "AboutPage")
+
+
 def knoten(graph: list, typ: str) -> dict:
-    """Der erste Knoten eines Typs — oder `{}`."""
+    """Der erste Knoten eines Typs — oder `{}`.
+
+    Für `WebPage` zählen auch die Unterarten aus `SEITENTYPEN`."""
+    gesucht = SEITENTYPEN if typ == "WebPage" else (typ,)
     for k in graph:
-        if k.get("@type") == typ:
+        if k.get("@type") in gesucht:
             return k
     return {}
 
@@ -175,7 +186,7 @@ class GraphDerSeitenTest(SimpleTestCase):
         derselben `@id` sind für einen Parser ein Widerspruch."""
         for adresse, (_html, graph) in self.seiten.items():
             with self.subTest(adresse=adresse):
-                seiten = [k for k in graph if k.get("@type") == "WebPage"]
+                seiten = [k for k in graph if k.get("@type") in SEITENTYPEN]
                 self.assertEqual(len(seiten), 1, "kein oder mehr als ein WebPage")
                 self.assertEqual(seiten[0]["@id"],
                                  seiten[0]["url"] + "#seite")

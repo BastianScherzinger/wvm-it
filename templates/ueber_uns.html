@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% comment %}
+/ueber-uns/ — wer hinter WVM-IT steht (Schritt 33).
+
+Gebaut ausschliesslich aus Bausteinen, die es im Projekt schon gibt: derselbe
+Kopf wie auf den Branchen- und Regionsseiten (`sp-top` mit `sp-top-grid` und
+`sp-fakten`), derselbe Antwortabsatz (`antwort.html`), dieselbe Bild-Text-Form
+wie auf `/referenzen/` (`rf`/`rf-media`/`rf-copy`), dieselben Häkchenlisten
+(`sp-liste sp-liste-check`) und derselbe Abschlussblock (`ks-block`). Kein
+neues CSS, keine neue Klasse — die Seite soll aussehen wie vom selben Haus.
+
+Jeder Satz steht im Sprachpaket unter `ueber` und ist belegt: Name und Rolle
+aus content.json, der Sitz aus der Anbieterkennzeichnung, das Einzugsgebiet aus
+landing/regionen.py. Was nicht belegt ist — Gründungsjahr, Zertifikate,
+Kundenzahlen, Bewertungen —, steht hier nicht.
+{% endcomment %}
+{% block titel %}{{ us.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ us.desc|safe }}{% endblock %}
+{% block og_titel %}{{ us.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ us.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ us.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ us.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ us.nav|safe }}</span>
+    </nav>
+
+    <div class="sp-top-grid">
+      <div>
+        <h1>{{ us.h1|safe }}</h1>
+        {% comment %}Antwort zuerst — der Absatz, den eine KI-Antwort zitiert.{% endcomment %}
+        {% include 'antwort.html' with text=us.antwort %}
+      </div>
+      <aside class="sp-fakten">
+        <div class="sp-fakt">
+          <span class="sp-fakt-l">{{ us.fakt_sitz_l|safe }}</span>
+          <p class="sp-fakt-t">{{ c.adresse }}, {{ c.plz }} {{ c.stadt }}</p>
+        </div>
+        <div class="sp-fakt">
+          <span class="sp-fakt-l">{{ us.fakt_sprachen_l|safe }}</span>
+          <p class="sp-fakt-t">{{ us.fakt_sprachen_v|safe }}</p>
+        </div>
+        <div class="sp-fakt">
+          <span class="sp-fakt-l">{{ us.fakt_antwort_l|safe }}</span>
+          <p class="sp-fakt-t">{{ us.fakt_antwort_v|safe }}</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="hb-intro" data-reveal>{{ us.intro|safe }}</p>
+
+    <article class="rf" data-reveal>
+      <div class="rf-media">
+        {% comment %}
+        Das Portrait gibt es im Projekt bereits (content.json → founder_image);
+        Alt-Text beschreibt die Person, nicht den Dateinamen. Die Masse 640×640
+        stehen bereits an derselben Datei in index.html:195 — ein anderer Wert
+        hier waere eine zweite Behauptung ueber dasselbe Bild und wuerde
+        Layout-Sprung erzeugen.
+        {% endcomment %}
+        <img src="{{ c.founder_image }}" alt="{{ us.person_alt|safe }}" width="640" height="640" loading="lazy">
+      </div>
+      <div class="rf-copy">
+        <span class="eyebrow"><span class="dot"></span>{{ us.person_rolle|safe }}</span>
+        <h2 class="sp-h2">{{ c.inhaber_name }}</h2>
+        <p class="rf-text">{{ us.person_p1|safe }}</p>
+        <p class="rf-text">{{ us.person_p2|safe }}</p>
+      </div>
+    </article>
+
+    <h2 class="sp-h2" data-reveal>{{ us.arbeit_h|safe }}</h2>
+    <p data-reveal>{{ us.arbeit_p1|safe }}</p>
+    <p data-reveal>{{ us.arbeit_p2|safe }}</p>
+    <ul class="sp-liste sp-liste-check" data-reveal>
+      <li>{% include 'icons.html' with name='check' %}<span>{{ us.arbeit_1|safe }}</span></li>
+      <li>{% include 'icons.html' with name='check' %}<span>{{ us.arbeit_2|safe }}</span></li>
+      <li>{% include 'icons.html' with name='check' %}<span>{{ us.arbeit_3|safe }}</span></li>
+      <li>{% include 'icons.html' with name='check' %}<span>{{ us.arbeit_4|safe }}</span></li>
+    </ul>
+
+    <h2 class="sp-h2" data-reveal>{{ us.standbein_h|safe }}</h2>
+    <p data-reveal>{{ us.standbein_p|safe }}</p>
+    <ul class="sp-liste sp-liste-check" data-reveal>
+      <li>{% include 'icons.html' with name='check' %}<span>{{ us.standbein_1|safe }}</span></li>
+      <li>{% include 'icons.html' with name='check' %}<span>{{ us.standbein_2|safe }}</span></li>
+      <li>{% include 'icons.html' with name='check' %}<span>{{ us.standbein_3|safe }}</span></li>
+    </ul>
+
+    <h2 class="sp-h2" data-reveal>{{ us.gebiet_h|safe }}</h2>
+    <p data-reveal>{{ us.gebiet_p|safe }}</p>
+    <ul class="sp-liste" data-reveal>
+      {% for r in regionen_liste %}<li><a href="{% url 'region' slug=r.slug %}">{{ r.ort }}</a></li>{% endfor %}
+    </ul>
+
+    <div class="ks-block" data-reveal>
+      <h2 class="sp-h2">{{ us.schluss_h|safe }}</h2>
+      <p>{{ us.schluss_t|safe }}</p>
+      <a class="btn btn-ghost" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

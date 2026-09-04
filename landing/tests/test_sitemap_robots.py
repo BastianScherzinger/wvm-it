@@ -445,13 +445,14 @@ class LastmodTest(SimpleTestCase):
         Tag zu Recht rot und der erwartete Wert einzutragen.)
 
         Genau dieser Fall ist am 04.09.2026 eingetreten: Die Erklärung zur
-        Barrierefreiheit ist an diesem Tag entstanden (Schritt 32), und ihr
-        Stand ist deshalb zu Recht der Tag selbst. Sie steht unten namentlich
-        als Ausnahme. Der Test bleibt dadurch scharf — eine wieder eingebaute
-        Uhr träfe **alle** Einträge, nicht diese drei Adressen; und sobald der
-        04.09.2026 vorbei ist, greift die Ausnahme ohnehin ins Leere."""
+        Barrierefreiheit (Schritt 32) und die Über-uns-Seite (Schritt 33) sind
+        an diesem Tag entstanden, und ihr Stand ist deshalb zu Recht der Tag
+        selbst. Beide stehen unten namentlich als Ausnahme. Der Test bleibt
+        dadurch scharf — eine wieder eingebaute Uhr träfe **alle** Einträge,
+        nicht diese sechs Adressen; und sobald der 04.09.2026 vorbei ist,
+        greift die Ausnahme ohnehin ins Leere."""
         # Basis-Pfade, deren Text an dem Tag entstanden ist, den ihr Stand nennt.
-        AM_TAG_ENTSTANDEN = ("/barrierefreiheit/",)
+        AM_TAG_ENTSTANDEN = ("/barrierefreiheit/", "/ueber-uns/")
         heute = date.today().isoformat()
         von_heute = sorted(a for a, w in self.staende.items() if w == heute)
         unerklaert = [a for a in von_heute

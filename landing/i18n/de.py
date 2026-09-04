@@ -860,6 +860,54 @@ PACK = {
         "gebiet": "Einsatzgebiet",
         "gebiet_t": "Österreich und Deutschland",
     },
+    # ── Über uns (/ueber-uns/, Schritt 33) ───────────────────────────────────
+    # Belegquellen für jeden Satz, damit später nachvollziehbar bleibt, warum
+    # genau diese Angaben hier stehen und keine anderen:
+    #   Name, Rolle, Foto, Sitz .......... content.json (inhaber_name,
+    #                                      founder_image, adresse/plz/stadt)
+    #   Gewerbebehörde, Unternehmens-
+    #   gegenstand ....................... content.json → impressum
+    #   Einzugsgebiet .................... landing/regionen.py (sieben Orte)
+    #   drei Sprachen .................... der Bestand dieser Seite selbst
+    #   Antwort in 24 Stunden ............ content.json → cta_sub, und dieselbe
+    #                                      Zusage in lb.done_t
+    #   Fernwartung, drei Standbeine ..... meta.firmen_desc und CLAUDE.md
+    # NICHT verwendet, weil unbelegt: Gründungsjahr (seit_jahr ist leer),
+    # Partnerstatus (leer), Zertifikate, Kundenzahlen, Mitarbeiterzahl,
+    # Bewertungen. Sie stehen als offene Fragen im Bericht, nicht auf der Seite.
+    "ueber": {
+        "nav": "Über uns",
+        "titel": "Über uns: Florin Feier, IT aus Lenzing | WVM-IT",
+        "desc": "Wer hinter WVM-IT steht: Florin Feier, Inhaber, Sitz in Lenzing in Oberösterreich. Ein Ansprechpartner, überwiegend Fernwartung, drei Sprachen.",
+        "h1": "Ein Ansprechpartner für die ganze Technik.",
+        "antwort": "Hinter WVM-IT steht Florin Feier, Inhaber, mit Sitz in Lenzing in Oberösterreich. Betriebe ohne eigene IT-Abteilung bekommen hier einen festen Ansprechpartner für ihre gesamte Technik — überwiegend per Fernwartung in ganz Österreich und Deutschland, im Einzugsgebiet rund um Vöcklabruck auch vor Ort.",
+        "fakt_sitz_l": "Sitz",
+        "fakt_sprachen_l": "Sprachen",
+        "fakt_sprachen_v": "Deutsch, Englisch, Rumänisch",
+        "fakt_antwort_l": "Antwortzeit",
+        "fakt_antwort_v": "Innerhalb von 24 Stunden",
+        "intro": "Die meisten Betriebe, die hier anfragen, haben keine eigene IT-Abteilung und wollen auch keine aufbauen. Sie brauchen jemanden, der die Technik übernimmt, erreichbar ist und die Lage kennt, wenn etwas ausfällt. Genau dafür gibt es WVM-IT — und deshalb steht auf dieser Seite, wer das ist und wie hier gearbeitet wird.",
+        "person_rolle": "Inhaber",
+        "person_alt": "Florin Feier, Inhaber von WVM-IT",
+        "person_p1": "Florin Feier führt WVM-IT als Inhaber. Wer anruft oder schreibt, spricht mit ihm — nicht mit einer Warteschleife, einem Ticketsystem oder wechselnden Bearbeitern, die sich den Fall jedes Mal neu erklären lassen. Das ist keine Haltungsfrage, sondern eine Folge der Größe: Ein Betrieb dieser Art muss eine Anfrage nicht durch drei Ebenen reichen, bevor sie jemanden erreicht, der sie beantworten kann.",
+        "person_p2": "Der Sitz ist die Waldstraße 19/1 in 4860 Lenzing, Österreich. Zuständige Gewerbebehörde ist die Bezirkshauptmannschaft Vöcklabruck; der Unternehmensgegenstand umfasst IT-Dienstleistungen, Webdesign, Hosting, KI-Automatisierung und Suchmaschinenoptimierung. Beraten und gearbeitet wird auf Deutsch, Englisch und Rumänisch — diese Website steht aus demselben Grund in denselben drei Sprachen.",
+        "arbeit_h": "Wie hier gearbeitet wird",
+        "arbeit_p1": "Der weitaus größte Teil der laufenden Betreuung geschieht per Fernwartung, und das hat einen nüchternen Grund: Die meisten Störungen — ein Update, das hängen bleibt, ein Postfach, das nichts mehr abholt, ein Drucker, den plötzlich niemand mehr findet — sind aus der Ferne in Minuten behoben, während eine Anfahrt einen halben Tag kostet, den am Ende der Betrieb bezahlt.",
+        "arbeit_p2": "Vor Ort wird gearbeitet, wo es ohne Hände nicht geht: beim Netzwerk und der Verkabelung, beim Aufbau von Technik, bei Hardware, die jemand anfassen und anschließen muss. Beides gehört zusammen, und beides kommt aus einer Hand — es gibt keinen zweiten Dienstleister, an den weitergereicht wird, wenn eine Aufgabe die Grenze zwischen Fernwartung und Vor-Ort-Arbeit überschreitet.",
+        "arbeit_1": "Ein fester Ansprechpartner statt wechselnder Bearbeiter",
+        "arbeit_2": "Antwort auf jede Anfrage innerhalb von 24 Stunden",
+        "arbeit_3": "Fernwartung in ganz Österreich und Deutschland",
+        "arbeit_4": "Vor-Ort-Einsätze im Einzugsgebiet Oberösterreich und Salzburg",
+        "standbein_h": "Drei Standbeine",
+        "standbein_p": "WVM-IT steht auf drei Beinen, und die Reihenfolge sagt etwas über ihr Gewicht. Das Kerngeschäft ist die laufende EDV- und IT-Betreuung; die beiden anderen kommen dazu, weil dieselben Betriebe sie brauchen und weil es einfacher ist, sie bei einem Ansprechpartner zu lassen, als sie auf drei zu verteilen.",
+        "standbein_1": "EDV- und IT-Betreuung: Arbeitsplätze, Server, Netzwerk und WLAN, E-Mail, Firewall und VPN, Datensicherung, Microsoft 365 — laufend betreut und überwacht.",
+        "standbein_2": "Digitales: Webseiten und Online-Shops, Hosting, Suchmaschinenoptimierung, Google Ads sowie KI-Automatisierung für wiederkehrende Abläufe.",
+        "standbein_3": "Technik vor Ort: Smarthome und Gebäudeautomation mit Loxone und KNX, dazu Konferenz-, Video-, Ton- und Veranstaltungstechnik.",
+        "gebiet_h": "Wo vor Ort gearbeitet wird",
+        "gebiet_p": "Für Arbeiten, die jemanden vor Ort brauchen, reicht das Einzugsgebiet von Vöcklabruck über die Attersee-Region, Gmunden und Bad Ischl bis nach Wels, Linz und Salzburg. Für alles andere spielt die Entfernung keine Rolle: Per Fernwartung ist ein Betrieb in Norddeutschland genauso schnell erreicht wie einer im Nachbarort. Zu jedem dieser Orte gibt es eine eigene Seite mit den Einzelheiten.",
+        "schluss_h": "Was auf dieser Seite bewusst fehlt",
+        "schluss_t": "Hier stehen keine Auszeichnungen, keine Zertifikate, keine Kundenzahlen und keine Sternebewertungen. Nicht aus Zurückhaltung, sondern weil sie sich nicht belegen lassen — und eine Zahl, die niemand nachprüfen kann, ist keine Auskunft, sondern Dekoration. Was belegbar ist, steht in der Anbieterkennzeichnung, in den Referenzen und in den Preisen, und zwar vollständig.",
+    },
     "recht": {
         "impressum_titel": "Impressum | WVM-IT",
         "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT.",

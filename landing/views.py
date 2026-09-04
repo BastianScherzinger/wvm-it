@@ -1831,6 +1831,9 @@ def _seiten_pfade():
              ("/leistungen/", "0.9", "monthly", True),
              ("/kosten/", "0.9", "monthly", True),
              ("/referenzen/", "0.6", "monthly", True),
+             # Ueber uns (Schritt 33): dieselbe Prioritaet wie die Referenzen —
+             # beide sind Vertrauensseiten, keine Verkaufsseiten.
+             ("/ueber-uns/", "0.6", "monthly", True),
              ("/kontakt/", "0.7", "yearly", True),
              ("/angebot/", "0.8", "monthly", True)]
     pfade += [(f"/leistungen/{l['slug']}/", l["prio"], "monthly", True)
@@ -1890,6 +1893,7 @@ _STAND_SEITEN = {
     "/kosten/": "2026-08-29",             # templates/kosten.html, 02d8c8a
     "/kosten/rechner/": "2026-08-29",     # templates/rechner.html, 02d8c8a
     "/referenzen/": "2026-08-28",         # templates/referenzen.html, 47a188f
+    "/ueber-uns/": "2026-09-04",          # landing/i18n/*.py, Schritt 33 (neu)
     "/kontakt/": "2026-08-28",            # templates/kontakt.html, 47a188f
     "/angebot/": "2026-08-29",            # templates/angebot.html, 02d8c8a
     "/branchen/": "2026-08-29",           # templates/branchen.html, 02d8c8a
@@ -2028,7 +2032,7 @@ _HUB_META = {
 
 
 def _webpage(base, pfad, lang, titel, beschreibung, bild="", *,
-             speakable=False, autor=False, datum=""):
+             speakable=False, autor=False, datum="", typ="WebPage", haupt=""):
     """Der `WebPage`-Knoten einer einzelnen Seite (Verbesserungslauf 13, Schritt 27).
 
     Bis hierher kam `WebPage` im Graphen nur als Verweisziel vor
@@ -2044,8 +2048,13 @@ def _webpage(base, pfad, lang, titel, beschreibung, bild="", *,
     auseinanderlaufen — genau dagegen prueft
     `test_schema.WebPageKnotenTest.test_name_und_titel_sind_dasselbe` jede der
     158 Adressen."""
+    # `typ` ist im Regelfall `WebPage`. Schema.org kennt darunter genauere
+    # Unterarten; benutzt wird bisher genau eine: `AboutPage` fuer /ueber-uns/
+    # (Schritt 33). Ein genauerer Typ ist nur dort richtig, wo er auch stimmt —
+    # eine Leistungsseite als `AboutPage` auszugeben waere eine falsche Angabe,
+    # und eine falsche ist schlechter als die allgemeine.
     knoten = {
-        "@type": "WebPage",
+        "@type": typ,
         "@id": f"{base}{pfad}#seite",
         "url": f"{base}{pfad}",
         "name": titel,
@@ -2055,6 +2064,12 @@ def _webpage(base, pfad, lang, titel, beschreibung, bild="", *,
     }
     if beschreibung:
         knoten["description"] = beschreibung
+    # `mainEntity` sagt, worum es auf dieser Seite in erster Linie geht. Auf
+    # /ueber-uns/ ist das der Inhaber — und damit zeigt der `Person`-Knoten,
+    # den der Graph seit jeher fuehrt, endlich auf eine Adresse, an der ueber
+    # diese Person auch wirklich etwas steht.
+    if haupt:
+        knoten["mainEntity"] = {"@id": haupt}
     # Nur dort, wo die Seite wirklich ein Bild hat: Ein `primaryImageOfPage` auf
     # einer Seite ohne Bild ist eine Angabe, die sich am HTML widerlegen laesst.
     if bild:
@@ -2103,8 +2118,8 @@ def _webpage(base, pfad, lang, titel, beschreibung, bild="", *,
 
 
 def _seiten_schema(c, lang, *, pfad="", titel="", beschreibung="", bild="",
-                   speakable=False, autor=False, datum="",
-                   breadcrumb=None, service=None, faq=None, faq_id=""):
+                   speakable=False, autor=False, datum="", typ="WebPage",
+                   haupt="", breadcrumb=None, service=None, faq=None, faq_id=""):
     """@graph einer Unterseite: immer der Betrieb und die Website, dazu optional
     Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben Entitaet
     (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8).
@@ -2118,7 +2133,8 @@ def _seiten_schema(c, lang, *, pfad="", titel="", beschreibung="", bild="",
     graph = [k for k in graph if k.get("@type") != "FAQPage"]
     if pfad:
         graph.append(_webpage(base, pfad, lang, titel, beschreibung, bild,
-                              speakable=speakable, autor=autor, datum=datum))
+                              speakable=speakable, autor=autor, datum=datum,
+                              typ=typ, haupt=haupt))
     for zusatz in (breadcrumb, service):
         if zusatz:
             graph.append(zusatz)
@@ -3070,6 +3086,44 @@ _RECHTSSEITEN = {
     "barrierefreiheit": ("barrierefreiheit", "barrierefreiheit",
                          "barrierefreiheit_ph"),
 }
+
+
+def ueber_uns(request):
+    """/ueber-uns/ — wer hinter WVM-IT steht (Schritt 33).
+
+    Von acht Pflicht-Seitentypen fehlten zwei; diese ist der stärkere der
+    beiden. Der `Person`-Knoten (`#inhaber`) steht seit jeher im Graphen, hatte
+    aber keine Adresse, auf die er zeigen konnte — eine benannte Person ohne
+    Seite ist ein E-E-A-T-Signal, das sich nirgends einlösen lässt. Deshalb
+    trägt diese Seite `AboutPage` mit `mainEntity` auf ebendiesen Knoten.
+
+    Zur Wahrheit dieser Seite: Verwendet wird ausschliesslich, was belegt im
+    Projekt steht — Name und Rolle aus `content.json`, das vorhandene Foto, der
+    Sitz, die Gewerbebehörde aus der Anbieterkennzeichnung, das Einzugsgebiet
+    aus `landing/regionen.py`, die drei Sprachen aus dem Bestand der Seite
+    selbst. Nicht verwendet: Gründungsjahr (`content.json` → `seit_jahr` ist
+    leer), Partnerstatus (leer), Zertifikate (der Betrieb hat keine),
+    Kundenzahlen, Mitarbeiterzahl, Bewertungen. Eine Über-uns-Seite ist die
+    Stelle, an der sich so etwas am leichtesten einschleicht."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    us = pack.get("ueber", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    return render(request, "ueber_uns.html", {
+        "c": c, "us": us,
+        # Dieselben sieben Orte, aus denen auch die Regionsseiten entstehen —
+        # das Einzugsgebiet wird nicht zweimal aufgeschrieben.
+        "regionen_liste": [_region_daten(r, lang) for r in regionen.REGIONEN],
+        "structured_data": _seiten_schema(
+            c, lang, pfad=reverse("ueber_uns"), titel=us.get("titel", ""),
+            beschreibung=us.get("desc", ""), bild=c.get("founder_image", ""),
+            # Der Antwortabsatz steht auf dieser Seite (templates/antwort.html),
+            # deshalb darf `speakable` es behaupten.
+            speakable=True, typ="AboutPage", haupt=f"{base}/#inhaber",
+            breadcrumb=_breadcrumb(base, [(us.get("nav", ""),
+                                           reverse("ueber_uns"))], lang)),
+    })
 
 
 def _rechtsseite(request, art):

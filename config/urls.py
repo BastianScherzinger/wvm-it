@@ -92,6 +92,10 @@ urlpatterns += i18n_patterns(
     # taucht aber weder in Sitemap noch in IndexNow auf und traegt `noindex`.
     path("suche/", views.suche, name="suche"),
     path("referenzen/", views.referenzen, name="referenzen"),
+    # ── Ueber uns (Verbesserungslauf 13, Schritt 33) ────────────────────────
+    # Derselbe Slug in allen drei Sprachen, wie im ganzen Projekt: Das haelt
+    # die hreflang-Zuordnung eindeutig und spart uebersetzte URL-Muster.
+    path("ueber-uns/", views.ueber_uns, name="ueber_uns"),
     path("kontakt/", views.kontakt, name="kontakt"),
     path("impressum/", views.impressum, name="impressum"),
     path("datenschutz/", views.datenschutz, name="datenschutz"),

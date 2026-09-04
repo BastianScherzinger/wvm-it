@@ -67,10 +67,11 @@ class AlleSeitenTest(SimpleTestCase):
         `_seiten_pfade()` heraus, prüft er einfach weniger und bleibt grün —
         während vierzehn Glossarseiten aus Sitemap und IndexNow verschwinden.
         Deshalb steht die Zahl hier ausgeschrieben: 76 Basis-Pfade (CLAUDE.md),
-        seit Schritt 32 dazu die Erklärung zur Barrierefreiheit — also 77."""
+        seit Schritt 32 die Erklärung zur Barrierefreiheit und seit Schritt 33
+        die Über-uns-Seite — also 78."""
         pfade = _seiten_pfade()
-        self.assertEqual(len(pfade), 77,
-                         f"{len(pfade)} Basis-Pfade statt 77 — ein Silo fehlt oder "
+        self.assertEqual(len(pfade), 78,
+                         f"{len(pfade)} Basis-Pfade statt 78 — ein Silo fehlt oder "
                          f"ist dazugekommen")
         self.assertEqual(len(set(p for p, *_ in pfade)), len(pfade),
                          "ein Pfad steht doppelt in _seiten_pfade()")
@@ -145,6 +146,51 @@ class PflichtseitenTest(SimpleTestCase):
                           f"{adresse}: der Datenschutztext aus content.json fehlt")
             self.assertIn("DSGVO", html, f"{adresse}: kein Bezug auf die DSGVO")
 
+
+    def test_ueber_uns_steht_in_allen_sprachen_und_nennt_die_person(self):
+        """Verhindert eine Über-uns-Seite, die niemanden benennt.
+
+        Der ganze Zweck dieser Seite ist das E-E-A-T-Signal einer benannten
+        Person: Der `Person`-Knoten steht seit jeher im Graphen und hatte bis
+        Schritt 33 keine Adresse, auf die er zeigen konnte. Fällt der Name aus
+        dem Template — weil jemand `c.inhaber_name` durch einen Sprachschlüssel
+        ersetzt, den es nur auf Deutsch gibt —, bleibt eine Seite mit 200 und
+        ohne Aussage."""
+        name = (self.inhalt.get("inhaber_name") or "").strip()
+        self.assertTrue(name, "content.json führt keinen Inhaber")
+        for lang in i18n.LANGS:
+            adresse = i18n.add_prefix(lang, "/ueber-uns/")
+            antwort = self.client_https.get(adresse)
+            self.assertEqual(antwort.status_code, 200, f"{adresse} antwortet nicht")
+            html = antwort.content.decode("utf-8")
+            self.assertEqual(len(re.findall(r"<h1[\s>]", html)), 1,
+                             f"{adresse} hat nicht genau ein <h1>")
+            self.assertIn(name, html, f"{adresse}: der Inhaber wird nicht genannt")
+            self.assertIn(self.inhalt["adresse"], html,
+                          f"{adresse}: der Sitz fehlt")
+
+    def test_ueber_uns_hat_in_jeder_sprache_ueber_450_eigene_woerter(self):
+        """Verhindert die zwölfte dünne Seite.
+
+        Der Bestand hat bereits 55 Seiten unter dem Zielumfang ihrer Seitenart.
+        Eine Über-uns-Seite aus drei Sätzen verschlimmert genau diesen Befund,
+        statt ihm zu helfen — und sie wäre als Vertrauensseite wertlos. Gezählt
+        wird der Textblock im Sprachpaket, nicht die gerenderte Seite: Kopf,
+        Navigation und Fussbereich sind auf jeder Seite dieselben und würden
+        jede noch so dünne Seite über die Schwelle heben.
+
+        Gegen `_RAW` statt gegen `PACKS`, wie in `test_sprachpakete`: EN und RO
+        erben fehlende Schlüssel von DE, und ein geerbter deutscher Absatz wäre
+        auf einer englischen Seite kein eigener Text."""
+        from landing.i18n import _RAW
+        for lang in i18n.LANGS:
+            block = _RAW[lang].get("ueber", {})
+            self.assertTrue(block, f"{lang}.py hat keinen Block 'ueber'")
+            woerter = sum(len(re.findall(r"[^\s<>]+", str(w)))
+                          for w in block.values())
+            self.assertGreater(woerter, 450,
+                               f"{lang}: nur {woerter} eigene Wörter auf "
+                               f"/ueber-uns/ — das ist eine dünne Seite")
 
     def test_barrierefreiheitserklaerung_steht_in_allen_sprachen(self):
         """Verhindert: eine Rechtsseite, die es nur als Route gibt.
