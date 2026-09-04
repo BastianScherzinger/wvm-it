@@ -1104,8 +1104,23 @@ def newsletter_confirm(request):
     token = (request.GET.get("t") or "").strip()
     ok = False
     anfrage_token = name = ""
+    # Der try umschliesst NUR die Token-Prüfung. Vorher lag der gesamte Ablauf
+    # darin, Mailversand eingeschlossen — und dessen Fehler landeten in
+    # `ok = False`, also in der Meldung „Link ungültig". Das ist schlicht falsch:
+    # Der Link war in Ordnung, die Mail ging nicht hinaus. Wer daraufhin einen
+    # neuen Bestätigungslink anfordert, läuft in denselben Fehler.
     try:
         data = signing.loads(token, salt=_NEWSLETTER_SALT, max_age=_NEWSLETTER_MAXAGE)
+        # Der Rückfall auf ein leeres dict hält den bisherigen Ablauf für einen
+        # Nutzinhalt, der kein dict ist: Er kann aus einer gültigen Signatur
+        # dieses Projekts nicht entstehen, führte bisher aber über data.get in
+        # denselben except-Zweig statt in eine 500 — und dabei bleibt es.
+        gueltig = isinstance(data, dict)
+    except Exception:  # BadSignature, SignatureExpired, kaputtes Token
+        # Ein alter oder verstümmelter Link ist der Regelfall, deshalb info.
+        logger.info("Newsletter-Bestätigung mit ungültigem oder abgelaufenem Token")
+        data, gueltig = {}, False
+    if gueltig:
         email = (data.get("e") or "").strip()
         wunsch = (data.get("w") or "").strip()
         name = (data.get("n") or "").strip()
@@ -1128,19 +1143,21 @@ def newsletter_confirm(request):
                                  "Willkommensmail kann dadurch doppelt gehen", email)
                 already = False
             if not already:
-                _newsletter_deliver(email, wunsch, c, name=name, lang=tlang)
-                _subscriber_confirm(email, wunsch, _client_ip(request))
+                # Eigenes except für den Versand: Er darf die Bestätigung nicht
+                # mehr entwerten. Der Besucher bekommt seinen Detail-Bogen, und
+                # die verlorene Mail steht als Fehler im Protokoll, statt sich
+                # als Link-Problem zu tarnen.
+                try:
+                    _newsletter_deliver(email, wunsch, c, name=name, lang=tlang)
+                    _subscriber_confirm(email, wunsch, _client_ip(request))
+                except Exception:
+                    logger.error("Willkommensmail an %s nicht ausgeliefert — die "
+                                 "Bestätigung selbst gilt trotzdem", email,
+                                 exc_info=True)
             # signiertes Token trägt E-Mail/Name/erste Angaben/Sprache sicher zum Detail-Bogen
             anfrage_token = signing.dumps({"e": email, "n": name, "w": wunsch, "l": tlang},
                                           salt=_ANFRAGE_SALT, compress=True)
             ok = True
-    except Exception:  # BadSignature, SignatureExpired, kaputtes Token
-        # Der Block umschliesst auch den Mailversand: Ein Versandfehler sieht
-        # für den Besucher aus wie „Link ungültig". Am Ablauf ändert sich
-        # nichts, aber im Protokoll steht jetzt, welcher der beiden Fälle es
-        # war — sonst ist die Beschwerde „Ihr Link geht nicht" nicht klärbar.
-        logger.warning("Newsletter-Bestätigung fehlgeschlagen", exc_info=True)
-        ok = False
     return render(request, "newsletter_confirm.html", {
         "c": c, "ok": ok, "code": _newsletter_code(),
         "anfrage_token": anfrage_token, "name": name,
