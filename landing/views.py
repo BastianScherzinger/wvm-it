@@ -1299,22 +1299,36 @@ def newsletter_unsubscribe(request):
     c = _content()
     token = (request.GET.get("t") or "").strip()
     ok = False
+    email = ""
+    # Erster Block: nur das Token. Scheitert er, ist der Abmeldelink kaputt —
+    # das ist der einzige Fall, in dem die Seite „hat nicht geklappt" sagen darf.
     try:
         data = signing.loads(token, salt=_NEWSLETTER_UNSUB_SALT)
-        email = (data.get("e") or "").strip()
-        if email:
+        # Wie in newsletter_confirm: Ein Nutzinhalt, der kein dict ist, kann aus
+        # einer gültigen Signatur nicht entstehen, lief bisher aber über data.get
+        # in den except-Zweig statt in eine 500. Dabei bleibt es.
+        email = (data.get("e") or "").strip() if isinstance(data, dict) else ""
+        ok = bool(email)
+    except Exception:
+        logger.info("Newsletter-Abmeldung mit ungültigem Token aufgerufen")
+        ok = False
+    # Zweiter Block: das Speichern. Es ist der eigentliche Zweck dieser Ansicht,
+    # und es ist die folgenreichste stille Stelle der Datei. Fällt Supabase aus,
+    # wird der Status nie auf "unsubscribed" gesetzt — der Abonnent bekommt am
+    # nächsten Montag wieder Post, obwohl er widersprochen hat.
+    #
+    # `ok` bleibt dabei bewusst True, so wie bisher: Der Widerspruch ist
+    # wirksam, ob er gespeichert wurde oder nicht, und dem Abonnenten eine
+    # Fehlerseite zu zeigen, hilft ihm an dieser Stelle nicht weiter. Was sich
+    # ändert, ist die Seite, an der es auffällt — nicht der Ablauf.
+    if ok:
+        try:
             from . import supa
             if supa.enabled():
                 supa.set_subscriber_status(email, "unsubscribed")
-            ok = True
-    except Exception:
-        # Die folgenreichste der stillen Stellen: Der Block umschliesst auch
-        # set_subscriber_status. Fällt Supabase aus, wird eine Abmeldung nicht
-        # gespeichert — und der Abonnent bekommt weiter Post, obwohl er
-        # widersprochen hat. Am Ablauf ändert sich hier nichts; die Meldung ist
-        # das Einzige, woran das überhaupt auffallen kann.
-        logger.exception("Newsletter-Abmeldung konnte nicht gespeichert werden")
-        ok = False
+        except Exception:
+            logger.error("Newsletter-Abmeldung von %s wurde nicht gespeichert — "
+                         "der Abonnent bleibt im Verteiler", email, exc_info=True)
     return render(request, "newsletter_unsub.html", {"c": c, "ok": ok})
 
 

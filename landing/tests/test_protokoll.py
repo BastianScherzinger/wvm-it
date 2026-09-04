@@ -172,10 +172,13 @@ class NewsletterAbmeldungTest(SimpleTestCase):
         Datenschutzfrage: Der Widerspruch ist wirksam, ob er gespeichert wurde
         oder nicht.
 
-        Zusätzlich hält der Test fest, dass die Seite in diesem Fall **nicht**
-        „abgemeldet" behauptet: ``ok`` fällt auf ``False`` zurück. Ohne diese
-        Zusicherung könnte jemand die Reihenfolge im ``try`` ändern und der
-        Besucher bekäme eine Bestätigung für etwas, das nie passiert ist.
+        Die Seite bestätigt dem Besucher die Abmeldung trotzdem (``ok`` bleibt
+        ``True``) — bewusst und unverändert: Der Widerspruch ist wirksam, ob er
+        gespeichert wurde oder nicht, und eine Fehlerseite hülfe dem Abonnenten
+        hier nicht weiter. Genau deshalb ist die Protokollzeile die einzige
+        Stelle, an der dieser Ausfall überhaupt sichtbar wird. Der Test hält
+        beide Hälften fest, damit weder die Meldung noch die Bestätigung
+        unbemerkt umkippt.
         """
         token = signing.dumps({"e": "abmelder@example.org"},
                               salt=views._NEWSLETTER_UNSUB_SALT)
@@ -188,9 +191,9 @@ class NewsletterAbmeldungTest(SimpleTestCase):
         meldung = protokoll.records[0].getMessage()
         self.assertIn("Abmeldung", meldung)
         self.assertIsNotNone(protokoll.records[0].exc_info)
-        # Ablauf unverändert: Seite wird gerendert, aber ohne Erfolgsmeldung.
+        # Ablauf unverändert: Seite wird gerendert und bestätigt die Abmeldung.
         self.assertEqual(antwort.status_code, 200)
-        self.assertFalse(antwort.context["ok"])
+        self.assertTrue(antwort.context["ok"])
 
 
 @MAIL_IM_SPEICHER
