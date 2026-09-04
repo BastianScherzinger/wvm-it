@@ -24,6 +24,7 @@ from landing.views import _ROBOTS_DISALLOW, _content, _seiten_pfade, _stand_fuer
 
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 XHTML_NS = "{http://www.w3.org/1999/xhtml}"
+IMAGE_NS = "{http://www.google.com/schemas/sitemap-image/1.1}"
 
 
 def alle_sitemap_eintraege(client):
@@ -295,6 +296,105 @@ class SitemapIndexTest(SimpleTestCase):
         self.assertEqual(sitemaps._segment_fuer("/kosten/rechner/"), "werkzeuge")
         self.assertEqual(sitemaps._segment_fuer("/kosten/"), "kern")
         self.assertEqual(sitemaps._segment_fuer("/"), "kern")
+
+
+class SitemapBilderTest(SimpleTestCase):
+    """Die Bild-Erweiterung (Schritt 23) — angemeldet wird nur, was auch dasteht.
+
+    Eine Bild-Sitemap voller 404 wäre schlimmer als keine: Sie meldet Adressen
+    zur Indexierung an, die es nicht gibt, und das kostet dasselbe Vertrauen wie
+    eine Seiten-Sitemap voller 404. Deshalb ruft die Prüfung jedes `<image:loc>`
+    wirklich ab."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client_https = seiten_client()
+        cls.basis = (_content().get("wvm_url") or "").rstrip("/")
+        cls.bilder = {}   # Adresse -> Liste der <image:image>-Elemente
+        for eintrag in alle_sitemap_eintraege(cls.client_https):
+            cls.bilder[eintrag.find(f"{SITEMAP_NS}loc").text] = \
+                eintrag.findall(f"{IMAGE_NS}image")
+
+    def test_jedes_gemeldete_bild_ist_abrufbar(self):
+        """Verhindert: eine Bild-Sitemap, die auf Dateien zeigt, die es nicht gibt.
+
+        Der typische Fall ist ein umbenanntes oder gelöschtes Bild: Das Template
+        zieht nach, die Sitemap nicht. Ab da meldet die Seite ein Bild zur
+        Indexierung an, das 404 liefert — mit demselben Vertrauensverlust wie
+        eine 404-Adresse in der Seiten-Sitemap."""
+        kaputt = []
+        for bilder in self.bilder.values():
+            for bild in bilder:
+                adresse = bild.find(f"{IMAGE_NS}loc").text
+                pfad = adresse[len(self.basis):]
+                code = self.client_https.get(pfad).status_code
+                if code != 200:
+                    kaputt.append(f"{adresse} -> {code}")
+        self.assertEqual(kaputt, [], f"nicht abrufbare Bilder: {kaputt}")
+
+    def test_bilder_stehen_nur_auf_den_seiten_die_sie_zeigen(self):
+        """Verhindert: dasselbe Bild pauschal an alle 158 Adressen gehängt.
+
+        Google erwartet in der Bild-Erweiterung die Bilder **dieser** Seite. Wer
+        Logo und Favicon an jeden Eintrag hängt, meldet 158-mal dasselbe an und
+        entwertet die Angabe für die Bilder, um die es geht. Angemeldet sind das
+        Hero-Bild (Start, alle drei Sprachen), das Inhaberfoto (deutsche
+        Startseite) und das Referenzbild (Referenzen, alle drei Sprachen)."""
+        mit_bildern = {a for a, b in self.bilder.items() if b}
+        erwartet = {f"{self.basis}/", f"{self.basis}/en/", f"{self.basis}/ro/",
+                    f"{self.basis}/referenzen/", f"{self.basis}/en/referenzen/",
+                    f"{self.basis}/ro/referenzen/"}
+        self.assertEqual(mit_bildern, erwartet,
+                         f"zu viel: {sorted(mit_bildern - erwartet)}, "
+                         f"zu wenig: {sorted(erwartet - mit_bildern)}")
+
+    def test_kein_logo_und_kein_favicon_in_der_bildsitemap(self):
+        """Verhindert, dass Ausstattung als Inhalt angemeldet wird.
+
+        Logo und Favicon stehen in jeder Kopfzeile und tragen im Template
+        bewusst ein leeres `alt` mit `aria-hidden`. Etwas, das für einen
+        Screenreader ausdrücklich kein Inhalt ist, gehört auch nicht in die
+        Bildsuche."""
+        alle = [b.find(f"{IMAGE_NS}loc").text
+                for bilder in self.bilder.values() for b in bilder]
+        for adresse in alle:
+            self.assertNotIn("wvm_mark", adresse, f"Logo in der Bild-Sitemap: {adresse}")
+            self.assertNotIn("favicon", adresse, f"Favicon in der Bild-Sitemap: {adresse}")
+
+    def test_jedes_bild_traegt_titel_und_bildunterschrift(self):
+        """Verhindert einen `<image:image>`-Block ohne jede Beschreibung.
+
+        Ein Bildeintrag ohne Titel und Unterschrift sagt der Bildsuche nichts
+        über den Inhalt — dann kann sie ihn auch nicht zu einer Suchanfrage
+        zuordnen, und die Anmeldung war umsonst."""
+        for adresse, bilder in self.bilder.items():
+            for bild in bilder:
+                for feld in ("title", "caption"):
+                    wert = bild.find(f"{IMAGE_NS}{feld}")
+                    self.assertIsNotNone(wert, f"{adresse}: Bild ohne <image:{feld}>")
+                    self.assertTrue((wert.text or "").strip(),
+                                    f"{adresse}: <image:{feld}> ist leer")
+
+    def test_bildtext_ist_der_alt_text_der_seite(self):
+        """Verhindert eine Bildunterschrift, die etwas anderes sagt als die Seite.
+
+        Das ist derselbe Fehler wie ein Schema, das dem sichtbaren Text
+        widerspricht — nur in der Bildsuche. Geprüft wird gegen das Sprachpaket,
+        aus dem auch das Template seinen `alt`-Text nimmt: Wer den einen ändert
+        und den anderen vergisst, wird hier rot."""
+        for lang, pfad in (("de", "/"), ("en", "/en/"), ("ro", "/ro/")):
+            erwartet = i18n.get_pack(lang)["hero"]["robot_alt"]
+            texte = [b.find(f"{IMAGE_NS}title").text
+                     for b in self.bilder[self.basis + pfad]]
+            self.assertIn(erwartet, texte,
+                          f"{pfad}: Hero-Bildtitel weicht vom alt-Text ab: {texte}")
+        for lang, pfad in (("de", "/referenzen/"), ("en", "/en/referenzen/"),
+                           ("ro", "/ro/referenzen/")):
+            erwartet = i18n.get_pack(lang)["case"]["alt"]
+            texte = [b.find(f"{IMAGE_NS}title").text
+                     for b in self.bilder[self.basis + pfad]]
+            self.assertEqual(texte, [erwartet], f"{pfad}: Referenzbild-Titel weicht ab")
 
 
 class LastmodTest(SimpleTestCase):

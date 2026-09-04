@@ -35,6 +35,12 @@ und übliche Weg. Es entfällt keine URL, also braucht es auch keine 301.
 """
 from landing import i18n
 
+# Namensraum der Bild-Erweiterung (Schritt 23). Ohne ihn ist jedes `image:`-
+# Präfix im Dokument ungebunden und macht die ganze Sitemap ungültig — welche
+# Seite welches Bild führt, steht dagegen in `views._sitemap_bilder()`, denn
+# dafür braucht es content.json und die Sprachpakete.
+NS_IMAGE = "http://www.google.com/schemas/sitemap-image/1.1"
+
 # Silo-Präfixe in der Reihenfolge, in der geprüft wird. `/kosten/rechner/` fängt
 # mit `/kosten/` an und gehört trotzdem zu den Werkzeugen — deshalb entscheiden
 # die festen Zuordnungen unten VOR den Präfixen.

@@ -20,6 +20,7 @@ from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import timezone, translation
+from django.utils.html import escape
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
@@ -3329,6 +3330,61 @@ def _sitemap_basis(request):
     return (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
 
 
+def _sitemap_bilder(pfad, lang):
+    """Die Bilder, die auf dieser Adresse wirklich stehen — als (Adresse, Text).
+
+    Die Bild-Erweiterung der Sitemap ist der einzige Weg, ein Bild gezielt zur
+    Indexierung anzumelden. Sie ist aber keine Bilderliste des Projekts: Google
+    erwartet die Bilder, die auf **dieser** Seite stehen. Deshalb wird hier
+    nichts pauschal an jede Adresse gehängt.
+
+    Nicht eingetragen werden Logo und Favicon. Sie stehen zwar in jeder
+    Kopfzeile, sind aber Ausstattung, kein Inhalt — sie in der Bildsuche
+    anzumelden bringt niemandem etwas und verwässert die Angabe für die drei
+    Bilder, um die es geht.
+
+    Der Text wird **nicht neu erfunden**: Er ist wörtlich der `alt`-Text, der im
+    Template an demselben Bild steht. Eine Bildunterschrift, die etwas anderes
+    sagt als die Seite, ist derselbe Fehler wie ein Schema, das etwas anderes
+    behauptet als der sichtbare Text."""
+    c = _content()
+    basis = (c.get("wvm_url") or "").rstrip("/")
+    pack = i18n.get_pack(lang)
+    bilder = []
+    if pfad == "/":
+        # Das Hero-Bild steht in allen drei Sprachfassungen, der Alt-Text
+        # ebenfalls je Sprache (templates/index.html, `t.hero.robot_alt`).
+        robot = c.get("robot_image") or ""
+        robot_alt = (pack.get("hero", {}) or {}).get("robot_alt", "")
+        if robot and robot_alt:
+            bilder.append((basis + robot, robot_alt))
+        # Das Inhaberfoto traegt im Template einen deutschen Alt-Text
+        # ("… , Inhaber von …"), der nicht uebersetzt wird. Es deshalb nur an
+        # der deutschen Adresse anmelden; eine deutsche Bildunterschrift unter
+        # /en/ waere eine Angabe, die zur Seite nicht passt.
+        foto = c.get("founder_image") or ""
+        name = c.get("inhaber_name") or ""
+        if lang == "de" and foto and name:
+            bilder.append((basis + foto, f"{name}, Inhaber von {c.get('site_name', '')}"))
+    elif pfad == "/referenzen/" and REFERENZEN:
+        # Genau das Bild, das templates/referenzen.html zeigt, mit seinem
+        # Alt-Text aus dem Sprachpaket (`t.case.alt`).
+        alt = (pack.get("case", {}) or {}).get("alt", "")
+        if alt:
+            bilder.append((f"{basis}{settings.STATIC_URL}{REFERENZEN[0]['bild']}", alt))
+    return bilder
+
+
+def _sitemap_bild_xml(pfad, lang):
+    """Die `<image:image>`-Elemente einer Adresse als Zeichenkette."""
+    return "".join(
+        f"<image:image><image:loc>{adresse}</image:loc>"
+        f"<image:title>{escape(text)}</image:title>"
+        f"<image:caption>{escape(text)}</image:caption></image:image>"
+        for adresse, text in _sitemap_bilder(pfad, lang)
+    )
+
+
 def _sitemap_eintraege(segment):
     """Die `<url>`-Elemente eines Segments als Zeichenkette.
 
@@ -3349,7 +3405,8 @@ def _sitemap_eintraege(segment):
             # gibt, ist schlimmer als gar keiner.
             items.append(
                 f"<url><loc>{segment.location(pfad)}</loc>{lastmod}"
-                f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
+                f"<changefreq>{cf}</changefreq><priority>{pr}</priority>"
+                f"{_sitemap_bild_xml(pfad, 'de')}</url>"
             )
             continue
         alts = "".join(
@@ -3361,7 +3418,8 @@ def _sitemap_eintraege(segment):
         for lang in ("de", "en", "ro"):
             items.append(
                 f"<url><loc>{segment.location(pfad, lang)}</loc>{alts}{lastmod}"
-                f"<changefreq>{cf}</changefreq><priority>{pr}</priority></url>"
+                f"<changefreq>{cf}</changefreq><priority>{pr}</priority>"
+                f"{_sitemap_bild_xml(pfad, lang)}</url>"
             )
     return "".join(items)
 
@@ -3403,7 +3461,8 @@ def sitemap_segment_xml(request, name):
     segment = klasse(_sitemap_basis(request))
     xml = ('<?xml version="1.0" encoding="UTF-8"?>'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-           'xmlns:xhtml="http://www.w3.org/1999/xhtml">'
+           'xmlns:xhtml="http://www.w3.org/1999/xhtml" '
+           f'xmlns:image="{sitemaps.NS_IMAGE}">'
            + _sitemap_eintraege(segment) + "</urlset>")
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
