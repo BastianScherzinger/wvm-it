@@ -62,6 +62,9 @@ python manage.py pruefe_seite      # Sprachpakete, Preise, Technik, Formulare
 python manage.py indexnow          # neue und geänderte URLs zum Crawlen melden
 ```
 
-Kommen später Leistungsseiten dazu (Block S-A), gehört die Liste in
-`landing/management/commands/indexnow.py::PFADE` erweitert — oder besser, sie wird dann
-gemeinsam mit der Sitemap aus einer Datenquelle erzeugt.
+Neue Seiten müssen hier **nicht** nachgetragen werden. `indexnow` liest dieselbe
+Quelle wie die Sitemap: `landing/views.py::_seiten_pfade()`. Wer eine Seite anlegt,
+trägt sie dort ein — dann melden Sitemap, IndexNow, `pruefe_seite` und die Testsuite
+sie gemeinsam. Eine eigene Pfadliste im Befehl gäbe es früher; sie ist bewusst
+entfallen, weil eine zweite Pfadquelle genau den Fehler erzeugt, den die Projektregel
+verbietet: IndexNow meldet Adressen, die in der Sitemap fehlen, und umgekehrt.

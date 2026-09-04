@@ -3030,8 +3030,13 @@ def kosten(request):
 # Referenzen: ausschliesslich Projekte, die es wirklich gibt und deren Kunden der
 # Nennung zugestimmt haben. Neue Eintraege brauchen beides (RELAUNCH-PLAN.md, E5).
 REFERENZEN = [
+    # `texte` nennt den Schluessel im Sprachpaket, unter dem Ueberschrift, Text,
+    # die drei Punkte, der Alt-Text und die Partnerzeile dieser Referenz stehen.
+    # Vorher stand im Template fest `t.case.*` — bei einer zweiten Referenz haette
+    # jede Karte denselben Text getragen und sich nur im Bild unterschieden. Der
+    # Fehler waere erst live aufgefallen, weil es genau eine Referenz gibt.
     {"slug": "ruempelwerk", "bild": "img/ref_ruempelwerk.webp",
-     "url": "https://www.ruempelwerk-mitteldeutschland.de/"},
+     "url": "https://www.ruempelwerk-mitteldeutschland.de/", "texte": "case"},
 ]
 REFERENZEN_NACH_SLUG = {r["slug"]: r for r in REFERENZEN}
 
@@ -3043,8 +3048,11 @@ def referenzen(request):
     pack = i18n.get_pack(lang)
     rs = pack.get("referenzen_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
+    # Jede Referenz bekommt ihr eigenes Textpaket mit — dieselbe Trennung wie bei
+    # Leistungen, Branchen und Regionen: Struktur in Python, Text in i18n.
+    faelle = [dict(r, t=pack.get(r["texte"], {})) for r in REFERENZEN]
     return render(request, "referenzen.html", {
-        "c": c, "rs": rs, "referenzen": REFERENZEN,
+        "c": c, "rs": rs, "referenzen": faelle,
         "structured_data": _seiten_schema(
             c, lang, pfad=reverse("referenzen"), titel=rs.get("titel", ""),
             beschreibung=rs.get("desc", ""),

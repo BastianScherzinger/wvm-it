@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% comment %}
 /referenzen/ — nur belegbare Projekte mit Einverständnis des Kunden.
-Die Falldaten stehen in views.REFERENZEN, die Texte im Sprachpaket unter `case`.
+Die Falldaten stehen in views.REFERENZEN; welches Textpaket eine Referenz trägt,
+sagt ihr Feld `texte` — die View hängt es als `r.t` an. Deshalb steht in dieser
+Schleife kein fester i18n-Schlüssel mehr: sonst trüge die zweite Referenz den
+Text der ersten.
 {% endcomment %}
 {% block titel %}{{ rs.titel|safe }}{% endblock %}
 {% block beschreibung %}{{ rs.desc|safe }}{% endblock %}
@@ -36,18 +39,18 @@ Die Falldaten stehen in views.REFERENZEN, die Texte im Sprachpaket unter `case`.
         deshalb nur ihren Eintrag in `views.REFERENZEN` und die drei Dateien.
         `.rf` ist unter 1080 px einspaltig (style.css:1668), darueber traegt die
         Medienspalte 1,05 von 2 Anteilen der 1132 px breiten Inhaltsbahn.
-        {% endcomment %}<img src="{% static r.bild %}" alt="{{ t.case.alt|safe }}" width="1280" height="529" loading="lazy" srcset="{% static r.bild|cut:'.webp'|add:'_480.webp' %} 480w, {% static r.bild|cut:'.webp'|add:'_960.webp' %} 960w, {% static r.bild %} 1280w" sizes="(max-width:1080px) calc(100vw - 48px), 565px">
+        {% endcomment %}<img src="{% static r.bild %}" alt="{{ r.t.alt|safe }}" width="1280" height="529" loading="lazy" srcset="{% static r.bild|cut:'.webp'|add:'_480.webp' %} 480w, {% static r.bild|cut:'.webp'|add:'_960.webp' %} 960w, {% static r.bild %} 1280w" sizes="(max-width:1080px) calc(100vw - 48px), 565px">
       </div>
       <div class="rf-copy">
-        <span class="eyebrow"><span class="dot"></span>{{ t.case.rolle|safe }}</span>
-        <h2 class="sp-h2">{{ t.case.h|safe }}</h2>
-        <p class="rf-text">{{ t.case.text|safe }}</p>
+        <span class="eyebrow"><span class="dot"></span>{{ r.t.rolle|safe }}</span>
+        <h2 class="sp-h2">{{ r.t.h|safe }}</h2>
+        <p class="rf-text">{{ r.t.text|safe }}</p>
         <ul class="sp-liste sp-liste-check">
-          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p1|safe }}</span></li>
-          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p2|safe }}</span></li>
-          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p3|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ r.t.p1|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ r.t.p2|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ r.t.p3|safe }}</span></li>
         </ul>
-        <p class="rf-partner">{{ t.case.partner|safe }}</p>
+        <p class="rf-partner">{{ r.t.partner|safe }}</p>
         <a class="btn btn-ghost" href="{{ r.url }}" target="_blank" rel="noopener">{{ rs.ansehen|safe }}</a>
       </div>
     </article>
