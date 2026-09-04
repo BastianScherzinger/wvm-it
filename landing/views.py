@@ -82,8 +82,13 @@ def _content() -> dict:
         loaded = json.loads(_CONTENT.read_text(encoding="utf-8"))
         if isinstance(loaded, dict):
             data.update(loaded)
-    except Exception:
-        pass
+    except (OSError, ValueError) as fehler:
+        # Fehlende oder kaputte content.json: Die Seite laeuft mit den
+        # Rueckfallwerten weiter — aber sie sagt es. Ohne diese Zeile stuenden
+        # Telefonnummer, Anschrift und Rechtstexte still auf Platzhaltern, und
+        # niemand haette einen Anhaltspunkt, warum.
+        print(f"[CONTENT] content.json nicht lesbar, nutze Rueckfallwerte: {fehler}",
+              flush=True)
     data["whatsapp"] = _whatsapp(data.get("telefon", ""))
     return data
 
@@ -845,15 +850,23 @@ def _limit_erreicht(request, bereich: str = "anfrage") -> bool:
                   flush=True)
             return True
         return False
-    except Exception:
-        return False  # Cache kaputt? Dann lieber durchlassen als Anfragen verlieren.
+    except Exception as fehler:
+        # Zwischenspeicher weg? Dann lieber durchlassen als echte Anfragen
+        # verlieren — aber nicht stillschweigend: Ohne Zaehler greift die
+        # Spam-Bremse nicht mehr, und das will man merken, bevor das Postfach
+        # volllaeuft.
+        print(f"[LIMIT] Zaehler nicht lesbar ({fehler}) — Bremse greift nicht.", flush=True)
+        return False
 
 
 def _honigtopf(request) -> bool:
     """True, wenn das unsichtbare Feld ausgefüllt ist — das tun nur automatische
     Absender. Für den Absender sieht die Antwort danach aus wie ein Erfolg; ein
     sichtbarer Fehler würde dem Skript nur verraten, wie es durchkommt."""
-    return bool((request.POST.get("hp") or "").strip())
+    # Beide Namen: `website` ist der neue, unverfaenglichere (siehe
+    # templates/honigtopf.html); `hp` bleibt gueltig, solange noch
+    # zwischengespeicherte Seiten mit dem alten Feld unterwegs sind.
+    return any((request.POST.get(f) or "").strip() for f in ("website", "hp"))
 
 
 def _feld(request, name: str, grenze: int = 0) -> str:
@@ -901,7 +914,9 @@ def _parse_images(request) -> list:
     if raw:
         try:
             urls = json.loads(raw)
-        except Exception:
+        except (TypeError, ValueError) as fehler:
+            # Der Absender hat etwas geschickt, das keine Bildliste ist.
+            print(f"[UPLOAD] Bildliste nicht lesbar: {fehler}", flush=True)
             urls = []
     out = []
     for u in urls if isinstance(urls, list) else []:
@@ -1057,6 +1072,17 @@ def _handle_newsletter(request, c) -> bool:
     return True
 
 
+def _vorgangs_titel(schluessel, zweig, lang=None):
+    """Titel einer Vorgangsseite (Danke, Warten, Bestaetigung, Abmeldung).
+
+    Die vier Seiten erben nicht von base.html und bekommen ihren Kopf aus
+    templates/kopf_klein.html; der Titel laesst sich einem Include nicht als
+    Ausdruck uebergeben, also entsteht er hier.
+    """
+    pack = i18n.get_pack(lang or get_language())
+    return pack.get(schluessel, {}).get(zweig, "")
+
+
 def newsletter_confirm(request):
     """Double-Opt-in Schritt 2: Token prüfen, Code + Willkommens-Mail ausliefern und
     danach den Detail-Bogen für die Gratis-Website zeigen (der Bau-Auftrag entsteht erst
@@ -1080,7 +1106,11 @@ def newsletter_confirm(request):
             try:
                 from . import supa
                 already = supa.subscriber_status(email) in ("confirmed", "active")
-            except Exception:
+            except Exception as fehler:
+                # Supabase nicht erreichbar: Im Zweifel gilt der Abonnent als
+                # noch nicht bestaetigt — lieber eine Mail zu viel als eine
+                # Bestaetigung, die nie ankommt.
+                print(f"[NEWSLETTER] Status nicht abfragbar: {fehler}", flush=True)
                 already = False
             if not already:
                 _newsletter_deliver(email, wunsch, c, name=name, lang=tlang)
@@ -1089,12 +1119,13 @@ def newsletter_confirm(request):
             anfrage_token = signing.dumps({"e": email, "n": name, "w": wunsch, "l": tlang},
                                           salt=_ANFRAGE_SALT, compress=True)
             ok = True
-    except Exception:  # BadSignature, SignatureExpired, kaputtes Token
+    except signing.BadSignature:  # umfasst SignatureExpired
         ok = False
     return render(request, "newsletter_confirm.html", {
         "c": c, "ok": ok, "code": _newsletter_code(),
         "anfrage_token": anfrage_token, "name": name,
         "cloud_ready": bool(_parse_cloudinary()),
+        "seiten_titel": _vorgangs_titel("confirm_page", "title_ok" if ok else "title_fail"),
     })
 
 
@@ -1130,18 +1161,21 @@ def anfrage_absenden(request):
     Auftragstext + Bilder und legt EINEN Bau-Auftrag in der JARVIS4-Warteschlange an."""
     c = _content()
     if request.method != "POST":
-        return render(request, "anfrage_done.html", {"c": c, "ok": False})
+        return render(request, "anfrage_done.html", {"c": c, "ok": False,
+            "seiten_titel": _vorgangs_titel("anfrage_done", "title_fail")})
     token = (request.POST.get("t") or "").strip()
     try:
         data = signing.loads(token, salt=_ANFRAGE_SALT, max_age=_NEWSLETTER_MAXAGE)
-    except Exception:
-        return render(request, "anfrage_done.html", {"c": c, "ok": False})
+    except signing.BadSignature:  # umfasst SignatureExpired
+        return render(request, "anfrage_done.html", {"c": c, "ok": False,
+            "seiten_titel": _vorgangs_titel("anfrage_done", "title_fail")})
     email = (data.get("e") or "").strip()
     name = (data.get("n") or "").strip()
     hero_wunsch = (data.get("w") or "").strip()
     lang = i18n.norm_lang(data.get("l") or get_language())
     if not email:
-        return render(request, "anfrage_done.html", {"c": c, "ok": False})
+        return render(request, "anfrage_done.html", {"c": c, "ok": False,
+            "seiten_titel": _vorgangs_titel("anfrage_done", "title_fail")})
     images = _parse_images(request)
     full = _compose_full_wunsch(request, hero_wunsch, name, images)
     site_lang = _norm_site_lang(request.POST.get("site_lang"))
@@ -1163,8 +1197,11 @@ def anfrage_absenden(request):
                 f"Neue Website-Anfrage (Detailbogen): {email}",
                 f"Name: {name or '-'}\nE-Mail: {email}\nBilder: {len(images)}\n\n{full}\n",
                 from_email, [empfaenger], tag="ANFRAGE-NOTIFY")
-    except Exception:
-        pass
+    except Exception as fehler:
+        # Der Besucher soll wegen einer fehlgeschlagenen Benachrichtigung keinen
+        # Fehler sehen — seine Anfrage ist angekommen. Der Inhaber muss aber
+        # erfahren, dass er sie nicht bekommen hat.
+        print(f"[ANFRAGE-NOTIFY] Benachrichtigung fehlgeschlagen: {fehler}", flush=True)
     # Auf die Live-Status-Warteseite schicken (pollt bis die Seite gebaut + live ist),
     # in der Sprache des Kunden (präfixierte URL).
     status_token = signing.dumps({"e": email, "n": name, "l": lang}, salt=_STATUS_SALT, compress=True)
@@ -1181,9 +1218,14 @@ def warten(request):
     try:
         data = signing.loads(token, salt=_STATUS_SALT, max_age=_NEWSLETTER_MAXAGE)
         name = (data.get("n") or "").strip()
-    except Exception:
+    except signing.BadSignature:
+        # Abgelaufen, verstuemmelt oder gefaelscht — alles derselbe Fall: Die
+        # Warteseite zeigt dann keinen Namen und pollt nicht. SignatureExpired
+        # ist eine Unterklasse von BadSignature und damit mit erfasst.
         token = ""
-    return render(request, "warten.html", {"c": c, "status_token": token, "name": name})
+    return render(request, "warten.html", {
+        "c": c, "status_token": token, "name": name,
+        "seiten_titel": _vorgangs_titel("wait", "title")})
 
 
 def bau_status(request):
@@ -1193,7 +1235,7 @@ def bau_status(request):
     try:
         data = signing.loads(token, salt=_STATUS_SALT, max_age=_NEWSLETTER_MAXAGE)
         email = (data.get("e") or "").strip()
-    except Exception:
+    except signing.BadSignature:
         return JsonResponse({"state": "unknown"}, status=400)
     state, url = "queued", ""
     try:
@@ -1221,9 +1263,19 @@ def newsletter_unsubscribe(request):
             if supa.enabled():
                 supa.set_subscriber_status(email, "unsubscribed")
             ok = True
-    except Exception:
+    except signing.BadSignature:
+        # Fehlende, abgelaufene oder verstuemmelte Marke — der Normalfall bei
+        # einem direkten Aufruf ohne Link. Kein Grund fuer einen Logeintrag.
         ok = False
-    return render(request, "newsletter_unsub.html", {"c": c, "ok": ok})
+    except Exception as fehler:
+        # Alles andere ist ein echter Fehlschlag: Eine Abmeldung, die nicht
+        # durchgeht, ist kein Schoenheitsfehler, sondern ein Widerspruch, der
+        # nicht umgesetzt wurde. Der Besucher sieht die Fehlermeldung, der
+        # Betrieb muss den Grund im Log finden koennen.
+        print(f"[UNSUB] Abmeldung fehlgeschlagen: {fehler}", flush=True)
+        ok = False
+    return render(request, "newsletter_unsub.html", {
+        "c": c, "ok": ok, "seiten_titel": _vorgangs_titel("unsub", "title")})
 
 
 # ── Wöchentlicher Referenz-Newsletter ─────────────────────────────────────────
@@ -1735,6 +1787,17 @@ def _itemlist(base, pfad, name, posten):
     }
 
 
+def _mit_knoten(schema_json, knoten):
+    """Haengt einen weiteren Knoten an einen fertigen Graphen an.
+
+    Gegenstueck zu `_mit_itemlist`, nur ohne Festlegung auf einen Typ — die
+    Ansichten sollen nicht jedes Mal auspacken, anhaengen und wieder einpacken.
+    """
+    graph = json.loads(schema_json)
+    graph["@graph"].append(knoten)
+    return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
+
+
 def _mit_itemlist(schema_json, itemlist):
     """Hängt eine ItemList in ein bereits gebautes @graph. Getrennte Funktion,
     weil `_seiten_schema` einen JSON-String zurückgibt und die Hub-Views sonst
@@ -1790,6 +1853,37 @@ def _webpage_knoten(base, lang, url, breadcrumb):
     }
     if breadcrumb:
         knoten["breadcrumb"] = {"@id": f"{url}#breadcrumb"}
+    return knoten
+
+
+def _ratgeber_artikel(base, pfad, *, titel, beschreibung, worte=0, sprache="de-AT"):
+    """`Article`-Knoten fuer eine Ratgeberseite, die kein Fachbeitrag ist.
+
+    Bis zum 05.09.2026 trugen nur die fuenfzehn Fachbeitraege diesen Knoten —
+    Vergleiche, Checklisten und Glossar nicht, obwohl sie dieselbe Aufgabe
+    erfuellen (Messung GE15: 15 von 47, GE16: 15 von 47 mit Autor). Fuer eine
+    Antwortmaschine ist der benannte Autor mit Datum das E-E-A-T-Signal, an dem
+    sie entscheidet, ob ein Absatz zitierfaehig ist.
+
+    Das Datum kommt aus landing/stand.py — dieselbe Quelle wie in der Sitemap.
+    Zwei Quellen fuer dieselbe Aussage waeren zwei Wahrheiten.
+    """
+    tag = stand.datum(i18n.strip_prefix(pfad)[1])
+    knoten = {
+        "@type": "Article", "@id": f"{base}{pfad}#article",
+        "headline": titel,
+        "description": (beschreibung or "")[:300],
+        "datePublished": tag,
+        "dateModified": tag,
+        "inLanguage": sprache,
+        "author": {"@id": f"{base}/#inhaber"},
+        "publisher": {"@id": f"{base}/#business"},
+        "mainEntityOfPage": {"@id": f"{base}{pfad}#webpage"},
+        "about": {"@id": f"{base}/#business"},
+        "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".antwort"]},
+    }
+    if worte:
+        knoten["wordCount"] = worte
     return knoten
 
 
@@ -2096,11 +2190,14 @@ def checkliste_seite(request, slug):
         "weitere": [_checkliste_daten(k) for k in checklisten.CHECKLISTEN
                     if k["slug"] != slug],
         "preis_stand": _preis_stand("de"),
-        "structured_data": _seiten_schema(
-            c, "de", service=howto, faq=liste.get("faq") or [], faq_id=pfad,
-            breadcrumb=_breadcrumb(base, [
-                ("Checklisten", reverse("checklisten")),
-                (liste.get("titel", slug), pfad)])),
+        "structured_data": _mit_knoten(
+            _seiten_schema(
+                c, "de", service=howto, faq=liste.get("faq") or [], faq_id=pfad,
+                breadcrumb=_breadcrumb(base, [
+                    ("Checklisten", reverse("checklisten")),
+                    (liste.get("titel", slug), pfad)])),
+            _ratgeber_artikel(base, pfad, titel=liste.get("h1", liste.get("titel", "")),
+                              beschreibung=liste.get("kurz", ""))),
     })
 
 
@@ -2186,6 +2283,9 @@ def begriff_seite(request, slug):
             ("Wissen", reverse("wissen")),
             (begriff.get("titel", slug), pfad)])))
     graph["@graph"].append(_defined_term_set(base))
+    graph["@graph"].append(_ratgeber_artikel(
+        base, pfad, titel=begriff.get("h1", begriff.get("titel", slug)),
+        beschreibung=begriff.get("kurz", begriff.get("definition", ""))))
     return render(request, "begriff.html", {
         "c": c, "begriff": begriff,
         "leistung": _leistung_daten(leistung, "de") if leistung else None,
@@ -2388,11 +2488,15 @@ def vergleich_seite(request, slug):
         "andere": [_vergleich_daten(v, lang) for v in vergleiche.VERGLEICHE
                    if v["slug"] != slug],
         "preis_stand": _preis_stand(lang),
-        "structured_data": _seiten_schema(
-            c, lang, faq=seite.get("faq") or [], faq_id=pfad,
-            breadcrumb=_breadcrumb(base, [
-                (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche")),
-                (seite.get("nav", slug), pfad)])),
+        "structured_data": _mit_knoten(
+            _seiten_schema(
+                c, lang, faq=seite.get("faq") or [], faq_id=pfad,
+                breadcrumb=_breadcrumb(base, [
+                    (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche")),
+                    (seite.get("nav", slug), pfad)])),
+            _ratgeber_artikel(base, pfad, titel=seite.get("h1", ""),
+                              beschreibung=seite.get("kurz", ""),
+                              sprache=i18n.get_pack(lang)["meta"]["html_lang"])),
     })
 
 
@@ -3403,6 +3507,71 @@ def sitemap_segment(request, klasse):
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 
+def feed_xml(request):
+    """/feed/ — Atom-Feed der Ratgeberinhalte (Messung GE32, BT06).
+
+    Siebenundvierzig Ratgeberseiten ohne Feed: Aggregatoren, Leseprogramme und
+    Antwortmaschinen finden einen neuen Beitrag dann nur beim naechsten
+    Vollcrawl. Ein Feed ist die einzige Stelle, an der eine Seite selbst sagt
+    „hier ist etwas dazugekommen".
+
+    Atom statt RSS 2.0: verpflichtende, eindeutige Kennungen je Eintrag und ein
+    festgelegtes Datumsformat — bei RSS ist beides Auslegungssache, und genau
+    daran scheitern Feeds still.
+
+    Nur die deutschen Ratgeberinhalte: Fachbeitraege, Checklisten und Glossar
+    gibt es nur auf Deutsch (siehe Kopf von landing/beitraege.py), und die
+    Leistungsseiten sind kein Ratgeber, sondern ein Katalog.
+    """
+    from xml.sax.saxutils import escape
+
+    c = _content()
+    base = (c.get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
+    posten = []
+    for b in beitraege.BEITRAEGE:
+        daten = _beitrag_daten(b)
+        posten.append((daten["url"], daten.get("titel", b["slug"]),
+                       daten.get("antwort", ""), b.get("datum", "")))
+    for k in checklisten.CHECKLISTEN:
+        daten = _checkliste_daten(k)
+        posten.append((daten["url"], daten.get("titel", k["slug"]),
+                       daten.get("kurz", ""), stand.datum(daten["url"])))
+    # Neueste zuerst; bei gleichem Tag entscheidet der Pfad, damit die Reihenfolge
+    # zwischen zwei Abrufen stabil bleibt.
+    posten.sort(key=lambda e: (e[3], e[0]), reverse=True)
+    aktualisiert = max((e[3] for e in posten if e[3]), default=stand.STAND_FALLBACK)
+
+    eintraege = []
+    for pfad, titel, text, tag in posten:
+        url = f"{base}{pfad}"
+        eintraege.append(
+            "<entry>"
+            f"<title>{escape(titel)}</title>"
+            f'<link rel="alternate" type="text/html" href="{url}"/>'
+            f"<id>{url}</id>"
+            f"<updated>{tag or aktualisiert}T00:00:00+00:00</updated>"
+            f'<author><name>{escape(c.get("inhaber_name", "WVM-IT"))}</name></author>'
+            f'<summary type="text">{escape((text or "")[:500])}</summary>'
+            "</entry>"
+        )
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="de-AT">'
+        f'<title>{escape(c.get("site_name", "WVM-IT"))} — Ratgeber</title>'
+        '<subtitle>Fachbeiträge und Checklisten zu EDV, IT-Sicherheit, Netzwerk '
+        'und Technik für Betriebe in Österreich und Deutschland.</subtitle>'
+        f'<link rel="self" type="application/atom+xml" href="{base}/feed/"/>'
+        f'<link rel="alternate" type="text/html" href="{base}/aktuelles/"/>'
+        f"<id>{base}/feed/</id>"
+        f"<updated>{aktualisiert}T00:00:00+00:00</updated>"
+        f'<author><name>{escape(c.get("inhaber_name", "WVM-IT"))}</name>'
+        f'<uri>{base}/ueber-uns/</uri></author>'
+        + "".join(eintraege) +
+        "</feed>"
+    )
+    return HttpResponse(xml, content_type="application/atom+xml; charset=utf-8")
+
+
 def kooperation_anfordern(request):
     """Kooperations-Anfrage (JSON): ein potenzieller Partner meldet sich. Mailt an den
     Inhaber und schickt dem Absender eine kurze Bestätigung. Kein Konto/keine DB nötig."""
@@ -3495,7 +3664,7 @@ def leistung_anfrage(request):
         return antwort(False, "methode", 405)
     if quelle not in _ANFRAGE_QUELLEN:
         return antwort(False, "quelle", 400)
-    if (request.POST.get("hp") or "").strip():        # Honeypot: nur Bots füllen das aus
+    if _honigtopf(request):                           # Honeypot: nur Bots füllen das aus
         return antwort(True)                          # still schlucken, kein Hinweis für den Bot
     if _limit_erreicht(request):
         return antwort(False, "limit", 429)
@@ -3598,7 +3767,10 @@ def fehler_500(request):
     Wenn hier noch etwas fehlschlägt, sieht der Besucher gar nichts mehr."""
     try:
         c = _content()
-    except Exception:                                   # pragma: no cover
+    except (OSError, ValueError):                        # pragma: no cover
+        # Die 500er-Seite darf unter keinen Umstaenden selbst scheitern; deshalb
+        # steht hier ein Rueckfall statt eines Zugriffs, der noch einmal
+        # fehlschlagen koennte.
         c = dict(_FALLBACK)
     return render(request, "500.html", {"c": c, "structured_data": "{}"}, status=500)
 

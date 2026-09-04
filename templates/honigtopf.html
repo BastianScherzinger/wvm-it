@@ -1,0 +1,14 @@
+{% comment %}
+Der Honigtopf — ein Feld, das kein Mensch sieht und jeder dumme Bot ausfüllt.
+Wer es ausfüllt, bekommt eine Erfolgsmeldung, aber keine Mail (views._honigtopf).
+
+**Das Feld heisst `website`, nicht mehr `hp`.** Ein Feld namens „hp" ist als Falle
+erkennbar — genau die Bots, gegen die man sich wehrt, lassen es aus. Ein Feld
+namens `website` sieht dagegen aus wie das, wonach ein Formularausfüller sucht,
+und wird zuverlässiger ausgefüllt. Die Ansicht nimmt beide Namen entgegen,
+solange noch zwischengespeicherte Seiten mit dem alten Feld unterwegs sind.
+
+`aria-hidden`, `tabindex="-1"` und `autocomplete="off"` halten Screenreader,
+Tastaturbedienung und Browser-Ausfüllhilfe davon ab, das Feld zu berühren — sonst
+wäre die Falle eine Barriere.
+{% endcomment %}<div class="hp" aria-hidden="true"><label>Firma <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>

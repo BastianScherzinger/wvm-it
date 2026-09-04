@@ -909,6 +909,11 @@ PACK = {
         "cta_h": "Vreți să știți cum stă IT-ul dumneavoastră?",
         "cta_t": "Descrieți în două propoziții ce nu merge bine. Primiți în 24 de ore o evaluare onestă — inclusiv dacă aceasta spune că nu trebuie să schimbați nimic.",
     },
+    "form": {
+        "dsgvo_1": "Folosim datele dumneavoastră doar pentru a răspunde acestei cereri &ndash; fără transmitere mai departe, fără publicitate fără acordul dumneavoastră. Detalii în",
+        "dsgvo_link": "Datenschutzerklärung (politica de confidențialitate, în germană)",
+        "dsgvo_2": ".",
+    },
     "recht": {
         "impressum_titel": "Date de identificare | WVM-IT",
         "impressum_desc": "Date de identificare și informații despre furnizor pentru WVM-IT.",

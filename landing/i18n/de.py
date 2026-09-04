@@ -908,6 +908,14 @@ PACK = {
         "cta_h": "Wollen Sie wissen, wie Ihre IT dasteht?",
         "cta_t": "Beschreiben Sie in zwei Sätzen, was gerade nicht rundläuft. Sie bekommen innerhalb von 24 Stunden eine ehrliche Einschätzung — auch dann, wenn sie lautet, dass Sie nichts ändern müssen.",
     },
+    # ── Pflichthinweis unter jedem Anfrageformular ──────────────────────────
+    # Dreigeteilt, damit der Verweis auf die Datenschutzerklaerung mitten im Satz
+    # stehen kann statt als angehaengter Link.
+    "form": {
+        "dsgvo_1": "Ihre Angaben verwenden wir nur, um diese Anfrage zu beantworten &ndash; keine Weitergabe, keine Werbung ohne Ihre Zustimmung. Einzelheiten in der",
+        "dsgvo_link": "Datenschutzerklärung",
+        "dsgvo_2": ".",
+    },
     "recht": {
         "impressum_titel": "Impressum | WVM-IT",
         "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT.",

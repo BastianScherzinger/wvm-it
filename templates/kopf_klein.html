@@ -1,0 +1,44 @@
+{% load static %}{% comment %}
+Der Kopfbereich der vier Vorgangsseiten: Danke nach dem Detailbogen, Warteseite,
+Newsletter-Bestätigung, Newsletter-Abmeldung.
+
+Diese vier erben bewusst NICHT von base.html — sie haben absichtlich keine
+Navigation, keinen Fussbereich und keine Angebotsleiste, weil der Besucher
+mitten in einem Vorgang steht und nicht weggelenkt werden soll.
+
+Bis zum 05.09.2026 hatte jede der vier ihren eigenen Kopf, viermal fast
+gleichlautend (Messung VL05). Das ist genau die Sorte Verdopplung, die
+auseinanderläuft: Alle vier luden noch das 65 KB grosse PNG-Favicon, während
+base.html längst die 2,7 KB grosse WebP-Fassung nutzt, und der Feed-Verweis
+fehlte ihnen ganz.
+
+Parameter: `titel` (Pflicht), `robots` (Vorgabe noindex,nofollow), `kanonisch`
+(Pfad, optional).
+{% endcomment %}<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ titel }} | {{ c.site_name }}</title>
+  <meta name="robots" content="{{ robots|default:'noindex,nofollow' }}">
+  <meta name="theme-color" content="#0a0908">
+  {% comment %}Selbstverweis, auch bei noindex: Er sagt, welche der
+  moeglichen Adressen mit Anhaengseln die richtige ist.{% endcomment %}
+  <link rel="canonical" href="{{ c.wvm_url }}{{ kanonisch|default:request.path }}">
+  <meta property="og:title" content="{{ titel }} | {{ c.site_name }}">
+  <meta property="og:description" content="{{ t.meta.seo_desc|safe }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ c.site_name }}">
+  <meta property="og:locale" content="{{ t.meta.locale }}">
+  <meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
+  <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
+  <link rel="icon" type="image/webp" href="{% static 'img/wvm_mark.webp' %}" sizes="any">
+  <link rel="icon" type="image/png" href="{% static 'img/wvm_mark_128.png' %}" sizes="128x128">
+  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark_128.png' %}">
+  <link rel="alternate" type="application/atom+xml" title="{{ c.site_name }} — Ratgeber" href="{% url 'feed' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
+  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  {% comment %}
+  Auch eine Seite mit noindex gehört in den Graphen: Wer den Link teilt oder ihn
+  einer Antwortmaschine vorlegt, soll erkennen, zu welchem Betrieb er gehört.
+  {% endcomment %}
+  <script type="application/ld+json" nonce="{{ request.csp_nonce }}">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"{{ c.wvm_url }}{{ request.path }}#webpage","url":"{{ c.wvm_url }}{{ request.path }}","name":"{{ titel|escapejs }}","inLanguage":"{{ t.meta.html_lang }}","isPartOf":{"@id":"{{ c.wvm_url }}/#website"},"about":{"@id":"{{ c.wvm_url }}/#business"}},{"@type":"WebSite","@id":"{{ c.wvm_url }}/#website","url":"{{ c.wvm_url }}/","name":"{{ c.site_name|escapejs }}","publisher":{"@id":"{{ c.wvm_url }}/#business"}},{"@type":"ProfessionalService","@id":"{{ c.wvm_url }}/#business","name":"{{ c.site_name|escapejs }}","url":"{{ c.wvm_url }}/","telephone":"{{ c.telefon }}","email":"{{ c.email }}"}]}</script>

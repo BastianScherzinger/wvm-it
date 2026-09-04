@@ -113,7 +113,7 @@
 
         <form method="post" action="{% url 'angebot' %}#konfigurator" class="wz" id="angForm" novalidate>
           {% csrf_token %}
-          <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+          {% include 'honigtopf.html' %}
 
           <!-- Schritt-Anzeige -->
           <ol class="wz-steps" id="wzSteps">
@@ -232,6 +232,7 @@
               </div>
             </section>
           </div>
+        {% include 'datenschutzhinweis.html' %}
         </form>
         <!-- Mobile: sticky Summenleiste unten (klein, dezent), springt zum letzten Schritt -->
         <div class="ang-mobar" id="angMobar" hidden>

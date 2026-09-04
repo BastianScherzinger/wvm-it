@@ -1,17 +1,7 @@
 {% load static %}<!DOCTYPE html>
 <html lang="{{ t.meta.html_lang }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>{{ t.wait.title|safe }} | {{ c.site_name }}</title>
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#0a0908">
-  <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
-  <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
-  <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
-  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  {% include 'kopf_klein.html' with titel=seiten_titel %}
 </head>
 <body class="ang-page">
 <header class="nav" id="nav">

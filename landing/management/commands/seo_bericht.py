@@ -52,7 +52,8 @@ class Command(BaseCommand):
     def handle(self, *args, **optionen):
         try:
             self.stdout._out.reconfigure(encoding="utf-8", errors="replace")
-        except Exception:
+        except (AttributeError, ValueError, OSError):
+            # Kein umstellbarer Datenstrom (Umleitung, Test). Kein Fehler.
             pass
         md = optionen["markdown"]
         schwelle = optionen["min_worte"]

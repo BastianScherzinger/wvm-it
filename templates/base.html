@@ -27,6 +27,12 @@
   <link rel="icon" type="image/webp" href="{% static 'img/wvm_mark.webp' %}" sizes="any">
   <link rel="icon" type="image/png" href="{% static 'img/wvm_mark_128.png' %}" sizes="128x128">
   <link rel="apple-touch-icon" href="{% static 'img/wvm_mark_128.png' %}">
+  {% comment %}
+  Der Feed gehoert in den Kopf, nicht nur in den Fussbereich: Leseprogramme und
+  Aggregatoren suchen genau hier danach, und ein Feed, den niemand findet, ist
+  keiner (Messung GE32, BT06).
+  {% endcomment %}
+  <link rel="alternate" type="application/atom+xml" title="{{ c.site_name }} — Ratgeber" href="{% url 'feed' %}">
   <!-- 3D-Viewer (Spline) wird ERST nach Cookie-Einwilligung von main.js geladen (DSGVO). -->
 
   <meta property="og:title" content="{% block og_titel %}{{ t.meta.seo_title|safe }}{% endblock %}">
@@ -114,7 +120,7 @@
   <form class="lb-form rr-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage>
     {% csrf_token %}
     <input type="hidden" name="quelle" value="rueckruf">
-    <div class="hp" aria-hidden="true"><label>Firma <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+    {% include 'honigtopf.html' %}
     <button class="rr-close" type="button" data-rr-close aria-label="{{ t.rueckruf.close|safe }}">&times;</button>
     <h2 id="rr-h" class="tool-h">{{ t.rueckruf.h|safe }}</h2>
     <p class="tool-sub">{{ t.rueckruf.sub|safe }}</p>
@@ -137,6 +143,7 @@
     </div>
     <button class="btn btn-lg lb-submit" type="submit">{{ t.rueckruf.submit|safe }}</button>
     <p class="lb-err" role="alert" hidden></p>
+  {% include 'datenschutzhinweis.html' %}
   </form>
   <div class="lb-done rr-done" hidden>
     <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>

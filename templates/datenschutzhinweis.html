@@ -1,0 +1,12 @@
+{% comment %}
+Der Pflichthinweis unter jedem Anfrageformular (Messung KV05: 3 von 316).
+
+Er ist zweierlei: Pflicht nach Art. 13 DSGVO — die Information über die
+Verarbeitung muss zum Zeitpunkt der Erhebung dastehen, nicht erst zwei Klicks
+weiter — und zugleich eine Conversion-Massnahme. Wer nicht weiss, was mit seiner
+E-Mail-Adresse passiert, gibt sie seltener her; der Satz nimmt genau diese
+Hemmung.
+
+Steht INNERHALB des <form>, nicht daneben: Nur so gehört er sichtbar zu dem
+Vorgang, für den er gilt.
+{% endcomment %}<p class="fld-recht">{{ t.form.dsgvo_1|safe }} <a href="{% url 'datenschutz' %}">{{ t.form.dsgvo_link|safe }}</a>{{ t.form.dsgvo_2|safe }}</p>

@@ -36,6 +36,9 @@ urlpatterns = [
     # damit es keine kuenftige .txt-Route verschluckt , genau diese Falle steht in
     # ruempelwerks config/urls.py dokumentiert.
     re_path(r"^(?P<key>[0-9a-f]{8,128})\.txt$", views.indexnow_key, name="indexnow_key"),
+    # Atom-Feed der Ratgeberinhalte. Ohne Sprachpraefix: Die Inhalte darin
+    # gibt es nur auf Deutsch.
+    path("feed/", views.feed_xml, name="feed"),
     path("sitemap.xml", views.sitemap_xml, name="sitemap_xml"),
     # Die vier Segmente hinter dem Index. Das Muster ist eng gefasst, damit es
     # keine kuenftige .xml-Route verschluckt.

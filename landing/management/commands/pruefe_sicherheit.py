@@ -109,9 +109,9 @@ class Command(BaseCommand):
 
     def _honigtopf(self):
         for pfad, daten, name in (
-            ("/", {"name": "B", "email": "a@b.de", "nachricht": "x", "hp": "gefüllt"},
+            ("/", {"name": "B", "email": "a@b.de", "nachricht": "x", "website": "gefüllt"},
              "Kontaktformular"),
-            ("/kooperation/anfordern/", {"name": "B", "email": "a@b.de", "hp": "gefüllt"},
+            ("/kooperation/anfordern/", {"name": "B", "email": "a@b.de", "website": "gefüllt"},
              "Kooperationsanfrage"),
         ):
             c = self._frisch()

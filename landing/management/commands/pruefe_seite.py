@@ -8,7 +8,8 @@ Deckt vier Dinge ab, die man von Hand zuverlässig vergisst
 2. Preise        , jede Zahl auf der Seite muss aus ANGEBOT_GROUPS stammen.
 3. Seiten-Technik, je Sprache und URL: genau ein <h1>, Titel- und Description-Länge,
                    gültiges JSON-LD, Alt-Texte, hreflang, keine leeren Links.
-4. Formulare     , jedes Anfrageformular hat CSRF-Token, Honeypot und Quelle.
+4. Formulare     , jedes Anfrageformular hat CSRF-Token, Honeypot, Quelle und
+                   den Datenschutzhinweis.
 
 Rückgabewert 1, wenn etwas fehlschlägt , damit ein Deploy daran scheitern kann.
 """
@@ -69,7 +70,8 @@ class Command(BaseCommand):
         # Umlaute und Sonderzeichen in den Meldungen.
         try:
             self.stdout._out.reconfigure(encoding="utf-8", errors="replace")
-        except Exception:
+        except (AttributeError, ValueError, OSError):
+            # Kein umstellbarer Datenstrom (Umleitung, Test). Kein Fehler.
             pass
         self.fehler = []
         self.warnungen = []
@@ -415,8 +417,16 @@ class Command(BaseCommand):
         for form in formulare:
             if "csrfmiddlewaretoken" not in form:
                 self.fehler.append(f"{pfad}: Formular ohne CSRF-Token")
-            if 'name="hp"' not in form:
+            # Seit dem 05.09.2026 heisst das Feld `website` statt `hp` (ein Feld
+            # namens "hp" ist als Falle erkennbar, siehe templates/honigtopf.html).
+            # Der alte Name bleibt gueltig, solange zwischengespeicherte Seiten
+            # ihn noch tragen — beide zaehlen hier.
+            if 'name="website"' not in form and 'name="hp"' not in form:
                 self.fehler.append(f"{pfad}: Formular ohne Honeypot")
+            # Pflicht nach Art. 13 DSGVO und zugleich eine Conversion-Massnahme:
+            # Wer nicht weiss, was mit seiner Adresse passiert, gibt sie seltener her.
+            if 'fld-recht' not in form:
+                self.fehler.append(f"{pfad}: Formular ohne Datenschutzhinweis")
             quelle = re.search(r'name="quelle" value="([a-z]+)"', form)
             if not quelle:
                 self.fehler.append(f"{pfad}: Formular ohne Quelle")

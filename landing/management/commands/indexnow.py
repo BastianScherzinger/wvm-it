@@ -45,7 +45,10 @@ class Command(BaseCommand):
     def handle(self, *args, **opt):
         try:
             self.stdout._out.reconfigure(encoding="utf-8", errors="replace")
-        except Exception:
+        except (AttributeError, ValueError, OSError):
+            # Kein umstellbarer Datenstrom (Umleitung in eine Datei, Aufruf aus
+            # einem Test). Das ist der Normalfall und kein Fehler — eng gefasst,
+            # damit hier nicht versehentlich etwas anderes verschwindet.
             pass
 
         schluessel = (getattr(settings, "INDEXNOW_KEY", "") or "").strip()
@@ -105,6 +108,9 @@ class Command(BaseCommand):
         try:
             daten = _json.loads((Path(settings.BASE_DIR) / "content.json").read_text(encoding="utf-8"))
             roh = (daten.get("wvm_url") or "").strip()
-        except Exception:
+        except (OSError, ValueError) as fehler:
+            # Ohne Host meldet der Befehl an IndexNow Adressen einer fremden
+            # Domain — das gehoert gesagt, nicht stillschweigend ersetzt.
+            self.stderr.write(f"content.json nicht lesbar ({fehler}), nutze Rueckfall-Host.")
             roh = ""
         return roh.replace("https://", "").replace("http://", "").rstrip("/") or "www.wvm-it.tech"

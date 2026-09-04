@@ -913,6 +913,11 @@ PACK = {
         "cta_h": "Want to know where your IT stands?",
         "cta_t": "Describe in two sentences what is not running smoothly. You will get an honest assessment within 24 hours — including if it says you need to change nothing.",
     },
+    "form": {
+        "dsgvo_1": "We use your details only to answer this enquiry &ndash; no passing on, no advertising without your consent. Details in the",
+        "dsgvo_link": "Datenschutzerklärung (privacy policy, German)",
+        "dsgvo_2": ".",
+    },
     "recht": {
         "impressum_titel": "Legal notice | WVM-IT",
         "impressum_desc": "Legal notice and provider identification for WVM-IT.",

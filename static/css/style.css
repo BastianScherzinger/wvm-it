@@ -2214,3 +2214,18 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .vg-methode h2{font-size:18px;margin:0 0 10px}
 .vg-methode h2+p{margin-bottom:24px}
 .vg-methode p{color:var(--ink-soft);line-height:1.8;font-size:15px;max-width:74ch}
+
+/* Datenschutzhinweis unter dem Formular (Messung KV05).
+   Klein, aber lesbar: Kontrast bleibt über 4,5:1, weil er Pflichtinformation
+   ist und nicht Kleingedrucktes sein darf. */
+.fld-recht{
+  margin:.9rem 0 0;
+  font-size:.82rem;
+  line-height:1.5;
+  color:var(--muted);
+  max-width:56ch;
+}
+.fld-recht a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
+.fld-recht a:hover{ color:var(--accent); }
+.on-dark .fld-recht{ color:rgba(255,255,255,.72); }
+.on-dark .fld-recht a:hover{ color:var(--accent2); }
