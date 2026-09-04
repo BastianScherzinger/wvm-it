@@ -410,7 +410,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--ink-dim)}
 .contact-form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);
   background-position:calc(100% - 20px) 19px,calc(100% - 15px) 19px;background-size:5px 5px;background-repeat:no-repeat}
-.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+/* Der box-shadow ist die gestalterische Absicht und bleibt, wie er ist , er
+   erreicht auf Weiß aber nur etwa 1,2:1 und ist damit kein Fokusmerkmal. Der
+   outline kommt daneben, statt wie bisher abgeschaltet zu werden. */
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{outline:2px solid var(--ring);outline-offset:2px;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
 .contact-form .check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400;font-size:13px;color:var(--ink-soft)}
 .contact-form .check input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:var(--accent)}
 .contact-form .check a{color:var(--accent2);text-decoration:underline}
@@ -623,7 +626,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:var(--bg-2);border:1px solid var(--line-2);border-radius:12px;transition:border-color .2s,box-shadow .2s;width:100%}
 .ang-lead textarea{min-height:96px;resize:vertical}
 .ang-lead input::placeholder,.ang-lead textarea::placeholder{color:var(--ink-dim)}
-.ang-lead input:focus,.ang-lead textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+.ang-lead input:focus,.ang-lead textarea:focus{outline:2px solid var(--ring);outline-offset:2px;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
 .ang-lead .check{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400;font-size:12.5px;color:var(--ink-soft)}
 .ang-lead .check input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:var(--accent)}
 .ang-lead .check a{color:var(--accent2);text-decoration:underline}
@@ -684,6 +687,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .wz-step.is-active{color:var(--ink)}
 .wz-step.is-active .wz-step-n{border-color:transparent;color:var(--on-accent);
   background:linear-gradient(150deg,var(--accent),var(--accent2));box-shadow:var(--glow)}
+/* Dieses outline:none bleibt. Es ist kein Mangel, sondern eine Verschiebung:
+   .wz-step ist ein <li> ohne tabindex und bekommt gar keinen Fokus; und wo es
+   ihn ueber ein Kind bekaeme, traegt die naechste Zeile den Ring an der
+   Schrittnummer , dort, wo er sichtbar hingehoert. */
 .wz-step:focus-visible{outline:none}
 .wz-step:focus-visible .wz-step-n{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:3px}
 /* Fortschrittsbalken */
@@ -809,7 +816,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .offer-wish{width:100%;min-height:48px;margin-top:10px;font:inherit;font-weight:400;font-size:16px;padding:13px 14px;color:var(--ink);
   background:var(--bg-2);border:1px solid var(--line);border-radius:12px;transition:border-color .2s,box-shadow .2s}
 .offer-row input::placeholder,.offer-wish::placeholder{color:var(--ink-dim)}
-.offer-row input:focus,.offer-wish:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+.offer-row input:focus,.offer-wish:focus{outline:2px solid var(--ring);outline-offset:2px;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
 .offer-consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:11.5px;line-height:1.5;color:var(--ink-soft)}
 .offer-consent input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:var(--accent)}
 .offer-consent a{color:var(--accent2);text-decoration:underline}
@@ -896,7 +903,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 textarea.fld{resize:vertical;line-height:1.55;min-height:96px}
 .fld::placeholder{color:var(--ink-dim)}
 .fld:hover{border-color:var(--line-2)}
-.fld:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 28%,transparent)}
+.fld:focus{outline:2px solid var(--ring);outline-offset:2px;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 28%,transparent)}
 .fld:disabled{opacity:.5;cursor:not-allowed}
 select.fld{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:36px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3ada2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
@@ -919,7 +926,7 @@ label.fld input,label.fld textarea,label.fld select{width:100%;min-height:48px;f
   transition:border-color .18s,box-shadow .18s}
 label.fld textarea{min-height:88px;resize:vertical;line-height:1.55}
 label.fld input::placeholder,label.fld textarea::placeholder{color:var(--ink-dim)}
-label.fld input:focus,label.fld textarea:focus,label.fld select:focus{outline:none;border-color:var(--accent);
+label.fld input:focus,label.fld textarea:focus,label.fld select:focus{outline:2px solid var(--ring);outline-offset:2px;border-color:var(--accent);
   box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 28%,transparent)}
 /* Chip-Auswahl (Mehrfach, reine Checkboxen/Radios ohne JS) ,  größere, ruhige Tap-Fläche */
 .chipset{display:flex;flex-wrap:wrap;gap:9px}
