@@ -22,7 +22,15 @@ logger = logging.getLogger(__name__)
 
 try:
     import psycopg2
-except Exception:  # Dependency (noch) nicht vorhanden -> Modul bleibt No-Op
+except ImportError:
+    # Dependency (noch) nicht vorhanden -> Modul bleibt No-Op. `ImportError` deckt
+    # den gemeinten Fall vollstaendig ab: das fehlende Paket (ModuleNotFoundError
+    # ist eine Unterklasse) ebenso wie die nicht ladbare Bibliothek darunter.
+    #
+    # Bewusst KEIN `except Exception`: Wirft psycopg2 beim Import etwas anderes,
+    # ist das kein "nicht installiert", sondern ein kaputter Zustand — und der
+    # gehoert beim Start sichtbar, nicht in einen stillen No-Op-Modus, in dem
+    # jede Anfrage und jede Abmeldung spurlos ins Leere laeuft.
     psycopg2 = None
 
 
