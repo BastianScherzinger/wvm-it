@@ -63,7 +63,7 @@ PACK = {
         "robot_alt": "Interaktiver 3D-Assistent von WVM-IT",
         "eyebrow": "EDV &amp; IT-Betreuung · Österreich und Deutschland",
         "headline": "Die IT-Abteilung für Betriebe, die keine haben.",
-        "subline": "Server, Netzwerk, Arbeitsplätze, E-Mail und Datensicherung: Wir übernehmen die laufende EDV Ihres Betriebs &ndash; per Fernwartung in ganz Österreich und Deutschland. Dazu Webseite, SEO und Google Ads aus derselben Hand.",
+        "subline": "WVM-IT ist die externe EDV-Abteilung für Betriebe, die keine eigene haben: Server, Netzwerk, Arbeitsplätze, E-Mail und Datensicherung &ndash; laufend betreut von Lenzing in Oberösterreich aus, per Fernwartung in ganz Österreich und Deutschland. Die Betreuung beginnt bei 29 € je Arbeitsplatz und Monat, jede Anfrage wird innerhalb von 24 Stunden beantwortet. Dazu Webseite, SEO und Google Ads aus derselben Hand.",
         "cta": "Gratis Beispiel-Website sichern",
         "note": "Kostenlos und unverbindlich · von unserer JARVIS-KI in ~10 Minuten gebaut.",
         "robot_aria": "3D-Assistent, klick mich",
@@ -922,7 +922,7 @@ PACK = {
     "angebot_page": {
         "eyebrow": "Angebots-Konfigurator",
         "h1": "Stellen Sie Ihr Angebot selbst zusammen.",
-        "lead": "Klicken Sie sich in wenigen Schritten durch, wählen Sie Ihre Leistungen und sehen Sie den Richtpreis sofort. Unverbindlich, ohne Registrierung.",
+        "lead": "Der Angebots-Konfigurator ist die Preisliste von WVM-IT zum Anklicken: Sie wählen in wenigen Schritten Ihre Leistungen aus und sehen den Richtpreis sofort &ndash; unverbindlich, ohne Registrierung. Die laufende Betreuung beginnt bei 29 € je Arbeitsplatz und Monat, Arbeit nach Aufwand bei 95 € je Stunde. Auf eine abgeschickte Auswahl antworten wir innerhalb von 24 Stunden mit einem persönlichen Angebot.",
         "promise1": "Richtpreis in Echtzeit",
         "promise2": "Komplett unverbindlich",
         "promise3": "Antwort in 24 Stunden",

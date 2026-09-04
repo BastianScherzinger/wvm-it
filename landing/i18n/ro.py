@@ -82,7 +82,7 @@ PACK = {
         "robot_alt": "Asistent 3D interactiv de la WVM-IT",
         "eyebrow": "Suport IT &amp; administrare · Austria și Germania",
         "headline": "Departamentul IT pentru firmele care nu au unul.",
-        "subline": "Servere, rețea, posturi de lucru, e-mail și copii de siguranță: preluăm IT-ul curent al firmei dumneavoastră &ndash; la distanță, în toată Austria și Germania. Plus site, SEO și Google Ads din aceeași mână.",
+        "subline": "WVM-IT este departamentul IT extern pentru firmele care nu au unul: servere, rețea, posturi de lucru, e-mail și copii de siguranță &ndash; administrate din Lenzing, Austria Superioară, la distanță în toată Austria și Germania. Administrarea începe de la 29 € pe post de lucru și lună, iar fiecare solicitare primește răspuns în 24 de ore. Plus site, SEO și Google Ads din aceeași mână.",
         "cta": "Primește site-ul demonstrativ gratuit",
         "note": "Gratuit și fără obligații · construit de AI-ul nostru JARVIS în circa 10 minute.",
         "robot_aria": "Asistent 3D, apasă-mă",
@@ -903,7 +903,7 @@ PACK = {
     "angebot_page": {
         "eyebrow": "Configurator de ofertă",
         "h1": "Alcătuiește-ți singur oferta.",
-        "lead": "Parcurge în câțiva pași, alege-ți serviciile și vezi prețul orientativ imediat. Fără obligații, fără înregistrare.",
+        "lead": "Configuratorul de ofertă este lista de prețuri WVM-IT pe care o parcurgeți cu un clic: alegeți serviciile în câțiva pași și vedeți prețul orientativ imediat &ndash; fără obligații, fără înregistrare. Administrarea curentă începe de la 29 € pe post de lucru și lună, munca la oră de la 95 €. După trimiterea selecției răspundem în 24 de ore cu o ofertă personală.",
         "promise1": "Preț orientativ în timp real",
         "promise2": "Complet fără obligații",
         "promise3": "Răspuns în 24 de ore",

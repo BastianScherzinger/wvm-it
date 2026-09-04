@@ -86,7 +86,7 @@ PACK = {
         "robot_alt": "Interactive 3D assistant by WVM-IT",
         "eyebrow": "IT support &amp; management · Austria and Germany",
         "headline": "The IT department for businesses that don't have one.",
-        "subline": "Servers, network, workstations, email and backups: we take on the day-to-day IT of your business &ndash; remotely, across Austria and Germany. Plus website, SEO and Google Ads from the same hands.",
+        "subline": "WVM-IT is the external IT department for businesses that do not have one: servers, network, workstations, email and backups &ndash; looked after from Lenzing in Upper Austria, remotely across Austria and Germany. Support starts at 29 € per workstation and month, and every enquiry is answered within 24 hours. Plus website, SEO and Google Ads from the same hands.",
         "cta": "Claim your free sample website",
         "note": "Free and no obligation · built by our JARVIS AI in about 10 minutes.",
         "robot_aria": "3D assistant, click me",
@@ -907,7 +907,7 @@ PACK = {
     "angebot_page": {
         "eyebrow": "Quote configurator",
         "h1": "Put together your own quote.",
-        "lead": "Click through in just a few steps, choose your services and see the ballpark price instantly. No obligation, no registration.",
+        "lead": "The offer configurator is the WVM-IT price list to click through: choose your services in a few steps and see the ballpark price instantly &ndash; no obligation, no registration. Ongoing support starts at 29 € per workstation and month, work by the hour at 95 €. Once you send your selection, we reply within 24 hours with a personal quote.",
         "promise1": "Ballpark price in real time",
         "promise2": "Completely no-obligation",
         "promise3": "Reply within 24 hours",
