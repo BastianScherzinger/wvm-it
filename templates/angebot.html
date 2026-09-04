@@ -1,28 +1,14 @@
 {% load static %}<!DOCTYPE html>
 <html lang="{{ t.meta.html_lang }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>{{ t.meta.angebot_title|safe }} | {{ c.site_name }}</title>
-  <meta name="description" content="{{ t.meta.angebot_desc|safe }}">
-  <meta name="theme-color" content="#0a0908">
-  <link rel="canonical" href="{{ c.wvm_url }}{{ canonical_path }}">
-  {% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
-  {% endfor %}
-  <meta name="robots" content="index,follow">
+{% comment %}
+Diese Seite erbt nicht von base.html, hatte deshalb einen von Hand nachgebauten
+Kopf und darin sechs Angaben zu wenig: og:image:width/height/alt, twitter:title,
+twitter:image und og:locale:alternate. Seit dem Kopfbaustein steht der Kopf hier
+nicht mehr zweimal, sondern einmal — und die Seite ist die einzige indexierbare
+unter den fuenf, die ihn einbinden.
+{% endcomment %}{% include 'teile/kopf.html' with kopf_titel=t.meta.angebot_title kopf_desc=t.meta.angebot_desc kopf_og_desc=t.meta.angebot_og_desc %}
   <meta name="geo.region" content="AT">
-  {% comment %}Wie in base.html: WebP zuerst, PNG als Rueckfall (T3).{% endcomment %}
-  <link rel="icon" type="image/webp" href="{% static 'img/wvm_mark.webp' %}" sizes="any">
-  <link rel="icon" type="image/png" href="{% static 'img/wvm_mark_128.png' %}" sizes="128x128">
-  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark_128.png' %}">
-  <meta property="og:title" content="{{ t.meta.angebot_title|safe }} | {{ c.site_name }}">
-  <meta property="og:description" content="{{ t.meta.angebot_og_desc|safe }}">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="{{ c.site_name }}">
-  <meta property="og:locale" content="{{ t.meta.locale }}">
-  <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
-  {% if c.hero_bg %}<meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">{% endif %}
-  <meta name="twitter:card" content="summary_large_image">
   <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">

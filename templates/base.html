@@ -1,6 +1,16 @@
 {% load static %}<!DOCTYPE html>
 <html lang="{{ t.meta.html_lang }}">
-<head>
+<head>{% comment %}
+  Dieser Kopf ist die zweite Fassung von `templates/teile/kopf.html`. Er bleibt
+  hier stehen und wird NICHT eingebunden: Er haengt an neun Bloecken (titel,
+  beschreibung, robots, keywords, og_titel, og_beschreibung, tw_titel,
+  tw_beschreibung, preload), die 25 Kindtemplates ueberschreiben — und ein Block
+  ueberlebt keine Einbindung. Ein eingebundenes Dokument wird eigenstaendig
+  gerendert; seine Bloecke sind vom Kind aus nicht erreichbar. Der Umzug haette
+  jeder Unterseite den Titel der Startseite gegeben.
+  Wer hier eine Angabe aendert, aendert sie auch in `teile/kopf.html`; der Test
+  `test_kopfbaustein.py` haelt beide Fassungen zusammen.
+  {% endcomment %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{% block titel %}{{ t.meta.seo_title|safe }}{% endblock %}</title>

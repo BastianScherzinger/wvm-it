@@ -1,0 +1,66 @@
+{% load static %}{% comment %}
+Gemeinsamer Kopfbaustein — die Angaben, die jedes ausgelieferte Dokument braucht.
+
+Wer ihn einbindet, setzt vorher die Werte, die sich je Seite unterscheiden:
+
+    {% include 'teile/kopf.html' with kopf_titel=... kopf_desc=... kopf_robots=... %}
+
+  kopf_titel    seitenspezifischer Teil des Titels (Pflicht). Der Marken-Zusatz
+                „| WVM-IT" haengt der Baustein selbst an — so steht er einmal
+                statt fuenfmal, und keine Seite verliert ihn beim Umbenennen.
+  kopf_desc     Beschreibung; Rueckfall auf t.meta.seo_desc
+  kopf_og_desc  abweichende Open-Graph-Beschreibung; Rueckfall auf kopf_desc
+  kopf_robots   Rueckfall "index,follow,max-image-preview:large"
+
+`canonical_path` und `alt_paths` stehen auf jeder Seite: sie kommen aus
+`i18n.context_processor` und nicht aus der jeweiligen View.
+
+WARUM `base.html` diesen Baustein NICHT einbindet: Der Kopf dort haengt an
+neun Django-Bloecken (titel, beschreibung, robots, keywords, og_titel,
+og_beschreibung, tw_titel, tw_beschreibung, preload), und ein Block ueberlebt
+eine Einbindung nicht — ein eingebundenes Dokument wird eigenstaendig
+gerendert, seine Bloecke sind fuer die 25 Kindtemplates nicht erreichbar.
+Ein Umzug haette jeder Unterseite den Titel der Startseite gegeben.
+`base.html` bleibt deshalb die zweite Fassung derselben Angaben; ihr Kopf ist
+inhaltlich mit diesem hier deckungsgleich. Wer eine Angabe aendert, aendert sie
+an beiden Stellen — der Test `test_kopfbaustein` haelt sie zusammen.
+
+og:image beschreibt `hero_bg.jpg`. Die Breite 1376 px ist in
+`docs/seo/PERFORMANCE.md:66` belegt, die Hoehe folgt aus dem 16:9-Zuschnitt.
+
+`k_desc` wird einmal aufgeloest, weil ein Filter-Argument in Django immer
+aufloesbar sein muss: `{{ kopf_og_desc|default:kopf_desc }}` wirft, sobald der
+Einbindende `kopf_desc` weglaesst — die vier noindex-Dokumente tun das.
+{% endcomment %}{% with k_desc=kopf_desc|default:t.meta.seo_desc %}  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ kopf_titel|safe }} | {{ c.site_name }}</title>
+  <meta name="description" content="{{ k_desc|safe }}">
+  <meta name="robots" content="{{ kopf_robots|default:'index,follow,max-image-preview:large' }}">
+  <meta name="theme-color" content="#0a0908">
+  <link rel="canonical" href="{{ c.wvm_url }}{{ canonical_path }}">
+  {% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
+  {% endfor %}{% comment %}
+  Favicon: WebP zuerst (2,7 KB statt 65 KB), PNG als Rueckfall fuer Browser, die
+  WebP als Favicon nicht annehmen. Das Apple-Touch-Icon bleibt PNG — iOS nimmt
+  kein WebP dafuer (docs/SEO-AUSBAU-3.md, T3).
+  {% endcomment %}<link rel="icon" type="image/webp" href="{% static 'img/wvm_mark.webp' %}" sizes="any">
+  <link rel="icon" type="image/png" href="{% static 'img/wvm_mark_128.png' %}" sizes="128x128">
+  <link rel="apple-touch-icon" href="{% static 'img/wvm_mark_128.png' %}">
+  <meta property="og:title" content="{{ kopf_titel|safe }} | {{ c.site_name }}">
+  <meta property="og:description" content="{{ kopf_og_desc|default:k_desc|safe }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ c.site_name }}">
+  <meta property="og:locale" content="{{ t.meta.locale }}">
+  {% if lang != 'de' %}<meta property="og:locale:alternate" content="de_AT">{% endif %}
+  {% if lang != 'en' %}<meta property="og:locale:alternate" content="en_US">{% endif %}
+  {% if lang != 'ro' %}<meta property="og:locale:alternate" content="ro_RO">{% endif %}
+  <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
+  {% if c.hero_bg %}<meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="774">
+  <meta property="og:image:alt" content="{{ c.site_name }} — {{ t.meta.og_image_alt_suffix|safe }}">
+  {% endif %}<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ kopf_titel|safe }} | {{ c.site_name }}">
+  <meta name="twitter:description" content="{{ kopf_og_desc|default:k_desc|safe }}">
+  {% if c.hero_bg %}<meta name="twitter:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
+  {% endif %}{% endwith %}
