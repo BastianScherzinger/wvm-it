@@ -16,7 +16,6 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core import signing
-from django.core.mail import send_mail
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -663,13 +662,17 @@ def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="
     """
     recipients = [r for r in (recipients or []) if r]
     host = getattr(settings, "EMAIL_HOST", "")
+    port = getattr(settings, "EMAIL_PORT", "?")
     if not recipients:
-        print(f"[{tag}] uebersprungen: kein Empfaenger. Betreff: {subject}", flush=True)
+        # Kein Empfänger heisst: Die Nachricht ist verloren. Deshalb warning und
+        # nicht info — im Betrieb ist das ein Konfigurationsfehler.
+        logger.warning("%s übersprungen, kein Empfänger. Betreff: %s", tag, subject)
         return False
     if not host:
         # Kein SMTP konfiguriert -> nur protokollieren (Besucher wird trotzdem bestaetigt).
-        print(f"[{tag}] KEIN EMAIL_HOST gesetzt -> nur Log. An {recipients}: {subject}", flush=True)
-        print(f"[{tag}-BODY]\n{message}", flush=True)
+        logger.warning("%s: kein EMAIL_HOST gesetzt, es wird nur protokolliert. "
+                       "An %s: %s", tag, recipients, subject)
+        logger.info("%s-BODY\n%s", tag, message)
         return False
     try:
         from django.core.mail import EmailMultiAlternatives
@@ -677,10 +680,16 @@ def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="
         if html:
             msg.attach_alternative(html, "text/html")
         n = msg.send(fail_silently=False)
-        print(f"[{tag}] OK gesendet ({n}) an {recipients} | from={from_email} host={host}:{getattr(settings,'EMAIL_PORT','?')} tls={getattr(settings,'EMAIL_USE_TLS','?')} | {subject}", flush=True)
+        logger.info("%s gesendet (%s) an %s | from=%s host=%s:%s tls=%s | %s",
+                    tag, n, recipients, from_email, host, port,
+                    getattr(settings, "EMAIL_USE_TLS", "?"), subject)
         return bool(n)
-    except Exception as exc:  # SMTP-Fehler sichtbar loggen, Besucher nie mit 500 bestrafen
-        print(f"[{tag}-FEHLER] {type(exc).__name__}: {exc} | an {recipients} from={from_email} host={host}:{getattr(settings,'EMAIL_PORT','?')} user={getattr(settings,'EMAIL_HOST_USER','')}", flush=True)
+    except Exception:  # SMTP-Fehler sichtbar loggen, Besucher nie mit 500 bestrafen
+        # logger.exception hängt den Traceback an; Typ und Text der Ausnahme
+        # stehen damit weiterhin im Protokoll, ohne sie hier zu formatieren.
+        logger.exception("%s: Versand an %s fehlgeschlagen | from=%s host=%s:%s user=%s | %s",
+                         tag, recipients, from_email, host, port,
+                         getattr(settings, "EMAIL_HOST_USER", ""), subject)
         return False
 
 
@@ -1404,10 +1413,12 @@ def newsletter_diag(request):
             n = msg.send(fail_silently=False)
             conn.close()
             info["test_ergebnis"] = {"gesendet": bool(n), "count": n}
-            print(f"[DIAG] Testmail OK an {to} (count={n})", flush=True)
+            logger.info("DIAG: Testmail an %s versendet (count=%s)", to, n)
         except Exception as exc:
+            # `exc` wird hier weiterverwendet (es steht in der JSON-Antwort), deshalb
+            # bleibt das `as exc` stehen — die Protokollzeile selbst formatiert nichts.
             info["test_ergebnis"] = {"gesendet": False, "fehler_typ": type(exc).__name__, "fehler": str(exc)}
-            print(f"[DIAG-FEHLER] {type(exc).__name__}: {exc} an {to}", flush=True)
+            logger.exception("DIAG: Testmail an %s fehlgeschlagen", to)
         info["test_an"] = to
     return HttpResponse(json.dumps(info, ensure_ascii=False, indent=2),
                         content_type="application/json; charset=utf-8")

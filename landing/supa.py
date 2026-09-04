@@ -9,8 +9,16 @@ Reines Backend, serverseitig. Ohne WVM_DB_URL sind alle Aufrufe stille No-Ops (d
 funktioniert dann weiter, nur die Warteschlange füllt sich nicht). Jeder Fehler wird gefangen
 und nie an den Besucher durchgereicht.
 """
+import logging
 import os
 from contextlib import closing
+
+# Ziel aller Meldungen dieses Moduls: der Logger "landing" aus config/settings.py.
+# Bis hierher ging jede Meldung direkt auf stdout — auf Railway sichtbar, aber ohne
+# Zeitmarke, ohne Schweregrad und ohne die Möglichkeit, ihn zu filtern oder
+# umzulenken. Am Ablauf ändert sich dadurch nichts: Jeder Block fängt dieselben
+# Ausnahmen ab und gibt dasselbe zurück.
+logger = logging.getLogger(__name__)
 
 try:
     import psycopg2
@@ -51,8 +59,8 @@ def upsert_subscriber(email, wunsch="", consent_ip="", unsub_token=""):
                 row = cur.fetchone()
             conn.commit()
             return row[0] if row else None
-    except Exception as exc:
-        print(f"[SUPABASE-FEHLER] upsert_subscriber: {exc}", flush=True)
+    except Exception:
+        logger.exception("Abonnent %s konnte nicht gespeichert werden", email)
         return None
 
 
@@ -89,8 +97,8 @@ def enqueue_job(subscriber_id, email, wunsch="", images=None, site_lang="de"):
                 created = cur.fetchone() is not None
             conn.commit()
             return created
-    except Exception as exc:
-        print(f"[SUPABASE-FEHLER] enqueue_job: {exc}", flush=True)
+    except Exception:
+        logger.exception("Bau-Auftrag für %s konnte nicht eingereiht werden", email)
         return None
 
 
@@ -106,8 +114,8 @@ def subscriber_status(email):
                 cur.execute("select coalesce(status,'') from wvm.subscribers where email=%s", (email,))
                 row = cur.fetchone()
                 return (row[0] or "") if row else ""
-    except Exception as exc:
-        print(f"[SUPABASE-FEHLER] subscriber_status: {exc}", flush=True)
+    except Exception:
+        logger.exception("Status des Abonnenten %s nicht abrufbar", email)
         return ""
 
 
@@ -123,8 +131,8 @@ def job_status(email):
                     "where email=%s order by created_at desc limit 1", (email,))
                 row = cur.fetchone()
                 return {"status": row[0], "site_url": row[1]} if row else None
-    except Exception as exc:
-        print(f"[SUPABASE-FEHLER] job_status: {exc}", flush=True)
+    except Exception:
+        logger.exception("Bau-Status zu %s nicht abrufbar", email)
         return None
 
 
@@ -138,8 +146,10 @@ def set_subscriber_status(email, status):
                 cur.execute("update wvm.subscribers set status=%s where email=%s", (status, email))
             conn.commit()
             return True
-    except Exception as exc:
-        print(f"[SUPABASE-FEHLER] set_subscriber_status: {exc}", flush=True)
+    except Exception:
+        # Die folgenreichste Stelle des Moduls: Hierüber läuft die Abmeldung vom
+        # Newsletter. Scheitert sie, bekommt der Abonnent weiter Post.
+        logger.exception("Status '%s' für %s konnte nicht gesetzt werden", status, email)
         return None
 
 
@@ -152,8 +162,8 @@ def _rows(sql, params=()):
                 cur.execute(sql, params)
                 cols = [d[0] for d in cur.description]
                 return [dict(zip(cols, r)) for r in cur.fetchall()]
-    except Exception as exc:
-        print(f"[SUPABASE-FEHLER] query: {exc}", flush=True)
+    except Exception:
+        logger.exception("Abfrage fehlgeschlagen: %s", sql)
         return []
 
 
@@ -188,8 +198,8 @@ def claim_newsletter_run(run_key):
                 got = cur.fetchone() is not None
             conn.commit()
             return got
-    except Exception as exc:
-        print(f"[SUPABASE-FEHLER] claim_newsletter_run: {exc}", flush=True)
+    except Exception:
+        logger.exception("Wochenlauf %s konnte nicht belegt werden", run_key)
         return False
 
 
@@ -199,7 +209,8 @@ def set_newsletter_run_count(run_key, count):
     try:
         with closing(_connect()) as conn:
             with conn.cursor() as cur:
-                cur.execute("update wvm.newsletter_runs set sent_count=%s where run_key=%s", (count, run_key))
+                cur.execute("update wvm.newsletter_runs set sent_count=%s "
+                            "where run_key=%s", (count, run_key))
             conn.commit()
-    except Exception as exc:
-        print(f"[SUPABASE-FEHLER] set_newsletter_run_count: {exc}", flush=True)
+    except Exception:
+        logger.exception("Versandzahl des Wochenlaufs %s nicht gespeichert", run_key)
