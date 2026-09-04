@@ -16,12 +16,15 @@ dadurch spürbar länger als die übrigen Dateien zusammen — das ist der Preis
 dafür, dass ein kaputter Pfad nicht erst dem Crawler auffällt.
 """
 import re
+import xml.etree.ElementTree as ET
 
 from django.test import SimpleTestCase
 
-from landing import i18n
+from landing import beitraege, i18n
 from landing.tests import kanonischer_host, seiten_client
 from landing.views import _content, _seiten_pfade
+
+ATOM_NS = "{http://www.w3.org/2005/Atom}"
 
 
 def alle_adressen():
@@ -254,3 +257,134 @@ class FehlerseitenTest(SimpleTestCase):
                          f"Nebenhost antwortet mit {antwort.status_code} statt 301")
         self.assertTrue(antwort["Location"].startswith(f"https://{ziel}/"),
                         f"Umleitung zeigt auf {antwort['Location']}, nicht auf {ziel}")
+
+
+class FeedTest(SimpleTestCase):
+    """Der Atom-Feed unter `/feed/` (Schritt 24).
+
+    Ein Feed ist entweder gültig oder wertlos: Aggregatoren verwerfen ein
+    fehlerhaftes Dokument wortlos, ohne Fehlermeldung an irgendwen. Deshalb
+    prüfen die folgenden Tests nicht, ob die Adresse antwortet, sondern ob das,
+    was sie liefert, ein Aggregator auch annehmen würde."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.client_https = seiten_client()
+        cls.antwort = cls.client_https.get("/feed/")
+        cls.wurzel = ET.fromstring(cls.antwort.content)
+        cls.eintraege = cls.wurzel.findall(f"{ATOM_NS}entry")
+
+    def test_feed_antwortet_als_atom_dokument(self):
+        """Verhindert: einen Feed, den kein Aggregator als solchen erkennt.
+
+        Zwei Dinge entscheiden darüber: der Wurzelknoten im Atom-Namensraum und
+        der Content-Type. Wird der Feed als `text/html` ausgeliefert, versuchen
+        Leseprogramme ihn als Webseite darzustellen und melden ihn als defekt —
+        obwohl der Inhalt in Ordnung ist."""
+        self.assertEqual(self.antwort.status_code, 200)
+        self.assertEqual(self.wurzel.tag, f"{ATOM_NS}feed",
+                         f"/feed/ liefert <{self.wurzel.tag}> statt eines Atom-Feeds")
+        self.assertTrue(self.antwort["Content-Type"].startswith("application/atom+xml"),
+                        f"/feed/: Content-Type {self.antwort['Content-Type']!r}")
+
+    def test_feed_enthaelt_jeden_fachbeitrag_genau_einmal(self):
+        """Verhindert: ein Beitrag erscheint nicht im Feed oder doppelt.
+
+        Der Feed ist der Kanal, über den ein Aggregator von einem neuen Beitrag
+        erfährt. Fehlt einer, wird er dort nie bekannt; steht einer doppelt
+        drin, melden Leseprogramme ihn zweimal als neu."""
+        gemeldet = [e.find(f"{ATOM_NS}id").text for e in self.eintraege]
+        basis = (_content().get("wvm_url") or "").rstrip("/")
+        erwartet = [f"{basis}/aktuelles/{b['slug']}/" for b in beitraege.BEITRAEGE]
+        self.assertEqual(sorted(gemeldet), sorted(erwartet),
+                         f"nur im Feed: {sorted(set(gemeldet) - set(erwartet))}, "
+                         f"nur in beitraege.py: {sorted(set(erwartet) - set(gemeldet))}")
+        self.assertEqual(len(gemeldet), len(erwartet), "ein Beitrag steht doppelt im Feed")
+
+    def test_jeder_feed_link_ist_abrufbar(self):
+        """Verhindert: einen Feed, dessen Links ins Leere zeigen.
+
+        Wer über einen Aggregator kommt, klickt genau diesen Link. Ein 404 dort
+        ist der erste Eindruck, den jemand von der Seite bekommt — und der
+        einzige, wenn er nicht zurückkommt."""
+        adressen = [self.wurzel.find(f"{ATOM_NS}link[@rel='alternate']").get("href")]
+        adressen += [e.find(f"{ATOM_NS}link").get("href") for e in self.eintraege]
+        basis = (_content().get("wvm_url") or "").rstrip("/")
+        kaputt = []
+        for adresse in adressen:
+            pfad = adresse[len(basis):] or "/"
+            code = self.client_https.get(pfad).status_code
+            if code != 200:
+                kaputt.append(f"{adresse} -> {code}")
+        self.assertEqual(kaputt, [], f"nicht abrufbare Feed-Links: {kaputt}")
+
+    def test_zeitangaben_sind_vollstaendige_zeitpunkte(self):
+        """Verhindert ein Datum ohne Uhrzeit — der häufigste Grund für einen ungültigen Atom-Feed.
+
+        Atom verlangt für `updated` und `published` RFC 3339, also einen
+        Zeitpunkt mit Uhrzeit und Zeitzone. `beitraege.py` führt taggenaue Daten;
+        wer sie unverändert einsetzt, erzeugt ein Dokument, das die Spezifikation
+        verletzt und von strengen Lesern abgewiesen wird."""
+        muster = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
+        werte = [self.wurzel.find(f"{ATOM_NS}updated").text]
+        for eintrag in self.eintraege:
+            werte += [eintrag.find(f"{ATOM_NS}updated").text,
+                      eintrag.find(f"{ATOM_NS}published").text]
+        for wert in werte:
+            self.assertRegex(wert, muster, f"Zeitangabe '{wert}' ist kein RFC-3339-Zeitpunkt")
+
+    def test_eintraege_stehen_neueste_zuerst(self):
+        """Verhindert eine Reihenfolge, die den ältesten Beitrag als neuesten meldet.
+
+        Leseprogramme zeigen einen Feed in der Reihenfolge, in der er kommt.
+        Steht der älteste Beitrag oben, sieht jeder Abonnent zuerst den Text, den
+        er am ehesten schon kennt."""
+        werte = [e.find(f"{ATOM_NS}updated").text for e in self.eintraege]
+        self.assertEqual(werte, sorted(werte, reverse=True),
+                         "die Feed-Einträge stehen nicht mit dem neuesten zuerst")
+
+    def test_jeder_eintrag_hat_titel_und_zusammenfassung(self):
+        """Verhindert einen Eintrag, der im Leseprogramm leer aussieht.
+
+        Titel und `summary` sind das Einzige, was ein Abonnent sieht, bevor er
+        klickt. Ein Eintrag ohne beides ist im Feed vorhanden und trotzdem
+        wirkungslos."""
+        for eintrag in self.eintraege:
+            kennung = eintrag.find(f"{ATOM_NS}id").text
+            for feld in ("title", "summary"):
+                wert = eintrag.find(f"{ATOM_NS}{feld}")
+                self.assertIsNotNone(wert, f"{kennung}: kein <{feld}>")
+                self.assertTrue((wert.text or "").strip(), f"{kennung}: <{feld}> ist leer")
+
+    def test_feed_ist_im_head_jeder_seite_verlinkt(self):
+        """Verhindert einen Feed, den niemand findet.
+
+        Aggregatoren suchen die `<link rel="alternate" type="application/atom+xml">`
+        im `<head>`. Ohne sie muss ein Mensch die Adresse kennen und von Hand
+        eintragen — dann kann der Feed auch gleich fehlen."""
+        for pfad in ("/", "/aktuelles/", "/leistungen/", "/en/"):
+            html = self.client_https.get(pfad).content.decode("utf-8")
+            self.assertIn('type="application/atom+xml"', html,
+                          f"{pfad}: kein Feed-Verweis im head")
+            self.assertIn('href="/feed/"', html, f"{pfad}: Feed-Verweis ohne /feed/")
+
+    def test_feed_gibt_es_nur_auf_deutsch(self):
+        """Verhindert eine englische oder rumänische Feed-Adresse ohne Inhalt.
+
+        Die Fachbeiträge liegen bewusst außerhalb von `i18n_patterns` und
+        existieren nur auf Deutsch. Ein `/en/feed/`, das mit 200 antwortet, wäre
+        ein Kanal, der deutsche Texte unter einer englischen Adresse meldet."""
+        for pfad in ("/en/feed/", "/ro/feed/"):
+            self.assertEqual(self.client_https.get(pfad).status_code, 404,
+                             f"{pfad} antwortet, obwohl es den Feed nur auf Deutsch gibt")
+
+    def test_feed_steht_nicht_im_seitenbestand(self):
+        """Verhindert, dass der Feed als Nutzseite in Sitemap und IndexNow landet.
+
+        `/feed/` ist ein Kanal, keine Seite: Er hat kein `<h1>`, keine
+        Beschreibung und nichts, was in einem Suchergebnis Sinn ergäbe. In
+        `_seiten_pfade()` aufgenommen, würde `pruefe_seite` ihn auf Titel und
+        Alt-Texte prüfen und die Sitemap ihn zur Indexierung anmelden."""
+        pfade = {p for p, _prio, _freq, _mehr in _seiten_pfade()}
+        self.assertNotIn("/feed/", pfade, "/feed/ steht in _seiten_pfade()")

@@ -2586,6 +2586,80 @@ def aktuelles(request):
     })
 
 
+def _feed_zeitpunkt(tag):
+    """Ein Datum aus `beitraege.py` als RFC-3339-Zeitpunkt, wie Atom ihn verlangt.
+
+    Atom schreibt für `updated` und `published` eine vollständige Zeitangabe vor;
+    ein blosses '2026-08-29' macht den Feed ungültig, und ein ungültiger Feed
+    wird von Aggregatoren wortlos verworfen. Die Beiträge tragen taggenaue Daten
+    — mehr Genauigkeit wird deshalb nicht vorgetäuscht, sondern schlicht
+    Mitternacht UTC angehängt."""
+    return f"{tag}T00:00:00Z"
+
+
+def feed_xml(request):
+    """/feed/ — Atom-Feed der fünfzehn Fachbeiträge, neueste zuerst.
+
+    Warum es ihn gibt: Aggregatoren und Antwortmaschinen finden über einen Feed
+    neue Beiträge, ohne 158 Seiten crawlen zu müssen. Ohne ihn erfahren sie von
+    einem neuen Beitrag erst beim nächsten vollständigen Durchlauf.
+
+    **Nur die Beiträge.** Glossar und Checklisten sind Nachschlagewerke ohne
+    Veröffentlichungsdatum; ein Feed, der bei jeder Textänderung 'neu' meldet,
+    ist Rauschen und wird abbestellt.
+
+    **Nur Deutsch** — wie die Beiträge selbst (Begründung im Kopf von
+    `landing/beitraege.py`). Es gibt deshalb bewusst kein `/en/feed/`.
+
+    Der Feed steht **nicht** in `_seiten_pfade()` und damit weder in der Sitemap
+    noch in der IndexNow-Meldung: Er ist ein Kanal, keine Nutzseite. Er ist aus
+    demselben Grund auch nicht in `robots.txt` gesperrt — ein Crawler soll ihn
+    lesen dürfen, er soll ihn nur nicht als Suchergebnis führen."""
+    c = _content()
+    basis = (c.get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
+    autor = c.get("inhaber_name", "")
+    liste = sorted((_beitrag_daten(b) for b in beitraege.BEITRAEGE),
+                   key=lambda b: (b.get("geaendert") or b.get("datum", ""),
+                                  b.get("datum", "")),
+                   reverse=True)
+    eintraege = []
+    for b in liste:
+        adresse = f"{basis}{b['url']}"
+        geaendert = b.get("geaendert") or b.get("datum", "")
+        # Die Zusammenfassung ist der Antwort-Absatz, gekuerzt an einer
+        # Wortgrenze — derselbe Text, der oben auf der Seite steht und im
+        # Article-Schema als `description` dient. Eine eigene Kurzfassung waere
+        # eine dritte Formulierung derselben Aussage, die auseinanderlaufen kann.
+        kurz = b.get("antwort", "")
+        if len(kurz) > 300:
+            kurz = kurz[:300].rsplit(" ", 1)[0] + " …"
+        eintraege.append(
+            "<entry>"
+            f"<title>{escape(b.get('titel', ''))}</title>"
+            f'<link rel="alternate" type="text/html" href="{adresse}"/>'
+            f"<id>{adresse}</id>"
+            f"<published>{_feed_zeitpunkt(b.get('datum', ''))}</published>"
+            f"<updated>{_feed_zeitpunkt(geaendert)}</updated>"
+            f'<summary type="text">{escape(kurz)}</summary>'
+            "</entry>"
+        )
+    neuester = max((b.get("geaendert") or b.get("datum", "") for b in liste),
+                   default="")
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="de">'
+        f"<title>{escape('Fachbeiträge — ' + c.get('site_name', ''))}</title>"
+        f'<link rel="self" type="application/atom+xml" href="{basis}/feed/"/>'
+        f'<link rel="alternate" type="text/html" href="{basis}{reverse("aktuelles")}"/>'
+        f"<id>{basis}/feed/</id>"
+        f"<updated>{_feed_zeitpunkt(neuester)}</updated>"
+        f"<author><name>{escape(autor)}</name></author>"
+        + "".join(eintraege) +
+        "</feed>"
+    )
+    return HttpResponse(xml, content_type="application/atom+xml; charset=utf-8")
+
+
 def _region_daten(eintrag, lang):
     """Stammdaten aus regionen.py plus Texte aus dem Sprachpaket, zu einem Dict."""
     texte = i18n.get_pack(lang).get("regionen", {}).get(eintrag["slug"], {})

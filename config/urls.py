@@ -16,6 +16,9 @@ urlpatterns = [
     # /ro/-Varianten. Begruendung im Kopf von landing/beitraege.py.
     path("aktuelles/", views.aktuelles, name="aktuelles"),
     path("aktuelles/<slug:slug>/", views.beitrag_seite, name="beitrag"),
+    # Atom-Feed der Fachbeitraege. Steht hier und nicht in i18n_patterns, weil
+    # die Beitraege nur deutsch sind - ein /en/feed/ haette keinen Inhalt.
+    path("feed/", views.feed_xml, name="feed"),
     # ── Glossar (docs/SEO-AUSBAU-3.md, W5) ──────────────────────────────────
     # Wie die Fachbeitraege bewusst ausserhalb von i18n_patterns: nur Deutsch.
     # Begruendung im Kopf von landing/glossar.py.
