@@ -1,12 +1,12 @@
 ---
 bereich: technik
 titel: Technik
-stand: 2026-09-03
+stand: 2026-09-04
 status: teilweise
 fortschritt: 58
-zusammenfassung: Django 5.0.6 auf Railway mit drei eigenen Prüfbefehlen, aber ohne eine einzige Testfunktion, ohne CI und ohne Lockfile.
+zusammenfassung: Django 5.0.6 auf Railway mit drei eigenen Prüfbefehlen; im Arbeitszweig kommen eine Testsuite mit 210 Funktionen und ein CI-Lauf dazu (noch nicht veröffentlicht), ein Lockfile fehlt weiterhin. Die sieben Stellen, an denen dieses Projekt still danebengeht, stehen in docs/FALLEN.md.
 offen: 9
-quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
+quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md, docs/FALLEN.md
 ---
 
 # Technik

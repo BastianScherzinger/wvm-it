@@ -1,10 +1,10 @@
 ---
 bereich: aufgaben
 titel: Aufgaben
-stand: 2026-09-03
+stand: 2026-09-04
 status: teilweise
 fortschritt: 30
-zusammenfassung: Im Code nichts mehr aus den Plänen offen; neu aus der Messung: Tests (0 Funktionen), 82 unerreichbare Seiten, 9 kritische Datei-Befunde, Sicherheitsköpfe.
+zusammenfassung: Im Code nichts mehr aus den Plänen offen; Verbesserungslauf 13 hat Tests, Sicherheitsköpfe und die Verlinkung der 82 fremdsprachigen Seiten im Arbeitszweig erledigt. Offen bleibt, was Zuarbeit braucht: Unternehmensprofil, SPF/DMARC, Apex-A-Record, Core Web Vitals, die km-Angaben der sieben Ortsseiten.
 offen: 8
 quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
 ---

@@ -1,10 +1,10 @@
 ---
 bereich: inhalte
 titel: Inhalte
-stand: 2026-09-03
+stand: 2026-09-04
 status: teilweise
 fortschritt: 90
-zusammenfassung: 158 URLs in acht Silos mit 114.641 Wörtern; 55 von 84 Seiten unter dem Zielumfang ihrer Seitenart, keine Über-uns-Seite, keine AGB.
+zusammenfassung: 158 URLs in acht Silos; im Arbeitszweig 164 Adressen mit 122.445 Wörtern, dazu eine Über-uns-Seite, eine Danke-Seite und eine Erklärung zur Barrierefreiheit. /kontakt/, /leistungen/ und /vergleich/ haben Eigentext bekommen; /impressum/ bleibt bewusst kurz. Keine AGB.
 offen: 8
 quellen: CLAUDE.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
 ---

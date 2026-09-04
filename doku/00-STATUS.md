@@ -1,12 +1,12 @@
 ---
 bereich: status
 titel: WVM-IT — Stand
-stand: 2026-09-03
+stand: 2026-09-04
 status: teilweise
 fortschritt: 80
-zusammenfassung: Vollausbau auf 158 URLs abgeschlossen (56/56), Gesamtstand 80,0 „Solide"; schwächster Bereich Code-Qualität 58 (keine einzige Testfunktion), blockiert beim Kunden bleiben Unternehmensprofil, SPF/DMARC und Apex-DNS.
+zusammenfassung: Vollausbau auf 158 URLs abgeschlossen (56/56); Verbesserungslauf 13 hat im Arbeitszweig eine Testsuite (210 Funktionen), CI, Schutzköpfe, segmentierte Sitemap und überarbeitete Meta-Angaben ergänzt — noch nicht veröffentlicht. Blockiert beim Kunden bleiben Unternehmensprofil, SPF/DMARC und Apex-DNS.
 offen: 3
-quellen: CLAUDE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
+quellen: CLAUDE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md, docs/LOGBUCH.md
 ---
 
 # WVM-IT — Stand

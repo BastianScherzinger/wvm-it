@@ -1,10 +1,10 @@
 ---
 bereich: wegweiser
 titel: WVM-IT — Wegweiser durch die Dokumentation
-stand: 2026-09-02
+stand: 2026-09-04
 status: vollständig
 fortschritt: 100
-zusammenfassung: Elf Dateien nach Doku-Standard; die Original-Doku (20 Dateien, rund 26.500 Wörter) bleibt in ../docs/ und wird von hier verlinkt.
+zusammenfassung: Elf Dateien nach Doku-Standard; die Original-Doku bleibt in ../docs/ (21 Dateien, davon fünf unter docs/seo/) und wird von hier verlinkt. Einstieg dort seit 04.09.2026 über docs/00-INDEX.md, die Fallen über docs/FALLEN.md, das Arbeitsprotokoll über docs/LOGBUCH.md.
 offen: 0
 quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/SEO-AUSBAU-3.md, docs/SEO-KONZEPT-DACH.md
 ---
