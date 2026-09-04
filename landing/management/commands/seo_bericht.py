@@ -18,11 +18,14 @@ Optionen
 """
 import json
 import re
+import time
 from collections import Counter
+from statistics import median
 
 from django.core.management.base import BaseCommand
 
-from landing import i18n
+from landing import beitraege, branchen, checklisten, glossar, i18n, leistungen
+from landing import regionen, vergleiche
 from landing.management.commands.pruefe_seite import _client, TITEL_MAX, DESC_MAX
 
 # Alles zwischen den Tags entfernen, dann Wörter zählen. Bewusst grob: Es geht
@@ -36,6 +39,57 @@ def _worte(html: str) -> int:
     treffer = _MAIN.search(html)
     text = _TAGS.sub(" ", treffer.group(1) if treffer else html)
     return len(text.split())
+
+
+# Wie oft jede Adresse gemessen wird. Fünf Durchläufe, ausgewertet wird der
+# Median: Der erste Aufruf trägt immer die einmaligen Kosten des Seitentyps
+# (Template kompilieren, Sprachpaket laden), und ein einzelner Ausreisser nach
+# oben passiert auf jedem Rechner, der nebenher etwas anderes tut.
+MESSLAEUFE = 5
+
+
+def messpunkte():
+    """Je Seitentyp eine Adresse — die Aufstellung, die gemessen wird.
+
+    Zwölf Stück, und zwar Beispiele: Der Bericht will nicht wissen, wie schnell
+    eine bestimmte Seite ist, sondern ob ein *Seitentyp* aus der Reihe fällt.
+    Deshalb steht jeder Typ genau einmal darin, und die Slugs kommen aus den
+    Strukturmodulen statt als Text im Code — ein umbenannter Slug ergäbe sonst
+    eine 404, und eine Fehlerseite rendert schnell.
+
+    Vom Test und vom Bericht gemeinsam benutzt: Zwei Aufstellungen liefen
+    auseinander, sobald ein Silo dazukommt."""
+    return [
+        ("Start", "/"),
+        ("Hub (Leistungen)", "/leistungen/"),
+        ("Leistung", f"/leistungen/{leistungen.LEISTUNGEN[0]['slug']}/"),
+        ("Branche", f"/branchen/{branchen.BRANCHEN[0]['slug']}/"),
+        ("Vergleich", f"/vergleich/{vergleiche.VERGLEICHE[0]['slug']}/"),
+        ("Region", f"/it-service/{regionen.REGIONEN[0]['slug']}/"),
+        ("Fachbeitrag", f"/aktuelles/{beitraege.BEITRAEGE[0]['slug']}/"),
+        ("Glossar", f"/wissen/{glossar.BEGRIFFE[0]['slug']}/"),
+        ("Checkliste", f"/checkliste/{checklisten.CHECKLISTEN[0]['slug']}/"),
+        ("Preisrechner", "/kosten/rechner/"),
+        ("Selbsttest", "/it-sicherheit-test/"),
+        ("Recht", "/impressum/"),
+    ]
+
+
+def renderzeit_ms(client, pfad, laeufe=MESSLAEUFE):
+    """Median der Serverzeit einer Adresse in Millisekunden.
+
+    Gemessen wird der Weg durch Django bis zur fertigen Antwort — ohne Netz,
+    ohne Browser, ohne statische Dateien. Das ist genau die Grösse, die eine
+    zusätzliche Datenbankabfrage oder eine teure Schleife im Template
+    verschlechtert, und die einzige, die sich auf jedem Rechner reproduzieren
+    lässt. Die echte Zahl aus dem Betrieb steht im Gunicorn-Zugriffslog
+    (`%(L)s`) und wird dort erhoben, nicht hier."""
+    zeiten = []
+    for _lauf in range(laeufe):
+        beginn = time.perf_counter()
+        antwort = client.get(pfad)
+        zeiten.append((time.perf_counter() - beginn) * 1000)
+    return median(zeiten), antwort.status_code
 
 
 class Command(BaseCommand):
@@ -100,6 +154,7 @@ class Command(BaseCommand):
         self._ueberblick(seiten, typen, md)
         self._auffaellig(seiten, schwelle, md)
         self._schema(seiten, md)
+        self._renderzeit(client, md)
 
     def _inventar(self, seiten, md):
         """M3: die vollständige URL-Liste als Grundlage der Quartalsdurchsicht.
@@ -199,3 +254,36 @@ class Command(BaseCommand):
         if ohne:
             self.stdout.write(self.style.WARNING(
                 f"Ohne jedes Schema: {', '.join(ohne)}\n"))
+
+    def _renderzeit(self, client, md):
+        """Wie lange der Server je Seitentyp braucht — die Zahl zu `PF10`.
+
+        Zu dieser Frage gab es im ganzen Projekt bisher keinen einzigen Wert.
+        Ohne einen Vorher-Wert lässt sich nach einer Änderung an der
+        Auslieferung nicht belegen, ob sie etwas gebracht hat — und „belegbar"
+        ist hier die Bedingung für jede Aussage.
+
+        Bewusst **ohne Rückgabewert**: `seo_bericht` zeigt den Stand,
+        `pruefe_seite` hält ein Deploy an. Die Grenze, ab der eine Seite
+        auffällig ist, zieht `landing/tests/test_renderzeit.py` — und zwar
+        relativ zum eigenen Auftritt, weil eine feste Millisekundenzahl auf
+        jedem Rechner etwas anderes bedeutet.
+
+        Die Zahlen hier sind Zahlen des Testclients: kein Netz, kein
+        Gunicorn-Worker, keine gleichzeitigen Anfragen. Sie vergleichen die
+        Seitentypen **untereinander**, sie sagen nichts über die Antwortzeit,
+        die ein Besucher erlebt. Diese steht im Zugriffslog."""
+        self.stdout.write(self.style.SUCCESS(f"{'## ' if md else ''}Renderzeit"))
+        zeilen, fehlend = [], []
+        for name, pfad in messpunkte():
+            ms, code = renderzeit_ms(client, pfad)
+            if code != 200:
+                fehlend.append(f"{pfad} (HTTP {code})")
+                continue
+            zeilen.append([name, pfad, f"{ms:.0f} ms"])
+        zeilen.sort(key=lambda z: -float(z[2].split()[0]))
+        self._tabelle(["Seitentyp", "gemessene Adresse",
+                       f"Median aus {MESSLAEUFE} Läufen"], zeilen, md)
+        if fehlend:
+            self.stdout.write(self.style.WARNING(
+                f"Nicht gemessen, weil nicht erreichbar: {', '.join(fehlend)}\n"))
