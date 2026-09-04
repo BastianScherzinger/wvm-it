@@ -16,8 +16,8 @@ BRANCHEN = {
         "titel": "IT pentru cabinete de contabilitate | WVM-IT",
         "desc": "IT pentru cabinete de contabilitate: mediu DATEV, separarea clienților, termene de arhivare, backup verificat. De la 29 € per stație. Cereți o ofertă.",
         "h1": "IT pentru cabinete de contabilitate și avocatură",
-        "kurz": "WVM-IT se ocupă de IT-ul cabinetelor de contabilitate, avocatură și audit din Austria și Germania: stații de lucru, mediul DATEV sau al software-ului de cabinet, datele clienților și backupul din spate. Asistența curentă costă de la 29 € per stație și lună, verificarea unică de securitate IT 490 €. Lucrăm preponderent prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu întrerupe munca.",
-        "intro": "Într-un cabinet, IT-ul nu este un instrument, ci arhiva. Ce se află pe servere reprezintă patrimoniul altora sub formă de cifre — și este supus unor termene pe care nimeni nu le poate suspenda. De aceea tehnologia are aici alt rol decât într-o firmă care seara închide calculatoarele: trebuie să funcționeze demonstrabil, nu doar aparent.",
+        "kurz": "WVM-IT se ocupă de IT-ul cabinetelor de contabilitate, avocatură și audit din Austria și Germania: stații de lucru, mediul DATEV sau al software-ului de contabilitate, datele clienților și backupul din spate. Asistența curentă costă de la 29 € per stație și lună, verificarea unică de securitate IT 490 €. Lucrăm preponderent prin mentenanță la distanță — într-un cabinet de contabilitate acesta este singurul drum care nu întrerupe munca.",
+        "intro": "Într-un cabinet de contabilitate, IT-ul nu este un instrument, ci arhiva. Ce se află pe servere reprezintă patrimoniul altora sub formă de cifre — și este supus unor termene pe care nimeni nu le poate suspenda. De aceea tehnologia are aici alt rol decât într-o firmă care seara închide calculatoarele: trebuie să funcționeze demonstrabil, nu doar aparent.",
         "anders_h": "Ce este diferit într-un cabinet",
         "anders": [
             "Termenele de arhivare se aplică datelor, nu aparatelor. Schimbarea unui server nu are voie să pună capăt lizibilității anilor vechi — nici a celor ținuți în programe care nu mai există.",
@@ -52,7 +52,7 @@ BRANCHEN = {
              "a": "La trei stații de lucru facturarea pe ore este adesea mai ieftină, iar noi o spunem chiar dacă astfel câștigăm mai puțin. Asistența curentă devine utilă de îndată ce depind de ea un server, un server terminal sau un calendar de termene — deci cel târziu acolo unde o zi pierdută primăvara costă mai mult decât un an de asistență."},
         ],
         "cta_h": "Cu ce începem?",
-        "cta_t": "Scrieți într-o propoziție ce software de cabinet folosiți și ce nu funcționează acum. În zilele lucrătoare răspundem în 24 de ore cu o evaluare — inclusiv atunci când răspunsul sincer este că deocamdată nu aveți nevoie de nimic.",
+        "cta_t": "Scrieți într-o propoziție ce software de contabilitate folosiți și ce nu funcționează acum. În zilele lucrătoare răspundem în 24 de ore cu o evaluare — inclusiv atunci când răspunsul sincer este că deocamdată nu aveți nevoie de nimic.",
     },
 
     "handwerk-baugewerbe": {
@@ -104,8 +104,8 @@ BRANCHEN = {
         "titel": "IT pentru cabinete medicale și de terapie | WVM-IT",
         "desc": "IT pentru cabinete medicale: date ale pacienților, jurnale de acces, rețele separate, siguranță în consultații. Verificare 490 €. Cereți o ofertă.",
         "h1": "IT pentru cabinete medicale, stomatologice și de terapie",
-        "kurz": "WVM-IT se ocupă de IT-ul cabinetelor medicale, stomatologice și de terapie din Austria și Germania: stații de lucru, mediul software-ului de cabinet, rețele separate pentru aparatura medicală, drepturi de acces și backupul din spate. Verificarea unică de securitate IT costă 490 €, asistența curentă de la 29 € per stație și lună. Lucrăm prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu oprește consultația.",
-        "intro": "Un cabinet are două însușiri care împreună sunt pretențioase: prelucrează cea mai sensibilă categorie de date care există și nu are voie să stea între orele opt și douăsprezece. Împreună, asta înseamnă că tehnologia nu trebuie să fie spectaculoasă, ci plictisitor de fiabilă — și că fiecare modificare se face în afara programului de consultații.",
+        "kurz": "WVM-IT se ocupă de IT-ul cabinetelor medicale, stomatologice și de terapie din Austria și Germania: stații de lucru, mediul software-ului de cabinet medical, rețele separate pentru aparatura medicală, drepturi de acces și backupul din spate. Verificarea unică de securitate IT costă 490 €, asistența curentă de la 29 € per stație și lună. Lucrăm prin mentenanță la distanță — într-un cabinet medical acesta este singurul drum care nu oprește consultația.",
+        "intro": "Un cabinet medical are două însușiri care împreună sunt pretențioase: prelucrează cea mai sensibilă categorie de date care există și nu are voie să stea între orele opt și douăsprezece. Împreună, asta înseamnă că tehnologia nu trebuie să fie spectaculoasă, ci plictisitor de fiabilă — și că fiecare modificare se face în afara programului de consultații.",
         "anders_h": "Ce este diferit într-un cabinet",
         "anders": [
             "Datele de sănătate sunt o categorie specială de date personale. Cine le-a văzut și când trebuie să poată fi urmărit — nu este o recomandare, ci parte a obligației de răspundere.",
@@ -124,7 +124,7 @@ BRANCHEN = {
             "Un plan scris pentru cazul în care software-ul de cabinet se oprește în timpul consultației",
         ],
         "software_h": "Software-ul de cabinet și limitele lui",
-        "software_t": "Software-ul specializat rămâne la producător — noi operăm tot ce este dedesubt: servere, stații de lucru, rețea, drepturi, backup, imprimante și cititoare de carduri. Trasăm această linie dinainte, pentru că ea decide pe cine se sună în caz de defecțiune. La conexiunile cu infrastructura de telematică sau de decontare ne ținem strict de cerințele producătorului, în loc să construim o variantă proprie.",
+        "software_t": "Software-ul de cabinet medical rămâne la producător — noi operăm tot ce este dedesubt: servere, stații de lucru, rețea, drepturi, backup, imprimante și cititoare de carduri. Trasăm această linie dinainte, pentru că ea decide pe cine se sună în caz de defecțiune. La conexiunile cu infrastructura de telematică sau de decontare ne ținem strict de cerințele producătorului, în loc să construim o variantă proprie.",
         "risiko_h": "Cea mai frecventă constatare în cabinete",
         "risiko_t": "Un acces comun pentru toată echipa, pentru că la recepție merge mai repede. Astfel orice jurnalizare devine inutilă — se poate dovedi că un dosar a fost deschis, dar nu de cine. A doua constatare frecventă: un aparat care stă de ani buni în aceeași rețea cu stațiile de lucru și nu mai primește actualizări. Ambele se rezolvă fără hardware nou. Verificarea de securitate IT de 490 € analizează exact aceste puncte și livrează o listă ordonată după urgență, nu după efort.",
         "preis_h": "Cât costă",

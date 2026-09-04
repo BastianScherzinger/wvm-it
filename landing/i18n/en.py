@@ -179,7 +179,7 @@ PACK = {
         "s3_h": "Stable", "s3_p": "Stays fast, even when many visitors arrive at once.",
     },
     "proof": {
-        "line": "Working for companies, trades, hospitality, service providers and startups across the entire DACH region.",
+        "line": "Working for companies, trades, hospitality, service providers and startups across Austria and Germany.",
         "stat1_prefix": "from ", "stat1_label": "Starting price for your first website",
         "stat2_label": "to the first reply",
         "stat3_label": "target Lighthouse performance",

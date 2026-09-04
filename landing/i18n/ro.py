@@ -175,7 +175,7 @@ PACK = {
         "s3_h": "Stabil", "s3_p": "Rămâne rapid, chiar și când vin mulți vizitatori deodată.",
     },
     "proof": {
-        "line": "În slujba companiilor, meșteșugarilor, gastronomiei, prestatorilor de servicii și startup-urilor din tot spațiul DACH.",
+        "line": "În slujba companiilor, meșteșugarilor, gastronomiei, prestatorilor de servicii și startup-urilor din Austria și Germania.",
         "stat1_prefix": "de la ", "stat1_label": "Preț de start pentru primul site",
         "stat2_label": "până la primul răspuns",
         "stat3_label": "performanță Lighthouse vizată",
