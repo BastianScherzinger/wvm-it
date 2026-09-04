@@ -50,9 +50,12 @@ class Command(BaseCommand):
                             help="Vollstaendige URL-Liste ausgeben (M3)")
 
     def handle(self, *args, **optionen):
+        # Umlaute auf der Windows-Konsole — begründet in pruefe_seite.py, dort
+        # steht auch, warum die Ausnahmeliste genau so aussieht und warum hier
+        # keine Protokollzeile hingehört.
         try:
             self.stdout._out.reconfigure(encoding="utf-8", errors="replace")
-        except Exception:
+        except (AttributeError, ValueError, OSError):
             pass
         md = optionen["markdown"]
         schwelle = optionen["min_worte"]

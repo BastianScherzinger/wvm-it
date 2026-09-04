@@ -71,9 +71,17 @@ class Command(BaseCommand):
     def handle(self, *args, **optionen):
         # Die Windows-Konsole läuft je nach Umgebung auf cp1252 und stolpert sonst über
         # Umlaute und Sonderzeichen in den Meldungen.
+        #
+        # Die Ausnahme ist bewusst eng gefasst und die Liste vollständig: Fehlt
+        # `_out` oder ist es ein Puffer ohne `reconfigure` (so läuft es im
+        # Testlauf), gibt es AttributeError; ein bereits abgetrennter Strom gibt
+        # ValueError, ein defekter OSError. Ein `except Exception` verschluckt
+        # darüber hinaus jeden Programmierfehler in dieser Zeile — und
+        # protokollieren lässt sich hier nichts, weil genau die Ausgabe der
+        # Gegenstand ist.
         try:
             self.stdout._out.reconfigure(encoding="utf-8", errors="replace")
-        except Exception:
+        except (AttributeError, ValueError, OSError):
             pass
         self.fehler = []
         self.warnungen = []
