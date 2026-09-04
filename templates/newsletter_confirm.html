@@ -252,7 +252,11 @@
             var j=await r.json();
             if(j.secure_url){ urls.push(j.secure_url); sync();
               var t=document.createElement('div'); t.className='af-thumb';
-              t.innerHTML='<img src="'+j.secure_url+'" alt="'+((window.I18N&&window.I18N.af&&window.I18N.af.bild_alt)||'Bild')+'">'; thumbs.appendChild(t);
+              {# Das einzige Bild des Projekts ohne feste Masse. Cloudinary liefert
+                 width/height in derselben Antwort mit; fehlen sie, stehen die 74 px
+                 der Vorschaukachel (.af-thumb, style.css:961) als Rueckfall. #}
+              var bw=j.width||74, bh=j.height||74;
+              t.innerHTML='<img src="'+j.secure_url+'" width="'+bw+'" height="'+bh+'" alt="'+((window.I18N&&window.I18N.af&&window.I18N.af.bild_alt)||'Bild')+'">'; thumbs.appendChild(t);
             }
           }catch(e){ /* still: einzelnes Bild schlägt fehl, Rest läuft weiter */ }
           finally{ pending--; if(pending<=0) setBusy(false); }
