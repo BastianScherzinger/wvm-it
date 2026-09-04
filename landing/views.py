@@ -620,7 +620,7 @@ def rechner(request):
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
             c, lang, pfad=pfad, titel=rs.get("titel", ""),
-            beschreibung=rs.get("desc", ""),
+            beschreibung=rs.get("desc", ""), speakable=True,
             faq=rs.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["nav"]["preise"], reverse("kosten")),
@@ -2002,7 +2002,8 @@ _HUB_META = {
 }
 
 
-def _webpage(base, pfad, lang, titel, beschreibung, bild=""):
+def _webpage(base, pfad, lang, titel, beschreibung, bild="", *,
+             speakable=False, autor=False):
     """Der `WebPage`-Knoten einer einzelnen Seite (Verbesserungslauf 13, Schritt 27).
 
     Bis hierher kam `WebPage` im Graphen nur als Verweisziel vor
@@ -2034,10 +2035,31 @@ def _webpage(base, pfad, lang, titel, beschreibung, bild=""):
     if bild:
         knoten["primaryImageOfPage"] = {"@type": "ImageObject",
                                         "url": f"{base}{bild}" if bild.startswith("/") else bild}
+    # ── `speakable` (Verbesserungslauf 13, Schritt 28) ───────────────────────
+    # Der Hinweis, welchen Satz ein Sprachassistent vorlesen soll. Bis hierher
+    # stand er nur im `Article`-Knoten und galt damit fuer 15 von 158 Seiten —
+    # den Antwortabsatz aus `templates/antwort.html` gibt es aber auf vierzehn
+    # Seitentypen.
+    #
+    # `speakable=True` setzt **nur**, wer den Absatz auch rendert. Eine Angabe
+    # auf einer Seite ohne `.antwort` liesse sich am HTML widerlegen; genau das
+    # haelt `test_schema.SpeakableTest` fuer jede der 158 Seiten in beide
+    # Richtungen gegeneinander. Die Klasse `.antwort` in `templates/antwort.html`
+    # ist das Ziel dieser Angabe — wer sie entfernt, macht das Schema zur Luege
+    # (CLAUDE.md, Abschnitt „Antwortabsatz").
+    if speakable:
+        knoten["speakable"] = {"@type": "SpeakableSpecification",
+                               "cssSelector": [".antwort", "h1"]}
+    # Ratgeberseiten bekommen einen benannten Verfasser (E-E-A-T). Auf Leistungs-,
+    # Branchen- und Regionsseiten bleibt `author` weg: Dort ist der Betrieb der
+    # Urheber, und das sagt `publisher` am Website-Knoten bereits.
+    if autor:
+        knoten["author"] = {"@id": f"{base}/#inhaber"}
     return knoten
 
 
 def _seiten_schema(c, lang, *, pfad="", titel="", beschreibung="", bild="",
+                   speakable=False, autor=False,
                    breadcrumb=None, service=None, faq=None, faq_id=""):
     """@graph einer Unterseite: immer der Betrieb und die Website, dazu optional
     Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben Entitaet
@@ -2051,7 +2073,8 @@ def _seiten_schema(c, lang, *, pfad="", titel="", beschreibung="", bild="",
     # Die FAQPage der Startseite gehoert nicht auf eine Unterseite.
     graph = [k for k in graph if k.get("@type") != "FAQPage"]
     if pfad:
-        graph.append(_webpage(base, pfad, lang, titel, beschreibung, bild))
+        graph.append(_webpage(base, pfad, lang, titel, beschreibung, bild,
+                              speakable=speakable, autor=autor))
     for zusatz in (breadcrumb, service):
         if zusatz:
             graph.append(zusatz)
@@ -2085,6 +2108,7 @@ def leistungen_hub(request):
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, pfad=reverse("leistungen"),
                            titel=hub.get("titel", ""), beschreibung=hub.get("desc", ""),
+                           speakable=True,
                            breadcrumb=_breadcrumb(
                                base, [(pack["seite"]["leistungen"], reverse("leistungen"))])),
             _itemlist(base, reverse("leistungen"), hub.get("h1", ""),
@@ -2134,7 +2158,7 @@ def leistung_seite(request, slug):
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
             c, lang, pfad=pfad, titel=seite.get("titel", ""),
-            beschreibung=seite.get("desc", ""),
+            beschreibung=seite.get("desc", ""), speakable=True,
             service=service, faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"]["leistungen"], reverse("leistungen")),
@@ -2181,6 +2205,7 @@ def branchen_hub(request):
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, pfad=reverse("branchen"),
                            titel=bs.get("titel", ""), beschreibung=bs.get("desc", ""),
+                           speakable=True,
                            breadcrumb=_breadcrumb(base, [
                                (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
             _itemlist(base, reverse("branchen"), bs.get("h1", ""),
@@ -2235,7 +2260,7 @@ def branche_seite(request, slug):
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
             c, lang, pfad=pfad, titel=seite.get("titel", ""),
-            beschreibung=seite.get("desc", ""),
+            beschreibung=seite.get("desc", ""), speakable=True,
             service=service, faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
@@ -2351,7 +2376,7 @@ def checkliste_seite(request, slug):
         "preis_stand": _preis_stand("de"),
         "structured_data": _seiten_schema(
             c, "de", pfad=pfad, titel=liste.get("meta_titel", ""),
-            beschreibung=liste.get("desc", ""),
+            beschreibung=liste.get("desc", ""), speakable=True, autor=True,
             service=howto, faq=liste.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 ("Checklisten", reverse("checklisten")),
@@ -2433,7 +2458,8 @@ def begriff_seite(request, slug):
         "preis_stand": _preis_stand("de"),
         "structured_data": _seiten_schema(
             c, "de", pfad=pfad, titel=begriff.get("meta_titel", ""),
-            beschreibung=begriff.get("desc", ""), service=term,
+            beschreibung=begriff.get("desc", ""), speakable=True, autor=True,
+            service=term,
             breadcrumb=_breadcrumb(base, [
                 ("Wissen", reverse("wissen")),
                 (begriff.get("titel", slug), pfad)])),
@@ -2521,7 +2547,7 @@ def sicherheitstest(request):
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
             c, lang, pfad=pfad, titel=st.get("titel", ""),
-            beschreibung=st.get("desc", ""),
+            beschreibung=st.get("desc", ""), speakable=True,
             faq=st.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [(st.get("h1", "Selbsttest"), pfad)])),
     })
@@ -2563,7 +2589,7 @@ def notfall(request):
 
     graph = json.loads(_seiten_schema(
         c, lang, pfad=pfad, titel=nf.get("titel", ""), beschreibung=nf.get("desc", ""),
-        faq=nf.get("faq") or [], faq_id=pfad,
+        speakable=True, faq=nf.get("faq") or [], faq_id=pfad,
         breadcrumb=_breadcrumb(base, [(nf.get("h1", "Notfall"), pfad)])))
     graph["@graph"] += [_howto_schema(base, pfad, fall, sprache)
                         for fall in nf.get("faelle", [])]
@@ -2606,6 +2632,7 @@ def vergleiche_hub(request):
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, pfad=reverse("vergleiche"),
                            titel=vs.get("titel", ""), beschreibung=vs.get("desc", ""),
+                           speakable=True,
                            breadcrumb=_breadcrumb(base, [
                                (vs.get("vergleiche_titel", "Vergleiche"),
                                 reverse("vergleiche"))])),
@@ -2643,7 +2670,7 @@ def vergleich_seite(request, slug):
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
             c, lang, pfad=pfad, titel=seite.get("titel", ""),
-            beschreibung=seite.get("desc", ""),
+            beschreibung=seite.get("desc", ""), speakable=True, autor=True,
             faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche")),
@@ -2696,8 +2723,10 @@ def beitrag_seite(request, slug):
     # die eine KI-Antwort braucht, um einen Absatz überhaupt zuzuordnen (G6).
     #
     # S4/S5 aus SEO-AUSBAU-3.md kommen hier dazu:
-    # * `speakable` zeigt auf `.antwort` — den Absatz, den templates/antwort.html
-    #   rendert. Wer dort die Klasse entfernt, macht diese Angabe zur Lüge.
+    # * `speakable` stand bis Schritt 28 hier im Article-Knoten und steht seither
+    #   im WebPage-Knoten der Seite (`_webpage`): Der Antwortabsatz ist eine
+    #   Eigenschaft der Seite, nicht des Artikels, und es gibt ihn auf vierzehn
+    #   Seitentypen statt nur auf den fünfzehn Beiträgen.
     # * `wordCount` und `timeRequired` werden aus dem tatsächlichen Text
     #   berechnet, nicht geschätzt. Eine geratene Zahl im Schema ist schlechter
     #   als keine — sie lässt sich nachprüfen.
@@ -2725,8 +2754,6 @@ def beitrag_seite(request, slug):
         "timeRequired": f"PT{int(eintrag.get('lesezeit') or 5)}M",
         "articleSection": (_leistung_daten(thema, "de").get("nav", "")
                            if thema else "Aktuelles"),
-        "speakable": {"@type": "SpeakableSpecification",
-                      "cssSelector": [".antwort", "h1"]},
     }
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag,
@@ -2737,7 +2764,8 @@ def beitrag_seite(request, slug):
         "weitere": _weitere_beitraege(slug, eintrag.get("thema")),
         "structured_data": _seiten_schema(
             c, "de", pfad=pfad, titel=beitrag.get("meta_titel", ""),
-            beschreibung=beitrag.get("desc", ""), service=artikel,
+            beschreibung=beitrag.get("desc", ""), speakable=True, autor=True,
+            service=artikel,
             breadcrumb=_breadcrumb(base, [
                 ("Aktuelles", reverse("aktuelles")),
                 (beitrag.get("titel", slug), pfad)])),
@@ -2884,7 +2912,7 @@ def region_seite(request, slug):
                              if not l.get("vor_ort")][:6],
         "structured_data": _seiten_schema(
             c, lang, pfad=pfad, titel=region.get("titel", ""),
-            beschreibung=region.get("desc", ""),
+            beschreibung=region.get("desc", ""), speakable=True,
             service=service, faq=region.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen")),
@@ -2930,7 +2958,7 @@ def kosten(request):
         "leistungen": _alle_leistungen(lang),
         "structured_data": _seiten_schema(
             c, lang, pfad=reverse("kosten"), titel=ks.get("titel", ""),
-            beschreibung=ks.get("desc", ""),
+            beschreibung=ks.get("desc", ""), speakable=True,
             breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kosten"), reverse("kosten"))])),
     })
 

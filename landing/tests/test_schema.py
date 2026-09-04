@@ -13,6 +13,7 @@ ob es mit dem übereinstimmt, was auf der Seite wirklich steht.
 """
 import json
 import re
+from pathlib import Path
 
 from django.test import SimpleTestCase
 
@@ -278,6 +279,83 @@ class GraphDerSeitenTest(SimpleTestCase):
 
         geh(graph)
         return gefunden
+
+
+class SpeakableTest(SimpleTestCase):
+    """Schritt 28 — `speakable` steht dort, wo der Antwortabsatz wirklich ist.
+
+    Diese Klasse ist der Grund, warum `speakable` überhaupt breiter gesetzt
+    werden durfte. `speakable` sagt einem Sprachassistenten: *Diesen* Satz sollst
+    du vorlesen. Zeigt der Selektor auf eine Klasse, die es auf der Seite nicht
+    gibt, liest der Assistent entweder nichts vor oder irgendetwas — beides
+    schlechter, als die Angabe wegzulassen."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cl = seiten_client()
+        cls.seiten = {}
+        for pfad, _prio, _freq, mehrsprachig in _seiten_pfade():
+            for lang in (i18n.LANGS if mehrsprachig else ("de",)):
+                adresse = i18n.add_prefix(lang, pfad)
+                html = cl.get(adresse).content.decode("utf-8")
+                cls.seiten[adresse] = (html, graph_von(html))
+
+    def test_speakable_nur_wo_die_klasse_antwort_wirklich_steht(self):
+        """Antwortabsatz im HTML und `speakable` im Graphen stimmen überein.
+
+        Geprüft wird in **beide** Richtungen, für jede der 158 Seiten:
+        Kein `speakable` ohne `.antwort` (eine Angabe, die sich am HTML
+        widerlegen lässt) und kein `.antwort` ohne `speakable` (ein Absatz,
+        der zitierfähig wäre und es einer Maschine nicht sagt).
+
+        Der zweite Fall ist der wahrscheinlichere: Bekommt eine Seite später
+        `antwort.html` dazu, ohne dass jemand an das Schema denkt, meldet es
+        dieser Test statt niemand."""
+        for adresse, (html, graph) in self.seiten.items():
+            with self.subTest(adresse=adresse):
+                hat_absatz = 'class="antwort' in html
+                hat_angabe = "speakable" in knoten(graph, "WebPage")
+                self.assertEqual(
+                    hat_angabe, hat_absatz,
+                    "speakable ohne Antwortabsatz" if hat_angabe
+                    else "Antwortabsatz ohne speakable")
+
+    def test_der_selektor_trifft_die_klasse_im_template(self):
+        """Der `cssSelector` nennt genau die Klasse, die `antwort.html` rendert.
+
+        Verhindert den Bruch, vor dem `CLAUDE.md` ausdrücklich warnt: Wird die
+        Klasse `.antwort` in `templates/antwort.html` umbenannt, zeigt jedes
+        `speakable` der Seite ins Leere — sichtbar ändert sich dabei nichts,
+        und deshalb würde es sonst niemand bemerken."""
+        vorlage = (Path(__file__).resolve().parents[2]
+                   / "templates" / "antwort.html").read_text(encoding="utf-8")
+        self.assertIn('class="antwort', vorlage,
+                      "templates/antwort.html rendert die Klasse .antwort nicht mehr")
+        for adresse, (_html, graph) in self.seiten.items():
+            seite = knoten(graph, "WebPage")
+            if "speakable" in seite:
+                with self.subTest(adresse=adresse):
+                    self.assertEqual(seite["speakable"]["cssSelector"],
+                                     [".antwort", "h1"])
+
+    def test_autor_nur_auf_den_ratgeberseiten(self):
+        """`author` steht auf Glossar, Checklisten, Vergleichen und Beiträgen — sonst nicht.
+
+        Verhindert, dass der Inhaber als Verfasser einer Leistungs- oder
+        Regionsseite auftaucht. Dort ist der Betrieb der Urheber, und das sagt
+        `publisher` bereits; ein zusätzlicher `author` wäre eine Aussage über
+        Autorschaft, die niemand belegen kann."""
+        ratgeber = ("/wissen/", "/checkliste/", "/vergleich/", "/aktuelles/")
+        for adresse, (_html, graph) in self.seiten.items():
+            with self.subTest(adresse=adresse):
+                # Ohne Sprachpräfix vergleichen: /en/vergleich/… ist dieselbe
+                # Seitenart wie /vergleich/….
+                ohne = re.sub(r"^/(en|ro)/", "/", adresse)
+                seite = knoten(graph, "WebPage")
+                ist_ratgeber_detail = any(
+                    ohne.startswith(p) and ohne != p for p in ratgeber)
+                self.assertEqual("author" in seite, ist_ratgeber_detail)
 
 
 class SuchfunktionImSchemaTest(SimpleTestCase):
