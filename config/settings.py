@@ -160,11 +160,31 @@ EMAIL_BACKEND = (
     else "django.core.mail.backends.console.EmailBackend"
 )
 
+# ── Cookies ──────────────────────────────────────────────────────────────────
+# SameSite ausdruecklich setzen statt sich auf Djangos Vorgabewert zu verlassen:
+# Der Vorgabewert ist heute "Lax", aber er ist ein Vorgabewert - er steht in
+# keiner Datei dieses Projekts und kann sich mit einer Django-Fassung aendern.
+# "Lax" und nicht "Strict": Bei "Strict" schickt der Browser das Cookie beim
+# ersten Klick aus einem Suchergebnis heraus NICHT mit, und das erste Absenden
+# eines Formulars liefe in einen 403.
+CSRF_COOKIE_SAMESITE = "Lax"
+SESSION_COOKIE_SAMESITE = "Lax"
+# CSRF_COOKIE_HTTPONLY wird bewusst NICHT gesetzt. Django raet selbst davon ab
+# (es erschwert Angriffe nicht messbar), und hier wird das Token zusaetzlich per
+# fetch aus dem Cookie gelesen - mit HttpOnly waeren die JS-Formulare kaputt.
+# Wer diesen Schalter "der Vollstaendigkeit halber" nachtraegt, bricht sie.
+
 # Sicherheits-Header in Produktion (DEBUG=False).
 if not DEBUG:
     SECURE_SSL_REDIRECT = os.environ.get("SECURE_SSL_REDIRECT", "True").strip().lower() in ("1", "true", "yes")
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+    # Wirkungslos, aber kostenlos: INSTALLED_APPS hat zwei Eintraege, es gibt
+    # weder django.contrib.sessions noch eine Datenbank - diese Seite setzt nie
+    # ein Session-Cookie. Der Schalter steht hier, damit die Regel geschlossen
+    # ist, falls doch einmal eine Session dazukommt. Er ist KEIN Hinweis darauf,
+    # dass es Sessions gaebe.
+    SESSION_COOKIE_HTTPONLY = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     # HSTS: erzwingt HTTPS im Browser (1 Jahr). Bewusst OHNE includeSubDomains/preload,
     # da nur www.wvm-it.tech per HTTPS bedient wird (die Apex-/übrige Subdomains nicht
@@ -172,3 +192,40 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", "31536000"))
     SECURE_HSTS_INCLUDE_SUBDOMAINS = os.environ.get("SECURE_HSTS_INCLUDE_SUBDOMAINS", "False").strip().lower() in ("1", "true", "yes")
     SECURE_HSTS_PRELOAD = os.environ.get("SECURE_HSTS_PRELOAD", "False").strip().lower() in ("1", "true", "yes")
+
+# ── Protokollierung ──────────────────────────────────────────────────────────
+# Bis hierher gab es im ganzen Paket kein einziges getLogger, sondern
+# print(..., flush=True). Das funktioniert auf Railway (stdout wird gesammelt),
+# hat aber drei Nachteile: keine Zeitmarke, kein Schweregrad, und nichts davon
+# laesst sich abschalten oder umlenken, ohne den Aufrufer zu aendern.
+#
+# Diese Konfiguration aendert an den vorhandenen print-Aufrufen nichts - sie
+# legt nur das Ziel fest, in das umgestellter Code hineinschreiben kann.
+# Handler auf stdout (nicht stderr), weil Railway stdout einsammelt und
+# stderr-Zeilen dort als Fehler eingefaerbt werden, was sie meist nicht sind.
+#
+# django.request steht auf WARNING: Django meldet darueber 4xx (WARNING) und
+# 5xx (ERROR). Ohne eigenen Eintrag haengt die Meldung am Vorgabe-Handler, der
+# bei DEBUG=False herausgefiltert wird - eine 500 im Betrieb stuende dann
+# nirgends. propagate=False verhindert, dass jede Zeile doppelt erscheint.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {
+            "format": "%(asctime)s %(levelname)-8s %(name)s: %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "stdout": {
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout",
+            "formatter": "standard",
+        },
+    },
+    "loggers": {
+        "landing": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
+        "django.request": {"handlers": ["stdout"], "level": "WARNING", "propagate": False},
+    },
+}
