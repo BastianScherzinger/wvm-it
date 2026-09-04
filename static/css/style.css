@@ -15,6 +15,10 @@
   --accent:#d8a43d;        /* Flächen: Buttons, Chips, Linien */
   --accent2:#b8862b;       /* dunklere Gold-Stufe für Verläufe/Icons auf Hell */
   --accent-ink:#8a6212;    /* Gold als TEXT auf Hell , 4,6:1 */
+  --ring:#8a6212;          /* Tastaturfokus auf Hell , derselbe Wert wie --accent-ink:
+                              keine neue Farbe, nur ein zweiter Name für einen zweiten
+                              Zweck. Fünf :focus-visible-Regeln haben ihn benutzt,
+                              ohne dass er je deklariert war (docs/UMBAU-PLAN.md:113). */
   --accent-soft:#fdf6e6;   /* Gold-Fläche für Hinweise */
   --on-accent:#181206;     /* Text auf Gold-Fläche */
   --wa:#25d366;            /* WhatsApp: Kanal-Code, KEIN zweiter Markenakzent */
@@ -48,6 +52,9 @@
   --tint:rgba(255,255,255,.045); --tint-2:rgba(255,255,255,.08);
   --accent2:#eec77a;       /* auf Dunkel darf die helle Gold-Stufe wieder leuchten */
   --accent-ink:#eec77a;    /* Gold als Text ist auf Dunkel unproblematisch */
+  --ring:#eec77a;          /* auf Dunkel die helle Gold-Stufe , sonst wäre der Ring
+                              auf dem dunklen Seitenkopf unsichtbar: dieselbe Falle
+                              wie bei --accent2, nur andersherum */
   --accent-soft:rgba(216,164,61,.14);
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 40px -24px rgba(0,0,0,.85);
   --shadow-lg:0 2px 6px rgba(0,0,0,.5), 0 44px 90px -32px rgba(0,0,0,.92);
