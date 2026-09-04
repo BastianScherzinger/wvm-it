@@ -624,7 +624,7 @@ def rechner(request):
             faq=rs.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["nav"]["preise"], reverse("kosten")),
-                (rs.get("h1", "Rechner"), pfad)])),
+                (rs.get("h1", "Rechner"), pfad)], lang)),
     })
 
 
@@ -1966,13 +1966,24 @@ def _mit_itemlist(schema_json, itemlist):
     return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
 
 
-def _breadcrumb(base, teile):
+def _breadcrumb(base, teile, lang):
     """BreadcrumbList fuers Schema. teile = [(Name, Pfad), ...] ohne Startseite.
 
     Die `@id` haengt am Pfad der Seite, auf der die Krume steht (dem letzten
     Eintrag): Jede der 158 Seiten hat eine eigene Krume, und ohne eigene Kennung
-    waeren das 158 gleich aussehende, nicht unterscheidbare Listen."""
-    eintraege = [{"@type": "ListItem", "position": 1, "name": "Start", "item": f"{base}/"}]
+    waeren das 158 gleich aussehende, nicht unterscheidbare Listen.
+
+    `lang` ist Pflicht und hat mit Absicht keinen Vorgabewert (Verbesserungslauf
+    13, Schritt 30): Bis hierher stand der erste Eintrag hart auf dem deutschen
+    Wort **„Start"** — auch auf `/en/…` und `/ro/…`. Google zeigt die Brotkrume
+    im Suchergebnis anstelle der nackten Adresse, also stand dort ein deutsches
+    Wort im englischen Treffer. Ein Vorgabewert wuerde eine vergessene
+    Aufrufstelle still auf Deutsch zuruecksetzen; ohne ihn faellt sie sofort auf.
+    Der Name kommt aus demselben Schluessel, den auch der sichtbare Kopf der
+    Seite verwendet (`t.seite.start`) — sichtbarer Text und Schema sagen damit
+    dasselbe."""
+    start = i18n.get_pack(lang)["seite"].get("start", "Start")
+    eintraege = [{"@type": "ListItem", "position": 1, "name": start, "item": f"{base}/"}]
     for i, (name, pfad) in enumerate(teile, start=2):
         eintraege.append({"@type": "ListItem", "position": i, "name": name,
                           "item": f"{base}{pfad}"})
@@ -2129,7 +2140,8 @@ def leistungen_hub(request):
                            titel=hub.get("titel", ""), beschreibung=hub.get("desc", ""),
                            speakable=True,
                            breadcrumb=_breadcrumb(
-                               base, [(pack["seite"]["leistungen"], reverse("leistungen"))])),
+                               base, [(pack["seite"]["leistungen"],
+                                       reverse("leistungen"))], lang)),
             _itemlist(base, reverse("leistungen"), hub.get("h1", ""),
                       [(l.get("nav", l["slug"]), l["url"])
                        for b in bereiche for l in b["posten"]])),
@@ -2181,7 +2193,7 @@ def leistung_seite(request, slug):
             service=service, faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"]["leistungen"], reverse("leistungen")),
-                (seite.get("h1", slug), pfad)])),
+                (seite.get("h1", slug), pfad)], lang)),
     })
 
 
@@ -2226,7 +2238,8 @@ def branchen_hub(request):
                            titel=bs.get("titel", ""), beschreibung=bs.get("desc", ""),
                            speakable=True,
                            breadcrumb=_breadcrumb(base, [
-                               (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
+                               (bs.get("branchen_titel", "Branchen"),
+                                reverse("branchen"))], lang)),
             _itemlist(base, reverse("branchen"), bs.get("h1", ""),
                       [(b.get("nav", b["slug"]), b["url"]) for b in liste])),
     })
@@ -2283,7 +2296,7 @@ def branche_seite(request, slug):
             service=service, faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
-                (seite.get("nav", slug), pfad)])),
+                (seite.get("nav", slug), pfad)], lang)),
     })
 
 
@@ -2399,7 +2412,7 @@ def checkliste_seite(request, slug):
             service=howto, faq=liste.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 ("Checklisten", reverse("checklisten")),
-                (liste.get("titel", slug), pfad)])),
+                (liste.get("titel", slug), pfad)], "de")),
     })
 
 
@@ -2415,7 +2428,7 @@ def checklisten_hub(request):
                            titel=_HUB_META["checklisten"][0],
                            beschreibung=_HUB_META["checklisten"][1],
                            breadcrumb=_breadcrumb(base, [
-                               ("Checklisten", reverse("checklisten"))])),
+                               ("Checklisten", reverse("checklisten"))], "de")),
             _itemlist(base, reverse("checklisten"), "Checklisten",
                       [(k.get("titel", k["slug"]), k["url"]) for k in listen])),
     })
@@ -2481,7 +2494,7 @@ def begriff_seite(request, slug):
             service=term,
             breadcrumb=_breadcrumb(base, [
                 ("Wissen", reverse("wissen")),
-                (begriff.get("titel", slug), pfad)])),
+                (begriff.get("titel", slug), pfad)], "de")),
     })
 
 
@@ -2495,7 +2508,7 @@ def wissen(request):
         _seiten_schema(c, "de", pfad=reverse("wissen"),
                        titel=_HUB_META["wissen"][0],
                        beschreibung=_HUB_META["wissen"][1],
-                       breadcrumb=_breadcrumb(base, [("Wissen", reverse("wissen"))])),
+                       breadcrumb=_breadcrumb(base, [("Wissen", reverse("wissen"))], "de")),
         _itemlist(base, reverse("wissen"), "IT-Glossar",
                   [(b.get("titel", b["slug"]), b["url"]) for b in liste])))
     graph["@graph"].append(_defined_term_set(base))
@@ -2568,7 +2581,7 @@ def sicherheitstest(request):
             c, lang, pfad=pfad, titel=st.get("titel", ""),
             beschreibung=st.get("desc", ""), speakable=True,
             faq=st.get("faq") or [], faq_id=pfad,
-            breadcrumb=_breadcrumb(base, [(st.get("h1", "Selbsttest"), pfad)])),
+            breadcrumb=_breadcrumb(base, [(st.get("h1", "Selbsttest"), pfad)], lang)),
     })
 
 
@@ -2609,7 +2622,7 @@ def notfall(request):
     graph = json.loads(_seiten_schema(
         c, lang, pfad=pfad, titel=nf.get("titel", ""), beschreibung=nf.get("desc", ""),
         speakable=True, faq=nf.get("faq") or [], faq_id=pfad,
-        breadcrumb=_breadcrumb(base, [(nf.get("h1", "Notfall"), pfad)])))
+        breadcrumb=_breadcrumb(base, [(nf.get("h1", "Notfall"), pfad)], lang)))
     graph["@graph"] += [_howto_schema(base, pfad, fall, sprache)
                         for fall in nf.get("faelle", [])]
     anfrage_ok = (request.GET.get("ok") or "").strip().lower()
@@ -2654,7 +2667,7 @@ def vergleiche_hub(request):
                            speakable=True,
                            breadcrumb=_breadcrumb(base, [
                                (vs.get("vergleiche_titel", "Vergleiche"),
-                                reverse("vergleiche"))])),
+                                reverse("vergleiche"))], lang)),
             _itemlist(base, reverse("vergleiche"), vs.get("h1", ""),
                       [(v.get("nav", v["slug"]), v["url"]) for v in liste])),
     })
@@ -2693,7 +2706,7 @@ def vergleich_seite(request, slug):
             faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche")),
-                (seite.get("nav", slug), pfad)])),
+                (seite.get("nav", slug), pfad)], lang)),
     })
 
 
@@ -2787,7 +2800,7 @@ def beitrag_seite(request, slug):
             datum=eintrag.get("datum", ""), service=artikel,
             breadcrumb=_breadcrumb(base, [
                 ("Aktuelles", reverse("aktuelles")),
-                (beitrag.get("titel", slug), pfad)])),
+                (beitrag.get("titel", slug), pfad)], "de")),
     })
 
 
@@ -2804,7 +2817,7 @@ def aktuelles(request):
                            titel=_HUB_META["aktuelles"][0],
                            beschreibung=_HUB_META["aktuelles"][1],
                            breadcrumb=_breadcrumb(
-                               base, [("Aktuelles", reverse("aktuelles"))])),
+                               base, [("Aktuelles", reverse("aktuelles"))], "de")),
             _itemlist(base, reverse("aktuelles"), "Fachbeiträge",
                       [(b.get("titel", b["slug"]), b["url"]) for b in liste])),
     })
@@ -2935,7 +2948,7 @@ def region_seite(request, slug):
             service=service, faq=region.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen")),
-                (region.get("ort", slug), pfad)])),
+                (region.get("ort", slug), pfad)], lang)),
     })
 
 
@@ -2954,7 +2967,7 @@ def regionen_hub(request):
                            beschreibung=pack["seite"].get("regionen_meta_desc", ""),
                            breadcrumb=_breadcrumb(base, [
                                (pack["seite"].get("regionen_titel", "Regionen"),
-                                reverse("regionen"))])),
+                                reverse("regionen"))], lang)),
             _itemlist(base, reverse("regionen"),
                       pack["seite"].get("regionen_h1", "Regionen"),
                       [(r.get("ort", r["slug"]),
@@ -2978,7 +2991,8 @@ def kosten(request):
         "structured_data": _seiten_schema(
             c, lang, pfad=reverse("kosten"), titel=ks.get("titel", ""),
             beschreibung=ks.get("desc", ""), speakable=True,
-            breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kosten"), reverse("kosten"))])),
+            breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kosten"),
+                                           reverse("kosten"))], lang)),
     })
 
 
@@ -3003,7 +3017,8 @@ def referenzen(request):
         "structured_data": _seiten_schema(
             c, lang, pfad=reverse("referenzen"), titel=rs.get("titel", ""),
             beschreibung=rs.get("desc", ""),
-            breadcrumb=_breadcrumb(base, [(rs.get("h1", "Referenzen"), reverse("referenzen"))])),
+            breadcrumb=_breadcrumb(base, [(rs.get("h1", "Referenzen"),
+                                           reverse("referenzen"))], lang)),
     })
 
 
@@ -3022,7 +3037,8 @@ def kontakt(request):
         "structured_data": _seiten_schema(
             c, lang, pfad=reverse("kontakt"), titel=ks.get("titel", ""),
             beschreibung=ks.get("desc", ""),
-            breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kontakt"), reverse("kontakt"))])),
+            breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kontakt"),
+                                           reverse("kontakt"))], lang)),
     })
 
 
@@ -3048,7 +3064,7 @@ def _rechtsseite(request, art):
             c, lang, pfad=reverse(art),
             titel=recht.get(f"{art}_titel", ueberschrift),
             beschreibung=recht.get(f"{art}_desc", ""),
-            breadcrumb=_breadcrumb(base, [(ueberschrift, reverse(art))])),
+            breadcrumb=_breadcrumb(base, [(ueberschrift, reverse(art))], lang)),
     })
 
 
@@ -3080,7 +3096,8 @@ def angebot(request):
                    f"| {c.get('site_name', '')}"),
             beschreibung=i18n.get_pack(lang)["meta"].get("angebot_desc", ""),
             breadcrumb=_breadcrumb(
-                base, [(i18n.get_pack(lang)["nav"]["angebot"], reverse("angebot"))])),
+                base, [(i18n.get_pack(lang)["nav"]["angebot"],
+                        reverse("angebot"))], lang)),
         # Schnellstart: ein Klick setzt die Haken eines typischen Bedarfs.
         # Ohne JavaScript kommt die Vorauswahl ueber ?paket=<id> vom Server.
         "startpakete": _startpakete(lang),

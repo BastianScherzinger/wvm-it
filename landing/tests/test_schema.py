@@ -455,6 +455,49 @@ class DatumsangabenTest(SimpleTestCase):
                 self.assertEqual(bool(knoten(graph, "Article")), ist_beitrag)
 
 
+class BrotkrumeTest(SimpleTestCase):
+    """Schritt 30 — die Brotkrume heisst auf Englisch nicht mehr „Start".
+
+    Google zeigt die Brotkrume im Suchergebnis anstelle der nackten Adresse. Ein
+    deutsches Wort im englischen Treffer ist damit kein Schönheitsfehler,
+    sondern das Erste, was ein englischsprachiger Suchender von dieser Seite
+    sieht."""
+
+    def test_der_erste_eintrag_spricht_die_sprache_der_seite(self):
+        """Auf `/en/…` steht „Home", auf `/ro/…` „Acasă", auf Deutsch „Start".
+
+        Verhindert die Rückkehr des hart verdrahteten Namens: Der Wert kommt aus
+        dem Sprachpaket, und dieser Test hält ihn gegen die drei Pakete."""
+        cl = seiten_client()
+        for lang, adresse in (("de", "/kontakt/"), ("en", "/en/kontakt/"),
+                              ("ro", "/ro/kontakt/")):
+            with self.subTest(adresse=adresse):
+                graph = graph_von(cl.get(adresse).content.decode("utf-8"))
+                erster = knoten(graph, "BreadcrumbList")["itemListElement"][0]
+                self.assertEqual(erster["position"], 1)
+                self.assertEqual(erster["name"],
+                                 i18n.get_pack(lang)["seite"]["start"])
+
+    def test_kein_deutsches_start_auf_einer_fremdsprachigen_seite(self):
+        """Auf keiner `/en/`- oder `/ro/`-Adresse steht „Start" in der Krume.
+
+        Der Test aus der ersten Prüfung deckt drei Adressen ab; dieser deckt
+        jede fremdsprachige Seite des Bestands ab — eine einzelne Aufrufstelle,
+        die jemand später wieder auf Deutsch festnagelt, fällt damit auf."""
+        cl = seiten_client()
+        for pfad, _prio, _freq, mehrsprachig in _seiten_pfade():
+            if not mehrsprachig:
+                continue
+            for lang in ("en", "ro"):
+                adresse = i18n.add_prefix(lang, pfad)
+                graph = graph_von(cl.get(adresse).content.decode("utf-8"))
+                krume = knoten(graph, "BreadcrumbList")
+                if not krume:          # Startseiten führen keine Krume
+                    continue
+                with self.subTest(adresse=adresse):
+                    self.assertNotEqual(krume["itemListElement"][0]["name"], "Start")
+
+
 class SuchfunktionImSchemaTest(SimpleTestCase):
     """Schritt 27 — die `SearchAction` behauptet nur, was die Seite kann."""
 
