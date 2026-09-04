@@ -1,7 +1,7 @@
 ---
 bereich: technik
 titel: Technik
-stand: 2026-09-03
+stand: 2026-09-04
 status: teilweise
 fortschritt: 58
 zusammenfassung: Django 5.0.6 auf Railway mit drei eigenen Prüfbefehlen, aber ohne eine einzige Testfunktion, ohne CI und ohne Lockfile.
@@ -73,6 +73,32 @@ Nur Namen, nie Werte. Erhoben aus `config/settings.py`, `landing/*.py` und den M
 | `CLOUDINARY_URL` | Bild-Upload | |
 | `WEEKLY_SCHEDULER`, `WEEKLY_TRIGGER_KEY`, `NEWSLETTER_CODE` | Newsletter-Cron und Diagnose-Route | |
 | `ASSET_VERSION`, `RAILWAY_GIT_COMMIT_SHA` | Cache-Busting (`?v=<commit>`) | von Railway gesetzt |
+
+## Formular und Missbrauchsschutz
+
+*Pflichtabschnitt nach [DOKU-STANDARD §3a](file:///C:/Users/basti/Desktop/pystore-overview/docs/DOKU-STANDARD.md).
+Erhoben am 04.09.2026 aus dem Quelltext dieses Projekts — „ja" heisst gefunden,
+nicht bewiesen. Anlass war eine Spam-Einsendung, die auf der Hauptseite mit
+Spam-Score 0 durchkam und eine Mail auslöste.*
+
+| Baustein | Was er verhindert | Stand |
+|---|---|---|
+| CSRF-Token | fremde Seiten schicken in fremdem Namen ab | ja |
+| Honeypot | einfache Formular-Bots | ja |
+| Zeitfalle (signierter Zeitstempel) | der POST ohne gerendertes Formular | **nein** |
+| Inhalts-Score mit Schwelle | Werbetexte, fremde Schriften, Linklisten | **nein** |
+| Adresse ohne `http://` erkannt | die Masche vom 04.09.2026 | **nein** |
+| Fremde Domain mit eigenem Markennamen | Vertrauen erschleichen | **nein** |
+| Rate-Limit je IP | Serien aus einer Quelle | **nein** |
+| Erst speichern, dann mailen | verlorene Anfrage bei Mailausfall | **nein** |
+| Mail-Obergrenze je Tag | ein volles Postfach | **nein** |
+| Prüfbefehl für die Abwehr | dass niemand es nachrechnet | **nein** |
+
+**Was diese Tabelle nicht leistet:** Ein ferngesteuerter echter Browser mit
+einem unauffälligen deutschen Satz besteht Honeypot, Zeitfalle und
+Inhaltsprüfung. Dagegen tragen nur Rate-Limit, Duplikatsperre und
+Mail-Obergrenze — und die verhindern nicht die Anfrage, sondern das volle
+Postfach.
 
 ## Prüfbefehle und Tests
 

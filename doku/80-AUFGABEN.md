@@ -1,7 +1,7 @@
 ---
 bereich: aufgaben
 titel: Aufgaben
-stand: 2026-09-03
+stand: 2026-09-04
 status: teilweise
 fortschritt: 30
 zusammenfassung: Im Code nichts mehr aus den Plänen offen; neu aus der Messung: Tests (0 Funktionen), 82 unerreichbare Seiten, 9 kritische Datei-Befunde, Sicherheitsköpfe.
@@ -17,6 +17,21 @@ quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SE
 > steht auf 56 von 56. Alles unten kommt entweder aus der **Messung vom 02.09.2026
 > (Regelstand 2026-09-02a)**, aus dem Betrieb (Search Console, Deploy) oder liegt beim Kunden.
 > Regelkennungen in Klammern lassen sich im Werkzeug nachschlagen.
+
+## Missbrauchsschutz am Formular (Erhebung 04.09.2026)
+
+Aus dem Pflichtabschnitt in [10-TECHNIK.md](10-TECHNIK.md). Jede Zeile ist ein
+Baustein, der im Quelltext dieses Projekts **nicht** gefunden wurde. Die
+Hauptseite führt alle; was dort steht, lässt sich übernehmen.
+
+- [ ] **Zeitfalle (signierter Zeitstempel)**
+- [ ] **Inhalts-Score mit Schwelle**
+- [ ] **Adresse ohne `http://` erkannt**
+- [ ] **Fremde Domain mit eigenem Markennamen**
+- [ ] **Rate-Limit je IP**
+- [ ] **Erst speichern, dann mailen**
+- [ ] **Mail-Obergrenze je Tag**
+- [ ] **Prüfbefehl für die Abwehr**
 
 ## Offen
 
