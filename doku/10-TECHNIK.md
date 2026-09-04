@@ -1,12 +1,12 @@
 ---
 bereich: technik
 titel: Technik
-stand: 2026-09-04
+stand: 2026-09-05
 status: teilweise
-fortschritt: 58
-zusammenfassung: Django 5.0.6 auf Railway mit drei eigenen Prüfbefehlen, aber ohne eine einzige Testfunktion, ohne CI und ohne Lockfile.
-offen: 9
-quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
+fortschritt: 85
+zusammenfassung: Django 5.0.6 auf Railway; seit 05.09.2026 mit 122 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, start.sh und durchgesetzter Content-Security-Policy — vorher gab es davon nichts.
+offen: 4
+quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
 ---
 
 # Technik

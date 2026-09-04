@@ -1,12 +1,12 @@
 ---
 bereich: status
 titel: WVM-IT — Stand
-stand: 2026-09-04
+stand: 2026-09-05
 status: teilweise
-fortschritt: 80
-zusammenfassung: Vollausbau auf 158 URLs abgeschlossen (56/56), Gesamtstand 80,0 „Solide"; schwächster Bereich Code-Qualität 58 (keine einzige Testfunktion), blockiert beim Kunden bleiben Unternehmensprofil, SPF/DMARC und Apex-DNS.
-offen: 3
-quellen: CLAUDE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
+fortschritt: 88
+zusammenfassung: Ausbau September abgeschlossen — 165 URLs, 122 Tests (vorher null), CI-Lauf, durchgesetzte CSP, alle Titel und Beschreibungen überarbeitet. Zwei Funde ausserhalb jedes Plans behoben (hreflang auf 404, Sprachumleitung). Blockiert beim Kunden bleiben Unternehmensprofil, SPF/DMARC und Apex-DNS.
+offen: 4
+quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
 
 # WVM-IT — Stand
@@ -22,12 +22,12 @@ quellen: CLAUDE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 | **Zweck** | EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung, überwiegend per Fernwartung in Österreich und Deutschland; zweites Standbein Webseiten/SEO/Ads/KI, drittes Technik vor Ort |
 | **Domain** | `https://www.wvm-it.tech` (**live, 200**) · `wvm-it.tech` ohne `www`: **HTTPS kein Verbindungsaufbau**, HTTP liefert die Parkseite des Registrars (geprüft 02.09.2026) |
 | **Sprachen** | Deutsch (ohne Präfix), Englisch `/en/`, Rumänisch `/ro/` — eigene i18n-Pakete, ohne gettext |
-| **Umfang** | **158 URLs**, 76 Basis-Pfade, 114.641 Wörter, acht Themensilos (Stand 29.08.2026) |
+| **Umfang** | **165 URLs**, 81 Basis-Pfade, acht Themensilos plus vier Pflichtseiten (Stand 05.09.2026) |
 | **Technik** | Django 5.0.6, gunicorn 22.0.0, WhiteNoise 6.7.0, GZipMiddleware, Python 3.12.4 |
 | **Hosting** | Railway-Projekt **`webseiten`** → Dienst **`wvm-it`**, Umgebung `shop`; Deploy automatisch beim Push auf `main` |
 | **Repository** | `BastianScherzinger/wvm-it`, Zweig `main` |
 | **Projektordner** | `C:\Users\basti\Desktop\jarvis\jarvis_websites\2026-07-02\web_wvm-it` (die einzige betreute Seite, die **nicht** unter `Desktop\webseiten buisnes\` liegt) |
-| **Letzter Commit** | `123d4a7` · 29.08.2026, 21:39 · „Doku: docs/DEPLOY.md" · Arbeitsverzeichnis sauber (Messung vom 02.09.2026) |
+| **Letzter Commit** | Ausbau September, 05.09.2026 — vier Commits an diesem Tag |
 | **Search Console** | Property `https://www.wvm-it.tech/` (URL-Präfix) im Konto **`bastian.scherzinger05@gmail.com`** (nachgeprüft 03.09.2026), seit 03.09.2026 per OAuth ans Werkzeug angebunden |
 | **Google Ads** | keine |
 
@@ -37,15 +37,15 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 
 | Bereich | Status | Fortschritt | Zusammenfassung | Datei |
 |---|---|---:|---|---|
-| Technik | teilweise | 58 | Django 5.0.6 auf Railway mit drei eigenen Prüfbefehlen, aber ohne eine einzige Testfunktion, ohne CI und ohne Lockfile. | [10-TECHNIK.md](10-TECHNIK.md) |
-| Design | teilweise | 96 | Design-System vom 27.08.2026 steht (hell, Gold als einziger Akzent, `.on-dark`); Mobilansicht nie am Gerät geprüft, Lighthouse meldet 32 Kontrastelemente. | [20-DESIGN.md](20-DESIGN.md) |
-| Inhalte | teilweise | 90 | 158 URLs in acht Silos mit 114.641 Wörtern; 55 von 84 Seiten unter dem Zielumfang ihrer Seitenart, keine Über-uns-Seite, keine AGB. | [30-INHALTE.md](30-INHALTE.md) |
-| SEO und GEO | teilweise | 80 | SEO-Ausbau 3 abgeschlossen (56/56), SEO-Technik 94, SEO-Inhalt 87, GEO 70; erste Messung Oktober 2026, Suchanfragen ohne Marke am 29.08. null. | [40-SEO.md](40-SEO.md) |
-| Local SEO | teilweise | 50 | Search Console eingerichtet und NAP überall zeichengleich; Google-Unternehmensprofil, Bewertungen und Verzeichniseinträge fehlen — alles beim Kunden. | [50-LOCAL-SEO.md](50-LOCAL-SEO.md) |
-| Ads | nicht zutreffend | — | Für WVM-IT laufen keine Google Ads; Landingpages stünden bereit, Konto, Conversion-Tag und Danke-Seite fehlen. | [60-ADS.md](60-ADS.md) |
-| Performance | teilweise | 82 | PageSpeed Startseite 97 mobil / 100 Desktop, HTML seit 29.08. komprimiert; mittlere Antwortzeit im Crawl 1.550 ms, kein srcset, CLS auf Desktop-Unterseiten bis 0,23. | [70-PERFORMANCE.md](70-PERFORMANCE.md) |
-| Aufgaben | teilweise | 30 | Im Code nichts mehr aus den Plänen offen; neu aus der Messung: Tests (0 Funktionen), 82 unerreichbare Seiten, 9 kritische Datei-Befunde, Sicherheitsköpfe. | [80-AUFGABEN.md](80-AUFGABEN.md) |
-| Notizen | vollständig | 100 | Pfad- und Namensfallen, vierzehn Widersprüche zwischen Doku, Code und Messung, Verweise. | [90-NOTIZEN.md](90-NOTIZEN.md) |
+| Technik | teilweise | 85 | Django 5.0.6 auf Railway; seit 05.09.2026 mit 122 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, `start.sh` und durchgesetzter Content-Security-Policy. | [10-TECHNIK.md](10-TECHNIK.md) |
+| Design | teilweise | 96 | Design-System vom 27.08.2026 unverändert; vier neue Bausteine (Honigtopf, Datenschutzhinweis, Symbolsatz, kleiner Kopf). Mobilansicht nie am Gerät geprüft. | [20-DESIGN.md](20-DESIGN.md) |
+| Inhalte | teilweise | 94 | 165 URLs; neu sind Veranstaltungstechnik, IT-Beratung, Über uns, AGB, Barrierefreiheitserklärung und die Danke-Seite. Titel und Beschreibungen aller Silos überarbeitet. | [30-INHALTE.md](30-INHALTE.md) |
+| SEO und GEO | teilweise | 90 | Zwei Funde ausserhalb jedes Plans behoben (94 hreflang auf 404, 82 unerreichbare Seiten). Sitemap in vier Segmenten, echte Änderungsdaten, `WebPage`-Knoten überall. | [40-SEO.md](40-SEO.md) |
+| Local SEO | teilweise | 55 | Search Console eingerichtet, NAP zeichengleich, Koordinaten und Öffnungszeiten im Graphen; Unternehmensprofil, Bewertungen und Verzeichnisse fehlen — alles beim Kunden. | [50-LOCAL-SEO.md](50-LOCAL-SEO.md) |
+| Ads | nicht zutreffend | — | Für WVM-IT laufen keine Google Ads; seit 05.09.2026 gibt es immerhin die Danke-Seite als messbaren Abschluss. | [60-ADS.md](60-ADS.md) |
+| Performance | teilweise | 88 | Icons als Symbolsatz, `srcset`, Kommentare aus der Auslieferung: Startseite 211 → 183 KB. Offen bleiben Antwortzeit, CLS auf Desktop und Critical CSS. | [70-PERFORMANCE.md](70-PERFORMANCE.md) |
+| Aufgaben | teilweise | 70 | Von den acht offenen Punkten sind sieben erledigt; offen bleiben Search Console, CWV-Eintrag, Antwortzeit und die 32 Kontrastelemente. | [80-AUFGABEN.md](80-AUFGABEN.md) |
+| Notizen | vollständig | 100 | Pfad- und Namensfallen, Widersprüche zwischen Doku, Code und Messung, Verweise. | [90-NOTIZEN.md](90-NOTIZEN.md) |
 | Wegweiser | vollständig | 100 | Elf Dateien nach Doku-Standard; Original-Doku bleibt in ../docs/. | [README.md](README.md) |
 
 ## Messung
@@ -86,14 +86,26 @@ Kritische Befunde:
 
 ## Die drei wichtigsten offenen Punkte
 
-1. **Keine einzige Testfunktion im Projekt** (`PJ02`, `PJ03`, `PJ04`, `VL19`) — 13.877 Zeilen Python, 46 Module, 34 davon berührt kein Test. Die drei Prüfbefehle (`pruefe_seite`, `pruefe_sicherheit`, `seo_bericht`) sind stark, aber sie sind keine Testsuite und laufen nicht bei jedem Push. Das ist der Grund, warum Code-Qualität mit **58** der schwächste Bereich ist. Zielgröße laut Regel: 30 Testfunktionen. → [80-AUFGABEN.md](80-AUFGABEN.md)
-2. **82 Seiten sind über interne Links von der Startseite aus nicht erreichbar** (`TS23`, Messung vom 02.09.2026) — durchweg `/en/…`- und `/ro/…`-Varianten. Das widerspricht `_pruefe_verwaist` (0 verwaiste Seiten am 29.08.2026); Ursache vermutlich der Sprachumschalter, der über die Weiterleitung `/sprache/<lang>/` läuft (in `robots.txt` gesperrt) statt direkt zu verlinken. Zu prüfen, dann zu beheben. → [40-SEO.md](40-SEO.md)
-3. **Drei Dinge, die nur der Kunde lösen kann:** Google-Unternehmensprofil (Angaben fertig in `../docs/SEO-KONZEPT-DACH.md` §7 — der einzige schnelle Kanal für lokale Anfragen), SPF/DMARC in der DNS-Zone (§8.1 — Mails landen im Spam) und der A-Record der Apex-Domain `wvm-it.tech`, der auf die Registrar-Parkseite statt per CNAME auf Railway zeigt. → [50-LOCAL-SEO.md](50-LOCAL-SEO.md), [80-AUFGABEN.md](80-AUFGABEN.md) „Beim Kunden"
+1. **Google-Unternehmensprofil** — unverändert der wichtigste Punkt überhaupt und
+   unverändert nicht am Rechner lösbar. Für die lokale Suche der entscheidende Hebel;
+   **165 URLs gleichen sein Fehlen nicht aus**, und dieser Durchgang ändert daran
+   nichts. Angaben fertig in `../docs/SEO-KONZEPT-DACH.md` §7 — reines Abtippen.
+   → [50-LOCAL-SEO.md](50-LOCAL-SEO.md)
+2. **Search Console nachziehen.** `/sitemap.xml` ist seit dem 05.09.2026 ein **Index**
+   auf vier Segmente; er gehört neu eingereicht. Google kennt den Bestand vom 28.08.,
+   seither sind 78 URLs dazugekommen. Nur im Browser machbar.
+   → [80-AUFGABEN.md](80-AUFGABEN.md) Nr. 1
+3. **Die AGB gehören gegengezeichnet.** Sie stehen seit dem 05.09.2026 live, damit der
+   Deploy nicht blockiert — dasselbe Verfahren wie bei den zwölf Preisen am 28.08. Bis
+   zu Florins Bestätigung sind sie eine offene Zusage, kein erledigter Punkt.
+   → [80-AUFGABEN.md](80-AUFGABEN.md) „Beim Kunden" Nr. 7a
 
 ## Zuletzt erledigt
 
 | Datum | Was |
 |---|---|
+| **05.09.2026** | **Ausbau September** (`../docs/AUSBAU-2026-09.md`): zwei neue Leistungsseiten für Florins Geschäft ausserhalb der Webseiten, vier fehlende Pflichtseiten, alle Titel und Beschreibungen, Formular-Vertrauen, 122 Tests, CI-Lauf, durchgesetzte CSP, echte Änderungsdaten, Sitemap-Segmente, Feed, Startseite 211 → 183 KB |
+| **05.09.2026** | Zwei Funde ausserhalb jedes Plans: 94 hreflang-Verweise auf 404-Adressen und eine Sprachumleitung, die jede deutsche Adresse traf statt nur die Startseite |
 | 02.09.2026 | Messung des Werkzeugs (Regelstand 2026-09-02a): 80,0 „Solide", 231 von 244 Regeln gemessen, PageSpeed für sechs Seiten mobil und Desktop |
 | 29.08.2026 | **SEO-Ausbau 3 abgeschlossen (56/56):** aus 87 wurden 158 URLs — Branchen (21), Vergleiche (12), Fachbeiträge (+10), Glossar (15), Checklisten (4), Kostenrechner, Sicherheits-Selbsttest, Notfallseite, 404/500, interne Suche. 17 Commits, Railway-Deploy nach rund 20 Sekunden live, 158 URLs an IndexNow (HTTP 200) |
 | 29.08.2026 | Drei Funde außerhalb des Plans behoben: HTML war unkomprimiert (Startseite 204 → 35 KB), Hero-Preload auf 138 Seiten ohne Hero-Bild, `/angebot/` ohne JSON-LD |

@@ -1,10 +1,10 @@
 ---
 bereich: design
 titel: Design
-stand: 2026-09-03
+stand: 2026-09-05
 status: teilweise
 fortschritt: 96
-zusammenfassung: Design-System vom 27.08.2026 steht (hell, Gold als einziger Akzent, `.on-dark`); Mobilansicht nie am Gerät geprüft, Lighthouse meldet 32 Kontrastelemente.
+zusammenfassung: Design-System vom 27.08.2026 unverändert; neu sind die Bausteine honigtopf.html, datenschutzhinweis.html, icons_sprite.html und kopf_klein.html. Mobilansicht nie am Gerät geprüft, Lighthouse meldet 32 Kontrastelemente.
 offen: 4
 quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---

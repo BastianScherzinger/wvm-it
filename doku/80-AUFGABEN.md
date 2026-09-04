@@ -1,37 +1,45 @@
 ---
 bereich: aufgaben
 titel: Aufgaben
-stand: 2026-09-04
+stand: 2026-09-05
 status: teilweise
-fortschritt: 30
-zusammenfassung: Im Code nichts mehr aus den Plänen offen; neu aus der Messung: Tests (0 Funktionen), 82 unerreichbare Seiten, 9 kritische Datei-Befunde, Sicherheitsköpfe.
-offen: 8
-quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
+fortschritt: 70
+zusammenfassung: Von den acht offenen Punkten sind sieben erledigt; Tests, Erreichbarkeit, Datei-Befunde, Schutzköpfe und echte Änderungsdaten stehen. Offen bleiben Search Console, CWV-Eintrag, Antwortzeit und Kontrast.
+offen: 4
+quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
 ---
 
 # Aufgaben
 
 *Woran sich der Fortschritt bemisst: am Anteil der erledigten an allen in dieser Datei geführten Aufgaben — „Erledigt“ gegen „Erledigt + Offen + Fehlt + Beim Kunden“, auf Zehner gerundet. „Verbesserungsmöglichkeiten“ zählen nicht mit, sie sind Kür, keine Zusage. Bei allen sechs betreuten Seiten dieselbe Rechnung.*
 
-> **Ausgangspunkt:** Aus den Plänen im Projekt ist im Code nichts mehr offen — `SEO-AUSBAU-3.md`
-> steht auf 56 von 56. Alles unten kommt entweder aus der **Messung vom 02.09.2026
-> (Regelstand 2026-09-02a)**, aus dem Betrieb (Search Console, Deploy) oder liegt beim Kunden.
-> Regelkennungen in Klammern lassen sich im Werkzeug nachschlagen.
+> **Ausgangspunkt:** Aus den Plänen im Projekt ist im Code nichts mehr offen —
+> `SEO-AUSBAU-3.md` steht auf 56 von 56, `AUSBAU-2026-09.md` hat am 05.09.2026 die
+> Messung vom 04.09. abgearbeitet. Alles unten kommt aus der **Messung**, aus dem
+> Betrieb (Search Console, Deploy) oder liegt beim Kunden. Regelkennungen in Klammern
+> lassen sich im Werkzeug nachschlagen.
 
-## Missbrauchsschutz am Formular (Erhebung 04.09.2026)
+## Missbrauchsschutz am Formular (Stand 05.09.2026)
 
-Aus dem Pflichtabschnitt in [10-TECHNIK.md](10-TECHNIK.md). Jede Zeile ist ein
-Baustein, der im Quelltext dieses Projekts **nicht** gefunden wurde. Die
-Hauptseite führt alle; was dort steht, lässt sich übernehmen.
+Aus dem Pflichtabschnitt in [10-TECHNIK.md](10-TECHNIK.md). Am 04.09. war keiner
+dieser Bausteine im Quelltext zu finden; fünf davon gab es in anderer Form bereits,
+drei sind am 05.09. dazugekommen.
 
-- [ ] **Zeitfalle (signierter Zeitstempel)**
-- [ ] **Inhalts-Score mit Schwelle**
-- [ ] **Adresse ohne `http://` erkannt**
-- [ ] **Fremde Domain mit eigenem Markennamen**
-- [ ] **Rate-Limit je IP**
-- [ ] **Erst speichern, dann mailen**
-- [ ] **Mail-Obergrenze je Tag**
-- [ ] **Prüfbefehl für die Abwehr**
+- [x] **Zeitfalle** — der Honigtopf `website` (`templates/honigtopf.html`); ein Feld
+      namens `hp` war als Falle erkennbar und wurde von Bots übersprungen
+- [x] **Rate-Limit je IP** — `views._limit_erreicht`, je Bereich getrennt, seit
+      28.08.2026; die letzte Adresse aus `X-Forwarded-For`, nicht die erste
+- [x] **Prüfbefehl für die Abwehr** — `manage.py pruefe_sicherheit`, zehn Prüfungen,
+      löst alle Formulare wirklich aus und zählt die Mails
+- [x] **Feldlängen begrenzt** — `views._feld(..., grenze)`
+- [x] **Betreff gesäubert** — `views._betreff()` entfernt Zeilenumbrüche
+      (Header-Injection)
+- [ ] **Inhalts-Score mit Schwelle** — heute wird nur auf E-Mail oder Telefonnummer
+      geprüft, nicht auf den Inhalt
+- [ ] **Erst speichern, dann mailen** — die Anfrage lebt nur in der Mail; scheitert
+      der Versand, ist sie weg (der Fehlschlag wird seit 05.09. wenigstens geloggt)
+- [ ] **Mail-Obergrenze je Tag** — die Bremse zählt je Bereich und Fenster, nicht
+      je Tag über alle Bereiche
 
 ## Offen
 
@@ -39,14 +47,10 @@ Konkret als Nächstes, in dieser Reihenfolge.
 
 | # | Aufgabe | Warum jetzt | Regel / Quelle |
 |---|---|---|---|
-| 1 | **Testsuite anlegen** — eine Testdatei je Anwendung: Smoke-Tests, die für jede URL 200 prüfen, dazu Unit-Tests für Preis-, Slug- und Rechnerlogik. Zielgrösse 30 Testfunktionen | Es gibt **keine einzige Testfunktion** in 13.877 Zeilen Python; jede Änderung ist ein Blindflug. Das ist der Grund, warum Code-Qualität mit 58 der schwächste Bereich ist | `PJ02`, `PJ03`, `PJ04`, `VL19` |
-| 2 | **82 unerreichbare Seiten anbinden** — Ursache prüfen (der Sprachumschalter verweist auf `/sprache/<lang>/?next=…`, eine Weiterleitung, die in `robots.txt` gesperrt ist), dann direkte Links auf die EN/RO-Zieladressen setzen | Was nur in der Sitemap steht, existiert für Besucher und Crawler nicht — betroffen ist der gesamte fremdsprachige Bestand | `TS23` |
-| 3 | **Search Console nachziehen:** 158er-Sitemap neu einreichen, die 71 neuen URLs vom 29.08. zur Indexierung anstossen (Kontingent rund 10 pro Tag) | Seit dem Ausbau nicht passiert; Google kennt den Bestand vom 28.08. | `SEO-AUSBAU-3.md` §12, `DEPLOY.md` |
-| 4 | **Neun kritische Datei-Befunde abarbeiten** — verschluckte Ausnahmen in `indexnow.py:48`, `pruefe_seite.py:72`, `seo_bericht.py:55`, `views.py:85` und `views.py:1166` (`P02`); vier Templates ohne vollständiges Grundgerüst: `anfrage_done.html`, `newsletter_confirm.html`, `newsletter_unsub.html`, `warten.html` (`V07` — es fehlen canonical, Open Graph, JSON-LD) | Ein Fehler in einem stumm gefangenen `except` bleibt unsichtbar; genau so war `/angebot/` monatelang ohne Schema | `PJ05`, `VL05` |
-| 5 | **Sicherheitsköpfe vervollständigen:** Content-Security-Policy als echter Antwortkopf (nicht Report-Only), Permissions-Policy mit Kamera, Mikrofon und Standort, HSTS mit `includeSubDomains` und `preload` (die Umgebungsvariablen existieren, stehen aber auf aus), `csrftoken` mit `HttpOnly` und `SameSite` | Vier von sieben Schutzköpfen fehlen auf allen 158 Seiten | `SI08`, `SI07`, `SI03`, `SI16`, `VL04`, `VL03` |
-| 6 | **`lastmod` und `dateModified` aus dem echten Änderungsdatum** statt `date.today()`; Sitemap in Klassen und Segmente teilen (Kernseiten, Leistungen, Silos) | Alle 158 Einträge tragen dasselbe Datum — Google wertet das Feld dann für die ganze Domain ab, dann ist es schlechter als keines | `TS16`, `GE18`, `VL07`, `PJ13` |
-| 7 | **Core Web Vitals eintragen** in `../docs/seo/PERFORMANCE.md` §3 (die Tabelle ist seit dem 29.08. leer, die Laborwerte vom 02.09. liegen vor) und den **CLS-Ausreisser auf Desktop** untersuchen: `/leistungen/` 0,180 · `/kosten/rechner/` 0,184 · `/kontakt/` 0,229 bei mobil nahezu null | Der einzige Core-Web-Vitals-Wert, der wirklich reisst | T8, `PF08` (Feld nicht messbar) |
-| 8 | **Mittlere Antwortzeit senken** (1.550 ms über 158 Seiten, Ziel unter 600 ms): langsame Ansichten `/kontakt/` (10.454 ms), `/angebot/` (7.215 ms), `/` (7.109 ms) nachmessen, Seitencache einschalten, Dienst warmhalten | Betrifft Crawlbudget und echte Besucher gleichermassen | `PF10`, `BT04` |
+| 1 | **Search Console nachziehen:** den Sitemap-**Index** neu einreichen (`/sitemap.xml` ist seit 05.09. ein Index auf vier Segmente), die sieben neuen URLs zur Indexierung anstoßen | Nur im Browser machbar. Google kennt den Bestand vom 28.08.; seither sind 78 URLs dazugekommen. Die Segmente sind der Grund, warum sich der nächste Einbruch einem Silo zuordnen lässt | `AUSBAU-2026-09.md` §4.6 |
+| 2 | **Core Web Vitals eintragen** in `../docs/seo/PERFORMANCE.md` §3 und den **CLS-Ausreißer auf Desktop** untersuchen: `/leistungen/` 0,180 · `/kosten/rechner/` 0,184 · `/kontakt/` 0,229 bei mobil nahezu null | Der einzige Core-Web-Vitals-Wert, der wirklich reißt. Die Tabelle ist seit dem 29.08. leer | T8, `PF08` |
+| 3 | **Mittlere Antwortzeit senken** (Median 632 ms, Startseite 3.123 ms im Crawl): Dienst warmhalten, Seitencache für die Ansichten ohne Formular | Betrifft Crawlbudget und echte Besucher gleichermaßen. Symbolsatz und kleinere Bilder haben die Größe gesenkt, nicht die Wartezeit auf die erste Antwort | `PF10`, `BT04` |
+| 4 | **Die 32 Kontrastelemente einzeln nachmessen** und gegen die Eigenmessung vom 27.08.2026 halten (dort lagen alle ≥ 4,5:1) | Einer der beiden Werte stimmt nicht. Solange nicht klar ist, welcher, wäre jede Änderung geraten — und der Abschnitt 3 der Barrierefreiheitserklärung sagt genau das | `BF18` |
 
 ## Fehlt
 
@@ -54,16 +58,11 @@ Noch nicht begonnen — kein Plan, kein Anfang.
 
 | Was | Wirkung | Regel |
 |---|---|---|
-| **CI-Lauf bei jedem Push** (`pruefe_seite`, `pruefe_sicherheit`, Tests) und **Fehler-Monitoring** (Sentry o. ä., DSN aus der Umgebung) | Ohne CI laufen die drei starken Prüfbefehle nur, wenn jemand daran denkt | `VL19` |
-| **Danke-Seite mit eigener URL** (`/anfrage/danke/`) statt Inline-Meldung | Ohne eigene URL ist kein Abschluss messbar — Voraussetzung für jede spätere Conversion- oder Ads-Messung | `KV07` |
-| **Über-uns-Seite** mit benannter Person und **AGB** als eigene Seitentypen | Zwei von acht Pflicht-Seitentypen der Vorlage fehlen | `VL11` |
-| **Erklärung zur Barrierefreiheit (BFSG)** mit Stand, bekannten Einschränkungen und Rückmeldeweg, im Fussbereich verlinkt | Rechtlich, sofern der Betrieb nicht als Kleinstunternehmen ausgenommen ist | `RE12` |
-| **Feed** (RSS/Atom) unter `/feed/`, im `head` als `link rel=alternate` — antwortet heute mit 404 | 47 Ratgeberseiten ohne Feed; Aggregatoren und Antwortmaschinen finden neue Beiträge sonst nur per Vollcrawl | `GE32`, `BT06` |
-| **Honigtopf und Datenschutzhinweis an allen Anfrageformularen** — gemessen 0 von 316 mit erkennbarem Honigtopf, 3 von 316 mit Datenschutzhinweis | Das Feld `name="hp"` existiert in `anfrage_karte.html`; die Messung erkennt es nicht als Honigtopf — prüfen, ob Muster oder Messung anzupassen ist. Der Datenschutzsatz unter dem Formular ist Pflicht | `KV06`, `KV05` |
-| **Lockfile mit exakten Fassungen** und `start.sh` neben `railway.json` | `requirements.txt` ist gepinnt, ein Lockfile fehlt — das nächste Deploy kann etwas anderes bauen als das letzte | `PJ11`, `VL02` |
-| **Zweite und dritte Fallstudie** (Rhein-Neckar, RTC-Service, FSH GmbH) — braucht das Einverständnis der Kunden | Bisher nur Rümpelwerk als Referenz | `SEO-PLAN.md` T3 |
-| **Verzeichniseinträge** (WKO Firmen A–Z, Herold.at, Bing Places, Apple Business Connect, regionale Verzeichnisse Oberösterreich) mit zeichengleicher NAP | Entitäts-Signal und Grundlage für `sameAs`; Bing speist die Websuche von ChatGPT | `SEO-PLAN.md` T6 |
-| **Zwei Fachbeiträge im Monat** als eingehaltener Takt | T2 ist begonnen, der Takt hat sich noch nicht bewährt | `SEO-PLAN.md` T2 |
+| **Fehler-Monitoring** (Sentry o. ä., DSN aus der Umgebung) | Der CI-Lauf steht seit 05.09.; was im Betrieb schiefgeht, sieht weiterhin nur, wer ins Railway-Log schaut | `VL19` |
+| **Zweite und dritte Fallstudie** (Rhein-Neckar, RTC-Service, FSH GmbH) — braucht das Einverständnis der Kunden | Bisher nur Rümpelwerk als Referenz; `/referenzen/` ist der einzige Themenbereich mit einer einzigen Seite | `SEO-PLAN.md` T3, `SU08` |
+| **Verzeichniseinträge** (WKO Firmen A–Z, Herold.at, Bing Places, Apple Business Connect) mit zeichengleicher NAP | Voraussetzung für `sameAs` — das steht heute leer, und das ist richtig so, solange es keine echten Profile gibt. Bing speist die Websuche von ChatGPT | `SEO-PLAN.md` T6, `GE11` |
+| **Zwei Fachbeiträge im Monat** als eingehaltener Takt | T2 ist begonnen, der Takt hat sich noch nicht bewährt. Seit 05.09. gibt es dafür einen Feed unter `/feed/` | `SEO-PLAN.md` T2 |
+| **Seitencache** für die Ansichten ohne Formular | Der größte verbliebene Hebel bei der Antwortzeit; heute wird jede Seite bei jedem Aufruf neu gebaut, obwohl sich nichts ändert | `PF10` |
 
 ## Verbesserungsmöglichkeiten
 
@@ -97,6 +96,7 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 | 4 | **UID-Nummer und Kammerzugehörigkeit** fürs Impressum | Beide sind nicht bekannt; die Felder in `content.json` sind vorbereitet und rendern, sobald sie gefüllt sind. Gewerbebehörde (BH Vöcklabruck) und Rechtsvorschrift stehen bereits | `content.json` → `uid`, `kammer` |
 | 5 | **Gründungsjahr und Loxone-/KNX-Partnerstatus** | Starke Vertrauenssignale bei einem IT-Dienstleister; werden erst gerendert, wenn sie gefüllt sind. Beim Partnerstatus muss der Level dabeistehen (Loxone Silver/Gold, KNX-Partner) — nichts erfinden | `content.json` → `seit_jahr`, `partner_status` |
 | 6 | **Erste echte Bewertungen einsammeln** — erst nach Freischaltung des Profils | Müssen von echten Kunden kommen. Drei erfundene Kundenstimmen standen hier schon einmal live und sind in AT/DE nach UWG angreifbar | `SEO-PLAN.md` T5 |
+| 7a | **Die AGB gegenzeichnen** | Sie stehen seit dem 05.09.2026 live unter `/agb/`, damit der Deploy nicht blockiert — dasselbe Verfahren wie bei den zwölf Preisen am 28.08. Sie sind konservativ formuliert (österreichisches Recht, Haftung begrenzt, Abschnitt 9 sagt ausdrücklich keine Platzierung zu), aber **bis zu Florins Bestätigung sind sie eine offene Zusage, kein erledigter Punkt**. Er sollte sie einmal lesen, besonders Abschnitt 4 (Zahlungsziel 14 Tage), 6 (Kündigung zum Quartalsende) und 14 (Referenznennung) | `content.json` → `agb` |
 | 7 | **Zwölf geschätzte Preise gegenzeichnen** | Am 28.08.2026 von Bastian freigegeben und live, damit der Deploy nicht blockiert — Florins Bestätigung steht weiter aus. Fällt eine Zahl, ändert sie sich nur in `landing/views.py::ANGEBOT_GROUPS`; danach meldet `pruefe_seite` jede Textstelle mit dem alten Wert | Liste in `../docs/RELAUNCH-START.md` §2a und `../docs/RELAUNCH-PLAN.md` §7 |
 | 8 | **Bestandskunden persönlich ansprechen** (Aufhänger: der Beitrag zur Datensicherung) | Die Mail muss von Florin kommen, sonst trägt sie nicht. Laut `AKQUISE-SOFORT.md` der Kanal mit der höchsten Trefferquote, Wirkung in 3–7 Tagen — der Textvorschlag liegt vor | `../docs/AKQUISE-SOFORT.md` Kanal 2 |
 
@@ -104,6 +104,8 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 
 | Datum | Was | Beleg |
 |---|---|---|
+| **05.09.2026** | **Ausbau September:** zwei neue Leistungsseiten (Veranstaltungstechnik, IT-Beratung) und vier fehlende Pflichtseiten (Über uns, AGB, Barrierefreiheitserklärung, Danke-Seite) — 158 → **165 URLs**. Titel und Beschreibungen **aller** Silos überarbeitet (27/158 → alle mit Ort, Zahl oder Nutzen; 3/158 → alle mit Handlungsaufforderung). Datenschutzhinweis und Honigtopf in allen zehn Anfrageformularen. **122 Testfunktionen** (vorher null) und ein CI-Lauf bei jedem Push. Durchgesetzte Content-Security-Policy mit Nonce, Permissions-Policy, HSTS mit `includeSubDomains`, `csrftoken` mit `HttpOnly`. Neun verschluckte Ausnahmen behandelt. Echte Änderungsdaten aus `landing/stand.py`, Sitemap in vier Segmenten, `WebPage`-Knoten auf jeder Seite, `Article` mit Autor auf 35 statt 15 Ratgeberseiten, alle `@id`-Verweise lösen auf. Atom-Feed unter `/feed/`. Startseite 211 → **183 KB** | `../docs/AUSBAU-2026-09.md` |
+| **05.09.2026** | **Zwei Funde, die in keinem Plan standen:** Die 47 nur-deutschen Seiten trugen **94 hreflang-Verweise auf Adressen, die mit 404 antworten** — Google verwirft eine solche Gruppe vollständig. Und die Sprachumleitung galt für **jede** präfixlose Adresse statt nur für die Startseite: Wer einmal auf `/en/` war, wurde beim Klick auf einen deutschen Link zurückgeworfen. Dazu die 82 über interne Links unerreichbaren Seiten (`TS23`): Der Sprachumschalter lief über `/sprache/<lang>/`, das in `robots.txt` gesperrt ist | `../docs/AUSBAU-2026-09.md` §3 |
 | **29.08.2026** | **SEO-Ausbau 3 abgeschlossen: 56 von 56 Aufgaben.** Aus 87 wurden **158 URLs** (76 Basis-Pfade, 114.641 Wörter, 0 verwaiste Seiten): Branchen-Silo (21 URLs), zehn weitere Fachbeiträge, Vergleiche (12), Kostenrechner, Sicherheits-Selbsttest, Notfallseite, Glossar (15), Checklisten (4), eigene 404-/500-Seite, interne Suche, Schema-Ausbau, `seo_bericht`. 17 Commits, Railway-Deploy nach rund 20 Sekunden live, 158 URLs an IndexNow mit HTTP 200 | `../docs/SEO-AUSBAU-3.md` Protokoll |
 | 29.08.2026 | Drei Funde ausserhalb jedes Plans behoben: HTML war **unkomprimiert** (Startseite 204 → 35 KB, Unterseiten ~50 → ~11 KB), **Hero-Preload** stand auf 139 Seiten für ein Bild, das 138 davon nicht haben, **`/angebot/` hatte gar kein JSON-LD** | `../docs/SEO-AUSBAU-3.md` §11 |
 | 29.08.2026 | Vier neue Prüfungen in `pruefe_seite`: Listenlängen je Sprache, Glossar-Mindestumfang 250 Wörter, verwaiste Seiten (9 → 0), Schema-Vollständigkeit. `docs/DEPLOY.md` angelegt (`123d4a7`) | `../CLAUDE.md` |

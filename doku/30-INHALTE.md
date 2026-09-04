@@ -1,12 +1,12 @@
 ---
 bereich: inhalte
 titel: Inhalte
-stand: 2026-09-03
+stand: 2026-09-05
 status: teilweise
-fortschritt: 90
-zusammenfassung: 158 URLs in acht Silos mit 114.641 Wörtern; 55 von 84 Seiten unter dem Zielumfang ihrer Seitenart, keine Über-uns-Seite, keine AGB.
-offen: 8
-quellen: CLAUDE.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
+fortschritt: 94
+zusammenfassung: 165 URLs in acht Silos; neu sind Veranstaltungstechnik, IT-Beratung, Über uns, AGB, Barrierefreiheitserklärung und die Danke-Seite. Titel und Beschreibungen aller Silos überarbeitet.
+offen: 4
+quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
 ---
 
 # Inhalte

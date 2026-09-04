@@ -1,10 +1,10 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-03
+stand: 2026-09-05
 status: teilweise
 fortschritt: 50
-zusammenfassung: Search Console eingerichtet und NAP überall zeichengleich; Google-Unternehmensprofil, Bewertungen und Verzeichniseinträge fehlen — alles beim Kunden.
+zusammenfassung: Search Console eingerichtet, NAP überall zeichengleich, Koordinaten und Öffnungszeiten seit 05.09.2026 im Graphen; Unternehmensprofil, Bewertungen und Verzeichniseinträge fehlen weiterhin — alles beim Kunden.
 offen: 6
 unternehmensprofil: nein
 search_console: ja

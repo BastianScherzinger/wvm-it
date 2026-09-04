@@ -1,15 +1,15 @@
 ---
 bereich: performance
 titel: Performance
-stand: 2026-09-03
+stand: 2026-09-05
 status: teilweise
-fortschritt: 82
-zusammenfassung: HTML seit 29.08. komprimiert; offen sind srcset, fetchpriority und LCP-Preload, Critical CSS und das CLS der Desktop-Unterseiten. Die gemessenen Werte stehen im erzeugten Block unter „Messwerte".
-offen: 6
+fortschritt: 88
+zusammenfassung: Icons als Symbolsatz statt 179 eingebetteter SVGs, srcset für die grossen Bilder, Kommentare aus der Auslieferung: Startseite 211 → 183 KB. Offen bleiben Antwortzeit, CLS auf Desktop-Unterseiten und Critical CSS.
+offen: 4
 pagespeed_mobil: 96
 pagespeed_desktop: 86
 antwortzeit_ms: 3
-quellen: docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
+quellen: docs/AUSBAU-2026-09.md, docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 antwortzeit_quelle: PageSpeed server-response-time
 ---
 

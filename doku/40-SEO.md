@@ -1,12 +1,12 @@
 ---
 bereich: seo
 titel: SEO und GEO
-stand: 2026-09-03
+stand: 2026-09-05
 status: teilweise
-fortschritt: 80
-zusammenfassung: SEO-Ausbau 3 abgeschlossen (56/56), SEO-Technik 94, SEO-Inhalt 87, GEO 70; erste Messung Oktober 2026, Suchanfragen ohne Marke am 29.08. null.
-offen: 12
-quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/GEO-MONITORING.md, docs/seo/KEYWORD-MAP.md, docs/seo/BASELINE.md
+fortschritt: 90
+zusammenfassung: Zwei Funde ausserhalb jedes Plans behoben: 94 hreflang-Verweise zeigten auf 404, und 82 Seiten waren über interne Links unerreichbar. Titel und Beschreibungen aller 165 URLs überarbeitet, Sitemap in vier Segmenten, echte Änderungsdaten. Erste Messung Oktober 2026.
+offen: 6
+quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/GEO-MONITORING.md, docs/seo/KEYWORD-MAP.md, docs/seo/BASELINE.md
 ---
 
 # SEO und GEO
