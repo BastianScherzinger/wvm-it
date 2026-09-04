@@ -33,7 +33,7 @@ Dazu ohne Index: eigene **404-/500-Seite** (Status bleibt 404 — eine hilfreich
 
 **Wortzahlen je Seitenart** (`../docs/seo/URL-INVENTAR.md`, 29.08.2026): Startseite 4.222 · Leistungsseiten 639–1.024 · Branchen 950–995 · Vergleiche 745–818 · Regionen 542–619 · Fachbeiträge 555–650 · Glossar 355–406 · Checklisten 663–747 · `/it-notfall/` 1.315 · `/angebot/` 1.221 · `/kosten/` 1.005 · Hubs 300–608 · `/kontakt/` 184 · `/referenzen/` 201 · `/impressum/` 141 · `/datenschutz/` 461.
 
-**Messung vom 02.09.2026 (Regelstand 2026-09-02a):** Substanz & Reichweite **90** („Referenz"), SEO-Inhalt **82**. Befunde: 55 von 84 Seiten unter dem Zielumfang ihrer Seitenart (`IS18`: z. B. `/leistungen/` 328/600 W, `/vergleich/` 288/900 W, `/leistungen/google-ads/` 583/600 W) · 11 Seiten unter 200 Eigenwörtern (`IS19`: Kontakt, Impressum je Sprache) · 28 unter 300 (`IS17`) · Eigentextanteil im Mittel 61 %, 15 Seiten unter 45 % (`IS20`: `/branchen/`, `/kontakt/` je Sprache) · Rahmenanteil 39 %, 15 Seiten über 55 % (`GE29`).
+**Die Bereichswerte stehen im Messblock von [00-STATUS.md](00-STATUS.md)** — hier standen sie bis zum 04.09.2026 als Satz und waren zwei Katalogstände später falsch. Die Befunde, die dahinterstehen (Messung vom 02.09.2026): 55 von 84 Seiten unter dem Zielumfang ihrer Seitenart (`IS18`: z. B. `/leistungen/` 328/600 W, `/vergleich/` 288/900 W, `/leistungen/google-ads/` 583/600 W) · 11 Seiten unter 200 Eigenwörtern (`IS19`: Kontakt, Impressum je Sprache) · 28 unter 300 (`IS17`) · Eigentextanteil im Mittel 61 %, 15 Seiten unter 45 % (`IS20`: `/branchen/`, `/kontakt/` je Sprache) · Rahmenanteil 39 %, 15 Seiten über 55 % (`GE29`).
 
 ## Themen und Silos
 

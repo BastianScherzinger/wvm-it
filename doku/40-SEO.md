@@ -27,7 +27,7 @@ quellen: docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/
 
 **Ausgangslage** (`../docs/seo/BASELINE.md`, Search Console, drei Monate bis 28.08.2026): **7 Klicks, 54 Impressionen, CTR 13 %, Ø Position 13,9, drei Suchanfragen — `wvm`, `wwwwvm`, `vm it`, alle Markenname, null Impressionen für irgendeine Leistung.** Index 6 von 6, Bing `site:` 6 Ergebnisse, CWV „nicht genügend Nutzungsdaten".
 
-**Messung vom 03.09.2026 (Regelstand 2026-09-03a):** SEO — Technik **93,6** (Referenz) · SEO — Inhalt **86,7** (Solide) · GEO — KI-Sichtbarkeit **69,6** (Brauchbar) · Substanz **90,1** (Referenz). Sichtbarkeit selbst (Klicks, Positionen) misst keine der 244 Regeln — dafür ist die Search Console zuständig, siehe [50-LOCAL-SEO.md](50-LOCAL-SEO.md).
+**Die vier Bereichswerte** (SEO — Technik, SEO — Inhalt, GEO — KI-Sichtbarkeit, Substanz & Reichweite) **stehen im Messblock von [00-STATUS.md](00-STATUS.md)** — hier standen sie bis zum 04.09.2026 als Satz und waren zwei Katalogstände später falsch. Sichtbarkeit selbst (Klicks, Positionen) misst keine der 244 Regeln — dafür ist die Search Console zuständig, siehe [50-LOCAL-SEO.md](50-LOCAL-SEO.md).
 
 ## Technik
 
