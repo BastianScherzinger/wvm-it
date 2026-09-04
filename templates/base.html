@@ -55,13 +55,19 @@
   <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  <style nonce="{{ csp_nonce }}">:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
   <!-- Strukturierte Daten (SEO + GEO): @graph mit ProfessionalService (Local-SEO AT+DE,
        Preise als OfferCatalog), WebSite und FAQPage — server-seitig gebaut (views._structured_data). -->
+  {% comment %}
+  Ohne nonce, und das mit Absicht: Ein JSON-LD-Block wird nicht ausgefuehrt,
+  sondern gelesen - die CSP greift auf ihn gar nicht zu. Ein nonce hier waere
+  reine Zierde und wuerde zugleich die Schema-Pruefung in pruefe_seite blind
+  machen, die den Block ueber sein Tag findet.
+  {% endcomment %}
   <script type="application/ld+json">{{ structured_data|safe }}</script>
 </head>
 <body>
-<script>
+<script nonce="{{ csp_nonce }}">
   window.I18N = {
     numLocale: "{{ t.meta.num_locale }}",
     robot: [{% for m in t.hero.robot_msgs %}"{{ m|escapejs }}"{% if not forloop.last %},{% endif %}{% endfor %}],

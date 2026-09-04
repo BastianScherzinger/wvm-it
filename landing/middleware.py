@@ -12,6 +12,7 @@ Wichtig: Suchmaschinen-Bots werden NIE umgeleitet, damit '/' die deutsche Canoni
 Präfix-URLs werden nie angefasst (keine Redirect-Schleifen).
 """
 import re
+import secrets
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
@@ -121,15 +122,22 @@ class SchutzkoepfeMiddleware:
     Er nimmt die Seite aus Chromes Themen-Werbe-API heraus. Wer nichts sendet,
     nimmt stillschweigend teil.
 
-    Die Klasse heißt bewusst allgemein und trägt die Köpfe in einem Dict: Sie ist
-    die Stelle, an die weitere Antwortköpfe gehören (etwa eine
-    Content-Security-Policy), damit dafür keine vierte Middleware entsteht.
+    Dazu kommt die ``Content-Security-Policy``. Sie ist der einzige Kopf, der
+    nicht nur ergänzt, sondern *entscheidet*, was der Browser ausführt — und
+    deshalb kommt sie in zwei Stufen: erst beobachtend
+    (``Content-Security-Policy-Report-Only``, meldet ohne zu blockieren), dann
+    scharf. Zwei Direktiven gelten sofort scharf, siehe ``CSP_SCHARF``.
 
-    Wichtig: Sie leitet nichts um und liest den Request nicht. Die beiden
-    Klassen darüber in dieser Datei tun beides — ein Fehler *dort* macht die
-    Seite unerreichbar oder erzeugt eine Umleitungsschleife. Diese Klasse hier
-    fasst nur die fertige Antwort an, und auch die nur, wenn der Kopf noch
-    fehlt: Ein Kopf, den eine View bewusst selbst gesetzt hat, bleibt stehen.
+    Die Klasse heißt bewusst allgemein und trägt die Köpfe in einem Dict: Sie ist
+    die Stelle, an die weitere Antwortköpfe gehören, damit dafür keine vierte
+    Middleware entsteht.
+
+    Wichtig: Sie leitet nichts um und entscheidet nichts über den Request. Die
+    beiden Klassen darüber in dieser Datei tun beides — ein Fehler *dort* macht
+    die Seite unerreichbar oder erzeugt eine Umleitungsschleife. Diese Klasse
+    hier legt am Request genau ein Feld ab (``csp_nonce``, für die Templates)
+    und fasst sonst nur die fertige Antwort an, und auch die nur, wenn der Kopf
+    noch fehlt: Ein Kopf, den eine View bewusst selbst gesetzt hat, bleibt stehen.
     """
 
     KOEPFE = {
@@ -139,14 +147,84 @@ class SchutzkoepfeMiddleware:
         ),
     }
 
+    # Die beiden Direktiven, die von Anfang an *scharf* gelten. Sie können
+    # nichts brechen, was diese Seite tut: Es gibt kein <object>, kein <embed>
+    # und kein Plugin (object-src), und die Seite darf ohnehin in keinen fremden
+    # Rahmen — das sagt X-Frame-Options: DENY seit jeher, frame-ancestors ist
+    # nur die Fassung davon, die moderne Browser auch bei mehrfacher
+    # Verschachtelung beachten.
+    CSP_SCHARF = "object-src 'none'; frame-ancestors 'none'"
+
+    # Die vollständige Richtlinie. Sie steht als Liste von Direktiven da, damit
+    # jede einzelne begründbar bleibt:
+    #
+    #   default-src 'self'   Grundregel: alles vom eigenen Host, sonst nichts.
+    #   script-src           Eigene Dateien + die neun ausführbaren
+    #                        Inline-Blöcke über ihr Nonce + unpkg.com
+    #                        (Spline-Viewer-Laufzeit, wird von main.js nach
+    #                        Cookie-Einwilligung nachgeladen) +
+    #                        prod.spline.design (die Szene selbst). Die beiden
+    #                        JSON-LD-Blöcke bleiben ohne Nonce: Sie werden
+    #                        gelesen, nicht ausgeführt.
+    #   style-src            Eigene CSS-Dateien + die sechs <style>-Blöcke, die
+    #                        die Akzentfarbe aus content.json setzen, über
+    #                        dasselbe Nonce.
+    #   img-src              Eigene Bilder, data:-URIs (Inline-SVG-Platzhalter)
+    #                        und res.cloudinary.com für hochgeladene Fotos.
+    #   connect-src          fetch/XHR: eigene Endpunkte, api.cloudinary.com
+    #                        (signierter Upload im Detailbogen) und
+    #                        prod.spline.design (Szenendaten).
+    #   font-src 'self'      Die Schriften liegen selbst gehostet im Projekt.
+    #   base-uri / form-action  Verhindern, dass ein eingeschleustes <base> oder
+    #                        ein umgebogenes Formularziel Eingaben nach außen
+    #                        schickt — die klassische Nachnutzung einer XSS.
+    #
+    # Das Nonce wird je Anfrage neu gewürfelt (``secrets.token_urlsafe(16)``,
+    # 128 Bit). Es muss unvorhersagbar sein: Ein fester Wert im Kopf wäre
+    # dasselbe wie 'unsafe-inline', nur umständlicher.
+    CSP_DIREKTIVEN = (
+        "default-src 'self'",
+        "script-src 'self' 'nonce-{nonce}' https://unpkg.com https://prod.spline.design",
+        "style-src 'self' 'nonce-{nonce}'",
+        "img-src 'self' data: https://res.cloudinary.com",
+        "connect-src 'self' https://api.cloudinary.com https://prod.spline.design",
+        "font-src 'self'",
+        "object-src 'none'",
+        "frame-ancestors 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+    )
+
+    # Solange dieser Schalter steht, geht die vollständige Richtlinie nur als
+    # ``Content-Security-Policy-Report-Only`` hinaus: Der Browser meldet jede
+    # Verletzung in seiner Konsole, blockiert aber nichts. Das ist die Auflage
+    # aus dem Auftrag — eine CSP, die die Seite bricht, ist schlechter als keine.
+    NUR_BEOBACHTEN = True
+
     def __init__(self, get_response):
         self.get_response = get_response
 
+    @classmethod
+    def csp(cls, nonce):
+        """Die vollständige Richtlinie für genau dieses Nonce."""
+        return "; ".join(d.format(nonce=nonce) for d in cls.CSP_DIREKTIVEN)
+
     def __call__(self, request):
+        # Vor dem Rendern setzen: Der Context-Processor in landing/i18n liest den
+        # Wert und gibt ihn als {{ csp_nonce }} an die Templates weiter.
+        request.csp_nonce = secrets.token_urlsafe(16)
         response = self.get_response(request)
         for name, wert in self.KOEPFE.items():
             if name not in response:
                 response[name] = wert
+        voll = self.csp(request.csp_nonce)
+        if self.NUR_BEOBACHTEN:
+            if "Content-Security-Policy-Report-Only" not in response:
+                response["Content-Security-Policy-Report-Only"] = voll
+            if "Content-Security-Policy" not in response:
+                response["Content-Security-Policy"] = self.CSP_SCHARF
+        elif "Content-Security-Policy" not in response:
+            response["Content-Security-Policy"] = voll
         return response
 
 

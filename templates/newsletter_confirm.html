@@ -12,10 +12,10 @@
   <link rel="icon" href="{% static 'img/wvm_mark.png' %}" sizes="any">
   <link rel="apple-touch-icon" href="{% static 'img/wvm_mark.png' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  <style nonce="{{ csp_nonce }}">:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
 </head>
 <body class="ang-page">
-<script>
+<script nonce="{{ csp_nonce }}">
   window.I18N = {
     af: {
       stepWord: "{{ t.confirm_page.step_word|default:'Schritt'|escapejs }}",
@@ -231,7 +231,7 @@
         </section>
       </form>
 
-      <script>
+      <script nonce="{{ csp_nonce }}">
       (function(){
         var fileInput=document.getElementById('fileInput'), thumbs=document.getElementById('thumbs'),
             hidden=document.getElementById('bilderField'), hint=document.getElementById('upHint'),

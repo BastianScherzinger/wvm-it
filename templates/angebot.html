@@ -26,16 +26,17 @@
   <!-- Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) -->
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  <style nonce="{{ csp_nonce }}">:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
   {% comment %}
   Diese Seite hat ein eigenes Grundgeruest und erbt deshalb nicht von base.html —
   und hatte als einzige oeffentliche Seite gar kein JSON-LD. Gefunden hat das die
   Schema-Pruefung aus SEO-AUSBAU-3.md (S9), nicht ein Mensch.
   {% endcomment %}
+  {% comment %}Ohne nonce - siehe base.html: ein JSON-LD-Block wird gelesen, nicht ausgefuehrt.{% endcomment %}
   <script type="application/ld+json">{{ structured_data|safe }}</script>
 </head>
 <body class="ang-page">
-<script>
+<script nonce="{{ csp_nonce }}">
   window.I18N = {
     numLocale: "{{ t.meta.num_locale }}",
     ang: {

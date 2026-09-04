@@ -22,10 +22,13 @@ die Settings-Konstanten. Ein Kopf, der in den Settings steht, aber nie in der
 Antwort landet, weil die zuständige Middleware fehlt, ist kein Schutz.
 """
 import os
+import re
 import unittest
 
 from django.conf import settings
 from django.test import SimpleTestCase
+
+from landing.middleware import SchutzkoepfeMiddleware
 
 from . import seiten_client
 
@@ -208,3 +211,137 @@ class CookieFlagsTest(SimpleTestCase):
         Cookie beim ersten Klick aus einem Suchergebnis heraus, und das erste
         Absenden eines Formulars liefe in einen 403."""
         self.assertEqual(self.antwort.cookies["csrftoken"]["samesite"], "Lax")
+
+
+# Ein Inline-Block ist jedes <script>/<style> ohne externe Quelle. Genau die
+# brauchen das Nonce; <script src="…"> und <link rel="stylesheet"> deckt
+# 'self' ab. Ausgenommen sind JSON-LD-Blöcke: Sie werden nicht ausgeführt,
+# sondern gelesen — die CSP greift auf sie gar nicht zu, und ein Nonce daran
+# machte nur die Schema-Prüfung in ``pruefe_seite`` blind.
+INLINE_SCRIPT = re.compile(r"<script(?![^>]*\ssrc=)(?![^>]*ld\+json)([^>]*)>", re.I)
+INLINE_STYLE = re.compile(r"<style([^>]*)>", re.I)
+NONCE_IM_KOPF = re.compile(r"'nonce-([A-Za-z0-9_-]+)'")
+
+
+class CspTest(SimpleTestCase):
+    """Die Content-Security-Policy — der Kopf, das Nonce und beider Zusammenspiel.
+
+    Der Fehler, gegen den diese Klasse steht, sieht auf dem Server nach nichts
+    aus: Der Kopf verlangt ein Nonce, ein Inline-Block trägt es nicht — und der
+    Browser führt ihn stillschweigend nicht mehr aus. Auf dieser Seite hinge
+    daran der Cookie-Banner (also die DSGVO-Einwilligung), der Rückruf-Dialog
+    und beide Konfiguratoren. Die Antwort bliebe HTTP 200, kein Log meldete
+    etwas, und auffallen würde es erst einem Besucher.
+
+    Deshalb wird nicht der Kopf allein geprüft, sondern der Abgleich: Jeder
+    Inline-Block im *gerenderten* HTML muss genau das Nonce tragen, das im Kopf
+    derselben Antwort steht.
+    """
+
+    # Zwei Seiten mit unterschiedlichem Gerüst: die Startseite erbt von
+    # base.html, /angebot/ bringt ein eigenes <head> mit. Ein Nonce, das nur in
+    # base.html eingesetzt wäre, fiele an der zweiten Seite auf.
+    SEITEN = ("/", "/angebot/")
+
+    def _antwort(self, pfad="/"):
+        antwort = seiten_client().get(pfad)
+        self.assertEqual(antwort.status_code, 200, f"{pfad} antwortet nicht mit 200")
+        return antwort
+
+    def _nonce(self, antwort):
+        kopf = antwort.headers.get("Content-Security-Policy-Report-Only", "")
+        treffer = NONCE_IM_KOPF.search(kopf)
+        self.assertIsNotNone(treffer, f"Kein Nonce in der CSP: {kopf!r}")
+        return treffer.group(1)
+
+    def test_richtlinie_ist_gesetzt_und_nennt_jede_direktive(self):
+        """Verhindert, dass die Richtlinie beim Umbau der Middleware-Liste
+        stillschweigend verschwindet oder auf einen Rumpf zusammenschrumpft.
+
+        Eine CSP, die nur noch ``default-src 'self'`` sagt, sperrt Spline und
+        Cloudinary aus; eine ohne ``base-uri``/``form-action`` lässt genau die
+        Nachnutzung zu, gegen die sie gedacht ist. Geprüft wird deshalb jeder
+        Direktiven-Name einzeln, nicht die Zeichenkette als Ganzes — sonst
+        scheitert der Test schon an einer neuen Quelle.
+        """
+        kopf = self._antwort().headers.get("Content-Security-Policy-Report-Only", "")
+        for direktive in ("default-src", "script-src", "style-src", "img-src",
+                          "connect-src", "font-src", "object-src", "frame-ancestors",
+                          "base-uri", "form-action"):
+            self.assertIn(direktive + " ", kopf, f"{direktive} fehlt in der CSP: {kopf!r}")
+
+    def test_script_src_kommt_ohne_unsafe_inline_aus(self):
+        """Hält den Zweck der ganzen Übung fest.
+
+        ``script-src 'unsafe-inline'`` erlaubt jedes eingeschleuste Skript und
+        macht die Richtlinie für den Hauptangriff (XSS) wertlos. Der Test
+        schlägt an, sobald jemand die Direktive zur Bequemlichkeit aufweicht,
+        weil ein neuer Inline-Block sein Nonce nicht bekommen hat — dann ist der
+        Block zu reparieren, nicht die Richtlinie.
+        """
+        kopf = self._antwort().headers.get("Content-Security-Policy-Report-Only", "")
+        script_src = [d for d in kopf.split(";") if d.strip().startswith("script-src")]
+        self.assertEqual(len(script_src), 1, f"script-src steht nicht genau einmal: {kopf!r}")
+        self.assertNotIn("'unsafe-inline'", script_src[0])
+        self.assertNotIn("'unsafe-eval'", script_src[0])
+
+    def test_nonce_ist_je_antwort_ein_anderes(self):
+        """Verhindert ein Nonce, das keines ist.
+
+        Ein über alle Antworten gleicher Wert wäre erratbar und damit genau so
+        gut wie ``'unsafe-inline'`` — ein Angreifer schriebe ihn einfach in sein
+        eingeschleustes Tag. Der Fehler entstünde durch ein Nonce, das einmal
+        beim Start berechnet und in der Klasse gehalten wird statt je Anfrage.
+        """
+        erste = self._nonce(self._antwort())
+        zweite = self._nonce(self._antwort())
+        self.assertNotEqual(erste, zweite, "Das CSP-Nonce ist über zwei Antworten gleich")
+        self.assertGreaterEqual(len(erste), 16, "Das Nonce ist zu kurz, um unratbar zu sein")
+
+    def test_jeder_inline_block_traegt_das_nonce_der_antwort(self):
+        """Verhindert den still ausgeschalteten Inline-Block.
+
+        Das ist der teure Fehler dieses Schritts: Ein <script> ohne Nonce führt
+        der Browser bei scharfer Richtlinie nicht mehr aus. Betroffen wären hier
+        der Cookie-Banner (Einwilligung), der Rückruf-Dialog und die
+        Konfiguratoren — alles ohne jede Spur im Server-Log. Geprüft wird gegen
+        das Nonce *derselben* Antwort; ein aus einer anderen Anfrage
+        stammendes wäre wertlos.
+        """
+        for pfad in self.SEITEN:
+            with self.subTest(pfad=pfad):
+                antwort = self._antwort(pfad)
+                nonce = self._nonce(antwort)
+                html = antwort.content.decode("utf-8")
+                bloecke = INLINE_SCRIPT.findall(html) + INLINE_STYLE.findall(html)
+                self.assertTrue(bloecke, f"{pfad} hat gar keinen Inline-Block — Test wertlos")
+                for attribute in bloecke:
+                    self.assertIn(f'nonce="{nonce}"', attribute,
+                                  f"{pfad}: Inline-Block ohne gültiges Nonce: <…{attribute.strip()}>")
+
+    def test_object_src_und_frame_ancestors_gelten_sofort_scharf(self):
+        """Hält fest, dass die beiden risikofreien Direktiven wirklich greifen.
+
+        ``Content-Security-Policy-Report-Only`` blockiert nichts — solange nur
+        dieser Kopf gesetzt ist, ist die Seite ungeschützt. Die beiden
+        Direktiven, die nichts brechen können (es gibt kein <object>, und in
+        einen fremden Rahmen darf die Seite ohnehin nicht), gehören deshalb in
+        den *scharfen* Kopf. Der Test prüft, dass es diesen zweiten Kopf gibt
+        und dass er nicht versehentlich die volle Richtlinie trägt.
+        """
+        kopf = self._antwort().headers.get("Content-Security-Policy", "")
+        self.assertIn("object-src 'none'", kopf)
+        self.assertIn("frame-ancestors 'none'", kopf)
+        if SchutzkoepfeMiddleware.NUR_BEOBACHTEN:
+            self.assertNotIn("script-src", kopf,
+                             "Im Beobachtungsmodus darf der scharfe Kopf keine script-src tragen")
+
+    def test_richtlinie_auch_auf_umleitungen(self):
+        """Hält fest, dass die Richtlinie an jeder Antwort hängt, nicht nur an
+        der gerenderten Seite — derselbe Stellungsfehler in der
+        Middleware-Liste, den ``test_permissions_policy_auch_auf_umleitungen``
+        für den anderen Kopf abfängt."""
+        antwort = seiten_client(SERVER_NAME="wvm-it-shop.up.railway.app").get("/")
+        self.assertEqual(antwort.status_code, 301)
+        self.assertIn("frame-ancestors 'none'",
+                      antwort.headers.get("Content-Security-Policy", ""))

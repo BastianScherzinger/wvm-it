@@ -431,7 +431,7 @@ Die Varianten stehen in content.json (T3).
     </div>
   </section>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
   (function(){
     var form=document.getElementById('rbForm'); if(!form) return;
     var I=(window.I18N&&window.I18N.rb)||{};
@@ -740,7 +740,7 @@ Die Varianten stehen in content.json (T3).
     </div>
   </section>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
   (function(){
     var form=document.getElementById('coopForm'); if(!form) return;
     var I=(window.I18N&&window.I18N.coop)||{};

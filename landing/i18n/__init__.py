@@ -99,4 +99,11 @@ def context_processor(request):
         "canonical_path": add_prefix(lang, base),
         # Cache-Busting-Version für ?v= an CSS/JS-Links (siehe settings.ASSET_VERSION)
         "asset_v": getattr(settings, "ASSET_VERSION", "1"),
+        # Nonce der Content-Security-Policy (landing.middleware.SchutzkoepfeMiddleware).
+        # Jeder Inline-<script>- und <style>-Block trägt es; ohne das Attribut
+        # führt der Browser den Block bei scharfer CSP nicht mehr aus. Der Wert
+        # steht bewusst hier und nicht in einem eigenen Context-Processor: Ein
+        # zweiter Eintrag in der Liste wäre eine zweite Stelle, die jemand beim
+        # Aufräumen entfernen kann, ohne den Zusammenhang zu sehen.
+        "csp_nonce": getattr(request, "csp_nonce", ""),
     }
