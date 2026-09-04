@@ -17,7 +17,8 @@ import re
 from django.test import SimpleTestCase
 
 from landing import i18n
-from landing.views import _content, _structured_data
+from landing.tests import seiten_client
+from landing.views import _content, _seiten_pfade, _structured_data
 
 
 def graph_von(html: str) -> list:
@@ -143,3 +144,160 @@ class OeffnungszeitenTest(SimpleTestCase):
         self.assertIn("Montag bis Freitag", text)
         self.assertEqual(zeiten["dayOfWeek"],
                          ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])
+
+
+class GraphDerSeitenTest(SimpleTestCase):
+    """Schritt 27 — der Graph jeder einzelnen Seite.
+
+    Alle Prüfungen dieser Klasse laufen über den **gesamten** Bestand. Die 158
+    Seiten werden dafür einmal gerendert und geteilt: Fünf Prüfungen mal 158
+    Renderings wären fünfmal dieselbe Arbeit."""
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cl = seiten_client()
+        cls.seiten = {}
+        for pfad, _prio, _freq, mehrsprachig in _seiten_pfade():
+            for lang in (i18n.LANGS if mehrsprachig else ("de",)):
+                adresse = i18n.add_prefix(lang, pfad)
+                html = cl.get(adresse).content.decode("utf-8")
+                cls.seiten[adresse] = (html, graph_von(html))
+
+    def test_jede_seite_traegt_genau_einen_webpage_knoten(self):
+        """Auf jeder der 158 Adressen steht genau ein `WebPage` mit `#seite`.
+
+        Verhindert zwei Fehler: die vergessene Aufrufstelle (eine Seite ohne
+        WebPage-Knoten beschreibt sich selbst nicht) und den doppelten Knoten,
+        der bei einer zweiten `_seiten_schema`-Ebene entstünde. Zwei Knoten mit
+        derselben `@id` sind für einen Parser ein Widerspruch."""
+        for adresse, (_html, graph) in self.seiten.items():
+            with self.subTest(adresse=adresse):
+                seiten = [k for k in graph if k.get("@type") == "WebPage"]
+                self.assertEqual(len(seiten), 1, "kein oder mehr als ein WebPage")
+                self.assertEqual(seiten[0]["@id"],
+                                 seiten[0]["url"] + "#seite")
+                self.assertEqual(seiten[0]["isPartOf"]["@id"].rsplit("/", 1)[-1],
+                                 "#website")
+
+    def test_name_und_titel_sind_dasselbe(self):
+        """`WebPage.name` ist wörtlich der `<title>`, `description` die Meta-Description.
+
+        Das ist die Prüfung, die diese ganze Bauweise erst zulässig macht: Titel
+        und Beschreibung stehen im Template, der Schema-Knoten bekommt sie ein
+        zweites Mal aus dem View gereicht. Ohne diesen Test würde eine
+        Titeländerung im Template ein Schema hinterlassen, das einen anderen
+        Seitennamen behauptet als der Kopf derselben Seite — und niemand sähe es."""
+        for adresse, (html, graph) in self.seiten.items():
+            with self.subTest(adresse=adresse):
+                seite = knoten(graph, "WebPage")
+                titel = re.search(r"<title>(.*?)</title>", html, re.S).group(1).strip()
+                desc = re.search(
+                    r'<meta name="description" content="(.*?)">', html, re.S).group(1)
+                self.assertEqual(seite.get("name", "").strip(), titel)
+                self.assertEqual(seite.get("description", "").strip(), desc.strip())
+
+    def test_jeder_id_verweis_loest_auf(self):
+        """Jedes `{"@id": …}` zeigt auf einen Knoten, den es wirklich gibt.
+
+        Ein Verweis ins Leere ist der teuerste Fehler in einem `@graph`: Der
+        Parser verwirft nicht den einen Verweis, sondern verliert die Beziehung
+        zwischen den Knoten — aus einem verbundenen Graphen werden lose Blöcke,
+        und genau die Verbindung war der Zweck der Übung.
+
+        Erlaubt ist ein Verweis auf eine **andere** Seite des Bestands (das
+        Glossar verweist so auf seine Begriffsknoten); geprüft wird dann, dass
+        die Zielseite den Knoten wirklich führt."""
+        fremd = {}          # Ziel-@id → Adressen, die darauf verweisen
+        for adresse, (_html, graph) in self.seiten.items():
+            eigene = {k["@id"] for k in graph if isinstance(k, dict) and "@id" in k}
+            for ziel in self._verweise(graph):
+                if ziel not in eigene:
+                    fremd.setdefault(ziel, set()).add(adresse)
+
+        # Die fremden Ziele einmal sammeln statt je Seite prüfen: Sie
+        # wiederholen sich über den Bestand hinweg vielfach.
+        cl = seiten_client()
+        for ziel, quellen in fremd.items():
+            with self.subTest(ziel=ziel, quelle=sorted(quellen)[0]):
+                adresse = "/" + ziel.split("#")[0].split("/", 3)[-1]
+                antwort = cl.get(adresse)
+                self.assertEqual(antwort.status_code, 200,
+                                 f"{ziel} zeigt auf eine Adresse ohne Seite")
+                ziel_graph = graph_von(antwort.content.decode("utf-8"))
+                self.assertIn(ziel, {k["@id"] for k in ziel_graph if "@id" in k},
+                              f"{adresse} führt den Knoten {ziel} nicht")
+
+    def test_keine_kennung_kommt_zweimal_vor(self):
+        """Auf einer Seite trägt keine zwei Knoten dieselbe `@id`.
+
+        Verhindert genau den Fund, den `pruefe_seite._pruefe_schema` sonst erst
+        beim nächsten Deploy meldet: Zwei Knoten mit derselben Kennung sind für
+        eine Maschine ein und dasselbe Ding mit widersprüchlichen Angaben."""
+        for adresse, (_html, graph) in self.seiten.items():
+            with self.subTest(adresse=adresse):
+                ids = [k["@id"] for k in graph if "@id" in k]
+                self.assertEqual(len(ids), len(set(ids)),
+                                 f"doppelte @id: {sorted(i for i in ids if ids.count(i) > 1)}")
+
+    def test_brotkrume_katalog_und_angebote_tragen_kennungen(self):
+        """`BreadcrumbList`, `OfferCatalog` und jedes `Offer` haben eine `@id`.
+
+        Ohne Kennung ist jeder dieser Knoten für eine Maschine bei jedem Besuch
+        ein neues, unbekanntes Ding — sie kann das Angebot von gestern nicht mit
+        dem von heute verbinden und die Krume keiner Seite zuordnen."""
+        for adresse, (_html, graph) in self.seiten.items():
+            with self.subTest(adresse=adresse):
+                business = knoten(graph, "ProfessionalService")
+                katalog = business["hasOfferCatalog"]
+                self.assertTrue(katalog["@id"].endswith("/#katalog"))
+                for angebot in katalog["itemListElement"]:
+                    self.assertIn("/#angebot-", angebot["@id"])
+                krume = knoten(graph, "BreadcrumbList")
+                if krume:
+                    self.assertTrue(krume["@id"].endswith("#krume"))
+
+    @staticmethod
+    def _verweise(graph):
+        """Alle reinen Verweise (`{"@id": …}` ohne eigenen Inhalt) im Graphen.
+
+        Ein Knoten mit `@type` und weiteren Feldern **definiert** etwas; ein
+        Dict, das nur `@id` trägt, **verweist** darauf. Nur die zweite Sorte
+        muss auflösen."""
+        gefunden = set()
+
+        def geh(wert):
+            if isinstance(wert, dict):
+                if set(wert) == {"@id"}:
+                    gefunden.add(wert["@id"])
+                for v in wert.values():
+                    geh(v)
+            elif isinstance(wert, list):
+                for v in wert:
+                    geh(v)
+
+        geh(graph)
+        return gefunden
+
+
+class SuchfunktionImSchemaTest(SimpleTestCase):
+    """Schritt 27 — die `SearchAction` behauptet nur, was die Seite kann."""
+
+    def test_searchaction_zeigt_auf_eine_suche_die_wirklich_sucht(self):
+        """Die Adresse aus `urlTemplate` antwortet und liefert Treffer.
+
+        Verhindert die häufigste Form dieser Auszeichnung: eine `SearchAction`,
+        die aus einer Vorlage übernommen wurde und auf eine Suche zeigt, die es
+        gar nicht gibt. Google prüft das — und wertet die Angabe dann ab."""
+        graph = json.loads(_structured_data(_content(), "de"))["@graph"]
+        aktion = knoten(graph, "WebSite")["potentialAction"]
+        self.assertEqual(aktion["@type"], "SearchAction")
+        self.assertEqual(aktion["query-input"], "required name=search_term_string")
+        vorlage = aktion["target"]["urlTemplate"]
+        self.assertIn("{search_term_string}", vorlage)
+
+        # Dieselbe Adresse wirklich aufrufen — mit einem Begriff, den es gibt.
+        pfad = "/" + vorlage.split("/", 3)[-1].replace("{search_term_string}", "vpn")
+        antwort = seiten_client().get(pfad)
+        self.assertEqual(antwort.status_code, 200)
+        self.assertIn("vpn", antwort.content.decode("utf-8").lower())

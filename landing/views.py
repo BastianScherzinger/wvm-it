@@ -619,7 +619,9 @@ def rechner(request):
         "felder": _RECHNER_FELDER,
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
-            c, lang, faq=rs.get("faq") or [], faq_id=pfad,
+            c, lang, pfad=pfad, titel=rs.get("titel", ""),
+            beschreibung=rs.get("desc", ""),
+            faq=rs.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["nav"]["preise"], reverse("kosten")),
                 (rs.get("h1", "Rechner"), pfad)])),
@@ -1509,7 +1511,13 @@ def _structured_data(c, lang):
             name = citems.get(it["id"], {}).get("name", it["name"])
             svc = {"@type": "Service", "name": name,
                    "serviceType": g["title"], "provider": {"@id": f"{base}/#business"}}
-            offer = {"@type": "Offer", "itemOffered": svc,
+            # Die Positions-ID aus ANGEBOT_GROUPS ist bereits eindeutig und stabil
+            # (sie traegt Preisrechner, Startpakete und llms.txt) — damit ist sie
+            # auch der richtige Anker fuer das Angebot im Graphen. Ohne `@id` ist
+            # jedes der Angebote fuer eine Maschine ein neues, unbekanntes Ding,
+            # das sie zwischen zwei Besuchen nicht wiedererkennt.
+            offer = {"@type": "Offer", "@id": f"{base}/#angebot-{it['id']}",
+                     "itemOffered": svc,
                      "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}
             price = it.get("once") or it.get("mtl") or it.get("yr") or it.get("std")
             if price:
@@ -1605,6 +1613,7 @@ def _structured_data(c, lang):
         },
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
+            "@id": f"{base}/#katalog",
             "name": "Leistungen von WVM-IT",
             "itemListElement": offers,
         },
@@ -1615,6 +1624,16 @@ def _structured_data(c, lang):
         "name": c.get("site_name", "WVM-IT"),
         "inLanguage": ["de", "en", "ro"],
         "publisher": {"@id": f"{base}/#business"},
+        # Die Suche gibt es wirklich: /suche/?q=… antwortet und liefert Treffer
+        # (views.suche). Nur deshalb steht die Angabe hier — eine `SearchAction`
+        # auf eine Adresse, die nicht sucht, ist eine Behauptung, die ein Crawler
+        # in einem Aufruf widerlegt.
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {"@type": "EntryPoint",
+                       "urlTemplate": f"{base}/suche/?q={{search_term_string}}"},
+            "query-input": "required name=search_term_string",
+        },
     }
 
     # Eigene Person-Entität statt eines eingebetteten Objekts: Nur so lässt sich
@@ -1732,6 +1751,15 @@ def index(request):
     anfrage_ok = (request.GET.get("ok") or "").strip().lower()
     if anfrage_ok not in _ANFRAGE_QUELLEN:
         anfrage_ok = ""
+    # Der WebPage-Knoten der Startseite wird hier angehaengt statt in
+    # `_seiten_schema`: Die Startseite ist die einzige Seite, die die FAQPage
+    # traegt, und genau die filtert `_seiten_schema` heraus.
+    meta = i18n.get_pack(lang)["meta"]
+    base = (c.get("wvm_url") or "").rstrip("/")
+    schema = json.loads(_structured_data(c, lang))
+    schema["@graph"].append(_webpage(base, reverse("index"), lang,
+                                     meta["seo_title"], meta["seo_desc"],
+                                     c.get("hero_bg", "")))
     return render(request, "index.html", {
         "c": c, "sent": sent, "news_sent": news_sent, "anfrage_ok": anfrage_ok,
         "startpreise": _startpreise(lang),
@@ -1751,7 +1779,8 @@ def index(request):
         "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
         "kooperationen": KOOPERATIONEN,
-        "structured_data": _structured_data(c, lang),
+        "structured_data": json.dumps(schema, ensure_ascii=False,
+                                      separators=(",", ":")),
     })
 
 
@@ -1938,22 +1967,91 @@ def _mit_itemlist(schema_json, itemlist):
 
 
 def _breadcrumb(base, teile):
-    """BreadcrumbList fuers Schema. teile = [(Name, Pfad), ...] ohne Startseite."""
+    """BreadcrumbList fuers Schema. teile = [(Name, Pfad), ...] ohne Startseite.
+
+    Die `@id` haengt am Pfad der Seite, auf der die Krume steht (dem letzten
+    Eintrag): Jede der 158 Seiten hat eine eigene Krume, und ohne eigene Kennung
+    waeren das 158 gleich aussehende, nicht unterscheidbare Listen."""
     eintraege = [{"@type": "ListItem", "position": 1, "name": "Start", "item": f"{base}/"}]
     for i, (name, pfad) in enumerate(teile, start=2):
         eintraege.append({"@type": "ListItem", "position": i, "name": name,
                           "item": f"{base}{pfad}"})
-    return {"@type": "BreadcrumbList", "itemListElement": eintraege}
+    hier = teile[-1][1] if teile else "/"
+    return {"@type": "BreadcrumbList", "@id": f"{base}{hier}#krume",
+            "itemListElement": eintraege}
 
 
-def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id=""):
+# Titel und Beschreibung der drei nur-deutschen Hubs. Sie stehen als einzige
+# **fest im Template** statt im Sprachpaket (`templates/aktuelles.html`,
+# `checklisten.html`, `wissen.html`) — und der WebPage-Knoten braucht denselben
+# Wortlaut. Weil eine Kopie auseinanderlaufen kann, prueft
+# `test_schema.WebPageKnotenTest.test_name_und_titel_sind_dasselbe` genau das:
+# Wer den Titel im Template aendert und hier nicht, bekommt einen roten Test.
+_HUB_META = {
+    "aktuelles": ("Fachbeiträge zu EDV, IT und Technik | WVM-IT",
+                  "Antworten auf die Fragen, die Betriebe vor einer IT-Entscheidung "
+                  "stellen: Kosten, Datensicherung, WLAN, IT-Sicherheit, "
+                  "Gebäudeautomation."),
+    "checklisten": ("Checklisten für die IT im Betrieb | WVM-IT",
+                    "Drei Listen zum Abhaken und Ausdrucken: Dienstleister wechseln, "
+                    "neuen Arbeitsplatz einrichten, IT-Jahrescheck. Ohne Formular, "
+                    "ohne PDF-Download."),
+    "wissen": ("IT-Glossar: Begriffe verständlich erklärt | WVM-IT",
+               "Vierzehn IT-Begriffe, die in Angeboten vorkommen — mit Definition, "
+               "Praxisbezug für kleine Betriebe und dem jeweils verbreiteten Irrtum."),
+}
+
+
+def _webpage(base, pfad, lang, titel, beschreibung, bild=""):
+    """Der `WebPage`-Knoten einer einzelnen Seite (Verbesserungslauf 13, Schritt 27).
+
+    Bis hierher kam `WebPage` im Graphen nur als Verweisziel vor
+    (`mainEntityOfPage` im Article-Knoten) — und zeigte damit auf einen Knoten,
+    den es nirgends gab. Der Graph beschrieb den Betrieb, die Website und
+    einzelne Dinge darauf, aber nie **die Seite selbst**: Titel, Beschreibung,
+    Sprache und die Zugehoerigkeit zur Website standen ausschliesslich im
+    `<head>` und damit in keiner maschinenlesbaren Beziehung zum Rest.
+
+    `titel` und `beschreibung` muessen mit dem `<title>` und der
+    Meta-Description derselben Seite uebereinstimmen. Weil beides im Template
+    gesetzt wird und hier ein zweites Mal hereingereicht wird, kann es
+    auseinanderlaufen — genau dagegen prueft
+    `test_schema.WebPageKnotenTest.test_name_und_titel_sind_dasselbe` jede der
+    158 Adressen."""
+    knoten = {
+        "@type": "WebPage",
+        "@id": f"{base}{pfad}#seite",
+        "url": f"{base}{pfad}",
+        "name": titel,
+        "inLanguage": i18n.get_pack(lang)["meta"]["html_lang"],
+        "isPartOf": {"@id": f"{base}/#website"},
+        "about": {"@id": f"{base}/#business"},
+    }
+    if beschreibung:
+        knoten["description"] = beschreibung
+    # Nur dort, wo die Seite wirklich ein Bild hat: Ein `primaryImageOfPage` auf
+    # einer Seite ohne Bild ist eine Angabe, die sich am HTML widerlegen laesst.
+    if bild:
+        knoten["primaryImageOfPage"] = {"@type": "ImageObject",
+                                        "url": f"{base}{bild}" if bild.startswith("/") else bild}
+    return knoten
+
+
+def _seiten_schema(c, lang, *, pfad="", titel="", beschreibung="", bild="",
+                   breadcrumb=None, service=None, faq=None, faq_id=""):
     """@graph einer Unterseite: immer der Betrieb und die Website, dazu optional
     Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben Entitaet
-    (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8)."""
+    (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8).
+
+    Ist `pfad` gesetzt, kommt der `WebPage`-Knoten dieser Seite dazu (Schritt 27);
+    `titel` und `beschreibung` sind dann der `<title>` und die Meta-Description
+    derselben Seite."""
     base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
     graph = json.loads(_structured_data(c, lang))["@graph"]
     # Die FAQPage der Startseite gehoert nicht auf eine Unterseite.
     graph = [k for k in graph if k.get("@type") != "FAQPage"]
+    if pfad:
+        graph.append(_webpage(base, pfad, lang, titel, beschreibung, bild))
     for zusatz in (breadcrumb, service):
         if zusatz:
             graph.append(zusatz)
@@ -1985,8 +2083,10 @@ def leistungen_hub(request):
     return render(request, "leistungen.html", {
         "c": c, "hub": hub, "bereiche": bereiche,
         "structured_data": _mit_itemlist(
-            _seiten_schema(c, lang, breadcrumb=_breadcrumb(
-                base, [(pack["seite"]["leistungen"], reverse("leistungen"))])),
+            _seiten_schema(c, lang, pfad=reverse("leistungen"),
+                           titel=hub.get("titel", ""), beschreibung=hub.get("desc", ""),
+                           breadcrumb=_breadcrumb(
+                               base, [(pack["seite"]["leistungen"], reverse("leistungen"))])),
             _itemlist(base, reverse("leistungen"), hub.get("h1", ""),
                       [(l.get("nav", l["slug"]), l["url"])
                        for b in bereiche for l in b["posten"]])),
@@ -2033,7 +2133,9 @@ def leistung_seite(request, slug):
                       for v in eintrag.get("verwandt", []) if v in leistungen.NACH_SLUG],
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
-            c, lang, service=service, faq=seite.get("faq") or [], faq_id=pfad,
+            c, lang, pfad=pfad, titel=seite.get("titel", ""),
+            beschreibung=seite.get("desc", ""),
+            service=service, faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"]["leistungen"], reverse("leistungen")),
                 (seite.get("h1", slug), pfad)])),
@@ -2077,8 +2179,10 @@ def branchen_hub(request):
     return render(request, "branchen.html", {
         "c": c, "bs": bs, "branchen": liste,
         "structured_data": _mit_itemlist(
-            _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
-                (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
+            _seiten_schema(c, lang, pfad=reverse("branchen"),
+                           titel=bs.get("titel", ""), beschreibung=bs.get("desc", ""),
+                           breadcrumb=_breadcrumb(base, [
+                               (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
             _itemlist(base, reverse("branchen"), bs.get("h1", ""),
                       [(b.get("nav", b["slug"]), b["url"]) for b in liste])),
     })
@@ -2130,7 +2234,9 @@ def branche_seite(request, slug):
                    if b["slug"] != slug],
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
-            c, lang, service=service, faq=seite.get("faq") or [], faq_id=pfad,
+            c, lang, pfad=pfad, titel=seite.get("titel", ""),
+            beschreibung=seite.get("desc", ""),
+            service=service, faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen")),
                 (seite.get("nav", slug), pfad)])),
@@ -2244,7 +2350,9 @@ def checkliste_seite(request, slug):
                     if k["slug"] != slug],
         "preis_stand": _preis_stand("de"),
         "structured_data": _seiten_schema(
-            c, "de", service=howto, faq=liste.get("faq") or [], faq_id=pfad,
+            c, "de", pfad=pfad, titel=liste.get("meta_titel", ""),
+            beschreibung=liste.get("desc", ""),
+            service=howto, faq=liste.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 ("Checklisten", reverse("checklisten")),
                 (liste.get("titel", slug), pfad)])),
@@ -2259,8 +2367,11 @@ def checklisten_hub(request):
     return render(request, "checklisten.html", {
         "c": c, "listen": listen,
         "structured_data": _mit_itemlist(
-            _seiten_schema(c, "de", breadcrumb=_breadcrumb(base, [
-                ("Checklisten", reverse("checklisten"))])),
+            _seiten_schema(c, "de", pfad=reverse("checklisten"),
+                           titel=_HUB_META["checklisten"][0],
+                           beschreibung=_HUB_META["checklisten"][1],
+                           breadcrumb=_breadcrumb(base, [
+                               ("Checklisten", reverse("checklisten"))])),
             _itemlist(base, reverse("checklisten"), "Checklisten",
                       [(k.get("titel", k["slug"]), k["url"]) for k in listen])),
     })
@@ -2321,7 +2432,8 @@ def begriff_seite(request, slug):
                      for v in eintrag.get("verwandt", []) if v in glossar.NACH_SLUG],
         "preis_stand": _preis_stand("de"),
         "structured_data": _seiten_schema(
-            c, "de", service=term,
+            c, "de", pfad=pfad, titel=begriff.get("meta_titel", ""),
+            beschreibung=begriff.get("desc", ""), service=term,
             breadcrumb=_breadcrumb(base, [
                 ("Wissen", reverse("wissen")),
                 (begriff.get("titel", slug), pfad)])),
@@ -2335,7 +2447,10 @@ def wissen(request):
     liste = sorted((_begriff_daten(b) for b in glossar.BEGRIFFE),
                    key=lambda b: b.get("titel", "").lower())
     graph = json.loads(_mit_itemlist(
-        _seiten_schema(c, "de", breadcrumb=_breadcrumb(base, [("Wissen", reverse("wissen"))])),
+        _seiten_schema(c, "de", pfad=reverse("wissen"),
+                       titel=_HUB_META["wissen"][0],
+                       beschreibung=_HUB_META["wissen"][1],
+                       breadcrumb=_breadcrumb(base, [("Wissen", reverse("wissen"))])),
         _itemlist(base, reverse("wissen"), "IT-Glossar",
                   [(b.get("titel", b["slug"]), b["url"]) for b in liste])))
     graph["@graph"].append(_defined_term_set(base))
@@ -2405,7 +2520,9 @@ def sicherheitstest(request):
         "stufe": selbsttest.stufe(punkte),
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
-            c, lang, faq=st.get("faq") or [], faq_id=pfad,
+            c, lang, pfad=pfad, titel=st.get("titel", ""),
+            beschreibung=st.get("desc", ""),
+            faq=st.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [(st.get("h1", "Selbsttest"), pfad)])),
     })
 
@@ -2445,7 +2562,8 @@ def notfall(request):
     sprache = pack["meta"]["html_lang"]
 
     graph = json.loads(_seiten_schema(
-        c, lang, faq=nf.get("faq") or [], faq_id=pfad,
+        c, lang, pfad=pfad, titel=nf.get("titel", ""), beschreibung=nf.get("desc", ""),
+        faq=nf.get("faq") or [], faq_id=pfad,
         breadcrumb=_breadcrumb(base, [(nf.get("h1", "Notfall"), pfad)])))
     graph["@graph"] += [_howto_schema(base, pfad, fall, sprache)
                         for fall in nf.get("faelle", [])]
@@ -2486,8 +2604,11 @@ def vergleiche_hub(request):
     return render(request, "vergleiche.html", {
         "c": c, "vs": vs, "vergleiche": liste,
         "structured_data": _mit_itemlist(
-            _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
-                (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche"))])),
+            _seiten_schema(c, lang, pfad=reverse("vergleiche"),
+                           titel=vs.get("titel", ""), beschreibung=vs.get("desc", ""),
+                           breadcrumb=_breadcrumb(base, [
+                               (vs.get("vergleiche_titel", "Vergleiche"),
+                                reverse("vergleiche"))])),
             _itemlist(base, reverse("vergleiche"), vs.get("h1", ""),
                       [(v.get("nav", v["slug"]), v["url"]) for v in liste])),
     })
@@ -2521,7 +2642,9 @@ def vergleich_seite(request, slug):
                    if v["slug"] != slug],
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
-            c, lang, faq=seite.get("faq") or [], faq_id=pfad,
+            c, lang, pfad=pfad, titel=seite.get("titel", ""),
+            beschreibung=seite.get("desc", ""),
+            faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (vs.get("vergleiche_titel", "Vergleiche"), reverse("vergleiche")),
                 (seite.get("nav", slug), pfad)])),
@@ -2592,7 +2715,9 @@ def beitrag_seite(request, slug):
         "inLanguage": "de-AT",
         "author": {"@id": f"{base}/#inhaber"},
         "publisher": {"@id": f"{base}/#business"},
-        "mainEntityOfPage": {"@type": "WebPage", "@id": f"{base}{pfad}"},
+        # Zeigt auf den WebPage-Knoten derselben Seite (Schritt 27). Bis dahin
+        # stand hier `{base}{pfad}` — eine Kennung, die es im Graphen nicht gab.
+        "mainEntityOfPage": {"@id": f"{base}{pfad}#seite"},
         "about": {"@id": f"{base}/#business"},
         "wordCount": worte,
         # ISO-8601-Dauer. Die Lesezeit steht auch sichtbar auf der Seite; beide
@@ -2611,7 +2736,8 @@ def beitrag_seite(request, slug):
         # weiter hinten in der Liste bekamen dadurch nie einen eingehenden Link.
         "weitere": _weitere_beitraege(slug, eintrag.get("thema")),
         "structured_data": _seiten_schema(
-            c, "de", service=artikel,
+            c, "de", pfad=pfad, titel=beitrag.get("meta_titel", ""),
+            beschreibung=beitrag.get("desc", ""), service=artikel,
             breadcrumb=_breadcrumb(base, [
                 ("Aktuelles", reverse("aktuelles")),
                 (beitrag.get("titel", slug), pfad)])),
@@ -2627,8 +2753,11 @@ def aktuelles(request):
     return render(request, "aktuelles.html", {
         "c": c, "beitraege": liste,
         "structured_data": _mit_itemlist(
-            _seiten_schema(c, "de", breadcrumb=_breadcrumb(
-                base, [("Aktuelles", reverse("aktuelles"))])),
+            _seiten_schema(c, "de", pfad=reverse("aktuelles"),
+                           titel=_HUB_META["aktuelles"][0],
+                           beschreibung=_HUB_META["aktuelles"][1],
+                           breadcrumb=_breadcrumb(
+                               base, [("Aktuelles", reverse("aktuelles"))])),
             _itemlist(base, reverse("aktuelles"), "Fachbeiträge",
                       [(b.get("titel", b["slug"]), b["url"]) for b in liste])),
     })
@@ -2754,7 +2883,9 @@ def region_seite(request, slug):
         "leistungen_liste": [_leistung_daten(l, lang) for l in leistungen.LEISTUNGEN
                              if not l.get("vor_ort")][:6],
         "structured_data": _seiten_schema(
-            c, lang, service=service, faq=region.get("faq") or [], faq_id=pfad,
+            c, lang, pfad=pfad, titel=region.get("titel", ""),
+            beschreibung=region.get("desc", ""),
+            service=service, faq=region.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen")),
                 (region.get("ort", slug), pfad)])),
@@ -2771,8 +2902,12 @@ def regionen_hub(request):
     return render(request, "regionen.html", {
         "c": c, "regionen": liste,
         "structured_data": _mit_itemlist(
-            _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
-                (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen"))])),
+            _seiten_schema(c, lang, pfad=reverse("regionen"),
+                           titel=pack["seite"].get("regionen_meta_titel", ""),
+                           beschreibung=pack["seite"].get("regionen_meta_desc", ""),
+                           breadcrumb=_breadcrumb(base, [
+                               (pack["seite"].get("regionen_titel", "Regionen"),
+                                reverse("regionen"))])),
             _itemlist(base, reverse("regionen"),
                       pack["seite"].get("regionen_h1", "Regionen"),
                       [(r.get("ort", r["slug"]),
@@ -2794,7 +2929,8 @@ def kosten(request):
         "preis_stand": _preis_stand(lang),
         "leistungen": _alle_leistungen(lang),
         "structured_data": _seiten_schema(
-            c, lang,
+            c, lang, pfad=reverse("kosten"), titel=ks.get("titel", ""),
+            beschreibung=ks.get("desc", ""),
             breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kosten"), reverse("kosten"))])),
     })
 
@@ -2818,7 +2954,8 @@ def referenzen(request):
     return render(request, "referenzen.html", {
         "c": c, "rs": rs, "referenzen": REFERENZEN,
         "structured_data": _seiten_schema(
-            c, lang,
+            c, lang, pfad=reverse("referenzen"), titel=rs.get("titel", ""),
+            beschreibung=rs.get("desc", ""),
             breadcrumb=_breadcrumb(base, [(rs.get("h1", "Referenzen"), reverse("referenzen"))])),
     })
 
@@ -2836,7 +2973,8 @@ def kontakt(request):
     return render(request, "kontakt.html", {
         "c": c, "ks": ks, "anfrage_ok": anfrage_ok,
         "structured_data": _seiten_schema(
-            c, lang,
+            c, lang, pfad=reverse("kontakt"), titel=ks.get("titel", ""),
+            beschreibung=ks.get("desc", ""),
             breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kontakt"), reverse("kontakt"))])),
     })
 
@@ -2860,7 +2998,10 @@ def _rechtsseite(request, art):
         "text": c.get("impressum" if ist_impressum else "datenschutz", ""),
         "platzhalter": fuss.get("impressum_ph" if ist_impressum else "datenschutz_ph", ""),
         "structured_data": _seiten_schema(
-            c, lang, breadcrumb=_breadcrumb(base, [(ueberschrift, reverse(art))])),
+            c, lang, pfad=reverse(art),
+            titel=recht.get(f"{art}_titel", ueberschrift),
+            beschreibung=recht.get(f"{art}_desc", ""),
+            breadcrumb=_breadcrumb(base, [(ueberschrift, reverse(art))])),
     })
 
 
@@ -2884,7 +3025,14 @@ def angebot(request):
         # Diese Seite hatte als einzige oeffentliche Seite gar kein Schema —
         # gefunden von der S9-Pruefung, nicht von einem Menschen.
         "structured_data": _seiten_schema(
-            c, lang, breadcrumb=_breadcrumb(
+            c, lang, pfad=reverse("angebot"),
+            # `angebot.html` baut seinen `<title>` aus zwei Teilen zusammen —
+            # hier steht derselbe Ausdruck, sonst behauptet das Schema einen
+            # anderen Seitennamen als der Kopf der Seite.
+            titel=(f"{i18n.get_pack(lang)['meta'].get('angebot_title', '')} "
+                   f"| {c.get('site_name', '')}"),
+            beschreibung=i18n.get_pack(lang)["meta"].get("angebot_desc", ""),
+            breadcrumb=_breadcrumb(
                 base, [(i18n.get_pack(lang)["nav"]["angebot"], reverse("angebot"))])),
         # Schnellstart: ein Klick setzt die Haken eines typischen Bedarfs.
         # Ohne JavaScript kommt die Vorauswahl ueber ?paket=<id> vom Server.
