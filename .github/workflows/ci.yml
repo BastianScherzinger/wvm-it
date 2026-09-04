@@ -1,0 +1,84 @@
+# Prüflauf bei jedem Push und jedem Pull Request.
+#
+# Warum es diese Datei gibt
+# -------------------------
+# Die vier Prüfungen dieses Projekts sind gut, aber sie müssen von Hand
+# gestartet werden. Was vor einem Deploy vergessen wird, fällt heute niemandem
+# auf. Ab hier läuft dieselbe Kette bei jedem Push — in derselben Reihenfolge,
+# in der sie auch lokal gefahren wird, und mit denselben Umgebungswerten, mit
+# denen die Anwendung auf Railway läuft. Prüfte CI eine anders konfigurierte
+# Anwendung, wäre ein grüner Haken hier nichts wert.
+#
+# Reihenfolge und Begründung:
+#   1. check              — die Anwendung startet überhaupt
+#   2. test landing       — die Testsuite (Datenmodule, URLs, Sitemap, Formulare,
+#                           Einstellungen, Exitcodes der Prüfbefehle)
+#   3. pruefe_seite       — alle 158 URLs gerendert: h1, Titel, JSON-LD, Preise
+#   4. pruefe_sicherheit  — die fünf Formulare wirklich abgeschickt
+#
+# Die letzten beiden brechen seit dem Schritt „echter Exitcode" wirklich ab;
+# vorher hätte dieser Job bei Fehlern grün gemeldet.
+name: Prüfung
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+
+    env:
+      # Betriebsmodus. Mit DEBUG=True greifen weder die Schutzköpfe noch
+      # SECURE_SSL_REDIRECT — dann prüfte dieser Job eine andere Anwendung als
+      # die, die live steht.
+      DEBUG: "False"
+      # Der Schlüssel gehört in ein Actions-Secret namens DJANGO_SECRET_KEY
+      # (Settings → Secrets and variables → Actions). Ist keines hinterlegt,
+      # springt ein reiner Prüfschlüssel ein, damit der Lauf nicht schon an der
+      # fehlenden Einrichtung scheitert. Er ist NICHT der eingecheckte
+      # Entwicklungswert aus config/settings.py — genau darauf sieht
+      # landing/tests/test_einstellungen.py.
+      SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY || 'ci-pruefschluessel-nur-fuer-den-testlauf-nicht-fuer-den-betrieb' }}
+      # Railway setzt ALLOWED_HOSTS nicht; die Anwendung läuft dort mit dem
+      # Vorgabewert aus config/settings.py. Hier ausdrücklich derselbe Wert.
+      ALLOWED_HOSTS: "*"
+      # Muss gesetzt sein: pruefe_seite und pruefe_sicherheit fragen unter genau
+      # diesem Host an, sonst steht vor jeder Prüfung die 301 der
+      # KanonischerHostMiddleware und es wird nie eine Seite gerendert.
+      KANONISCHER_HOST: "www.wvm-it.tech"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          # Dieselbe Fassung wie runtime.txt (python-3.12.4). Wer dort etwas
+          # ändert, ändert es hier mit — sonst prüft CI auf einer anderen Laufzeit.
+          python-version: "3.12.4"
+          cache: pip
+
+      - name: Abhängigkeiten installieren
+        run: pip install -r requirements.txt
+
+      - name: Statische Dateien sammeln
+        # Railway macht dasselbe beim Start (railway.json, startCommand).
+        # Ohne diesen Schritt fehlt STATIC_ROOT und WhiteNoise meldet es.
+        run: python manage.py collectstatic --noinput
+
+      - name: Django-Systemprüfung
+        run: python manage.py check
+
+      - name: Testsuite
+        run: python manage.py test landing -v 2
+
+      - name: Seite prüfen (158 URLs, Titel, JSON-LD, Preise)
+        run: python manage.py pruefe_seite
+
+      - name: Formularschutz prüfen (Bremse, Honeypot, Feldlängen)
+        run: python manage.py pruefe_sicherheit
