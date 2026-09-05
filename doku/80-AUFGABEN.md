@@ -127,6 +127,7 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 <!-- bewertung:anfang -->
 | Punkt | Zustand | Grund | seit |
 |---|---|---|---|
+| TS11 | beim Kunden | Die Nebenadresse `https://wvm-it.tech` baut keine Verbindung auf, weil der A-Record der Apex-Domain auf die Parkseite des Registrars zeigt (213.145.224.30) und Railway `verified: false` meldet — sie erreicht die Anwendung also gar nicht, und eine 301 lässt sich im Code nicht setzen, wo keine Anfrage ankommt; jeden Host, der die Anwendung erreicht, leitet `landing.middleware.KanonischerHostMiddleware` bereits dauerhaft auf `www.wvm-it.tech` um (nachgeprüft am 28.08.2026 an `wvm-it-shop.up.railway.app`). Offen ist der CNAME beim Registrar, siehe „Beim Kunden“ Nr. 3. | 2026-09-05 |
 <!-- bewertung:ende -->
 
 ## Eigene Punkte
