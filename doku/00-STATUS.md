@@ -3,8 +3,8 @@ bereich: status
 titel: WVM-IT — Stand
 stand: 2026-09-05
 status: teilweise
-fortschritt: 88
-zusammenfassung: Ausbau September abgeschlossen — 165 URLs, 130 Tests (vorher null), CI-Lauf, durchgesetzte CSP, alle Titel und Beschreibungen überarbeitet. Zwei Funde ausserhalb jedes Plans behoben (hreflang auf 404, Sprachumleitung). Danach die Messung vom 04.09. nachgearbeitet: verschluckte Ausnahmen, Zahl im Antwortabsatz, Sprach-Cookie gesperrt, CSP durch Tests gesichert. Blockiert beim Kunden bleiben Unternehmensprofil, SPF/DMARC und Apex-DNS.
+fortschritt: 91
+zusammenfassung: Ausbau September abgeschlossen und live — 165 URLs, 130 Tests (vorher null), CI-Lauf, durchgesetzte CSP. Die Messung vom 05.09. steht bei 91,2 „Referenz" (vorher 66,9 „Solide"), 0 kritische Datei-Befunde. Es bleiben zwei kritische Regel-Befunde: die Apex-Domain (beim Kunden) und der Umfang von 56 Seiten.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
@@ -37,13 +37,13 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 
 | Bereich | Status | Fortschritt | Zusammenfassung | Datei |
 |---|---|---:|---|---|
-| Technik | teilweise | 85 | Django 5.0.6 auf Railway; seit 05.09.2026 mit 130 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, `start.sh` und durchgesetzter Content-Security-Policy — CSP und Cookie-Flags sind durch eigene Tests gesichert. | [10-TECHNIK.md](10-TECHNIK.md) |
+| Technik | teilweise | 84 | Django 5.0.6 auf Railway; seit 05.09.2026 mit 130 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, `start.sh` und durchgesetzter Content-Security-Policy — CSP und Cookie-Flags sind durch eigene Tests gesichert. | [10-TECHNIK.md](10-TECHNIK.md) |
 | Design | teilweise | 96 | Design-System vom 27.08.2026 unverändert; vier neue Bausteine (Honigtopf, Datenschutzhinweis, Symbolsatz, kleiner Kopf). Mobilansicht nie am Gerät geprüft. | [20-DESIGN.md](20-DESIGN.md) |
 | Inhalte | teilweise | 94 | 165 URLs; neu sind Veranstaltungstechnik, IT-Beratung, Über uns, AGB, Barrierefreiheitserklärung und die Danke-Seite. Titel und Beschreibungen aller Silos überarbeitet. | [30-INHALTE.md](30-INHALTE.md) |
-| SEO und GEO | teilweise | 90 | Zwei Funde ausserhalb jedes Plans behoben (94 hreflang auf 404, 82 unerreichbare Seiten). Sitemap in vier Segmenten, echte Änderungsdaten, `WebPage`-Knoten überall; Antwortabsatz von 14 Glossareinträgen und 4 Fachbeiträgen mit belegter Zahl. | [40-SEO.md](40-SEO.md) |
+| SEO und GEO | teilweise | 87 | Zwei Funde ausserhalb jedes Plans behoben (94 hreflang auf 404, 82 unerreichbare Seiten). Sitemap in vier Segmenten, echte Änderungsdaten, `WebPage`-Knoten überall; Antwortabsatz von 14 Glossareinträgen und 4 Fachbeiträgen mit belegter Zahl. | [40-SEO.md](40-SEO.md) |
 | Local SEO | teilweise | 55 | Search Console eingerichtet, NAP zeichengleich, Koordinaten und Öffnungszeiten im Graphen; Unternehmensprofil, Bewertungen und Verzeichnisse fehlen — alles beim Kunden. | [50-LOCAL-SEO.md](50-LOCAL-SEO.md) |
 | Ads | nicht zutreffend | — | Für WVM-IT laufen keine Google Ads; seit 05.09.2026 gibt es immerhin die Danke-Seite als messbaren Abschluss. | [60-ADS.md](60-ADS.md) |
-| Performance | teilweise | 88 | Icons als Symbolsatz, `srcset`, Kommentare aus der Auslieferung: Startseite 211 → 183 KB. Offen bleiben Antwortzeit, CLS auf Desktop und Critical CSS. | [70-PERFORMANCE.md](70-PERFORMANCE.md) |
+| Performance | teilweise | 90 | Icons als Symbolsatz, `srcset`, Kommentare aus der Auslieferung: Startseite 211 → 183 KB. Offen bleiben Antwortzeit, CLS auf Desktop und Critical CSS. | [70-PERFORMANCE.md](70-PERFORMANCE.md) |
 | Aufgaben | teilweise | 70 | Von den acht offenen Punkten sind sieben erledigt; aus der Messung vom 04.09. kamen vier gebaute und drei nicht am Rechner lösbare dazu. Offen bleiben Search Console, CWV-Eintrag, Antwortzeit und die 32 Kontrastelemente. | [80-AUFGABEN.md](80-AUFGABEN.md) |
 | Notizen | vollständig | 100 | Pfad- und Namensfallen, Widersprüche zwischen Doku, Code und Messung, Verweise. | [90-NOTIZEN.md](90-NOTIZEN.md) |
 | Wegweiser | vollständig | 100 | Elf Dateien nach Doku-Standard; Original-Doku bleibt in ../docs/. | [README.md](README.md) |
@@ -79,6 +79,12 @@ Kritische Befunde:
 <!-- messung:ende -->
 
 ## Die drei wichtigsten offenen Punkte
+
+> **Gemessen am 05.09.2026 nach dem Ausbau: 91,2 von 100, Reifegrad „Referenz"** —
+> vorher 66,9 „Solide". Von 95 Befunden sind 64 geblieben, von acht kritischen zwei;
+> die neun kritischen Datei-Befunde im Quelltext sind vollständig weg. Die beiden
+> verbliebenen kritischen: die **Apex-Domain** (Nummer 1 unten, beim Kunden) und der
+> **Umfang von 56 Seiten**, die unter dem Zielwert ihrer Seitenart liegen.
 
 1. **Google-Unternehmensprofil** — unverändert der wichtigste Punkt überhaupt und
    unverändert nicht am Rechner lösbar. Für die lokale Suche der entscheidende Hebel;

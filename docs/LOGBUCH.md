@@ -32,6 +32,10 @@ Stelle, die nicht wusste, was geplant war, sondern nur, was ausgeliefert wird.
 * Durchgesetzte Content-Security-Policy, echte Änderungsdaten, Sitemap in vier
   Segmenten, Feed, Startseite 211 → 183 KB.
 
+**Gemessen danach, gegen die Live-Seite: 66,9 → 91,2 von 100, „Solide" → „Referenz".**
+Befunde 95 → 64, kritisch 8 → 2. Die beiden verbliebenen sind die Apex-Domain (beim
+Kunden) und der Umfang von 56 Seiten. Kein einziger neuer Befund.
+
 *Belege: `AUSBAU-2026-09.md`, Commits `0459588`, `9e5007e`, `f073786`, `7407b2d`.*
 
 ## 03.–04.09.2026 — Der Doku-Standard
