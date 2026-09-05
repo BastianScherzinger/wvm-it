@@ -28,7 +28,11 @@ drei sind am 05.09. dazugekommen.
 - [x] **Zeitfalle** — der Honigtopf `website` (`templates/honigtopf.html`); ein Feld
       namens `hp` war als Falle erkennbar und wurde von Bots übersprungen
 - [x] **Rate-Limit je IP** — `views._limit_erreicht`, je Bereich getrennt, seit
-      28.08.2026; die letzte Adresse aus `X-Forwarded-For`, nicht die erste
+      28.08.2026; die letzte Adresse aus `X-Forwarded-For`, nicht die erste.
+      **Die Erhebung vom 04.09. hat das übersehen**, weil sie nach dem Namen der
+      Hauptseite suchte: Eine Suche nach Namen misst Namen, nicht Wirkung
+- [x] **Datenschutzhinweis am Formular** — seit 05.09.2026 in allen zehn
+      Anfrageformularen, von `pruefe_seite` erzwungen
 - [x] **Prüfbefehl für die Abwehr** — `manage.py pruefe_sicherheit`, zehn Prüfungen,
       löst alle Formulare wirklich aus und zählt die Mails
 - [x] **Feldlängen begrenzt** — `views._feld(..., grenze)`

@@ -77,44 +77,76 @@ Nur Namen, nie Werte. Erhoben aus `config/settings.py`, `landing/*.py` und den M
 ## Formular und Missbrauchsschutz
 
 *Pflichtabschnitt nach [DOKU-STANDARD §3a](file:///C:/Users/basti/Desktop/pystore-overview/docs/DOKU-STANDARD.md).
-Erhoben am 04.09.2026 aus dem Quelltext dieses Projekts — „ja" heisst gefunden,
-nicht bewiesen. Anlass war eine Spam-Einsendung, die auf der Hauptseite mit
-Spam-Score 0 durchkam und eine Mail auslöste.*
+Stand 05.09.2026, gegen den Quelltext **und** gegen `manage.py pruefe_sicherheit`
+gehalten. Anlass war eine Spam-Einsendung auf der Hauptseite.*
+
+**Die Erhebung vom 04.09.2026 war an zwei Stellen falsch** und ist hier berichtigt:
+Sie suchte nach den Bausteinnamen der Hauptseite und fand sie nicht, weil sie hier
+anders heissen — das Rate-Limit steht in `views._limit_erreicht()`, der Prüfbefehl
+heisst `pruefe_sicherheit` und löst alle Formulare wirklich aus. Beide gab es
+bereits seit dem 28.08.2026. Eine Suche nach Namen misst Namen, nicht Wirkung.
 
 | Baustein | Was er verhindert | Stand |
 |---|---|---|
-| CSRF-Token | fremde Seiten schicken in fremdem Namen ab | ja |
-| Honeypot | einfache Formular-Bots | ja |
+| CSRF-Token | fremde Seiten schicken in fremdem Namen ab | ja, `CsrfViewMiddleware` seit 12.07.2026 |
+| Honigtopf | einfache Formular-Bots | ja — seit 05.09. mit dem Namen `website` statt `hp`; ein Feld namens „hp" ist als Falle erkennbar und wird von Bots übersprungen |
+| Rate-Limit je IP | Serien aus einer Quelle | ja, je Bereich getrennt, letzte Adresse aus `X-Forwarded-For` |
+| Feldlängen begrenzt | Textwüsten und Header-Injection | ja, `views._feld(..., grenze)` |
+| Betreff gesäubert | eingeschleuste Kopfzeilen | ja, `views._betreff()` |
+| Datenschutzhinweis am Formular | rechtlich Pflicht, nimmt zugleich die Hemmung | ja, seit 05.09. in allen zehn Formularen; `pruefe_seite` erzwingt ihn |
+| Prüfbefehl für die Abwehr | dass niemand es nachrechnet | ja, `pruefe_sicherheit`, zehn Prüfungen |
 | Zeitfalle (signierter Zeitstempel) | der POST ohne gerendertes Formular | **nein** |
 | Inhalts-Score mit Schwelle | Werbetexte, fremde Schriften, Linklisten | **nein** |
-| Adresse ohne `http://` erkannt | die Masche vom 04.09.2026 | **nein** |
-| Fremde Domain mit eigenem Markennamen | Vertrauen erschleichen | **nein** |
-| Rate-Limit je IP | Serien aus einer Quelle | **nein** |
-| Erst speichern, dann mailen | verlorene Anfrage bei Mailausfall | **nein** |
-| Mail-Obergrenze je Tag | ein volles Postfach | **nein** |
-| Prüfbefehl für die Abwehr | dass niemand es nachrechnet | **nein** |
+| Erst speichern, dann mailen | verlorene Anfrage bei Mailausfall | **nein** — der Fehlschlag wird seit 05.09. immerhin geloggt |
+| Mail-Obergrenze je Tag | ein volles Postfach | **nein** — die Bremse zählt je Bereich und Zeitfenster, nicht je Tag |
 
-**Was diese Tabelle nicht leistet:** Ein ferngesteuerter echter Browser mit
-einem unauffälligen deutschen Satz besteht Honeypot, Zeitfalle und
-Inhaltsprüfung. Dagegen tragen nur Rate-Limit, Duplikatsperre und
-Mail-Obergrenze — und die verhindern nicht die Anfrage, sondern das volle
-Postfach.
+**Was diese Tabelle nicht leistet:** Ein ferngesteuerter echter Browser mit einem
+unauffälligen deutschen Satz besteht Honigtopf, Zeitfalle und Inhaltsprüfung.
+Dagegen tragen nur Rate-Limit, Duplikatsperre und Mail-Obergrenze — und die
+verhindern nicht die Anfrage, sondern das volle Postfach.
 
 ## Prüfbefehle und Tests
 
-Vier eigene Management-Befehle — **und keine einzige Testfunktion** (`find . -name "test*.py"` leer; Messung `PJ02`: 0 Testfunktionen in 0 Dateien, 13.877 Zeilen Python; `PJ03`: 12 von 46 Modulen von einem Test berührt, was allein durch die Prüfbefehle zustande kommt).
+Fünf eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis dahin gab es in 13.877 Zeilen Python keine einzige Testfunktion (`PJ02`: 0 in 0 Dateien) — jede Änderung war ein Blindflug.
+
+**122 Testfunktionen in sieben Dateien** unter `landing/tests/`, Laufzeit rund zehn Sekunden:
+
+| Datei | Was sie prüft |
+|---|---|
+| `test_urls.py` | jede URL aus `_seiten_pfade()` antwortet mit 200; robots, Sitemap-Index und -Segmente, `llms.txt`, `security.txt`, Suche, 404 |
+| `test_preise.py` | eindeutige IDs, jede Position hat einen Preis oder `anfrage`, Rechner und Katalog rechnen dasselbe, deutsche Formatierung |
+| `test_struktur.py` | jeder Slug hat Texte in allen drei Sprachen, `verwandt` löst auf, jedes Icon existiert im Symbolsatz |
+| `test_i18n.py` | Schlüsselgleichheit der Pakete, Sprachumschalter, **jedes hreflang-Ziel antwortet mit 200** |
+| `test_kopf.py` | genau ein `h1`, Titel, canonical, genau ein `@graph`, hreflang |
+| `test_formulare.py` | CSRF erzwungen, Honigtopf schluckt, Feldlängen, Betreff-Säuberung, Spam-Bremse |
+| `test_schema.py` | JSON-LD parst, alle `@id`-Verweise lösen auf, `inLanguage` gesetzt |
+
+Sie sind **strukturell** geschrieben — die URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus dem Symbolsatz. Während des Ausbaus kamen zwei Leistungsseiten dazu, ohne dass ein Test angepasst werden musste; und der Icon-Test hat den Wechsel auf den Symbolsatz sofort gemeldet, statt ihn durchgehen zu lassen.
 
 ```bash
-python manage.py pruefe_seite        # 158 URLs: genau ein <h1>, Titel/Description-Länge, JSON-LD, Alt-Texte,
+python -X utf8 manage.py test landing.tests   # 122 Tests, rund zehn Sekunden
+```
+
+```bash
+python manage.py pruefe_seite        # 165 URLs: genau ein <h1>, Titel/Description-Länge, JSON-LD, Alt-Texte,
                                      # hreflang, jeder interne Link, jeder Preis gegen ANGEBOT_GROUPS, Formulare;
                                      # seit 29.08.: Listenlängen je Sprache, Glossar ≥ 250 Wörter,
                                      # verwaiste Seiten (< 2 eingehende Links), Schema (ein @graph, @id auflösbar, inLanguage)
 python manage.py pruefe_sicherheit   # löst alle fünf Formulare wirklich aus, zählt Mails; zehn Prüfungen
 python manage.py seo_bericht [--inventar --markdown]   # Stand statt Prüfung; erzeugt docs/seo/URL-INVENTAR.md
 python manage.py indexnow [--trocken]                  # meldet _seiten_pfade() an Bing/Yandex/Seznam — nicht Google
+python manage.py stand_schreiben [--pruefen]           # echte Änderungsdaten je Seite aus der Versionsgeschichte
+                                                       # nach landing/stand.py; --pruefen meldet nur, ob es veraltet ist
 ```
 
-Rückgabewert 1 bei Fehlern, damit ein Deploy daran scheitern könnte — **ein CI-Lauf, der das bei jedem Push ausführt, existiert nicht** (`VL19`: 3 von 7 QS-Bausteinen; es fehlen Testdateien, 30 Testfunktionen, CI, Fehler-Monitoring). Lokal starten: `pip install -r requirements.txt`, `collectstatic`, `runserver` → Port 8000.
+Rückgabewert 1 bei Fehlern, damit ein Deploy daran scheitern kann — **und seit dem 05.09.2026 läuft alles bei jedem Push**: `.github/workflows/pruefen.yml` führt `check --deploy`, die Testsuite, `pruefe_seite`, `pruefe_sicherheit`, `stand_schreiben --pruefen` und `seo_bericht` aus. Ohne Datenbank und ohne Geheimnisse; `KANONISCHER_HOST` steht im Lauf leer, sonst leitet die Host-Middleware jede Anfrage auf die Live-Domain um und `pruefe_seite` sieht lauter 301.
+
+Von den sieben QS-Bausteinen der Vorlage (`VL19`) fehlt jetzt noch **einer**: das Fehler-Monitoring.
+
+Lokal starten: `pip install -r requirements.lock`, `collectstatic`, dann
+`DEBUG=True KANONISCHER_HOST="" python manage.py runserver` → Port 8000. Das leere
+`KANONISCHER_HOST` ist wichtig: ohne es landet jede lokale Anfrage auf einer 301 zur
+Live-Domain.
 
 ## Aufbau des Projekts
 
@@ -157,12 +189,16 @@ Rückgabewert 1 bei Fehlern, damit ein Deploy daran scheitern könnte — **ein 
 
 | # | Punkt | Regel | Stand |
 |---|---|---|---|
-| 1 | Testsuite anlegen: Smoke-Test 200 je URL über den Test-Client, Unit-Tests für Preis-, Slug- und Rechnerlogik, Ziel 30 Funktionen | `PJ02`, `PJ03`, `PJ04`, `VL19` | 0 Testfunktionen (02.09.2026) |
-| 2 | CI-Lauf bei jedem Push (`pruefe_seite`, `pruefe_sicherheit`, Tests) | `VL19` | fehlt |
-| 3 | Fehler-Monitoring (Sentry o. ä., DSN aus der Umgebung) | `VL19` | fehlt |
-| 4 | 9 kritische Datei-Befunde: verschluckte Ausnahmen (`P02`), vier Templates ohne Grundgerüst (`V07`) | `PJ05` | offen |
-| 5 | Content-Security-Policy als Antwortkopf, Permissions-Policy, HSTS mit includeSubDomains/preload (Variablen existieren), `csrftoken` mit HttpOnly | `SI08`, `SI07`, `SI03`, `SI16`, `VL04`, `VL03`, `K01` | live fehlen alle vier (02.09.2026) |
-| 6 | Lockfile mit exakten Fassungen, `start.sh` | `PJ11`, `VL02` | `requirements.txt` ist gepinnt, Lockfile fehlt |
-| 7 | 4 Views ohne Route (`views.py:545, 3274, 3302, 3320`) | `PJ10` | toter Code |
-| 8 | 326 × „Ausgabe ohne Maskierung" (`V02`) in Templates — bewusst `|safe` für vertrauenswürdige Sprachpakete (siehe `docs/mehrsprachigkeit.md`); Entscheidung dokumentieren oder Muster ändern | `PJ07`, `PJ08` | Befund, keine Sicherheitslücke nach Doku |
-| 9 | `apps/`-Struktur und reine Datenmodule (`data/`) | `VL01` | 4 von 6 Gerüstmerkmalen; Umbau nicht geplant |
+| 1 | Fehler-Monitoring (Sentry o. ä., DSN aus der Umgebung) | `VL19` | der letzte von sieben QS-Bausteinen; CI und Tests stehen seit 05.09.2026 |
+| 2 | 326 × „Ausgabe ohne Maskierung" (`V02`) in Templates — bewusst `\|safe` für die vertrauenswürdigen Sprachpakete (siehe `../docs/mehrsprachigkeit.md`) | `PJ07`, `PJ08` | Befund, keine Sicherheitslücke; die Entscheidung steht in der Doku und bleibt so |
+| 3 | `apps/`-Struktur und reine Datenmodule (`data/`) | `VL01` | 4 von 6 Gerüstmerkmalen; Umbau nicht geplant und für eine Seite dieser Größe auch nicht sinnvoll |
+| 4 | Seitencache für die Ansichten ohne Formular | `PF10`, `BT04` | nicht begonnen; der größte verbliebene Hebel bei der Antwortzeit |
+
+**Am 05.09.2026 erledigt** (Einzelheiten in `../docs/AUSBAU-2026-09.md`):
+Testsuite mit 122 Funktionen · CI-Lauf bei jedem Push · alle neun kritischen
+Datei-Befunde (verschluckte Ausnahmen eng gefasst oder geloggt, die vier
+Vorgangsseiten auf einen gemeinsamen Kopf-Baustein) · Content-Security-Policy
+durchgesetzt mit Nonce statt `'unsafe-inline'`, Permissions-Policy, HSTS mit
+`includeSubDomains`, `csrftoken` mit `HttpOnly` und `SameSite` ·
+`requirements.lock` und `start.sh` · die Ansicht ohne Route war keine Ansicht und
+heißt jetzt mit Unterstrich.
