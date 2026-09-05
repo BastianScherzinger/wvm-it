@@ -21,7 +21,7 @@ BEGRIFFE = {
         "titel": "Fernwartung",
         "meta_titel": "Fernwartung erklärt: Hilfe in Minuten, ohne Anfahrt | WVM-IT",
         "desc": "Fernwartung heißt: Der Techniker arbeitet über eine gesicherte Verbindung auf Ihrem Gerät, statt anzufahren. Wie das abläuft — jetzt nachlesen.",
-        "kurz": "Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt vor Ort zu erscheinen. Bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht — Sie sehen alles mit und können jederzeit abbrechen. Für Server gibt es zusätzlich dauerhafte Wartungszugänge, weil Updates außerhalb der Arbeitszeit laufen müssen.",
+        "kurz": "Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt vor Ort zu erscheinen. Bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht — Sie sehen alles mit und können jederzeit abbrechen. In einem Betrieb mit fünfzehn Arbeitsplätzen laufen erfahrungsgemäß über 9 von 10 Störungen auf diesem Weg ab; für Server gibt es zusätzlich dauerhafte Wartungszugänge, weil Updates außerhalb der Arbeitszeit laufen müssen.",
         "abschnitte": [
             {"h": "Wie eine Sitzung abläuft",
              "t": "Sie melden ein Problem, bekommen einen Code oder eine Anfrage und bestätigen. Ab dann sieht der Techniker Ihren Bildschirm und kann Maus und Tastatur übernehmen — Sie sehen jede Bewegung mit. Mit dem Schließen des Fensters ist der Zugang beendet; ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Für die meisten Störungen ist das der schnellste Weg überhaupt, weil die Arbeit innerhalb von Minuten beginnt statt nach einer Anfahrt."},
@@ -36,7 +36,7 @@ BEGRIFFE = {
         "titel": "VPN",
         "meta_titel": "VPN einfach erklärt: wann es reicht, wann nicht | WVM-IT",
         "desc": "Ein VPN verbindet ein Gerät wie im Büro mit dem Firmennetz. Wann das die richtige Lösung ist und wann ein Terminalserver besser passt — jetzt nachlesen.",
-        "kurz": "Ein VPN (Virtual Private Network) baut einen verschlüsselten Tunnel zwischen einem Gerät und dem Firmennetz auf. Das Gerät verhält sich danach, als stünde es im Büro: Es erreicht Netzlaufwerke, Drucker und Server. Genau das ist zugleich der Haken — der heimische Rechner wird damit Teil Ihres Netzes, mit allem, was darauf läuft.",
+        "kurz": "Ein VPN (Virtual Private Network) baut einen verschlüsselten Tunnel zwischen einem Gerät und dem Firmennetz auf. Das Gerät verhält sich danach, als stünde es im Büro: Es erreicht Netzlaufwerke, Drucker und Server. Genau das ist zugleich der Haken — der heimische Rechner wird damit Teil Ihres Netzes, mit allem, was darauf läuft. Aufgebaut wird ein VPN meist von der Firewall am Firmenstandort; die Einrichtung beider zusammen kostet bei uns ab 690 €.",
         "abschnitte": [
             {"h": "Was ein VPN technisch tut",
              "t": "Es verschlüsselt den gesamten Verkehr zwischen Gerät und Firma und leitet ihn durch eine einzige Verbindung. Für Angreifer im selben WLAN — im Hotel, im Café, am Flughafen — ist dieser Verkehr damit unlesbar. Aufgebaut wird das VPN meist von der Firewall am Firmenstandort; deshalb wird es fast immer zusammen mit ihr eingerichtet."},
@@ -51,7 +51,7 @@ BEGRIFFE = {
         "titel": "Firewall",
         "meta_titel": "Firewall im Betrieb: mehr als nur ein Router | WVM-IT",
         "desc": "Eine Firewall entscheidet, welcher Netzverkehr durchgelassen wird. Warum der Router vom Anbieter dafür meist nicht genügt — jetzt nachlesen.",
-        "kurz": "Eine Firewall steht zwischen Ihrem Netz und dem Internet und entscheidet anhand von Regeln, welcher Verkehr durchgelassen wird — in beide Richtungen. In einem Betrieb übernimmt sie zusätzlich die Trennung der internen Netze voneinander und stellt die VPN-Verbindungen bereit. Der Router vom Internetanbieter kann das erste, aber selten das zweite und dritte.",
+        "kurz": "Eine Firewall steht zwischen Ihrem Netz und dem Internet und entscheidet anhand von Regeln, welcher Verkehr durchgelassen wird — in beide Richtungen. In einem Betrieb übernimmt sie zusätzlich die Trennung der internen Netze voneinander und stellt die VPN-Verbindungen bereit. Der Router vom Internetanbieter kann das erste, aber selten das zweite und dritte. Firewall und VPN einzurichten kostet bei uns ab 690 €.",
         "abschnitte": [
             {"h": "Nach innen und nach außen",
              "t": "Die bekannte Aufgabe ist, Verbindungen von außen abzuwehren. Die praktisch wichtigere ist heute die umgekehrte: zu bemerken und zu unterbinden, wenn ein Gerät im Haus mit einem Ziel spricht, mit dem es nichts zu tun haben sollte. Verschlüsselungssoftware verrät sich an genau dieser Stelle — sie muss nach Hause telefonieren, bevor sie loslegt."},
@@ -66,7 +66,7 @@ BEGRIFFE = {
         "titel": "Managed Services",
         "meta_titel": "Managed Services: fester Preis, volle Leistung | WVM-IT",
         "desc": "Managed Services heißt: fester Monatspreis, feste Leistung, Vorbeugung inklusive. Woran Sie ein leeres Angebot erkennen — jetzt nachlesen.",
-        "kurz": "Managed Services bezeichnet die laufende Betreuung von IT zu einem festen Preis je Zeitraum — statt Abrechnung nach Aufwand im Störungsfall. Der entscheidende Unterschied ist nicht der Preis, sondern die Interessenlage: Wer monatlich betreut, verdient daran, dass wenig ausfällt. Enthalten sein müssen Updates, Überwachung, Benutzerverwaltung und die geprüfte Datensicherung.",
+        "kurz": "Managed Services bezeichnet die laufende Betreuung von IT zu einem festen Preis je Zeitraum — statt Abrechnung nach Aufwand im Störungsfall. Der entscheidende Unterschied ist nicht der Preis, sondern die Interessenlage: Wer monatlich betreut, verdient daran, dass wenig ausfällt. Enthalten sein müssen Updates, Überwachung, Benutzerverwaltung und die geprüfte Datensicherung. Bei WVM-IT beginnt die laufende Betreuung bei 29 € je Arbeitsplatz und Monat.",
         "abschnitte": [
             {"h": "Woran man ein leeres Angebot erkennt",
              "t": "Ein Preis je Arbeitsplatz sagt für sich nichts. Vergleichbar wird er erst, wenn dieselben Leistungen dahinterstehen: Updates für Betriebssystem und Programme, Überwachung von Speicherplatz und Ausfällen, Konten anlegen und sperren, E-Mail und Microsoft 365, Datensicherung samt Testwiederherstellung, und eine gepflegte Dokumentation. Fehlt einer dieser Punkte, ist der Preis nicht niedriger — die Leistung ist kleiner."},
@@ -81,7 +81,7 @@ BEGRIFFE = {
         "titel": "Zwei-Faktor-Authentifizierung",
         "meta_titel": "Zwei-Faktor-Anmeldung: bester Schutz, wenig Aufwand | WVM-IT",
         "desc": "Zwei-Faktor verlangt neben dem Passwort einen zweiten Nachweis. Die Maßnahme mit dem besten Verhältnis von Aufwand zu Wirkung — jetzt nachlesen.",
-        "kurz": "Zwei-Faktor-Authentifizierung verlangt neben dem Passwort einen zweiten Nachweis — meist eine Bestätigung in einer App auf dem Telefon oder einen zeitlich begrenzten Code. Wer das Passwort abfängt, kommt damit trotzdem nicht hinein. Es ist die einzelne Maßnahme mit dem besten Verhältnis von Aufwand zu Wirkung, die es in der IT-Sicherheit gibt, und sie kostet in den meisten Umgebungen nichts außer der Einrichtung.",
+        "kurz": "Zwei-Faktor-Authentifizierung verlangt neben dem Passwort einen zweiten Nachweis — meist eine Bestätigung in einer App auf dem Telefon oder einen zeitlich begrenzten Code. Wer das Passwort abfängt, kommt damit trotzdem nicht hinein. Es ist die einzelne Maßnahme mit dem besten Verhältnis von Aufwand zu Wirkung, die es in der IT-Sicherheit gibt, und sie kostet in den meisten Umgebungen nichts außer der Einrichtung. Zuerst gehört sie auf 4 Zugänge: E-Mail, Fernzugänge von außen, Cloud-Verwaltung und Onlinebanking.",
         "abschnitte": [
             {"h": "Welcher zweite Faktor taugt",
              "t": "Eine App auf dem Telefon, die eine Anmeldung bestätigt oder einen Code erzeugt, ist der übliche und gute Weg. SMS ist besser als nichts, aber angreifbar, weil sich Rufnummern übernehmen lassen. Am sichersten sind Hardware-Schlüssel zum Anstecken — für die meisten Betriebe ist das jedoch mehr Aufwand, als der Zugewinn rechtfertigt."},
@@ -96,7 +96,7 @@ BEGRIFFE = {
         "titel": "RAID",
         "meta_titel": "RAID erklärt: Schutz vor Ausfall, nicht vor Verlust | WVM-IT",
         "desc": "Ein RAID verteilt Daten auf mehrere Festplatten, damit der Ausfall einer Platte den Betrieb nicht stoppt. Warum das keine Sicherung ist — jetzt nachlesen.",
-        "kurz": "RAID bezeichnet einen Verbund mehrerer Festplatten, der den Ausfall einzelner Platten überstehen kann, ohne dass der Betrieb stehen bleibt. Es erhöht die Verfügbarkeit, nicht die Sicherheit der Daten: Gelöschtes, Überschriebenes und Verschlüsseltes wird sofort auf allen Platten gelöscht, überschrieben und verschlüsselt. Ein RAID ersetzt deshalb keine Datensicherung — es verhindert nur eine bestimmte Art von Ausfall.",
+        "kurz": "RAID bezeichnet einen Verbund mehrerer Festplatten, der den Ausfall einzelner Platten überstehen kann, ohne dass der Betrieb stehen bleibt. Es erhöht die Verfügbarkeit, nicht die Sicherheit der Daten: Gelöschtes, Überschriebenes und Verschlüsseltes wird sofort auf allen Platten gelöscht, überschrieben und verschlüsselt. Ein RAID ersetzt deshalb keine Datensicherung — es verhindert nur eine bestimmte Art von Ausfall. Damit der Ausfall der ersten Platte überhaupt auffällt, gehört der Verbund überwacht; in der Server-Betreuung ab 89 € im Monat ist das enthalten.",
         "abschnitte": [
             {"h": "Was ein RAID abfängt und was nicht",
              "t": "Abgefangen wird der mechanische oder elektronische Tod einer Platte: Sie fällt aus, der Verbund läuft weiter, die Platte wird getauscht, der Verbund baut sich neu auf. Nicht abgefangen wird alles andere — versehentliches Löschen, ein fehlerhaftes Update, Schadsoftware, Diebstahl, Wasser, Feuer und ein defekter Verbund-Controller, der alle Platten gleichzeitig unbrauchbar schreibt."},
@@ -111,7 +111,7 @@ BEGRIFFE = {
         "titel": "Backup",
         "meta_titel": "Backup erklärt: die drei Fragen, die zählen | WVM-IT",
         "desc": "Eine Sicherung ist erst dann eine, wenn schon einmal etwas daraus zurückgeholt wurde. Die drei Fragen, die den Unterschied machen — jetzt nachlesen.",
-        "kurz": "Ein Backup ist eine Kopie der Daten, aus der sich im Schadensfall der Betrieb wiederherstellen lässt. Entscheidend ist nicht, dass die Sicherung läuft, sondern dass sie sich zurückspielen lässt — eine Sicherung, aus der noch nie etwas zurückgeholt wurde, ist keine Sicherung, sondern eine Hoffnung. Mindestens eine Kopie gehört getrennt vom Netzwerk aufbewahrt.",
+        "kurz": "Ein Backup ist eine Kopie der Daten, aus der sich im Schadensfall der Betrieb wiederherstellen lässt. Entscheidend ist nicht, dass die Sicherung läuft, sondern dass sie sich zurückspielen lässt — eine Sicherung, aus der noch nie etwas zurückgeholt wurde, ist keine Sicherung, sondern eine Hoffnung. Mindestens eine Kopie gehört getrennt vom Netzwerk aufbewahrt, und wer nur 7 Tage vorhält, bemerkt eine schleichende Verschlüsselung oft zu spät. Die überwachte Datensicherung kostet bei uns ab 49 € im Monat.",
         "abschnitte": [
             {"h": "Die drei Fragen, die zählen",
              "t": "Erstens: Wann wurde zuletzt eine Wiederherstellung getestet, und wer war dabei? Zweitens: Liegt mindestens eine Kopie an einem anderen Ort und getrennt vom Netzwerk? Drittens: Wie weit reicht die Sicherung zurück? Wer nur sieben Tage vorhält, bemerkt eine schleichende Verschlüsselung oft zu spät — dann sind alle vorhandenen Stände bereits betroffen."},
@@ -126,7 +126,7 @@ BEGRIFFE = {
         "titel": "Ransomware",
         "meta_titel": "Ransomware erklärt: 7 Schritte eines Angriffs | WVM-IT",
         "desc": "Ransomware verschlüsselt Daten und fordert Lösegeld. Wie ein Angriff abläuft und warum auch die Sicherung mitverschlüsselt wird — jetzt nachlesen.",
-        "kurz": "Ransomware ist Schadsoftware, die Daten verschlüsselt und für die Entschlüsselung Geld fordert. Der Angriff beginnt fast immer harmlos — mit einem Anhang, einem gestohlenen Passwort oder einem offenen Fernzugang — und läuft dann tage- bis wochenlang unbemerkt, bevor verschlüsselt wird. In dieser Zeit werden gezielt die erreichbaren Datensicherungen mit vernichtet, weil sie das Geschäftsmodell stören.",
+        "kurz": "Ransomware ist Schadsoftware, die Daten verschlüsselt und für die Entschlüsselung Geld fordert. Der Angriff beginnt fast immer harmlos — mit einem Anhang, einem gestohlenen Passwort oder einem offenen Fernzugang — und läuft dann tage- bis wochenlang unbemerkt, bevor verschlüsselt wird. In dieser Zeit werden gezielt die erreichbaren Datensicherungen mit vernichtet, weil sie das Geschäftsmodell stören. Fast alle Fälle teilen denselben Ablauf aus 7 Schritten, und der lauteste kommt zuletzt.",
         "abschnitte": [
             {"h": "Der Ablauf, den fast alle Fälle teilen",
              "t": "Zugang verschaffen, unauffällig ausbreiten, Rechte erweitern, Daten abziehen, Sicherungen zerstören, verschlüsseln, Lösegeld fordern. Der lauteste Schritt kommt zuletzt; alles davor ist leise. Deshalb ist die Frage nach einem Angriff nicht nur „wie stellen wir wieder her“, sondern auch „was wurde vorher abgezogen“ — und die zweite entscheidet über die Meldepflicht."},
@@ -141,7 +141,7 @@ BEGRIFFE = {
         "titel": "Terminalserver",
         "meta_titel": "Terminalserver erklärt: schneller als VPN | WVM-IT",
         "desc": "Beim Terminalserver läuft die Anwendung zentral, übertragen werden nur Bild und Tastatur. Wann das die bessere Wahl als ein VPN ist — jetzt nachlesen.",
-        "kurz": "Auf einem Terminalserver laufen Programme zentral, während an den Arbeitsplätzen nur Bildschirminhalt, Tastatur und Maus übertragen werden. Für Fachanwendungen mit großen Datenbeständen ist das deutlich schneller als der Zugriff über ein VPN, weil keine Dateien über die Leitung wandern. Zugleich bleibt auf dem Gerät des Nutzers nichts liegen — was ihn im Homeoffice datenschutzfreundlicher macht.",
+        "kurz": "Auf einem Terminalserver laufen Programme zentral, während an den Arbeitsplätzen nur Bildschirminhalt, Tastatur und Maus übertragen werden. Für Fachanwendungen mit großen Datenbeständen ist das deutlich schneller als der Zugriff über ein VPN, weil keine Dateien über die Leitung wandern. Zugleich bleibt auf dem Gerät des Nutzers nichts liegen — was ihn im Homeoffice datenschutzfreundlicher macht. Er ist zugleich eine zentrale Ausfallstelle; seine Betreuung kostet bei uns ab 89 € im Monat.",
         "abschnitte": [
             {"h": "Warum Kanzleien und Praxen ihn einsetzen",
              "t": "Kanzlei- und Praxissoftware arbeitet mit Datenbanken, bei denen jede Abfrage viele kleine Zugriffe auslöst. Über eine normale Internetleitung wird das quälend langsam, im lokalen Netz des Servers dagegen nicht. Der Terminalserver bringt den Arbeitsplatz zur Datenbank statt umgekehrt — deshalb ist er in diesen Branchen der Normalfall und keine Sonderlösung."},
@@ -156,7 +156,7 @@ BEGRIFFE = {
         "titel": "Phishing",
         "meta_titel": "Phishing erkennen: 5 Merkmale, die bleiben | WVM-IT",
         "desc": "Phishing sind Nachrichten, die zur Herausgabe von Daten verleiten. Die fünf Merkmale, die auch bei fehlerfreien Mails stimmen — jetzt nachlesen.",
-        "kurz": "Phishing bezeichnet Nachrichten, die vorgeben, von einem vertrauenswürdigen Absender zu stammen, um an Zugangsdaten oder Geld zu kommen. Rechtschreibfehler taugen längst nicht mehr als Erkennungsmerkmal — heutige Nachrichten sind fehlerfrei und oft auf den Empfänger zugeschnitten. Verlässlich sind stattdessen: künstlicher Zeitdruck, ein Linkziel, das nicht zum Absender passt, und jede Abweichung vom üblichen Ablauf.",
+        "kurz": "Phishing bezeichnet Nachrichten, die vorgeben, von einem vertrauenswürdigen Absender zu stammen, um an Zugangsdaten oder Geld zu kommen. Rechtschreibfehler taugen längst nicht mehr als Erkennungsmerkmal — heutige Nachrichten sind fehlerfrei und oft auf den Empfänger zugeschnitten. Verlässlich sind stattdessen 5 Merkmale, darunter künstlicher Zeitdruck, ein Linkziel, das nicht zum Absender passt, und jede Abweichung vom üblichen Ablauf. Eines davon genügt, um über einen zweiten Kanal nachzufragen.",
         "abschnitte": [
             {"h": "Die Merkmale, die bleiben",
              "t": "Zeitdruck ohne sachlichen Grund. Ein Link, dessen tatsächliches Ziel nicht zum Absender passt — sichtbar beim Darüberfahren, ohne zu klicken. Die Aufforderung, sich anzumelden oder Daten zu bestätigen. Eine Abweichung vom gewohnten Weg, etwa eine geänderte Bankverbindung. Und ein Anhang, den niemand erwartet hat. Eines dieser Merkmale genügt, um über einen zweiten Kanal nachzufragen."},
@@ -171,7 +171,7 @@ BEGRIFFE = {
         "titel": "Netzwerksegmentierung",
         "meta_titel": "Netzwerksegmentierung: Schutz ohne neue Hardware | WVM-IT",
         "desc": "Getrennte Netze verhindern, dass jedes Gerät jedes andere erreicht. Warum das meist ohne neue Hardware geht — jetzt nachlesen und Betrieb prüfen.",
-        "kurz": "Netzwerksegmentierung bedeutet, ein Firmennetz in mehrere getrennte Bereiche zu unterteilen, die nur über kontrollierte Übergänge miteinander sprechen. Typisch sind eigene Bereiche für Büro, Produktion oder Kasse, Gäste-WLAN und Geräte, die keine Updates mehr bekommen. In den meisten Betrieben ist dafür keine neue Hardware nötig — die vorhandenen Switches können es bereits, es wurde nur nie eingerichtet.",
+        "kurz": "Netzwerksegmentierung bedeutet, ein Firmennetz in mehrere getrennte Bereiche zu unterteilen, die nur über kontrollierte Übergänge miteinander sprechen. Typisch sind eigene Bereiche für Büro, Produktion oder Kasse, Gäste-WLAN und Geräte, die keine Updates mehr bekommen. In den meisten Betrieben ist dafür keine neue Hardware nötig — die vorhandenen Switches können es bereits, es wurde nur nie eingerichtet. Firewall und getrennte Netze richten wir ab 690 € ein.",
         "abschnitte": [
             {"h": "Warum ein flaches Netz teuer wird",
              "t": "In einem gewachsenen Netz erreicht jedes Gerät jedes andere: das Gästehandy die Buchhaltung, der Kassenrechner den Server, die Maschinensteuerung ohne Updates alles. Ein einzelnes befallenes Gerät hat damit Zugriff auf den gesamten Betrieb. Segmentierung begrenzt den Schaden auf den Bereich, in dem er entstanden ist — sie verhindert nicht den Vorfall, sondern seine Ausbreitung."},
@@ -186,7 +186,7 @@ BEGRIFFE = {
         "titel": "NAS",
         "meta_titel": "NAS im Betrieb: die einfachste Lösung für Dateien | WVM-IT",
         "desc": "Ein NAS ist ein Netzwerkspeicher für gemeinsame Dateien. Wofür es sich eignet, wofür nicht — und warum es kein Server ist. Jetzt nachlesen.",
-        "kurz": "Ein NAS (Network Attached Storage) ist ein Gerät, das Festplatten im Netz zur Verfügung stellt — für gemeinsame Dateiablage, oft auch als Ziel für Datensicherungen. Es ist kein Server: Es führt keine Fachanwendungen aus und verwaltet keine Benutzerkonten des Betriebs. Für Dateien in einem kleinen Betrieb ist es die einfachste Lösung, für alles darüber hinaus die falsche.",
+        "kurz": "Ein NAS (Network Attached Storage) ist ein Gerät, das Festplatten im Netz zur Verfügung stellt — für gemeinsame Dateiablage, oft auch als Ziel für Datensicherungen. Es ist kein Server: Es führt keine Fachanwendungen aus und verwaltet keine Benutzerkonten des Betriebs. Für Betriebe mit unter 10 Arbeitsplätzen ist es zusammen mit Microsoft 365 oft die vollständige Antwort, für alles darüber hinaus die falsche.",
         "abschnitte": [
             {"h": "Wofür ein NAS die richtige Wahl ist",
              "t": "Gemeinsame Dateiablage in einem Betrieb ohne Server, Ziel für Sicherungen, Ablage großer Datenmengen wie Fotos, Pläne oder Videos. Es ist leise, sparsam, kostet einen Bruchteil eines Servers und ist in einem Nachmittag eingerichtet. Für viele Betriebe mit unter zehn Arbeitsplätzen ist es zusammen mit Microsoft 365 die vollständige Antwort."},
@@ -201,7 +201,7 @@ BEGRIFFE = {
         "titel": "SLA (Service Level Agreement)",
         "meta_titel": "SLA erklärt: zwei Zeiten, ein Unterschied | WVM-IT",
         "desc": "Ein SLA legt Reaktionszeiten und Erreichbarkeit schriftlich fest. Der Unterschied zwischen Reaktionszeit und Wiederherstellungszeit — jetzt nachlesen.",
-        "kurz": "Ein Service Level Agreement ist die schriftliche Vereinbarung darüber, wie schnell und in welchem Umfang ein Dienstleister reagiert. Der wichtigste Unterschied darin ist der zwischen Reaktionszeit — wann sich jemand meldet — und Wiederherstellungszeit — wann wieder gearbeitet werden kann. Nur die zweite interessiert den Betrieb, und nur die erste steht in den meisten Vereinbarungen.",
+        "kurz": "Ein Service Level Agreement ist die schriftliche Vereinbarung darüber, wie schnell und in welchem Umfang ein Dienstleister reagiert. Der wichtigste Unterschied darin ist der zwischen Reaktionszeit — wann sich jemand meldet — und Wiederherstellungszeit — wann wieder gearbeitet werden kann. Nur die zweite interessiert den Betrieb, und nur die erste steht in den meisten Vereinbarungen. WVM-IT sagt zu, woran es sich messen lässt: Antwort an Werktagen innerhalb von 24 Stunden; feste Wiederherstellungszeiten erst nach dem ersten gemessenen Test in Ihrer Umgebung.",
         "abschnitte": [
             {"h": "Was in einem brauchbaren SLA steht",
              "t": "Erreichbarkeitszeiten, eine Reaktionszeit je Dringlichkeitsstufe, eine Definition dieser Stufen — was ist eine Störung, was ein Notfall —, und die Beschreibung dessen, was ausdrücklich nicht enthalten ist. Wo eine Zusage zur Wiederherstellungszeit gemacht wird, muss sie auf einem gemessenen Wiederherstellungstest beruhen; sonst ist sie geraten."},
@@ -216,7 +216,7 @@ BEGRIFFE = {
         "titel": "Monitoring",
         "meta_titel": "Monitoring: 5 Werte, die Ausfälle ankündigen | WVM-IT",
         "desc": "Monitoring heißt: Speicherplatz, Auslastung und Festplatten werden überwacht, bevor etwas ausfällt. Was dazugehört — jetzt nachlesen.",
-        "kurz": "Monitoring ist die laufende Überwachung von Systemen auf Zustände, die zu einem Ausfall führen — volle Festplatten, defekte Platten in einem Verbund, gescheiterte Sicherungen, nicht mehr erreichbare Dienste. Der Sinn ist nicht, den Ausfall zu melden, sondern ihn vorher zu verhindern. Ein Monitoring, dessen Meldungen niemand liest, ist keines.",
+        "kurz": "Monitoring ist die laufende Überwachung von Systemen auf Zustände, die zu einem Ausfall führen — volle Festplatten, defekte Platten in einem Verbund, gescheiterte Sicherungen, nicht mehr erreichbare Dienste. Der Sinn ist nicht, den Ausfall zu melden, sondern ihn vorher zu verhindern. In einem kleinen Betrieb genügen dafür 5 Werte, die 9 von 10 Ausfällen ankündigen — und ein Monitoring, dessen Meldungen niemand liest, ist keines.",
         "abschnitte": [
             {"h": "Was in einem kleinen Betrieb überwacht gehört",
              "t": "Sehr wenig, aber das zuverlässig: freier Speicherplatz auf Server und Arbeitsplätzen, Fehlerzähler und Zustand der Festplatten, Erfolg oder Misserfolg jeder Datensicherung, Erreichbarkeit der wichtigen Dienste, und ob Updates tatsächlich eingespielt wurden. Fünf Werte, die neun von zehn Ausfällen ankündigen."},
