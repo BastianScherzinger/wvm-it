@@ -6,9 +6,9 @@ status: teilweise
 fortschritt: 88
 zusammenfassung: Icons als Symbolsatz statt 179 eingebetteter SVGs, srcset für die grossen Bilder, Kommentare aus der Auslieferung: Startseite 211 → 183 KB. Offen bleiben Antwortzeit, CLS auf Desktop-Unterseiten und Critical CSS.
 offen: 4
-pagespeed_mobil: 96
-pagespeed_desktop: 86
-antwortzeit_ms: 3
+pagespeed_mobil: 98
+pagespeed_desktop: 97
+antwortzeit_ms: 4
 quellen: docs/AUSBAU-2026-09.md, docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 antwortzeit_quelle: PageSpeed server-response-time
 ---
@@ -20,43 +20,43 @@ antwortzeit_quelle: PageSpeed server-response-time
 ## Messwerte
 
 <!-- tempo:anfang -->
-**Messung vom 04.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-05a). Bereich „Performance & Core Web Vitals“: **88,1 von 100**, Reifegrad „Solide“.
+**Messung vom 05.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-05a). Bereich „Performance & Core Web Vitals“: **90,4 von 100**, Reifegrad „Referenz“.
 
 ### Lighthouse je Seite
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **97** | 2,52 s | 0,000 | 64 ms | 5 ms |
-| `/` | desktop | **84** | 0,66 s | 0,002 | 342 ms | 6 ms |
-| `/datenschutz/` | mobile | **97** | 1,50 s | 0,003 | 0 ms | 2 ms |
-| `/datenschutz/` | desktop | **100** | 0,37 s | 0,002 | 0 ms | 2 ms |
-| `/impressum/` | mobile | **100** | 1,36 s | 0,003 | 0 ms | 1 ms |
-| `/impressum/` | desktop | **96** | 0,41 s | 0,003 | 168 ms | 2 ms |
-| `/kontakt/` | mobile | **84** | 1,43 s | 0,000 | 570 ms | 2 ms |
-| `/kontakt/` | desktop | **89** | 0,32 s | 0,229 | 0 ms | 2 ms |
-| `/kosten/rechner/` | mobile | **100** | 1,38 s | 0,026 | 0 ms | 2 ms |
-| `/kosten/rechner/` | desktop | **89** | 0,38 s | 0,217 | 0 ms | 3 ms |
-| `/leistungen/` | mobile | **99** | 1,73 s | 0,011 | 0 ms | 4 ms |
-| `/leistungen/` | desktop | **58** | 0,59 s | 0,203 | 1.275 ms | 2 ms |
+| `/` | mobile | **87** | 2,48 s | 0,000 | 395 ms | 7 ms |
+| `/` | desktop | **100** | 0,60 s | 0,002 | 36 ms | 8 ms |
+| `/datenschutz/` | mobile | **100** | 1,39 s | 0,003 | 0 ms | 3 ms |
+| `/datenschutz/` | desktop | **98** | 0,34 s | 0,100 | 0 ms | 2 ms |
+| `/impressum/` | mobile | **100** | 1,35 s | 0,003 | 0 ms | 3 ms |
+| `/impressum/` | desktop | **98** | 0,28 s | 0,087 | 0 ms | 3 ms |
+| `/kontakt/` | mobile | **100** | 1,06 s | 0,013 | 0 ms | 8 ms |
+| `/kontakt/` | desktop | **89** | 0,34 s | 0,228 | 0 ms | 3 ms |
+| `/kosten/rechner/` | mobile | **99** | 1,55 s | 0,010 | 0 ms | 3 ms |
+| `/kosten/rechner/` | desktop | **97** | 0,87 s | 0,005 | 109 ms | 5 ms |
+| `/leistungen/` | mobile | **100** | 1,35 s | 0,015 | 0 ms | 3 ms |
+| `/leistungen/` | desktop | **100** | 0,34 s | 0,013 | 0 ms | 3 ms |
 
-12 Abrufe, davon 3 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
+12 Abrufe, davon 5 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 2,8 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 4,2 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
 | Regel | Titel | Ergebnis | Beleg |
 |---|---|---|---|
-| `PF02` | Lighthouse Leistung Desktop erreicht 95 von 100 | teilweise | Lighthouse Leistung Desktop: 86 von 100 über 6 Messungen; unter 95: / (84), /leistungen/ (58), /kosten/rechner/ (89), /kontakt/ (89) |
-| `PF17` | Lazy-Loading unterhalb des Falzes, nicht auf dem LCP-Bild | teilweise | 24 von 182 Bildern unterhalb des ersten sind lazy; 6 von 158 Seiten laden ihr erstes Bild lazy: / → florin.jpg, /en/ → florin.jpg, /ro/ → florin.jpg, /referenzen/ → ref_ruempelwerk.webp, /en/referenzen/ → ref_ruempelwerk |
-| `PF13` | Statische Dateien werden lange zwischengespeichert | teilweise | 2 von 2 geprüften statischen Dateien ohne weit gesetztes Ablaufdatum: fonts.css?v=2f2cb5bcb050: cache-control max-age=31536000, public, main.js?v=2f2cb5bcb050: cache-control max-age=31536000, public |
-| `PF16` | Bilder werden in mehreren Grössen angeboten | nicht bestanden | 0 von 340 Bildern mit srcset; ohne: / → wvm_mark.webp, / → florin.jpg, / → robot.webp, / → ref_ruempelwerk.webp, / → ref_smarthome.webp |
-| `PF18` | Das Hero-Bild trägt fetchpriority=high | nicht bestanden | 6 von 6 Seiten ohne fetchpriority=high am ersten Bild: / → florin.jpg, /en/ → florin.jpg, /ro/ → florin.jpg, /referenzen/ → ref_ruempelwerk.webp, /en/referenzen/ → ref_ruempelwerk.webp … (+1) |
-| `PF14` | Keine Seite liefert mehr als 200 kB HTML | teilweise | 3 von 158 Seiten über 200 kB HTML: / (207 KB), /en/ (205 KB), /ro/ (210 KB) |
+| `PF17` | Lazy-Loading unterhalb des Falzes, nicht auf dem LCP-Bild | teilweise | 24 von 192 Bildern unterhalb des ersten sind lazy; 6 von 165 Seiten laden ihr erstes Bild lazy: / → florin.jpg, /ueber-uns/ → florin.jpg, /en/ → florin.jpg, /ro/ → florin.jpg, /en/ueber-uns/ → florin.jpg … (+1) |
+| `PF13` | Statische Dateien werden lange zwischengespeichert | teilweise | 2 von 2 geprüften statischen Dateien ohne weit gesetztes Ablaufdatum: fonts.css?v=7de48c090435: cache-control max-age=31536000, public, main.js?v=7de48c090435: cache-control max-age=31536000, public |
+| `PF16` | Bilder werden in mehreren Grössen angeboten | nicht bestanden | 18 von 357 Bildern mit srcset; ohne: / → wvm_mark.webp, / → robot.webp, / → coop_pystore.jpg, / → wvm_mark.webp, /leistungen/ → wvm_mark.webp |
+| `PF18` | Das Hero-Bild trägt fetchpriority=high | nicht bestanden | 6 von 9 Seiten ohne fetchpriority=high am ersten Bild: / → florin.jpg, /ueber-uns/ → florin.jpg, /en/ → florin.jpg, /ro/ → florin.jpg, /en/ueber-uns/ → florin.jpg … (+1) |
 
 ### Die grössten Bremsen laut Lighthouse
 
-Keine Einsparchance über 150 ms.
+| Audit | Titel | Ersparnis |
+|---|---|---:|
+| `unused-css-rules` | Reduce unused CSS | 180 ms |
 <!-- tempo:ende -->
 
 **Was hier erzeugt wird und was von Hand kommt.** Jede gemessene Zahl steht im Block
