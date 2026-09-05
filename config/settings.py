@@ -72,7 +72,12 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = "Lax"
 SESSION_COOKIE_SAMESITE = "Lax"
 LANGUAGE_COOKIE_SAMESITE = "Lax"
-LANGUAGE_COOKIE_HTTPONLY = False  # der Umschalter liest ihn nicht, das Cookie ist rein informativ
+# Auch das Sprach-Cookie ist fuer Skripte gesperrt (Messung SI16): Gelesen wird es
+# ausschliesslich serverseitig (landing/middleware.py, landing/views.set_language);
+# kein Skript im Projekt greift auf `wvm_lang` zu. Nicht zu verwechseln mit
+# `wvm_consent` — das setzt und liest der Cookie-Banner im Browser, es kommt nie
+# als Set-Cookie vom Server und darf deshalb nicht HttpOnly sein.
+LANGUAGE_COOKIE_HTTPONLY = True
 # Referrer sparsam mitgeben (SEO-/Analytics-freundlich, aber datenschonend).
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 

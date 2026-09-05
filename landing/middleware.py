@@ -193,7 +193,8 @@ class LocalePrefsMiddleware:
         response.set_cookie(
             settings.LANGUAGE_COOKIE_NAME, gewaehlt,
             max_age=getattr(settings, "LANGUAGE_COOKIE_AGE", 60 * 60 * 24 * 365),
-            samesite="Lax", secure=not settings.DEBUG, httponly=False,
+            samesite="Lax", secure=not settings.DEBUG,
+            httponly=getattr(settings, "LANGUAGE_COOKIE_HTTPONLY", True),
         )
 
 

@@ -106,6 +106,7 @@ def set_language(request, lang):
         settings.LANGUAGE_COOKIE_NAME, lang,
         max_age=getattr(settings, "LANGUAGE_COOKIE_AGE", 31536000),
         samesite="Lax", secure=request.is_secure(),
+        httponly=getattr(settings, "LANGUAGE_COOKIE_HTTPONLY", True),
     )
     return resp
 
