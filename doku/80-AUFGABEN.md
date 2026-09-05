@@ -128,6 +128,7 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 | Punkt | Zustand | Grund | seit |
 |---|---|---|---|
 | TS11 | beim Kunden | Die Nebenadresse `https://wvm-it.tech` baut keine Verbindung auf, weil der A-Record der Apex-Domain auf die Parkseite des Registrars zeigt (213.145.224.30) und Railway `verified: false` meldet — sie erreicht die Anwendung also gar nicht, und eine 301 lässt sich im Code nicht setzen, wo keine Anfrage ankommt; jeden Host, der die Anwendung erreicht, leitet `landing.middleware.KanonischerHostMiddleware` bereits dauerhaft auf `www.wvm-it.tech` um (nachgeprüft am 28.08.2026 an `wvm-it-shop.up.railway.app`). Offen ist der CNAME beim Registrar, siehe „Beim Kunden“ Nr. 3. | 2026-09-05 |
+| PJ02 | nicht anwendbar | Der Befund „keine einzige Testfunktion im Projekt“ stammt aus der Messung vom 02.09.2026; seit dem 05.09.2026 stehen **130 Testfunktionen** in `landing/tests/` (neun Dateien, `python manage.py test landing.tests`, rund 16 Sekunden), sie laufen bei jedem Push über `.github/workflows/pruefen.yml` und liegen damit weit über der Zielgrösse 30 des Katalogs. Die Zielbilder des Rats sind erfüllt: `test_urls.py` prüft jede URL auf 200, `test_preise.py` die Preislogik gegen `ANGEBOT_GROUPS`, `test_struktur.py` die Slugs. | 2026-09-05 |
 <!-- bewertung:ende -->
 
 ## Eigene Punkte
