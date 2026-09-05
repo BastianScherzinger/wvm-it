@@ -894,7 +894,7 @@ Die Varianten stehen in content.json (T3).
         {% for item in t.faq.items %}
         <details class="faq-item"{% if forloop.first %} open{% endif %}>
           <summary class="faq-q">
-            <span>{{ item.q }}</span>
+            <h3 class="faq-q-h">{{ item.q }}</h3>
             <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
           <div class="faq-a"><p>{{ item.a }}</p></div>

@@ -1,7 +1,7 @@
 ---
 bereich: wegweiser
 titel: WVM-IT — Wegweiser durch die Dokumentation
-stand: 2026-09-02
+stand: 2026-09-05
 status: vollständig
 fortschritt: 100
 zusammenfassung: Elf Dateien nach Doku-Standard; die Original-Doku (20 Dateien, rund 26.500 Wörter) bleibt in ../docs/ und wird von hier verlinkt.

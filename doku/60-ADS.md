@@ -1,11 +1,11 @@
 ---
 bereich: ads
 titel: Google Ads
-stand: 2026-09-03
+stand: 2026-09-05
 status: nicht zutreffend
-zusammenfassung: Für WVM-IT laufen keine Google Ads; Landingpages stünden bereit, Konto, Conversion-Tag und Danke-Seite fehlen.
-offen: 6
-quellen: docs/AKQUISE-SOFORT.md, docs/RELAUNCH-START.md, docs/recht-und-cookies.md
+zusammenfassung: Für WVM-IT laufen keine Google Ads; seit 05.09.2026 gibt es immerhin die Danke-Seite mit eigener URL — Konto, Conversion-Tag und Einwilligung fürs Tag fehlen weiterhin.
+offen: 5
+quellen: docs/AUSBAU-2026-09.md, docs/AKQUISE-SOFORT.md, docs/RELAUNCH-START.md, docs/recht-und-cookies.md
 ---
 
 # Google Ads
@@ -37,7 +37,7 @@ Dort genannt: 15–25 € pro Tag „reichen für diese Nische", ausschließende
 
 Nichts eingerichtet. Zwei Dinge fehlen auf der Seite selbst, bevor überhaupt etwas messbar wäre:
 
-- **Keine Danke-Seite mit eigener URL** (Messung `KV07`, 02.09.2026): Die Formulare melden `{ok:true}` bzw. blenden inline eine Meldung ein (`/anfrage/leistung/`), das ausführliche Formular rendert `anfrage_done.html`. Ohne eigene URL lässt sich ein Abschluss weder in der Search Console noch in einem Werbekonto zählen.
+- **Die Danke-Seite gibt es seit dem 05.09.2026** unter `/anfrage/danke/` (`noindex`, aber `follow`). Sie greift bei jedem Absenden **ohne JavaScript**; wer JavaScript hat, bekommt weiter die Meldung an Ort und Stelle. Für ein Werbekonto heißt das: Der URL-basierte Abschluss ist möglich, deckt aber nur den Teil ohne JavaScript ab. **Sobald Ads laufen, braucht es zusätzlich ein Ereignis** aus dem JavaScript-Zweig (`anfrage-blocks.js`, Erfolgspfad) — sonst zählt das Konto einen Bruchteil und optimiert auf die falsche Gruppe. Das ist keine Nacharbeit an der Seite, sondern Teil der Ads-Einrichtung.
 - **Kein Tracking-Skript und keine Einwilligung dafür:** Das Cookie-Banner kennt nur `all`/`essential` und lädt nach Zustimmung ausschließlich Spline; Google-Tags brauchen laut `../CLAUDE.md` („Keine Tracking-Skripte ohne neue Einwilligung") eine neue Einwilligungsstufe und einen Eintrag in der Datenschutzerklärung (`content.json`).
 
 Anfragen werden heute nur über den Betreff-Präfix `[WVM] Anfrage: <Quelle>` im Postfach gezählt (UMBAU-PLAN §7) — die Zahl „Anfragen über die Website" steht im Konzept als „unbekannt".

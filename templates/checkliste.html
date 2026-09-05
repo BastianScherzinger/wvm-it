@@ -74,7 +74,7 @@ wie am Bildschirm.
         {% for f in liste.faq %}
         <details class="faq-item"{% if forloop.first %} open{% endif %}>
           <summary class="faq-q">
-            <span>{{ f.q|safe }}</span>
+            <h3 class="faq-q-h">{{ f.q|safe }}</h3>
             <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
           <div class="faq-a"><p>{{ f.a|safe }}</p></div>

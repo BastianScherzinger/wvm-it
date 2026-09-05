@@ -1210,6 +1210,12 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   justify-content:space-between;padding:20px 22px;font-family:"Space Grotesk",sans-serif;
   font-weight:600;font-size:clamp(1rem,1.5vw,1.12rem);color:var(--ink);line-height:1.35}
 .faq-q::-webkit-details-marker{display:none}
+/* Die Frage ist seit 05.09.2026 eine echte <h3> statt eines <span>: Nur so lässt
+   sich eine FAQ mit dem Screenreader per Überschrift durchgehen, und nur so
+   erkennt eine Antwortmaschine, dass hier eine Frage beantwortet wird. Sie erbt
+   ihre Gestaltung vollständig vom <summary> — optisch ändert sich nichts. */
+.faq-q-h{font:inherit;color:inherit;margin:0;padding:0;letter-spacing:inherit;
+  text-transform:none;flex:1 1 auto;min-width:0}
 .faq-q:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:-3px;border-radius:var(--radius-sm)}
 .faq-ic{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
   color:var(--accent2);border:1px solid var(--line-2);background:var(--tint);
@@ -2229,3 +2235,69 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .fld-recht a:hover{ color:var(--accent); }
 .on-dark .fld-recht{ color:rgba(255,255,255,.72); }
 .on-dark .fld-recht a:hover{ color:var(--accent2); }
+
+/* ============================================================================
+   ÜBER UNS (/ueber-uns/) und DANKE-SEITE (/anfrage/danke/) — 05.09.2026
+   Beide Seiten sind neu; sie nutzen sonst durchgehend vorhandene Bausteine
+   (.sp-top, .sp-h2, .sp-ablauf, .sp-liste, .ks-block). Hier steht nur, was es
+   für ihre eigenen Blöcke braucht.
+   ========================================================================== */
+
+/* Zweispaltiger Kopf: Portrait links, Text und Eckdaten rechts. Das Bild ist
+   bewusst begrenzt — ohne Begrenzung nimmt ein 640er-Portrait die volle
+   Spaltenbreite ein und drückt den Text unter die Falz. */
+.ub-kopf{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start}
+.ub-portrait{margin:0}
+.ub-portrait img{width:100%;height:auto;border-radius:var(--radius);
+  border:1px solid var(--line);box-shadow:var(--shadow);display:block}
+.ub-portrait figcaption{margin-top:12px;font-size:13.5px;color:var(--ink-dim);
+  letter-spacing:.01em}
+.ub-intro .hb-intro{margin-top:0}
+.ub-fakten{margin-top:26px}
+.ub-fakten a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.ub-fakten a:hover{color:var(--accent)}
+
+/* „Was wir nicht tun" — bewusst ohne Haken-Icons: Das sind keine Vorteile,
+   sondern Absagen, und ein grüner Haken davor würde das Gegenteil sagen. */
+.ub-nicht{margin-top:8px;max-width:74ch}
+.ub-nicht li{position:relative;padding-left:26px;margin-bottom:14px;
+  color:var(--ink-soft);line-height:1.65}
+.ub-nicht li::before{content:"";position:absolute;left:0;top:.62em;width:14px;height:2px;
+  background:var(--accent);border-radius:2px}
+
+.ub-zwei{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:56px;
+  padding-top:44px;border-top:1px solid var(--line)}
+.ub-zwei p{color:var(--ink-soft);line-height:1.7;max-width:56ch}
+
+/* Der Haken über der Überschrift der Danke-Seite. Ohne feste Größe rendert das
+   Icon in voller Spaltenbreite — die Vorlage gibt ihm keine. */
+.dk-mark{width:56px;height:56px;margin:0 0 22px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--accent),var(--accent2));
+  color:var(--on-accent);box-shadow:0 10px 30px rgba(0,0,0,.28)}
+.dk-mark svg{width:28px;height:28px}
+.dk-thema{margin:18px 0 0;color:var(--ink-soft);font-size:15px}
+.dk-thema strong{color:var(--ink)}
+.dk-wege{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;align-items:center}
+.dk-wege .btn svg{width:17px;height:17px;margin-right:8px}
+
+/* Die drei Karten „solange Sie warten". .wt-grid gibt es schon (Startseite),
+   die Karten dort heißen aber .wt-beitrag und tragen anderen Inhalt. */
+.wt-karte{display:block;padding:26px 24px;border-radius:18px;border:1px solid var(--line);
+  background:var(--surface);text-decoration:none;color:inherit;box-shadow:var(--shadow);
+  transition:transform .22s var(--ease),border-color .22s var(--ease)}
+.wt-karte:hover,.wt-karte:focus-visible{transform:translateY(-3px);border-color:var(--accent)}
+.wt-karte:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);
+  outline-offset:3px}
+.wt-karte strong{display:block;margin:14px 0 8px;font-family:"Space Grotesk",sans-serif;
+  font-size:17px;color:var(--ink)}
+.wt-karte>span:last-child{display:block;color:var(--ink-soft);font-size:14.5px;line-height:1.6}
+.wt-ic{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;
+  background:var(--tint);border:1px solid var(--line-2);color:var(--accent2)}
+.wt-ic svg{width:21px;height:21px}
+
+@media (max-width:980px){
+  .ub-kopf{grid-template-columns:1fr;gap:30px}
+  .ub-portrait{max-width:260px}
+  .ub-zwei{grid-template-columns:1fr;gap:32px;margin-top:40px;padding-top:34px}
+}
