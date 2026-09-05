@@ -50,11 +50,14 @@ class Command(BaseCommand):
                             help="Vollstaendige URL-Liste ausgeben (M3)")
 
     def handle(self, *args, **optionen):
-        try:
-            self.stdout._out.reconfigure(encoding="utf-8", errors="replace")
-        except (AttributeError, ValueError, OSError):
-            # Kein umstellbarer Datenstrom (Umleitung, Test). Kein Fehler.
-            pass
+        # Strom ohne `reconfigure` (Umleitung, Test) ist eine Bedingung, keine
+        # Ausnahme. Was danach noch fliegt, ist echt und wird gemeldet.
+        umstellen = getattr(getattr(self.stdout, "_out", None), "reconfigure", None)
+        if callable(umstellen):
+            try:
+                umstellen(encoding="utf-8", errors="replace")
+            except (ValueError, OSError) as fehler:
+                self.stderr.write(f"Ausgabe nicht auf UTF-8 umstellbar: {fehler}")
         md = optionen["markdown"]
         schwelle = optionen["min_worte"]
 
@@ -79,8 +82,12 @@ class Command(BaseCommand):
                     for knoten in json.loads(block).get("@graph", []):
                         if isinstance(knoten, dict) and knoten.get("@type"):
                             arten.add(knoten["@type"])
-                except json.JSONDecodeError:
-                    pass
+                except json.JSONDecodeError as fehler:
+                    # Ein kaputter JSON-LD-Block verschwand hier lautlos: Die
+                    # Schema-Tabelle unten zeigte die Seite dann einfach ohne
+                    # Auszeichnung, und niemand konnte den Unterschied zwischen
+                    # „hat keine" und „hat eine kaputte" erkennen.
+                    self.stderr.write(f"{pfad}: JSON-LD nicht lesbar ({fehler})")
             seiten.append({
                 "pfad": pfad, "status": 200, "prio": prio,
                 "sprachen": len(i18n.LANGS) if mehrsprachig else 1,

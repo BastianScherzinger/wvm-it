@@ -68,11 +68,15 @@ class Command(BaseCommand):
     def handle(self, *args, **optionen):
         # Die Windows-Konsole läuft je nach Umgebung auf cp1252 und stolpert sonst über
         # Umlaute und Sonderzeichen in den Meldungen.
-        try:
-            self.stdout._out.reconfigure(encoding="utf-8", errors="replace")
-        except (AttributeError, ValueError, OSError):
-            # Kein umstellbarer Datenstrom (Umleitung, Test). Kein Fehler.
-            pass
+        # Der haeufige Fall — ein Strom ohne `reconfigure` (Umleitung in eine Datei,
+        # Aufruf aus einem Test) — ist eine Bedingung, keine Ausnahme. Bleibt eine
+        # Ausnahme uebrig, ist sie echt und wird gemeldet statt verschluckt.
+        umstellen = getattr(getattr(self.stdout, "_out", None), "reconfigure", None)
+        if callable(umstellen):
+            try:
+                umstellen(encoding="utf-8", errors="replace")
+            except (ValueError, OSError) as fehler:
+                self.stderr.write(f"Ausgabe nicht auf UTF-8 umstellbar: {fehler}")
         self.fehler = []
         self.warnungen = []
 

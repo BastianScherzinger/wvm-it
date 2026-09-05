@@ -43,13 +43,15 @@ class Command(BaseCommand):
         parser.add_argument("--trocken", action="store_true", help="nur zeigen, nichts senden")
 
     def handle(self, *args, **opt):
-        try:
-            self.stdout._out.reconfigure(encoding="utf-8", errors="replace")
-        except (AttributeError, ValueError, OSError):
-            # Kein umstellbarer Datenstrom (Umleitung in eine Datei, Aufruf aus
-            # einem Test). Das ist der Normalfall und kein Fehler — eng gefasst,
-            # damit hier nicht versehentlich etwas anderes verschwindet.
-            pass
+        # Ein Strom ohne `reconfigure` (Umleitung in eine Datei, Aufruf aus einem
+        # Test) ist der Normalfall — und damit eine Bedingung, kein Fehler. Nur
+        # was danach noch fliegt, ist echt, und das wird gemeldet statt verschluckt.
+        umstellen = getattr(getattr(self.stdout, "_out", None), "reconfigure", None)
+        if callable(umstellen):
+            try:
+                umstellen(encoding="utf-8", errors="replace")
+            except (ValueError, OSError) as fehler:
+                self.stderr.write(f"Ausgabe nicht auf UTF-8 umstellbar: {fehler}")
 
         schluessel = (getattr(settings, "INDEXNOW_KEY", "") or "").strip()
         if not schluessel:

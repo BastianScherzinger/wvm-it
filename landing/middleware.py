@@ -103,13 +103,20 @@ class KanonischerHostMiddleware:
     def _ziel_bestimmen():
         ziel = (getattr(settings, "KANONISCHER_HOST", "") or "").strip()
         if not ziel and not settings.DEBUG:
+            import json
+            from pathlib import Path
             try:
-                import json
-                from pathlib import Path
                 daten = json.loads(
                     (Path(settings.BASE_DIR) / "content.json").read_text(encoding="utf-8"))
-                ziel = (daten.get("wvm_url") or "").strip()
-            except Exception:
+                ziel = (daten.get("wvm_url") or "").strip() if isinstance(daten, dict) else ""
+            except (OSError, ValueError) as fehler:
+                # Ohne Ziel faellt die 301 auf die Hauptdomain ersatzlos aus — also
+                # genau der Zweitbestand, den diese Schicht verhindern soll, und
+                # zwar lautlos. Der Rueckfall bleibt (die Seite muss laufen), aber
+                # er sagt es: Ein `except Exception: ziel = ""` haette denselben
+                # Schaden angerichtet, ohne eine Zeile im Protokoll zu hinterlassen.
+                print(f"[HOST] content.json nicht lesbar, 301 auf die Hauptdomain "
+                      f"bleibt aus: {fehler}", flush=True)
                 ziel = ""
         return ziel.replace("https://", "").replace("http://", "").rstrip("/")
 
