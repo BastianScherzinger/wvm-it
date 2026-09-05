@@ -429,7 +429,7 @@ SEITEN = {
         "titel": "Smarthome mit Loxone & KNX in Österreich | WVM-IT",
         "desc": "Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt und Sicherheit in einem System. Jetzt unverbindlich anfragen.",
         "h1": "Gebäudeautomation mit Loxone und KNX",
-        "kurz": "WVM-IT plant, programmiert und betreut Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt, Sicherheit und Medientechnik in einem System. Anlagen dieser Art werden projektbezogen kalkuliert und vor Ort aufgebaut — den Preis nennen wir nach einem kurzen Gespräch und einer Bestandsaufnahme, nicht vorher.",
+        "kurz": "WVM-IT plant, programmiert und betreut Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt, Sicherheit und Medientechnik in einem System — KNX als herstellerübergreifende Norm mit über 400 Herstellern, Loxone als geschlossenes System aus einer Hand. Anlagen dieser Art werden projektbezogen kalkuliert und vor Ort aufgebaut — den Preis nennen wir nach einem kurzen Gespräch und einer Bestandsaufnahme, nicht vorher.",
         "intro": "Bei Gebäudeautomation entscheidet nicht die Hardware über das Ergebnis, sondern die Programmierung. Dieselben Geräte können eine Anlage ergeben, die niemand versteht und die nach dem ersten Sommer wieder von Hand bedient wird — oder eine, die einfach tut, was man erwartet. Deshalb planen wir zuerst die Abläufe und erst danach die Komponentenliste.",
         "problem_h": "Wofür sich das lohnt",
         "probleme": [

@@ -4,7 +4,7 @@ titel: WVM-IT — Stand
 stand: 2026-09-05
 status: teilweise
 fortschritt: 88
-zusammenfassung: Ausbau September abgeschlossen — 165 URLs, 123 Tests (vorher null), CI-Lauf, durchgesetzte CSP, alle Titel und Beschreibungen überarbeitet. Zwei Funde ausserhalb jedes Plans behoben (hreflang auf 404, Sprachumleitung). Blockiert beim Kunden bleiben Unternehmensprofil, SPF/DMARC und Apex-DNS.
+zusammenfassung: Ausbau September abgeschlossen — 165 URLs, 122 Tests (vorher null), CI-Lauf, durchgesetzte CSP, alle Titel und Beschreibungen überarbeitet. Zwei Funde ausserhalb jedes Plans behoben (hreflang auf 404, Sprachumleitung). Blockiert beim Kunden bleiben Unternehmensprofil, SPF/DMARC und Apex-DNS.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
@@ -37,7 +37,7 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 
 | Bereich | Status | Fortschritt | Zusammenfassung | Datei |
 |---|---|---:|---|---|
-| Technik | teilweise | 85 | Django 5.0.6 auf Railway; seit 05.09.2026 mit 123 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, `start.sh` und durchgesetzter Content-Security-Policy. | [10-TECHNIK.md](10-TECHNIK.md) |
+| Technik | teilweise | 85 | Django 5.0.6 auf Railway; seit 05.09.2026 mit 122 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, `start.sh` und durchgesetzter Content-Security-Policy. | [10-TECHNIK.md](10-TECHNIK.md) |
 | Design | teilweise | 96 | Design-System vom 27.08.2026 unverändert; vier neue Bausteine (Honigtopf, Datenschutzhinweis, Symbolsatz, kleiner Kopf). Mobilansicht nie am Gerät geprüft. | [20-DESIGN.md](20-DESIGN.md) |
 | Inhalte | teilweise | 94 | 165 URLs; neu sind Veranstaltungstechnik, IT-Beratung, Über uns, AGB, Barrierefreiheitserklärung und die Danke-Seite. Titel und Beschreibungen aller Silos überarbeitet. | [30-INHALTE.md](30-INHALTE.md) |
 | SEO und GEO | teilweise | 90 | Zwei Funde ausserhalb jedes Plans behoben (94 hreflang auf 404, 82 unerreichbare Seiten). Sitemap in vier Segmenten, echte Änderungsdaten, `WebPage`-Knoten überall. | [40-SEO.md](40-SEO.md) |
@@ -104,7 +104,7 @@ Kritische Befunde:
 
 | Datum | Was |
 |---|---|
-| **05.09.2026** | **Ausbau September** (`../docs/AUSBAU-2026-09.md`): zwei neue Leistungsseiten für Florins Geschäft ausserhalb der Webseiten, vier fehlende Pflichtseiten, alle Titel und Beschreibungen, Formular-Vertrauen, 123 Tests, CI-Lauf, durchgesetzte CSP, echte Änderungsdaten, Sitemap-Segmente, Feed, Startseite 211 → 183 KB |
+| **05.09.2026** | **Ausbau September** (`../docs/AUSBAU-2026-09.md`): zwei neue Leistungsseiten für Florins Geschäft ausserhalb der Webseiten, vier fehlende Pflichtseiten, alle Titel und Beschreibungen, Formular-Vertrauen, 122 Tests, CI-Lauf, durchgesetzte CSP, echte Änderungsdaten, Sitemap-Segmente, Feed, Startseite 211 → 183 KB |
 | **05.09.2026** | Zwei Funde ausserhalb jedes Plans: 94 hreflang-Verweise auf 404-Adressen und eine Sprachumleitung, die jede deutsche Adresse traf statt nur die Startseite |
 | 02.09.2026 | Messung des Werkzeugs (Regelstand 2026-09-02a): 80,0 „Solide", 231 von 244 Regeln gemessen, PageSpeed für sechs Seiten mobil und Desktop |
 | 29.08.2026 | **SEO-Ausbau 3 abgeschlossen (56/56):** aus 87 wurden 158 URLs — Branchen (21), Vergleiche (12), Fachbeiträge (+10), Glossar (15), Checklisten (4), Kostenrechner, Sicherheits-Selbsttest, Notfallseite, 404/500, interne Suche. 17 Commits, Railway-Deploy nach rund 20 Sekunden live, 158 URLs an IndexNow (HTTP 200) |

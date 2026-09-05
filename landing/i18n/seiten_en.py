@@ -422,7 +422,7 @@ SEITEN = {
         "titel": "Smart home with Loxone & KNX in Austria | WVM-IT",
         "desc": "Building automation with Loxone and KNX: lighting, heating, shading, access and security in one system. Request a free quote now.",
         "h1": "Building automation with Loxone and KNX",
-        "kurz": "WVM-IT plans, programmes and maintains building automation with Loxone and KNX: lighting, heating, shading, access, security and media technology in one system. Installations of this kind are calculated per project and built on site — we quote after a short conversation and a survey, not before.",
+        "kurz": "WVM-IT plans, programmes and maintains building automation with Loxone and KNX: lighting, heating, shading, access, security and media technology in one system — KNX as a cross-vendor standard with more than 400 manufacturers, Loxone as a closed system from a single source. Installations of this kind are calculated per project and built on site — we quote after a short conversation and a survey, not before.",
         "intro": "In building automation the result is not decided by the hardware but by the programming. The same devices can produce a system nobody understands, which gets operated by hand again after the first summer — or one that simply does what you expect. So we plan the behaviour first and the parts list second.",
         "problem_h": "Where this pays off",
         "probleme": [

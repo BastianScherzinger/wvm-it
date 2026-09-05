@@ -424,7 +424,7 @@ SEITEN = {
         "titel": "Casă inteligentă cu Loxone și KNX în Austria | WVM-IT",
         "desc": "Automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces și securitate într-un singur sistem. Solicitați o ofertă.",
         "h1": "Automatizarea clădirilor cu Loxone și KNX",
-        "kurz": "WVM-IT planifică, programează și întreține automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces, securitate și tehnică media într-un singur sistem. Astfel de instalații se calculează pe proiect și se montează la fața locului — prețul îl comunicăm după o scurtă discuție și o evaluare, nu înainte.",
+        "kurz": "WVM-IT planifică, programează și întreține automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces, securitate și tehnică media într-un singur sistem — KNX ca normă independentă de producător, cu peste 400 de producători, Loxone ca sistem închis dintr-o singură mână. Astfel de instalații se calculează pe proiect și se montează la fața locului — prețul îl comunicăm după o scurtă discuție și o evaluare, nu înainte.",
         "intro": "La automatizarea clădirilor rezultatul nu îl decide hardware-ul, ci programarea. Aceleași echipamente pot da o instalație pe care nimeni nu o înțelege și care după prima vară se operează iar manual — sau una care pur și simplu face ce te aștepți. De aceea planificăm întâi comportamentul și abia apoi lista de componente.",
         "problem_h": "Pentru cine merită",
         "probleme": [
