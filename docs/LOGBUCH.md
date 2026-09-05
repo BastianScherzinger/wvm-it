@@ -36,6 +36,11 @@ Stelle, die nicht wusste, was geplant war, sondern nur, was ausgeliefert wird.
 Befunde 95 → 64, kritisch 8 → 2. Die beiden verbliebenen sind die Apex-Domain (beim
 Kunden) und der Umfang von 56 Seiten. Kein einziger neuer Befund.
 
+**Search Console am selben Tag nachgezogen:** Sitemap-Index und alle vier Segmente
+eingereicht und binnen Minuten gelesen — 57 + 39 + 35 + 34 = 165, exakt die Zahl aus
+`seo_bericht`. Fünf neue Seiten zur Indexierung beantragt. Einzelheiten in
+`INDEXIERUNG.md`.
+
 *Belege: `AUSBAU-2026-09.md`, Commits `0459588`, `9e5007e`, `f073786`, `7407b2d`.*
 
 ## 03.–04.09.2026 — Der Doku-Standard

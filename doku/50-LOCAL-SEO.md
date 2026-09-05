@@ -4,7 +4,7 @@ titel: Local SEO
 stand: 2026-09-05
 status: teilweise
 fortschritt: 50
-zusammenfassung: Search Console eingerichtet, NAP überall zeichengleich, Koordinaten und Öffnungszeiten seit 05.09.2026 im Graphen; Unternehmensprofil, Bewertungen und Verzeichniseinträge fehlen weiterhin — alles beim Kunden.
+zusammenfassung: Search Console am 05.09.2026 nachgezogen (Sitemap-Index und vier Segmente gelesen, 165 URLs, fünf neue Seiten beantragt), NAP zeichengleich, Koordinaten und Öffnungszeiten im Graphen; Unternehmensprofil, Bewertungen und Verzeichniseinträge fehlen — alles beim Kunden.
 offen: 6
 unternehmensprofil: nein
 search_console: ja

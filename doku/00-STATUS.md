@@ -4,7 +4,7 @@ titel: WVM-IT — Stand
 stand: 2026-09-05
 status: teilweise
 fortschritt: 91
-zusammenfassung: Ausbau September abgeschlossen und live — 165 URLs, 130 Tests (vorher null), CI-Lauf, durchgesetzte CSP. Die Messung vom 05.09. steht bei 91,2 „Referenz" (vorher 66,9 „Solide"), 0 kritische Datei-Befunde. Es bleiben zwei kritische Regel-Befunde: die Apex-Domain (beim Kunden) und der Umfang von 56 Seiten.
+zusammenfassung: Ausbau September abgeschlossen und live — 165 URLs, 130 Tests (vorher null), CI-Lauf, durchgesetzte CSP. Messung 91,2 „Referenz" (vorher 66,9 „Solide"), 0 kritische Datei-Befunde. Search Console nachgezogen: Index und vier Segmente gelesen, fünf neue Seiten beantragt. Es bleiben zwei kritische Regel-Befunde: die Apex-Domain (beim Kunden) und der Umfang von 56 Seiten.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
@@ -44,7 +44,7 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 | Local SEO | teilweise | 55 | Search Console eingerichtet, NAP zeichengleich, Koordinaten und Öffnungszeiten im Graphen; Unternehmensprofil, Bewertungen und Verzeichnisse fehlen — alles beim Kunden. | [50-LOCAL-SEO.md](50-LOCAL-SEO.md) |
 | Ads | nicht zutreffend | — | Für WVM-IT laufen keine Google Ads; seit 05.09.2026 gibt es immerhin die Danke-Seite als messbaren Abschluss. | [60-ADS.md](60-ADS.md) |
 | Performance | teilweise | 90 | Icons als Symbolsatz, `srcset`, Kommentare aus der Auslieferung: Startseite 211 → 183 KB. Offen bleiben Antwortzeit, CLS auf Desktop und Critical CSS. | [70-PERFORMANCE.md](70-PERFORMANCE.md) |
-| Aufgaben | teilweise | 70 | Von den acht offenen Punkten sind sieben erledigt; aus der Messung vom 04.09. kamen vier gebaute und drei nicht am Rechner lösbare dazu. Offen bleiben Search Console, CWV-Eintrag, Antwortzeit und die 32 Kontrastelemente. | [80-AUFGABEN.md](80-AUFGABEN.md) |
+| Aufgaben | teilweise | 75 | Von den acht offenen Punkten sind sieben erledigt; aus der Messung vom 04.09. kamen vier gebaute und drei nicht am Rechner lösbare dazu. Offen bleiben Search Console, CWV-Eintrag, Antwortzeit und die 32 Kontrastelemente. | [80-AUFGABEN.md](80-AUFGABEN.md) |
 | Notizen | vollständig | 100 | Pfad- und Namensfallen, Widersprüche zwischen Doku, Code und Messung, Verweise. | [90-NOTIZEN.md](90-NOTIZEN.md) |
 | Wegweiser | vollständig | 100 | Elf Dateien nach Doku-Standard; Original-Doku bleibt in ../docs/. | [README.md](README.md) |
 
@@ -91,10 +91,13 @@ Kritische Befunde:
    **165 URLs gleichen sein Fehlen nicht aus**, und dieser Durchgang ändert daran
    nichts. Angaben fertig in `../docs/SEO-KONZEPT-DACH.md` §7 — reines Abtippen.
    → [50-LOCAL-SEO.md](50-LOCAL-SEO.md)
-2. **Search Console nachziehen.** `/sitemap.xml` ist seit dem 05.09.2026 ein **Index**
-   auf vier Segmente; er gehört neu eingereicht. Google kennt den Bestand vom 28.08.,
-   seither sind 78 URLs dazugekommen. Nur im Browser machbar.
+2. **Core Web Vitals eintragen** und den CLS-Ausreißer auf Desktop untersuchen
+   (`/kontakt/` 0,229 bei mobil nahezu null). Die Tabelle in
+   `../docs/seo/PERFORMANCE.md` §3 ist seit dem 29.08. leer.
    → [80-AUFGABEN.md](80-AUFGABEN.md) Nr. 1
+
+   *Die Search Console ist am 05.09.2026 nachgezogen: Sitemap-Index und vier Segmente
+   eingereicht und gelesen (165 URLs), fünf neue Seiten zur Indexierung beantragt.*
 3. **Die AGB gehören gegengezeichnet.** Sie stehen seit dem 05.09.2026 live, damit der
    Deploy nicht blockiert — dasselbe Verfahren wie bei den zwölf Preisen am 28.08. Bis
    zu Florins Bestätigung sind sie eine offene Zusage, kein erledigter Punkt.

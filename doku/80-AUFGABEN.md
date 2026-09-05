@@ -3,9 +3,9 @@ bereich: aufgaben
 titel: Aufgaben
 stand: 2026-09-05
 status: teilweise
-fortschritt: 70
-zusammenfassung: Von den acht offenen Punkten sind sieben erledigt; Tests, Erreichbarkeit, Datei-Befunde, Schutzköpfe und echte Änderungsdaten stehen. Aus der Messung vom 04.09. sind vier weitere Punkte gebaut (verschluckte Ausnahmen, Zahl im Antwortabsatz, Sprach-Cookie, CSP-Prüfungen), drei sind nicht am Rechner lösbar. Offen bleiben Search Console, CWV-Eintrag, Antwortzeit und Kontrast.
-offen: 4
+fortschritt: 75
+zusammenfassung: Search Console am 05.09.2026 nachgezogen — Sitemap-Index und vier Segmente eingereicht und gelesen, fünf neue Seiten zur Indexierung beantragt. Offen bleiben CWV-Eintrag, Antwortzeit und die 32 Kontrastelemente.
+offen: 3
 quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
 ---
 
@@ -51,10 +51,9 @@ Konkret als Nächstes, in dieser Reihenfolge.
 
 | # | Aufgabe | Warum jetzt | Regel / Quelle |
 |---|---|---|---|
-| 1 | **Search Console nachziehen:** den Sitemap-**Index** neu einreichen (`/sitemap.xml` ist seit 05.09. ein Index auf vier Segmente), die sieben neuen URLs zur Indexierung anstoßen | Nur im Browser machbar. Google kennt den Bestand vom 28.08.; seither sind 78 URLs dazugekommen. Die Segmente sind der Grund, warum sich der nächste Einbruch einem Silo zuordnen lässt | `AUSBAU-2026-09.md` §4.6 |
-| 2 | **Core Web Vitals eintragen** in `../docs/seo/PERFORMANCE.md` §3 und den **CLS-Ausreißer auf Desktop** untersuchen: `/leistungen/` 0,180 · `/kosten/rechner/` 0,184 · `/kontakt/` 0,229 bei mobil nahezu null | Der einzige Core-Web-Vitals-Wert, der wirklich reißt. Die Tabelle ist seit dem 29.08. leer | T8, `PF08` |
-| 3 | **Mittlere Antwortzeit senken** (Median 632 ms, Startseite 3.123 ms im Crawl): Dienst warmhalten, Seitencache für die Ansichten ohne Formular | Betrifft Crawlbudget und echte Besucher gleichermaßen. Symbolsatz und kleinere Bilder haben die Größe gesenkt, nicht die Wartezeit auf die erste Antwort | `PF10`, `BT04` |
-| 4 | **Die 32 Kontrastelemente einzeln nachmessen** und gegen die Eigenmessung vom 27.08.2026 halten (dort lagen alle ≥ 4,5:1) | Einer der beiden Werte stimmt nicht. Solange nicht klar ist, welcher, wäre jede Änderung geraten — und der Abschnitt 3 der Barrierefreiheitserklärung sagt genau das | `BF18` |
+| 1 | **Core Web Vitals eintragen** in `../docs/seo/PERFORMANCE.md` §3 und den **CLS-Ausreißer auf Desktop** untersuchen: `/leistungen/` 0,180 · `/kosten/rechner/` 0,184 · `/kontakt/` 0,229 bei mobil nahezu null | Der einzige Core-Web-Vitals-Wert, der wirklich reißt. Die Tabelle ist seit dem 29.08. leer | T8, `PF08` |
+| 2 | **Mittlere Antwortzeit senken** (Median 632 ms, Startseite 3.123 ms im Crawl): Dienst warmhalten, Seitencache für die Ansichten ohne Formular | Betrifft Crawlbudget und echte Besucher gleichermaßen. Symbolsatz und kleinere Bilder haben die Größe gesenkt, nicht die Wartezeit auf die erste Antwort | `PF10`, `BT04` |
+| 3 | **Die 32 Kontrastelemente einzeln nachmessen** und gegen die Eigenmessung vom 27.08.2026 halten (dort lagen alle ≥ 4,5:1) | Einer der beiden Werte stimmt nicht. Solange nicht klar ist, welcher, wäre jede Änderung geraten — und der Abschnitt 3 der Barrierefreiheitserklärung sagt genau das | `BF18` |
 
 ## Fehlt
 
@@ -108,6 +107,7 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 
 | Datum | Was | Beleg |
 |---|---|---|
+| **05.09.2026** | **Search Console nachgezogen.** Der Sitemap-**Index** und alle vier Segmente einzeln eingereicht und binnen Minuten gelesen — `/sitemap.xml` **165**, `silos` 57, `leistungen` 39, `ratgeber` 35, `kern` 34, alle „Erfolgreich". Die Summe der Segmente entspricht exakt der Zahl aus `seo_bericht`: Sitemap, Prüfbefehl und Google zählen gleich. **Fünf neue Seiten zur Indexierung beantragt** (Veranstaltungstechnik, IT-Beratung, Über uns, AGB, Barrierefreiheit); `/anfrage/danke/` bewusst nicht, sie trägt `noindex`. Bei `/leistungen/it-beratung/` wies die URL-Prüfung schon `sitemap-leistungen.xml` als Fundstelle aus — die Segmentierung wirkt sofort in der Zuordnung, nicht erst in der Auswertung | `../docs/INDEXIERUNG.md` |
 | **05.09.2026** | **Die Messung vom 04.09. nachgearbeitet — vier Punkte gebaut:** `PJ05` die **fünf verbliebenen verschluckten Ausnahmen** sichtbar gemacht (drei `reconfigure`-Blöcke fingen den Normalfall ab; ein kaputter JSON-LD-Block verschwand lautlos aus dem `seo_bericht`; `KanonischerHostMiddleware` schaltete die 301 auf die Hauptdomain ab, sobald `content.json` nicht lesbar war) · `GE23` **14 Glossareinträge und 4 Fachbeiträge** mit einer belegten Zahl im Antwortabsatz, jede Zahl aus dem Eintrag selbst oder aus `ANGEBOT_GROUPS`, keine neu · `SI16` auch `wvm_lang` auf `HttpOnly`, damit **beide** Server-Cookies gesperrt sind, und ein Test hält fest, dass kein Skript es liest · `SI08` die seit dem 05.09. **durchgesetzte** CSP durch fünf Prüfungen gegen stilles Verschwinden gesichert, statt einen zweiten Kopf zu setzen. Damit **130 Testfunktionen in neun Dateien** | Commits `fe88da4`, `a746f97`, `efe8d54`, `eb4354c`; [10-TECHNIK.md](10-TECHNIK.md), [40-SEO.md](40-SEO.md) |
 | **05.09.2026** | **Ausbau September:** zwei neue Leistungsseiten (Veranstaltungstechnik, IT-Beratung) und vier fehlende Pflichtseiten (Über uns, AGB, Barrierefreiheitserklärung, Danke-Seite) — 158 → **165 URLs**. Titel und Beschreibungen **aller** Silos überarbeitet (27/158 → alle mit Ort, Zahl oder Nutzen; 3/158 → alle mit Handlungsaufforderung). Datenschutzhinweis und Honigtopf in allen zehn Anfrageformularen. **122 Testfunktionen** (vorher null) und ein CI-Lauf bei jedem Push. Durchgesetzte Content-Security-Policy mit Nonce, Permissions-Policy, HSTS mit `includeSubDomains`, `csrftoken` mit `HttpOnly`. Neun verschluckte Ausnahmen behandelt. Echte Änderungsdaten aus `landing/stand.py`, Sitemap in vier Segmenten, `WebPage`-Knoten auf jeder Seite, `Article` mit Autor auf 35 statt 15 Ratgeberseiten, alle `@id`-Verweise lösen auf. Atom-Feed unter `/feed/`. Startseite 211 → **183 KB** | `../docs/AUSBAU-2026-09.md` |
 | **05.09.2026** | **Zwei Funde, die in keinem Plan standen:** Die 47 nur-deutschen Seiten trugen **94 hreflang-Verweise auf Adressen, die mit 404 antworten** — Google verwirft eine solche Gruppe vollständig. Und die Sprachumleitung galt für **jede** präfixlose Adresse statt nur für die Startseite: Wer einmal auf `/en/` war, wurde beim Klick auf einen deutschen Link zurückgeworfen. Dazu die 82 über interne Links unerreichbaren Seiten (`TS23`): Der Sprachumschalter lief über `/sprache/<lang>/`, das in `robots.txt` gesperrt ist | `../docs/AUSBAU-2026-09.md` §3 |

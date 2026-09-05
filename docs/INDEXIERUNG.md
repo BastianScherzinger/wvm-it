@@ -1,8 +1,51 @@
 # Indexierung — Stand
 
-> **Stand 28.08.2026, abgeschlossen.** Die sechs öffentlichen URLs sind bei Google zur
-> Neu-Indexierung angemeldet und bei Bing, Yandex und Seznam gemeldet. Die Nullmessung
-> liegt in `docs/seo/BASELINE.md`.
+> **Stand 05.09.2026.** Der Sitemap-**Index** und seine vier Segmente sind eingereicht
+> und gelesen, die fünf neuen Seiten zur Indexierung beantragt, 165 URLs an IndexNow
+> gemeldet. Die Nullmessung liegt in `docs/seo/BASELINE.md`.
+
+---
+
+## Durchgang vom 05.09.2026
+
+**Der Sitemap-Index und alle vier Segmente wurden einzeln eingereicht.** Der Index
+allein hätte gereicht — Google findet die Segmente darüber. Einzeln eingereicht
+bekommt aber **jedes Segment eine eigene Zeile mit eigener Zahl**, und genau dafür
+wurde die Sitemap überhaupt geteilt: Ein Einbruch beim Ratgeber sieht dann anders aus
+als einer bei den Leistungen.
+
+Nach wenigen Minuten gelesen, alle fünf „Erfolgreich":
+
+| Sitemap | Typ | Erkannte Seiten |
+|---|---|---:|
+| `/sitemap.xml` | Sitemap-Index | **165** |
+| `/sitemap-silos.xml` | Sitemap | 57 |
+| `/sitemap-leistungen.xml` | Sitemap | 39 |
+| `/sitemap-ratgeber.xml` | Sitemap | 35 |
+| `/sitemap-kern.xml` | Sitemap | 34 |
+
+57 + 39 + 35 + 34 = 165 — dieselbe Zahl, die `manage.py seo_bericht` lokal ausgibt.
+Das ist die eigentliche Bestätigung: Sitemap, Prüfbefehl und Google zählen gleich.
+
+**Fünf neue Seiten zur Indexierung beantragt** (Kontingent rund zehn pro Tag):
+
+| URL | Status vor dem Antrag |
+|---|---|
+| `/leistungen/veranstaltungstechnik/` | URL ist Google nicht bekannt |
+| `/leistungen/it-beratung/` | Gefunden – zurzeit nicht indexiert |
+| `/ueber-uns/` | URL ist Google nicht bekannt |
+| `/agb/` | Gefunden – zurzeit nicht indexiert |
+| `/barrierefreiheit/` | Gefunden – zurzeit nicht indexiert |
+
+`/anfrage/danke/` wurde bewusst **nicht** beantragt — die Seite trägt `noindex`.
+Die englischen und rumänischen Fassungen ebenfalls nicht: Sie stehen in der Sitemap
+und im Index, und das Tageskontingent ist besser bei den deutschen Seiten aufgehoben,
+die den Markt bedienen.
+
+**Was die URL-Prüfung nebenbei belegt hat:** Bei `/leistungen/it-beratung/` stand unter
+„Auffindbarkeit" bereits `https://www.wvm-it.tech/sitemap-leistungen.xml` — Google hatte
+die Seite dem richtigen Segment zugeordnet, wenige Minuten nach dem Einreichen. Die
+Segmentierung wirkt also nicht erst in der Auswertung, sondern sofort in der Zuordnung.
 
 ---
 
