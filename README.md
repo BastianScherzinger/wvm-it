@@ -33,7 +33,7 @@ python manage.py seo_bericht
 # Vor jedem Deploy — beide muessen gruen sein
 python -X utf8 manage.py pruefe_seite        # 165 URLs, jeder Link, jeder Preis, Schema
 python -X utf8 manage.py pruefe_sicherheit   # loest alle Formulare aus, zaehlt die Mails
-python -X utf8 manage.py test landing.tests  # 122 Testfunktionen
+python -X utf8 manage.py test landing.tests  # 123 Testfunktionen
 
 # Nach jeder Inhaltsaenderung
 python manage.py stand_schreiben             # echte Aenderungsdaten je Seite
@@ -55,7 +55,7 @@ Anfrage auf die Live-Domain um.
 | **Preise** | **eine einzige Quelle:** `landing/views.py::ANGEBOT_GROUPS`. Rechner, Konfigurator, Preistabelle, Schema und `llms.txt` lesen sie; das JavaScript hat keine eigene Zahl |
 | **Sprachen** | DE ohne Präfix, EN `/en/`, RO `/ro/` — eigene `PACK`-Dicts, **ohne gettext**. Fachbeiträge, Glossar und Checklisten gibt es bewusst nur auf Deutsch |
 | **Deploy** | Push auf `main` → Railway. Das Projekt heißt **`webseiten`**, nicht `wvm-it`; Einzelheiten in [`docs/DEPLOY.md`](docs/DEPLOY.md) |
-| **Prüfung** | vier eigene Befehle plus 122 Tests, alle im CI-Lauf bei jedem Push |
+| **Prüfung** | vier eigene Befehle plus 123 Tests, alle im CI-Lauf bei jedem Push |
 
 ## Drei Regeln, die man nicht umgehen sollte
 

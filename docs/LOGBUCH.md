@@ -27,7 +27,7 @@ Stelle, die nicht wusste, was geplant war, sondern nur, was ausgeliefert wird.
   antworten. Und die Sprachumleitung galt für jede präfixlose Adresse statt nur für die
   Startseite — wer einmal auf `/en/` war, wurde beim Klick auf einen deutschen Link
   zurückgeworfen. Bots waren immer ausgenommen, deshalb stand es in keiner Messung.
-* **Von null auf 122 Tests** und ein CI-Lauf bei jedem Push. 13.877 Zeilen Python hatten
+* **Von null auf 123 Tests** und ein CI-Lauf bei jedem Push. 13.877 Zeilen Python hatten
   keine einzige Testfunktion.
 * Durchgesetzte Content-Security-Policy, echte Änderungsdaten, Sitemap in vier
   Segmenten, Feed, Startseite 211 → 183 KB.

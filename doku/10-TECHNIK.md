@@ -4,7 +4,7 @@ titel: Technik
 stand: 2026-09-05
 status: teilweise
 fortschritt: 85
-zusammenfassung: Django 5.0.6 auf Railway; seit 05.09.2026 mit 122 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, start.sh und durchgesetzter Content-Security-Policy — vorher gab es davon nichts.
+zusammenfassung: Django 5.0.6 auf Railway; seit 05.09.2026 mit 123 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, start.sh und durchgesetzter Content-Security-Policy — vorher gab es davon nichts.
 offen: 4
 quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
 ---
@@ -109,7 +109,7 @@ verhindern nicht die Anfrage, sondern das volle Postfach.
 
 Fünf eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis dahin gab es in 13.877 Zeilen Python keine einzige Testfunktion (`PJ02`: 0 in 0 Dateien) — jede Änderung war ein Blindflug.
 
-**122 Testfunktionen in sieben Dateien** unter `landing/tests/`, Laufzeit rund zehn Sekunden:
+**123 Testfunktionen in sieben Dateien** unter `landing/tests/`, Laufzeit rund zehn Sekunden:
 
 | Datei | Was sie prüft |
 |---|---|
@@ -124,7 +124,7 @@ Fünf eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis 
 Sie sind **strukturell** geschrieben — die URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus dem Symbolsatz. Während des Ausbaus kamen zwei Leistungsseiten dazu, ohne dass ein Test angepasst werden musste; und der Icon-Test hat den Wechsel auf den Symbolsatz sofort gemeldet, statt ihn durchgehen zu lassen.
 
 ```bash
-python -X utf8 manage.py test landing.tests   # 122 Tests, rund zehn Sekunden
+python -X utf8 manage.py test landing.tests   # 123 Tests, rund zehn Sekunden
 ```
 
 ```bash
@@ -195,7 +195,7 @@ Live-Domain.
 | 4 | Seitencache für die Ansichten ohne Formular | `PF10`, `BT04` | nicht begonnen; der größte verbliebene Hebel bei der Antwortzeit |
 
 **Am 05.09.2026 erledigt** (Einzelheiten in `../docs/AUSBAU-2026-09.md`):
-Testsuite mit 122 Funktionen · CI-Lauf bei jedem Push · alle neun kritischen
+Testsuite mit 123 Funktionen · CI-Lauf bei jedem Push · alle neun kritischen
 Datei-Befunde (verschluckte Ausnahmen eng gefasst oder geloggt, die vier
 Vorgangsseiten auf einen gemeinsamen Kopf-Baustein) · Content-Security-Policy
 durchgesetzt mit Nonce statt `'unsafe-inline'`, Permissions-Policy, HSTS mit
