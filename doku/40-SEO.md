@@ -4,7 +4,7 @@ titel: SEO und GEO
 stand: 2026-09-05
 status: teilweise
 fortschritt: 90
-zusammenfassung: Zwei Funde ausserhalb jedes Plans behoben: 94 hreflang-Verweise zeigten auf 404, und 82 Seiten waren über interne Links unerreichbar. Titel und Beschreibungen aller 165 URLs überarbeitet, Sitemap in vier Segmenten, echte Änderungsdaten. Erste Messung Oktober 2026.
+zusammenfassung: Zwei Funde ausserhalb jedes Plans behoben: 94 hreflang-Verweise zeigten auf 404, und 82 Seiten waren über interne Links unerreichbar. Titel und Beschreibungen aller 165 URLs überarbeitet, Sitemap in vier Segmenten, echte Änderungsdaten. Der Antwortabsatz von 14 Glossareinträgen und 4 Fachbeiträgen trägt jetzt eine belegte Zahl; sameAs bleibt leer, bis es echte Profile gibt. Erste Messung Oktober 2026.
 offen: 6
 quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/GEO-MONITORING.md, docs/seo/KEYWORD-MAP.md, docs/seo/BASELINE.md
 ---
@@ -44,7 +44,7 @@ quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SE
 | **Google-Indexierung** | Property `https://www.wvm-it.tech/`; am 28.08. sechs URLs beantragt, am 29.08. vier Kern-URLs, dann Tageskontingent (~10/Tag) erschöpft; Sitemap zuletzt am 28.08. neu eingereicht (davor 16.07.). **Die 71 neuen URLs vom 29.08. sind noch nicht angestoßen, die 158er-Sitemap nicht neu eingereicht** | `SEO-AUSBAU-3.md` §12 |
 | 404/500, Suche | eigene Seiten (T1, T6), Suche serverseitig über Titel und Antwortabsätze, noindex | 29.08.2026 |
 | Kein Inhalt hängt an JavaScript | vier Seitentypen roh geprüft (F12, 29.08.2026) | |
-| Sicherheitsköpfe | HSTS, nosniff, X-Frame DENY, Referrer-Policy live; CSP und Permissions-Policy fehlen | `SI08`, `SI07` |
+| Sicherheitsköpfe | HSTS, nosniff, X-Frame DENY, Referrer-Policy live; **CSP und Permissions-Policy seit 05.09.2026 ebenfalls**, die CSP als echte Antwortkopfzeile mit Einmal-Zahl (`SicherheitskoepfeMiddleware`), nicht Report-Only. Seit demselben Tag durch fünf Prüfungen in `landing/tests/test_csp.py` festgehalten — der Befund `SI08` „keine durchgesetzte CSP" stammt aus der Messung vom 02.09.2026 und trifft nicht mehr zu | `SI08`, `SI07`; [10-TECHNIK.md](10-TECHNIK.md) |
 | Interne Erreichbarkeit | `_pruefe_verwaist`: 0 Seiten unter 2 eingehenden Links (29.08.) — **Messung: 82 Seiten von der Startseite aus über Links nicht erreichbar** (`/en/kontakt/`, `/ro/kontakt/`, `/en/angebot/`, `/ro/angebot/`, `/en/impressum/` … +77), also EN/RO-Varianten; der Sprachumschalter führt über `/sprache/<lang>/?next=…` (Weiterleitung, `Disallow`) statt direkt auf die Zielseite — Vermutung, zu prüfen | `TS23` kritisch |
 
 ## Inhalt und Keywords
@@ -63,6 +63,7 @@ Was Antwortmaschinen übernehmen (Konzept §10): ein Absatz, der die Frage mit Z
 | Baustein | Stand |
 |---|---|
 | Antwort-zuerst-Absatz `templates/antwort.html` auf allen Seitentypen (G1, S1), `speakable` | erledigt 29.08.2026 — **Messung sieht nur 14 von 158 Seiten mit zitierfähiger Antwort** (`GE23`, Gewicht 9, schwerste GEO-Regel): Startseite, Kontakt, Angebot „weder Definition noch Zahl"; 72 von 152 Seiten nennen Zahlen (`GE25`), 70 Definitionssätze (`GE26`), 14 mit Frage-Überschrift (`GE24`) |
+| **Zahl im Antwortabsatz** von Glossar und Fachbeiträgen (05.09.2026) | **14 Glossareinträge und 4 Fachbeiträge** nachgezogen: Sie hatten die Definition, aber keine Zahl — und eine Antwortmaschine zitiert lieber den Satz, der eine trägt. **Jede eingesetzte Zahl stammt aus dem Eintrag selbst oder aus `views.ANGEBOT_GROUPS`, keine ist neu** (690 € VPN/Firewall, 89 € Server-Betreuung, 49 € überwachte Datensicherung, 29 € Managed Services; 4 Zugänge für den zweiten Faktor, 5 Phishing-Merkmale, 24 Stunden Antwortzeit beim SLA u. a.). Bei den Beiträgen wurden ausgeschriebene Zahlen zu Ziffern. Zwei Beiträge bleiben bewusst ohne Zahl — `/aktuelles/fernwartung-was-sieht-der-dienstleister/` und `/aktuelles/alte-windows-version-im-betrieb/` öffnen mit einer klaren Festlegung, und jede Zahl hätte hier erfunden werden müssen | `GE23`; Commit `a746f97`, `pruefe_seite` grün |
 | `llms.txt` (31 KB) und `llms-full.txt` (193 KB), Kopfabsatz mit Preisen, Sitz, Kontakt, Einzugsgebiet; alle acht Silos aufgeführt (S8, G9) | live 200 (02.09.2026) |
 | KI-Crawler in `robots.txt` erlaubt | ja |
 | `Article` mit Autor-Entität auf 15 Fachbeiträgen; Vergleiche/Checklisten/Glossar ohne `Article` | `GE15` 15 von 47, `GE16` 15 von 47 |
@@ -90,10 +91,10 @@ Was Antwortmaschinen übernehmen (Konzept §10): ein Absatz, der die Frage mit Z
 |---|---|---|---|
 | 1 | **82 Seiten über interne Links unerreichbar** — Ursache prüfen (Sprachumschalter über `/sprache/`), direkte `hreflang`-Links im Umschalter oder Footer setzen | `TS23` | Bastian |
 | 2 | **Search Console:** 158er-Sitemap neu einreichen, die 71 neuen URLs vom 29.08. anstoßen (~10/Tag) | Ausbau 3 §12, SEO-PLAN T8 | Bastian, nur im Browser |
-| 3 | Antwort-zuerst-Absätze so schreiben, dass sie Definition **oder** Zahl enthalten — vor allem `/`, `/kontakt/`, `/angebot/`, Hubs, EN/RO | `GE23`, `GE25`, `GE26`, `GE24` | Bastian |
+| 3 | Antwort-zuerst-Absätze so schreiben, dass sie Definition **oder** Zahl enthalten — **Glossar (14) und Fachbeiträge (4) sind am 05.09.2026 nachgezogen**; offen bleiben `/`, `/kontakt/`, `/angebot/`, die Hubs und die EN/RO-Fassungen | `GE23`, `GE25`, `GE26`, `GE24` | Bastian |
 | 4 | `lastmod` und `dateModified` aus dem echten Änderungsdatum statt `date.today()`; Sitemap in Klassen/Segmente teilen | `TS16`, `GE18`, `VL07`, `PJ13` | Bastian |
 | 5 | Schema-Graph vervollständigen: `geo`, `WebSite.potentialAction`, offene `@id` in `/wissen/`, Breadcrumb auf `/en/` und `/ro/`, `Service` auf den Hubs, `Article` + `author` auf Vergleichen/Checklisten | `GE22`, `GE14`, `VL10`, `GE12`, `GE13`, `GE15`, `GE16` | Bastian |
-| 6 | `sameAs` füllen (`content.json` → `profile`), sobald Unternehmensprofil, LinkedIn oder WKO-Eintrag existieren | `GE11`, S7, G6 | wartet auf Kunde |
+| 6 | `sameAs` füllen (`content.json` → `profile`), sobald Unternehmensprofil, LinkedIn oder WKO-Eintrag existieren. **Am 05.09.2026 erneut geprüft und als am Rechner nicht lösbar bestätigt:** Der Schema-Knoten ist vorbereitet (S7) und rendert, sobald `profile` gefüllt ist — was fehlt, sind die Profile selbst. Eine erfundene oder auf gut Glück geratene Adresse in `sameAs` wäre schlechter als ein leeres Feld | `GE11`, S7, G6 | wartet auf Kunde |
 | 7 | Titel mit Ort/Nutzen, Beschreibungen mit Verb, doppelte Titel, Ort im Startseiten-Einstieg | `IS06`, `IS11`, `IS03`, `GE35` | Bastian |
 | 8 | Feed unter `/feed/` mit `link rel=alternate` | `GE32`, `BT06` | Bastian |
 | 9 | Bilder in der Sitemap auszeichnen | `TS19` | Bastian |

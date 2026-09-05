@@ -4,7 +4,7 @@ titel: Technik
 stand: 2026-09-05
 status: teilweise
 fortschritt: 85
-zusammenfassung: Django 5.0.6 auf Railway; seit 05.09.2026 mit 122 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, start.sh und durchgesetzter Content-Security-Policy — vorher gab es davon nichts.
+zusammenfassung: Django 5.0.6 auf Railway; seit 05.09.2026 mit 130 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, start.sh und durchgesetzter Content-Security-Policy — vorher gab es davon nichts. CSP und Cookie-Flags sind seither durch eigene Tests gegen stilles Verschwinden gesichert.
 offen: 4
 quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
 ---
@@ -29,7 +29,7 @@ quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehr
 | Schriften | Inter und Space Grotesk selbst gehostet (`static/fonts/*.woff2`, `static/css/fonts.css`), kein Google-Fonts-Request | `docs/recht-und-cookies.md` |
 | 3D-Roboter | Spline, lädt erst nach Cookie-Einwilligung (`wvm_consent=all`) | `docs/recht-und-cookies.md` |
 | Bild-Upload | Cloudinary, nur nutzerinitiiert im Gratis-Website-Bogen | `docs/recht-und-cookies.md` |
-| Sicherheit (Code) | CSRF auf allen POST-Formularen, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, HSTS 31536000 s, `SECURE_SSL_REDIRECT`, Cookies Secure; Rate-Limit je Formular, Honeypot (`name="hp"`), Feldlängen, Betreff-Säuberung, Upload-Signatur; `.well-known/security.txt` (200 am 02.09.2026) | `config/settings.py`, `docs/AUSBAU-2026-08.md` P2 |
+| Sicherheit (Code) | CSRF auf allen POST-Formularen, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, HSTS 31536000 s, `SECURE_SSL_REDIRECT`, durchgesetzte CSP mit Einmal-Zahl; **beide Server-Cookies** (`csrftoken`, `wvm_lang`) mit `Secure`, `HttpOnly` und `SameSite=Lax` (seit 05.09.2026, `SI16`); Rate-Limit je Formular, Honigtopf (`name="website"`), Feldlängen, Betreff-Säuberung, Upload-Signatur; `.well-known/security.txt` (200 am 02.09.2026) | `config/settings.py`, `landing/middleware.py`, `docs/AUSBAU-2026-08.md` P2 |
 | Umfang Code | 118 Dateien, 24.653 Zeilen (46 Python, 38 Templates, 6 JS, 2 CSS, 6 Konfig, 20 Doku) — Messung vom 02.09.2026 (Regelstand 2026-09-02a) | Werkzeug |
 
 ## Hosting und Deploy
@@ -109,7 +109,7 @@ verhindern nicht die Anfrage, sondern das volle Postfach.
 
 Fünf eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis dahin gab es in 13.877 Zeilen Python keine einzige Testfunktion (`PJ02`: 0 in 0 Dateien) — jede Änderung war ein Blindflug.
 
-**122 Testfunktionen in sieben Dateien** unter `landing/tests/`, Laufzeit rund zehn Sekunden:
+**130 Testfunktionen in neun Dateien** unter `landing/tests/`, Laufzeit rund 16 Sekunden:
 
 | Datei | Was sie prüft |
 |---|---|
@@ -120,11 +120,21 @@ Fünf eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis 
 | `test_kopf.py` | genau ein `h1`, Titel, canonical, genau ein `@graph`, hreflang |
 | `test_formulare.py` | CSRF erzwungen, Honigtopf schluckt, Feldlängen, Betreff-Säuberung, Spam-Bremse |
 | `test_schema.py` | JSON-LD parst, alle `@id`-Verweise lösen auf, `inLanguage` gesetzt |
+| `test_csp.py` (seit 05.09.2026) | der CSP-Kopf ist da und **nicht** Report-Only; `default-src`, `object-src`, `base-uri`, `form-action`, `frame-ancestors` stehen darin; `script-src` ohne `'unsafe-inline'`; **jeder ausführbare inline-`<script>`-Block auf allen Adressen trägt die Einmal-Zahl des jeweiligen Kopfes**; Sitemap und `robots.txt` bekommen keinen Kopf |
+| `test_cookies.py` (seit 05.09.2026) | `csrftoken` und `wvm_lang` tragen `HttpOnly`, `Secure` und `SameSite=Lax`; kein Skript unter `static/js/` liest `wvm_lang` |
+
+Die letzten beiden prüfen keine neue Funktion, sondern **halten einen Zustand fest**, der
+sonst lautlos verschwindet: Ein vergessenes `nonce="{{ request.csp_nonce }}"` führt dazu,
+dass der Browser den Block nicht ausführt — das sieht man sofort, aber nur, wenn man
+hinsieht. Und ein `httponly=False` in einem `set_cookie()`-Aufruf fällt gar niemandem auf.
+Datenblöcke (`type="application/json"`, `application/ld+json`) sind vom Nonce-Test
+ausgenommen: Der Browser führt sie nicht aus, die CSP greift dort nicht — genau diese
+Unterscheidung hat der erste Lauf gefunden.
 
 Sie sind **strukturell** geschrieben — die URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus dem Symbolsatz. Während des Ausbaus kamen zwei Leistungsseiten dazu, ohne dass ein Test angepasst werden musste; und der Icon-Test hat den Wechsel auf den Symbolsatz sofort gemeldet, statt ihn durchgehen zu lassen.
 
 ```bash
-python -X utf8 manage.py test landing.tests   # 122 Tests, rund zehn Sekunden
+python -X utf8 manage.py test landing.tests   # 130 Tests, rund 16 Sekunden
 ```
 
 ```bash
@@ -183,7 +193,7 @@ Live-Domain.
 | **GZip nur ohne Geheimnisse** | Bekommt die Seite je eine Anmeldung, muss die BREACH-Abwägung neu getroffen werden |
 | **Keine Datenbank lokal** | Django nutzt das ORM nicht; `WVM_DB_URL` leer = Warteschlange still, Seite läuft trotzdem |
 | **Push ohne `gh`-Credential-Helper** scheitert | `could not read Username` — siehe Befehl oben |
-| **Verschluckte Ausnahmen** | 9 kritische und weitere `P02`-Funde in `indexnow.py:48`, `pruefe_seite.py:72`, `seo_bericht.py:55`, `views.py:85/1166` u. a. — ein Fehler dort bleibt unsichtbar |
+| **Verschluckte Ausnahmen** | Am 05.09.2026 geschlossen (`PJ05`), aber das Muster kehrt leicht zurück: Ein `except: pass` um `stdout._out.reconfigure()` fing in `indexnow.py`, `pruefe_seite.py` und `seo_bericht.py` den **Normalfall** ab — ein Strom ohne `reconfigure` (Umleitung, Testlauf). Der Normalfall ist jetzt eine Bedingung (`callable(...)`), was danach noch fliegt, geht nach stderr. Am teuersten war `KanonischerHostMiddleware._ziel_bestimmen`: `except Exception: ziel = ""` schaltete die 301 auf die Hauptdomain lautlos ab, sobald `content.json` nicht lesbar war — also genau den Zweitbestand-Schutz, wegen dem es die Schicht gibt. Der Rückfall bleibt (die Seite muss laufen), aber er meldet sich |
 
 ## Offen
 
@@ -195,10 +205,30 @@ Live-Domain.
 | 4 | Seitencache für die Ansichten ohne Formular | `PF10`, `BT04` | nicht begonnen; der größte verbliebene Hebel bei der Antwortzeit |
 
 **Am 05.09.2026 erledigt** (Einzelheiten in `../docs/AUSBAU-2026-09.md`):
-Testsuite mit 122 Funktionen · CI-Lauf bei jedem Push · alle neun kritischen
+Testsuite mit 130 Funktionen · CI-Lauf bei jedem Push · die kritischen
 Datei-Befunde (verschluckte Ausnahmen eng gefasst oder geloggt, die vier
 Vorgangsseiten auf einen gemeinsamen Kopf-Baustein) · Content-Security-Policy
 durchgesetzt mit Nonce statt `'unsafe-inline'`, Permissions-Policy, HSTS mit
 `includeSubDomains`, `csrftoken` mit `HttpOnly` und `SameSite` ·
 `requirements.lock` und `start.sh` · die Ansicht ohne Route war keine Ansicht und
 heißt jetzt mit Unterstrich.
+
+**Am selben Tag noch nachgezogen** (die Messung vom 04.09.2026 abgearbeitet):
+
+- **`PJ05`** — die **fünf verbliebenen** verschluckten Ausnahmen sichtbar gemacht:
+  die drei `reconfigure`-Blöcke in `indexnow.py`, `pruefe_seite.py` und
+  `seo_bericht.py`, der lautlos verschwindende kaputte JSON-LD-Block in
+  `seo_bericht.py` (die Schema-Tabelle zeigte die Seite dann wie eine ohne
+  Auszeichnung — „hat keine" und „hat eine kaputte" waren nicht zu unterscheiden)
+  und `KanonischerHostMiddleware._ziel_bestimmen`, siehe „Fallen".
+- **`SI16`** — auch `wvm_lang` steht jetzt auf `HttpOnly`. Es stand ausdrücklich
+  auf `httponly=False` mit der Begründung, der Sprachumschalter lese es nicht —
+  dann kann es aber auch gesperrt werden. Gelesen wird es ausschliesslich
+  serverseitig (`LocalePrefsMiddleware`, `views.set_language`); beide
+  `set_cookie`-Stellen holen den Wert aus `LANGUAGE_COOKIE_HTTPONLY`, damit die
+  Einstellung **eine** Stelle hat und nicht drei. `wvm_consent` bleibt bewusst
+  aussen vor: Das setzt und liest der Cookie-Banner im Browser, es kommt nie als
+  Set-Cookie vom Server und darf deshalb gerade nicht `HttpOnly` sein.
+- **`SI08`** — die CSP war seit dem 05.09. durchgesetzt; ein zweiter Kopf wäre kein
+  Fortschritt gewesen. Stattdessen fünf Prüfungen in `test_csp.py`, die den Zustand
+  festhalten (siehe „Prüfbefehle und Tests").
