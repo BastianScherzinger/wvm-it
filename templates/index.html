@@ -58,7 +58,14 @@ Die Varianten stehen in content.json (T3).
         {% if c.inhaber_name %}
         <figure class="hero-person">
           {% if c.founder_image %}
-          <img class="hero-person-bild" src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}"
+          {% comment %}Das teuerste Bild der Seite, obwohl es das kleinste ist: Es
+          steht im Hero, traegt `fetchpriority="high"` und lag damit bis zum
+          06.09.2026 mit 46 KB im kritischen Ladepfad -- fuer eine Flaeche von
+          64 x 64 px. `florin_320.jpg` sind 16 KB und reichen selbst bei
+          dreifacher Bildschirmdichte.{% endcomment %}
+          <img class="hero-person-bild" src="{% static 'img/florin_320.jpg' %}"
+               srcset="{% static 'img/florin_320.jpg' %} 320w, {{ c.founder_image }} 640w"
+               sizes="64px" alt="{{ c.inhaber_name }}"
                width="64" height="64" fetchpriority="high" decoding="async">
           {% endif %}
           <figcaption class="hero-person-text">
@@ -775,7 +782,10 @@ Die Varianten stehen in content.json (T3).
             <div class="robot-canvas" id="robotCanvas" aria-hidden="true">
               <div class="robot-loader" id="robotLoader"><span class="spinner"></span><span class="robot-loadtxt">{{ t.hero.robot_loading|safe }}</span></div>
             </div>
-            {% if c.robot_image %}<img src="{{ c.robot_image }}" alt="{{ t.hero.robot_alt|safe }}" class="robot robot-fallback" width="820" height="1098" loading="lazy">{% endif %}
+            {% if c.robot_image %}<img src="{{ c.robot_image }}"
+            srcset="{% static 'img/robot_410.webp' %} 410w, {{ c.robot_image }} 820w"
+            sizes="(max-width:760px) 60vw, 410px"
+            alt="{{ t.hero.robot_alt|safe }}" class="robot robot-fallback" width="820" height="1098" loading="lazy">{% endif %}
             <div class="robot-bubble" id="robotBubble" aria-live="polite"></div>
             <div class="robot-hint" id="robotHint" aria-hidden="true">{{ t.hero.robot_click|safe }}</div>
           </div>
@@ -854,7 +864,10 @@ Die Varianten stehen in content.json (T3).
       <div class="coop-grid" data-reveal>
         {% for k in kooperationen %}
         <a class="coop-card spot" data-spot href="{{ k.url }}" target="_blank" rel="noopener" aria-label="{{ k.name }} ({{ k.rolle }})">
-          <div class="coop-logo"><img src="{% static k.logo %}" alt="{{ k.name }} Logo" loading="lazy" width="1100" height="618"></div>
+          <div class="coop-logo"><img src="{% static k.logo %}"
+               {% if k.logo_480 %}srcset="{% static k.logo_480 %} 480w, {% static k.logo %} 1100w"
+               sizes="(max-width:760px) 90vw, 340px"{% endif %}
+               alt="{{ k.name }} Logo" loading="lazy" width="1100" height="618"></div>
           <div class="coop-meta">
             <div class="coop-meta-top">
               <strong class="coop-name">{{ k.name }}</strong>

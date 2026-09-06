@@ -38,6 +38,8 @@ Die Falldaten stehen in views.REFERENZEN, die Texte im Sprachpaket unter `case`.
         und bekommt stattdessen die hohe Ladepriorität.
         {% endcomment %}
         <img src="{% static r.bild %}"
+             {% if r.bild_640 and r.bild_960 %}srcset="{% static r.bild_640 %} 640w, {% static r.bild_960 %} 960w, {% static r.bild %} 1280w"
+             sizes="(max-width:760px) 100vw, 720px"{% endif %}
              {% if forloop.first %}fetchpriority="high" decoding="async"{% else %}loading="lazy" decoding="async"{% endif %}
              alt="{{ r.t.alt|safe }}" width="1280" height="529">
       </div>

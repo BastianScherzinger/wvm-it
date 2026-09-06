@@ -9,6 +9,7 @@ Aufruf:
 `zurueck` schickt den Besucher ohne JavaScript auf genau die Seite zurück, von der
 er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
 {% endcomment %}
+{% load static %}
 <div class="ak" id="anfrage">
   <form class="lb-form ak-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage
         {% if anfrage_ok == bid %}data-done="1"{% endif %}>
@@ -29,7 +30,14 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     {% endcomment %}
     {% if c.inhaber_name %}
     <div class="ak-person">
-      {% if c.founder_image %}<img class="ak-person-bild" src="{{ c.founder_image }}" alt="" aria-hidden="true" width="44" height="44" loading="lazy">{% endif %}
+      {% comment %}Das Bild wird 44 px breit angezeigt. Bis zum 06.09.2026 lud
+      es dafuer das 640-px-Original mit 46 KB -- auf 67 Seiten, also einmal je
+      Unterseite mit Anfrageformular. `florin_320.jpg` (16 KB) ist die kleinste
+      vorhandene Fassung und selbst auf einem Bildschirm mit dreifacher Dichte
+      noch mehr als ausreichend.{% endcomment %}
+      {% if c.founder_image %}<img class="ak-person-bild" src="{% static 'img/florin_320.jpg' %}"
+           srcset="{% static 'img/florin_320.jpg' %} 320w, {{ c.founder_image }} 640w"
+           sizes="44px" alt="" aria-hidden="true" width="44" height="44" loading="lazy">{% endif %}
       <span class="ak-person-text">{{ t.seite.person_vor|safe }} <strong>{{ c.inhaber_name }}</strong>{% if c.inhaber_rolle %}, {{ c.inhaber_rolle }}{% endif %}</span>
     </div>
     {% endif %}

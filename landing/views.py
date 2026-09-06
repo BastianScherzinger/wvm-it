@@ -1928,7 +1928,7 @@ def index(request):
         "it_stufen": _it_stufen(),
         "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
-        "kooperationen": KOOPERATIONEN,
+        "kooperationen": _mit_bildvarianten(KOOPERATIONEN, "logo", (480,)),
         "structured_data": _startseiten_schema(c, lang),
     })
 
@@ -3001,6 +3001,29 @@ REFERENZEN = [
 REFERENZEN_NACH_SLUG = {r["slug"]: r for r in REFERENZEN}
 
 
+def _mit_bildvarianten(eintraege, feld, breiten):
+    """Ergaenzt je Eintrag `<feld>_<breite>`, wenn die kleinere Fassung existiert.
+
+    **Warum abgeleitet und nicht gepflegt.** Die Fassungen heissen nach einer
+    festen Regel (`ref_buehne.webp` -> `ref_buehne_640.webp`). Sie zusaetzlich in
+    einer Liste zu fuehren hiesse, dieselbe Information zweimal zu haben -- und
+    beim naechsten Bild eine davon zu vergessen. Fehlt eine Fassung, bleibt das
+    Feld leer und die Vorlage laesst das `srcset` weg; das Bild wird dann wie
+    vorher ausgeliefert, nur eben ohne kleinere Wahl.
+    """
+    aus = []
+    for eintrag in eintraege:
+        pfad = eintrag.get(feld, "")
+        stamm, punkt, endung = pfad.rpartition(".")
+        zusatz = {}
+        for breite in breiten:
+            kandidat = f"{stamm}_{breite}.{endung}" if punkt else ""
+            if kandidat and (Path(settings.BASE_DIR) / "static" / kandidat).exists():
+                zusatz[f"{feld}_{breite}"] = kandidat
+        aus.append(dict(eintrag, **zusatz))
+    return aus
+
+
 def _referenzen_daten(lang):
     """Die Referenzen mit ihren eigenen Texten — je Eintrag ein eigener Block.
 
@@ -3012,7 +3035,7 @@ def _referenzen_daten(lang):
     faelle = pack.get("referenz_faelle", {})
     rueckfall = pack.get("case", {})
     out = []
-    for r in REFERENZEN:
+    for r in _mit_bildvarianten(REFERENZEN, "bild", (640, 960)):
         out.append(dict(r, t=faelle.get(r.get("texte", ""), rueckfall)))
     return out
 

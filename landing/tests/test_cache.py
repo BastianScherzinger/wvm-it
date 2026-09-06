@@ -148,3 +148,52 @@ class SprachfassungTest(SimpleTestCase):
         html = klient.get("/en/").content.decode("utf-8")
         self.assertIn("All of your IT", html)
         self.assertNotIn("Tot IT-ul", html)
+
+
+class MessungFaelltAufTest(SimpleTestCase):
+    """Ein Ausfall der Messung darf die Antwort nicht kosten — aber er darf auch
+    nicht spurlos verschwinden.
+
+    Bis zum 06.09.2026 stand in `MessungMiddleware` ein `except Exception: pass`.
+    Der erste Teil war richtig: Eine Zählung darf keine Seite kaputtmachen. Der
+    zweite war der Fehler, und zwar genau der, um den es auf dieser Website
+    ständig geht — eine Messung, die still nichts zählt, sieht aus wie eine
+    Woche ohne Besucher.
+    """
+
+    def test_ein_ausfall_laesst_die_seite_heil(self):
+        from unittest import mock
+        with mock.patch("landing.messung.zaehle", side_effect=RuntimeError("kaputt")):
+            antwort = _util.client().get("/kontakt/")
+        self.assertEqual(antwort.status_code, 200,
+                         "eine kaputte Messung darf die Antwort nicht verhindern")
+
+    def test_ein_ausfall_wird_gemeldet(self):
+        from unittest import mock
+        with mock.patch("landing.messung.zaehle", side_effect=RuntimeError("kaputt")):
+            with self.assertLogs("landing.middleware", level="WARNING") as protokoll:
+                _util.client().get("/kontakt/")
+        self.assertTrue(any("Messung ausgefallen" in z for z in protokoll.output),
+                        f"kein Hinweis im Log: {protokoll.output}")
+
+    def test_er_wird_nur_einmal_gemeldet(self):
+        """Sonst füllt der Fehler das Log, in dem man ihn finden müsste.
+
+        Die Middleware wird hier **einzeln** aufgerufen, mit einer erfundenen
+        Antwort statt mit dem Testclient: Sonst liefe jeder Aufruf zusätzlich
+        durch die echte Kette und zählte deren Meldungen mit.
+        """
+        from unittest import mock
+        from django.http import HttpResponse
+        from landing.middleware import MessungMiddleware
+
+        mw = MessungMiddleware(lambda r: HttpResponse("<html></html>",
+                                                      content_type="text/html"))
+        anfrage = mock.Mock(META={"HTTP_USER_AGENT": "Mozilla/5.0"}, path="/")
+        with mock.patch("landing.messung.zaehle", side_effect=RuntimeError("kaputt")):
+            with self.assertLogs("landing.middleware", level="WARNING") as protokoll:
+                for _ in range(5):
+                    antwort = mw(anfrage)
+        self.assertEqual(antwort.status_code, 200, "die Antwort muss durchkommen")
+        self.assertEqual(len(protokoll.output), 1,
+                         f"{len(protokoll.output)} Meldungen statt einer")

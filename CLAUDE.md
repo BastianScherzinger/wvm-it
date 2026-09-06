@@ -78,23 +78,27 @@ Aufstellung steht in `docs/SEO-AUSBAU-3.md`.
 
 1. **`python manage.py seo_bericht`** — der Stand in dreißig Sekunden: URLs,
    Wortzahlen, Auffälligkeiten, Schema-Verteilung. Vor jeder Planung.
-2. **`docs/UMBAU-2026-09-06.md`** — der jüngste Durchgang (06.09.2026). §1 nennt den
+2. **`docs/BEFUNDE-281-2026-09-06.md`** — der jüngste Durchgang: zehn Punkte aus
+   dem Werkzeug-Lauf #281. §0 sagt, warum jeder Befund zuerst nachgemessen wurde
+   (vier waren erledigt, drei sind Messfehler der Regel), §10 den Merksatz:
+   **ein Befund sagt, wo die Regel angeschlagen hat — nicht, wo der Fehler ist.**
+3. **`docs/UMBAU-2026-09-06.md`** — der jüngste Durchgang (06.09.2026). §1 nennt den
    roten Faden: **sechs Fehler, die zusammen „null Anfragen" erklären, haben zusammen
    keine einzige Fehlermeldung erzeugt.** §7 sagt, was offen bleibt und warum.
-3. **`docs/STRATEGIE-2026-09.md`** — Markt, Rechtsrahmen, Kanäle, und die vier Dinge,
+4. **`docs/STRATEGIE-2026-09.md`** — Markt, Rechtsrahmen, Kanäle, und die vier Dinge,
    die nur Florin tun kann. Wichtigster Satz für jede Akquise-Idee: **Kaltakquise ist
    in Österreich verboten, auch B2B, auch die einzelne Mail** (§ 174 TKG 2021,
    verfolgt von Amts wegen).
-4. **`docs/HERO-KONZEPT-2026-09-06.md`** — warum im Hero steht, was dort steht.
+5. **`docs/HERO-KONZEPT-2026-09-06.md`** — warum im Hero steht, was dort steht.
    Wer die Überschrift anfasst, liest vorher §1: Die Vorgängerin war gut formuliert
    und hat trotzdem **ausgeschlossen**.
-5. **`docs/AUSBAU-2026-09.md`** — der Durchgang davor. §3 nennt die zwei Funde,
+6. **`docs/AUSBAU-2026-09.md`** — der Durchgang davor. §3 nennt die zwei Funde,
    die in keinem Plan standen.
-3. `docs/SEO-AUSBAU-3.md` — **abgeschlossen** (56/56). §11 nennt drei Funde, die
+7. `docs/SEO-AUSBAU-3.md` — **abgeschlossen** (56/56). §11 nennt drei Funde, die
    nicht im Plan standen; §12 sagt, was jetzt ansteht.
-4. `docs/seo/GEO-MONITORING.md` — die zehn Fragen, das Protokollformat, der Termin
-5. `docs/seo/PERFORMANCE.md` — was gemessen und geändert wurde, was offen ist
-6. `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Messgrößen
+8. `docs/seo/GEO-MONITORING.md` — die zehn Fragen, das Protokollformat, der Termin
+9. `docs/seo/PERFORMANCE.md` — was gemessen und geändert wurde, was offen ist
+10. `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Messgrößen
 
 **Im Code ist aus den Plänen nichts mehr offen.** Was noch fehlt, hängt an
 Zuarbeit und lässt sich hier nicht lösen:
@@ -105,7 +109,11 @@ Zuarbeit und lässt sich hier nicht lösen:
 
 ### Alle Dokumente
 
-- `docs/AUSBAU-2026-09.md` — **der jüngste Durchgang (05.09.2026).** §2 was gebaut
+- `docs/BEFUNDE-281-2026-09-06.md` — **zehn Punkte aus Werkzeug-Lauf #281
+  (06.09.2026).** §1 der grösste Fund (397 HTML-Entities in den Sprachpaketen,
+  208 davon rumänische Diakritika), §3 der Kontrastfehler, den man nur im
+  Hellmodus sieht, §8 die zwei Befunde, die **zu Recht** offen bleiben
+- `docs/AUSBAU-2026-09.md` — der Durchgang vom 05.09.2026. §2 was gebaut
   wurde, §3 die zwei Funde außerhalb jedes Plans, §5 wie geprüft wurde, §6 was offen
   bleibt, §7 die Zahlen davor und danach
 - `docs/SEO-AUSBAU-3.md` — **abgeschlossen 29.08.2026**, 56/56. §11: drei Funde
@@ -154,7 +162,7 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 176 Testfunktionen
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 197 Testfunktionen
 in `landing/tests/`, rund zehn Sekunden. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
@@ -174,6 +182,9 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 | Fehlermeldungen | Kein `alert()`. Fehler inline, wie es `doku/20-DESIGN.md` verlangt |
 | Referenzen | Neue Einträge brauchen ein Feld `texte` und einen eigenen Block unter `referenz_faelle` im Sprachpaket — sonst zeigen zwei Referenzen denselben Fallbericht |
 | Zwischenspeicher | **HTML wird nicht gecacht.** Django maskiert das CSRF-Token je Anfrage neu; ein zwischengespeichertes Token laesst die Anfrage des naechsten Besuchers grundlos scheitern. Cache-Koepfe nur ueber `_maschinenantwort()` und nur auf Endpunkten ohne Formular. Begruendung und Messung in `docs/CACHE-2026-09-06.md`, gesichert durch `landing/tests/test_cache.py` |
+| Entities | In den Sprachpaketen stehen **echte Zeichen**, keine HTML-Entities. `&amp;` und `&#259;` sehen im HTML richtig aus (die Vorlagen nutzen `|safe`), landen aber wörtlich im JSON-LD — dort kennt niemand HTML. Geprüft von `test_entities.py`, das die **Quelle** liest |
+| Farben | Jede Textfarbe hält 4,5:1 gegen jeden Grund, **in beiden Fassungen**. `--ink-dim` lag hell bei 3,40:1 und dunkel bei 6,04:1 — wer nur dunkel arbeitet, sieht es nie. `test_kontrast.py` rechnet es nach |
+| Bildgrößen | Ein `<img>` über 32 px braucht ein `srcset`. Ein 640-px-Bild in einer 44-px-Fläche sieht richtig aus und kostet trotzdem 46 KB. Varianten werden über `_mit_bildvarianten()` **abgeleitet**, nicht gepflegt |
 | Messung | `landing/messung.py` zählt **ohne IP, ohne Cookie, ohne Kennung**. Wer das ändert, macht daraus eine Verarbeitung personenbezogener Daten und braucht Einwilligung, Banner-Eintrag und einen Absatz in der Datenschutzerklärung |
 | Preise | `landing/views.py::ANGEBOT_GROUPS` ist die **einzige** Preisquelle — auch für Schema, Preistabelle, `llms.txt` und jeden Fließtext. Felder: `once`, `mtl`, `yr`, `std` (Stundensatz), `anfrage` |
 | Leistungen | `landing/leistungen.py` ist die einzige Strukturquelle: Slug, Bereich, Icon, Anfrage-Quelle, Preis-ID, Vor-Ort-Kennzeichen, Querverweise, Sitemap-Priorität. Texte in `landing/i18n/seiten_{de,en,ro}.py` |
@@ -212,7 +223,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 176 Testfunktionen in sieben Dateien
+- `landing/tests/` — 197 Testfunktionen in sieben Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·

@@ -82,6 +82,11 @@
       <div class="ang-top-copy" data-reveal>
         <span class="eyebrow"><span class="dot"></span>{{ t.angebot_page.eyebrow|safe }}</span>
         <h1>{{ t.angebot_page.h1|safe }}</h1>
+        {% comment %}Antwort zuerst: Bis zum 06.09.2026 war /angebot/ die einzige
+        grosse Seite ohne diesen Absatz -- ausgerechnet die, auf der jemand mit
+        einer Preisfrage landet. Immer ueber antwort.html, nie von Hand
+        (siehe CLAUDE.md, "Antwortabsatz").{% endcomment %}
+        {% include 'antwort.html' with text=t.angebot_page.antwort stil='lead' %}
         <p class="lead">{{ t.angebot_page.lead|safe }}</p>
         <ul class="ang-promise">
           <li>{% include 'icons.html' with name='bolt' %}{{ t.angebot_page.promise1|safe }}</li>

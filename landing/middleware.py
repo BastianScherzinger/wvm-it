@@ -11,6 +11,7 @@ einmalig auf /en/ oder /ro/ umgeleitet. Deutsch bleibt ohne Präfix.
 Wichtig: Suchmaschinen-Bots werden NIE umgeleitet, damit '/' die deutsche Canonical bleibt.
 Präfix-URLs werden nie angefasst (keine Redirect-Schleifen).
 """
+import logging
 import re
 import secrets
 
@@ -19,6 +20,8 @@ from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
 from . import i18n, messung
 from .i18n import LANGS
+
+_log = logging.getLogger(__name__)
 
 _BOT = re.compile(
     r"bot|crawl|spider|slurp|bing|yandex|baidu|duckduck|facebookexternalhit|embedly|"
@@ -324,6 +327,11 @@ class MessungMiddleware:
 
     def __init__(self, get_response):
         self.get_response = get_response
+        # Gemeldet wird nur der **erste** Fehlschlag. Ohne diese Sperre schriebe
+        # eine dauerhaft kaputte Messung bei jedem Aufruf eine Zeile ins Log und
+        # machte es damit unbrauchbar -- der Fehler ginge im Rauschen unter, das
+        # er selbst erzeugt.
+        self._gemeldet = False
 
     def __call__(self, request):
         response = self.get_response(request)
@@ -332,9 +340,17 @@ class MessungMiddleware:
             if response.status_code == 200 and typ in ("text/html", "application/xhtml+xml"):
                 art = "automat" if _ist_automat(request) else "seite"
                 messung.zaehle(art, request.path[:120])
-        except Exception:
-            # Eine Messung darf niemals eine Antwort verhindern.
-            pass
+        except Exception as fehler:            # noqa: BLE001
+            # Eine Messung darf niemals eine Antwort verhindern -- deshalb wird
+            # hier jeder Grund gefangen. Bis zum 06.09.2026 stand hier `pass`,
+            # und das war der Fehler: Eine Messung, die still nichts zaehlt,
+            # sieht genauso aus wie eine Woche ohne Besucher. Genau diese Sorte
+            # stiller Fehler hat auf dieser Seite schon einmal Monate gekostet.
+            if not self._gemeldet:
+                self._gemeldet = True
+                _log.warning("Messung ausgefallen (%s: %s) -- Antworten bleiben "
+                             "unberuehrt, aber es wird nicht mehr gezaehlt.",
+                             type(fehler).__name__, fehler)
         return response
 
 
