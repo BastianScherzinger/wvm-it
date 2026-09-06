@@ -7,6 +7,42 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 06.09.2026 (nachts) — Zwischenspeicherung: gemessen statt geglaubt
+
+Der Seitencache stand seit dem 05.09. als groesster offener Performance-Hebel in der
+Doku: "Median 632 ms, Startseite 3.123 ms im Crawl". **Vor dem Bauen nachgemessen —
+und die Zahl stimmt so nicht mehr.**
+
+    Django-Renderzeit (ohne Netz, aufgewaermt):   8 bis 34 ms
+    TTFB live:                                    172 bis 234 ms
+    Anteil der Anwendung:                         rund 13 Prozent
+
+Ein perfekter Seitencache haette die Startseite von 230 auf 200 ms gebracht. Dafuer
+haette jede Formularseite ein fremdes CSRF-Token ausliefern koennen — Django
+maskiert es bei **jeder** Anfrage neu (drei Abrufe, drei verschiedene Tokens). Aus
+demselben Grund traegt dort auch kein ETag: Das HTML ist jedes Mal anders.
+
+**Gebaut wurde deshalb das, was an derselben Stelle wirkt:**
+ConditionalGetMiddleware plus Cache-Koepfe auf den sieben Endpunkten ohne Formular
+(Sitemap, robots.txt, llms.txt, llms-full.txt, Feed, security.txt). Ein Crawler
+zieht dort kuenftig **310 KB weniger je Durchgang** — allein llms-full.txt sind
+206 KB, die jetzt eine 304 werden. Kein Gewinn fuer den Besucher, einer fuers
+Crawlbudget.
+
+**Die eigentliche Ausbeute sind die elf Tests** in landing/tests/test_cache.py: Das
+CSRF-Token muss in vier Antworten viermal verschieden sein, keine Formularseite darf
+einen public-Kopf oder eine 304 tragen, die maschinellen Endpunkte duerfen kein
+Token enthalten, und Sprachfassungen duerfen sich nicht vermischen. Sie fangen genau
+die zwei stillen Fehler ab, wegen derer der Cache zurueckgestellt worden war.
+
+Einer davon ist beim ersten Lauf zu Recht fehlgeschlagen — mit einem gemeinsamen
+Client greift die gemerkte Sprachwahl, und `/` leitet nach `/en/` absichtlich um.
+Gewolltes Verhalten, falsche Testerwartung.
+
+**176 Tests** (vorher 167). Einzelheiten in [`CACHE-2026-09-06.md`](CACHE-2026-09-06.md).
+
+---
+
 ## 06.09.2026 (spaet) — Politur: Symbole, Folgefragen, Umfang
 
 **Zuerst nachgemessen, dann geplant — und das hat den Plan umgeworfen.** Vier der

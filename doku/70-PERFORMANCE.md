@@ -1,10 +1,10 @@
 ---
 bereich: performance
 titel: Performance
-stand: 2026-09-05
+stand: 2026-09-06
 status: teilweise
 fortschritt: 88
-zusammenfassung: Icons als Symbolsatz statt 179 eingebetteter SVGs, srcset für die grossen Bilder, Kommentare aus der Auslieferung: Startseite 211 → 183 KB. Offen bleiben Antwortzeit, CLS auf Desktop-Unterseiten und Critical CSS.
+zusammenfassung: Am 06.09. nachgemessen statt fortgeschrieben: Django rendert in 8 bis 34 ms, der TTFB live liegt bei 172 bis 234 ms — die Anwendung ist rund 13 Prozent davon. Der Seitencache aus der Aufgabenliste haette also 30 von 230 ms gespart und dafuer auf jeder Formularseite ein fremdes CSRF-Token riskiert; er bleibt bewusst ungebaut. Gebaut: ConditionalGetMiddleware und Cache-Koepfe auf den sieben Endpunkten ohne Formular — 310 KB weniger je Crawl-Durchgang.
 offen: 4
 pagespeed_mobil: 98
 pagespeed_desktop: 97

@@ -61,6 +61,22 @@ MIDDLEWARE = [
     # diese Angriffsklasse. GZipMiddleware steht direkt hinter SecurityMiddleware
     # und damit vor allem, was Inhalt erzeugt.
     "django.middleware.gzip.GZipMiddleware",
+    # ETag und bedingte Anfragen (06.09.2026). Setzt auf jede Antwort einen ETag
+    # und beantwortet eine unveraenderte Seite mit 304 statt mit dem Rumpf.
+    #
+    # Wo das wirkt und wo nicht — nachgemessen, bevor es eingebaut wurde:
+    # * Sitemap, robots.txt, llms.txt, llms-full.txt und der Feed aendern sich
+    #   zwischen zwei Abrufen nicht. Ein Crawler bekommt dort kuenftig 304 statt
+    #   bis zu 206 KB. Das ist der eigentliche Gewinn: Crawlbudget.
+    # * Auf Seiten mit Formular bringt es nichts, weil Django das CSRF-Token bei
+    #   **jeder** Anfrage neu maskiert — das HTML ist damit jedes Mal anders und
+    #   der ETag auch. Genau deshalb ist ein HTML-Seitencache dort auch keine
+    #   Option: Er wuerde ein fremdes Token ausliefern, und das Formular des
+    #   naechsten Besuchers wuerde grundlos abgelehnt.
+    #
+    # Steht hinter GZipMiddleware, wie es die Reihenfolge-Empfehlung von Django
+    # vorsieht; GZip haengt dem ETag sein eigenes Kennzeichen an.
+    "django.middleware.http.ConditionalGetMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     # Zweitbestand vermeiden: Plattform-Subdomains 301 auf die Hauptdomain
     # (siehe docs/SEO-PLAN.md, F2). Leerer Wert = aus, z. B. lokal.

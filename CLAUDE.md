@@ -154,7 +154,7 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 167 Testfunktionen
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 176 Testfunktionen
 in `landing/tests/`, rund zehn Sekunden. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
@@ -173,6 +173,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 | Einwilligungen | Nie an eine Leistung koppeln. Getrennt, nicht vorausgewählt, mit Zeitstempel und IP protokolliert (§ 174 TKG 2021, Art. 7 DSGVO) |
 | Fehlermeldungen | Kein `alert()`. Fehler inline, wie es `doku/20-DESIGN.md` verlangt |
 | Referenzen | Neue Einträge brauchen ein Feld `texte` und einen eigenen Block unter `referenz_faelle` im Sprachpaket — sonst zeigen zwei Referenzen denselben Fallbericht |
+| Zwischenspeicher | **HTML wird nicht gecacht.** Django maskiert das CSRF-Token je Anfrage neu; ein zwischengespeichertes Token laesst die Anfrage des naechsten Besuchers grundlos scheitern. Cache-Koepfe nur ueber `_maschinenantwort()` und nur auf Endpunkten ohne Formular. Begruendung und Messung in `docs/CACHE-2026-09-06.md`, gesichert durch `landing/tests/test_cache.py` |
 | Messung | `landing/messung.py` zählt **ohne IP, ohne Cookie, ohne Kennung**. Wer das ändert, macht daraus eine Verarbeitung personenbezogener Daten und braucht Einwilligung, Banner-Eintrag und einen Absatz in der Datenschutzerklärung |
 | Preise | `landing/views.py::ANGEBOT_GROUPS` ist die **einzige** Preisquelle — auch für Schema, Preistabelle, `llms.txt` und jeden Fließtext. Felder: `once`, `mtl`, `yr`, `std` (Stundensatz), `anfrage` |
 | Leistungen | `landing/leistungen.py` ist die einzige Strukturquelle: Slug, Bereich, Icon, Anfrage-Quelle, Preis-ID, Vor-Ort-Kennzeichen, Querverweise, Sitemap-Priorität. Texte in `landing/i18n/seiten_{de,en,ro}.py` |
@@ -211,7 +212,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 167 Testfunktionen in sieben Dateien
+- `landing/tests/` — 176 Testfunktionen in sieben Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·

@@ -12,6 +12,7 @@ import json
 import os
 import re
 from datetime import date, datetime, timezone
+from functools import wraps
 from pathlib import Path
 
 from django.conf import settings
@@ -3282,6 +3283,31 @@ _AI_CRAWLERS = [
 ]
 
 
+def _maschinenantwort(minuten):
+    """Setzt Cache-Koepfe auf Antworten ohne Formular und ohne CSRF-Token.
+
+    Nur fuer maschinell abgerufene Endpunkte (Sitemap, robots.txt, llms.txt,
+    Feed, security.txt). Diese Antworten sind fuer jeden Abrufer gleich —
+    im Gegensatz zu jeder HTML-Seite, die ein Formular traegt: Dort maskiert
+    Django das CSRF-Token je Anfrage neu, und ein zwischengespeichertes Token
+    wuerde beim naechsten Besucher zu einer grundlos abgelehnten Anfrage fuehren.
+    Deshalb steht dieser Dekorator ausdruecklich nicht an den Seitenansichten.
+
+    Zusammen mit ConditionalGetMiddleware antwortet ein wiederkehrender Crawler
+    auf unveraenderte Inhalte mit 304 statt mit bis zu 206 KB.
+    """
+    def aussen(ansicht):
+        @wraps(ansicht)
+        def innen(request, *args, **kwargs):
+            antwort = ansicht(request, *args, **kwargs)
+            if antwort.status_code == 200:
+                antwort["Cache-Control"] = f"public, max-age={minuten * 60}"
+            return antwort
+        return innen
+    return aussen
+
+
+@_maschinenantwort(360)
 def robots_txt(request):
     """robots.txt: alles indexierbar außer den technischen/geschützten Endpunkten;
     heißt KI-Crawler ausdrücklich willkommen (GEO) und verweist auf Sitemap + llms.txt
@@ -3430,6 +3456,7 @@ def _llms_beitraege(base):
     return zeilen
 
 
+@_maschinenantwort(180)
 def llms_txt(request):
     """/llms.txt , kompakte Klartext-Fassung für KI-Antwortmaschinen (GEO).
 
@@ -3511,6 +3538,7 @@ def llms_txt(request):
     return HttpResponse("\n".join(zeilen), content_type="text/markdown; charset=utf-8")
 
 
+@_maschinenantwort(180)
 def llms_full_txt(request):
     """/llms-full.txt , die Langfassung: jede Leistungsseite als Klartext.
 
@@ -3674,6 +3702,7 @@ def llms_full_txt(request):
     return HttpResponse("\n".join(aus), content_type="text/markdown; charset=utf-8")
 
 
+@_maschinenantwort(1440)
 def security_txt(request):
     """/.well-known/security.txt , wohin eine Sicherheitsmeldung gehen soll.
     Kostet nichts und ist bei einem IT-Dienstleister schlicht erwartbar."""
@@ -3786,6 +3815,7 @@ def _sitemap_basis(request):
     return (_content().get("wvm_url") or request.build_absolute_uri("/")).rstrip("/")
 
 
+@_maschinenantwort(120)
 def sitemap_xml(request):
     """/sitemap.xml — Index auf die vier Segmente."""
     base = _sitemap_basis(request)
@@ -3806,6 +3836,7 @@ def sitemap_xml(request):
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 
+@_maschinenantwort(120)
 def sitemap_segment(request, klasse):
     """/sitemap-<klasse>.xml — ein Segment mit hreflang-Alternates je Eintrag."""
     if klasse not in dict(SITEMAP_KLASSEN):
@@ -3820,6 +3851,7 @@ def sitemap_segment(request, klasse):
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 
+@_maschinenantwort(120)
 def feed_xml(request):
     """/feed/ — Atom-Feed der Ratgeberinhalte (Messung GE32, BT06).
 

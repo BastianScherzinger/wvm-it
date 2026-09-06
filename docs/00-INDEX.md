@@ -20,6 +20,7 @@ nicht mehr als Anleitung lesen darf.
 | **Wie kommt WVM-IT zu echten Kunden?** | [`STRATEGIE-2026-09.md`](STRATEGIE-2026-09.md) |
 | **Warum steht im Hero, was dort steht?** | [`HERO-KONZEPT-2026-09-06.md`](HERO-KONZEPT-2026-09-06.md) |
 | Symbole, Folgefragen, Umfang | [`POLITUR-2026-09-06.md`](POLITUR-2026-09-06.md) |
+| **Warum wird HTML hier nicht zwischengespeichert?** | [`CACHE-2026-09-06.md`](CACHE-2026-09-06.md) |
 | Was hat der Durchgang davor gebaut? | [`AUSBAU-2026-09.md`](AUSBAU-2026-09.md) |
 | Wo läuft die Seite, wie kommt sie dorthin? | [`DEPLOY.md`](DEPLOY.md) |
 | Welche Begriffe soll welche Seite gewinnen? | [`seo/KEYWORD-MAP.md`](seo/KEYWORD-MAP.md) |

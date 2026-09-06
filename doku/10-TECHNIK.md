@@ -4,7 +4,7 @@ titel: Technik
 stand: 2026-09-06
 status: teilweise
 fortschritt: 85
-zusammenfassung: Django 5.0.6 auf Railway, seit 06.09.2026 mit 149 Testfunktionen, serverseitiger Reichweitenmessung ohne Cookies und ohne IP (landing/messung.py + MessungMiddleware), gesicherten Anfragen vor dem Mailversand und Reply-To auf den Interessenten. Lokale Pruefumgebung: py -3.13, nicht das systemweite 3.14.
+zusammenfassung: Django 5.0.6 auf Railway, seit 06.09.2026 mit 176 Testfunktionen, serverseitiger Reichweitenmessung ohne Cookie und ohne IP, gesicherten Anfragen vor dem Mailversand, ConditionalGetMiddleware und Cache-Koepfen auf den maschinellen Endpunkten. HTML wird bewusst nicht zwischengespeichert: Das CSRF-Token wird je Anfrage neu maskiert. Lokale Pruefumgebung: py -3.13.
 offen: 4
 quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
 ---
