@@ -349,7 +349,7 @@ PACK = {
         "fine": "No commitment. Your data is treated confidentially.",
     },
     "footer": {
-        "tagline": "Technology and digital from a single source. Smart home, conference and event technology, IT, security, websites and AI.",
+        "tagline": "IT support for businesses without their own IT department. Plus security, networks, websites, AI — and technology on site.",
         "col_leistungen": "Services",
         "l_smarthome": "Smart Home &amp; KNX", "l_konferenz": "Conference &amp; AV tech",
         "l_edv": "IT &amp; security", "l_web": "Websites &amp; AI",
@@ -652,6 +652,10 @@ PACK = {
                 ],
             },
         ],
+        "erreichbar_h": "If I am unavailable",
+        "erreichbar_t": "Honestly: we are a small operation, and that is exactly why there is no hold queue and no ticket system here. It also means we do not promise round-the-clock standby. We are reachable on working days from 9 to 18, and during those hours ongoing faults at support customers come first &mdash; before everything else. Outside those hours, leave a message on voicemail or via WhatsApp; we listen to them.",
+        "erreichbar_vertretung": "For longer absences (holiday, illness) there is a fixed cover arrangement with a partner business that knows the accounts and the documentation. Support customers receive the name and number in writing when the contract starts.",
+        "erreichbar_fuss": "If you need guaranteed round-the-clock standby, we will tell you so plainly &mdash; and recommend someone who can provide it.",
         "danach_h": "What comes afterwards",
         "danach_t": "Once the business is running again, the second part begins: establish the cause, close the gap, document the incident. Exactly this part is skipped most often — with the result that the same incident recurs months later. An IT security check with a written report costs €490 and ends with a list sorted by urgency. If you want ongoing support afterwards: from €29 per workstation and month, monitored backups from €49 per month.",
         "kunde_h": "No contract needed",
@@ -1155,6 +1159,9 @@ PACK = {
         "js_fail_sub": "No problem — we'll take care of it personally and get in touch with you.",
     },
     # ── Rebuild 2026-08: contact ways, hero tool, promises, process, service blocks ──
+    # Per-reference case texts (2026-09-06); empty means every entry falls back
+    # to `case`. Key = `texte` from views.REFERENZEN.
+    "referenz_faelle": {},
     "case": {
         "eyebrow": "Case study",
         "h": "Rümpelwerk Mitteldeutschland",
@@ -1253,6 +1260,7 @@ PACK = {
         "sub": "Every service with a clear starting price. Ask directly in the matching field &ndash; one sentence is enough, we reply within 24 hours.",
         "text_ph": "What is it about?",
         "kontakt_ph": "Email or phone number",
+        "werbung": "Also: send me occasional notes on IT security and deadlines (e.g. NIS2). Optional, unsubscribe any time.",
         "kontakt_bsp": "name@company.com or +43 …",
         "submit": "Send enquiry",
         "mehr": "See everything about this",

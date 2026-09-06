@@ -1063,6 +1063,10 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .rb-card-head h3{font-family:"Space Grotesk",sans-serif;font-size:1.15rem}
 .rb-count{font-size:12px;font-weight:600;color:var(--accent2);white-space:nowrap;
   padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.ak-werbung{display:flex;gap:9px;align-items:flex-start;margin:2px 0 14px;
+  font-size:13px;line-height:1.5;color:var(--ink-soft);cursor:pointer}
+.ak-werbung input{margin-top:3px;flex:0 0 auto;width:17px;height:17px;accent-color:var(--accent)}
+
 /* Anfrage-Karte: Gesicht des Ansprechpartners und Rueckruf-Knopf (06.09.2026) */
 .ak-person{display:flex;align-items:center;gap:11px;margin:0 0 16px;padding:10px 12px;
   border-radius:var(--radius-in);background:var(--tint)}

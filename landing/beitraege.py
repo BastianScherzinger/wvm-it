@@ -105,6 +105,16 @@ BEITRAEGE = [
 
     {"slug": "homeoffice-sicher-anbinden", "datum": "2026-08-29",
      "thema": "netzwerk-wlan", "lesezeit": 6, "prio": "0.7"},
+
+    # ── Dritte Staffel (06.09.2026) ──────────────────────────────────────────
+    # Anlass ist eine echte Frist, kein Redaktionsplan: Das NISG 2026 tritt am
+    # 1.10.2026 in Kraft. Betroffen sind rund 4.000 mittlere und grosse
+    # Einrichtungen — die haben eigene IT-Abteilungen. Der Beitrag richtet sich
+    # an die Ebene darunter: an ihre Zulieferer, die Paragraph 32 vertraglich
+    # mitverpflichtet und die niemanden haben, der die Fragebogen ausfuellt.
+    # Hoechste Prioritaet im Silo, weil die Suchabsicht dahinter eine Frist ist.
+    {"slug": "nis2-lieferkette-zulieferer", "datum": "2026-09-06",
+     "thema": "it-sicherheit", "lesezeit": 7, "prio": "0.9"},
 ]
 
 NACH_SLUG = {b["slug"]: b for b in BEITRAEGE}

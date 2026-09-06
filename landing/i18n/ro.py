@@ -345,7 +345,7 @@ PACK = {
         "fine": "Fără angajament. Datele tale sunt tratate confidențial.",
     },
     "footer": {
-        "tagline": "Tehnică și digital dintr-o singură sursă. Casă inteligentă, tehnică pentru conferințe și evenimente, IT, securitate, site-uri web și AI.",
+        "tagline": "Administrare IT pentru firme fără departament propriu. Plus securitate, rețea, site-uri web, AI — și tehnică la fața locului.",
         "col_leistungen": "Servicii",
         "l_smarthome": "Casă inteligentă &amp; KNX", "l_konferenz": "Conferință &amp; tehnică AV",
         "l_edv": "IT &amp; securitate", "l_web": "Site-uri web &amp; AI",
@@ -648,6 +648,10 @@ PACK = {
                 ],
             },
         ],
+        "erreichbar_h": "C&acirc;nd nu sunt disponibil",
+        "erreichbar_t": "Sincer: suntem o firm&#259; mic&#259;, &#537;i tocmai de aceea nu ave&#539;i aici nici list&#259; de a&#537;teptare, nici sistem de tichete. &Icirc;nseamn&#259; &icirc;ns&#259; &#537;i c&#259; nu promitem disponibilitate non-stop. Suntem disponibili &icirc;n zilele lucr&#259;toare, de la 9 la 18, iar &icirc;n acest interval defec&#539;iunile clien&#539;ilor cu contract au prioritate &mdash; &icirc;naintea tuturor. &Icirc;n afara programului l&#259;sa&#539;i un mesaj pe robot sau prin WhatsApp; le ascult&#259;m.",
+        "erreichbar_vertretung": "Pentru absen&#539;e mai lungi (concediu, boal&#259;) exist&#259; o &icirc;n&#539;elegere fix&#259; de &icirc;nlocuire cu o firm&#259; partener&#259; care cunoa&#537;te accesele &#537;i documenta&#539;ia. Clien&#539;ii cu contract primesc numele &#537;i num&#259;rul &icirc;n scris la &icirc;nceputul contractului.",
+        "erreichbar_fuss": "Dac&#259; ave&#539;i nevoie de disponibilitate garantat&#259; non-stop, v&#259; spunem deschis &mdash; &#537;i v&#259; recomand&#259;m pe cineva care o poate oferi.",
         "danach_h": "Ce urmează după",
         "danach_t": "Când firma funcționează din nou, începe partea a doua: stabilirea cauzei, închiderea breșei, documentarea incidentului. Tocmai această parte este sărită cel mai des — iar rezultatul este că același incident revine peste câteva luni. O verificare de securitate IT cu raport scris costă 490 € și se încheie cu o listă ordonată după urgență. Dacă doriți apoi asistență curentă: de la 29 € per stație și lună, backup supravegheat de la 49 € pe lună.",
         "kunde_h": "Și fără contract",
@@ -1151,6 +1155,9 @@ PACK = {
         "js_fail_sub": "Nicio problemă — ne ocupăm personal și revenim la tine.",
     },
     # ── Reconstrucție 2026-08: căi de contact, unealtă hero, promisiuni, pași, servicii ──
+    # Texte de caz per referin&#539;&#259; (06.09.2026); gol &icirc;nseamn&#259; c&#259; toate
+    # intr&#259;rile folosesc mai departe `case`. Cheia = `texte` din views.REFERENZEN.
+    "referenz_faelle": {},
     "case": {
         "eyebrow": "Referință",
         "h": "Rümpelwerk Mitteldeutschland",
@@ -1249,6 +1256,7 @@ PACK = {
         "sub": "Fiecare serviciu cu un preț de pornire clar. Întrebați direct în câmpul potrivit &ndash; o propoziție ajunge, răspundem în 24 de ore.",
         "text_ph": "Despre ce este vorba?",
         "kontakt_ph": "E-mail sau număr de telefon",
+        "werbung": "În plus: trimiteți-mi ocazional informații despre securitate IT și termene (de ex. NIS2). Opțional, dezabonare oricând.",
         "kontakt_bsp": "nume@firma.ro sau +43 …",
         "submit": "Trimiteți cererea",
         "mehr": "Vedeți totul despre acest serviciu",

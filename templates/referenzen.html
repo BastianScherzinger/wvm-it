@@ -39,18 +39,18 @@ Die Falldaten stehen in views.REFERENZEN, die Texte im Sprachpaket unter `case`.
         {% endcomment %}
         <img src="{% static r.bild %}"
              {% if forloop.first %}fetchpriority="high" decoding="async"{% else %}loading="lazy" decoding="async"{% endif %}
-             alt="{{ t.case.alt|safe }}" width="1280" height="529">
+             alt="{{ r.t.alt|safe }}" width="1280" height="529">
       </div>
       <div class="rf-copy">
-        <span class="eyebrow"><span class="dot"></span>{{ t.case.rolle|safe }}</span>
-        <h2 class="sp-h2">{{ t.case.h|safe }}</h2>
-        <p class="rf-text">{{ t.case.text|safe }}</p>
+        <span class="eyebrow"><span class="dot"></span>{{ r.t.rolle|safe }}</span>
+        <h2 class="sp-h2">{{ r.t.h|safe }}</h2>
+        <p class="rf-text">{{ r.t.text|safe }}</p>
         <ul class="sp-liste sp-liste-check">
-          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p1|safe }}</span></li>
-          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p2|safe }}</span></li>
-          <li>{% include 'icons.html' with name='check' %}<span>{{ t.case.p3|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ r.t.p1|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ r.t.p2|safe }}</span></li>
+          <li>{% include 'icons.html' with name='check' %}<span>{{ r.t.p3|safe }}</span></li>
         </ul>
-        <p class="rf-partner">{{ t.case.partner|safe }}</p>
+        <p class="rf-partner">{{ r.t.partner|safe }}</p>
         <a class="btn btn-ghost" href="{{ r.url }}" target="_blank" rel="noopener">{{ rs.ansehen|safe }}</a>
       </div>
     </article>

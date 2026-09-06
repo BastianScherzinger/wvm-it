@@ -133,7 +133,11 @@ ob die Bedingung zur Laufzeit zutrifft — die Seite stünde dann immer auf noin
       <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
       <a href="{% url 'notfall' %}">{{ t.notfall.h1|safe }}</a></p>
 
-    {% include 'anfrage_karte.html' with bid='it' titel=st.cta_h sub=st.cta_t ph=st.offen_h %}
+    {% comment %} Der Selbsttest ist die einzige Stelle der Seite, an der jemand aus
+      eigenem Antrieb etwas über seine IT-Lage preisgibt — und damit die einzige, an
+      der eine Werbeeinwilligung inhaltlich passt. Deshalb steht das Häkchen hier und
+      nicht auf den anderen 130 Anfrage-Karten. (06.09.2026) {% endcomment %}
+    {% include 'anfrage_karte.html' with bid='it' titel=st.cta_h sub=st.cta_t ph=st.offen_h werbung=1 %}
   </div>
 </section>
 {% endblock %}

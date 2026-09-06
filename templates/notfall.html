@@ -80,6 +80,20 @@ und die Schritte im Schema kommen aus derselben Liste.
     </section>
     {% endfor %}
 
+    {% comment %} ── Erreichbarkeit und Vertretung (06.09.2026) ──────────────────
+      Die Seite zeigt einen sichtbaren Ein-Personen-Betrieb: Foto, Name, „Sie
+      sprechen mit Florin Feier". Das ist kein Nachteil, sondern das staerkste
+      Unterscheidungsmerkmal gegenueber Systemhaeusern — kein Ticket-Karussell,
+      keine wechselnden Zustaendigkeiten. Zum Problem wurde es nur, weil nirgends
+      stand, was bei Krankheit, Urlaub oder am Samstagfrueh passiert. Genau dieser
+      Zweifel verhindert die Anfrage bei jemandem, der seine Serverzugaenge
+      herausgeben soll. Beantwortet wird er hier, nicht beschoenigt.
+    {% endcomment %}
+    <h2 class="sp-h2">{{ nf.erreichbar_h|safe }}</h2>
+    <p class="sp-preis-text">{{ nf.erreichbar_t|safe }}</p>
+    <p class="sp-preis-text">{{ nf.erreichbar_vertretung|safe }}</p>
+    <p class="sp-fuss">{{ nf.erreichbar_fuss|safe }}</p>
+
     <h2 class="sp-h2">{{ nf.danach_h|safe }}</h2>
     <p class="sp-preis-text">{{ nf.danach_t|safe }}</p>
     <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·

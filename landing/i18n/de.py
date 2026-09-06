@@ -356,7 +356,10 @@ PACK = {
         "fine": "Keine Verpflichtung. Ihre Daten werden vertraulich behandelt.",
     },
     "footer": {
-        "tagline": "Technik und Digitales aus einer Hand. Smarthome, Konferenz- und Veranstaltungstechnik, EDV, Sicherheit, Webseiten und KI.",
+        # Reihenfolge am 06.09.2026 gedreht: EDV zuerst, Veranstaltungstechnik zuletzt.
+        # Vorher stand das Kerngeschaeft auf jeder der 165 Seiten an dritter Stelle,
+        # hinter Buehnentechnik.
+        "tagline": "EDV und IT-Betreuung für Betriebe ohne eigene IT-Abteilung. Dazu Sicherheit, Netzwerk, Webseiten, KI — und Technik vor Ort.",
         "col_leistungen": "Leistungen",
         "l_smarthome": "Smarthome &amp; KNX", "l_konferenz": "Konferenz &amp; AV-Technik",
         "l_edv": "EDV &amp; Sicherheit", "l_web": "Webseiten &amp; KI",
@@ -649,6 +652,12 @@ PACK = {
                 ],
             },
         ],
+        # Erreichbarkeit und Vertretung (06.09.2026) — die K.-o.-Frage, die ein
+        # sichtbarer Ein-Personen-Betrieb aufwirft und die bisher unbeantwortet blieb.
+        "erreichbar_h": "Wenn ich einmal nicht kann",
+        "erreichbar_t": "Ehrlich gesagt: Wir sind ein kleiner Betrieb, und das ist der Grund, warum Sie hier keine Warteschleife und kein Ticket-System haben. Es hei&szlig;t aber auch, dass wir keine Rufbereitschaft rund um die Uhr versprechen. Erreichbar sind wir werktags von 9 bis 18 Uhr, und in dieser Zeit melden wir uns bei laufenden St&ouml;rungen von Betreuungskunden vorrangig &mdash; vor allem anderen. Au&szlig;erhalb dieser Zeiten hinterlassen Sie eine Nachricht auf der Mailbox oder per WhatsApp; wir h&ouml;ren sie ab.",
+        "erreichbar_vertretung": "F&uuml;r l&auml;ngere Abwesenheiten (Urlaub, Krankheit) gibt es eine feste Vertretungsregelung mit einem Partnerbetrieb, die Zug&auml;nge und Dokumentation kennt. Betreuungskunden bekommen den Namen und die Nummer bei Vertragsbeginn schriftlich.",
+        "erreichbar_fuss": "Wenn Sie eine zugesagte Rufbereitschaft rund um die Uhr brauchen, sagen wir Ihnen das offen &mdash; und empfehlen jemanden, der sie leisten kann.",
         "danach_h": "Was danach zu tun ist",
         "danach_t": "Wenn der Betrieb wieder läuft, beginnt der zweite Teil: Ursache feststellen, Lücke schließen, Vorfall dokumentieren. Genau dieser Teil wird am häufigsten übersprungen — mit dem Ergebnis, dass derselbe Vorfall Monate später erneut auftritt. Ein IT-Sicherheitscheck mit schriftlichem Bericht kostet 490 € und endet mit einer nach Dringlichkeit sortierten Liste. Wer danach eine laufende Betreuung möchte: ab 29 € je Arbeitsplatz und Monat, überwachte Datensicherung ab 49 € im Monat.",
         "kunde_h": "Auch ohne Vertrag",
@@ -1177,6 +1186,14 @@ PACK = {
         "js_fail_sub": "Kein Problem — wir kümmern uns persönlich darum und melden uns bei dir.",
     },
     # ── Umbau 2026-08: Kontaktwege, Hero-Werkzeug, Zusagen, Ablauf, Leistungsblöcke ──
+    # Fallberichte je Referenz (06.09.2026). Bis dahin rendete referenzen.html in
+    # der Schleife ueber views.REFERENZEN die fest verdrahteten Werte aus `case` —
+    # eine zweite Referenz haette wortwoertlich denselben Fallbericht bekommen.
+    # Das Gefaess muss stehen, **bevor** die erste echte Kundenstimme kommt, sonst
+    # wird sie nicht eingebaut. Schluessel = `texte` aus views.REFERENZEN, Inhalt
+    # wie `case` (rolle, h, text, p1, p2, p3, partner, alt). Leer heisst: alle
+    # Eintraege nutzen weiter `case`.
+    "referenz_faelle": {},
     "case": {
         "eyebrow": "Referenz",
         "h": "Rümpelwerk Mitteldeutschland",
@@ -1318,6 +1335,8 @@ PACK = {
         "sub": "Jede Leistung mit klarem Startpreis. Fragen Sie direkt im passenden Feld an &ndash; ein Satz genügt, wir melden uns innerhalb von 24 Stunden.",
         "text_ph": "Worum geht es?",
         "kontakt_ph": "E-Mail oder Telefonnummer",
+        # Freiwillige Werbeeinwilligung (06.09.2026) — siehe templates/anfrage_karte.html.
+        "werbung": "Zusätzlich: Schicken Sie mir gelegentlich Hinweise zu IT-Sicherheit und Fristen (z. B. NIS2). Freiwillig, jederzeit abbestellbar.",
         "kontakt_bsp": "name@firma.at oder +43 …",
         "submit": "Anfragen",
         "mehr": "Alles dazu ansehen",

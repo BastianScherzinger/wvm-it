@@ -2953,11 +2953,35 @@ def kosten(request):
 
 # Referenzen: ausschliesslich Projekte, die es wirklich gibt und deren Kunden der
 # Nennung zugestimmt haben. Neue Eintraege brauchen beides (RELAUNCH-PLAN.md, E5).
+#
+# **`texte` (06.09.2026):** Der Schluessel des Textblocks im Sprachpaket unter
+# `faelle.<texte>`. Bis heute rendete templates/referenzen.html in der Schleife ueber
+# diese Liste die **fest verdrahteten** Werte `t.case.*` — eine zweite Referenz haette
+# also wortwoertlich denselben Fallbericht bekommen wie die erste. Der Baustein liess
+# sich in seiner Form nicht fuellen, und das faellt erst auf, wenn die erste echte
+# Kundenstimme da ist und niemand weiss, wohin damit. Das Gefaess muss vorher stehen.
 REFERENZEN = [
     {"slug": "ruempelwerk", "bild": "img/ref_ruempelwerk.webp",
+     "texte": "ruempelwerk",
      "url": "https://www.ruempelwerk-mitteldeutschland.de/"},
 ]
 REFERENZEN_NACH_SLUG = {r["slug"]: r for r in REFERENZEN}
+
+
+def _referenzen_daten(lang):
+    """Die Referenzen mit ihren eigenen Texten — je Eintrag ein eigener Block.
+
+    Faellt auf `case` zurueck, solange ein Eintrag keinen eigenen Block hat: So
+    bleibt die bestehende Referenz unveraendert, waehrend neue ihre eigenen Texte
+    mitbringen koennen.
+    """
+    pack = i18n.get_pack(lang)
+    faelle = pack.get("referenz_faelle", {})
+    rueckfall = pack.get("case", {})
+    out = []
+    for r in REFERENZEN:
+        out.append(dict(r, t=faelle.get(r.get("texte", ""), rueckfall)))
+    return out
 
 
 def referenzen(request):
@@ -2968,7 +2992,7 @@ def referenzen(request):
     rs = pack.get("referenzen_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
     return render(request, "referenzen.html", {
-        "c": c, "rs": rs, "referenzen": REFERENZEN,
+        "c": c, "rs": rs, "referenzen": _referenzen_daten(lang),
         "structured_data": _seiten_schema(
             c, lang,
             breadcrumb=_breadcrumb(base, [(rs.get("h1", "Referenzen"), reverse("referenzen"))])),
@@ -3977,10 +4001,18 @@ def leistung_anfrage(request):
         f"Sprache: {lang}\n\n"
         f"Nachricht:\n{text or '-'}\n"
     )
+    # Freiwillige Werbeeinwilligung (§ 174 TKG 2021). Nur wo das Formular sie
+    # anbietet, nur wenn aktiv angehakt — und dann mit Zeitstempel und IP
+    # protokolliert, weil im Streitfall der Absender die Einwilligung beweisen muss.
+    werbung = (request.POST.get("werbung") or "").strip() in ("1", "on", "true", "ja", "yes")
     # Erst sichern, dann senden: Scheitert der Versand, war die Anfrage bisher weg
     # — sie lebte ausschließlich in der E-Mail.
     _anfrage_sichern(quelle=quelle, thema=thema, herkunft=herkunft, name=name,
-                     kontakt=kontakt, zeit=zeit, lang=lang, text=text)
+                     kontakt=kontakt, zeit=zeit, lang=lang, text=text,
+                     werbung="ja" if werbung else "nein",
+                     werbung_ip=_client_ip(request) if werbung else "")
+    if werbung:
+        messung.zaehle("werbeeinwilligung", quelle)
     messung.zaehle("anfrage", quelle)
     _send_mail_logged(betreff, body, from_email, [empf], tag="LEISTUNG",
                       antwort_an=kontakt if _ist_email(kontakt) else None)

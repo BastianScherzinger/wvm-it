@@ -49,6 +49,24 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
       <input class="fld" id="ak-kontakt-{{ bid }}" type="text" name="kontakt" required
              autocomplete="email" placeholder="{{ t.lb.kontakt_bsp|safe }}">
     </div>
+    {% comment %} ── Werbeeinwilligung (06.09.2026), nur wo ausdrücklich gewünscht ──
+      § 174 TKG 2021 verbietet in Österreich unaufgeforderte Werbe-E-Mails
+      ausnahmslos — auch an Unternehmen, auch die einzelne. Verfolgt wird von Amts
+      wegen, bis 50.000 €. Eine Liste, die man später überhaupt anschreiben darf,
+      entsteht deshalb nur hier: **getrennt** von der Anfrage, nicht vorausgewählt,
+      mit Zeitstempel und IP protokolliert (views.leistung_anfrage).
+
+      „Getrennt" ist keine Formalie: Eine an die Leistung gekoppelte Einwilligung
+      ist keine freie Wahl und damit unwirksam. Wer nur anfragen will, lässt das
+      Häkchen weg und bekommt trotzdem seine Antwort.
+    {% endcomment %}
+    {% if werbung %}
+    <label class="ak-werbung">
+      <input type="checkbox" name="werbung" value="1">
+      <span>{{ t.lb.werbung|safe }}</span>
+    </label>
+    {% endif %}
+
     <button class="btn lb-submit" type="submit">{{ t.lb.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <p class="lb-err" role="alert" hidden></p>
 
