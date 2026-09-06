@@ -3,10 +3,10 @@ bereich: aufgaben
 titel: Aufgaben
 stand: 2026-09-06
 status: teilweise
-fortschritt: 78
-zusammenfassung: Umbau vom 06.09.2026 abgearbeitet — drei der zuvor offenen Punkte sind erledigt (Formular-Missbrauchsschutz vollstaendig, Anfragen werden vor dem Versand gesichert, Herkunft steht im Betreff). Neu offen ist nichts am Rechner; die Liste "Beim Kunden" ist um Absenderadresse und Mail-Authentifizierung gewachsen.
-offen: 3
-quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
+fortschritt: 82
+zusammenfassung: Zehn Punkte aus Werkzeug-Lauf #281 abgearbeitet (06.09.2026) — acht gebaut und live, zwei begruendet abgelehnt. Groesster Fund: 397 HTML-Entities in den Sprachpaketen, die im HTML richtig aussahen und im JSON-LD woertlich falsch waren. Die offene Kontrastfrage aus "Offen" Nr. 3 ist beantwortet: die Eigenmessung vom 27.08. war die falsche. Neu offen ist nichts; die Liste "Beim Kunden" nennt jetzt die vier Angaben, die KV09 und GE11 zusammen schliessen.
+offen: 2
+quellen: docs/BEFUNDE-281-2026-09-06.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
 ---
 
 # Aufgaben
@@ -59,7 +59,7 @@ Konkret als Nächstes, in dieser Reihenfolge.
 |---|---|---|---|
 | 1 | **Core Web Vitals eintragen** in `../docs/seo/PERFORMANCE.md` §3 und den **CLS-Ausreißer auf Desktop** untersuchen: `/leistungen/` 0,180 · `/kosten/rechner/` 0,184 · `/kontakt/` 0,229 bei mobil nahezu null | Der einzige Core-Web-Vitals-Wert, der wirklich reißt. Die Tabelle ist seit dem 29.08. leer | T8, `PF08` |
 | 2 | **Mittlere Antwortzeit senken** (Median 632 ms, Startseite 3.123 ms im Crawl): Dienst warmhalten, Seitencache für die Ansichten ohne Formular | Betrifft Crawlbudget und echte Besucher gleichermaßen. Symbolsatz und kleinere Bilder haben die Größe gesenkt, nicht die Wartezeit auf die erste Antwort | `PF10`, `BT04` |
-| 3 | **Die 32 Kontrastelemente einzeln nachmessen** und gegen die Eigenmessung vom 27.08.2026 halten (dort lagen alle ≥ 4,5:1) | Einer der beiden Werte stimmt nicht. Solange nicht klar ist, welcher, wäre jede Änderung geraten — und der Abschnitt 3 der Barrierefreiheitserklärung sagt genau das | `BF18` |
+| ~~3~~ | ~~**Die 32 Kontrastelemente einzeln nachmessen**~~ — **beantwortet am 06.09.2026: die Eigenmessung vom 27.08. war die falsche.** `--ink-dim` stand hell auf `#8a8177` und erreichte auf `--bg-2` nur **3,40:1**. Das Token wird 57-mal verwendet, im Dunkelmodus hielt es 6,04:1 — deshalb fiel es beim Draufschauen nie auf. Neu `#746c64`, 4,58:1 auf dem dunkelsten Grund | erledigt, `BF18` |
 
 ## Fehlt
 
@@ -108,6 +108,22 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 > Gmail sendet nur als authentifizierter Nutzer oder verifizierter Alias. Das wäre
 > ein stiller Totalausfall aller Anfragen gewesen. **Teilmaßnahme am 06.09.:**
 > Reply-To zeigt jetzt auf `support@wvm-it.tech` bzw. auf den Interessenten.
+
+### Vier Angaben, die `KV09` und `GE11` zusammen schliessen (06.09.2026)
+
+Die Messung meldet fehlende Vertrauenssignale (`KV09`: Bewertungen, Erfahrung mit
+Jahreszahl, Absicherung) und `sameAs`-Verweise (`GE11`: „die Seite steht als Insel
+da"). Beides ist **am Rechner nicht lösbar** — die Projektregel verbietet erfundene
+Bewertungen, Zertifikate, Partnerlevel und Kundenzahlen, und eine geratene Zahl wäre
+für die Firma gefährlicher als der offene Befund. Der Schema-Knoten ist vorbereitet
+und rendert, sobald das Feld gefüllt ist.
+
+| Feld in `content.json` | Was gebraucht wird | Schliesst |
+|---|---|---|
+| `seit_jahr` | Seit wann WVM-IT arbeitet — die stärkste der vier, ein Jahr genügt | `KV09` |
+| `profile` | Echte Profil-Adressen: Google-Unternehmensprofil, LinkedIn, WKO Firmen A–Z, Herold.at | `KV09`, `GE11` |
+| `uid` | UID-Nummer, falls vorhanden | `KV09` |
+| — | Betriebshaftpflicht: ob und bei wem — der Punkt „Absicherung" | `KV09` |
 >
 > Zu Punkt 1 kommen die Kanäle aus `../docs/STRATEGIE-2026-09.md` §6, allen voran
 > **huddlex.at** — die B2B-Anfrageplattform der WKO Oberösterreich, für die Florin
@@ -129,6 +145,8 @@ Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf w
 
 | Datum | Was | Beleg |
 |---|---|---|
+| **06.09.2026** | **Zehn Punkte aus Werkzeug-Lauf #281.** `GE38` **397 HTML-Entities** aus den Sprachpaketen entfernt (`ro.py` allein 208 — die Diakritika standen als `&#259;`/`&#537;`/`&#539;`); im HTML sah das richtig aus, im JSON-LD stand für Google wörtlich `avocatur&#259;`. Zwei Pflaster in `views.py`, die zur Laufzeit auflösten, sind weg · `IS18` `/leistungen/` von **432 auf 1070 Wörter** in drei Sprachen: Arbeitsplatz, Hardware, Ablauf, fünf Fragen mit `FAQPage` · `BF18` Kontrast (siehe „Offen" Nr. 3) · `MW15` `manage.py pruefe_mail`, das sich **wirklich anmeldet** · `PF16` das Hero-Porträt lud 46 KB für 64 px, mit `fetchpriority=high` · `PJ05` das `except: pass` in `MessungMiddleware` meldet jetzt · `GE35` Firmenname im Einstieg · `GE23` Antwortabsatz auf `/angebot/` · `IS06` drei Titel. **197 Testfunktionen** (vorher 176) | `../docs/BEFUNDE-281-2026-09-06.md`; Commits `14017ce`, `cb2bda8` |
+| **06.09.2026** | **Zwei Befunde geprüft und begründet abgelehnt.** `IS11` („88 Beschreibungen ohne Handlungsaufforderung"): `Cereți o ofertă.` **ist** die Aufforderung — die Regel kennt das rumänische Verb nicht; der Rest sind Rechtstexte, die zu Recht keine tragen. `KV09` (Vertrauenssignale): `seit_jahr`, `profile` und `uid` sind leer, und erfundene Bewertungen sind nach der Projektregel verboten — die vier nötigen Angaben stehen jetzt namentlich unter „Beim Kunden" | `../docs/BEFUNDE-281-2026-09-06.md` §8 |
 | **05.09.2026** | **Search Console nachgezogen.** Der Sitemap-**Index** und alle vier Segmente einzeln eingereicht und binnen Minuten gelesen — `/sitemap.xml` **165**, `silos` 57, `leistungen` 39, `ratgeber` 35, `kern` 34, alle „Erfolgreich". Die Summe der Segmente entspricht exakt der Zahl aus `seo_bericht`: Sitemap, Prüfbefehl und Google zählen gleich. **Fünf neue Seiten zur Indexierung beantragt** (Veranstaltungstechnik, IT-Beratung, Über uns, AGB, Barrierefreiheit); `/anfrage/danke/` bewusst nicht, sie trägt `noindex`. Bei `/leistungen/it-beratung/` wies die URL-Prüfung schon `sitemap-leistungen.xml` als Fundstelle aus — die Segmentierung wirkt sofort in der Zuordnung, nicht erst in der Auswertung | `../docs/INDEXIERUNG.md` |
 | **05.09.2026** | **Die Messung vom 04.09. nachgearbeitet — vier Punkte gebaut:** `PJ05` die **fünf verbliebenen verschluckten Ausnahmen** sichtbar gemacht (drei `reconfigure`-Blöcke fingen den Normalfall ab; ein kaputter JSON-LD-Block verschwand lautlos aus dem `seo_bericht`; `KanonischerHostMiddleware` schaltete die 301 auf die Hauptdomain ab, sobald `content.json` nicht lesbar war) · `GE23` **14 Glossareinträge und 4 Fachbeiträge** mit einer belegten Zahl im Antwortabsatz, jede Zahl aus dem Eintrag selbst oder aus `ANGEBOT_GROUPS`, keine neu · `SI16` auch `wvm_lang` auf `HttpOnly`, damit **beide** Server-Cookies gesperrt sind, und ein Test hält fest, dass kein Skript es liest · `SI08` die seit dem 05.09. **durchgesetzte** CSP durch fünf Prüfungen gegen stilles Verschwinden gesichert, statt einen zweiten Kopf zu setzen. Damit **130 Testfunktionen in neun Dateien** | Commits `fe88da4`, `a746f97`, `efe8d54`, `eb4354c`; [10-TECHNIK.md](10-TECHNIK.md), [40-SEO.md](40-SEO.md) |
 | **05.09.2026** | **Ausbau September:** zwei neue Leistungsseiten (Veranstaltungstechnik, IT-Beratung) und vier fehlende Pflichtseiten (Über uns, AGB, Barrierefreiheitserklärung, Danke-Seite) — 158 → **165 URLs**. Titel und Beschreibungen **aller** Silos überarbeitet (27/158 → alle mit Ort, Zahl oder Nutzen; 3/158 → alle mit Handlungsaufforderung). Datenschutzhinweis und Honigtopf in allen zehn Anfrageformularen. **122 Testfunktionen** (vorher null) und ein CI-Lauf bei jedem Push. Durchgesetzte Content-Security-Policy mit Nonce, Permissions-Policy, HSTS mit `includeSubDomains`, `csrftoken` mit `HttpOnly`. Neun verschluckte Ausnahmen behandelt. Echte Änderungsdaten aus `landing/stand.py`, Sitemap in vier Segmenten, `WebPage`-Knoten auf jeder Seite, `Article` mit Autor auf 35 statt 15 Ratgeberseiten, alle `@id`-Verweise lösen auf. Atom-Feed unter `/feed/`. Startseite 211 → **183 KB** | `../docs/AUSBAU-2026-09.md` |
