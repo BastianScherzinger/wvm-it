@@ -109,7 +109,24 @@ class ContextProcessorTest(SimpleTestCase):
     geprüft über eine echte Anfrage, nicht durch Aufruf der Funktion isoliert."""
 
     def _switch_urls(self, response):
-        return {e["code"]: e["url"] for e in response.context["lang_switch"]}
+        """Die Umschalter-Adressen **ohne** den Wahl-Parameter.
+
+        Seit dem 06.09.2026 haengt an jedem Link ein `?lang=<code>`: Deutsch hat
+        keinen eigenen Pfad, deshalb liess sich eine bewusste Wahl "Deutsch" sonst
+        nirgends merken — der DE-Knopf war fuer jeden mit en/ro-Cookie wirkungslos.
+        Wohin ein Link zeigt und was er ueber die Absicht sagt, sind zwei Fragen;
+        diese Helferin beantwortet die erste, `_switch_wunsch` die zweite.
+        """
+        return {e["code"]: e["url"].split("?")[0] for e in response.context["lang_switch"]}
+
+    def _switch_wunsch(self, response):
+        """Der Wert des Wahl-Parameters je Sprache."""
+        from urllib.parse import parse_qs, urlparse
+        out = {}
+        for e in response.context["lang_switch"]:
+            frage = parse_qs(urlparse(e["url"]).query)
+            out[e["code"]] = (frage.get(i18n.WUNSCH_PARAM) or [""])[0]
+        return out
 
     def _alt_pfade(self, response):
         return {e["code"]: e["path"] for e in response.context["alt_paths"]}
@@ -127,6 +144,16 @@ class ContextProcessorTest(SimpleTestCase):
         self.assertEqual(switch["ro"], "/ro/")
         for url in switch.values():
             self.assertFalse(url.startswith("/sprache/"))
+
+    def test_jeder_umschalter_link_meldet_die_gewaehlte_sprache(self):
+        """Der Fall, der bis zum 06.09.2026 nicht ging: Wer auf /ro/ war, trug das
+        Cookie `ro`; ein Klick auf DE fuehrte auf `/` und wurde von dort sofort
+        wieder nach /ro/ geworfen. Deutsch hat keinen eigenen Pfad, also braucht
+        die Wahl einen anderen Traeger."""
+        from . import _util
+        antwort = _util.client().get("/")
+        self.assertEqual(self._switch_wunsch(antwort),
+                         {"de": "de", "en": "en", "ro": "ro"})
 
     def test_lang_switch_zeigt_auf_die_gleiche_seite(self):
         """Bei einer dreisprachigen Unterseite bleibt der Umschalter auf der Seite."""
@@ -192,3 +219,66 @@ class StructuredDataSprachTest(SimpleTestCase):
                 daten = json.loads(_structured_data(c, lang))
                 self.assertIn("@graph", daten)
                 self.assertGreater(len(daten["@graph"]), 0)
+
+
+class SprachwechselTest(SimpleTestCase):
+    """Die zwei Fehler vom 06.09.2026, an denen ein Besucher festhing.
+
+    Beide waren Bestandsfehler, beide meldeten sich nicht: Die Seite antwortete
+    freundlich, sie tat nur nicht, was der Besucher wollte.
+    """
+
+    def test_de_praefix_landet_nicht_im_404(self):
+        """Es gibt /en/ und /ro/ — wer die Symmetrie erwartet, tippt /de/.
+
+        Das antwortete mit 404, und zwar auf der Startseite der eigenen Sprache.
+        """
+        from . import _util
+        for pfad, ziel in (("/de/", "/"),
+                           ("/de/kontakt/", "/kontakt/"),
+                           ("/de/leistungen/", "/leistungen/")):
+            with self.subTest(pfad=pfad):
+                antwort = _util.client().get(pfad)
+                self.assertEqual(antwort.status_code, 301,
+                                 f"{pfad} muss dauerhaft auf {ziel} umleiten")
+                self.assertTrue(antwort["Location"].endswith(ziel), antwort["Location"])
+
+    def test_deutsch_waehlen_setzt_sich_gegen_ein_fremdes_cookie_durch(self):
+        """Der Feststeck-Fall: Cookie `ro`, Klick auf DE, Umleitung zurück nach /ro/.
+
+        Deutsch ist die präfixlose Sprache und hatte damit keinen Ort, an dem sich
+        die Wahl merken ließe. Der Knopf war wirkungslos.
+        """
+        from django.conf import settings
+        from . import _util
+        klient = _util.client()
+        klient.cookies[settings.LANGUAGE_COOKIE_NAME] = "ro"
+
+        # Ohne den Wahl-Parameter greift weiterhin die gemerkte Sprache …
+        ohne = klient.get("/")
+        self.assertEqual(ohne.status_code, 302)
+        self.assertTrue(ohne["Location"].endswith("/ro/"))
+
+        # … mit ihm gewinnt die ausdrückliche Wahl, und sie wird gemerkt.
+        mit = klient.get("/", {i18n.WUNSCH_PARAM: "de"})
+        self.assertEqual(mit.status_code, 302)
+        self.assertTrue(mit["Location"].endswith("/"), mit["Location"])
+        self.assertNotIn(i18n.WUNSCH_PARAM, mit["Location"],
+                         "Der Parameter darf nicht in der Zieladresse landen")
+        self.assertEqual(mit.cookies[settings.LANGUAGE_COOKIE_NAME].value, "de")
+
+    def test_wahl_wirkt_in_alle_richtungen(self):
+        from django.conf import settings
+        from . import _util
+        for wunsch, ziel in (("en", "/en/"), ("ro", "/ro/"), ("de", "/")):
+            with self.subTest(wunsch=wunsch):
+                klient = _util.client()
+                antwort = klient.get("/", {i18n.WUNSCH_PARAM: wunsch})
+                self.assertEqual(antwort.status_code, 302)
+                self.assertTrue(antwort["Location"].endswith(ziel), antwort["Location"])
+                self.assertEqual(antwort.cookies[settings.LANGUAGE_COOKIE_NAME].value, wunsch)
+
+    def test_unbekannte_sprache_im_parameter_wird_ignoriert(self):
+        from . import _util
+        antwort = _util.client().get("/", {i18n.WUNSCH_PARAM: "kl"})
+        self.assertEqual(antwort.status_code, 200)

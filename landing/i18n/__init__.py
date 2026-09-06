@@ -70,6 +70,23 @@ def add_prefix(lang, base_path):
     return "/" + lang + (base_path if base_path.startswith("/") else "/" + base_path)
 
 
+# Name des Parameters, mit dem der Umschalter eine **bewusste** Sprachwahl meldet.
+# Er steht hier und nicht in der Middleware, weil beide Seiten denselben Namen
+# brauchen — Vorlage und Auswertung.
+WUNSCH_PARAM = "lang"
+
+
+def _mit_wunsch(url, lang):
+    """Hängt ``?lang=<code>`` an eine Umschalter-Adresse.
+
+    Nur für die Standardsprache nötig (siehe die ausführliche Begründung beim
+    Aufruf in ``kontext``), aber für alle drei gesetzt: Eine Regel, die für einen
+    Sonderfall gilt, ist der Sonderfall, den später jemand übersieht.
+    """
+    trenner = "&" if "?" in url else "?"
+    return f"{url}{trenner}{WUNSCH_PARAM}={lang}"
+
+
 # ── Gibt es diesen Pfad in dieser Sprache? ───────────────────────────────────
 # Drei Silos liegen bewusst ausserhalb von i18n_patterns und existieren nur auf
 # Deutsch: Fachbeitraege, Glossar, Checklisten (Begruendung im Kopf von
@@ -127,7 +144,18 @@ def context_processor(request):
             # Crawler noch fuer jemanden, der Links kopiert. Die Sprachwahl wird
             # jetzt beim Ankommen auf der praefigierten Adresse gemerkt
             # (landing.middleware.LocalePrefsMiddleware).
-            "url": target + (suffix if vorhanden else ""),
+            #
+            # **`?lang=` an der Standardsprache (06.09.2026).** Deutsch hat keinen
+            # eigenen Pfad — es ist die praefixlose Adresse. Damit gab es keinen Ort,
+            # an dem sich eine bewusste Wahl "Deutsch" haette merken lassen: Wer
+            # einmal auf `/ro/` war, trug das Cookie `ro`, klickte im Umschalter auf
+            # DE, landete auf `/` — und wurde von dort sofort wieder nach `/ro/`
+            # geworfen. **Der DE-Knopf war fuer jeden mit en/ro-Cookie wirkungslos,
+            # der Besucher sass in seiner Sprache fest.** Der Parameter macht die
+            # Absicht sichtbar; die Middleware setzt das Cookie und leitet auf die
+            # saubere Adresse ohne Parameter weiter, damit nichts Parametriertes
+            # indexiert wird.
+            "url": _mit_wunsch(target + (suffix if vorhanden else ""), l),
         })
         if vorhanden:
             alts.append({"code": l, "hreflang": PACKS[l]["meta"]["html_lang"], "path": target})

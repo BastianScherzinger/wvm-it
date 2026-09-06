@@ -17,7 +17,7 @@ import secrets
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
-from . import messung
+from . import i18n, messung
 from .i18n import LANGS
 
 _BOT = re.compile(
@@ -132,6 +132,17 @@ class KanonischerHostMiddleware:
         return self.get_response(request)
 
 
+def _setze_sprachcookie(response, lang):
+    """Merkt die Sprachwahl. Eine Stelle, zwei Aufrufer: die ausdrückliche Wahl
+    über den Umschalter und das Ankommen auf einer präfigierten Adresse."""
+    response.set_cookie(
+        settings.LANGUAGE_COOKIE_NAME, lang,
+        max_age=getattr(settings, "LANGUAGE_COOKIE_AGE", 60 * 60 * 24 * 365),
+        samesite="Lax", secure=not settings.DEBUG,
+        httponly=getattr(settings, "LANGUAGE_COOKIE_HTTPONLY", True),
+    )
+
+
 class LocalePrefsMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -148,6 +159,30 @@ class LocalePrefsMiddleware:
         if request.method not in ("GET", "HEAD"):
             return None
         path = request.path_info
+
+        # ── Ausdrückliche Wahl über den Umschalter (06.09.2026) ──────────────
+        # Muss **vor** allem anderen stehen, auch vor der Prüfung auf die
+        # Startseite: Deutsch hat keinen eigenen Pfad, also gab es bis heute
+        # keinen Ort, an dem sich „ich will Deutsch" hätte merken lassen. Wer
+        # einmal auf /ro/ war, trug das Cookie `ro`, klickte auf DE, landete auf
+        # `/` — und wurde von hier sofort wieder nach /ro/ geworfen. Der Knopf
+        # war wirkungslos, der Besucher sass in seiner Sprache fest.
+        #
+        # Der Parameter wird sofort wieder entfernt: Die Antwort ist eine
+        # Umleitung auf die saubere Adresse, damit nichts Parametriertes in den
+        # Index gerät und geteilte Links keine Sprachwahl mitschleppen.
+        wunsch = (request.GET.get(i18n.WUNSCH_PARAM) or "").strip().lower()
+        if wunsch in i18n.LANGS:
+            _, basis = i18n.strip_prefix(path)
+            ziel = i18n.add_prefix(wunsch, basis)
+            rest = request.GET.copy()
+            rest.pop(i18n.WUNSCH_PARAM, None)
+            if rest:
+                ziel += "?" + rest.urlencode()
+            antwort = HttpResponseRedirect(ziel)
+            _setze_sprachcookie(antwort, wunsch)
+            return antwort
+
         if not _is_default_page(path):
             return None
         if _BOT.search(request.META.get("HTTP_USER_AGENT", "")):
@@ -191,12 +226,7 @@ class LocalePrefsMiddleware:
             return
         if request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME) == gewaehlt:
             return
-        response.set_cookie(
-            settings.LANGUAGE_COOKIE_NAME, gewaehlt,
-            max_age=getattr(settings, "LANGUAGE_COOKIE_AGE", 60 * 60 * 24 * 365),
-            samesite="Lax", secure=not settings.DEBUG,
-            httponly=getattr(settings, "LANGUAGE_COOKIE_HTTPONLY", True),
-        )
+        _setze_sprachcookie(response, gewaehlt)
 
 
 # ══ Schutzköpfe (Messung SI08, SI07, VL03, VL04) ══════════════════════════════
