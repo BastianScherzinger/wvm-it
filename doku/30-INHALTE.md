@@ -4,7 +4,7 @@ titel: Inhalte
 stand: 2026-09-06
 status: teilweise
 fortschritt: 94
-zusammenfassung: 166 URLs. Neu am 06.09.: Fachbeitrag zur NIS2-Lieferkette (Aufhaenger mit Frist), Einstiegsangebot und Abgrenzung auf den Leistungsseiten, Erreichbarkeits- und Vertretungsregelung auf der Notfallseite, drei Betreuungsstufen im Preisabschnitt. Footer-Claim gedreht: EDV zuerst statt an dritter Stelle hinter Buehnentechnik.
+zusammenfassung: 166 URLs. Am 06.09. neu: Hero-Ueberschrift in drei Sprachen (einschliessend statt ausschliessend), Vertrauensband mit Florins Satz in erster Person, Fachbeitrag zur NIS2-Lieferkette, Einstiegsangebot und Abgrenzung auf den Leistungsseiten, Erreichbarkeit und Vertretung auf der Notfallseite, drei Betreuungsstufen im Preisabschnitt. Uebersetzungen geprueft: 2.361 Schluessel in DE/EN/RO vollstaendig, keine deutschen Reste im sichtbaren Text.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
 ---

@@ -142,8 +142,36 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start;width:100%;position:relative;z-index:1}
 .hero-copy{max-width:60ch;align-self:start;padding-top:clamp(6px,4vh,48px)}
 .hero-copy .eyebrow{margin-bottom:16px}
-.hero h1{font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:700;max-width:15ch;
+.hero h1{font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:700;max-width:16ch;
   color:var(--ink)}
+/* Zweite Stufe der Ueberschrift (06.09.2026): dieselbe h1, eigene Groesse.
+   Sie traegt die Information "gross und klein" und darf die grosse Zeile nicht
+   ueberstimmen — deshalb rund ein Drittel der Groesse, normale Laufweite und
+   gedaempfte Farbe. `display:block` statt eigener Absatz, damit die Ueberschrift
+   ein Gedanke bleibt: fuer Suchmaschinen wie fuer Screenreader. */
+.h1-zusatz{display:block;margin-top:14px;max-width:26ch;
+  font-size:clamp(1.02rem,1.5vw,1.22rem);font-weight:500;line-height:1.45;
+  letter-spacing:0;color:var(--ink-soft);font-family:"Inter",system-ui,sans-serif}
+
+/* ── Vertrauensband im Hero: Gesicht, Name, ein Satz ──────────────────────────
+   Bewusst keine Karte: kein Rahmen, kein Schatten, keine Flaeche. Nur eine feine
+   Linie oben, die es vom Fliesstext trennt. Auf einer Seite, die von Verzicht
+   lebt, waere eine weitere Box genau die Dekoration, die den Eindruck kippt.
+   Der einzige Akzent ist der duenne Goldring um das Foto — er zieht den Blick
+   dorthin, wo die Frage "wem gebe ich meine Zugaenge?" beantwortet wird. */
+/* Steht direkt unter der Ueberschrift (06.09.2026). Die Linie trennt es von ihr,
+   der Abstand darunter fuehrt zur Erklaerung — Behauptung, Beleg, Begruendung. */
+.hero-person{display:flex;align-items:flex-start;gap:14px;margin:24px 0 4px;padding-top:20px;
+  border-top:1px solid var(--line);max-width:46ch}
+.hero-person-bild{width:64px;height:64px;flex:0 0 auto;border-radius:50%;object-fit:cover;
+  box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--accent),0 8px 20px -10px rgba(0,0,0,.55)}
+.hero-person-text{display:block;min-width:0}
+.hero-person-name{display:block;font-family:"Space Grotesk",sans-serif;font-weight:600;
+  font-size:16px;color:var(--ink);letter-spacing:-.01em}
+.hero-person-rolle{display:block;margin-top:2px;font-size:12.5px;letter-spacing:.04em;
+  color:var(--ink-dim)}
+.hero-person-satz{display:block;margin-top:8px;font-size:14.5px;line-height:1.55;
+  color:var(--ink-soft)}
 .lead{font-size:clamp(1.06rem,1.6vw,1.28rem);color:var(--ink-soft);margin:22px 0 34px;max-width:44ch}
 .hero .lead{margin:16px 0 24px}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
@@ -504,6 +532,11 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   .mobilebar{display:flex}.foot{padding-bottom:96px}
 }
 @media (max-width:560px){
+  .hero-person{gap:12px;padding-top:16px;margin-bottom:20px}
+  .hero-person-bild{width:52px;height:52px}
+  .hero-person-satz{font-size:14px}
+  .h1-zusatz{margin-top:11px}
+
   /* Die neuen Bausteine vom 06.09.2026 auf schmalen Geraeten. Konnte auf diesem
      Rechner nicht am echten Fenster geprueft werden (Chrome laesst sich nicht unter
      1280 CSS-px verkleinern) — deshalb bewusst grosszuegig statt knapp. */

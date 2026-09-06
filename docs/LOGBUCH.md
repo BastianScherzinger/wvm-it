@@ -7,6 +7,33 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 06.09.2026 (abends) — Hero-Konzept und zwei Sprachfehler
+
+**Die Ueberschrift hat ausgeschlossen.** „Die IT-Abteilung fuer Betriebe, die keine
+haben" war konkret und merkbar — und jeder Betrieb mit eigenem IT-Verantwortlichen
+las dort „nicht fuer mich". Weitererzaehlen liess sie sich auch nicht. Jetzt:
+**„Die ganze IT. Ein Ansprechpartner."** plus „Vom Zwei-Mann-Buero bis zum Betrieb
+mit 200 Arbeitsplaetzen" — einschliessend statt ausschliessend, mit Zahlen statt
+Adjektiven, und zitierbar.
+
+**Florin steht jetzt im Hero**, direkt unter der Ueberschrift und in erster Person:
+„Ich bin Florin Feier. Sie sprechen mit mir – nicht mit einer Warteschleife."
+Gemessen: hinter der Subline begann das Band bei 645 px in einem 585-px-Fenster,
+war also unsichtbar. Jetzt bei 426 px — und die Dramaturgie stimmt: Die Ueberschrift
+verspricht einen Ansprechpartner, der Beweis steht unmittelbar darunter.
+
+Dazu zwei Fehler, die ein Besucher gemeldet hat und die beide im Bestand lagen:
+Der **DE-Knopf war fuer jeden mit en/ro-Cookie wirkungslos** (Deutsch hat keinen
+eigenen Pfad, also liess sich die Wahl nirgends merken), und **`/de/` antwortete
+mit 404**. Beides behoben. Beim Beheben selbst einen **offenen Weiterleiter**
+eingebaut und vom Sicherheitsdurchlauf gemeldet bekommen — geschlossen, mit sechs
+Angriffsvarianten als Test.
+
+Einzelheiten in [`HERO-KONZEPT-2026-09-06.md`](HERO-KONZEPT-2026-09-06.md).
+**162 Tests** (vorher 149).
+
+---
+
 ## 06.09.2026 — Umbau auf Anfragen
 
 **Ausgangspunkt war eine Frage, keine Messung:** Warum bringen 165 URLs mit Reifegrad

@@ -3,8 +3,8 @@ bereich: status
 titel: WVM-IT — Stand
 stand: 2026-09-06
 status: teilweise
-fortschritt: 93
-zusammenfassung: Umbau auf Anfragen abgeschlossen — 166 URLs, 149 Tests (vorher 130). Sechs Fehler behoben, die alle unsichtbar waren: die Spam-Falle konnte echte Anfragen verschlucken, der Konfigurator rechnete fuer acht Arbeitsplaetze 167 statt 370 Euro, die Kopfleiste passte bei keiner Fensterbreite, fuenf Datenschutz-Links zeigten ins Leere. Neu: serverseitige Messung ohne Cookies, Rueckruf als Standardweg im Hero, drei Betreuungsstufen vor den Webseiten-Paketen, Einstiegsangebot und Gesicht auf den Leistungsseiten, NISG-Beitrag als Aufhaenger mit Frist. Offen bleiben Absenderadresse, SPF/DKIM/DMARC und Apex-Domain — alles am DNS bzw. beim Kunden.
+fortschritt: 94
+zusammenfassung: Umbau auf Anfragen abgeschlossen und deployt — 166 URLs, 162 Tests (vorher 130). Hero neu: "Die ganze IT. Ein Ansprechpartner." schliesst niemanden mehr aus, Florins Gesicht steht mit einem Satz in erster Person im ersten Bildschirm. Sechs unsichtbare Fehler behoben (Spam-Falle, Faktor-8-Angebot, Kopfleiste, tote Datenschutz-Links) plus drei gemeldete: wirkungsloser DE-Knopf, /de/ als 404 und ein selbst eingebauter offener Weiterleiter. Offen bleiben Absenderadresse, SPF/DKIM/DMARC und Apex-Domain — alles am DNS bzw. beim Kunden.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
@@ -22,12 +22,12 @@ quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 | **Zweck** | EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung, überwiegend per Fernwartung in Österreich und Deutschland; zweites Standbein Webseiten/SEO/Ads/KI, drittes Technik vor Ort |
 | **Domain** | `https://www.wvm-it.tech` (**live, 200**) · `wvm-it.tech` ohne `www`: **HTTPS kein Verbindungsaufbau**, HTTP liefert die Parkseite des Registrars (geprüft 02.09.2026) |
 | **Sprachen** | Deutsch (ohne Präfix), Englisch `/en/`, Rumänisch `/ro/` — eigene i18n-Pakete, ohne gettext |
-| **Umfang** | **165 URLs**, 81 Basis-Pfade, acht Themensilos plus vier Pflichtseiten (Stand 05.09.2026) |
+| **Umfang** | **166 URLs**, 82 Basis-Pfade, acht Themensilos plus vier Pflichtseiten (Stand 06.09.2026) |
 | **Technik** | Django 5.0.6, gunicorn 22.0.0, WhiteNoise 6.7.0, GZipMiddleware, Python 3.12.4 |
 | **Hosting** | Railway-Projekt **`webseiten`** → Dienst **`wvm-it`**, Umgebung `shop`; Deploy automatisch beim Push auf `main` |
 | **Repository** | `BastianScherzinger/wvm-it`, Zweig `main` |
 | **Projektordner** | `C:\Users\basti\Desktop\jarvis\jarvis_websites\2026-07-02\web_wvm-it` (die einzige betreute Seite, die **nicht** unter `Desktop\webseiten buisnes\` liegt) |
-| **Letzter Commit** | Ausbau September, 05.09.2026; die Nacharbeit zur Messung liegt im Zweig `sofort/2026-09-05-pj05-und-6-weitere`, **neun Commits vor `main`** |
+| **Letzter Commit** | Hero-Konzept, 06.09.2026 &mdash; auf `main` und deployt. Der Umbau davor umfasste acht Commits an einem Tag; alle Zweige sind gemergt |
 | **Search Console** | Property `https://www.wvm-it.tech/` (URL-Präfix) im Konto **`bastian.scherzinger05@gmail.com`** (nachgeprüft 03.09.2026), seit 03.09.2026 per OAuth ans Werkzeug angebunden |
 | **Google Ads** | keine |
 
@@ -37,9 +37,9 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 
 | Bereich | Status | Fortschritt | Zusammenfassung | Datei |
 |---|---|---:|---|---|
-| Technik | teilweise | 84 | Django 5.0.6 auf Railway; seit 05.09.2026 mit 130 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, `start.sh` und durchgesetzter Content-Security-Policy — CSP und Cookie-Flags sind durch eigene Tests gesichert. | [10-TECHNIK.md](10-TECHNIK.md) |
-| Design | teilweise | 96 | Design-System vom 27.08.2026 unverändert; vier neue Bausteine (Honigtopf, Datenschutzhinweis, Symbolsatz, kleiner Kopf). Mobilansicht nie am Gerät geprüft. | [20-DESIGN.md](20-DESIGN.md) |
-| Inhalte | teilweise | 94 | 165 URLs; neu sind Veranstaltungstechnik, IT-Beratung, Über uns, AGB, Barrierefreiheitserklärung und die Danke-Seite. Titel und Beschreibungen aller Silos überarbeitet. | [30-INHALTE.md](30-INHALTE.md) |
+| Technik | teilweise | 86 | Django 5.0.6 auf Railway; seit 06.09.2026 mit **162 Testfunktionen**, serverseitiger Reichweitenmessung ohne Cookie und ohne IP, gesicherten Anfragen vor dem Mailversand, CI-Lauf bei jedem Push und durchgesetzter Content-Security-Policy. | [10-TECHNIK.md](10-TECHNIK.md) |
+| Design | teilweise | 96 | Design-System vom 27.08.2026 unverändert; am 06.09. der Hero neu gedacht (zweistufige Überschrift, Vertrauensband mit Gesicht) und drei Fehler behoben: übergelaufene Kopfleiste, Dialog in der Bildschirmecke, zwei `alert()`. Mobilansicht nie am Gerät geprüft. | [20-DESIGN.md](20-DESIGN.md) |
+| Inhalte | teilweise | 95 | 166 URLs; am 06.09. neue Hero-Überschrift in drei Sprachen, Vertrauensband, NIS2-Fachbeitrag, Einstiegsangebot und Abgrenzung auf den Leistungsseiten, Erreichbarkeit auf der Notfallseite. Übersetzungen geprüft: 2.361 Schlüssel je Sprache vollständig. | [30-INHALTE.md](30-INHALTE.md) |
 | SEO und GEO | teilweise | 87 | Zwei Funde ausserhalb jedes Plans behoben (94 hreflang auf 404, 82 unerreichbare Seiten). Sitemap in vier Segmenten, echte Änderungsdaten, `WebPage`-Knoten überall; Antwortabsatz von 14 Glossareinträgen und 4 Fachbeiträgen mit belegter Zahl. | [40-SEO.md](40-SEO.md) |
 | Local SEO | teilweise | 55 | Search Console eingerichtet, NAP zeichengleich, Koordinaten und Öffnungszeiten im Graphen; Unternehmensprofil, Bewertungen und Verzeichnisse fehlen — alles beim Kunden. | [50-LOCAL-SEO.md](50-LOCAL-SEO.md) |
 | Ads | nicht zutreffend | — | Für WVM-IT laufen keine Google Ads; seit 05.09.2026 gibt es immerhin die Danke-Seite als messbaren Abschluss. | [60-ADS.md](60-ADS.md) |
@@ -98,7 +98,7 @@ Kritische Befunde:
 
 1. **Google-Unternehmensprofil** — unverändert der wichtigste Punkt überhaupt und
    unverändert nicht am Rechner lösbar. Für die lokale Suche der entscheidende Hebel;
-   **165 URLs gleichen sein Fehlen nicht aus**, und dieser Durchgang ändert daran
+   **166 URLs gleichen sein Fehlen nicht aus**, und dieser Durchgang ändert daran
    nichts. Angaben fertig in `../docs/SEO-KONZEPT-DACH.md` §7 — reines Abtippen.
    → [50-LOCAL-SEO.md](50-LOCAL-SEO.md)
 2. **Core Web Vitals eintragen** und den CLS-Ausreißer auf Desktop untersuchen

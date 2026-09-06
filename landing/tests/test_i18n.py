@@ -330,3 +330,52 @@ class DePraefixSicherheitTest(SimpleTestCase):
         antwort = _util.client().get("/de/kosten/rechner/", {"ap": "8"})
         self.assertEqual(antwort.status_code, 301)
         self.assertIn("ap=8", antwort["Location"])
+
+
+class HeroKonzeptTest(SimpleTestCase):
+    """Der Hero-Umbau vom 06.09.2026 — Überschrift und Vertrauensband.
+
+    Beides ist Inhalt, der leicht wieder verlorengeht: Die zweite Überschriftenzeile
+    hängt an einem eigenen Schlüssel, das Vertrauensband an drei weiteren und an
+    zwei Feldern aus content.json.
+    """
+
+    def test_ueberschrift_hat_in_jeder_sprache_beide_stufen(self):
+        for lang in i18n.LANGS:
+            with self.subTest(lang=lang):
+                hero = i18n.get_pack(lang)["hero"]
+                self.assertTrue(hero.get("headline"), "große Zeile fehlt")
+                self.assertTrue(hero.get("headline_2"),
+                                "zweite Zeile fehlt — sie trägt 'groß und klein'")
+
+    def test_ueberschrift_schliesst_niemanden_mehr_aus(self):
+        """Die alte Fassung sprach nur Betriebe **ohne** eigene IT an und verlor
+        damit jeden größeren Interessenten im ersten Satz."""
+        alt = "die keine haben"
+        self.assertNotIn(alt, i18n.get_pack("de")["hero"]["headline"])
+
+    def test_vertrauensband_hat_in_jeder_sprache_alle_drei_texte(self):
+        for lang in i18n.LANGS:
+            with self.subTest(lang=lang):
+                hero = i18n.get_pack(lang)["hero"]
+                for schluessel in ("person_h", "person_t", "person_ort"):
+                    self.assertTrue(hero.get(schluessel),
+                                    f"{schluessel} fehlt in {lang}")
+
+    def test_vertrauensband_steht_im_hero_und_vor_der_subline(self):
+        """Gemessen am 06.09.2026: Hinter der Subline begann es bei 645 px in einem
+        585 px hohen Fenster — also unsichtbar ohne Scrollen."""
+        from . import _util
+        html = _util.client().get("/").content.decode("utf-8")
+        self.assertIn('class="hero-person"', html)
+        self.assertLess(html.index('class="hero-person"'),
+                        html.index('class="lead"'),
+                        "Das Vertrauensband gehört vor die Subline, nicht dahinter")
+
+    def test_vertrauensband_nennt_name_und_foto_aus_content_json(self):
+        from . import _util
+        from landing.views import _content
+        c = _content()
+        html = _util.client().get("/").content.decode("utf-8")
+        self.assertIn(c["inhaber_name"], html)
+        self.assertIn(c["founder_image"], html)

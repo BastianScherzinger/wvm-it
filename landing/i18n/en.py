@@ -82,8 +82,9 @@ PACK = {
     "hero": {
         "robot_alt": "Interactive 3D assistant by WVM-IT",
         "eyebrow": "IT support &amp; management · Austria and Germany",
-        "headline": "The IT department for businesses that don't have one.",
-        "subline": "Servers, network, workstations, email and backups: we take on the day-to-day IT of your business from €29 per workstation and month &ndash; remotely, across Austria and Germany, with an answer within 24 hours on working days. Plus website, SEO and Google Ads from the same hands.",
+        "headline": "All of your IT. One person to call.",
+        "headline_2": "From a two-person office to a plant with 200 workstations.",
+        "subline": "Servers, network, workstations, email, backups, security &ndash; plus website, SEO and AI. Looked after from €29 per workstation and month, remotely across Austria and Germany.",
         "cta": "Claim your free sample website",
         "note": "Free and no obligation · built by our JARVIS AI in about 10 minutes.",
         "robot_aria": "3D assistant, click me",
@@ -91,6 +92,9 @@ PACK = {
         "robot_click": "Click me",
         "chip_label": "Websites",
         "chip_value": "from €{preis}",
+        "person_h": "I'm Florin Feier.",
+        "person_t": "You talk to me &ndash; not to a hold queue. And I'll tell you when something isn't worth it.",
+        "person_ort": "Owner &middot; Lenzing, Upper Austria",
         "scroll_aria": "Scroll down",
         "robot_msgs": [
             "Hello. Good to have you here.",

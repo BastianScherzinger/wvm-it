@@ -55,8 +55,12 @@ PACK = {
     "hero": {
         "robot_alt": "Interaktiver 3D-Assistent von WVM-IT",
         "eyebrow": "EDV &amp; IT-Betreuung · Österreich und Deutschland",
-        "headline": "Die IT-Abteilung für Betriebe, die keine haben.",
-        "subline": "Server, Netzwerk, Arbeitsplätze, E-Mail und Datensicherung: Wir übernehmen die laufende EDV Ihres Betriebs ab 29 € je Arbeitsplatz und Monat &ndash; per Fernwartung in ganz Österreich und Deutschland, mit Antwort innerhalb von 24 Stunden an Werktagen. Dazu Webseite, SEO und Google Ads aus derselben Hand.",
+        "headline": "Die ganze IT. Ein Ansprechpartner.",
+        # Zweite Zeile der Ueberschrift: nennt gross und klein ausdruecklich.
+        # Zahlen statt Adjektiven — "vom Zwei-Mann-Buero" ist pruefbar,
+        # "fuer jede Betriebsgroesse" ist eine Floskel.
+        "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
+        "subline": "Server, Netzwerk, Arbeitsplätze, E-Mail, Datensicherung, Sicherheit &ndash; dazu Webseite, SEO und KI. Laufend betreut ab 29 € je Arbeitsplatz und Monat, per Fernwartung in Österreich und Deutschland.",
         "cta": "Gratis Beispiel-Website sichern",
         "note": "Kostenlos und unverbindlich · von unserer JARVIS-KI in ~10 Minuten gebaut.",
         "robot_aria": "3D-Assistent, klick mich",
@@ -64,6 +68,13 @@ PACK = {
         "robot_click": "Klick mich",
         "chip_label": "Webseiten",
         "chip_value": "ab {preis} €",
+        # ── Vertrauensband im Hero (06.09.2026) ─────────────────────────────
+        # Erste Person, ein Satz, keine Superlative. Der Zusatz nennt den Sitz,
+        # weil "irgendwo in Oesterreich" niemandem hilft und Lenzing im
+        # Einzugsgebiet ein Argument ist.
+        "person_h": "Ich bin Florin Feier.",
+        "person_t": "Sie sprechen mit mir &ndash; nicht mit einer Warteschleife. Ich sage Ihnen auch, wenn sich etwas nicht lohnt.",
+        "person_ort": "Inhaber &middot; Lenzing, Oberösterreich",
         "scroll_aria": "Weiter nach unten",
         "robot_msgs": [
             "Guten Tag. Schön, dass Sie da sind.",

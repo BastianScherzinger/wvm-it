@@ -78,8 +78,9 @@ PACK = {
     "hero": {
         "robot_alt": "Asistent 3D interactiv de la WVM-IT",
         "eyebrow": "Suport IT &amp; administrare · Austria și Germania",
-        "headline": "Departamentul IT pentru firmele care nu au unul.",
-        "subline": "Servere, rețea, posturi de lucru, e-mail și copii de siguranță: preluăm IT-ul curent al firmei dumneavoastră de la 29 € per post de lucru și lună &ndash; la distanță, în toată Austria și Germania, cu răspuns în 24 de ore în zilele lucrătoare. Plus site, SEO și Google Ads din aceeași mână.",
+        "headline": "Tot IT-ul. Un singur contact.",
+        "headline_2": "De la biroul cu doi oameni până la firma cu 200 de posturi de lucru.",
+        "subline": "Servere, rețea, posturi de lucru, e-mail, copii de siguranță, securitate &ndash; plus site, SEO și AI. Administrate curent de la 29 € per post de lucru și lună, la distanță în Austria și Germania.",
         "cta": "Primește site-ul demonstrativ gratuit",
         "note": "Gratuit și fără obligații · construit de AI-ul nostru JARVIS în circa 10 minute.",
         "robot_aria": "Asistent 3D, apasă-mă",
@@ -87,6 +88,9 @@ PACK = {
         "robot_click": "Apasă-mă",
         "chip_label": "Site-uri web",
         "chip_value": "de la {preis} €",
+        "person_h": "Sunt Florin Feier.",
+        "person_t": "Vorbiți cu mine &ndash; nu cu o linie de așteptare. Și vă spun și când ceva nu merită.",
+        "person_ort": "Proprietar &middot; Lenzing, Austria Superioară",
         "scroll_aria": "Derulează în jos",
         "robot_msgs": [
             "Bună ziua. Mă bucur că sunteți aici.",

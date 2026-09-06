@@ -4,7 +4,7 @@ titel: Design
 stand: 2026-09-06
 status: teilweise
 fortschritt: 96
-zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 06.09. drei echte Fehler behoben: Die Kopfleiste brauchte 1400 px Inhalt in einem 1180-px-Container (CTA ausserhalb des Bildes, Seite scrollte seitwaerts), der Rueckruf-Dialog klebte wegen der Reset-Regel in der linken oberen Ecke, zwei alert() im Fehlerpfad entgegen der eigenen Komponentenregel. Neue Bausteine: drei Hero-Reiter, Mengenfeld, Einstiegskarte, Person in der Anfrage-Karte. Mobilansicht weiterhin nie am Geraet geprueft.
+zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 06.09. der Hero neu gedacht: zweistufige Ueberschrift und Vertrauensband mit Foto, Name und einem Satz in erster Person, direkt unter der Ueberschrift statt hinter der Subline (dort begann es bei 645 px in einem 585-px-Fenster). Bewusst keine Karte — nur eine feine Linie und ein duenner Goldring ums Foto. Dazu drei behobene Fehler: uebergelaufene Kopfleiste, Dialog in der Bildschirmecke, zwei alert(). Mobilansicht weiterhin nie am Geraet geprueft.
 offen: 4
 quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---

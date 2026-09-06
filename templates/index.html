@@ -28,8 +28,48 @@ Die Varianten stehen in content.json (T3).
     <div class="wrap hero-grid">
       <div class="hero-copy" data-reveal>
         <span class="eyebrow"><span class="dot"></span>{{ t.hero.eyebrow|safe }}</span>
-        <h1>{{ t.hero.headline|safe }}</h1>
+        {% comment %} ── Überschrift in zwei Stufen (06.09.2026) ──────────────────
+          Vorher stand hier ein Satz: „Die IT-Abteilung für Betriebe, die keine
+          haben." Konkret und merkbar — und er **schloss aus**. Ein Betrieb mit
+          sechzig Leuten und einem eigenen IT-Verantwortlichen liest dort „nicht
+          für mich" und ist weg. Weiterempfehlen liess er sich auch nicht; niemand
+          sagt „ruf die an, das ist die IT-Abteilung für Betriebe, die keine haben".
+
+          Jetzt zwei Stufen: Die grosse Zeile beantwortet „koennt ihr, was ich
+          brauche?" ohne Aufzaehlung und ohne jemanden auszuschliessen. Die kleine
+          nennt gross und klein ausdruecklich — mit Zahlen, weil „fuer jede
+          Betriebsgroesse" eine Floskel ist und „vom Zwei-Mann-Buero" nicht.
+
+          Beide Zeilen stehen bewusst in **einer** h1: Es ist ein Gedanke, und
+          Suchmaschinen wie Screenreader bekommen ihn als solchen.
+        {% endcomment %}
+        <h1>{{ t.hero.headline|safe }}<span class="h1-zusatz">{{ t.hero.headline_2|safe }}</span></h1>
+        {% comment %} ── Wer dahintersteht, sofort sichtbar (06.09.2026) ──────────
+          Das Gesicht stand bisher erst weit unten im Band „Wer dahintersteht".
+          Wer auf einer IT-Seite landet, entscheidet aber genau zwei Dinge: Koennen
+          die das — und wem gebe ich meine Zugaenge? Die zweite Frage beantwortet
+          keine Leistungsliste, sondern ein Mensch.
+
+          Erste Person mit Absicht: In der dritten klingt derselbe Satz nach
+          Werbetext, in der ersten ist er eine Zusage von einer Person an eine
+          andere. Damit wird aus dem sichtbaren Ein-Personen-Betrieb das, was er
+          wirklich ist — kein Risiko, sondern der Unterschied zum Systemhaus.
+        {% endcomment %}
+        {% if c.inhaber_name %}
+        <figure class="hero-person">
+          {% if c.founder_image %}
+          <img class="hero-person-bild" src="{{ c.founder_image }}" alt="{{ c.inhaber_name }}"
+               width="64" height="64" fetchpriority="high" decoding="async">
+          {% endif %}
+          <figcaption class="hero-person-text">
+            <b class="hero-person-name">{{ t.hero.person_h|safe }}</b>
+            <span class="hero-person-rolle">{{ t.hero.person_ort|safe }}</span>
+            <span class="hero-person-satz">{{ t.hero.person_t|safe }}</span>
+          </figcaption>
+        </figure>
+        {% endif %}
         <p class="lead">{{ t.hero.subline|safe }}</p>
+
 
         {% comment %} Vier Wege, uns zu erreichen. WhatsApp zuerst, weil er am meisten genutzt wird. {% endcomment %}
         <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
