@@ -6,9 +6,15 @@ Dadurch deployt die Seite ohne Datenbank-Plugin sofort auf Railway.
 Alle umgebungsabhängigen Werte kommen aus Umgebungsvariablen (Railway).
 """
 import os
+import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Im Testlauf zaehlt landing/messung.py weiter, schreibt aber weder Datei noch
+# Logzeile: Sonst legt jeder Testlauf var/messung/ an und flutet das Protokoll.
+if "test" in sys.argv:
+    os.environ.setdefault("MESSUNG_STUMM", "1")
 
 # SECRET_KEY MUSS in Produktion via Umgebungsvariable gesetzt werden (Railway).
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-insecure-nur-lokal-bitte-ueberschreiben")
@@ -61,6 +67,11 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     # Clickjacking-Schutz (X-Frame-Options: DENY) — die Seite darf nicht in fremde iFrames.
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Zaehlt ausgelieferte Seitenaufrufe je Pfad — ohne IP, ohne Cookie, ohne
+    # Kennung, deshalb ohne Einwilligung. Steht **ganz innen**, damit nur die
+    # tatsaechlich ausgelieferte Seite gezaehlt wird und nicht die Weiterleitung
+    # davor. Begruendung ausfuehrlich in landing/messung.py.
+    "landing.middleware.MessungMiddleware",
 ]
 
 X_FRAME_OPTIONS = "DENY"

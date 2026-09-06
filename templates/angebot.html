@@ -146,12 +146,17 @@
 
               <div class="ang-item-grid">
                 {% for it in g.items %}
+                {# Zelle statt nacktem Label: Positionen, die je Stueck gelten, tragen
+                   darunter ein Zahlenfeld. Es steht ausserhalb des <label>, weil ein
+                   Klick hinein sonst die Auswahl umschalten wuerde. #}
+                <div class="ang-zelle">
                 <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
                   <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
                          {% if it.id in paket_items %}checked{% endif %}
                          data-name="{{ it.name }}" data-group="{{ g.title }}"
                          data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
+                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}"
+                         {% if it.menge_max %}data-menge="menge-{{ it.id }}"{% endif %}>
                   <span class="ang-item-box">
                     <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
                     <span class="ang-item-main">
@@ -162,6 +167,14 @@
                     <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
                   </span>
                 </label>
+                {% if it.menge_max %}
+                <div class="ang-menge">
+                  <label for="menge-{{ it.id }}">{{ t.catalog_words.menge|safe }}{% if it.menge_label %} <span class="ang-menge-einheit">{{ it.menge_label }}</span>{% endif %}</label>
+                  <input type="number" id="menge-{{ it.id }}" name="menge_{{ it.id }}"
+                         value="1" min="1" max="{{ it.menge_max }}" step="1" inputmode="numeric">
+                </div>
+                {% endif %}
+                </div>
                 {% endfor %}
               </div>
 

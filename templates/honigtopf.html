@@ -8,7 +8,23 @@ namens `website` sieht dagegen aus wie das, wonach ein Formularausfüller sucht,
 und wird zuverlässiger ausgefüllt. Die Ansicht nimmt beide Namen entgegen,
 solange noch zwischengespeicherte Seiten mit dem alten Feld unterwegs sind.
 
-`aria-hidden`, `tabindex="-1"` und `autocomplete="off"` halten Screenreader,
-Tastaturbedienung und Browser-Ausfüllhilfe davon ab, das Feld zu berühren — sonst
-wäre die Falle eine Barriere.
-{% endcomment %}<div class="hp" aria-hidden="true"><label>Firma <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+**Warum hier kein `<label>` mehr steht (06.09.2026).** Bis heute trug das Feld ein
+sichtbares Label „Firma" und lag über `.hp` nur ausserhalb des Bildes
+(`position:absolute; left:-9999px`) — also im Baum und damit für Passwortverwalter
+und die Ausfuellhilfe des Browsers erreichbar. 1Password und Bitwarden tragen in
+ein Feld namens `website` regelmaessig die Adresse der Seite ein und halten sich
+dabei nicht an `autocomplete="off"`; Chromes Adressausfuellung kann auf das Wort
+„Firma" anspringen. Ein solcher Fehlalarm war **nach beiden Seiten unsichtbar**:
+Der Absender sah „Angekommen", das Postfach blieb leer, protokolliert wurde nichts.
+
+Drei Aenderungen dagegen, ohne die Falle fuer Bots zu entschaerfen:
+1. **`display:none`** statt Verschieben — die Ausfuellhilfe ueberspringt
+   Felder ohne Darstellungsbox weitgehend, ein Skript liest sie weiterhin.
+2. **Kein Label und kein sichtbarer Text** — nichts mehr, worauf eine
+   Feld-Erkennung anspringen koennte.
+3. Die Ansicht wertet den **Inhalt** aus: Steht dort die eigene Adresse, war es
+   die Ausfuellhilfe und nicht ein Bot (`views._honigtopf`).
+
+`aria-hidden`, `tabindex="-1"` und `autocomplete="off"` halten Screenreader und
+Tastaturbedienung davon ab, das Feld zu berühren — sonst wäre die Falle eine Barriere.
+{% endcomment %}<div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>

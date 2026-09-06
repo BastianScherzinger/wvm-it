@@ -88,6 +88,61 @@ class LeistungAnfrageTest(SimpleTestCase):
         self.assertEqual(antwort.json()["ok"], True)
         self.assertEqual(len(mail.outbox), 0, "Honeypot hätte die Mail verhindern müssen")
 
+    def test_ausfuellhilfe_traegt_die_eigene_adresse_ein_und_die_anfrage_geht_durch(self):
+        """Der Fall, der bis zum 06.09.2026 stillschweigend Anfragen verwarf.
+
+        Passwortverwalter tragen in ein Feld namens `website` die Adresse der
+        besuchten Seite ein. Das galt als Bot: Der Absender sah „Angekommen",
+        das Postfach blieb leer, protokolliert wurde nichts. Ein Bot trägt dort
+        eine *fremde* Adresse ein — daran werden die beiden unterschieden.
+        """
+        for eingetragen in ("https://www.wvm-it.tech/kontakt/", "wvm-it.tech",
+                            "https://wvm-it.tech"):
+            with self.subTest(eingetragen=eingetragen):
+                mail.outbox.clear()
+                cache.clear()
+                antwort = self.client_.post(
+                    reverse("leistung_anfrage"),
+                    {"quelle": _ERSTE_QUELLE, "kontakt": "kunde@example.com",
+                     "text": "Bitte um Rückruf", "website": eingetragen},
+                    **_JSON_HEADER)
+                self.assertEqual(antwort.status_code, 200)
+                self.assertTrue(antwort.json()["ok"])
+                self.assertGreaterEqual(
+                    len(mail.outbox), 1,
+                    "Die eigene Adresse im Fallenfeld kommt aus der Ausfüllhilfe, "
+                    "nicht von einem Bot — die Anfrage muss durchgehen")
+
+    def test_fremde_adresse_im_fallenfeld_bleibt_ein_bot(self):
+        antwort = self.client_.post(
+            reverse("leistung_anfrage"),
+            {"quelle": _ERSTE_QUELLE, "kontakt": "a@b.de", "text": "Hallo",
+             "website": "http://billige-uhren.example.com"},
+            **_JSON_HEADER)
+        self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0, "Fremde Adresse = Bot, keine Mail")
+
+    def test_betreff_nennt_die_seite_von_der_die_anfrage_kam(self):
+        """Über fünfzig der 165 Adressen tragen dieselbe Quelle. Ohne die Herkunft
+        ist im Postfach ein IT-Notfall nicht von einer Glossarfrage zu unterscheiden."""
+        self.client_.post(
+            reverse("leistung_anfrage"),
+            {"quelle": _ERSTE_QUELLE, "kontakt": "a@b.de", "text": "Hallo",
+             "zurueck": "/leistungen/it-sicherheit/"},
+            **_JSON_HEADER)
+        self.assertTrue(mail.outbox, "Anfrage hätte eine Mail erzeugen müssen")
+        self.assertIn("/leistungen/it-sicherheit/", mail.outbox[0].subject)
+        self.assertIn("/leistungen/it-sicherheit/", mail.outbox[0].body)
+
+    def test_antwort_geht_an_den_interessenten_nicht_an_den_absender(self):
+        self.client_.post(
+            reverse("leistung_anfrage"),
+            {"quelle": _ERSTE_QUELLE, "kontakt": "interessent@example.com", "text": "Hallo"},
+            **_JSON_HEADER)
+        self.assertTrue(mail.outbox)
+        self.assertEqual(mail.outbox[0].extra_headers.get("Reply-To"),
+                         "interessent@example.com")
+
     def test_ungueltiger_kontakt_wird_abgelehnt(self):
         antwort = self.client_.post(
             reverse("leistung_anfrage"),

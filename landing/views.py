@@ -11,6 +11,7 @@ import hmac
 import json
 import os
 import re
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 from django.conf import settings
@@ -23,8 +24,8 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import (beitraege, branchen, checklisten, glossar, i18n, leistungen, regionen,
-               selbsttest, stand, vergleiche)
+from . import (beitraege, branchen, checklisten, glossar, i18n, leistungen, messung,
+               regionen, selbsttest, stand, vergleiche)
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -127,12 +128,17 @@ ANGEBOT_GROUPS = [
         "from_label": "ab 29 €/Mt", "start": "mtl",
         "sub": "Damit die Technik läuft, ohne dass Sie sich kümmern.",
         "items": [
-            {"id": "it_betreuung", "name": "Laufende IT-Betreuung je Arbeitsplatz", "desc": "Updates, Überwachung, Hilfe bei Störungen — pro PC und Monat.", "mtl": 29, "popular": True, "icon": "care"},
+            # `menge_max` und `menge_label`: Positionen, die je Stück gelten. Ohne sie
+            # addierte der Konfigurator 29 € auch für einen Betrieb mit acht
+            # Arbeitsplätzen (06.09.2026). Die Grenzen sind dieselben wie im
+            # Kostenrechner (_RECHNER_FELDER), damit beide Werkzeuge nicht
+            # auseinanderlaufen.
+            {"id": "it_betreuung", "name": "Laufende IT-Betreuung je Arbeitsplatz", "desc": "Updates, Überwachung, Hilfe bei Störungen — pro PC und Monat.", "mtl": 29, "popular": True, "icon": "care", "menge_max": 250, "menge_label": "Arbeitsplätze"},
             {"id": "it_support", "name": "IT-Support & Fernwartung", "desc": "Hilfe, wenn etwas nicht geht. Meist per Fernwartung, meist am selben Tag.", "std": 95, "icon": "consulting"},
             {"id": "backup", "name": "Datensicherung, täglich geprüft", "desc": "Automatische Sicherung, überwacht, Wiederherstellung getestet.", "mtl": 49, "icon": "shield"},
-            {"id": "server_care", "name": "Server-Betreuung & Überwachung", "desc": "Ein Server, rund um die Uhr im Blick. Wir sehen den Ausfall vor Ihnen.", "mtl": 89, "icon": "server"},
+            {"id": "server_care", "name": "Server-Betreuung & Überwachung", "desc": "Ein Server, rund um die Uhr im Blick. Wir sehen den Ausfall vor Ihnen.", "mtl": 89, "icon": "server", "menge_max": 20, "menge_label": "Server"},
             {"id": "m365", "name": "Microsoft 365 einrichten & betreuen", "desc": "E-Mail, Teams, OneDrive: sauber aufgesetzt und übergeben.", "once": 290, "icon": "mail"},
-            {"id": "arbeitsplatz", "name": "Neuen Arbeitsplatz einrichten", "desc": "PC, Programme, Konten, Drucker — einsatzbereit übergeben.", "once": 190, "icon": "web"},
+            {"id": "arbeitsplatz", "name": "Neuen Arbeitsplatz einrichten", "desc": "PC, Programme, Konten, Drucker — einsatzbereit übergeben.", "once": 190, "icon": "web", "menge_max": 50, "menge_label": "Arbeitsplätze"},
             {"id": "netzwerk_setup", "name": "Netzwerk & WLAN einrichten", "desc": "Ausgemessen, geplant, aufgebaut. Auch für Hallen und mehrere Etagen.", "once": 890, "icon": "net"},
             {"id": "firewall", "name": "Firewall & VPN einrichten", "desc": "Sicherer Zugriff von außen, geschütztes Netz nach innen.", "once": 690, "icon": "shield"},
             {"id": "sicherheitscheck", "name": "IT-Sicherheitscheck", "desc": "Einmalige Prüfung mit schriftlichem Bericht und Maßnahmenliste.", "once": 490, "icon": "gauge"},
@@ -616,40 +622,83 @@ def _preis_stand(lang):
     return f"{namen[heute.month - 1]} {heute.year}"
 
 
-def _angebot_summary(ids):
+def _menge_von(iid: str, mengen) -> int:
+    """Wie oft eine Position gebucht wird. Positionen ohne ``menge_max`` gibt es
+    genau einmal; bei den anderen wird der Wunsch auf 1..menge_max begrenzt."""
+    it = _ANGEBOT_INDEX.get(iid) or {}
+    grenze = int(it.get("menge_max") or 1)
+    if grenze <= 1:
+        return 1
+    try:
+        gewuenscht = int((mengen or {}).get(iid, 1))
+    except (TypeError, ValueError):
+        gewuenscht = 1
+    return max(1, min(grenze, gewuenscht))
+
+
+def _angebot_summary(ids, mengen=None):
     """Baut aus einer Liste von Item-IDs die Zusammenfassung + Summen — serverseitig,
-    unabhängig von etwaigen Client-Werten. Gibt (zeilen, once, mtl, yr, hat_anfrage) zurück."""
+    unabhängig von etwaigen Client-Werten. Gibt (zeilen, once, mtl, yr, hat_anfrage) zurück.
+
+    **Mengen (06.09.2026).** Bis heute wurde jede Position genau einmal addiert —
+    auch die, die ausdrücklich „je Arbeitsplatz" heißt. Ein Betrieb mit acht
+    Arbeitsplätzen, einem Server und Datensicherung bekam deshalb per E-Mail
+    167 €/Monat, während der Kostenrechner auf derselben Seite 370 €/Monat auswies.
+    Die falsche Zahl war ausgerechnet die schriftliche. Positionen mit ``menge_max``
+    tragen jetzt eine Stückzahl; alle übrigen bleiben unverändert einfach.
+    """
     zeilen, once, mtl, yr = [], 0, 0, 0
     hat_anfrage = False
     for iid in ids:
         it = _ANGEBOT_INDEX.get(iid)
         if not it:
             continue
+        n = _menge_von(iid, mengen)
         teile = []
         if it.get("anfrage"):
             teile.append("auf Anfrage")
             hat_anfrage = True
         if it.get("once"):
-            once += it["once"]; teile.append(f"einmalig {it['once']} €")
+            once += it["once"] * n
+            teile.append(f"einmalig {it['once']} €" + (f" × {n} = {it['once'] * n} €" if n > 1 else ""))
         if it.get("mtl"):
-            mtl += it["mtl"]; teile.append(f"{it['mtl']} €/Monat")
+            mtl += it["mtl"] * n
+            teile.append(f"{it['mtl']} €/Monat" + (f" × {n} = {it['mtl'] * n} €/Monat" if n > 1 else ""))
         if it.get("yr"):
-            yr += it["yr"]; teile.append(f"{it['yr']} €/Jahr")
+            yr += it["yr"] * n
+            teile.append(f"{it['yr']} €/Jahr" + (f" × {n} = {it['yr'] * n} €/Jahr" if n > 1 else ""))
         if it.get("std"):
             # Stundensaetze werden nicht summiert — der Umfang steht erst nach dem
             # Gespraech fest. Die Position taucht im Angebot auf, die Summe bleibt ehrlich.
             teile.append(f"{it['std']} €/Std."); hat_anfrage = True
         preis = ", ".join(teile) if teile else "-"
-        zeilen.append(f"- {it['gruppe']}: {it['name']} ({preis})")
+        name = it["name"] + (f" ({n}×)" if n > 1 else "")
+        zeilen.append(f"- {it['gruppe']}: {name} ({preis})")
     return zeilen, once, mtl, yr, hat_anfrage
 
 
-def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="MAIL") -> bool:
+def _mengen_aus_post(request) -> dict:
+    """Liest die Stückzahlen aus dem Formular: ``menge_<id>``."""
+    mengen = {}
+    for schluessel, wert in request.POST.items():
+        if schluessel.startswith("menge_"):
+            mengen[schluessel[6:]] = wert
+    return mengen
+
+
+def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="MAIL",
+                      antwort_an=None) -> bool:
     """Zentraler E-Mail-Versand MIT ausfuehrlichem Logging.
 
     Wichtig: KEIN fail_silently -> echte SMTP-Fehler (Auth, TLS, abgelehnter Absender)
     landen sichtbar im Log, werden hier gefangen und NIE an den Besucher weitergereicht.
     Gibt True zurueck, wenn tatsaechlich versendet wurde.
+
+    ``antwort_an`` setzt den Reply-To-Kopf (06.09.2026). Der Absender der Anfrage-Mails
+    ist bis auf Weiteres die technische Versandadresse; ohne Reply-To landet eine
+    Antwort auf „Antworten" bei ihr statt beim Interessenten, und der Rueckweg muss
+    von Hand aus dem Text herausgesucht werden. Bei der Bestaetigung **an den
+    Interessenten** zeigt Reply-To umgekehrt auf das Postfach von WVM-IT.
     """
     recipients = [r for r in (recipients or []) if r]
     host = getattr(settings, "EMAIL_HOST", "")
@@ -663,7 +712,11 @@ def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="
         return False
     try:
         from django.core.mail import EmailMultiAlternatives
-        msg = EmailMultiAlternatives(subject, message, from_email, recipients)
+        kopf = {}
+        if antwort_an:
+            kopf["Reply-To"] = antwort_an
+        msg = EmailMultiAlternatives(subject, message, from_email, recipients,
+                                     headers=kopf or None)
         if html:
             msg.attach_alternative(html, "text/html")
         n = msg.send(fail_silently=False)
@@ -732,7 +785,7 @@ def _handle_angebot(request, c) -> bool:
         return False
     telefon = _feld(request, "telefon")
     nachricht = _feld(request, "nachricht")
-    zeilen, once, mtl, yr, hat_anfrage = _angebot_summary(ids)
+    zeilen, once, mtl, yr, hat_anfrage = _angebot_summary(ids, _mengen_aus_post(request))
 
     summen = []
     if once:
@@ -867,11 +920,103 @@ def _limit_erreicht(request, bereich: str = "anfrage") -> bool:
 def _honigtopf(request) -> bool:
     """True, wenn das unsichtbare Feld ausgefüllt ist — das tun nur automatische
     Absender. Für den Absender sieht die Antwort danach aus wie ein Erfolg; ein
-    sichtbarer Fehler würde dem Skript nur verraten, wie es durchkommt."""
+    sichtbarer Fehler würde dem Skript nur verraten, wie es durchkommt.
+
+    **Warum der Inhalt geprüft wird und nicht nur, ob etwas dasteht (06.09.2026).**
+    Passwortverwalter tragen in ein Feld namens `website` die Adresse der gerade
+    besuchten Seite ein. Bis heute galt das als Bot, und die Anfrage wurde
+    stillschweigend verworfen — nach beiden Seiten unsichtbar: Der Absender sah
+    „Angekommen", das Postfach blieb leer, protokolliert wurde nichts. Ein Bot
+    trägt dort dagegen eine *fremde* Adresse ein; das ist der ganze Zweck des
+    Feldes aus seiner Sicht. Steht also die eigene Adresse darin, war es die
+    Ausfüllhilfe und die Anfrage geht durch.
+
+    Jeder Treffer wird protokolliert — sonst bliebe wieder unsichtbar, wie oft
+    die Falle greift und wen sie trifft."""
     # Beide Namen: `website` ist der neue, unverfaenglichere (siehe
     # templates/honigtopf.html); `hp` bleibt gueltig, solange noch
     # zwischengespeicherte Seiten mit dem alten Feld unterwegs sind.
-    return any((request.POST.get(f) or "").strip() for f in ("website", "hp"))
+    wert = ""
+    for feld in ("website", "hp"):
+        wert = (request.POST.get(feld) or "").strip()
+        if wert:
+            break
+    if not wert:
+        return False
+
+    pfad = request.path
+    knapp = wert[:120]
+    if _ist_eigene_adresse(request, wert):
+        # Ausfuellhilfe, kein Bot: durchlassen, aber zaehlen.
+        messung.zaehle("honigtopf", "ausfuellhilfe")
+        print(f"[HONIGTOPF] Ausfuellhilfe erkannt, Anfrage geht durch | {pfad} | {knapp}", flush=True)
+        return False
+    messung.zaehle("honigtopf", "bot")
+    print(f"[HONIGTOPF] verworfen | {pfad} | {knapp}", flush=True)
+    return True
+
+
+def _ist_eigene_adresse(request, wert: str) -> bool:
+    """True, wenn der Text auf die eigene Seite zeigt — dann kam er aus der
+    Ausfüllhilfe des Browsers, nicht von einem Skript. Verglichen wird der
+    nackte Hostname, damit `https://www.wvm-it.tech/kontakt/`, `wvm-it.tech`
+    und `www.wvm-it.tech` gleich behandelt werden."""
+    text = wert.lower().strip()
+    try:
+        host = request.get_host().lower()
+    except Exception:
+        host = ""
+    kandidaten = {h for h in (host, host.removeprefix("www."), "wvm-it.tech", "www.wvm-it.tech") if h}
+    # Der Hostanteil des eingetragenen Textes, ohne Schema, Pfad und Port.
+    ohne_schema = text.split("://", 1)[-1]
+    eingetragen = ohne_schema.split("/", 1)[0].split(":", 1)[0]
+    return eingetragen in kandidaten
+
+
+def _herkunft_aus_verweis(request) -> str:
+    """Der Pfad der Seite, von der die Anfrage kam — als Rückfallebene, wenn das
+    Formular kein `zurueck` mitschickt. Nur der eigene Host zählt; ein fremder
+    Verweis sagt nichts über die eigene Seite aus und gehört nicht in den Betreff."""
+    verweis = (request.META.get("HTTP_REFERER") or "").strip()
+    if not verweis:
+        return ""
+    try:
+        ohne_schema = verweis.split("://", 1)[-1]
+        host, _, rest = ohne_schema.partition("/")
+        if host.split(":", 1)[0] not in (request.get_host().lower(),
+                                         request.get_host().lower().removeprefix("www.")):
+            return ""
+        return ("/" + rest.split("?", 1)[0].split("#", 1)[0])[:120]
+    except Exception:
+        return ""
+
+
+def _anfrage_sichern(**felder) -> None:
+    """Legt eine Anfrage als Zeile JSON ab, bevor die E-Mail versendet wird.
+
+    **Warum (06.09.2026).** Es gibt keine Datenbank (``DATABASES = {}``); die
+    Anfrage lebte ausschließlich in der E-Mail. Scheiterte der Versand — falscher
+    SMTP-Zugang, abgelehnter Absender, Netz weg —, war sie verloren, während der
+    Besucher „Angekommen" las. Der Fehlschlag wurde zwar seit dem 05.09. geloggt,
+    aber ohne Inhalt: Man wusste, dass etwas verlorenging, nicht was.
+
+    Das Dateisystem auf Railway ist bei jedem Deploy wieder leer. Deshalb wird der
+    Satz **zusätzlich ins Log gedruckt** — dort ist er dauerhaft nachlesbar. Beide
+    Wege sind Absicht.
+    """
+    try:
+        satz = {"zeit": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+        satz.update({k: (v or "") for k, v in felder.items()})
+        zeile = json.dumps(satz, ensure_ascii=False, sort_keys=True)
+        print(f"[ANFRAGE] {zeile}", flush=True)
+        ordner = Path(os.environ.get("ANFRAGEN_PFAD", "").strip()
+                      or (Path(__file__).resolve().parent.parent / "var" / "anfragen"))
+        ordner.mkdir(parents=True, exist_ok=True)
+        heute = date.today()
+        with open(ordner / f"{heute.year}-{heute.month:02d}.jsonl", "a", encoding="utf-8") as f:
+            f.write(zeile + "\n")
+    except Exception as fehler:
+        print(f"[ANFRAGE-HINWEIS] nicht gesichert ({fehler})", flush=True)
 
 
 def _feld(request, name: str, grenze: int = 0) -> str:
@@ -2919,18 +3064,24 @@ def angebot_anfordern(request):
     cat = pack["catalog"]
     citems = pack["catalog_items"]
     sep = words.get("thousands", ".")
+    # Stückzahlen wie im Konfigurator (06.09.2026): ohne sie stand in dieser Mail
+    # für acht Arbeitsplätze derselbe Betrag wie für einen.
+    mengen = _mengen_aus_post(request)
     once = mtl = yr = 0
     anfrage = False
     lines = []
     for i in ids:
         it = _ANGEBOT_INDEX[i]
-        once += int(it.get("once") or 0)
-        mtl += int(it.get("mtl") or 0)
-        yr += int(it.get("yr") or 0)
+        n = _menge_von(i, mengen)
+        once += int(it.get("once") or 0) * n
+        mtl += int(it.get("mtl") or 0) * n
+        yr += int(it.get("yr") or 0) * n
         if it.get("anfrage"):
             anfrage = True
         gruppe = cat.get(it.get("gruppe_id", ""), {}).get("title", it["gruppe"])
         name = citems.get(it["id"], {}).get("name", it["name"])
+        if n > 1:
+            name = f"{name} ({n}×)"
         lines.append(f"- {gruppe}: {name} ({_make_price_label(it, words)})")
     teile = []
     if once:
@@ -3708,14 +3859,27 @@ def leistung_anfrage(request):
     empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empf)
     thema = _ANFRAGE_QUELLEN[quelle]
+    # Woher die Anfrage kam. Bis zum 06.09.2026 stand das nirgends: Über fünfzig
+    # der 165 Adressen tragen dieselbe Quelle `it` und erzeugten damit denselben
+    # Betreff — ein IT-Notfall und eine Glossarfrage waren im Postfach nicht zu
+    # unterscheiden, und es blieb unbekannt, welche Seite je etwas eingebracht hat.
+    herkunft = zurueck or _herkunft_aus_verweis(request)
+    betreff = _betreff(f"[WVM] Anfrage: {thema}" + (f" — {herkunft}" if herkunft else ""))
     body = (
         f"Neue Kurzanfrage über wvm-it.tech\n\n"
-        f"Thema:   {thema}\nName:    {name or '-'}\nKontakt: {kontakt}\n"
+        f"Thema:   {thema}\nSeite:   {herkunft or '-'}\n"
+        f"Name:    {name or '-'}\nKontakt: {kontakt}\n"
         f"{'Zeit:    ' + zeit + chr(10) if zeit else ''}"
         f"Sprache: {lang}\n\n"
         f"Nachricht:\n{text or '-'}\n"
     )
-    _send_mail_logged(f"[WVM] Anfrage: {thema}", body, from_email, [empf], tag="LEISTUNG")
+    # Erst sichern, dann senden: Scheitert der Versand, war die Anfrage bisher weg
+    # — sie lebte ausschließlich in der E-Mail.
+    _anfrage_sichern(quelle=quelle, thema=thema, herkunft=herkunft, name=name,
+                     kontakt=kontakt, zeit=zeit, lang=lang, text=text)
+    messung.zaehle("anfrage", quelle)
+    _send_mail_logged(betreff, body, from_email, [empf], tag="LEISTUNG",
+                      antwort_an=kontakt if _ist_email(kontakt) else None)
 
     # Bestätigung an den Absender , nur wenn er eine E-Mail hinterlassen hat.
     if _ist_email(kontakt):
@@ -3729,7 +3893,8 @@ def leistung_anfrage(request):
             anrede=anrede, thema=thema_kunde,
             site=c.get("site_name", "WVM-IT"), url=c.get("wvm_url", ""))
         _send_mail_logged(em["leistung_ack_subject"].format(thema=thema_kunde), ack,
-                          from_email, [kontakt], tag="LEISTUNG-ACK")
+                          from_email, [kontakt], tag="LEISTUNG-ACK",
+                          antwort_an=empf or None)
 
     # Zusätzlich in Supabase protokollieren, falls konfiguriert (best effort).
     try:

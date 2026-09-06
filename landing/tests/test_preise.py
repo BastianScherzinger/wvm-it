@@ -9,8 +9,9 @@ from django.test import SimpleTestCase
 
 from landing import leistungen
 from landing.views import (ANGEBOT_GROUPS, STARTPAKETE, _ANGEBOT_INDEX,
-                           _RECHNER_NACH_ID, _eur, _make_price_label,
-                           _paketpreise, _rechner_rechnen, _rechner_werte,
+                           _RECHNER_NACH_ID, _angebot_summary, _eur,
+                           _make_price_label, _menge_von, _paketpreise,
+                           _rechner_rechnen, _rechner_werte,
                            _thousands, _rechner_zahlen_fuer_pruefung)
 
 _PREISFELDER = ("once", "mtl", "yr", "std")
@@ -181,3 +182,54 @@ class KostenrechnerTest(SimpleTestCase):
         self.assertIn(ergebnis["mtl"], zahlen)
         self.assertIn(ergebnis["jahr"], zahlen)
         self.assertIn(ergebnis["vergleich_mtl"], zahlen)
+
+
+class MengenTest(SimpleTestCase):
+    """Positionen, die „je Arbeitsplatz" heißen, müssen auch je Arbeitsplatz rechnen.
+
+    Bis zum 06.09.2026 addierte `_angebot_summary` jede Position genau einmal. Ein
+    Betrieb mit acht Arbeitsplätzen bekam per E-Mail 167 €/Monat, während der
+    Kostenrechner auf derselben Seite 370 €/Monat auswies — und die falsche Zahl war
+    die schriftliche. Diese Tests halten beide Werkzeuge auf derselben Zahl.
+    """
+
+    def test_je_arbeitsplatz_wird_multipliziert(self):
+        _, once, mtl, _, _ = _angebot_summary(["it_betreuung"], {"it_betreuung": "8"})
+        satz = int(_ANGEBOT_INDEX["it_betreuung"]["mtl"])
+        self.assertEqual(mtl, satz * 8)
+        self.assertEqual(once, 0)
+
+    def test_der_bekannte_fall_acht_arbeitsplaetze_ein_server_datensicherung(self):
+        ids = ["it_betreuung", "server_care", "backup"]
+        _, _, mtl, _, _ = _angebot_summary(ids, {"it_betreuung": "8"})
+        erwartet = (int(_ANGEBOT_INDEX["it_betreuung"]["mtl"]) * 8
+                    + int(_ANGEBOT_INDEX["server_care"]["mtl"])
+                    + int(_ANGEBOT_INDEX["backup"]["mtl"]))
+        self.assertEqual(mtl, erwartet)
+
+    def test_konfigurator_und_kostenrechner_kommen_auf_dieselbe_zahl(self):
+        """Die eigentliche Regression: zwei Werkzeuge, eine Wahrheit."""
+        from django.http import QueryDict
+        from landing.views import _rechner_rechnen, _rechner_werte
+        rechner = _rechner_rechnen(_rechner_werte(QueryDict("ap=8&srv=1&backup=1&neu=0&m365=0")))
+        _, _, mtl, _, _ = _angebot_summary(
+            ["it_betreuung", "server_care", "backup"], {"it_betreuung": "8"})
+        self.assertEqual(mtl, rechner["mtl"])
+
+    def test_menge_wird_auf_die_obergrenze_begrenzt(self):
+        grenze = int(_ANGEBOT_INDEX["server_care"]["menge_max"])
+        self.assertEqual(_menge_von("server_care", {"server_care": str(grenze + 99)}), grenze)
+        self.assertEqual(_menge_von("server_care", {"server_care": "-3"}), 1)
+        self.assertEqual(_menge_von("server_care", {"server_care": "keine zahl"}), 1)
+
+    def test_positionen_ohne_mengenfeld_bleiben_einfach(self):
+        self.assertEqual(_menge_von("sicherheitscheck", {"sicherheitscheck": "9"}), 1)
+        _, once, _, _, _ = _angebot_summary(["sicherheitscheck"], {"sicherheitscheck": "9"})
+        self.assertEqual(once, int(_ANGEBOT_INDEX["sicherheitscheck"]["once"]))
+
+    def test_jede_position_mit_menge_nennt_auch_ihre_einheit(self):
+        for iid, it in _ANGEBOT_INDEX.items():
+            if it.get("menge_max"):
+                with self.subTest(position=iid):
+                    self.assertTrue(it.get("menge_label"),
+                                    f"{iid} rechnet je Stück, sagt aber nicht wovon")

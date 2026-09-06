@@ -17,6 +17,7 @@ import secrets
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
+from . import messung
 from .i18n import LANGS
 
 _BOT = re.compile(
@@ -255,6 +256,56 @@ def _csp(nonce: str) -> str:
         "frame-ancestors 'none'",
         "upgrade-insecure-requests",
     ])
+
+
+# Kennungen, an denen automatische Abrufer erkennbar sind. Die Liste muss nicht
+# vollstaendig sein — sie trennt die Groessenordnung „Mensch" von „Crawler",
+# damit die Zahl der Seitenaufrufe nicht von Suchmaschinen getragen wird.
+_BOT_KENNUNGEN = (
+    "bot", "crawl", "spider", "slurp", "bingpreview", "facebookexternalhit",
+    "ia_archiver", "lighthouse", "pagespeed", "headlesschrome", "curl/", "wget/",
+    "python-requests", "python-urllib", "go-http-client", "postman", "monitor",
+    "uptime", "pingdom", "semrush", "ahrefs", "mj12", "dotbot", "petalbot",
+    "gptbot", "claudebot", "perplexity", "ccbot", "bytespider", "applebot",
+)
+
+
+def _ist_automat(request) -> bool:
+    """True bei einem erkennbar automatischen Abrufer."""
+    kennung = (request.META.get("HTTP_USER_AGENT") or "").lower()
+    if not kennung:
+        return True
+    return any(teil in kennung for teil in _BOT_KENNUNGEN)
+
+
+class MessungMiddleware:
+    """Zaehlt Seitenaufrufe — ohne IP, ohne Cookie, ohne Kennung.
+
+    **Warum sie ganz innen steht.** Sie soll den *ausgelieferten* Seitenaufruf
+    zaehlen, nicht die Weiterleitung davor: Wer auf `/leistungen` ohne Schraegstrich
+    kommt, erzeugt eine 301 und danach eine 200 — gezaehlt gehoert nur die zweite.
+    Deshalb steht sie hinter der Host-, der Sprach- und der Common-Schicht.
+
+    Gezaehlt wird ausschliesslich die Summe je Pfad. Damit ist das keine
+    Verarbeitung personenbezogener Daten und braucht weder Einwilligung noch
+    Eintrag im Cookie-Banner — die Begruendung steht ausfuehrlich in
+    `landing/messung.py`.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        try:
+            typ = (response.headers.get("Content-Type") or "").split(";")[0].strip().lower()
+            if response.status_code == 200 and typ in ("text/html", "application/xhtml+xml"):
+                art = "automat" if _ist_automat(request) else "seite"
+                messung.zaehle(art, request.path[:120])
+        except Exception:
+            # Eine Messung darf niemals eine Antwort verhindern.
+            pass
+        return response
 
 
 class SicherheitskoepfeMiddleware:

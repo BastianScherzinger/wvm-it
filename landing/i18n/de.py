@@ -373,6 +373,9 @@ PACK = {
         "from": "ab", "on_request": "auf Anfrage",
         "per_month": "€/Mt", "per_year": "€/Jahr", "per_hour": "€/Std.",
         "popular": "beliebt", "thousands": ".",
+        # Stueckzahl im Konfigurator (06.09.2026) — Positionen mit `menge_max`
+        # im Katalog werden je Stueck gerechnet, nicht pauschal.
+        "menge": "Anzahl",
     },
     "catalog": {
         "it": {"title": "EDV & IT-Betreuung", "short": "EDV & IT", "sub": "Damit die Technik läuft, ohne dass Sie sich kümmern."},

@@ -364,6 +364,7 @@ PACK = {
         "from": "de la", "on_request": "la cerere",
         "per_month": "€/lună", "per_year": "€/an", "per_hour": "€/oră",
         "popular": "popular", "thousands": ".",
+        "menge": "Cantitate",
     },
     "catalog": {
         "it": {"title": "Suport IT & administrare", "short": "Suport IT", "sub": "Ca tehnica să funcționeze fără să te ocupi tu."},

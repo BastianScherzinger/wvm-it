@@ -5,3 +5,9 @@ db.sqlite3
 .env
 *.log
 .DS_Store
+
+# Lokale Pruefumgebung (Python 3.13, siehe doku/10-TECHNIK.md)
+.venv313/
+
+# Serverseitige Messung und gesicherte Anfragen (landing/messung.py, views._anfrage_sichern)
+var/

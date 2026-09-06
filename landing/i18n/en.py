@@ -368,6 +368,7 @@ PACK = {
         "from": "from", "on_request": "on request",
         "per_month": "€/mo", "per_year": "€/yr", "per_hour": "€/hr",
         "popular": "popular", "thousands": ",",
+        "menge": "Quantity",
     },
     "catalog": {
         "it": {"title": "IT support & management", "short": "IT support", "sub": "So the technology runs without you having to think about it."},

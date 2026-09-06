@@ -553,6 +553,17 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
 .ang-item-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
 /* ── Auswahl-Kachel ──────────────────────────────────────────────────────── */
+/* Zelle aus Kachel + optionalem Mengenfeld. Das Zahlenfeld steht ausserhalb des
+   <label>, damit ein Klick hinein nicht die Auswahl umschaltet (06.09.2026). */
+.ang-zelle{display:flex;flex-direction:column;height:100%}
+.ang-zelle>.ang-item{flex:1 1 auto}
+.ang-menge{display:flex;align-items:center;gap:9px;margin-top:7px;padding:0 4px}
+.ang-menge label{font-size:12.5px;color:var(--ink-soft);font-weight:600;letter-spacing:.02em}
+.ang-menge-einheit{color:var(--ink-dim);font-weight:400}
+.ang-menge input{width:82px;min-height:40px;padding:6px 10px;font-size:16px;
+  border:1px solid var(--line);border-radius:var(--radius-in);background:var(--surface);
+  color:var(--ink);font-variant-numeric:tabular-nums}
+.ang-menge input:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 .ang-item{display:block;cursor:pointer;height:100%}
 .ang-check{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);border:0}
 .ang-item-box{position:relative;display:flex;flex-direction:column;gap:8px;height:100%;padding:15px 16px 14px;
@@ -1362,7 +1373,11 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .lb-done strong{font-family:"Space Grotesk",sans-serif;font-size:17px}
 .lb-done p{font-size:14.5px;color:var(--ink-soft);margin:0}
 /* Honeypot: für Menschen unsichtbar, für Bots ein Feld wie jedes andere. */
-.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* Honigtopf: display:none statt Verschieben — die Ausfuellhilfe des Browsers und
+   Passwortverwalter ueberspringen Felder ohne Darstellungsbox weitgehend. Ein Feld,
+   das nur aus dem Bild geschoben ist, fuellen sie dagegen aus und verwerfen damit
+   echte Anfragen (06.09.2026, siehe templates/honigtopf.html). */
+.hp{display:none}
 
 /* ── Technik vor Ort (kompakter als die digitalen Blöcke) ────────────────── */
 .tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:26px}

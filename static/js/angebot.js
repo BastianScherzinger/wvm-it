@@ -101,13 +101,29 @@
     return parts.join(" + ") || "-";
   }
 
+  // Stueckzahl einer Position. Positionen ohne Mengenfeld gibt es genau einmal.
+  // Der Server rechnet dieselbe Begrenzung noch einmal (views._menge_von) — was
+  // hier steht, ist reine Anzeige und wird nie geglaubt.
+  function menge(box) {
+    var id = box.getAttribute("data-menge");
+    if (!id) return 1;
+    var feld = document.getElementById(id);
+    if (!feld) return 1;
+    var n = parseInt(feld.value, 10);
+    var max = parseInt(feld.getAttribute("max"), 10) || 1;
+    if (!n || n < 1) n = 1;
+    return Math.min(n, max);
+  }
+
   function read(box) {
+    var n = menge(box);
+    var name = box.getAttribute("data-name") || box.value;
     return {
       id: box.value,
-      name: box.getAttribute("data-name") || box.value,
-      once: parseInt(box.getAttribute("data-once"), 10) || 0,
-      mtl: parseInt(box.getAttribute("data-mtl"), 10) || 0,
-      yr: parseInt(box.getAttribute("data-yr"), 10) || 0,
+      name: n > 1 ? name + " (" + n + "×)" : name,
+      once: (parseInt(box.getAttribute("data-once"), 10) || 0) * n,
+      mtl: (parseInt(box.getAttribute("data-mtl"), 10) || 0) * n,
+      yr: (parseInt(box.getAttribute("data-yr"), 10) || 0) * n,
       anfrage: box.getAttribute("data-anfrage") === "1"
     };
   }
@@ -182,6 +198,16 @@
   }
 
   boxes.forEach(function (b) { b.addEventListener("change", render); });
+  // Mengenfelder: Aendert sich die Stueckzahl, muss die laufende Summe mit. Wird
+  // eine Menge gesetzt, ohne dass die Position gewaehlt ist, waehlt sie sich selbst
+  // — sonst tippt jemand „8" und nichts passiert.
+  Array.prototype.forEach.call(document.querySelectorAll(".ang-menge input"), function (feld) {
+    feld.addEventListener("input", function () {
+      var box = document.querySelector('[data-menge="' + feld.id + '"]');
+      if (box && !box.checked && parseInt(feld.value, 10) > 0) box.checked = true;
+      render();
+    });
+  });
   if (mobarBtn) mobarBtn.addEventListener("click", function () { show(last, true); });
 
   if (listEl) {
