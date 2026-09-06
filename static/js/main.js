@@ -193,8 +193,38 @@
         entries.forEach((e) => {
           if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
         });
-      }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+      }, {
+        // threshold 0 statt 0.14 (06.09.2026) — vorsorglich, nicht wegen eines
+        // beobachteten Ausfalls.
+        //
+        // Ein Anteil-Schwellwert haengt an der ELEMENTHOEHE: Bei 0.14 muss ein
+        // Element zu 14 % im Bild sein. Nachgerechnet an der vollstaendigen
+        // Preistabelle (`.pt`, 3.192 px hoch): Bei 585 px Fensterhoehe und
+        // rootMargin -8% bleiben 538 px wirksamer Bereich, noetig sind 447 px. Das
+        // geht auf — aber **ab rund 3.850 px Elementhoehe waere die Schwelle nie
+        // erreichbar**, und der Inhalt bliebe dauerhaft auf opacity:0. Im HTML
+        // vorhanden, fuer Suchmaschinen und jede Pruefung sichtbar, fuer Menschen
+        // nicht: also genau die Sorte Fehler, die sich nicht meldet. Der Abstand
+        // dorthin betraegt keine 700 px — etwa zwanzig weitere Preiszeilen.
+        //
+        // Mit threshold 0 loest jedes Element aus, sobald es den Bereich beruehrt,
+        // unabhaengig von seiner Hoehe. Das Verhalten fuer den Besucher aendert
+        // sich dabei praktisch nicht.
+        threshold: 0, rootMargin: "0px 0px -8% 0px"
+      });
       reveals.forEach((el) => io.observe(el));
+
+      // Sicherheitsnetz gegen dieselbe Fehlerklasse: Was auch immer dazu fuehrt,
+      // dass ein Element nie beobachtet wird — ein kuenftig zu hohes Element, ein
+      // Sprung ueber mehrere Bildschirme, ein Tab, das im Hintergrund geladen wurde
+      // und dessen Observer deshalb nicht feuert —, nach dieser Frist ist der Inhalt
+      // da. Ein Aufbau, in dem Text dauerhaft auf opacity:0 stehenbleiben KANN, ist
+      // die Wette nicht wert; die Animation ist eine Zugabe, der Text nicht.
+      window.setTimeout(() => {
+        reveals.forEach((el) => {
+          if (!el.classList.contains("in")) { el.classList.add("in"); io.unobserve(el); }
+        });
+      }, 2500);
     }
   }
 
