@@ -210,6 +210,10 @@ class Command(BaseCommand):
         # berechnen wäre genau die Doppelung, die diese Prüfung verhindern soll.
         from landing.views import _rechner_zahlen_fuer_pruefung
         erlaubt |= _rechner_zahlen_fuer_pruefung()
+        # Dieselbe Abmachung für die drei Betreuungsstufen auf der Startseite
+        # (06.09.2026): auch sie bilden Summen aus Katalogpositionen.
+        from landing.views import _it_stufen_zahlen_fuer_pruefung
+        erlaubt |= _it_stufen_zahlen_fuer_pruefung()
         # Startwert der laufenden Summe im Konfigurator, bevor etwas gewählt wurde.
         erlaubt.add(0)
         client = _client()

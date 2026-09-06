@@ -124,17 +124,19 @@ PACK = {
         "on_request": "auf Anfrage",
         "per_month": "/Mt",
         "per_year": "/Jahr",
+        # `lock` wird seit dem 06.09.2026 nicht mehr gerendert: Die Summe steht sofort.
+        # Der Schluessel bleibt, damit keine Sprachfassung auf einen fehlenden Wert laeuft.
         "lock": "Richtpreis mit E-Mail freischalten",
-        "email_label": "Ihre E-Mail",
-        "consent": "Ja, schaltet meinen Richtpreis frei und schickt mir künftig passende Angebote. Jederzeit abbestellbar.",
-        "submit": "Richtpreis freischalten",
+        "email_label": "Richtangebot per E-Mail (freiwillig)",
+        "consent": "Zusätzlich künftig passende Angebote per E-Mail. Freiwillig, jederzeit abbestellbar.",
+        "submit": "Richtangebot per E-Mail schicken",
         "fine": "Richtpreise, netto zzgl. USt. Unverbindlich, kein Konto nötig. Antwort in 24&nbsp;Stunden.",
-        "done_h": "Freigeschaltet! Ihr Richtangebot ist unterwegs.",
+        "done_h": "Unterwegs — Ihr Richtangebot liegt gleich im Postfach.",
         "done_t": "Wir haben Ihnen die Übersicht per E-Mail geschickt und melden uns mit dem genauen Angebot.",
         "all_link": "Lieber die komplette Preisliste ansehen &rarr;",
         "js_leistung": "Leistung",
         "js_leistungen": "Leistungen",
-        "js_busy": "Wird freigeschaltet …",
+        "js_busy": "Wird verschickt …",
         "js_error": "Das hat gerade nicht geklappt. Bitte in einem Moment erneut versuchen.",
     },
     "band1": {
@@ -219,6 +221,40 @@ PACK = {
         "r2_h": "Konferenz- &amp; Medientechnik", "r2_p": "Displays, Ton und Steuerung, einsatzbereit.",
         "r3_alt": "Professionelle Video-, Ton- und Bühnentechnik für Live-Events",
         "r3_h": "Video-, Ton- &amp; Bühnentechnik", "r3_p": "Live-Events auf höchstem Niveau.",
+    },
+    # ── Betreuungsstufen (06.09.2026) ────────────────────────────────────────
+    # Der Preisabschnitt zeigte bis heute als Erstes drei Webseiten-Pakete. Wer
+    # eine laufende EDV-Betreuung suchte — das Kerngeschaeft —, fand dort keine
+    # Zahl. Diese drei Stufen stehen jetzt davor; gerechnet werden sie in
+    # views._it_stufen() aus denselben Katalogpositionen.
+    "it_stufen": {
+        "h": "Was die laufende Betreuung kostet",
+        "lead": "Drei typische Betriebsgr&ouml;&szlig;en, gerechnet aus derselben Preisliste wie alles andere. Ihre genaue Zahl rechnen Sie im Rechner selbst aus.",
+        "beliebt": "am h&auml;ufigsten",
+        "unit": "&euro;/Monat",
+        "klein_h": "Bis 5 Arbeitspl&auml;tze",
+        "klein_for": "Kleinbetrieb ohne eigenen Server.",
+        "klein_li": [
+            "5 Arbeitspl&auml;tze laufend betreut",
+            "T&auml;glich gepr&uuml;fte Datensicherung",
+            "Hilfe per Fernwartung nach Aufwand",
+        ],
+        "mittel_h": "Bis 15 Arbeitspl&auml;tze",
+        "mittel_for": "Betrieb mit einem Server.",
+        "mittel_li": [
+            "15 Arbeitspl&auml;tze laufend betreut",
+            "Ein Server rund um die Uhr im Blick",
+            "T&auml;glich gepr&uuml;fte Datensicherung",
+        ],
+        "gross_h": "Bis 30 Arbeitspl&auml;tze",
+        "gross_for": "Mehrere Standorte oder Server.",
+        "gross_li": [
+            "30 Arbeitspl&auml;tze laufend betreut",
+            "Zwei Server rund um die Uhr im Blick",
+            "T&auml;glich gepr&uuml;fte Datensicherung",
+        ],
+        "cta": "Eigene Zahl ausrechnen",
+        "foot": "Richtpreise, netto zzgl. USt. Einsatzstunden und einmalige Einrichtung kommen nach Aufwand dazu &mdash; die S&auml;tze stehen in der Preisliste darunter.",
     },
     "preise": {
         "tab_h": "Alle Leistungen und Preise auf einen Blick",
@@ -502,6 +538,10 @@ PACK = {
         "titel": "IT-Notfall: die ersten 30 Minuten | WVM-IT",
         "desc": "Verschlüsselung, Serverausfall, gehacktes Postfach: was in den ersten 30 Minuten zu tun ist — und was nicht. Im Ernstfall sofort anrufen.",
         "h1": "IT-Notfall: was in den ersten 30 Minuten zu tun ist",
+        # Kurzlabel fuer Navigation und Footer (06.09.2026). Vorher stand dort
+        # `h1|truncatewords:2` — also woertlich „IT-Notfall: was …", ein
+        # abgeschnittener Seitentitel, der im Kopf dreizeilig umbrach.
+        "nav": "IT-Notfall",
         "kurz": "Bei einem IT-Notfall entscheiden die ersten Minuten über den Schaden. Die wichtigste Regel gilt in allen vier Fällen: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden. Danach Hilfe holen. Wir sind an Werktagen von 9 bis 18 Uhr unter der unten stehenden Nummer erreichbar und beginnen per Fernwartung meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind.",
         "eilt_h": "Es eilt — hier entlang",
         "eilt_t": "Rufen Sie an, statt zu schreiben. Ein Anruf spart bei einer laufenden Störung mehr Zeit als jede Beschreibung per E-Mail.",
@@ -608,6 +648,9 @@ PACK = {
         "titel": "IT-Sicherheit: Selbsttest in 10 Fragen | WVM-IT",
         "desc": "Zehn Ja-Nein-Fragen zur IT-Sicherheit Ihres Betriebs, Ergebnis sofort und ohne E-Mail-Abfrage. Jetzt kostenlos testen.",
         "h1": "Wie sicher ist die IT in Ihrem Betrieb?",
+        # Kurzlabel fuer den Footer (06.09.2026), vorher `h1|truncatewords:3`
+        # — also „Wie sicher ist …".
+        "nav": "IT-Sicherheitstest",
         "kurz": "10 Fragen, ehrlich beantwortet, ergeben ein brauchbares Bild — und vor allem eine Reihenfolge. Sie bekommen das Ergebnis sofort, ohne E-Mail-Adresse und ohne dass etwas gespeichert wird. Der Test ersetzt keine Prüfung; er zeigt Ihnen, wo eine Prüfung anfangen müsste.",
         "intro": "Antworten Sie so, wie es heute wirklich ist, nicht wie es sein sollte. „Weiß nicht“ ist eine gültige Antwort und für das Ergebnis genauso aussagekräftig wie ein Nein — in der IT-Sicherheit ist Unwissen dasselbe wie Unsicherheit, nur unangenehmer zu bemerken.",
         "hinweis_h": "Was mit Ihren Antworten passiert",
@@ -1180,8 +1223,19 @@ PACK = {
     },
     "tool": {
         "aria": "Direkt loslegen",
+        # Reihenfolge seit 06.09.2026: Rueckruf zuerst. Bis dahin stand die
+        # kostenlose Beispiel-Website vorne — der aufwendigste Trichter der Seite
+        # fuehrte damit am Kerngeschaeft vorbei, und wer eine IT-Betreuung suchte,
+        # bekam als Erstes eine Webseite angeboten.
+        "tab_rueckruf": "Rückruf",
         "tab_gratis": "Gratis-Seite",
         "tab_preis": "Richtpreis",
+        "rechner_h": "Was kostet die Betreuung bei Ihnen?",
+        "rechner_sub": "Zwei Zahlen genügen. Das Ergebnis steht sofort, ohne E-Mail.",
+        "rechner_ap": "Arbeitsplätze",
+        "rechner_srv": "Server",
+        "rechner_submit": "Monatspreis ausrechnen",
+        "rechner_alt": "Etwas anderes? Richtpreis für:",
         "preis_h": "Was brauchen Sie?",
         "preis_sub": "Antippen und den Richtpreis in unter einer Minute sehen.",
         "preis_web": "Webseite",

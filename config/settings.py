@@ -11,9 +11,19 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Im Testlauf zaehlt landing/messung.py weiter, schreibt aber weder Datei noch
-# Logzeile: Sonst legt jeder Testlauf var/messung/ an und flutet das Protokoll.
-if "test" in sys.argv:
+# Bei Test- und Pruefbefehlen zaehlt landing/messung.py weiter, schreibt aber weder
+# Datei noch Logzeile: Sonst legt jeder Lauf var/messung/ an und flutet das
+# Protokoll — `pruefe_seite` ruft alle 165 Ansichten auf.
+#
+# Bewusst eine Positivliste und nicht „alles ausser runserver": Der Dienst startet
+# ueber gunicorn, dort ist sys.argv[1] der WSGI-Pfad. Eine Negativliste haette die
+# Messung im echten Betrieb stummgeschaltet — genau dort, wo sie gebraucht wird.
+_STUMME_BEFEHLE = {
+    "test", "pruefe_seite", "pruefe_sicherheit", "seo_bericht", "stand_schreiben",
+    "indexnow", "collectstatic", "check", "shell", "messung",
+}
+if (len(sys.argv) > 1 and Path(sys.argv[0]).name == "manage.py"
+        and sys.argv[1] in _STUMME_BEFEHLE):
     os.environ.setdefault("MESSUNG_STUMM", "1")
 
 # SECRET_KEY MUSS in Produktion via Umgebungsvariable gesetzt werden (Railway).

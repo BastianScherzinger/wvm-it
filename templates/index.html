@@ -59,14 +59,71 @@ Die Varianten stehen in content.json (T3).
         </ul>
       </div>
 
-      {% comment %} Werkzeug mit zwei Reitern: kostenlose Beispielseite ODER Richtpreis. {% endcomment %}
+      {% comment %} ── Werkzeug mit drei Reitern ───────────────────────────────────
+        Reihenfolge seit dem 06.09.2026: **Rueckruf zuerst.**
+
+        Bis dahin war „Gratis-Seite" der vorausgewaehlte Reiter — links stand
+        „Die IT-Abteilung fuer Betriebe, die keine haben", rechts daneben eine
+        kostenlose KI-gebaute Beispiel-Website mit Rabattcode und Newsletter-Haken.
+        Der aufwendigste Trichter der Seite fuehrte damit am Kerngeschaeft vorbei,
+        und ein Geschaeftsfuehrer mit acht Arbeitsplaetzen las: Webagentur, die
+        auch IT macht. Genau die Verwechslung, die er vermeiden will, bevor er
+        jemandem seine Serverzugaenge gibt.
+
+        Der Rueckruf ist der kuerzeste Weg zur Anfrage, den diese Seite hat: zwei
+        Felder und ein Zeitfenster. Er lag bisher hinter einem Dialog, der auf rund
+        150 der 165 Seiten gar nicht ausloesbar war.
+
+        Das Gratis-Angebot bleibt vollstaendig erhalten — es wandert nur auf Platz
+        drei. Ohne JavaScript ist der erste Reiter sichtbar, also der Rueckruf.
+      {% endcomment %}
       <div class="hero-tool" data-reveal aria-label="{{ t.tool.aria|safe }}">
         <div class="tool-tabs" role="tablist" aria-label="{{ t.tool.aria|safe }}">
-          <button class="tool-tab is-active" role="tab" id="tab-gratis" aria-controls="panel-gratis" aria-selected="true" type="button">{{ t.tool.tab_gratis|safe }}</button>
+          <button class="tool-tab is-active" role="tab" id="tab-rueckruf" aria-controls="panel-rueckruf" aria-selected="true" type="button">{{ t.tool.tab_rueckruf|safe }}</button>
           <button class="tool-tab" role="tab" id="tab-preis" aria-controls="panel-preis" aria-selected="false" tabindex="-1" type="button">{{ t.tool.tab_preis|safe }}</button>
+          <button class="tool-tab" role="tab" id="tab-gratis" aria-controls="panel-gratis" aria-selected="false" tabindex="-1" type="button">{{ t.tool.tab_gratis|safe }}</button>
         </div>
 
-        <div class="tool-panel" id="panel-gratis" role="tabpanel" aria-labelledby="tab-gratis" tabindex="0">
+        {% comment %} Reiter 1: Rueckruf — zwei Felder, ein Zeitfenster. {% endcomment %}
+        <div class="tool-panel" id="panel-rueckruf" role="tabpanel" aria-labelledby="tab-rueckruf" tabindex="0">
+          <h2 class="tool-h">{{ t.rueckruf.h|safe }}</h2>
+          <p class="tool-sub">{{ t.rueckruf.sub|safe }}</p>
+          <form class="lb-form rr-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage>
+            {% csrf_token %}
+            <input type="hidden" name="quelle" value="rueckruf">
+            <input type="hidden" name="zurueck" value="{{ request.path }}">
+            {% include 'honigtopf.html' %}
+            <div class="of-grid">
+              <div class="field">
+                <label class="fld-l" for="hero-rr-name">{{ t.rueckruf.name|safe }}</label>
+                <input class="fld" id="hero-rr-name" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.rueckruf.name_ph|safe }}">
+              </div>
+              <div class="field">
+                <label class="fld-l" for="hero-rr-tel">{{ t.rueckruf.tel|safe }}</label>
+                <input class="fld" id="hero-rr-tel" type="tel" name="kontakt" required autocomplete="tel" placeholder="{{ t.rueckruf.tel_ph|safe }}">
+              </div>
+            </div>
+            <div class="field">
+              <label class="fld-l" for="hero-rr-zeit">{{ t.rueckruf.zeit|safe }}</label>
+              <select class="fld" id="hero-rr-zeit" name="zeit">
+                <option>{{ t.rueckruf.zeit_1|safe }}</option>
+                <option>{{ t.rueckruf.zeit_2|safe }}</option>
+                <option>{{ t.rueckruf.zeit_3|safe }}</option>
+                <option selected>{{ t.rueckruf.zeit_4|safe }}</option>
+              </select>
+            </div>
+            <button class="btn btn-lg lb-submit" type="submit">{{ t.rueckruf.submit|safe }}</button>
+            <p class="lb-err" role="alert" hidden></p>
+            {% include 'datenschutzhinweis.html' %}
+          </form>
+          <div class="lb-done" hidden>
+            <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+            <strong>{{ t.rueckruf.done_h|safe }}</strong>
+            <p>{{ t.rueckruf.done_t|safe }}</p>
+          </div>
+        </div>
+
+        <div class="tool-panel" id="panel-gratis" role="tabpanel" aria-labelledby="tab-gratis" tabindex="0" hidden>
           {% if news_sent %}
           <div class="hero-offer-done">
             <span class="offer-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -93,7 +150,7 @@ Die Varianten stehen in content.json (T3).
                 <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
               </div>
             </div>
-            <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="#datenschutz">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
+            <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
             <button class="btn btn-lg btn-magnetic offer-submit" type="submit">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <p class="tool-fine">{{ t.hero.note|safe }}</p>
           {% include 'datenschutzhinweis.html' %}
@@ -102,8 +159,35 @@ Die Varianten stehen in content.json (T3).
         </div>
 
         <div class="tool-panel" id="panel-preis" role="tabpanel" aria-labelledby="tab-preis" tabindex="0" hidden>
-          <h2 class="tool-h">{{ t.tool.preis_h|safe }}</h2>
-          <p class="tool-sub">{{ t.tool.preis_sub|safe }}</p>
+          {% comment %} ── Der Rechner statt sechs Kacheln ────────────────────────
+            Bis zum 06.09.2026 bot dieser Reiter sechs Kacheln an: Webseite, Shop,
+            KI, Hosting, SEO, Technik — also **alles ausser dem Kerngeschaeft**.
+            Wer wissen wollte, was die laufende EDV-Betreuung kostet, fand hier
+            nichts.
+
+            Jetzt steht der Kostenrechner vorne: ein GET-Formular, das ohne
+            JavaScript vollstaendig funktioniert und dessen Ergebnis in der Adresse
+            steht, also weitergegeben werden kann. Er ist das beste Werkzeug der
+            Seite und war bisher drei Klicks tief vergraben. Die sechs Kacheln
+            bleiben darunter fuer alles andere.
+          {% endcomment %}
+          <h2 class="tool-h">{{ t.tool.rechner_h|safe }}</h2>
+          <p class="tool-sub">{{ t.tool.rechner_sub|safe }}</p>
+          <form class="tool-rechner" method="get" action="{% url 'rechner' %}">
+            <div class="of-grid">
+              <div class="field">
+                <label class="fld-l" for="hero-ap">{{ t.tool.rechner_ap|safe }}</label>
+                <input class="fld" id="hero-ap" type="number" name="ap" value="8" min="1" max="250" step="1" inputmode="numeric">
+              </div>
+              <div class="field">
+                <label class="fld-l" for="hero-srv">{{ t.tool.rechner_srv|safe }}</label>
+                <input class="fld" id="hero-srv" type="number" name="srv" value="1" min="0" max="20" step="1" inputmode="numeric">
+              </div>
+            </div>
+            <input type="hidden" name="backup" value="1">
+            <button class="btn btn-lg" type="submit">{{ t.tool.rechner_submit|safe }}</button>
+          </form>
+          <p class="tool-sub tool-sub-alt">{{ t.tool.rechner_alt|safe }}</p>
           {% comment %} Ohne JavaScript sind das schlichte Anker in den Konfigurator. {% endcomment %}
           <div class="tool-picks">
             <a class="tool-pick" href="#angebot" data-gruppe="web">{% include 'icons.html' with name='web' %}<span>{{ t.tool.preis_web|safe }}</span></a>
@@ -393,17 +477,27 @@ Die Varianten stehen in content.json (T3).
                 <span class="rb-count" id="rbCount">{{ t.rb.count|safe }}</span>
               </div>
 
-              <div class="rb-sum is-locked" id="rbSum">
+              {% comment %} ── Die Summe steht sofort (06.09.2026) ──────────────────
+                Bis heute lag ueber dieser Summe eine Sperrflaeche: unscharf gerechnet,
+                lesbar erst nach Eingabe einer E-Mail-Adresse **mit** Pflicht-Haken fuer
+                kuenftige Werbung. Genau dieselbe Zahl stand drei Klicks weiter frei
+                zugaenglich — 33 offene Positionen unter /kosten/ und ein vollstaendiger
+                Rechner unter /kosten/rechner/, beide ohne E-Mail. Die Seite baute also
+                eine Mauer vor eine Information, die sie selbst als offen bewirbt; das
+                war der einzige Punkt, an dem ihre sonst glaubwuerdige Ehrlichkeit brach.
+
+                Die Kopplung „Preis nur gegen Werbeeinwilligung" war zusaetzlich
+                rechtlich heikel. Das E-Mail-Feld bleibt — als Angebot, sich die
+                Zusammenstellung schicken zu lassen —, die Einwilligung daneben ist
+                jetzt freiwillig.
+              {% endcomment %}
+              <div class="rb-sum" id="rbSum">
                 <div class="rb-sum-rows">
                   <div class="rb-sum-empty" id="rbSumEmpty">{{ t.rb.sum_empty|safe }}</div>
                   <div class="rb-sum-row" data-k="once" hidden><span>{{ t.rb.row_once|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="once">0</span>&nbsp;€</strong></div>
                   <div class="rb-sum-row" data-k="mtl" hidden><span>{{ t.rb.row_mtl|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="mtl">0</span>&nbsp;€<small>{{ t.rb.per_month|safe }}</small></strong></div>
                   <div class="rb-sum-row" data-k="yr" hidden><span>{{ t.rb.row_yr|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="yr">0</span>&nbsp;€<small>{{ t.rb.per_year|safe }}</small></strong></div>
                   <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>{{ t.rb.row_more|safe }}</span><strong>{{ t.rb.on_request|safe }}</strong></div>
-                </div>
-                <div class="rb-lock" id="rbLock">
-                  {% include 'icons.html' with name='shield' %}
-                  <span>{{ t.rb.lock|safe }}</span>
                 </div>
               </div>
 
@@ -412,8 +506,10 @@ Die Varianten stehen in content.json (T3).
                   <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
                   <input class="fld" type="email" name="email" id="rbEmail" required autocomplete="email" placeholder="name@firma.at">
                 </div>
+                {% comment %} Freiwillig seit dem 06.09.2026: Die Werbeeinwilligung war
+                   an die Anzeige des Preises gekoppelt und deshalb keine freie Wahl. {% endcomment %}
                 <label class="rb-consent">
-                  <input type="checkbox" name="angebote" id="rbConsent" value="1" required>
+                  <input type="checkbox" name="angebote" id="rbConsent" value="1">
                   <span>{{ t.rb.consent|safe }}</span>
                 </label>
                 <button class="btn btn-lg btn-magnetic rb-submit" type="submit" id="rbSubmit" disabled>
@@ -447,7 +543,7 @@ Die Varianten stehen in content.json (T3).
         empty=document.getElementById('rbSumEmpty'), email=document.getElementById('rbEmail'),
         consent=document.getElementById('rbConsent'), submit=document.getElementById('rbSubmit'),
         gate=document.getElementById('rbGate'), done=document.getElementById('rbDone'),
-        lock=document.getElementById('rbLock');
+        fehler=document.getElementById('rbErr');
     function eur(n){ return (Number(n)||0).toLocaleString(NL); }
     function row(k){ return form.querySelector('[data-k="'+k+'"]'); }
     function setRow(k,v){ var r=row(k); if(!r) return; r.hidden=!(v>0);
@@ -463,7 +559,9 @@ Die Varianten stehen in content.json (T3).
       return {n:n,once:once,mtl:mtl,yr:yr,anf:anf};
     }
     function refresh(){ var t=tally();
-      submit.disabled=!(t.n>0 && email.value && email.checkValidity() && consent.checked); }
+      // Die Einwilligung ist seit dem 06.09.2026 freiwillig und darf den Versand
+      // nicht mehr blockieren — der Preis steht ohnehin schon oben.
+      submit.disabled=!(t.n>0 && email.value && email.checkValidity()); }
     checks.forEach(function(c){ c.addEventListener('change',refresh); });
     email.addEventListener('input',refresh); consent.addEventListener('change',refresh);
     form.addEventListener('submit',function(e){
@@ -475,13 +573,15 @@ Die Varianten stehen in content.json (T3).
           if(!j.ok) throw new Error('fail');
           setRow('once',j.once); setRow('mtl',j.mtl); setRow('yr',j.yr);
           var ar=row('anfrage'); if(ar) ar.hidden=!j.anfrage;
-          sum.classList.remove('is-locked'); if(lock) lock.hidden=true;
           gate.hidden=true; done.hidden=false;
           done.scrollIntoView({behavior:'smooth',block:'center'});
         })
         .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
           submit.textContent=I.submit||'…';
-          alert(I.error||'Error'); });
+          // Fehler inline statt als alert(): Ein Systemdialog reisst den Besucher aus
+          // der Seite, ist auf dem Handy kaum lesbar und widerspricht der
+          // Komponentenregel in doku/20-DESIGN.md („Fehler inline — nie alert()").
+          if(fehler){ fehler.textContent=I.error||'Error'; fehler.hidden=false; } });
     });
     refresh();
   })();
@@ -748,6 +848,7 @@ Die Varianten stehen in content.json (T3).
           <label class="fld"><span>{{ t.koop.f_email|safe }}</span><input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
           <label class="fld"><span>{{ t.koop.f_msg|safe }}</span><textarea name="nachricht" rows="3" required maxlength="1200" placeholder="{{ t.koop.f_msg_ph|safe }}"></textarea></label>
           <button class="btn btn-lg btn-magnetic coop-submit" type="submit" id="coopSubmit">{{ t.koop.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="lb-err" id="coopErr" role="alert" hidden></p>
           <p class="coop-fine">{{ t.koop.fine|safe }}</p>
           <div class="coop-done" id="coopDone" hidden>
             <div class="coop-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -763,7 +864,8 @@ Die Varianten stehen in content.json (T3).
   (function(){
     var form=document.getElementById('coopForm'); if(!form) return;
     var I=(window.I18N&&window.I18N.coop)||{};
-    var submit=document.getElementById('coopSubmit'), done=document.getElementById('coopDone');
+    var submit=document.getElementById('coopSubmit'), done=document.getElementById('coopDone'),
+        fehler=document.getElementById('coopErr');
     form.addEventListener('submit',function(e){
       e.preventDefault();
       if(!form.checkValidity()){ form.reportValidity(); return; }
@@ -777,7 +879,10 @@ Die Varianten stehen in content.json (T3).
         })
         .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
           submit.textContent=I.submit||'…';
-          alert(I.error||'Error'); });
+          // Fehler inline statt als alert(): Ein Systemdialog reisst den Besucher aus
+          // der Seite, ist auf dem Handy kaum lesbar und widerspricht der
+          // Komponentenregel in doku/20-DESIGN.md („Fehler inline — nie alert()").
+          if(fehler){ fehler.textContent=I.error||'Error'; fehler.hidden=false; } });
     });
   })();
   </script>
@@ -788,6 +893,37 @@ Die Varianten stehen in content.json (T3).
         <h2 class="section-t">{{ t.preise.h|safe }}</h2>
         <p class="section-lead">{{ t.preise.lead|safe }}</p>
       </header>
+      {% comment %} ── Betreuungsstufen zuerst (06.09.2026) ─────────────────────────
+        Der Abschnitt „Preise" zeigte bis heute als Erstes drei **Webseiten**-Pakete.
+        Ein Geschaeftsfuehrer, der acht Arbeitsplaetze betreuen lassen will, fand hier
+        keine Zahl fuer das Kerngeschaeft — und las: Webagentur. Die Webseiten-Pakete
+        stehen unveraendert darunter.
+
+        Die Betraege rechnet views._it_stufen() aus denselben Katalogpositionen wie
+        Rechner und Konfigurator; `pruefe_seite` bekommt sie ueber
+        _it_stufen_zahlen_fuer_pruefung() gemeldet, damit keine zweite Wahrheit entsteht.
+      {% endcomment %}
+      <h3 class="preis-gruppe-h">{{ t.it_stufen.h|safe }}</h3>
+      <p class="preis-gruppe-lead">{{ t.it_stufen.lead|safe }}</p>
+      <div class="price-grid">
+        {% for s in it_stufen %}
+        <article class="price spot{% if s.beliebt %} price-featured{% endif %}" data-reveal data-spot>
+          {% if s.beliebt %}<span class="badge">{{ t.it_stufen.beliebt|safe }}</span>{% endif %}
+          <h3>{% if s.id == 'klein' %}{{ t.it_stufen.klein_h|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_h|safe }}{% else %}{{ t.it_stufen.gross_h|safe }}{% endif %}</h3>
+          <p class="price-for">{% if s.id == 'klein' %}{{ t.it_stufen.klein_for|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_for|safe }}{% else %}{{ t.it_stufen.gross_for|safe }}{% endif %}</p>
+          <div class="price-tag">{{ s.mtl_anzeige }}<span class="cur">{{ t.it_stufen.unit|safe }}</span></div>
+          <ul class="price-list">
+            {% if s.id == 'klein' %}{% for li in t.it_stufen.klein_li %}<li>{{ li|safe }}</li>{% endfor %}
+            {% elif s.id == 'mittel' %}{% for li in t.it_stufen.mittel_li %}<li>{{ li|safe }}</li>{% endfor %}
+            {% else %}{% for li in t.it_stufen.gross_li %}<li>{{ li|safe }}</li>{% endfor %}{% endif %}
+          </ul>
+          <a class="btn {% if s.beliebt %}btn-magnetic{% else %}btn-ghost{% endif %}" href="{% url 'rechner' %}?ap={{ s.ap }}&amp;srv={{ s.srv }}&amp;backup=1">{{ t.it_stufen.cta|safe }}</a>
+        </article>
+        {% endfor %}
+      </div>
+      <p class="price-foot" data-reveal>{{ t.it_stufen.foot|safe }}</p>
+
+      <h3 class="preis-gruppe-h preis-gruppe-h-2">{{ t.preise.h|safe }}</h3>
       <div class="price-grid">
         <article class="price spot" data-reveal data-spot>
           <h3>{{ t.preise.starter_h|safe }}</h3>
@@ -947,7 +1083,7 @@ Die Varianten stehen in content.json (T3).
           </label>
         </div>
         <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}"></textarea></label>
-        <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.kontakt.consent_pre|safe }} <a href="#datenschutz">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</label>
+        <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</label>
         <button class="btn btn-lg btn-magnetic" type="submit">{{ t.kontakt.submit|safe }}</button>
         <p class="form-fine">{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}

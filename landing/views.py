@@ -471,6 +471,43 @@ def _paketpreise():
     }
 
 
+# ── Die drei Betreuungsstufen auf der Startseite (06.09.2026) ────────────────
+# Bis heute zeigte der Abschnitt „Preise" als Erstes drei **Webseiten**-Pakete
+# (350 / 1.490 / 54 €). Wer acht Arbeitsplätze betreuen lassen wollte — das
+# Kerngeschäft laut Positionierung und Katalog —, fand dort keine Zahl und las:
+# Webagentur. Diese drei Stufen rechnen aus denselben Katalogpositionen und
+# stehen jetzt davor; die Webseiten-Pakete bleiben unverändert darunter.
+#
+# Die Größen sind bewusst dieselben wie die Beispiele im Kostenrechner, damit ein
+# Besucher, der beides ansieht, nicht zwei Wahrheiten findet.
+_IT_STUFEN = [
+    {"id": "klein", "ap": 5, "srv": 0, "backup": True},
+    {"id": "mittel", "ap": 15, "srv": 1, "backup": True, "beliebt": True},
+    {"id": "gross", "ap": 30, "srv": 2, "backup": True},
+]
+
+
+def _it_stufen():
+    """Monatspreis je Betreuungsstufe, gerechnet aus ANGEBOT_GROUPS."""
+    p = _ANGEBOT_INDEX
+    ap = int(p.get("it_betreuung", {}).get("mtl") or 0)
+    srv = int(p.get("server_care", {}).get("mtl") or 0)
+    backup = int(p.get("backup", {}).get("mtl") or 0)
+    out = []
+    for s in _IT_STUFEN:
+        mtl = s["ap"] * ap + s["srv"] * srv + (backup if s["backup"] else 0)
+        out.append(dict(s, mtl=mtl, mtl_anzeige=_eur(mtl)))
+    return out
+
+
+def _it_stufen_zahlen_fuer_pruefung():
+    """Die Summen der drei Stufen — dieselbe Abmachung wie beim Kostenrechner:
+    `pruefe_seite` erlaubt nur Zahlen aus ANGEBOT_GROUPS, und eine Summe ist
+    keine davon. Sie hier abzuliefern ist ehrlicher, als sie in der Prüfung ein
+    zweites Mal zu berechnen."""
+    return {int(s["mtl"]) for s in _it_stufen()}
+
+
 # ── Kostenrechner (docs/SEO-AUSBAU-3.md, W1) ─────────────────────────────────
 # Der Rechner LIEST ANGEBOT_GROUPS, er kopiert sie nicht. Es gibt keinen zweiten
 # Zahlensatz — weder hier noch im JavaScript: Das Skript bekommt dieselben Werte
@@ -1818,6 +1855,7 @@ def index(request):
         "paket_aktiv": (request.GET.get("paket") or "").strip().lower(),
         "paket_ziel": reverse("angebot"),
         "pakete": _paketpreise(),
+        "it_stufen": _it_stufen(),
         "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
         "kooperationen": KOOPERATIONEN,

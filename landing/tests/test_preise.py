@@ -233,3 +233,37 @@ class MengenTest(SimpleTestCase):
                 with self.subTest(position=iid):
                     self.assertTrue(it.get("menge_label"),
                                     f"{iid} rechnet je Stück, sagt aber nicht wovon")
+
+
+class ITStufenTest(SimpleTestCase):
+    """Die drei Betreuungsstufen auf der Startseite (06.09.2026).
+
+    Sie sind Summen und damit genau die Sorte Zahl, die anfängt zu widersprechen,
+    sobald sie an einer zweiten Stelle gerechnet wird.
+    """
+
+    def test_stufen_stimmen_mit_dem_katalog_ueberein(self):
+        from landing.views import _it_stufen
+        ap = int(_ANGEBOT_INDEX["it_betreuung"]["mtl"])
+        srv = int(_ANGEBOT_INDEX["server_care"]["mtl"])
+        backup = int(_ANGEBOT_INDEX["backup"]["mtl"])
+        for stufe in _it_stufen():
+            with self.subTest(stufe=stufe["id"]):
+                self.assertEqual(stufe["mtl"],
+                                 stufe["ap"] * ap + stufe["srv"] * srv + backup)
+
+    def test_stufen_und_kostenrechner_kommen_auf_dieselbe_zahl(self):
+        from django.http import QueryDict
+        from landing.views import _it_stufen, _rechner_rechnen, _rechner_werte
+        for stufe in _it_stufen():
+            with self.subTest(stufe=stufe["id"]):
+                frage = f"ap={stufe['ap']}&srv={stufe['srv']}&backup=1&neu=0&m365=0"
+                e = _rechner_rechnen(_rechner_werte(QueryDict(frage)))
+                self.assertEqual(stufe["mtl"], e["mtl"])
+
+    def test_summen_sind_der_preispruefung_gemeldet(self):
+        """Sonst bricht `pruefe_seite` beim nächsten Lauf über die eigene Startseite."""
+        from landing.views import _it_stufen, _it_stufen_zahlen_fuer_pruefung
+        gemeldet = _it_stufen_zahlen_fuer_pruefung()
+        for stufe in _it_stufen():
+            self.assertIn(stufe["mtl"], gemeldet)
