@@ -34,7 +34,7 @@
         <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
       {% include 'lang_switch.html' %}
-      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
       <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'angebot' %}">{{ t.nav.cta_angebot|safe }}</a>
     </div>
   </div>

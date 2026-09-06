@@ -23,7 +23,7 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
     {% include 'antwort.html' with text=ks.kurz %}
     <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
       {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
       <button class="way" type="button" data-rueckruf>{% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span></button>
       <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
     </div>
@@ -41,7 +41,7 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
       <h2 class="sp-h2">{{ ks.daten_h|safe }}</h2>
       <dl class="kd">
         <div><dt>{{ ks.inhaber|safe }}</dt><dd>{{ c.inhaber_name }}</dd></div>
-        {% if c.telefon %}<div><dt>{{ ks.tel|safe }}</dt><dd><a href="tel:{{ c.telefon }}">{{ c.telefon }}</a></dd></div>{% endif %}
+        {% if c.telefon %}<div><dt>{{ ks.tel|safe }}</dt><dd><a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a></dd></div>{% endif %}
         {% if c.email %}<div><dt>{{ ks.mail|safe }}</dt><dd><a href="mailto:{{ c.email }}">{{ c.email }}</a></dd></div>{% endif %}
         {% if c.adresse %}<div><dt>{{ t.footer.impressum|safe }}</dt><dd>{{ c.adresse }}{% if c.plz or c.stadt %}, {{ c.plz }} {{ c.stadt }}{% endif %}</dd></div>{% endif %}
         <div><dt>{{ ks.gebiet|safe }}</dt><dd>{{ ks.gebiet_t|safe }}</dd></div>

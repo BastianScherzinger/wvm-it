@@ -91,7 +91,27 @@ def _content() -> dict:
         print(f"[CONTENT] content.json nicht lesbar, nutze Rueckfallwerte: {fehler}",
               flush=True)
     data["whatsapp"] = _whatsapp(data.get("telefon", ""))
+    data["telefon_tel"] = _tel_uri(data.get("telefon", ""))
     return data
+
+
+def _tel_uri(tel: str) -> str:
+    """Die Nummer als `tel:`-Ziel — ohne Leerzeichen, mit führendem Plus.
+
+    Bis zum 06.09.2026 stand in allen 22 Telefonlinks der Vorlagen die Nummer
+    unverändert im URI: `tel:+43 676 3808501`. Nach RFC 3966 sind Leerzeichen dort
+    nicht zulässig; die meisten Browser räumen das stillschweigend auf, manche
+    Tastenwähler und Telefonanlagen tun es nicht — und ein Anruf, der nicht
+    zustande kommt, meldet sich bei niemandem. Die sichtbare Schreibweise bleibt
+    unverändert, nur das Ziel wird bereinigt.
+    """
+    raw = (tel or "").strip()
+    if not raw:
+        return ""
+    ziffern = re.sub(r"[^\d]", "", raw)
+    if not ziffern:
+        return ""
+    return ("+" if raw.startswith("+") else "") + ziffern
 
 
 def set_language(request, lang):
@@ -610,6 +630,26 @@ def _rechner_zahlen_fuer_pruefung():
     return {int(z) for z in zahlen}
 
 
+def _rechner_satz(werte, ergebnis, rs) -> str:
+    """Das Rechnerergebnis als ein Satz, der ins Anfragefeld passt.
+
+    Beispiel: „8 Arbeitsplätze, 1 Server, geprüfte Datensicherung — 370 €/Monat
+    laut Ihrem Rechner." Leer, wenn nichts gewählt wurde: Ein vorbelegtes Feld
+    ohne Inhalt wäre schlechter als ein leeres mit Platzhalter.
+    """
+    if ergebnis.get("leer"):
+        return ""
+    teile = []
+    for posten in ergebnis.get("laufend", []) + ergebnis.get("einmalig", []):
+        if posten.get("menge"):
+            teile.append(f"{posten['menge']}× {posten['name']}")
+    if not teile:
+        return ""
+    vorlage = rs.get("anfrage_satz") or "{posten} — {mtl} €/Monat"
+    return vorlage.format(posten=", ".join(teile), mtl=ergebnis.get("mtl", 0),
+                          jahr=ergebnis.get("jahr", 0))
+
+
 def rechner(request):
     """/kosten/rechner/ — was die laufende IT im eigenen Betrieb kostet.
 
@@ -633,6 +673,9 @@ def rechner(request):
     return render(request, "rechner.html", {
         "c": c, "rs": rs, "werte": werte, "e": ergebnis, "saetze": saetze,
         "felder": _RECHNER_FELDER,
+        # Das eigene Ergebnis als Satz für das Anfrageformular (06.09.2026):
+        # Wer hier gerechnet hat, hat seinen Betrieb schon beschrieben.
+        "anfrage_vorbelegung": _rechner_satz(werte, ergebnis, rs),
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
             c, lang, faq=rs.get("faq") or [], faq_id=pfad,
@@ -2128,6 +2171,26 @@ def leistungen_hub(request):
     })
 
 
+def _einstieg_daten(eintrag, lang):
+    """Der bezifferte erste Schritt einer Leistung, oder None.
+
+    Name und Beschreibung kommen aus dem übersetzten Katalog, der Preis aus
+    ANGEBOT_GROUPS — hier entsteht keine neue Zahl und kein neuer Text.
+    """
+    iid = eintrag.get("einstieg")
+    posten = _ANGEBOT_INDEX.get(iid or "")
+    if not posten:
+        return None
+    pack = i18n.get_pack(lang)
+    ci = pack.get("catalog_items", {}).get(iid, {})
+    return {
+        "id": iid,
+        "name": ci.get("name", posten["name"]),
+        "desc": ci.get("desc", posten.get("desc", "")),
+        "preis": _make_price_label(posten, pack.get("catalog_words", {})),
+    }
+
+
 def leistung_seite(request, slug):
     """/leistungen/<slug>/ — eine Leistung, eine URL, ein Hauptkeyword."""
     eintrag = leistungen.NACH_SLUG.get(slug)
@@ -2160,6 +2223,9 @@ def leistung_seite(request, slug):
         anfrage_ok = ""
     return render(request, "leistung.html", {
         "c": c, "seite": seite, "anfrage_ok": anfrage_ok,
+        # Der kleine erste Schritt (06.09.2026). Name und Preis kommen aus dem
+        # Katalog und aus dem Sprachpaket — nie aus dem Fließtext.
+        "einstieg": _einstieg_daten(eintrag, lang),
         # V1/V2: alles, was zum selben Thema gehört — Beiträge, Vergleiche,
         # Branchen, Checklisten, Begriffe. Ohne diesen Block hängen die
         # Fachbeiträge an genau einem eingehenden Link (siehe V3-Prüfung).

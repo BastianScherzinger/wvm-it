@@ -34,7 +34,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
           {% include 'antwort.html' with text=seite.kurz %}
           <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
             {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-            {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+            {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
             <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
           </div>
         </div>
@@ -80,6 +80,54 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
         <p class="sp-preis-text">{{ seite.preis_t|safe }}</p>
         <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
           <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+
+        {% comment %} ── Der kleine erste Schritt (06.09.2026) ────────────────────
+          Der Katalog enthielt die passenden Positionen laengst — IT-Sicherheitscheck
+          490 €, Fernwartung 95 €/Std., One-Pager 350 € —, angeboten wurden sie auf
+          den Seiten, auf denen jemand kauft, nie als erster Schritt. Wer nur wissen
+          will, woran er ist, musste bisher „Worum geht es?" in ein leeres Feld
+          schreiben. Rendert nur, wenn die Leistung in leistungen.py ein
+          `einstieg` traegt.
+        {% endcomment %}
+        {% if einstieg %}
+        <div class="sp-einstieg">
+          <h2 class="sp-h2">{{ t.seite.einstieg_h|safe }}</h2>
+          <p>{{ t.seite.einstieg_vor|safe }}</p>
+          <div class="sp-einstieg-karte">
+            <div class="sp-einstieg-kopf">
+              <strong>{{ einstieg.name }}</strong>
+              <span class="sp-einstieg-preis">{{ einstieg.preis }}</span>
+            </div>
+            <p class="sp-einstieg-desc">{{ einstieg.desc }}</p>
+            <a class="btn btn-sm" href="#anfrage">{{ t.seite.einstieg_cta|safe }}</a>
+          </div>
+          <p class="sp-fuss">{{ t.seite.einstieg_nach|safe }}</p>
+        </div>
+        {% endif %}
+
+        {% comment %} ── Zwei Ausgaenge, die keine Kontaktdaten kosten ────────────
+          Die Seite hatte genau vier interne Verweise: Start, Hub (2x), Preise —
+          **keinen** auf den Kostenrechner und keinen auf den Konfigurator. Von der
+          Seite, die IT-Betreuung ab 29 € je Arbeitsplatz verkauft, kam man also
+          nicht zu dem Werkzeug, das genau das ausrechnet.
+        {% endcomment %}
+        <div class="sp-ausgaenge">
+          <h2 class="sp-h2">{{ t.seite.ausgang_h|safe }}</h2>
+          <div class="sp-ausgang-links">
+            <a class="btn btn-ghost btn-sm" href="{% url 'rechner' %}">{{ t.seite.ausgang_rechner|safe }}</a>
+            <a class="btn btn-ghost btn-sm" href="{% url 'angebot' %}">{{ t.seite.ausgang_angebot|safe }}</a>
+          </div>
+        </div>
+
+        {% comment %} ── Was nicht dabei ist ──────────────────────────────────────
+          Stand bisher nur auf /ueber-uns/ und damit auf keiner Seite, auf der jemand
+          kauft. Wer einem Fremden die Zugaenge zu allen Firmensystemen gibt, will
+          zuerst wissen, was er NICHT bekommt.
+        {% endcomment %}
+        <h2 class="sp-h2">{{ t.seite.abgrenzung_h|safe }}</h2>
+        <ul class="sp-abgrenzung">
+          {% for punkt in t.seite.abgrenzung %}<li>{{ punkt|safe }}</li>{% endfor %}
+        </ul>
 
         {% if seite.faq %}
         <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>

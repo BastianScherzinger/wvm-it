@@ -22,7 +22,7 @@ Preise, keine Datenquellen, die selbst fehlschlagen könnten.
     {% include 'antwort.html' with text=t.fehler.kurz_500 %}
     <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
       {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
       <a class="way" href="{% url 'index' %}">{% include 'icons.html' with name='check' %}<span>{{ t.fehler.zur_start|safe }}</span></a>
     </div>
   </div>

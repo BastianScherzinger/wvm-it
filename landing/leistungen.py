@@ -19,32 +19,43 @@ vor_ort   True = Einsatz vor Ort nötig; wird auf der Seite ehrlich ausgewiesen,
           weil fast alles andere per Fernwartung läuft (RELAUNCH-PLAN.md, E2)
 verwandt  Zwei bis drei Slugs für die Querverlinkung am Seitenende
 prio      Priorität in der Sitemap
+einstieg  ID einer Position aus views.ANGEBOT_GROUPS — der **kleine erste Schritt**,
+          den jemand buchen kann, ohne sich auf eine laufende Betreuung festzulegen
+          (06.09.2026). Optional: Ohne Angabe rendert der Block nicht.
+
+          Warum es das gibt: Die Seiten beantworteten „Was macht ihr und was kostet
+          es?" vollständig — aber nicht „Was tue ich jetzt, ohne mich zu binden?".
+          Der einzige Ausgang war ein leeres Textfeld mit der Frage „Worum geht es?",
+          also genau die Aufgabe, für die der Besucher gekommen war. Die passenden
+          Positionen standen längst im Katalog (IT-Sicherheitscheck 490 €,
+          Arbeitsplatz einrichten 190 €, Fernwartung 95 €/Std.) und wurden auf den
+          Seiten, auf denen jemand kaufen will, nie als erster Schritt angeboten.
 """
 
 LEISTUNGEN = [
     {"slug": "edv-it-betreuung", "bereich": "it", "icon": "host", "quelle": "it", "preis": "it_betreuung",
      "vor_ort": False, "prio": "0.9",
-     "verwandt": ["server-datensicherung", "netzwerk-wlan", "it-sicherheit"]},
+     "verwandt": ["server-datensicherung", "netzwerk-wlan", "it-sicherheit"], "einstieg": "sicherheitscheck",},
 
     {"slug": "server-datensicherung", "bereich": "it", "icon": "server", "quelle": "it", "preis": "backup",
      "vor_ort": False, "prio": "0.8",
-     "verwandt": ["edv-it-betreuung", "it-sicherheit", "hosting-wartung"]},
+     "verwandt": ["edv-it-betreuung", "it-sicherheit", "hosting-wartung"], "einstieg": "sicherheitscheck",},
 
     {"slug": "netzwerk-wlan", "bereich": "it", "icon": "net", "quelle": "it", "preis": "netzwerk_setup",
      "vor_ort": True, "prio": "0.8",
-     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"]},
+     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"], "einstieg": "it_support",},
 
     {"slug": "it-sicherheit", "bereich": "it", "icon": "shield", "quelle": "it", "preis": "sicherheitscheck",
      "vor_ort": False, "prio": "0.8",
-     "verwandt": ["edv-it-betreuung", "server-datensicherung", "netzwerk-wlan"]},
+     "verwandt": ["edv-it-betreuung", "server-datensicherung", "netzwerk-wlan"], "einstieg": "sicherheitscheck",},
 
     {"slug": "it-beratung", "bereich": "it", "icon": "consulting", "quelle": "it", "preis": "it_support",
      "vor_ort": False, "prio": "0.8",
-     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"]},
+     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"], "einstieg": "it_support",},
 
     {"slug": "webseite-erstellen", "bereich": "sicht", "icon": "web", "quelle": "web", "preis": "onepager",
      "vor_ort": False, "prio": "0.9",
-     "verwandt": ["seo-betreuung", "hosting-wartung", "google-ads"]},
+     "verwandt": ["seo-betreuung", "hosting-wartung", "google-ads"], "einstieg": "onepager",},
 
     {"slug": "seo-betreuung", "bereich": "sicht", "icon": "seo", "quelle": "seo", "preis": "seo",
      "vor_ort": False, "prio": "0.9",
@@ -56,7 +67,7 @@ LEISTUNGEN = [
 
     {"slug": "hosting-wartung", "bereich": "sicht", "icon": "domain", "quelle": "hosting", "preis": "hosting",
      "vor_ort": False, "prio": "0.7",
-     "verwandt": ["webseite-erstellen", "server-datensicherung", "edv-it-betreuung"]},
+     "verwandt": ["webseite-erstellen", "server-datensicherung", "edv-it-betreuung"], "einstieg": "hosting",},
 
     {"slug": "ki-automatisierung", "bereich": "sicht", "icon": "ai", "quelle": "ki", "preis": "termin",
      "vor_ort": False, "prio": "0.8",

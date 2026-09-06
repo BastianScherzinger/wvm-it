@@ -115,7 +115,7 @@
       {% include 'lang_switch.html' %}
       {% comment %} Kontakt ist nie weiter als ein Klick entfernt: WhatsApp + Telefon + CTA {% endcomment %}
       {% if c.whatsapp %}<a class="btn-wa nav-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener" aria-label="{{ t.ways.wa|safe }}">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
       <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
     </div>
   </div>
@@ -181,7 +181,7 @@
         {{ c.site_name }}<br>
         {{ c.adresse }}<br>
         {{ c.plz }} {{ c.stadt }}{% if c.region %}, {{ c.region }}{% endif %}<br>
-        {% if c.telefon %}<a href="tel:{{ c.telefon }}">{{ c.telefon }}</a><br>{% endif %}
+        {% if c.telefon %}<a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a><br>{% endif %}
         {% if c.email %}<a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}
       </address>
       {% endif %}
@@ -238,7 +238,7 @@
 
 <div class="mobilebar">
   {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
-  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
+  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
   <a class="mobilebar-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
 </div>
 

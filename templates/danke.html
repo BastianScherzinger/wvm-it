@@ -72,7 +72,7 @@ Fluss (`follow`), damit die Verweise von hier zaehlen.
       <h2 class="sp-h2">{{ t.danke.dringend_h|safe }}</h2>
       <p>{{ t.danke.dringend_t|safe }}</p>
       <p class="dk-wege">
-        {% if c.telefon %}<a class="btn" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
+        {% if c.telefon %}<a class="btn" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
         <a class="btn btn-ghost" href="{% url 'notfall' %}">{{ t.danke.notfall|safe }}</a>
         <a class="btn btn-ghost" href="{% url 'index' %}">{{ t.danke.zurueck|safe }}</a>
       </p>

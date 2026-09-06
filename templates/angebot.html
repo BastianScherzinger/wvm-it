@@ -67,7 +67,7 @@
         <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
       {% include 'lang_switch.html' %}
-      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
       <a class="btn btn-sm btn-magnetic nav-cta" href="#konfigurator">{{ t.nav.cta_angebot|safe }}</a>
     </div>
   </div>
@@ -92,7 +92,7 @@
         {% if c.telefon %}
         <div class="ang-top-contact">
           <span>{{ t.angebot_page.talk|safe }}</span>
-          <a class="ang-top-phone" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>
+          <a class="ang-top-phone" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>
         </div>
         {% endif %}
       </div>
@@ -313,7 +313,7 @@
 </footer>
 
 <div class="mobilebar">
-  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
+  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
   <a class="mobilebar-cta" href="#konfigurator">{{ t.nav.cta_angebot|safe }}</a>
 </div>
 

@@ -20,9 +20,29 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     <h2 class="ak-h">{{ titel|safe }}</h2>
     <p class="ak-sub">{{ sub|safe }}</p>
 
+    {% comment %} ── Ein Gesicht und ein Name (06.09.2026) ──────────────────────
+      Die ganze Positionierung ist „ein Betrieb, ein fester Ansprechpartner". Auf
+      dreizehn Leistungs-, sieben Branchen-, acht Regions- und vier Vergleichsseiten
+      war davon nichts zu sehen — Foto und Name standen nur auf der Startseite und
+      unter /ueber-uns/. Wer einem Fremden die Zugaenge zu allen Firmensystemen
+      gibt, entscheidet ueber eine Person, nicht ueber eine Leistung.
+    {% endcomment %}
+    {% if c.inhaber_name %}
+    <div class="ak-person">
+      {% if c.founder_image %}<img class="ak-person-bild" src="{{ c.founder_image }}" alt="" aria-hidden="true" width="44" height="44" loading="lazy">{% endif %}
+      <span class="ak-person-text">{{ t.seite.person_vor|safe }} <strong>{{ c.inhaber_name }}</strong>{% if c.inhaber_rolle %}, {{ c.inhaber_rolle }}{% endif %}</span>
+    </div>
+    {% endif %}
+
     <div class="field">
       <label class="fld-l" for="ak-text-{{ bid }}">{{ t.lb.text_ph|safe }}</label>
-      <input class="fld" id="ak-text-{{ bid }}" type="text" name="text" maxlength="300" placeholder="{{ ph|safe }}">
+      {% comment %} `vorbelegung` (06.09.2026): Wer den Kostenrechner benutzt hat, hat
+        seinen Betrieb bereits beschrieben — Arbeitsplaetze, Server, Summe. Diese
+        Angaben gingen beim Sprung zur Anfrage restlos verloren, und der Besucher
+        sollte danach „Worum geht es?" in ein leeres Feld tippen. Jetzt steht sein
+        eigenes Ergebnis drin, aenderbar wie jeder andere Text. {% endcomment %}
+      <input class="fld" id="ak-text-{{ bid }}" type="text" name="text" maxlength="300"
+             placeholder="{{ ph|safe }}"{% if vorbelegung %} value="{{ vorbelegung }}"{% endif %}>
     </div>
     <div class="field">
       <label class="fld-l" for="ak-kontakt-{{ bid }}">{{ t.lb.kontakt_ph|safe }}</label>
@@ -32,9 +52,15 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     <button class="btn lb-submit" type="submit">{{ t.lb.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <p class="lb-err" role="alert" hidden></p>
 
+    {% comment %} Der Rueckruf-Dialog liegt ueber base.html auf **allen** 165 Seiten im
+      HTML, war aber nur an vier Stellen ausloesbar (Startseite und Kontaktseite) —
+      auf rund 150 Seiten also fertig gebaut und unerreichbar. Ein Zeitfenster zu
+      waehlen ist die niedrigste Huerde der ganzen Seite, niedriger als ein Textfeld
+      mit der Frage „Worum geht es?". (06.09.2026) {% endcomment %}
     <p class="ak-alt">{{ t.seite.kontakt_alt|safe }}
-      {% if c.whatsapp %}<a href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{{ t.ways.wa|safe }}</a>{% endif %}
-      {% if c.telefon %}<a href="tel:{{ c.telefon }}">{{ c.telefon }}</a>{% endif %}
+      {% if c.whatsapp %}<a href="https://wa.me/{{ c.whatsapp }}?text={{ t.ways.wa_text|urlencode }}" target="_blank" rel="noopener">{{ t.ways.wa|safe }}</a>{% endif %}
+      {% if c.telefon %}<a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a>{% endif %}
+      <button type="button" class="ak-rueckruf" data-rueckruf>{{ t.ways.callback|safe }}</button>
     </p>
   {% include 'datenschutzhinweis.html' %}
   </form>

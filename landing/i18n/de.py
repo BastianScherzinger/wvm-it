@@ -458,6 +458,31 @@ PACK = {
     },
     # ── Gerüst der Unterseiten (Beschriftungen, die auf jeder Seite gleich sind) ──
     "seite": {
+        # ── Der kleine erste Schritt (06.09.2026) ────────────────────────────
+        # Eine Leistungsseite beantwortete bisher „Was macht ihr und was kostet
+        # es?" — aber nicht „Was tue ich jetzt, ohne mich zu binden?". Der
+        # einzige Ausgang war ein leeres Textfeld.
+        # Wer antwortet — steht seit dem 06.09.2026 auf jeder Anfrage-Karte.
+        "person_vor": "Ihre Anfrage liest",
+        "einstieg_h": "Der erste Schritt, ohne sich zu binden",
+        "einstieg_vor": "Sie m&uuml;ssen nicht mit einem Vertrag anfangen:",
+        "einstieg_nach": "Danach wissen Sie, woran Sie sind &mdash; und entscheiden in Ruhe.",
+        "einstieg_cta": "Diesen Schritt anfragen",
+        # ── Was nicht dabei ist ──────────────────────────────────────────────
+        # Stand bisher nur auf /ueber-uns/ und damit auf keiner Seite, auf der
+        # jemand kauft. Gilt gleichlautend fuer alle Leistungen.
+        "abgrenzung_h": "Was Sie von uns nicht bekommen",
+        "abgrenzung": [
+            "Keine Mindestlaufzeit &uuml;ber ein Quartal hinaus &mdash; Sie k&ouml;nnen jederzeit aufh&ouml;ren.",
+            "Keine Systeme, aus denen Sie nicht wieder herauskommen: Zug&auml;nge und Daten geh&ouml;ren Ihnen.",
+            "Keine Hardware auf Vorrat. Wir empfehlen, was n&ouml;tig ist, und sagen es auch, wenn sich etwas nicht lohnt.",
+            "Keine Rufbereitschaft rund um die Uhr. Erreichbar sind wir werktags; was das im Notfall bedeutet, steht auf der Notfallseite.",
+        ],
+        # ── Zwei weitere Wege, ohne Kontaktdaten ─────────────────────────────
+        "ausgang_h": "Lieber erst selbst rechnen?",
+        "ausgang_rechner": "Monatspreis f&uuml;r Ihren Betrieb ausrechnen",
+        "ausgang_angebot": "Angebot zusammenstellen",
+
         "passt_dazu_h": "Passt dazu",
         "passt_dazu_t": "Beiträge, Vergleiche und Begriffe zu genau diesem Thema — geschrieben für Betriebe, die vor derselben Entscheidung stehen.",
         "regionen_titel": "Regionen",
@@ -864,6 +889,8 @@ PACK = {
             {"q": "Gibt es eine Mindestlaufzeit?",
              "a": "Über ein Quartal hinaus nicht. Sie können quartalsweise kündigen und bekommen alle Zugänge, Passwörter und die Dokumentation vollständig ausgehändigt. Wir bauen bewusst nichts ein, das Sie an uns bindet."},
         ],
+        # Vorbelegung des Anfragefelds mit dem eigenen Ergebnis (06.09.2026).
+        "anfrage_satz": "{posten} — {mtl} €/Monat laut Ihrem Rechner",
         "cta_h": "Passt die Zahl? Dann rechnen wir sie genau",
         "cta_t": "Schreiben Sie kurz, wie viele Arbeitsplätze und Server Sie haben. Wir antworten an Werktagen innerhalb von 24 Stunden mit einer belastbaren Zahl — und sagen auch, wenn weniger reicht.",
         "zur_preisliste": "Vollständige Preisliste ansehen",

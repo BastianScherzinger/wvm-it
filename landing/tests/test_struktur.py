@@ -249,3 +249,66 @@ class BeitraegeStrukturTest(SimpleTestCase):
         for eintrag in beitraege.BEITRAEGE:
             with self.subTest(slug=eintrag["slug"]):
                 self.assertIn(eintrag["slug"], TEXTE)
+
+
+class StufeVierTest(SimpleTestCase):
+    """Die Bausteine vom 06.09.2026, die aus Informations- Verkaufsseiten machen."""
+
+    def test_jeder_einstieg_zeigt_auf_eine_echte_katalogposition(self):
+        from landing import leistungen
+        from landing.views import _ANGEBOT_INDEX
+        for eintrag in leistungen.LEISTUNGEN:
+            iid = eintrag.get("einstieg")
+            if iid:
+                with self.subTest(slug=eintrag["slug"]):
+                    self.assertIn(iid, _ANGEBOT_INDEX,
+                                  f"{eintrag['slug']}: einstieg '{iid}' fehlt im Katalog")
+
+    def test_einstieg_traegt_immer_einen_preis(self):
+        """Ein erster Schritt ohne Zahl ist kein erster Schritt, sondern ein Gespräch."""
+        from landing import leistungen
+        from landing.views import _ANGEBOT_INDEX
+        for eintrag in leistungen.LEISTUNGEN:
+            iid = eintrag.get("einstieg")
+            if iid:
+                posten = _ANGEBOT_INDEX[iid]
+                with self.subTest(slug=eintrag["slug"]):
+                    self.assertTrue(
+                        any(posten.get(f) for f in ("once", "mtl", "yr", "std")),
+                        f"{eintrag['slug']}: Einstieg '{iid}' hat keinen Preis")
+
+    def test_telefonlink_enthaelt_keine_leerzeichen(self):
+        """RFC 3966 lässt im tel:-URI keine Leerzeichen zu. Die sichtbare
+        Schreibweise bleibt davon unberührt."""
+        from landing.views import _tel_uri
+        self.assertEqual(_tel_uri("+43 676 3808501"), "+436763808501")
+        self.assertEqual(_tel_uri("0676 380 85 01"), "06763808501")
+        self.assertEqual(_tel_uri(""), "")
+        self.assertEqual(_tel_uri("keine Nummer"), "")
+
+    def test_kein_template_baut_den_telefonlink_noch_selbst(self):
+        import pathlib
+        treffer = []
+        for pfad in pathlib.Path("templates").rglob("*.html"):
+            if 'href="tel:{{ c.telefon }}"' in pfad.read_text(encoding="utf-8"):
+                treffer.append(str(pfad))
+        self.assertEqual(treffer, [],
+                         "tel:-Links müssen c.telefon_tel nutzen, nicht c.telefon")
+
+    def test_rechnersatz_nennt_mengen_und_summe(self):
+        from django.http import QueryDict
+        from landing.i18n import get_pack
+        from landing.views import _rechner_rechnen, _rechner_satz, _rechner_werte
+        werte = _rechner_werte(QueryDict("ap=8&srv=1&backup=1"))
+        ergebnis = _rechner_rechnen(werte)
+        satz = _rechner_satz(werte, ergebnis, get_pack("de")["rechner"])
+        self.assertIn("8×", satz)
+        self.assertIn(str(ergebnis["mtl"]), satz)
+
+    def test_rechnersatz_bleibt_leer_wenn_nichts_gewaehlt_ist(self):
+        from django.http import QueryDict
+        from landing.i18n import get_pack
+        from landing.views import _rechner_rechnen, _rechner_satz, _rechner_werte
+        werte = _rechner_werte(QueryDict("ap=0&srv=0&backup=0&neu=0&m365=0"))
+        ergebnis = _rechner_rechnen(werte)
+        self.assertEqual(_rechner_satz(werte, ergebnis, get_pack("de")["rechner"]), "")

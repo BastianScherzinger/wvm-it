@@ -31,7 +31,7 @@ und die Schritte im Schema kommen aus derselben Liste.
     <div class="nf-sofort">
       <p class="nf-sofort-h">{{ nf.eilt_h|safe }}</p>
       <div class="nf-wege">
-        {% if c.telefon %}<a class="btn btn-lg nf-call" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+        {% if c.telefon %}<a class="btn btn-lg nf-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
         {% if c.whatsapp %}<a class="btn-wa nf-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
         <a class="btn btn-ghost" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
       </div>

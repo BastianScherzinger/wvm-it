@@ -47,7 +47,7 @@ man in einem Angebotsvergleich wirklich wissen will.
       <p class="hb-intro">{{ t.ueber.intro|safe }}</p>
       <ul class="sp-liste sp-liste-check ub-fakten">
         <li>{% include 'icons.html' with name='home' %}<span>{{ adresse }}</span></li>
-        {% if c.telefon %}<li>{% include 'icons.html' with name='phone' %}<a href="tel:{{ c.telefon }}">{{ c.telefon }}</a></li>{% endif %}
+        {% if c.telefon %}<li>{% include 'icons.html' with name='phone' %}<a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a></li>{% endif %}
         {% if c.email %}<li>{% include 'icons.html' with name='mail' %}<a href="mailto:{{ c.email }}">{{ c.email }}</a></li>{% endif %}
         <li>{% include 'icons.html' with name='clock' %}<span>{{ t.ueber.sprachen_t|safe }}</span></li>
       </ul>

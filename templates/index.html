@@ -39,7 +39,7 @@ Die Varianten stehen in content.json (T3).
           </a>
           {% endif %}
           {% if c.telefon %}
-          <a class="way" href="tel:{{ c.telefon }}">
+          <a class="way" href="tel:{{ c.telefon_tel }}">
             {% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span>
           </a>
           {% endif %}
@@ -323,7 +323,7 @@ Die Varianten stehen in content.json (T3).
 
         <div class="founder-contact">
           {% if c.whatsapp %}<a class="founder-chip" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
-          {% if c.telefon %}<a class="founder-chip" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
+          {% if c.telefon %}<a class="founder-chip" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
           {% if c.email %}<a class="founder-chip" href="mailto:{{ c.email }}">{% include 'icons.html' with name='mail' %}{{ c.email }}</a>{% endif %}
         </div>
       </div>
@@ -1046,7 +1046,7 @@ Die Varianten stehen in content.json (T3).
         <h2 class="section-t">{{ t.kontakt.h|safe }}</h2>
         <p class="section-lead">{{ t.kontakt.lead|safe }}</p>
         <div class="contact-methods">
-          {% if c.telefon %}<a class="cm" href="tel:{{ c.telefon }}"><span class="cm-ic">{% include 'icons.html' with name='phone' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_call|safe }}</strong><span>{{ c.telefon }}</span></span></a>{% endif %}
+          {% if c.telefon %}<a class="cm" href="tel:{{ c.telefon_tel }}"><span class="cm-ic">{% include 'icons.html' with name='phone' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_call|safe }}</strong><span>{{ c.telefon }}</span></span></a>{% endif %}
           {% if c.whatsapp %}<a class="cm cm-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
           {% if c.email %}<a class="cm" href="mailto:{{ c.email }}"><span class="cm-ic">{% include 'icons.html' with name='mail' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_mail|safe }}</strong><span>{{ c.email }}</span></span></a>{% endif %}
           <a class="cm" href="#kontakt-form"><span class="cm-ic">{% include 'icons.html' with name='consulting' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_form|safe }}</strong><span>{{ t.kontakt.m_form_sub|safe }}</span></span></a>
@@ -1100,7 +1100,7 @@ Die Varianten stehen in content.json (T3).
       </div>
       <div class="hero-ways closer-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
         {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-        {% if c.telefon %}<a class="way" href="tel:{{ c.telefon }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+        {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
         <button class="way" type="button" data-rueckruf>{% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span></button>
         <a class="way" href="#kontakt-form">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
       </div>
