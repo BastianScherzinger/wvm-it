@@ -1,10 +1,10 @@
 ---
 bereich: design
 titel: Design
-stand: 2026-09-05
+stand: 2026-09-06
 status: teilweise
 fortschritt: 96
-zusammenfassung: Design-System vom 27.08.2026 unverändert; neu sind die Bausteine honigtopf.html, datenschutzhinweis.html, icons_sprite.html und kopf_klein.html. Mobilansicht nie am Gerät geprüft, Lighthouse meldet 32 Kontrastelemente.
+zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 06.09. drei echte Fehler behoben: Die Kopfleiste brauchte 1400 px Inhalt in einem 1180-px-Container (CTA ausserhalb des Bildes, Seite scrollte seitwaerts), der Rueckruf-Dialog klebte wegen der Reset-Regel in der linken oberen Ecke, zwei alert() im Fehlerpfad entgegen der eigenen Komponentenregel. Neue Bausteine: drei Hero-Reiter, Mengenfeld, Einstiegskarte, Person in der Anfrage-Karte. Mobilansicht weiterhin nie am Geraet geprueft.
 offen: 4
 quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---

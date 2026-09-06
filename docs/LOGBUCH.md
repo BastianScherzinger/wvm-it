@@ -7,6 +7,37 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 06.09.2026 — Umbau auf Anfragen
+
+**Ausgangspunkt war eine Frage, keine Messung:** Warum bringen 165 URLs mit Reifegrad
+„Referenz" null Anfragen? Vier Untersuchungen parallel — Markt Oberösterreich,
+Live-Prüfung im Browser, Recht und Kanäle für Österreich, Quelltext.
+
+Der gemeinsame Nenner der Antwort ist wichtiger als jeder Einzelbefund: **Kein
+einziger der gefundenen Fehler erzeugte eine Fehlermeldung.** Die Spam-Falle konnte
+echte Anfragen verschlucken und meldete Erfolg. Das Angebot rechnete für acht
+Arbeitsplätze 167 € statt 370 € und sah dabei richtig aus. Die Kopfleiste lief über
+und die Seite blieb bedienbar. Nichts davon war je aufgefallen, weil nichts davon
+sich meldet — und weil **nichts auf der Seite maß**.
+
+Gebaut in fünf Stufen: Spam-Falle entschärft und messbar gemacht · Mengen im
+Konfigurator · serverseitige Messung ohne Cookies und ohne IP · Herkunft in jeder
+Anfrage-Mail · Hero auf Rückruf gedreht (die Gratis-Website stand vor dem
+Kerngeschäft) · Betreuungsstufen vor den Webseiten-Paketen · Richtpreis-Sperre samt
+erzwungener Werbeeinwilligung entfernt · Einstiegsangebot, Abgrenzung, Gesicht und
+Rückruf auf die Leistungsseiten · Referenzvorlage füllbar gemacht · Ausfallfrage
+beantwortet · NISG-Beitrag als Aufhänger mit Frist.
+
+**166 URLs, 149 Tests (vorher 130).** Einzelheiten in
+[`UMBAU-2026-09-06.md`](UMBAU-2026-09-06.md), die Strategie dahinter in
+[`STRATEGIE-2026-09.md`](STRATEGIE-2026-09.md).
+
+Offen und nicht am Rechner lösbar: Absenderadresse und SPF/DKIM/DMARC, die
+Apex-Domain, das Google-Unternehmensprofil, huddlex — alles in
+`UMBAU-2026-09-06.md` §7 und `STRATEGIE-2026-09.md` §6.
+
+---
+
 ## 05.09.2026 — Ausbau September
 
 **Ausgangspunkt war zum ersten Mal kein Plan, sondern eine Messung.** Aus den

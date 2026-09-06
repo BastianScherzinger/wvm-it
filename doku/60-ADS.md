@@ -1,9 +1,9 @@
 ---
 bereich: ads
 titel: Google Ads
-stand: 2026-09-05
+stand: 2026-09-06
 status: nicht zutreffend
-zusammenfassung: Für WVM-IT laufen keine Google Ads; seit 05.09.2026 gibt es immerhin die Danke-Seite mit eigener URL — Konto, Conversion-Tag und Einwilligung fürs Tag fehlen weiterhin.
+zusammenfassung: Fuer WVM-IT laufen weiterhin keine Google Ads. Seit dem 06.09.2026 waere es erstmals sinnvoll: Es gibt eine serverseitige Messung, die Danke-Seite ist erreichbar, und der Kostenrechner taugt als Landeseite. Empfehlung der Strategie: **nicht vor den ersten Bewertungen** — bezahlte Klicks auf ein Profil ohne Rezension sind gekaufter Absprung.
 offen: 5
 quellen: docs/AUSBAU-2026-09.md, docs/AKQUISE-SOFORT.md, docs/RELAUNCH-START.md, docs/recht-und-cookies.md
 ---

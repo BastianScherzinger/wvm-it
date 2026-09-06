@@ -504,6 +504,18 @@ body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   .mobilebar{display:flex}.foot{padding-bottom:96px}
 }
 @media (max-width:560px){
+  /* Die neuen Bausteine vom 06.09.2026 auf schmalen Geraeten. Konnte auf diesem
+     Rechner nicht am echten Fenster geprueft werden (Chrome laesst sich nicht unter
+     1280 CSS-px verkleinern) — deshalb bewusst grosszuegig statt knapp. */
+  .tool-tabs{grid-template-columns:1fr 1fr 1fr}
+  .tool-tab{font-size:13.5px;padding:13px 5px;hyphens:auto}
+  .ang-item-grid{grid-template-columns:1fr}
+  .ang-menge{margin-top:9px}
+  .ang-menge input{width:96px}
+  .sp-einstieg-kopf{flex-direction:column;gap:4px}
+  .sp-ausgang-links .btn{width:100%;justify-content:center}
+  .ak-person{padding:9px 10px}
+
   .bento{grid-template-columns:1fr}.b-wide{grid-column:span 1}
   .f-row{grid-template-columns:1fr}.foot-nav{grid-template-columns:1fr 1fr}
   .contact-methods{grid-template-columns:1fr}

@@ -1,10 +1,10 @@
 ---
 bereich: inhalte
 titel: Inhalte
-stand: 2026-09-05
+stand: 2026-09-06
 status: teilweise
 fortschritt: 94
-zusammenfassung: 165 URLs in acht Silos; neu sind Veranstaltungstechnik, IT-Beratung, Über uns, AGB, Barrierefreiheitserklärung und die Danke-Seite. Titel und Beschreibungen aller Silos überarbeitet.
+zusammenfassung: 166 URLs. Neu am 06.09.: Fachbeitrag zur NIS2-Lieferkette (Aufhaenger mit Frist), Einstiegsangebot und Abgrenzung auf den Leistungsseiten, Erreichbarkeits- und Vertretungsregelung auf der Notfallseite, drei Betreuungsstufen im Preisabschnitt. Footer-Claim gedreht: EDV zuerst statt an dritter Stelle hinter Buehnentechnik.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
 ---

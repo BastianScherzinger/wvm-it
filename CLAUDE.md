@@ -33,7 +33,7 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: 165 URLs (05.09.2026)
+## Stand: 166 URLs (06.09.2026)
 
 **Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend
 per Fernwartung in ganz Österreich und Deutschland. Webseiten, SEO, Google Ads und KI
@@ -46,7 +46,7 @@ man konnte sie kaufen, aber nicht finden. `/leistungen/konferenztechnik/` wurde
 gleichzeitig auf **Besprechungsräume** geschärft, damit sich die beiden Seiten nicht
 um dieselbe Suchanfrage streiten.
 
-Aus 2 rankbaren Seiten wurden **165 URLs** (81 Basis-Pfade):
+Aus 2 rankbaren Seiten wurden **166 URLs** (82 Basis-Pfade):
 
 | Silo | Pfad | Seiten | Sprachen |
 |---|---|---|---|
@@ -54,7 +54,7 @@ Aus 2 rankbaren Seiten wurden **165 URLs** (81 Basis-Pfade):
 | **Branchen** | `/branchen/<slug>/` | 6 + Hub | DE/EN/RO |
 | **Vergleiche** | `/vergleich/<slug>/` | 3 + Hub | DE/EN/RO |
 | Regionen | `/it-service/<slug>/` | 7 + Hub | DE/EN/RO |
-| Fachbeiträge | `/aktuelles/<slug>/` | 15 + Hub | nur DE |
+| Fachbeiträge | `/aktuelles/<slug>/` | 16 + Hub | nur DE |
 | **Glossar** | `/wissen/<slug>/` | 14 + Hub | nur DE |
 | **Checklisten** | `/checkliste/<slug>/` | 3 + Hub | nur DE |
 | **Werkzeuge** | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/` | 3 | DE/EN/RO |
@@ -78,8 +78,15 @@ Aufstellung steht in `docs/SEO-AUSBAU-3.md`.
 
 1. **`python manage.py seo_bericht`** — der Stand in dreißig Sekunden: URLs,
    Wortzahlen, Auffälligkeiten, Schema-Verteilung. Vor jeder Planung.
-2. **`docs/AUSBAU-2026-09.md`** — der jüngste Durchgang. §3 nennt die zwei Funde,
-   die in keinem Plan standen, §6 sagt, was offen bleibt und warum.
+2. **`docs/UMBAU-2026-09-06.md`** — der jüngste Durchgang (06.09.2026). §1 nennt den
+   roten Faden: **sechs Fehler, die zusammen „null Anfragen" erklären, haben zusammen
+   keine einzige Fehlermeldung erzeugt.** §7 sagt, was offen bleibt und warum.
+3. **`docs/STRATEGIE-2026-09.md`** — Markt, Rechtsrahmen, Kanäle, und die vier Dinge,
+   die nur Florin tun kann. Wichtigster Satz für jede Akquise-Idee: **Kaltakquise ist
+   in Österreich verboten, auch B2B, auch die einzelne Mail** (§ 174 TKG 2021,
+   verfolgt von Amts wegen).
+4. **`docs/AUSBAU-2026-09.md`** — der Durchgang davor. §3 nennt die zwei Funde,
+   die in keinem Plan standen.
 3. `docs/SEO-AUSBAU-3.md` — **abgeschlossen** (56/56). §11 nennt drei Funde, die
    nicht im Plan standen; §12 sagt, was jetzt ansteht.
 4. `docs/seo/GEO-MONITORING.md` — die zehn Fragen, das Protokollformat, der Termin
@@ -144,7 +151,7 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 122 Testfunktionen
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 149 Testfunktionen
 in `landing/tests/`, rund zehn Sekunden. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
@@ -157,6 +164,13 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 
 | Bereich | Regel |
 |---|---|
+| Mengen | Positionen, die je Stück gelten, brauchen `menge_max` **und** `menge_label` in `ANGEBOT_GROUPS`. Ohne sie addiert der Konfigurator einmal, was „je Arbeitsplatz" heißt — genau der Fehler, der bis zum 06.09.2026 aus 370 € ein Angebot über 167 € machte |
+| Summen | Zahlen, die die Seite aus Katalogpositionen **bildet**, gehören der Preisprüfung gemeldet: `_rechner_zahlen_fuer_pruefung()` und `_it_stufen_zahlen_fuer_pruefung()`. Sonst bricht `pruefe_seite` über die eigene Startseite ab |
+| Telefonlinks | `tel:`-Ziele immer über `c.telefon_tel`, nie über `c.telefon` — Leerzeichen sind im URI nach RFC 3966 unzulässig. Ein Test prüft alle Vorlagen |
+| Einwilligungen | Nie an eine Leistung koppeln. Getrennt, nicht vorausgewählt, mit Zeitstempel und IP protokolliert (§ 174 TKG 2021, Art. 7 DSGVO) |
+| Fehlermeldungen | Kein `alert()`. Fehler inline, wie es `doku/20-DESIGN.md` verlangt |
+| Referenzen | Neue Einträge brauchen ein Feld `texte` und einen eigenen Block unter `referenz_faelle` im Sprachpaket — sonst zeigen zwei Referenzen denselben Fallbericht |
+| Messung | `landing/messung.py` zählt **ohne IP, ohne Cookie, ohne Kennung**. Wer das ändert, macht daraus eine Verarbeitung personenbezogener Daten und braucht Einwilligung, Banner-Eintrag und einen Absatz in der Datenschutzerklärung |
 | Preise | `landing/views.py::ANGEBOT_GROUPS` ist die **einzige** Preisquelle — auch für Schema, Preistabelle, `llms.txt` und jeden Fließtext. Felder: `once`, `mtl`, `yr`, `std` (Stundensatz), `anfrage` |
 | Leistungen | `landing/leistungen.py` ist die einzige Strukturquelle: Slug, Bereich, Icon, Anfrage-Quelle, Preis-ID, Vor-Ort-Kennzeichen, Querverweise, Sitemap-Priorität. Texte in `landing/i18n/seiten_{de,en,ro}.py` |
 | URLs | Sitemap und IndexNow ziehen beide aus `views._seiten_pfade()`. Wegfallende URLs nur mit 301 |
@@ -191,7 +205,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 122 Testfunktionen in sieben Dateien
+- `landing/tests/` — 149 Testfunktionen in sieben Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·

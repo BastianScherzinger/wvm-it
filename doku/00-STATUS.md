@@ -1,10 +1,10 @@
 ---
 bereich: status
 titel: WVM-IT — Stand
-stand: 2026-09-05
+stand: 2026-09-06
 status: teilweise
-fortschritt: 91
-zusammenfassung: Ausbau September abgeschlossen und live — 165 URLs, 130 Tests (vorher null), CI-Lauf, durchgesetzte CSP. Messung 91,2 „Referenz" (vorher 66,9 „Solide"), 0 kritische Datei-Befunde. Search Console nachgezogen: Index und vier Segmente gelesen, fünf neue Seiten beantragt. Es bleiben zwei kritische Regel-Befunde: die Apex-Domain (beim Kunden) und der Umfang von 56 Seiten.
+fortschritt: 93
+zusammenfassung: Umbau auf Anfragen abgeschlossen — 166 URLs, 149 Tests (vorher 130). Sechs Fehler behoben, die alle unsichtbar waren: die Spam-Falle konnte echte Anfragen verschlucken, der Konfigurator rechnete fuer acht Arbeitsplaetze 167 statt 370 Euro, die Kopfleiste passte bei keiner Fensterbreite, fuenf Datenschutz-Links zeigten ins Leere. Neu: serverseitige Messung ohne Cookies, Rueckruf als Standardweg im Hero, drei Betreuungsstufen vor den Webseiten-Paketen, Einstiegsangebot und Gesicht auf den Leistungsseiten, NISG-Beitrag als Aufhaenger mit Frist. Offen bleiben Absenderadresse, SPF/DKIM/DMARC und Apex-Domain — alles am DNS bzw. beim Kunden.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
@@ -80,6 +80,16 @@ Kritische Befunde:
 
 ## Die drei wichtigsten offenen Punkte
 
+> **Stand nach dem Umbau vom 06.09.2026.** Im Code ist aus dem Umbauplan nichts mehr
+> offen; die Liste unten ist unverändert die alte, weil **kein einziger dieser Punkte
+> am Rechner lösbar ist**. Dazu gekommen ist ein vierter, der genauso wenig hier zu
+> lösen ist und trotzdem der teuerste sein dürfte: Die Website versendet ihre
+> Bestätigungen weiterhin über eine **private Gmail-Adresse ohne SPF, DKIM und
+> DMARC**. Ein Geschäftsführer fragt ein IT-*Sicherheits*-Angebot an und bekommt die
+> Antwort von einer nicht authentifizierten Fremdadresse — mit erhöhter
+> Wahrscheinlichkeit im Spam-Ordner. Einzelheiten und die fertigen DNS-Einträge in
+> `../docs/UMBAU-2026-09-06.md` §7.
+
 > **Gemessen am 05.09.2026 nach dem Ausbau: 91,2 von 100, Reifegrad „Referenz"** —
 > vorher 66,9 „Solide". Von 95 Befunden sind 64 geblieben, von acht kritischen zwei;
 > die neun kritischen Datei-Befunde im Quelltext sind vollständig weg. Die beiden
@@ -107,6 +117,8 @@ Kritische Befunde:
 
 | Datum | Was |
 |---|---|
+| **06.09.2026** | **Umbau auf Anfragen** (`../docs/UMBAU-2026-09-06.md`): Sechs Fehler behoben, die alle **keine Fehlermeldung erzeugt** haben — die Spam-Falle konnte echte Anfragen verschlucken und meldete Erfolg · der Konfigurator rechnete ohne Mengenfeld (8 Arbeitsplätze: 167 € statt 370 € — und die falsche Zahl war die schriftliche) · die Kopfleiste brauchte 1400 px in einem 1180-px-Container und passte bei **keiner** Fensterbreite · der Rückruf-Dialog klebte in der Bildschirmecke · fünf Datenschutz-Links zeigten auf Anker, die es nicht gibt · zwei `alert()` im Fehlerpfad. Neu gebaut: **serverseitige Messung** ohne Cookie und ohne IP, Herkunft und Reply-To in jeder Anfrage, Rückruf als Standardweg im Hero (davor stand die Gratis-Website), Kostenrechner im Richtpreis-Reiter, drei Betreuungsstufen (194/573/1.097 €) vor den Webseiten-Paketen, Richtpreis-Sperre samt erzwungener Werbeeinwilligung entfernt, Einstiegsangebot + Abgrenzung + Gesicht + Rückruf auf den Leistungsseiten, Rechnerergebnis mitnehmbar, 22 tel:-Links nach RFC 3966, Referenzvorlage füllbar, Ausfallfrage beantwortet, freiwillige Werbeeinwilligung nach § 174 TKG, NISG-Beitrag → **166 URLs, 149 Tests** |
+| **06.09.2026** | **Strategie erarbeitet** (`../docs/STRATEGIE-2026-09.md`): Von elf regionalen Anbietern nennt **keiner** Preise; 29 €/Arbeitsplatz liegen **unter** dem AT-Korridor von 49–150 €. Kaltakquise ist in Österreich **verboten**, auch B2B, verfolgt von Amts wegen. Florin ist seit 10.06.2020 UBIT-Mitglied und damit für **huddlex.at** berechtigt, ohne es zu nutzen. ERFOLG.PLUS 26 macht einen Audit für 890 € zum Türöffner, der sich selbst finanziert |
 | **05.09.2026** | **Die Messung vom 04.09. nachgearbeitet:** die fünf verbliebenen verschluckten Ausnahmen sichtbar gemacht (`PJ05`) · Antwortabsatz von 14 Glossareinträgen und 4 Fachbeiträgen mit einer Zahl, die aus dem Eintrag selbst oder aus `ANGEBOT_GROUPS` stammt (`GE23`) · auch `wvm_lang` auf `HttpOnly`, damit beide Server-Cookies gesperrt sind (`SI16`) · die durchgesetzte CSP durch fünf Prüfungen gegen stilles Verschwinden gesichert (`SI08`) → **130 Testfunktionen**. Drei Punkte gehen nicht am Rechner: Apex-DNS (`TS11`), `sameAs` ohne echte Profile (`GE11`), und Tests gibt es entgegen der Messung längst (`PJ02`) |
 | **05.09.2026** | **Ausbau September** (`../docs/AUSBAU-2026-09.md`): zwei neue Leistungsseiten für Florins Geschäft ausserhalb der Webseiten, vier fehlende Pflichtseiten, alle Titel und Beschreibungen, Formular-Vertrauen, 122 Tests, CI-Lauf, durchgesetzte CSP, echte Änderungsdaten, Sitemap-Segmente, Feed, Startseite 211 → 183 KB |
 | **05.09.2026** | Zwei Funde ausserhalb jedes Plans: 94 hreflang-Verweise auf 404-Adressen und eine Sprachumleitung, die jede deutsche Adresse traf statt nur die Startseite |

@@ -1,5 +1,10 @@
 # Wegweiser durch `docs/`
 
+**Neu am 06.09.2026:** [`UMBAU-2026-09-06.md`](UMBAU-2026-09-06.md) (was gebaut wurde
+und warum) und [`STRATEGIE-2026-09.md`](STRATEGIE-2026-09.md) (Markt, Recht, Kanaele,
+was nur der Kunde tun kann). `AKQUISE-SOFORT.md` vom 29.08. bleibt gueltig, ist aber
+von der Strategie ueberholt — dort steht der Rechtsrahmen, den es damals nicht gab.
+
 **Der Einstieg ist nicht hier.** Er ist [`../CLAUDE.md`](../CLAUDE.md) für die immer
 geltenden Regeln und [`../doku/00-STATUS.md`](../doku/00-STATUS.md) für die Lage der
 Dinge. Diese Datei sagt nur, welches der sechzehn Dokumente in diesem Ordner welche
@@ -11,7 +16,9 @@ nicht mehr als Anleitung lesen darf.
 | Frage | Datei |
 |---|---|
 | Was ist zuletzt passiert? | [`LOGBUCH.md`](LOGBUCH.md) |
-| Was hat der jüngste Durchgang gebaut, was blieb offen? | [`AUSBAU-2026-09.md`](AUSBAU-2026-09.md) |
+| Was hat der jüngste Durchgang gebaut, was blieb offen? | [`UMBAU-2026-09-06.md`](UMBAU-2026-09-06.md) |
+| **Wie kommt WVM-IT zu echten Kunden?** | [`STRATEGIE-2026-09.md`](STRATEGIE-2026-09.md) |
+| Was hat der Durchgang davor gebaut? | [`AUSBAU-2026-09.md`](AUSBAU-2026-09.md) |
 | Wo läuft die Seite, wie kommt sie dorthin? | [`DEPLOY.md`](DEPLOY.md) |
 | Welche Begriffe soll welche Seite gewinnen? | [`seo/KEYWORD-MAP.md`](seo/KEYWORD-MAP.md) |
 | Wie steht der Markt, welche Nischen? | [`SEO-KONZEPT-DACH.md`](SEO-KONZEPT-DACH.md) |

@@ -1,10 +1,10 @@
 ---
 bereich: aufgaben
 titel: Aufgaben
-stand: 2026-09-05
+stand: 2026-09-06
 status: teilweise
-fortschritt: 75
-zusammenfassung: Search Console am 05.09.2026 nachgezogen — Sitemap-Index und vier Segmente eingereicht und gelesen, fünf neue Seiten zur Indexierung beantragt. Offen bleiben CWV-Eintrag, Antwortzeit und die 32 Kontrastelemente.
+fortschritt: 78
+zusammenfassung: Umbau vom 06.09.2026 abgearbeitet — drei der zuvor offenen Punkte sind erledigt (Formular-Missbrauchsschutz vollstaendig, Anfragen werden vor dem Versand gesichert, Herkunft steht im Betreff). Neu offen ist nichts am Rechner; die Liste "Beim Kunden" ist um Absenderadresse und Mail-Authentifizierung gewachsen.
 offen: 3
 quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
 ---
@@ -40,8 +40,14 @@ drei sind am 05.09. dazugekommen.
       (Header-Injection)
 - [ ] **Inhalts-Score mit Schwelle** — heute wird nur auf E-Mail oder Telefonnummer
       geprüft, nicht auf den Inhalt
-- [ ] **Erst speichern, dann mailen** — die Anfrage lebt nur in der Mail; scheitert
-      der Versand, ist sie weg (der Fehlschlag wird seit 05.09. wenigstens geloggt)
+- [x] **Erst speichern, dann mailen** — seit 06.09.2026: `views._anfrage_sichern`
+      legt jede Anfrage als Zeile JSON ab und druckt sie ins Log, **bevor** die Mail
+      rausgeht. Scheitert der Versand, ist die Anfrage nicht mehr weg
+- [x] **Die Falle protokolliert ihre Treffer** — seit 06.09.2026. Vorher war ein
+      Fehlalarm nach beiden Seiten unsichtbar: Der Absender sah „Angekommen", das
+      Postfach blieb leer, gezählt wurde nichts. Zusätzlich entscheidet jetzt der
+      **Inhalt** des Feldes: die eigene Adresse kommt aus der Ausfüllhilfe des
+      Browsers und geht durch, eine fremde bleibt ein Bot
 - [ ] **Mail-Obergrenze je Tag** — die Bremse zählt je Bereich und Fenster, nicht
       je Tag über alle Bereiche
 
@@ -91,9 +97,25 @@ Aus den offenen Regeln der Messung vom 02.09.2026, nach Hebel sortiert. Der Proz
 
 Braucht Zuarbeit von Florin Feier — **nicht am Rechner lösbar, nicht darauf warten.**
 
+> **Nachgeprüft am 06.09.2026, alle vier bestätigt.** Die Domain hat weiterhin
+> **keinen SPF-, keinen DKIM- und keinen DMARC-Eintrag** (DNS-Abfrage gegen 8.8.8.8);
+> `http://wvm-it.tech/` antwortet mit **200 und der Parkseite** von domaintechnik.at,
+> `https://wvm-it.tech/` baut keine Verbindung auf. In den Railway-Variablen steht als
+> Absender unverändert `WVM-IT <enigmabible1@gmail.com>`.
+>
+> **Warum die Absenderadresse in diesem Durchgang nicht umgestellt wurde:** Ein
+> Wechsel auf `support@wvm-it.tech` ohne passenden SMTP-Zugang bricht den Versand —
+> Gmail sendet nur als authentifizierter Nutzer oder verifizierter Alias. Das wäre
+> ein stiller Totalausfall aller Anfragen gewesen. **Teilmaßnahme am 06.09.:**
+> Reply-To zeigt jetzt auf `support@wvm-it.tech` bzw. auf den Interessenten.
+>
+> Zu Punkt 1 kommen die Kanäle aus `../docs/STRATEGIE-2026-09.md` §6, allen voran
+> **huddlex.at** — die B2B-Anfrageplattform der WKO Oberösterreich, für die Florin
+> seit dem 10.06.2020 als UBIT-Mitglied berechtigt ist, ohne sie zu nutzen.
+
 | # | Punkt | Warum es bei ihm liegt | Wo die Vorlage liegt |
 |---|---|---|---|
-| 1 | **Google-Unternehmensprofil anlegen und verifizieren** | Öffentlicher Eintrag über sein reales Unternehmen, Verifizierung per Postkarte an seine Anschrift (5–14 Tage). Der wichtigste offene Punkt überhaupt: für die lokale Suche der entscheidende Hebel, **158 URLs gleichen sein Fehlen nicht aus**. Mit Profil erste Anrufe in 1–4 Wochen, ohne Profil lokal nichts | fertige Angaben in `../docs/SEO-KONZEPT-DACH.md` §7 — reines Abtippen, keine Denkarbeit |
+| 1 | **Google-Unternehmensprofil anlegen und verifizieren** | Öffentlicher Eintrag über sein reales Unternehmen, Verifizierung per Postkarte an seine Anschrift (5–14 Tage). Der wichtigste offene Punkt überhaupt: für die lokale Suche der entscheidende Hebel, **166 URLs gleichen sein Fehlen nicht aus**. Mit Profil erste Anrufe in 1–4 Wochen, ohne Profil lokal nichts | fertige Angaben in `../docs/SEO-KONZEPT-DACH.md` §7 — reines Abtippen, keine Denkarbeit |
 | 2 | **SPF- und DMARC-Eintrag** in der DNS-Zone | Am 28.08.2026 geprüft: die Domain hat **weder SPF noch DMARC**. Folge: Mails landen häufiger im Spam — auch die Eingangsbestätigungen an Kunden, die gerade angefragt haben; ausserdem kann jeder Fremde mit Absender `@wvm-it.tech` schreiben. 30 Minuten Arbeit, wirkt sofort. Dazu: Versand läuft über eine private Gmail-Adresse mit Anzeigename „WVM-IT" und sollte auf eine Adresse `@wvm-it.tech` mit DKIM umgestellt werden | fertige Einträge in `../docs/SEO-KONZEPT-DACH.md` §8.1; `p=none` zuerst, nach vier Wochen auf `p=quarantine` |
 | 3 | **Apex-Domain `wvm-it.tech` auf Railway zeigen lassen** | Der A-Record zeigt auf `213.145.224.30`, die Parkseite des Registrars; Railway meldet `verified: false`, Zertifikat `ISSUING`, DNS `REQUIRES_UPDATE`. Am 02.09.2026 nachgeprüft: **HTTPS ohne `www` baut keine Verbindung auf, HTTP liefert die Parkseite mit Status 200.** Die kürzere Adresse ist die, die Leute tippen und die in Zitaten steht — solange sie nicht auflöst, ist jeder Verweis darauf ein Totlink, und Google sieht zwei Zustände derselben Marke | beim Registrar den A-Record durch einen CNAME auf `ibw105v9.up.railway.app` ersetzen (oder ALIAS/ANAME, falls am Apex kein CNAME erlaubt ist) |
 | 4 | **UID-Nummer und Kammerzugehörigkeit** fürs Impressum | Beide sind nicht bekannt; die Felder in `content.json` sind vorbereitet und rendern, sobald sie gefüllt sind. Gewerbebehörde (BH Vöcklabruck) und Rechtsvorschrift stehen bereits | `content.json` → `uid`, `kammer` |

@@ -1,10 +1,10 @@
 ---
 bereich: technik
 titel: Technik
-stand: 2026-09-05
+stand: 2026-09-06
 status: teilweise
 fortschritt: 85
-zusammenfassung: Django 5.0.6 auf Railway; seit 05.09.2026 mit 130 Testfunktionen, CI-Lauf bei jedem Push, Lockfile, start.sh und durchgesetzter Content-Security-Policy — vorher gab es davon nichts. CSP und Cookie-Flags sind seither durch eigene Tests gegen stilles Verschwinden gesichert.
+zusammenfassung: Django 5.0.6 auf Railway, seit 06.09.2026 mit 149 Testfunktionen, serverseitiger Reichweitenmessung ohne Cookies und ohne IP (landing/messung.py + MessungMiddleware), gesicherten Anfragen vor dem Mailversand und Reply-To auf den Interessenten. Lokale Pruefumgebung: py -3.13, nicht das systemweite 3.14.
 offen: 4
 quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
 ---
