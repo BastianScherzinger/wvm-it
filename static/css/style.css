@@ -2430,3 +2430,27 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   .ub-portrait{max-width:260px}
   .ub-zwei{grid-template-columns:1fr;gap:32px;margin-top:40px;padding-top:34px}
 }
+
+/* ── Folgefragen im Fachbeitrag (06.09.2026) ──────────────────────────────────
+   Bewusst offen und als Definitionsliste, nicht als aufklappbares <details>:
+   Ein zugeklappter Text ist fuer den Leser verborgen und fuer eine
+   Zusammenfassung schlechter auffindbar. Auf einer Seite, die von Antworten
+   lebt, waere das der falsche Tausch. */
+.bt-faq{margin:var(--s7) 0 0}
+.bt-faq h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.3rem,2.4vw,1.75rem);
+  font-weight:600;letter-spacing:-.01em;margin:0 0 var(--s5);text-wrap:balance}
+/* Auf Textbreite eingefasst: Sonst laufen die Trennlinien ueber die volle
+   Spaltenbreite, waehrend die Antworten bei 65ch enden — das wirkt unruhig. */
+.bt-faq-liste{margin:0;padding:0;max-width:68ch}
+.bt-faq-liste dt{font-weight:600;font-size:17px;color:var(--ink);margin:0 0 8px;
+  padding-top:var(--s5);border-top:1px solid var(--line);text-wrap:balance}
+.bt-faq-liste dt:first-child{padding-top:0;border-top:0}
+.bt-faq-liste dd{margin:0 0 var(--s5);color:var(--ink-soft);max-width:65ch;line-height:1.68}
+
+/* Fliesstext auf Hub-Seiten (06.09.2026). Ein Hub, der nur Kacheln zeigt, hat
+   keinen eigenen Inhalt — weder fuer einen Leser noch fuer eine Suchmaschine. */
+.hb-text{margin:var(--s7) 0 var(--s6);max-width:68ch}
+.hb-text h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.2rem,2.2vw,1.55rem);
+  font-weight:600;letter-spacing:-.01em;margin:var(--s6) 0 var(--s3);text-wrap:balance}
+.hb-text h2:first-child{margin-top:0}
+.hb-text p{color:var(--ink-soft);line-height:1.68;margin:0}

@@ -7,6 +7,35 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 06.09.2026 (spaet) — Politur: Symbole, Folgefragen, Umfang
+
+**Zuerst nachgemessen, dann geplant — und das hat den Plan umgeworfen.** Vier der
+fuenf Punkte, die in der Doku als grosse offene SEO-Hebel standen, waren laengst
+erledigt: Titel mit Ort oder Zahl 70 statt 17 Prozent, Beschreibungen mit
+Handlungsaufforderung 92 statt 2 Prozent, nichtssagende Ankertexte null statt 948,
+doppelte Titel null statt sechs. Die Dokumentation hatte den Stand vom 02.09.
+behalten. **Eine Aufgabenliste altert schneller als der Code, den sie beschreibt.**
+
+Uebrig blieb ein kritischer Punkt: der **Umfang**. 19 Seiten unter dem Zielwert
+ihrer Seitenart, darunter 16 Fachbeitraege bei 566 bis 660 statt 900 Woertern und
+der Regionen-Hub bei 313 von 600.
+
+Geloest mit **Folgefragen** statt laengerer Absaetze: 64 Frage-Antwort-Paare ueber
+16 Beitraege. Das bringt den Umfang mit echtem Inhalt, beantwortet die Fragen, die
+nach dem Beitrag wirklich kommen — und erzeugt `FAQPage`-Schema, also genau das
+Format, das KI-Antwortmaschinen woertlich uebernehmen. Der Regionen-Hub bekam
+eigenen Text in drei Sprachen; eine Kachelliste ist kein Seiteninhalt.
+
+**Vier Symbole neu gezeichnet.** `dns` und `domain` waren zeichengleich (beide ein
+Globus), `cog` sah aus wie eine Sonne, `seo` wie das Zoom-Symbol, `gauge` hatte
+keine Skala. Der Rest blieb unangetastet — ein Satz, der zu achtzig Prozent stimmt,
+verliert beim Komplettaustausch nur seine Geschlossenheit.
+
+Woerter gesamt 140.970 -> 145.611, je Seite im Schnitt 752 -> 799. **167 Tests**
+(vorher 162). Einzelheiten in [`POLITUR-2026-09-06.md`](POLITUR-2026-09-06.md).
+
+---
+
 ## 06.09.2026 (abends) — Hero-Konzept und zwei Sprachfehler
 
 **Die Ueberschrift hat ausgeschlossen.** „Die IT-Abteilung fuer Betriebe, die keine

@@ -4,7 +4,7 @@ titel: Design
 stand: 2026-09-06
 status: teilweise
 fortschritt: 96
-zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 06.09. der Hero neu gedacht: zweistufige Ueberschrift und Vertrauensband mit Foto, Name und einem Satz in erster Person, direkt unter der Ueberschrift statt hinter der Subline (dort begann es bei 645 px in einem 585-px-Fenster). Bewusst keine Karte — nur eine feine Linie und ein duenner Goldring ums Foto. Dazu drei behobene Fehler: uebergelaufene Kopfleiste, Dialog in der Bildschirmecke, zwei alert(). Mobilansicht weiterhin nie am Geraet geprueft.
+zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 06.09. der Hero neu gedacht (zweistufige Ueberschrift, Vertrauensband mit Gesicht) und vier Symbole neu gezeichnet: dns und domain waren zeichengleich, cog sah aus wie eine Sonne, seo wie das Zoom-Symbol, gauge hatte keine Skala. Zwei Tests sichern das jetzt. Neue Bausteine: Folgefragen-Liste, Hub-Fliesstext. Mobilansicht weiterhin nie am Geraet geprueft.
 offen: 4
 quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---

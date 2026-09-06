@@ -1,10 +1,10 @@
 ---
 bereich: seo
 titel: SEO und GEO
-stand: 2026-09-05
+stand: 2026-09-06
 status: teilweise
 fortschritt: 90
-zusammenfassung: Zwei Funde ausserhalb jedes Plans behoben: 94 hreflang-Verweise zeigten auf 404, und 82 Seiten waren über interne Links unerreichbar. Titel und Beschreibungen aller 165 URLs überarbeitet, Sitemap in vier Segmenten, echte Änderungsdaten. Der Antwortabsatz von 14 Glossareinträgen und 4 Fachbeiträgen trägt jetzt eine belegte Zahl; sameAs bleibt leer, bis es echte Profile gibt. Erste Messung Oktober 2026.
+zusammenfassung: Am 06.09. nachgemessen statt fortgeschrieben: Titel mit Ort oder Zahl 70 Prozent (Doku sagte 17), Beschreibungen mit Handlungsaufforderung 92 Prozent (sagte 2), nichtssagende Ankertexte null (sagte 948), doppelte Titel null (sagte 6). Der verbliebene kritische Punkt war der Umfang; 16 Beitraege haben jetzt Folgefragen mit FAQPage-Schema, der Regionen-Hub eigenen Text.
 offen: 6
 quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/GEO-MONITORING.md, docs/seo/KEYWORD-MAP.md, docs/seo/BASELINE.md
 ---

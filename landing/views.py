@@ -2837,8 +2837,13 @@ def beitrag_seite(request, slug):
         # aufgefüllt. Vorher standen hier immer dieselben drei — die Beiträge
         # weiter hinten in der Liste bekamen dadurch nie einen eingehenden Link.
         "weitere": _weitere_beitraege(slug, eintrag.get("thema")),
+        # Die Folgefragen als FAQPage (06.09.2026). Das ist das Format, das
+        # KI-Antwortmaschinen am häufigsten wörtlich übernehmen — und der Grund,
+        # warum der fehlende Umfang mit Fragen aufgefüllt wurde und nicht mit
+        # längeren Absätzen.
         "structured_data": _seiten_schema(
             c, "de", service=artikel,
+            faq=beitrag.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 ("Aktuelles", reverse("aktuelles")),
                 (beitrag.get("titel", slug), pfad)])),

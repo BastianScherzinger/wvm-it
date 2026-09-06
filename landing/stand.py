@@ -66,7 +66,7 @@ STAND = {
     "/datenschutz/": "2026-09-06",
     "/impressum/": "2026-09-06",
     "/it-notfall/": "2026-09-06",
-    "/it-service/": "2026-09-05",
+    "/it-service/": "2026-09-06",
     "/it-service/attersee/": "2026-09-06",
     "/it-service/bad-ischl/": "2026-09-06",
     "/it-service/gmunden/": "2026-09-06",

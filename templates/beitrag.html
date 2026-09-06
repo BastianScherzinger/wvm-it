@@ -47,6 +47,30 @@ Begruendung in Abschnitten.
     </section>
     {% endfor %}
 
+    {% comment %} ── Folgefragen (06.09.2026) ───────────────────────────────────
+      Warum FAQ und nicht mehr Fliesstext: Die Messung meldete 16 Beitraege unter
+      dem Zielumfang ihrer Seitenart (566–660 statt 900 Woerter). Die bestehenden
+      Abschnitte zu verlaengern waere Fuellmaterial gewesen. Ein FAQ-Block bringt
+      den Umfang mit echtem Inhalt, beantwortet die Fragen, die nach dem Beitrag
+      tatsaechlich kommen — und erzeugt `FAQPage`-Schema, also genau das Format,
+      das KI-Antwortmaschinen am haeufigsten woertlich uebernehmen.
+
+      Offen, nicht zugeklappt: Ein `<details>` verbirgt den Text vor dem Leser und
+      macht ihn fuer eine Zusammenfassung schlechter auffindbar. Auf einer Seite,
+      die von Antworten lebt, ist das der falsche Tausch.
+    {% endcomment %}
+    {% if beitrag.faq %}
+    <section class="bt-faq" data-reveal>
+      <h2>{{ t.seite.faq_folge_h|safe }}</h2>
+      <dl class="bt-faq-liste">
+        {% for f in beitrag.faq %}
+        <dt>{{ f.q|safe }}</dt>
+        <dd>{{ f.a|safe }}</dd>
+        {% endfor %}
+      </dl>
+    </section>
+    {% endif %}
+
     {% if beitrag.fazit %}
     <p class="bt-fazit" data-reveal><strong>Kurz gesagt:</strong> {{ beitrag.fazit|safe }}</p>
     {% endif %}

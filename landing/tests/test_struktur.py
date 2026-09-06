@@ -312,3 +312,65 @@ class StufeVierTest(SimpleTestCase):
         werte = _rechner_werte(QueryDict("ap=0&srv=0&backup=0&neu=0&m365=0"))
         ergebnis = _rechner_rechnen(werte)
         self.assertEqual(_rechner_satz(werte, ergebnis, get_pack("de")["rechner"]), "")
+
+
+class IconsUndFolgefragenTest(SimpleTestCase):
+    """Die Politur vom 06.09.2026 (zweiter Durchgang)."""
+
+    def test_kein_symbol_ist_zeichengleich_mit_einem_anderen(self):
+        """`dns` und `domain` waren bis zum 06.09.2026 exakt dasselbe Bild — ein
+        Globus mit Meridianen. Zwei Bedeutungen, ein Symbol: Wer beide auf einer
+        Seite sieht, hält es für einen Fehler."""
+        import re
+        from pathlib import Path
+        sprite = Path("templates/icons_sprite.html").read_text(encoding="utf-8")
+        nach_inhalt = {}
+        for m in re.finditer(r'<symbol id="i-([a-z0-9-]+)"[^>]*>(.*?)</symbol>', sprite, re.S):
+            nach_inhalt.setdefault(m.group(2).strip(), []).append(m.group(1))
+        doppelt = {v[0]: v[1:] for v in nach_inhalt.values() if len(v) > 1}
+        self.assertEqual(doppelt, {}, f"zeichengleiche Symbole: {doppelt}")
+
+    def test_jedes_symbol_hat_dieselbe_strichstaerke(self):
+        """Ein Satz mit gemischten Strichstärken sieht zusammengesucht aus."""
+        import re
+        from pathlib import Path
+        sprite = Path("templates/icons_sprite.html").read_text(encoding="utf-8")
+        staerken = set(re.findall(r'<symbol[^>]*stroke-width="([\d.]+)"', sprite))
+        self.assertEqual(len(staerken), 1, f"gemischte Strichstärken: {staerken}")
+
+    def test_jeder_fachbeitrag_hat_folgefragen(self):
+        """Sie tragen den Umfang **und** erzeugen das FAQPage-Schema."""
+        from landing import beitraege
+        from landing.i18n.beitraege_de import BEITRAEGE as TEXTE
+        for eintrag in beitraege.BEITRAEGE:
+            slug = eintrag["slug"]
+            with self.subTest(slug=slug):
+                faq = TEXTE.get(slug, {}).get("faq")
+                self.assertTrue(faq, f"{slug} hat keine Folgefragen")
+                self.assertGreaterEqual(len(faq), 3, f"{slug}: weniger als drei Fragen")
+                for eintrag_faq in faq:
+                    self.assertTrue(eintrag_faq.get("q"), f"{slug}: Frage ohne Text")
+                    self.assertGreater(len(eintrag_faq.get("a", "")), 80,
+                                       f"{slug}: Antwort zu kurz, um eine zu sein")
+
+    def test_fachbeitrag_liefert_faqpage_schema(self):
+        import json
+        import re
+        from . import _util
+        html = _util.client().get("/aktuelles/was-kostet-it-betreuung/").content.decode("utf-8")
+        bloecke = re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
+        typen = set()
+        for b in bloecke:
+            daten = json.loads(b)
+            for knoten in daten.get("@graph", [daten]):
+                if knoten.get("@type"):
+                    typen.add(knoten["@type"])
+        self.assertIn("FAQPage", typen)
+        self.assertIn("Article", typen)
+
+    def test_regionen_hub_hat_eigenen_inhalt(self):
+        """Ein Hub, der nur Kacheln zeigt, hat für Leser wie Suchmaschine keinen
+        eigenen Inhalt — er lag bei 313 von 600 Wörtern."""
+        from . import _util
+        html = _util.client().get("/it-service/").content.decode("utf-8")
+        self.assertIn('class="hb-text"', html)

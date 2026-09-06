@@ -39,6 +39,19 @@ Umkreis, per Fernwartung ueberall.
       {% endfor %}
     </div>
 
+    {% comment %} Eigener Inhalt statt reiner Kachelliste (06.09.2026): 313 von 600
+      Woertern war der schlechteste Umfangswert der Seite. Kachelbeschriftungen sind
+      kein Seiteninhalt — hier stehen jetzt die drei Fragen, die auf einer
+      Ortsuebersicht tatsaechlich gestellt werden. {% endcomment %}
+    <section class="hb-text" data-reveal>
+      <h2>{{ t.seite.regionen_warum_h|safe }}</h2>
+      <p>{{ t.seite.regionen_warum_t|safe }}</p>
+      <h2>{{ t.seite.regionen_umkreis_h|safe }}</h2>
+      <p>{{ t.seite.regionen_umkreis_t|safe }}</p>
+      <h2>{{ t.seite.regionen_gleich_h|safe }}</h2>
+      <p>{{ t.seite.regionen_gleich_t|safe }}</p>
+    </section>
+
     <p class="rg-fern" data-reveal>{{ t.seite.regionen_fern|safe }}</p>
     <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a></p>
   </div>

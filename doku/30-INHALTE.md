@@ -4,7 +4,7 @@ titel: Inhalte
 stand: 2026-09-06
 status: teilweise
 fortschritt: 94
-zusammenfassung: 166 URLs. Am 06.09. neu: Hero-Ueberschrift in drei Sprachen (einschliessend statt ausschliessend), Vertrauensband mit Florins Satz in erster Person, Fachbeitrag zur NIS2-Lieferkette, Einstiegsangebot und Abgrenzung auf den Leistungsseiten, Erreichbarkeit und Vertretung auf der Notfallseite, drei Betreuungsstufen im Preisabschnitt. Uebersetzungen geprueft: 2.361 Schluessel in DE/EN/RO vollstaendig, keine deutschen Reste im sichtbaren Text.
+zusammenfassung: 166 URLs, 145.611 Woerter (vorher 140.970), im Schnitt 799 je Seite. Am 06.09. neu: Hero-Ueberschrift in drei Sprachen, Vertrauensband, NIS2-Fachbeitrag, 64 Folgefragen ueber 16 Beitraege, eigener Text auf dem Regionen-Hub (313 -> ueber 600 Woerter), Einstiegsangebot und Abgrenzung auf den Leistungsseiten. Uebersetzungen geprueft: 2.361 Schluessel je Sprache vollstaendig.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
 ---

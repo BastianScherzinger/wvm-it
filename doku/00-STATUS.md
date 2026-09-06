@@ -3,8 +3,8 @@ bereich: status
 titel: WVM-IT — Stand
 stand: 2026-09-06
 status: teilweise
-fortschritt: 94
-zusammenfassung: Umbau auf Anfragen abgeschlossen und deployt — 166 URLs, 162 Tests (vorher 130). Hero neu: "Die ganze IT. Ein Ansprechpartner." schliesst niemanden mehr aus, Florins Gesicht steht mit einem Satz in erster Person im ersten Bildschirm. Sechs unsichtbare Fehler behoben (Spam-Falle, Faktor-8-Angebot, Kopfleiste, tote Datenschutz-Links) plus drei gemeldete: wirkungsloser DE-Knopf, /de/ als 404 und ein selbst eingebauter offener Weiterleiter. Offen bleiben Absenderadresse, SPF/DKIM/DMARC und Apex-Domain — alles am DNS bzw. beim Kunden.
+fortschritt: 95
+zusammenfassung: Umbau, Hero-Konzept und Politur abgeschlossen und deployt — 166 URLs, 167 Tests (vorher 130), 145.611 Woerter. Hero: "Die ganze IT. Ein Ansprechpartner." mit Florins Gesicht im ersten Bildschirm. Neu: Folgefragen auf allen 16 Fachbeitraegen (Umfang plus FAQPage-Schema), eigener Inhalt auf dem Regionen-Hub, vier neu gezeichnete Symbole (dns und domain waren zeichengleich). Nachgemessen: vier der fuenf angeblich offenen SEO-Hebel waren laengst erledigt. Offen bleiben Seitencache, Kontrastelemente sowie Absenderadresse, SPF/DKIM/DMARC und Apex-Domain beim Kunden.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---

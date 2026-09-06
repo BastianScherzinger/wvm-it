@@ -154,7 +154,7 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 162 Testfunktionen
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 167 Testfunktionen
 in `landing/tests/`, rund zehn Sekunden. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
@@ -188,6 +188,8 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 | Hero | Die Überschrift trägt **zwei** Stufen (`hero.headline` + `hero.headline_2`) und das Vertrauensband **drei** Texte (`person_h`, `person_t`, `person_ort`) — je Sprache. Das Band steht **vor** der Subline; dahinter beginnt es unterhalb des ersten Bildschirms. Begründung in `docs/HERO-KONZEPT-2026-09-06.md`, gesichert durch `HeroKonzeptTest` |
 | Wahrheit | Keine erfundenen Bewertungen, Zertifikate, Partnerlevel oder Kundenzahlen. `seit_jahr`, `partner_status` und `profile` in `content.json` rendern nur, wenn sie gefüllt sind |
 | Skripte | Jeder inline-`<script>`-Block braucht `nonce="{{ request.csp_nonce }}"`. Die Content-Security-Policy wird **durchgesetzt**; ein Block ohne Nonce wird vom Browser nicht ausgeführt — man merkt es sofort, aber nur, wenn man hinsieht |
+| Symbole | Keine zwei Symbole duerfen zeichengleich sein, und die Strichstaerke bleibt ueber alle dieselbe — beides pruefen Tests. `dns` und `domain` waren bis zum 06.09.2026 dasselbe Bild |
+| Folgefragen | Jeder Fachbeitrag traegt mindestens drei; sie erzeugen das FAQPage-Schema und tragen den Umfang. Antwort im ersten Satz, Zahlen nur aus ANGEBOT_GROUPS |
 | Icons | Die Formen stehen **einmal** in `templates/icons_sprite.html` als `<symbol>`; `templates/icons.html` ist nur der Verweis. Aufruf unverändert `{% include 'icons.html' with name='web' %}`. Ein neues Icon kommt in den Symbolsatz |
 | Formulare | Jedes Anfrageformular braucht `{% include 'honigtopf.html' %}` und `{% include 'datenschutzhinweis.html' %}` **innerhalb** des `<form>`. `pruefe_seite` bricht sonst ab. Das Honigtopf-Feld heißt `website` (nicht `hp`) — ein Feld namens „hp" ist als Falle erkennbar |
 | Änderungsdaten | `landing/stand.py` wird **erzeugt**, nicht gepflegt: `manage.py stand_schreiben`. `views.py` und `base.html` zählen bewusst nicht mit, sonst trügen wieder alle Seiten dasselbe Datum |
@@ -209,7 +211,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 162 Testfunktionen in sieben Dateien
+- `landing/tests/` — 167 Testfunktionen in sieben Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·
