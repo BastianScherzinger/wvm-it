@@ -17,7 +17,8 @@ from pathlib import Path
 from django.conf import settings
 from django.core import signing
 from django.core.mail import send_mail
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import (Http404, HttpResponse, HttpResponsePermanentRedirect,
+                         JsonResponse)
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import translation
@@ -4060,6 +4061,39 @@ def indexnow_key(request, key):
     if not erwartet or not hmac.compare_digest(key, erwartet):
         raise Http404
     return HttpResponse(erwartet, content_type="text/plain; charset=utf-8")
+
+
+def de_praefix_umleiten(request, rest=""):
+    """`/de/…` → `/…` — Deutsch ist die präfixlose Sprache.
+
+    Es gibt `/en/` und `/ro/`, aber `/de/` antwortete mit 404; wer die Symmetrie
+    erwartet, landete im Nichts (gemeldet und behoben am 06.09.2026).
+
+    **Warum das hier eine Funktion ist und kein Lambda in urls.py.** Die erste
+    Fassung lautete ``HttpResponsePermanentRedirect("/" + rest)`` — und war ein
+    offener Weiterleiter: ``/de//fremde-seite.example/`` ergibt ``//fremde-seite…``,
+    also eine protokollrelative Adresse, und der Browser landet auf einer fremden
+    Domain. Mit Backslash (``/de/\\fremde-seite.example``) genauso, weil Browser ihn
+    wie einen Schrägstrich behandeln. Live nachgestellt, bevor es repariert wurde.
+
+    Das ist die Sorte Fehler, die man mit einer freundlich aussehenden Adresse
+    verschickt: Der Link trägt die echte Domain des IT-Dienstleisters und führt
+    trotzdem woandershin. Deshalb zwei Schranken statt einer:
+
+    1. Führende Schrägstriche und Backslashes fallen weg, das Ziel beginnt mit
+       genau einem ``/``.
+    2. Djangos eigene Prüfung bestätigt, dass das Ziel auf dieser Seite bleibt —
+       dieselbe, die schon die Rücksprünge der Anfrageformulare absichert.
+
+    Bleibt etwas übrig, das die Prüfung nicht besteht, geht es auf die Startseite.
+    """
+    ziel = "/" + (rest or "").lstrip("/\\")
+    qs = request.META.get("QUERY_STRING", "")
+    if qs:
+        ziel += "?" + qs
+    if not url_has_allowed_host_and_scheme(ziel, allowed_hosts=None):
+        ziel = "/"
+    return HttpResponsePermanentRedirect(ziel)
 
 
 def health(request):

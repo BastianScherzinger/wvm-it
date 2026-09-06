@@ -1,6 +1,5 @@
 """URL-Konfiguration — mehrsprachige Landing-Page (DE ohne Präfix, EN /en/, RO /ro/)."""
 from django.conf.urls.i18n import i18n_patterns
-from django.http import HttpResponsePermanentRedirect
 from django.urls import path, re_path
 
 from landing import views
@@ -9,12 +8,14 @@ from landing import views
 urlpatterns = [
     # `/de/…` → `/…` (06.09.2026). Deutsch ist die präfixlose Sprache; es gibt
     # `/en/` und `/ro/`, aber `/de/` antwortete mit **404**. Wer die Symmetrie
-    # erwartet — und das tut jeder, der die anderen beiden Adressen kennt —, landet
-    # im Nichts, und zwar auf der Startseite der eigenen Sprache. Ein dauerhafter
-    # 301 statt einer eigenen Seite: Es gibt keinen zweiten Bestand, nur einen
-    # Tippfehler, den wir auffangen.
-    re_path(r"^de/(?P<rest>.*)$",
-            lambda request, rest: HttpResponsePermanentRedirect("/" + rest),
+    # erwartet, landet im Nichts. Ein dauerhafter 301 statt einer eigenen Seite:
+    # Es gibt keinen zweiten Bestand, nur einen Tippfehler, den wir auffangen.
+    #
+    # Die Umleitung steht in views.de_praefix_umleiten und **nicht** als Lambda
+    # hier: Die erste Fassung baute das Ziel als `"/" + rest` zusammen und war
+    # damit ein offener Weiterleiter (`/de//fremde-seite.example/`). Begründung
+    # und die zwei Schranken stehen im Docstring der Ansicht.
+    re_path(r"^de/(?P<rest>.*)$", views.de_praefix_umleiten,
             name="de_praefix_umleiten"),
     path("sprache/<str:lang>/", views.set_language, name="set_language"),
     path("bau/status/", views.bau_status, name="bau_status"),

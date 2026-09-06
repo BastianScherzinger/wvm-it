@@ -282,3 +282,51 @@ class SprachwechselTest(SimpleTestCase):
         from . import _util
         antwort = _util.client().get("/", {i18n.WUNSCH_PARAM: "kl"})
         self.assertEqual(antwort.status_code, 200)
+
+
+class DePraefixSicherheitTest(SimpleTestCase):
+    """Die `/de/`-Umleitung darf niemals auf eine fremde Seite führen.
+
+    Die erste Fassung vom 06.09.2026 baute das Ziel als ``"/" + rest`` zusammen und
+    war damit ein offener Weiterleiter: ``/de//fremde-seite.example/`` ergibt eine
+    protokollrelative Adresse, und der Browser landet auf der fremden Domain. Genau
+    die Sorte Link, die man verschickt, weil er die echte Domain trägt.
+    """
+
+    ANGRIFFE = (
+        "/de//fremde-seite.example/",
+        "/de/\fremde-seite.example/",
+        "/de///fremde-seite.example",
+        "/de/\/fremde-seite.example",
+        "/de/https://fremde-seite.example",
+        "/de/%2F%2Ffremde-seite.example",
+    )
+
+    def test_kein_offener_weiterleiter(self):
+        from . import _util
+        for pfad in self.ANGRIFFE:
+            with self.subTest(pfad=pfad):
+                antwort = _util.client().get(pfad)
+                ziel = antwort.get("Location", "")
+                self.assertFalse(
+                    ziel.startswith("//") or ziel.startswith("http://fremde")
+                    or ziel.startswith("https://fremde") or ziel.startswith("/\\"),
+                    f"{pfad} führt nach {ziel!r} — das verlässt die eigene Seite")
+                self.assertNotIn("fremde-seite.example", ziel.split("?")[0].split("/")[0:3][-1]
+                                 if "//" in ziel else "")
+
+    def test_normale_umleitung_bleibt_erhalten(self):
+        from . import _util
+        for pfad, ziel in (("/de/", "/"),
+                           ("/de/kontakt/", "/kontakt/"),
+                           ("/de/leistungen/", "/leistungen/")):
+            with self.subTest(pfad=pfad):
+                antwort = _util.client().get(pfad)
+                self.assertEqual(antwort.status_code, 301)
+                self.assertTrue(antwort["Location"].endswith(ziel))
+
+    def test_query_string_bleibt_erhalten(self):
+        from . import _util
+        antwort = _util.client().get("/de/kosten/rechner/", {"ap": "8"})
+        self.assertEqual(antwort.status_code, 301)
+        self.assertIn("ap=8", antwort["Location"])
