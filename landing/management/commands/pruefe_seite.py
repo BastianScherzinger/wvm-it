@@ -214,6 +214,10 @@ class Command(BaseCommand):
         # (06.09.2026): auch sie bilden Summen aus Katalogpositionen.
         from landing.views import _it_stufen_zahlen_fuer_pruefung
         erlaubt |= _it_stufen_zahlen_fuer_pruefung()
+        # Und fuer den Leistungs-Hub (06.09.2026): dreimal der Arbeitsplatzpreis
+        # als Antwort auf eine FAQ, dazu zwei ausdruecklich fremde Geraetepreise.
+        from landing.views import _hub_zahlen_fuer_pruefung
+        erlaubt |= _hub_zahlen_fuer_pruefung()
         # Startwert der laufenden Summe im Konfigurator, bevor etwas gewählt wurde.
         erlaubt.add(0)
         client = _client()

@@ -13,7 +13,7 @@ SEITEN = {
 
     # ══ IT ════════════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
-        "nav": "Suport IT &amp; administrare",
+        "nav": "Suport IT & administrare",
         "titel": "Administrare IT de la 29 €/lună | WVM-IT",
         "desc": "Departament IT extern pentru firme mici și mijlocii: de la 29 €/lună per post de lucru, suport de la 95 €/oră. Solicitați acum o ofertă.",
         "h1": "Administrare IT pentru firmele fără departament IT propriu",
@@ -58,7 +58,7 @@ SEITEN = {
     },
 
     "server-datensicherung": {
-        "nav": "Servere &amp; copii de siguranță",
+        "nav": "Servere & copii de siguranță",
         "titel": "Servere și copii de siguranță de la 49 € | WVM-IT",
         "desc": "Monitorizare server de la 89 €/lună, copii de siguranță verificate de la 49 €/lună. Vedem defecțiunea înainte să se oprească activitatea. Cereți o ofertă.",
         "h1": "Administrare de server și copii de siguranță care rezistă la nevoie",
@@ -103,7 +103,7 @@ SEITEN = {
     },
 
     "netzwerk-wlan": {
-        "nav": "Rețea &amp; Wi-Fi",
+        "nav": "Rețea & Wi-Fi",
         "titel": "Rețea și Wi-Fi montate de la 890 € | WVM-IT",
         "desc": "Rețea și Wi-Fi măsurate, planificate și montate — de la 890 €, inclusiv hale și mai multe etaje. Solicitați acum o ofertă.",
         "h1": "Rețea și Wi-Fi care rezistă și în hală",
@@ -194,7 +194,7 @@ SEITEN = {
 
     # ══ Vizibilitate ══════════════════════════════════════════════════════════
     "webseite-erstellen": {
-        "nav": "Site web &amp; magazin",
+        "nav": "Site web & magazin",
         "titel": "Site web la comandă de la 350 € | WVM-IT",
         "desc": "Site-uri pentru firme din Austria și Germania: one-pager de la 350 €, site de firmă de la 1.490 €, magazin de la 3.500 €. Cereți o ofertă.",
         "h1": "Site web la comandă — și vedeți dinainte ce primiți",
@@ -329,7 +329,7 @@ SEITEN = {
     },
 
     "hosting-wartung": {
-        "nav": "Găzduire &amp; întreținere",
+        "nav": "Găzduire & întreținere",
         "titel": "Găzduire și întreținere de la 15 € | WVM-IT",
         "desc": "Găzduire cu SSL și copii zilnice de la 15 €/lună, întreținere de la 39 €/lună, domeniu de la 15 €/an. Solicitați o ofertă.",
         "h1": "Găzduire și întreținere: ca pagina să meargă și când nu se uită nimeni",
@@ -420,7 +420,7 @@ SEITEN = {
 
     # ══ La fața locului ═══════════════════════════════════════════════════════
     "smarthome-knx-loxone": {
-        "nav": "Casă inteligentă, Loxone &amp; KNX",
+        "nav": "Casă inteligentă, Loxone & KNX",
         "titel": "Casă inteligentă cu Loxone și KNX în Austria | WVM-IT",
         "desc": "Automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces și securitate într-un singur sistem. Solicitați o ofertă.",
         "h1": "Automatizarea clădirilor cu Loxone și KNX",

@@ -49,6 +49,48 @@
     {% endfor %}
 
     <p class="lk-alle"><a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+
+    {% comment %}Der Hub hatte 432 Woerter: eine Kachelliste ohne Antwort auf die
+    Frage, was konkret passiert. Die vier Abschnitte unten schliessen das (IS18).{% endcomment %}
+    {% if hub.ap_h %}
+    <div class="hb-text" data-reveal>
+      <h2 class="sp-h2" id="arbeitsplatz">{{ hub.ap_h|safe }}</h2>
+      <p>{{ hub.ap_t|safe }}</p>
+      <h2 class="sp-h2" id="hardware">{{ hub.hw_h|safe }}</h2>
+      <p>{{ hub.hw_t|safe }}</p>
+    </div>
+    {% endif %}
+
+    {% if hub.ablauf %}
+    <div class="hb-block" data-reveal>
+      <h2 class="sp-h2" id="ablauf">{{ hub.ablauf_h|safe }}</h2>
+      <ol class="hb-schritte">
+        {% for s in hub.ablauf %}
+        <li class="hb-schritt">
+          <h3 class="hb-schritt-h">{{ s.h|safe }}</h3>
+          <p class="hb-schritt-t">{{ s.t|safe }}</p>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+    {% endif %}
+
+    {% if hub.faq %}
+    <div class="hb-block" data-reveal>
+      <h2 class="sp-h2" id="faq">{{ hub.faq_h|safe }}</h2>
+      <div class="faq">
+        {% for f in hub.faq %}
+        <details class="faq-item"{% if forloop.first %} open{% endif %}>
+          <summary class="faq-q">
+            <h3 class="faq-q-h">{{ f.q|safe }}</h3>
+            <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </summary>
+          <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
   </div>
 </section>
 {% endblock %}

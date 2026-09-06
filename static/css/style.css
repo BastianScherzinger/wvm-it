@@ -22,7 +22,7 @@
 
   /* ── Flächen & Text (warm getöntes Neutral, kein Grau-Einheitsbrei) ────── */
   --bg:#fbfaf8; --bg-2:#f4f1ec; --surface:#ffffff; --surface-2:#f7f5f1;
-  --ink:#14120e; --ink-soft:#55504a; --ink-dim:#8a8177;
+  --ink:#14120e; --ink-soft:#55504a; --ink-dim:#746c64;   /* 4,6:1 auf --bg-2 */
 
   /* ── Struktur ──────────────────────────────────────────────────────────── */
   --line:rgba(20,18,14,.10); --line-2:rgba(20,18,14,.18);
@@ -1396,7 +1396,7 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   margin-top:clamp(6px,4vh,42px);max-width:520px;width:100%;justify-self:end}
 /* Die Karte bleibt hell, auch im dunklen Hero: sie ist das Werkzeug, nicht Deko. */
 .on-dark .hero-tool{--bg:#fbfaf8;--bg-2:#f4f1ec;--surface:#ffffff;--surface-2:#f7f5f1;
-  --ink:#14120e;--ink-soft:#55504a;--ink-dim:#8a8177;
+  --ink:#14120e;--ink-soft:#55504a;--ink-dim:#746c64;
   --line:rgba(20,18,14,.10);--line-2:rgba(20,18,14,.18);
   --tint:rgba(20,18,14,.035);--tint-2:rgba(20,18,14,.06);
   --accent2:#b8862b;--accent-ink:#8a6212;--accent-soft:#fdf6e6}
@@ -2454,3 +2454,24 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   font-weight:600;letter-spacing:-.01em;margin:var(--s6) 0 var(--s3);text-wrap:balance}
 .hb-text h2:first-child{margin-top:0}
 .hb-text p{color:var(--ink-soft);line-height:1.68;margin:0}
+
+/* ── Leistungs-Hub: Fliesstext, Ablauf, Fragen ────────────────────────────
+   Der Hub war bis zum 06.09.2026 eine reine Kachelliste (432 Woerter). Diese
+   drei Bausteine tragen den Text, der die Frage "was passiert konkret?"
+   beantwortet. Die Nummerierung im Ablauf ist keine Zierde: Die vier Schritte
+   sind tatsaechlich eine Reihenfolge, und die Zahl sagt dem Leser, wo er in
+   ihr steht. Alle Werte aus den Tokens am Dateianfang. */
+.hb-text{margin-top:clamp(44px,6vw,76px);max-width:68ch}
+.hb-text > p{margin-top:var(--s3);color:var(--ink-soft);font-size:15.8px;line-height:1.72}
+.hb-text .sp-h2:first-child{margin-top:0}
+
+.hb-schritte{list-style:none;margin:var(--s5) 0 0;padding:0;counter-reset:hbs;
+  display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.hb-schritt{counter-increment:hbs;position:relative;padding:var(--s4) var(--s4) var(--s4) 0;
+  border-top:2px solid color-mix(in srgb,var(--accent) 55%,transparent)}
+.hb-schritt::before{content:counter(hbs);display:block;margin-bottom:10px;
+  font-family:"Space Grotesk",sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:.08em;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.hb-schritt-h{font-family:"Space Grotesk",sans-serif;font-size:16.5px;font-weight:700;
+  letter-spacing:-.012em;line-height:1.25;color:var(--ink)}
+.hb-schritt-t{margin-top:8px;font-size:14.8px;line-height:1.66;color:var(--ink-soft)}

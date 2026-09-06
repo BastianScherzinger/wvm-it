@@ -59,7 +59,7 @@ STAND = {
     "/branchen/produktion-gewerbe/": "2026-09-06",
     "/branchen/steuerberater-kanzleien/": "2026-09-06",
     "/branchen/vereine-gemeinden/": "2026-09-06",
-    "/checkliste/": "2026-09-05",
+    "/checkliste/": "2026-09-06",
     "/checkliste/it-dienstleister-wechseln/": "2026-09-05",
     "/checkliste/it-jahrescheck/": "2026-09-05",
     "/checkliste/neuer-arbeitsplatz/": "2026-09-05",

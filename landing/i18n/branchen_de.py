@@ -21,7 +21,7 @@ BRANCHEN = {
 
     # ══ Steuerberater und Kanzleien ═══════════════════════════════════════════
     "steuerberater-kanzleien": {
-        "nav": "Steuerberater &amp; Kanzleien",
+        "nav": "Steuerberater & Kanzleien",
         "titel": "IT-Betreuung für Kanzleien in Österreich ab 29 € | WVM-IT",
         "desc": "IT-Betreuung für Kanzleien: DATEV-Umgebung, Mandantentrennung, Aufbewahrungsfristen, geprüfte Sicherung, ab 29 € je Arbeitsplatz. Jetzt anfragen.",
         "h1": "IT-Betreuung für Steuerberater und Kanzleien",
@@ -66,7 +66,7 @@ BRANCHEN = {
 
     # ══ Handwerk und Baugewerbe ═══════════════════════════════════════════════
     "handwerk-baugewerbe": {
-        "nav": "Handwerk &amp; Bau",
+        "nav": "Handwerk & Bau",
         "titel": "IT für Handwerksbetriebe in Österreich ab 29 € | WVM-IT",
         "desc": "IT für Handwerk und Bau: mobile Geräte für die Baustelle, Zeiterfassung, Handwerkersoftware, Fotodokumentation, ab 29 € je Arbeitsplatz. Jetzt anfragen.",
         "h1": "IT für Handwerksbetriebe und das Baugewerbe",
@@ -111,7 +111,7 @@ BRANCHEN = {
 
     # ══ Arztpraxen und Therapie ═══════════════════════════════════════════════
     "arztpraxen-therapie": {
-        "nav": "Arztpraxen &amp; Therapie",
+        "nav": "Arztpraxen & Therapie",
         "titel": "IT-Sicherheitscheck für Praxen für 490 € | WVM-IT",
         "desc": "IT für Arztpraxen und Therapie: Patientendaten, Zugriffsprotokolle, getrennte Geräte-Netze, Ausfallsicherheit. Sicherheitscheck 490 €. Jetzt anfragen.",
         "h1": "IT für Arztpraxen, Therapie- und Gesundheitsbetriebe",
@@ -156,7 +156,7 @@ BRANCHEN = {
 
     # ══ Hotellerie und Gastronomie ════════════════════════════════════════════
     "hotellerie-gastronomie": {
-        "nav": "Hotellerie &amp; Gastro",
+        "nav": "Hotellerie & Gastro",
         "titel": "WLAN-Planung für Hotels in Österreich ab 890 € | WVM-IT",
         "desc": "IT für Hotel und Gastronomie: Gäste-WLAN getrennt vom Betrieb, Kassensystem, Buchungsanbindung, Saisonlast. Netzwerk ab 890 €. Jetzt Angebot anfordern.",
         "h1": "IT, WLAN und Technik für Hotellerie und Gastronomie",
@@ -201,7 +201,7 @@ BRANCHEN = {
 
     # ══ Produktion und Gewerbe ════════════════════════════════════════════════
     "produktion-gewerbe": {
-        "nav": "Produktion &amp; Gewerbe",
+        "nav": "Produktion & Gewerbe",
         "titel": "Netzwerk für Produktionsbetriebe ab 890 € | WVM-IT",
         "desc": "IT für Produktion: Netzwerk bis in die Halle, Scanner und Terminals, getrennte Netze für Maschinen, Ausfallsicherheit, ab 890 €. Jetzt anfragen.",
         "h1": "IT und Netzwerk für Produktion und Gewerbebetriebe",
@@ -246,7 +246,7 @@ BRANCHEN = {
 
     # ══ Vereine und Gemeinden ═════════════════════════════════════════════════
     "vereine-gemeinden": {
-        "nav": "Vereine &amp; Gemeinden",
+        "nav": "Vereine & Gemeinden",
         "titel": "IT für Vereine in Österreich ab 95 € je Std | WVM-IT",
         "desc": "IT für Vereine und Gemeinden: Übergabe bei Vorstandswechsel, kleine Budgets, Website, Technik im Saal, Abrechnung ab 95 € je Stunde. Jetzt anfragen.",
         "h1": "IT für Vereine, Gemeinden und ehrenamtliche Organisationen",

@@ -12,7 +12,7 @@ pereche de pagini care să se transforme una în alta prin schimbarea domeniului
 BRANCHEN = {
 
     "steuerberater-kanzleien": {
-        "nav": "Contabilitate &amp; avocatură",
+        "nav": "Contabilitate & avocatură",
         "titel": "IT pentru cabinete în Austria, de la 29 € | WVM-IT",
         "desc": "IT pentru cabinete: mediu DATEV, separarea clienților, termene de arhivare, backup verificat, de la 29 € per stație. Solicitați o ofertă acum.",
         "h1": "IT pentru cabinete de contabilitate și avocatură",
@@ -56,7 +56,7 @@ BRANCHEN = {
     },
 
     "handwerk-baugewerbe": {
-        "nav": "Meșteșuguri &amp; construcții",
+        "nav": "Meșteșuguri & construcții",
         "titel": "IT pentru construcții în Austria, de la 29 € | WVM-IT",
         "desc": "IT pentru meserii și construcții: aparate pentru șantier, pontaj, software de branșă, documentare foto, de la 29 € per stație. Contactați-ne acum.",
         "h1": "IT pentru firme meșteșugărești și de construcții",
@@ -100,7 +100,7 @@ BRANCHEN = {
     },
 
     "arztpraxen-therapie": {
-        "nav": "Cabinete medicale &amp; terapie",
+        "nav": "Cabinete medicale & terapie",
         "titel": "Verificare de securitate IT pentru cabinete, 490 € | WVM-IT",
         "desc": "IT pentru cabinete medicale și de terapie: date ale pacienților, jurnale de acces, rețele separate, siguranță în program. Verificare 490 €. Solicitați acum.",
         "h1": "IT pentru cabinete medicale, stomatologice și de terapie",
@@ -144,7 +144,7 @@ BRANCHEN = {
     },
 
     "hotellerie-gastronomie": {
-        "nav": "Hoteluri &amp; restaurante",
+        "nav": "Hoteluri & restaurante",
         "titel": "Rețea WLAN pentru hoteluri în Austria, de la 890 € | WVM-IT",
         "desc": "IT pentru hotel și restaurant: WLAN pentru oaspeți separat de operare, casă de marcat, rezervări, sezon. Rețea de la 890 €. Solicitați o ofertă.",
         "h1": "IT, WLAN și tehnică pentru hoteluri și restaurante",
@@ -188,7 +188,7 @@ BRANCHEN = {
     },
 
     "produktion-gewerbe": {
-        "nav": "Producție &amp; industrie",
+        "nav": "Producție & industrie",
         "titel": "Rețea pentru firme de producție, de la 890 € | WVM-IT",
         "desc": "IT pentru producție: rețea până în hală, scanere și terminale, rețele separate pentru mașini, siguranță, de la 890 €. Solicitați o ofertă acum.",
         "h1": "IT și rețele pentru producție și firme industriale",
@@ -232,7 +232,7 @@ BRANCHEN = {
     },
 
     "vereine-gemeinden": {
-        "nav": "Asociații &amp; primării",
+        "nav": "Asociații & primării",
         "titel": "IT pentru asociații în Austria, de la 95 € pe oră | WVM-IT",
         "desc": "IT pentru asociații și primării: predarea la schimbarea conducerii, bugete mici, site, tehnică în sală, de la 95 € pe oră. Contactați-ne acum.",
         "h1": "IT pentru asociații, primării și organizații de voluntari",

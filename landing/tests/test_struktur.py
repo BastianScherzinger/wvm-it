@@ -7,6 +7,7 @@ aus templates/icons_sprite.html, Anfrage-Quellen aus views._ANFRAGE_QUELLEN, ...
 nie aus einer selbst eingetippten Liste, damit ein neuer Eintrag diese Tests
 nicht bricht, solange er den Regeln der jeweiligen Datei folgt.
 """
+import json
 import re
 from datetime import date
 from pathlib import Path
@@ -374,3 +375,55 @@ class IconsUndFolgefragenTest(SimpleTestCase):
         from . import _util
         html = _util.client().get("/it-service/").content.decode("utf-8")
         self.assertIn('class="hb-text"', html)
+
+
+class LeistungsHubUmfangTest(SimpleTestCase):
+    """Der Hub `/leistungen/` ist die wichtigste Einstiegsseite der Website und
+    war bis zum 06.09.2026 eine reine Kachelliste mit 432 Wörtern — die Frage
+    „was passiert eigentlich konkret?" beantwortete er nicht.
+
+    Diese Prüfung hält den Inhalt fest, der das schließt, und zwar in **allen
+    drei** Sprachen: Fehlt er in einer, fällt es hier auf und nicht erst dem
+    rumänischen Besucher.
+    """
+
+    PFADE = ("/leistungen/", "/en/leistungen/", "/ro/leistungen/")
+
+    def test_hub_traegt_arbeitsplatz_hardware_ablauf_und_fragen(self):
+        from . import _util
+        for pfad in self.PFADE:
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+                for anker in ('id="arbeitsplatz"', 'id="hardware"',
+                              'id="ablauf"', 'id="faq"'):
+                    self.assertIn(anker, html, f"{pfad}: {anker} fehlt")
+                self.assertEqual(html.count("hb-schritt-h"), 4,
+                                 f"{pfad}: der Ablauf hat nicht vier Schritte")
+
+    def test_hub_haelt_den_mindestumfang(self):
+        """600 Eigenwörter verlangt die Regel für einen Leistungs-Hub."""
+        from . import _util
+        for pfad in self.PFADE:
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+                nur_main = re.search(r"<main[^>]*>(.*?)</main>", html, re.S)
+                roh = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ",
+                             nur_main.group(1) if nur_main else html, flags=re.S)
+                woerter = re.findall(r"\b[\wäöüßÄÖÜșțăîâ-]{2,}\b", re.sub(r"<[^>]+>", " ", roh))
+                self.assertGreater(len(woerter), 600,
+                                   f"{pfad}: nur {len(woerter)} Wörter")
+
+    def test_die_fragen_erzeugen_ein_faqpage_schema(self):
+        """Der Text allein nützt nichts, wenn Google ihn nicht als Fragen liest."""
+        from . import _util
+        for pfad in self.PFADE:
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+                block = re.search(
+                    r'<script type="application/ld\+json"[^>]*>(.*?)</script>',
+                    html, re.S).group(1)
+                graph = json.loads(block)["@graph"]
+                faq = [k for k in graph if k.get("@type") == "FAQPage"]
+                self.assertEqual(len(faq), 1, f"{pfad}: genau eine FAQPage erwartet")
+                self.assertEqual(len(faq[0]["mainEntity"]), 5,
+                                 f"{pfad}: fünf Fragen erwartet")

@@ -12,7 +12,7 @@ no two pages that turn into one another by swapping the industry word.
 BRANCHEN = {
 
     "steuerberater-kanzleien": {
-        "nav": "Tax &amp; law practices",
+        "nav": "Tax & law practices",
         "titel": "IT support for tax practices in Austria, from €29 | WVM-IT",
         "desc": "IT support for practices: DATEV environment, client separation, retention periods, verified backups, from €29 per workstation. Request a quote today.",
         "h1": "IT support for tax advisers and law practices",
@@ -56,7 +56,7 @@ BRANCHEN = {
     },
 
     "handwerk-baugewerbe": {
-        "nav": "Trades &amp; construction",
+        "nav": "Trades & construction",
         "titel": "IT for trades and construction in Austria, from €29 | WVM-IT",
         "desc": "IT for trades and construction: rugged devices for site, time tracking, trade software, photo records, from €29 per workstation. Get in touch today.",
         "h1": "IT for trades businesses and the construction sector",
@@ -100,7 +100,7 @@ BRANCHEN = {
     },
 
     "arztpraxen-therapie": {
-        "nav": "Medical &amp; therapy practices",
+        "nav": "Medical & therapy practices",
         "titel": "IT security check for medical practices, €490 | WVM-IT",
         "desc": "IT for medical and therapy practices: patient data, access logs, separate device networks, resilience during hours. Security check €490. Request it now.",
         "h1": "IT for medical, dental and therapy practices",
@@ -144,7 +144,7 @@ BRANCHEN = {
     },
 
     "hotellerie-gastronomie": {
-        "nav": "Hotels &amp; hospitality",
+        "nav": "Hotels & hospitality",
         "titel": "Wi-Fi planning for hotels in Austria, from €890 | WVM-IT",
         "desc": "IT for hotels and restaurants: guest Wi-Fi separated from operations, POS, booking links, seasonal load. Network from €890. Request a quote now.",
         "h1": "IT, Wi-Fi and technology for hotels and hospitality",
@@ -188,7 +188,7 @@ BRANCHEN = {
     },
 
     "produktion-gewerbe": {
-        "nav": "Manufacturing &amp; industry",
+        "nav": "Manufacturing & industry",
         "titel": "Network setup for factories in Austria, from €890 | WVM-IT",
         "desc": "IT for manufacturing: network into the hall, scanners and terminals, separate machine networks, resilience, from €890. Request a quote today.",
         "h1": "IT and networks for manufacturing and industrial businesses",
@@ -232,7 +232,7 @@ BRANCHEN = {
     },
 
     "vereine-gemeinden": {
-        "nav": "Associations &amp; municipalities",
+        "nav": "Associations & municipalities",
         "titel": "IT for associations in Austria, from €95 per hour | WVM-IT",
         "desc": "IT for associations and municipalities: handovers at committee change, small budgets, website, hall technology, from €95 per hour. Get in touch now.",
         "h1": "IT for associations, municipalities and volunteer organisations",

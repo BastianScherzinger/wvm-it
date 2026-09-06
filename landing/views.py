@@ -530,6 +530,31 @@ def _it_stufen_zahlen_fuer_pruefung():
     return {int(s["mtl"]) for s in _it_stufen()}
 
 
+# Die zwei Geraetepreise, die der Hardware-Absatz auf /leistungen/ nennt. Sie
+# sind KEINE Preise von WVM-IT, sondern Marktpreise fremder Geraete, an denen
+# der Absatz erklaert, warum das teurere sich bei Bueroarbeit nicht bemerkbar
+# macht. Sie duerfen deshalb fest stehen -- eine Zahl aus ANGEBOT_GROUPS waere
+# hier sogar falsch. Sie gehoeren trotzdem hierher und nicht in die Pruefung:
+# Wer den Absatz aendert, aendert die Zahl an derselben Stelle mit.
+_HUB_FREMDPREISE = (600, 1400)
+
+
+def _hub_zahlen_fuer_pruefung():
+    """Die Zahlen des Leistungs-Hubs, die `pruefe_seite` sonst anschlagen laesst.
+
+    Zwei verschiedene Dinge, bewusst in einer Funktion mit einem Kommentar je Art:
+
+    * **Abgeleitet.** Die Antwort auf „was zahlt ein Betrieb mit drei
+      Arbeitsplaetzen?" ist dreimal der Katalogpreis. Sie wird hier gerechnet und
+      nicht getippt, damit sie mitwandert, wenn die 29 € sich aendern.
+    * **Fremd.** Die zwei Geraetepreise oben.
+    """
+    je_arbeitsplatz = next(
+        int(it["mtl"]) for g in ANGEBOT_GROUPS for it in g["items"]
+        if it.get("id") == "it_betreuung" and it.get("mtl"))
+    return {3 * je_arbeitsplatz} | set(_HUB_FREMDPREISE)
+
+
 # ── Kostenrechner (docs/SEO-AUSBAU-3.md, W1) ─────────────────────────────────
 # Der Rechner LIEST ANGEBOT_GROUPS, er kopiert sie nicht. Es gibt keinen zweiten
 # Zahlensatz — weder hier noch im JavaScript: Das Skript bekommt dieselben Werte
@@ -2166,7 +2191,8 @@ def leistungen_hub(request):
         "c": c, "hub": hub, "bereiche": bereiche,
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(
-                base, [(pack["seite"]["leistungen"], reverse("leistungen"))])),
+                base, [(pack["seite"]["leistungen"], reverse("leistungen"))]),
+                faq=hub.get("faq"), faq_id=reverse("leistungen")),
             _itemlist(base, reverse("leistungen"), hub.get("h1", ""),
                       [(l.get("nav", l["slug"]), l["url"])
                        for b in bereiche for l in b["posten"]])),
@@ -3407,7 +3433,7 @@ def _llms_branchen(base, lang):
         satz = (seite.get("kurz", "") or "").split(". ")[0].strip()
         if satz and not satz.endswith("."):
             satz += "."
-        nav = (seite.get("nav", eintrag["slug"]) or "").replace("&amp;", "&")
+        nav = seite.get("nav", eintrag["slug"]) or ""
         zeilen.append(f"- [{nav}]({base}/branchen/{eintrag['slug']}/): {satz}")
     return zeilen
 
@@ -3551,7 +3577,15 @@ def llms_full_txt(request):
     aus = [_llms_kopf(c, base)]
 
     def sauber(wert):
-        return (wert or "").replace("&ndash;", "–").replace("&amp;", "&").replace("&nbsp;", " ")
+        """Nur noch Leerraum glaetten.
+
+        Bis zum 06.09.2026 loeste diese Funktion hier HTML-Entities auf, weil die
+        Sprachpakete sie woertlich trugen. Das war ein Pflaster an der falschen
+        Stelle: In llms.txt sah es richtig aus, im JSON-LD stand weiter
+        `avocatur&#259;`. Die Quellen tragen jetzt echte Zeichen, geprueft von
+        `EntitiesInDenSprachpaketenTest`.
+        """
+        return " ".join((wert or "").split())
 
     for eintrag in leistungen.LEISTUNGEN:
         s = texte.get(eintrag["slug"], {})

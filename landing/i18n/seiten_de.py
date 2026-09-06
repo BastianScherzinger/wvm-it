@@ -18,7 +18,7 @@ SEITEN = {
 
     # ══ EDV & IT ══════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
-        "nav": "EDV &amp; IT-Betreuung",
+        "nav": "EDV & IT-Betreuung",
         "titel": "EDV- & IT-Betreuung ab 29 €/Monat | WVM-IT",
         "desc": "Externe IT-Abteilung für kleine und mittlere Betriebe: ab 29 €/Monat je Arbeitsplatz, Support ab 95 €/Std. Jetzt unverbindlich anfragen.",
         "h1": "EDV- und IT-Betreuung für Betriebe ohne eigene IT-Abteilung",
@@ -63,7 +63,7 @@ SEITEN = {
     },
 
     "server-datensicherung": {
-        "nav": "Server &amp; Datensicherung",
+        "nav": "Server & Datensicherung",
         "titel": "Server-Betreuung & Backup ab 49 €/Monat | WVM-IT",
         "desc": "Server-Überwachung ab 89 €/Monat, geprüfte Datensicherung ab 49 €/Monat. Wir sehen den Ausfall, bevor der Betrieb steht. Jetzt Angebot anfordern.",
         "h1": "Server-Betreuung und Datensicherung, die im Ernstfall hält",
@@ -108,7 +108,7 @@ SEITEN = {
     },
 
     "netzwerk-wlan": {
-        "nav": "Netzwerk &amp; WLAN",
+        "nav": "Netzwerk & WLAN",
         "titel": "Netzwerk & WLAN einrichten ab 890 € | WVM-IT",
         "desc": "Netzwerk und WLAN ausgemessen, geplant und aufgebaut — ab 890 €, auch für Hallen und mehrere Etagen. Jetzt unverbindlich anfragen.",
         "h1": "Netzwerk und WLAN, das auch in der Halle trägt",
@@ -334,7 +334,7 @@ SEITEN = {
     },
 
     "hosting-wartung": {
-        "nav": "Hosting &amp; Wartung",
+        "nav": "Hosting & Wartung",
         "titel": "Hosting & Wartung ab 15 €/Monat | WVM-IT",
         "desc": "Hosting mit SSL und täglichen Sicherungen ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr. Jetzt unverbindlich anfragen.",
         "h1": "Hosting und Wartung: damit die Seite auch läuft, wenn niemand hinsieht",
@@ -425,7 +425,7 @@ SEITEN = {
 
     # ══ Technik vor Ort ═══════════════════════════════════════════════════════
     "smarthome-knx-loxone": {
-        "nav": "Smarthome, Loxone &amp; KNX",
+        "nav": "Smarthome, Loxone & KNX",
         "titel": "Smarthome mit Loxone & KNX in Österreich | WVM-IT",
         "desc": "Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt und Sicherheit in einem System. Jetzt unverbindlich anfragen.",
         "h1": "Gebäudeautomation mit Loxone und KNX",

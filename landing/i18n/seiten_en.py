@@ -11,7 +11,7 @@ SEITEN = {
 
     # ══ IT ════════════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
-        "nav": "IT support &amp; management",
+        "nav": "IT support & management",
         "titel": "IT support & management from €29/mo | WVM-IT",
         "desc": "An outsourced IT department for small and mid-sized businesses: from €29 per workstation and month, support from €95/hr. Request a free quote now.",
         "h1": "IT support for businesses without an IT department",
@@ -56,7 +56,7 @@ SEITEN = {
     },
 
     "server-datensicherung": {
-        "nav": "Servers &amp; backups",
+        "nav": "Servers & backups",
         "titel": "Server management & backup from €49/mo | WVM-IT",
         "desc": "Server monitoring from €89/month, verified backups from €49/month. We spot the failure before the business stops. Request a quote today.",
         "h1": "Server management and backups that hold when it matters",
@@ -101,7 +101,7 @@ SEITEN = {
     },
 
     "netzwerk-wlan": {
-        "nav": "Network &amp; Wi-Fi",
+        "nav": "Network & Wi-Fi",
         "titel": "Network & Wi-Fi setup from €890 | WVM-IT",
         "desc": "Network and Wi-Fi surveyed, planned and installed — from €890, including workshops and multiple floors. Request a free quote now.",
         "h1": "A network and Wi-Fi that also works in the workshop",
@@ -192,7 +192,7 @@ SEITEN = {
 
     # ══ Visibility ════════════════════════════════════════════════════════════
     "webseite-erstellen": {
-        "nav": "Website &amp; shop",
+        "nav": "Website & shop",
         "titel": "Have a website built from €350 | WVM-IT",
         "desc": "Websites for businesses in Austria and Germany: one-pager from €350, company site from €1,490, shop from €3,500. Request a quote today.",
         "h1": "Have a website built — and see what you get first",
@@ -327,7 +327,7 @@ SEITEN = {
     },
 
     "hosting-wartung": {
-        "nav": "Hosting &amp; maintenance",
+        "nav": "Hosting & maintenance",
         "titel": "Hosting & maintenance from €15/mo | WVM-IT",
         "desc": "Hosting with SSL and daily backups from €15/month, maintenance from €39/month, domain from €15/year. Request a free quote now.",
         "h1": "Hosting and maintenance: so the site runs when nobody is looking",
@@ -418,7 +418,7 @@ SEITEN = {
 
     # ══ On site ═══════════════════════════════════════════════════════════════
     "smarthome-knx-loxone": {
-        "nav": "Smart home, Loxone &amp; KNX",
+        "nav": "Smart home, Loxone & KNX",
         "titel": "Smart home with Loxone & KNX in Austria | WVM-IT",
         "desc": "Building automation with Loxone and KNX: lighting, heating, shading, access and security in one system. Request a free quote now.",
         "h1": "Building automation with Loxone and KNX",
@@ -509,7 +509,7 @@ SEITEN = {
 
     "veranstaltungstechnik": {
         "nav": "Event technology",
-        "titel": "Video, sound &amp; stage technology in Austria | WVM-IT",
+        "titel": "Video, sound & stage technology in Austria | WVM-IT",
         "desc": "Event technology for halls, clubs, municipalities and hotels: sound, light, video and stage. On-site from €120/hr. Request a quote.",
         "h1": "Video, sound and stage technology for halls and events",
         "kurz": "WVM-IT plans, installs and supports event technology in Upper Austria and beyond: sound, light, video and stage technology for halls, clubhouses, community centres, hotels and company events. Fixed installations are quoted per project after a site visit; on-site work is billed at €120 per hour plus travel unless a fixed price is agreed. We reply to enquiries within 24 hours.",
