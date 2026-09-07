@@ -78,21 +78,26 @@ Aufstellung steht in `docs/SEO-AUSBAU-3.md`.
 
 1. **`python manage.py seo_bericht`** — der Stand in dreißig Sekunden: URLs,
    Wortzahlen, Auffälligkeiten, Schema-Verteilung. Vor jeder Planung.
-2. **`docs/BEFUNDE-281-2026-09-06.md`** — der jüngste Durchgang: zehn Punkte aus
+2. **`docs/LOOPS-2026-09-07.md`** — **der jüngste Durchgang.** §2 die vier Funde,
+   die zählen (der Empfehlungsfall stand nirgends; der Einstieg kostete das
+   Zweieinhalbfache), §3 die Kollision zwischen Automode und Chat-Loops im selben
+   Arbeitsverzeichnis, §6 was offen bleibt — vor allem der **Gerätelebenszyklus**:
+   sechs echte Suchanfragen ohne Seite, §7 die drei Merkregeln.
+3. **`docs/BEFUNDE-281-2026-09-06.md`** — der Durchgang davor (06.09.): zehn Punkte aus
    dem Werkzeug-Lauf #281. §0 sagt, warum jeder Befund zuerst nachgemessen wurde
    (vier waren erledigt, drei sind Messfehler der Regel), §10 den Merksatz:
    **ein Befund sagt, wo die Regel angeschlagen hat — nicht, wo der Fehler ist.**
-3. **`docs/UMBAU-2026-09-06.md`** — der jüngste Durchgang (06.09.2026). §1 nennt den
+4. **`docs/UMBAU-2026-09-06.md`** — der Umbau vom 06.09.2026. §1 nennt den
    roten Faden: **sechs Fehler, die zusammen „null Anfragen" erklären, haben zusammen
    keine einzige Fehlermeldung erzeugt.** §7 sagt, was offen bleibt und warum.
-4. **`docs/STRATEGIE-2026-09.md`** — Markt, Rechtsrahmen, Kanäle, und die vier Dinge,
+5. **`docs/STRATEGIE-2026-09.md`** — Markt, Rechtsrahmen, Kanäle, und die vier Dinge,
    die nur Florin tun kann. Wichtigster Satz für jede Akquise-Idee: **Kaltakquise ist
    in Österreich verboten, auch B2B, auch die einzelne Mail** (§ 174 TKG 2021,
    verfolgt von Amts wegen).
-5. **`docs/HERO-KONZEPT-2026-09-06.md`** — warum im Hero steht, was dort steht.
+6. **`docs/HERO-KONZEPT-2026-09-06.md`** — warum im Hero steht, was dort steht.
    Wer die Überschrift anfasst, liest vorher §1: Die Vorgängerin war gut formuliert
    und hat trotzdem **ausgeschlossen**.
-6. **`docs/AUSBAU-2026-09.md`** — der Durchgang davor. §3 nennt die zwei Funde,
+7. **`docs/AUSBAU-2026-09.md`** — der Durchgang davor. §3 nennt die zwei Funde,
    die in keinem Plan standen.
 7. `docs/SEO-AUSBAU-3.md` — **abgeschlossen** (56/56). §11 nennt drei Funde, die
    nicht im Plan standen; §12 sagt, was jetzt ansteht.
@@ -109,6 +114,11 @@ Zuarbeit und lässt sich hier nicht lösen:
 
 ### Alle Dokumente
 
+- `docs/LOOPS-2026-09-07.md` — **Bilanz der beiden Loops (07.09.2026).**
+  Sechs Commits, Suite 176 → 252 Tests. §3 der Fund, der nicht die Website
+  betraf: Automode und Chat-Loops bauten gleichzeitig im selben
+  Arbeitsverzeichnis. §4 das Paket, das an einer Formsache scheiterte und
+  mit gefahrenem Prüfprotokoll übernommen wurde
 - `docs/BEFUNDE-281-2026-09-06.md` — **zehn Punkte aus Werkzeug-Lauf #281
   (06.09.2026).** §1 der grösste Fund (397 HTML-Entities in den Sprachpaketen,
   208 davon rumänische Diakritika), §3 der Kontrastfehler, den man nur im
@@ -162,8 +172,8 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 207 Testfunktionen
-in `landing/tests/`, rund zehn Sekunden. Sie sind **strukturell** geschrieben: Die
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 252 Testfunktionen
+in `landing/tests/`, rund eine Minute. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
 
@@ -224,7 +234,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 207 Testfunktionen in sieben Dateien
+- `landing/tests/` — 252 Testfunktionen in 17 Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·
