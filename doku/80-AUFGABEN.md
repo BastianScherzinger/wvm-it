@@ -180,4 +180,5 @@ und rendert, sobald das Feld gefüllt ist.
 <!-- eigenepunkte:anfang -->
 | Punkt | Titel | Bereich | Zustand | Beleg | seit |
 |---|---|---|---|---|---|
+| EIG01 | Datenschutzerklärung sagt „keine Reichweitenmessung", während jeder Seitenaufruf gespeichert wird | technik | offen | an RTC-Service gefunden am 07.09.2026: templates/datenschutz.html:122` „Es findet keine Reichweitenmessung statt"; `apps/core/middleware.py:187` legt für jeden GET-200 einen `PageVisit` mit Pfad, IP und User-Agent an, 90 Tage (`_PAGEVISIT_MAX_DAYS`). § 4 der Erklärung (Zeile 96–105) nennt nur das Kontaktformular mit fünf Feldern — der Rechner (`PreisAngebot`: Name, Telefon, Ort, Preis, `models.py:34`) kommt darin nicht vor. **An dieser Seite noch nicht geprüft.** | 2026-09-07 |
 <!-- eigenepunkte:ende -->
