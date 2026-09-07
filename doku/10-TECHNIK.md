@@ -1,10 +1,10 @@
 ---
 bereich: technik
 titel: Technik
-stand: 2026-09-06
+stand: 2026-09-07
 status: teilweise
 fortschritt: 85
-zusammenfassung: Django 5.0.6 auf Railway, seit 06.09.2026 mit 176 Testfunktionen, serverseitiger Reichweitenmessung ohne Cookie und ohne IP, gesicherten Anfragen vor dem Mailversand, ConditionalGetMiddleware und Cache-Koepfen auf den maschinellen Endpunkten. HTML wird bewusst nicht zwischengespeichert: Das CSRF-Token wird je Anfrage neu maskiert. Lokale Pruefumgebung: py -3.13.
+zusammenfassung: Django 5.0.6 auf Railway, seit 07.09.2026 mit 252 Testfunktionen in 17 Dateien -- dazugekommen ist eine Datei fuer die 32 Module, die bisher kein Test beruehrt hat (PJ03). Serverseitige Reichweitenmessung ohne Cookie und ohne IP; die Sicherung, die eine Anfrage vor dem Mailversand auf die Platte und ins Log schreibt, haengt seit dem 07.09. an allen Formularwegen statt nur an den Kurzanfragen (MW18). Dazu ConditionalGetMiddleware und Cache-Koepfe auf den maschinellen Endpunkten. HTML wird bewusst nicht zwischengespeichert: Das CSRF-Token wird je Anfrage neu maskiert. Lokale Pruefumgebung: py -3.13.
 offen: 4
 quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
 ---
@@ -42,7 +42,7 @@ quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehr
 | **Build** | Nixpacks (`railway.json`); Start: `python manage.py collectstatic --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT` (identisch in `Procfile`); Neustart `ON_FAILURE`, max. 3 Versuche |
 | **Auslösung** | **Automatisch beim Push auf `main`.** Kein `railway up` nötig. Am 29.08.2026 war der Deploy nach rund 20 Sekunden live (16 Commits am Stück) |
 | **Letzter Deploy** | `8beb9c9a…`, `SUCCESS`, 29.08.2026 19:39 UTC, Commit `123d4a7`; Erfolgsquote der jüngsten Auslieferungen 100 % (Messung vom 02.09.2026) |
-| **Zertifikat** | Let's Encrypt, TLS 1.3, gültig bis 07.10.2026 (35 Resttage am 02.09.2026) — Railway erneuert selbst |
+| **Zertifikat** | Let's Encrypt, TLS 1.3, gültig bis 07.10.2026 (35 Resttage am 02.09.2026) — Railway erneuert selbst. `SI12` misst damit eine Eigenschaft der Plattform, nicht des Projekts: Im Repository gibt es weder eine Zertifikatsdatei noch eine TLS-Konfiguration, `config/settings.py` setzt nur, was hinter dem Proxy gilt. Als Ausnahme eingetragen am 07.09.2026, siehe [80-AUFGABEN.md](80-AUFGABEN.md) |
 | **Uptime** | 24 h: 100 % (1.672 Messungen, Ø 758 ms) · 7 Tage: 99,95 % (3.944 Messungen, Ø 812 ms) · zuletzt 480 ms (Messung vom 02.09.2026) |
 
 **Push von diesem Rechner** (Git Credential Manager ist nicht interaktiv nutzbar):
@@ -78,7 +78,8 @@ Nur Namen, nie Werte. Erhoben aus `config/settings.py`, `landing/*.py` und den M
 
 *Pflichtabschnitt nach [DOKU-STANDARD §3a](file:///C:/Users/basti/Desktop/pystore-overview/docs/DOKU-STANDARD.md).
 Stand 05.09.2026, gegen den Quelltext **und** gegen `manage.py pruefe_sicherheit`
-gehalten. Anlass war eine Spam-Einsendung auf der Hauptseite.*
+gehalten; die Zeile „Erst speichern, dann mailen" am 07.09.2026 nachgezogen.
+Anlass war eine Spam-Einsendung auf der Hauptseite.*
 
 **Die Erhebung vom 04.09.2026 war an zwei Stellen falsch** und ist hier berichtigt:
 Sie suchte nach den Bausteinnamen der Hauptseite und fand sie nicht, weil sie hier
@@ -97,7 +98,7 @@ bereits seit dem 28.08.2026. Eine Suche nach Namen misst Namen, nicht Wirkung.
 | Prüfbefehl für die Abwehr | dass niemand es nachrechnet | ja, `pruefe_sicherheit`, zehn Prüfungen |
 | Zeitfalle (signierter Zeitstempel) | der POST ohne gerendertes Formular | **nein** |
 | Inhalts-Score mit Schwelle | Werbetexte, fremde Schriften, Linklisten | **nein** |
-| Erst speichern, dann mailen | verlorene Anfrage bei Mailausfall | **nein** — der Fehlschlag wird seit 05.09. immerhin geloggt |
+| Erst speichern, dann mailen | verlorene Anfrage bei Mailausfall | ja — `views._anfrage_sichern` schreibt die Anfrage als Zeile JSON auf die Platte **und** ins Log, bevor die Mail rausgeht (seit 06.09.2026); seit 07.09.2026 (`MW18`) an **allen** Formularwegen statt nur an den Kurzanfragen der Leistungsblöcke. Gespeichert wird, was auch in der Mail steht — keine IP; einzige Ausnahme ist der Nachweis der freiwilligen Werbeeinwilligung (Art. 7 DSGVO) |
 | Mail-Obergrenze je Tag | ein volles Postfach | **nein** — die Bremse zählt je Bereich und Zeitfenster, nicht je Tag |
 
 **Was diese Tabelle nicht leistet:** Ein ferngesteuerter echter Browser mit einem
@@ -107,9 +108,9 @@ verhindern nicht die Anfrage, sondern das volle Postfach.
 
 ## Prüfbefehle und Tests
 
-Fünf eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis dahin gab es in 13.877 Zeilen Python keine einzige Testfunktion (`PJ02`: 0 in 0 Dateien) — jede Änderung war ein Blindflug.
+Sieben eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis dahin gab es in 13.877 Zeilen Python keine einzige Testfunktion (`PJ02`: 0 in 0 Dateien) — jede Änderung war ein Blindflug.
 
-**130 Testfunktionen in neun Dateien** unter `landing/tests/`, Laufzeit rund 16 Sekunden:
+**252 Testfunktionen in 17 Dateien** unter `landing/tests/` (gezählt am 07.09.2026):
 
 | Datei | Was sie prüft |
 |---|---|
@@ -122,8 +123,16 @@ Fünf eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis 
 | `test_schema.py` | JSON-LD parst, alle `@id`-Verweise lösen auf, `inLanguage` gesetzt |
 | `test_csp.py` (seit 05.09.2026) | der CSP-Kopf ist da und **nicht** Report-Only; `default-src`, `object-src`, `base-uri`, `form-action`, `frame-ancestors` stehen darin; `script-src` ohne `'unsafe-inline'`; **jeder ausführbare inline-`<script>`-Block auf allen Adressen trägt die Einmal-Zahl des jeweiligen Kopfes**; Sitemap und `robots.txt` bekommen keinen Kopf |
 | `test_cookies.py` (seit 05.09.2026) | `csrftoken` und `wvm_lang` tragen `HttpOnly`, `Secure` und `SameSite=Lax`; kein Skript unter `static/js/` liest `wvm_lang` |
+| `test_cache.py` (seit 06.09.2026) | was zwischengespeichert werden darf und was nie: Das CSRF-Token ist bei jeder Anfrage ein anderes, HTML bekommt keine Cache-Köpfe, die maschinellen Endpunkte schon |
+| `test_entities.py` (seit 06.09.2026) | keine HTML-Entities in den Sprachpaketen — geprüft an der **Quelle**, weil `\|safe` sie im HTML richtig aussehen lässt und im JSON-LD wörtlich stehen |
+| `test_kontrast.py` (seit 06.09.2026) | jede Textfarbe hält 4,5:1 gegen jeden Grund, **in beiden Fassungen** — geprüft an den Tokens, nicht am Bildschirm |
+| `test_mailweg.py` (seit 06.09.2026) | `pruefe_mail` schlägt wirklich an, wenn der Mailweg tot ist; ein Prüfbefehl, der immer „in Ordnung" sagt, erzeugt Vertrauen, das er nicht deckt |
+| `test_rechtstexte.py` (seit 07.09.2026) | Rechtstexte als Zusagen: keine widersprüchlichen Aussagen, keine aufgehobenen Rechtsgrundlagen |
+| `test_bilder.py` (seit 06.09.2026, erweitert 07.09.2026 mit `PF18`) | kein grosses Bild für eine kleine Fläche; das Porträt auf `/ueber-uns/` wird **nicht** verzögert geladen, das Dekobild der Anfragekarte schon, kein Bild ist zugleich bevorzugt und verzögert, je Seite höchstens ein bevorzugtes |
+| `test_anfrage_sicherung.py` (seit 07.09.2026, `MW18`) | die Reihenfolge — **erst sichern, dann senden**; der Ernstfall mit geworfenem Sendefehler; keine IP in der gesicherten Zeile |
+| `test_module.py` (seit 07.09.2026, `PJ03`) | die 32 Module, die kein Test berührte: Slugs eindeutig und deckungsgleich mit `NACH_SLUG`, jeder `leistung`- und `thema`-Verweis zeigt auf eine echte Leistung, jedes Silo in jeder Sprache vollständig (**am Modul geprüft, nicht über `get_pack`** — der Deep-Merge auf `de.py` verdeckt genau das), `en.py` und `ro.py` erben keinen Schlüssel, jede Punktzahl des Selbsttests ergibt eine Stufe, `stand.datum()` liefert immer ein ISO-Datum, `messung` zählt ohne Kennung und übersteht einen unschreibbaren Zielordner, `supa` ist ohne `WVM_DB_URL` ein stiller No-Op, jeder eigene Befehl lädt und hat einen Hilfetext |
 
-Die letzten beiden prüfen keine neue Funktion, sondern **halten einen Zustand fest**, der
+`test_csp.py` und `test_cookies.py` prüfen keine neue Funktion, sondern **halten einen Zustand fest**, der
 sonst lautlos verschwindet: Ein vergessenes `nonce="{{ request.csp_nonce }}"` führt dazu,
 dass der Browser den Block nicht ausführt — das sieht man sofort, aber nur, wenn man
 hinsieht. Und ein `httponly=False` in einem `set_cookie()`-Aufruf fällt gar niemandem auf.
@@ -134,7 +143,7 @@ Unterscheidung hat der erste Lauf gefunden.
 Sie sind **strukturell** geschrieben — die URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus dem Symbolsatz. Während des Ausbaus kamen zwei Leistungsseiten dazu, ohne dass ein Test angepasst werden musste; und der Icon-Test hat den Wechsel auf den Symbolsatz sofort gemeldet, statt ihn durchgehen zu lassen.
 
 ```bash
-python -X utf8 manage.py test landing.tests   # 130 Tests, rund 16 Sekunden
+python -X utf8 manage.py test landing.tests   # 252 Tests
 ```
 
 ```bash
@@ -200,7 +209,7 @@ Live-Domain.
 | # | Punkt | Regel | Stand |
 |---|---|---|---|
 | 1 | Fehler-Monitoring (Sentry o. ä., DSN aus der Umgebung) | `VL19` | der letzte von sieben QS-Bausteinen; CI und Tests stehen seit 05.09.2026 |
-| 2 | 326 × „Ausgabe ohne Maskierung" (`V02`) in Templates — bewusst `\|safe` für die vertrauenswürdigen Sprachpakete (siehe `../docs/mehrsprachigkeit.md`) | `PJ07`, `PJ08` | Befund, keine Sicherheitslücke; die Entscheidung steht in der Doku und bleibt so |
+| 2 | 326 × „Ausgabe ohne Maskierung" (`V02`) in Templates — bewusst `\|safe` für die vertrauenswürdigen Sprachpakete (siehe `../docs/mehrsprachigkeit.md`) | `PJ07`, `PJ08` | Befund, keine Sicherheitslücke; die Entscheidung steht in der Doku und bleibt so. **`PJ08` ist am 07.09.2026 nachgezählt und als Ausnahme eingetragen** ([80-AUFGABEN.md](80-AUFGABEN.md), „Bewertung der Messpunkte"): Die Dichte liesse sich nur senken, indem man `\|safe`, die `print()`-Zeilen des Railway-Logs oder die Fliesstexte in `landing/i18n/` zurücknimmt — der einzige echt abräumbare Anteil, die Module ohne Test, ist seit demselben Tag erledigt (`PJ03`) |
 | 3 | `apps/`-Struktur und reine Datenmodule (`data/`) | `VL01` | 4 von 6 Gerüstmerkmalen; Umbau nicht geplant und für eine Seite dieser Größe auch nicht sinnvoll |
 | 4 | Seitencache für die Ansichten ohne Formular | `PF10`, `BT04` | nicht begonnen; der größte verbliebene Hebel bei der Antwortzeit |
 

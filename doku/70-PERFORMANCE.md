@@ -1,10 +1,10 @@
 ---
 bereich: performance
 titel: Performance
-stand: 2026-09-06
+stand: 2026-09-07
 status: teilweise
 fortschritt: 88
-zusammenfassung: Am 06.09. nachgemessen statt fortgeschrieben: Django rendert in 8 bis 34 ms, der TTFB live liegt bei 172 bis 234 ms — die Anwendung ist rund 13 Prozent davon. Der Seitencache aus der Aufgabenliste haette also 30 von 230 ms gespart und dafuer auf jeder Formularseite ein fremdes CSRF-Token riskiert; er bleibt bewusst ungebaut. Gebaut: ConditionalGetMiddleware und Cache-Koepfe auf den sieben Endpunkten ohne Formular — 310 KB weniger je Crawl-Durchgang.
+zusammenfassung: Am 06.09. nachgemessen statt fortgeschrieben: Django rendert in 8 bis 34 ms, der TTFB live liegt bei 172 bis 234 ms — die Anwendung ist rund 13 Prozent davon. Der Seitencache aus der Aufgabenliste haette also 30 von 230 ms gespart und dafuer auf jeder Formularseite ein fremdes CSRF-Token riskiert; er bleibt bewusst ungebaut. Gebaut: ConditionalGetMiddleware und Cache-Koepfe auf den sieben Endpunkten ohne Formular — 310 KB weniger je Crawl-Durchgang. Am 07.09. PF18 dort gebaut, wo er zutrifft: Das Portraet auf /ueber-uns/ stand auf loading=lazy und traegt jetzt fetchpriority=high; auf den uebrigen Seiten bleibt die hohe Ladeprioritaet bewusst aus, weil deren erstes Bild ein 44-Pixel-Dekobild unten im Formular ist.
 offen: 4
 pagespeed_mobil: 98
 pagespeed_desktop: 97
@@ -130,6 +130,8 @@ Mangel unsichtbar. Der Punkt liegt beim Kunden, siehe [80-AUFGABEN.md](80-AUFGAB
 | **T2 Startseite bewusst nicht verschlankt** | Roh 204 KB, komprimiert 35 KB — kein Ausreißer mehr. Der Umfang kommt aus Konfigurator (über 30 Positionen), vollständiger Preistabelle und FAQ; alle drei sind Inhalt, den Such- und Antwortmaschinen lesen sollen. Auslagern hieße Sichtbarkeit gegen eine Zahl tauschen, die nach der Komprimierung keine Rolle spielt |
 | **Frühere Runde (U7.5, 27./28.08.2026)** | LCP-Bild vorgeladen, alle Bilder mit Breite/Höhe, 7 von 9 lazy, Videos erst bei Annäherung, Schriften lokal. **Bewusst nicht gemacht:** ungenutztes CSS entfernen (66 Kandidaten, viele im Konfigurator dynamisch gesetzt — Risiko über Gewinn) |
 | Statische Dateien | `cache-control: max-age=31536000, public` mit Hash im Namen (`?v=<commit>`), WhiteNoise mit Manifest-Storage; `immutable` fehlt (`PF13`, `VL14`) |
+| **`PF18` Ladepriorität (07.09.2026)** | Das Porträt auf `/ueber-uns/` füllt seine Spalte (auf dem Handy 70 vw) und ist der LCP-Kandidat der Seite — es stand auf `loading="lazy"`, also einer Bremse genau vor dem Bild, auf das die Messung wartet. Jetzt `fetchpriority="high"` statt der Verzögerung, wie das erste Referenzbild seit dem 06.09.2026. Geändert sind nur die Attribute `loading` und `fetchpriority`; Aufbau, Klassen und Reihenfolge blieben unangetastet. Vier Prüfungen in `landing/tests/test_bilder.py` halten den Zustand fest |
+| **Bewusst ohne hohe Ladepriorität** | Der Befund, aus dem `PF18` in dieses Paket kam, meldet 135 Seiten ohne `fetchpriority="high"` am ersten Bild im `main` (der erzeugte Block oben stammt aus der Messung vom 05.09.2026 und zählt 6 von 9). Auf 134 davon ist dieses erste Bild dasselbe: das 44 px grosse, `aria-hidden` gesetzte Porträt **unten** in der Anfragekarte — erstes Bild nur deshalb, weil oberhalb überhaupt keines steht. Es hoch zu priorisieren zöge es vor den sichtbaren Inhalt und verschlechterte die Messung. Die Begründung steht als Kommentar in `templates/anfrage_karte.html`, damit der nächste Durchgang den Befund nicht wörtlich abarbeitet |
 
 ## Offen
 
@@ -141,7 +143,7 @@ erzeugten Block unter „Messwerte" — hier steht keine Messzahl.
 | 1 | **Core Web Vitals in `../docs/seo/PERFORMANCE.md` §3 eintragen** — die Tabelle ist seit dem 29.08.2026 leer, die Laborwerte liegen im Block oben vor; Feldwerte bleiben mangels Traffic aus | T8 |
 | 2 | **CLS auf Desktop** von `/leistungen/`, `/kosten/rechner/`, `/kontakt/` untersuchen — mobil nahezu null, also ein breitenabhängiger Umbruch | `PF04` im Labor; `PF08` bleibt mangels Feldwerten nicht messbar |
 | 3 | **`srcset` und `sizes`** an Inhaltsbilder — kein einziges Bild der Seite hat es | `PF16` |
-| 4 | **`fetchpriority="high"`** am ersten Bild im `<main>` und LCP-Preload auf `/leistungen/` und `/kosten/rechner/`; Lazy-Loading ab dem zweiten Bild | `PF18`, `PF19`, `PF17`, `VL15` |
+| 4 | **`fetchpriority="high"`** am ersten Bild im `<main>` und LCP-Preload auf `/leistungen/` und `/kosten/rechner/`; Lazy-Loading ab dem zweiten Bild. **Teilweise erledigt am 07.09.2026:** `/ueber-uns/` hat es (siehe „Weiter umgesetzt"), die übrigen Seiten bekommen es bewusst nicht — ihr erstes Bild ist das Dekobild der Anfragekarte. Offen bleiben damit nur noch `PF19`, `PF17` und `VL15` | `PF18`, `PF19`, `PF17`, `VL15` |
 | 5 | **Critical CSS** je Seitentyp inline, Hauptdatei asynchron; HTML unter 120 KiB (`/`, `/en/`, `/ro/` liegen darüber) | `VL16`, `PF14` |
 | 6 | Statische Dateien mit `immutable` ausliefern | `PF13`, `VL14` |
 
