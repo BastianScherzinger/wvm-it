@@ -61,10 +61,10 @@ Die Varianten stehen in content.json (T3).
           {% comment %}Das teuerste Bild der Seite, obwohl es das kleinste ist: Es
           steht im Hero, traegt `fetchpriority="high"` und lag damit bis zum
           06.09.2026 mit 46 KB im kritischen Ladepfad -- fuer eine Flaeche von
-          64 x 64 px. `florin_320.jpg` sind 16 KB und reichen selbst bei
+          64 x 64 px. `florin_320.webp` sind 16 KB und reichen selbst bei
           dreifacher Bildschirmdichte.{% endcomment %}
-          <img class="hero-person-bild" src="{% static 'img/florin_320.jpg' %}"
-               srcset="{% static 'img/florin_320.jpg' %} 320w, {{ c.founder_image }} 640w"
+          <img class="hero-person-bild" src="{% static 'img/florin_320.webp' %}"
+               srcset="{% static 'img/florin_320.webp' %} 320w, {{ c.founder_image }} 640w"
                sizes="64px" alt="{{ c.inhaber_name }}"
                width="64" height="64" fetchpriority="high" decoding="async">
           {% endif %}
@@ -325,7 +325,7 @@ Die Varianten stehen in content.json (T3).
     <div class="wrap vt-grid">
       <figure class="vt-media" data-reveal>
         {% if c.founder_image %}<img class="vt-photo" src="{{ c.founder_image }}"
-               srcset="/static/img/florin_320.jpg 320w, /static/img/florin_480.jpg 480w, {{ c.founder_image }} 640w"
+               srcset="/static/img/florin_320.webp 320w, /static/img/florin_480.webp 480w, {{ c.founder_image }} 640w"
                sizes="(max-width: 720px) 60vw, 320px"
                alt="{{ c.inhaber_name }}, Inhaber von {{ c.site_name }}" width="640" height="640" loading="lazy" decoding="async">{% endif %}
         <figcaption class="vt-cap">

@@ -28,11 +28,11 @@ damit die letzte belastbare Aussage über den Bestand.
 
 # ── Erzeugt von `manage.py stand_schreiben` — nicht von Hand ändern ──────────
 # <stand:anfang>
-STAND_FALLBACK = "2026-09-06"
+STAND_FALLBACK = "2026-09-07"
 
 STAND = {
-    "/": "2026-09-06",
-    "/agb/": "2026-09-06",
+    "/": "2026-09-07",
+    "/agb/": "2026-09-07",
     "/aktuelles/": "2026-09-06",
     "/aktuelles/alte-windows-version-im-betrieb/": "2026-09-06",
     "/aktuelles/aufbewahrungsfristen-oesterreich/": "2026-09-06",
@@ -51,7 +51,7 @@ STAND = {
     "/aktuelles/wlan-im-betrieb-planen/": "2026-09-06",
     "/aktuelles/zugaenge-fuer-it-dienstleister/": "2026-09-06",
     "/angebot/": "2026-09-06",
-    "/barrierefreiheit/": "2026-09-06",
+    "/barrierefreiheit/": "2026-09-07",
     "/branchen/": "2026-08-29",
     "/branchen/arztpraxen-therapie/": "2026-09-06",
     "/branchen/handwerk-baugewerbe/": "2026-09-06",
@@ -63,9 +63,9 @@ STAND = {
     "/checkliste/it-dienstleister-wechseln/": "2026-09-05",
     "/checkliste/it-jahrescheck/": "2026-09-05",
     "/checkliste/neuer-arbeitsplatz/": "2026-09-05",
-    "/datenschutz/": "2026-09-06",
-    "/impressum/": "2026-09-06",
-    "/it-notfall/": "2026-09-06",
+    "/datenschutz/": "2026-09-07",
+    "/impressum/": "2026-09-07",
+    "/it-notfall/": "2026-09-07",
     "/it-service/": "2026-09-06",
     "/it-service/attersee/": "2026-09-06",
     "/it-service/bad-ischl/": "2026-09-06",
@@ -75,10 +75,10 @@ STAND = {
     "/it-service/voecklabruck/": "2026-09-06",
     "/it-service/wels/": "2026-09-06",
     "/it-sicherheit-test/": "2026-09-06",
-    "/kontakt/": "2026-09-06",
-    "/kosten/": "2026-09-06",
+    "/kontakt/": "2026-09-07",
+    "/kosten/": "2026-09-07",
     "/kosten/rechner/": "2026-09-06",
-    "/leistungen/": "2026-09-06",
+    "/leistungen/": "2026-09-07",
     "/leistungen/edv-it-betreuung/": "2026-09-06",
     "/leistungen/google-ads/": "2026-09-06",
     "/leistungen/hosting-wartung/": "2026-09-06",
@@ -92,8 +92,8 @@ STAND = {
     "/leistungen/smarthome-knx-loxone/": "2026-09-06",
     "/leistungen/veranstaltungstechnik/": "2026-09-06",
     "/leistungen/webseite-erstellen/": "2026-09-06",
-    "/referenzen/": "2026-09-06",
-    "/ueber-uns/": "2026-09-06",
+    "/referenzen/": "2026-09-07",
+    "/ueber-uns/": "2026-09-07",
     "/vergleich/": "2026-08-29",
     "/vergleich/it-betreuung-vs-stundenabrechnung/": "2026-09-05",
     "/vergleich/microsoft365-vs-google-workspace/": "2026-09-05",

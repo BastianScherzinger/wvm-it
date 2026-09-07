@@ -427,3 +427,48 @@ class LeistungsHubUmfangTest(SimpleTestCase):
                 self.assertEqual(len(faq), 1, f"{pfad}: genau eine FAQPage erwartet")
                 self.assertEqual(len(faq[0]["mainEntity"]), 5,
                                  f"{pfad}: fünf Fragen erwartet")
+
+
+class EinstiegDerStartseiteTest(SimpleTestCase):
+    """Titel, `<h1>` und erster Absatz nennen Firma, Ort und Leistung.
+
+    Das ist der Empfehlungsfall, und für einen Ein-Personen-Betrieb der
+    wichtigste Zugang überhaupt: Jemand bekommt Florin empfohlen und sucht
+    „WVM IT Lenzing". Bis zum 07.09.2026 stand **weder** der Firmenname
+    **noch** der Ort im Kopfbereich der deutschen Startseite — der Titel hiess
+    nur „IT-Dienstleister in Österreich ab 29 €/Monat".
+
+    Aufschlussreich war dabei, dass die **englische** Fassung den Namen längst
+    trug (`… | WVM-IT`) und die deutsche nicht. Deshalb prüft dieser Test alle
+    drei Sprachen: Eine Fassung, die niemand liest, deckt den Fehler in der
+    Fassung zu, die alle lesen.
+    """
+
+    SPRACHEN = ("/", "/en/", "/ro/")
+
+    def _kopfbereich(self, pfad):
+        """Titel + h1 + erster Absatz im `<main>` — genau das, was eine
+        Antwortmaschine als Erstes liest."""
+        from . import _util
+        html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+        titel = re.search(r"<title>(.*?)</title>", html, re.S)
+        h1 = " ".join(re.findall(r"<h1[^>]*>(.*?)</h1>", html, re.S))
+        hauptteil = re.search(r"<main[^>]*>(.*?)</main>", html, re.S)
+        absatz = re.search(r"<p[^>]*>(.*?)</p>",
+                           hauptteil.group(1) if hauptteil else html, re.S)
+        roh = f"{titel.group(1) if titel else ''} {h1} {absatz.group(1) if absatz else ''}"
+        return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", roh)).strip().lower()
+
+    def test_firmenname_und_ort_stehen_im_einstieg(self):
+        for pfad in self.SPRACHEN:
+            with self.subTest(pfad=pfad):
+                kopf = self._kopfbereich(pfad)
+                self.assertIn("wvm-it", kopf, f"{pfad}: Firmenname fehlt im Einstieg")
+                self.assertIn("lenzing", kopf, f"{pfad}: Ort fehlt im Einstieg")
+
+    def test_der_einstieg_sagt_auch_was_die_firma_tut(self):
+        """Name und Ort allein genügen nicht — es muss erkennbar sein, worum es
+        geht. Zwölf Wörter sind die Untergrenze, unter der kein Satz das leistet."""
+        for pfad in self.SPRACHEN:
+            with self.subTest(pfad=pfad):
+                self.assertGreater(len(self._kopfbereich(pfad).split()), 12)

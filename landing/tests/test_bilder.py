@@ -63,7 +63,12 @@ class BildgroesseTest(SimpleTestCase):
                 treffer = [t for t in self._bilder(pfad) if "hero-person-bild" in t]
                 self.assertEqual(len(treffer), 1, f"{pfad}: Hero-Porträt nicht gefunden")
                 tag = treffer[0]
-                self.assertIn("florin_320.jpg", tag,
+                # Auf den Stamm prüfen, nicht auf die Endung: Am 07.09.2026 hat
+                # der Wechsel auf WebP diesen Test zu Recht rot gemacht — er
+                # hatte `florin_320.jpg` festgenagelt und damit eine richtige
+                # Änderung blockiert. Geprüft gehört die Eigenschaft (die kleine
+                # Fassung), nicht der Dateiname.
+                self.assertIn("florin_320.", tag,
                               "das Hero-Porträt lädt wieder die grosse Fassung")
                 self.assertIn('sizes="64px"', tag)
 
@@ -76,7 +81,40 @@ class BildgroesseTest(SimpleTestCase):
                 if "ak-person-bild" not in tag:
                     continue
                 seiten += 1
-                self.assertIn("florin_320.jpg", tag, f"{basis}: grosse Fassung")
+                self.assertIn("florin_320.", tag, f"{basis}: grosse Fassung")
         self.assertGreater(seiten, 20,
                            "die Anfragekarte wurde auf zu wenigen Seiten gefunden — "
                            "prüft der Test überhaupt noch, was er soll?")
+
+
+class ModernesBildformatTest(SimpleTestCase):
+    """Kein JPEG oder PNG mehr im ausgelieferten HTML.
+
+    Der Befund `PF15` ist am 07.09.2026 durch die eigene Arbeit vom Vortag
+    entstanden: Das Porträt wurde als `florin_320.jpg` auf 67 Seiten
+    ausgerollt — richtig für die Grösse, falsch für das Format. WebP spart bei
+    denselben Abmessungen 31 % (Porträt) bis 63 % (Partnerlogo).
+
+    Diese Website liefert WebP seit jeher ohne JPEG-Rückfall aus (`ref_*`,
+    `robot`, `hero_bg`, `wvm_mark`) — die Entscheidung war also längst
+    getroffen, nur nicht überall durchgezogen.
+    """
+
+    ALT = re.compile(r"[\w/._-]+\.(?:jpe?g|png)", re.I)
+
+    def test_kein_ausgeliefertes_bild_liegt_im_alten_format(self):
+        from . import _util
+        gefunden = {}
+        for basis, *_ in _seiten_pfade():
+            antwort = _util.client().get(basis, follow=True)
+            if antwort.status_code != 200:
+                continue
+            html = antwort.content.decode("utf-8", "ignore")
+            for tag in IMG.findall(html):
+                for wert in re.findall(r'(?:src|srcset)="([^"]*)"', tag):
+                    for datei in self.ALT.findall(wert):
+                        gefunden.setdefault(datei, basis)
+        self.assertEqual(
+            gefunden, {},
+            "im alten Format ausgeliefert (WebP-Fassung erzeugen und "
+            f"eintragen): {gefunden}")

@@ -84,7 +84,7 @@ PACK = {
         "eyebrow": "IT support & management · Austria and Germany",
         "headline": "All of your IT. One person to call.",
         "headline_2": "From a two-person office to a plant with 200 workstations.",
-        "subline": "Servers, network, workstations, email, backups, security – plus website, SEO and AI. Looked after from €29 per workstation and month, remotely across Austria and Germany.",
+        "subline": "WVM-IT, based in Lenzing, Austria, looks after servers, network, workstations, email, backups and security – plus website, SEO and AI. From €29 per workstation and month, remotely across Austria and Germany.",
         "cta": "Claim your free sample website",
         "note": "Free and no obligation · built by our JARVIS AI in about 10 minutes.",
         "robot_aria": "3D assistant, click me",

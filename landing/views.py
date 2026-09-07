@@ -352,7 +352,7 @@ KOOPERATIONEN = [
         "rolle": "Webentwicklung",
         "url": "https://www.pystore.de",
         "domain": "pystore.de",
-        "logo": "img/coop_pystore.jpg",
+        "logo": "img/coop_pystore.webp",
         "text": "Unser Partner für Webentwicklung und digitale Produkte.",
     },
 ]
