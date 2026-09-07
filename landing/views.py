@@ -913,6 +913,14 @@ def _handle_angebot(request, c) -> bool:
         + (f"Nachricht:\n{nachricht}\n" if nachricht else "")
         + "\nHinweis: Richtpreise, unverbindlich. Endpreis nach Gespräch.\n"
     )
+    # Erst sichern, dann senden (07.09.2026, MW18). Bis hierher lebte die
+    # Konfigurator-Anfrage ausschließlich in der E-Mail — dieselbe Lücke, die für
+    # die Kurzanfragen am 06.09. geschlossen wurde.
+    _anfrage_sichern(quelle="angebot", thema="Angebots-Konfigurator",
+                     herkunft=_herkunft_aus_verweis(request), name=name,
+                     kontakt=email, telefon=telefon,
+                     lang=i18n.norm_lang(get_language()), text=nachricht,
+                     positionen="; ".join(zeilen), summen="; ".join(summen))
     _send_mail_logged(
         _betreff(f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="ANGEBOT",
@@ -941,6 +949,13 @@ def _handle_contact(request, c) -> bool:
         f"Name:    {name}\nE-Mail:  {email}\nTelefon: {telefon}\nBudget:  {budget}\n\n"
         f"Nachricht:\n{nachricht}\n"
     )
+    # Erst sichern, dann senden (07.09.2026, MW18). Das Kontaktformular ist der
+    # Weg, über den die ausführlichen Anfragen kommen — ausgerechnet hier war der
+    # Verlust bei fehlgeschlagenem Versand vollständig.
+    _anfrage_sichern(quelle="kontakt", thema="Projektanfrage (Kontaktformular)",
+                     herkunft=_herkunft_aus_verweis(request), name=name,
+                     kontakt=email, telefon=telefon, budget=budget,
+                     lang=i18n.norm_lang(get_language()), text=nachricht)
     _send_mail_logged(
         _betreff(f"Neue Projektanfrage von {name}"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
@@ -1110,6 +1125,20 @@ def _anfrage_sichern(**felder) -> None:
     Das Dateisystem auf Railway ist bei jedem Deploy wieder leer. Deshalb wird der
     Satz **zusätzlich ins Log gedruckt** — dort ist er dauerhaft nachlesbar. Beide
     Wege sind Absicht.
+
+    **Seit dem 07.09.2026 (MW18) an allen Anfragewegen.** Am 06.09. hing die
+    Sicherung nur an den Kurzanfragen der Leistungsblöcke; Kontaktformular,
+    Angebots-Konfigurator, Richtangebot der Startseite und Kooperationsanfrage
+    lebten weiter ausschließlich in der E-Mail — also die vier Wege, über die die
+    ausführlichen Anfragen kommen. Ein Django-Modell wäre der übliche Weg, ist hier
+    aber keiner: ``DATABASES = {}``, und ``INSTALLED_APPS`` führt weder ``admin``
+    noch ``auth``. Der einzige Datenbankzugriff dieser Seite ist die gemeinsame
+    Supabase-Warteschlange (``landing/supa.py``), die nicht dieser Seite gehört.
+
+    Was gespeichert wird, deckt sich mit dem Absatz „Kontakt-, Anfrage- und
+    Rückrufformulare" in ``content.json``: dieselben Angaben wie in der E-Mail,
+    **keine IP-Adresse**. Einzige Ausnahme ist die freiwillige Werbeeinwilligung,
+    für die der Nachweis IP und Zeitpunkt verlangt (Art. 7 DSGVO).
     """
     try:
         satz = {"zeit": datetime.now(timezone.utc).isoformat(timespec="seconds")}
@@ -3278,6 +3307,13 @@ def angebot_anfordern(request):
     site = c.get("site_name", "WVM-IT")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
     if ids:
+        # Erst sichern, dann senden (07.09.2026, MW18). Hier steht kein Name im
+        # Formular — die E-Mail-Adresse und die gewählten Positionen sind alles,
+        # was von der Anfrage bleibt, wenn der Versand scheitert.
+        _anfrage_sichern(quelle="angebot_start", thema="Richtangebot (Startseite)",
+                         herkunft=_herkunft_aus_verweis(request), kontakt=email,
+                         lang=lang, positionen="; ".join(lines), summen=summe_txt,
+                         werbung="ja" if consent else "nein")
         anfrage_line = em["angebot_anfrage_line"] if anfrage else ""
         kunde = em["angebot_kunde_body"].format(
             site=site, lines="\n".join(lines), summe=summe_txt,
@@ -4001,6 +4037,11 @@ def kooperation_anfordern(request):
         f"Name:    {name}\nFirma:   {firma or '-'}\nE-Mail:  {email}\n\n"
         f"Nachricht:\n{nachricht or '-'}\n"
     )
+    # Erst sichern, dann senden (07.09.2026, MW18).
+    _anfrage_sichern(quelle="kooperation", thema=_ANFRAGE_QUELLEN["koop"],
+                     herkunft=_herkunft_aus_verweis(request), name=name,
+                     kontakt=email, firma=firma,
+                     lang=i18n.norm_lang(get_language()), text=nachricht)
     _send_mail_logged(_betreff(f"Kooperations-Anfrage von {name}"), body, from_email, [empf], tag="KOOPERATION")
     em = i18n.get_pack(get_language())["emails"]
     site = c.get("site_name", "WVM-IT")
