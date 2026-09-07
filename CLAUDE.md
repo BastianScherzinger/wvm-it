@@ -162,7 +162,7 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 197 Testfunktionen
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 200 Testfunktionen
 in `landing/tests/`, rund zehn Sekunden. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
@@ -198,6 +198,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 | Cookies | Spline/3D lädt erst nach Einwilligung. Keine Tracking-Skripte ohne neue Einwilligung |
 | Recht | Jede neue Datenverarbeitung muss in `content.json` → Datenschutz stehen |
 | Hero | Die Überschrift trägt **zwei** Stufen (`hero.headline` + `hero.headline_2`) und das Vertrauensband **drei** Texte (`person_h`, `person_t`, `person_ort`) — je Sprache. Das Band steht **vor** der Subline; dahinter beginnt es unterhalb des ersten Bildschirms. Begründung in `docs/HERO-KONZEPT-2026-09-06.md`, gesichert durch `HeroKonzeptTest` |
+| Rechtstexte | Impressum, Datenschutz- und Barrierefreiheitserklärung sind **Zusagen**, keine Textbausteine. Jede Aussage muss dem Code standhalten und umgekehrt: Die Barrierefreiheitserklärung behauptete am 07.09.2026 in Abschnitt 2 „mindestens 4,5 zu 1“ und räumte in Abschnitt 3 Werte darunter ein. Wer eine Verarbeitung ergänzt oder eine Farbe ändert, zieht den Rechtstext nach |
 | Wahrheit | Keine erfundenen Bewertungen, Zertifikate, Partnerlevel oder Kundenzahlen. `seit_jahr`, `partner_status` und `profile` in `content.json` rendern nur, wenn sie gefüllt sind |
 | Skripte | Jeder inline-`<script>`-Block braucht `nonce="{{ request.csp_nonce }}"`. Die Content-Security-Policy wird **durchgesetzt**; ein Block ohne Nonce wird vom Browser nicht ausgeführt — man merkt es sofort, aber nur, wenn man hinsieht |
 | Symbole | Keine zwei Symbole duerfen zeichengleich sein, und die Strichstaerke bleibt ueber alle dieselbe — beides pruefen Tests. `dns` und `domain` waren bis zum 06.09.2026 dasselbe Bild |
@@ -223,7 +224,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 197 Testfunktionen in sieben Dateien
+- `landing/tests/` — 200 Testfunktionen in sieben Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·
