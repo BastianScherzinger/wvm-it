@@ -34,7 +34,14 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
       es dafuer das 640-px-Original mit 46 KB -- auf 67 Seiten, also einmal je
       Unterseite mit Anfrageformular. `florin_320.webp` (16 KB) ist die kleinste
       vorhandene Fassung und selbst auf einem Bildschirm mit dreifacher Dichte
-      noch mehr als ausreichend.{% endcomment %}
+      noch mehr als ausreichend.
+
+      Bewusst **ohne** `fetchpriority="high"` (07.09.2026, PF18): Auf 135 Seiten
+      ist dieses Bild das erste im `main` — aber nur, weil oberhalb ueberhaupt
+      keines steht. Es ist 44 px gross, `aria-hidden` und sitzt unten im
+      Formular; als LCP-Element kommt es nie in Frage. Hohe Ladeprioritaet wuerde
+      es hier vor den sichtbaren Inhalt ziehen und die Messung verschlechtern,
+      nicht verbessern. Deshalb bleibt es verzoegert.{% endcomment %}
       {% if c.founder_image %}<img class="ak-person-bild" src="{% static 'img/florin_320.webp' %}"
            srcset="{% static 'img/florin_320.webp' %} 320w, {{ c.founder_image }} 640w"
            sizes="44px" alt="" aria-hidden="true" width="44" height="44" loading="lazy">{% endif %}

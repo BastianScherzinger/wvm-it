@@ -87,6 +87,61 @@ class BildgroesseTest(SimpleTestCase):
                            "prüft der Test überhaupt noch, was er soll?")
 
 
+class LadeprioritaetTest(SimpleTestCase):
+    """Hohe Ladepriorität gehört an das Bild, auf das die Messung wartet — und
+    nur dort hin (`PF18`).
+
+    Der Befund lautet „das erste Bild im `main` trägt kein `fetchpriority=high`"
+    und meldet 135 Seiten. Auf 134 davon ist das erste Bild das 44-px-Porträt der
+    Anfragekarte, weil oberhalb überhaupt keines steht; es hoch zu priorisieren
+    würde ein `aria-hidden`-Deko-Bild am Seitenende vor den sichtbaren Inhalt
+    ziehen. Die Ausnahme ist `/ueber-uns/`: Dort ist das erste Bild wirklich das
+    grösste — und stand bis zum 07.09.2026 auf `loading="lazy"`.
+    """
+
+    def _tags(self, pfad):
+        antwort = _util.client().get(pfad, follow=True)
+        if antwort.status_code != 200:
+            return []
+        return IMG.findall(antwort.content.decode("utf-8"))
+
+    def test_das_portraet_auf_ueber_uns_wird_nicht_verzoegert(self):
+        # Auf der Seite steht ein zweites Porträt: das Dekobild der Anfragekarte
+        # weiter unten. Gemeint ist hier das grosse in `.ub-portrait`.
+        treffer = [t for t in self._tags("/ueber-uns/")
+                   if "florin" in t and "ak-person-bild" not in t]
+        self.assertEqual(len(treffer), 1, "Porträt auf /ueber-uns/ nicht gefunden")
+        self.assertIn('fetchpriority="high"', treffer[0])
+        self.assertNotIn('loading="lazy"', treffer[0],
+                         "das grösste Bild der Seite wird wieder verzögert geladen")
+
+    def test_das_dekobild_der_anfragekarte_bleibt_verzoegert(self):
+        """Die Gegenprobe. Wer den Befund wörtlich abarbeitet, landet hier."""
+        for pfad in ("/kontakt/", "/kosten/rechner/"):
+            for tag in self._tags(pfad):
+                if "ak-person-bild" not in tag:
+                    continue
+                with self.subTest(pfad=pfad):
+                    self.assertNotIn("fetchpriority", tag,
+                                     "44-px-Dekobild im kritischen Ladepfad")
+
+    def test_kein_bild_ist_zugleich_bevorzugt_und_verzoegert(self):
+        """`fetchpriority="high"` und `loading="lazy"` am selben Bild heben sich
+        gegenseitig auf — meist ein halb durchgeführter Umbau."""
+        for basis, *_ in _seiten_pfade():
+            for tag in self._tags(basis):
+                if 'fetchpriority="high"' in tag and 'loading="lazy"' in tag:
+                    self.fail(f"{basis}: {tag[:90]} …")
+
+    def test_hoechstens_ein_bild_je_seite_ist_bevorzugt(self):
+        """Priorität, die alle haben, ist keine."""
+        for basis, *_ in _seiten_pfade():
+            hoch = [t for t in self._tags(basis) if 'fetchpriority="high"' in t]
+            with self.subTest(pfad=basis):
+                self.assertLessEqual(len(hoch), 1,
+                                     f"{basis}: {len(hoch)} Bilder mit hoher Priorität")
+
+
 class ModernesBildformatTest(SimpleTestCase):
     """Kein JPEG oder PNG mehr im ausgelieferten HTML.
 
