@@ -388,6 +388,20 @@ def _make_price_label(it, words) -> str:
     return (words.get("from", "ab") + " " + " + ".join(parts)) if parts else "-"
 
 
+def _festpreis_label(it, words) -> str:
+    """Dasselbe Label **ohne** das vorangestellte „ab".
+
+    Warum es das braucht (08.09.2026): Das Einrichtungs-Silo verspricht einen
+    Festpreis fuer einen klar umrissenen Vorgang. Ein „ab 190 €" auf der Kachel
+    nimmt genau dieses Versprechen wieder zurueck — und zwar an der Stelle, an
+    der jemand es liest. Die Zahl bleibt dieselbe und kommt aus derselben
+    Quelle; nur das Wort davor faellt weg.
+    """
+    label = _make_price_label(it, words)
+    vorwort = words.get("from", "ab") + " "
+    return label[len(vorwort):] if label.startswith(vorwort) else label
+
+
 def _localized_groups(lang):
     """ANGEBOT_GROUPS mit Titeln/Namen/Beschreibungen + Preis-Labels in der aktiven Sprache.
     IDs, Preise, Icons und Flags bleiben unverändert (einzige Preisquelle in ANGEBOT_GROUPS)."""
@@ -1959,6 +1973,10 @@ def index(request):
         "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
         "kooperationen": _mit_bildvarianten(KOOPERATIONEN, "logo", (480,)),
+        # Das Band "Einzelne Aufgaben, Festpreis" (08.09.2026). Die Kacheln
+        # holen Name, Text und Preis aus derselben Quelle wie das Silo selbst.
+        "einrichtungen": [_einrichtung_daten(e, lang)
+                          for e in einrichtungen.EINRICHTUNGEN],
         "structured_data": _startseiten_schema(c, lang),
     })
 
@@ -2247,11 +2265,17 @@ def _einstieg_daten(eintrag, lang):
         return None
     pack = i18n.get_pack(lang)
     ci = pack.get("catalog_items", {}).get(iid, {})
+    # Gibt es zu dieser Katalogposition eine eigene Einrichtungsseite, fuehrt der
+    # Block dorthin statt nur ins Formular (08.09.2026). Das ist der Weg, auf dem
+    # jemand von "wer betreut uns" zu "was kostet das einmal" kommt.
+    ziel = next((reverse("einrichtung", kwargs={"slug": e["slug"]})
+                 for e in einrichtungen.EINRICHTUNGEN if e["preis"] == iid), "")
     return {
         "id": iid,
         "name": ci.get("name", posten["name"]),
         "desc": ci.get("desc", posten.get("desc", "")),
         "preis": _make_price_label(posten, pack.get("catalog_words", {})),
+        "url": ziel,
     }
 
 
@@ -2756,11 +2780,12 @@ def _einrichtung_daten(eintrag, lang):
     """Struktur + Texte + Preis-Label einer Einrichtung, fertig fuers Template."""
     pack = i18n.get_pack(lang)
     texte = pack.get("einrichten", {}).get(eintrag["slug"], {})
-    preise = _itempreise(lang)
+    posten = _ANGEBOT_INDEX.get(eintrag["preis"], {})
     return dict(
         eintrag,
         url=reverse("einrichtung", kwargs={"slug": eintrag["slug"]}),
-        preis_label=preise.get(eintrag["preis"], ""),
+        # Festpreis, nicht ab-Preis — siehe _festpreis_label().
+        preis_label=_festpreis_label(posten, pack.get("catalog_words", {})),
         **texte,
     )
 

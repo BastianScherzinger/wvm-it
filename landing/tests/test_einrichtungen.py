@@ -185,3 +185,70 @@ class SitemapTest(SimpleTestCase):
         for e in einrichtungen.EINRICHTUNGEN:
             with self.subTest(slug=e["slug"]):
                 self.assertIn(f"/einrichten/{e['slug']}/", pfade)
+
+
+class FestpreisTest(SimpleTestCase):
+    """Ein „ab" nimmt das Versprechen des Silos zurück.
+
+    Das ganze Silo verspricht einen **Festpreis** für einen klar umrissenen
+    Vorgang. Beim ersten Bau am 08.09.2026 stand auf den Kacheln „ab 190 €" —
+    weil `_make_price_label()` das Wort für alle Katalogpositionen voranstellt.
+    Auf einer Leistungsseite ist das richtig (29 € je Arbeitsplatz ist ein
+    Startwert), hier ist es falsch.
+    """
+
+    def test_kein_ab_preis_im_silo(self):
+        from landing.i18n import get_pack
+        for lang, prefix in (("de", ""), ("en", "/en"), ("ro", "/ro")):
+            vorwort = get_pack(lang)["catalog_words"]["from"]
+            for pfad in (f"{prefix}/einrichten/",
+                         *[f"{prefix}/einrichten/{e['slug']}/"
+                           for e in einrichtungen.EINRICHTUNGEN]):
+                with self.subTest(pfad=pfad):
+                    html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+                    for treffer in re.findall(r'ein-preis">([^<]+)<', html):
+                        self.assertFalse(
+                            treffer.strip().startswith(vorwort),
+                            f"{pfad}: '{treffer.strip()}' ist ein ab-Preis, "
+                            "kein Festpreis")
+
+    def test_die_leistungsseiten_behalten_ihren_ab_preis(self):
+        """Die Gegenprobe: Der Wegfall gilt nur hier, nicht überall. Ein
+        Betreuungspreis von 29 € je Arbeitsplatz IST ein Startwert."""
+        from landing.i18n import get_pack
+        vorwort = get_pack("de")["catalog_words"]["from"]
+        html = _util.client().get("/leistungen/edv-it-betreuung/",
+                                  follow=True).content.decode("utf-8")
+        treffer = re.findall(r'sp-fakt-v">([^<]+)<', html)
+        self.assertTrue(any(x.strip().startswith(vorwort) for x in treffer),
+                        f"Leistungsseite ohne ab-Preis: {treffer}")
+
+
+class SichtbarkeitTest(SimpleTestCase):
+    """Ein Silo, das niemand findet, ist keins.
+
+    In die Kopfleiste passte kein achter Punkt — sie liegt mit sieben Punkten
+    plus Notfall-Link bereits bei rund 1440 von 1480 px. Die drei Wege hier sind
+    der Ersatz, und sie sind zusammen wirksamer als ein Menüeintrag.
+    """
+
+    def test_die_startseite_zeigt_das_band_mit_preisen(self):
+        for prefix in SPRACHEN:
+            with self.subTest(prefix=prefix or "/"):
+                html = _util.client().get(f"{prefix}/", follow=True).content.decode("utf-8")
+                self.assertIn('id="einrichten"', html, "Band fehlt auf der Startseite")
+                self.assertEqual(html.count("ein-karte"),
+                                 len(einrichtungen.EINRICHTUNGEN))
+
+    def test_der_footer_verweist_auf_das_silo(self):
+        html = _util.client().get("/", follow=True).content.decode("utf-8")
+        fuss = html[html.index("foot-nav"):]
+        self.assertIn('href="/einrichten/"', fuss)
+
+    def test_der_einstieg_der_leistungsseite_fuehrt_auf_die_einrichtungsseite(self):
+        """Vorher sprang der Knopf ins Formular derselben Seite. Jetzt führt er
+        dorthin, wo steht, was enthalten ist und was nicht."""
+        html = _util.client().get("/leistungen/edv-it-betreuung/",
+                                  follow=True).content.decode("utf-8")
+        block = re.search(r"sp-einstieg-karte.{0,800}", html, re.S).group(0)
+        self.assertIn("/einrichten/arbeitsplatz/", block)

@@ -99,7 +99,14 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
               <span class="sp-einstieg-preis">{{ einstieg.preis }}</span>
             </div>
             <p class="sp-einstieg-desc">{{ einstieg.desc }}</p>
+            {% comment %}Gibt es zu dieser Position eine eigene Einrichtungsseite,
+            fuehrt der Knopf dorthin: Dort steht, was enthalten ist, was nicht,
+            und wie es ablaeuft. Sonst bleibt es beim Sprung ins Formular.{% endcomment %}
+            {% if einstieg.url %}
+            <a class="btn btn-sm" href="{{ einstieg.url }}">{{ t.seite.einstieg_cta|safe }}</a>
+            {% else %}
             <a class="btn btn-sm" href="#anfrage">{{ t.seite.einstieg_cta|safe }}</a>
+            {% endif %}
           </div>
           <p class="sp-fuss">{{ t.seite.einstieg_nach|safe }}</p>
         </div>

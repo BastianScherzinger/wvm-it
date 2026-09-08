@@ -939,6 +939,37 @@ Die Varianten stehen in content.json (T3).
     });
   })();
   </script>
+  {% comment %} ── EINZELNE AUFGABEN, FESTPREIS (08.09.2026) ──────────────────────────
+    Direkt vor dem Preisblock, weil hier ohnehin nach Zahlen gesucht wird — und
+    weil dieser Abschnitt eine Frage beantwortet, die der Rest der Startseite
+    nicht stellt: „Was, wenn ich gar keine laufende Betreuung will?"
+
+    Der Preis steht in der Kachel und nicht im Kleingedruckten. Wer hier landet,
+    sucht keine Beratung, sondern eine Zahl. Begruendung in
+    docs/PLAN-HARDWARE-2026-09-08.md §4.1.
+  {% endcomment %}
+  {% if einrichtungen %}
+  <section class="section" id="einrichten">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="section-t">{{ t.einrichten_hub.h1|safe }}</h2>
+        <p class="section-lead">{{ t.einrichten_hub.intro|safe }}</p>
+      </header>
+      <div class="ein-grid" data-reveal>
+        {% for e in einrichtungen %}
+        <a class="ein-karte spot" href="{{ e.url }}" data-spot>
+          <span class="ein-ic" aria-hidden="true">{% include 'icons.html' with name=e.icon %}</span>
+          <h3 class="ein-h">{{ e.nav|safe }}</h3>
+          <p class="ein-t">{{ e.desc|safe }}</p>
+          <span class="ein-preis">{{ e.preis_label }}</span>
+        </a>
+        {% endfor %}
+      </div>
+      <p class="lk-alle"><a href="{% url 'einrichtungen' %}">{{ t.einrichten_hub.h1|safe }} →</a></p>
+    </div>
+  </section>
+  {% endif %}
+
   {% comment %} ── PREISE ────────────────────────────────────────────────────────────── {% endcomment %}
   <section class="section section-alt" id="preise">
     <div class="wrap">

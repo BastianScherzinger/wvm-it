@@ -191,6 +191,11 @@
         <h3>{{ t.footer.col_leistungen|safe }}</h3>
         {% for l in footer_leistungen %}<a href="{{ l.url }}">{{ l.titel|safe }}</a>{% endfor %}
         <a href="{% url 'leistungen' %}">{{ t.footer.u_alle|safe }}</a>
+        {% comment %}Direkt unter den Leistungen, weil es die Gegenfrage
+        beantwortet: nicht "wer betreut uns", sondern "wer macht das jetzt".
+        In der Kopfleiste ist dafuer kein Platz — sie liegt mit sieben Punkten
+        plus Notfall-Link bereits bei rund 1440 von 1480 px.{% endcomment %}
+        <a href="{% url 'einrichtungen' %}">{{ t.seite.einrichten|safe }}</a>
       </div>
       <div>
         <h3>{{ t.footer.col_unternehmen|safe }}</h3>
