@@ -236,4 +236,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG31 | Die Löschung der Sitzungsdaten hängt hinter dem Mailversand — dieselbe Kopplung, die bei `PageVisit` schon einmal die Frist gerissen hat | technik | offen | bei einer anderen betreuten Seite aufgefallen am 07.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-07 |
 | EIG32 | Das Servicegebiet steht zweimal — einmal als Quelle, einmal von Hand | seo | offen | bei einer anderen betreuten Seite aufgefallen am 07.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-07 |
 | EIG33 | llms.txt teilt das Servicegebiet nach fester Listenposition auf | technik | offen | bei einer anderen betreuten Seite aufgefallen am 07.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-07 |
+| EIG34 | Das JSON-LD-Logo nennt Maße, die die Bilddatei nicht hat | seo | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
