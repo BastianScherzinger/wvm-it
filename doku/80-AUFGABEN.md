@@ -258,4 +258,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG48 | Die 301 auf `www` liegt live im Code — es fehlt allein die Umgebungsvariable | seo | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG49 | Die Sitemap bricht mit `KeyError`, sobald eine Seite ohne Registereintrag ergänzt wird | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG50 | security.txt` erneuert sein `Expires` bei jedem Abruf | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG51 | zaehle()` erneuert die Ablaufzeit bei jedem Treffer — kein Zeitfenster ist eins | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
