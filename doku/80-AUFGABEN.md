@@ -273,4 +273,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG63 | Weder Datenschutzerklärung noch Code kennen eine Löschfrist für Anfragen | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG64 | Fünf verschiedene Leistungslisten, keine aus einer gemeinsamen Quelle | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG65 | Die Öffnungszeiten stehen an sechs Stellen von Hand, die Leistungsseiten nennen nur fünf davon | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG66 | Der Startbefehl steht dreimal, zwei Fassungen ohne `migrate` und `collectstatic | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
