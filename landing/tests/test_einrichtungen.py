@@ -286,3 +286,50 @@ class SichtbarkeitTest(SimpleTestCase):
                                   follow=True).content.decode("utf-8")
         block = re.search(r"sp-einstieg-karte.{0,800}", html, re.S).group(0)
         self.assertIn("/einrichten/arbeitsplatz/", block)
+
+
+class RatgeberFuehrenZumPreisTest(SimpleTestCase):
+    """Ein Ratgeber, der die Frage beantwortet und nirgendwohin führt, ist eine
+    Sackgasse mit gutem Text.
+
+    Das ist die Arbeitsteilung, die das Silo trägt (Plan §2.3): Der Ratgeber
+    fängt die Frage ab, die **vor** dem Auftrag steht — „lohnt sich Aufrüsten
+    noch?", „muss ich auf Windows 11?" —, und die Einrichtungsseite trägt den
+    Preis. Beim ersten Bau am 08.09.2026 fehlte genau dieser Schritt: Die drei
+    neuen Ratgeber standen fertig da und verlinkten kein einziges Mal ins Silo.
+
+    Bewusst **ein** Verweis je Seite und nicht sechs: An dieser Stelle ist
+    Auswahl keine Hilfe, sondern eine zweite Entscheidung.
+    """
+
+    # Ratgeber-Pfad → die Einrichtungsseite, auf die er führen muss
+    WEGE = {
+        "/aktuelles/windows-10-ende-was-jetzt/": "/einrichten/windows-11/",
+        "/aktuelles/pc-langsam-woran-liegt-es/": "/einrichten/pc-tausch/",
+        "/vergleich/pc-aufruesten-oder-neu-kaufen/": "/einrichten/arbeitsplatz/",
+    }
+
+    def test_jeder_ratgeber_fuehrt_auf_seine_einrichtungsseite(self):
+        for pfad, ziel in self.WEGE.items():
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+                self.assertIn(f'href="{ziel}"', html,
+                              f"{pfad}: kein Verweis auf {ziel}")
+
+    def test_der_verweis_nennt_den_preis(self):
+        """Ohne Zahl ist es ein Link, kein Angebot."""
+        for pfad in self.WEGE:
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+                block = re.search(r'bt-festpreis.{0,900}', html, re.S)
+                self.assertIsNotNone(block, f"{pfad}: Festpreis-Block fehlt")
+                self.assertIn("ein-preis", block.group(0),
+                              f"{pfad}: Verweis ohne Preis")
+
+    def test_es_bleibt_bei_einem_verweis(self):
+        for pfad in self.WEGE:
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+                ziele = set(re.findall(r'href="(/einrichten/[a-z0-9-]+/)"', html))
+                self.assertEqual(len(ziele), 1,
+                                 f"{pfad}: {len(ziele)} Verweise statt einem: {ziele}")

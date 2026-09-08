@@ -155,4 +155,103 @@ VERGLEICHE = {
         "cta_h": "Ce programe trebuie să funcționeze în continuare?",
         "cta_t": "Spuneți-ne software-ul de branșă și de câte căsuțe poștale aveți nevoie. În zilele lucrătoare vă spunem în 24 de ore ce pachet se potrivește — și ce înseamnă concret trecerea.",
     },
+
+    "pc-aufruesten-oder-neu-kaufen": {
+        "titel": "Upgrade la PC sau cumpărare nouă? 3 criterii | WVM-IT",
+        "desc": "Când merită încă un SSD și când nu: vârsta, starea și compatibilitatea "
+                "decid. Cu calculul pentru ambele variante.",
+        "nav": "Upgrade sau cumpărare",
+        "h1": "Upgrade sau cumpărare nouă — de ce depinde de fapt",
+        "kurz": "Decizia depinde de trei lucruri: de vârsta aparatului, de tipul "
+                "blocajului și de faptul dacă aparatul mai suportă următoarea versiune "
+                "de Windows. Ca linie orientativă: până la aproximativ patru ani "
+                "upgrade-ul merită aproape întotdeauna, peste aproximativ șase ani "
+                "aproape niciodată. Între ele decide ce anume este lent — un SSD "
+                "într-un aparat sănătos aduce la fiecare pornire mai mult decât un "
+                "calculator nou din aceeași clasă.",
+        "intro": "„Calculatorul este lent“ nu este un diagnostic, ci un simptom, și are "
+                 "de obicei exact o cauză: un hard disk clasic. Cine îl schimbă cu un "
+                 "SSD trăiește la un aparat de trei ani o diferență pe care niciun "
+                 "calculator nou cu aceeași configurație nu ar oferi-o. Invers este la "
+                 "fel de valabil: dacă SSD-ul este deja montat și tot se blochează, "
+                 "upgrade-ul rareori este răspunsul. Pagina aceasta spune cum se "
+                 "deosebesc cele două — chiar dacă rezultatul este uneori că nu trebuie "
+                 "făcut nimic.",
+
+        "a_h": "Upgrade",
+        "b_h": "Cumpărare nouă",
+        "tabelle_h": "Criteriile alăturate",
+        "tabelle": [
+            {"k": "Vârsta aparatului",
+             "a": "Până la aproximativ patru ani, aproape întotdeauna cu sens",
+             "b": "De la aproximativ șase ani, pentru că îmbătrânesc și sursa și "
+                  "ventilatoarele"},
+            {"k": "Hard disk clasic montat",
+             "a": "Cea mai puternică pârghie — montarea unui SSD",
+             "b": "Merită doar dacă oricum altceva contrazice"},
+            {"k": "Prea puțină memorie",
+             "a": "Se adaugă ieftin, cât timp există sloturi libere",
+             "b": "Necesar când placa nu mai suportă cantitatea"},
+            {"k": "Windows 11 nu este suportat",
+             "a": "Uneori se rezolvă prin TPM din BIOS",
+             "b": "Dacă procesorul este prea vechi, niciun upgrade nu ajută"},
+            {"k": "Aparatul este folosit pentru prelucrare de imagini sau CAD",
+             "a": "Rareori suficient",
+             "b": "De regulă calea corectă"},
+            {"k": "Ventilatoare zgomotoase, blocări, aparatul se încinge",
+             "a": "Curățarea și pasta termică ajută deseori",
+             "b": "La aparatele mai vechi, semn că sfârșitul se apropie"},
+            {"k": "Cât costă",
+             "a": "Manoperă de la 95 € pe oră plus componenta",
+             "b": "Aparatul plus 190 € configurare cu transferul datelor"},
+        ],
+
+        "fuer_a_h": "Upgrade-ul merită când …",
+        "fuer_a": [
+            "Aparatul este mai tânăr de aproximativ patru ani și are încă un hard disk "
+            "clasic — atunci SSD-ul este cel mai mare salt pentru cei mai puțini bani.",
+            "Memoria este insuficientă și există sloturi libere.",
+            "Aparatul funcționează în rest sănătos: fără blocări, fără ventilatoare "
+            "zgomotoase, fără căldură.",
+            "Windows 11 este suportat sau poate fi activat printr-o setare din BIOS.",
+        ],
+        "fuer_b_h": "Cumpărarea nouă este corectă când …",
+        "fuer_b": [
+            "Aparatul are peste aproximativ șase ani — atunci au îmbătrânit și sursa și "
+            "ventilatoarele, iar următoarea reparație vine sigur.",
+            "Procesorul nu suportă deloc Windows 11.",
+            "Este deja montat un SSD și tot se blochează.",
+            "Pe aparat se lucrează ceva ce cere putere: prelucrare de imagini, CAD, "
+            "tabele mari.",
+        ],
+
+        "rechnung_h": "Calculul",
+        "rechnung_t": 'Cunoaștem două cifre și doar acelea își au locul aici. Montarea unui SSD împreună cu mutarea sistemului durează una-două ore, deci 95 până la 190 € manoperă. Configurarea unui aparat nou, inclusiv transferul datelor, costă 190 €. Cât costă piesa sau aparatul nou vă spunem la zi — aici nu apare în mod deliberat, pentru că o cifră despre prețul altcuiva este greșită peste trei luni. De aici rezultă o regulă practică ce nu îmbătrânește: dacă upgrade-ul costă în total mai mult de o treime dintr-un aparat nou echivalent, merită doar la un calculator tânăr. Sub acest prag este aproape întotdeauna alegerea mai bună — nu în ultimul rând pentru că un aparat modernizat își păstrează configurarea obișnuită. Și o cifră ușor de trecut cu vederea: dacă socotiți ambele pentru cinci posturi de lucru, timpul cerut de cinci upgrade-uri separate este deseori postul mai mare decât piesele. De la aproximativ cinci aparate merită să schimbați dintr-o dată, în loc să reparați unul câte unul.',
+        "faq": [
+            {"q": "Cum îmi dau seama dacă este montat un SSD?",
+             "a": "Cel mai simplu după pornire: un aparat cu SSD este gata în vreo zece "
+                  "secunde de la pornire, unul cu hard disk clasic are nevoie de "
+                  "jumătate de minut până la un minut și face zgomote care se aud. Noi "
+                  "vedem asta de la distanță în treizeci de secunde."},
+            {"q": "Merită mai multă memorie fără SSD?",
+             "a": "Aproape niciodată. Când lipsesc amândouă, SSD-ul aduce diferența cu "
+                  "mult mai mare — mai multă memorie ajută abia când sunt deschise multe "
+                  "programe deodată. În ordine: întâi SSD, apoi memorie."},
+            {"q": "Ce se întâmplă cu datele noastre la upgrade?",
+             "a": "La schimbarea discului sistemul este transferat, nu reinstalat — "
+                  "programele, setările și fișierele rămân cum sunt. Dacă în mod "
+                  "excepțional nu se poate, spunem dinainte; atunci este de fapt o "
+                  "schimbare de aparat pe același calculator."},
+            {"q": "Avem zece aparate vechi. Toate deodată?",
+             "a": "Mai bine nu. Are sens să le sortați: cele mai vechi trei le "
+                  "înlocuiți, celor mai tinere le faceți upgrade, restul le lăsați să "
+                  "meargă și le revedeți peste un an. Schimbarea tuturor deodată "
+                  "înseamnă că peste cinci ani trebuie schimbate din nou toate deodată."},
+        ],
+
+        "cta_h": "Ne uităm noi",
+        "cta_t": "Spuneți-ne vârsta și numărul aparatelor. În zilele lucrătoare vă "
+                 "spunem în 24 de ore ce am face noi în locul dumneavoastră — chiar "
+                 "dacă răspunsul este că încă nu merită niciuna dintre variante.",
+    },
 }

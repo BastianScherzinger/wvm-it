@@ -48,6 +48,15 @@ VERGLEICHE = [
     {"slug": "microsoft365-vs-google-workspace", "icon": "mail",
      "quelle": "it", "preis": "m365", "rechner": False,
      "leistungen": ["edv-it-betreuung", "hosting-wartung"], "prio": "0.7"},
+
+    # 08.09.2026: Die Frage, die VOR dem Auftrag steht. "aufruest" kam bis dahin
+    # im ganzen Projekt null Mal vor — bei einer Entscheidung, die jeder Betrieb
+    # alle paar Jahre trifft. Der Vergleich fuehrt auf /einrichten/arbeitsplatz/
+    # und /einrichten/pc-tausch/, wo die Preise stehen.
+    {"slug": "pc-aufruesten-oder-neu-kaufen", "icon": "desk",
+     "quelle": "it", "preis": "arbeitsplatz", "rechner": False,
+     "leistungen": ["edv-it-betreuung"], "prio": "0.8",
+     "einrichtung": "arbeitsplatz"},
 ]
 
 NACH_SLUG = {v["slug"]: v for v in VERGLEICHE}

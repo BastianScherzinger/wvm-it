@@ -155,4 +155,100 @@ VERGLEICHE = {
         "cta_h": "Which programmes have to keep working?",
         "cta_t": "Tell us your business software and how many mailboxes you need. On working days we will tell you within 24 hours which package fits — and what switching would actually mean.",
     },
+
+    "pc-aufruesten-oder-neu-kaufen": {
+        "titel": "Upgrade a PC or buy new? 3 criteria | WVM-IT",
+        "desc": "When an SSD is still worth it and when it is not: age, condition and "
+                "compatibility decide. With the arithmetic for both routes.",
+        "nav": "Upgrade or replace",
+        "h1": "Upgrade or buy new — what it actually depends on",
+        "kurz": "The decision rests on three things: the age of the device, the kind of "
+                "bottleneck, and whether the machine will still take the next version "
+                "of Windows. As a rough line: up to about four years an upgrade almost "
+                "always pays off, beyond about six years it almost never does. In "
+                "between it depends on what exactly is slow — an SSD in a healthy "
+                "machine does more at every start-up than a new computer of the same "
+                "class would.",
+        "intro": "“The computer is slow” is not a diagnosis but a symptom, and it "
+                 "usually has exactly one cause: a classic hard disk. Replace it with "
+                 "an SSD and a three-year-old machine shows a difference no new "
+                 "computer of the same specification would offer. The reverse also "
+                 "holds: if the SSD is already in there and it still drags, upgrading "
+                 "is rarely the answer. This page says how to tell the two apart — even "
+                 "when the answer is that nothing needs doing at all.",
+
+        "a_h": "Upgrade",
+        "b_h": "Buy new",
+        "tabelle_h": "The criteria side by side",
+        "tabelle": [
+            {"k": "Age of the device",
+             "a": "Up to about four years, almost always sensible",
+             "b": "From about six years, because power supply and fans age too"},
+            {"k": "Classic hard disk fitted",
+             "a": "The strongest lever there is — fit an SSD",
+             "b": "Only worth it if something else already argues against"},
+            {"k": "Too little memory",
+             "a": "Cheap to add as long as slots are free",
+             "b": "Necessary when the board no longer supports the amount"},
+            {"k": "Windows 11 not supported",
+             "a": "Sometimes solvable via TPM in the BIOS",
+             "b": "If the processor is too old, no upgrade helps"},
+            {"k": "Machine used for image editing or CAD",
+             "a": "Rarely enough",
+             "b": "Usually the right route"},
+            {"k": "Loud fans, crashes, machine runs hot",
+             "a": "Cleaning and fresh thermal paste often help",
+             "b": "On older machines, a sign the end is near"},
+            {"k": "What it costs",
+             "a": "Work from €95 per hour plus the part",
+             "b": "The device plus €190 setup with data transfer"},
+        ],
+
+        "fuer_a_h": "An upgrade pays off when …",
+        "fuer_a": [
+            "The machine is younger than about four years and still has a classic hard "
+            "disk — then the SSD is the biggest jump for the least money.",
+            "Memory is tight and there are free slots.",
+            "The machine is otherwise healthy: no crashes, no loud fans, no heat.",
+            "Windows 11 is supported, or can be enabled through a BIOS setting.",
+        ],
+        "fuer_b_h": "Buying new is right when …",
+        "fuer_b": [
+            "The machine is older than about six years — power supply and fans have "
+            "aged with it, and the next repair is coming.",
+            "The processor does not support Windows 11 at all.",
+            "An SSD is already fitted and it still drags.",
+            "The machine is used for work that needs power: image editing, CAD, large "
+            "spreadsheets.",
+        ],
+
+        "rechnung_h": "The arithmetic",
+        "rechnung_t": "We know two figures, and only those belong here. Fitting an SSD including moving the system takes one to two hours, so €95 to €190 of work. Setting up a new device including the data transfer costs €190. What the part or the new machine costs we will tell you at current prices — it deliberately does not appear here, because a figure about somebody else's price is wrong three months later. Out of that comes a rule of thumb that does not age: if the upgrade costs more than a third of an equivalent new machine, it only pays off on a young computer. Below that it is almost always the better choice — not least because an upgraded machine keeps its familiar setup. And one figure that is easily missed: if you work both out for five workstations, the time five separate upgrades take is often the larger item, not the parts. From about five devices it pays to replace in one go rather than patch one at a time.",
+        "faq": [
+            {"q": "How do I tell whether an SSD is fitted?",
+             "a": "Easiest from the start-up: a machine with an SSD is ready about ten "
+                  "seconds after switching on; one with a classic hard disk takes half "
+                  "a minute to a minute and makes audible noises doing it. We can see "
+                  "it remotely in thirty seconds."},
+            {"q": "Is more memory worth it without an SSD?",
+             "a": "Almost never. When both are missing, the SSD makes by far the bigger "
+                  "difference — more memory only helps once many programs are open at "
+                  "the same time. In order: SSD first, then memory."},
+            {"q": "What happens to our data during an upgrade?",
+             "a": "When the disk is swapped the system is transferred, not reinstalled — "
+                  "programs, settings and files stay as they are. If that exceptionally "
+                  "is not possible we say so beforehand; then it is effectively a device "
+                  "change on the same computer."},
+            {"q": "We have ten old machines. All at once?",
+             "a": "Better not. It makes sense to sort them: replace the three oldest, "
+                  "upgrade the younger ones, leave the rest running and look again in a "
+                  "year. Replacing everything at once means having to replace everything "
+                  "at once again in five years."},
+        ],
+
+        "cta_h": "We will take a look",
+        "cta_t": "Tell us the age and number of the devices. On working days we will "
+                 "tell you within 24 hours what we would do in your position — even if "
+                 "the answer is that neither is worth it yet.",
+    },
 }

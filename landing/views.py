@@ -2457,6 +2457,11 @@ def _thema_index(lang):
     for v in vergleiche.VERGLEICHE:
         for slug in v.get("leistungen", []):
             dazu(slug, "vergleiche", _vergleich_daten(v, lang))
+    # 08.09.2026: Ohne diese Zeile fangen die Ratgeber die Frage ab und fuehren
+    # nirgendwohin. Genau die Arbeitsteilung, die das Silo traegt: Der Beitrag
+    # beantwortet "lohnt sich das noch?", die Einrichtungsseite nennt den Preis.
+    for e in einrichtungen.EINRICHTUNGEN:
+        dazu(e.get("thema"), "einrichtungen", _einrichtung_daten(e, lang))
     return index
 
 
@@ -2468,7 +2473,11 @@ def _passt_dazu(thema, lang, ohne=None):
     ein Block mit zwanzig Links verteilt kein Gewicht, er verdünnt es."""
     eintraege = _thema_index(lang).get(thema, {})
     raus = []
+    # Einrichtungen stehen weit vorn, weil sie als einzige einen Preis tragen:
+    # Wer einen Ratgeber zu Ende liest, hat die Frage beantwortet und sucht dann
+    # das, was sie kostet.
     for typ, wort in (("beitraege", "Beitrag"), ("vergleiche", "Vergleich"),
+                      ("einrichtungen", "Festpreis"),
                       ("branchen", "Branche"), ("checklisten", "Checkliste"),
                       ("begriffe", "Begriff")):
         for e in eintraege.get(typ, []):
@@ -2918,6 +2927,7 @@ def vergleich_seite(request, slug):
         anfrage_ok = ""
     return render(request, "vergleich.html", {
         "c": c, "vs": vs, "seite": seite, "anfrage_ok": anfrage_ok,
+        "einrichtung": _einrichtung_verweis(eintrag.get("einrichtung"), lang),
         "leistungen_liste": [_leistung_daten(leistungen.NACH_SLUG[s], lang)
                              for s in eintrag.get("leistungen", [])
                              if s in leistungen.NACH_SLUG],
@@ -2934,6 +2944,19 @@ def vergleich_seite(request, slug):
                               beschreibung=seite.get("kurz", ""),
                               sprache=i18n.get_pack(lang)["meta"]["html_lang"])),
     })
+
+
+def _einrichtung_verweis(slug, lang):
+    """Die eine Einrichtungsseite, auf die ein Ratgeber fuehrt — oder None.
+
+    **Warum gezielt und nicht ueber `_passt_dazu`.** Ein Ratgeber beantwortet
+    eine Frage; danach will der Leser genau eine Sache wissen, naemlich was es
+    kostet. Sechs Verweise sind an dieser Stelle keine Hilfe, sondern eine
+    zweite Entscheidung. Deshalb nennt der Eintrag in `beitraege.py` bzw.
+    `vergleiche.py` ausdruecklich **einen** Slug (Plan §2.3).
+    """
+    eintrag = einrichtungen.NACH_SLUG.get(slug or "")
+    return _einrichtung_daten(eintrag, lang) if eintrag else None
 
 
 def _beitrag_daten(eintrag):
@@ -3013,6 +3036,7 @@ def beitrag_seite(request, slug):
     }
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag,
+        "einrichtung": _einrichtung_verweis(eintrag.get("einrichtung"), "de"),
         "thema": _leistung_daten(thema, "de") if thema else None,
         # V2: zuerst die Beiträge zum selben Thema, danach mit den neuesten
         # aufgefüllt. Vorher standen hier immer dieselben drei — die Beiträge

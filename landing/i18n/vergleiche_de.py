@@ -164,4 +164,102 @@ VERGLEICHE = {
         "cta_h": "Welche Programme müssen weiterlaufen?",
         "cta_t": "Nennen Sie uns Ihre Fachsoftware und wie viele Postfächer Sie brauchen. Wir sagen Ihnen an Werktagen innerhalb von 24 Stunden, welches Paket passt — und was der Umstieg konkret bedeutet.",
     },
+
+    "pc-aufruesten-oder-neu-kaufen": {
+        "titel": "PC aufrüsten oder neu kaufen? 3 Kriterien | WVM-IT",
+        "desc": "Wann sich eine SSD noch lohnt und wann nicht: Alter, Zustand und "
+                "Anschlussfähigkeit entscheiden. Mit Rechenweg für beide Wege.",
+        "nav": "Aufrüsten oder neu kaufen",
+        "h1": "Aufrüsten oder neu kaufen — woran es wirklich hängt",
+        "kurz": "Die Entscheidung hängt an drei Dingen: am Alter des Geräts, an der Art "
+                "des Engpasses und daran, ob das Gerät die nächste Windows-Fassung noch "
+                "mitmacht. Als grobe Linie: Bis etwa vier Jahre lohnt sich Aufrüsten "
+                "fast immer, ab etwa sechs Jahren fast nie. Dazwischen entscheidet, "
+                "was genau langsam ist — eine SSD in einem gesunden Gerät bringt bei "
+                "jedem Start mehr als ein neuer Rechner der gleichen Klasse.",
+        "intro": "„Der Rechner ist langsam“ ist keine Diagnose, sondern ein Symptom, und "
+                 "es hat meistens genau eine Ursache: eine klassische Festplatte. Wer "
+                 "die gegen eine SSD tauscht, erlebt an einem drei Jahre alten Gerät "
+                 "einen Unterschied, den kein neuer Rechner mit derselben Ausstattung "
+                 "bieten würde. Umgekehrt gilt: Ist die SSD schon drin und es hakt "
+                 "trotzdem, ist Aufrüsten selten die Antwort. Diese Seite sagt, woran "
+                 "man das unterscheidet — auch wenn das Ergebnis manchmal lautet, dass "
+                 "gar nichts zu tun ist.",
+
+        "a_h": "Aufrüsten",
+        "b_h": "Neu kaufen",
+        "tabelle_h": "Die Kriterien nebeneinander",
+        "tabelle": [
+            {"k": "Alter des Geräts",
+             "a": "Bis etwa vier Jahre fast immer sinnvoll",
+             "b": "Ab etwa sechs Jahren, weil auch Netzteil und Lüfter altern"},
+            {"k": "Klassische Festplatte verbaut",
+             "a": "Der stärkste Hebel überhaupt — SSD tauschen",
+             "b": "Lohnt sich nur, wenn ohnehin anderes dagegenspricht"},
+            {"k": "Zu wenig Arbeitsspeicher",
+             "a": "Günstig nachrüstbar, solange Steckplätze frei sind",
+             "b": "Nötig, wenn das Board die Menge nicht mehr unterstützt"},
+            {"k": "Windows 11 wird nicht unterstützt",
+             "a": "Manchmal über TPM im BIOS lösbar",
+             "b": "Wenn der Prozessor zu alt ist, hilft kein Aufrüsten"},
+            {"k": "Gerät wird für Bildbearbeitung oder CAD gebraucht",
+             "a": "Selten ausreichend",
+             "b": "Meist der richtige Weg"},
+            {"k": "Lüfter laut, Abstürze, Gerät wird heiß",
+             "a": "Reinigung und Wärmeleitpaste helfen oft",
+             "b": "Bei älteren Geräten Zeichen für das nahende Ende"},
+            {"k": "Was es kostet",
+             "a": "Arbeit ab 95 € je Stunde plus Bauteil",
+             "b": "Gerät plus 190 € Einrichtung mit Datenübernahme"},
+        ],
+
+        "fuer_a_h": "Aufrüsten lohnt sich, wenn …",
+        "fuer_a": [
+            "Das Gerät jünger als etwa vier Jahre ist und noch eine klassische "
+            "Festplatte hat — dann ist die SSD der größte Sprung für das wenigste Geld.",
+            "Der Arbeitsspeicher knapp ist und freie Steckplätze vorhanden sind.",
+            "Das Gerät sonst gesund läuft: keine Abstürze, keine lauten Lüfter, keine "
+            "Hitze.",
+            "Windows 11 unterstützt wird oder sich über eine BIOS-Einstellung "
+            "nachrüsten lässt.",
+        ],
+        "fuer_b_h": "Neu kaufen ist richtig, wenn …",
+        "fuer_b": [
+            "Das Gerät älter als etwa sechs Jahre ist — dann altern Netzteil und Lüfter "
+            "mit, und die nächste Reparatur kommt bestimmt.",
+            "Der Prozessor Windows 11 grundsätzlich nicht unterstützt.",
+            "Schon eine SSD verbaut ist und es trotzdem hakt.",
+            "Auf dem Gerät gearbeitet wird, was Leistung braucht: Bildbearbeitung, CAD, "
+            "große Tabellen.",
+        ],
+
+        "rechnung_h": "Der Rechenweg",
+        "rechnung_t": 'Zwei Zahlen kennen wir, und nur die gehören hierher. Der Einbau einer SSD samt Übernahme des Systems dauert ein bis zwei Stunden, also 95 bis 190 € Arbeit. Die Einrichtung eines neuen Geräts einschließlich Datenübernahme kostet 190 €. Was das Bauteil oder das neue Gerät kostet, sagen wir Ihnen tagesaktuell — hier steht es bewusst nicht, weil eine Zahl über einen fremden Preis in drei Monaten falsch ist. Daraus wird eine Faustregel, die nicht altert: Kostet das Aufrüsten insgesamt mehr als ein Drittel eines gleichwertigen neuen Geräts, lohnt es sich nur noch bei einem jungen Rechner. Bleibt es darunter, ist es fast immer die bessere Wahl — vor allem, weil ein aufgerüstetes Gerät seine gewohnte Einrichtung behält. Und eine Zahl, die man leicht übersieht: Wenn Sie beides für fünf Arbeitsplätze rechnen, ist die Zeit, die fünf einzelne Aufrüstungen kosten, oft der größere Posten als die Bauteile. Ab etwa fünf Geräten lohnt es sich, in einem Zug zu tauschen statt einzeln nachzubessern.',
+        "faq": [
+            {"q": "Wie erkenne ich, ob eine SSD verbaut ist?",
+             "a": "Am einfachsten am Startverhalten: Ein Gerät mit SSD ist nach dem "
+                  "Einschalten in etwa zehn Sekunden bereit, eines mit klassischer "
+                  "Festplatte braucht eine halbe bis ganze Minute und macht dabei "
+                  "hörbare Geräusche. Wir sehen es aus der Ferne in dreißig Sekunden."},
+            {"q": "Lohnt sich mehr Arbeitsspeicher ohne SSD?",
+             "a": "Fast nie. Wenn beides fehlt, bringt die SSD den weitaus größeren "
+                  "Unterschied — mehr Arbeitsspeicher hilft erst, wenn viele Programme "
+                  "gleichzeitig offen sind. In der Reihenfolge: erst SSD, dann Speicher."},
+            {"q": "Was passiert mit unseren Daten beim Aufrüsten?",
+             "a": "Beim Tausch der Festplatte wird das System übertragen, nicht neu "
+                  "aufgesetzt — Programme, Einstellungen und Dateien bleiben, wie sie "
+                  "sind. Geht das ausnahmsweise nicht, sagen wir es vorher; dann ist es "
+                  "faktisch ein Gerätewechsel auf demselben Rechner."},
+            {"q": "Wir haben zehn alte Geräte. Alle auf einmal?",
+             "a": "Besser nicht. Sinnvoll ist, sie zu sortieren: die drei ältesten "
+                  "ersetzen, die jüngeren aufrüsten, den Rest laufen lassen und in "
+                  "einem Jahr wieder ansehen. Alles auf einmal zu tauschen bedeutet, "
+                  "in fünf Jahren wieder alles auf einmal tauschen zu müssen."},
+        ],
+
+        "cta_h": "Wir sehen es uns an",
+        "cta_t": "Nennen Sie uns Alter und Anzahl der Geräte. Wir sagen Ihnen an "
+                 "Werktagen innerhalb von 24 Stunden, was wir an Ihrer Stelle täten — "
+                 "auch wenn die Antwort lautet, dass sich beides noch nicht lohnt.",
+    },
 }

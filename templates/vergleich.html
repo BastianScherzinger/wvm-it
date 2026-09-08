@@ -87,6 +87,23 @@ dem Telefon seitlich wackelt.
       <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
         <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
 
+    {% comment %}Der eine gezielte Verweis: Der Ratgeber hat die Frage
+      beantwortet, hier steht, was die Antwort kostet (Plan §2.3). Bewusst EIN
+      Verweis und nicht sechs — an dieser Stelle ist Auswahl keine Hilfe.{% endcomment %}
+      {% if einrichtung %}
+      <aside class="rg-schwerpunkt bt-festpreis" data-reveal>
+        <p class="rg-sw-label">{{ t.einrichten_hub.h1|safe }}</p>
+        <a class="rg-sw-link" href="{{ einrichtung.url }}">
+          <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=einrichtung.icon %}</span>
+          <span>
+            <strong>{{ einrichtung.nav|safe }}</strong>
+            <em>{{ einrichtung.desc|safe }}</em>
+          </span>
+          <span class="ein-preis">{{ einrichtung.preis_label }}</span>
+        </a>
+      </aside>
+      {% endif %}
+
       {% if seite.rechner %}
       <a class="kr-teaser" href="{% url 'rechner' %}" data-reveal>
         <span class="kr-teaser-ic" aria-hidden="true">{% include 'icons.html' with name='gauge' %}</span>

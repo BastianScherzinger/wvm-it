@@ -504,4 +504,200 @@ BEITRAEGE = {
         ],
         "fazit": "Erst klären, wo die Daten liegen — daraus folgt der Weg fast von selbst. Und in jedem Fall: zweiter Faktor, verschlüsselte Geräte, ein Sperrweg für Verluste.",
     },
+
+    # ══ Windows 10 ist ausgelaufen ════════════════════════════════════════════
+    "windows-10-ende-was-jetzt": {
+        "titel": "Windows 10 ist ausgelaufen — was ein Betrieb jetzt tun sollte",
+        "meta_titel": "Windows 10 Support-Ende: was Betriebe jetzt tun | WVM-IT",
+        "desc": "Seit Oktober 2025 keine Sicherheitsupdates mehr. Was das praktisch "
+                "bedeutet, welche Geräte Windows 11 schaffen und was mit den anderen "
+                "passiert.",
+        "antwort": "Windows 10 erhält seit dem 14. Oktober 2025 keine "
+                   "Sicherheitsupdates mehr. Jede seither gefundene Lücke bleibt offen "
+                   "— dauerhaft. Für einen Betrieb heißt das nicht, dass am Montag "
+                   "etwas passiert, sondern dass das Risiko jeden Monat steigt und "
+                   "nicht mehr sinkt. Der Weg heraus führt über drei Fragen: Welche "
+                   "Geräte schaffen Windows 11, welche Programme laufen darauf, und "
+                   "was geschieht mit dem Rest.",
+
+        "abschnitte": [
+            {"h": "Was ein Ende der Updates praktisch bedeutet",
+             "t": "Solange ein System Updates bekommt, wird jede gefundene Lücke "
+                  "irgendwann geschlossen. Fällt das weg, kehrt sich die Richtung um: "
+                  "Jede neue Lücke, die irgendwo auf der Welt entdeckt wird, bleibt auf "
+                  "Ihrem Gerät für immer offen — und sie wird veröffentlicht, weil "
+                  "Sicherheitsforscher ihre Funde publizieren. Angreifer müssen also "
+                  "nichts selbst finden; sie lesen mit. Genau deshalb ist ein "
+                  "ausgelaufenes System nicht am ersten Tag gefährlich und nach einem "
+                  "Jahr sehr wohl."},
+            {"h": "Die erste Frage: Welche Geräte schaffen Windows 11?",
+             "t": "Windows 11 verlangt einen Prozessor ab einer bestimmten Generation, "
+                  "vier Gigabyte Arbeitsspeicher, Secure Boot und ein TPM-Modul der "
+                  "Version 2.0. Die meisten Geräte ab Baujahr 2018 erfüllen das — viele "
+                  "davon melden trotzdem, dass es nicht geht, weil TPM im BIOS "
+                  "abgeschaltet ist. Das ist eine Einstellung und kein Mangel; sie "
+                  "lässt sich in wenigen Minuten ändern. Prüfen Sie also erst, bevor "
+                  "Sie ein Gerät abschreiben."},
+            {"h": "Die zweite Frage: Läuft Ihre Software?",
+             "t": "Bei Office, Browsern, PDF-Programmen und den üblichen Werkzeugen ist "
+                  "der Umstieg unproblematisch. Aufpassen muss man bei Fachanwendungen: "
+                  "Warenwirtschaft, Buchhaltung, Zeiterfassung, CAD, Praxis- oder "
+                  "Kanzleisoftware. Fragen Sie beim Hersteller nach, bevor Sie "
+                  "umstellen, nicht danach. Diese Frage kostet eine E-Mail und "
+                  "verhindert den unangenehmsten Fall überhaupt: ein umgestelltes "
+                  "Gerät, auf dem die Software nicht mehr startet, an einem "
+                  "Montagmorgen."},
+            {"h": "Die dritte Frage: Was passiert mit dem Rest?",
+             "t": "Geräte, die Windows 11 wirklich nicht können, haben in der Regel "
+                  "sechs Jahre oder mehr auf dem Buckel. Bei denen lohnt der Ersatz "
+                  "ohnehin: Netzteil, Lüfter und Festplatte sind im selben Alter, und "
+                  "die nächste Reparatur kommt bestimmt. Rechnen Sie nicht nur den "
+                  "Kaufpreis, sondern die Zeit, die ein langsames Gerät jeden Tag "
+                  "kostet — bei einer Person, die acht Stunden davor sitzt, ist eine "
+                  "Minute Wartezeit am Tag im Jahr ein halber Arbeitstag."},
+            {"h": "Der Sonderfall: Maschinensteuerungen",
+             "t": "In Werkstätten und Produktionsbetrieben steht fast immer ein "
+                  "Rechner, der eine Maschine steuert und deshalb nicht angefasst "
+                  "werden darf — die Steuerungssoftware ist für ein altes Windows "
+                  "geschrieben, und den Maschinenhersteller gibt es nicht mehr. Diesen "
+                  "Rechner umzustellen ist das größere Risiko. Der richtige Weg ist, "
+                  "ihn vom übrigen Netz zu trennen: eigenes Netzsegment, kein Internet, "
+                  "kein E-Mail, Datenaustausch nur über einen kontrollierten Weg. Dann "
+                  "darf er alt bleiben."},
+            {"h": "Die Übergangslösung, die keine ist",
+             "t": "Microsoft bietet Unternehmen erweiterte Sicherheitsupdates gegen "
+                  "Gebühr an. Der Preis steigt jedes Jahr, und zwar deutlich — das ist "
+                  "Absicht, es soll zum Umstieg drängen. Für einen einzelnen Rechner, "
+                  "an dem eine unverzichtbare Software hängt, kann das ein Jahr lang "
+                  "sinnvoll sein. Für einen ganzen Betrieb rechnet es sich fast nie "
+                  "gegen die Umstellung, und es verschiebt das Problem nur."},
+            {"h": "In welcher Reihenfolge man vorgeht",
+             "t": "Nicht alle Geräte an einem Tag. Sinnvoll ist: erst eine "
+                  "Bestandsaufnahme, die die Arbeitsplätze in drei Gruppen sortiert. "
+                  "Dann ein einzelnes Gerät umstellen — und zwar das mit der "
+                  "kritischsten Software, nicht das unwichtigste. Wenn dort eine Woche "
+                  "lang nichts auffällt, folgt der Rest in Gruppen. So bleibt der "
+                  "Betrieb arbeitsfähig, auch wenn etwas nachgezogen werden muss."},
+        ],
+
+        "faq": [
+            {"q": "Wie erkenne ich, ob unsere Rechner Windows 11 unterstützen?",
+             "a": "Windows selbst zeigt es unter Einstellungen im Bereich Windows "
+                  "Update an. Meldet es, das Gerät sei nicht geeignet, lohnt ein "
+                  "zweiter Blick ins BIOS: Sehr oft liegt es nur an abgeschaltetem TPM "
+                  "oder Secure Boot. Wir prüfen das je Arbeitsplatz mit."},
+            {"q": "Können wir einfach so weitermachen?",
+             "a": "Technisch ja, die Geräte laufen weiter. Nur wächst das Risiko "
+                  "monatlich, und im Schadensfall wird es zur Frage der Fahrlässigkeit "
+                  "— gegenüber Kunden, deren Daten Sie verarbeiten, und gegenüber einer "
+                  "Versicherung, die wissen will, ob das System unterstützt war."},
+            {"q": "Was kostet die Umstellung je Arbeitsplatz?",
+             "a": "Bei uns 190 € je Arbeitsplatz, einschließlich der Prüfung von "
+                  "Hardware und Programmen und der Nacharbeit danach. Muss ein Gerät "
+                  "getauscht werden, gilt derselbe Preis für die Einrichtung des neuen "
+                  "— nicht beides zusammen."},
+            {"q": "Wir haben nur zwei Rechner. Lohnt sich das überhaupt?",
+             "a": "Gerade dann ist es überschaubar. Zwei Arbeitsplätze sind an einem "
+                  "Vormittag umgestellt, meist per Fernwartung. Der Aufwand steigt mit "
+                  "der Zahl der Geräte, nicht mit der Dringlichkeit."},
+        ],
+
+        "fazit": "Die Frist ist abgelaufen, nicht die Zeit: Wer jetzt eine "
+                 "Bestandsaufnahme macht, hat den Umstieg in diesem Quartal erledigt "
+                 "und muss ihn nicht unter Druck machen. Die drei Fragen — welche "
+                 "Geräte, welche Software, was mit dem Rest — beantwortet man einmal, "
+                 "und danach ist es Arbeit statt Entscheidung.",
+    },
+
+    # ══ Der Rechner ist langsam ═══════════════════════════════════════════════
+    "pc-langsam-woran-liegt-es": {
+        "titel": "Der Rechner ist langsam — woran es meistens wirklich liegt",
+        "meta_titel": "PC langsam im Betrieb: die vier häufigsten Ursachen | WVM-IT",
+        "desc": "Vier Ursachen erklären fast alle langsamen Bürorechner. Wie man sie "
+                "unterscheidet, was sich beheben lässt und wann ein neues Gerät "
+                "günstiger ist.",
+        "antwort": "In den allermeisten Fällen liegt es an der Festplatte: Ein Gerät "
+                   "mit klassischer Festplatte statt SSD ist bei jedem Start und bei "
+                   "jedem Programmaufruf langsam, egal wie stark der Prozessor ist. "
+                   "Danach folgen zu wenig Arbeitsspeicher, ein zugestelltes "
+                   "Autostart-Verzeichnis und — seltener, aber unterschätzt — "
+                   "Überhitzung durch verstaubte Lüfter. Alle vier lassen sich "
+                   "unterscheiden, ohne das Gerät zu öffnen.",
+
+        "abschnitte": [
+            {"h": "Ursache 1: eine klassische Festplatte",
+             "t": "Das ist mit Abstand der häufigste Grund, und man erkennt ihn am "
+                  "Startverhalten: Ein Gerät mit SSD ist etwa zehn Sekunden nach dem "
+                  "Einschalten bereit. Eines mit klassischer Festplatte braucht eine "
+                  "halbe bis ganze Minute, arbeitet danach beim ersten Programmstart "
+                  "weiter und macht dabei hörbare Geräusche. Der Tausch gegen eine SSD "
+                  "ist der größte spürbare Sprung, den man an einem Bürogerät überhaupt "
+                  "erreichen kann — bei einem drei Jahre alten Rechner mehr, als ein "
+                  "neuer Rechner derselben Klasse bringen würde."},
+            {"h": "Ursache 2: zu wenig Arbeitsspeicher",
+             "t": "Merkbar wird das nicht beim Start, sondern im Laufe des Tages: Mit "
+                  "jedem geöffneten Programm wird es zäher, und beim Wechsel zwischen "
+                  "Fenstern hakt es kurz. Der Windows-Task-Manager zeigt es im Reiter "
+                  "Leistung — steht die Speicherauslastung dauerhaft über achtzig "
+                  "Prozent, fehlt Speicher. Nachrüsten ist günstig, solange freie "
+                  "Steckplätze da sind. Wichtig ist die Reihenfolge: Fehlt beides, "
+                  "bringt die SSD deutlich mehr als der Speicher."},
+            {"h": "Ursache 3: alles startet mit",
+             "t": "Über Jahre sammeln sich Programme an, die sich beim Hochfahren "
+                  "selbst mitstarten: Update-Dienste, Cloud-Speicher, Druckertreiber, "
+                  "Chat-Programme, Hersteller-Werkzeuge. Jedes einzelne ist harmlos, "
+                  "zusammen kosten sie eine Minute beim Start und dauerhaft Speicher. "
+                  "Das lässt sich im Task-Manager unter Autostart ansehen und aufräumen "
+                  "— kostet nichts und ist in zwanzig Minuten erledigt."},
+            {"h": "Ursache 4: Staub",
+             "t": "Wird ein Gerät heiß, drosselt es sich selbst, um sich zu schützen — "
+                  "und wird dabei spürbar langsamer. Anzeichen sind laute Lüfter, ein "
+                  "heißes Gehäuse und Langsamkeit, die nach längerer Nutzung schlimmer "
+                  "wird statt besser. In einer Werkstatt oder einem Betrieb mit "
+                  "Staubbelastung ist das nach zwei bis drei Jahren normal. Reinigung "
+                  "und frische Wärmeleitpaste bringen ein solches Gerät zurück."},
+            {"h": "Was es meistens nicht ist",
+             "t": "Zwei Verdächtige werden regelmäßig genannt und sind es selten. "
+                  "Erstens Viren: Ein befallenes System ist heute kaum auffällig "
+                  "langsam, weil Schadsoftware unentdeckt bleiben will. Zweitens die "
+                  "Annahme, Windows werde mit der Zeit von selbst langsam — das war vor "
+                  "fünfzehn Jahren so und ist es heute nicht mehr. Wer ein System neu "
+                  "aufsetzt und danach dasselbe Tempo hat, hatte ein Hardwareproblem."},
+            {"h": "Die Reihenfolge, in der man prüft",
+             "t": "Erst das Startverhalten ansehen — daraus folgt die Festplattenfrage. "
+                  "Dann den Task-Manager: Speicherauslastung und Autostart. Dann die "
+                  "Temperatur und die Lüfter. Erst danach lohnt es sich, über ein neues "
+                  "Gerät nachzudenken. Diese Reihenfolge kostet eine halbe Stunde und "
+                  "verhindert die häufigste Fehlentscheidung: ein neues Gerät für ein "
+                  "Problem, das dreißig Euro gekostet hätte."},
+        ],
+
+        "faq": [
+            {"q": "Bringt ein Neuaufsetzen von Windows etwas?",
+             "a": "Nur, wenn wirklich etwas kaputtkonfiguriert ist — das ist selten. "
+                  "Ein Gerät mit klassischer Festplatte ist nach dem Neuaufsetzen "
+                  "genauso langsam wie vorher, nur mit weniger Programmen. Prüfen Sie "
+                  "erst die Hardware."},
+            {"q": "Wie schnell merkt man den Unterschied nach einer SSD?",
+             "a": "Sofort und deutlich. Der Start fällt von etwa einer Minute auf zehn "
+                  "Sekunden, Programme öffnen ohne Verzögerung, und das Gerät reagiert "
+                  "auch dann noch, wenn im Hintergrund etwas läuft."},
+            {"q": "Können Sie das aus der Ferne beurteilen?",
+             "a": "Ja. Ob eine SSD verbaut ist, wie viel Speicher belegt ist und was "
+                  "beim Start mitläuft, sehen wir in einer kurzen "
+                  "Fernwartungssitzung. Für Temperatur und Staub braucht es dann doch "
+                  "einen Blick ins Gehäuse."},
+            {"q": "Lohnt sich das bei einem sechs Jahre alten Gerät noch?",
+             "a": "Meist nicht mehr. Ab diesem Alter altern Netzteil und Lüfter mit, "
+                  "und die nächste Reparatur kommt. Die Faustregel: Kostet das "
+                  "Aufrüsten mehr als ein Drittel eines gleichwertigen neuen Geräts, "
+                  "lohnt es sich nur noch bei einem jungen Rechner."},
+        ],
+
+        "fazit": "Langsamkeit ist ein Symptom mit vier üblichen Ursachen, und drei "
+                 "davon kosten wenig bis nichts. Wer in der richtigen Reihenfolge prüft "
+                 "— Festplatte, Speicher, Autostart, Temperatur — trifft die "
+                 "Entscheidung über ein neues Gerät auf einer Grundlage statt auf einem "
+                 "Gefühl.",
+    },
 }

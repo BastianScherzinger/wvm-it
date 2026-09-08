@@ -115,6 +115,19 @@ BEITRAEGE = [
     # Hoechste Prioritaet im Silo, weil die Suchabsicht dahinter eine Frist ist.
     {"slug": "nis2-lieferkette-zulieferer", "datum": "2026-09-06",
      "thema": "it-sicherheit", "lesezeit": 7, "prio": "0.9"},
+
+    # ── Vierte Staffel (08.09.2026): der Geraetelebenszyklus ────────────────
+    # Beide fangen die Frage ab, die VOR dem Auftrag steht, und fuehren auf die
+    # Einrichtungsseiten, wo die Preise stehen. Windows 10 ist dabei kein
+    # Redaktionsthema, sondern eine abgelaufene Frist: seit Oktober 2025 keine
+    # Sicherheitsupdates mehr.
+    {"slug": "windows-10-ende-was-jetzt", "datum": "2026-09-08",
+     "thema": "edv-it-betreuung", "lesezeit": 6, "prio": "0.9",
+     "einrichtung": "windows-11"},
+
+    {"slug": "pc-langsam-woran-liegt-es", "datum": "2026-09-08",
+     "thema": "edv-it-betreuung", "lesezeit": 5, "prio": "0.8",
+     "einrichtung": "pc-tausch"},
 ]
 
 NACH_SLUG = {b["slug"]: b for b in BEITRAEGE}
