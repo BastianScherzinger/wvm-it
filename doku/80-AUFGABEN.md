@@ -269,4 +269,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG59 | Der Messbefund PJ10 „zwei Views ohne Route" trifft nicht zu | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG60 | anfrage_verarbeiten` sagt im Vertrag „False bei Fehler" und gibt immer True | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG61 | Die Desktop-Navigation führt nicht zur Kontaktseite | design | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG62 | Die vier Anfragesperren liegen im Prozessspeicher, und gunicorn läuft mit zwei Workern | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
