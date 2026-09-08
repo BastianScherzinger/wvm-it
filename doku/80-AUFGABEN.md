@@ -238,4 +238,9 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG33 | llms.txt teilt das Servicegebiet nach fester Listenposition auf | technik | offen | bei einer anderen betreuten Seite aufgefallen am 07.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-07 |
 | EIG34 | Das JSON-LD-Logo nennt Maße, die die Bilddatei nicht hat | seo | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG35 | Die Bewertung des eigenen Entwicklers steht sichtbar als Kundenstimme | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG36 | Die Aufgabe „tote Dateien entfernen" würde vier lebende Bausteine löschen | aufgaben | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG37 | Die Alias-Liste der Weiterleitung ist ein Literal und hängt nicht an `ALLOWED_HOSTS | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG38 | „8+ Leistungsbereiche" steht auf /ueber-uns/ weiter, nachdem es von der Startseite als unbelegt entfernt wurde | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG39 | Der Rechner steht auf acht Seiten, sein eigener Kopf sagt drei, die Doku fünf | notizen | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG40 | Das Schema baut seine Bild-URLs von Hand am Static-Manifest vorbei | seo | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
