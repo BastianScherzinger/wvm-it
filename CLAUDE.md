@@ -33,7 +33,7 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: 193 URLs (08.09.2026)
+## Stand: 196 URLs (08.09.2026)
 
 **Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend
 per Fernwartung in ganz Österreich und Deutschland. Webseiten, SEO, Google Ads und KI
@@ -46,15 +46,15 @@ man konnte sie kaufen, aber nicht finden. `/leistungen/konferenztechnik/` wurde
 gleichzeitig auf **Besprechungsräume** geschärft, damit sich die beiden Seiten nicht
 um dieselbe Suchanfrage streiten.
 
-Aus 2 rankbaren Seiten wurden **193 URLs** (91 Basis-Pfade):
+Aus 2 rankbaren Seiten wurden **196 URLs** (94 Basis-Pfade):
 
 | Silo | Pfad | Seiten | Sprachen |
 |---|---|---|---|
 | Leistungen | `/leistungen/<slug>/` | **13** + Hub | DE/EN/RO |
 | **Branchen** | `/branchen/<slug>/` | 6 + Hub | DE/EN/RO |
-| **Vergleiche** | `/vergleich/<slug>/` | 3 + Hub | DE/EN/RO |
+| **Vergleiche** | `/vergleich/<slug>/` | 4 + Hub | DE/EN/RO |
 | Regionen | `/it-service/<slug>/` | 7 + Hub | DE/EN/RO |
-| Fachbeiträge | `/aktuelles/<slug>/` | 16 + Hub | nur DE |
+| Fachbeiträge | `/aktuelles/<slug>/` | 18 + Hub | nur DE |
 | **Glossar** | `/wissen/<slug>/` | 14 + Hub | nur DE |
 | **Checklisten** | `/checkliste/<slug>/` | 3 + Hub | nur DE |
 | **Werkzeuge** | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/` | 3 | DE/EN/RO |
@@ -173,7 +173,7 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 273 Testfunktionen
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 276 Testfunktionen
 in `landing/tests/`, rund eine Minute. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
@@ -238,7 +238,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 273 Testfunktionen in 17 Dateien
+- `landing/tests/` — 276 Testfunktionen in 17 Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·

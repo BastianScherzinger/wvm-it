@@ -309,7 +309,7 @@ Vier Phasen, jede für sich lieferbar und live.
 | ~~1~~ | ~~Silo-Gerüst + Arbeitsplatz und PC-Tausch~~ — **erledigt 08.09.2026, Commit `f355374`.** 166 → 175 URLs, 267 Tests |
 | ~~2~~ | ~~Startseiten-Band, Navigation~~ — **erledigt 08.09.2026, Commit `6c3627f`**, mit einer Abweichung: **kein Navigationspunkt.** Nachgemessen liegt die Kopfleiste mit sieben Punkten plus Notfall-Link bereits bei rund 1440 von 1480 px — die Zahl im Plan (1055 px) beruhte auf fünf gezählten Punkten und war falsch. Stattdessen: Band auf der Startseite vor dem Preisblock, Footer-Eintrag, und der Einstiegsknopf der EDV-Leistungsseite führt jetzt auf `/einrichten/arbeitsplatz/`. **Offen aus dieser Phase: die Regionsseiten-Verlinkung.** | erledigt |
 | ~~3~~ | ~~Die sechs übrigen Seiten~~ — **erledigt 08.09.2026, Commit `8bb5b67`.** 175 → 193 URLs, 273 Tests. Dazu die Regionsseiten-Verlinkung aus Phase 2. **Zwei Seiten haben bewusst keinen Festpreis** (Server, Loxone): Der Preis hängt so stark am Bestand, dass eine Zahl nach der Aufnahme nicht halten würde. Beide sagen unter eigener Überschrift, warum — und was die Aufnahme kostet | erledigt |
-| **4** | Vergleich „aufrüsten oder neu kaufen", zwei Ratgeber, `KEYWORD-MAP.md`, IndexNow, Search Console | mittel |
+| ~~4~~ | ~~Vergleich, zwei Ratgeber, IndexNow, Search Console~~ — **erledigt 08.09.2026, Commit `f578c73`.** 193 → 196 URLs, 276 Tests. Jeder Ratgeber führt auf **eine** Einrichtungsseite, mit Preis. IndexNow: 198 URLs gemeldet. Search Console: Sitemap-Index neu eingereicht, fünf Seiten einzeln zur Indexierung beantragt | erledigt |
 
 Nach jeder Phase: die vier Prüfbefehle, Tests gegen den alten Zustand gefahren,
 Push, Live-Gegenprobe, Cockpit-Rückmeldung.
@@ -374,3 +374,29 @@ Seiten aus Phase 3 kommt keine neue Datei dazu — sie wachsen in
 * **Keine neuen Farben, Schriften oder Kartenmuster.** Das Gestaltungssystem
   steht; ein zweites Muster für dieselbe Sache macht die Seite unruhig, nicht
   reicher.
+
+---
+
+## 11. Was am 08.09.2026 in der Search Console geschah
+
+IndexNow bedient Bing, Yandex und Seznam — **Google nicht**. Deshalb von Hand:
+
+* **Sitemap-Index neu eingereicht** (`sitemap.xml`, Status „Erfolgreich"). Er stand
+  auf dem Stand vom 07.09. mit 166 Seiten; beim nächsten Lesen sind es 198.
+* **Fünf Seiten einzeln zur Indexierung beantragt**, jede mit der Bestätigung
+  „Indexierung wurde beantragt" belegt:
+
+  | URL | warum diese |
+  |---|---|
+  | `/einrichten/` | der Hub — von hier findet der Crawler die übrigen acht |
+  | `/einrichten/arbeitsplatz/` | die Seite zur 190-€-Position, das Kernstück |
+  | `/aktuelles/windows-10-ende-was-jetzt/` | zeitkritisch: Windows 10 ist seit Oktober 2025 ohne Updates |
+  | `/einrichten/pc-tausch/` | „Datenübernahme" — die Suche, die vorher null Treffer hatte |
+  | `/vergleich/pc-aufruesten-oder-neu-kaufen/` | fängt die Frage vor dem Auftrag ab |
+
+Alle fünf standen vorher auf **„URL ist Google nicht bekannt"** — genau der
+Zustand, den eine neue Seite hat, bis jemand sie meldet.
+
+Die übrigen dreizehn neuen Adressen kommen über die Sitemap. Einzelanträge sind
+je Property und Tag begrenzt; sie lohnen sich für die Seiten, die zuerst
+gefunden werden sollen, nicht für alle.
