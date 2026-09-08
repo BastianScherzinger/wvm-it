@@ -243,4 +243,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG38 | „8+ Leistungsbereiche" steht auf /ueber-uns/ weiter, nachdem es von der Startseite als unbelegt entfernt wurde | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG39 | Der Rechner steht auf acht Seiten, sein eigener Kopf sagt drei, die Doku fünf | notizen | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG40 | Das Schema baut seine Bild-URLs von Hand am Static-Manifest vorbei | seo | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG41 | Hochgeladene Profilbilder verschwinden bei jedem Deploy, ohne Fehler | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
