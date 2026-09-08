@@ -245,4 +245,11 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG40 | Das Schema baut seine Bild-URLs von Hand am Static-Manifest vorbei | seo | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG41 | Hochgeladene Profilbilder verschwinden bei jedem Deploy, ohne Fehler | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG42 | Der als kritisch gemeldete `mark_safe` ist nachweislich unbedenklich | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG43 | Das Kontaktformular meldet Erfolg, auch wenn die Mail nie hinausgeht | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG44 | Die Doku beschreibt einen Live-Stand, den es seit dem Deploy nicht mehr gibt | status | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG45 | Google-Maps-iframe lädt vor jeder Einwilligung — die Doku sagt, es werde nichts Einwilligungspflichtiges geladen | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG46 | Newsletter ohne Bestätigungsschritt, ohne Adressprüfung, ohne Abmeldeweg | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG47 | Bestätigungs- und Newsletter-Links hängen an `SITE_URL`; der Vorgabewert zeigt auf einen toten Host | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG48 | Die 301 auf `www` liegt live im Code — es fehlt allein die Umgebungsvariable | seo | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG49 | Die Sitemap bricht mit `KeyError`, sobald eine Seite ohne Registereintrag ergänzt wird | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
