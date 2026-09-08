@@ -261,4 +261,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG51 | zaehle()` erneuert die Ablaufzeit bei jedem Treffer — kein Zeitfenster ist eins | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG52 | /ueber-mich/` steht in keiner Navigation und in keiner Fußzeile | konversion | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG53 | Der Kopf von `00-STATUS.md` nennt 84,4, der Messblock darunter 93,1 | status | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG54 | Fünf Punkte stehen als „offen" oder „fehlt", sind live erledigt | aufgaben | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
