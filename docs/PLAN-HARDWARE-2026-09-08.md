@@ -306,8 +306,8 @@ Vier Phasen, jede für sich lieferbar und live.
 
 | Phase | Inhalt | Umfang |
 |---|---|---|
-| **1** | Silo-Gerüst (`landing/einrichtungen.py`, View, Vorlage, Hub, Sitemap, hreflang) + die **zwei stärksten Seiten**: Arbeitsplatz und PC-Tausch, dreisprachig | groß |
-| **2** | Startseiten-Band, Navigation, Regionsseiten-Verlinkung | mittel |
+| ~~1~~ | ~~Silo-Gerüst + Arbeitsplatz und PC-Tausch~~ — **erledigt 08.09.2026, Commit `f355374`.** 166 → 175 URLs, 267 Tests |
+| ~~2~~ | ~~Startseiten-Band, Navigation~~ — **erledigt 08.09.2026, Commit `6c3627f`**, mit einer Abweichung: **kein Navigationspunkt.** Nachgemessen liegt die Kopfleiste mit sieben Punkten plus Notfall-Link bereits bei rund 1440 von 1480 px — die Zahl im Plan (1055 px) beruhte auf fünf gezählten Punkten und war falsch. Stattdessen: Band auf der Startseite vor dem Preisblock, Footer-Eintrag, und der Einstiegsknopf der EDV-Leistungsseite führt jetzt auf `/einrichten/arbeitsplatz/`. **Offen aus dieser Phase: die Regionsseiten-Verlinkung.** | erledigt |
 | **3** | Die sechs übrigen Seiten: Windows 11, Microsoft 365, Server, Netzwerk, Firewall/VPN, Loxone | groß |
 | **4** | Vergleich „aufrüsten oder neu kaufen", zwei Ratgeber, `KEYWORD-MAP.md`, IndexNow, Search Console | mittel |
 
@@ -330,6 +330,23 @@ stehen im Katalog. Drei Dinge machen ihn aber deutlich stärker:
 Dazu unverändert offen (aus dem letzten Durchgang): Wirtschaftskammer und
 Berufsbezeichnung fürs Impressum (§ 5 Abs. 1 Z 6 und Z 7 ECG), `seit_jahr`,
 `profile`, `uid`, Betriebshaftpflicht.
+
+---
+
+## 8b. Was beim Bauen dazukam (08.09.2026)
+
+**Ein „ab“ nimmt das Versprechen zurück.** Die Kacheln zeigten zuerst
+„ab 190 €“. `_make_price_label()` stellt das Wort für **alle**
+Katalogpositionen voran — auf einer Leistungsseite ist das richtig (29 € je
+Arbeitsplatz *ist* ein Startwert), im Einrichtungs-Silo hebt es genau das auf,
+was das Silo verspricht. Neu `_festpreis_label()`: dieselbe Zahl aus derselben
+Quelle, nur ohne das Wort davor. **Für Phase 3 gilt das automatisch**, weil alle
+Seiten dieselbe Funktion nutzen.
+
+**Ein Test aus dem Automode-Paket hat zu Recht angeschlagen:** Jede neue
+Sprachdatei muss im Import-Block von `test_module.py` stehen. Bei den sechs
+Seiten aus Phase 3 kommt keine neue Datei dazu — sie wachsen in
+`einrichten_{de,en,ro}.py` hinein.
 
 ---
 

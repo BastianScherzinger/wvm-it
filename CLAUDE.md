@@ -33,7 +33,7 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: 166 URLs (06.09.2026)
+## Stand: 175 URLs (08.09.2026)
 
 **Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend
 per Fernwartung in ganz Österreich und Deutschland. Webseiten, SEO, Google Ads und KI
@@ -46,7 +46,7 @@ man konnte sie kaufen, aber nicht finden. `/leistungen/konferenztechnik/` wurde
 gleichzeitig auf **Besprechungsräume** geschärft, damit sich die beiden Seiten nicht
 um dieselbe Suchanfrage streiten.
 
-Aus 2 rankbaren Seiten wurden **166 URLs** (82 Basis-Pfade):
+Aus 2 rankbaren Seiten wurden **175 URLs** (85 Basis-Pfade):
 
 | Silo | Pfad | Seiten | Sprachen |
 |---|---|---|---|
@@ -58,6 +58,7 @@ Aus 2 rankbaren Seiten wurden **166 URLs** (82 Basis-Pfade):
 | **Glossar** | `/wissen/<slug>/` | 14 + Hub | nur DE |
 | **Checklisten** | `/checkliste/<slug>/` | 3 + Hub | nur DE |
 | **Werkzeuge** | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/` | 3 | DE/EN/RO |
+| **Einrichten** | `/einrichten/<slug>/` | 2 + Hub | DE/EN/RO |
 | Einzelseiten | Start, Kosten, Referenzen, Kontakt, Angebot, Recht | 8 | DE/EN/RO |
 
 Seit dem 05.09.2026 dazu: **Über uns** (`/ueber-uns/`), **AGB** (`/agb/`),
@@ -172,7 +173,7 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 252 Testfunktionen
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 272 Testfunktionen
 in `landing/tests/`, rund eine Minute. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
@@ -208,6 +209,8 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 | Cookies | Spline/3D lädt erst nach Einwilligung. Keine Tracking-Skripte ohne neue Einwilligung |
 | Recht | Jede neue Datenverarbeitung muss in `content.json` → Datenschutz stehen |
 | Hero | Die Überschrift trägt **zwei** Stufen (`hero.headline` + `hero.headline_2`) und das Vertrauensband **drei** Texte (`person_h`, `person_t`, `person_ort`) — je Sprache. Das Band steht **vor** der Subline; dahinter beginnt es unterhalb des ersten Bildschirms. Begründung in `docs/HERO-KONZEPT-2026-09-06.md`, gesichert durch `HeroKonzeptTest` |
+| Zwei Silos | `/leistungen/` beantwortet „wer betreut uns?“, `/einrichten/` „wer macht mir das jetzt?“. Kein Slug und kein Titel darf in beiden vorkommen, und jede Einrichtungsseite muss die Abgrenzung **aussprechen** (Block `id="laufend"` mit Gegenlink). Sonst konkurrieren beide um dieselbe Anfrage — der Fehler, den Konferenz- gegen Veranstaltungstechnik am 05.09. schon hatte. Geprüft von `test_einrichtungen.py` |
+| Festpreise | Im Einrichtungs-Silo steht der Preis **ohne** „ab“ (`_festpreis_label()`), auf Leistungsseiten **mit** (`_make_price_label()`). Ein „ab“ auf einer Festpreisseite nimmt das Versprechen zurück |
 | Rechtstexte | Impressum, Datenschutz- und Barrierefreiheitserklärung sind **Zusagen**, keine Textbausteine. Jede Aussage muss dem Code standhalten und umgekehrt: Die Barrierefreiheitserklärung behauptete am 07.09.2026 in Abschnitt 2 „mindestens 4,5 zu 1“ und räumte in Abschnitt 3 Werte darunter ein. Wer eine Verarbeitung ergänzt oder eine Farbe ändert, zieht den Rechtstext nach |
 | Wahrheit | Keine erfundenen Bewertungen, Zertifikate, Partnerlevel oder Kundenzahlen. `seit_jahr`, `partner_status` und `profile` in `content.json` rendern nur, wenn sie gefüllt sind |
 | Skripte | Jeder inline-`<script>`-Block braucht `nonce="{{ request.csp_nonce }}"`. Die Content-Security-Policy wird **durchgesetzt**; ein Block ohne Nonce wird vom Browser nicht ausgeführt — man merkt es sofort, aber nur, wenn man hinsieht |
@@ -234,7 +237,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 252 Testfunktionen in 17 Dateien
+- `landing/tests/` — 272 Testfunktionen in 17 Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·
