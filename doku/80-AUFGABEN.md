@@ -265,4 +265,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG55 | Die Tabelle „Zahlen, die in mehreren Quellen unterschiedlich stehen" nennt selbst drei überholte Werte | notizen | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG56 | theme-color` ist zwei Stufen heller als der Seitengrund | design | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG57 | /favicon.ico` und `/apple-touch-icon.png` lösen statische Pfade in Python auf, die keine Prüfung abdeckt | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG58 | alle_paare()` verspricht „jede Frage genau einmal" und lässt eine von siebzehn aus | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 <!-- eigenepunkte:ende -->
