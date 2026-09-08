@@ -9,12 +9,15 @@ from .seiten_en import SEITEN
 from .regionen_en import REGIONEN
 from .branchen_en import BRANCHEN
 from .vergleiche_en import VERGLEICHE
+from .einrichten_en import EINRICHTEN, HUB as EINRICHTEN_HUB
 
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
     "branchen": BRANCHEN,
     "vergleiche": VERGLEICHE,
+    "einrichten": EINRICHTEN,
+    "einrichten_hub": EINRICHTEN_HUB,
     "meta": {
         "html_lang": "en",
         "locale": "en_US",
@@ -527,6 +530,7 @@ PACK = {
         "brotkrume": "You are here",
         "start": "Home",
         "leistungen": "Services",
+        "einrichten": "Setup",
         "kurz_label": "In short",
         "preis_kurz": "Starting price",
         "faq_folge_h": "Follow-up questions",

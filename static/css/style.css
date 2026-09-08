@@ -2475,3 +2475,34 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .hb-schritt-h{font-family:"Space Grotesk",sans-serif;font-size:16.5px;font-weight:700;
   letter-spacing:-.012em;line-height:1.25;color:var(--ink)}
 .hb-schritt-t{margin-top:8px;font-size:14.8px;line-height:1.66;color:var(--ink-soft)}
+
+/* ── Einrichtungen: Kacheln, bei denen der Preis die Hauptrolle spielt ─────
+   Der Unterschied zu .lk im Leistungs-Hub ist Absicht und traegt das ganze
+   Silo: Dort erklaert die Kachel eine Leistung, hier nennt sie einen Preis.
+   Wer auf /einrichten/ landet, sucht nicht einen Anbieter, sondern eine Zahl
+   fuer eine Aufgabe — also bekommt die Zahl die Groesse, die sonst die
+   Ueberschrift haette. Alles aus den Tokens am Dateianfang, kein zweites
+   Kartenmuster: Form, Radius und Schatten sind dieselben wie bei .lk. */
+.ein-grid{display:grid;gap:var(--s4);margin-top:var(--s5);
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.ein-karte{display:flex;flex-direction:column;gap:10px;padding:var(--s5) var(--s4);
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
+  box-shadow:var(--shadow);transition:transform .22s var(--ease),border-color .22s,box-shadow .22s}
+.ein-karte:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 45%,transparent);
+  box-shadow:var(--shadow-lg)}
+.ein-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  color:var(--accent-ink);background:var(--accent-soft)}
+.ein-ic svg{width:22px;height:22px}
+.ein-h{font-family:"Space Grotesk",sans-serif;font-size:17px;font-weight:700;
+  letter-spacing:-.015em;line-height:1.25;color:var(--ink)}
+.ein-t{font-size:14.5px;line-height:1.6;color:var(--ink-soft);flex:1}
+/* Der Preis traegt die Kachel: gross, tabellarisch, in der Akzentfarbe fuer Text. */
+.ein-preis{font-family:"Space Grotesk",sans-serif;font-size:19px;font-weight:700;
+  letter-spacing:-.02em;color:var(--accent-ink);font-variant-numeric:tabular-nums;
+  padding-top:10px;border-top:1px solid var(--line)}
+
+/* Auf der Einzelseite steht der Festpreis oben in der Faktenspalte — auf dem
+   Handy muss er ohne Scrollen sichtbar sein, er ist der Grund zu bleiben. */
+.sp-fakt-preis .sp-fakt-v{font-size:clamp(1.3rem,3vw,1.6rem);color:var(--accent-ink)}
+.sp-abgrenzung{margin-top:clamp(36px,5vw,60px);padding-top:var(--s5);
+  border-top:1px solid var(--line)}

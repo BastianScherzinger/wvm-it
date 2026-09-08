@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% comment %}
+Eine Aufgabe, ein Festpreis, ein Formular (docs/PLAN-HARDWARE-2026-09-08.md).
+
+Der Unterschied zu leistung.html ist bewusst und trägt das ganze Silo: Dort steht
+ein ab-Preis für eine Betreuung, hier ein **Festpreis für einen abgeschlossenen
+Vorgang**. Deshalb sitzt der Preis oben und gross — wer hier landet, sucht eine
+Zahl, keine Spanne — und deshalb gibt es den Abschnitt „was nicht enthalten ist"
+direkt darunter. Ein Festpreis ohne Grenze ist keiner.
+
+Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
+`einrichten.<slug>`, alle Zahlen aus ANGEBOT_GROUPS.
+{% endcomment %}
+{% block titel %}{{ seite.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ seite.desc|safe }}{% endblock %}
+{% block og_titel %}{{ seite.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ seite.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ seite.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ seite.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<article class="sp">
+
+  <header class="sp-top on-dark">
+    <div class="wrap">
+      <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+        <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <a href="{% url 'einrichtungen' %}">{{ t.seite.einrichten|safe }}</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ seite.nav|safe }}</span>
+      </nav>
+
+      <div class="sp-top-grid">
+        <div>
+          <h1>{{ seite.h1|safe }}</h1>
+          {% include 'antwort.html' with text=seite.kurz %}
+          <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+            {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+            {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+            <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+          </div>
+        </div>
+
+        {% comment %}Der Preis steht hier oben und gross — auf dem Handy ohne Scrollen
+        sichtbar. Er ist der Grund, warum jemand auf dieser Seite bleibt.{% endcomment %}
+        <aside class="sp-fakten">
+          <div class="sp-fakt sp-fakt-preis">
+            <span class="sp-fakt-l">{{ t.seite.preis_kurz|safe }}</span>
+            <strong class="sp-fakt-v">{{ seite.preis_label }}</strong>
+          </div>
+          <div class="sp-fakt">
+            <span class="sp-fakt-l">{% if seite.vor_ort %}{{ t.seite.vorort_h|safe }}{% else %}{{ t.seite.remote_h|safe }}{% endif %}</span>
+            <p class="sp-fakt-t">{% if seite.vor_ort %}{{ t.seite.vorort_t|safe }}{% else %}{{ t.seite.remote_t|safe }}{% endif %}</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap sp-grid">
+      <div class="sp-main">
+        <p class="sp-intro">{{ seite.intro|safe }}</p>
+
+        {% if seite.leistungen %}
+        <h2 class="sp-h2" id="enthalten">{{ seite.leistungen_h|safe }}</h2>
+        <ul class="sp-liste">
+          {% for punkt in seite.leistungen %}
+          <li>{% include 'icons.html' with name='check' %}<span>{{ punkt|safe }}</span></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% comment %}Ein Festpreis ohne Grenze ist keiner. Dieser Abschnitt steht
+        deshalb direkt hinter der Leistungsliste und nicht im Kleingedruckten.{% endcomment %}
+        {% if seite.nicht_t %}
+        <h2 class="sp-h2" id="nicht-enthalten">{{ seite.nicht_h|safe }}</h2>
+        <p class="sp-preis-text">{{ seite.nicht_t|safe }}</p>
+        {% endif %}
+
+        {% if seite.ablauf %}
+        <h2 class="sp-h2" id="ablauf">{{ seite.ablauf_h|safe }}</h2>
+        <ol class="hb-schritte">
+          {% for s in seite.ablauf %}
+          <li class="hb-schritt">
+            <h3 class="hb-schritt-h">{{ s.h|safe }}</h3>
+            <p class="hb-schritt-t">{{ s.t|safe }}</p>
+          </li>
+          {% endfor %}
+        </ol>
+        {% endif %}
+
+        {% if seite.fern_t %}
+        <h2 class="sp-h2" id="fernwartung">{{ seite.fern_h|safe }}</h2>
+        <p class="sp-preis-text">{{ seite.fern_t|safe }}</p>
+        {% endif %}
+
+        {% comment %}Die Abgrenzung zu /leistungen/ wird ausgesprochen, nicht
+        angedeutet — sonst konkurrieren beide Seiten um dieselbe Anfrage
+        (siehe Plan §2.2 und den Kopf von landing/einrichtungen.py).{% endcomment %}
+        {% if leistung %}
+        <div class="sp-abgrenzung" data-reveal>
+          <h2 class="sp-h2" id="laufend">{{ hub.abgrenzung_h|safe }}</h2>
+          <p class="sp-preis-text">{{ hub.abgrenzung_t|safe }}</p>
+          <p class="lk-alle"><a href="{{ leistung.url }}">{{ leistung.h1|safe }} →</a></p>
+        </div>
+        {% endif %}
+
+        {% if seite.faq %}
+        <h2 class="sp-h2" id="faq">{{ seite.faq_h|safe }}</h2>
+        <div class="faq">
+          {% for f in seite.faq %}
+          <details class="faq-item"{% if forloop.first %} open{% endif %}>
+            <summary class="faq-q">
+              <h3 class="faq-q-h">{{ f.q|safe }}</h3>
+              <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </summary>
+            <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+          </details>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if verwandte %}
+        <h2 class="sp-h2" id="weitere">{{ hub.h1|safe }}</h2>
+        <div class="lk-grid">
+          {% for e in verwandte %}
+          <a class="lk spot" href="{{ e.url }}" data-spot>
+            <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=e.icon %}</span>
+            <h3 class="lk-h">{{ e.nav|safe }}</h3>
+            <p class="lk-t">{{ e.desc|safe }}</p>
+            <span class="lk-p">{{ e.preis_label }}</span>
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <p class="sp-fuss">{{ preis_stand }}</p>
+      </div>
+
+      <div class="sp-aside">
+        {% include 'anfrage_karte.html' with bid=seite.quelle titel=seite.cta_h sub=seite.cta_t ph=seite.problem_h %}
+      </div>
+    </div>
+  </section>
+
+  {% if passt_dazu %}
+  <section class="section section-alt">
+    <div class="wrap">
+      <h2 class="sp-h2">{{ t.seite.passt_dazu|safe }}</h2>
+      <div class="lk-grid">
+        {% for p in passt_dazu %}
+        <a class="lk spot" href="{{ p.url }}" data-spot>
+          <h3 class="lk-h">{{ p.titel|safe }}</h3>
+          <p class="lk-t">{{ p.kurz|safe }}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+</article>
+{% endblock %}

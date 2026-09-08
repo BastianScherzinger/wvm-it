@@ -26,7 +26,8 @@ from django.utils import translation
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import get_language
 
-from . import (beitraege, branchen, checklisten, glossar, i18n, leistungen, messung,
+from . import (beitraege, branchen, checklisten, einrichtungen,
+               glossar, i18n, leistungen, messung,
                regionen, selbsttest, stand, vergleiche)
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
@@ -2019,6 +2020,12 @@ def _seiten_pfade():
     # Menschen mit sofortigem Bedarf.
     pfade += [("/it-notfall/", "0.8", "monthly", True)]
     pfade += [("/it-sicherheit-test/", "0.7", "monthly", True)]
+    # Einrichtungen: hohe Prioritaet, weil sie die einzige Antwort auf eine
+    # Suchabsicht sind, die es bis zum 08.09.2026 auf dieser Website gar nicht
+    # gab — "ein einzelnes Geraet, jetzt, ohne Vertrag".
+    pfade += [("/einrichten/", "0.9", "monthly", True)]
+    pfade += [(f"/einrichten/{e['slug']}/", e["prio"], "monthly", True)
+              for e in einrichtungen.EINRICHTUNGEN]
     pfade += [("/vergleich/", "0.7", "monthly", True)]
     pfade += [(f"/vergleich/{v['slug']}/", v["prio"], "monthly", True)
               for v in vergleiche.VERGLEICHE]
@@ -2737,6 +2744,99 @@ def notfall(request):
         "regionen_liste": [_region_daten(r, lang) for r in regionen.REGIONEN],
         "structured_data": json.dumps(graph, ensure_ascii=False, separators=(",", ":")),
     })
+
+# ── Einrichtungen (docs/PLAN-HARDWARE-2026-09-08.md) ─────────────────────────
+# Das Silo fuer den Fall "ein einzelnes Geraet, jetzt, ohne Vertrag". Es
+# existiert, weil alle dreizehn Leistungsseiten um laufende Betreuung oder um
+# ein Projekt gebaut sind — und weil fuenf bezifferte Katalogpositionen keine
+# Landeseite hatten, sondern nur eine Zeile in der Preistabelle.
+# Die Abgrenzung zu /leistungen/ steht im Kopf von landing/einrichtungen.py.
+
+def _einrichtung_daten(eintrag, lang):
+    """Struktur + Texte + Preis-Label einer Einrichtung, fertig fuers Template."""
+    pack = i18n.get_pack(lang)
+    texte = pack.get("einrichten", {}).get(eintrag["slug"], {})
+    preise = _itempreise(lang)
+    return dict(
+        eintrag,
+        url=reverse("einrichtung", kwargs={"slug": eintrag["slug"]}),
+        preis_label=preise.get(eintrag["preis"], ""),
+        **texte,
+    )
+
+
+def einrichtungen_hub(request):
+    """/einrichten/ — Einstieg in alle Einrichtungen, mit Preis je Kachel."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    hub = pack.get("einrichten_hub", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    posten = [_einrichtung_daten(e, lang) for e in einrichtungen.EINRICHTUNGEN]
+    return render(request, "einrichtungen.html", {
+        "c": c, "hub": hub, "posten": posten,
+        "preis_stand": _preis_stand(lang),
+        "structured_data": _mit_itemlist(
+            _seiten_schema(c, lang, breadcrumb=_breadcrumb(
+                base, [(hub.get("h1", "Einrichten"), reverse("einrichtungen"))])),
+            _itemlist(base, reverse("einrichtungen"), hub.get("h1", ""),
+                      [(e.get("nav", e["slug"]), e["url"]) for e in posten])),
+    })
+
+
+def einrichtung_seite(request, slug):
+    """/einrichten/<slug>/ — eine Aufgabe, ein Festpreis, ein Formular.
+
+    Anders als eine Leistungsseite verkauft diese Seite einen **abgeschlossenen
+    Vorgang**. Deshalb traegt das Angebot im Schema den Katalogpreis als
+    Festpreis und nicht als ab-Preis: Wer hier landet, sucht eine Zahl, keine
+    Spanne."""
+    eintrag = einrichtungen.NACH_SLUG.get(slug)
+    if not eintrag:
+        raise Http404(slug)
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    hub = pack.get("einrichten_hub", {})
+    seite = _einrichtung_daten(eintrag, lang)
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = seite["url"]
+
+    posten = _ANGEBOT_INDEX.get(eintrag["preis"], {})
+    angebot = {"@type": "Offer", "priceCurrency": "EUR",
+               "availability": "https://schema.org/InStock", "url": f"{base}{pfad}"}
+    zahl = posten.get("once") or posten.get("mtl") or posten.get("yr") or posten.get("std")
+    if zahl:
+        angebot["price"] = str(zahl)
+    service = {
+        "@type": "Service", "@id": f"{base}{pfad}#service",
+        "name": seite.get("h1", ""), "description": seite.get("kurz", ""),
+        "provider": {"@id": f"{base}/#business"},
+        "areaServed": [{"@type": "Country", "name": "Österreich"},
+                       {"@type": "Country", "name": "Deutschland"}],
+        "offers": angebot,
+    }
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
+    return render(request, "einrichtung.html", {
+        "c": c, "hub": hub, "seite": seite, "anfrage_ok": anfrage_ok,
+        # Die Leistungsseite, zu der wechselseitig verlinkt wird — mit dem Satz,
+        # der die Trennung ausspricht (Kannibalisierung, siehe Plan §2.2).
+        "leistung": (_leistung_daten(leistungen.NACH_SLUG[eintrag["leistung"]], lang)
+                     if eintrag.get("leistung") in leistungen.NACH_SLUG else None),
+        "verwandte": [_einrichtung_daten(einrichtungen.NACH_SLUG[v], lang)
+                      for v in eintrag.get("verwandt", [])
+                      if v in einrichtungen.NACH_SLUG],
+        "passt_dazu": _passt_dazu(eintrag.get("thema", ""), lang),
+        "preis_stand": _preis_stand(lang),
+        "structured_data": _seiten_schema(
+            c, lang, service=service, faq=seite.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [
+                (hub.get("h1", "Einrichten"), reverse("einrichtungen")),
+                (seite.get("h1", slug), pfad)])),
+    })
+
 
 
 # ══ Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3) ═══════════════════════════════

@@ -81,6 +81,11 @@ urlpatterns += i18n_patterns(
     # ── Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3) ─────────────────────────
     # Eigene Suchabsicht: Jemand steht vor einer Entscheidung und hat noch
     # keinen Anbieter gewaehlt. Deshalb kein Unterpfad von /leistungen/.
+    # Einrichtungen: einzelne Aufgaben zum Festpreis, ohne Vertrag.
+    # Bewusst ein eigenes Silo neben /leistungen/ — die Abgrenzung steht im
+    # Kopf von landing/einrichtungen.py.
+    path("einrichten/", views.einrichtungen_hub, name="einrichtungen"),
+    path("einrichten/<slug:slug>/", views.einrichtung_seite, name="einrichtung"),
     path("vergleich/", views.vergleiche_hub, name="vergleiche"),
     path("vergleich/<slug:slug>/", views.vergleich_seite, name="vergleich"),
     # ── Regionen (docs/AUSBAU-2026-08.md, P6) ───────────────────────────────

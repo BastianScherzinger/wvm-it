@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% comment %}
+Hub des Einrichtungs-Silos (docs/PLAN-HARDWARE-2026-09-08.md).
+
+Der Unterschied zum Leistungs-Hub ist der Preis in der Kachel: Dort trägt die
+Kachel eine Beschreibung, hier trägt sie eine Zahl. Das ist die ganze Absicht des
+Silos — wer hier landet, sucht nicht einen Anbieter, sondern einen Preis für eine
+Aufgabe.
+{% endcomment %}
+{% block titel %}{{ hub.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ hub.desc|safe }}{% endblock %}
+{% block og_titel %}{{ hub.titel|safe }}{% endblock %}
+{% block og_beschreibung %}{{ hub.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ hub.titel|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ hub.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ t.seite.einrichten|safe }}</span>
+    </nav>
+    <h1>{{ hub.h1|safe }}</h1>
+    {% include 'antwort.html' with text=hub.kurz %}
+    <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+      {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+      <a class="way" href="{% url 'kontakt' %}">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <p class="hb-intro" data-reveal>{{ hub.intro|safe }}</p>
+
+    <div class="ein-grid" data-reveal>
+      {% for e in posten %}
+      <a class="ein-karte spot" href="{{ e.url }}" data-spot>
+        <span class="ein-ic" aria-hidden="true">{% include 'icons.html' with name=e.icon %}</span>
+        <h2 class="ein-h">{{ e.nav|safe }}</h2>
+        <p class="ein-t">{{ e.desc|safe }}</p>
+        <span class="ein-preis">{{ e.preis_label }}</span>
+      </a>
+      {% endfor %}
+    </div>
+
+    {% comment %}Die Abgrenzung gehört auf den Hub, nicht nur auf die
+    Einzelseiten: Wer hier falsch ist, soll es hier merken.{% endcomment %}
+    <div class="hb-text" data-reveal>
+      <h2 class="sp-h2" id="laufend">{{ hub.abgrenzung_h|safe }}</h2>
+      <p>{{ hub.abgrenzung_t|safe }}</p>
+      <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.leistungen|safe }} →</a></p>
+    </div>
+
+    <p class="sp-fuss">{{ preis_stand }}</p>
+  </div>
+</section>
+{% endblock %}

@@ -5,12 +5,15 @@ from .seiten_ro import SEITEN
 from .regionen_ro import REGIONEN
 from .branchen_ro import BRANCHEN
 from .vergleiche_ro import VERGLEICHE
+from .einrichten_ro import EINRICHTEN, HUB as EINRICHTEN_HUB
 
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
     "branchen": BRANCHEN,
     "vergleiche": VERGLEICHE,
+    "einrichten": EINRICHTEN,
+    "einrichten_hub": EINRICHTEN_HUB,
     "meta": {
         "html_lang": "ro",
         "locale": "ro_RO",
@@ -523,6 +526,7 @@ PACK = {
         "brotkrume": "Vă aflați aici",
         "start": "Acasă",
         "leistungen": "Servicii",
+        "einrichten": "Configurare",
         "kurz_label": "Pe scurt",
         "preis_kurz": "Preț de pornire",
         "faq_folge_h": "Întrebări frecvente",

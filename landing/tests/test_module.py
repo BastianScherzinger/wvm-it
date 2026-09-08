@@ -44,7 +44,8 @@ from landing.views import _seiten_pfade
 # Wochenplaner (siehe `KonfigurationTest`).
 from config import settings as config_settings, urls as config_urls
 from landing.i18n import (beitraege_de, branchen_de, branchen_en, branchen_ro,
-                          checklisten_de, de, en, glossar_de, regionen_de,
+                          checklisten_de, de, einrichten_de, einrichten_en,
+                          einrichten_ro, en, glossar_de, regionen_de,
                           regionen_en, regionen_ro, ro, seiten_de, seiten_en,
                           seiten_ro, vergleiche_de, vergleiche_en, vergleiche_ro)
 from landing.management.commands import (indexnow, messung as befehl_messung,
@@ -56,7 +57,8 @@ from landing.management.commands import (indexnow, messung as befehl_messung,
 # Gegenproben unten laufen über diese Tupel und melden jede Datei, die dazukommt
 # und hier fehlt.
 SPRACHMODULE = (beitraege_de, branchen_de, branchen_en, branchen_ro,
-                checklisten_de, de, en, glossar_de, regionen_de, regionen_en,
+                checklisten_de, de, einrichten_de, einrichten_en, einrichten_ro,
+                en, glossar_de, regionen_de, regionen_en,
                 regionen_ro, ro, seiten_de, seiten_en, seiten_ro, vergleiche_de,
                 vergleiche_en, vergleiche_ro)
 BEFEHLE = (indexnow, befehl_messung, pruefe_mail, pruefe_seite,
