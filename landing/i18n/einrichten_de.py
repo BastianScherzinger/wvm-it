@@ -191,6 +191,527 @@ EINRICHTEN = {
                  "bisherigen sind. Antwort innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
+
+    # ════════════════════════════════════════════════════════════════════════
+    "windows-11": {
+        "titel": "Windows 11 Umstellung im Betrieb — 190 € je Gerät | WVM-IT",
+        "desc": "Windows 10 bekommt seit Oktober 2025 keine Sicherheitsupdates mehr. "
+                "Umstellung je Arbeitsplatz 190 €, inklusive Prüfung der Programme. "
+                "Jetzt anfragen.",
+        "h1": "Windows 11 im Betrieb: umstellen oder Gerät tauschen?",
+        "nav": "Windows 11",
+        "kurz": "Windows 10 erhält seit Oktober 2025 keine Sicherheitsupdates mehr. "
+                "WVM-IT prüft je Arbeitsplatz, ob das Gerät Windows 11 überhaupt "
+                "unterstützt und ob die eingesetzten Programme darauf laufen, und "
+                "stellt dann um — für 190 € je Arbeitsplatz. Wo die Hardware nicht "
+                "mitkommt, sagen wir es vorher, statt es beim Umstieg herauszufinden.",
+        "intro": "Der Übergang wird gern verschoben, weil nichts weh tut: Windows 10 "
+                 "startet weiter, die Programme laufen, es sieht aus wie immer. "
+                 "Fehlende Sicherheitsupdates merkt man nicht — bis der Tag kommt, an "
+                 "dem sie gefehlt hätten. Aus derselben Ruhe entsteht die zweite Falle: "
+                 "Wer erst umstellt, wenn es eilig ist, entdeckt am selben Tag, dass "
+                 "zwei Rechner die Voraussetzungen nicht erfüllen und die "
+                 "Branchensoftware eine neue Version braucht.",
+
+        "leistungen_h": "Was für 190 € je Arbeitsplatz enthalten ist",
+        "leistungen": [
+            "Prüfung, ob das Gerät Windows 11 unterstützt — Prozessor, Speicher, "
+            "TPM 2.0, Secure Boot",
+            "Prüfung, ob die eingesetzten Programme darauf laufen, besonders Branchen- "
+            "und Buchhaltungssoftware",
+            "Die Umstellung selbst, mit vorheriger Sicherung",
+            "Einstellungen, Konten, Drucker und Netzlaufwerke wie vorher",
+            "Nacharbeit: Was nach dem Umstieg anders aussieht, wird zurechtgerückt",
+            "Eine Liste der Geräte, die nicht mitkommen — mit dem, was ein Ersatz kostet",
+        ],
+        "nicht_h": "Was nicht enthalten ist",
+        "nicht_t": "Neue Hardware und Lizenzen für Programme, die eine aktuellere "
+                   "Version brauchen. Erfüllt ein Gerät die Voraussetzungen nicht, ist "
+                   "die Prüfung trotzdem sinnvoll — sie kostet dann nichts extra, und "
+                   "Sie wissen, woran Sie sind. Wird daraus ein Gerätetausch, gilt "
+                   "derselbe Preis wie beim Rechnerwechsel, nicht beides zusammen.",
+
+        "ablauf_h": "Wie es abläuft",
+        "ablauf": [
+            {"h": "Bestandsaufnahme", "t": "Wir sehen uns alle Arbeitsplätze an und "
+             "sortieren sie in drei Gruppen: geht sofort, geht mit Aufwand, geht nicht."},
+            {"h": "Ein Gerät zuerst", "t": "Umgestellt wird zunächst ein einzelner "
+             "Arbeitsplatz — der, an dem die kritischste Software läuft. Erst wenn dort "
+             "eine Woche nichts auffällt, folgt der Rest."},
+            {"h": "Der Rest, in Gruppen", "t": "Nicht alle an einem Tag. So bleibt der "
+             "Betrieb arbeitsfähig, auch wenn etwas nachgezogen werden muss."},
+        ],
+
+        "fern_h": "Was passiert mit Geräten, die nicht mitkommen?",
+        "fern_t": "Es gibt drei Wege, und wir sagen offen, welcher wann trägt. Ist der "
+                  "Rechner sonst gesund und scheitert nur an TPM 2.0, lässt sich das "
+                  "bei vielen Geräten im BIOS nachträglich aktivieren — dann kostet es "
+                  "nichts weiter. Ist er älter als etwa sechs Jahre, lohnt der Ersatz. "
+                  "Und für Maschinensteuerungen, die zwingend auf einer alten "
+                  "Windows-Version laufen müssen, gibt es einen vierten Weg: Sie werden "
+                  "vom übrigen Netz getrennt, statt sie umzustellen.",
+
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            {"q": "Wie dringend ist das wirklich?",
+             "a": "Ohne Sicherheitsupdates bleibt jede neu gefundene Lücke dauerhaft "
+                  "offen. Das ist kein Zustand, der nach einer Frist schlagartig "
+                  "gefährlich wird, sondern einer, der jeden Monat etwas schlechter "
+                  "wird. Wer noch auf Windows 10 arbeitet, sollte den Umstieg planen — "
+                  "nicht heute Nacht, aber in diesem Quartal."},
+            {"q": "Läuft unsere Branchensoftware unter Windows 11?",
+             "a": "Das prüfen wir vor der Umstellung, nicht danach. Bei den meisten "
+                  "Programmen ist es unproblematisch; bei älteren Fachanwendungen "
+                  "fragen wir beim Hersteller nach und sagen Ihnen, was eine aktuelle "
+                  "Version kostet, bevor irgendetwas angefasst wird."},
+            {"q": "Können wir bei Windows 10 bleiben und dafür bezahlen?",
+             "a": "Microsoft bietet für Unternehmen erweiterte Sicherheitsupdates gegen "
+                  "Gebühr an, die von Jahr zu Jahr teurer werden. Das kann für einzelne "
+                  "Sonderfälle sinnvoll sein — als Dauerlösung für einen ganzen Betrieb "
+                  "rechnet es sich fast nie gegen die Umstellung."},
+            {"q": "Was ist mit Rechnern, die nur eine Maschine steuern?",
+             "a": "Die stellen wir in der Regel nicht um. Eine Steuerung, die seit "
+                  "Jahren läuft, anzufassen ist das größere Risiko. Der richtige Weg "
+                  "ist, sie vom übrigen Netz zu trennen — dazu gibt es einen eigenen "
+                  "Fachbeitrag."},
+        ],
+
+        "cta_h": "Umstellung anfragen",
+        "cta_t": "Schreiben Sie kurz, wie viele Arbeitsplätze noch auf Windows 10 "
+                 "laufen. Antwort innerhalb von 24 Stunden.",
+        "problem_h": "Worum geht es?",
+    },
+
+    # ════════════════════════════════════════════════════════════════════════
+    "microsoft-365": {
+        "titel": "Microsoft 365 einrichten lassen — 290 € Festpreis | WVM-IT",
+        "desc": "Postfächer, Teams, OneDrive und SharePoint sauber eingerichtet: 290 € "
+                "Festpreis, inklusive Umzug der alten E-Mails. Jetzt anfragen.",
+        "h1": "Microsoft 365 einrichten — einmal richtig statt dreimal halb",
+        "nav": "Microsoft 365",
+        "kurz": "WVM-IT richtet Microsoft 365 für 290 € ein: Postfächer und Aliasse, "
+                "Zwei-Faktor-Anmeldung, Teams, OneDrive und die gemeinsamen Ablagen in "
+                "SharePoint, dazu den Umzug der bestehenden E-Mails samt Ordnern und "
+                "Kalendern. Der Preis gilt für die Einrichtung; die Lizenzen zahlen Sie "
+                "direkt an Microsoft.",
+        "intro": "Microsoft 365 ist in zehn Minuten gekauft und in zehn Monaten immer "
+                 "noch nicht richtig eingerichtet. Das ist der Normalfall: Die "
+                 "Postfächer laufen, alles andere wird nach und nach danebengestellt. "
+                 "Dateien liegen dreifach — im OneDrive einer Person, im Anhang einer "
+                 "Mail und auf dem alten Server. Wer geht, nimmt seinen Zugriff mit. "
+                 "Und niemand weiß, wo die aktuelle Fassung des Angebots liegt.",
+
+        "leistungen_h": "Was für 290 € enthalten ist",
+        "leistungen": [
+            "Postfächer, Aliasse, Verteiler und gemeinsame Postfächer",
+            "Zwei-Faktor-Anmeldung für alle Konten — der wirksamste einzelne Schritt "
+            "gegen übernommene Konten",
+            "Umzug der bestehenden E-Mails mit Ordnern, Kalendern und Kontakten",
+            "Teams mit einer Struktur, die zum Betrieb passt statt zum Werbevideo",
+            "OneDrive und SharePoint getrennt: persönlich und gemeinsam, damit klar "
+            "ist, was beim Austritt bleibt",
+            "Rechte: wer sieht was, und was passiert, wenn jemand geht",
+            "Einrichtung auf den Arbeitsplätzen und auf den Telefonen",
+        ],
+        "nicht_h": "Was nicht enthalten ist",
+        "nicht_t": "Die Lizenzen. Die kaufen Sie direkt bei Microsoft oder über einen "
+                   "Händler — wir schlagen nichts darauf. Welche Lizenzstufe Sie "
+                   "brauchen, sagen wir vorher: Für die meisten Betriebe reicht die "
+                   "kleinere, und der Unterschied kostet je Person und Jahr mehr als "
+                   "diese Einrichtung einmalig.",
+
+        "ablauf_h": "Wie es abläuft",
+        "ablauf": [
+            {"h": "Was soll wohin", "t": "Ein Gespräch über die Struktur: welche "
+             "Abteilungen, welche gemeinsamen Ablagen, wer darf was sehen. Das ist der "
+             "Teil, der später Ärger spart."},
+            {"h": "Einrichtung und Umzug", "t": "Die Postfächer werden umgezogen, "
+             "während die alten weiterlaufen. Es gibt keinen Tag ohne E-Mail."},
+            {"h": "Umschalten und einweisen", "t": "Die Umstellung fällt auf einen "
+             "Abend. Am nächsten Morgen zeigen wir, was sich geändert hat."},
+        ],
+
+        "fern_h": "Warum die Struktur wichtiger ist als die Einrichtung",
+        "fern_t": "Ein Postfach einzurichten dauert Minuten. Die Frage, die Jahre "
+                  "später zählt, ist eine andere: Wo liegen die Dateien, die mehreren "
+                  "gehören? Wer wochenlang in OneDrive arbeitet, hat seine Dokumente "
+                  "persönlich abgelegt — und wenn diese Person den Betrieb verlässt, "
+                  "gehen sie mit ihrem Konto. Deshalb wird hier von Anfang an getrennt: "
+                  "persönlich in OneDrive, gemeinsam in SharePoint. Das ist unbequemer "
+                  "am ersten Tag und der Unterschied beim ersten Austritt.",
+
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            {"q": "Verlieren wir alte E-Mails beim Umzug?",
+             "a": "Nein. Die Postfächer werden mit Ordnerstruktur, Kalendern und "
+                  "Kontakten übernommen, und die alten laufen während des Umzugs "
+                  "weiter. Erst wenn alles da ist, wird umgeschaltet."},
+            {"q": "Gilt der Preis unabhängig von der Anzahl der Postfächer?",
+             "a": "Für einen üblichen Betrieb bis etwa fünfzehn Postfächer ja. Darüber "
+                  "sagen wir vorher, was dazukommt — meist ist es weniger, als man "
+                  "denkt, weil die Struktur nur einmal gebaut wird."},
+            {"q": "Wir haben schon Microsoft 365, aber es ist unordentlich.",
+             "a": "Das ist der häufigere Fall. Dann geht es nicht um Einrichtung, "
+                  "sondern um Aufräumen: Rechte sortieren, Ablagen zusammenführen, "
+                  "Zwei-Faktor nachziehen. Das rechnen wir nach Aufwand, weil sich der "
+                  "Umfang vorher nicht beziffern lässt — nach einer kurzen Sichtung "
+                  "nennen wir eine Obergrenze."},
+        ],
+
+        "cta_h": "Microsoft 365 anfragen",
+        "cta_t": "Schreiben Sie kurz, wie viele Postfächer es werden und ob schon etwas "
+                 "besteht. Antwort innerhalb von 24 Stunden.",
+        "problem_h": "Worum geht es?",
+    },
+
+    # ════════════════════════════════════════════════════════════════════════
+    "server": {
+        "titel": "Server einrichten lassen für kleine Firmen | WVM-IT",
+        "desc": "Server aufsetzen: Benutzer, Freigaben, Rechte, Sicherung — im Haus "
+                "oder virtuell. Preis nach Aufnahme, Betreuung ab 89 €/Monat. "
+                "Jetzt anfragen.",
+        "h1": "Einen Server einrichten, der auch in fünf Jahren noch trägt",
+        "nav": "Server einrichten",
+        "kurz": "WVM-IT setzt Server für kleine und mittlere Betriebe auf: "
+                "Betriebssystem, Benutzer und Rechte, gemeinsame Freigaben, "
+                "Datensicherung und Fernzugriff — im Haus oder virtuell. Was das "
+                "kostet, sagen wir nach einer Bestandsaufnahme, weil es an Größe, "
+                "vorhandener Technik und Anforderungen hängt. Die laufende Überwachung "
+                "danach beginnt bei 89 € im Monat.",
+        "intro": "Ein Server ist keine Anschaffung, sondern eine Entscheidung für die "
+                 "nächsten fünf Jahre. Die meisten Fehler dabei passieren nicht bei der "
+                 "Hardware, sondern bei der Struktur: Freigaben, die historisch "
+                 "gewachsen sind, Rechte, die niemand mehr erklären kann, und eine "
+                 "Sicherung, die zwar läuft, aber nie zurückgespielt wurde. Deshalb "
+                 "steht am Anfang eine Aufnahme dessen, was da ist — und erst danach "
+                 "ein Preis.",
+
+        "leistungen_h": "Was dazugehört",
+        "leistungen": [
+            "Beratung, ob überhaupt ein Server nötig ist — für manche Betriebe ist die "
+            "Cloud der günstigere Weg, und das sagen wir dann auch",
+            "Betriebssystem, Grundhärtung und Updates",
+            "Benutzer, Gruppen und Rechte in einer Struktur, die man später noch "
+            "erklären kann",
+            "Gemeinsame Freigaben, sauber getrennt nach Abteilung und Zweck",
+            "Datensicherung, getrennt vom Server aufbewahrt — und eine "
+            "Test-Wiederherstellung, bevor wir fertig sind",
+            "Fernzugriff über VPN, wo er gebraucht wird",
+            "Dokumentation, mit der auch ein anderer Dienstleister weiterarbeiten kann",
+        ],
+        "nicht_h": "Warum hier kein Festpreis steht",
+        "nicht_t": "Weil er nicht zu halten wäre. Ob ein Betrieb einen kleinen Server "
+                   "für Dateien braucht oder eine Maschine, auf der die Branchensoftware "
+                   "für zwanzig Leute läuft, macht einen Unterschied von Tagen. Wir "
+                   "nennen den Preis schriftlich nach der Bestandsaufnahme — vor dem "
+                   "ersten Handgriff, und dann gilt er. Die Bestandsaufnahme selbst "
+                   "rechnen wir nach Stunde ab (95 € per Fernwartung, 120 € vor Ort "
+                   "zuzüglich Anfahrt); wird daraus ein Auftrag, wird sie angerechnet.",
+
+        "ablauf_h": "Wie es abläuft",
+        "ablauf": [
+            {"h": "Bestandsaufnahme", "t": "Was steht heute da, was muss darauf laufen, "
+             "wie viele Menschen greifen zu, was ist die längste Ausfallzeit, die der "
+             "Betrieb verkraftet."},
+            {"h": "Angebot mit Zahlen", "t": "Schriftlich, mit Hardware, Arbeit und "
+             "laufenden Kosten getrennt. Wenn die Cloud günstiger wäre, steht das "
+             "darin."},
+            {"h": "Aufbau und Übergabe", "t": "Eingerichtet wird außerhalb der "
+             "Arbeitszeit. Zur Übergabe gehört eine getestete Wiederherstellung — eine "
+             "Sicherung, die nie zurückgespielt wurde, ist eine Hoffnung."},
+        ],
+
+        "fern_h": "Server im Haus oder in der Cloud?",
+        "fern_t": "Die Frage steht vor der Einrichtung, und die Antwort ist nicht immer "
+                  "der Server. Für Betriebe, deren Arbeit an einer Software hängt, die "
+                  "einen Server verlangt, oder die große Datenmengen im Haus bewegen, "
+                  "bleibt er die richtige Wahl. Wer vor allem Dateien teilt und E-Mails "
+                  "schreibt, fährt mit der Cloud meist günstiger und unkomplizierter. "
+                  "Wir rechnen beides über drei Jahre durch — einschließlich Strom, "
+                  "unterbrechungsfreier Stromversorgung und der Zeit für Updates, die "
+                  "in einem reinen Anschaffungsvergleich fehlen.",
+
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            {"q": "Wie lange dauert die Einrichtung?",
+             "a": "Ein Dateiserver für einen kleinen Betrieb steht an einem Tag. Kommen "
+                  "Branchensoftware, Terminaldienste oder ein Umzug bestehender Daten "
+                  "dazu, werden es zwei bis vier. Den Rahmen nennen wir im Angebot."},
+            {"q": "Müssen wir danach eine Betreuung abschließen?",
+             "a": "Nein. Sie bekommen die Dokumentation und die Zugänge und können "
+                  "damit arbeiten oder jemand anderen beauftragen. Wenn Sie die "
+                  "Überwachung möchten, beginnt sie bei 89 € im Monat — dann sehen wir "
+                  "Speicherplatz, Auslastung und fehlgeschlagene Sicherungen, bevor Sie "
+                  "es merken."},
+            {"q": "Wir haben schon einen Server, aber niemand kennt sich mehr aus.",
+             "a": "Auch das ist ein häufiger Fall. Dann steht am Anfang eine Aufnahme "
+                  "dessen, was läuft, und eine ehrliche Einschätzung: weiterbetreiben, "
+                  "neu aufsetzen oder ablösen. Ein System zu übernehmen, das niemand "
+                  "dokumentiert hat, ist Arbeit — aber meist weniger als ein Neubau."},
+        ],
+
+        "cta_h": "Server-Einrichtung anfragen",
+        "cta_t": "Schreiben Sie kurz, wie viele Arbeitsplätze zugreifen und was auf dem "
+                 "Server laufen soll. Antwort innerhalb von 24 Stunden.",
+        "problem_h": "Worum geht es?",
+    },
+
+    # ════════════════════════════════════════════════════════════════════════
+    "netzwerk": {
+        "titel": "Netzwerk einrichten im Büro — ab 890 € | WVM-IT",
+        "desc": "Router, Switch, WLAN, Drucker im Netz und ein getrenntes Gastnetz — "
+                "eingerichtet und ausgemessen ab 890 €. Jetzt anfragen.",
+        "h1": "Netzwerk einrichten, das im ganzen Haus trägt",
+        "nav": "Netzwerk einrichten",
+        "kurz": "WVM-IT richtet Firmennetzwerke ab 890 € ein: Router und Switch "
+                "konfigurieren, WLAN so aufstellen und ausmessen, dass es überall "
+                "trägt, Drucker und Netzlaufwerke einbinden, ein getrenntes Gastnetz "
+                "aufsetzen. Für Verkabelung, Hallen und mehrere Stockwerke rechnen wir "
+                "nach Aufnahme — der Startpreis gilt für ein Büro üblicher Größe.",
+        "intro": "Netzwerkprobleme sind selten laut. Sie zeigen sich als Video, das im "
+                 "hinteren Besprechungsraum hakt, als Drucker, der zweimal die Woche "
+                 "verschwindet, und als Kasse, die neben dem WLAN der Gäste hängt, weil "
+                 "es damals gerade praktisch war. Fast immer liegt es an derselben "
+                 "Sache: Das Netz ist gewachsen und nie geplant worden.",
+
+        "leistungen_h": "Was für 890 € enthalten ist",
+        "leistungen": [
+            "Router und Switch eingerichtet — Adressbereiche, Namen, feste Adressen für "
+            "alles, was erreichbar bleiben muss",
+            "WLAN aufgestellt und ausgemessen: Kanäle, Sendeleistung, Übergänge "
+            "zwischen den Zugangspunkten",
+            "Getrennte Netze für Betrieb, Gäste und Technik — ein Gast hat auf dem "
+            "Firmennetz nichts verloren, und eine Kasse gehört nicht ins Gäste-WLAN",
+            "Drucker und Netzlaufwerke eingebunden, mit festen Adressen",
+            "Fernzugriff vorbereitet, wo er gebraucht wird",
+            "Eine Übersicht, was wo hängt — mit Namen, Adressen und Zugängen",
+        ],
+        "nicht_h": "Was nicht enthalten ist",
+        "nicht_t": "Die Geräte und die Verkabelung. Kabel durch ein bestehendes Gebäude "
+                   "zu ziehen ist Arbeit, die sich nicht pauschal beziffern lässt — sie "
+                   "kommt nach Aufnahme dazu. Ebenso Hallen, Außenbereiche und mehrere "
+                   "Stockwerke: Dort geht es um Ausmessung und Planung, und das steht "
+                   "als eigenes Projekt auf der Leistungsseite.",
+
+        "ablauf_h": "Wie es abläuft",
+        "ablauf": [
+            {"h": "Ansehen und messen", "t": "Vor Ort: Wo steht was, wo wird "
+             "gearbeitet, wo ist heute Funkloch. Die Messung entscheidet über die Zahl "
+             "der Zugangspunkte — geraten wird hier nicht."},
+            {"h": "Einrichten", "t": "Meist an einem Tag, möglichst außerhalb der "
+             "Arbeitszeit. Das alte Netz bleibt bis zur Umschaltung in Betrieb."},
+            {"h": "Nachmessen und übergeben", "t": "Nach dem Aufbau wird noch einmal "
+             "gemessen, an denselben Stellen wie vorher. Sie bekommen beide Werte."},
+        ],
+
+        "fern_h": "Warum Gäste ein eigenes Netz brauchen",
+        "fern_t": "Ein Gerät im Firmennetz kann andere Geräte im Firmennetz sehen — das "
+                  "ist der Sinn eines Netzwerks und zugleich sein Risiko. Das Notebook "
+                  "eines Besuchers, das Telefon eines Handwerkers oder ein Fernseher im "
+                  "Besprechungsraum sind Geräte, über die niemand im Betrieb die "
+                  "Kontrolle hat. Sie gehören in ein eigenes Netz, das ins Internet darf "
+                  "und sonst nirgendwohin. Das kostet bei der Einrichtung nichts extra "
+                  "und ist hinterher kaum noch nachzurüsten, ohne alles anzufassen.",
+
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            {"q": "Unser WLAN ist im hinteren Raum schlecht. Reicht ein Verstärker?",
+             "a": "Selten. Ein Verstärker wiederholt auch ein schwaches Signal und "
+                  "halbiert dabei die Geschwindigkeit. Besser ist ein zweiter "
+                  "Zugangspunkt mit Kabel — wo der hingehört, sagt die Messung und "
+                  "nicht das Bauchgefühl."},
+            {"q": "Können wir unsere vorhandenen Geräte weiterverwenden?",
+             "a": "Oft ja. Wir sehen sie uns an und sagen, was bleibt und was ersetzt "
+                  "werden sollte. Bei Geräten aus dem Elektromarkt ist der Ersatz meist "
+                  "sinnvoll, weil sie getrennte Netze gar nicht können."},
+            {"q": "Wie unterscheidet sich das von der Netzwerk-Leistungsseite?",
+             "a": "Hier geht es um die Einrichtung eines üblichen Büros zum Festpreis. "
+                  "Sobald Verkabelung, Hallen, Außenbereiche oder mehrere Stockwerke "
+                  "dazukommen, ist es ein Projekt mit Planung und Ausmessung — das "
+                  "steht auf der Leistungsseite und wird nach Aufnahme gerechnet."},
+        ],
+
+        "cta_h": "Netzwerk-Einrichtung anfragen",
+        "cta_t": "Schreiben Sie kurz, wie groß die Fläche ist und wie viele Geräte ins "
+                 "Netz sollen. Antwort innerhalb von 24 Stunden.",
+        "problem_h": "Worum geht es?",
+    },
+
+    # ════════════════════════════════════════════════════════════════════════
+    "firewall-vpn": {
+        "titel": "Firewall und VPN einrichten — 690 € Festpreis | WVM-IT",
+        "desc": "Firewall aufgesetzt und VPN für den Zugriff von unterwegs: 690 € "
+                "Festpreis, mit Regeln, die man später noch versteht. Jetzt anfragen.",
+        "h1": "Firewall und VPN einrichten — Zugriff von außen, ohne offene Tür",
+        "nav": "Firewall und VPN",
+        "kurz": "WVM-IT richtet Firewall und VPN für 690 € ein: Regeln nach dem "
+                "Grundsatz, dass zu ist was nicht gebraucht wird, VPN-Zugänge für alle, "
+                "die von unterwegs arbeiten, und eine schriftliche Übersicht, welche "
+                "Regel wofür da ist. Läuft per Fernwartung, sobald das Gerät erreichbar "
+                "ist.",
+        "intro": "Die meisten Firewalls in kleinen Betrieben sind nicht falsch "
+                 "eingestellt, sondern gar nicht: Der Router vom Anbieter macht, was er "
+                 "beim Auspacken gemacht hat, und irgendwann hat jemand eine "
+                 "Weiterleitung eingerichtet, damit die Buchhaltung von zu Hause "
+                 "arbeiten kann. Diese eine Weiterleitung ist dann jahrelang offen — "
+                 "und niemand weiß mehr, wofür sie war.",
+
+        "leistungen_h": "Was für 690 € enthalten ist",
+        "leistungen": [
+            "Firewall eingerichtet: geschlossen als Ausgangspunkt, offen nur, was "
+            "gebraucht wird",
+            "Bestehende Weiterleitungen aufgeräumt — jede, die niemand erklären kann, "
+            "wird geschlossen",
+            "VPN für den Zugriff von unterwegs, auf Rechnern und Telefonen eingerichtet",
+            "Zwei-Faktor für den VPN-Zugang, wo das Gerät es unterstützt",
+            "Getrennte Regeln für Betrieb, Gäste und Technik",
+            "Eine Übersicht in Klartext: welche Regel, wofür, seit wann",
+        ],
+        "nicht_h": "Was nicht enthalten ist",
+        "nicht_t": "Das Gerät selbst. Ein Router aus dem Elektromarkt kann vieles davon "
+                   "nicht — vor allem keine sauber getrennten Netze und kein VPN mit "
+                   "Zwei-Faktor. Was ein passendes Gerät kostet, sagen wir vorher; für "
+                   "einen kleinen Betrieb liegt es meist deutlich unter dieser "
+                   "Einrichtung.",
+
+        "ablauf_h": "Wie es abläuft",
+        "ablauf": [
+            {"h": "Ansehen, was offen ist", "t": "Zuerst die Bestandsaufnahme: welche "
+             "Weiterleitungen existieren, wer greift heute von außen zu, worüber. Diese "
+             "Liste überrascht fast immer."},
+            {"h": "Einrichten", "t": "Die neuen Regeln werden aufgesetzt, während die "
+             "alten noch gelten. Umgeschaltet wird zu einem abgesprochenen Zeitpunkt."},
+            {"h": "Zugänge verteilen", "t": "Jede Person, die von unterwegs arbeitet, "
+             "bekommt ihren eigenen Zugang — keine gemeinsamen. Sonst weiß man beim "
+             "Austritt nicht, was man sperren muss."},
+        ],
+
+        "fern_h": "Warum jeder seinen eigenen Zugang bekommt",
+        "fern_t": "Ein gemeinsamer VPN-Zugang für alle ist bequem und genau einmal ein "
+                  "Problem: an dem Tag, an dem jemand geht. Dann müsste der Zugang für "
+                  "alle geändert werden, also wird er es nicht — und ein ehemaliger "
+                  "Mitarbeiter kommt weiter ins Firmennetz. Mit eigenen Zugängen dauert "
+                  "das Sperren zehn Sekunden. Derselbe Gedanke steht hinter der "
+                  "Zwei-Faktor-Anmeldung: Ein Passwort allein reicht heute nicht mehr "
+                  "für eine Tür, die von überall auf der Welt erreichbar ist.",
+
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            {"q": "Wir haben doch schon eine Firewall im Router.",
+             "a": "Die haben Sie, und sie tut das Nötigste. Der Unterschied liegt nicht "
+                  "in der Existenz, sondern in den Regeln: getrennte Netze, "
+                  "nachvollziehbare Freigaben und ein VPN, das nicht auf einem "
+                  "gemeinsamen Passwort steht. Ob Ihr Gerät das kann, sehen wir uns "
+                  "vorher an."},
+            {"q": "Wird dadurch etwas langsamer?",
+             "a": "Beim Arbeiten im Haus nicht. Über VPN merkt man den Weg — was von "
+                  "unterwegs kommt, geht zweimal durchs Internet. Deshalb richten wir "
+                  "VPN für den Zugriff auf Dateien und Programme ein und nicht als "
+                  "Dauerleitung für alles."},
+            {"q": "Was, wenn wir dann von außen nicht mehr an etwas kommen?",
+             "a": "Genau deshalb steht die Bestandsaufnahme am Anfang. Was heute "
+                  "gebraucht wird, bleibt erreichbar — nur eben über einen Weg, den man "
+                  "kennt und abschalten kann. Geschlossen wird, was niemand erklären "
+                  "kann; und wenn sich später zeigt, dass es doch gebraucht wurde, ist "
+                  "es in Minuten wieder offen."},
+        ],
+
+        "cta_h": "Firewall und VPN anfragen",
+        "cta_t": "Schreiben Sie kurz, wie viele Personen von unterwegs arbeiten und "
+                 "welches Gerät heute im Einsatz ist. Antwort innerhalb von 24 Stunden.",
+        "problem_h": "Worum geht es?",
+    },
+
+    # ════════════════════════════════════════════════════════════════════════
+    "loxone": {
+        "titel": "Loxone einrichten und übernehmen lassen | WVM-IT",
+        "desc": "Bestehende Loxone- oder KNX-Anlage übernehmen, erweitern oder neu "
+                "programmieren — auch wenn niemand mehr erreichbar ist, der sie gebaut "
+                "hat. Jetzt anfragen.",
+        "h1": "Loxone einrichten — auch wenn sie schon steht",
+        "nav": "Loxone übernehmen",
+        "kurz": "WVM-IT übernimmt bestehende Loxone- und KNX-Anlagen, erweitert sie und "
+                "programmiert sie um: Licht, Heizung, Beschattung, Zutritt und Alarm. "
+                "Das gilt ausdrücklich auch für Anlagen, deren Errichter nicht mehr "
+                "erreichbar ist oder deren Programmierung niemand mehr kennt. Der Preis "
+                "hängt an Größe und Zustand und steht nach einer Aufnahme schriftlich "
+                "fest.",
+        "intro": "Eine Gebäudeautomation hat eine unangenehme Eigenschaft: Sie "
+                 "funktioniert, bis sie es nicht mehr tut — und dann fehlt derjenige, "
+                 "der weiß, warum das Licht im Flur um 22 Uhr ausgeht. Häuser werden "
+                 "verkauft, Elektriker geben den Betrieb auf, Programmierer sind nicht "
+                 "erreichbar. Wer eine Anlage geerbt hat, sucht nicht jemanden, der eine "
+                 "neue baut, sondern jemanden, der die bestehende versteht.",
+
+        "leistungen_h": "Was wir mit einer bestehenden Anlage machen",
+        "leistungen": [
+            "Aufnahme: Was ist verbaut, wie ist es programmiert, was funktioniert heute "
+            "nicht mehr",
+            "Zugriff wiederherstellen — auch ohne die Unterlagen des Errichters",
+            "Die Programmierung lesbar machen und dokumentieren, statt sie neu zu bauen",
+            "Erweitern: neue Räume, neue Geräte, neue Abläufe in dasselbe System",
+            "Umprogrammieren, wenn sich die Nutzung geändert hat",
+            "Einweisung, damit die Anlage auch ohne uns bedienbar bleibt",
+            "Anbindung an das Netzwerk, sicher getrennt vom übrigen Betrieb",
+        ],
+        "nicht_h": "Warum hier kein Festpreis steht",
+        "nicht_t": "Weil keine zwei Anlagen gleich sind. Eine dokumentierte "
+                   "Loxone-Anlage mit zwanzig Aktoren ist etwas anderes als eine "
+                   "gewachsene KNX-Installation über drei Stockwerke ohne Unterlagen. "
+                   "Die Aufnahme rechnen wir nach Stunde ab (120 € vor Ort zuzüglich "
+                   "Anfahrt); danach nennen wir den Preis schriftlich, und dann gilt er. "
+                   "Wird daraus ein Auftrag, wird die Aufnahme angerechnet.",
+
+        "ablauf_h": "Wie es abläuft",
+        "ablauf": [
+            {"h": "Aufnahme vor Ort", "t": "Wir sehen uns an, was verbaut ist, und "
+             "lesen die Programmierung aus. Am Ende wissen Sie, was Sie haben — auch "
+             "wenn Sie sich danach gegen uns entscheiden."},
+            {"h": "Angebot mit Zahlen", "t": "Schriftlich, getrennt nach Übernahme, "
+             "Erweiterung und laufender Betreuung. Wenn wir von etwas abraten, steht "
+             "das darin."},
+            {"h": "Umsetzung und Einweisung", "t": "Umgesetzt wird in Abschnitten, damit "
+             "das Haus zwischendurch bedienbar bleibt. Zum Schluss eine Einweisung und "
+             "die Dokumentation, die vorher gefehlt hat."},
+        ],
+
+        "fern_h": "Loxone oder KNX — und was, wenn beides verbaut ist?",
+        "fern_t": "Das kommt öfter vor, als man denkt: KNX für Licht und Beschattung, "
+                  "weil der Elektriker damit gearbeitet hat, und Loxone für alles, was "
+                  "später dazukam. Beides lässt sich verbinden, und meist ist das der "
+                  "richtige Weg — eine gewachsene Anlage komplett auf ein System "
+                  "umzustellen kostet mehr, als es bringt. Wir sagen Ihnen, welche Teile "
+                  "bleiben können und welche sich wirklich lohnen zu ersetzen. Die "
+                  "grundsätzliche Gegenüberstellung der beiden Systeme steht in einem "
+                  "eigenen Fachbeitrag.",
+
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            {"q": "Wir haben keine Unterlagen und kein Passwort zur Anlage.",
+             "a": "Das ist der Normalfall bei einer Übernahme. In den meisten Fällen "
+                  "kommen wir über die Geräte selbst an die Konfiguration. Geht es "
+                  "wirklich nicht, sagen wir das nach der Aufnahme — dann ist die Frage, "
+                  "welche Teile sich neu programmieren lassen und was ersetzt werden "
+                  "muss."},
+            {"q": "Können Sie eine Anlage erweitern, die jemand anderes gebaut hat?",
+             "a": "Ja, das ist ein Großteil dieser Arbeit. Wichtig ist uns dabei, die "
+                  "bestehende Logik zu verstehen statt sie zu überschreiben — sonst "
+                  "funktioniert hinterher weder das Neue noch das Alte."},
+            {"q": "Bauen Sie auch neue Anlagen?",
+             "a": "Ja, gemeinsam mit dem Elektriker und möglichst vor dem ersten Kabel. "
+                  "Das steht auf der Leistungsseite zur Gebäudeautomation, weil es ein "
+                  "Projekt ist und keine einzelne Aufgabe."},
+            {"q": "Wie schnell sind Sie da, wenn die Anlage steht?",
+             "a": "Vieles lässt sich aus der Ferne sehen, sobald wir Zugriff haben. Wenn "
+                  "jemand kommen muss: im Bezirk Vöcklabruck und Umgebung in der Regel "
+                  "am selben oder nächsten Tag."},
+        ],
+
+        "cta_h": "Loxone-Anlage anfragen",
+        "cta_t": "Schreiben Sie kurz, was verbaut ist und was nicht mehr funktioniert. "
+                 "Antwort innerhalb von 24 Stunden.",
+        "problem_h": "Worum geht es?",
+    },
 }
 
 # ── Texte des Hubs /einrichten/ ─────────────────────────────────────────────

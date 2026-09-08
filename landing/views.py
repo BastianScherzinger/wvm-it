@@ -3092,6 +3092,11 @@ def region_seite(request, slug):
                           if r["slug"] != slug],
         "leistungen_liste": [_leistung_daten(l, lang) for l in leistungen.LEISTUNGEN
                              if not l.get("vor_ort")][:6],
+        # Einzelne Aufgaben mit Festpreis, verlinkt aus der Vor-Ort-Karte: Damit
+        # traegt "Arbeitsplatz einrichten" endlich einen Ortsbezug — vorher war
+        # es ein Stichpunkt ohne Ziel.
+        "einrichtungen": [_einrichtung_daten(e, lang)
+                          for e in einrichtungen.EINRICHTUNGEN],
         "structured_data": _seiten_schema(
             c, lang, service=service, faq=region.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [

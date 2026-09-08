@@ -54,6 +54,18 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
           {% for p in region.vor_ort %}<li>{{ p|safe }}</li>{% endfor %}
         </ul>
         <p class="rg-hinweis">{{ t.seite.rg_vor_ort_hinweis|safe }}</p>
+        {% comment %}Die Stichpunkte darueber nannten Hardwarearbeiten, ohne
+        irgendwohin zu fuehren (08.09.2026). Erst diese Liste macht aus
+        "Arbeitsplatz aufstellen" und dem Ortsnamen eine Kombination, die jemand
+        suchen kann — und gibt ihr eine Zielseite mit Preis.{% endcomment %}
+        {% if einrichtungen %}
+        <p class="rg-mini-h">{{ t.einrichten_hub.h1|safe }}</p>
+        <ul class="lk-mini">
+          {% for e in einrichtungen %}
+          <li><a href="{{ e.url }}">{{ e.nav|safe }} <span class="lk-mini-p">{{ e.preis_label }}</span></a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </div>
       <div class="rg-karte rg-karte-fern" data-reveal>
         <h2>{{ region.remote_h|safe }}</h2>

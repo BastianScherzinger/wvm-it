@@ -63,6 +63,46 @@ EINRICHTUNGEN = [
     {"slug": "pc-tausch", "icon": "tausch", "preis": "arbeitsplatz",
      "quelle": "it", "leistung": "edv-it-betreuung", "thema": "edv-it-betreuung",
      "vor_ort": False, "prio": "0.9", "verwandt": ["arbeitsplatz"]},
+
+    # ── Phase 3 ──────────────────────────────────────────────────────────────
+    # Windows 10 bekommt seit Oktober 2025 keine Sicherheitsupdates mehr. Manche
+    # Betriebe laufen seither ungeschuetzt weiter, ohne dass es jemandem auffaellt
+    # — und der einzige verwandte Fachbeitrag behandelt isolierte
+    # Maschinensteuerungen, nicht die Standardfrage eines Bueros.
+    {"slug": "windows-11", "icon": "cog", "preis": "arbeitsplatz",
+     "quelle": "it", "leistung": "edv-it-betreuung", "thema": "edv-it-betreuung",
+     "vor_ort": False, "prio": "0.9", "verwandt": ["arbeitsplatz", "pc-tausch"]},
+
+    {"slug": "microsoft-365", "icon": "mail", "preis": "m365",
+     "quelle": "it", "leistung": "edv-it-betreuung", "thema": "edv-it-betreuung",
+     "vor_ort": False, "prio": "0.8", "verwandt": ["arbeitsplatz", "firewall-vpn"]},
+
+    # Kein Festpreis: Was ein Server kostet, haengt an Groesse, Bestand und
+    # Anforderungen. Die Position `edv` steht im Katalog auf Anfrage — das ist
+    # ehrlicher als eine Zahl, die nach der Bestandsaufnahme ohnehin nicht haelt.
+    # Die laufende Betreuung danach hat einen Preis (89 EUR/Mt), und der steht
+    # im Text.
+    {"slug": "server", "icon": "server", "preis": "edv",
+     "quelle": "it", "leistung": "server-datensicherung", "thema": "server-datensicherung",
+     "vor_ort": True, "prio": "0.8", "verwandt": ["netzwerk", "firewall-vpn"]},
+
+    # Der kleine Fall neben dem 890-EUR-Projekt auf /leistungen/netzwerk-wlan/:
+    # Router, Switch, WLAN, Drucker im Netz, Gastnetz.
+    {"slug": "netzwerk", "icon": "net", "preis": "netzwerk_setup",
+     "quelle": "it", "leistung": "netzwerk-wlan", "thema": "netzwerk-wlan",
+     "vor_ort": True, "prio": "0.8", "verwandt": ["firewall-vpn", "server"]},
+
+    {"slug": "firewall-vpn", "icon": "shield", "preis": "firewall",
+     "quelle": "it", "leistung": "it-sicherheit", "thema": "it-sicherheit",
+     "vor_ort": False, "prio": "0.8", "verwandt": ["netzwerk", "microsoft-365"]},
+
+    # Die geerbte Anlage ist der Fall, den /leistungen/smarthome-knx-loxone/
+    # nicht bedient: Hausverkauf, Elektriker weg, Programmierer nicht erreichbar.
+    # Eine Suche mit hoher Dringlichkeit — und bis heute ohne Seite.
+    {"slug": "loxone", "icon": "home", "preis": "smarthome",
+     "quelle": "technik", "leistung": "smarthome-knx-loxone",
+     "thema": "smarthome-knx-loxone",
+     "vor_ort": True, "prio": "0.8", "verwandt": ["netzwerk"]},
 ]
 
 NACH_SLUG = {e["slug"]: e for e in EINRICHTUNGEN}

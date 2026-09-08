@@ -110,8 +110,15 @@ class SeitenTest(SimpleTestCase):
 
     def test_der_preis_steht_auf_der_seite(self):
         """Wer hier landet, sucht eine Zahl. Steht sie nicht da, ist die Seite
-        wertlos — egal wie gut der Text ist."""
-        for prefix in SPRACHEN:
+        wertlos — egal wie gut der Text ist.
+
+        Zwei Seiten haben bewusst keine: Bei einem Server und bei einer
+        Loxone-Anlage haengt der Preis so stark am Bestand, dass eine Zahl nach
+        der Aufnahme ohnehin nicht halten wuerde. Dort muss stattdessen der
+        Anfrage-Hinweis stehen — und die Begruendung, siehe den Test darunter."""
+        from landing.i18n import get_pack
+        for lang, prefix in (("de", ""), ("en", "/en"), ("ro", "/ro")):
+            auf_anfrage = get_pack(lang)["catalog_words"]["on_request"]
             for e in einrichtungen.EINRICHTUNGEN:
                 pfad = f"{prefix}/einrichten/{e['slug']}/"
                 with self.subTest(pfad=pfad):
@@ -119,7 +126,29 @@ class SeitenTest(SimpleTestCase):
                     posten = _ANGEBOT_INDEX[e["preis"]]
                     zahl = (posten.get("once") or posten.get("mtl")
                             or posten.get("yr") or posten.get("std"))
-                    self.assertIn(str(zahl), html, f"{pfad}: Preis {zahl} fehlt")
+                    if zahl:
+                        self.assertIn(str(zahl), html, f"{pfad}: Preis {zahl} fehlt")
+                    else:
+                        self.assertIn(auf_anfrage, html,
+                                      f"{pfad}: weder Preis noch Anfrage-Hinweis")
+
+    def test_wo_kein_festpreis_steht_wird_gesagt_warum(self):
+        """Eine Seite in einem Silo, das Festpreise verspricht, darf nicht
+        wortlos ohne einen auskommen. Die beiden Ausnahmen begruenden sich in
+        ihrem `nicht_h`-Abschnitt ausdruecklich."""
+        from landing.i18n import get_pack
+        for lang in ("de", "en", "ro"):
+            texte = get_pack(lang)["einrichten"]
+            for e in einrichtungen.EINRICHTUNGEN:
+                posten = _ANGEBOT_INDEX[e["preis"]]
+                if (posten.get("once") or posten.get("mtl")
+                        or posten.get("yr") or posten.get("std")):
+                    continue
+                with self.subTest(lang=lang, slug=e["slug"]):
+                    ueberschrift = texte[e["slug"]].get("nicht_h", "")
+                    self.assertTrue(
+                        len(ueberschrift) > 12,
+                        f"{lang}/{e['slug']}: ohne Festpreis, aber ohne Begruendung")
 
     def test_jede_seite_sagt_was_nicht_enthalten_ist(self):
         """Ein Festpreis ohne Grenze ist keiner."""
@@ -157,7 +186,12 @@ class SchemaTest(SimpleTestCase):
                 posten = _ANGEBOT_INDEX[e["preis"]]
                 zahl = (posten.get("once") or posten.get("mtl")
                         or posten.get("yr") or posten.get("std"))
-                self.assertEqual(dienste[0]["offers"].get("price"), str(zahl))
+                # Ohne Zahl darf auch keine im Schema stehen: Ein erfundener
+                # Preis waere dort schlimmer als gar keiner, weil ihn eine
+                # Antwortmaschine als verbindlich liest.
+                self.assertEqual(dienste[0]["offers"].get("price"),
+                                 str(zahl) if zahl else None,
+                                 f"{pfad}: Preis im Schema passt nicht zum Katalog")
 
     def test_jede_seite_meldet_ihre_fragen(self):
         for e in einrichtungen.EINRICHTUNGEN:
