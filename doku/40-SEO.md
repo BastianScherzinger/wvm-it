@@ -4,7 +4,7 @@ titel: SEO und GEO
 stand: 2026-09-10
 status: teilweise
 fortschritt: 90
-zusammenfassung: Am 10.09.2026 haben vier Seiten einen Definitionssatz bekommen, je dreisprachig und je im vorhandenen Absatz (GE26): /kontakt/ sagt jetzt, was Fernwartung ist, /einrichten/ was ein Festpreis ist -- samt der Begruendung, warum der Preis dort ohne ab steht --, /leistungen/server-datensicherung/ was eine Sicherung zur Sicherung macht, /leistungen/ki-automatisierung/ dass Automatisierung ein Ablauf ist und kein Produkt. Die einzige Zahl darin, 120 Euro je Stunde vor Ort, stammt aus ANGEBOT_GROUPS; die vier Rechtstexte bleiben bewusst ohne. Davor am 06.09. nachgemessen statt fortgeschrieben: Titel mit Ort oder Zahl 70 Prozent (Doku sagte 17), Beschreibungen mit Handlungsaufforderung 92 Prozent (sagte 2), nichtssagende Ankertexte null (sagte 948), doppelte Titel null (sagte 6). Der verbliebene kritische Punkt war der Umfang; 16 Beitraege haben jetzt Folgefragen mit FAQPage-Schema, der Regionen-Hub eigenen Text.
+zusammenfassung: Am 10.09.2026 zum ersten Mal seit dem Ausbau aus der Search Console gemessen -- 90 Tage, 410 Impressionen, 16 Klicks, Position 53,3 -- und drei Befunde daraus behoben: das Crawl-Leck von 28 Adressen unter Sprachpraefix (301 statt 404), die Kannibalisierung von it betreuung kosten ueber drei eigene Seiten, und die fehlende Zuordnung der Marke wvm. Dazu Oberoesterreich in Ueberschrift und Antwortabsatz des Regions-Wegweisers, weil it betreuung oberoesterreich auf Position 45 steht und der Ort bis dahin nur im Title stand. Was in Reichweite ist, sind die Ortsseiten (Gmunden 9,0, Salzburg 18,1), nicht die Ratgeberthemen. Davor am selben Tag: vier Seiten mit einem Definitionssatz bekommen, je dreisprachig und je im vorhandenen Absatz (GE26): /kontakt/ sagt jetzt, was Fernwartung ist, /einrichten/ was ein Festpreis ist -- samt der Begruendung, warum der Preis dort ohne ab steht --, /leistungen/server-datensicherung/ was eine Sicherung zur Sicherung macht, /leistungen/ki-automatisierung/ dass Automatisierung ein Ablauf ist und kein Produkt. Die einzige Zahl darin, 120 Euro je Stunde vor Ort, stammt aus ANGEBOT_GROUPS; die vier Rechtstexte bleiben bewusst ohne. Davor am 06.09. nachgemessen statt fortgeschrieben: Titel mit Ort oder Zahl 70 Prozent (Doku sagte 17), Beschreibungen mit Handlungsaufforderung 92 Prozent (sagte 2), nichtssagende Ankertexte null (sagte 948), doppelte Titel null (sagte 6). Der verbliebene kritische Punkt war der Umfang; 16 Beitraege haben jetzt Folgefragen mit FAQPage-Schema, der Regionen-Hub eigenen Text.
 offen: 6
 quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/GEO-MONITORING.md, docs/seo/KEYWORD-MAP.md, docs/seo/BASELINE.md
 ---
@@ -29,6 +29,55 @@ quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SE
 
 **Die vier Bereichswerte** (SEO — Technik, SEO — Inhalt, GEO — KI-Sichtbarkeit, Substanz & Reichweite) **stehen im Messblock von [00-STATUS.md](00-STATUS.md)** — hier standen sie bis zum 04.09.2026 als Satz und waren zwei Katalogstände später falsch. Sichtbarkeit selbst (Klicks, Positionen) misst keine der 244 Regeln — dafür ist die Search Console zuständig, siehe [50-LOCAL-SEO.md](50-LOCAL-SEO.md).
 
+## Search Console, 90 Tage bis 07.09.2026 — die erste Messung nach dem Ausbau
+
+**410 Impressionen, 16 Klicks, CTR 3,9 %, Ø Position 53,3.** Gegen die Ausgangslage
+oben (54 Impressionen, 7 Klicks, Position 13,9) ist das kein Rückschritt, sondern ein
+Formwechsel, und die Aufteilung in zwei Fenster zeigt ihn genau:
+
+| Fenster | Impressionen | Klicks | Ø Position |
+|---|---:|---:|---:|
+| 28 Tage bis 07.09.2026 | **379** | 12 | **57,1** |
+| die 28 Tage davor | 31 | 4 | 7,7 |
+
+**Die Sichtbarkeit ist breit geworden, nicht besser.** Der ganze neue Bestand ist in den
+Index gekommen und rankt auf Seite 8 bis 10; die wenigen guten alten Positionen gehen im
+Mittelwert unter. Ein Durchschnitt über 76 Seiten sagt darum weniger als die Verteilung.
+
+**Was daraus folgt — drei Befunde, alle mit der Zahl dahinter:**
+
+1. **Ein Crawl-Leck.** 128 Seiten indexiert, 72 nicht — davon **28 mit 404**, und alle
+   achtundzwanzig waren `/en/…` oder `/ro/…` vor `/wissen/`, `/aktuelles/` oder
+   `/checkliste/`. Gleichzeitig standen **27 echte deutsche Seiten** unter „Gefunden —
+   zurzeit nicht indexiert", darunter `/branchen/` mit allen sechs Branchenseiten,
+   `/vergleich/` mit beiden Vergleichen, `/wissen/firewall/`, `/wissen/nas/`,
+   `/it-service/wels/` und `/leistungen/ki-automatisierung/`. Der Crawler war mit
+   Adressen beschäftigt, die es nie gab. **Behoben am 10.09.2026** — siehe „Technik".
+2. **Eine Kannibalisierung.** `it betreuung kosten` ist mit 61 Impressionen die stärkste
+   Anfrage mit Kaufabsicht — und drei eigene Seiten teilen sie sich: `/kosten/` (34
+   Impressionen, Position 93,6), `/aktuelles/was-kostet-it-betreuung/` (25 / 88,1),
+   `/vergleich/it-betreuung-vs-stundenabrechnung/` (2 / 88). Null Klicks.
+   **Entzerrt am 10.09.2026.**
+3. **Die Marke ist nicht zugeordnet.** `wvm` bringt 18 Impressionen auf Position 39,1.
+   Bei der eigenen Marke ist das kein Rang-, sondern ein Identitätsproblem —
+   `alternateName` ist eingebaut, aber der Hebel liegt bei
+   [50-LOCAL-SEO.md](50-LOCAL-SEO.md): Unternehmensprofil und WKO-Eintrag.
+
+**Wo die Seite in Reichweite ist.** Nicht bei den Ratgeberthemen — RAID (40
+Impressionen, beste Position 48,5), Managed Services (47 / 70), Netzwerksegmentierung
+(27 / 72) stehen tief und tragen ohnehin keine Kaufabsicht. In Reichweite sind die
+**Ortsseiten**: `/it-service/gmunden/` steht auf 9,0 (und hat den einzigen fachlichen
+Klick gebracht), `/it-service/salzburg/` auf 18,1, `/it-service/voecklabruck/` auf 22,0.
+Dazu die Anfragen `edv betreuung salzburg` (12,7), `it dienste salzburg` (12,5),
+`sicherer serverplatz salzburg` (12,0), `gebäudesicherungssystem gmunden` (9,8), `edv
+betreuung` (10,5). **Und eine Lücke mit belegter Nachfrage:** `it betreuung
+oberösterreich` steht auf 45, `it-dienstleister linz` auf 42 — das Bundesland stand bis
+zum 10.09.2026 nur im Title des Regions-Wegweisers.
+
+**Merksatz dieser Messung:** *Ein Durchschnitt über 76 Seiten ist keine Aussage über eine
+davon.* Die Zahl 53,3 hätte als „schlechter geworden" gelesen werden können; die
+Verteilung sagt das Gegenteil.
+
 ## Technik
 
 | Baustein | Stand | Beleg |
@@ -36,6 +85,7 @@ quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SE
 | **Sitemap** `/sitemap.xml` | 158 URLs, dynamisch aus `views._seiten_pfade()`, alle drei Sprachen mit `xhtml:link`-Alternates + `x-default`; einsprachige Pfade ohne Alternates; Prioritäten je Silo (V6) | live 200, 158 `<loc>` (02.09.2026) |
 | `lastmod` | `date.today()` → alle 158 Einträge tragen dasselbe Datum | `TS16` offen |
 | **robots.txt** | `User-agent: *` Allow `/`, Disallow `/suche/`, `/newsletter/diagnose/`, `/newsletter/wochenversand/`, `/bau/status/`, `/cloudinary/signatur/`, `/anfrage/absenden/`, `/warten/`, `/sprache/`; KI-Crawler namentlich (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, anthropic-ai, PerplexityBot u. a.); Sitemap und `llms.txt` verlinkt | live 200, 3,8 KB (02.09.2026); seit 29.08. drei Disallows mehr als in der Überblicksdoku |
+| **Sprachpräfix vor den deutschen Silos** | `/en/wissen/…`, `/ro/aktuelles/…` und `/en\|ro/checkliste/…` antworten seit dem 10.09.2026 mit **301 auf die deutsche Fassung** statt mit 404 — die Antwort auf die 28 „Nicht gefunden“ der Search Console. `i18n.nur_deutsch()` liest die Entscheidung aus `views._seiten_pfade()` (viertes Feld), also aus derselben Quelle wie Sitemap und IndexNow; eine zweite Liste gibt es bewusst nicht. Gilt ausdrücklich **auch für Crawler** — anders als die Sprach-Auto-Erkennung, die Bots in Ruhe lässt | `landing/tests/test_sprachpraefix_umleitung.py`, 10 Tests in beide Richtungen |
 | **Canonical / hreflang** | self-canonical, `hreflang` de/en/ro/x-default, `og:locale` + alternates auf jeder Seite | `pruefe_seite` |
 | **Duplikat-Hosts** | `wvm-it-shop.up.railway.app` → 301 (`KanonischerHostMiddleware`, F2); **Apex `wvm-it.tech` löst nicht auf Railway auf** (Parkseite, siehe [10-TECHNIK.md](10-TECHNIK.md)) | live geprüft 02.09.2026; `TS11` „nicht messbar" |
 | **Schema** (`_structured_data`, ein `@graph` je Seite) | `ProfessionalService` `#business` mit `PostalAddress`, `areaServed`, `additionalType`, `OfferCatalog` aus `ANGEBOT_GROUPS` · `Person` (Inhaber) · `WebSite` · `BreadcrumbList` auf 155 von 157 Unterseiten · `FAQPage` (Startseite 10, Leistung 4, Region 3, Branche/Vergleich) · `Service` + `Offer` + `UnitPriceSpecification` je Leistung · `Article` (`datePublished`, `wordCount`, `timeRequired`, `articleSection`, Autor) · `ItemList` auf Hubs · `HowTo` (Checklisten, Notfall) · `DefinedTerm`/`DefinedTermSet` (Glossar) · `speakable` auf `.antwort` | S1–S9 erledigt 29.08.2026; `_pruefe_schema` prüft `@graph`, `@id`, `inLanguage` |
