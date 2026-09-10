@@ -1,10 +1,10 @@
 ---
 bereich: status
 titel: WVM-IT — Stand
-stand: 2026-09-07
+stand: 2026-09-10
 status: teilweise
 fortschritt: 96
-zusammenfassung: Am 07.09.2026 Paket 125: Die Sicherung, die eine Anfrage vor dem Mailversand auf die Platte und ins Log schreibt, haengt jetzt an allen Formularwegen statt nur an den Kurzanfragen (MW18); das Portraet auf /ueber-uns/ wird nicht mehr verzoegert geladen (PF18); die 32 Module, die kein Test beruehrt hat, haben eine eigene Testdatei (PJ03) — 252 Tests in 17 Dateien, vorher 207. Zwei Punkte begruendet abgelehnt: Befunddichte (PJ08) und TLS-Zertifikat (SI12). Davor: Umbau, Hero-Konzept, Politur und Cache-Durchgang abgeschlossen und deployt — 166 URLs. Hero: "Die ganze IT. Ein Ansprechpartner." mit Florins Gesicht im ersten Bildschirm. Folgefragen auf allen 16 Fachbeitraegen, vier neu gezeichnete Symbole, ConditionalGetMiddleware plus Cache-Koepfe auf den maschinellen Endpunkten (310 KB weniger je Crawl). Zweimal nachgemessen statt fortgeschrieben — vier angeblich offene SEO-Hebel waren erledigt, und der Seitencache haette 13 Prozent gebracht bei CSRF-Risiko. Offen bleiben Absenderadresse, SPF/DKIM/DMARC und Apex-Domain beim Kunden.
+zusammenfassung: Am 10.09.2026 Paket 147: PJ03 war seit dem 07.09. gebaut und wurde trotzdem als offen gemeldet -- der Grund lag im gebuendelten Import-Block der Testdatei, den eine Quelltext-Analyse nur als Paketbezug liest; jetzt ein Modul je Zeile, dazu die vier reinen Funktionen der Sprachweiche und drei supa-Funktionen ohne Zugang, 282 Tests in 18 Testdateien. PF18 und PJ07 sind als begruendete Ausnahmen eingetragen, ohne eine Zeile Code. Davor am 07.09.2026 Paket 125: Die Sicherung, die eine Anfrage vor dem Mailversand auf die Platte und ins Log schreibt, haengt jetzt an allen Formularwegen statt nur an den Kurzanfragen (MW18); das Portraet auf /ueber-uns/ wird nicht mehr verzoegert geladen (PF18); die 32 Module, die kein Test beruehrt hat, haben eine eigene Testdatei (PJ03) — 252 Tests in 17 Dateien, vorher 207. Zwei Punkte begruendet abgelehnt: Befunddichte (PJ08) und TLS-Zertifikat (SI12). Davor: Umbau, Hero-Konzept, Politur und Cache-Durchgang abgeschlossen und deployt — 166 URLs. Hero: "Die ganze IT. Ein Ansprechpartner." mit Florins Gesicht im ersten Bildschirm. Folgefragen auf allen 16 Fachbeitraegen, vier neu gezeichnete Symbole, ConditionalGetMiddleware plus Cache-Koepfe auf den maschinellen Endpunkten (310 KB weniger je Crawl). Zweimal nachgemessen statt fortgeschrieben — vier angeblich offene SEO-Hebel waren erledigt, und der Seitencache haette 13 Prozent gebracht bei CSRF-Risiko. Offen bleiben Absenderadresse, SPF/DKIM/DMARC und Apex-Domain beim Kunden.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
@@ -27,7 +27,7 @@ quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 | **Hosting** | Railway-Projekt **`webseiten`** → Dienst **`wvm-it`**, Umgebung `shop`; Deploy automatisch beim Push auf `main` |
 | **Repository** | `BastianScherzinger/wvm-it`, Zweig `main` |
 | **Projektordner** | `C:\Users\basti\Desktop\jarvis\jarvis_websites\2026-07-02\web_wvm-it` (die einzige betreute Seite, die **nicht** unter `Desktop\webseiten buisnes\` liegt) |
-| **Letzter Commit** | auf `main`: `2af8307`, 07.09.2026 (Doku). Die **fünf Commits aus Paket 125** liegen auf dem Zweig `sofort/2026-09-07-mw18-und-4-weitere` und sind noch nicht gemergt &mdash; bis dahin ist `MW18`/`PF18`/`PJ03` gebaut, aber nicht live |
+| **Letzter Commit** | auf `main`: `172cf0c`, 10.09.2026 (Doku). Paket 125 **ist gemergt** (`git branch --contains 9b5993c` nennt `main`, nachgeprüft 10.09.2026), `MW18`/`PF18`/`PJ03` sind damit live. Die drei Commits aus Paket 147 liegen auf `sofort/2026-09-10-pf18-und-2-weitere`. Weiter **nicht** auf `main`: der Antwortabsatz der Rechtsseiten (`GE23`, Zweig `sofort/2026-09-08-ge23-und-2-weitere`) |
 | **Search Console** | Property `https://www.wvm-it.tech/` (URL-Präfix) im Konto **`bastian.scherzinger05@gmail.com`** (nachgeprüft 03.09.2026), seit 03.09.2026 per OAuth ans Werkzeug angebunden |
 | **Google Ads** | keine |
 
@@ -37,7 +37,7 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 
 | Bereich | Status | Fortschritt | Zusammenfassung | Datei |
 |---|---|---:|---|---|
-| Technik | teilweise | 85 | Django 5.0.6 auf Railway; seit 07.09.2026 mit **252 Testfunktionen in 17 Dateien** (neu: die 32 bis dahin unberührten Module), serverseitiger Reichweitenmessung ohne Cookie und ohne IP, vor dem Mailversand gesicherten Anfragen auf **allen** Formularwegen, CI-Lauf bei jedem Push und durchgesetzter Content-Security-Policy. | [10-TECHNIK.md](10-TECHNIK.md) |
+| Technik | teilweise | 85 | Django 5.0.6 auf Railway; seit 10.09.2026 mit **282 Testfunktionen in 18 Testdateien** (die bis dahin unberührten Module haben eine eigene Datei, und ihre Namen stehen seit dem 10.09. je in eigener Import-Zeile — sonst zählt die Messung die Prüfung nicht), serverseitiger Reichweitenmessung ohne Cookie und ohne IP, vor dem Mailversand gesicherten Anfragen auf **allen** Formularwegen, CI-Lauf bei jedem Push und durchgesetzter Content-Security-Policy. | [10-TECHNIK.md](10-TECHNIK.md) |
 | Design | teilweise | 96 | Design-System vom 27.08.2026 unverändert; am 06.09. der Hero neu gedacht (zweistufige Überschrift, Vertrauensband mit Gesicht) und drei Fehler behoben: übergelaufene Kopfleiste, Dialog in der Bildschirmecke, zwei `alert()`. Mobilansicht nie am Gerät geprüft. | [20-DESIGN.md](20-DESIGN.md) |
 | Inhalte | teilweise | 95 | 166 URLs; am 06.09. neue Hero-Überschrift in drei Sprachen, Vertrauensband, NIS2-Fachbeitrag, Einstiegsangebot und Abgrenzung auf den Leistungsseiten, Erreichbarkeit auf der Notfallseite. Übersetzungen geprüft: 2.361 Schlüssel je Sprache vollständig. | [30-INHALTE.md](30-INHALTE.md) |
 | SEO und GEO | teilweise | 87 | Zwei Funde ausserhalb jedes Plans behoben (94 hreflang auf 404, 82 unerreichbare Seiten). Sitemap in vier Segmenten, echte Änderungsdaten, `WebPage`-Knoten überall; Antwortabsatz von 14 Glossareinträgen und 4 Fachbeiträgen mit belegter Zahl. | [40-SEO.md](40-SEO.md) |
