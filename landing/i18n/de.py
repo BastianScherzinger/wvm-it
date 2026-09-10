@@ -1055,7 +1055,7 @@ PACK = {
         "barrierefreiheit_desc": "Wie barrierefrei wvm-it.tech ist, was noch fehlt und wie Sie einen Mangel melden. Antwort an Werktagen in 24 Stunden. Jetzt melden.",
     },
     "angebot_page": {
-        "antwort": "Der Angebots-Konfigurator von WVM-IT stellt in unter einer Minute einen Richtpreis zusammen: 33 Positionen aus 6 Bereichen, jede mit ihrem Startpreis. Die laufende IT-Betreuung beginnt bei 29 € je Arbeitsplatz und Monat, eine Webseite bei 350 €, Hilfe nach Aufwand kostet 95 € je Stunde. Alle Angaben sind Richtpreise netto zzgl. USt.; verbindlich wird der Preis nach einem Gespräch. Es ist kein Konto nötig, und die Anfrage verpflichtet zu nichts.",
+        "antwort": "Der Angebots-Konfigurator von WVM-IT stellt in unter einer Minute einen Richtpreis zusammen: 33 Positionen aus 6 Bereichen, jede mit ihrem Startpreis. Die laufende IT-Betreuung beginnt bei 29 € je Arbeitsplatz und Monat, eine Webseite bei 350 €, Hilfe nach Aufwand kostet 95 € je Stunde. Alle Angaben sind Richtpreise netto zzgl. USt.; verbindlich wird der Preis nach einem Gespräch. Richtpreis heißt dabei: Die Zahl gilt für den Normalfall und steht hier mit einem „ab“, weil der Aufwand im Einzelfall abweichen kann — im Unterschied zum Festpreis, der unabhängig vom tatsächlichen Aufwand zugesagt ist und deshalb ohne „ab“ dasteht. Es ist kein Konto nötig, und die Anfrage verpflichtet zu nichts.",
         "eyebrow": "Angebots-Konfigurator",
         "h1": "Stellen Sie Ihr Angebot selbst zusammen.",
         "lead": "Klicken Sie sich in wenigen Schritten durch: 33 Positionen in 6 Bereichen, Sie wählen aus, was Sie brauchen, und sehen den Richtpreis sofort. Unverbindlich, ohne Registrierung.",

@@ -1021,7 +1021,7 @@ PACK = {
         "barrierefreiheit_desc": "How accessible wvm-it.tech is, what is still missing and how to report a barrier. Answer within 24 hours on working days. Get in touch.",
     },
     "angebot_page": {
-        "antwort": "The WVM-IT quote configurator puts a ballpark figure together in under a minute: 33 items across 6 areas, each with its starting price. Running IT support starts at €29 per workstation and month, a website at €350, help by the hour costs €95. All figures are guide prices, net plus VAT; the binding price follows a conversation. No account is needed and the enquiry commits you to nothing.",
+        "antwort": "The WVM-IT quote configurator puts a ballpark figure together in under a minute: 33 items across 6 areas, each with its starting price. Running IT support starts at €29 per workstation and month, a website at €350, help by the hour costs €95. All figures are guide prices, net plus VAT; the binding price follows a conversation. A guide price means the figure holds for the normal case and carries a “from”, because the effort can differ in an individual case — unlike a fixed price, which is promised regardless of the actual effort and therefore appears without a “from”. No account is needed and the enquiry commits you to nothing.",
         "eyebrow": "Quote configurator",
         "h1": "Put together your own quote.",
         "lead": "Click through in just a few steps: 33 items across 6 areas, pick what you need and see the ballpark price instantly. No obligation, no registration.",

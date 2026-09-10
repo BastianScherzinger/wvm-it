@@ -1017,7 +1017,7 @@ PACK = {
         "barrierefreiheit_desc": "Cât de accesibil este wvm-it.tech, ce lipsește încă și cum semnalați o barieră. Răspuns în 24 de ore în zilele lucrătoare. Scrieți-ne.",
     },
     "angebot_page": {
-        "antwort": "Configuratorul de ofertă WVM-IT alcătuiește un preț orientativ în mai puțin de un minut: 33 de poziții din 6 domenii, fiecare cu prețul ei de pornire. Administrarea IT curentă începe de la 29 € per post de lucru și lună, un site de la 350 €, ajutorul pe oră costă 95 €. Toate sumele sunt prețuri orientative, net plus TVA; prețul ferm rezultă după o discuție. Nu este nevoie de cont, iar solicitarea nu obligă la nimic.",
+        "antwort": "Configuratorul de ofertă WVM-IT alcătuiește un preț orientativ în mai puțin de un minut: 33 de poziții din 6 domenii, fiecare cu prețul ei de pornire. Administrarea IT curentă începe de la 29 € per post de lucru și lună, un site de la 350 €, ajutorul pe oră costă 95 €. Toate sumele sunt prețuri orientative, net plus TVA; prețul ferm rezultă după o discuție. Preț orientativ înseamnă că cifra este valabilă pentru cazul obișnuit și apare aici cu „de la”, fiindcă efortul poate să difere de la caz la caz — spre deosebire de prețul fix, care este promis indiferent de efortul real și de aceea apare fără „de la”. Nu este nevoie de cont, iar solicitarea nu obligă la nimic.",
         "eyebrow": "Configurator de ofertă",
         "h1": "Alcătuiește-ți singur oferta.",
         "lead": "Parcurge în câțiva pași: 33 de poziții în 6 domenii, alege ce îți trebuie și vezi prețul orientativ imediat. Fără obligații, fără înregistrare.",
