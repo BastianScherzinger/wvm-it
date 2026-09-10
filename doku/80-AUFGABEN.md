@@ -276,4 +276,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG66 | Der Startbefehl steht dreimal, zwei Fassungen ohne `migrate` und `collectstatic | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG67 | Zwei Öffnungszeiten für denselben Betrieb: Schema schließt um 20 Uhr, der Text ist „durchgehend erreichbar" | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 | EIG68 | Blättern auf `/aktuelles/` und `/galerie/` nimmt alles ab Seite 2 aus dem Index | seo | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
+| EIG69 | CLAUDE.md nennt durchgehend eine überholte Testzahl | wegweiser | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 <!-- eigenepunkte:ende -->
