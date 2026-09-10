@@ -292,4 +292,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG76 | Das Schema meldet Sonntags geschlossen, während die Seite „durchgehend erreichbar“ zusagt | technik | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 | EIG77 | base.html setzt für interne Seiten „index, follow“ als Voreinstellung | technik | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 | EIG78 | security.txt rechnet sein Ablaufdatum bei jedem Abruf neu und kann deshalb nie ablaufen | technik | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
+| EIG79 | Das Impressum stützt sich auf § 5 TMG und § 55 Abs. 2 RStV — beide Gesetze gibt es nicht mehr | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 <!-- eigenepunkte:ende -->
