@@ -714,7 +714,16 @@ HUB = {
              "apare un calculator nou pe birou, începe un angajat nou sau un aparat "
              "și-a încheiat viața. Pentru aceste cazuri există aici prețuri clare și "
              "niciun contract — comandați o sarcină, o rezolvăm, gata. Dacă mai târziu "
-             "iese mai mult din asta, cu atât mai bine; necesar nu este.",
+             "iese mai mult din asta, cu atât mai bine; necesar nu este. Un preț "
+             "fix este o sumă comunicată dinainte pentru o sarcină clar "
+             "delimitată: se aplică per aparat sau per intervenție, nu presupune "
+             "nici contract, nici administrare curentă, și acoperă munca făcută "
+             "la distanță. Dacă devine necesară o intervenție la fața locului — "
+             "pentru că un aparat trebuie mai întâi despachetat și conectat sau "
+             "pentru că nu există o conexiune la internet prin care să ruleze "
+             "sesiunea la distanță —, spunem asta dinainte și o facturăm cu "
+             "120 € pe oră plus deplasare. De aceea prețul stă aici fără un de "
+             "la în față: unde spunem preț fix, este preț fix.",
     "abgrenzung_h": "Și dacă totuși ar trebui să fie ceva curent?",
     "abgrenzung_t": "Atunci paginile de servicii sunt locul potrivit. Acolo este vorba "
                     "de administrare care continuă: supravegherea posturilor de lucru "

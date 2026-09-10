@@ -695,7 +695,15 @@ HUB = {
              "new computer on the desk, someone starts on Monday, or a device has "
              "reached the end. For those cases there are clear prices here and no "
              "contract — you commission a task, we do it, done. If more comes of it "
-             "later, good; necessary it is not.",
+             "later, good; necessary it is not. A fixed price is a figure named in "
+             "advance for a clearly bounded task: it applies per device or per job, "
+             "it requires neither a contract nor running support, and it covers the "
+             "work done remotely. If an on-site visit becomes necessary — because a "
+             "device has to be unpacked and connected first, or because there is no "
+             "internet connection for the remote session to run over — we say so "
+             "beforehand and charge €120 per hour plus travel. That is why the price "
+             "here carries no from in front of it: where we name a fixed price, it "
+             "is one.",
     "abgrenzung_h": "And if it should be ongoing after all?",
     "abgrenzung_t": "Then the services pages are the right place. They are about support "
                     "that continues: keeping an eye on workstations and servers, "

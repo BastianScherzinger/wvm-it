@@ -4,11 +4,11 @@ titel: Performance
 stand: 2026-09-10
 status: teilweise
 fortschritt: 88
-zusammenfassung: Am 06.09. nachgemessen statt fortgeschrieben: Django rendert in 8 bis 34 ms, der TTFB live liegt bei 172 bis 234 ms — die Anwendung ist rund 13 Prozent davon. Der Seitencache aus der Aufgabenliste haette also 30 von 230 ms gespart und dafuer auf jeder Formularseite ein fremdes CSRF-Token riskiert; er bleibt bewusst ungebaut. Gebaut: ConditionalGetMiddleware und Cache-Koepfe auf den sieben Endpunkten ohne Formular — 310 KB weniger je Crawl-Durchgang. Am 07.09. PF18 dort gebaut, wo er zutrifft: Das Portraet auf /ueber-uns/ stand auf loading=lazy und traegt jetzt fetchpriority=high; auf den uebrigen Seiten bleibt die hohe Ladeprioritaet bewusst aus, weil deren erstes Bild ein 44-Pixel-Dekobild unten im Formular ist. Am 10.09.2026 ist genau diese Trennung als begruendete Ausnahme eingetragen -- gebaut ist der Punkt an den drei Stellen, an denen es ein LCP-Bild gibt: Hero-Portraet, /ueber-uns/ und das erste Referenzbild.
+zusammenfassung: Am 06.09. nachgemessen statt fortgeschrieben: Django rendert in 8 bis 34 ms, der TTFB live liegt bei 172 bis 234 ms — die Anwendung ist rund 13 Prozent davon. Der Seitencache aus der Aufgabenliste haette also 30 von 230 ms gespart und dafuer auf jeder Formularseite ein fremdes CSRF-Token riskiert; er bleibt bewusst ungebaut. Gebaut: ConditionalGetMiddleware und Cache-Koepfe auf den sieben Endpunkten ohne Formular — 310 KB weniger je Crawl-Durchgang. Am 07.09. PF18 dort gebaut, wo er zutrifft: Das Portraet auf /ueber-uns/ stand auf loading=lazy und traegt jetzt fetchpriority=high; auf den uebrigen Seiten bleibt die hohe Ladeprioritaet bewusst aus, weil deren erstes Bild ein 44-Pixel-Dekobild unten im Formular ist. Am 10.09.2026 ist genau diese Trennung als begruendete Ausnahme eingetragen -- gebaut ist der Punkt an den drei Stellen, an denen es ein LCP-Bild gibt: Hero-Portraet, /ueber-uns/ und das erste Referenzbild. Am selben Tag PF17 aus demselben Grund: Er trifft dasselbe Dekobild von der anderen Seite. Jedes Bild nach dem ersten laedt verzoegert, eifrig laedt nur, wo es ein echtes LCP-Bild gibt -- damit bleiben in diesem Hebel PF19 und VL15 offen.
 offen: 4
-pagespeed_mobil: 98
-pagespeed_desktop: 97
-antwortzeit_ms: 4
+pagespeed_mobil: 99
+pagespeed_desktop: 91
+antwortzeit_ms: 8
 quellen: docs/AUSBAU-2026-09.md, docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 antwortzeit_quelle: PageSpeed server-response-time
 ---
@@ -20,43 +20,44 @@ antwortzeit_quelle: PageSpeed server-response-time
 ## Messwerte
 
 <!-- tempo:anfang -->
-**Messung vom 05.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-05a). Bereich „Performance & Core Web Vitals“: **90,4 von 100**, Reifegrad „Referenz“.
+**Messung vom 10.09.2026** (Overview-Prüfwerkzeug, Regelstand 2026-09-07d). Bereich „Performance & Core Web Vitals“: **96,1 von 100**, Reifegrad „Referenz“.
 
 ### Lighthouse je Seite
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **87** | 2,48 s | 0,000 | 395 ms | 7 ms |
-| `/` | desktop | **100** | 0,60 s | 0,002 | 36 ms | 8 ms |
-| `/datenschutz/` | mobile | **100** | 1,39 s | 0,003 | 0 ms | 3 ms |
-| `/datenschutz/` | desktop | **98** | 0,34 s | 0,100 | 0 ms | 2 ms |
-| `/impressum/` | mobile | **100** | 1,35 s | 0,003 | 0 ms | 3 ms |
-| `/impressum/` | desktop | **98** | 0,28 s | 0,087 | 0 ms | 3 ms |
-| `/kontakt/` | mobile | **100** | 1,06 s | 0,013 | 0 ms | 8 ms |
-| `/kontakt/` | desktop | **89** | 0,34 s | 0,228 | 0 ms | 3 ms |
-| `/kosten/rechner/` | mobile | **99** | 1,55 s | 0,010 | 0 ms | 3 ms |
-| `/kosten/rechner/` | desktop | **97** | 0,87 s | 0,005 | 109 ms | 5 ms |
-| `/leistungen/` | mobile | **100** | 1,35 s | 0,015 | 0 ms | 3 ms |
-| `/leistungen/` | desktop | **100** | 0,34 s | 0,013 | 0 ms | 3 ms |
+| `/` | mobile | **97** | 2,44 s | 0,000 | 0 ms | 48 ms |
+| `/` | desktop | **88** | 0,70 s | 0,002 | 290 ms | 8 ms |
+| `/datenschutz/` | mobile | **99** | 1,43 s | 0,003 | 83 ms | 3 ms |
+| `/datenschutz/` | desktop | **88** | 0,69 s | 0,003 | 272 ms | 2 ms |
+| `/impressum/` | mobile | **100** | 1,20 s | 0,003 | 0 ms | 4 ms |
+| `/impressum/` | desktop | **100** | 0,40 s | 0,000 | 24 ms | 2 ms |
+| `/kontakt/` | mobile | **100** | 1,45 s | 0,013 | 0 ms | 3 ms |
+| `/kontakt/` | desktop | **100** | 0,36 s | 0,019 | 0 ms | 3 ms |
+| `/kosten/rechner/` | mobile | **100** | 1,54 s | 0,010 | 0 ms | 5 ms |
+| `/kosten/rechner/` | desktop | **94** | 0,54 s | 0,006 | 198 ms | 5 ms |
+| `/leistungen/` | mobile | **99** | 1,68 s | 0,015 | 0 ms | 6 ms |
+| `/leistungen/` | desktop | **75** | 1,01 s | 0,015 | 463 ms | 7 ms |
 
-12 Abrufe, davon 5 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
+12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 4,2 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 8,0 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
 | Regel | Titel | Ergebnis | Beleg |
 |---|---|---|---|
-| `PF17` | Lazy-Loading unterhalb des Falzes, nicht auf dem LCP-Bild | teilweise | 24 von 192 Bildern unterhalb des ersten sind lazy; 6 von 165 Seiten laden ihr erstes Bild lazy: / → florin.jpg, /ueber-uns/ → florin.jpg, /en/ → florin.jpg, /ro/ → florin.jpg, /en/ueber-uns/ → florin.jpg … (+1) |
-| `PF13` | Statische Dateien werden lange zwischengespeichert | teilweise | 2 von 2 geprüften statischen Dateien ohne weit gesetztes Ablaufdatum: fonts.css?v=7de48c090435: cache-control max-age=31536000, public, main.js?v=7de48c090435: cache-control max-age=31536000, public |
-| `PF16` | Bilder werden in mehreren Grössen angeboten | nicht bestanden | 18 von 357 Bildern mit srcset; ohne: / → wvm_mark.webp, / → robot.webp, / → coop_pystore.jpg, / → wvm_mark.webp, /leistungen/ → wvm_mark.webp |
-| `PF18` | Das Hero-Bild trägt fetchpriority=high | nicht bestanden | 6 von 9 Seiten ohne fetchpriority=high am ersten Bild: / → florin.jpg, /ueber-uns/ → florin.jpg, /en/ → florin.jpg, /ro/ → florin.jpg, /en/ueber-uns/ → florin.jpg … (+1) |
+| `PF02` | Lighthouse Leistung Desktop erreicht 95 von 100 | teilweise | Lighthouse Leistung Desktop: 91 von 100 über 6 Messungen; unter 95: / (88), /leistungen/ (75), /kosten/rechner/ (94), /datenschutz/ (88) |
+| `PF13` | Statische Dateien werden lange zwischengespeichert | teilweise | 2 von 2 geprüften statischen Dateien ohne weit gesetztes Ablaufdatum: fonts.css?v=f128558f59e2: cache-control max-age=31536000, public, main.js?v=f128558f59e2: cache-control max-age=31536000, public |
+| `PF16` | Bilder werden in mehreren Grössen angeboten | nicht bestanden | 194 von 590 Bildern mit srcset; ohne: / → wvm_mark.webp, / → wvm_mark.webp, /leistungen/ → wvm_mark.webp, /leistungen/ → wvm_mark.webp, /kontakt/ → wvm_mark.webp |
+| `PF19` | Das LCP-Bild wird vorgeladen, und nur dort, wo es eins gibt | teilweise | 1 von 2 Schlüsselseiten mit Bild laden es nicht vor: /kosten/rechner/ |
+| `PF14` | Keine Seite liefert mehr als 200 kB HTML | teilweise | 2 von 198 Seiten über 200 kB HTML: / (197 KB), /ro/ (200 KB) |
 
 ### Die grössten Bremsen laut Lighthouse
 
 | Audit | Titel | Ersparnis |
 |---|---|---:|
-| `unused-css-rules` | Reduce unused CSS | 180 ms |
+| `unused-css-rules` | Reduce unused CSS | 300 ms |
 <!-- tempo:ende -->
 
 **Was hier erzeugt wird und was von Hand kommt.** Jede gemessene Zahl steht im Block
@@ -132,6 +133,7 @@ Mangel unsichtbar. Der Punkt liegt beim Kunden, siehe [80-AUFGABEN.md](80-AUFGAB
 | Statische Dateien | `cache-control: max-age=31536000, public` mit Hash im Namen (`?v=<commit>`), WhiteNoise mit Manifest-Storage; `immutable` fehlt (`PF13`, `VL14`) |
 | **`PF18` Ladepriorität (07.09.2026)** | Das Porträt auf `/ueber-uns/` füllt seine Spalte (auf dem Handy 70 vw) und ist der LCP-Kandidat der Seite — es stand auf `loading="lazy"`, also einer Bremse genau vor dem Bild, auf das die Messung wartet. Jetzt `fetchpriority="high"` statt der Verzögerung, wie das erste Referenzbild seit dem 06.09.2026. Geändert sind nur die Attribute `loading` und `fetchpriority`; Aufbau, Klassen und Reihenfolge blieben unangetastet. Vier Prüfungen in `landing/tests/test_bilder.py` halten den Zustand fest |
 | **Bewusst ohne hohe Ladepriorität** | Der Befund, aus dem `PF18` in dieses Paket kam, meldet 135 Seiten ohne `fetchpriority="high"` am ersten Bild im `main` (der erzeugte Block oben stammt aus der Messung vom 05.09.2026 und zählt 6 von 9). Auf 134 davon ist dieses erste Bild dasselbe: das 44 px grosse, `aria-hidden` gesetzte Porträt **unten** in der Anfragekarte — erstes Bild nur deshalb, weil oberhalb überhaupt keines steht. Es hoch zu priorisieren zöge es vor den sichtbaren Inhalt und verschlechterte die Messung. Die Begründung steht als Kommentar in `templates/anfrage_karte.html`, damit der nächste Durchgang den Befund nicht wörtlich abarbeitet. **Am 10.09.2026 als Ausnahme eingetragen** ([80-AUFGABEN.md](80-AUFGABEN.md), „Bewertung der Messpunkte"), ohne eine Zeile Code: Hohe Ladepriorität tragen genau die drei Stellen mit einem echten LCP-Bild — das Hero-Porträt (`templates/index.html:69`), das Porträt auf `/ueber-uns/` (`templates/ueber_uns.html:48`) und das erste Referenzbild (`templates/referenzen.html:43`, ab dem zweiten `loading="lazy"`); mal drei Sprachfassungen sind das die Seiten, die die Messung als bestanden zählt. Dass kein Bild zugleich bevorzugt und verzögert geladen wird, hält `landing/tests/test_bilder.py` fest |
+| **`PF17` Lazy-Loading — dieselbe Entscheidung von der anderen Seite (10.09.2026)** | Der Punkt rät, unterhalb des Falzes verzögert zu laden und das LCP-Bild **nicht**. Er trifft **dasselbe eine Bild** wie `PF18`: das 44 px breite, `aria-hidden` gesetzte Porträt unten in der Anfragekarte, das nur deshalb das erste Bild im `main` ist, weil oberhalb überhaupt keines steht. Es eifrig zu laden hiesse, ein Dekobild am Fuss eines Formulars vor den sichtbaren Inhalt zu ziehen — genau die Verschlechterung, die `PF18` am 07.09.2026 schon abgewehrt hat, nur mit umgekehrtem Vorzeichen. **Die zweite Hälfte des Rats ist erfüllt:** Jedes Bild, das im `main` nach dem ersten steht, lädt verzögert; eifrig geladen werden allein die drei Stellen mit einem echten LCP-Bild (Hero-Porträt, `/ueber-uns/`, erstes Referenzbild), gesichert von `landing/tests/test_bilder.py::LadeprioritaetTest`. Was die Messung ausserdem als „nicht verzögert" zählt, ist das Markenzeichen im Fuss (`templates/base.html:170`) — dieselbe Adresse wie im Kopf, 30 px, also derselbe Abruf aus dem Zwischenspeicher: Ein `loading="lazy"` daran spart keinen Abruf und hebt nur den Zählwert. **Als Ausnahme eingetragen** ([80-AUFGABEN.md](80-AUFGABEN.md), „Bewertung der Messpunkte"), ohne eine Zeile Code |
 
 ## Offen
 
@@ -143,7 +145,7 @@ erzeugten Block unter „Messwerte" — hier steht keine Messzahl.
 | 1 | **Core Web Vitals in `../docs/seo/PERFORMANCE.md` §3 eintragen** — die Tabelle ist seit dem 29.08.2026 leer, die Laborwerte liegen im Block oben vor; Feldwerte bleiben mangels Traffic aus | T8 |
 | 2 | **CLS auf Desktop** von `/leistungen/`, `/kosten/rechner/`, `/kontakt/` untersuchen — mobil nahezu null, also ein breitenabhängiger Umbruch | `PF04` im Labor; `PF08` bleibt mangels Feldwerten nicht messbar |
 | 3 | **`srcset` und `sizes`** an Inhaltsbilder — kein einziges Bild der Seite hat es | `PF16` |
-| 4 | **`fetchpriority="high"`** am ersten Bild im `<main>` und LCP-Preload auf `/leistungen/` und `/kosten/rechner/`; Lazy-Loading ab dem zweiten Bild. **Teilweise erledigt am 07.09.2026:** `/ueber-uns/` hat es (siehe „Weiter umgesetzt"), die übrigen Seiten bekommen es bewusst nicht — ihr erstes Bild ist das Dekobild der Anfragekarte. **`PF18` ist am 10.09.2026 als Ausnahme eingetragen und damit hier abgeschlossen; offen bleiben nur noch `PF19`, `PF17` und `VL15`** | `PF18`, `PF19`, `PF17`, `VL15` |
+| 4 | **`fetchpriority="high"`** am ersten Bild im `<main>` und LCP-Preload auf `/leistungen/` und `/kosten/rechner/`; Lazy-Loading ab dem zweiten Bild. **Teilweise erledigt am 07.09.2026:** `/ueber-uns/` hat es (siehe „Weiter umgesetzt"), die übrigen Seiten bekommen es bewusst nicht — ihr erstes Bild ist das Dekobild der Anfragekarte. **`PF18` ist am 10.09.2026 als Ausnahme eingetragen und damit hier abgeschlossen; `PF17` am selben Tag aus demselben Grund** (siehe „Weiter umgesetzt") — der Rat „ab dem zweiten Bild verzögern" ist gebaut, und das erste Bild bleibt es bewusst auch. **Offen bleiben nur noch `PF19` und `VL15`** | `PF18`, `PF19`, `PF17`, `VL15` |
 | 5 | **Critical CSS** je Seitentyp inline, Hauptdatei asynchron; HTML unter 120 KiB (`/`, `/en/`, `/ro/` liegen darüber) | `VL16`, `PF14` |
 | 6 | Statische Dateien mit `immutable` ausliefern | `PF13`, `VL14` |
 

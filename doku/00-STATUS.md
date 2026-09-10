@@ -4,7 +4,7 @@ titel: WVM-IT — Stand
 stand: 2026-09-10
 status: teilweise
 fortschritt: 96
-zusammenfassung: Am 10.09.2026 Paket 147: PJ03 war seit dem 07.09. gebaut und wurde trotzdem als offen gemeldet -- der Grund lag im gebuendelten Import-Block der Testdatei, den eine Quelltext-Analyse nur als Paketbezug liest; jetzt ein Modul je Zeile, dazu die vier reinen Funktionen der Sprachweiche und drei supa-Funktionen ohne Zugang, 282 Tests in 18 Testdateien. PF18 und PJ07 sind als begruendete Ausnahmen eingetragen, ohne eine Zeile Code. Davor am 07.09.2026 Paket 125: Die Sicherung, die eine Anfrage vor dem Mailversand auf die Platte und ins Log schreibt, haengt jetzt an allen Formularwegen statt nur an den Kurzanfragen (MW18); das Portraet auf /ueber-uns/ wird nicht mehr verzoegert geladen (PF18); die 32 Module, die kein Test beruehrt hat, haben eine eigene Testdatei (PJ03) — 252 Tests in 17 Dateien, vorher 207. Zwei Punkte begruendet abgelehnt: Befunddichte (PJ08) und TLS-Zertifikat (SI12). Davor: Umbau, Hero-Konzept, Politur und Cache-Durchgang abgeschlossen und deployt — 166 URLs. Hero: "Die ganze IT. Ein Ansprechpartner." mit Florins Gesicht im ersten Bildschirm. Folgefragen auf allen 16 Fachbeitraegen, vier neu gezeichnete Symbole, ConditionalGetMiddleware plus Cache-Koepfe auf den maschinellen Endpunkten (310 KB weniger je Crawl). Zweimal nachgemessen statt fortgeschrieben — vier angeblich offene SEO-Hebel waren erledigt, und der Seitencache haette 13 Prozent gebracht bei CSRF-Risiko. Offen bleiben Absenderadresse, SPF/DKIM/DMARC und Apex-Domain beim Kunden.
+zusammenfassung: Am 10.09.2026 Paket 153: Vier Kernseiten sagen jetzt dreisprachig, was Fernwartung, Festpreis, Datensicherung und KI-Automatisierung bedeuten (GE26) -- je ein Satz im vorhandenen Absatz, kein neues Element, kein neuer Link, die einzige Zahl darin aus dem Preiskatalog; die vier Rechtstexte bewusst ohne, weil ein Definitionssatz dort eine Aussage ohne Deckung waere. PF17 und IS18 sind im selben Durchgang als begruendete Ausnahmen eingetragen, ohne eine Zeile Code: Beide messen Dinge, die hier bewusst so sind -- ein 44-Pixel-Dekobild am Fuss des Formulars soll verzoegert laden, und ein Wegweiser braucht nicht den Umfang eines Ratgebers. Davor am selben Tag Paket 147: PJ03 war seit dem 07.09. gebaut und wurde trotzdem als offen gemeldet -- der Grund lag im gebuendelten Import-Block der Testdatei, den eine Quelltext-Analyse nur als Paketbezug liest; jetzt ein Modul je Zeile, dazu die vier reinen Funktionen der Sprachweiche und drei supa-Funktionen ohne Zugang, 282 Tests in 18 Testdateien. PF18 und PJ07 sind als begruendete Ausnahmen eingetragen, ohne eine Zeile Code. Davor am 07.09.2026 Paket 125: Die Sicherung, die eine Anfrage vor dem Mailversand auf die Platte und ins Log schreibt, haengt jetzt an allen Formularwegen statt nur an den Kurzanfragen (MW18); das Portraet auf /ueber-uns/ wird nicht mehr verzoegert geladen (PF18); die 32 Module, die kein Test beruehrt hat, haben eine eigene Testdatei (PJ03) — 252 Tests in 17 Dateien, vorher 207. Zwei Punkte begruendet abgelehnt: Befunddichte (PJ08) und TLS-Zertifikat (SI12). Davor: Umbau, Hero-Konzept, Politur und Cache-Durchgang abgeschlossen und deployt — 166 URLs. Hero: "Die ganze IT. Ein Ansprechpartner." mit Florins Gesicht im ersten Bildschirm. Folgefragen auf allen 16 Fachbeitraegen, vier neu gezeichnete Symbole, ConditionalGetMiddleware plus Cache-Koepfe auf den maschinellen Endpunkten (310 KB weniger je Crawl). Zweimal nachgemessen statt fortgeschrieben — vier angeblich offene SEO-Hebel waren erledigt, und der Seitencache haette 13 Prozent gebracht bei CSRF-Risiko. Offen bleiben Absenderadresse, SPF/DKIM/DMARC und Apex-Domain beim Kunden.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
@@ -27,7 +27,7 @@ quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 | **Hosting** | Railway-Projekt **`webseiten`** → Dienst **`wvm-it`**, Umgebung `shop`; Deploy automatisch beim Push auf `main` |
 | **Repository** | `BastianScherzinger/wvm-it`, Zweig `main` |
 | **Projektordner** | `C:\Users\basti\Desktop\jarvis\jarvis_websites\2026-07-02\web_wvm-it` (die einzige betreute Seite, die **nicht** unter `Desktop\webseiten buisnes\` liegt) |
-| **Letzter Commit** | auf `main`: `172cf0c`, 10.09.2026 (Doku). Paket 125 **ist gemergt** (`git branch --contains 9b5993c` nennt `main`, nachgeprüft 10.09.2026), `MW18`/`PF18`/`PJ03` sind damit live. Die drei Commits aus Paket 147 liegen auf `sofort/2026-09-10-pf18-und-2-weitere`. Weiter **nicht** auf `main`: der Antwortabsatz der Rechtsseiten (`GE23`, Zweig `sofort/2026-09-08-ge23-und-2-weitere`) |
+| **Letzter Commit** | auf `main`: `172cf0c`, 10.09.2026 (Doku). Paket 125 **ist gemergt** (`git branch --contains 9b5993c` nennt `main`, nachgeprüft 10.09.2026), `MW18`/`PF18`/`PJ03` sind damit live. Die drei Commits aus Paket 147 liegen auf `sofort/2026-09-10-pf18-und-2-weitere`, die drei aus Paket 153 (`228f726`, `faf3716`, `024204f`) auf `sofort/2026-09-10-pf17-und-2-weitere`. Weiter **nicht** auf `main`: der Antwortabsatz der Rechtsseiten (`GE23`, Zweig `sofort/2026-09-08-ge23-und-2-weitere`) |
 | **Search Console** | Property `https://www.wvm-it.tech/` (URL-Präfix) im Konto **`bastian.scherzinger05@gmail.com`** (nachgeprüft 03.09.2026), seit 03.09.2026 per OAuth ans Werkzeug angebunden |
 | **Google Ads** | keine |
 
@@ -39,7 +39,7 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 |---|---|---:|---|---|
 | Technik | teilweise | 85 | Django 5.0.6 auf Railway; seit 10.09.2026 mit **282 Testfunktionen in 18 Testdateien** (die bis dahin unberührten Module haben eine eigene Datei, und ihre Namen stehen seit dem 10.09. je in eigener Import-Zeile — sonst zählt die Messung die Prüfung nicht), serverseitiger Reichweitenmessung ohne Cookie und ohne IP, vor dem Mailversand gesicherten Anfragen auf **allen** Formularwegen, CI-Lauf bei jedem Push und durchgesetzter Content-Security-Policy. | [10-TECHNIK.md](10-TECHNIK.md) |
 | Design | teilweise | 96 | Design-System vom 27.08.2026 unverändert; am 06.09. der Hero neu gedacht (zweistufige Überschrift, Vertrauensband mit Gesicht) und drei Fehler behoben: übergelaufene Kopfleiste, Dialog in der Bildschirmecke, zwei `alert()`. Mobilansicht nie am Gerät geprüft. | [20-DESIGN.md](20-DESIGN.md) |
-| Inhalte | teilweise | 95 | 166 URLs; am 06.09. neue Hero-Überschrift in drei Sprachen, Vertrauensband, NIS2-Fachbeitrag, Einstiegsangebot und Abgrenzung auf den Leistungsseiten, Erreichbarkeit auf der Notfallseite. Übersetzungen geprüft: 2.361 Schlüssel je Sprache vollständig. | [30-INHALTE.md](30-INHALTE.md) |
+| Inhalte | teilweise | 95 | Seit 10.09.2026 sagen vier Kernseiten dreisprachig, was Fernwartung, Festpreis, Datensicherung und KI-Automatisierung bedeuten — je ein Satz im vorhandenen Absatz. 166 URLs; am 06.09. neue Hero-Überschrift in drei Sprachen, Vertrauensband, NIS2-Fachbeitrag, Einstiegsangebot und Abgrenzung auf den Leistungsseiten, Erreichbarkeit auf der Notfallseite. Übersetzungen geprüft: 2.361 Schlüssel je Sprache vollständig. | [30-INHALTE.md](30-INHALTE.md) |
 | SEO und GEO | teilweise | 87 | Zwei Funde ausserhalb jedes Plans behoben (94 hreflang auf 404, 82 unerreichbare Seiten). Sitemap in vier Segmenten, echte Änderungsdaten, `WebPage`-Knoten überall; Antwortabsatz von 14 Glossareinträgen und 4 Fachbeiträgen mit belegter Zahl. | [40-SEO.md](40-SEO.md) |
 | Local SEO | teilweise | 50 | Am 10.09.2026 im Browser nachgeprüft: **kein Google-Unternehmensprofil**, während sechs Mitbewerber im Bezirk mit Bewertungen in der Karte stehen. Dabei zwei unbekannte Fremdeinträge gefunden — WKO Firmen A–Z (läuft auf „Florin Feier", NAP weicht dreifach ab) und ein Loxone-Partnereintrag, dessen URL 404 liefert. Search Console eingerichtet, NAP auf der eigenen Seite zeichengleich. | [50-LOCAL-SEO.md](50-LOCAL-SEO.md) |
 | Ads | nicht zutreffend | — | Für WVM-IT laufen keine Google Ads; seit 05.09.2026 gibt es immerhin die Danke-Seite als messbaren Abschluss. | [60-ADS.md](60-ADS.md) |
@@ -51,31 +51,33 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 ## Messung
 
 <!-- messung:anfang -->
-**Messung vom 05.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-05a) — **Gesamtstand 91,2 von 100**, Reifegrad „Referenz“. 234 von 244 Regeln an 165 URLs und 153 Dateien (30.029 Zeilen) geprüft.
+**Messung vom 10.09.2026** (Overview-Prüfwerkzeug, Regelstand 2026-09-07d) — **Gesamtstand 93,7 von 100**, Reifegrad „Referenz“. 261 von 279 Regeln an 198 URLs und 182 Dateien (40.915 Zeilen) geprüft.
 
 | Bereich | Wert | Reifegrad |
 |---|---:|---|
-| GEO — KI-Sichtbarkeit | **80** | Solide |
-| Code-Qualität & Projektreife | **84** | Solide |
-| Vorlagen-Konformität | **87** | Solide |
-| Performance & Core Web Vitals | **90** | Referenz |
+| Erreichbarkeit & Postfach | **79** | Solide |
+| Vorlagen-Konformität | **88** | Solide |
+| GEO — KI-Sichtbarkeit | **90** | Referenz |
 | Konversion | **91** | Referenz |
-| SEO — Technik | **92** | Referenz |
-| SEO — Inhalt | **94** | Referenz |
+| SEO — Technik | **94** | Referenz |
+| Code-Qualität & Projektreife | **96** | Referenz |
+| Performance & Core Web Vitals | **96** | Referenz |
 | Barrierefreiheit | **96** | Referenz |
+| SEO — Inhalt | **96** | Referenz |
+| Sicherheit | **97** | Referenz |
 | Substanz & Reichweite | **97** | Referenz |
-| Sicherheit | **99** | Referenz |
+| Betrieb & Auslieferung | **99** | Referenz |
 | Recht & Vertrauen | **100** | Referenz |
-| Betrieb & Auslieferung | **100** | Referenz |
 
 Keine Sperre greift.
 
-Quelltext: 153 Dateien, **451 Befunde**, davon 0 kritisch und 382 wichtig.
+Quelltext: 182 Dateien, **463 Befunde**, davon 0 kritisch und 376 wichtig.
 
 Kritische Befunde:
 
 - **Alle Domainvarianten landen auf einer Adresse** (`TS11`) — 0 von 1 Nebenadressen landen dauerhaft auf der Hauptadresse — offen: https://wvm-it.tech: SSLError — kein Verbindungsaufbau
-- **Umfang passt zur Aufgabe der Seite** (`IS18`) — Unter dem Umfang, den ihre Aufgabe verlangt: 56 von 108 Seiten — /leistungen/ (459/600 W), /vergleich/ (816/900 W), /en/leistungen/ (492/600 W), /ro/leistungen/ (560/600 W), /leistungen/hosting-wartung/ (591/600 W) … (+51)
+- **Ein SPF-Eintrag sagt, wer im Namen der Domain schreiben darf** (`MW04`) — Kein SPF-Eintrag auf wvm-it.tech. Jede Mail im Namen dieser Domain ist für einen Empfänger ununterscheidbar von einer gefälschten.
+- **Ein DMARC-Eintrag ist gesetzt** (`MW06`) — Kein DMARC-Eintrag auf `_dmarc.wvm-it.tech`.
 <!-- messung:ende -->
 
 ## Die drei wichtigsten offenen Punkte
@@ -117,6 +119,7 @@ Kritische Befunde:
 
 | Datum | Was |
 |---|---|
+| **10.09.2026** | **Paket 153** (Commits `228f726`, `faf3716`, `024204f`): `GE26` — vier Seiten benannten ihren Kernbegriff, ohne ihn je zu definieren. `/kontakt/` sagt jetzt, was **Fernwartung** ist, `/einrichten/` was ein **Festpreis** ist (und damit, warum der Preis dort ohne „ab" steht), `/leistungen/server-datensicherung/` was eine Sicherung zur Sicherung macht, `/leistungen/ki-automatisierung/` dass Automatisierung ein Ablauf ist und kein Produkt — je ein Satz **im vorhandenen Absatz**, in allen drei Sprachen, ohne neues Element und ohne neuen Link; die einzige Zahl darin (120 € je Stunde vor Ort) stammt aus `ANGEBOT_GROUPS`. Die vier Rechtstexte bewusst ohne. `PF17` und `IS18` — **als Ausnahme belegt statt gebaut, keine Codezeile geändert:** `PF17` trifft dasselbe 44-px-Dekobild wie `PF18`, nur von der anderen Seite (siehe [70-PERFORMANCE.md](70-PERFORMANCE.md)); `IS18` misst gegen einen Sollwert je Seitenart — vier der fünf gemeldeten Seiten liegen bei 83 bis 98 Prozent, die fünfte ist ein Wegweiser (siehe [30-INHALTE.md](30-INHALTE.md)) |
 | **07.09.2026** | **Paket 125** (Commits `9b5993c`, `db983bf`, `ed3262c`, `455a413`, `c7c647f`): `MW18` — die Anfragen von Kontaktformular, Angebots-Konfigurator, Richtangebot und Kooperationsanfrage lebten ausschliesslich in der E-Mail; sie werden jetzt wie die Kurzanfragen **vor** dem Versand gesichert, ohne IP. `PF18` — das Porträt auf `/ueber-uns/` stand auf `loading="lazy"`, also eine Bremse vor dem wahrscheinlichen LCP-Bild, und trägt jetzt `fetchpriority="high"`; das 44-px-Dekobild der Anfragekarte bewusst nicht. `PJ03` — Testdatei für die 32 Module, die kein Test berührte → **252 Tests in 17 Dateien** (vorher 207). Begründet abgelehnt: `PJ08` (Befunddichte) und `SI12` (TLS-Zertifikat, eine Eigenschaft der Plattform). Die fünf Commits liegen auf dem Zweig `sofort/2026-09-07-mw18-und-4-weitere`; der Deploy erfolgt mit dem Merge auf `main` |
 | **06.09.2026** | **Umbau auf Anfragen** (`../docs/UMBAU-2026-09-06.md`): Sechs Fehler behoben, die alle **keine Fehlermeldung erzeugt** haben — die Spam-Falle konnte echte Anfragen verschlucken und meldete Erfolg · der Konfigurator rechnete ohne Mengenfeld (8 Arbeitsplätze: 167 € statt 370 € — und die falsche Zahl war die schriftliche) · die Kopfleiste brauchte 1400 px in einem 1180-px-Container und passte bei **keiner** Fensterbreite · der Rückruf-Dialog klebte in der Bildschirmecke · fünf Datenschutz-Links zeigten auf Anker, die es nicht gibt · zwei `alert()` im Fehlerpfad. Neu gebaut: **serverseitige Messung** ohne Cookie und ohne IP, Herkunft und Reply-To in jeder Anfrage, Rückruf als Standardweg im Hero (davor stand die Gratis-Website), Kostenrechner im Richtpreis-Reiter, drei Betreuungsstufen (194/573/1.097 €) vor den Webseiten-Paketen, Richtpreis-Sperre samt erzwungener Werbeeinwilligung entfernt, Einstiegsangebot + Abgrenzung + Gesicht + Rückruf auf den Leistungsseiten, Rechnerergebnis mitnehmbar, 22 tel:-Links nach RFC 3966, Referenzvorlage füllbar, Ausfallfrage beantwortet, freiwillige Werbeeinwilligung nach § 174 TKG, NISG-Beitrag → **166 URLs, 149 Tests** |
 | **06.09.2026** | **Strategie erarbeitet** (`../docs/STRATEGIE-2026-09.md`): Von elf regionalen Anbietern nennt **keiner** Preise; 29 €/Arbeitsplatz liegen **unter** dem AT-Korridor von 49–150 €. Kaltakquise ist in Österreich **verboten**, auch B2B, verfolgt von Amts wegen. Florin ist seit 10.06.2020 UBIT-Mitglied und damit für **huddlex.at** berechtigt, ohne es zu nutzen. ERFOLG.PLUS 26 macht einen Audit für 890 € zum Türöffner, der sich selbst finanziert |
