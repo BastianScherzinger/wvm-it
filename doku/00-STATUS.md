@@ -51,31 +51,33 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 ## Messung
 
 <!-- messung:anfang -->
-**Messung vom 05.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-05a) — **Gesamtstand 91,2 von 100**, Reifegrad „Referenz“. 234 von 244 Regeln an 165 URLs und 153 Dateien (30.029 Zeilen) geprüft.
+**Messung vom 10.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-07d) — **Gesamtstand 93,7 von 100**, Reifegrad „Referenz“. 261 von 279 Regeln an 198 URLs und 182 Dateien (40.915 Zeilen) geprüft.
 
 | Bereich | Wert | Reifegrad |
 |---|---:|---|
-| GEO — KI-Sichtbarkeit | **80** | Solide |
-| Code-Qualität & Projektreife | **84** | Solide |
-| Vorlagen-Konformität | **87** | Solide |
-| Performance & Core Web Vitals | **90** | Referenz |
+| Erreichbarkeit & Postfach | **79** | Solide |
+| Vorlagen-Konformität | **88** | Solide |
+| GEO — KI-Sichtbarkeit | **90** | Referenz |
 | Konversion | **91** | Referenz |
-| SEO — Technik | **92** | Referenz |
-| SEO — Inhalt | **94** | Referenz |
+| SEO — Technik | **94** | Referenz |
+| Code-Qualität & Projektreife | **96** | Referenz |
+| Performance & Core Web Vitals | **96** | Referenz |
 | Barrierefreiheit | **96** | Referenz |
+| SEO — Inhalt | **96** | Referenz |
+| Sicherheit | **97** | Referenz |
 | Substanz & Reichweite | **97** | Referenz |
-| Sicherheit | **99** | Referenz |
+| Betrieb & Auslieferung | **99** | Referenz |
 | Recht & Vertrauen | **100** | Referenz |
-| Betrieb & Auslieferung | **100** | Referenz |
 
 Keine Sperre greift.
 
-Quelltext: 153 Dateien, **451 Befunde**, davon 0 kritisch und 382 wichtig.
+Quelltext: 182 Dateien, **463 Befunde**, davon 0 kritisch und 376 wichtig.
 
 Kritische Befunde:
 
 - **Alle Domainvarianten landen auf einer Adresse** (`TS11`) — 0 von 1 Nebenadressen landen dauerhaft auf der Hauptadresse — offen: https://wvm-it.tech: SSLError — kein Verbindungsaufbau
-- **Umfang passt zur Aufgabe der Seite** (`IS18`) — Unter dem Umfang, den ihre Aufgabe verlangt: 56 von 108 Seiten — /leistungen/ (459/600 W), /vergleich/ (816/900 W), /en/leistungen/ (492/600 W), /ro/leistungen/ (560/600 W), /leistungen/hosting-wartung/ (591/600 W) … (+51)
+- **Ein SPF-Eintrag sagt, wer im Namen der Domain schreiben darf** (`MW04`) — Kein SPF-Eintrag auf wvm-it.tech. Jede Mail im Namen dieser Domain ist für einen Empfänger ununterscheidbar von einer gefälschten.
+- **Ein DMARC-Eintrag ist gesetzt** (`MW06`) — Kein DMARC-Eintrag auf `_dmarc.wvm-it.tech`.
 <!-- messung:ende -->
 
 ## Die drei wichtigsten offenen Punkte
