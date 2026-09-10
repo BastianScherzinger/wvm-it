@@ -20,7 +20,7 @@ antwortzeit_quelle: PageSpeed server-response-time
 ## Messwerte
 
 <!-- tempo:anfang -->
-**Messung vom 10.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-07d). Bereich „Performance & Core Web Vitals“: **96,1 von 100**, Reifegrad „Referenz“.
+**Messung vom 10.09.2026** (Overview-Prüfwerkzeug, Regelstand 2026-09-07d). Bereich „Performance & Core Web Vitals“: **96,1 von 100**, Reifegrad „Referenz“.
 
 ### Lighthouse je Seite
 

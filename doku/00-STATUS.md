@@ -51,7 +51,7 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 ## Messung
 
 <!-- messung:anfang -->
-**Messung vom 10.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-07d) — **Gesamtstand 93,7 von 100**, Reifegrad „Referenz“. 261 von 279 Regeln an 198 URLs und 182 Dateien (40.915 Zeilen) geprüft.
+**Messung vom 10.09.2026** (Overview-Prüfwerkzeug, Regelstand 2026-09-07d) — **Gesamtstand 93,7 von 100**, Reifegrad „Referenz“. 261 von 279 Regeln an 198 URLs und 182 Dateien (40.915 Zeilen) geprüft.
 
 | Bereich | Wert | Reifegrad |
 |---|---:|---|
