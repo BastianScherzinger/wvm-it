@@ -102,21 +102,71 @@ def _mit_wunsch(url, lang):
 _UEBERSETZT = {}
 
 
+def _loest_auf(pfad, lang):
+    """True, wenn der URL-Router `pfad` unter `lang` einer Ansicht zuordnet."""
+    from django.urls import Resolver404, resolve
+    from django.utils import translation
+    try:
+        with translation.override(lang):
+            resolve(pfad)
+        return True
+    except Resolver404:
+        return False
+
+
 def hat_sprachfassung(base_path, lang):
     """True, wenn es base_path in dieser Sprache als eigene Adresse gibt."""
     if lang == "de":
         return True
     schluessel = (base_path, lang)
     if schluessel not in _UEBERSETZT:
-        from django.urls import Resolver404, resolve
-        from django.utils import translation
-        try:
-            with translation.override(lang):
-                resolve(add_prefix(lang, base_path))
-            _UEBERSETZT[schluessel] = True
-        except Resolver404:
-            _UEBERSETZT[schluessel] = False
+        _UEBERSETZT[schluessel] = _loest_auf(add_prefix(lang, base_path), lang)
     return _UEBERSETZT[schluessel]
+
+
+# ── Nur auf Deutsch vorhanden? (10.09.2026) ──────────────────────────────────
+# Der Seitenkopf verweist seit dem 05.09.2026 richtig — trotzdem trug die Search
+# Console am 10.09.2026 **28 Adressen unter „Nicht gefunden (404)"**, und alle
+# achtundzwanzig waren `/en/…` oder `/ro/…` vor `/wissen/`, `/aktuelles/` oder
+# `/checkliste/`. Ein einmal gefundener Link verschwindet nicht, wenn man
+# aufhoert, ihn auszugeben: Google crawlt ihn weiter, und jeder Abruf endet in
+# einem 404.
+#
+# Das ist doppelt schaedlich. Erstens sagt der 404 etwas Falsches — die Seite
+# gibt es sehr wohl, nur ohne Praefix. Zweitens frisst er Crawlbudget: am selben
+# Tag standen **27 echte deutsche Seiten** unter „Gefunden — zurzeit nicht
+# indexiert", darunter `/branchen/` mit allen Branchenseiten und `/vergleich/`.
+# Der Crawler war mit Adressen beschaeftigt, die es nie gab.
+#
+# **Gefragt wird die Quelle, nicht der Router.** Der erste Versuch nahm
+# `resolve()` — und der erste Test hat ihn gekippt: `wissen/<slug:slug>/` matcht
+# **jeden** Slug, also haette `/ro/wissen/gibt-es-nicht/` mit 301 auf einen 404
+# gezeigt. Eine Weiterleitung auf eine Sackgasse ist nur ein langsamerer 404.
+#
+# `views._seiten_pfade()` fuehrt jeden oeffentlichen Basis-Pfad und traegt im
+# vierten Feld bereits, ob es ihn mehrsprachig gibt — dieselbe Quelle, aus der
+# Sitemap und IndexNow lesen, und genau aus demselben Grund angelegt („Nichts
+# kostet Vertrauen bei einem Crawler so schnell wie eine Sitemap voller 404").
+# Sie zu benutzen ist keine zweite Liste, sondern die erste.
+#
+# Der Import liegt in der Funktion: `views` importiert dieses Modul.
+_NUR_DEUTSCH = {}
+
+
+def _nur_deutsche_pfade():
+    if not _NUR_DEUTSCH:
+        from ..views import _seiten_pfade
+        _NUR_DEUTSCH["set"] = {
+            pfad for pfad, _prio, _haeufig, mehrsprachig in _seiten_pfade()
+            if not mehrsprachig}
+    return _NUR_DEUTSCH["set"]
+
+
+def nur_deutsch(base_path, lang):
+    """True, wenn es base_path unter `lang` nicht gibt, ohne Praefix aber schon."""
+    if lang == "de" or lang not in LANGS:
+        return False
+    return base_path in _nur_deutsche_pfade()
 
 
 def context_processor(request):

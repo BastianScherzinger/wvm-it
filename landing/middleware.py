@@ -186,6 +186,29 @@ class LocalePrefsMiddleware:
             _setze_sprachcookie(antwort, wunsch)
             return antwort
 
+        # ── Deutschsprachige Silos unter einem Sprachpraefix (10.09.2026) ────
+        # `/en/wissen/raid/` und `/ro/aktuelles/` antworteten mit 404, obwohl es
+        # `/wissen/raid/` und `/aktuelles/` gibt — die drei Silos liegen bewusst
+        # ausserhalb von i18n_patterns (Begruendung im Kopf von beitraege.py).
+        # Die Search Console fuehrte deswegen am 10.09.2026 achtundzwanzig
+        # Adressen unter „Nicht gefunden"; die vollstaendige Begruendung steht
+        # bei `i18n.nur_deutsch`.
+        #
+        # Steht **vor** `_is_default_page`, weil es nicht die Startseite betrifft,
+        # und **vor** der Bot-Schranke: Diese Weiterleitung gilt ausdruecklich
+        # auch fuer Crawler — sie ist ja fuer sie gedacht. Anders als die
+        # Sprach-Auto-Erkennung darunter haengt sie an keinem Cookie und an
+        # keiner Browsersprache, sondern nur am Pfad; sie ist damit fuer jeden
+        # Abrufer dieselbe und darf dauerhaft (301) sein.
+        #
+        # Das Ziel entsteht aus `path_info` (von Django normalisiert) und beginnt
+        # mit genau einem Schraegstrich — kein offener Weiterleiter, siehe die
+        # ausfuehrliche Begruendung in `views.de_praefix_umleiten`.
+        sprache, basis = _sprache_aus_pfad(path)
+        if sprache and i18n.nur_deutsch(basis, sprache):
+            qs = request.META.get("QUERY_STRING", "")
+            return HttpResponsePermanentRedirect(basis + (("?" + qs) if qs else ""))
+
         if not _is_default_page(path):
             return None
         if _BOT.search(request.META.get("HTTP_USER_AGENT", "")):
