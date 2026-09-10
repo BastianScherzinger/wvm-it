@@ -7,6 +7,39 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 10.09.2026 — Unternehmensprofil: nachgesehen statt angenommen
+
+"Es gibt keins" stand seit dem 28.08. in jeder Datei — aber nur, weil es nie
+angelegt **wurde**. Niemand hatte je nachgesehen, ob Florin es zwischendurch
+selbst getan hat. **Im Browser nachgeprüft: vier Abfragen, alle negativ.** Kein
+Knowledge Panel, kein Local Pack, kein Kartentreffer an der Anschrift; Maps
+springt bei "WVM" auf eine Immobilienfirma in Köln.
+
+**Die Gegenprobe war die eigentliche Ausbeute.** `IT-Dienstleister Lenzing`
+liefert sechs Betriebe im Einzugsgebiet, jeder mit Profil und Bewertungen —
+Attersoft 5,0 (19), eSYS 4,8 (17), haertel-softweb 5,0 (12), Comdion, pc-rep,
+FOX. Sieben Bewertungen genügen dort, um vor 198 URLs zu stehen, die in der
+Karte nicht vorkommen. Das ist Nische 2, unverändert verschlossen.
+
+**Zwei Fremdeinträge gefunden, von denen die Doku nichts wusste** — beide ohne
+unser Zutun entstanden, beide mit abweichender NAP:
+
+    WKO Firmen A-Z:   Name "Florin Feier" statt WVM-IT
+                      "Waldstraße 19, Tür 1" statt "Waldstraße 19/1"
+                      06763808501 statt +43 676 3808501, http:// statt https://
+    Loxone-Partner:   von Google indexiert, URL liefert live 404
+
+Damit ist Punkt 2 der Verzeichnisliste nicht offen, sondern **falsch belegt**:
+Der WKO-Eintrag ist die amtsnahe Quelle, aus der andere Verzeichnisse
+abschreiben, und er führt das Unternehmen unter dem Personennamen. Er muss
+korrigiert werden, nicht angelegt — und das kann nur Florin.
+
+**Merksatz:** Ein Zustand, der nie überprüft wurde, ist keine Feststellung,
+sondern eine Erinnerung an eine Unterlassung. Drei Wochen lang stand er
+trotzdem als Tatsache in vierzehn Dateien.
+
+---
+
 ## 06.09.2026 (nachts) — Zwischenspeicherung: gemessen statt geglaubt
 
 Der Seitencache stand seit dem 05.09. als groesster offener Performance-Hebel in der

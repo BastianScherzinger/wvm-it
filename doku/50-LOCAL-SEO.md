@@ -127,9 +127,10 @@ Der Loxone-Eintrag ist ein Rückschlag ohne Schuld: Google zeigt ihn noch, das Z
 
 | # | Punkt | Wer | Quelle |
 |---|---|---|---|
-| 1 | **Google-Unternehmensprofil anlegen und verifizieren** — der entscheidende lokale Hebel | **Florin** | Konzept §7, AKQUISE-SOFORT Kanal 1 |
+| 1 | **Google-Unternehmensprofil anlegen und verifizieren** — der entscheidende lokale Hebel; am 10.09.2026 vierfach nachgeprüft, es gibt weiterhin keins, während sechs Mitbewerber im Bezirk in der Karte stehen | **Florin** | Konzept §7, AKQUISE-SOFORT Kanal 1 |
 | 2 | Sitemap (158 URLs) neu einreichen, 71 neue URLs anstoßen, täglich ~10 | Bastian (Browser, Konto `…05@gmail.com`) | Ausbau 3 §12 |
 | 3 | Erste Bewertungen einsammeln — erst nach Freischaltung des Profils | Florin | T5 |
-| 4 | WKO Firmen A–Z, Herold, Bing Places, Apple Business Connect mit identischer NAP | Bastian | T6, Konzept §7 |
-| 5 | `sameAs` füllen, sobald Profile existieren; Geokoordinaten ins Schema | Bastian, nach 1 | `GE11`, `GE22` |
+| 4 | Herold, Bing Places, Apple Business Connect mit identischer NAP anlegen | Bastian | T6, Konzept §7 |
+| 4b | **WKO-Eintrag korrigieren** — läuft auf „Florin Feier", Anschrift und Telefonnummer weichen ab. Nicht anlegen, sondern ändern (Unternehmerservice, Mitgliedsnummer) | **Florin** | 10.09.2026, siehe oben |
+| 5 | `sameAs` füllen, sobald Profile existieren; Geokoordinaten ins Schema. **Loxone-Eintrag vorher prüfen** — die indexierte URL liefert derzeit 404 | Bastian, nach 1 | `GE11`, `GE22` |
 | 6 | Domain-Property statt URL-Präfix, beim nächsten DNS-Zugriff | Bastian / Kunde (DNS) | INDEXIERUNG.md |
