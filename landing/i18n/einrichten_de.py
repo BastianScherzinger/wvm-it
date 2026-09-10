@@ -730,7 +730,17 @@ HUB = {
              "einfach ein neuer Rechner auf dem Tisch, ein Mitarbeiter fängt an, oder "
              "ein Gerät ist am Ende. Für diese Fälle gibt es hier klare Preise und "
              "keinen Vertrag — Sie beauftragen eine Aufgabe, wir erledigen sie, fertig. "
-             "Wenn daraus später mehr wird, ist das gut; nötig ist es nicht.",
+             "Wenn daraus später mehr wird, ist das gut; nötig ist es nicht. "
+             "Ein Festpreis ist dabei ein vorher genannter Betrag für eine klar "
+             "abgegrenzte Aufgabe: Er gilt je Gerät oder je Vorgang, er setzt "
+             "weder einen Vertrag noch eine laufende Betreuung voraus, und er "
+             "deckt die Arbeit ab, die per Fernwartung erledigt wird. Wird ein "
+             "Einsatz vor Ort nötig — weil ein Gerät erst ausgepackt und "
+             "angeschlossen werden muss oder weil kein Internetzugang da ist, "
+             "über den die Fernwartung laufen könnte —, sagen wir das vorher "
+             "und rechnen ihn mit 120 € je Stunde zuzüglich Anfahrt ab. "
+             "Deshalb steht der Preis hier ohne ein vorangestelltes ab: Wo wir "
+             "einen Festpreis nennen, ist es einer.",
     "abgrenzung_h": "Und wenn es doch laufend sein soll?",
     "abgrenzung_t": "Dann sind Sie bei den Leistungen richtig. Dort geht es um "
                     "Betreuung, die weiterläuft: Arbeitsplätze und Server im Blick "
