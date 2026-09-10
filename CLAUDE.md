@@ -33,7 +33,7 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: 196 URLs (08.09.2026)
+## Stand: 198 URLs (10.09.2026)
 
 **Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend
 per Fernwartung in ganz Österreich und Deutschland. Webseiten, SEO, Google Ads und KI
@@ -46,7 +46,7 @@ man konnte sie kaufen, aber nicht finden. `/leistungen/konferenztechnik/` wurde
 gleichzeitig auf **Besprechungsräume** geschärft, damit sich die beiden Seiten nicht
 um dieselbe Suchanfrage streiten.
 
-Aus 2 rankbaren Seiten wurden **196 URLs** (94 Basis-Pfade):
+Aus 2 rankbaren Seiten wurden **198 URLs** (94 Basis-Pfade):
 
 | Silo | Pfad | Seiten | Sprachen |
 |---|---|---|---|
@@ -79,26 +79,35 @@ Aufstellung steht in `docs/SEO-AUSBAU-3.md`.
 
 1. **`python manage.py seo_bericht`** — der Stand in dreißig Sekunden: URLs,
    Wortzahlen, Auffälligkeiten, Schema-Verteilung. Vor jeder Planung.
-2. **`docs/LOOPS-2026-09-07.md`** — **der jüngste Durchgang.** §2 die vier Funde,
+2. **`docs/STAND-2026-09-10.md`** — **hier anfangen.** Was in vier Tagen entstand
+   (165 → 198 URLs, 130 → 276 Tests), was offen ist, und §4 die **drei Fallen**,
+   die dabei zugeschlagen haben: Automode und Chat-Sitzung teilen ein
+   Arbeitsverzeichnis (zweimal Arbeit verloren), typografische
+   Anführungszeichen sprengen Python-Strings, und ein Skript, das den ersten
+   statt des richtigen Treffers erwischt. §5 der Satz, der über allem steht.
+3. **`docs/PLAN-HARDWARE-2026-09-08.md`** — das Silo `/einrichten/`: warum es
+   ein eigenes ist, wie die Abgrenzung zu `/leistungen/` gesichert wird, und
+   was von Florin kommen muss.
+4. **`docs/LOOPS-2026-09-07.md`** — **der jüngste Durchgang.** §2 die vier Funde,
    die zählen (der Empfehlungsfall stand nirgends; der Einstieg kostete das
    Zweieinhalbfache), §3 die Kollision zwischen Automode und Chat-Loops im selben
    Arbeitsverzeichnis, §6 was offen bleibt — vor allem der **Gerätelebenszyklus**:
    sechs echte Suchanfragen ohne Seite, §7 die drei Merkregeln.
-3. **`docs/BEFUNDE-281-2026-09-06.md`** — der Durchgang davor (06.09.): zehn Punkte aus
+5. **`docs/BEFUNDE-281-2026-09-06.md`** — der Durchgang davor (06.09.): zehn Punkte aus
    dem Werkzeug-Lauf #281. §0 sagt, warum jeder Befund zuerst nachgemessen wurde
    (vier waren erledigt, drei sind Messfehler der Regel), §10 den Merksatz:
    **ein Befund sagt, wo die Regel angeschlagen hat — nicht, wo der Fehler ist.**
-4. **`docs/UMBAU-2026-09-06.md`** — der Umbau vom 06.09.2026. §1 nennt den
+6. **`docs/UMBAU-2026-09-06.md`** — der Umbau vom 06.09.2026. §1 nennt den
    roten Faden: **sechs Fehler, die zusammen „null Anfragen" erklären, haben zusammen
    keine einzige Fehlermeldung erzeugt.** §7 sagt, was offen bleibt und warum.
-5. **`docs/STRATEGIE-2026-09.md`** — Markt, Rechtsrahmen, Kanäle, und die vier Dinge,
+7. **`docs/STRATEGIE-2026-09.md`** — Markt, Rechtsrahmen, Kanäle, und die vier Dinge,
    die nur Florin tun kann. Wichtigster Satz für jede Akquise-Idee: **Kaltakquise ist
    in Österreich verboten, auch B2B, auch die einzelne Mail** (§ 174 TKG 2021,
    verfolgt von Amts wegen).
-6. **`docs/HERO-KONZEPT-2026-09-06.md`** — warum im Hero steht, was dort steht.
+8. **`docs/HERO-KONZEPT-2026-09-06.md`** — warum im Hero steht, was dort steht.
    Wer die Überschrift anfasst, liest vorher §1: Die Vorgängerin war gut formuliert
    und hat trotzdem **ausgeschlossen**.
-7. **`docs/AUSBAU-2026-09.md`** — der Durchgang davor. §3 nennt die zwei Funde,
+9. **`docs/AUSBAU-2026-09.md`** — der Durchgang davor. §3 nennt die zwei Funde,
    die in keinem Plan standen.
 7. `docs/SEO-AUSBAU-3.md` — **abgeschlossen** (56/56). §11 nennt drei Funde, die
    nicht im Plan standen; §12 sagt, was jetzt ansteht.
@@ -115,6 +124,9 @@ Zuarbeit und lässt sich hier nicht lösen:
 
 ### Alle Dokumente
 
+- `docs/STAND-2026-09-10.md` — **Sitzungsabschluss 10.09.2026.** Zahlen,
+  offene Punkte, die drei Fallen, und die zwei Arbeitsregeln, die aus
+  sechs falsch gelesenen Befunden folgen
 - `docs/LOOPS-2026-09-07.md` — **Bilanz der beiden Loops (07.09.2026).**
   Sechs Commits, Suite 176 → 252 Tests. §3 der Fund, der nicht die Website
   betraf: Automode und Chat-Loops bauten gleichzeitig im selben
@@ -144,7 +156,7 @@ Zuarbeit und lässt sich hier nicht lösen:
 - `docs/seo/BASELINE.md` — Nullmessung, nächste Messung Ende September
 - `docs/UMBAU-PLAN.md` / `docs/UMBAU-START.md` — der vorige Umbau (Design, Conversion)
 
-**Vor jedem Deploy:** `python manage.py pruefe_seite` — prüft alle 165 URLs auf `<h1>`,
+**Vor jedem Deploy:** `python manage.py pruefe_seite` — prüft alle 198 URLs auf `<h1>`,
 Titel-/Description-Länge, JSON-LD, Alt-Texte, hreflang, jeden internen Link, jeden Preis
 auf jeder Seite und die Formulare (CSRF, Honigtopf, Datenschutzhinweis, Quelle).
 Rückgabewert 1 bei Fehlern.
