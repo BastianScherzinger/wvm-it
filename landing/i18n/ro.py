@@ -504,7 +504,7 @@ PACK = {
         "passt_dazu_h": "Se potrivește aici",
         "passt_dazu_t": "Articole, comparații și termeni exact pe această temă — scrise pentru firme aflate în fața aceleiași decizii.",
         "regionen_titel": "Regiuni",
-        "regionen_h1": "Unde venim la fața locului — și unde lucrăm de la distanță",
+        "regionen_h1": "Asistență IT în Austria Superioară și Salzburg — unde venim la fața locului",
         "regionen_meta_titel": "Servicii IT în Austria Superioară și Salzburg | WVM-IT",
         "regionen_meta_desc": "Servicii IT la fața locului în Vöcklabruck, Gmunden, Bad Ischl, Wels, Salzburg și Linz, la distanță în toată Austria. Stabiliți o întâlnire.",
         "regionen_kurz": "Sediul nostru este în Lenzing, districtul Vöcklabruck. Pentru lucrările care necesită prezență la fața locului ne deplasăm pe o rază de aproximativ 60 de minute; pentru 7 regiuni deplasarea este descrisă pe o pagină proprie. Tot ce se poate face de la distanță acoperim în toată Austria și Germania.",

@@ -1770,6 +1770,21 @@ def _structured_data(c, lang):
         "@id": f"{base}/#business",
         "name": c.get("site_name", "WVM-IT"),
         "legalName": f"WVM-IT, {c.get('inhaber_name', 'Florin Feier')}",
+        # Die Schreibweisen, unter denen der Betrieb gesucht wird — nachgesehen,
+        # nicht ausgedacht: Die Search Console zaehlte in den 90 Tagen bis zum
+        # 10.09.2026 fuer `wvm` 18 Impressionen auf Position 39, fuer `wwwwvm`
+        # sechs und fuer `vm it` eine. Bei der eigenen Marke ist Position 39 kein
+        # Rangproblem, sondern ein Zuordnungsproblem: Google weiss nicht, dass
+        # diese Buchstabenfolge dieser Betrieb ist (Maps springt bei „WVM" auf
+        # eine Immobilienfirma in Koeln).
+        #
+        # `alternateName` sagt es. Es ersetzt **nicht**, was wirklich fehlt — ein
+        # Google-Unternehmensprofil und der auf „Florin Feier" laufende
+        # WKO-Eintrag, beides nur vom Inhaber zu machen (doku/80-AUFGABEN.md,
+        # „Beim Kunden"). Aufgenommen sind nur Schreibweisen, die der Betrieb
+        # selbst fuehrt; `wwwwvm` ist ein Vertipper in der Adresszeile und
+        # gehoert nicht in eine Identitaetsangabe.
+        "alternateName": ["WVM", "WVM IT", "WVM-IT Feier"],
         # Die Langbeschreibung ist das, was KI-Systeme als Selbstauskunft zitieren.
         # Sie steht im Sprachpaket, damit EN und RO nicht auf Deutsch antworten.
         "description": pack["meta"].get("firmen_desc") or pack["meta"]["seo_desc"],

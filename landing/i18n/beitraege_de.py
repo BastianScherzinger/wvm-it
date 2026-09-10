@@ -49,8 +49,19 @@ BEITRAEGE = {
 
     "was-kostet-it-betreuung": {
         "titel": "Was kostet IT-Betreuung für eine kleine Firma?",
-        "meta_titel": "IT-Betreuung: Kosten ab 29 €/Monat je Platz | WVM-IT",
-        "desc": "IT-Betreuung kostet ab 29 € je Arbeitsplatz und Monat, Support ohne Vertrag 95 €/Std. Ab wann sich welche Variante rechnet — jetzt nachlesen.",
+        # Titel und Beschreibung zielen bewusst auf die **kleine Firma** und auf
+        # die Frage „ab wann rechnet sich was", nicht auf „IT-Betreuung Kosten".
+        # Grund: Am 10.09.2026 rankten fuer `it betreuung kosten` drei eigene
+        # Seiten gleichzeitig — /kosten/ (34 Impressionen, Position 93,6), dieser
+        # Beitrag (25, 88,1) und /vergleich/it-betreuung-vs-stundenabrechnung/
+        # (2, 88) —, zusammen 61 Impressionen und **null Klicks**. Drei Seiten,
+        # die dieselbe Frage beantworten, teilen ein Ranking, statt es zu
+        # addieren. /kosten/ traegt die Preistabelle und bleibt die Zielseite fuer
+        # den Hauptbegriff; dieser Beitrag nimmt die laengere Frage, bei der er
+        # ohnehin schon besser stand (`it betreuung fuer kleine unternehmen
+        # kosten`: hier Position 76,6, auf /kosten/ 98,3).
+        "meta_titel": "IT-Betreuung für kleine Firmen: was rechnet sich? | WVM-IT",
+        "desc": "Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung günstiger als Hilfe nach Stunden. Die Rechnung dahinter — und was enthalten sein muss.",
         "antwort": "Laufende IT-Betreuung wird in Österreich und Deutschland üblicherweise je Arbeitsplatz und Monat abgerechnet; bei uns beginnt sie bei 29 €. Wer keinen Vertrag will, zahlt Hilfe nach Aufwand — bei uns 95 € je Stunde aus der Ferne und 120 € je Stunde vor Ort zuzüglich Anfahrt. Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung meist günstiger, weil sie sich schon rechnet, wenn sie einen einzigen Ausfalltag im Jahr verhindert.",
         "abschnitte": [
             {"h": "Die zwei Abrechnungsarten",

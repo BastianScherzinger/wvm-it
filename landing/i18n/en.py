@@ -508,7 +508,7 @@ PACK = {
         "passt_dazu_h": "Related reading",
         "passt_dazu_t": "Articles, comparisons and terms on exactly this topic — written for businesses facing the same decision.",
         "regionen_titel": "Regions",
-        "regionen_h1": "Where we come in person — and where we work remotely",
+        "regionen_h1": "IT support in Upper Austria and Salzburg — where we come in person",
         "regionen_meta_titel": "IT services in Upper Austria and Salzburg | WVM-IT",
         "regionen_meta_desc": "IT service on site in Vöcklabruck, Gmunden, Bad Ischl, Wels, Salzburg and Linz, remote support across Austria. Book an appointment now.",
         "regionen_kurz": "Our base is in Lenzing in the Vöcklabruck district. For work that needs someone on site we travel within roughly 60 minutes; for 7 regions the journey is set out on a page of its own. Everything that can be done remotely we handle across Austria and Germany.",
