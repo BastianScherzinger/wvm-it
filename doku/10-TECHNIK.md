@@ -1,10 +1,10 @@
 ---
 bereich: technik
 titel: Technik
-stand: 2026-09-07
+stand: 2026-09-10
 status: teilweise
 fortschritt: 85
-zusammenfassung: Django 5.0.6 auf Railway, seit 07.09.2026 mit 252 Testfunktionen in 17 Dateien -- dazugekommen ist eine Datei fuer die 32 Module, die bisher kein Test beruehrt hat (PJ03). Serverseitige Reichweitenmessung ohne Cookie und ohne IP; die Sicherung, die eine Anfrage vor dem Mailversand auf die Platte und ins Log schreibt, haengt seit dem 07.09. an allen Formularwegen statt nur an den Kurzanfragen (MW18). Dazu ConditionalGetMiddleware und Cache-Koepfe auf den maschinellen Endpunkten. HTML wird bewusst nicht zwischengespeichert: Das CSRF-Token wird je Anfrage neu maskiert. Lokale Pruefumgebung: py -3.13.
+zusammenfassung: Django 5.0.6 auf Railway, seit 10.09.2026 mit 282 Testfunktionen in 18 Testdateien -- dazugekommen ist eine Datei fuer die Module, die bisher kein Test beruehrt hat (PJ03); ihre Modulnamen stehen seit dem 10.09. je in eigener Zeile, weil eine Quelltext-Analyse an einem gebuendelten Import nur das Paket sieht und die Pruefung deshalb nicht als Beleg zaehlte. Serverseitige Reichweitenmessung ohne Cookie und ohne IP; die Sicherung, die eine Anfrage vor dem Mailversand auf die Platte und ins Log schreibt, haengt seit dem 07.09. an allen Formularwegen statt nur an den Kurzanfragen (MW18). Dazu ConditionalGetMiddleware und Cache-Koepfe auf den maschinellen Endpunkten. HTML wird bewusst nicht zwischengespeichert: Das CSRF-Token wird je Anfrage neu maskiert. Lokale Pruefumgebung: py -3.13.
 offen: 4
 quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/AUSBAU-2026-09.md, docs/mehrsprachigkeit.md, docs/recht-und-cookies.md
 ---
@@ -110,7 +110,7 @@ verhindern nicht die Anfrage, sondern das volle Postfach.
 
 Sieben eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis dahin gab es in 13.877 Zeilen Python keine einzige Testfunktion (`PJ02`: 0 in 0 Dateien) — jede Änderung war ein Blindflug.
 
-**252 Testfunktionen in 17 Dateien** unter `landing/tests/` (gezählt am 07.09.2026):
+**282 Testfunktionen in 18 Testdateien** unter `landing/tests/` (gezählt am 10.09.2026; dazu `__init__.py` und `_util.py`, die keine Prüfung tragen):
 
 | Datei | Was sie prüft |
 |---|---|
@@ -130,7 +130,8 @@ Sieben eigene Management-Befehle **und seit dem 05.09.2026 eine Testsuite**. Bis
 | `test_rechtstexte.py` (seit 07.09.2026) | Rechtstexte als Zusagen: keine widersprüchlichen Aussagen, keine aufgehobenen Rechtsgrundlagen |
 | `test_bilder.py` (seit 06.09.2026, erweitert 07.09.2026 mit `PF18`) | kein grosses Bild für eine kleine Fläche; das Porträt auf `/ueber-uns/` wird **nicht** verzögert geladen, das Dekobild der Anfragekarte schon, kein Bild ist zugleich bevorzugt und verzögert, je Seite höchstens ein bevorzugtes |
 | `test_anfrage_sicherung.py` (seit 07.09.2026, `MW18`) | die Reihenfolge — **erst sichern, dann senden**; der Ernstfall mit geworfenem Sendefehler; keine IP in der gesicherten Zeile |
-| `test_module.py` (seit 07.09.2026, `PJ03`) | die 32 Module, die kein Test berührte: Slugs eindeutig und deckungsgleich mit `NACH_SLUG`, jeder `leistung`- und `thema`-Verweis zeigt auf eine echte Leistung, jedes Silo in jeder Sprache vollständig (**am Modul geprüft, nicht über `get_pack`** — der Deep-Merge auf `de.py` verdeckt genau das), `en.py` und `ro.py` erben keinen Schlüssel, jede Punktzahl des Selbsttests ergibt eine Stufe, `stand.datum()` liefert immer ein ISO-Datum, `messung` zählt ohne Kennung und übersteht einen unschreibbaren Zielordner, `supa` ist ohne `WVM_DB_URL` ein stiller No-Op, jeder eigene Befehl lädt und hat einen Hilfetext |
+| `test_einrichtungen.py` (seit 08.09.2026) | das Silo `/einrichten/`: dass kein Slug und kein Titel zugleich in `/leistungen/` vorkommt, dass jede Seite die Abgrenzung ausspricht, und dass der Festpreis ohne „ab" steht — wo keiner steht, muss die Seite sagen warum, und im Schema darf dann keine Zahl stehen |
+| `test_module.py` (seit 07.09.2026, `PJ03`) | die Module, die kein Test berührte: Slugs eindeutig und deckungsgleich mit `NACH_SLUG`, jeder `leistung`- und `thema`-Verweis zeigt auf eine echte Leistung, jedes Silo in jeder Sprache vollständig (**am Modul geprüft, nicht über `get_pack`** — der Deep-Merge auf `de.py` verdeckt genau das), `en.py` und `ro.py` erben keinen Schlüssel, jede Punktzahl des Selbsttests ergibt eine Stufe, `stand.datum()` liefert immer ein ISO-Datum, `messung` zählt ohne Kennung und übersteht einen unschreibbaren Zielordner, `supa` ist ohne `WVM_DB_URL` ein stiller No-Op, jeder eigene Befehl lädt und hat einen Hilfetext. **Seit 10.09.2026** dazu die vier reinen Funktionen der Sprachweiche aus `landing/middleware.py` (`SprachweicheTest`: nur die präfixlose Startseite darf umgeleitet werden, `/de/…` gibt es nicht, die Browsersprache fällt auf Deutsch zurück — die letzte Prüfung läuft über `i18n.LANGS` und nimmt eine vierte Sprache ungefragt mit) und drei Funktionen aus `landing/supa.py` im Fall ohne Zugang, darunter `claim_newsletter_run`: die Sperre gegen zwei Newsletter je Woche muss ohne Datenbank `False` liefern und nicht „belegt" |
 
 `test_csp.py` und `test_cookies.py` prüfen keine neue Funktion, sondern **halten einen Zustand fest**, der
 sonst lautlos verschwindet: Ein vergessenes `nonce="{{ request.csp_nonce }}"` führt dazu,
@@ -140,10 +141,21 @@ Datenblöcke (`type="application/json"`, `application/ld+json`) sind vom Nonce-T
 ausgenommen: Der Browser führt sie nicht aus, die CSP greift dort nicht — genau diese
 Unterscheidung hat der erste Lauf gefunden.
 
+**In `test_module.py` steht ein Modul je Import-Zeile, und das ist kein Geschmack.**
+Bis zum 10.09.2026 standen dieselben Namen gebündelt in Klammern. Python bindet dabei
+genau dasselbe — eine Quelltext-Analyse sieht davon aber nur das Paket vor dem
+`import`: Ein gebündeltes `from landing import (branchen, glossar, …)` liest sich für
+sie als „`landing` angefasst", nicht als „`branchen` angefasst". Ergebnis: Die Messung
+zählte am 10.09.2026 weiterhin 34 Module als von keinem Test berührt, darunter jedes,
+das die Datei Zeile für Zeile prüft. Die Klammer hatte also nicht die Prüfung
+geschwächt, sondern den Beleg dafür, dass es sie gibt. Wer eine Sprachdatei oder einen
+Befehl ergänzt, trägt sie in eigener Zeile ein **und** unten in ihr Tupel — sonst
+meldet die Gegenprobe sie als ungeprüft.
+
 Sie sind **strukturell** geschrieben — die URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus dem Symbolsatz. Während des Ausbaus kamen zwei Leistungsseiten dazu, ohne dass ein Test angepasst werden musste; und der Icon-Test hat den Wechsel auf den Symbolsatz sofort gemeldet, statt ihn durchgehen zu lassen.
 
 ```bash
-python -X utf8 manage.py test landing.tests   # 252 Tests
+python -X utf8 manage.py test landing.tests   # 282 Tests
 ```
 
 ```bash
@@ -202,6 +214,7 @@ Live-Domain.
 | **GZip nur ohne Geheimnisse** | Bekommt die Seite je eine Anmeldung, muss die BREACH-Abwägung neu getroffen werden |
 | **Keine Datenbank lokal** | Django nutzt das ORM nicht; `WVM_DB_URL` leer = Warteschlange still, Seite läuft trotzdem |
 | **Push ohne `gh`-Credential-Helper** scheitert | `could not read Username` — siehe Befehl oben |
+| **Gebündelter Import in `test_module.py`** | Die Prüfung läuft, gilt aber als nicht vorhanden: Eine Quelltext-Analyse sieht an `from landing import (a, b, c)` nur `landing`. Am 10.09.2026 galten so 34 geprüfte Module als ungeprüft — ein Modul je Zeile, sonst kommt der Befund wieder |
 | **Verschluckte Ausnahmen** | Am 05.09.2026 geschlossen (`PJ05`), aber das Muster kehrt leicht zurück: Ein `except: pass` um `stdout._out.reconfigure()` fing in `indexnow.py`, `pruefe_seite.py` und `seo_bericht.py` den **Normalfall** ab — ein Strom ohne `reconfigure` (Umleitung, Testlauf). Der Normalfall ist jetzt eine Bedingung (`callable(...)`), was danach noch fliegt, geht nach stderr. Am teuersten war `KanonischerHostMiddleware._ziel_bestimmen`: `except Exception: ziel = ""` schaltete die 301 auf die Hauptdomain lautlos ab, sobald `content.json` nicht lesbar war — also genau den Zweitbestand-Schutz, wegen dem es die Schicht gibt. Der Rückfall bleibt (die Seite muss laufen), aber er meldet sich |
 
 ## Offen
@@ -209,7 +222,7 @@ Live-Domain.
 | # | Punkt | Regel | Stand |
 |---|---|---|---|
 | 1 | Fehler-Monitoring (Sentry o. ä., DSN aus der Umgebung) | `VL19` | der letzte von sieben QS-Bausteinen; CI und Tests stehen seit 05.09.2026 |
-| 2 | 326 × „Ausgabe ohne Maskierung" (`V02`) in Templates — bewusst `\|safe` für die vertrauenswürdigen Sprachpakete (siehe `../docs/mehrsprachigkeit.md`) | `PJ07`, `PJ08` | Befund, keine Sicherheitslücke; die Entscheidung steht in der Doku und bleibt so. **`PJ08` ist am 07.09.2026 nachgezählt und als Ausnahme eingetragen** ([80-AUFGABEN.md](80-AUFGABEN.md), „Bewertung der Messpunkte"): Die Dichte liesse sich nur senken, indem man `\|safe`, die `print()`-Zeilen des Railway-Logs oder die Fliesstexte in `landing/i18n/` zurücknimmt — der einzige echt abräumbare Anteil, die Module ohne Test, ist seit demselben Tag erledigt (`PJ03`) |
+| 2 | 326 × „Ausgabe ohne Maskierung" (`V02`) in Templates — bewusst `\|safe` für die vertrauenswürdigen Sprachpakete (siehe `../docs/mehrsprachigkeit.md`) | `PJ07`, `PJ08` | Befund, keine Sicherheitslücke; die Entscheidung steht in der Doku und bleibt so. **`PJ08` ist am 07.09.2026 nachgezählt und als Ausnahme eingetragen** ([80-AUFGABEN.md](80-AUFGABEN.md), „Bewertung der Messpunkte"): Die Dichte liesse sich nur senken, indem man `\|safe`, die `print()`-Zeilen des Railway-Logs oder die Fliesstexte in `landing/i18n/` zurücknimmt — der einzige echt abräumbare Anteil, die Module ohne Test, ist seit demselben Tag erledigt (`PJ03`) und seit dem 10.09.2026 auch für die Messung sichtbar. **`PJ07` ist am 10.09.2026 nachgezählt und ebenfalls als Ausnahme eingetragen:** Dieser Punkt zählt Dateien **ganz ohne** Befund, und `\|safe` steht in 42 der 46 Vorlagen, zusammen 1.320-mal; die Datei-Prüfung meldet je Zeile einen Befund, `templates/newsletter_confirm.html` allein 77 |
 | 3 | `apps/`-Struktur und reine Datenmodule (`data/`) | `VL01` | 4 von 6 Gerüstmerkmalen; Umbau nicht geplant und für eine Seite dieser Größe auch nicht sinnvoll |
 | 4 | Seitencache für die Ansichten ohne Formular | `PF10`, `BT04` | nicht begonnen; der größte verbliebene Hebel bei der Antwortzeit |
 

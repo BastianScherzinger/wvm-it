@@ -18,6 +18,14 @@ Die Tests hier greifen deshalb an den Strukturen selbst an, nicht am HTML. Sie
 sind wie der Rest der Suite **strukturell**: Wer eine Branche, einen Begriff
 oder eine Checkliste ergänzt, muss hier nichts anfassen — geprüft wird, was für
 jeden Eintrag gilt.
+
+Nachtrag 10.09.2026: Die Messung meldete dieselben Module weiter als ungeprüft,
+obwohl sie es seit dem 07.09.2026 sind. Der Grund lag nicht in den Tests, sondern
+im Import-Block unten — die Begründung steht dort. Dazu drei Lücken, die dabei
+auffielen und hier geschlossen sind: die reinen Funktionen der Sprach-Middleware
+(`_sprache_aus_pfad`, `_is_default_page`, `_accept_language`) hatte kein Test
+einzeln angefasst, und von `landing/supa.py` fehlten drei der schreibenden
+Funktionen im Fall ohne Zugang.
 """
 import importlib
 import json
@@ -31,27 +39,69 @@ from django.apps import apps as django_apps
 from django.core.management import get_commands, load_command_class
 from django.test import RequestFactory, SimpleTestCase
 
-from landing import (apps as landing_apps, beitraege, branchen, checklisten,
-                     context, glossar, i18n, leistungen, messung, regionen,
-                     scheduler, selbsttest, stand, supa, vergleiche)
-from landing.views import _seiten_pfade
-
-# Die achtzehn Sprachmodule und die acht Befehle stehen hier **namentlich**, obwohl
-# die Tests unten grösstenteils über `importlib` gehen. Das ist Absicht: Ein Import
-# von Hand ist die einzige Fassung, die auch eine Werkzeug-Analyse des Quelltextes
-# sieht — und er scheitert sofort und laut, wenn eine Datei umbenannt wird oder
-# beim Laden etwas wirft. `config.wsgi` fehlt bewusst: Es startet beim Laden den
-# Wochenplaner (siehe `KonfigurationTest`).
+# Die Sprachmodule und die Befehle stehen hier **namentlich**, obwohl die Tests
+# unten grösstenteils über `importlib` gehen. Das ist Absicht: Ein Import von Hand
+# ist die einzige Fassung, die auch eine Werkzeug-Analyse des Quelltextes sieht —
+# und er scheitert sofort und laut, wenn eine Datei umbenannt wird oder beim Laden
+# etwas wirft. `config.wsgi` fehlt bewusst: Es startet beim Laden den Wochenplaner
+# (siehe `KonfigurationTest`).
+#
+# **Ein Modul je Zeile — das ist der Punkt, nicht Geschmack.** Bis zum 10.09.2026
+# standen dieselben Namen gebündelt in Klammern. Python bindet dabei genau dasselbe,
+# eine Quelltext-Analyse sieht davon aber nur das Paket vor dem `import`: Ein
+# gebündeltes `from landing import (branchen, glossar, ...)` liest sich für sie als
+# „`landing` angefasst", nicht als „`branchen` angefasst". Ergebnis der Messung vom
+# 10.09.2026: 34 Module galten als von keinem Test berührt — darunter jedes, das
+# `StrukturquellenTest` und `SprachmoduleTest` hier Zeile für Zeile prüfen. Die
+# Klammer hat also nicht die Prüfung geschwächt, sondern den Beleg dafür, dass es
+# sie gibt. Wer eine Sprachdatei oder einen Befehl ergänzt, trägt sie hier in eigener
+# Zeile ein und unten in ihr Tupel — sonst meldet die Gegenprobe sie als ungeprüft.
 from config import settings as config_settings, urls as config_urls
-from landing.i18n import (beitraege_de, branchen_de, branchen_en, branchen_ro,
-                          checklisten_de, de, einrichten_de, einrichten_en,
-                          einrichten_ro, en, glossar_de, regionen_de,
-                          regionen_en, regionen_ro, ro, seiten_de, seiten_en,
-                          seiten_ro, vergleiche_de, vergleiche_en, vergleiche_ro)
-from landing.management.commands import (indexnow, messung as befehl_messung,
-                                         pruefe_mail, pruefe_seite,
-                                         pruefe_sicherheit, seo_bericht,
-                                         stand_schreiben)
+from landing import apps as landing_apps
+from landing import beitraege
+from landing import branchen
+from landing import checklisten
+from landing import context
+from landing import glossar
+from landing import i18n
+from landing import leistungen
+from landing import messung
+from landing import middleware
+from landing import regionen
+from landing import scheduler
+from landing import selbsttest
+from landing import stand
+from landing import supa
+from landing import vergleiche
+from landing.views import _seiten_pfade
+from landing.i18n import beitraege_de
+from landing.i18n import branchen_de
+from landing.i18n import branchen_en
+from landing.i18n import branchen_ro
+from landing.i18n import checklisten_de
+from landing.i18n import de
+from landing.i18n import einrichten_de
+from landing.i18n import einrichten_en
+from landing.i18n import einrichten_ro
+from landing.i18n import en
+from landing.i18n import glossar_de
+from landing.i18n import regionen_de
+from landing.i18n import regionen_en
+from landing.i18n import regionen_ro
+from landing.i18n import ro
+from landing.i18n import seiten_de
+from landing.i18n import seiten_en
+from landing.i18n import seiten_ro
+from landing.i18n import vergleiche_de
+from landing.i18n import vergleiche_en
+from landing.i18n import vergleiche_ro
+from landing.management.commands import indexnow
+from landing.management.commands import messung as befehl_messung
+from landing.management.commands import pruefe_mail
+from landing.management.commands import pruefe_seite
+from landing.management.commands import pruefe_sicherheit
+from landing.management.commands import seo_bericht
+from landing.management.commands import stand_schreiben
 
 # Die Namen von oben, damit sie benutzt sind und nicht bloss importiert: Die
 # Gegenproben unten laufen über diese Tupel und melden jede Datei, die dazukommt
@@ -325,11 +375,20 @@ class SupaOhneZugangTest(SimpleTestCase):
         self.assertIsNone(supa.upsert_subscriber("a@example.org"))
         self.assertIsNone(supa.enqueue_job(1, "a@example.org"))
         self.assertIsNone(supa.set_subscriber_status("a@example.org", "active"))
+        self.assertIsNone(supa.set_newsletter_run_count("2026-W37", 3))
 
     def test_jede_lesende_funktion_gibt_ohne_zugang_etwas_leeres_zurueck(self):
         self.assertEqual(supa.subscriber_status("a@example.org"), "")
         self.assertEqual(supa.active_subscribers(), [])
         self.assertEqual(supa.published_references(), [])
+        self.assertIsNone(supa.job_status("a@example.org"))
+
+    def test_ohne_zugang_belegt_niemand_den_wochenlauf(self):
+        """`claim_newsletter_run` ist die Sperre gegen zwei Newsletter je Woche.
+        Sie muss ohne Datenbank **False** liefern und nicht etwa „belegt": Wer
+        hier True zurückgäbe, liesse den Versand im Zweifel laufen, statt ihn im
+        Zweifel zu lassen."""
+        self.assertFalse(supa.claim_newsletter_run("2026-W37"))
 
 
 class NavigationTest(SimpleTestCase):
@@ -351,6 +410,60 @@ class NavigationTest(SimpleTestCase):
                 with self.subTest(schluessel=schluessel, eintrag=eintrag):
                     self.assertTrue(eintrag["titel"].strip())
                     self.assertTrue(eintrag["url"].startswith("/"))
+
+
+class SprachweicheTest(SimpleTestCase):
+    """Die reinen Funktionen aus `landing/middleware.py`, an denen die
+    Sprach-Auto-Erkennung hängt.
+
+    Warum einzeln und nicht über den Client: Der teuerste Fehler dieser Seite
+    stand genau hier. Bis zum 05.09.2026 galt **jede** präfixlose Adresse als
+    „Startseite", und ein Besucher mit gemerkter Sprache landete beim Klick auf
+    /kontakt/ auf /en/kontakt/ — die Regel dazu steht im Docstring von
+    `_is_default_page`. Über den Client ist so etwas eine von 198 Antworten,
+    hier ist es eine Zusage.
+    """
+
+    def test_nur_die_praefixlose_startseite_darf_umgeleitet_werden(self):
+        self.assertTrue(middleware._is_default_page("/"))
+        for pfad in ("/kontakt/", "/leistungen/", "/kosten/rechner/", "/static/x.css"):
+            with self.subTest(pfad=pfad):
+                self.assertFalse(middleware._is_default_page(pfad))
+
+    def test_der_sprachpraefix_wird_erkannt_und_abgetrennt(self):
+        self.assertEqual(middleware._sprache_aus_pfad("/en/kontakt/"), ("en", "/kontakt/"))
+        self.assertEqual(middleware._sprache_aus_pfad("/ro/agb/"), ("ro", "/agb/"))
+        self.assertEqual(middleware._sprache_aus_pfad("/en"), ("en", "/"))
+        self.assertEqual(middleware._sprache_aus_pfad("/kontakt/"), ("", "/kontakt/"))
+
+    def test_deutsch_traegt_kein_praefix(self):
+        """`/de/…` gibt es nicht — Deutsch ist die präfixlose Fassung."""
+        self.assertFalse(middleware._has_lang_prefix("/kontakt/"))
+        self.assertFalse(middleware._has_lang_prefix("/de/kontakt/"))
+        self.assertTrue(middleware._has_lang_prefix("/en/kontakt/"))
+        self.assertTrue(middleware._has_lang_prefix("/ro"))
+
+    def _mit_kopf(self, wert):
+        # Wie in `test_cache.py`: `_accept_language` liest genau einen Schlüssel
+        # aus `META`, mehr braucht der Test nicht.
+        return mock.Mock(META={"HTTP_ACCEPT_LANGUAGE": wert} if wert else {}, path="/")
+
+    def test_die_browsersprache_faellt_auf_deutsch_zurueck(self):
+        self.assertEqual(middleware._accept_language(self._mit_kopf("")), "de")
+        for kopf, erwartet in (("ro-RO,ro;q=0.9", "ro"),
+                               ("en-GB,en;q=0.8", "en"),
+                               ("fr-FR,fr;q=0.9", "de")):
+            with self.subTest(kopf=kopf):
+                self.assertEqual(middleware._accept_language(self._mit_kopf(kopf)),
+                                 erwartet)
+
+    def test_jede_sprache_aus_langs_wird_aus_dem_kopf_erkannt(self):
+        """Strukturell statt aufgezählt: Kommt eine vierte Sprache dazu, prüft
+        dieser Test sie mit, ohne dass jemand ihn anfasst."""
+        for lang in i18n.LANGS:
+            with self.subTest(sprache=lang):
+                anfrage = self._mit_kopf(f"{lang};q=0.9")
+                self.assertEqual(middleware._accept_language(anfrage), lang)
 
 
 class SchedulerTest(SimpleTestCase):
