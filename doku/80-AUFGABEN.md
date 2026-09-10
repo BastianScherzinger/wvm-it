@@ -281,4 +281,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG68 | Blättern auf `/aktuelles/` und `/galerie/` nimmt alles ab Seite 2 aus dem Index | seo | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 | EIG69 | CLAUDE.md nennt durchgehend eine überholte Testzahl | wegweiser | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 | EIG70 | Die drei Pakete vom 08.09. liegen nur lokal — `main` kennt sie nicht, die Doku führt sie als erledigt | aufgaben | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
+| EIG71 | Jede Mail des Shops geht von einer Domain aus, die es nicht gibt | technik | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 <!-- eigenepunkte:ende -->
