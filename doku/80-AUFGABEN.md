@@ -274,4 +274,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG64 | Fünf verschiedene Leistungslisten, keine aus einer gemeinsamen Quelle | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG65 | Die Öffnungszeiten stehen an sechs Stellen von Hand, die Leistungsseiten nennen nur fünf davon | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
 | EIG66 | Der Startbefehl steht dreimal, zwei Fassungen ohne `migrate` und `collectstatic | technik | offen | bei einer anderen betreuten Seite aufgefallen am 08.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-08 |
+| EIG67 | Zwei Öffnungszeiten für denselben Betrieb: Schema schließt um 20 Uhr, der Text ist „durchgehend erreichbar" | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 10.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-10 |
 <!-- eigenepunkte:ende -->
