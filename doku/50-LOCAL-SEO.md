@@ -1,11 +1,11 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-05
+stand: 2026-09-10
 status: teilweise
 fortschritt: 50
-zusammenfassung: Search Console am 05.09.2026 nachgezogen (Sitemap-Index und vier Segmente gelesen, 165 URLs, fünf neue Seiten beantragt), NAP zeichengleich, Koordinaten und Öffnungszeiten im Graphen; Unternehmensprofil, Bewertungen und Verzeichniseinträge fehlen — alles beim Kunden.
-offen: 6
+zusammenfassung: Am 10.09.2026 im Browser nachgeprüft — das Google-Unternehmensprofil gibt es weiterhin nicht (vier Prüfungen, alle negativ), während sechs Mitbewerber im Bezirk mit Profil und Bewertungen in der Karte stehen. Dabei zwei unbekannte Fremdeinträge gefunden: WKO Firmen A–Z (unter „Florin Feier", nicht WVM-IT) und ein Loxone-Partnereintrag, dessen URL 404 liefert. Search Console am 05.09.2026 nachgezogen (Sitemap-Index und vier Segmente gelesen, 165 URLs, fünf neue Seiten beantragt), NAP auf der eigenen Seite zeichengleich; Bewertungen fehlen — alles beim Kunden.
+offen: 7
 unternehmensprofil: nein
 search_console: ja
 gsc_property: https://www.wvm-it.tech/
@@ -24,6 +24,32 @@ Local SEO ist für WVM-IT seit dem 28.08.2026 überhaupt erst möglich: Bis dahi
 ## Google-Unternehmensprofil
 
 **Es gibt keins.** Das ist laut jeder Projektdoku der wichtigste offene Punkt überhaupt: „158 URLs gleichen sein Fehlen nicht aus" (`../CLAUDE.md`, `../docs/SEO-AUSBAU-3.md` §10/§12). Erwartung mit gepflegtem Profil: erste Anrufe **1–4 Wochen** nach Freischaltung; ohne Profil: lokal nichts.
+
+### Nachgeprüft am 10.09.2026 (Browser)
+
+Bis dahin stand „es gibt keins" in der Doku, weil es nie angelegt **wurde** — nicht, weil jemand nachgesehen hätte. Florin hätte es zwischendurch selbst anlegen können. Vier Prüfungen, alle negativ:
+
+| Prüfung | Ergebnis |
+|---|---|
+| Google-Suche `"WVM IT"` | nur Webtreffer (eigene Seite, wko.at, LinkedIn, Loxone) — **kein Knowledge Panel, kein Local Pack** |
+| Google-Suche `WVM-IT Lenzing` | dasselbe; die KI-Übersicht baut ihre Kontaktangaben aus **wvm-it.tech**, nicht aus einem Profil |
+| Maps `WVM-IT Lenzing` und `WVM` | springt auf **„WvM Immobilien + Projektentwicklung GmbH", Köln** — es gibt keinen näheren Treffer, auch nicht mit Kartenausschnitt Lenzing |
+| Maps `IT Waldstraße 19, 4860 Lenzing` | nur Lenzing AG und Töchter — an der Anschrift **kein Eintrag** |
+
+**Der Vergleich ist der eigentliche Befund.** Dieselbe Suche mit `IT-Dienstleister Lenzing Oberösterreich` liefert sofort sechs Betriebe im Einzugsgebiet — jeder mit Profil, Kategorie, Telefonnummer und Bewertungen:
+
+| Betrieb | Bewertung | Kategorie |
+|---|---:|---|
+| Attersoft Weichselbaumer Mario e.U. | 5,0 (19) | IT-Berater |
+| eSYS Informationssysteme GmbH | 4,8 (17) | IT-Berater |
+| haertel-softweb | 5,0 (12) | Webdesigner |
+| Comdion GmbH | 4,7 (19) | Computersupport |
+| pc-rep.at | 5,0 (7) | Computerservice |
+| FOX Informationstechnologie GmbH | 4,0 (3) | Softwarehändler |
+
+Das ist die Konkurrenz in genau der Nische 2 („der schnellste Kunde", `../docs/SEO-KONZEPT-DACH.md`). Sie gewinnen die Kartenergebnisse nicht mit besseren Texten, sondern damit, dass sie überhaupt in der Karte stehen. Eine Bewertungszahl von 7 reicht dort, um vor 198 URLs zu liegen, die es nicht gibt.
+
+**Zwei Kategorien der Nachbarn taugen als Vorlage:** „IT-Berater" führen die zwei stärksten Betriebe, „Computerservice" und „Webdesigner" decken die zweite und dritte Säule. Das deckt sich mit der Kategorienliste unten — sie muss nicht überdacht werden.
 
 **Muss Florin anlegen** — öffentlicher Eintrag über sein reales Unternehmen, Verifizierung per Postkarte an seine Anschrift (5–14 Tage, deshalb der Engpass). Alle Angaben liegen fertig in `../docs/SEO-KONZEPT-DACH.md` §7, es ist reines Abtippen:
 
@@ -82,7 +108,18 @@ support@wvm-it.tech
 https://www.wvm-it.tech
 ```
 
-**Verzeichnisse — keins eingetragen** (T6 offen). Reihenfolge laut Konzept §7: 1. Google-Unternehmensprofil · 2. WKO Firmen A–Z (Pflichtmitgliedschaft besteht ohnehin, kostenlos) · 3. Herold.at · 4. Bing Places (speist ChatGPTs Websuche) · 5. Apple Business Connect · 6. regionale Branchenverzeichnisse Oberösterreich. Aufwand 2–3 Stunden einmalig (Bastian), Wirkung 4–8 Wochen, zugleich Entitäts-Signal für `sameAs`.
+**Verzeichnisse — keins *von uns* eingetragen** (T6 offen). Reihenfolge laut Konzept §7: 1. Google-Unternehmensprofil · 2. WKO Firmen A–Z (Pflichtmitgliedschaft besteht ohnehin, kostenlos) · 3. Herold.at · 4. Bing Places (speist ChatGPTs Websuche) · 5. Apple Business Connect · 6. regionale Branchenverzeichnisse Oberösterreich. Aufwand 2–3 Stunden einmalig (Bastian), Wirkung 4–8 Wochen, zugleich Entitäts-Signal für `sameAs`.
+
+**Am 10.09.2026 kam heraus: zwei Einträge existieren bereits** — beide ohne unser Zutun entstanden, beide von der Doku bisher nicht erfasst, und **beide mit abweichender NAP**. Das ist kein Nebenbefund: Local SEO misst Namen, Anschrift und Telefonnummer zeichengenau über alle Quellen hinweg, und die neun Stellen auf der eigenen Seite nützen nichts, wenn die Fremdquellen dagegenhalten.
+
+| Quelle | Zustand | Abweichung zur NAP |
+|---|---|---|
+| **WKO Firmen A–Z** ([`firmen.wko.at/software/lenzing_gemeinde/`](https://firmen.wko.at/software/lenzing_gemeinde/), Eintrag geprüft) | **existiert**, unter „Software in Lenzing" | Name **„Florin Feier"** statt WVM-IT · Anschrift **„Waldstraße 19, Tür 1"** statt „Waldstraße 19/1" · Telefon **`06763808501`** statt `+43 676 3808501` · Website **`http://`** statt `https://` |
+| **Loxone-Partnerverzeichnis** (`loxone.com/dede/partner/4860-lenzing`) | von Google **indexiert** mit vollständigem Eintrag „WVM-IT, Waldstraße 19/1, AT-4860 Lenzing" — die URL liefert live jedoch **404** | Telefon ebenfalls `06763808501` |
+
+Der WKO-Eintrag ist der wertvollere und der problematischere zugleich: Er ist die amtsnahe Quelle, aus der andere Verzeichnisse abschreiben — und er führt das Unternehmen unter dem **Personennamen**. Punkt 2 der Verzeichnisliste ist damit nicht „offen", sondern **falsch belegt**; er muss korrigiert statt angelegt werden. Das geht nur über das WKO-Unternehmerservice (Florin, Mitgliedsnummer).
+
+Der Loxone-Eintrag ist ein Rückschlag ohne Schuld: Google zeigt ihn noch, das Ziel ist weg — vermutlich hat Loxone das Partnerverzeichnis umgebaut. Bis die URL wieder auflöst, ist er als `sameAs`-Ziel unbrauchbar; **ein `sameAs` auf eine 404 ist schlechter als keins.**
 
 **Regionsseiten** (`/it-service/<slug>/`, 7 Orte + Hub, DE/EN/RO, 542–619 Wörter): Vöcklabruck 6 km · Attersee 8 · Gmunden 22 · Bad Ischl 38 · Wels 40 · Salzburg 55 · Linz 60 — je mit echter Entfernung, Fahrzeit und ortsspezifischem Inhalt (Industrie, Saison-WLAN, gewachsene Netze, Veranstaltungsräume, Hallen/Messe, Haftung für fremde Daten, Antwortzeiten der Großanbieter). Im Schema `areaServed` = Ort, Sitz bleibt Lenzing. *Die Messung zählt „0 Ortsseiten" (`SU05`, `VL12`) — das Werkzeug erkennt das Präfix `/it-service/` nicht als Ortsseite; kein Mangel der Seite, siehe [90-NOTIZEN.md](90-NOTIZEN.md).*
 
