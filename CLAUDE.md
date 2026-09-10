@@ -80,7 +80,7 @@ Aufstellung steht in `docs/SEO-AUSBAU-3.md`.
 1. **`python manage.py seo_bericht`** — der Stand in dreißig Sekunden: URLs,
    Wortzahlen, Auffälligkeiten, Schema-Verteilung. Vor jeder Planung.
 2. **`docs/STAND-2026-09-10.md`** — **hier anfangen.** Was in vier Tagen entstand
-   (165 → 198 URLs, 130 → 276 Tests), was offen ist, und §4 die **drei Fallen**,
+   (165 → 198 URLs, 130 → 292 Tests), was offen ist, und §4 die **drei Fallen**,
    die dabei zugeschlagen haben: Automode und Chat-Sitzung teilen ein
    Arbeitsverzeichnis (zweimal Arbeit verloren), typografische
    Anführungszeichen sprengen Python-Strings, und ein Skript, das den ersten
@@ -185,7 +185,7 @@ Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
 liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
 im CI-Lauf mit Rückgabewert 1.
 
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 276 Testfunktionen
+**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 292 Testfunktionen
 in `landing/tests/`, rund eine Minute. Sie sind **strukturell** geschrieben: Die
 URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
 dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
@@ -250,7 +250,7 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 276 Testfunktionen in 17 Dateien
+- `landing/tests/` — 292 Testfunktionen in 19 Dateien
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
 - `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·
