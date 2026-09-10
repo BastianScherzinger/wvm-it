@@ -100,6 +100,37 @@ class Command(BaseCommand):
         wurzel = Path(settings.BASE_DIR)
         cache = {}
 
+        # ── Flacher Klon? Dann ist jede Auskunft hier falsch (10.09.2026) ────
+        # Das Datum je Datei kommt aus `git log -1 -- <datei>`. Hat der Klon nur
+        # einen Commit, antwortet der Befehl für **jede** Datei mit dessen
+        # Datum — und dieser Befehl schreibt oder prüft dann lauter Daten, die
+        # nichts mit der Wirklichkeit zu tun haben. Nachgemessen am 10.09.2026:
+        # `content.json` meldete im Klon mit Tiefe 1 den 10.09., im vollen den
+        # 07.09.
+        #
+        # Genau das ist drei CI-Läufe hintereinander passiert, und die Ursache
+        # wurde zweimal beim Inhalt gesucht: Der Schritt meldete „veraltet",
+        # obwohl der Stand einwandfrei nachgezogen war. **Ein Befund sagt, wo
+        # die Regel angeschlagen hat, nicht wo der Fehler ist.**
+        #
+        # Deshalb hier abbrechen statt rechnen. Eine Prüfung, die auf falscher
+        # Grundlage ein Urteil fällt, ist schlimmer als eine, die gar nicht
+        # läuft — sie schickt jemanden in die falsche Richtung.
+        try:
+            flach = subprocess.run(
+                ["git", "rev-parse", "--is-shallow-repository"],
+                cwd=wurzel, capture_output=True, text=True, timeout=20,
+            ).stdout.strip()
+        except (OSError, subprocess.SubprocessError):
+            flach = ""
+        if flach == "true":
+            raise CommandError(
+                "Dieser Klon ist flach (Tiefe 1). Das Änderungsdatum je Datei "
+                "kommt aus `git log -1 -- <datei>`, und der antwortet hier für "
+                "jede Datei mit demselben Commit-Datum — das Ergebnis wäre "
+                "erfunden. Voll klonen (`git fetch --unshallow`) oder im "
+                "Arbeitsablauf `fetch-depth: 0` setzen.")
+
         def _mtime(rel):
             return datetime.fromtimestamp(
                 (wurzel / rel).stat().st_mtime, tz=timezone.utc).date().isoformat()

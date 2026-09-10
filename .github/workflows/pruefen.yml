@@ -33,6 +33,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Volle Historie, nicht der flache Standard-Klon.
+          #
+          # `stand_schreiben` liest das Aenderungsdatum je Datei aus
+          # `git log -1 --format=%cs -- <datei>`. In einem Klon mit Tiefe 1 —
+          # dem Standard dieser Action — gibt es genau einen Commit, also
+          # antwortet der Befehl fuer **jede** Datei mit dessen Datum. Am
+          # 10.09.2026 nachgemessen: `content.json` meldete im flachen Klon den
+          # 10.09., im vollen den 07.09.
+          #
+          # Damit rechnete der Schritt „Aenderungsdaten aktuell" jedes Mal
+          # neuere Daten als die eingecheckte `landing/stand.py` und meldete
+          # „veraltet" — **auch bei einwandfrei nachgezogenem Stand.** Drei
+          # Laeufe hintereinander sind daran gescheitert, und die Ursache wurde
+          # zweimal beim Inhalt gesucht statt beim Klon.
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
