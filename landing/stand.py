@@ -28,7 +28,7 @@ damit die letzte belastbare Aussage über den Bestand.
 
 # ── Erzeugt von `manage.py stand_schreiben` — nicht von Hand ändern ──────────
 # <stand:anfang>
-STAND_FALLBACK = "2026-09-08"
+STAND_FALLBACK = "2026-09-10"
 
 STAND = {
     "/": "2026-09-08",
