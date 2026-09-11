@@ -1,10 +1,10 @@
 ---
 bereich: inhalte
 titel: Inhalte
-stand: 2026-09-10
+stand: 2026-09-11
 status: teilweise
 fortschritt: 94
-zusammenfassung: Am 10.09.2026 haben vier Kernseiten einen Definitionssatz bekommen, je dreisprachig und je im vorhandenen Absatz (GE26): Fernwartung auf /kontakt/, Festpreis auf /einrichten/, Datensicherung auf /leistungen/server-datensicherung/, KI-Automatisierung auf /leistungen/ki-automatisierung/ -- kein neues Element, kein neuer Link, die Rechtstexte bewusst ohne. Am selben Tag ist IS18 (Umfang je Seitenart) als begruendete Ausnahme eingetragen: vier der fuenf gemeldeten Seiten liegen bei 83 bis 98 Prozent ihres Solls, die fuenfte ist ein Wegweiser. Davor: 166 URLs, 145.611 Woerter (vorher 140.970), im Schnitt 799 je Seite. Am 06.09. neu: Hero-Ueberschrift in drei Sprachen, Vertrauensband, NIS2-Fachbeitrag, 64 Folgefragen ueber 16 Beitraege, eigener Text auf dem Regionen-Hub (313 -> ueber 600 Woerter), Einstiegsangebot und Abgrenzung auf den Leistungsseiten. Uebersetzungen geprueft: 2.361 Schluessel je Sprache vollstaendig.
+zusammenfassung: Am 11.09.2026 IS06 (Titel mit Ort oder Nutzen) als begruendete Ausnahme eingetragen, ohne Textaenderung: Die Regel kennt als Ort nur Lenzing, die Regionsseiten nennen ihre eigene Stadt, Ratgeber ihren Nutzen in eigenen Worten, Einrichtungsseiten ohne Festpreis und Rechtstexte bleiben bewusst ohne Zahl und Versprechen. Am 10.09.2026 haben vier Kernseiten einen Definitionssatz bekommen, je dreisprachig und je im vorhandenen Absatz (GE26): Fernwartung auf /kontakt/, Festpreis auf /einrichten/, Datensicherung auf /leistungen/server-datensicherung/, KI-Automatisierung auf /leistungen/ki-automatisierung/ -- kein neues Element, kein neuer Link, die Rechtstexte bewusst ohne. Am selben Tag ist IS18 (Umfang je Seitenart) als begruendete Ausnahme eingetragen: vier der fuenf gemeldeten Seiten liegen bei 83 bis 98 Prozent ihres Solls, die fuenfte ist ein Wegweiser. Davor: 166 URLs, 145.611 Woerter (vorher 140.970), im Schnitt 799 je Seite. Am 06.09. neu: Hero-Ueberschrift in drei Sprachen, Vertrauensband, NIS2-Fachbeitrag, 64 Folgefragen ueber 16 Beitraege, eigener Text auf dem Regionen-Hub (313 -> ueber 600 Woerter), Einstiegsangebot und Abgrenzung auf den Leistungsseiten. Uebersetzungen geprueft: 2.361 Schluessel je Sprache vollstaendig.
 offen: 4
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
 ---
@@ -93,6 +93,6 @@ Zwölf Positionen sind **geschätzt** (marktübliche Profi-Sätze AT/DE, E4), am
 | 3 | Textgleiche Rechtstexte DE/EN/RO (`/impressum/`, `/datenschutz/` = 100 %) — entscheiden: übersetzen, oder EN/RO auf noindex mit canonical auf DE | `IS21` | 6 Paare |
 | 4 | Doppelte Titel: „Contact WVM-IT", „IT support for small businesses \| WVM-IT", „Administrare IT pentru firme \| WVM-IT" je 2× | `IS03`, `BF21` | 6 Seiten |
 | 5 | Titel außerhalb 30–65 Zeichen (16: Kontakt 14–17, Impressum 18–21 …), Beschreibungen außerhalb 110–175 (6: Impressum 47–65, Datenschutz 84–101) | `IS02`, `IS09`, `VL06` | |
-| 6 | Titel mit Ort, Zahl oder Nutzen: nur 27 von 158; Beschreibungen mit Handlungsaufforderung: 3 von 158 | `IS06`, `IS11` | großer Hebel, kleine Änderung je Vorlage |
+| 6 | Titel mit Ort, Zahl oder Nutzen: nur 27 von 158; Beschreibungen mit Handlungsaufforderung: 3 von 158. **`IS06` ist am 11.09.2026 als Ausnahme eingetragen** ([80-AUFGABEN.md](80-AUFGABEN.md), „Bewertung der Messpunkte“, Begründung auch in [40-SEO.md](40-SEO.md)): Die Regel kennt als Ort nur „Lenzing“. Regionsseiten nennen ihre eigene Stadt, Fachbeiträge und Glossar ihren Nutzen in eigenen Worten. Einrichtungsseiten ohne Festpreis dürfen keine Zahl tragen, und Rechtstexte kein Versprechen. `IS11` bleibt davon unberührt | `IS06`, `IS11` | großer Hebel, kleine Änderung je Vorlage |
 | 7 | 948 nichtssagende Ankertexte (10 % von 9.240, je 316 in DE/EN/RO — also ein Baustein in `base.html` oder im Footer) | `IS28` | |
 | 8 | Kannibalisierung: „microsoft google" auf 3 Seiten (Vergleich DE/EN/RO — Sprachvarianten, kein echter Konflikt), „pentru cabinete" auf 2 RO-Branchenseiten | `IS23` | prüfen |

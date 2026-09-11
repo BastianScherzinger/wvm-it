@@ -1,22 +1,30 @@
-# Aufgeloester Stand aller Abhaengigkeiten — direkte UND mittelbare.
+# Aufgeloester Stand aller Abhaengigkeiten - direkte UND mittelbare.
 #
 # Warum es diese Datei neben requirements.txt gibt
 # ------------------------------------------------
 # requirements.txt nennt fuenf Pakete mit fester Fassung. Was diese fuenf ihrerseits
 # mitbringen, stand nirgends: asgiref, sqlparse, packaging, six, tzlocal, pytz und
 # tzdata kamen bei jedem Deploy in der Fassung, die an dem Tag gerade neu war.
-# Damit kann ein Bau, der gestern lief, heute etwas anderes bauen — und der
+# Damit kann ein Bau, der gestern lief, heute etwas anderes bauen - und der
 # Unterschied faellt erst auf, wenn er stoert (Messung PJ11, VL02).
 #
 # Erzeugt am 05.09.2026 fuer die Zielumgebung des Dienstes:
 #
+#     grep -v -- '--constraint' requirements.txt > /tmp/direkt.txt
 #     python -m pip install --dry-run --only-binary=:all: \
 #         --python-version 3.12 --implementation cp --abi cp312 \
-#         --platform manylinux2014_x86_64 --report - -r requirements.txt
+#         --platform manylinux2014_x86_64 --report - -r /tmp/direkt.txt
 #
 # Python 3.12 und manylinux, weil Railway genau das baut (runtime.txt). Auf einem
-# anderen Ziel loest der Befehl andere Fassungen auf — deshalb steht der Aufruf
+# anderen Ziel loest der Befehl andere Fassungen auf - deshalb steht der Aufruf
 # hier und nicht nur das Ergebnis.
+#
+# Seit dem 11.09.2026 bindet requirements.txt diese Datei per `--constraint` ein
+# (PJ11): Nixpacks installiert nur aus requirements.txt, und erst damit gilt
+# dieser Stand auch im Deploy, nicht nur im CI-Lauf. Deshalb die erste Zeile
+# oben - ohne sie loeste der Befehl gegen das alte Lockfile auf und bliebe an
+# genau den Fassungen haengen, die er erneuern soll. Und hier steht nur ASCII:
+# pip liest die Datei jetzt auch auf dem Bauserver, mit dessen Zeichenkodierung.
 #
 # Aendern: erst requirements.txt, dann den Befehl oben laufen lassen und das
 # Ergebnis hier eintragen. Nicht umgekehrt.

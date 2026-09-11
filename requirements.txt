@@ -1,5 +1,23 @@
+# Die fuenf direkten Abhaengigkeiten. Die mittelbaren stehen in requirements.lock.
+#
+# Warum die Zeile ganz unten steht (PJ11, 11.09.2026): Railway baut mit Nixpacks,
+# und Nixpacks installiert mit `pip install -r requirements.txt` - das Lockfile
+# kennt es nicht. Bis hierher galt es nur im CI-Lauf (pruefen.yml); jeder Deploy
+# holte asgiref, sqlparse, tzlocal und Co. in der Fassung, die an dem Tag neu war.
+# `--constraint` legt die Fassungen aus dem Lockfile fest, ohne ein Paket
+# hinzuzufuegen: Was dort steht, aber hier nicht gebraucht wird, installiert pip
+# nicht. Weicht das Lockfile von dieser Datei ab, bricht der Bau ab - gewollt.
+#
+# Dass die Datei beim Bau daneben liegt, ist nachgesehen: Fuer requirements.txt
+# setzt Nixpacks kein `only_include_files` (src/providers/python.rs, PipReqs),
+# die Install-Phase kopiert also den ganzen Projektordner, nicht nur diese Datei.
+# Wer requirements.lock in .railwayignore aufnimmt, bricht den Deploy.
+#
+# Nur ASCII in dieser Datei: pip liest sie mit der Zeichenkodierung der
+# Bauumgebung, und die ist auf dem Bauserver nicht zugesichert.
 Django==5.0.6
 gunicorn==22.0.0
 whitenoise==6.7.0
 psycopg2-binary==2.9.9
 APScheduler==3.10.4
+--constraint requirements.lock
