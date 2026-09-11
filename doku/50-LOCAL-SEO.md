@@ -1,12 +1,14 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-10
+stand: 2026-09-11
 status: teilweise
 fortschritt: 50
-zusammenfassung: Am 10.09.2026 im Browser nachgeprüft — das Google-Unternehmensprofil gibt es weiterhin nicht (vier Prüfungen, alle negativ), während sechs Mitbewerber im Bezirk mit Profil und Bewertungen in der Karte stehen. Dabei zwei unbekannte Fremdeinträge gefunden: WKO Firmen A–Z (unter „Florin Feier", nicht WVM-IT) und ein Loxone-Partnereintrag, dessen URL 404 liefert. Search Console am 05.09.2026 nachgezogen (Sitemap-Index und vier Segmente gelesen, 165 URLs, fünf neue Seiten beantragt), NAP auf der eigenen Seite zeichengleich; Bewertungen fehlen — alles beim Kunden.
+zusammenfassung: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP.
 offen: 7
-unternehmensprofil: nein
+unternehmensprofil: ja
+profil_bestaetigt: ausstehend
+profil_link: https://share.google/TQfo3LKfZtIANvyqu
 search_console: ja
 gsc_property: https://www.wvm-it.tech/
 gsc_konto: bastian.scherzinger05@gmail.com
