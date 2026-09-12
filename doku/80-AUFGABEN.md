@@ -363,4 +363,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG128 | Der Antwort-zuerst-Block der Startseite steht erst nach Hero, Kennzahlen, Formular und Referenzband | seo | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG129 | Die Kurzfassung für Antwortmaschinen bewirbt „Website ab 500 €" ohne die Bedingung | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG130 | Die Meta-Leiste verspricht auf jeder Seite „Antwort in 24 Stunden" ohne „an Werktagen" | design | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG131 | Der Fragebogen wird als einziges Formular inhaltlich nicht auf Spam bewertet | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
