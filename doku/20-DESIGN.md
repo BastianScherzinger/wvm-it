@@ -1,11 +1,11 @@
 ---
 bereich: design
 titel: Design
-stand: 2026-09-06
+stand: 2026-09-12
 status: teilweise
 fortschritt: 96
-zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 06.09. der Hero neu gedacht (zweistufige Ueberschrift, Vertrauensband mit Gesicht) und vier Symbole neu gezeichnet: dns und domain waren zeichengleich, cog sah aus wie eine Sonne, seo wie das Zoom-Symbol, gauge hatte keine Skala. Zwei Tests sichern das jetzt. Neue Bausteine: Folgefragen-Liste, Hub-Fliesstext. Mobilansicht weiterhin nie am Geraet geprueft.
-offen: 4
+zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 12.09.2026 (Zweig sofort/2026-09-12-vl21-und-2-weitere, noch nicht auf main) der letzte offene Kontrastfehler behoben: .err-code, die grosse Zahl auf der 404- und der 500-Seite, trug ueber der richtigen Farbe ein opacity:.5 -- Deckkraft mischt mit dem Grund, aus #d8a43d auf #12100c wurde effektiv #755a24 und damit 2,94:1, zu wenig selbst fuer die 3:1 bei grossem Text. Ohne die Deckkraft haelt dieselbe Farbe 8,41:1. Daraus die zweite Farbregel: Eine Deckkraft unter 1 ist eine Farbaenderung, und die sieht kein Token-Test -- wer Text daempfen will, nimmt ein Token. Damit ist die Lighthouse-Kontrastliste in drei Schritten abgearbeitet (32 Elemente am 02.09., 15 nach der Korrektur von --ink-dim am 06.09., eines am 12.09.); die Antippziele bestanden durchweg. Am 06.09. der Hero neu gedacht (zweistufige Ueberschrift, Vertrauensband mit Gesicht) und vier Symbole neu gezeichnet: dns und domain waren zeichengleich, cog sah aus wie eine Sonne, seo wie das Zoom-Symbol, gauge hatte keine Skala. Zwei Tests sichern das jetzt. Neue Bausteine: Folgefragen-Liste, Hub-Fliesstext. Mobilansicht weiterhin nie am Geraet geprueft.
+offen: 3
 quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---
 
@@ -37,6 +37,18 @@ Tokens stehen am Kopf von `static/css/style.css`; eine Sektion wird dunkel, inde
 | Linien, Tint | `--line`, `--line-2`, `--tint`, `--tint-2` | 10 % / 18 % / 3,5 % / 6 % Tinte | Weiß-Anteile |
 
 **Regel:** Gold ist Fläche mit dunklem Text darauf, niemals Text auf Hell — dafür `--accent-ink`. `#d8a43d` hält auf Weiß nur rund 2:1. Gemessen am 27.08.2026: schwächster Wert der Seite 5,47:1 (Gold-Text), alle übrigen ≥ 7,6:1. *(Der Kommentar in `style.css` nennt 4,6:1 für `--accent-ink`; `UMBAU-PLAN.md` §2.2 nennt 5,5:1 — zwei Zahlen für denselben Wert, nicht nachgerechnet.)*
+
+**Zweite Regel, seit dem 12.09.2026 (`BF18`): Eine Deckkraft unter 1 ist eine
+Farbänderung, und die sieht kein Token-Test.** `opacity` ist keine Eigenschaft des
+Textes, sondern die Anweisung, ihn mit dem Grund zu verrechnen — was ankommt, ist eine
+andere Farbe als die deklarierte. `.err-code`, die grosse Zahl auf der 404- und der
+500-Seite, stand auf `--accent` mit `opacity:.5` in einem `on-dark`-Kopf: aus `#d8a43d`
+auf `#12100c` wurde effektiv `#755a24`, und das hält 2,94:1 — zu wenig selbst für die
+3:1, die grossem Text zugestanden werden. Ohne die Deckkraft ist es dieselbe Farbe bei
+8,41:1. Wer eine Textfarbe dämpfen will, nimmt deshalb **ein Token**, nicht `opacity`;
+`--ink-soft` und `--ink-dim` sind dafür da und werden nachgerechnet.
+`ErrCodeKontrastTest` in `landing/tests/test_kontrast.py` rechnet seit dem 12.09.2026
+die Mischung nach, statt nur die Token zu lesen.
 
 Radien `--radius` 18 px, `--radius-sm` 12 px, `--radius-in` 10 px · Spacing `--s1`…`--s9` = 4/8/12/16/24/32/48/72/112 px · Schatten warm getönt, mehrschichtig, nie reines Schwarz · `--maxw` 1180 px.
 
@@ -95,6 +107,6 @@ Startseite von oben nach unten (`../docs/UMBAU-PLAN.md` §3, seit dem Relaunch m
 | # | Punkt | Stand |
 |---|---|---|
 | 1 | **Mobilansicht am echten Gerät** — bisher nur analytisch geprüft (keine festen Breiten über 46 px außer Preistabelle, Touch-Ziele ≥ 44 px, eigene Regeln bei 1080/820/560 px); die Chrome-Erweiterung war am 28.08.2026 nicht verbunden | U7.4, seit 28.08.2026 offen |
-| 2 | **Kontrast laut Lighthouse:** 32 betroffene Elemente, Kontrast-Einzelprüfung 0 %, Antippziele 100 % (`BF18`, Messung vom 02.09.2026) — widerspricht der Eigenmessung vom 27.08.2026 (alle ≥ 4,5:1); Elemente benennen und nachrechnen | offen |
+| ~~2~~ | ~~**Kontrast laut Lighthouse:** 32 betroffene Elemente, Kontrast-Einzelprüfung 0 %, Antippziele 100 % (`BF18`, Messung vom 02.09.2026)~~ — **in drei Schritten abgearbeitet, der letzte am 12.09.2026.** Die Eigenmessung vom 27.08. war nicht falsch, aber unvollständig: Sie rechnete Token gegen Grund, und genau daneben lagen die beiden Fälle. **06.09.2026:** `--ink-dim` stand hell auf `#8a8177` und hielt auf `--bg-2` nur 3,40:1 — dunkel 6,04:1, deshalb fiel es nie auf; neu `#746c64` mit 4,58:1, danach meldete die Messung 15 Elemente. **12.09.2026:** Von den fünfzehn war noch **eines** übrig, `.err-code` auf der 404- und der 500-Seite: `--accent` mit `opacity:.5` in einem `on-dark`-Kopf, effektiv `#755a24` auf `#12100c` und damit 2,94:1. Die Deckkraft ist entfernt, dieselbe Farbe hält 8,41:1. Die **Antippziele** bestanden in allen drei Messungen (100 %). **Nicht nachgezogen ist die Barrierefreiheitserklärung** — sie räumt in Abschnitt 3 weiter fünfzehn Elemente und eine laufende Ursachensuche ein; als Punkt 13 in [80-AUFGABEN.md](80-AUFGABEN.md) | erledigt, Rechtstext offen |
 | 3 | `prefers-reduced-motion` laut Messung „im ausgelieferten Stilblatt nicht gefunden" (`BF19`) — im Quelltext vorhanden (`style.css:500`); prüfen, ob das Werkzeug nur `fonts.css` liest | Werkzeugfrage |
 | 4 | Referenzbilder auf der Startseite („Ein Eindruck unserer Arbeit": `ref_buehne`, `ref_konferenz`, `ref_smarthome`, `ref_ruempelwerk`): eigene Projektfotos oder Stock? Wenn Stock, Überschrift ändern oder Abschnitt entfernen | seit 28.08.2026 offen (Bastian) |
