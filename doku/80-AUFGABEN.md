@@ -359,4 +359,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG124 | Besuchsstatistik zeichnet die Proxy-Adresse auf, nicht die des Besuchers | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG125 | Datenschutzerklärung nennt die Datenbank nicht, in der die Anfragen liegen | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG126 | Impressum zitiert zwei aufgehobene Normen und verlinkt eine abgeschaltete Plattform | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG127 | Drei fertig geschriebene Antwort-zuerst-Absätze erreichen keine einzige Seite | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
