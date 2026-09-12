@@ -1879,7 +1879,7 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
    dieselbe Navigation, dieselben Karten, dieselben Kontaktwege wie überall.
    ========================================================================== */
 .err-code{font-family:"Space Grotesk","Inter",sans-serif;font-size:clamp(56px,12vw,104px);
-  line-height:1;font-weight:600;letter-spacing:-.04em;color:var(--accent);opacity:.5;margin:0 0 6px}
+  line-height:1;font-weight:600;letter-spacing:-.04em;color:var(--accent);margin:0 0 6px}
 .err-unten{display:grid;grid-template-columns:1.35fr .95fr;gap:34px;align-items:start}
 .err-unten .rg-weitere{margin-top:0;padding-top:0;border-top:0}
 .err-hilfe{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:var(--surface)}
