@@ -339,4 +339,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG109 | Die volle Besucher-IP geht unverschlüsselt über HTTP an einen Drittdienst | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG110 | Ausgeschriebene Zeitzusagen sind für `check_seo` unsichtbar | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG111 | „Lädt in unter zwei Sekunden, gemessen statt behauptet" nennt keine Messung | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG112 | Impressum und Datenschutz stützen sich auf vier aufgehobene Gesetze | recht | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
