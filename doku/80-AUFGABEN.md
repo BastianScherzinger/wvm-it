@@ -357,4 +357,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG122 | Die Bestätigungsseite behauptet, die Nachricht liege im Postfach — auch wenn der Versand scheitert | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG123 | Datenschutzerklärung bestreitet eine Messung, die der Code durchführt | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG124 | Besuchsstatistik zeichnet die Proxy-Adresse auf, nicht die des Besuchers | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG125 | Datenschutzerklärung nennt die Datenbank nicht, in der die Anfragen liegen | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
