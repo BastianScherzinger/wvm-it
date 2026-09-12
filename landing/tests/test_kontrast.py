@@ -175,10 +175,12 @@ class ErrCodeKontrastTest(SimpleTestCase):
 # Symbol — eine Grafik, der die WCAG 3:1 zugesteht, und `color` vererbt dort nur
 # an das `currentColor` des SVG.
 GOLD_ALS_TEXT_ERLAUBT = (".err-code", ".rb-cat-ic")
-# Zustände, die nur auf Eingabe entstehen. Sie stehen in keiner
-# Lighthouse-Einzelprüfung und bleiben hier ausgeklammert, damit diese Prüfung
-# über das aussagt, was ein Besucher ohne Zutun sieht.
-ZUSTAENDE = (":hover", ":focus", ":active", ":checked")
+# Zustände (`:hover`, `:focus-visible`) waren bis zum 12.09.2026 ausgeklammert,
+# weil sie in keiner Lighthouse-Einzelprüfung stehen. Die Ausklammerung ist
+# wieder weg: Lighthouse misst sie nicht, ein Mensch sieht sie trotzdem, und
+# `:focus-visible` ist der Zustand, in dem eine Tastaturbedienung **immer**
+# steht. Die drei Regeln, die davon lebten, tragen seit demselben Tag
+# `--accent-ink` — siehe `test_die_drei_zustaende_tragen_accent_ink`.
 # Nur die Eigenschaft `color` faerbt Text. `accent-color`, `border-color` und
 # `border-top-color` enden auf dieselben fuenf Buchstaben und faerben Kaesten —
 # deshalb muss vor dem Wort eine Deklarationsgrenze stehen.
@@ -203,6 +205,13 @@ class GoldAlsTextTest(SimpleTestCase):
     Beide stehen ausserhalb jedes `on-dark`. `TokenKontrastTest` sieht davon
     nichts, weil `--accent` dort bewusst nicht unter den Textfarben steht —
     genau deshalb prüft diese Klasse die **Verwendung** statt des Tokens.
+
+    Nachtrag vom selben Tag: Drei weitere Regeln blieben damals stehen, weil sie
+    ihre Farbe erst auf Eingabe setzen (`:hover`, `:focus-visible`) und damit in
+    keiner Lighthouse-Einzelprüfung auftauchen. Gemessen wird dort trotzdem
+    nichts anderes — dieselben 2,02:1 —, und `:focus-visible` ist der Zustand,
+    in dem eine Tastaturbedienung dauerhaft steht. Sie tragen jetzt ebenfalls
+    `--accent-ink`; die Ausklammerung der Zustände ist deshalb entfallen.
     """
 
     def setUp(self):
@@ -213,13 +222,11 @@ class GoldAlsTextTest(SimpleTestCase):
                        for sel, rumpf in re.findall(r"([^{}]+)\{([^{}]*)\}", text)
                        if TEXTFARBE_GOLD.search(rumpf)]
 
-    def test_gold_steht_nirgends_als_dauerhafte_textfarbe(self):
+    def test_gold_steht_nirgends_als_textfarbe(self):
         self.assertTrue(self.regeln, "Keine Regel mit --accent gefunden — "
                                      "liest diese Pruefung die richtige Datei?")
         for selektor, regel in self.regeln:
             wahl = selektor.strip()
-            if any(z in wahl for z in ZUSTAENDE):
-                continue
             with self.subTest(selektor=wahl):
                 self.assertTrue(
                     any(erlaubt in wahl for erlaubt in GOLD_ALS_TEXT_ERLAUBT),
@@ -239,3 +246,38 @@ class GoldAlsTextTest(SimpleTestCase):
                 for regel in treffer:
                     self.assertIn("var(--accent-ink)", regel)
                     self.assertNotRegex(regel, r"(?:^|;)\s*opacity\s*:")
+
+    def test_die_drei_zustaende_tragen_accent_ink(self):
+        """Was am 12.09.2026 als „kein Lighthouse-Fall" liegen blieb.
+
+        Drei Regeln färbten Text erst auf Eingabe golden, alle drei auf hellem
+        Grund und keine davon in einem `on-dark`:
+
+        * `.rg-sw-link:hover strong` und `:focus-visible strong` — der
+          Schwerpunkt-Verweis auf jeder der sieben Regionsseiten. Grund ist
+          `.rg-schwerpunkt` mit `--surface` (`#ffffff`), also **2,02:1**.
+        * `.fld-recht a:hover` — der Link in den Datenschutzhinweis, der
+          über `templates/datenschutzhinweis.html` in **jedem** Anfrageformular
+          steht.
+        * `.ub-fakten a:hover` — die Eckdaten-Liste auf `/ueber-uns/`.
+
+        `:hover` mag man als flüchtig ansehen; `:focus-visible` ist es nicht.
+        Wer die Seite mit der Tastatur bedient, steht dauerhaft in diesem
+        Zustand — und sieht dann 2,02:1 statt der 5,52:1, die `--accent-ink`
+        auf derselben Fläche hält.
+        """
+        text = CSS.read_text(encoding="utf-8")
+        alle = re.findall(r"([^{}]+)\{([^{}]*)\}", text)
+        for marke in (".rg-sw-link:hover strong", ".fld-recht a:hover",
+                      ".ub-fakten a:hover"):
+            # `.on-dark .fld-recht a:hover` ist derselbe Text auf dunklem Grund
+            # und setzt dort `--accent2` (`#eec77a`, 10:1) — richtig so, und
+            # deshalb hier ausgenommen.
+            treffer = [(s, r) for s, r in alle
+                       if marke in s and ".on-dark" not in s]
+            with self.subTest(selektor=marke):
+                self.assertTrue(treffer, f"{marke} ist aus style.css verschwunden")
+                for selektor, regel in treffer:
+                    self.assertIn("var(--accent-ink)", regel,
+                                  f"{selektor.strip()} faerbt Text auf hellem "
+                                  f"Grund: {regel!r}")
