@@ -355,4 +355,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG120 | Der Winterdienst verspricht Erreichbarkeit rund um die Uhr, das Schema schließt um 17 Uhr | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG121 | Die als „Antwort zuerst" geschriebene Einleitung steht erst an zweiter Stelle | seo | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG122 | Die Bestätigungsseite behauptet, die Nachricht liege im Postfach — auch wenn der Versand scheitert | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG123 | Datenschutzerklärung bestreitet eine Messung, die der Code durchführt | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
