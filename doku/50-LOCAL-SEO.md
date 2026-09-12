@@ -1,10 +1,10 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-11
+stand: 2026-09-12
 status: teilweise
 fortschritt: 50
-zusammenfassung: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP.
+zusammenfassung: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP. Am 12.09.2026 SU05 (Ortsseiten decken das Einzugsgebiet ab) als begruendete Ausnahme eingetragen, ohne eine Zeile Code: Der Befund zaehlt jetzt sieben Ortsseiten gegen eine Zielgroesse von acht, aber die achte ist in diesem Projekt schon entschieden -- und zwar dagegen. Weitere Ortsseiten sind in SEO-AUSBAU-3.md als Doorway-Pages verworfen (Regel A16, gestuetzt auf eine Messung an einer Schwesterseite), und den echten Auftrag aus einem achten Ort, den der Rat selbst verlangt, gibt es nicht.
 offen: 7
 unternehmensprofil: ja
 profil_bestaetigt: ausstehend
@@ -123,7 +123,22 @@ Der WKO-Eintrag ist der wertvollere und der problematischere zugleich: Er ist di
 
 Der Loxone-Eintrag ist ein Rückschlag ohne Schuld: Google zeigt ihn noch, das Ziel ist weg — vermutlich hat Loxone das Partnerverzeichnis umgebaut. Bis die URL wieder auflöst, ist er als `sameAs`-Ziel unbrauchbar; **ein `sameAs` auf eine 404 ist schlechter als keins.**
 
-**Regionsseiten** (`/it-service/<slug>/`, 7 Orte + Hub, DE/EN/RO, 542–619 Wörter): Vöcklabruck 6 km · Attersee 8 · Gmunden 22 · Bad Ischl 38 · Wels 40 · Salzburg 55 · Linz 60 — je mit echter Entfernung, Fahrzeit und ortsspezifischem Inhalt (Industrie, Saison-WLAN, gewachsene Netze, Veranstaltungsräume, Hallen/Messe, Haftung für fremde Daten, Antwortzeiten der Großanbieter). Im Schema `areaServed` = Ort, Sitz bleibt Lenzing. *Die Messung zählt „0 Ortsseiten" (`SU05`, `VL12`) — das Werkzeug erkennt das Präfix `/it-service/` nicht als Ortsseite; kein Mangel der Seite, siehe [90-NOTIZEN.md](90-NOTIZEN.md).*
+**Regionsseiten** (`/it-service/<slug>/`, 7 Orte + Hub, DE/EN/RO, 542–619 Wörter): Vöcklabruck 6 km · Attersee 8 · Gmunden 22 · Bad Ischl 38 · Wels 40 · Salzburg 55 · Linz 60 — je mit echter Entfernung, Fahrzeit und ortsspezifischem Inhalt (Industrie, Saison-WLAN, gewachsene Netze, Veranstaltungsräume, Hallen/Messe, Haftung für fremde Daten, Antwortzeiten der Großanbieter). Im Schema `areaServed` = Ort, Sitz bleibt Lenzing. *Die Messung vom 02.09.2026 zählte „0 Ortsseiten" (`SU05`, `VL12`) — das Werkzeug erkannte das Präfix `/it-service/` nicht als Ortsseite; kein Mangel der Seite, siehe [90-NOTIZEN.md](90-NOTIZEN.md).*
+
+**Die achte Ortsseite entsteht bewusst nicht — seit dem 12.09.2026 als Ausnahme
+eingetragen** ([80-AUFGABEN.md](80-AUFGABEN.md), „Bewertung der Messpunkte"). Der
+Befund dieses Tages zählt laut Commit **sieben** Ortsseiten gegen eine Zielgrösse von
+acht, liest das Präfix also inzwischen richtig. Die Zahl stimmt, die Folgerung nicht:
+Weitere Ortsseiten sind in `../docs/SEO-AUSBAU-3.md` (§ „Nicht enthalten") ausdrücklich
+verworfen — „Sieben genügen für das echte Einzugsgebiet. Mehr wären Doorway-Pages
+(A16)" —, und Regel A16 in `../docs/SEO-PLAN.md` steht auf einer Messung: Bei einer
+Schwesterseite standen 131 fast gleiche Stadtseiten online, 88 % textgleich, Position
+85–90, „Gefunden – zurzeit nicht indexiert", danach per 301/410 entsorgt.
+`landing/regionen.py` hält die zwei Bedingungen fest, unter denen es die sieben gibt:
+nur Orte in rund einer Fahrstunde um Lenzing (Zeile 20–22) und **keine erfundenen
+Referenzen** (Zeile 30–31). Damit schliesst der Rat sich selbst aus — er verlangt „einen
+echten Auftrag von dort", und den gibt es für keinen achten Ort. **Belegt ein Auftrag
+später einen achten Ort, entsteht die Seite; auf Vorrat entsteht sie nicht.**
 
 ## Offen
 
