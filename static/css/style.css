@@ -1878,8 +1878,16 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
    Beide Seiten sind Umleitungen zurück in den Inhalt, keine Sackgassen:
    dieselbe Navigation, dieselben Karten, dieselben Kontaktwege wie überall.
    ========================================================================== */
+/* `opacity` entfernt (12.09.2026, BF18): Die Zahl stand auf `--accent` mit
+   halber Deckkraft in einem `on-dark`-Kopf. Deckkraft mischt die Farbe mit dem
+   Grund — aus #d8a43d auf #12100c wurde effektiv #755a24, und das hält nur
+   2,94:1. Damit reisst sie selbst die 3:1 für grossen Text, und zwar als
+   einziges Element der Seite; die Token halten ihre 4,5:1 alle (test_kontrast).
+   Ohne die Deckkraft ist es dieselbe deklarierte Farbe bei 8,41:1 — nachgerechnet
+   in `ErrCodeKontrastTest`. Merksatz: Eine Deckkraft unter 1 ist eine Farbänderung,
+   die kein Token-Test sieht. */
 .err-code{font-family:"Space Grotesk","Inter",sans-serif;font-size:clamp(56px,12vw,104px);
-  line-height:1;font-weight:600;letter-spacing:-.04em;color:var(--accent);opacity:.5;margin:0 0 6px}
+  line-height:1;font-weight:600;letter-spacing:-.04em;color:var(--accent);margin:0 0 6px}
 .err-unten{display:grid;grid-template-columns:1.35fr .95fr;gap:34px;align-items:start}
 .err-unten .rg-weitere{margin-top:0;padding-top:0;border-top:0}
 .err-hilfe{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:var(--surface)}
