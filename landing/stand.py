@@ -28,12 +28,12 @@ damit die letzte belastbare Aussage über den Bestand.
 
 # ── Erzeugt von `manage.py stand_schreiben` — nicht von Hand ändern ──────────
 # <stand:anfang>
-STAND_FALLBACK = "2026-09-10"
+STAND_FALLBACK = "2026-09-12"
 
 STAND = {
-    "/": "2026-09-10",
+    "/": "2026-09-12",
     "/agb/": "2026-09-12",
-    "/aktuelles/": "2026-09-08",
+    "/aktuelles/": "2026-09-12",
     "/aktuelles/alte-windows-version-im-betrieb/": "2026-09-10",
     "/aktuelles/aufbewahrungsfristen-oesterreich/": "2026-09-10",
     "/aktuelles/datensicherung-richtig-pruefen/": "2026-09-10",
@@ -67,7 +67,7 @@ STAND = {
     "/checkliste/neuer-arbeitsplatz/": "2026-09-05",
     "/datenschutz/": "2026-09-12",
     "/impressum/": "2026-09-12",
-    "/it-notfall/": "2026-09-10",
+    "/it-notfall/": "2026-09-12",
     "/it-service/": "2026-09-06",
     "/it-service/attersee/": "2026-09-08",
     "/it-service/bad-ischl/": "2026-09-08",
@@ -77,10 +77,10 @@ STAND = {
     "/it-service/voecklabruck/": "2026-09-08",
     "/it-service/wels/": "2026-09-08",
     "/it-sicherheit-test/": "2026-09-06",
-    "/kontakt/": "2026-09-10",
-    "/kosten/": "2026-09-10",
+    "/kontakt/": "2026-09-12",
+    "/kosten/": "2026-09-12",
     "/kosten/rechner/": "2026-09-06",
-    "/leistungen/": "2026-09-10",
+    "/leistungen/": "2026-09-12",
     "/leistungen/edv-it-betreuung/": "2026-09-10",
     "/leistungen/google-ads/": "2026-09-10",
     "/leistungen/hosting-wartung/": "2026-09-10",
@@ -94,8 +94,8 @@ STAND = {
     "/leistungen/smarthome-knx-loxone/": "2026-09-10",
     "/leistungen/veranstaltungstechnik/": "2026-09-10",
     "/leistungen/webseite-erstellen/": "2026-09-10",
-    "/referenzen/": "2026-09-10",
-    "/ueber-uns/": "2026-09-10",
+    "/referenzen/": "2026-09-12",
+    "/ueber-uns/": "2026-09-12",
     "/vergleich/": "2026-09-08",
     "/vergleich/it-betreuung-vs-stundenabrechnung/": "2026-09-08",
     "/vergleich/microsoft365-vs-google-workspace/": "2026-09-08",
