@@ -345,4 +345,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG113 | Die Doku führt als „nicht ausgeliefert", was live steht | status | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG114 | Der `speakable`-Selektor markiert auf elf Seiten jeden Absatz im Inhalt | seo | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG115 | Die Fehlerseiten führen den Besucher ins Mitarbeiter-Login statt zurück in den Betrieb | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG116 | Auf jeder Fehler- und Anmeldeseite steht ein fremdes Logo-Zeichen „F" | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
