@@ -4,7 +4,7 @@ titel: Design
 stand: 2026-09-12
 status: teilweise
 fortschritt: 96
-zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 12.09.2026 (Zweig sofort/2026-09-12-vl21-und-2-weitere, noch nicht auf main) der letzte offene Kontrastfehler behoben: .err-code, die grosse Zahl auf der 404- und der 500-Seite, trug ueber der richtigen Farbe ein opacity:.5 -- Deckkraft mischt mit dem Grund, aus #d8a43d auf #12100c wurde effektiv #755a24 und damit 2,94:1, zu wenig selbst fuer die 3:1 bei grossem Text. Ohne die Deckkraft haelt dieselbe Farbe 8,41:1. Daraus die zweite Farbregel: Eine Deckkraft unter 1 ist eine Farbaenderung, und die sieht kein Token-Test -- wer Text daempfen will, nimmt ein Token. Damit ist die Lighthouse-Kontrastliste in drei Schritten abgearbeitet (32 Elemente am 02.09., 15 nach der Korrektur von --ink-dim am 06.09., eines am 12.09.); die Antippziele bestanden durchweg. Am 06.09. der Hero neu gedacht (zweistufige Ueberschrift, Vertrauensband mit Gesicht) und vier Symbole neu gezeichnet: dns und domain waren zeichengleich, cog sah aus wie eine Sonne, seo wie das Zoom-Symbol, gauge hatte keine Skala. Zwei Tests sichern das jetzt. Neue Bausteine: Folgefragen-Liste, Hub-Fliesstext. Mobilansicht weiterhin nie am Geraet geprueft.
+zusammenfassung: Design-System vom 27.08.2026 unveraendert. Am 12.09.2026 (Zweig sofort/2026-09-12-bf18-und-2-weitere) die aelteste ungepruefte Farbregel der Seite endlich geprueft: Der Kopf von style.css schreibt seit dem Umbau 2026-08 fest, dass Gold als Text auf Hell nur ueber --accent-ink laufen darf -- geschrieben stand die Regel, geprueft wurde sie nie, und zwei Regeln hielten sich nicht daran. .marquee-track i, der Trenner im Leistungsband der Startseite, setzte --accent mit opacity:.75 und kam damit laut Commit auf 1,69:1; .rg-km (Datum und Lesezeit auf /aktuelles/, Punktzahl auf /checkliste/, Entfernung auf /it-service/) setzte --accent auf Weiss, also 2,02:1. Beide tragen jetzt --accent-ink, die Deckkraft faellt weg -- Aufbau, Klassen, Schriftgroessen und die Zahl der Elemente bleiben unberuehrt. Neu GoldAlsTextTest in landing/tests/test_kontrast.py: Keine Regel darf color:var(--accent) dauerhaft setzen, und die zwei geheilten Regeln duerfen nicht wieder ueber Deckkraft daempfen; die Pruefung liest die Eigenschaft, nicht die Zeichenkette, weil accent-color und border-color auf dieselben Buchstaben enden. Suite jetzt 297 Testfunktionen in 19 Dateien (nachgezaehlt). Drei Hover-Zustaende bleiben bewusst auf Gold, weil sie in keiner Lighthouse-Einzelpruefung stehen. Davor am selben Tag der letzte gemeldete Kontrastfehler behoben: .err-code, die grosse Zahl auf der 404- und der 500-Seite, trug ueber der richtigen Farbe ein opacity:.5 -- Deckkraft mischt mit dem Grund, aus #d8a43d auf #12100c wurde effektiv #755a24 und damit 2,94:1, zu wenig selbst fuer die 3:1 bei grossem Text. Ohne die Deckkraft haelt dieselbe Farbe 8,41:1. Daraus die zweite Farbregel: Eine Deckkraft unter 1 ist eine Farbaenderung, und die sieht kein Token-Test -- wer Text daempfen will, nimmt ein Token. Damit ist die Lighthouse-Kontrastliste in drei Schritten abgearbeitet (32 Elemente am 02.09., 15 nach der Korrektur von --ink-dim am 06.09., eines am 12.09.); die Antippziele bestanden durchweg. Am 06.09. der Hero neu gedacht (zweistufige Ueberschrift, Vertrauensband mit Gesicht) und vier Symbole neu gezeichnet: dns und domain waren zeichengleich, cog sah aus wie eine Sonne, seo wie das Zoom-Symbol, gauge hatte keine Skala. Zwei Tests sichern das jetzt. Neue Bausteine: Folgefragen-Liste, Hub-Fliesstext. Mobilansicht weiterhin nie am Geraet geprueft.
 offen: 3
 quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---
@@ -37,6 +37,33 @@ Tokens stehen am Kopf von `static/css/style.css`; eine Sektion wird dunkel, inde
 | Linien, Tint | `--line`, `--line-2`, `--tint`, `--tint-2` | 10 % / 18 % / 3,5 % / 6 % Tinte | Weiß-Anteile |
 
 **Regel:** Gold ist Fläche mit dunklem Text darauf, niemals Text auf Hell — dafür `--accent-ink`. `#d8a43d` hält auf Weiß nur rund 2:1. Gemessen am 27.08.2026: schwächster Wert der Seite 5,47:1 (Gold-Text), alle übrigen ≥ 7,6:1. *(Der Kommentar in `style.css` nennt 4,6:1 für `--accent-ink`; `UMBAU-PLAN.md` §2.2 nennt 5,5:1 — zwei Zahlen für denselben Wert, nicht nachgerechnet.)*
+
+**Seit dem 12.09.2026 wird diese Regel geprüft, und beim ersten Lauf hielten sich
+zwei Regeln nicht daran (`BF18`).** Geschrieben stand sie seit dem Umbau 2026-08 im
+Kopf von `style.css`; eine geschriebene Regel ist aber keine geprüfte. Betroffen waren
+`.marquee-track i` — der Trenner im Leistungsband der Startseite, `--accent` **und**
+`opacity:.75`, laut Commit angekommen als `#e1ba6c` auf `#fbfaf8` und damit **1,69:1** —
+und `.rg-km`, also Datum und Lesezeit auf `/aktuelles/`, die Punktzahl auf
+`/checkliste/` und Entfernung wie Fahrzeit auf `/it-service/`: `--accent` auf
+`--surface` (`#ffffff`), laut Commit **2,02:1**. Beide standen ausserhalb jedes
+`on-dark` und waren ohne jede Eingabe dauerhaft sichtbar. Geändert sind **zwei
+Deklarationen**: beide tragen jetzt `--accent-ink`, die Deckkraft am Trenner fällt weg —
+das Token hält seine Werte nur ungemischt, mit `opacity:.75` wären es laut Commit
+3,28:1 gewesen, deshalb geht beides nur zusammen. Aufbau, Klassen, Kennungen,
+Schriftgrössen und die Zahl der Elemente sind unberührt.
+
+`GoldAlsTextTest` in `landing/tests/test_kontrast.py` hält das mit zwei Prüfungen fest:
+keine Regel darf `color:var(--accent)` **dauerhaft** setzen, und die zwei geheilten
+Regeln dürfen nicht wieder über Deckkraft dämpfen. Zwei Ausnahmen sind namentlich
+erlaubt und begründet — `.err-code` steht im `on-dark`-Kopf der Fehlerseiten und wird
+von `ErrCodeKontrastTest` nachgerechnet, `.rb-cat-ic` ist der Rahmen um ein Symbol, also
+eine Grafik mit 3:1. Die Prüfung liest die **Eigenschaft**, nicht die Zeichenkette:
+`accent-color`, `border-color` und `border-top-color` enden auf dieselben fünf Buchstaben
+und färben Kästen. **Bewusst nicht angefasst:** die drei Hover-Zustände
+`.rg-sw-link:hover strong`, `.fld-recht a:hover` und `.ub-fakten a:hover`, die Gold
+ebenfalls als Text auf Hell setzen — sie entstehen nur auf Eingabe und stehen in keiner
+Lighthouse-Einzelprüfung; die Testklasse klammert `:hover`, `:focus`, `:active` und
+`:checked` ausdrücklich aus.
 
 **Zweite Regel, seit dem 12.09.2026 (`BF18`): Eine Deckkraft unter 1 ist eine
 Farbänderung, und die sieht kein Token-Test.** `opacity` ist keine Eigenschaft des
@@ -107,6 +134,6 @@ Startseite von oben nach unten (`../docs/UMBAU-PLAN.md` §3, seit dem Relaunch m
 | # | Punkt | Stand |
 |---|---|---|
 | 1 | **Mobilansicht am echten Gerät** — bisher nur analytisch geprüft (keine festen Breiten über 46 px außer Preistabelle, Touch-Ziele ≥ 44 px, eigene Regeln bei 1080/820/560 px); die Chrome-Erweiterung war am 28.08.2026 nicht verbunden | U7.4, seit 28.08.2026 offen |
-| ~~2~~ | ~~**Kontrast laut Lighthouse:** 32 betroffene Elemente, Kontrast-Einzelprüfung 0 %, Antippziele 100 % (`BF18`, Messung vom 02.09.2026)~~ — **in drei Schritten abgearbeitet, der letzte am 12.09.2026.** Die Eigenmessung vom 27.08. war nicht falsch, aber unvollständig: Sie rechnete Token gegen Grund, und genau daneben lagen die beiden Fälle. **06.09.2026:** `--ink-dim` stand hell auf `#8a8177` und hielt auf `--bg-2` nur 3,40:1 — dunkel 6,04:1, deshalb fiel es nie auf; neu `#746c64` mit 4,58:1, danach meldete die Messung 15 Elemente. **12.09.2026:** Von den fünfzehn war noch **eines** übrig, `.err-code` auf der 404- und der 500-Seite: `--accent` mit `opacity:.5` in einem `on-dark`-Kopf, effektiv `#755a24` auf `#12100c` und damit 2,94:1. Die Deckkraft ist entfernt, dieselbe Farbe hält 8,41:1. Die **Antippziele** bestanden in allen drei Messungen (100 %). **Nicht nachgezogen ist die Barrierefreiheitserklärung** — sie räumt in Abschnitt 3 weiter fünfzehn Elemente und eine laufende Ursachensuche ein; als Punkt 13 in [80-AUFGABEN.md](80-AUFGABEN.md) | erledigt, Rechtstext offen |
+| ~~2~~ | ~~**Kontrast laut Lighthouse:** 32 betroffene Elemente, Kontrast-Einzelprüfung 0 %, Antippziele 100 % (`BF18`, Messung vom 02.09.2026)~~ — **in drei Schritten abgearbeitet, der letzte am 12.09.2026.** Die Eigenmessung vom 27.08. war nicht falsch, aber unvollständig: Sie rechnete Token gegen Grund, und genau daneben lagen die beiden Fälle. **06.09.2026:** `--ink-dim` stand hell auf `#8a8177` und hielt auf `--bg-2` nur 3,40:1 — dunkel 6,04:1, deshalb fiel es nie auf; neu `#746c64` mit 4,58:1, danach meldete die Messung 15 Elemente. **12.09.2026:** Von den fünfzehn war noch **eines** übrig, `.err-code` auf der 404- und der 500-Seite: `--accent` mit `opacity:.5` in einem `on-dark`-Kopf, effektiv `#755a24` auf `#12100c` und damit 2,94:1. Die Deckkraft ist entfernt, dieselbe Farbe hält 8,41:1. Die **Antippziele** bestanden in allen drei Messungen (100 %). **Noch am selben Tag zwei weitere Fälle geheilt, die keine Messung gemeldet hatte:** `.marquee-track i` (1,69:1) und `.rg-km` (2,02:1) setzten Gold als Text auf hellem Grund, obwohl der Kopf von `style.css` das seit dem Umbau 2026-08 untersagt — geschrieben stand die Regel, geprüft wurde sie nie. Beide tragen jetzt `--accent-ink`, und `GoldAlsTextTest` prüft die Regel ab sofort (siehe „Farben und Schriften"). **Nicht nachgezogen ist die Barrierefreiheitserklärung** — sie räumt in Abschnitt 3 weiter fünfzehn Elemente und eine laufende Ursachensuche ein; als Punkt 13 in [80-AUFGABEN.md](80-AUFGABEN.md) | erledigt, Rechtstext offen |
 | 3 | `prefers-reduced-motion` laut Messung „im ausgelieferten Stilblatt nicht gefunden" (`BF19`) — im Quelltext vorhanden (`style.css:500`); prüfen, ob das Werkzeug nur `fonts.css` liest | Werkzeugfrage |
 | 4 | Referenzbilder auf der Startseite („Ein Eindruck unserer Arbeit": `ref_buehne`, `ref_konferenz`, `ref_smarthome`, `ref_ruempelwerk`): eigene Projektfotos oder Stock? Wenn Stock, Überschrift ändern oder Abschnitt entfernen | seit 28.08.2026 offen (Bastian) |

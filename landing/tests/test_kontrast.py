@@ -167,3 +167,75 @@ class ErrCodeKontrastTest(SimpleTestCase):
         Mitte, volle Deckkraft ändert nichts."""
         self.assertEqual(_gemischt("#ffffff", "#000000", 0.5), "#808080")
         self.assertEqual(_gemischt("#d8a43d", "#12100c", 1.0), "#d8a43d")
+
+
+# Regeln, die `--accent` als `color` setzen dürfen. Beide tragen damit keinen
+# Text auf hellem Grund: `.err-code` steht im `on-dark`-Kopf der Fehlerseiten
+# (nachgerechnet von `ErrCodeKontrastTest`), `.rb-cat-ic` ist der Rahmen um ein
+# Symbol — eine Grafik, der die WCAG 3:1 zugesteht, und `color` vererbt dort nur
+# an das `currentColor` des SVG.
+GOLD_ALS_TEXT_ERLAUBT = (".err-code", ".rb-cat-ic")
+# Zustände, die nur auf Eingabe entstehen. Sie stehen in keiner
+# Lighthouse-Einzelprüfung und bleiben hier ausgeklammert, damit diese Prüfung
+# über das aussagt, was ein Besucher ohne Zutun sieht.
+ZUSTAENDE = (":hover", ":focus", ":active", ":checked")
+# Nur die Eigenschaft `color` faerbt Text. `accent-color`, `border-color` und
+# `border-top-color` enden auf dieselben fuenf Buchstaben und faerben Kaesten —
+# deshalb muss vor dem Wort eine Deklarationsgrenze stehen.
+TEXTFARBE_GOLD = re.compile(r"(?:^|;)\s*color\s*:\s*var\(--accent\)\s*(?:;|$)", re.M)
+
+
+class GoldAlsTextTest(SimpleTestCase):
+    """`--accent` ist Flächenfarbe, nicht Textfarbe (`BF18`, 12.09.2026).
+
+    Der Kopf von `style.css` schreibt die Regel seit dem Umbau 2026-08 fest:
+    „Gold als Text auf Hell nur über --accent-ink — #d8a43d hat auf Weiß nur
+    2:1 Kontrast." Geschrieben stand sie also; **geprüft wurde sie nicht**, und
+    zwei Regeln hielten sich nicht daran:
+
+    * `.marquee-track i` — der Trenner im Leistungsband der Startseite, gesetzt
+      mit `--accent` **und** `opacity:.75`. Angekommen ist damit `#e1ba6c` auf
+      `#fbfaf8`, also **1,69:1**.
+    * `.rg-km` — Datum und Lesezeit auf `/aktuelles/`, Punktzahl auf
+      `/checkliste/`, Entfernung und Fahrzeit auf `/it-service/`. `--accent` auf
+      `--surface` (`#ffffff`) sind **2,02:1**.
+
+    Beide stehen ausserhalb jedes `on-dark`. `TokenKontrastTest` sieht davon
+    nichts, weil `--accent` dort bewusst nicht unter den Textfarben steht —
+    genau deshalb prüft diese Klasse die **Verwendung** statt des Tokens.
+    """
+
+    def setUp(self):
+        text = CSS.read_text(encoding="utf-8")
+        # `[^{}]+` vor der Klammer greift immer den innersten Selektor, auch
+        # innerhalb eines `@media`-Blocks.
+        self.regeln = [(sel, rumpf)
+                       for sel, rumpf in re.findall(r"([^{}]+)\{([^{}]*)\}", text)
+                       if TEXTFARBE_GOLD.search(rumpf)]
+
+    def test_gold_steht_nirgends_als_dauerhafte_textfarbe(self):
+        self.assertTrue(self.regeln, "Keine Regel mit --accent gefunden — "
+                                     "liest diese Pruefung die richtige Datei?")
+        for selektor, regel in self.regeln:
+            wahl = selektor.strip()
+            if any(z in wahl for z in ZUSTAENDE):
+                continue
+            with self.subTest(selektor=wahl):
+                self.assertTrue(
+                    any(erlaubt in wahl for erlaubt in GOLD_ALS_TEXT_ERLAUBT),
+                    f"{wahl} setzt color:var(--accent) — auf hellem Grund sind "
+                    f"das 2,06:1. Fuer Gold als Text gibt es --accent-ink "
+                    f"(hell #8a6212, dunkel #eec77a): {regel!r}")
+
+    def test_die_beiden_geheilten_regeln_daempfen_nicht_ueber_deckkraft(self):
+        """Die Gegenprobe zur Heilung: `--accent-ink` haelt seine 4,5:1 nur
+        ungemischt. Eine Deckkraft darueber waere dieselbe Farbaenderung, die
+        `.err-code` am 12.09.2026 durch jede Pruefung gebracht hat."""
+        text = CSS.read_text(encoding="utf-8")
+        for selektor in (r"\.marquee-track i", r"\.rg-km"):
+            treffer = re.findall(selektor + r"\s*\{([^}]*)\}", text)
+            with self.subTest(selektor=selektor):
+                self.assertTrue(treffer, f"{selektor} ist aus style.css verschwunden")
+                for regel in treffer:
+                    self.assertIn("var(--accent-ink)", regel)
+                    self.assertNotRegex(regel, r"(?:^|;)\s*opacity\s*:")
