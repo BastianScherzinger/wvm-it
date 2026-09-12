@@ -1848,7 +1848,7 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .rg-sw-link{display:flex;gap:16px;align-items:flex-start;text-decoration:none;color:inherit}
 .rg-sw-link strong{display:block;font-size:17px;margin-bottom:4px}
 .rg-sw-t{display:block;font-size:14.5px;color:var(--ink-soft);line-height:1.65}
-.rg-sw-link:hover strong,.rg-sw-link:focus-visible strong{color:var(--accent)}
+.rg-sw-link:hover strong,.rg-sw-link:focus-visible strong{color:var(--accent-ink)}
 
 .rg-weitere{margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
 .rg-weitere h2{font-size:17px;margin:0 0 14px}
@@ -2361,7 +2361,7 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   max-width:56ch;
 }
 .fld-recht a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
-.fld-recht a:hover{ color:var(--accent); }
+.fld-recht a:hover{ color:var(--accent-ink); }
 .on-dark .fld-recht{ color:rgba(255,255,255,.72); }
 .on-dark .fld-recht a:hover{ color:var(--accent2); }
 
@@ -2384,7 +2384,7 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .ub-intro .hb-intro{margin-top:0}
 .ub-fakten{margin-top:26px}
 .ub-fakten a{color:inherit;text-decoration:underline;text-underline-offset:3px}
-.ub-fakten a:hover{color:var(--accent)}
+.ub-fakten a:hover{color:var(--accent-ink)}
 
 /* „Was wir nicht tun" — bewusst ohne Haken-Icons: Das sind keine Vorteile,
    sondern Absagen, und ein grüner Haken davor würde das Gegenteil sagen. */
