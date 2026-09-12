@@ -247,6 +247,69 @@ class GoldAlsTextTest(SimpleTestCase):
                     self.assertIn("var(--accent-ink)", regel)
                     self.assertNotRegex(regel, r"(?:^|;)\s*opacity\s*:")
 
+    def test_die_zweite_goldstufe_faerbt_keinen_text(self):
+        """`--accent2` ist die **Grafik**-Stufe, nicht die Textstufe (`BF18`,
+        12.09.2026 — der Fall, den die Regel oben bauartbedingt nicht sieht).
+
+        `GoldAlsTextTest` prüft `--accent`. Daneben steht seit dem Umbau 2026-08
+        `--accent2:#b8862b`, deklariert als „dunklere Gold-Stufe für
+        Verläufe/Icons auf Hell". Auf Weiss sind das **3,24:1** — genug für eine
+        Grafik (WCAG 1.4.11 verlangt dort 3:1), zu wenig für Text (1.4.3
+        verlangt 4,5:1). Am 12.09.2026 färbten damit **28 Regeln Text**, darunter
+        jeder Preis im Konfigurator (`.ang-item-price`, `.pl-price`), die Summe
+        im Kurzrechner (`.wz-run-sum`), das Pflichtfeld-Zeichen in jedem Formular
+        (`.fld-req`) und der Link im Cookie-Banner (`.cookie-text a`).
+
+        Sie tragen jetzt `--accent-ink` (hell `#8a6212`, **5,47:1**). Auf dunklem
+        Grund ändert der Wechsel **nichts**: `.on-dark` belegt beide Token mit
+        demselben `#eec77a` — deshalb war die Umstellung auch dort gefahrlos, wo
+        die Regel nur im Dunkeln greift (Fusszeile, Hero-Einwilligung).
+
+        Erlaubt bleibt `--accent2` als `color` dort, wo es **keinen Text**
+        einfärbt: auf `<svg>` und auf den Symbolflächen, die ihre Farbe nur an
+        das `currentColor` des Symbols weiterreichen (`-ic`), auf dem Pfeil
+        (`-arr`), dem Punkt der Fortschrittsanzeige (`-dot`) und dem Ladekringel.
+        Dazu die eine benannte Ausnahme: `.on-dark .fld-recht a:hover` ist Text,
+        steht aber ausdrücklich auf dunklem Grund und hält dort 10:1.
+        """
+        text = CSS.read_text(encoding="utf-8")
+        # Die zwei Zahlen, von denen der Absatz oben lebt — nachgerechnet statt
+        # behauptet, damit eine Verschiebung der Palette hier auffliegt.
+        hell = _tokens(text[:text.index(".on-dark{")])
+        self.assertAlmostEqual(kontrast(hell["accent2"], "#ffffff"), 3.24, places=2)
+        self.assertAlmostEqual(kontrast(hell["accent-ink"], "#ffffff"), 5.47, places=2)
+
+        gold2 = re.compile(r"(?:^|;)\s*color\s*:\s*var\(--accent2\)\s*(?:;|$)", re.M)
+        # Namensmuster, die eine Grafik bezeichnen — nicht geraten, sondern aus
+        # den Vorlagen abgelesen: hinter jedem steht ein `<svg>`.
+        GRAFIK = ("svg", "-ic", "-arr", "-dot", ".spinner")
+        AUSNAHME = (".on-dark .fld-recht a:hover",)
+        gefunden = [(sel.strip(), rumpf)
+                    for sel, rumpf in re.findall(r"([^{}]+)\{([^{}]*)\}", text)
+                    if gold2.search(rumpf)]
+        self.assertTrue(gefunden, "Keine Regel mit --accent2 gefunden — "
+                                  "liest diese Pruefung die richtige Datei?")
+        for selektor, regel in gefunden:
+            with self.subTest(selektor=selektor):
+                self.assertTrue(
+                    any(m in selektor for m in GRAFIK)
+                    or any(a in selektor for a in AUSNAHME),
+                    f"{selektor} setzt color:var(--accent2) auf Text — auf "
+                    f"hellem Grund sind das 3,24:1. Fuer Gold als Text gibt es "
+                    f"--accent-ink (hell #8a6212, dunkel #eec77a): {regel!r}")
+
+    def test_die_beiden_goldstufen_sind_auf_dunkel_dieselbe_farbe(self):
+        """Die Gegenprobe zur Umstellung oben: Sie durfte nur deshalb ohne
+        Einzelfallprüfung je Regel laufen, weil `.on-dark` `--accent2` und
+        `--accent-ink` **gleich** belegt. Fällt das auseinander, ändert der
+        Wechsel im Dunkeln plötzlich doch die Farbe — und niemand sähe es."""
+        text = CSS.read_text(encoding="utf-8")
+        i_on = text.index(".on-dark{")
+        dunkel = _tokens(text[i_on:i_on + 900])
+        self.assertEqual(dunkel["accent2"], dunkel["accent-ink"],
+                         "Auf dunklem Grund sind --accent2 und --accent-ink "
+                         "nicht mehr dieselbe Farbe")
+
     def test_die_drei_zustaende_tragen_accent_ink(self):
         """Was am 12.09.2026 als „kein Lighthouse-Fall" liegen blieb.
 
