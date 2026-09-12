@@ -347,4 +347,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG115 | Die Fehlerseiten führen den Besucher ins Mitarbeiter-Login statt zurück in den Betrieb | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG116 | Auf jeder Fehler- und Anmeldeseite steht ein fremdes Logo-Zeichen „F" | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG117 | Die 500-Seite verspricht eine Benachrichtigung, die niemand bekommt | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG118 | GE21 „areaServed nennt 1 Gebiet" ist ein Ablesefehler, kein Mangel am Schema | seo | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
