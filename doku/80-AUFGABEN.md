@@ -361,4 +361,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG126 | Impressum zitiert zwei aufgehobene Normen und verlinkt eine abgeschaltete Plattform | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG127 | Drei fertig geschriebene Antwort-zuerst-Absätze erreichen keine einzige Seite | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG128 | Der Antwort-zuerst-Block der Startseite steht erst nach Hero, Kennzahlen, Formular und Referenzband | seo | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG129 | Die Kurzfassung für Antwortmaschinen bewirbt „Website ab 500 €" ohne die Bedingung | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
