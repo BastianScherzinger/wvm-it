@@ -16,7 +16,10 @@
       <span aria-current="page">Aktuelles</span>
     </nav>
     <h1>Antworten statt Werbetexte</h1>
-    {% include 'antwort.html' with text="15 Fachbeiträge zu den Fragen, die uns Betriebe vor einer Entscheidung stellen — mit der Antwort jeweils gleich im ersten Absatz. Kein Beitrag ohne echte Frage dahinter, keine Zahl ohne Beleg." %}
+    {% comment %}Die Zahl im ersten Satz ist die Zahl der Einträge in landing/beitraege.py
+    und wird von ZahlenStimmenTest dagegen gehalten — sie stand seit dem 08.09.2026
+    auf 15, während es längst 18 waren.{% endcomment %}
+    {% include 'antwort.html' with text="18 Fachbeiträge zu den Fragen, die uns Betriebe vor einer Entscheidung stellen — mit der Antwort jeweils gleich im ersten Absatz. Kein Beitrag ohne echte Frage dahinter, keine Zahl ohne Beleg." %}
   </div>
 </header>
 
