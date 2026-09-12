@@ -350,4 +350,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG118 | GE21 „areaServed nennt 1 Gebiet" ist ein Ablesefehler, kein Mangel am Schema | seo | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG119 | Der gesamte Stand vom 12.09.2026 ist live, die Doku führt ihn dreifach als „nicht ausgeliefert" | status | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG120 | Der Winterdienst verspricht Erreichbarkeit rund um die Uhr, das Schema schließt um 17 Uhr | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG121 | Die als „Antwort zuerst" geschriebene Einleitung steht erst an zweiter Stelle | seo | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 <!-- eigenepunkte:ende -->
