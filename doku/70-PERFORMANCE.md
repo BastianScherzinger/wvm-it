@@ -7,8 +7,8 @@ fortschritt: 88
 zusammenfassung: Am 12.09.2026 PF13 (weit gesetztes Ablaufdatum an statischen Dateien) als begruendete Ausnahme eingetragen, ohne eine Zeile Code -- und dabei eine falsche Angabe in dieser Datei berichtigt: Die Dateinamen tragen hier KEINEN Hash, und WhiteNoise laeuft NICHT mit Manifest-Storage. Das Jahr steht laengst (max-age=31536000, public), gemeldet wird allein das fehlende immutable, und genau das schliesst derselbe Rat ohne Hash im Namen selbst aus. CSS und JavaScript haengen an der Versions-Abfrage ?v= im Template; unter der Adresse ohne Abfrage waere immutable ein Versprechen, das die Auslieferung ein Jahr lang nicht zuruecknehmen kann. Schriften, Bilder und Videos bekommen es bereits, weil sie unter neuem Namen ersetzt statt ueberschrieben werden. Davor: Am 06.09. nachgemessen statt fortgeschrieben: Django rendert in 8 bis 34 ms, der TTFB live liegt bei 172 bis 234 ms — die Anwendung ist rund 13 Prozent davon. Der Seitencache aus der Aufgabenliste haette also 30 von 230 ms gespart und dafuer auf jeder Formularseite ein fremdes CSRF-Token riskiert; er bleibt bewusst ungebaut. Gebaut: ConditionalGetMiddleware und Cache-Koepfe auf den sieben Endpunkten ohne Formular — 310 KB weniger je Crawl-Durchgang. Am 07.09. PF18 dort gebaut, wo er zutrifft: Das Portraet auf /ueber-uns/ stand auf loading=lazy und traegt jetzt fetchpriority=high; auf den uebrigen Seiten bleibt die hohe Ladeprioritaet bewusst aus, weil deren erstes Bild ein 44-Pixel-Dekobild unten im Formular ist. Am 10.09.2026 ist genau diese Trennung als begruendete Ausnahme eingetragen -- gebaut ist der Punkt an den drei Stellen, an denen es ein LCP-Bild gibt: Hero-Portraet, /ueber-uns/ und das erste Referenzbild. Am selben Tag PF17 aus demselben Grund: Er trifft dasselbe Dekobild von der anderen Seite. Jedes Bild nach dem ersten laedt verzoegert, eifrig laedt nur, wo es ein echtes LCP-Bild gibt -- damit bleiben in diesem Hebel PF19 und VL15 offen.
 offen: 3
 pagespeed_mobil: 99
-pagespeed_desktop: 97
-antwortzeit_ms: 4
+pagespeed_desktop: 96
+antwortzeit_ms: 6
 quellen: docs/AUSBAU-2026-09.md, docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 antwortzeit_quelle: PageSpeed server-response-time
 ---
@@ -20,28 +20,28 @@ antwortzeit_quelle: PageSpeed server-response-time
 ## Messwerte
 
 <!-- tempo:anfang -->
-**Messung vom 14.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-07d). Bereich „Performance & Core Web Vitals“: **99,8 von 100**, Reifegrad „Referenz“.
+**Messung vom 15.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-07d). Bereich „Performance & Core Web Vitals“: **99,8 von 100**, Reifegrad „Referenz“.
 
 ### Lighthouse je Seite
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **97** | 2,48 s | 0,000 | 11 ms | 8 ms |
-| `/` | desktop | **100** | 0,50 s | 0,002 | 0 ms | 9 ms |
-| `/datenschutz/` | mobile | **100** | 1,05 s | 0,003 | 0 ms | 2 ms |
-| `/datenschutz/` | desktop | **100** | 0,33 s | 0,003 | 0 ms | 1 ms |
-| `/impressum/` | mobile | **100** | 1,45 s | 0,000 | 0 ms | 2 ms |
-| `/impressum/` | desktop | **95** | 0,32 s | 0,135 | 0 ms | 1 ms |
-| `/kontakt/` | mobile | **100** | 1,35 s | 0,013 | 0 ms | 2 ms |
-| `/kontakt/` | desktop | **100** | 0,36 s | 0,019 | 0 ms | 1 ms |
-| `/kosten/rechner/` | mobile | **100** | 1,08 s | 0,010 | 0 ms | 8 ms |
-| `/kosten/rechner/` | desktop | **96** | 0,44 s | 0,125 | 0 ms | 2 ms |
+| `/` | mobile | **97** | 2,43 s | 0,000 | 0 ms | 11 ms |
+| `/` | desktop | **100** | 0,54 s | 0,002 | 68 ms | 6 ms |
+| `/datenschutz/` | mobile | **100** | 1,36 s | 0,003 | 0 ms | 10 ms |
+| `/datenschutz/` | desktop | **100** | 0,38 s | 0,003 | 0 ms | 8 ms |
+| `/impressum/` | mobile | **100** | 1,45 s | 0,000 | 0 ms | 3 ms |
+| `/impressum/` | desktop | **96** | 0,32 s | 0,122 | 0 ms | 6 ms |
+| `/kontakt/` | mobile | **99** | 1,64 s | 0,013 | 18 ms | 3 ms |
+| `/kontakt/` | desktop | **89** | 0,36 s | 0,233 | 0 ms | 2 ms |
+| `/kosten/rechner/` | mobile | **100** | 1,53 s | 0,010 | 0 ms | 3 ms |
+| `/kosten/rechner/` | desktop | **100** | 0,39 s | 0,006 | 0 ms | 3 ms |
 | `/leistungen/` | mobile | **99** | 1,67 s | 0,015 | 0 ms | 3 ms |
-| `/leistungen/` | desktop | **93** | 0,37 s | 0,159 | 0 ms | 11 ms |
+| `/leistungen/` | desktop | **92** | 0,41 s | 0,182 | 0 ms | 14 ms |
 
 12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 4,2 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 6,0 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
