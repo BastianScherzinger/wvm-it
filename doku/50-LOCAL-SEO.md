@@ -151,3 +151,11 @@ später einen achten Ort, entsteht die Seite; auf Vorrat entsteht sie nicht.**
 | 4b | **WKO-Eintrag korrigieren** — läuft auf „Florin Feier", Anschrift und Telefonnummer weichen ab. Nicht anlegen, sondern ändern (Unternehmerservice, Mitgliedsnummer) | **Florin** | 10.09.2026, siehe oben |
 | 5 | `sameAs` füllen, sobald Profile existieren; Geokoordinaten ins Schema. **Loxone-Eintrag vorher prüfen** — die indexierte URL liefert derzeit 404 | Bastian, nach 1 | `GE11`, `GE22` |
 | 6 | Domain-Property statt URL-Präfix, beim nächsten DNS-Zugriff | Bastian / Kunde (DNS) | INDEXIERUNG.md |
+
+## Backlink-Plan (16.09.2026)
+
+Gemeinsamer Plan für alle sechs Seiten: `C:\Users\basti\Desktop\pystore-overview\docs\BACKLINK-PLAN.md` — Spielregeln, Grundpaket G1–G12, Methoden, Ablauf und Fortschrittstabelle. Kurzfassung für diese Seite:
+
+- **Ohne Adresse.** Grundpaket G1–G10.
+- Stand: Google-Profil angelegt (Bestätigung offen), Bing Places ✔ Import, Bing Webmaster Tools ✔.
+- Als Nächstes (Florin): **WKO Firmen A–Z** pflegen (Website, Leistungen), herold.at (Kartenhinweis per Mail an kundenservice@herold.at entfernen lassen), firmenABC.at, meinbezirk.at-Beiträge, Clutch/GoodFirms.
