@@ -17,7 +17,9 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core import signing
+from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
+from django.core.validators import validate_email
 from django.http import (Http404, HttpResponse, HttpResponsePermanentRedirect,
                          JsonResponse)
 from django.shortcuts import redirect, render
@@ -1265,10 +1267,10 @@ def _compose_full_wunsch(request, hero_wunsch: str, name: str, images: list) -> 
             parts.append(f"{_ANFRAGE_LABELS[key]}: {v[:400]}")
     mit = g("mitarbeiter")
     if mit:
-        zahl = g("mitarbeiter_zahl")
+        zahl = g("mitarbeiter_zahl")[:40]
         parts.append(("Team zeigen: ja" + (f" ({zahl})" if zahl else "")) if mit == "ja" else "Team zeigen: nein")
     for key in ("sektionen", "ziel", "stil", "farbwelt", "tonalitaet"):
-        vals = [v.strip() for v in request.POST.getlist(key) if v.strip()][:12]
+        vals = [v.strip()[:80] for v in request.POST.getlist(key) if v.strip()][:12]
         if vals:
             parts.append(f"{_ANFRAGE_LABELS[key]}: " + ", ".join(vals))
     site_lang = _norm_site_lang(request.POST.get("site_lang"))
@@ -1471,10 +1473,12 @@ def anfrage_absenden(request):
         return render(request, "anfrage_done.html", {"c": c, "ok": False,
             "seiten_titel": _vorgangs_titel("anfrage_done", "title_fail")})
     email = (data.get("e") or "").strip()
-    name = (data.get("n") or "").strip()
+    name = (data.get("n") or "").strip()[:_FELD_MAX["name"]]
     hero_wunsch = (data.get("w") or "").strip()
     lang = i18n.norm_lang(data.get("l") or get_language())
-    if not email:
+    # Das Token ist signiert, sein Inhalt stammt aber aus einem früheren Formular.
+    # Ohne gültige Adresse entsteht weder ein Bau-Auftrag noch eine Warteseite.
+    if not _ist_email(email):
         return render(request, "anfrage_done.html", {"c": c, "ok": False,
             "seiten_titel": _vorgangs_titel("anfrage_done", "title_fail")})
     images = _parse_images(request)
@@ -4237,7 +4241,23 @@ _ANFRAGE_QUELLEN = {
 
 
 def _ist_email(wert: str) -> bool:
-    return wert.count("@") == 1 and " " not in wert and "." in wert.rsplit("@", 1)[-1]
+    """Serverseitige Prüfung jeder E-Mail-Adresse, die ein Formular annimmt (FO06).
+
+    Bis zum 16.09.2026 stand hier nur ein Zeichentest: ein `@`, kein Leerzeichen,
+    ein Punkt dahinter. Durch kam damit auch `@example.org` (leerer Name vor dem
+    `@`) oder `a@.de` — Adressen, an die die Eingangsbestätigung nie zustellbar
+    ist und die trotzdem als Anfrage zählten. Jetzt prüft zusätzlich Djangos
+    eigener `validate_email`; der Zeichentest bleibt, weil der Validator
+    `name@localhost` zulässt und das hier keine Kundenadresse ist."""
+    if not wert or len(wert) > _FELD_MAX["email"]:
+        return False
+    if wert.count("@") != 1 or " " in wert or "." not in wert.rsplit("@", 1)[-1]:
+        return False
+    try:
+        validate_email(wert)
+    except ValidationError:
+        return False
+    return True
 
 
 def _ist_telefon(wert: str) -> bool:
@@ -4281,7 +4301,9 @@ def leistung_anfrage(request):
     if _limit_erreicht(request):
         return antwort(False, "limit", 429)
 
-    kontakt = (request.POST.get("kontakt") or "").strip()
+    # Gekürzt wie jedes andere Feld: Über den Telefonzweig kam sonst jeder Text
+    # mit sieben Ziffern in beliebiger Länge in Betreff-nahe Zeilen und ins Protokoll.
+    kontakt = _feld(request, "kontakt", _FELD_MAX["email"])
     if not (_ist_email(kontakt) or _ist_telefon(kontakt)):
         return antwort(False, "kontakt", 400)
     text = (request.POST.get("text") or "").strip()[:1200]

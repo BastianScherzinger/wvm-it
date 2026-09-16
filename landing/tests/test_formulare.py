@@ -7,12 +7,16 @@ funktioniert das Formular also genauso. Die Tests nutzen den JSON-Pfad, weil er
 den entstandenen Zustand (ok/error) unmittelbar zeigt, ohne den Redirect-Header
 zu zerlegen.
 """
-from django.core import mail
+import os
+from unittest import mock
+
+from django.core import mail, signing
 from django.core.cache import cache
 from django.test import SimpleTestCase, override_settings
 from django.urls import reverse
 
-from landing.views import _ANFRAGE_QUELLEN, _FELD_MAX, _betreff, _feld
+from landing.views import _ANFRAGE_QUELLEN, _ANFRAGE_SALT, _FELD_MAX, _betreff, _feld
+from landing.views import _ist_email
 from . import _util
 
 _ERSTE_QUELLE = next(iter(_ANFRAGE_QUELLEN))
@@ -151,6 +155,16 @@ class LeistungAnfrageTest(SimpleTestCase):
         self.assertEqual(antwort.status_code, 400)
         self.assertEqual(len(mail.outbox), 0)
 
+    def test_ueberlanger_kontakt_wird_gekuerzt(self):
+        """Über den Telefonzweig kam bis 16.09.2026 beliebig langer Text durch (FO06)."""
+        self.client_.post(
+            reverse("leistung_anfrage"),
+            {"quelle": _ERSTE_QUELLE, "kontakt": "0664 1234567 " + "x" * 5000,
+             "text": "Hallo"},
+            **_JSON_HEADER)
+        self.assertTrue(mail.outbox)
+        self.assertNotIn("x" * (_FELD_MAX["email"] + 1), mail.outbox[0].body)
+
     def test_gueltige_anfrage_landet_im_postausgang(self):
         antwort = self.client_.post(
             reverse("leistung_anfrage"),
@@ -202,6 +216,69 @@ class KontaktFormularTest(SimpleTestCase):
 
     def test_fehlende_pflichtfelder_erzeugen_keine_mail(self):
         antwort = self.client_.post(reverse("index"), {"name": "Nur ein Name"})
+        self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_adresse_ohne_namen_vor_dem_at_erzeugt_keine_mail(self):
+        """Bestand bis 16.09.2026 den alten Zeichentest (FO06)."""
+        antwort = self.client_.post(reverse("index"), {
+            "name": "Anna", "email": "@example.com", "nachricht": "Hallo",
+        })
+        self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0)
+
+
+class EmailPruefungTest(SimpleTestCase):
+    """`_ist_email` ist die serverseitige Prüfung hinter allen Anfragewegen (FO06)."""
+
+    def test_gueltige_adressen_gehen_durch(self):
+        for wert in ("anna@example.com", "a.b+c@sub.example.at", "x@b.de"):
+            with self.subTest(wert=wert):
+                self.assertTrue(_ist_email(wert))
+
+    def test_ungueltige_adressen_werden_abgelehnt(self):
+        for wert in ("", "@example.com", "anna@", "anna@.de", "anna@localhost",
+                     "anna@@example.com", "an na@example.com", "anna@example",
+                     "anna@example.com\nBcc: x@y.de"):
+            with self.subTest(wert=wert):
+                self.assertFalse(_ist_email(wert))
+
+    def test_ueberlange_adresse_wird_abgelehnt(self):
+        wert = "a" * _FELD_MAX["email"] + "@example.com"
+        self.assertFalse(_ist_email(wert))
+
+
+@override_settings(EMAIL_HOST="smtp.test.invalid")
+class DetailbogenPruefungTest(SimpleTestCase):
+    """`anfrage_absenden` nimmt die Adresse aus einem signierten Token — und prüft
+    sie trotzdem, bevor ein Bau-Auftrag oder eine Benachrichtigung entsteht."""
+
+    def setUp(self):
+        mail.outbox = []
+        self.client_ = _util.client(enforce_csrf_checks=False)
+        # Ohne Datenbankzugang: Ein gültiges Token legte sonst einen echten
+        # Bau-Auftrag in der gemeinsamen Warteschlange an.
+        umgebung = mock.patch.dict(os.environ, {"WVM_DB_URL": ""})
+        umgebung.start()
+        self.addCleanup(umgebung.stop)
+
+    def _absenden(self, email):
+        token = signing.dumps({"e": email, "n": "Anna", "w": "", "l": "de"},
+                              salt=_ANFRAGE_SALT, compress=True)
+        return self.client_.post(reverse("anfrage_absenden"), {"t": token})
+
+    def test_token_mit_ungueltiger_adresse_wird_abgelehnt(self):
+        antwort = self._absenden("keine-adresse")
+        self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_token_mit_gueltiger_adresse_fuehrt_zur_warteseite(self):
+        antwort = self._absenden("anna@example.com")
+        self.assertEqual(antwort.status_code, 302)
+        self.assertIn(reverse("warten"), antwort["Location"])
+
+    def test_gefaelschtes_token_wird_abgelehnt(self):
+        antwort = self.client_.post(reverse("anfrage_absenden"), {"t": "erfunden"})
         self.assertEqual(antwort.status_code, 200)
         self.assertEqual(len(mail.outbox), 0)
 
