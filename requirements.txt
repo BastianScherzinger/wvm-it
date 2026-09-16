@@ -15,7 +15,7 @@
 #
 # Nur ASCII in dieser Datei: pip liest sie mit der Zeichenkodierung der
 # Bauumgebung, und die ist auf dem Bauserver nicht zugesichert.
-Django==5.0.6
+Django==5.2.17
 gunicorn==22.0.0
 whitenoise==6.7.0
 psycopg2-binary==2.9.9

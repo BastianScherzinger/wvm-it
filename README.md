@@ -49,7 +49,7 @@ Anfrage auf die Live-Domain um.
 
 | | |
 |---|---|
-| **Stack** | Django 5.0.6, gunicorn, WhiteNoise, GZip, Python 3.12 — **kein ORM, keine Migrationen, keine eigene Datenbank** |
+| **Stack** | Django 5.2.17 (LTS), gunicorn, WhiteNoise, GZip, Python 3.12 — **kein ORM, keine Migrationen, keine eigene Datenbank** |
 | **Inhalt** | `content.json` (Marke, Kontakt, Rechtstexte) + Sprachpakete in `landing/i18n/` |
 | **Struktur** | je Silo eine Datenquelle: `leistungen.py`, `branchen.py`, `vergleiche.py`, `regionen.py`, `beitraege.py`, `glossar.py`, `checklisten.py` |
 | **Preise** | **eine einzige Quelle:** `landing/views.py::ANGEBOT_GROUPS`. Rechner, Konfigurator, Preistabelle, Schema und `llms.txt` lesen sie; das JavaScript hat keine eigene Zahl |
