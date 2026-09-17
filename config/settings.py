@@ -237,6 +237,14 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
 EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", "True").strip().lower() in ("1", "true", "yes")
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER or "kontakt@wvm-it.tech")
+
+# Automatische Bestaetigungen an die Adresse, die jemand ins Formular tippt
+# (Kontakt, Angebot, Kooperation, Leistungsanfrage). Standard AUS seit
+# 17.09.2026: Auf der Agenturseite haben Bots fremde Adressen mit Betrugstexten
+# im Namen eingetragen, und die Seite hat sie angeschrieben. Die Newsletter-
+# Bestaetigung (Double-Opt-in) bleibt - ohne eingetippten Namen und hoechstens
+# eine je Adresse am Tag. Durchgesetzt in landing.views._send_mail_logged.
+KUNDENMAIL_AN_ABSENDER = os.environ.get("KUNDENMAIL_AN_ABSENDER", "").strip().lower() in ("1", "true", "yes", "on")
 EMAIL_BACKEND = (
     "django.core.mail.backends.smtp.EmailBackend" if EMAIL_HOST
     else "django.core.mail.backends.console.EmailBackend"
