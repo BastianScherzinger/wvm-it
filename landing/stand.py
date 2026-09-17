@@ -52,7 +52,7 @@ STAND = {
     "/aktuelles/windows-10-ende-was-jetzt/": "2026-09-10",
     "/aktuelles/wlan-im-betrieb-planen/": "2026-09-10",
     "/aktuelles/zugaenge-fuer-it-dienstleister/": "2026-09-10",
-    "/angebot/": "2026-09-06",
+    "/angebot/": "2026-09-17",
     "/barrierefreiheit/": "2026-09-12",
     "/branchen/": "2026-08-29",
     "/branchen/arztpraxen-therapie/": "2026-09-06",

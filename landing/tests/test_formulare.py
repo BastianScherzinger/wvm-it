@@ -223,6 +223,25 @@ class KontaktFormularTest(SimpleTestCase):
         """Bestand bis 16.09.2026 den alten Zeichentest (FO06)."""
         antwort = self.client_.post(reverse("index"), {
             "name": "Anna", "email": "@example.com", "nachricht": "Hallo",
+            "einwilligung": "on",
+        })
+        self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_ohne_einwilligung_keine_mail(self):
+        """Das Kästchen ist im HTML `required` — geprüft wird es seit
+        17.09.2026 auch hier (FO10)."""
+        antwort = self.client_.post(reverse("index"), {
+            "name": "Anna", "email": "anna@example.com", "nachricht": "Hallo",
+        })
+        self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_newsletter_ohne_einwilligung_keine_mail(self):
+        """Eine Eintragung ohne Zustimmung darf keine Bestätigungsmail an eine
+        fremde Adresse auslösen (FO10, § 174 TKG 2021)."""
+        antwort = self.client_.post(reverse("index"), {
+            "form": "newsletter", "email": "anna@example.com",
         })
         self.assertEqual(antwort.status_code, 200)
         self.assertEqual(len(mail.outbox), 0)
@@ -292,7 +311,7 @@ class AngebotFormularTest(SimpleTestCase):
 
     def test_ohne_ausgewaehlte_positionen_keine_mail(self):
         antwort = self.client_.post(reverse("angebot"), {
-            "name": "Anna", "email": "anna@example.com",
+            "name": "Anna", "email": "anna@example.com", "einwilligung": "on",
         })
         self.assertEqual(antwort.status_code, 200)
         self.assertEqual(len(mail.outbox), 0)
@@ -302,6 +321,54 @@ class AngebotFormularTest(SimpleTestCase):
         eine_id = next(iter(_ANGEBOT_INDEX))
         antwort = self.client_.post(reverse("angebot"), {
             "name": "Anna", "email": "anna@example.com", "item": eine_id,
+            "einwilligung": "on",
         })
         self.assertEqual(antwort.status_code, 200)
         self.assertGreaterEqual(len(mail.outbox), 1)
+
+    def test_ohne_einwilligung_keine_mail(self):
+        """Das Formular trägt `novalidate`; das Pflichtkästchen prüfte bis
+        17.09.2026 niemand (FO10)."""
+        from landing.views import _ANGEBOT_INDEX
+        eine_id = next(iter(_ANGEBOT_INDEX))
+        antwort = self.client_.post(reverse("angebot"), {
+            "name": "Anna", "email": "anna@example.com", "item": eine_id,
+        })
+        self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(len(mail.outbox), 0)
+
+
+@override_settings(EMAIL_HOST="smtp.test.invalid")
+class WerbeeinwilligungFreiwilligTest(SimpleTestCase):
+    """Die Werbeeinwilligung der Kurzanfragen bleibt freiwillig (FO10).
+
+    Sie wird geprüft — gezählt und mit IP protokolliert nur, wenn angehakt —,
+    aber sie blockiert keine Anfrage: Eine an die Leistung gekoppelte
+    Einwilligung wäre nicht freiwillig und damit unwirksam (Art. 7 Abs. 4 DSGVO).
+    """
+
+    def setUp(self):
+        cache.clear()
+        mail.outbox = []
+        self.client_ = _util.client(enforce_csrf_checks=False)
+
+    def test_anfrage_ohne_haekchen_geht_durch_und_zaehlt_keine_einwilligung(self):
+        with mock.patch("landing.views.messung.zaehle") as zaehle:
+            antwort = self.client_.post(
+                reverse("leistung_anfrage"),
+                {"quelle": _ERSTE_QUELLE, "kontakt": "kunde@example.com", "text": "Hallo"},
+                **_JSON_HEADER)
+        self.assertTrue(antwort.json()["ok"])
+        self.assertGreaterEqual(len(mail.outbox), 1)
+        arten = [a.args[0] for a in zaehle.call_args_list]
+        self.assertNotIn("werbeeinwilligung", arten)
+
+    def test_haekchen_wird_gezaehlt(self):
+        with mock.patch("landing.views.messung.zaehle") as zaehle:
+            self.client_.post(
+                reverse("leistung_anfrage"),
+                {"quelle": _ERSTE_QUELLE, "kontakt": "kunde@example.com",
+                 "text": "Hallo", "werbung": "1"},
+                **_JSON_HEADER)
+        self.assertIn(mock.call("werbeeinwilligung", _ERSTE_QUELLE),
+                      zaehle.call_args_list)

@@ -226,6 +226,16 @@
       e.preventDefault();
       if (hintEl) hintEl.hidden = false;
       show(last, true);
+      return;
+    }
+    // Das Formular traegt `novalidate`, das Pflichtkaestchen prueft also kein
+    // Browser. Der Server lehnt seit 17.09.2026 ohne ab (FO10) — hier bekommt
+    // der Besucher vorher den Hinweis des Browsers statt eines leeren Formulars.
+    var zustimmung = form.querySelector('input[name="einwilligung"]');
+    if (zustimmung && !zustimmung.checked) {
+      e.preventDefault();
+      show(last, true);
+      if (zustimmung.reportValidity) zustimmung.reportValidity();
     }
   });
 

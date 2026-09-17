@@ -901,6 +901,22 @@ def _eingangsbestaetigung(c, empfaenger: str, name: str, art: str, echo: str) ->
         print(f"[{art.upper()}-ACK-FEHLER] {type(exc).__name__}: {exc}", flush=True)
 
 
+_ZUSTIMMUNG_WERTE = ("1", "on", "true", "ja", "yes")
+
+
+def _einwilligung_erteilt(request) -> bool:
+    """Das Pflichtkästchen `einwilligung` ist angehakt (FO10, 17.09.2026).
+
+    Kontaktformular, Konfigurator und Newsletter-Eintrag verlangen es im HTML mit
+    `required` — geprüft hat es bis zu diesem Tag nur der Browser. Ein Skript,
+    ein Formular mit `novalidate` (der Konfigurator) oder ein veralteter
+    Browser schickt ohne; beim Newsletter hieße das eine Eintragung ohne
+    Zustimmung (§ 174 TKG 2021). Nicht gemeint ist die freiwillige
+    Werbeeinwilligung der Kurzanfragen (`werbung`): Die darf keine Anfrage
+    blockieren, sonst wäre sie an die Leistung gekoppelt und unwirksam."""
+    return (request.POST.get("einwilligung") or "").strip().lower() in _ZUSTIMMUNG_WERTE
+
+
 def _handle_angebot(request, c) -> bool:
     """Verarbeitet den Angebots-Konfigurator (POST). True = erfolgreich entgegengenommen."""
     if _honigtopf(request):
@@ -910,6 +926,8 @@ def _handle_angebot(request, c) -> bool:
     name = _feld(request, "name")
     email = _feld(request, "email")
     if not (name and _ist_email(email)):
+        return False
+    if not _einwilligung_erteilt(request):                # FO10
         return False
     # Auswahl: mehrere Checkboxen name="item" ODER Fallback: kommagetrennt in "auswahl".
     ids = request.POST.getlist("item")
@@ -971,6 +989,8 @@ def _handle_contact(request, c) -> bool:
     email = _feld(request, "email")
     nachricht = _feld(request, "nachricht")
     if not (name and _ist_email(email) and nachricht):
+        return False
+    if not _einwilligung_erteilt(request):                # FO10
         return False
     telefon = _feld(request, "telefon")
     budget = _feld(request, "budget")
@@ -1369,6 +1389,8 @@ def _handle_newsletter(request, c) -> bool:
         return True
     email = _feld(request, "email")
     if not _ist_email(email):
+        return False
+    if not _einwilligung_erteilt(request):                # FO10
         return False
     # FO08: gezählt wird die gültige Eintragung, auch wenn die Tagesbremse je
     # Adresse die zweite Bestätigungsmail gleich unterdrückt.
@@ -4364,6 +4386,9 @@ def leistung_anfrage(request):
     # Freiwillige Werbeeinwilligung (§ 174 TKG 2021). Nur wo das Formular sie
     # anbietet, nur wenn aktiv angehakt — und dann mit Zeitstempel und IP
     # protokolliert, weil im Streitfall der Absender die Einwilligung beweisen muss.
+    # Bewusst KEINE Ablehnung ohne Haken (FO10): Eine Kurzanfrage braucht keine
+    # Einwilligung (Art. 6 Abs. 1 lit. b DSGVO), und eine Werbeeinwilligung, ohne
+    # die keine Anfrage durchgeht, wäre gekoppelt und damit unwirksam.
     werbung = (request.POST.get("werbung") or "").strip() in ("1", "on", "true", "ja", "yes")
     # Erst sichern, dann senden: Scheitert der Versand, war die Anfrage bisher weg
     # — sie lebte ausschließlich in der E-Mail.

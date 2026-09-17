@@ -54,7 +54,8 @@ class NewsletterBestaetigungTests(SimpleTestCase):
 
     def _anmelden(self, ip):
         request = self.fabrik.post("/", {"email": "opfer@example.com",
-                                         "name": "Überweisung erhalten http://betrug.example"},
+                                         "name": "Überweisung erhalten http://betrug.example",
+                                         "einwilligung": "on"},
                                    REMOTE_ADDR=ip, HTTP_X_FORWARDED_FOR=ip)
         with translation.override("de"):
             return views._handle_newsletter(request, {"site_name": "WVM-IT",
