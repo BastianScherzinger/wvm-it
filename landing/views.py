@@ -949,6 +949,9 @@ def _handle_angebot(request, c) -> bool:
                      kontakt=email, telefon=telefon,
                      lang=i18n.norm_lang(get_language()), text=nachricht,
                      positionen="; ".join(zeilen), summen="; ".join(summen))
+    # Jeder Anfrageweg endet gezählt (FO08) — über dieselbe cookielose Summe wie
+    # die Kurzanfragen, nicht über ein Fremdskript (Begründung in messung.py).
+    messung.zaehle("anfrage", "angebot")
     _send_mail_logged(
         _betreff(f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="ANGEBOT",
@@ -984,6 +987,7 @@ def _handle_contact(request, c) -> bool:
                      herkunft=_herkunft_aus_verweis(request), name=name,
                      kontakt=email, telefon=telefon, budget=budget,
                      lang=i18n.norm_lang(get_language()), text=nachricht)
+    messung.zaehle("anfrage", "kontakt")                  # FO08
     _send_mail_logged(
         _betreff(f"Neue Projektanfrage von {name}"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
@@ -1366,6 +1370,9 @@ def _handle_newsletter(request, c) -> bool:
     email = _feld(request, "email")
     if not _ist_email(email):
         return False
+    # FO08: gezählt wird die gültige Eintragung, auch wenn die Tagesbremse je
+    # Adresse die zweite Bestätigungsmail gleich unterdrückt.
+    messung.zaehle("anfrage", "newsletter")
     name = _feld(request, "name")[:80]
     wunsch = _compose_wunsch(request)
     lang = i18n.norm_lang(get_language())
@@ -1504,6 +1511,7 @@ def anfrage_absenden(request):
     if not _ist_email(email):
         return render(request, "anfrage_done.html", {"c": c, "ok": False,
             "seiten_titel": _vorgangs_titel("anfrage_done", "title_fail")})
+    messung.zaehle("anfrage", "website-bogen")            # FO08
     images = _parse_images(request)
     full = _compose_full_wunsch(request, hero_wunsch, name, images)
     site_lang = _norm_site_lang(request.POST.get("site_lang"))
@@ -3510,6 +3518,7 @@ def angebot_anfordern(request):
                          herkunft=_herkunft_aus_verweis(request), kontakt=email,
                          lang=lang, positionen="; ".join(lines), summen=summe_txt,
                          werbung="ja" if consent else "nein")
+        messung.zaehle("anfrage", "angebot_start")        # FO08
         anfrage_line = em["angebot_anfrage_line"] if anfrage else ""
         kunde = em["angebot_kunde_body"].format(
             site=site, lines="\n".join(lines), summe=summe_txt,
@@ -4238,6 +4247,7 @@ def kooperation_anfordern(request):
                      herkunft=_herkunft_aus_verweis(request), name=name,
                      kontakt=email, firma=firma,
                      lang=i18n.norm_lang(get_language()), text=nachricht)
+    messung.zaehle("anfrage", "kooperation")              # FO08
     _send_mail_logged(_betreff(f"Kooperations-Anfrage von {name}"), body, from_email, [empf], tag="KOOPERATION")
     em = i18n.get_pack(get_language())["emails"]
     site = c.get("site_name", "WVM-IT")
