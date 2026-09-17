@@ -1,9 +1,9 @@
 ---
 bereich: ads
 titel: Google Ads
-stand: 2026-09-06
+stand: 2026-09-17
 status: nicht zutreffend
-zusammenfassung: Fuer WVM-IT laufen weiterhin keine Google Ads. Seit dem 06.09.2026 waere es erstmals sinnvoll: Es gibt eine serverseitige Messung, die Danke-Seite ist erreichbar, und der Kostenrechner taugt als Landeseite. Empfehlung der Strategie: **nicht vor den ersten Bewertungen** — bezahlte Klicks auf ein Profil ohne Rezension sind gekaufter Absprung.
+zusammenfassung: Fuer WVM-IT laufen weiterhin keine Google Ads. Seit 17.09.2026 zaehlt jeder Anfrageweg seinen Abschluss serverseitig und cookielos ueber landing/messung.py (FO08, ohne gtag) -- das ist eine eigene Summe, kein Conversion-Signal fuer ein Werbekonto. Seit dem 06.09.2026 waere es erstmals sinnvoll: Es gibt eine serverseitige Messung, die Danke-Seite ist erreichbar, und der Kostenrechner taugt als Landeseite. Empfehlung der Strategie: **nicht vor den ersten Bewertungen** — bezahlte Klicks auf ein Profil ohne Rezension sind gekaufter Absprung.
 offen: 5
 quellen: docs/AUSBAU-2026-09.md, docs/AKQUISE-SOFORT.md, docs/RELAUNCH-START.md, docs/recht-und-cookies.md
 ---
@@ -40,7 +40,7 @@ Nichts eingerichtet. Zwei Dinge fehlen auf der Seite selbst, bevor überhaupt et
 - **Die Danke-Seite gibt es seit dem 05.09.2026** unter `/anfrage/danke/` (`noindex`, aber `follow`). Sie greift bei jedem Absenden **ohne JavaScript**; wer JavaScript hat, bekommt weiter die Meldung an Ort und Stelle. Für ein Werbekonto heißt das: Der URL-basierte Abschluss ist möglich, deckt aber nur den Teil ohne JavaScript ab. **Sobald Ads laufen, braucht es zusätzlich ein Ereignis** aus dem JavaScript-Zweig (`anfrage-blocks.js`, Erfolgspfad) — sonst zählt das Konto einen Bruchteil und optimiert auf die falsche Gruppe. Das ist keine Nacharbeit an der Seite, sondern Teil der Ads-Einrichtung.
 - **Kein Tracking-Skript und keine Einwilligung dafür:** Das Cookie-Banner kennt nur `all`/`essential` und lädt nach Zustimmung ausschließlich Spline; Google-Tags brauchen laut `../CLAUDE.md` („Keine Tracking-Skripte ohne neue Einwilligung") eine neue Einwilligungsstufe und einen Eintrag in der Datenschutzerklärung (`content.json`).
 
-Anfragen werden heute nur über den Betreff-Präfix `[WVM] Anfrage: <Quelle>` im Postfach gezählt (UMBAU-PLAN §7) — die Zahl „Anfragen über die Website" steht im Konzept als „unbekannt".
+**Seit 17.09.2026 (`FO08`, Commit `f24bd1d`) zählt jeder Anfrageweg seinen Abschluss auf dem Server** — über `landing/messung.py`, ohne Cookie, ohne IP, ohne Kennung, als `messung.zaehle("anfrage", <Weg>)`: Kontaktformular (`kontakt`), Angebots-Konfigurator (`angebot`), Richtangebot der Startseite (`angebot_start`), Kooperationsanfrage (`kooperation`), Newsletter-Eintrag (`newsletter`) und Website-Bogen (`website-bogen`); die Kurzanfragen der Leistungsblöcke zählten schon vorher je Quelle. Bis dahin fehlten gerade die ausführlichen Anfragen in der Summe, die `manage.py messung` den Aufrufen gegenüberstellt (Testkopf `landing/tests/test_anfragen_gezaehlt.py`). Gezählt wird im View vor der Antwort, also auch dort, wo JavaScript die Meldung an Ort und Stelle zeigt. **Anders als vorgeschlagen ohne `gtag`:** Die Seite bindet bewusst kein Fremdskript ein (CSP, keine Tracking-Einwilligung). Für ein künftiges Werbekonto ändert das nichts am Punkt oben — die eigene Zählung ist eine Summe auf dem Server, kein Conversion-Signal, das ein Werbekonto empfangen kann. ⚠ Liegt auf `sofort/2026-09-17-fo08-und-1-weitere`; die Tests dazu sind laut Bausitzung nicht gelaufen.
 
 ## Regeln und Sperren
 
