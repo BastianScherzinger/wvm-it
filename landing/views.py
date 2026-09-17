@@ -7,6 +7,7 @@ Das Kontaktformular wird per POST entgegengenommen: gibt es eine SMTP-Konfigurat
 (EMAIL_* / KONTAKT_EMPFAENGER in der Umgebung), wird die Anfrage gemailt ,  sonst
 wird sie still geloggt. In beiden Fällen sieht der Besucher eine Erfolgsmeldung.
 """
+import hashlib
 import hmac
 import json
 import os
@@ -810,6 +811,13 @@ def _mengen_aus_post(request) -> dict:
     return mengen
 
 
+# Mails an eine Adresse, die der Absender selbst eingetippt hat. Ohne
+# ``KUNDENMAIL_AN_ABSENDER`` gehen sie nicht raus (siehe settings.py).
+# NEWSLETTER-CONFIRM ist bewusst nicht dabei: ohne sie gibt es kein Double-Opt-in.
+_KUNDEN_TAGS = {"KONTAKT-ACK", "ANGEBOT-ACK", "KOOPERATION-ACK", "LEISTUNG-ACK",
+                "ANGEBOT-KUNDE"}
+
+
 def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="MAIL",
                       antwort_an=None) -> bool:
     """Zentraler E-Mail-Versand MIT ausfuehrlichem Logging.
@@ -824,6 +832,9 @@ def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="
     von Hand aus dem Text herausgesucht werden. Bei der Bestaetigung **an den
     Interessenten** zeigt Reply-To umgekehrt auf das Postfach von WVM-IT.
     """
+    if (tag in _KUNDEN_TAGS or tag.endswith("-ACK")) and             not getattr(settings, "KUNDENMAIL_AN_ABSENDER", False):
+        print(f"[{tag}] unterdrueckt: keine Mail an eingetippte Adressen", flush=True)
+        return False
     recipients = [r for r in (recipients or []) if r]
     host = getattr(settings, "EMAIL_HOST", "")
     if not recipients:
@@ -1368,8 +1379,20 @@ def _handle_newsletter(request, c) -> bool:
     link = f"{base}{confirm_path}?t={token}"
     site = c.get("site_name", "WVM-IT")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", ""))
+    # Hoechstens eine Bestaetigung je Adresse am Tag: Ein Bot, der dieselbe
+    # fremde Adresse immer wieder eintraegt, erzeugt sonst jedes Mal eine Mail.
+    from django.core.cache import cache
+    schluessel = "wvm-nl-adresse-" + hashlib.sha256(email.lower().encode()).hexdigest()
+    try:
+        if not cache.add(schluessel, 1, 24 * 3600):
+            print("[NEWSLETTER-CONFIRM] unterdrueckt: schon eine an diese Adresse heute", flush=True)
+            return True
+    except Exception as fehler:
+        print(f"[NEWSLETTER-CONFIRM] Zaehler nicht lesbar ({fehler})", flush=True)
     em = i18n.get_pack(lang)["emails"]
-    anrede = em["greeting_named"].format(name=name) if name else em["greeting"]
+    # Bewusst die Anrede OHNE Namen: Der Name ist Text, den ein Fremder tippt,
+    # und diese Mail geht an eine Adresse, die niemand bestaetigt hat (17.09.2026).
+    anrede = em["greeting"]
     confirm = em["nl_confirm_body"].format(anrede=anrede, site=site, link=link)
     _send_mail_logged(em["nl_confirm_subject"].format(site=site), confirm, from_email, [email], tag="NEWSLETTER-CONFIRM")
     return True

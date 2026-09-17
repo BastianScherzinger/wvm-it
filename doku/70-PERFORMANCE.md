@@ -26,6 +26,22 @@ antwortzeit_quelle: PageSpeed server-response-time
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
+| `/` | mobile | **97** | 2,46 s | 0,000 | 3 ms | 9 ms |
+| `/` | desktop | **100** | 0,54 s | 0,002 | 0 ms | 9 ms |
+| `/datenschutz/` | mobile | **100** | 1,45 s | 0,000 | 0 ms | 10 ms |
+| `/datenschutz/` | desktop | **97** | 0,33 s | 0,104 | 0 ms | 2 ms |
+| `/impressum/` | mobile | **100** | 1,43 s | 0,001 | 0 ms | 3 ms |
+| `/impressum/` | desktop | **95** | 0,32 s | 0,135 | 0 ms | 3 ms |
+| `/kontakt/` | mobile | **100** | 1,06 s | 0,013 | 0 ms | 8 ms |
+| `/kontakt/` | desktop | **89** | 0,35 s | 0,233 | 0 ms | 7 ms |
+| `/kosten/rechner/` | mobile | **100** | 1,40 s | 0,010 | 0 ms | 2 ms |
+| `/kosten/rechner/` | desktop | **95** | 0,46 s | 0,125 | 83 ms | 3 ms |
+| `/leistungen/` | mobile | **99** | 1,67 s | 0,015 | 0 ms | 3 ms |
+| `/leistungen/` | desktop | **93** | 0,45 s | 0,159 | 0 ms | 12 ms |
+
+12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
+
+**Serverzeit (`server-response-time` aus PageSpeed): 5,9 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 | `/` | mobile | **98** | 2,36 s | 0,000 | 0 ms | 60 ms |
 | `/` | desktop | **100** | 0,50 s | 0,002 | 0 ms | 8 ms |
 | `/datenschutz/` | mobile | **100** | 1,05 s | 0,003 | 0 ms | 6 ms |
@@ -47,6 +63,8 @@ antwortzeit_quelle: PageSpeed server-response-time
 
 | Regel | Titel | Ergebnis | Beleg |
 |---|---|---|---|
+| `PF02` | Lighthouse Leistung Desktop erreicht 95 von 100 | teilweise | Lighthouse Leistung Desktop: 95 von 100 über 6 Messungen; unter 95: /leistungen/ (93), /kontakt/ (89) |
+| `PF19` | Das LCP-Bild wird vorgeladen, und nur dort, wo es eins gibt | teilweise | 1 von 2 Schlüsselseiten mit Bild laden es nicht vor: /kosten/rechner/ |
 | `PF19` | Das LCP-Bild wird vorgeladen, und nur dort, wo es eins gibt | teilweise | 1 von 2 Schlüsselseiten mit Bild laden es nicht vor: /kosten/rechner/ |
 | `PF22` | Keine grossen ungenutzten Einsparchancen offen | teilweise | 1 Einsparchance, grösste 410 ms: unused-css-rules (410 ms) |
 | `PF27` | Höchstens vier Schriftdateien, die wichtigste vorgeladen | teilweise | 4 Schriftdateien (inter-latin-ext.woff2, inter-latin.woff2, space-grotesk-latin-ext.woff2, space-grotesk-latin.woff2), 0 vorgeladen — fehlt: Hauptschrift vorgeladen |
