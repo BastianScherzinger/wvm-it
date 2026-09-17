@@ -94,7 +94,8 @@ class Command(BaseCommand):
     def _formular_bremse(self):
         c = self._frisch()
         for _ in range(9):
-            c.post("/", {"name": "Bot", "email": "a@b.de", "nachricht": "x"})
+            c.post("/", {"name": "Bot", "email": "a@b.de", "nachricht": "x",
+                         "einwilligung": "on"})
         n = len(mail.outbox)
         grenze = 5 * self.MAILS_JE_KONTAKTANFRAGE
         self._melde("Kontaktformular, 9 Versuche", f"{n} Mails",
@@ -103,13 +104,15 @@ class Command(BaseCommand):
 
         c = self._frisch()
         for i in range(9):
-            c.post("/", {"form": "newsletter", "email": f"o{i}@example.org"})
+            c.post("/", {"form": "newsletter", "email": f"o{i}@example.org",
+                         "einwilligung": "on"})
         n = len(mail.outbox)
         self._melde("Newsletter, 9 Versuche", f"{n} Mails", "höchstens 5", n <= 5)
 
     def _honigtopf(self):
         for pfad, daten, name in (
-            ("/", {"name": "B", "email": "a@b.de", "nachricht": "x", "website": "gefüllt"},
+            ("/", {"name": "B", "email": "a@b.de", "nachricht": "x", "website": "gefüllt",
+                   "einwilligung": "on"},
              "Kontaktformular"),
             ("/kooperation/anfordern/", {"name": "B", "email": "a@b.de", "website": "gefüllt"},
              "Kooperationsanfrage"),
@@ -125,7 +128,8 @@ class Command(BaseCommand):
         die der Proxy HINTEN anhängt."""
         c = self._frisch()
         for i in range(9):
-            c.post("/", {"name": "B", "email": "a@b.de", "nachricht": "x"},
+            c.post("/", {"name": "B", "email": "a@b.de", "nachricht": "x",
+                         "einwilligung": "on"},
                    HTTP_X_FORWARDED_FOR=f"9.9.9.{i}, 10.0.0.1")
         n = len(mail.outbox)
         grenze = 5 * self.MAILS_JE_KONTAKTANFRAGE
@@ -135,7 +139,8 @@ class Command(BaseCommand):
 
     def _feldlaengen(self):
         c = self._frisch()
-        c.post("/", {"name": "A" * 5000, "email": "a@b.de", "nachricht": "N" * 90000})
+        c.post("/", {"name": "A" * 5000, "email": "a@b.de", "nachricht": "N" * 90000,
+                     "einwilligung": "on"})
         if not mail.outbox:
             self._melde("Feldlängen", "keine Mail entstanden", "eine Mail", False)
             return
@@ -148,7 +153,7 @@ class Command(BaseCommand):
         erzeugen und keinen zweiten Empfänger."""
         c = self._frisch()
         c.post("/", {"name": "X\nBcc: opfer@example.org", "email": "a@b.de",
-                     "nachricht": "x"})
+                     "nachricht": "x", "einwilligung": "on"})
         if not mail.outbox:
             self._melde("Betreff-Injektion", "keine Mail entstanden", "eine Mail", False)
             return

@@ -43,10 +43,11 @@ def _wege():
     return [
         ("Kontaktformular", reverse("index"),
          {"name": "Anna Muster", "email": "anna@example.org",
-          "nachricht": "Wir brauchen Betreuung für acht Arbeitsplätze."}),
+          "nachricht": "Wir brauchen Betreuung für acht Arbeitsplätze.",
+          "einwilligung": "on"}),
         ("Angebots-Konfigurator", reverse("angebot"),
          {"name": "Bert Muster", "email": "bert@example.org",
-          "item": _ERSTE_POSITION}),
+          "item": _ERSTE_POSITION, "einwilligung": "on"}),
         ("Richtangebot Startseite", reverse("angebot_anfordern"),
          {"email": "cara@example.org", "item": _ERSTE_POSITION}),
         ("Kooperationsanfrage", reverse("kooperation_anfordern"),
@@ -101,7 +102,8 @@ class VerlorenerVersandTest(SimpleTestCase):
                 antwort = self.client_.post(
                     reverse("index"),
                     {"name": "Anna Muster", "email": "anna@example.org",
-                     "nachricht": "Acht Arbeitsplätze, ein Server."})
+                     "nachricht": "Acht Arbeitsplätze, ein Server.",
+                     "einwilligung": "on"})
             self.assertLess(antwort.status_code, 500,
                             "ein toter Mailweg darf den Besucher nie mit 500 treffen")
             zeilen = [z for d in Path(ordner).glob("*.jsonl")
