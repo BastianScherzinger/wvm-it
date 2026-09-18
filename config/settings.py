@@ -108,6 +108,11 @@ X_FRAME_OPTIONS = "DENY"
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = "Lax"
 SESSION_COOKIE_SAMESITE = "Lax"
+# Die Seite setzt heute kein Sitzungs-Cookie (keine Sessions, siehe Kopf). Der
+# Schalter steht trotzdem ausdruecklich da: Djangos Voreinstellung ist schon True,
+# aber eine spaeter ergaenzte Sitzung soll nicht an einer stillen Voreinstellung
+# haengen, sondern an einer Zeile, die man sieht (Messung VL03/K01).
+SESSION_COOKIE_HTTPONLY = True
 LANGUAGE_COOKIE_SAMESITE = "Lax"
 # Auch das Sprach-Cookie ist fuer Skripte gesperrt (Messung SI16): Gelesen wird es
 # ausschliesslich serverseitig (landing/middleware.py, landing/views.set_language);
