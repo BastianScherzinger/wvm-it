@@ -29,8 +29,8 @@
       {% else %}
       <div class="ang-sent ang-sent--error" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v4M12 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3>{{ t.anfrage_done.fail_h|safe }}</h3>
-        <p>{{ t.anfrage_done.fail_p|safe }}</p>
+        <h3>{% if limit %}{{ t.anfrage_done.limit_h|safe }}{% else %}{{ t.anfrage_done.fail_h|safe }}{% endif %}</h3>
+        <p>{% if limit %}{{ t.anfrage_done.limit_p|safe }}{% else %}{{ t.anfrage_done.fail_p|safe }}{% endif %}</p>
         <div class="ang-sent-actions">
           <a class="btn btn-magnetic" href="/#gratis">{{ t.anfrage_done.fail_retry|safe }}</a>
           <a class="btn btn-ghost" href="/">{{ t.anfrage_done.fail_home|safe }}</a>

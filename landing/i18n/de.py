@@ -1203,6 +1203,9 @@ PACK = {
         "fail_h": "Der Link ist abgelaufen.",
         "fail_p": "Bitte melden Sie sich noch einmal an, dann bekommen Sie einen frischen Bestätigungslink und können den Bogen erneut ausfüllen.",
         "fail_retry": "Erneut anmelden", "fail_home": "Zur Startseite",
+        "title_limit": "Zu viele Anfragen",
+        "limit_h": "Von Ihrem Anschluss kamen gerade sehr viele Anfragen.",
+        "limit_p": "Zum Schutz vor automatischem Massenversand nehmen wir vorübergehend keine weiteren an. Bitte versuchen Sie es in einer Stunde noch einmal — Ihre bisherigen Anfragen sind angekommen.",
     },
     "unsub": {
         "title": "Newsletter abgemeldet",

@@ -273,6 +273,7 @@ class DetailbogenPruefungTest(SimpleTestCase):
     sie trotzdem, bevor ein Bau-Auftrag oder eine Benachrichtigung entsteht."""
 
     def setUp(self):
+        cache.clear()
         mail.outbox = []
         self.client_ = _util.client(enforce_csrf_checks=False)
         # Ohne Datenbankzugang: Ein gültiges Token legte sonst einen echten
@@ -300,6 +301,24 @@ class DetailbogenPruefungTest(SimpleTestCase):
         antwort = self.client_.post(reverse("anfrage_absenden"), {"t": "erfunden"})
         self.assertEqual(antwort.status_code, 200)
         self.assertEqual(len(mail.outbox), 0)
+
+    def test_dasselbe_token_wird_nicht_beliebig_oft_angenommen(self):
+        """Ein gültiges Token lässt sich drei Tage lang wiederholt abschicken.
+        Die Bremse 'bauauftrag' lässt 5 Absendungen je IP und Stunde zu; die
+        sechste wird mit 429 abgelehnt und erzeugt keine Mail (FO09)."""
+        from landing.views import _LIMITS
+        limit, _ = _LIMITS["bauauftrag"]
+        token = signing.dumps({"e": "anna@example.com", "n": "Anna", "w": "", "l": "de"},
+                              salt=_ANFRAGE_SALT, compress=True)
+        kopf = {"HTTP_X_FORWARDED_FOR": "203.0.113.88"}
+        for _ in range(limit):
+            self.assertEqual(self.client_.post(
+                reverse("anfrage_absenden"), {"t": token}, **kopf).status_code, 302)
+        mail.outbox = []
+        antwort = self.client_.post(reverse("anfrage_absenden"), {"t": token}, **kopf)
+        self.assertEqual(antwort.status_code, 429)
+        self.assertEqual(len(mail.outbox), 0)
+        self.assertContains(antwort, "Anfragen", status_code=429)
 
 
 @override_settings(EMAIL_HOST="smtp.test.invalid")
