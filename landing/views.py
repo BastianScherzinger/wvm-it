@@ -1165,6 +1165,13 @@ def _herkunft_aus_verweis(request) -> str:
         return ""
 
 
+def _anfragen_ordner() -> Path:
+    """Wo `_anfrage_sichern` schreibt und `manage.py anfragen_loeschen` löscht —
+    eine Stelle, damit beide nie verschiedene Ordner meinen."""
+    return Path(os.environ.get("ANFRAGEN_PFAD", "").strip()
+                or (Path(__file__).resolve().parent.parent / "var" / "anfragen"))
+
+
 def _anfrage_sichern(**felder) -> None:
     """Legt eine Anfrage als Zeile JSON ab, bevor die E-Mail versendet wird.
 
@@ -1191,14 +1198,19 @@ def _anfrage_sichern(**felder) -> None:
     Rückrufformulare" in ``content.json``: dieselben Angaben wie in der E-Mail,
     **keine IP-Adresse**. Einzige Ausnahme ist die freiwillige Werbeeinwilligung,
     für die der Nachweis IP und Zeitpunkt verlangt (Art. 7 DSGVO).
+
+    **Das Feld ``zeit`` gehört dem Server (RE14, 18.09.2026).** Nach ihm löscht
+    ``manage.py anfragen_loeschen``. Es wird deshalb **nach** den übergebenen
+    Feldern gesetzt: Bis dahin überschrieb die Kurzanfrage es mit der
+    Rückruf-Wunschzeit des Besuchers — leer, oder ein frei gesendeter Wert wie
+    ``2999-01-01``, und der Satz wäre nie gelöscht worden.
     """
     try:
-        satz = {"zeit": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-        satz.update({k: (v or "") for k, v in felder.items()})
+        satz = {k: (v or "") for k, v in felder.items()}
+        satz["zeit"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
         zeile = json.dumps(satz, ensure_ascii=False, sort_keys=True)
         print(f"[ANFRAGE] {zeile}", flush=True)
-        ordner = Path(os.environ.get("ANFRAGEN_PFAD", "").strip()
-                      or (Path(__file__).resolve().parent.parent / "var" / "anfragen"))
+        ordner = _anfragen_ordner()
         ordner.mkdir(parents=True, exist_ok=True)
         heute = date.today()
         with open(ordner / f"{heute.year}-{heute.month:02d}.jsonl", "a", encoding="utf-8") as f:
@@ -4403,7 +4415,7 @@ def leistung_anfrage(request):
     # Erst sichern, dann senden: Scheitert der Versand, war die Anfrage bisher weg
     # — sie lebte ausschließlich in der E-Mail.
     _anfrage_sichern(quelle=quelle, thema=thema, herkunft=herkunft, name=name,
-                     kontakt=kontakt, zeit=zeit, lang=lang, text=text,
+                     kontakt=kontakt, rueckruf=zeit, lang=lang, text=text,
                      werbung="ja" if werbung else "nein",
                      werbung_ip=_client_ip(request) if werbung else "")
     if werbung:
