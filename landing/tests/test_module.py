@@ -95,6 +95,7 @@ from landing.i18n import seiten_ro
 from landing.i18n import vergleiche_de
 from landing.i18n import vergleiche_en
 from landing.i18n import vergleiche_ro
+from landing.management.commands import anfragen_loeschen
 from landing.management.commands import indexnow
 from landing.management.commands import messung as befehl_messung
 from landing.management.commands import pruefe_mail
@@ -111,7 +112,7 @@ SPRACHMODULE = (beitraege_de, branchen_de, branchen_en, branchen_ro,
                 en, glossar_de, regionen_de, regionen_en,
                 regionen_ro, ro, seiten_de, seiten_en, seiten_ro, vergleiche_de,
                 vergleiche_en, vergleiche_ro)
-BEFEHLE = (indexnow, befehl_messung, pruefe_mail, pruefe_seite,
+BEFEHLE = (anfragen_loeschen, indexnow, befehl_messung, pruefe_mail, pruefe_seite,
            pruefe_sicherheit, seo_bericht, stand_schreiben)
 KONFIGURATION = (config_settings, config_urls)
 
