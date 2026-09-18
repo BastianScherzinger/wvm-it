@@ -1169,6 +1169,9 @@ PACK = {
         "fail_h": "The link has expired.",
         "fail_p": "Please sign up again and you'll receive a fresh confirmation link and can fill in the form again.",
         "fail_retry": "Sign up again", "fail_home": "Back to home",
+        "title_limit": "Too many requests",
+        "limit_h": "We've just received a lot of requests from your connection.",
+        "limit_p": "To protect against automated mass sending, we're not accepting any more for the moment. Please try again in an hour — your earlier requests have arrived.",
     },
     "unsub": {
         "title": "Unsubscribed from newsletter",

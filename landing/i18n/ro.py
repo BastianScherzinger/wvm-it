@@ -1165,6 +1165,9 @@ PACK = {
         "fail_h": "Linkul a expirat.",
         "fail_p": "Te rugăm să te înscrii din nou și vei primi un link de confirmare nou și poți completa formularul din nou.",
         "fail_retry": "Înscrie-te din nou", "fail_home": "Înapoi la pagina principală",
+        "title_limit": "Prea multe solicitări",
+        "limit_h": "De la conexiunea ta au venit foarte multe solicitări.",
+        "limit_p": "Pentru a ne proteja de trimiterea automată în masă, nu mai acceptăm altele deocamdată. Te rugăm să încerci din nou peste o oră — solicitările tale anterioare au ajuns.",
     },
     "unsub": {
         "title": "Dezabonat de la newsletter",

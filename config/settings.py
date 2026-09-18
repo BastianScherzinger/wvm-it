@@ -168,8 +168,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 # Nicht-Manifest-Storage: vergebene /static/-Pfade bleiben unverändert (robust
 # bei dynamisch eingebauten Lead-Fotos), Komprimierung trotzdem aktiv.
+# Seit 18.09.2026 (PF28) verkleinert der Speicher die Skripte vor dem
+# Komprimieren — ohne neues Paket, Begründung in landing/verkleinern.py.
 STORAGES = {
-    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
+    "staticfiles": {"BACKEND": "landing.verkleinern.VerkleinerndeStaticFilesStorage"},
 }
 # Lange Cache-Lebensdauer für statische Assets (1 Jahr). Da die Dateinamen NICHT
 # gehasht sind, werden CSS/JS über einen Versions-Query (?v=ASSET_VERSION) im Template

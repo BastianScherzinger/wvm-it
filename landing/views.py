@@ -1057,6 +1057,7 @@ _LIMITS = {                     # (Anfragen, Sekunden) je Bereich und IP
     "kontakt":     (5, 15 * 60),    # Kontakt- und Angebotsformular
     "kooperation": (3, 60 * 60),    # verschickt Mail an eine FREMDE Adresse
     "newsletter":  (5, 60 * 60),    # Double-Opt-in, verschickt an fremde Adresse
+    "bauauftrag":  (5, 60 * 60),    # Detailbogen: je Absendung ein JARVIS-Bau-Auftrag
 }
 _FELD_MAX = {                   # Feldlängen. Alles Längere wird abgeschnitten.
     "name": 120, "email": 254, "telefon": 40, "firma": 160,
@@ -1530,6 +1531,11 @@ def anfrage_absenden(request):
     if request.method != "POST":
         return render(request, "anfrage_done.html", {"c": c, "ok": False,
             "seiten_titel": _vorgangs_titel("anfrage_done", "title_fail")})
+    # Das Token bleibt drei Tage gültig und lässt sich beliebig oft abschicken;
+    # jede Absendung legt einen Bau-Auftrag an und mailt ans Postfach (FO09).
+    if _limit_erreicht(request, "bauauftrag"):
+        return render(request, "anfrage_done.html", {"c": c, "ok": False, "limit": True,
+            "seiten_titel": _vorgangs_titel("anfrage_done", "title_limit")}, status=429)
     token = (request.POST.get("t") or "").strip()
     try:
         data = signing.loads(token, salt=_ANFRAGE_SALT, max_age=_NEWSLETTER_MAXAGE)

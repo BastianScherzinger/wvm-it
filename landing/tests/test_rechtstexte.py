@@ -32,6 +32,13 @@ class ImpressumTest(SimpleTestCase):
         self.assertNotIn("ec.europa.eu/consumers/odr", text)
         self.assertNotIn("consumers/odr", text)
 
+    def test_erwaehnt_die_os_plattform_gar_nicht_mehr(self):
+        """Auch ohne Link: Ein Absatz über eine Plattform, die es nicht mehr
+        gibt, ist kein Pflichthinweis mehr, sondern Ballast (RE22)."""
+        text = INHALT["impressum"]
+        self.assertNotIn("OS-Plattform", text)
+        self.assertNotIn("Online-Streitbeilegung", text)
+
     def test_nennt_weiterhin_die_pflichtangaben_nach_ecg(self):
         """Die Bereinigung darf nichts wegnehmen, was § 5 ECG verlangt."""
         text = INHALT["impressum"]
