@@ -51,35 +51,34 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 ## Messung
 
 <!-- messung:anfang -->
-**Messung vom 18.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-17b) — **Gesamtstand 94,1 von 100**, Reifegrad „Referenz“. 335 von 372 Regeln an 198 URLs und 229 Dateien (70.375 Zeilen) geprüft.
+**Messung vom 18.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-17b) — **Gesamtstand 95,3 von 100**, Reifegrad „Referenz“. 336 von 372 Regeln an 198 URLs und 232 Dateien (70.989 Zeilen) geprüft.
 
 | Bereich | Wert | Reifegrad |
 |---|---:|---|
 | Erreichbarkeit & Postfach | **78** | Solide |
-| Formulare & Preisrechner | **84** | Solide |
-| GEO — KI-Sichtbarkeit | **90** | Referenz |
-| Recht & Vertrauen | **92** | Referenz |
-| Vorlagen-Konformität | **92** | Referenz |
-| Konversion | **94** | Referenz |
-| SEO — Technik | **94** | Referenz |
-| Betrieb & Auslieferung | **95** | Referenz |
+| GEO — KI-Sichtbarkeit | **93** | Referenz |
+| Formulare & Preisrechner | **93** | Referenz |
+| Vorlagen-Konformität | **94** | Referenz |
+| SEO — Technik | **95** | Referenz |
+| Konversion | **95** | Referenz |
 | Barrierefreiheit | **96** | Referenz |
-| Performance & Core Web Vitals | **97** | Referenz |
+| Recht & Vertrauen | **97** | Referenz |
 | Sicherheit | **97** | Referenz |
 | SEO — Inhalt | **98** | Referenz |
-| Code-Qualität & Projektreife | **98** | Referenz |
+| Performance & Core Web Vitals | **98** | Referenz |
+| Code-Qualität & Projektreife | **99** | Referenz |
+| Betrieb & Auslieferung | **100** | Referenz |
 | Substanz & Reichweite | **100** | Referenz |
 
 Keine Sperre greift.
 
-Quelltext: 229 Dateien, **564 Befunde**, davon 0 kritisch und 378 wichtig.
+Quelltext: 232 Dateien, **565 Befunde**, davon 0 kritisch und 377 wichtig.
 
 Kritische Befunde:
 
 - **Alle Domainvarianten landen auf einer Adresse** (`TS11`) — 0 von 1 Nebenadressen landen dauerhaft auf der Hauptadresse — offen: https://wvm-it.tech: SSLError — kein Verbindungsaufbau
 - **Ein SPF-Eintrag sagt, wer im Namen der Domain schreiben darf** (`MW04`) — Kein SPF-Eintrag auf wvm-it.tech. Jede Mail im Namen dieser Domain ist für einen Empfänger ununterscheidbar von einer gefälschten.
 - **Ein DMARC-Eintrag ist gesetzt** (`MW06`) — Kein DMARC-Eintrag auf `_dmarc.wvm-it.tech`.
-- **Ausgezeichnete Preise stehen sichtbar auf der Seite** (`GE41`) — 3651 von 5214 ausgezeichneten Preisen sind nicht sichtbar: /leistungen/: 2900, /leistungen/: 190, /leistungen/: 290, /kontakt/: 390 … (+3647)
 <!-- messung:ende -->
 
 ## Die drei wichtigsten offenen Punkte
