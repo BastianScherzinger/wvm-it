@@ -111,6 +111,22 @@ class SchemaTest(SimpleTestCase):
                     if isinstance(knoten, dict) and knoten.get("@type") == "FAQPage":
                         self.assertGreater(len(knoten.get("mainEntity", [])), 0)
 
+    def test_preiskatalog_nur_wo_er_sichtbar_ist(self):
+        """Messung GE41 (18.09.2026): Der OfferCatalog stand auf jeder Seite, die
+        Preise darin aber nur auf dreien. Ein ausgezeichneter Preis, den der
+        Besucher nicht sieht, ist dieselbe Behauptung wie eine unsichtbare FAQ."""
+        def hat_katalog(pfad):
+            return any(isinstance(k, dict) and "hasOfferCatalog" in k
+                       for k in self._graph(pfad))
+
+        for pfad in ("/", "/kosten/", "/angebot/"):
+            with self.subTest(pfad=pfad):
+                self.assertTrue(hat_katalog(pfad), f"{pfad}: Katalog fehlt im Schema")
+        for pfad in ("/kontakt/", "/leistungen/", "/referenzen/"):
+            with self.subTest(pfad=pfad):
+                self.assertFalse(hat_katalog(pfad),
+                                 f"{pfad}: Preiskatalog im Schema, aber nicht auf der Seite")
+
     def test_context_ist_schema_org(self):
         antwort = self.client_.get(self.seiten[0][1])
         html = antwort.content.decode("utf-8")

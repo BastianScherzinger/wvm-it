@@ -1771,10 +1771,15 @@ _AREA_CITIES = ["Linz", "Wien", "Graz", "Innsbruck", "Klagenfurt",
                 "München", "Stuttgart", "Nürnberg", "Frankfurt am Main", "Berlin"]
 
 
-def _structured_data(c, lang):
+def _structured_data(c, lang, *, mit_katalog=True):
     """Baut das JSON-LD-@graph server-seitig (robust gegen Template-Escaping): ein
     ProfessionalService (Local-SEO AT+DE, Preise als OfferCatalog), die WebSite und
-    eine FAQPage aus dem aktiven Sprachpaket. Rückgabe: fertiger JSON-String."""
+    eine FAQPage aus dem aktiven Sprachpaket. Rückgabe: fertiger JSON-String.
+
+    `mit_katalog=False` laesst den OfferCatalog weg (Messung GE41, 18.09.2026):
+    Ein Preis im Schema, der auf der Seite nicht zu sehen ist, ist dieselbe
+    Behauptung wie eine unsichtbare FAQ. Den ganzen Katalog zeigen nur die
+    Startseite, /kosten/ und /angebot/ — nur dort gehoert er in den Graphen."""
     base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
     pack = i18n.get_pack(lang)
     words = pack.get("catalog_words", {})
@@ -1900,12 +1905,13 @@ def _structured_data(c, lang):
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
             "opens": "09:00", "closes": "18:00",
         },
-        "hasOfferCatalog": {
+    }
+    if mit_katalog:
+        business["hasOfferCatalog"] = {
             "@type": "OfferCatalog",
             "name": "Leistungen von WVM-IT",
             "itemListElement": offers,
-        },
-    }
+        }
 
     website = {
         "@type": "WebSite", "@id": f"{base}/#website", "url": f"{base}/",
@@ -2271,12 +2277,16 @@ def _ratgeber_artikel(base, pfad, *, titel, beschreibung, worte=0, sprache="de-A
     return knoten
 
 
-def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id=""):
+def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id="",
+                   katalog=False):
     """@graph einer Unterseite: immer der Betrieb, die Website und die Seite selbst,
     dazu optional Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben
-    Entitaet (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8)."""
+    Entitaet (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8).
+
+    `katalog=True` nur auf Seiten, die jede Katalogposition mit Preis sichtbar
+    zeigen (siehe `_structured_data`, Messung GE41)."""
     base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
-    graph = json.loads(_structured_data(c, lang))["@graph"]
+    graph = json.loads(_structured_data(c, lang, mit_katalog=katalog))["@graph"]
     # Die FAQPage der Startseite gehoert nicht auf eine Unterseite.
     graph = [k for k in graph if k.get("@type") != "FAQPage"]
     url = _seiten_url(base, breadcrumb)
@@ -3234,7 +3244,7 @@ def kosten(request):
         "preis_stand": _preis_stand(lang),
         "leistungen": _alle_leistungen(lang),
         "structured_data": _seiten_schema(
-            c, lang,
+            c, lang, katalog=True,
             breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kosten"), reverse("kosten"))])),
     })
 
@@ -3473,7 +3483,7 @@ def angebot(request):
         # Diese Seite hatte als einzige oeffentliche Seite gar kein Schema —
         # gefunden von der S9-Pruefung, nicht von einem Menschen.
         "structured_data": _seiten_schema(
-            c, lang, breadcrumb=_breadcrumb(
+            c, lang, katalog=True, breadcrumb=_breadcrumb(
                 base, [(i18n.get_pack(lang)["nav"]["angebot"], reverse("angebot"))])),
         # Schnellstart: ein Klick setzt die Haken eines typischen Bedarfs.
         # Ohne JavaScript kommt die Vorauswahl ueber ?paket=<id> vom Server.
