@@ -56,6 +56,12 @@ urlpatterns = [
     re_path(r"^sitemap-(?P<klasse>kern|leistungen|silos|ratgeber)\.xml$",
             views.sitemap_segment, name="sitemap_segment"),
     path("health", views.health, name="health"),
+    # Dieselbe Antwort unter `/health/` (BT11, 18.09.2026). Railway ruft
+    # `/health` auf; Überwachungsdienste und die Messung fragen die Fassung mit
+    # Schrägstrich ab und bekamen 404. Bewusst ohne Datenbankabfrage: Die Seite
+    # rendert ohne Datenbank (WVM_DB_URL leer = nur die Warteschlange steht),
+    # ein Ausfall der gemeinsamen Supabase darf den Dienst nicht als tot melden.
+    path("health/", views.health, name="health_slash"),
 ]
 
 # ── Öffentliche, indexierbare Seiten (mit /en/ bzw. /ro/; DE bleibt präfixlos) ────
