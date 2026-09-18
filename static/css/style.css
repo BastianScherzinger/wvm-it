@@ -2513,3 +2513,117 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .rg-mini-h{margin-top:var(--s4);font-size:13px;font-weight:600;letter-spacing:.04em;
   text-transform:uppercase;color:var(--ink-dim)}
 .lk-mini-p{color:var(--accent-ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ── Nichts ragt auf schmalen Bildschirmen ueber den Rand (BF26, 18.09.2026) ──
+   Gemessen, nicht gerechnet: in Chromium 148 bei 320/360/390 px Ansichtsbreite
+   ueber alle gerenderten Seitentypen. Die Ursachen wurden durch Ausblenden
+   einzelner Teilbaeume eingegrenzt — was beim Ausblenden `scrollWidth` senkt,
+   ist die Ursache. Vorher scrollten 23 von 57 Messungen waagrecht, am
+   schlimmsten /ueber-uns/ mit 553 px statt 320 px. Fuenf Ursachen, und jede
+   hat ihren eigenen Block weiter unten:
+
+   1. Knopfbeschriftungen, die nicht umbrechen duerfen (/ueber-uns/ 553 px,
+      / 406 px, /kosten/ 354 px).
+   2. Ein zu langes Wort in einer Ueberschrift: „Datenschutzerklaerung" braucht
+      287 px, die Spalte bietet 272 — gemessen 348 px statt 320 px auf
+      /datenschutz/. `overflow-wrap:break-word` greift ausschliesslich dann,
+      wenn ein Wort ohnehin nicht in die Zeile passt; wo es passt, bleibt der
+      Umbruch unveraendert — deshalb steht der Satz ohne Media-Query.
+   3. Die Kopfzeile passt unter 400 px nicht: Marke 107,7 + Sprachumschalter
+      133 + Burger + 48 px Abstaende ergeben 332,7 px auf 272 px Platz. Der
+      Burger wird dabei vom Flex-Layout von 42 px auf 20 px zerdrueckt — das
+      Antippziel schrumpft also genau dort, wo es gebraucht wird.
+   4. Formular- und Rasterspalten, die nicht unter ihre Inhaltsbreite gehen
+      (Startseite: Formular 301 px in einer 272 px breiten Spalte).
+   5. Der siebenstufige Schrittbalken des Konfigurators (/angebot/ 330 px).
+
+   Dazu ein Befund, der nichts scrollt und trotzdem hierher gehoert: Die feste
+   Aktionsleiste am unteren Rand endete bei 385,9 px auf einem 320-px-Schirm.
+   Sie ist fixiert, erzeugt also kein Dokument-Scrollen — sie war schlicht
+   nicht mehr ganz zu sehen und damit nicht ganz zu treffen.
+
+   Bewusst NICHT genommen: `.brand{min-width:0}`. Zusammen mit dem
+   `white-space:nowrap` der Marke (Zeile ~1364) darf der Kasten zwar
+   schrumpfen, der Text laeuft aber weiter und ueberlappt den
+   Sprachumschalter — der Ueberstand waere dann nur nicht mehr messbar. */
+h1,h2,h3,h4,.sp-h2,.sec-h{overflow-wrap:break-word}
+
+/* Knoepfe duerfen umbrechen — aber erst ab der Mobilschwelle dieser Seite.
+   `.btn` traegt `white-space:nowrap`; eine lange Beschriftung wie
+   „IT-Betreuung in Oberoesterreich und Salzburg — wo wir vor Ort sind"
+   zwingt den Knopf damit auf 529 px und schiebt das ganze Dokument nach
+   rechts (auf /ueber-uns/ gemessen: 553 px statt 320 px).
+
+   Warum nicht einfach global `normal`: Der Abdruckvergleich hat das widerlegt.
+   Bei 1280 px wuchs `a.nav-cta` in der Kopfzeile von 43 px auf 66 px Hoehe —
+   die Beschriftung brach dort um, wo sie vorher passte. Unter 820 px, wo die
+   Navigation ohnehin als Klappmenue laeuft, gab es in derselben Messung keine
+   einzige Abweichung. Deshalb greift der Umbruch genau dort.
+
+   `max-width:100%` gehoert in denselben Block: `.btn` hat `overflow:hidden`
+   (fuer den Glanzstreifen). Mit `nowrap` wuerde der Deckel den Text
+   abschneiden statt ihn umbrechen zu lassen — unsichtbarer Text ist schlimmer
+   als ueberstehender.
+
+   `.cookie-accept` bleibt ausgenommen: Dieser Knopf setzt sein `nowrap` weiter
+   oben selbst und steht im Einwilligungsband neben dem Ablehnen-Knopf, wo
+   beide dieselbe Breite teilen — dort waere ein Umbruch eine Aenderung an
+   einer Stelle, die BF26 gar nicht meldet.
+
+   `.nf-call` — der Notruf-Knopf auf /it-notfall/ — ebenfalls, und der Grund
+   ist ein eigener Fund: Sein Symbol hat als einziges im Projekt **keine**
+   Groessenangabe (`.nf-wa svg`, `.mobilebar svg` und `.btn .ic-arrow` haben
+   eine). Gemessen ist der `<svg>`-Kasten deshalb bei jeder Breite **0 px
+   breit**; sichtbar sind nur die 20 px des `<use>` darin, und die liegen
+   teilweise ueber der Rufnummer. Mit `white-space:normal` nimmt derselbe
+   Kasten den frei werdenden Platz und wuchs auf 73,7 px — der Knopf wurde von
+   62 px auf 108 px hoch. `flex:0 0 auto` macht es schlimmer (158,8 px,
+   nachgemessen). Der Knopf endet bei 320 px Ansichtsbreite bei 267,8 px,
+   ragt also nirgends ueber den Rand und gehoert damit nicht zu BF26; ihm hier
+   eine Symbolgroesse zu geben waere eine sichtbare Aenderung an einer Stelle,
+   die dieser Auftrag nicht nennt. Steht als eigener Punkt in
+   `doku/20-DESIGN.md`. */
+@media (max-width:820px){
+  .btn:not(.cookie-accept):not(.nf-call){white-space:normal;max-width:100%}
+
+  /* Rasterspalten und Formularfelder duerfen unter ihre Inhaltsbreite. Ohne
+     das waechst die Spalte auf die Mindestbreite ihres breitesten Feldes und
+     schiebt die Seite nach rechts (auf der Startseite gemessen: Formular
+     301 px in einer 272 px breiten Spalte).
+
+     Auch das gehoert hierher und nicht nach oben: Ungebunden hat derselbe
+     Satz im Abdruckvergleich das Kontaktformular auf 1024 px von 592 px auf
+     429 px zusammengezogen. Dort teilt `.contact` seine Breite mit
+     `grid-template-columns:.9fr 1.1fr`, und eine Spalte ohne Mindestbreite
+     verteilt sich anders. Unter 820 px steht die Spalte allein (`1fr`), dort
+     kann der Satz nur das tun, wofuer er gedacht ist. */
+  .contact-form,.contact-form label,.ang-lead,.ang-lead label{min-width:0}
+  .contact-form input,.contact-form textarea,.contact-form select,
+  .ang-lead input,.ang-lead textarea{min-width:0;max-width:100%}
+}
+
+@media (max-width:400px){
+  /* Die Kopfzeile auf das Noetige eindampfen — und zwar so, dass der Burger
+     seine 42 px behaelt, statt sie als erster herzugeben. Gilt nur unter
+     400 px; darueber bleibt die Leiste unveraendert (Abdruckvergleich ab
+     560 px: null Abweichungen). */
+  .nav-in{gap:8px}
+  .nav-burger{margin-left:0;flex:0 0 42px}
+  .nav-lang-mobile .lang-opt{min-width:30px;padding:9px 5px}
+
+  /* Die feste Aktionsleiste am unteren Rand sitzt zwischen 12 px links und
+     12 px rechts, ihre drei Knoepfe gaben diese Breite aber nicht her: Der
+     Anfragen-Knopf endete gemessen bei 385,9 px auf einem 320-px-Schirm, also
+     weit ausserhalb des Bildes. Sie scrollt nichts (sie ist fixiert) — sie ist
+     schlicht nicht mehr ganz zu sehen und damit nicht ganz zu treffen. */
+  .mobilebar a{min-width:0;padding:14px 10px}
+  .mobilebar-call{min-width:0;flex:0 1 auto}
+
+  /* Der Schrittbalken des Konfigurators hat sieben Kreise. Bei 32 px je Kreis
+     und 2 px Abstand sind das 264 px; mit der Kartenpolsterung von 2 x 21 px
+     ergibt das 306 px auf 272 px Platz — gemessen 330 px statt 320 px auf
+     /angebot/. Dieselben sieben Schritte, nur enger: 7 x 30 px = 210 px. */
+  .wz-steps{gap:0}
+  .wz-step{padding:8px 0}
+  .wz-step-n{width:30px;height:30px;font-size:13.5px}
+}
