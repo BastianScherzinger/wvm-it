@@ -41,6 +41,12 @@ class TechnischeEndpunkteTest(SimpleTestCase):
         self.assertEqual(antwort.status_code, 200)
         self.assertEqual(antwort.content.decode("utf-8").strip(), "ok")
 
+    def test_health_mit_schraegstrich(self):
+        # BT11: Überwachungsdienste fragen `/health/` ab — ohne Umleitung.
+        antwort = _util.client().get("/health/")
+        self.assertEqual(antwort.status_code, 200)
+        self.assertEqual(antwort.content.decode("utf-8").strip(), "ok")
+
     def test_robots_txt(self):
         antwort = _util.client().get("/robots.txt")
         self.assertEqual(antwort.status_code, 200)
