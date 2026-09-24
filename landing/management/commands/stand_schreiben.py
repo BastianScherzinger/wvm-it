@@ -52,6 +52,7 @@ EINZELN = {
     "/checkliste/": ["templates/checklisten.html", "landing/checklisten.py"],
     "/wissen/": ["templates/wissen.html", "landing/glossar.py"],
     "/it-notfall/": ["templates/notfall.html", "landing/i18n/de.py"],
+    "/it-hilfe/": ["templates/it_hilfe.html", "landing/i18n/hilfe_de.py"],
     "/it-sicherheit-test/": ["templates/selbsttest.html", "landing/selbsttest.py"],
     "/impressum/": ["templates/recht.html", "content.json"],
     "/datenschutz/": ["templates/recht.html", "content.json"],

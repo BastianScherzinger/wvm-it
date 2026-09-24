@@ -2627,3 +2627,12 @@ h1,h2,h3,h4,.sp-h2,.sec-h{overflow-wrap:break-word}
   .wz-step{padding:8px 0}
   .wz-step-n{width:30px;height:30px;font-size:13.5px}
 }
+
+/* ── Einzelhilfe im Vertrauensband (24.09.2026) ─────────────────────────────
+   Der einzige Punkt im Band, der ein Link ist: Er fuehrt auf /it-hilfe/. Farbe
+   und Groesse erbt er vom Band, damit es ein Band bleibt; erkennbar ist er an
+   der Unterstreichung, nicht an einer neuen Farbe (Kontrast wie das Band). */
+.hero-trust-link{display:inline-flex;align-items:center;gap:7px;color:inherit;
+  text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:color-mix(in srgb,currentColor 45%,transparent)}
+.hero-trust-link:hover,.hero-trust-link:focus-visible{text-decoration-color:currentColor}

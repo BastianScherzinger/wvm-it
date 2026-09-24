@@ -10,6 +10,7 @@ from .regionen_de import REGIONEN
 from .branchen_de import BRANCHEN
 from .vergleiche_de import VERGLEICHE
 from .einrichten_de import EINRICHTEN, HUB as EINRICHTEN_HUB
+from .hilfe_de import HILFE
 
 PACK = {
     "seiten": SEITEN,
@@ -18,12 +19,13 @@ PACK = {
     "vergleiche": VERGLEICHE,
     "einrichten": EINRICHTEN,
     "einrichten_hub": EINRICHTEN_HUB,
+    "hilfe": HILFE,
     "meta": {
         "html_lang": "de-AT",
         "locale": "de_AT",
         "num_locale": "de-DE",
-        "seo_title": "WVM-IT: IT-Dienstleister in Österreich ab 29 €/Monat",
-        "seo_desc": "Externe IT-Abteilung für Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., Antwort in 24 Stunden. Jetzt anfragen.",
+        "seo_title": "WVM-IT: IT-Betreuung in Österreich und Deutschland ab 29 €",
+        "seo_desc": "IT-Betreuung per Fernwartung für Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz. Einzelhilfe ohne Vertrag 95 €/Std. Jetzt anfragen.",
         "slogan": "Wir verbinden Menschen mit Informationstechnologie.",
         "firmen_desc": "WVM-IT verbindet Menschen mit Informationstechnologie. Von unserem Standort in Lenzing in Oberösterreich betreuen wir Unternehmen und Privatkunden mit IT- und Digitallösungen aus einer Hand: EDV, Netzwerk und IT-Sicherheit, professionelle Webseiten, Hosting und SEO, KI-Automatisierung, Smarthome und Gebäudeautomation sowie Konferenz-, Video-, Ton- und Veranstaltungstechnik. Der laufende Betrieb läuft überwiegend per Fernwartung in ganz Österreich und Deutschland; Arbeiten vor Ort übernehmen wir im Einzugsgebiet rund um Vöcklabruck, den Attersee, Gmunden, Wels, Linz und Salzburg. Technik soll verständlich sein, zuverlässig funktionieren und einen echten Mehrwert schaffen — dafür gibt es persönliche Beratung, klare Kommunikation und einen festen Ansprechpartner.",
         "og_image_alt_suffix": "EDV, IT und Digitales für Betriebe",
@@ -309,6 +311,8 @@ PACK = {
         "items": [
             {"q": "Was kostet die laufende IT-Betreuung für einen Betrieb?",
              "a": "Die laufende IT-Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe ohne laufenden Vertrag rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Alle Angaben sind Richtpreise, netto zzgl. USt.; den verbindlichen Preis nennen wir nach einem kurzen Gespräch."},
+            {"q": "Helfen Sie auch bei einem einzelnen Problem, ohne Vertrag?",
+             "a": "Ja. Einzelne IT-Probleme — Drucker, E-Mail, WLAN, ein langsamer PC — lösen wir ohne Vertrag per Fernwartung für 95 € je Stunde, meist am selben Tag; vor Ort 120 € je Stunde zuzüglich Anfahrt. Ganze Aufgaben haben einen Festpreis, etwa ein neuer Arbeitsplatz für 190 €. Wie das abläuft, steht auf der Seite IT-Hilfe ohne Vertrag."},
             {"q": "Betreut WVM-IT auch Betriebe außerhalb Österreichs?",
              "a": "Ja. Fernwartung, Überwachung, Datensicherung, Microsoft 365, Webseiten, SEO und Google Ads betreuen wir in ganz Österreich und Deutschland — diese Arbeiten sind ortsunabhängig, der Weg zum Kunden geht über eine gesicherte Verbindung statt über die Autobahn. Einsätze vor Ort planen wir projektbezogen."},
             {"q": "Wir haben niemanden für IT im Haus. Wie läuft die Zusammenarbeit ab?",
@@ -563,12 +567,12 @@ PACK = {
     "vergleiche_seite": {
         "methode_h": "Wie wir vergleichen",
         "methode_t": "Vier Regeln halten diese Seiten zusammen. Erstens vergleichen wir gleichwertigen Leistungsumfang und nicht die günstigste gegen die teuerste Variante — sonst gewinnt am Ende immer dieselbe Seite, und der Vergleich sagt nichts über Ihren tatsächlichen Fall aus. Zweitens rechnen wir dort, wo eine Entscheidung an Geld hängt, mit den Gesamtkosten über drei Jahre und nicht mit dem reinen Anschaffungspreis, weil laufende Kosten für Wartung, Strom, Ausfallzeit und Ersatz über diesen Zeitraum häufig mehr ausmachen als der Einstiegspreis allein — eine günstige Anschaffung kann über drei Jahre gerechnet trotzdem die teurere Wahl sein, und eine teure die günstigere. Ein Beispiel macht das greifbar: Bei Server oder Cloud fließen in die drei Jahre nicht nur Hardware und Abonnement ein, sondern auch Strom, eine unterbrechungsfreie Stromversorgung, die Zeit für Updates und das Risiko eines Totalausfalls ohne Ersatzgerät — Posten, die in einem reinen Preisvergleich der Anschaffung meist fehlen. Drittens nennt jede Gegenüberstellung ausdrücklich, wann die andere Variante gewinnt, und zwar in einem eigenen, gleich großen Block, nicht in einem Halbsatz am Ende, weil eine Seite, die nur die eigene Sichtweise zeigt, kein Vergleich mehr ist, sondern Werbung. Viertens stehen hier keine Preise fremder Anbieter, weil sie sich ändern und eine veraltete Zahl über einen Dritten schlechter ist als gar keine — wir verweisen stattdessen auf das, was der jeweilige Anbieter selbst öffentlich nennt. Der Rechenweg steht bei jeder Zahl dabei, damit Sie ihn mit Ihren eigenen Werten nachvollziehen und für Ihren Betrieb neu durchrechnen können, statt uns beim Wort nehmen zu müssen.",
-        "auswahl_h": "Warum genau diese drei",
-        "auswahl_t": "Es sind die drei Entscheidungen, die in Erstgesprächen am häufigsten offen sind, meist noch bevor über einen konkreten Anbieter gesprochen wird. Sie haben eines gemeinsam: Man kann sie nicht sinnvoll treffen, ohne den eigenen Betrieb anzusehen — wie viele Arbeitsplätze es gibt, wie stark die Auslastung schwankt, welche Software zwingend vorausgesetzt wird und wie teuer ein Ausfall im Ernstfall tatsächlich wäre. Deshalb steht auf jeder Seite die Frage, an der die Entscheidung hängt, und nicht eine pauschale Empfehlung, die für jeden Betrieb gleich ausfallen würde. Das gilt ausdrücklich auch dann, wenn die ehrliche Antwort lautet, dass sich für Sie im Moment weder das eine noch das andere lohnt und die bestehende Lösung noch eine ganze Weile trägt — ein Vergleich, der dieses Ergebnis nicht zulässt, wäre keine Entscheidungshilfe, sondern nur ein Umweg zum immer gleichen Ergebnis. Zwischen den drei Seiten bestehen außerdem Berührungspunkte: Wer sich für einen Server im Haus entscheidet, muss die Datensicherung ohnehin neu regeln, und wer auf Google Workspace wechselt, verändert damit auch die Frage, ob eine laufende Betreuung oder eine Abrechnung nach Stunden sinnvoller ist. Es lohnt sich deshalb, mehr als eine der drei Seiten zu lesen, auch wenn nur eine Frage akut erscheint. Fehlt Ihnen ein Vergleich, den Sie in Ihrer Situation bräuchten, schreiben Sie uns; wir ergänzen ihn, sobald die Frage öfter gestellt wird, mit demselben Rechenweg und derselben Offenheit wie bei den bestehenden drei Seiten.",
-        "titel": "Server oder Cloud? 3 IT-Entscheidungen im Vergleich | WVM-IT",
-        "desc": "Betreuung oder Stunden, Server oder Cloud, Microsoft 365 oder Google: die drei Gegenüberstellungen vor der Anbieterwahl. Jetzt vergleichen.",
+        "auswahl_h": "Warum genau diese vier",
+        "auswahl_t": "Es sind die vier Entscheidungen, die vor einer Anbieterwahl am häufigsten offen sind: Die ersten drei kommen in Erstgesprächen fast immer zur Sprache, die vierte — ob sich ein älterer PC noch aufrüsten lässt — ist die, nach der am meisten gesucht wird. Sie haben eines gemeinsam: Man kann sie nicht sinnvoll treffen, ohne den eigenen Betrieb anzusehen — wie viele Arbeitsplätze es gibt, wie stark die Auslastung schwankt, welche Software zwingend vorausgesetzt wird und wie teuer ein Ausfall im Ernstfall tatsächlich wäre. Deshalb steht auf jeder Seite die Frage, an der die Entscheidung hängt, und nicht eine pauschale Empfehlung, die für jeden Betrieb gleich ausfallen würde. Das gilt ausdrücklich auch dann, wenn die ehrliche Antwort lautet, dass sich für Sie im Moment weder das eine noch das andere lohnt und die bestehende Lösung noch eine ganze Weile trägt — ein Vergleich, der dieses Ergebnis nicht zulässt, wäre keine Entscheidungshilfe, sondern nur ein Umweg zum immer gleichen Ergebnis. Zwischen den vier Seiten bestehen außerdem Berührungspunkte: Wer sich für einen Server im Haus entscheidet, muss die Datensicherung ohnehin neu regeln, und wer auf Google Workspace wechselt, verändert damit auch die Frage, ob eine laufende Betreuung oder eine Abrechnung nach Stunden sinnvoller ist. Es lohnt sich deshalb, mehr als eine der vier Seiten zu lesen, auch wenn nur eine Frage akut erscheint. Fehlt Ihnen ein Vergleich, den Sie in Ihrer Situation bräuchten, schreiben Sie uns; wir ergänzen ihn, sobald die Frage öfter gestellt wird, mit demselben Rechenweg und derselben Offenheit wie bei den bestehenden vier Seiten.",
+        "titel": "Server oder Cloud? 4 IT-Entscheidungen im Vergleich | WVM-IT",
+        "desc": "Betreuung oder Stunden, Server oder Cloud, Microsoft 365 oder Google, PC aufrüsten oder neu: vier Vergleiche vor der Anbieterwahl.",
         "h1": "Die Entscheidungen, die vor der Anbieterwahl stehen",
-        "kurz": "Bevor jemand einen IT-Dienstleister sucht, steht meistens eine andere Frage im Raum: Betreuung im Vertrag oder Abrechnung nach Stunden? Server im Haus oder Cloud? Microsoft 365 oder Google Workspace? Gerechnet wird dabei mit unseren eigenen Sätzen — 29 € je Arbeitsplatz und Monat für die laufende Betreuung, 95 € je Stunde ohne Vertrag, und bei Anschaffungen mit den Gesamtkosten über 3 Jahre statt mit dem Kaufpreis. Auf diesen Seiten stehen die Gegenüberstellungen mit dem Rechenweg — einschließlich der Fälle, in denen die Antwort gegen unser eigenes Angebot ausfällt. Wer hier landet, hat diese Grundsatzfrage meist noch vor sich und noch keinen Anbieter ausgewählt — die Seiten sind deshalb bewusst neutral geschrieben und nicht als Vorstufe zu einem Angebot gedacht, sondern als Antwort auf eine Frage, die jeder Anbieterwahl vorausgeht. Alle drei Vergleiche verwenden dieselbe Preisliste wie der Rest der Website; wir erfinden dafür keine zweite Zahlenwelt.",
+        "kurz": "Bevor jemand einen IT-Dienstleister sucht, steht meistens eine andere Frage im Raum: Betreuung im Vertrag oder Abrechnung nach Stunden? Server im Haus oder Cloud? Microsoft 365 oder Google Workspace? Den alten PC aufrüsten oder neu kaufen? Gerechnet wird dabei mit unseren eigenen Sätzen — 29 € je Arbeitsplatz und Monat für die laufende Betreuung, 95 € je Stunde ohne Vertrag, und bei Anschaffungen mit den Gesamtkosten über 3 Jahre statt mit dem Kaufpreis. Auf diesen Seiten stehen die Gegenüberstellungen mit dem Rechenweg — einschließlich der Fälle, in denen die Antwort gegen unser eigenes Angebot ausfällt. Wer hier landet, hat diese Grundsatzfrage meist noch vor sich und noch keinen Anbieter ausgewählt — die Seiten sind deshalb bewusst neutral geschrieben und nicht als Vorstufe zu einem Angebot gedacht, sondern als Antwort auf eine Frage, die jeder Anbieterwahl vorausgeht. Alle vier Vergleiche verwenden dieselbe Preisliste wie der Rest der Website; wir erfinden dafür keine zweite Zahlenwelt.",
         "intro": "Diese Seiten gibt es, weil eine Entscheidung selten mit einem Anbieter beginnt, sondern mit einer Grundsatzfrage davor: Vertrag oder Stundenabrechnung, eigener Server oder Cloud, ein System oder ein anderes. Wer diese Frage noch nicht beantwortet hat, bekommt bei uns oder bei jedem anderen Anbieter kein passendes Angebot, weil Preis und Umfang je nach Antwort stark auseinanderlaufen — ein Angebot für Serverbetreuung nützt niemandem, der eigentlich in die Cloud wechseln will. Jede dieser Seiten nennt deshalb ausdrücklich, wann die andere Variante die richtige ist, und zwar in einem eigenen, gleich großen Abschnitt, nicht in einem Halbsatz am Ende. Ein Vergleich, der immer zum eigenen Angebot führt, ist keiner — er ist Werbung mit Tabelle. Am Ende dieser Seiten kann bei Ihnen ebenso gut stehen, dass keine der beiden vorgestellten Varianten passt, sondern eine dritte Lösung oder gar keine Änderung an dem, was heute schon läuft. Auch das ist ein brauchbares Ergebnis: Eine Entscheidung, die Sie mit Zahlen statt mit einem Bauchgefühl treffen, bleibt richtig, selbst wenn sie am Ende gegen eine Zusammenarbeit mit uns ausfällt. Wer eine dieser Seiten liest, um am Ende einfach nur bestätigt zu bekommen, was er ohnehin schon vorhatte, wird an mindestens einer Stelle enttäuscht — und das ist beabsichtigt. Der Nutzen liegt nicht in der Bestätigung, sondern im Rechenweg, den Sie mit Ihren eigenen Zahlen wiederholen können, auch ohne mit uns zu sprechen.",
         "vergleiche_titel": "Vergleiche",
         "tabelle_hinweis": "Die Tabelle ist quer scrollbar.",
@@ -592,6 +596,7 @@ PACK = {
         # `h1|truncatewords:2` — also woertlich „IT-Notfall: was …", ein
         # abgeschnittener Seitentitel, der im Kopf dreizeilig umbrach.
         "nav": "IT-Notfall",
+        "wa_text": "IT-Notfall: ",
         "kurz": "Bei einem IT-Notfall entscheiden die ersten Minuten über den Schaden. Die wichtigste Regel gilt in allen vier Fällen: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden. Danach Hilfe holen. Wir sind an Werktagen von 9 bis 18 Uhr unter der unten stehenden Nummer erreichbar und beginnen per Fernwartung meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind.",
         "eilt_h": "Es eilt — hier entlang",
         "eilt_t": "Rufen Sie an, statt zu schreiben. Ein Anruf spart bei einer laufenden Störung mehr Zeit als jede Beschreibung per E-Mail.",
@@ -801,8 +806,8 @@ PACK = {
                           "t": "Laufende Betreuung für Betriebe ohne eigene IT-Abteilung, ab 29 € je Arbeitsplatz und Monat."},
             "preis": {"h": "Was würde das kosten?",
                       "t": "Arbeitsplätze und Server eintragen, Monats- und Jahressumme sofort sehen."},
-            "angebot": {"h": "Richtangebot zusammenstellen",
-                        "t": "Leistungen antippen, Richtpreis erhalten. In unter einer Minute, unverbindlich."},
+            "hilfe": {"h": "Nur ein Problem, kein Vertrag",
+                      "t": "Drucker, E-Mail, WLAN, langsamer PC: per Fernwartung für 95 € je Stunde, meist am selben Tag."},
             "web": {"h": "Wir brauchen eine Webseite",
                     "t": "Von der Landingpage bis zum Shop — gebaut, gehostet und betreut aus einer Hand."},
             "branche": {"h": "Was heißt das für meine Branche?",
@@ -847,8 +852,8 @@ PACK = {
         "alle": "Alle Fachbeiträge",
     },
     "hub": {
-        "titel": "Leistungen: EDV, IT und Technik in Österreich | WVM-IT",
-        "desc": "IT-Betreuung ab 29 €/Monat, Webseiten ab 350 €, SEO ab 149 €/Monat, Technik vor Ort — in Österreich und Deutschland. Jetzt Angebot anfordern.",
+        "titel": "IT-Leistungen mit offenen Preisen ab 29 €/Monat | WVM-IT",
+        "desc": "EDV-Betreuung ab 29 €/Monat je Arbeitsplatz, Hilfe ohne Vertrag 95 €/Std., Einrichtung ab 190 €, Webseiten ab 350 € — in Österreich und Deutschland.",
         "h1": "Was WVM-IT für Betriebe übernimmt",
         "kurz": "WVM-IT betreut die EDV kleiner und mittlerer Betriebe in Österreich und Deutschland und übernimmt zusätzlich alles, was digital sichtbar macht: Webseiten, SEO, Google Ads und Automatisierung. Der Schwerpunkt liegt auf laufender IT-Betreuung ab 29 € je Arbeitsplatz und Monat, überwiegend per Fernwartung. Gebäude- und Veranstaltungstechnik kommen projektbezogen vor Ort dazu. Alle elf Leistungen laufen über denselben Ansprechpartner und dieselbe Preisliste, unabhängig davon, ob es um einen einzelnen Arbeitsplatz oder um ein größeres Projekt geht.",
         "intro": "Elf Leistungen, drei Bereiche – und ein Ansprechpartner für alle. Was Sie hier finden, ist bewusst keine Liste von Schlagworten: Zu jeder Leistung gibt es eine eigene Seite mit dem, was enthalten ist, wie es abläuft und was es kostet. Wenn Sie nicht sicher sind, wo Sie anfangen sollen: EDV und IT passt, wenn eine laufende Technik betreut werden soll – Arbeitsplätze, Server, Datensicherung, Sicherheit. Sichtbarkeit und Web passt, wenn Kundschaft Sie online finden oder ein Auftritt entstehen soll. Technik vor Ort passt, sobald etwas verkabelt, aufgebaut oder eingemessen werden muss. Eine Zusammenarbeit beginnt in den meisten Fällen gleich: mit einer kurzen Bestandsaufnahme dessen, was heute schon da ist, und einer Einschätzung, was sich davon per Fernwartung erledigen lässt und was einen Termin vor Ort braucht. Arbeitsplätze, Server, E-Mail, Updates und die Datensicherung laufen fast immer aus der Ferne; Verkabelung, Hardware-Einbau und Vor-Ort-Technik nicht.",
@@ -885,7 +890,7 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "Was kostet IT-Betreuung? Alle Preise ab 29 €/Monat | WVM-IT",
-        "desc": "Alle Preise offen: IT-Betreuung ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., Webseite ab 350 €. Netto zzgl. USt. Jetzt unverbindlich anfragen.",
+        "desc": "Was IT-Betreuung kostet, offen: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE.",
         "h1": "Was kostet das? Alle Preise auf einer Seite",
         "kurz": "Die laufende IT-Betreuung bei WVM-IT kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
         "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt – und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",
@@ -895,6 +900,22 @@ PACK = {
         "fair_1": "Keine Mindestlaufzeit über ein Quartal hinaus.",
         "fair_2": "Keine Systeme, aus denen Sie nicht wieder herauskommen – Zugänge und Daten gehören Ihnen.",
         "fair_3": "Keine Empfehlung, an der wir mehr verdienen als Sie sparen. Wenn sich etwas nicht lohnt, sagen wir es.",
+        # Rechenbeispiele und Einordnung (W07, 24.09.2026)
+        "bsp_h": "Was ein Betrieb wie Ihrer im Monat zahlt",
+        "bsp_t": "Drei Beispiele, gerechnet mit denselben Sätzen wie die Liste oben: laufende Betreuung je Arbeitsplatz und überwachte Datensicherung, beim größeren Betrieb dazu ein betreuter Server. Einzelne Hilfe außerhalb der Betreuung kommt nur dazu, wenn Sie sie brauchen.",
+        "bsp_cap": "Rechenbeispiele als Richtwerte, netto zzgl. USt.",
+        "bsp_ab": "ab",
+        "bsp_spalte_betrieb": "Betrieb",
+        "bsp_spalte_monat": "je Monat",
+        "bsp_name": "{ap} Arbeitsplätze, ohne eigenen Server",
+        "bsp_name_server": "{ap} Arbeitsplätze mit einem Server",
+        "bsp_zeile": "{ap} × {preis} € Betreuung + {backup} € Datensicherung",
+        "bsp_server": " + {srv} € Server-Betreuung",
+        "bsp_fuss": "Ihre eigene Zahl rechnet der Kostenrechner aus denselben Sätzen — mit Ihren Arbeitsplätzen und Servern.",
+        "markt_h": "Wie sich das einordnet",
+        "markt_t": "Die Beispiele sind Richtwerte für den kleinsten Umfang, darum stehen sie mit „ab“. Wie viel Betreuung Ihr Betrieb wirklich braucht, zeigt sich erst nach einer kurzen Bestandsaufnahme; danach bekommen Sie ein schriftliches Angebot. Einzelne Hilfe ohne Vertrag kostet 95 € je Stunde, der Einstiegspreis von 29 € je Arbeitsplatz und Monat gilt in Österreich und Deutschland gleich.",
+        "ratgeber_t": "Diese Seite ist die Preisliste. Warum kleine Firmen für IT-Betreuung so unterschiedliche Angebote bekommen und worauf man beim Vergleich achten sollte, steht im Ratgeber.",
+        "ratgeber_link": "Ratgeber: Was kostet IT-Betreuung für kleine Firmen?",
     },
     # ── Kostenrechner (docs/SEO-AUSBAU-3.md, W1) ─────────────────────────────
     # Rechnet serverseitig aus ANGEBOT_GROUPS. Hier stehen nur Beschriftungen —
@@ -1263,6 +1284,8 @@ PACK = {
     "ways": {
         "wa": "WhatsApp",
         "wa_text": "Guten Tag, ich interessiere mich für ",
+        # Vorbelegung fuer alle WhatsApp-Knoepfe ohne eigene (W05, 24.09.2026).
+        "wa_kurz": "Hallo Florin, kurze IT-Frage: ",
         "call": "Anrufen",
         "callback": "Rückruf",
         "mail": "Schreiben",
@@ -1273,6 +1296,7 @@ PACK = {
         "t2": "Fernwartung in ganz AT und DE",
         "t3": "Ein fester Ansprechpartner",
         "t4": "IT-Betreuung",
+        "hilfe": "Einzelhilfe ohne Vertrag:",
         "t5": "Österreich und Deutschland",
         "t6": "Testseite gratis, ohne Bedingung",
     },
@@ -1352,6 +1376,10 @@ PACK = {
         "zeit_2": "Nachmittags (12 bis 17 Uhr)",
         "zeit_3": "Abends (ab 17 Uhr)",
         "zeit_4": "Egal, sobald es geht",
+        # Optionales Anliegen (W05, 24.09.2026); Schluessel wie views._ANLIEGEN.
+        "anliegen": "Worum geht es? (freiwillig)", "anliegen_leer": "Bitte wählen",
+        "anliegen_einzel": "Ein einzelnes Problem", "anliegen_einrichtung": "Etwas einrichten lassen",
+        "anliegen_betreuung": "Laufende Betreuung", "anliegen_web": "Webseite", "anliegen_notfall": "Notfall",
         "submit": "Rückruf anfordern",
         "close": "Schließen",
         "done_h": "Notiert",
@@ -1380,6 +1408,7 @@ PACK = {
             "technik": "Technik vor Ort",
             "koop": "Kooperation",
             "rueckruf": "Ihren Rückruf",
+            "einzelhilfe": "IT-Hilfe ohne Vertrag",
         },
         "h": "Was wir übernehmen",
         "sub": "Jede Leistung mit klarem Startpreis. Fragen Sie direkt im passenden Feld an – ein Satz genügt, wir melden uns innerhalb von 24 Stunden.",

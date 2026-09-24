@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% comment %}Uebersicht der Fachbeitraege (docs/AUSBAU-2026-08.md, P7).{% endcomment %}
-{% block titel %}Ratgeber: 15 Fachbeiträge zu EDV und IT | WVM-IT{% endblock %}
+{% block titel %}Ratgeber: 21 Fachbeiträge zu EDV und IT | WVM-IT{% endblock %}
 {% block beschreibung %}Antworten auf die Fragen, die Betriebe vor einer IT-Entscheidung stellen: Kosten, Datensicherung, WLAN, Sicherheit, Loxone und KNX. Jetzt nachlesen.{% endblock %}
-{% block og_titel %}Ratgeber: 15 Fachbeiträge zu EDV und IT{% endblock %}
+{% block og_titel %}Ratgeber: 21 Fachbeiträge zu EDV und IT{% endblock %}
 {% block og_beschreibung %}Antworten auf die Fragen, die Betriebe vor einer IT-Entscheidung stellen.{% endblock %}
-{% block tw_titel %}Ratgeber: 15 Fachbeiträge zu EDV und IT{% endblock %}
+{% block tw_titel %}Ratgeber: 21 Fachbeiträge zu EDV und IT{% endblock %}
 {% block tw_beschreibung %}Antworten auf die Fragen, die Betriebe vor einer IT-Entscheidung stellen.{% endblock %}
 
 {% block inhalt %}
@@ -19,7 +19,7 @@
     {% comment %}Die Zahl im ersten Satz ist die Zahl der Einträge in landing/beitraege.py
     und wird von ZahlenStimmenTest dagegen gehalten — sie stand seit dem 08.09.2026
     auf 15, während es längst 18 waren.{% endcomment %}
-    {% include 'antwort.html' with text="18 Fachbeiträge zu den Fragen, die uns Betriebe vor einer Entscheidung stellen — mit der Antwort jeweils gleich im ersten Absatz. Kein Beitrag ohne echte Frage dahinter, keine Zahl ohne Beleg." %}
+    {% include 'antwort.html' with text="21 Fachbeiträge zu den Fragen, die uns Betriebe vor einer Entscheidung stellen — mit der Antwort jeweils gleich im ersten Absatz. Kein Beitrag ohne echte Frage dahinter, keine Zahl ohne Beleg." %}
   </div>
 </header>
 

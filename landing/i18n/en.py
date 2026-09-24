@@ -10,6 +10,7 @@ from .regionen_en import REGIONEN
 from .branchen_en import BRANCHEN
 from .vergleiche_en import VERGLEICHE
 from .einrichten_en import EINRICHTEN, HUB as EINRICHTEN_HUB
+from .hilfe_en import HILFE
 
 PACK = {
     "seiten": SEITEN,
@@ -18,12 +19,13 @@ PACK = {
     "vergleiche": VERGLEICHE,
     "einrichten": EINRICHTEN,
     "einrichten_hub": EINRICHTEN_HUB,
+    "hilfe": HILFE,
     "meta": {
         "html_lang": "en",
         "locale": "en_US",
         "num_locale": "en-US",
-        "seo_title": "IT support from €29 a month | WVM-IT",
-        "seo_desc": "Your outsourced IT department in Austria and Germany: from €29 per workstation and month, support €95/hr, answer within 24 hours. Get in touch today.",
+        "seo_title": "IT support in Austria and Germany from €29/month | WVM-IT",
+        "seo_desc": "Remote IT support for businesses in Austria and Germany: from €29 per workstation a month. One-off help without a contract €95/hr. Get in touch today.",
         "slogan": "We connect people with information technology.",
         "firmen_desc": "WVM-IT connects people with information technology. From our base in Lenzing, Upper Austria, we look after companies and private clients with IT and digital services from a single source: workstations, networks and IT security, professional websites, hosting and SEO, AI automation, smart home and building automation, plus conference, video, audio and event technology. Day-to-day support runs mostly by remote maintenance across Austria and Germany; on-site work covers the area around Vöcklabruck, Lake Atter, Gmunden, Wels, Linz and Salzburg. Technology should be understandable, reliable and genuinely useful — which is why you get personal advice, clear communication and one named contact.",
         "og_image_alt_suffix": "IT, technology and digital for small businesses",
@@ -38,6 +40,8 @@ PACK = {
         "items": [
             {"q": "What does ongoing IT support cost for a business?",
              "a": "Ongoing IT support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. Individual help without a running contract is billed at €95 per hour, on-site work at €120 per hour plus travel. All figures are guide prices, net plus VAT; we quote the binding price after a short conversation."},
+            {"q": "Do you also help with a single problem, without a contract?",
+             "a": "Yes. Single IT problems — printer, e-mail, Wi-Fi, a slow PC — we fix without a contract by remote access for €95 per hour, usually the same day; on site €120 per hour plus travel. Complete tasks have a fixed price, such as a new workstation for €190. How it works is described on the page IT help without a contract."},
             {"q": "Does WVM-IT also look after businesses outside Austria?",
              "a": "Yes. Remote support, monitoring, backups, Microsoft 365, websites, SEO and Google Ads are handled across Austria and Germany — this work is independent of location, and the route to the client runs over a secured connection rather than the motorway. On-site work is arranged per project."},
             {"q": "We have nobody for IT in house. How does this work?",
@@ -564,12 +568,12 @@ PACK = {
     "vergleiche_seite": {
         "methode_h": "How we compare",
         "methode_t": "Four rules hold these pages together. First, we compare equivalent scope, not the cheapest option against the most expensive one — otherwise the same side always wins, and the comparison says nothing about your actual situation. Second, wherever a decision hangs on money, we calculate the total cost over three years rather than the purchase price alone, because ongoing costs for maintenance, power, downtime and replacement often add up to more over that period than the entry price by itself — a cheap purchase can turn out to be the more expensive choice over three years, and an expensive one the cheaper. One example makes this concrete: for server versus cloud, the three-year figure includes not just hardware and subscription but also power, an uninterruptible power supply, the time spent on updates and the risk of a total failure with no replacement device on hand — items a plain purchase-price comparison usually leaves out. Third, every comparison states explicitly when the other option wins, in its own block of equal size, not in a half-sentence at the end, because a page that only shows its own point of view is no longer a comparison but advertising. Fourth, no third-party prices appear here, because they change and an out-of-date figure about somebody else is worse than none — we point instead to what the vendor itself states publicly. The arithmetic is shown next to every figure, so you can follow it with your own numbers and recalculate it for your own business instead of having to take our word for it.",
-        "auswahl_h": "Why exactly these three",
-        "auswahl_t": "These are the three decisions most often still open in a first conversation, usually even before a specific provider comes up. They have one thing in common: they cannot be made sensibly without looking at the business in question — how many workstations there are, how much utilisation fluctuates, which software is a hard requirement, and how expensive an outage would genuinely be. That is why each page states the question the decision hangs on, rather than a blanket recommendation that would come out the same for every business. That holds explicitly even when the honest answer is that neither option is worthwhile for you right now and the existing setup will keep working for a good while yet — a comparison that cannot reach that conclusion would not be a decision aid, just a detour back to the same result every time. The three pages also connect with each other: choosing a server on site means backups need to be arranged again anyway, and switching to Google Workspace changes the question of whether an ongoing contract or hourly billing makes more sense. It is worth reading more than one of the three pages even if only one question feels urgent right now. If a comparison you would need is missing, write to us; we add it once the question comes up more often, with the same arithmetic and the same openness as the existing three pages.",
-        "titel": "Server or cloud? 3 IT decisions compared | WVM-IT",
-        "desc": "Support or hourly billing, server or cloud, Microsoft 365 or Google: the three comparisons that come before choosing a provider. Compare them now.",
+        "auswahl_h": "Why exactly these four",
+        "auswahl_t": "These are the four decisions most often still open before choosing a provider: the first three come up in almost every first conversation, and the fourth — whether an older PC is still worth upgrading — is the one people search for most. They have one thing in common: they cannot be made sensibly without looking at the business in question — how many workstations there are, how much utilisation fluctuates, which software is a hard requirement, and how expensive an outage would genuinely be. That is why each page states the question the decision hangs on, rather than a blanket recommendation that would come out the same for every business. That holds explicitly even when the honest answer is that neither option is worthwhile for you right now and the existing setup will keep working for a good while yet — a comparison that cannot reach that conclusion would not be a decision aid, just a detour back to the same result every time. The four pages also connect with each other: choosing a server on site means backups need to be arranged again anyway, and switching to Google Workspace changes the question of whether an ongoing contract or hourly billing makes more sense. It is worth reading more than one of the four pages even if only one question feels urgent right now. If a comparison you would need is missing, write to us; we add it once the question comes up more often, with the same arithmetic and the same openness as the existing four pages.",
+        "titel": "Server or cloud? 4 IT decisions compared | WVM-IT",
+        "desc": "Support or hourly billing, server or cloud, Microsoft 365 or Google, upgrade or replace a PC: four comparisons before choosing a provider.",
         "h1": "The decisions that come before choosing a provider",
-        "kurz": "Before anyone looks for an IT provider, a different question is usually on the table: support contract or hourly billing? Server on site or cloud? Microsoft 365 or Google Workspace? The arithmetic uses our own rates — 29 € per workstation and month for ongoing support, 95 € per hour without a contract — and for purchases it uses the total cost over 3 years rather than the purchase price. These pages set out the comparisons with the arithmetic — including the cases where the answer goes against our own offering. If you have landed here, you probably still have that underlying question ahead of you and have not chosen a provider yet — these pages are deliberately written to be neutral rather than as a lead-in to a quote, and answer a question that comes before any choice of provider. All three comparisons use the same price list as the rest of this website; we do not invent a second set of figures for them.",
+        "kurz": "Before anyone looks for an IT provider, a different question is usually on the table: support contract or hourly billing? Server on site or cloud? Microsoft 365 or Google Workspace? Upgrade the old PC or buy a new one? The arithmetic uses our own rates — 29 € per workstation and month for ongoing support, 95 € per hour without a contract — and for purchases it uses the total cost over 3 years rather than the purchase price. These pages set out the comparisons with the arithmetic — including the cases where the answer goes against our own offering. If you have landed here, you probably still have that underlying question ahead of you and have not chosen a provider yet — these pages are deliberately written to be neutral rather than as a lead-in to a quote, and answer a question that comes before any choice of provider. All four comparisons use the same price list as the rest of this website; we do not invent a second set of figures for them.",
         "intro": "These pages exist because a decision rarely starts with a provider, but with a more basic question before that: contract or hourly billing, your own server or the cloud, one system or another. Anyone who has not answered that question yet will not get a suitable quote from us or from any other provider, because price and scope diverge sharply depending on the answer — a quote for server support is no use to someone who actually wants to move to the cloud. Each of these pages therefore states explicitly when the other option is the right one, in its own section of equal size, not in a half-sentence at the end. A comparison that always leads to your own offering is not a comparison; it is advertising with a table. These pages can just as well end with neither of the two options presented being right for you, but a third solution, or no change at all to what already works today. That, too, is a useful result: a decision made with figures rather than a gut feeling stays right even if it ends up against working with us. If you read one of these pages hoping simply to have what you already planned confirmed, you will be disappointed on at least one point — and that is intentional. The value is not in the confirmation, but in the arithmetic you can repeat with your own numbers, even without talking to us.",
         "vergleiche_titel": "Comparisons",
         "tabelle_hinweis": "The table scrolls sideways.",
@@ -585,6 +589,7 @@ PACK = {
         "desc": "Encryption, server failure, hacked mailbox: what to do in the first 30 minutes — and what not to. In an emergency, call us right away.",
         "h1": "IT emergency: what to do in the first 30 minutes",
         "nav": "IT emergency",
+        "wa_text": "IT emergency: ",
         "kurz": "In an IT emergency the first minutes decide the damage. One rule applies in all four cases: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report. Then get help. We are reachable on working days from 9 to 18 on the number below and usually begin by remote maintenance within minutes — including if you are not a client of ours.",
         "eilt_h": "It is urgent — this way",
         "eilt_t": "Call rather than write. During an ongoing incident a phone call saves more time than any description by email.",
@@ -783,8 +788,8 @@ PACK = {
                           "t": "Ongoing support for businesses without their own IT department, from €29 per workstation and month."},
             "preis": {"h": "What would that cost?",
                       "t": "Enter workstations and servers, see the monthly and annual totals at once."},
-            "angebot": {"h": "Build a quote",
-                        "t": "Tap the services, get your guide price. In under a minute, no obligation."},
+            "hilfe": {"h": "Just one problem, no contract",
+                      "t": "Printer, e-mail, Wi-Fi, slow PC: remote help for €95 per hour, usually the same day."},
             "web": {"h": "We need a website",
                     "t": "From landing page to shop — built, hosted and maintained from one source."},
             "branche": {"h": "What does that mean for my industry?",
@@ -825,8 +830,8 @@ PACK = {
         "alle": "All articles",
     },
     "hub": {
-        "titel": "Services: IT, web and technology in Austria | WVM-IT",
-        "desc": "IT support from €29 a month, websites from €350, SEO from €149 a month, on-site technology — in Austria and Germany. Request a quote today.",
+        "titel": "IT services with open prices from €29/month | WVM-IT",
+        "desc": "IT support from €29 per workstation a month, help without a contract €95/hr, set-up from €190, websites from €350 — in Austria and Germany.",
         "h1": "What WVM-IT takes on for businesses",
         "kurz": "WVM-IT looks after the IT of small and mid-sized businesses in Austria and Germany and additionally covers everything that makes them visible: websites, SEO, Google Ads and automation. The focus is ongoing IT support from €29 per workstation and month, mostly delivered remotely. Building and event technology are added on site, per project. All eleven services run through the same contact and the same price list, whether it is a single workstation or a larger project.",
         "intro": "Eleven services, three areas – and one contact for all of them. What you find here is deliberately not a list of buzzwords: every service has its own page stating what is included, how it works and what it costs. If you are not sure where to start: IT and infrastructure fits when ongoing technology needs looking after – workstations, servers, backups, security. Visibility and web fits when customers should be able to find you online or a new site is needed. On-site technology fits as soon as something has to be wired, installed or calibrated. A collaboration usually starts the same way: with a short review of what already exists and an assessment of what can be handled remotely and what needs an on-site visit. Workstations, servers, email, updates and backups run almost always from a distance; cabling, hardware installation and on-site technology do not.",
@@ -863,7 +868,7 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "IT support cost: all prices from €29/month | WVM-IT",
-        "desc": "Every price in the open: IT support from €29 per workstation and month, support €95/hr, website from €350. Net plus VAT. Ask us today.",
+        "desc": "What IT support costs, in the open: from €29 per workstation a month, support €95/hr, with worked examples for 3, 5 and 10 workstations. AT and DE.",
         "h1": "What does it cost? All prices on one page",
         "kurz": "Ongoing IT support at WVM-IT costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. Individual help costs €95 per hour, on-site work €120 per hour plus travel. A website starts at €350, SEO support at €149 per month, Google Ads at €199 per month. All figures are guide prices, net plus VAT.",
         "intro": "\u201cPrice on request\u201d is convenient for the supplier and annoying for the customer. So everything that can sensibly be quantified is listed here – and where it cannot, the reason is given. The figures below come from the same source as our configurator and our quotes; there is no second price list.",
@@ -873,6 +878,22 @@ PACK = {
         "fair_1": "No minimum term beyond a quarter.",
         "fair_2": "No systems you cannot leave – accounts and data are yours.",
         "fair_3": "No recommendation that earns us more than it saves you. If something is not worth it, we say so.",
+        # Rechenbeispiele und Einordnung (W07, 24.09.2026)
+        "bsp_h": "What a business like yours pays per month",
+        "bsp_t": "Three examples, calculated with the same rates as the list above: ongoing support per workstation and monitored backups, plus a managed server for the larger business. One-off help outside the contract only comes on top if you need it.",
+        "bsp_cap": "Worked examples as guide values, net plus VAT",
+        "bsp_ab": "from",
+        "bsp_spalte_betrieb": "Business",
+        "bsp_spalte_monat": "per month",
+        "bsp_name": "{ap} workstations, no server of its own",
+        "bsp_name_server": "{ap} workstations with one server",
+        "bsp_zeile": "{ap} × €{preis} support + €{backup} backup",
+        "bsp_server": " + €{srv} server management",
+        "bsp_fuss": "The cost calculator works out your own figure from the same rates — with your workstations and servers.",
+        "markt_h": "How this compares",
+        "markt_t": "The examples are guide values for the smallest scope, which is why they read “from”. How much support your business really needs only becomes clear after a short review of what is already in place; after that you receive a written quote. One-off help without a contract costs €95 per hour, and the starting price of €29 per workstation and month applies equally in Austria and Germany.",
+        "ratgeber_t": "This page is the price list. Why small businesses get such different quotes for IT support, and what to watch for when comparing, is explained in our guide (in German).",
+        "ratgeber_link": "Guide: what does IT support cost for small businesses?",
     },
     "rechner": {
         "titel": "Calculate IT costs: your monthly price in 2 minutes",
@@ -1224,6 +1245,8 @@ PACK = {
     "ways": {
         "wa": "WhatsApp",
         "wa_text": "Hello, I am interested in ",
+        # Vorbelegung fuer alle WhatsApp-Knoepfe ohne eigene (W05, 24.09.2026).
+        "wa_kurz": "Hello Florin, a quick IT question: ",
         "call": "Call us",
         "callback": "Call me back",
         "mail": "Write",
@@ -1234,6 +1257,7 @@ PACK = {
         "t2": "Remote support across AT and DE",
         "t3": "One person you always talk to",
         "t4": "IT support",
+        "hilfe": "One-off help, no contract:",
         "t5": "Austria and Germany",
         "t6": "Free sample site, no strings",
     },
@@ -1270,6 +1294,10 @@ PACK = {
         "zeit_2": "Afternoon (12 pm to 5 pm)",
         "zeit_3": "Evening (after 5 pm)",
         "zeit_4": "Any time, as soon as possible",
+        # Optionales Anliegen (W05, 24.09.2026); Schluessel wie views._ANLIEGEN.
+        "anliegen": "What is it about? (optional)", "anliegen_leer": "Please choose",
+        "anliegen_einzel": "A single problem", "anliegen_einrichtung": "Having something set up",
+        "anliegen_betreuung": "Ongoing support", "anliegen_web": "Website", "anliegen_notfall": "Emergency",
         "submit": "Request a call",
         "close": "Close",
         "done_h": "Noted",
@@ -1298,6 +1326,7 @@ PACK = {
             "technik": "on-site technology",
             "koop": "a partnership",
             "rueckruf": "your call-back",
+            "einzelhilfe": "IT help without a contract",
         },
         "h": "What we take on",
         "sub": "Every service with a clear starting price. Ask directly in the matching field – one sentence is enough, we reply within 24 hours.",

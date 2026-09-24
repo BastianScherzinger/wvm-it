@@ -433,6 +433,8 @@ EINRICHTEN = {
 
         "faq_h": "Häufige Fragen",
         "faq": [
+            {"q": "Brauchen wir überhaupt einen eigenen Server?",
+             "a": "Das entscheidet die Software, nicht die Zahl der Arbeitsplätze. Sobald eine Warenwirtschaft, eine Branchenlösung oder eine Datenbank eine zentrale Installation verlangt, brauchen Sie einen Server, auch mit fünf Leuten. Wird nur mit Office, Mail und Dateien gearbeitet, ist die Cloud in aller Regel günstiger und wartungsärmer. Ausführlich steht das im Beitrag „Wie viele Arbeitsplätze braucht ein eigener Server?“ und im Vergleich Server oder Cloud."},
             {"q": "Wie lange dauert die Einrichtung?",
              "a": "Ein Dateiserver für einen kleinen Betrieb steht an einem Tag. Kommen "
                   "Branchensoftware, Terminaldienste oder ein Umzug bestehender Daten "
@@ -554,7 +556,8 @@ EINRICHTEN = {
                  "beim Auspacken gemacht hat, und irgendwann hat jemand eine "
                  "Weiterleitung eingerichtet, damit die Buchhaltung von zu Hause "
                  "arbeiten kann. Diese eine Weiterleitung ist dann jahrelang offen — "
-                 "und niemand weiß mehr, wofür sie war.",
+                 "und niemand weiß mehr, wofür sie war."
+                 "</p><p class='sp-intro'>Firewall und VPN sind zwei Teile derselben Tür: Die Firewall entscheidet, was überhaupt ins Firmennetz darf, das VPN ist der verschlüsselte Weg, auf dem berechtigte Personen von außen hineinkommen. Gebraucht wird das in zwei Fällen. Der häufigere ist das Homeoffice: Mitarbeiter greifen von zu Hause oder unterwegs auf Dateien, Warenwirtschaft oder einen Server im Büro zu — dafür ist der Festpreis gemacht. Der seltenere ist die Verbindung zweier Standorte, etwa Büro und Lager; das ist ein eigener Auftrag, weil er von den Geräten an beiden Enden abhängt. Was ein VPN technisch ist, steht im <a href='/wissen/vpn/'>Glossar</a>, wie man Heimarbeitsplätze sicher anbindet, im <a href='/aktuelles/homeoffice-sicher-anbinden/'>Beitrag zum Homeoffice</a>.",
 
         "leistungen_h": "Was für 690 € enthalten ist",
         "leistungen": [
@@ -597,6 +600,12 @@ EINRICHTEN = {
 
         "faq_h": "Häufige Fragen",
         "faq": [
+            {"q": "Was ist der Unterschied zwischen Firewall und VPN?",
+             "a": "Die Firewall regelt, was ins Firmennetz hinein und aus ihm heraus darf; das VPN ist ein verschlüsselter Zugang, über den berechtigte Personen von außen hineinkommen. Das eine ohne das andere ist nur eine halbe Lösung: Ein VPN ohne saubere Firewall-Regeln öffnet zu viel, eine Firewall ohne VPN zwingt zu offenen Weiterleitungen. Für 690 € richten wir beides zusammen ein."},
+            {"q": "Brauchen Mitarbeiter im Homeoffice ein VPN?",
+             "a": "Wenn sie auf etwas im Büro zugreifen — Netzlaufwerk, Warenwirtschaft, einen Server —, ja. Arbeitet der Betrieb nur mit Cloud-Diensten wie Microsoft 365, ist kein VPN nötig; dann schützt die Zwei-Faktor-Anmeldung den Zugang. Welcher Fall bei Ihnen vorliegt, klären wir in der Bestandsaufnahme."},
+            {"q": "Können wir zwei Standorte per VPN verbinden?",
+             "a": "Ja, aber das ist nicht Teil der 690 €. Eine Standortverbindung hängt an den Geräten an beiden Enden und an den Leitungen dort; was sie kostet, sagen wir nach einem Blick auf beide Seiten und vor jedem Auftrag."},
             {"q": "Wir haben doch schon eine Firewall im Router.",
              "a": "Die haben Sie, und sie tut das Nötigste. Der Unterschied liegt nicht "
                   "in der Existenz, sondern in den Regeln: getrennte Netze, "
@@ -716,7 +725,7 @@ EINRICHTEN = {
 
 # ── Texte des Hubs /einrichten/ ─────────────────────────────────────────────
 HUB = {
-    "titel": "IT einrichten lassen: Festpreise ab 190 € | WVM-IT",
+    "titel": "PC und IT einrichten lassen: Festpreis ab 190 € | WVM-IT",
     "desc": "Arbeitsplatz, PC-Tausch, Microsoft 365, Server, Netzwerk: einzelne "
             "Aufgaben zum Festpreis, ohne Vertrag. Ab 190 €, meist per Fernwartung. "
             "Jetzt anfragen.",

@@ -19,8 +19,8 @@ SEITEN = {
     # ══ EDV & IT ══════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "EDV & IT-Betreuung",
-        "titel": "EDV- & IT-Betreuung ab 29 €/Monat | WVM-IT",
-        "desc": "Externe IT-Abteilung für kleine und mittlere Betriebe: ab 29 €/Monat je Arbeitsplatz, Support ab 95 €/Std. Jetzt unverbindlich anfragen.",
+        "titel": "EDV-Betreuung Österreich & Deutschland ab 29 €/Mt | WVM-IT",
+        "desc": "Externe IT-Abteilung für kleine Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std. per Fernwartung. Jetzt anfragen.",
         "h1": "EDV- und IT-Betreuung für Betriebe ohne eigene IT-Abteilung",
         "kurz": "WVM-IT übernimmt die laufende EDV kleiner und mittlerer Betriebe in Österreich und Deutschland: Arbeitsplätze, Server, E-Mail, Drucker, Updates und Datensicherung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag ab 95 € je Stunde. Wir melden uns innerhalb von 24 Stunden und arbeiten überwiegend per Fernwartung — der Weg zu Ihnen führt über eine gesicherte Verbindung statt über die Autobahn.",
         "intro": "In den meisten Betrieben unter fünfzig Mitarbeitern gibt es keine IT-Abteilung. Es gibt jemanden, der sich „ein bisschen auskennt“ — und der eigentlich etwas anderes zu tun hätte. Solange nichts passiert, funktioniert das. Es fällt erst auf, wenn der Drucker im Büro streikt, während gleichzeitig die Angebote raus müssen, oder wenn nach einem Windows-Update ein Programm nicht mehr startet, das der ganze Betrieb braucht. Genau diese Lücke schließen wir: Sie bekommen eine Nummer, eine E-Mail-Adresse und einen festen Ansprechpartner, der weiß, wie Ihre Technik aufgebaut ist.",

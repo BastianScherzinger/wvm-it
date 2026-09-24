@@ -296,9 +296,12 @@ def _startpakete(lang):
 # beiden, die nicht zu einer Leistungsseite führen (Notfall und Preis).
 FINDER = [
     {"id": "notfall", "icon": "bolt", "route": "notfall", "dringend": True},
+    # Seit 24.09.2026 der zweite Weg: ein einzelnes Problem, ohne Vertrag. Er
+    # ersetzt den Konfigurator, der weiter in Kopfzeile und Fusszeile steht —
+    # sechs Karten bleiben sechs, das Raster bleibt, wie es gemessen ist (BF26).
+    {"id": "hilfe", "icon": "phone", "route": "it_hilfe"},
     {"id": "betreuung", "icon": "care", "route": "leistung", "slug": "edv-it-betreuung"},
     {"id": "preis", "icon": "gauge", "route": "rechner"},
-    {"id": "angebot", "icon": "check", "route": "angebot"},
     {"id": "web", "icon": "web", "route": "leistung", "slug": "webseite-erstellen"},
     {"id": "branche", "icon": "consulting", "route": "branchen"},
 ]
@@ -538,6 +541,42 @@ def _it_stufen():
         mtl = s["ap"] * ap + s["srv"] * srv + (backup if s["backup"] else 0)
         out.append(dict(s, mtl=mtl, mtl_anzeige=_eur(mtl)))
     return out
+
+
+# ── Rechenbeispiele auf /kosten/ (W07, 24.09.2026) ───────────────────────────
+# „it betreuung kosten" ist die stärkste Kaufsuche der Seite (Search Console,
+# 90 Tage bis 21.09.2026), /kosten/ stand dafür auf Position 84–94. Was fehlte,
+# war die Antwort auf die eigentliche Frage: „was zahlt ein Betrieb wie meiner?"
+# Drei Größen, jede Zeile gerechnet aus ANGEBOT_GROUPS, keine getippte Summe.
+_KOSTEN_BEISPIELE = [
+    {"ap": 3, "srv": 0},
+    {"ap": 5, "srv": 0},
+    {"ap": 10, "srv": 1},
+]
+
+def _kosten_beispiele(lang):
+    """Die drei Rechenbeispiele mit fertiger Zeile in der aktiven Sprache."""
+    ks = i18n.get_pack(lang).get("kosten_seite", {})
+    p = _ANGEBOT_INDEX
+    ap = int(p["it_betreuung"]["mtl"])
+    srv = int(p["server_care"]["mtl"])
+    backup = int(p["backup"]["mtl"])
+    raus = []
+    for b in _KOSTEN_BEISPIELE:
+        mtl = b["ap"] * ap + b["srv"] * srv + backup
+        zeile = ks.get("bsp_zeile", "").format(ap=b["ap"], preis=ap, backup=backup)
+        if b["srv"]:
+            zeile += ks.get("bsp_server", "").format(srv=srv)
+        raus.append({"ap": b["ap"], "srv": b["srv"], "mtl": mtl,
+                     "name": ks.get("bsp_name_server" if b["srv"] else "bsp_name", "")
+                     .format(ap=b["ap"]),
+                     "zeile": zeile, "summe": _eur(mtl)})
+    return raus
+
+
+def _kosten_zahlen_fuer_pruefung():
+    """Die Summen der Rechenbeispiele (ab-Werte, gerechnet aus dem Katalog)."""
+    return {b["mtl"] for b in _kosten_beispiele("de")}
 
 
 def _it_stufen_zahlen_fuer_pruefung():
@@ -2055,6 +2094,9 @@ def index(request):
         "preise_item": _itempreise(lang),
         "probleme": _probleme(lang),
         "finder": _finder(lang),
+        # Stundensatz der Einzelhilfe fuers Vertrauensband, ohne „ab" (24.09.2026).
+        "hilfe_preis": _festpreis_label(_ANGEBOT_INDEX[_HILFE_STUNDE],
+                                        i18n.get_pack(lang).get("catalog_words", {})),
         # V4: Die Startseite ist die stärkste Seite der Domain. Was von hier
         # verlinkt wird, bekommt Gewicht — deshalb stehen hier die beiden
         # meistgesuchten Beiträge und die drei Werkzeuge, nicht ein
@@ -2133,6 +2175,9 @@ def _seiten_pfade():
     # maximaler Dringlichkeit gesucht, und sie ist der einzige Einstieg fuer
     # Menschen mit sofortigem Bedarf.
     pfade += [("/it-notfall/", "0.8", "monthly", True)]
+    # IT-Hilfe ohne Vertrag (24.09.2026): die Zielseite fuer Kleinauftraege,
+    # deshalb dieselbe Prioritaet wie der Einrichtungs-Hub.
+    pfade += [("/it-hilfe/", "0.9", "monthly", True)]
     pfade += [("/it-sicherheit-test/", "0.7", "monthly", True)]
     # Einrichtungen: hohe Prioritaet, weil sie die einzige Antwort auf eine
     # Suchabsicht sind, die es bis zum 08.09.2026 auf dieser Website gar nicht
@@ -2873,9 +2918,104 @@ def notfall(request):
         anfrage_ok = ""
     return render(request, "notfall.html", {
         "c": c, "nf": nf, "anfrage_ok": anfrage_ok,
+        "wa_text": nf.get("wa_text", ""),
         "preis_stand": _preis_stand(lang),
         "regionen_liste": [_region_daten(r, lang) for r in regionen.REGIONEN],
         "structured_data": json.dumps(graph, ensure_ascii=False, separators=(",", ":")),
+    })
+
+
+# ── IT-Hilfe ohne Vertrag (24.09.2026) ───────────────────────────────────────
+# Die Search Console der 90 Tage bis zum 21.09.2026 kennt genau einen Klick über
+# eine Kleinauftrag-Suche, und der landete auf /einrichten/arbeitsplatz/ — auf
+# einer Seite mit Festpreis ohne Vertrag. Für das einzelne Problem (Drucker,
+# E-Mail, WLAN, langsamer PC) gab es keine Zielseite, obwohl der Preis seit dem
+# Relaunch im Katalog steht. Die Seite sitzt neben /it-notfall/: Notfall heißt
+# „es brennt, die ersten 30 Minuten", IT-Hilfe heißt „etwas geht nicht, wer
+# macht das heute". Beide verweisen aufeinander.
+#
+# Jede Zahl kommt aus ANGEBOT_GROUPS: Stundensätze aus `it_support` und
+# `vor_ort`, Festpreise über die Einrichtungsseite, auf die eine Karte zeigt.
+_HILFE_STUNDE = "it_support"
+_HILFE_VOR_ORT = "vor_ort"
+
+
+def _hilfe_faelle(hilfe, lang):
+    """Die Fallkarten mit Ziel-URL und Preis-Label.
+
+    `ziel` im Sprachpaket ist `einrichtung:<slug>` oder `beitrag:<slug>`. Eine
+    Einrichtung bringt ihren Festpreis mit; alles andere trägt den Stundensatz
+    der Fernwartung — derselbe Posten, nach dem die Hilfe abgerechnet wird."""
+    words = i18n.get_pack(lang).get("catalog_words", {})
+    stunde = _festpreis_label(_ANGEBOT_INDEX[_HILFE_STUNDE], words)
+    raus = []
+    for fall in hilfe.get("faelle", []):
+        art, _, slug = (fall.get("ziel") or "").partition(":")
+        url, preis = "", f"{stunde} {hilfe.get('preis_std', '')}".strip()
+        if art == "einrichtung" and slug in einrichtungen.NACH_SLUG:
+            e = einrichtungen.NACH_SLUG[slug]
+            url = reverse("einrichtung", kwargs={"slug": slug})
+            preis = _festpreis_label(_ANGEBOT_INDEX.get(e["preis"], {}), words)
+        elif art == "beitrag" and slug in beitraege.NACH_SLUG:
+            # Die Beiträge gibt es nur auf Deutsch, ohne Sprachpräfix.
+            url = f"/aktuelles/{slug}/"
+        raus.append(dict(fall, url=url, preis=preis))
+    return raus
+
+
+def _hilfe_karte(lang):
+    """Der Verweis auf /it-hilfe/ am Ende eines Problem-Ratgebers (W08)."""
+    pack = i18n.get_pack(lang)
+    hilfe = pack.get("hilfe", {})
+    stunde = _festpreis_label(_ANGEBOT_INDEX[_HILFE_STUNDE], pack.get("catalog_words", {}))
+    return {"url": reverse("it_hilfe"), "label": hilfe.get("h1", "").split(" — ")[0],
+            "nav": hilfe.get("nav", ""), "desc": hilfe.get("faelle_t", ""),
+            "preis": f"{stunde} {hilfe.get('preis_std', '')}".strip()}
+
+
+def it_hilfe(request):
+    """/it-hilfe/ — ein einzelnes IT-Problem, ohne Vertrag, per Fernwartung."""
+    c = _content()
+    lang = get_language()
+    pack = i18n.get_pack(lang)
+    hilfe = pack.get("hilfe", {})
+    base = (c.get("wvm_url") or "").rstrip("/")
+    pfad = reverse("it_hilfe")
+
+    def _stundenangebot(iid):
+        posten = _ANGEBOT_INDEX[iid]
+        name = pack.get("catalog_items", {}).get(iid, {}).get("name", posten["name"])
+        return {"@type": "Offer", "name": name, "priceCurrency": "EUR",
+                "price": str(posten["std"]), "url": f"{base}{pfad}",
+                "availability": "https://schema.org/InStock",
+                "priceSpecification": {
+                    "@type": "UnitPriceSpecification", "price": str(posten["std"]),
+                    "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
+                    "unitCode": "HUR", "unitText": "Stunde"}}
+
+    service = {
+        "@type": "Service", "@id": f"{base}{pfad}#service",
+        "name": hilfe.get("h1", ""), "description": hilfe.get("kurz", ""),
+        "serviceType": "IT-Support per Fernwartung",
+        "provider": {"@id": f"{base}/#business"},
+        "areaServed": [{"@type": "Country", "name": "Österreich"},
+                       {"@type": "Country", "name": "Deutschland"}],
+        "availableChannel": {"@type": "ServiceChannel",
+                             "servicePhone": c.get("telefon", ""),
+                             "serviceUrl": f"{base}{pfad}"},
+        "offers": [_stundenangebot(_HILFE_STUNDE), _stundenangebot(_HILFE_VOR_ORT)],
+    }
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
+    return render(request, "it_hilfe.html", {
+        "c": c, "hilfe": hilfe, "anfrage_ok": anfrage_ok,
+        "faelle": _hilfe_faelle(hilfe, lang),
+        "wa_text": hilfe.get("wa_text", ""),
+        "preis_stand": _preis_stand(lang),
+        "structured_data": _seiten_schema(
+            c, lang, service=service, faq=hilfe.get("faq") or [], faq_id=pfad,
+            breadcrumb=_breadcrumb(base, [(hilfe.get("nav", "IT-Hilfe"), pfad)])),
     })
 
 # ── Einrichtungen (docs/PLAN-HARDWARE-2026-09-08.md) ─────────────────────────
@@ -3137,6 +3277,7 @@ def beitrag_seite(request, slug):
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag,
         "einrichtung": _einrichtung_verweis(eintrag.get("einrichtung"), "de"),
+        "hilfe_karte": _hilfe_karte("de") if eintrag.get("hilfe") else None,
         "thema": _leistung_daten(thema, "de") if thema else None,
         # V2: zuerst die Beiträge zum selben Thema, danach mit den neuesten
         # aufgefüllt. Vorher standen hier immer dieselben drei — die Beiträge
@@ -3258,6 +3399,7 @@ def kosten(request):
     base = (c.get("wvm_url") or "").rstrip("/")
     return render(request, "kosten.html", {
         "c": c, "ks": ks,
+        "beispiele": _kosten_beispiele(lang),
         "angebot_groups": _localized_groups(lang),
         "preis_stand": _preis_stand(lang),
         "leistungen": _alle_leistungen(lang),
@@ -3796,6 +3938,33 @@ def _llms_beitraege(base):
     return zeilen
 
 
+def _llms_einzelhilfe_satz():
+    """Der zitierfaehige Satz zur Einzelhilfe (W10, 24.09.2026) — beide Zahlen
+    aus ANGEBOT_GROUPS, derselbe Wortlaut in llms.txt und llms-full.txt."""
+    std = _ANGEBOT_INDEX[_HILFE_STUNDE]["std"]
+    vor_ort = _ANGEBOT_INDEX[_HILFE_VOR_ORT]["std"]
+    return (f"Einzelne IT-Probleme (Drucker, E-Mail und Outlook, WLAN, langsamer PC, "
+            f"Microsoft 365) löst WVM-IT ohne Vertrag per Fernwartung für {std} € je "
+            f"Stunde, meist am selben Tag, in ganz Österreich und Deutschland; vor Ort "
+            f"{vor_ort} € je Stunde zuzüglich Anfahrt.")
+
+
+def _llms_festpreise(base):
+    """Die Festpreise des Einrichtungs-Silos als Liste, Preis aus dem Katalog.
+    Einrichtungen ohne Festpreis (Server, Loxone) fehlen hier mit Absicht."""
+    words = i18n.get_pack("de").get("catalog_words", {})
+    texte = i18n.get_pack("de").get("einrichten", {})
+    raus = []
+    for e in einrichtungen.EINRICHTUNGEN:
+        posten = _ANGEBOT_INDEX.get(e["preis"], {})
+        if not posten.get("once"):
+            continue
+        name = texte.get(e["slug"], {}).get("nav", e["slug"])
+        raus.append(f"- [{name}]({base}/einrichten/{e['slug']}/): Festpreis "
+                    f"{_festpreis_label(posten, words)}, ohne Vertrag.")
+    return raus
+
+
 @_maschinenantwort(180)
 def llms_txt(request):
     """/llms.txt , kompakte Klartext-Fassung für KI-Antwortmaschinen (GEO).
@@ -3813,7 +3982,8 @@ def llms_txt(request):
     zeilen = [_llms_kopf(c, base), "\n## Seiten"]
     zeilen += [
         f"- [Startseite]({base}/): Überblick, Kontaktwege und die häufigsten Fragen.",
-        f"- [Alle Leistungen]({base}/leistungen/): Einstieg in die elf Leistungsseiten.",
+        f"- [Alle Leistungen]({base}/leistungen/): Einstieg in die "
+        f"{len(leistungen.LEISTUNGEN)} Leistungsseiten.",
         f"- [Preise]({base}/kosten/): vollständige Preisliste mit Stand-Datum.",
         f"- [Kostenrechner]({base}/kosten/rechner/): Arbeitsplätze, Server und Datensicherung "
         "eingeben, Monats- und Jahressumme sofort sehen. Rechnet aus derselben Preisliste.",
@@ -3823,9 +3993,10 @@ def llms_txt(request):
         f"- [Branchen]({base}/branchen/): was in Kanzleien, Handwerk, Praxen, Hotellerie, "
         "Produktion und Vereinen technisch anders ist.",
         f"- [Vergleiche]({base}/vergleich/): Betreuung oder Stunden, Server oder Cloud, "
-        "Microsoft 365 oder Google Workspace — mit Rechenweg.",
+        "Microsoft 365 oder Google Workspace, PC aufrüsten oder neu kaufen — mit Rechenweg.",
         f"- [IT-Notfall]({base}/it-notfall/): was in den ersten 30 Minuten zu tun ist — "
         "Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Gerät.",
+        f"- [IT-Hilfe ohne Vertrag]({base}/it-hilfe/): {_llms_einzelhilfe_satz()}",
         f"- [IT-Sicherheits-Selbsttest]({base}/it-sicherheit-test/): zehn Fragen, Ergebnis "
         "sofort, ohne E-Mail-Abfrage und ohne Speicherung.",
         f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
@@ -3838,6 +4009,9 @@ def llms_txt(request):
     ]
     zeilen += _llms_seiten(base, "de")
     zeilen += [
+        "\n## Einzelhilfe ohne Vertrag",
+        f"- {_llms_einzelhilfe_satz()} Seite: {base}/it-hilfe/",
+        *_llms_festpreise(base),
         "\n## Preise (Richtpreise, netto zzgl. USt.)",
         "- IT-Betreuung: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, Datensicherung ab 49 €/Monat.",
         "- Support: 95 €/Stunde per Fernwartung, 120 €/Stunde vor Ort zzgl. Anfahrt.",
@@ -3898,8 +4072,13 @@ def llms_full_txt(request):
         Stelle: In llms.txt sah es richtig aus, im JSON-LD stand weiter
         `avocatur&#259;`. Die Quellen tragen jetzt echte Zeichen, geprueft von
         `EntitiesInDenSprachpaketenTest`.
+
+        Seit dem 24.09.2026 fallen auch Auszeichnungen weg: Einige Absätze
+        tragen einen Link im Text (Glossar, Einrichtungen); in der Klartext-
+        Fassung bleibt davon nur der Linktext.
         """
-        return " ".join((wert or "").split())
+        ohne = re.sub(r"</p>\s*<p[^>]*>", " ", wert or "")
+        return " ".join(re.sub(r"<[^>]+>", "", ohne).split())
 
     for eintrag in leistungen.LEISTUNGEN:
         s = texte.get(eintrag["slug"], {})
@@ -3953,6 +4132,21 @@ def llms_full_txt(request):
         aus += [f"{i}. {sauber(z)}" for i, z in enumerate(fall.get("schritte", []), start=1)]
         aus.append(f"\n**{sauber(nf.get('nicht_h'))}**")
         aus += [f"- {sauber(z)}" for z in fall.get("nicht", [])]
+
+    # Einzelhilfe ohne Vertrag (W10, 24.09.2026): die Antwort auf „wer hilft mir
+    # einmal, ohne Vertrag, und was kostet das" — mit Fällen, Ablauf und Fragen.
+    hf = pack.get("hilfe", {})
+    aus.append("\n\n## " + sauber(hf.get("h1")))
+    aus.append(f"URL: {base}/it-hilfe/")
+    aus.append(f"\n{sauber(hf.get('kurz'))}")
+    aus.append(f"\n{_llms_einzelhilfe_satz()}")
+    aus += [f"- {sauber(f.get('h'))}: {sauber(f.get('t'))}" for f in hf.get("faelle", [])]
+    aus.append(f"\n**{sauber(hf.get('ablauf_h'))}**")
+    aus += [f"{i}. {sauber(z)}" for i, z in enumerate(hf.get("ablauf", []), start=1)]
+    aus.append(f"\n**{sauber(hf.get('preise_h'))}**\n{sauber(hf.get('preise_t'))}")
+    aus += _llms_festpreise(base)
+    for f in hf.get("faq", []):
+        aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
 
     # Vergleiche: das Format, das Antwortmaschinen am häufigsten zitieren. In der
     # Langfassung steht die Tabelle als Aufzählung — eine HTML-Tabelle ist für ein
@@ -4083,7 +4277,7 @@ def security_txt(request):
 
 SITEMAP_KLASSEN = [
     ("kern", ("/", "/leistungen/", "/kosten/", "/kosten/rechner/", "/referenzen/",
-              "/kontakt/", "/angebot/", "/ueber-uns/", "/it-notfall/",
+              "/kontakt/", "/angebot/", "/ueber-uns/", "/it-notfall/", "/it-hilfe/",
               "/it-sicherheit-test/", "/impressum/", "/datenschutz/", "/agb/",
               "/barrierefreiheit/")),
     ("leistungen", ("/leistungen/",)),
@@ -4320,6 +4514,23 @@ _ANFRAGE_QUELLEN = {
     "technik": "Technik vor Ort",
     "koop": "Kooperation",
     "rueckruf": "Rückruf",
+    "einzelhilfe": "IT-Hilfe ohne Vertrag",
+}
+
+# Quellen, deren Formular nicht auf der Startseite steht, sondern nur auf der
+# eigenen Seite. `pruefe_seite` verlangt sonst jede Quelle auf der Startseite
+# und prueft diese stattdessen auf ihrer Heimatseite (24.09.2026).
+_QUELLE_AUF_EIGENER_SEITE = {"einzelhilfe": "/it-hilfe/"}
+
+# Worum es beim Rueckruf geht (W05, 24.09.2026). Optional und nur aus dieser
+# Liste: Ein freies Feld waere eine weitere Stelle, an der beliebiger Text in
+# Betreff-nahe Zeilen kommt (FO06). Ein unbekannter Wert wird verworfen.
+_ANLIEGEN = {
+    "einzel": "Einzelnes Problem, ohne Vertrag",
+    "einrichtung": "Einrichtung zum Festpreis",
+    "betreuung": "Laufende Betreuung",
+    "web": "Webseite",
+    "notfall": "Notfall",
 }
 
 
@@ -4392,6 +4603,8 @@ def leistung_anfrage(request):
     text = (request.POST.get("text") or "").strip()[:1200]
     name = (request.POST.get("name") or "").strip()[:80]
     zeit = (request.POST.get("zeit") or "").strip()[:80]   # nur beim Rückruf gesetzt
+    anliegen = (request.POST.get("anliegen") or "").strip().lower()
+    anliegen = _ANLIEGEN.get(anliegen, "") and anliegen
     lang = i18n.norm_lang(get_language())
 
     empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
@@ -4408,6 +4621,7 @@ def leistung_anfrage(request):
         f"Thema:   {thema}\nSeite:   {herkunft or '-'}\n"
         f"Name:    {name or '-'}\nKontakt: {kontakt}\n"
         f"{'Zeit:    ' + zeit + chr(10) if zeit else ''}"
+        f"{'Anliegen: ' + _ANLIEGEN[anliegen] + chr(10) if anliegen else ''}"
         f"Sprache: {lang}\n\n"
         f"Nachricht:\n{text or '-'}\n"
     )
@@ -4422,11 +4636,15 @@ def leistung_anfrage(request):
     # — sie lebte ausschließlich in der E-Mail.
     _anfrage_sichern(quelle=quelle, thema=thema, herkunft=herkunft, name=name,
                      kontakt=kontakt, rueckruf=zeit, lang=lang, text=text,
+                     anliegen=anliegen,
                      werbung="ja" if werbung else "nein",
                      werbung_ip=_client_ip(request) if werbung else "")
     if werbung:
         messung.zaehle("werbeeinwilligung", quelle)
     messung.zaehle("anfrage", quelle)
+    if anliegen:
+        # Nur der Schluessel aus _ANLIEGEN, ohne Kennung — wie jede Zaehlung hier.
+        messung.zaehle("anliegen", anliegen)
     _send_mail_logged(betreff, body, from_email, [empf], tag="LEISTUNG",
                       antwort_an=kontakt if _ist_email(kontakt) else None)
 

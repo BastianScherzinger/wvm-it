@@ -69,8 +69,8 @@ REGIONEN = {
     "gmunden": {
         "anfrage_h": "Solicitați asistență IT în Gmunden",
         "nav": "Gmunden",
-        "titel": "Servicii IT Gmunden — asistență IT la lacul Traun | WVM-IT",
-        "desc": "Furnizor IT pentru firme din Gmunden și de la lacul Traun: asistență IT, rețele, securitate, la 22 km de Lenzing. Solicitați o ofertă.",
+        "titel": "Asistență IT Gmunden, lacul Traun, de la 29 €/lună | WVM-IT",
+        "desc": "Asistență IT pentru firme din Gmunden, la 22 km de Lenzing: de la 29 €/lună pe stație, la distanță 95 €/oră, la fața locului 120 €/oră.",
         "h1": "Servicii IT și asistență în Gmunden",
         "kurz": "WVM-IT se ocupă de firme din Gmunden și de la lacul Traun: stații de lucru, servere, rețea, e-mail și copii de siguranță. De la sediul nostru din Lenzing sunt 22 de kilometri, circa 25 de minute. Activitatea curentă se desfășoară prin mentenanță la distanță, iar la fața locului venim pentru tot ce necesită prezență fizică.",
         "intro": "Gmunden trăiește dintr-un amestec solicitant pentru IT: producție cu tradiție îndelungată, comerț în centrul vechi, turism la lac și o pondere în creștere a firmelor de servicii. O manufactură de ceramică, un hotel și un cabinet de contabilitate au nevoi foarte diferite — ceea ce le unește este mărimea: prea mici pentru un departament IT propriu, prea mari pentru a aștepta pur și simplu în caz de avarie.",
@@ -98,8 +98,8 @@ REGIONEN = {
     "bad-ischl": {
         "anfrage_h": "Solicitați tehnică și IT în Bad Ischl",
         "nav": "Bad Ischl",
-        "titel": "IT și tehnică de evenimente Bad Ischl | WVM-IT",
-        "desc": "Asistență IT, tehnică de conferință și de evenimente pentru Bad Ischl și Salzkammergut, la 38 km de Lenzing. Solicitați o ofertă.",
+        "titel": "Servicii IT Bad Ischl: IT și tehnică de evenimente | WVM-IT",
+        "desc": "Asistență IT de la 29 €/lună, tehnică de conferință și evenimente pentru Bad Ischl și Salzkammergut, la 38 km de Lenzing. La fața locului 120 €/oră.",
         "h1": "IT, tehnică de conferință și de evenimente în Bad Ischl",
         "kurz": "WVM-IT se ocupă de firme din Salzkammergut și dotează spații cu tehnică de conferință, sunet și prezentare. De la Lenzing sunt 38 de kilometri, circa 40 de minute. Pe lângă asistența IT curentă prin mentenanță la distanță, accentul aici cade pe tehnica pentru evenimente, conferințe și seminarii.",
         "intro": "Bad Ischl este oraș balnear și de evenimente. Între hoteluri, restaurante, comerț și unități medicale există aici neobișnuit de multe spații în care se vorbește în mod regulat în fața unui public: săli de seminar, săli de conferințe, săli de curs, foaiere. Și neobișnuit de multe firme la care tehnica din aceste spații a fost mai degrabă asamblată în timp decât planificată.",
@@ -156,8 +156,8 @@ REGIONEN = {
     "salzburg": {
         "anfrage_h": "Solicitați asistență IT și securitate în Salzburg",
         "nav": "Salzburg",
-        "titel": "Servicii IT Salzburg — asistență IT și securitate | WVM-IT",
-        "desc": "Furnizor IT pentru firme din Salzburg: asistență IT, securitate IT, rețele, activitatea curentă prin mentenanță la distanță. Sunați acum.",
+        "titel": "Asistență IT Salzburg: servicii de la 29 €/lună | WVM-IT",
+        "desc": "Asistență IT pentru firme din Salzburg: continuă de la 29 €/lună pe stație sau punctual, la distanță, cu 95 €/oră, fără contract. Scrieți-ne.",
         "h1": "Servicii IT și securitate IT în Salzburg",
         "kurz": "WVM-IT se ocupă de firme din orașul Salzburg și din împrejurimi: IT curent, servere, rețea și mai ales securitate IT. De la Lenzing sunt 55 de kilometri, circa 45 de minute pentru întâlnirile la fața locului. Activitatea curentă se desfășoară prin mentenanță securizată la distanță, indiferent de distanță.",
         "intro": "Salzburg este un centru de servicii: agenții, cabinete de avocatură și contabilitate, firme de consultanță, unități turistice, comerț. Numitorul comun pentru IT este că aici se lucrează cu datele altora — date ale clienților, ale oaspeților, ale mandanților. Astfel, securitatea IT nu este o opțiune, ci o obligație cu răspundere în spate.",

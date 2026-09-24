@@ -105,3 +105,35 @@ class ZahlenStimmenTest(SimpleTestCase):
 
     def test_der_glossar_hub_nennt_die_zahl_der_begriffe(self):
         self.assertEqual(self._zahl_in("wissen.html"), len(glossar.BEGRIFFE))
+
+
+class ZahlenImTitelStimmenTest(SimpleTestCase):
+    """Dieselbe Deckung für die Zahl im **Titel** (24.09.2026).
+
+    Der Antwortabsatz von `/aktuelles/` war seit dem 12.09.2026 berichtigt,
+    der Titel darüber versprach weiter „15 Fachbeiträge" — und der Titel ist
+    genau der Satz, den jemand in der Trefferliste liest. Beim Vergleichs-Hub
+    dasselbe in allen drei Sprachen: „3 IT-Entscheidungen", seit dem
+    08.09.2026 sind es vier. Geprüft wird hier jede Zahl, die ein Hub-Titel
+    über seine eigene Länge macht, gegen die Strukturliste.
+    """
+
+    def _titelzahl(self, pfad):
+        from ._util import client as _c
+        html = _c().get(pfad).content.decode("utf-8")
+        titel = re.search(r"<title>(.*?)</title>", html, re.S).group(1)
+        treffer = re.search(r"(\d+)\s", titel)
+        self.assertIsNotNone(treffer, f"{pfad}: Titel ohne Zahl — {titel!r}")
+        return int(treffer.group(1))
+
+    def test_beitrags_hub_titel(self):
+        self.assertEqual(self._titelzahl("/aktuelles/"), len(beitraege.BEITRAEGE))
+
+    def test_glossar_hub_titel(self):
+        self.assertEqual(self._titelzahl("/wissen/"), len(glossar.BEGRIFFE))
+
+    def test_vergleichs_hub_titel_in_allen_sprachen(self):
+        from landing import vergleiche
+        for pfad in ("/vergleich/", "/en/vergleich/", "/ro/vergleich/"):
+            with self.subTest(pfad=pfad):
+                self.assertEqual(self._titelzahl(pfad), len(vergleiche.VERGLEICHE))

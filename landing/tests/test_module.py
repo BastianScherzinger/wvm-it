@@ -85,6 +85,9 @@ from landing.i18n import einrichten_en
 from landing.i18n import einrichten_ro
 from landing.i18n import en
 from landing.i18n import glossar_de
+from landing.i18n import hilfe_de
+from landing.i18n import hilfe_en
+from landing.i18n import hilfe_ro
 from landing.i18n import regionen_de
 from landing.i18n import regionen_en
 from landing.i18n import regionen_ro
@@ -109,7 +112,7 @@ from landing.management.commands import stand_schreiben
 # und hier fehlt.
 SPRACHMODULE = (beitraege_de, branchen_de, branchen_en, branchen_ro,
                 checklisten_de, de, einrichten_de, einrichten_en, einrichten_ro,
-                en, glossar_de, regionen_de, regionen_en,
+                en, glossar_de, hilfe_de, hilfe_en, hilfe_ro, regionen_de, regionen_en,
                 regionen_ro, ro, seiten_de, seiten_en, seiten_ro, vergleiche_de,
                 vergleiche_en, vergleiche_ro)
 BEFEHLE = (anfragen_loeschen, indexnow, befehl_messung, pruefe_mail, pruefe_seite,

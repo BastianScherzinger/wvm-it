@@ -20,7 +20,7 @@ from django.core.management.base import BaseCommand
 from django.test import Client
 
 from landing import i18n
-from landing.views import ANGEBOT_GROUPS, _ANFRAGE_QUELLEN
+from landing.views import ANGEBOT_GROUPS, _ANFRAGE_QUELLEN, _QUELLE_AUF_EIGENER_SEITE
 
 def _seiten():
     """Alle öffentlichen URLs in allen Sprachen — aus derselben Quelle wie Sitemap
@@ -218,6 +218,9 @@ class Command(BaseCommand):
         # als Antwort auf eine FAQ, dazu zwei ausdruecklich fremde Geraetepreise.
         from landing.views import _hub_zahlen_fuer_pruefung
         erlaubt |= _hub_zahlen_fuer_pruefung()
+        # Rechenbeispiele und die belegte Marktspanne auf /kosten/ (24.09.2026).
+        from landing.views import _kosten_zahlen_fuer_pruefung
+        erlaubt |= _kosten_zahlen_fuer_pruefung()
         # Startwert der laufenden Summe im Konfigurator, bevor etwas gewählt wurde.
         erlaubt.add(0)
         client = _client()
@@ -419,10 +422,17 @@ class Command(BaseCommand):
         # einen eigenen Endpunkt und zählt hier nicht mit.
         vorhanden = set(re.findall(r'name="quelle" value="([a-z_]+)"', html))
         if pfad in ("/", "/en/", "/ro/"):
-            fehlend = sorted(set(_ANFRAGE_QUELLEN) - vorhanden - {"koop"})
+            fehlend = sorted(set(_ANFRAGE_QUELLEN) - vorhanden - {"koop"}
+                             - set(_QUELLE_AUF_EIGENER_SEITE))
             if fehlend:
                 self.fehler.append(
                     f"{pfad}: keine Kurzanfrage-Formulare für {', '.join(fehlend)}")
+        # Quellen, die nur auf ihrer eigenen Seite stehen (24.09.2026): Dort
+        # muss es das Formular dann aber geben — in jeder Sprachfassung.
+        for quelle, heimat in _QUELLE_AUF_EIGENER_SEITE.items():
+            if pfad in (heimat, f"/en{heimat}", f"/ro{heimat}"):
+                if quelle not in vorhanden:
+                    self.fehler.append(f"{pfad}: kein Formular für {quelle}")
         for q in vorhanden:
             if q not in _ANFRAGE_QUELLEN:
                 self.fehler.append(f"{pfad}: unbekannte Anfrage-Quelle '{q}'")

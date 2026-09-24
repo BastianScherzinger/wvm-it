@@ -416,6 +416,8 @@ EINRICHTEN = {
 
         "faq_h": "Common questions",
         "faq": [
+            {"q": "Do we need a server of our own at all?",
+             "a": "The software decides, not the number of workstations. As soon as merchandise management, an industry solution or a database requires a central installation, you need a server, even with five people. If you only work with Office, mail and files, the cloud is usually cheaper and needs less maintenance. The comparison server or cloud sets this out in detail."},
             {"q": "How long does the setup take?",
              "a": "A file server for a small business is ready in a day. With industry "
                   "software, terminal services or a migration of existing data it becomes "
@@ -533,7 +535,8 @@ EINRICHTEN = {
                  "configured at all: the provider's router does what it did out of the "
                  "box, and at some point someone set up a forwarding so that accounting "
                  "could work from home. That single forwarding then stays open for years "
-                 "— and nobody remembers what it was for.",
+                 "— and nobody remembers what it was for."
+                 "</p><p class='sp-intro'>Firewall and VPN are two parts of the same door: the firewall decides what may enter the company network at all, the VPN is the encrypted route by which authorised people get in from outside. It is needed in two cases. The more common one is working from home: staff reach files, the merchandise management system or a server in the office from home or on the road — that is what the fixed price is made for. The rarer one is connecting two sites, such as an office and a warehouse; that is a separate job, because it depends on the devices at both ends.",
 
         "leistungen_h": "What €690 includes",
         "leistungen": [
@@ -574,6 +577,12 @@ EINRICHTEN = {
 
         "faq_h": "Common questions",
         "faq": [
+            {"q": "What is the difference between a firewall and a VPN?",
+             "a": "The firewall controls what may go into and out of the company network; the VPN is an encrypted access through which authorised people get in from outside. One without the other is only half a solution: a VPN without clean firewall rules opens too much, a firewall without a VPN forces open forwardings. For €690 we set up both together."},
+            {"q": "Do staff working from home need a VPN?",
+             "a": "If they access something in the office — a network drive, the merchandise management system, a server — yes. If the business only works with cloud services such as Microsoft 365, no VPN is needed; two-factor sign-in then protects access. Which case applies to you we clarify in the initial review."},
+            {"q": "Can we connect two sites by VPN?",
+             "a": "Yes, but that is not part of the €690. A site connection depends on the devices at both ends and on the lines there; we tell you what it costs after looking at both sides and before any order."},
             {"q": "We already have a firewall in the router.",
              "a": "You do, and it does the bare minimum. The difference is not in its "
                   "existence but in the rules: separate networks, traceable openings and "
@@ -682,7 +691,7 @@ EINRICHTEN = {
 }
 
 HUB = {
-    "titel": "Have IT set up: fixed prices from €190 | WVM-IT",
+    "titel": "Have a PC or IT set up: fixed price from €190 | WVM-IT",
     "desc": "Workstation, PC replacement, Microsoft 365, server, network: single tasks "
             "at a fixed price, no contract. From €190, mostly remote. Get in touch.",
     "h1": "Single tasks — fixed price, no contract",
