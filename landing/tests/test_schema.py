@@ -151,6 +151,15 @@ class SchemaTest(SimpleTestCase):
                        if k.get("@type") == "Service"}
                 self.assertIn(ziel["@id"], ids)
 
+    def test_jede_seite_nennt_einen_autor(self):
+        """Messung GE16 (24.09.2026): Der WebPage-Knoten nennt den Betrieb als
+        Urheber, damit auch Hubs und Einzelseiten einen Autor tragen."""
+        for name, pfad in self.seiten:
+            with self.subTest(seite=name, pfad=pfad):
+                seiten = [k for k in self._graph(pfad) if k.get("@type") == "WebPage"]
+                self.assertEqual(len(seiten), 1)
+                self.assertTrue(seiten[0]["author"]["@id"].endswith("/#business"))
+
     def test_context_ist_schema_org(self):
         antwort = self.client_.get(self.seiten[0][1])
         html = antwort.content.decode("utf-8")

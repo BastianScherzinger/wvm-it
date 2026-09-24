@@ -2314,6 +2314,11 @@ def _webpage_knoten(base, lang, url, breadcrumb):
         "@type": "WebPage", "@id": f"{url}#webpage", "url": url,
         "isPartOf": {"@id": f"{base}/#website"},
         "about": {"@id": f"{base}/#business"},
+        # Urheber jeder Seite ist der Betrieb (Messung GE16, 24.09.2026: 6 von 53
+        # Seiten ohne Autor). Bewusst die Organisation, nicht der Inhaber: Dass
+        # Florin Feier jede Seite selbst geschrieben hat, belegt nichts im
+        # Projekt. Fachbeitraege und Ratgeber nennen ihn weiter im Article-Knoten.
+        "author": {"@id": f"{base}/#business"},
         "inLanguage": i18n.get_pack(lang)["meta"]["html_lang"],
         "dateModified": stand.datum(basis_pfad),
         "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".antwort"]},
