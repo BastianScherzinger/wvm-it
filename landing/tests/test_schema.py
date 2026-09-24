@@ -135,17 +135,24 @@ class SchemaTest(SimpleTestCase):
         for pfad in ("/leistungen/", "/en/leistungen/", "/ro/leistungen/",
                      "/branchen/", "/it-service/"):
             with self.subTest(pfad=pfad):
-                listen = [k for k in self._graph(pfad) if k.get("@type") == "ItemList"]
+                graph = self._graph(pfad)
+                listen = [k for k in graph if k.get("@type") == "ItemList"]
                 self.assertEqual(len(listen), 1)
                 eintraege = listen[0]["itemListElement"]
                 self.assertTrue(eintraege)
+                # Der Service steht auf oberster Ebene des Graphen; der
+                # Listeneintrag verweist nur darauf (Nachmessung GE13: nur die
+                # oberste Ebene wurde gezaehlt).
+                dienste = {k["@id"]: k for k in graph if k.get("@type") == "Service"}
+                self.assertEqual(len(dienste), len(eintraege))
                 for eintrag in eintraege:
-                    dienst = eintrag.get("item") or {}
+                    self.assertEqual(set(eintrag.get("item") or {}), {"@id"}, eintrag)
+                    dienst = dienste.get(eintrag["item"]["@id"]) or {}
                     self.assertEqual(dienst.get("@type"), "Service", eintrag)
                     self.assertTrue(dienst["provider"]["@id"].endswith("/#business"))
                     self.assertEqual(dienst["@id"], dienst["url"] + "#service")
                 # Stichprobe: der erste Eintrag trifft den Knoten der Zielseite.
-                ziel = eintraege[0]["item"]
+                ziel = dienste[eintraege[0]["item"]["@id"]]
                 zielpfad = re.sub(r"^https?://[^/]+", "", ziel["url"])
                 ids = {k.get("@id") for k in self._graph(zielpfad)
                        if k.get("@type") == "Service"}
