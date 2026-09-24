@@ -246,7 +246,11 @@ class AbnahmeNachbesserungTest(SimpleTestCase):
                "ungefähr rechnen", "Nothing is charged", "before anything costs",
                "invoice for the actual time", "roughly what to expect",
                "înainte să fiți de acord", "înainte ca ceva să coste",
-               "timpul efectiv", "aproximativ. Dacă")
+               "timpul efectiv", "aproximativ. Dacă", "bevor Kosten")
+    # Zweite Abnahme: dieselbe Zusage stand im Drucker-Ratgeber, der auf
+    # /it-hilfe/ verlinkt. Die drei neuen Ratgeber werden deshalb mitgeprüft.
+    BEITRAEGE = ("/aktuelles/drucker-druckt-nicht/", "/aktuelles/outlook-email-geht-nicht/",
+                 "/aktuelles/microsoft-365-konto-gesperrt/")
 
     def test_kosten_verlinkt_keinen_mitbewerber(self):
         for pfad in self.KOSTEN:
@@ -265,8 +269,47 @@ class AbnahmeNachbesserungTest(SimpleTestCase):
                     self.assertIn(f"<td>{ab} {b['summe']} €</td>", html)
 
     def test_hilfe_macht_keine_unbestaetigte_abrechnungszusage(self):
-        for pfad in PFADE + ("/llms-full.txt", "/wissen/fernwartung/"):
-            _, html = _html(pfad)
+        for pfad in PFADE + ("/llms-full.txt", "/wissen/fernwartung/") + self.BEITRAEGE:
+            status, html = _html(pfad)
+            self.assertEqual(status, 200, pfad)
             for satz in self.ZUSAGEN:
                 with self.subTest(pfad=pfad, satz=satz):
                     self.assertNotIn(satz, html)
+
+
+class ZweiteAbnahmeTest(SimpleTestCase):
+    """Abnahme 24.09.2026, zweite Runde: Der Betreuungspreis steht überall als
+    „ab"-Wert, wie im Katalog und auf /kosten/, und die Datenschutzerklärung
+    nennt das Rückruf-Anliegen bei Sicherung und Reichweitenmessung."""
+
+    def test_laufende_betreuung_auf_it_hilfe_mit_ab(self):
+        for pfad, soll, falsch in (
+                ("/it-hilfe/", ("ab 29 €", "ab 145 € im Monat (ohne Datensicherung)"),
+                 ("kostet 29 € je", "das 145 €")),
+                ("/en/it-hilfe/", ("from €29", "from €145 a month (without backup)"),
+                 ("costs €29 per", "is €145")),
+                ("/ro/it-hilfe/", ("de la 29 €", "de la 145 € pe lună (fără backup)"),
+                 ("costă 29 € pe", "înseamnă 145 €"))):
+            _, html = _html(pfad)
+            for text in soll:
+                with self.subTest(pfad=pfad, soll=text):
+                    self.assertIn(text, html)
+            for text in falsch:
+                with self.subTest(pfad=pfad, falsch=text):
+                    self.assertNotIn(text, html)
+
+    def test_beschreibungen_nennen_ab_29(self):
+        for lang, ab in (("de", "ab 29 €"), ("en", "from €29"), ("ro", "de la 29 €")):
+            for pfad in (("/" if lang == "de" else f"/{lang}/"),
+                         ("/kosten/" if lang == "de" else f"/{lang}/kosten/")):
+                _, html = _html(pfad)
+                start = html.find('<meta name="description"')
+                self.assertGreaterEqual(start, 0, pfad)
+                meta = html[start:html.find(">", start)]
+                with self.subTest(pfad=pfad):
+                    self.assertIn(ab, meta)
+
+    def test_datenschutz_nennt_anliegen(self):
+        _, html = _html("/datenschutz/")
+        self.assertIn("beim Rückruf gewähltes Anliegen, Sprache der Seite, Nachricht", html)
+        self.assertIn("welches Anliegen aus der vorgegebenen Liste", html)

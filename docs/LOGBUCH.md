@@ -36,6 +36,15 @@ Richtwerte „ab“ sind und der Preis nach der Bestandsaufnahme kommt. Auf
 `/it-hilfe/` sind drei Zusagen zur Abrechnung zurückgenommen, die Florin noch
 nicht bestätigt hat (Offen Nr. 24).
 
+Zweite Abnahme am selben Tag: Dieselbe Zusage stand noch im neuen
+Drucker-Ratgeber („bevor Kosten entstehen") — jetzt „Das sagen wir Ihnen
+vorher.", und der Test prüft die drei neuen Ratgeber mit. Der Betreuungspreis
+steht jetzt auch auf `/it-hilfe/` und in den Beschreibungen von Startseite und
+`/kosten/` als „ab 29 €", das Beispiel für fünf Arbeitsplätze als „ab 145 €
+(ohne Datensicherung)", damit es nicht gegen „ab 194 €" auf `/kosten/` steht.
+Die Datenschutzerklärung nennt das Rückruf-Anliegen jetzt auch bei der
+Sicherung der Anfrage und bei der Reichweitenmessung (Summen je Anliegen).
+
 **Zwei Funde, die nicht im Auftrag standen.** Die Analyse hielt die
 Öffnungszeiten im Schema für erfunden; sie stehen aber seit dem Relaunch auf
 `/kontakt/` und `/it-notfall/`, in allen drei Sprachen. Falsch war die Notiz in

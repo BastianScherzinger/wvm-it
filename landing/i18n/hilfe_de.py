@@ -69,7 +69,7 @@ HILFE = {
     "erreichbar_t": "Montag bis Freitag, 9 bis 18 Uhr. Außerhalb dieser Zeiten hinterlassen Sie eine Nachricht per WhatsApp oder auf der Mailbox; wir melden uns am nächsten Werktag. Wenn gerade Daten verschlüsselt werden oder der Server steht, gehen Sie zuerst auf die Notfallseite.",
     "notfall_link": "Zur Notfallseite: die ersten 30 Minuten",
     "laufend_h": "Wenn es öfter vorkommt",
-    "laufend_t": "Wer mehrmals im Jahr Hilfe braucht, fährt mit einer laufenden Betreuung oft günstiger: Sie kostet 29 € je Arbeitsplatz und Monat und enthält Updates, Überwachung und Hilfe bei Störungen. Bei fünf Arbeitsplätzen sind das 145 € im Monat — ungefähr so viel wie eineinhalb Stunden Einzelhilfe. Wann sich was rechnet, steht im Vergleich von Betreuung und Stundenabrechnung.",
+    "laufend_t": "Wer mehrmals im Jahr Hilfe braucht, fährt mit einer laufenden Betreuung oft günstiger: Sie kostet ab 29 € je Arbeitsplatz und Monat und enthält Updates, Überwachung und Hilfe bei Störungen. Bei fünf Arbeitsplätzen sind das ab 145 € im Monat (ohne Datensicherung) — ungefähr so viel wie eineinhalb Stunden Einzelhilfe. Wann sich was rechnet, steht im Vergleich von Betreuung und Stundenabrechnung.",
     "laufend_link": "Laufende EDV-Betreuung ansehen",
     "vergleich_link": "Betreuung oder Stundenabrechnung? Der Vergleich",
     "faq": [

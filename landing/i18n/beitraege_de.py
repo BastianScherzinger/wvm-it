@@ -787,8 +787,7 @@ BEITRAEGE = {
              "a": "Bei einer Einstellung oder einem Treiber immer, das ist in der "
                   "Regel schnell behoben. Bei einem mechanischen Defekt an einem "
                   "älteren, günstigen Gerät meist nicht — dort ist ein neues Gerät oft "
-                  "billiger als die Reparatur. Das sagen wir Ihnen, bevor Kosten "
-                  "entstehen."},
+                  "billiger als die Reparatur. Das sagen wir Ihnen vorher."},
             {"q": "Warum druckt es von einem Rechner, vom anderen nicht?",
              "a": "Dann liegt es fast sicher am Rechner, der nicht druckt: an seinem "
                   "Treiber, an einer alten Adresse, die er noch gespeichert hat, oder "

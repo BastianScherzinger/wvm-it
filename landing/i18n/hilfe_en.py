@@ -52,7 +52,7 @@ HILFE = {
     "erreichbar_t": "Monday to Friday, 9am to 6pm. Outside those hours leave a message on WhatsApp or the voicemail; we get back to you on the next working day. If data is being encrypted right now or the server is down, go to the emergency page first.",
     "notfall_link": "To the emergency page: the first 30 minutes",
     "laufend_h": "If it happens more often",
-    "laufend_t": "Anyone who needs help several times a year is often better off with ongoing support: it costs €29 per workstation and month and includes updates, monitoring and help with faults. With five workstations that is €145 a month — roughly as much as one and a half hours of one-off help. When which option pays off is shown in the comparison of support contract and hourly billing.",
+    "laufend_t": "Anyone who needs help several times a year is often better off with ongoing support: it costs from €29 per workstation and month and includes updates, monitoring and help with faults. With five workstations that is from €145 a month (without backup) — roughly as much as one and a half hours of one-off help. When which option pays off is shown in the comparison of support contract and hourly billing.",
     "laufend_link": "See ongoing IT support",
     "vergleich_link": "Support contract or hourly billing? The comparison",
     "faq": [

@@ -52,7 +52,7 @@ HILFE = {
     "erreichbar_t": "De luni până vineri, între 9 și 18. În afara acestor ore lăsați un mesaj pe WhatsApp sau în căsuța vocală; revenim în următoarea zi lucrătoare. Dacă tocmai se criptează date sau serverul s-a oprit, mergeți mai întâi pe pagina de urgență.",
     "notfall_link": "La pagina de urgență: primele 30 de minute",
     "laufend_h": "Dacă se întâmplă mai des",
-    "laufend_t": "Cine are nevoie de ajutor de mai multe ori pe an iese adesea mai ieftin cu administrarea continuă: costă 29 € pe post de lucru și lună și include actualizări, monitorizare și ajutor la defecțiuni. La cinci posturi de lucru înseamnă 145 € pe lună — cam cât o oră și jumătate de ajutor punctual. Când se merită fiecare variantă arată comparația dintre abonament și facturarea pe ore.",
+    "laufend_t": "Cine are nevoie de ajutor de mai multe ori pe an iese adesea mai ieftin cu administrarea continuă: costă de la 29 € pe post de lucru și lună și include actualizări, monitorizare și ajutor la defecțiuni. La cinci posturi de lucru înseamnă de la 145 € pe lună (fără backup) — cam cât o oră și jumătate de ajutor punctual. Când se merită fiecare variantă arată comparația dintre abonament și facturarea pe ore.",
     "laufend_link": "Vedeți administrarea IT continuă",
     "vergleich_link": "Abonament sau facturare pe ore? Comparația",
     "faq": [
