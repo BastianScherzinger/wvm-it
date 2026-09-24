@@ -946,8 +946,8 @@ BEITRAEGE = {
              "a": "Mit Zwei-Faktor-Anmeldung für alle Konten, mindestens zwei "
                   "Personen mit Verwaltungsrechten, einer Übersicht, auf welchen Geräten "
                   "welches Konto angemeldet ist, und einer Erinnerung vor dem Ablauf "
-                  "des Abonnements. Das richten wir bei einer Microsoft-365-Einrichtung "
-                  "gleich mit ein."},
+                  "des Abonnements. Die Zwei-Faktor-Anmeldung richten wir bei einer "
+                  "Microsoft-365-Einrichtung gleich mit ein, die übrigen Punkte auf Wunsch."},
         ],
         "fazit": "Erst die Fehlermeldung lesen, dann handeln: Fehlversuche, "
                  "Administratorsperre, Abonnement oder verdächtige Anmeldung verlangen "
