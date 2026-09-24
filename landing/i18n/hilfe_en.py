@@ -14,7 +14,7 @@ HILFE = {
     "kurz": "We fix single IT problems without a contract by remote access for €95 per hour, usually the same day. If someone has to come on site, that costs €120 per hour plus travel. Complete tasks have a fixed price: a new workstation €190, Microsoft 365 set up €290. This applies across Austria and Germany, for businesses of any size — even if you have not booked anything else with us.",
     "eilt_h": "The fastest way",
     "eilt_t": "Call or send a WhatsApp message saying what is not working. One sentence is enough, a photo of the error message helps.",
-    "intro": "Not every business needs ongoing IT support. Often it is a single problem: the printer has stopped printing, Outlook keeps asking for the password, the Wi-Fi in the meeting room drops out, or the computer takes ten minutes in the morning before the first program opens. Nobody has to sign a contract for that. You get in touch, we take a look and tell you beforehand whether we can help. You pay for the time it actually took.",
+    "intro": "Not every business needs ongoing IT support. Often it is a single problem: the printer has stopped printing, Outlook keeps asking for the password, the Wi-Fi in the meeting room drops out, or the computer takes ten minutes in the morning before the first program opens. Nobody has to sign a contract for that. You get in touch, we take a look and tell you beforehand whether we can help. It is billed by time at the hourly rate.",
     "faelle_h": "What we help with most often",
     "faelle_t": "Most cases can be solved by remote access without anyone travelling. Where a task has a fixed price, it is shown on the card.",
     "faelle": [
@@ -40,8 +40,8 @@ HILFE = {
     "ablauf_h": "How a single job works",
     "ablauf": [
         "You get in touch by phone, WhatsApp or the form below and say in one sentence what is not working.",
-        "We tell you beforehand whether we can help and roughly what to expect. If a specialist is the better address, we say that too.",
-        "You approve the remote session, we fix the fault, and you see every step on your screen. Afterwards you receive an invoice for the actual time.",
+        "We tell you beforehand whether we can help. If a specialist is the better address, we say that too.",
+        "You approve the remote session, we fix the fault, and you see every step on your screen. It is billed by time at the hourly rate.",
     ],
     "fernwartung_h": "What remote support means",
     "fernwartung_t": "Remote support means that a technician reaches your computer or server over a secured connection instead of driving out — in a session you have approved, they see exactly what is on your screen, you watch every move and can stop at any time, and without a new approval nobody gets back onto the device. What a provider can and cannot see is explained in detail in our article on remote support (in German).",
@@ -57,7 +57,7 @@ HILFE = {
     "vergleich_link": "Support contract or hourly billing? The comparison",
     "faq": [
         {"q": "Do I need a contract for you to help me?",
-         "a": "No. One-off help is billed by time: remote €95 per hour, on site €120 per hour plus travel. Nothing is charged before you have agreed."},
+         "a": "No. One-off help is billed by time: remote €95 per hour, on site €120 per hour plus travel."},
         {"q": "How quickly do I get help?",
          "a": "By remote access usually the same day. We can be reached Monday to Friday from 9am to 6pm; enquiries outside those hours are answered on the next working day, in any case within 24 hours."},
         {"q": "What happens if you cannot solve the problem?",
@@ -68,7 +68,7 @@ HILFE = {
          "a": "Yes. Everything that can be done remotely we handle across Austria and Germany at the same prices. On site we come within roughly an hour's drive of Lenzing in Upper Austria."},
     ],
     "cta_h": "Briefly describe what is not working",
-    "cta_t": "One sentence is enough. We get back to you with an assessment before anything costs money.",
+    "cta_t": "One sentence is enough. We get back to you with a first assessment.",
     "cta_ph": "e.g. printer has not printed since the update",
     "wa_text": "Hello Florin, I need some quick IT help: ",
 }

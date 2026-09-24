@@ -554,15 +554,6 @@ _KOSTEN_BEISPIELE = [
     {"ap": 10, "srv": 1},
 ]
 
-# Die Marktspanne für eine einzelne Supportstunde in Oberösterreich, wie sie
-# techz.at am 15.07.2026 veröffentlicht hat („grob zwischen 90 und 150 Euro
-# netto", abgerufen am 24.09.2026). Keine Zahl von WVM-IT, sondern eine fremde
-# Angabe mit Quelle — sie steht deshalb hier und wird der Preisprüfung gemeldet.
-_KOSTEN_MARKT_STUNDE = (90, 150)
-_KOSTEN_MARKT_QUELLE = ("https://techz.at/blog/it-support-linz-was-kostet-ein-"
-                        "it-dienstleister-in-oberoesterreich.html")
-
-
 def _kosten_beispiele(lang):
     """Die drei Rechenbeispiele mit fertiger Zeile in der aktiven Sprache."""
     ks = i18n.get_pack(lang).get("kosten_seite", {})
@@ -584,8 +575,8 @@ def _kosten_beispiele(lang):
 
 
 def _kosten_zahlen_fuer_pruefung():
-    """Summen der Rechenbeispiele und die fremde Marktspanne (siehe oben)."""
-    return {b["mtl"] for b in _kosten_beispiele("de")} | set(_KOSTEN_MARKT_STUNDE)
+    """Die Summen der Rechenbeispiele (ab-Werte, gerechnet aus dem Katalog)."""
+    return {b["mtl"] for b in _kosten_beispiele("de")}
 
 
 def _it_stufen_zahlen_fuer_pruefung():
@@ -3409,8 +3400,6 @@ def kosten(request):
     return render(request, "kosten.html", {
         "c": c, "ks": ks,
         "beispiele": _kosten_beispiele(lang),
-        "markt": {"von": _KOSTEN_MARKT_STUNDE[0], "bis": _KOSTEN_MARKT_STUNDE[1],
-                  "quelle": _KOSTEN_MARKT_QUELLE},
         "angebot_groups": _localized_groups(lang),
         "preis_stand": _preis_stand(lang),
         "leistungen": _alle_leistungen(lang),

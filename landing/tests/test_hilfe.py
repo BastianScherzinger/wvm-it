@@ -234,3 +234,39 @@ class LlmsEinzelhilfeTest(SimpleTestCase):
                 self.assertIn("/it-hilfe/", text)
                 self.assertIn(f"ohne Vertrag per Fernwartung für {STUNDE} € je Stunde", text)
                 self.assertIn(f"{VOR_ORT} € je Stunde", text)
+
+
+class AbnahmeNachbesserungTest(SimpleTestCase):
+    """Abnahme 24.09.2026: kein Link zu einem Mitbewerber auf /kosten/, die
+    Rechenbeispiele als „ab"-Richtwerte, und auf /it-hilfe/ keine Zusage zur
+    Abrechnung, die Florin noch nicht bestätigt hat (Offen Nr. 24)."""
+
+    KOSTEN = ("/kosten/", "/en/kosten/", "/ro/kosten/")
+    ZUSAGEN = ("zugestimmt haben", "bevor irgendetwas kostet", "tatsächliche Zeit",
+               "ungefähr rechnen", "Nothing is charged", "before anything costs",
+               "invoice for the actual time", "roughly what to expect",
+               "înainte să fiți de acord", "înainte ca ceva să coste",
+               "timpul efectiv", "aproximativ. Dacă")
+
+    def test_kosten_verlinkt_keinen_mitbewerber(self):
+        for pfad in self.KOSTEN:
+            with self.subTest(pfad=pfad):
+                status, html = _html(pfad)
+                self.assertEqual(status, 200)
+                self.assertNotIn("techz", html)
+
+    def test_rechenbeispiele_stehen_mit_ab(self):
+        from landing.views import _kosten_beispiele
+        for pfad, lang, ab in (("/kosten/", "de", "ab"), ("/en/kosten/", "en", "from"),
+                               ("/ro/kosten/", "ro", "de la")):
+            _, html = _html(pfad)
+            for b in _kosten_beispiele(lang):
+                with self.subTest(pfad=pfad, summe=b["summe"]):
+                    self.assertIn(f"<td>{ab} {b['summe']} €</td>", html)
+
+    def test_hilfe_macht_keine_unbestaetigte_abrechnungszusage(self):
+        for pfad in PFADE + ("/llms-full.txt", "/wissen/fernwartung/"):
+            _, html = _html(pfad)
+            for satz in self.ZUSAGEN:
+                with self.subTest(pfad=pfad, satz=satz):
+                    self.assertNotIn(satz, html)

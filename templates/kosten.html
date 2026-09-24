@@ -66,7 +66,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
     {% comment %} ── Rechenbeispiele und Einordnung (24.09.2026) ────────────────
       Die Antwort auf „was zahlt ein Betrieb wie meiner?" — jede Zahl aus
       views._kosten_beispiele(), also aus ANGEBOT_GROUPS. Darunter die
-      Marktspanne mit Quelle, damit die eigenen Sätze eingeordnet werden können,
+      Einordnung (Richtwerte ab, Preis nach Bestandsaufnahme; keine fremde Quelle),
       und der Verweis auf den Ratgeber, der die Frage für kleine Firmen ausführt
       (diese Seite ist die Preisliste, der Ratgeber die Erklärung). {% endcomment %}
     <h2 class="sp-h2" id="beispiele">{{ ks.bsp_h|safe }}</h2>
@@ -82,7 +82,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
           {% for b in beispiele %}
           <tr>
             <th scope="row"><strong>{{ b.name }}</strong><span>{{ b.zeile }}</span></th>
-            <td>{{ b.summe }} €</td>
+            <td>{{ ks.bsp_ab|safe }} {{ b.summe }} €</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -93,8 +93,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
 
     <div class="hb-text" data-reveal>
       <h2 class="sp-h2" id="einordnung">{{ ks.markt_h|safe }}</h2>
-      <p>{{ ks.markt_t_vor|safe }} {{ markt.von }} {{ ks.markt_bis|safe }} {{ markt.bis }} € {{ ks.markt_t_nach|safe }}
-        <a href="{{ markt.quelle }}" rel="noopener" target="_blank">{{ ks.markt_quelle|safe }}</a></p>
+      <p>{{ ks.markt_t|safe }}</p>
       <p>{{ ks.ratgeber_t|safe }}</p>
       <p class="lk-alle"><a href="/aktuelles/was-kostet-it-betreuung/">{{ ks.ratgeber_link|safe }} →</a>
         · <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }} →</a></p>

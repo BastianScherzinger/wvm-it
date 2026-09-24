@@ -14,7 +14,7 @@ HILFE = {
     "kurz": "Rezolvăm probleme IT punctuale fără contract, prin asistență la distanță, cu 95 € pe oră, de obicei în aceeași zi. Dacă trebuie să vină cineva la fața locului, costă 120 € pe oră plus deplasarea. Sarcinile complete au preț fix: un post de lucru nou 190 €, Microsoft 365 configurat 290 €. Valabil în toată Austria și Germania, pentru firme de orice mărime — chiar dacă nu ați comandat altceva de la noi.",
     "eilt_h": "Cel mai rapid",
     "eilt_t": "Sunați sau scrieți pe WhatsApp ce nu funcționează. O propoziție ajunge, o fotografie a mesajului de eroare ajută.",
-    "intro": "Nu orice firmă are nevoie de administrare IT continuă. Adesea e vorba de o singură problemă: imprimanta nu mai tipărește, Outlook cere mereu parola, WiFi-ul din sala de ședințe se întrerupe sau calculatorul are nevoie dimineața de zece minute până la primul program. Pentru asta nu trebuie semnat niciun contract. Ne scrieți, ne uităm și vă spunem dinainte dacă vă putem ajuta. Se facturează timpul de care a fost nevoie efectiv.",
+    "intro": "Nu orice firmă are nevoie de administrare IT continuă. Adesea e vorba de o singură problemă: imprimanta nu mai tipărește, Outlook cere mereu parola, WiFi-ul din sala de ședințe se întrerupe sau calculatorul are nevoie dimineața de zece minute până la primul program. Pentru asta nu trebuie semnat niciun contract. Ne scrieți, ne uităm și vă spunem dinainte dacă vă putem ajuta. Se facturează după timp, la tariful orar.",
     "faelle_h": "La ce ajutăm cel mai des",
     "faelle_t": "Cele mai multe cazuri se rezolvă la distanță, fără deplasare. Acolo unde o sarcină are preț fix, îl vedeți pe card.",
     "faelle": [
@@ -40,8 +40,8 @@ HILFE = {
     "ablauf_h": "Cum decurge un ajutor punctual",
     "ablauf": [
         "Ne contactați telefonic, pe WhatsApp sau prin formularul de mai jos și spuneți într-o propoziție ce nu funcționează.",
-        "Vă spunem dinainte dacă vă putem ajuta și cu ce să vă așteptați aproximativ. Dacă un specialist este adresa mai bună, vă spunem și asta.",
-        "Aprobați sesiunea la distanță, remediem eroarea și vedeți fiecare pas pe ecran. La final primiți o factură pentru timpul efectiv.",
+        "Vă spunem dinainte dacă vă putem ajuta. Dacă un specialist este adresa mai bună, vă spunem și asta.",
+        "Aprobați sesiunea la distanță, remediem eroarea și vedeți fiecare pas pe ecran. Se facturează după timp, la tariful orar.",
     ],
     "fernwartung_h": "Ce înseamnă asistența la distanță",
     "fernwartung_t": "Asistența la distanță înseamnă că un tehnician accesează un calculator sau un server printr-o conexiune securizată, în loc să se deplaseze — într-o sesiune aprobată de dumneavoastră vede exact ce este pe ecranul dumneavoastră, urmăriți fiecare mișcare și puteți întrerupe oricând, iar fără o nouă aprobare nimeni nu revine pe aparat. Ce vede un furnizor și ce nu, explicăm pe larg în articolul despre asistența la distanță (în germană).",
@@ -57,7 +57,7 @@ HILFE = {
     "vergleich_link": "Abonament sau facturare pe ore? Comparația",
     "faq": [
         {"q": "Am nevoie de un contract ca să mă ajutați?",
-         "a": "Nu. Ajutorul punctual se facturează după timp: la distanță 95 € pe oră, la fața locului 120 € pe oră plus deplasarea. Nu apar costuri înainte să fiți de acord."},
+         "a": "Nu. Ajutorul punctual se facturează după timp: la distanță 95 € pe oră, la fața locului 120 € pe oră plus deplasarea."},
         {"q": "Cât de repede primesc ajutor?",
          "a": "La distanță, de obicei în aceeași zi. Ne găsiți de luni până vineri între 9 și 18; solicitările din afara acestor ore primesc răspuns în următoarea zi lucrătoare, în orice caz în 24 de ore."},
         {"q": "Ce se întâmplă dacă nu puteți rezolva problema?",
@@ -68,7 +68,7 @@ HILFE = {
          "a": "Da. Tot ce se poate face la distanță rezolvăm în toată Austria și Germania, la aceleași prețuri. La fața locului venim pe o rază de aproximativ o oră de mers cu mașina în jurul localității Lenzing, Austria Superioară."},
     ],
     "cta_h": "Descrieți pe scurt ce nu funcționează",
-    "cta_t": "O propoziție ajunge. Revenim cu o evaluare înainte ca ceva să coste.",
+    "cta_t": "O propoziție ajunge. Revenim cu o primă evaluare.",
     "cta_ph": "de ex. imprimanta nu mai tipărește de la actualizare",
     "wa_text": "Bună ziua, Florin, am nevoie de un ajutor IT scurt: ",
 }

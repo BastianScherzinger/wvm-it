@@ -29,6 +29,13 @@ alten Fassung im Scratchpad der Sitzung) liest `cockpit/search.py` jetzt
 Googles Reihenfolge, nach Klicks und dann alphabetisch, und die stärkste
 Kaufsuche „it betreuung kosten" fehlte in der Ansicht.
 
+Nachbesserung nach der Abnahme am selben Tag: Die Marktspanne auf `/kosten/`
+kam aus dem Blog von techz.at, einem Mitbewerber im selben Gebiet — Absatz und
+Link sind raus, statt einer fremden Zahl steht dort jetzt, dass die Beispiele
+Richtwerte „ab“ sind und der Preis nach der Bestandsaufnahme kommt. Auf
+`/it-hilfe/` sind drei Zusagen zur Abrechnung zurückgenommen, die Florin noch
+nicht bestätigt hat (Offen Nr. 24).
+
 **Zwei Funde, die nicht im Auftrag standen.** Die Analyse hielt die
 Öffnungszeiten im Schema für erfunden; sie stehen aber seit dem Relaunch auf
 `/kontakt/` und `/it-notfall/`, in allen drei Sprachen. Falsch war die Notiz in

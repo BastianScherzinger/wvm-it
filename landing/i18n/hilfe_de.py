@@ -14,6 +14,9 @@ Regeln für diese Texte:
 - Was Florin noch nicht bestätigt hat, steht hier NICHT: Abrechnungstakt,
   Mindestgebühr, welches Fernwartungsprogramm, ob Privatkunden bedient werden
   (doku/80-AUFGABEN.md, „Beim Kunden").
+- Deshalb auch keine Zusage, wann Kosten entstehen oder wie genau abgerechnet
+  wird („keine Kosten vor Zustimmung", „Rechnung über die tatsächliche Zeit").
+  Es heißt nur „nach Aufwand zum Stundensatz" (Abnahme 24.09.2026, Offen Nr. 24).
 - Die Erreichbarkeit (Montag bis Freitag, 9 bis 18 Uhr) steht wortgleich auf
   /kontakt/ und im Schema; „meist am selben Tag" ist die Katalogbeschreibung
   von `it_support`.
@@ -28,7 +31,7 @@ HILFE = {
     "kurz": "Einzelne IT-Probleme lösen wir ohne Vertrag per Fernwartung für 95 € je Stunde, meist am selben Tag. Muss jemand vor Ort sein, kostet das 120 € je Stunde zuzüglich Anfahrt. Ganze Aufgaben haben einen Festpreis: ein neuer Arbeitsplatz 190 €, Microsoft 365 eingerichtet 290 €. Das gilt in ganz Österreich und Deutschland, für Betriebe jeder Größe — auch, wenn Sie bei uns sonst nichts gebucht haben.",
     "eilt_h": "Am schnellsten geht es so",
     "eilt_t": "Rufen Sie an oder schreiben Sie per WhatsApp, was nicht geht. Ein Satz genügt, ein Foto der Fehlermeldung hilft.",
-    "intro": "Nicht jeder Betrieb braucht eine laufende IT-Betreuung. Oft geht es um ein einzelnes Problem: Der Drucker druckt nicht mehr, Outlook fragt ständig nach dem Passwort, das WLAN im Besprechungsraum reißt ab, oder der Rechner braucht morgens zehn Minuten bis zum ersten Programm. Dafür muss niemand einen Vertrag unterschreiben. Sie melden sich, wir sehen uns das an und sagen Ihnen vorher, ob wir helfen können. Abgerechnet wird der Aufwand, den es wirklich gebraucht hat.",
+    "intro": "Nicht jeder Betrieb braucht eine laufende IT-Betreuung. Oft geht es um ein einzelnes Problem: Der Drucker druckt nicht mehr, Outlook fragt ständig nach dem Passwort, das WLAN im Besprechungsraum reißt ab, oder der Rechner braucht morgens zehn Minuten bis zum ersten Programm. Dafür muss niemand einen Vertrag unterschreiben. Sie melden sich, wir sehen uns das an und sagen Ihnen vorher, ob wir helfen können. Abgerechnet wird nach Aufwand zum Stundensatz.",
     "faelle_h": "Womit wir am häufigsten helfen",
     "faelle_t": "Die meisten Fälle lassen sich per Fernwartung lösen, ohne dass jemand anreist. Wo es für eine Aufgabe einen Festpreis gibt, steht er auf der Karte.",
     "faelle": [
@@ -54,8 +57,8 @@ HILFE = {
     "ablauf_h": "So läuft eine einzelne Hilfe ab",
     "ablauf": [
         "Sie melden sich per Telefon, WhatsApp oder über das Formular unten und sagen in einem Satz, was nicht geht.",
-        "Wir sagen Ihnen vorher, ob wir helfen können und womit Sie ungefähr rechnen müssen. Ist ein Spezialist die bessere Adresse, sagen wir auch das.",
-        "Sie geben die Fernwartung frei, wir beheben den Fehler, und Sie sehen dabei jeden Schritt auf Ihrem Bildschirm. Danach bekommen Sie eine Rechnung über die tatsächliche Zeit.",
+        "Wir sagen Ihnen vorher, ob wir helfen können. Ist ein Spezialist die bessere Adresse, sagen wir auch das.",
+        "Sie geben die Fernwartung frei, wir beheben den Fehler, und Sie sehen dabei jeden Schritt auf Ihrem Bildschirm. Abgerechnet wird nach Aufwand zum Stundensatz.",
     ],
     "fernwartung_h": "Was Fernwartung heißt",
     "fernwartung_t": "Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Was ein Dienstleister dabei sieht und was nicht, steht ausführlich im Beitrag zur Fernwartung.",
@@ -71,7 +74,7 @@ HILFE = {
     "vergleich_link": "Betreuung oder Stundenabrechnung? Der Vergleich",
     "faq": [
         {"q": "Brauche ich einen Vertrag, damit Sie mir helfen?",
-         "a": "Nein. Einzelne Hilfe rechnen wir nach Aufwand ab: per Fernwartung 95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt. Es entstehen keine Kosten, bevor Sie zugestimmt haben."},
+         "a": "Nein. Einzelne Hilfe rechnen wir nach Aufwand ab: per Fernwartung 95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt."},
         {"q": "Wie schnell bekomme ich Hilfe?",
          "a": "Per Fernwartung meist am selben Tag. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr; Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag, in jedem Fall innerhalb von 24 Stunden."},
         {"q": "Was passiert, wenn Sie das Problem nicht lösen können?",
@@ -82,7 +85,7 @@ HILFE = {
          "a": "Ja. Alles, was per Fernwartung geht, erledigen wir in ganz Österreich und Deutschland zu denselben Preisen. Vor Ort kommen wir im Umkreis von rund einer Fahrstunde um Lenzing in Oberösterreich."},
     ],
     "cta_h": "Kurz schildern, was nicht geht",
-    "cta_t": "Ein Satz genügt. Wir melden uns mit einer Einschätzung, bevor irgendetwas kostet.",
+    "cta_t": "Ein Satz genügt. Wir melden uns mit einer ersten Einschätzung.",
     "cta_ph": "z. B. Drucker druckt seit dem Update nicht mehr",
     # Vorbelegter Text für WhatsApp auf dieser Seite (W05).
     "wa_text": "Hallo Florin, ich brauche kurz IT-Hilfe: ",
