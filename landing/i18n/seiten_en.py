@@ -615,10 +615,10 @@ SEITEN = {
     # ══ Round 2 (24.09.2026) ══════════════════════════════════════════════════
     "it-betreuung-groessere-betriebe": {
         "nav": "Larger businesses",
-        "titel": "Managed IT for larger businesses: 20–200 seats | WVM-IT",
-        "desc": "Managed IT for 20 to 200 workstations: from €29/month per workstation, server from €89/month, multiple sites via remote maintenance. Request a quote.",
-        "h1": "Managed IT support for larger businesses — 20 to 200 workstations",
-        "kurz": "WVM-IT also looks after larger businesses of roughly 20 to 200 workstations: audit and living documentation, a named contact, monitoring of servers and network, multiple sites via secure remote maintenance. Day-to-day support starts at €29 per workstation and month, a managed server at €89 per month. For a business with 30 workstations and 2 servers this gives a frame of about €1,097 per month (30 × €29 + 2 × €89 + €49 backup). Where an internal IT function exists, we work alongside it — as a second tier for topics that fall between the daily cracks.",
+        "titel": "Managed IT for larger businesses: 20+ seats | WVM-IT",
+        "desc": "Managed IT from 20 workstations upwards: from €29/month per workstation, server from €89/month, multiple sites via remote maintenance. Request a quote.",
+        "h1": "Managed IT support for larger businesses from 20 workstations",
+        "kurz": "WVM-IT also looks after larger businesses from roughly 20 workstations upwards: audit and living documentation, a named contact, monitoring of servers and network, multiple sites via secure remote maintenance. Day-to-day support starts at €29 per workstation and month, a managed server at €89 per month. For a business with 30 workstations and 2 servers this gives a frame of about €1,097 per month (30 × €29 + 2 × €89 + €49 backup). Where an internal IT function exists, we work alongside it — as a second tier for topics that fall between the daily cracks.",
         "intro": "From about twenty workstations onwards the question changes: not „is anyone looking after this“ any more, but „how do we keep twenty accounts, ten shares, two servers and three sites in a state where somebody can still follow how it is built“ over the years. Larger businesses have contracts with customers that assume IT that works, and they have documentation duties that no piece of paper in the server room fulfils. That is where support built around a living inventory starts, not around a ticket queue. Below 20 workstations our <a href=\"/en/leistungen/edv-it-betreuung/\">IT support for small businesses</a> is the better fit — closer relationship, lower price per head.",
         "problem_h": "What goes wrong in larger businesses",
         "probleme": [

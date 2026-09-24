@@ -1,0 +1,16 @@
+{% comment %}Kleinauftrag-Include (R2-05, 24.09.2026; gemeinsam seit der dritten
+Nachbesserung): sichtbarer Absprung fuer einzelne Auftraege ohne Vertrag.
+Steht auf /leistungen/, /einrichten/ und den Seiten mit `"kleinauftrag": True`
+in leistungen.py / einrichtungen.py. Daten aus views._kleinauftrag(): Text aus
+dem Sprachpaket (hub.klein), Stundensatz aus ANGEBOT_GROUPS, Link auf
+/it-hilfe/?anliegen=klein — dort waehlt die View das Anliegen vor.
+
+Aufruf: {% include 'kleinauftrag.html' %} (liest `kleinauftrag` aus dem Kontext;
+ohne ihn rendert nichts).{% endcomment %}
+{% if kleinauftrag %}
+<aside class="hb-klein" data-reveal>
+  <h2 class="sp-h2">{{ kleinauftrag.h|safe }}</h2>
+  <p>{{ kleinauftrag.t|safe }}</p>
+  <a class="btn btn-primary" href="{{ kleinauftrag.url }}">{{ kleinauftrag.cta|safe }}</a>
+</aside>
+{% endif %}

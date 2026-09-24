@@ -840,19 +840,31 @@ PACK = {
              "t": "Până la aproximativ 20 de stații, asistență fixă de la 29 €/lună pe stație.",
              "url": "/ro/leistungen/edv-it-betreuung/"},
             {"h": "Firmă mai mare, mai multe sedii",
-             "t": "20 până la 200 de stații, documentație, standarde fixe, regulă de înlocuire în scris.",
+             "t": "De la 20 de stații, documentație, standarde fixe, regulă de înlocuire în scris.",
              "url": "/ro/leistungen/it-betreuung-groessere-betriebe/"},
             {"h": "O singură problemă, fără contract",
              "t": "Un aparat, o programare, 95 €/oră la distanță — /ro/it-hilfe/ sau o configurare la preț fix.",
              "url": "/ro/it-hilfe/"},
         ],
+        # Wegweiser "Nach Aufgabe" (KEYWORD-MAP Runde 2, Abschnitt B): die Karten
+        # nennen den Einrichtungs-Slug; URL, Name und Preis bildet views.leistungen_hub.
+        "wegweiser_groesse_h": "După mărimea firmei",
+        "wegweiser_aufgabe_h": "După sarcină",
+        "wegweiser_aufgabe": [
+            {"slug": "server", "t": "Server nou sau înlocuirea celui vechi: utilizatori, partajări, drepturi și backup."},
+            {"slug": "netzwerk", "t": "Router, switch și Wi-Fi în toată firma, plus o rețea separată pentru oaspeți."},
+            {"slug": "arbeitsplatz", "t": "Un PC nou, complet configurat: cont, e-mail, programe și imprimantă."},
+            {"slug": "pc-tausch", "t": "Calculatorul vechi iese, cel nou intră — fișierele, e-mailurile și accesele vin cu el."},
+            {"slug": "microsoft-365", "t": "Căsuțe de e-mail, Teams, OneDrive și SharePoint, inclusiv mutarea e-mailurilor vechi."},
+            {"slug": "datensicherung", "t": "Ce se salvează, unde și cât de des — cu test de restaurare."},
+            {"slug": "it-umzug", "t": "Server, rețea și posturi de lucru mutate în biroul nou, testate în prima zi de lucru."},
+        ],
         # Include comandă mică (R2-05, 24.09.2026): rută dedicată către /it-hilfe/
         # cu intenția `klein` (vezi views._ANLIEGEN).
         "klein": {
             "h": "Comandă mică, fără contract?",
-            "t": "Dacă aveți nevoie doar de un singur aparat, de o întrebare scurtă sau de o programare pentru o configurare la preț fix — fără asistență curentă. Facturăm atunci la oră (95 € prin mentenanță la distanță, 120 € la fața locului plus deplasare) sau la preț fix, dacă problema dumneavoastră este în catalogul de configurări.",
+            "t": "Dacă aveți nevoie doar de un singur aparat, de o întrebare scurtă sau de o programare pentru o configurare la preț fix — fără asistență curentă. Facturăm atunci la oră ({std} € prin mentenanță la distanță) sau la preț fix, dacă problema dumneavoastră este în catalogul de configurări.",
             "cta": "Către IT-Hilfe fără contract",
-            "url": "/ro/it-hilfe/",
         },
         "it_h": "IT și infrastructură",
         "it_t": "Nucleul: tehnica de zi cu zi a firmei, administrată în cea mai mare parte de la distanță. Aici intră stațiile de lucru, serverele, rețeaua, backupul și securitatea IT – tot ce trebuie să funcționeze zilnic fără ca cineva să stea permanent lângă el. Cea mai mare parte se rezolvă prin administrare la distanță; doar montarea inițială a rețelei sau înlocuirea unui echipament au nevoie de o vizită la fața locului.",

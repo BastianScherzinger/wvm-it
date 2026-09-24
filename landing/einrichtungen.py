@@ -114,7 +114,8 @@ EINRICHTUNGEN = [
     # /leistungen/server-datensicherung/.
     {"slug": "datensicherung", "icon": "shield", "preis": "edv",
      "quelle": "it", "leistung": "server-datensicherung", "thema": "server-datensicherung",
-     "vor_ort": False, "prio": "0.8", "verwandt": ["server", "firewall-vpn"]},
+     "vor_ort": False, "prio": "0.8", "verwandt": ["server", "firewall-vpn"],
+     "kleinauftrag": True},
 
     # IT-Umzug im Büro (Büroumzug, Neueinrichtung). Bausteine aus dem Katalog:
     # Arbeitsplatz 190 EUR/Platz, Netzwerk ab 890 EUR, Vor-Ort 120 EUR/Std. Der
@@ -123,7 +124,8 @@ EINRICHTUNGEN = [
     # an einem Tag, laufend danach edv-it-betreuung.
     {"slug": "it-umzug", "icon": "tausch", "preis": "edv",
      "quelle": "it", "leistung": "edv-it-betreuung", "thema": "edv-it-betreuung",
-     "vor_ort": True, "prio": "0.8", "verwandt": ["netzwerk", "arbeitsplatz"]},
+     "vor_ort": True, "prio": "0.8", "verwandt": ["netzwerk", "arbeitsplatz"],
+     "kleinauftrag": True},
 ]
 
 NACH_SLUG = {e["slug"]: e for e in EINRICHTUNGEN}

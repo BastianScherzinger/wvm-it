@@ -36,6 +36,7 @@
     {% if hub.wegweiser %}
     <nav class="hb-wegweiser" aria-label="{{ hub.wegweiser_aria|default:hub.wegweiser_h|safe }}" data-reveal>
       <h2 class="sp-h2">{{ hub.wegweiser_h|safe }}</h2>
+      {% if hub.wegweiser_groesse_h %}<h3 class="hb-wegweiser-h">{{ hub.wegweiser_groesse_h|safe }}</h3>{% endif %}
       <ul class="hb-wegweiser-liste">
         {% for w in hub.wegweiser %}
         <li>
@@ -46,6 +47,23 @@
         </li>
         {% endfor %}
       </ul>
+      {% comment %}Nach Aufgabe (docs/seo/KEYWORD-MAP.md, Runde 2 Abschnitt B):
+      die Einrichtungsseiten, auf die die Aufgaben-Keywords zielen. Karten aus
+      views._wegweiser_aufgabe(), Preis aus ANGEBOT_GROUPS.{% endcomment %}
+      {% if wegweiser_aufgabe %}
+      <h3 class="hb-wegweiser-h" id="nach-aufgabe">{{ hub.wegweiser_aufgabe_h|safe }}</h3>
+      <ul class="hb-wegweiser-liste hb-wegweiser-aufgabe">
+        {% for w in wegweiser_aufgabe %}
+        <li>
+          <a class="hb-wegweiser-karte spot" href="{{ w.url }}" data-spot>
+            <strong>{{ w.h|safe }}</strong>
+            <span>{{ w.t|safe }}</span>
+            {% if w.preis %}<span class="hb-wegweiser-preis">{{ w.preis }}</span>{% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
     </nav>
     {% endif %}
 
@@ -70,17 +88,7 @@
 
     <p class="lk-alle"><a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
 
-    {% comment %}Kleinauftrag-Include (R2-05, 24.09.2026): sichtbarer Absprung
-    für einzelne Aufträge ohne Vertrag. Führt auf /it-hilfe/ und trägt das
-    Anliegen `klein`, damit die Zählung diese Kleinaufträge vom übrigen
-    Rueckruf-Verkehr trennt. Optional (nur wenn `hub.klein` gesetzt ist).{% endcomment %}
-    {% if hub.klein %}
-    <aside class="hb-klein" data-reveal>
-      <h2 class="sp-h2">{{ hub.klein.h|safe }}</h2>
-      <p>{{ hub.klein.t|safe }}</p>
-      <a class="btn btn-primary" href="{{ hub.klein.url }}?anliegen=klein">{{ hub.klein.cta|safe }}</a>
-    </aside>
-    {% endif %}
+    {% include 'kleinauftrag.html' %}
 
     {% comment %}Der Hub hatte 432 Woerter: eine Kachelliste ohne Antwort auf die
     Frage, was konkret passiert. Die vier Abschnitte unten schliessen das (IS18).{% endcomment %}

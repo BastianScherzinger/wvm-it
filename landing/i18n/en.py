@@ -844,19 +844,31 @@ PACK = {
              "t": "Up to about 20 workstations, fixed support from €29/month per workstation.",
              "url": "/en/leistungen/edv-it-betreuung/"},
             {"h": "Larger business, several sites",
-             "t": "20 to 200 workstations, documentation, fixed standards, cover arrangement in writing.",
+             "t": "From 20 workstations, documentation, fixed standards, cover arrangement in writing.",
              "url": "/en/leistungen/it-betreuung-groessere-betriebe/"},
             {"h": "Single problem, no contract",
              "t": "One device, one appointment, €95/hour by remote — /en/it-hilfe/ or a fixed-price set-up.",
              "url": "/en/it-hilfe/"},
         ],
+        # Wegweiser "Nach Aufgabe" (KEYWORD-MAP Runde 2, Abschnitt B): die Karten
+        # nennen den Einrichtungs-Slug; URL, Name und Preis bildet views.leistungen_hub.
+        "wegweiser_groesse_h": "By size of business",
+        "wegweiser_aufgabe_h": "By task",
+        "wegweiser_aufgabe": [
+            {"slug": "server", "t": "A new server or replacing the old one: users, shares, permissions and backup."},
+            {"slug": "netzwerk", "t": "Router, switch and Wi-Fi across the business, plus a separate guest network."},
+            {"slug": "arbeitsplatz", "t": "A new PC, fully set up with account, email, software and printer."},
+            {"slug": "pc-tausch", "t": "Old computer out, new one in — files, email and credentials come across."},
+            {"slug": "microsoft-365", "t": "Mailboxes, Teams, OneDrive and SharePoint, including migrating your existing email."},
+            {"slug": "datensicherung", "t": "What gets backed up, where to and how often — with a restore test."},
+            {"slug": "it-umzug", "t": "Server, network and workstations moved to the new office, tested on the first working day."},
+        ],
         # Small-order include (R2-05, 24.09.2026): dedicated route to /it-hilfe/
         # with the `klein` intent (see views._ANLIEGEN).
         "klein": {
             "h": "A small order, no contract?",
-            "t": "When you only need a single device, a short question or a fixed-price set-up appointment — without ongoing support. We then bill by the hour (€95 by remote, €120 on site plus travel) or at a fixed price if your case is in the set-up catalogue.",
+            "t": "When you only need a single device, a short question or a fixed-price set-up appointment — without ongoing support. We then bill by the hour (€{std} by remote) or at a fixed price if your case is in the set-up catalogue.",
             "cta": "Go to IT help without a contract",
-            "url": "/en/it-hilfe/",
         },
         "it_h": "IT and infrastructure",
         "it_t": "The core: the day-to-day technology of your business, looked after mostly from a distance. That includes workstations, servers, network, backups and IT security – everything that has to keep running without someone standing next to it. Most of that can be handled by remote support; only the initial network build or a hardware swap needs an on-site visit.",

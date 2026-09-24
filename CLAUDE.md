@@ -160,7 +160,7 @@ Zuarbeit und lässt sich hier nicht lösen:
 - `docs/seo/BASELINE.md` — Nullmessung, nächste Messung Ende September
 - `docs/UMBAU-PLAN.md` / `docs/UMBAU-START.md` — der vorige Umbau (Design, Conversion)
 
-**Vor jedem Deploy:** `python manage.py pruefe_seite` — prüft alle 198 URLs auf `<h1>`,
+**Vor jedem Deploy:** `python manage.py pruefe_seite` — prüft alle 213 URLs auf `<h1>`,
 Titel-/Description-Länge, JSON-LD, Alt-Texte, hreflang, jeden internen Link, jeden Preis
 auf jeder Seite und die Formulare (CSRF, Honigtopf, Datenschutzhinweis, Quelle).
 Rückgabewert 1 bei Fehlern.

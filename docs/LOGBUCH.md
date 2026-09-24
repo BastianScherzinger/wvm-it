@@ -7,6 +7,43 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 24.09.2026 — Nachbesserung Runde 2 (dritte Runde): Kleinauftrag ohne fremde Zahl, Wegweiser nach Aufgabe
+
+Sechs Befunde aus der Opus-Abnahme desselben Zweigs `seo/2026-09-24-runde2`,
+Arbeit weiterhin unter `scratchpad/wvm-it-r2`, Hauptordner nicht angefasst.
+
+* **Kleinauftrag-Block nannte 120 € vor Ort zuzüglich Anfahrt** (blockierend).
+  Im Block steht jetzt nur noch der Stundensatz, und der kommt als `{std}` aus
+  `ANGEBOT_GROUPS` (`views._kleinauftrag()`), nicht aus dem Fließtext. Ein
+  Regex-Test sucht jeden €-Betrag im gerenderten `<aside class="hb-klein">`
+  auf allen 15 Seiten und lässt nur den Katalogsatz durch.
+* **Wegweiser ohne „Nach Aufgabe“** (blockierend). `/leistungen/` trägt neben
+  den drei Größen-Zielen sieben Karten auf die Einrichtungsseiten aus
+  KEYWORD-MAP Runde 2 B (Server, Netzwerk, Arbeitsplatz, PC-Tausch, Microsoft
+  365, Datensicherung, IT-Umzug). Das Sprachpaket nennt nur Slug und Satz; Name,
+  URL und Preis bildet `views._wegweiser_aufgabe()`, ein unbekannter Slug fällt
+  weg statt tot zu verlinken. Offen Nr. 30 war in der zweiten Runde zu früh
+  durchgestrichen; jetzt stimmt es.
+* **Kleinauftrag nur auf einer Seite, `?anliegen=klein` ohne Wirkung.** Der Block
+  ist jetzt das Include `templates/kleinauftrag.html` auf `/leistungen/`,
+  `/einrichten/`, den größeren Betrieben, IT-Umzug und Datensicherung (Kennzeichen
+  `"kleinauftrag": True` in der Strukturquelle). `views.it_hilfe` liest den
+  Parameter, prüft ihn gegen `_ANLIEGEN` und gibt ihn weiter: verstecktes Feld
+  im Anfrageformular, vorgewählte Option im Rückruf-Dialog. Fremde Werte fallen
+  still weg (Test mit Skript-Versuch und unbekanntem Wert).
+* **KEYWORD-MAP**: „it dienstleister österreich“, „datensicherung unternehmen“ und
+  „wlan ausleuchtung firma“ standen in der alten Tabelle und in Runde 2; jetzt nur
+  noch in der alten.
+* **„20–200 Arbeitsplätze“** in Titel, H1, Description, Kurztext und Wegweiser
+  (DE/EN/RO) auf „ab 20 Arbeitsplätzen“ ohne Obergrenze gedreht, bis Florin
+  Frage g beantwortet. Die Hero-Zeile der Startseite („bis zum Betrieb mit 200
+  Arbeitsplätzen“) ist älter und bleibt, steht aber als Hinweis bei Frage g.
+* **CLAUDE.md** nannte bei `pruefe_seite` noch 198 URLs; es sind 213.
+
+Ergebnis: 213 URLs, 412 Tests grün, `pruefe_seite` und `pruefe_sicherheit` grün.
+
+---
+
 ## 24.09.2026 — Nachbesserung Runde 2 (Zweite Runde): Zusagen ohne Beleg, Wegweiser, Kleinauftrag
 
 Sieben Befunde aus der zweiten Abnahme desselben Zweigs `seo/2026-09-24-runde2`,

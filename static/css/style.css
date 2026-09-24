@@ -2654,6 +2654,9 @@ h1,h2,h3,h4,.sp-h2,.sec-h{overflow-wrap:break-word}
   transform:translateY(-2px);box-shadow:var(--shadow)}
 .hb-wegweiser-karte strong{font-family:"Space Grotesk",sans-serif;font-size:1.05rem}
 .hb-wegweiser-karte span{color:var(--ink-soft);font-size:14.5px;line-height:1.45}
+.hb-wegweiser-h{font-size:1.05rem;margin:22px 0 0;color:var(--ink-soft);font-weight:600}
+.hb-wegweiser .sp-h2 + .hb-wegweiser-h{margin-top:10px}
+.hb-wegweiser-karte .hb-wegweiser-preis{margin-top:auto;padding-top:4px;color:var(--ink);font-weight:600;font-size:14px}
 
 /* ── Hub-Kleinauftrag-Include (R2-05, 24.09.2026) ─────────────────────────── */
 .hb-klein{margin-top:clamp(36px,5vw,56px);padding:clamp(20px,3vw,32px);

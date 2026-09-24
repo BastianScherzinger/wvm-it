@@ -617,10 +617,10 @@ SEITEN = {
     # ══ Runda 2 (24.09.2026) ══════════════════════════════════════════════════
     "it-betreuung-groessere-betriebe": {
         "nav": "Firme mai mari",
-        "titel": "Administrare IT firme mari: 20–200 stații | WVM-IT",
-        "desc": "Administrare IT pentru 20–200 stații: de la 29 €/lună pe stație, server de la 89 €/lună, mai multe sedii prin mentenanță la distanță. Cereți ofertă.",
-        "h1": "Administrare IT pentru firme mai mari — 20 până la 200 de stații",
-        "kurz": "WVM-IT se ocupă și de firme mai mari, de aproximativ 20 până la 200 de stații: evaluare și documentație vie, persoană de contact fixă, monitorizarea serverelor și rețelei, mai multe sedii prin mentenanță securizată la distanță. Asistența curentă începe de la 29 € pe stație și lună, un server administrat de la 89 € pe lună. Pentru o firmă cu 30 de stații și 2 servere rezultă un cadru de circa 1.097 € pe lună (30 × 29 € + 2 × 89 € + 49 € copie de siguranță). Acolo unde există un rol IT intern, lucrăm alături — ca al doilea nivel pentru temele care nu încap în ziua obișnuită.",
+        "titel": "Administrare IT firme mari: de la 20 de stații | WVM-IT",
+        "desc": "Administrare IT de la 20 de stații: de la 29 €/lună pe stație, server de la 89 €/lună, mai multe sedii prin mentenanță la distanță. Cereți ofertă.",
+        "h1": "Administrare IT pentru firme mai mari, de la 20 de stații",
+        "kurz": "WVM-IT se ocupă și de firme mai mari, de la aproximativ 20 de stații în sus: evaluare și documentație vie, persoană de contact fixă, monitorizarea serverelor și rețelei, mai multe sedii prin mentenanță securizată la distanță. Asistența curentă începe de la 29 € pe stație și lună, un server administrat de la 89 € pe lună. Pentru o firmă cu 30 de stații și 2 servere rezultă un cadru de circa 1.097 € pe lună (30 × 29 € + 2 × 89 € + 49 € copie de siguranță). Acolo unde există un rol IT intern, lucrăm alături — ca al doilea nivel pentru temele care nu încap în ziua obișnuită.",
         "intro": "De la aproximativ douăzeci de stații se schimbă întrebarea: nu mai „există cineva care să se ocupe”, ci „cum menținem douăzeci de conturi, zece partajări, două servere și trei sedii într-o stare în care cineva să mai poată urmări cum e construit totul” pe termen lung. Firmele mai mari au contracte cu clienți care presupun un IT care merge și au obligații de documentare pe care o hârtie în camera serverelor nu le acoperă. Aici pornește o asistență construită pe inventar viu, nu pe o coadă de tichete. Sub 20 de stații, <a href=\"/ro/leistungen/edv-it-betreuung/\">administrarea IT pentru firme mici</a> este alegerea potrivită — relație mai apropiată, preț mai mic pe cap.",
         "problem_h": "Ce se strică în firmele mai mari",
         "probleme": [

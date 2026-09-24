@@ -622,10 +622,10 @@ SEITEN = {
     # ══ Runde 2 (24.09.2026) ══════════════════════════════════════════════════
     "it-betreuung-groessere-betriebe": {
         "nav": "Größere Betriebe",
-        "titel": "IT-Betreuung größere Betriebe: 20–200 Arbeitsplätze | WVM-IT",
-        "desc": "IT-Betreuung für 20 bis 200 Arbeitsplätze: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, mehrere Standorte per Fernwartung. Jetzt anfragen.",
-        "h1": "IT-Betreuung für größere Betriebe — 20 bis 200 Arbeitsplätze",
-        "kurz": "WVM-IT betreut auch größere Betriebe von etwa 20 bis 200 Arbeitsplätzen: Bestandsaufnahme und laufende Dokumentation, ein fester Ansprechpartner, Überwachung von Servern und Netzwerk, Umgang mit mehreren Standorten per Fernwartung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat. Für einen Betrieb mit 30 Arbeitsplätzen und 2 Servern kommt so ein Rahmen von rund 1.097 € im Monat zustande (30 × 29 € + 2 × 89 € + 49 € Datensicherung). Wo eine interne IT existiert, arbeiten wir daneben — als zweite Stufe für die Themen, für die intern die Zeit fehlt.",
+        "titel": "IT-Betreuung größere Betriebe: ab 20 Arbeitsplätzen | WVM-IT",
+        "desc": "IT-Betreuung ab 20 Arbeitsplätzen: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, mehrere Standorte per Fernwartung. Jetzt anfragen.",
+        "h1": "IT-Betreuung für größere Betriebe ab 20 Arbeitsplätzen",
+        "kurz": "WVM-IT betreut auch größere Betriebe ab etwa 20 Arbeitsplätzen: Bestandsaufnahme und laufende Dokumentation, ein fester Ansprechpartner, Überwachung von Servern und Netzwerk, Umgang mit mehreren Standorten per Fernwartung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat. Für einen Betrieb mit 30 Arbeitsplätzen und 2 Servern kommt so ein Rahmen von rund 1.097 € im Monat zustande (30 × 29 € + 2 × 89 € + 49 € Datensicherung). Wo eine interne IT existiert, arbeiten wir daneben — als zweite Stufe für die Themen, für die intern die Zeit fehlt.",
         "intro": "Ab etwa zwanzig Arbeitsplätzen ändert sich die Frage: nicht mehr „gibt es überhaupt eine Betreuung“, sondern „wie halten wir zwanzig Konten, zehn Freigaben, zwei Server und drei Standorte über die nächsten Jahre in einem Zustand, in dem noch jemand nachvollziehen kann, wie das aufgebaut ist“. Größere Betriebe haben Verträge mit Kunden, die eine IT voraussetzen, die läuft, und sie haben eine Dokumentationspflicht, die kein Zettel im Serverraum erfüllt. Genau dort setzt eine Betreuung an, die nicht am Ticket denkt, sondern am Bestand. Unter 20 Arbeitsplätzen sind Sie auf unserer <a href=\"/leistungen/edv-it-betreuung/\">EDV- und IT-Betreuung für kleinere Betriebe</a> richtig — dort ist die Beziehung enger und der Preis pro Kopf günstiger.",
         "problem_h": "Was in größeren Betrieben schiefgeht",
         "probleme": [

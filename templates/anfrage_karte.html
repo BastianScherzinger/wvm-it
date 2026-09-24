@@ -16,6 +16,9 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     {% csrf_token %}
     <input type="hidden" name="quelle" value="{{ bid }}">
     <input type="hidden" name="zurueck" value="{{ request.path }}">
+    {% comment %}?anliegen=… (z. B. vom Kleinauftrag-Block): von der View gegen
+    views._ANLIEGEN geprueft; ungueltige Werte kommen hier nie an.{% endcomment %}
+    {% if anliegen_vorwahl %}<input type="hidden" name="anliegen" value="{{ anliegen_vorwahl }}">{% endif %}
     {% include 'honigtopf.html' %}
 
     <h2 class="ak-h">{{ titel|safe }}</h2>

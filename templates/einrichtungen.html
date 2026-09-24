@@ -55,6 +55,8 @@ Aufgabe.
       <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.leistungen|safe }} →</a></p>
     </div>
 
+    {% include 'kleinauftrag.html' %}
+
     <p class="sp-fuss">{{ preis_stand }}</p>
   </div>
 </section>

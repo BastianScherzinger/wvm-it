@@ -866,19 +866,31 @@ PACK = {
              "t": "Bis etwa 20 Arbeitsplätze, feste Betreuung ab 29 €/Monat je Arbeitsplatz.",
              "url": "/leistungen/edv-it-betreuung/"},
             {"h": "Größerer Betrieb, mehrere Standorte",
-             "t": "20 bis 200 Arbeitsplätze, Dokumentation, feste Standards, Vertretungsregelung schriftlich.",
+             "t": "Ab 20 Arbeitsplätzen, Dokumentation, feste Standards, Vertretungsregelung schriftlich.",
              "url": "/leistungen/it-betreuung-groessere-betriebe/"},
             {"h": "Einzelnes Problem, ohne Vertrag",
              "t": "Ein Gerät, ein Termin, 95 €/Std. per Fernwartung — /it-hilfe/ oder eine Einrichtung zum Festpreis.",
              "url": "/it-hilfe/"},
         ],
+        # Wegweiser "Nach Aufgabe" (KEYWORD-MAP Runde 2, Abschnitt B): die Karten
+        # nennen den Einrichtungs-Slug; URL, Name und Preis bildet views.leistungen_hub.
+        "wegweiser_groesse_h": "Nach Größe des Betriebs",
+        "wegweiser_aufgabe_h": "Nach Aufgabe",
+        "wegweiser_aufgabe": [
+            {"slug": "server", "t": "Neuer Server oder Ablösung des alten: Benutzer, Freigaben, Rechte und Sicherung."},
+            {"slug": "netzwerk", "t": "Router, Switch und WLAN im Betrieb, dazu ein getrenntes Gastnetz."},
+            {"slug": "arbeitsplatz", "t": "Ein neuer PC, fertig eingerichtet mit Konto, E-Mail, Programmen und Drucker."},
+            {"slug": "pc-tausch", "t": "Alter Rechner raus, neuer rein — Dateien, E-Mails und Zugänge kommen mit."},
+            {"slug": "microsoft-365", "t": "Postfächer, Teams, OneDrive und SharePoint, samt Umzug der alten E-Mails."},
+            {"slug": "datensicherung", "t": "Was gesichert wird, wohin und wie oft — mit Test-Wiederherstellung."},
+            {"slug": "it-umzug", "t": "Server, Netzwerk und Arbeitsplätze ins neue Büro, am ersten Arbeitstag getestet."},
+        ],
         # Kleinauftrag-Include (R2-05, 24.09.2026): eigener Absprung auf /it-hilfe/
         # mit dem Anliegen `klein` (siehe views._ANLIEGEN).
         "klein": {
             "h": "Kleiner Auftrag ohne Vertrag?",
-            "t": "Wenn Sie nur ein einzelnes Gerät, eine kurze Frage oder einen Termin für eine Einrichtung brauchen — ohne laufende Betreuung. Wir rechnen dann nach Stunde ab (95 € per Fernwartung, 120 € vor Ort zuzüglich Anfahrt) oder zum Festpreis, wenn Ihr Anliegen im Einrichtungs­katalog steht.",
+            "t": "Wenn Sie nur ein einzelnes Gerät, eine kurze Frage oder einen Termin für eine Einrichtung brauchen — ohne laufende Betreuung. Wir rechnen dann nach Stunde ab ({std} € per Fernwartung) oder zum Festpreis, wenn Ihr Anliegen im Einrichtungs­katalog steht.",
             "cta": "Zur IT-Hilfe ohne Vertrag",
-            "url": "/it-hilfe/",
         },
         "it_h": "EDV und IT",
         "it_t": "Der Kern: die laufende Technik Ihres Betriebs, überwiegend aus der Ferne betreut. Dazu zählen Arbeitsplätze, Server, Netzwerk, Datensicherung und die IT-Sicherheit – alles, was im Alltag laufen muss, ohne dass jemand ständig danebensteht. Der überwiegende Teil davon lässt sich per Fernwartung erledigen; nur der erste Netzwerkaufbau oder ein Hardware-Tausch braucht einen Termin vor Ort.",

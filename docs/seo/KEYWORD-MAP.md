@@ -217,7 +217,7 @@ Kaufabsicht, I = Information.
 | Keyword (AT/DE) | Absicht | Beleg | Zielseite |
 |---|---|---|---|
 | it betreuung für kleine unternehmen (kosten) / it support für kleine unternehmen / edv betreuung (unternehmen) / betreuung edv netzwerk | K | Suchvorschlag; GSC „edv betreuung unternehmen“ Pos. 65,7, „betreuung edv netzwerk“ Pos. 55,3 | `/leistungen/edv-it-betreuung/` (Runde 2 Ausbau um Abschnitt Kleinbetriebe). Reine Kostenfrage → `/kosten/` (Regel 2) |
-| it service für unternehmen / it service unternehmen deutschland / it dienstleister österreich / externe it betreuung / edv service | K | Suchvorschläge | `/leistungen/edv-it-betreuung/` (Synonyme in H2 und FAQ, keine eigene Seite) |
+| it service für unternehmen / it service unternehmen deutschland / externe it betreuung / edv service | K | Suchvorschläge | `/leistungen/edv-it-betreuung/` (Synonyme in H2 und FAQ, keine eigene Seite) |
 | it betreuung mittelstand / it dienstleister größere unternehmen / managed it services kmu / it betreuung 50 arbeitsplätze | K | Wettbewerber (hillinger-it, sc24) | **NEU** `/leistungen/it-betreuung-groessere-betriebe/` (DE/EN/RO, Runde 2) |
 | it support / it hilfe ohne vertrag / pc hilfe firma / it support kleine firmen einmalig | K | Runde 1 | `/it-hilfe/` (unverändert). Regel 13 (neu): Einzelproblem → `/it-hilfe/`, laufend → `/leistungen/edv-it-betreuung/` |
 
@@ -228,13 +228,13 @@ Kaufabsicht, I = Information.
 | server einrichten lassen / server für kleine firma einrichten | K | Suchvorschlag | `/einrichten/server/` |
 | brauche ich einen eigenen server | I→K | GSC 14 Impr., Pos. 63,3 | `/aktuelles/wie-viele-arbeitsplaetze-eigener-server/` (Snippet neu, Runde 2) |
 | netzwerk einrichten lassen / netzwerk einrichten firma / wlan einrichten firma | K | Suchvorschläge | `/einrichten/netzwerk/` |
-| netzwerk betreuung / wlan ausleuchtung firma | K | Karte Runde 0 | `/leistungen/netzwerk-wlan/` |
+| netzwerk betreuung | K | Karte Runde 0 | `/leistungen/netzwerk-wlan/` |
 | pc einrichten lassen (kosten) / pc kaufen und einrichten lassen | K | GSC einziger Kaufklick; Suchvorschlag | `/einrichten/arbeitsplatz/`, `/einrichten/pc-tausch/` (Runde 2 Ausbau) |
 | hardware beschaffen firma / firmen pc kaufen und einrichten / pc tausch firma | K | Suchvorschläge | `/einrichten/pc-tausch/` (Ausbau um Beschaffung, keine eigene Seite) |
 | computer aufrüsten (lassen) / computer aufrüsten für windows 11 / computer aufrüstung | I→K | GSC 67 Impr. Pos. ≈70 | `/vergleich/pc-aufruesten-oder-neu-kaufen/` |
 | microsoft 365 einrichten lassen / m365 umstellung firma | K | — | `/einrichten/microsoft-365/` |
 | datensicherung einrichten (lassen) / automatische datensicherung / nas datensicherung firma | K | Suchvorschläge (viele) | **NEU** `/einrichten/datensicherung/` (Runde 2, DE/EN/RO) |
-| datensicherung unternehmen / backup betreuung / serverwartung | K | Karte Runde 0 | `/leistungen/server-datensicherung/` |
+| backup betreuung / serverwartung | K | Karte Runde 0 | `/leistungen/server-datensicherung/` |
 | it umzug (checkliste) / büroumzug it / edv umzug firma / arbeitsplätze umziehen | K | Suchvorschlag „it umzug checkliste“ | **NEU** `/einrichten/it-umzug/` (Runde 2, DE/EN/RO, Checkliste auf der Seite) |
 
 ### C) Region

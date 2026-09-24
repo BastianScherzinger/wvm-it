@@ -2393,6 +2393,38 @@ def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id="
                       ensure_ascii=False, separators=(",", ":"))
 
 
+def _kleinauftrag(lang):
+    """Der Kleinauftrag-Block (templates/kleinauftrag.html), fertig fuers Template.
+
+    Steht auf /leistungen/, /einrichten/ und den Seiten mit `"kleinauftrag": True`
+    in leistungen.py bzw. einrichtungen.py. Die einzige Zahl darin ist der
+    Stundensatz aus ANGEBOT_GROUPS (`{std}` im Sprachpaket); der Link traegt
+    `?anliegen=klein`, das `it_hilfe` gegen `_ANLIEGEN` prueft und vorwaehlt."""
+    klein = dict(i18n.get_pack(lang).get("hub", {}).get("klein") or {})
+    if not klein:
+        return None
+    klein["t"] = klein.get("t", "").replace("{std}", str(_ANGEBOT_INDEX[_HILFE_STUNDE]["std"]))
+    klein["url"] = reverse("it_hilfe") + "?anliegen=klein"
+    return klein
+
+
+def _wegweiser_aufgabe(hub, lang):
+    """Wegweiser „Nach Aufgabe" auf /leistungen/: Das Sprachpaket nennt je Karte
+    den Einrichtungs-Slug und einen Satz; Name, URL und Preis kommen aus
+    einrichtungen.py und ANGEBOT_GROUPS. Unbekannte Slugs fallen weg, statt
+    einen toten Link zu erzeugen."""
+    karten = []
+    for w in hub.get("wegweiser_aufgabe") or []:
+        eintrag = einrichtungen.NACH_SLUG.get(w.get("slug"))
+        if not eintrag:
+            continue
+        daten = _einrichtung_daten(eintrag, lang)
+        karten.append({"h": daten.get("nav") or daten.get("h1", w["slug"]),
+                       "t": w.get("t", ""), "url": daten["url"],
+                       "preis": daten.get("preis_label", "")})
+    return karten
+
+
 def leistungen_hub(request):
     """/leistungen/ — Einstieg in alle Leistungsseiten, nach Bereich gegliedert."""
     c = _content()
@@ -2408,6 +2440,8 @@ def leistungen_hub(request):
     ]
     return render(request, "leistungen.html", {
         "c": c, "hub": hub, "bereiche": bereiche,
+        "wegweiser_aufgabe": _wegweiser_aufgabe(hub, lang),
+        "kleinauftrag": _kleinauftrag(lang),
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(
                 base, [(pack["seite"]["leistungen"], reverse("leistungen"))]),
@@ -2479,6 +2513,7 @@ def leistung_seite(request, slug):
         # Der kleine erste Schritt (06.09.2026). Name und Preis kommen aus dem
         # Katalog und aus dem Sprachpaket — nie aus dem Fließtext.
         "einstieg": _einstieg_daten(eintrag, lang),
+        "kleinauftrag": _kleinauftrag(lang) if eintrag.get("kleinauftrag") else None,
         # V1/V2: alles, was zum selben Thema gehört — Beiträge, Vergleiche,
         # Branchen, Checklisten, Begriffe. Ohne diesen Block hängen die
         # Fachbeiträge an genau einem eingehenden Link (siehe V3-Prüfung).
@@ -3029,8 +3064,15 @@ def it_hilfe(request):
     anfrage_ok = (request.GET.get("ok") or "").strip().lower()
     if anfrage_ok not in _ANFRAGE_QUELLEN:
         anfrage_ok = ""
+    # ?anliegen=klein (Kleinauftrag-Block): nur Werte aus _ANLIEGEN gelten,
+    # alles andere faellt stillschweigend weg. Das Formular traegt den Wert als
+    # verstecktes Feld, der Rueckruf-Dialog waehlt ihn in seiner Liste vor.
+    anliegen = (request.GET.get("anliegen") or "").strip().lower()
+    if anliegen not in _ANLIEGEN:
+        anliegen = ""
     return render(request, "it_hilfe.html", {
         "c": c, "hilfe": hilfe, "anfrage_ok": anfrage_ok,
+        "anliegen_vorwahl": anliegen,
         "faelle": _hilfe_faelle(hilfe, lang),
         "wa_text": hilfe.get("wa_text", ""),
         "preis_stand": _preis_stand(lang),
@@ -3070,6 +3112,7 @@ def einrichtungen_hub(request):
     posten = [_einrichtung_daten(e, lang) for e in einrichtungen.EINRICHTUNGEN]
     return render(request, "einrichtungen.html", {
         "c": c, "hub": hub, "posten": posten,
+        "kleinauftrag": _kleinauftrag(lang),
         "preis_stand": _preis_stand(lang),
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(
@@ -3116,6 +3159,7 @@ def einrichtung_seite(request, slug):
         anfrage_ok = ""
     return render(request, "einrichtung.html", {
         "c": c, "hub": hub, "seite": seite, "anfrage_ok": anfrage_ok,
+        "kleinauftrag": _kleinauftrag(lang) if eintrag.get("kleinauftrag") else None,
         # Die Leistungsseite, zu der wechselseitig verlinkt wird — mit dem Satz,
         # der die Trennung ausspricht (Kannibalisierung, siehe Plan §2.2).
         "leistung": (_leistung_daten(leistungen.NACH_SLUG[eintrag["leistung"]], lang)

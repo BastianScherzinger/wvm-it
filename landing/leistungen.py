@@ -42,12 +42,14 @@ LEISTUNGEN = [
      # Auf /leistungen/it-sicherheit/ bleibt der Check der richtige Einstieg.
      "einstieg": "arbeitsplatz",},
 
-    # Runde 2 (24.09.2026): grössere Betriebe (20-200 Arbeitsplätze). Suchabsicht
+    # Runde 2 (24.09.2026): grössere Betriebe (ab 20 Arbeitsplätzen, ohne Obergrenze bis Florin sie bestätigt). Suchabsicht
     # ist eine andere als bei /edv-it-betreuung/ (Umfang, Dokumentation, Server,
     # mehrere Standorte). Abgrenzung im ersten Absatz: unter 20 -> EDV-Betreuung.
     {"slug": "it-betreuung-groessere-betriebe", "bereich": "it", "icon": "host", "quelle": "it", "preis": "it_betreuung",
      "vor_ort": False, "prio": "0.9",
      "verwandt": ["edv-it-betreuung", "server-datensicherung", "netzwerk-wlan", "it-sicherheit"],
+     # Kleinauftrag-Include (templates/kleinauftrag.html) auf dieser Seite zeigen.
+     "kleinauftrag": True,
      "einstieg": "sicherheitscheck",},
 
     {"slug": "server-datensicherung", "bereich": "it", "icon": "server", "quelle": "it", "preis": "backup",
