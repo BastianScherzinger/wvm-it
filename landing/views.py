@@ -2216,7 +2216,7 @@ def _seiten_pfade():
     return pfade
 
 
-def _itemlist(base, pfad, name, posten):
+def _itemlist(base, pfad, name, posten, *, als_service=False):
     """`ItemList` für eine Hub-Seite (docs/SEO-AUSBAU-3.md, S3).
 
     Ein Hub ist für eine Suchmaschine sonst eine Seite mit vielen Links und ohne
@@ -2225,7 +2225,22 @@ def _itemlist(base, pfad, name, posten):
 
     `posten` ist eine Liste aus (Name, Pfad) — genau die Reihenfolge, in der die
     Einträge auch auf der Seite stehen. Eine andere Reihenfolge wäre eine Angabe,
-    die sich am HTML widerlegen lässt."""
+    die sich am HTML widerlegen lässt.
+
+    `als_service=True` für Hubs, deren Einträge Leistungen sind (Leistungen,
+    Branchen, Regionen; Messung GE13, 24.09.2026): Jeder Eintrag wird dann als
+    `Service` mit derselben `@id` ausgezeichnet, die die Zielseite für ihren
+    vollständigen Knoten vergibt. Angebot und Einsatzgebiet stehen nur dort —
+    hier doppelt gepflegt, würden sie beim nächsten Preiswechsel auseinanderlaufen."""
+    def _eintrag(i, eintrag_name, eintrag_pfad):
+        url = f"{base}{eintrag_pfad}"
+        if not als_service:
+            return {"@type": "ListItem", "position": i, "name": eintrag_name, "url": url}
+        return {"@type": "ListItem", "position": i, "name": eintrag_name,
+                "item": {"@type": "Service", "@id": f"{url}#service",
+                         "name": eintrag_name, "url": url,
+                         "provider": {"@id": f"{base}/#business"}}}
+
     return {
         "@type": "ItemList",
         "@id": f"{base}{pfad}#liste",
@@ -2233,8 +2248,7 @@ def _itemlist(base, pfad, name, posten):
         "numberOfItems": len(posten),
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
         "itemListElement": [
-            {"@type": "ListItem", "position": i, "name": eintrag_name,
-             "url": f"{base}{eintrag_pfad}"}
+            _eintrag(i, eintrag_name, eintrag_pfad)
             for i, (eintrag_name, eintrag_pfad) in enumerate(posten, start=1)
         ],
     }
@@ -2300,6 +2314,11 @@ def _webpage_knoten(base, lang, url, breadcrumb):
         "@type": "WebPage", "@id": f"{url}#webpage", "url": url,
         "isPartOf": {"@id": f"{base}/#website"},
         "about": {"@id": f"{base}/#business"},
+        # Urheber jeder Seite ist der Betrieb (Messung GE16, 24.09.2026: 6 von 53
+        # Seiten ohne Autor). Bewusst die Organisation, nicht der Inhaber: Dass
+        # Florin Feier jede Seite selbst geschrieben hat, belegt nichts im
+        # Projekt. Fachbeitraege und Ratgeber nennen ihn weiter im Article-Knoten.
+        "author": {"@id": f"{base}/#business"},
         "inLanguage": i18n.get_pack(lang)["meta"]["html_lang"],
         "dateModified": stand.datum(basis_pfad),
         "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".antwort"]},
@@ -2394,7 +2413,7 @@ def leistungen_hub(request):
                 faq=hub.get("faq"), faq_id=reverse("leistungen")),
             _itemlist(base, reverse("leistungen"), hub.get("h1", ""),
                       [(l.get("nav", l["slug"]), l["url"])
-                       for b in bereiche for l in b["posten"]])),
+                       for b in bereiche for l in b["posten"]], als_service=True)),
     })
 
 
@@ -2514,7 +2533,8 @@ def branchen_hub(request):
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
             _itemlist(base, reverse("branchen"), bs.get("h1", ""),
-                      [(b.get("nav", b["slug"]), b["url"]) for b in liste])),
+                      [(b.get("nav", b["slug"]), b["url"]) for b in liste],
+                      als_service=True)),
     })
 
 
@@ -3385,7 +3405,8 @@ def regionen_hub(request):
             _itemlist(base, reverse("regionen"),
                       pack["seite"].get("regionen_h1", "Regionen"),
                       [(r.get("ort", r["slug"]),
-                        reverse("region", kwargs={"slug": r["slug"]})) for r in liste])),
+                        reverse("region", kwargs={"slug": r["slug"]})) for r in liste],
+                      als_service=True)),
     })
 
 

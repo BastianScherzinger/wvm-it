@@ -127,6 +127,39 @@ class SchemaTest(SimpleTestCase):
                 self.assertFalse(hat_katalog(pfad),
                                  f"{pfad}: Preiskatalog im Schema, aber nicht auf der Seite")
 
+    def test_leistungshubs_zeichnen_ihre_eintraege_als_service_aus(self):
+        """Messung GE13 (24.09.2026): Die Hubs der Leistungen, Branchen und
+        Regionen hatten als einzige Leistungsseiten keinen Service-Knoten. Jeder
+        Listeneintrag traegt jetzt einen — mit derselben @id, die die Zielseite
+        fuer ihren vollstaendigen Knoten vergibt, sonst waeren es zwei Dinge."""
+        for pfad in ("/leistungen/", "/en/leistungen/", "/ro/leistungen/",
+                     "/branchen/", "/it-service/"):
+            with self.subTest(pfad=pfad):
+                listen = [k for k in self._graph(pfad) if k.get("@type") == "ItemList"]
+                self.assertEqual(len(listen), 1)
+                eintraege = listen[0]["itemListElement"]
+                self.assertTrue(eintraege)
+                for eintrag in eintraege:
+                    dienst = eintrag.get("item") or {}
+                    self.assertEqual(dienst.get("@type"), "Service", eintrag)
+                    self.assertTrue(dienst["provider"]["@id"].endswith("/#business"))
+                    self.assertEqual(dienst["@id"], dienst["url"] + "#service")
+                # Stichprobe: der erste Eintrag trifft den Knoten der Zielseite.
+                ziel = eintraege[0]["item"]
+                zielpfad = re.sub(r"^https?://[^/]+", "", ziel["url"])
+                ids = {k.get("@id") for k in self._graph(zielpfad)
+                       if k.get("@type") == "Service"}
+                self.assertIn(ziel["@id"], ids)
+
+    def test_jede_seite_nennt_einen_autor(self):
+        """Messung GE16 (24.09.2026): Der WebPage-Knoten nennt den Betrieb als
+        Urheber, damit auch Hubs und Einzelseiten einen Autor tragen."""
+        for name, pfad in self.seiten:
+            with self.subTest(seite=name, pfad=pfad):
+                seiten = [k for k in self._graph(pfad) if k.get("@type") == "WebPage"]
+                self.assertEqual(len(seiten), 1)
+                self.assertTrue(seiten[0]["author"]["@id"].endswith("/#business"))
+
     def test_context_ist_schema_org(self):
         antwort = self.client_.get(self.seiten[0][1])
         html = antwort.content.decode("utf-8")
