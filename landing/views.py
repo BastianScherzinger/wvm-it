@@ -4593,6 +4593,10 @@ _ANLIEGEN = {
     "betreuung": "Laufende Betreuung",
     "web": "Webseite",
     "notfall": "Notfall",
+    # R2-05 (24.09.2026): Kleinauftrag-Include auf Hubs. Der Wert steht in der
+    # Betreffnahen Zeile und in der Zählung, damit Hub-Kleinauftraege sich vom
+    # Rest der Einzelhilfe-Anfragen trennen lassen.
+    "klein": "Kleiner Auftrag ohne Vertrag",
 }
 
 

@@ -832,6 +832,28 @@ PACK = {
         "h1": "Ce preia WVM-IT pentru firme",
         "kurz": "WVM-IT administrează IT-ul firmelor mici și mijlocii din Austria și Germania și preia în plus tot ce le face vizibile: site-uri, SEO, Google Ads și automatizare. Accentul este pe administrarea IT curentă de la 29 € per post de lucru și lună, prestată în cea mai mare parte la distanță. Automatizarea clădirilor și tehnica pentru evenimente se adaugă pe proiect, la fața locului. Toate cele unsprezece servicii trec prin aceeași persoană de contact și aceeași listă de prețuri, fie că este vorba de un singur post de lucru, fie de un proiect mai mare.",
         "intro": "Unsprezece servicii, trei domenii – și o singură persoană de contact pentru toate. Ce găsiți aici nu este intenționat o listă de cuvinte-cheie: fiecare serviciu are pagina lui, cu ce include, cum decurge și cât costă. Dacă nu sunteți sigur de unde să începeți: IT și infrastructură se potrivește atunci când trebuie administrată o tehnică curentă – stații de lucru, servere, backup, securitate. Vizibilitate și web se potrivește atunci când clienții trebuie să vă găsească online sau trebuie construit un site nou. Tehnica la fața locului se potrivește de îndată ce ceva trebuie cablat, montat sau calibrat. O colaborare începe de cele mai multe ori la fel: cu o scurtă evaluare a ceea ce există deja și o estimare a ceea ce se poate rezolva la distanță și ce anume are nevoie de o vizită la fața locului. Stațiile de lucru, serverele, e-mailul, actualizările și backupul funcționează aproape întotdeauna de la distanță; cablarea, montarea hardware și tehnica la fața locului nu.",
+        # Wegweiser (R2-12, 24.09.2026): trei căi.
+        "wegweiser_h": "Care este drumul potrivit pentru firma dumneavoastră?",
+        "wegweiser_aria": "Selector de rută prin serviciile noastre",
+        "wegweiser": [
+            {"h": "Firmă mică, IT curent",
+             "t": "Până la aproximativ 20 de stații, asistență fixă de la 29 €/lună pe stație.",
+             "url": "/ro/leistungen/edv-it-betreuung/"},
+            {"h": "Firmă mai mare, mai multe sedii",
+             "t": "20 până la 200 de stații, documentație, standarde fixe, regulă de înlocuire în scris.",
+             "url": "/ro/leistungen/it-betreuung-groessere-betriebe/"},
+            {"h": "O singură problemă, fără contract",
+             "t": "Un aparat, o programare, 95 €/oră la distanță — /ro/it-hilfe/ sau o configurare la preț fix.",
+             "url": "/ro/it-hilfe/"},
+        ],
+        # Include comandă mică (R2-05, 24.09.2026): rută dedicată către /it-hilfe/
+        # cu intenția `klein` (vezi views._ANLIEGEN).
+        "klein": {
+            "h": "Comandă mică, fără contract?",
+            "t": "Dacă aveți nevoie doar de un singur aparat, de o întrebare scurtă sau de o programare pentru o configurare la preț fix — fără asistență curentă. Facturăm atunci la oră (95 € prin mentenanță la distanță, 120 € la fața locului plus deplasare) sau la preț fix, dacă problema dumneavoastră este în catalogul de configurări.",
+            "cta": "Către IT-Hilfe fără contract",
+            "url": "/ro/it-hilfe/",
+        },
         "it_h": "IT și infrastructură",
         "it_t": "Nucleul: tehnica de zi cu zi a firmei, administrată în cea mai mare parte de la distanță. Aici intră stațiile de lucru, serverele, rețeaua, backupul și securitatea IT – tot ce trebuie să funcționeze zilnic fără ca cineva să stea permanent lângă el. Cea mai mare parte se rezolvă prin administrare la distanță; doar montarea inițială a rețelei sau înlocuirea unui echipament au nevoie de o vizită la fața locului.",
         "sicht_h": "Vizibilitate și web",
@@ -1295,6 +1317,7 @@ PACK = {
         "anliegen": "Despre ce este vorba? (opțional)", "anliegen_leer": "Alegeți",
         "anliegen_einzel": "O singură problemă", "anliegen_einrichtung": "Configurarea a ceva",
         "anliegen_betreuung": "Administrare continuă", "anliegen_web": "Site web", "anliegen_notfall": "Urgență",
+        "anliegen_klein": "Comandă mică, fără contract",
         "submit": "Solicitați un apel",
         "close": "Închideți",
         "done_h": "Notat",

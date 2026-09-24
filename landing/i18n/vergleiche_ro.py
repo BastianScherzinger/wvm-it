@@ -180,7 +180,7 @@ VERGLEICHE = {
 
         "a_h": "Upgrade",
         "b_h": "Cumpărare nouă",
-        "tabelle_h": "Criteriile alăturate",
+        "tabelle_h": "Windows 11, SSD, vârstă — criteriile alăturate",
         "tabelle": [
             {"k": "Vârsta aparatului",
              "a": "Până la aproximativ patru ani, aproape întotdeauna cu sens",

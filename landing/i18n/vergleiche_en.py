@@ -179,7 +179,7 @@ VERGLEICHE = {
 
         "a_h": "Upgrade",
         "b_h": "Buy new",
-        "tabelle_h": "The criteria side by side",
+        "tabelle_h": "Windows 11, SSD, age — the criteria side by side",
         "tabelle": [
             {"k": "Age of the device",
              "a": "Up to about four years, almost always sensible",

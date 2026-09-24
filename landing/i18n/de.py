@@ -858,6 +858,28 @@ PACK = {
         "h1": "Was WVM-IT für Betriebe übernimmt",
         "kurz": "WVM-IT betreut die EDV kleiner und mittlerer Betriebe in Österreich und Deutschland und übernimmt zusätzlich alles, was digital sichtbar macht: Webseiten, SEO, Google Ads und Automatisierung. Der Schwerpunkt liegt auf laufender IT-Betreuung ab 29 € je Arbeitsplatz und Monat, überwiegend per Fernwartung. Gebäude- und Veranstaltungstechnik kommen projektbezogen vor Ort dazu. Alle elf Leistungen laufen über denselben Ansprechpartner und dieselbe Preisliste, unabhängig davon, ob es um einen einzelnen Arbeitsplatz oder um ein größeres Projekt geht.",
         "intro": "Elf Leistungen, drei Bereiche – und ein Ansprechpartner für alle. Was Sie hier finden, ist bewusst keine Liste von Schlagworten: Zu jeder Leistung gibt es eine eigene Seite mit dem, was enthalten ist, wie es abläuft und was es kostet. Wenn Sie nicht sicher sind, wo Sie anfangen sollen: EDV und IT passt, wenn eine laufende Technik betreut werden soll – Arbeitsplätze, Server, Datensicherung, Sicherheit. Sichtbarkeit und Web passt, wenn Kundschaft Sie online finden oder ein Auftritt entstehen soll. Technik vor Ort passt, sobald etwas verkabelt, aufgebaut oder eingemessen werden muss. Eine Zusammenarbeit beginnt in den meisten Fällen gleich: mit einer kurzen Bestandsaufnahme dessen, was heute schon da ist, und einer Einschätzung, was sich davon per Fernwartung erledigen lässt und was einen Termin vor Ort braucht. Arbeitsplätze, Server, E-Mail, Updates und die Datensicherung laufen fast immer aus der Ferne; Verkabelung, Hardware-Einbau und Vor-Ort-Technik nicht.",
+        # Wegweiser (R2-12, 24.09.2026): drei Bedarfsmuster.
+        "wegweiser_h": "Welcher Weg passt zu Ihnen?",
+        "wegweiser_aria": "Wegweiser durch die Leistungen",
+        "wegweiser": [
+            {"h": "Kleiner Betrieb, laufende IT",
+             "t": "Bis etwa 20 Arbeitsplätze, feste Betreuung ab 29 €/Monat je Arbeitsplatz.",
+             "url": "/leistungen/edv-it-betreuung/"},
+            {"h": "Größerer Betrieb, mehrere Standorte",
+             "t": "20 bis 200 Arbeitsplätze, Dokumentation, feste Standards, Vertretungsregelung schriftlich.",
+             "url": "/leistungen/it-betreuung-groessere-betriebe/"},
+            {"h": "Einzelnes Problem, ohne Vertrag",
+             "t": "Ein Gerät, ein Termin, 95 €/Std. per Fernwartung — /it-hilfe/ oder eine Einrichtung zum Festpreis.",
+             "url": "/it-hilfe/"},
+        ],
+        # Kleinauftrag-Include (R2-05, 24.09.2026): eigener Absprung auf /it-hilfe/
+        # mit dem Anliegen `klein` (siehe views._ANLIEGEN).
+        "klein": {
+            "h": "Kleiner Auftrag ohne Vertrag?",
+            "t": "Wenn Sie nur ein einzelnes Gerät, eine kurze Frage oder einen Termin für eine Einrichtung brauchen — ohne laufende Betreuung. Wir rechnen dann nach Stunde ab (95 € per Fernwartung, 120 € vor Ort zuzüglich Anfahrt) oder zum Festpreis, wenn Ihr Anliegen im Einrichtungs­katalog steht.",
+            "cta": "Zur IT-Hilfe ohne Vertrag",
+            "url": "/it-hilfe/",
+        },
         "it_h": "EDV und IT",
         "it_t": "Der Kern: die laufende Technik Ihres Betriebs, überwiegend aus der Ferne betreut. Dazu zählen Arbeitsplätze, Server, Netzwerk, Datensicherung und die IT-Sicherheit – alles, was im Alltag laufen muss, ohne dass jemand ständig danebensteht. Der überwiegende Teil davon lässt sich per Fernwartung erledigen; nur der erste Netzwerkaufbau oder ein Hardware-Tausch braucht einen Termin vor Ort.",
         "sicht_h": "Sichtbarkeit und Web",
@@ -1381,6 +1403,7 @@ PACK = {
         "anliegen": "Worum geht es? (freiwillig)", "anliegen_leer": "Bitte wählen",
         "anliegen_einzel": "Ein einzelnes Problem", "anliegen_einrichtung": "Etwas einrichten lassen",
         "anliegen_betreuung": "Laufende Betreuung", "anliegen_web": "Webseite", "anliegen_notfall": "Notfall",
+        "anliegen_klein": "Kleiner Auftrag ohne Vertrag",
         "submit": "Rückruf anfordern",
         "close": "Schließen",
         "done_h": "Notiert",

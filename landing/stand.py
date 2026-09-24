@@ -101,7 +101,7 @@ STAND = {
     "/leistungen/webseite-erstellen/": "2026-09-24",
     "/referenzen/": "2026-09-24",
     "/ueber-uns/": "2026-09-24",
-    "/vergleich/": "2026-09-08",
+    "/vergleich/": "2026-09-24",
     "/vergleich/it-betreuung-vs-stundenabrechnung/": "2026-09-24",
     "/vergleich/microsoft365-vs-google-workspace/": "2026-09-24",
     "/vergleich/pc-aufruesten-oder-neu-kaufen/": "2026-09-24",

@@ -56,7 +56,11 @@ VERGLEICHE = [
     {"slug": "pc-aufruesten-oder-neu-kaufen", "icon": "desk",
      "quelle": "it", "preis": "arbeitsplatz", "rechner": False,
      "leistungen": ["edv-it-betreuung"], "prio": "0.8",
-     "einrichtung": "arbeitsplatz"},
+     # R2-10 (Nachbesserung 24.09.2026): der Verweis fuehrt jetzt auf die
+     # Windows-11-Einrichtungsseite (statt „arbeitsplatz"), weil die
+     # Entscheidung „aufruesten oder neu kaufen" nach dem Windows-10-Ende
+     # praktisch an der Windows-11-Faehigkeit haengt.
+     "einrichtung": "windows-11"},
 ]
 
 NACH_SLUG = {v["slug"]: v for v in VERGLEICHE}

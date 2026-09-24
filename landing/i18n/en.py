@@ -836,6 +836,28 @@ PACK = {
         "h1": "What WVM-IT takes on for businesses",
         "kurz": "WVM-IT looks after the IT of small and mid-sized businesses in Austria and Germany and additionally covers everything that makes them visible: websites, SEO, Google Ads and automation. The focus is ongoing IT support from €29 per workstation and month, mostly delivered remotely. Building and event technology are added on site, per project. All eleven services run through the same contact and the same price list, whether it is a single workstation or a larger project.",
         "intro": "Eleven services, three areas – and one contact for all of them. What you find here is deliberately not a list of buzzwords: every service has its own page stating what is included, how it works and what it costs. If you are not sure where to start: IT and infrastructure fits when ongoing technology needs looking after – workstations, servers, backups, security. Visibility and web fits when customers should be able to find you online or a new site is needed. On-site technology fits as soon as something has to be wired, installed or calibrated. A collaboration usually starts the same way: with a short review of what already exists and an assessment of what can be handled remotely and what needs an on-site visit. Workstations, servers, email, updates and backups run almost always from a distance; cabling, hardware installation and on-site technology do not.",
+        # Wegweiser (R2-12, 24.09.2026): three routes.
+        "wegweiser_h": "Which route fits your business?",
+        "wegweiser_aria": "Route selector across our services",
+        "wegweiser": [
+            {"h": "Small business, ongoing IT",
+             "t": "Up to about 20 workstations, fixed support from €29/month per workstation.",
+             "url": "/en/leistungen/edv-it-betreuung/"},
+            {"h": "Larger business, several sites",
+             "t": "20 to 200 workstations, documentation, fixed standards, cover arrangement in writing.",
+             "url": "/en/leistungen/it-betreuung-groessere-betriebe/"},
+            {"h": "Single problem, no contract",
+             "t": "One device, one appointment, €95/hour by remote — /en/it-hilfe/ or a fixed-price set-up.",
+             "url": "/en/it-hilfe/"},
+        ],
+        # Small-order include (R2-05, 24.09.2026): dedicated route to /it-hilfe/
+        # with the `klein` intent (see views._ANLIEGEN).
+        "klein": {
+            "h": "A small order, no contract?",
+            "t": "When you only need a single device, a short question or a fixed-price set-up appointment — without ongoing support. We then bill by the hour (€95 by remote, €120 on site plus travel) or at a fixed price if your case is in the set-up catalogue.",
+            "cta": "Go to IT help without a contract",
+            "url": "/en/it-hilfe/",
+        },
         "it_h": "IT and infrastructure",
         "it_t": "The core: the day-to-day technology of your business, looked after mostly from a distance. That includes workstations, servers, network, backups and IT security – everything that has to keep running without someone standing next to it. Most of that can be handled by remote support; only the initial network build or a hardware swap needs an on-site visit.",
         "sicht_h": "Visibility and web",
@@ -1299,6 +1321,7 @@ PACK = {
         "anliegen": "What is it about? (optional)", "anliegen_leer": "Please choose",
         "anliegen_einzel": "A single problem", "anliegen_einrichtung": "Having something set up",
         "anliegen_betreuung": "Ongoing support", "anliegen_web": "Website", "anliegen_notfall": "Emergency",
+        "anliegen_klein": "Small order without a contract",
         "submit": "Request a call",
         "close": "Close",
         "done_h": "Noted",

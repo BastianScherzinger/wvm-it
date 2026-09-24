@@ -7,6 +7,94 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 24.09.2026 — Nachbesserung Runde 2 (Zweite Runde): Zusagen ohne Beleg, Wegweiser, Kleinauftrag
+
+Sieben Befunde aus der zweiten Abnahme desselben Zweigs `seo/2026-09-24-runde2`,
+Arbeit weiterhin unter `scratchpad/wvm-it-r2`, Hauptordner nicht angefasst.
+
+Was war blockierend:
+
+* **R2-04 — Zweiter Techniker ohne Beleg**: `landing/i18n/seiten_de.py` sagte
+  in `/leistungen/it-betreuung-groessere-betriebe/` „Fester Ansprechpartner mit
+  Vertretung; ein zweiter Techniker kennt Ihr Netz", EN/RO analog („backup
+  engineer", „al doilea tehnician"), und die `leistungen`-Liste versprach „Co-
+  Betreuung … Vertretung". `docs/EIG95` führt genau diese Vertretungsregelung
+  als Zusage ohne Beleg (Frage `d` an Florin). **Umgesetzt**: alle drei Sprachen
+  sagen jetzt nur noch „fester Ansprechpartner für Ihren Betrieb; die
+  Vertretungsregelung halten wir schriftlich fest" und „Co-Betreuung neben
+  einer vorhandenen internen IT: Zweitmeinung, Ausnahmefälle, Themen ohne
+  Zeit". Der `kurz`-Absatz in EN und RO nennt keinen `backup`/`înlocuitor`
+  mehr; auf DE stand die Zusage im Kurztext ohnehin nie.
+* **R2-03 — Neue H2s nur auf DE**: `problem_h`/`leistung_h` auf
+  `/leistungen/edv-it-betreuung/` waren in EN und RO noch die alten Sätze („What
+  you need us for" / „Pentru ce aveți nevoie de noi"). **Umgesetzt**: EN heißt
+  jetzt „What goes wrong in small businesses without their own IT" und „What
+  we take on for small businesses", RO „Ce se strică în firmele mici fără IT
+  propriu" und „Ce preluăm pentru firmele mici" — dieselbe Zielrichtung wie in
+  der DE-Fassung, ohne die Fragezeile aus der Zeit vor der Antwort-zuerst-Regel.
+* **R2-10 — Vergleich verlinkt nicht auf Windows-11-Einrichtung**: Der Ratgeber
+  `/vergleich/pc-aufruesten-oder-neu-kaufen/` verwies über `landing/vergleiche.py`
+  weiter auf die Arbeitsplatz-Einrichtung; auch nach der Titel- und `rechnung_h`-
+  Umbenennung stand `/einrichten/windows-11/` in keiner Sprache in der Seite,
+  und die Runde 2 hatte nur einen einzigen neuen H2. **Umgesetzt**: `einrichtung`
+  in `vergleiche.py` von `arbeitsplatz` auf `windows-11` gedreht (der Ratgeber
+  hat weiter genau einen Einrichtungsverweis, jetzt aber den richtigen); die
+  `WEGE`-Zeile in `test_einrichtungen.py` zieht mit, und der Test „einen
+  einzigen Verweis" bleibt grün. `tabelle_h` heißt jetzt in DE „Windows 11, SSD,
+  Alter — die Kriterien nebeneinander" (EN/RO analog) — das ist der zweite neue
+  H2 neben `rechnung_h`. **Keine** zusätzlichen Inline-Verweise im Fließtext,
+  damit die Ein-Verweis-Regel des Ratgebers hält.
+* **R2-12 — Wegweiser auf `/leistungen/`**: In der ersten Nachbesserungsrunde
+  als Offen Nr. 30 zurückgestellt, mit der Begründung, Paket 338 (`GE13`) fasse
+  dieselbe Vorlage an. Diese Begründung stimmt nicht mehr: Paket 338 liegt seit
+  dem Merge `4303c53` auf `origin/main` (`git log HEAD..origin/main` leer).
+  **Umgesetzt**: `templates/leistungen.html` bekommt einen optionalen
+  `nav.hb-wegweiser`-Block, in DE/EN/RO trägt der Hub jetzt drei Karten
+  („Kleiner Betrieb, laufende IT" → `/leistungen/edv-it-betreuung/`, „Größerer
+  Betrieb, mehrere Standorte" → `/leistungen/it-betreuung-groessere-betriebe/`,
+  „Einzelnes Problem, ohne Vertrag" → `/it-hilfe/`). CSS in `static/css/style.css`
+  angehängt.
+
+Was war wichtig:
+
+* **R2-05 — Kleinauftrag-Include**: In der ersten Runde als Offen Nr. 29 gar
+  nicht gebaut. **Umgesetzt**: `hub.klein` in DE/EN/RO, sichtbarer Absprung
+  `aside.hb-klein` auf `/leistungen/` mit Link auf `/it-hilfe/?anliegen=klein`;
+  `klein` als neue Kennung in `views._ANLIEGEN`; beide Rückruf-Formulare (Hero-
+  Reiter + Base-Dialog) bieten die Option mit dreisprachiger Beschriftung
+  (`t.rueckruf.anliegen_klein`) an. Test `landing/tests/test_hub_erweiterung.py`
+  deckt Wegweiser, Kleinauftrag-Block und Anliegen-Registrierung samt Sicherung
+  ab (neun Testfälle).
+* **R2-03 — Wortzahl-Rest**: Der DE-Render von `/leistungen/edv-it-betreuung/`
+  lag bei rund 1.690 Wörtern (Ziel: 1.800). **Umgesetzt**: `intro` bekommt einen
+  eigenen Abschnitt zum Kleinbetriebs-Ablauf (drei Schritte, ohne neue
+  Datenlage), `preis_t` bekommt Rechenbeispiele für 5/10/20 Arbeitsplätze
+  (dieselben Sätze wie in `ANGEBOT_GROUPS`). Neuer Render: **rund 2.005 Wörter**.
+  Die 20-AP-Rechnung nennt die Formel, aber bewusst keinen Endbetrag — sonst
+  fügt der Text eine dritte Preiszahl (807 €) ein, die auf keiner sichtbaren
+  Preisseite steht und `pruefe_seite` zu Recht anschlagen ließe.
+* **R2-07 — Frage h an Florin**: Der Text im Fragenblock zitierte die alte
+  Formulierung („in vielen Fällen ja"). **Umgesetzt**: Frage h nennt jetzt die
+  neue Formulierung aus `einrichten_de.py` Z. 940 („Zusagen zu Wochenend- oder
+  Abendterminen erst nach der Bestandsaufnahme") und bittet Florin um die
+  Bedingungen, unter denen die Zusage konkretisiert werden kann.
+
+Prüfbefehle in der Worktree gefahren, alle grün:
+
+* `python manage.py test landing.tests` — **403 Tests OK** (`+9` gegenüber Runde 2
+  aus dem neuen `test_hub_erweiterung.py`), ~157 s
+* `python manage.py pruefe_seite` — **213 URLs, „Alles in Ordnung."** (31 Preise,
+  34 erlaubte Werte, 0 verwaiste Seiten)
+* `python manage.py pruefe_sicherheit` — „Schutz der Formulare geprüft — alle
+  Bremsen greifen."
+* `python manage.py stand_schreiben --pruefen` — „aktuell (90 Pfade)"
+* `DJANGO_DEBUG=0 python manage.py collectstatic --noinput` — 52 static files,
+  16 post-processed.
+
+Offen Nr. 28 (Paket 338), 29 (R2-05), 30 (R2-12) und 31 (R2-03 Wortzahl) sind
+in `doku/80-AUFGABEN.md` als erledigt durchgestrichen; die Offen-Zahl fällt von
+21 auf 17.
+
 ## 24.09.2026 — Nachbesserung Runde 2: Vor-Ort, Wochenende, llms.txt
 
 Sechs Befunde aus der Abnahme, auf demselben Zweig `seo/2026-09-24-runde2`

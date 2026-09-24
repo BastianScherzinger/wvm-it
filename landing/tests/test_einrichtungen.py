@@ -306,7 +306,7 @@ class RatgeberFuehrenZumPreisTest(SimpleTestCase):
     WEGE = {
         "/aktuelles/windows-10-ende-was-jetzt/": "/einrichten/windows-11/",
         "/aktuelles/pc-langsam-woran-liegt-es/": "/einrichten/pc-tausch/",
-        "/vergleich/pc-aufruesten-oder-neu-kaufen/": "/einrichten/arbeitsplatz/",
+        "/vergleich/pc-aufruesten-oder-neu-kaufen/": "/einrichten/windows-11/",
     }
 
     def test_jeder_ratgeber_fuehrt_auf_seine_einrichtungsseite(self):

@@ -29,6 +29,26 @@
   <div class="wrap">
     <p class="hb-intro" data-reveal>{{ hub.intro|safe }}</p>
 
+    {% comment %}Wegweiser (R2-12, 24.09.2026): drei Bedarfsmuster als sichtbarer
+    Auswahlblock. Trennt EDV-Betreuung (kleiner Betrieb), größere Betriebe und
+    Einzelauftrag / Einrichtung, damit die Zuordnung nicht erst über die Liste
+    laufen muss. Optional (nur wenn `hub.wegweiser` gesetzt ist).{% endcomment %}
+    {% if hub.wegweiser %}
+    <nav class="hb-wegweiser" aria-label="{{ hub.wegweiser_aria|default:hub.wegweiser_h|safe }}" data-reveal>
+      <h2 class="sp-h2">{{ hub.wegweiser_h|safe }}</h2>
+      <ul class="hb-wegweiser-liste">
+        {% for w in hub.wegweiser %}
+        <li>
+          <a class="hb-wegweiser-karte spot" href="{{ w.url }}" data-spot>
+            <strong>{{ w.h|safe }}</strong>
+            <span>{{ w.t|safe }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+
     {% for b in bereiche %}
     <div class="hb-block" data-reveal>
       <header class="hb-head">
@@ -49,6 +69,18 @@
     {% endfor %}
 
     <p class="lk-alle"><a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+
+    {% comment %}Kleinauftrag-Include (R2-05, 24.09.2026): sichtbarer Absprung
+    für einzelne Aufträge ohne Vertrag. Führt auf /it-hilfe/ und trägt das
+    Anliegen `klein`, damit die Zählung diese Kleinaufträge vom übrigen
+    Rueckruf-Verkehr trennt. Optional (nur wenn `hub.klein` gesetzt ist).{% endcomment %}
+    {% if hub.klein %}
+    <aside class="hb-klein" data-reveal>
+      <h2 class="sp-h2">{{ hub.klein.h|safe }}</h2>
+      <p>{{ hub.klein.t|safe }}</p>
+      <a class="btn btn-primary" href="{{ hub.klein.url }}?anliegen=klein">{{ hub.klein.cta|safe }}</a>
+    </aside>
+    {% endif %}
 
     {% comment %}Der Hub hatte 432 Woerter: eine Kachelliste ohne Antwort auf die
     Frage, was konkret passiert. Die vier Abschnitte unten schliessen das (IS18).{% endcomment %}

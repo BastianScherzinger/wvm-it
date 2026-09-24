@@ -188,7 +188,7 @@ VERGLEICHE = {
 
         "a_h": "Aufrüsten",
         "b_h": "Neu kaufen",
-        "tabelle_h": "Die Kriterien nebeneinander",
+        "tabelle_h": "Windows 11, SSD, Alter — die Kriterien nebeneinander",
         "tabelle": [
             {"k": "Alter des Geräts",
              "a": "Bis etwa vier Jahre fast immer sinnvoll",
