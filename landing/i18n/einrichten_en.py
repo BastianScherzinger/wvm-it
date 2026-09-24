@@ -156,6 +156,17 @@ EINRICHTEN = {
                   "two to four weeks before it is wiped. Only then is the transfer "
                   "really finished.",
 
+        "beschaff_h": "Procure and set up the devices",
+        "beschaff_t": "On request we also take on procurement of the new hardware: "
+                      "clarify requirements, put together an offer for suitable "
+                      "devices and then set them up at the fixed €190 per workstation "
+                      "including data transfer. We recommend by actual need, not by "
+                      "brand — what the machine really has to run decides the sensible "
+                      "price more than any generic recommendation. The device price "
+                      "follows your requirements; the setup stays at €190 per unit. "
+                      "You can also buy the devices yourself and give us only the "
+                      "setup — both is well proven.",
+
         "faq_h": "Common questions",
         "faq": [
             {"q": "Can we keep working while it happens?",
@@ -860,8 +871,8 @@ EINRICHTEN = {
         ],
 
         "fern_h": "Move within the same town, in the same region — or further",
-        "fern_t": "Within the same town the move usually fits into a day, within "
-                  "the region into a weekend. Longer moves need more lead time and "
+        "fern_t": "Within the same town the move usually fits into a day. "
+                  "Longer moves need more lead time and "
                   "a dedicated slot for the server rebuild, because an interrupted "
                   "backup is not a state you leave for days. In every case the old "
                   "site stays reachable until the new one is tested — the way "
@@ -874,9 +885,11 @@ EINRICHTEN = {
                   "ordering internet and phone at the new site — six to eight "
                   "weeks. If those lines are ordered too late, the best plan will "
                   "not help."},
-            {"q": "Can we move at the weekend?",
-             "a": "In many cases yes. Whether we offer it depends on scope and "
-                  "dates; we clarify that with you before the quote."},
+            {"q": "When is the move carried out?",
+             "a": "We agree the timing to fit your operations — scope, available "
+                  "windows and the server switchover set the frame. Any commitment "
+                  "to evening or off-hours slots is made only after the audit, when "
+                  "the effort can be estimated reliably."},
             {"q": "What about servers that must run 24/7?",
              "a": "Then we build a second server at the new site, migrate the "
                   "backup and switch operations in a planned window — the old "

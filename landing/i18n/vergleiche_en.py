@@ -157,9 +157,9 @@ VERGLEICHE = {
     },
 
     "pc-aufruesten-oder-neu-kaufen": {
-        "titel": "Upgrade a PC or buy new? 3 criteria | WVM-IT",
-        "desc": "When an SSD is still worth it and when it is not: age, condition and "
-                "compatibility decide. With the arithmetic for both routes.",
+        "titel": "Upgrade a computer or buy new? Windows 11 | WVM-IT",
+        "desc": "When an SSD is still worth it and when Windows 11 forces a new "
+                "computer: age, condition and compatibility decide. With the arithmetic.",
         "nav": "Upgrade or replace",
         "h1": "Upgrade or buy new — what it actually depends on",
         "kurz": "The decision rests on three things: the age of the device, the kind of "
@@ -222,7 +222,7 @@ VERGLEICHE = {
             "spreadsheets.",
         ],
 
-        "rechnung_h": "The arithmetic",
+        "rechnung_h": "Windows 11 and the arithmetic",
         "rechnung_t": "We know two figures, and only those belong here. Fitting an SSD including moving the system takes one to two hours, so €95 to €190 of work. Setting up a new device including the data transfer costs €190. What the part or the new machine costs we will tell you at current prices — it deliberately does not appear here, because a figure about somebody else's price is wrong three months later. Out of that comes a rule of thumb that does not age: if the upgrade costs more than a third of an equivalent new machine, it only pays off on a young computer. Below that it is almost always the better choice — not least because an upgraded machine keeps its familiar setup. And one figure that is easily missed: if you work both out for five workstations, the time five separate upgrades take is often the larger item, not the parts. From about five devices it pays to replace in one go rather than patch one at a time.",
         "faq": [
             {"q": "How do I tell whether an SSD is fitted?",

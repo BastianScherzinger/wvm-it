@@ -3972,18 +3972,26 @@ def _llms_einzelhilfe_satz():
 
 
 def _llms_festpreise(base):
-    """Die Festpreise des Einrichtungs-Silos als Liste, Preis aus dem Katalog.
-    Einrichtungen ohne Festpreis (Server, Loxone) fehlen hier mit Absicht."""
+    """Alle Einrichtungen des Silos /einrichten/ als Liste, Preis aus dem Katalog.
+
+    Einrichtungen mit Festpreis (arbeitsplatz, pc-tausch, windows-11, microsoft-365,
+    firewall-vpn, netzwerk, it-sicherheitscheck) tragen den Betrag; Einrichtungen
+    ohne einmaligen Festpreis (server, loxone, datensicherung, it-umzug) tragen
+    „Preis auf Anfrage" und werden nach Bausteinen aus dem Katalog beziffert.
+    Bis zum 24.09.2026 fehlten die Anfrage-Einrichtungen hier — sie hatten in
+    llms.txt keine Zeile, obwohl es die Seite gab."""
     words = i18n.get_pack("de").get("catalog_words", {})
     texte = i18n.get_pack("de").get("einrichten", {})
     raus = []
     for e in einrichtungen.EINRICHTUNGEN:
         posten = _ANGEBOT_INDEX.get(e["preis"], {})
-        if not posten.get("once"):
-            continue
         name = texte.get(e["slug"], {}).get("nav", e["slug"])
-        raus.append(f"- [{name}]({base}/einrichten/{e['slug']}/): Festpreis "
-                    f"{_festpreis_label(posten, words)}, ohne Vertrag.")
+        if posten.get("once"):
+            raus.append(f"- [{name}]({base}/einrichten/{e['slug']}/): Festpreis "
+                        f"{_festpreis_label(posten, words)}, ohne Vertrag.")
+        else:
+            raus.append(f"- [{name}]({base}/einrichten/{e['slug']}/): "
+                        f"Preis auf Anfrage nach Aufnahme; Bausteine aus dem Katalog.")
     return raus
 
 
@@ -4169,6 +4177,38 @@ def llms_full_txt(request):
     aus += _llms_festpreise(base)
     for f in hf.get("faq", []):
         aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+
+    # Einrichtungen (Silo /einrichten/, seit 24.09.2026 in der Langfassung):
+    # Damit taucht auch it-umzug und datensicherung zitierfähig auf — sie fehlten
+    # hier bis zur zweiten Runde, weil das Silo bei der Erstfassung von
+    # llms-full.txt noch nicht bestand. Der Text kommt aus dem Sprachpaket
+    # (`einrichten.<slug>`), Preise kommen aus dem Katalog; für Anfrage-Preise
+    # steht in der Liste „Preis auf Anfrage" (auch _llms_festpreise oben).
+    etexte = pack.get("einrichten", {})
+    words = pack.get("catalog_words", {})
+    aus.append("\n\n## Einrichtungen (einmalig, ohne Vertrag)")
+    aus.append("Fest umrissene Vorgänge: Arbeitsplatz einrichten, PC tauschen, "
+               "Microsoft 365 einrichten, Firewall/VPN, Netzwerk/WLAN und mehr. "
+               "Der Preis steht als Festpreis am Katalog; Vorgänge ohne einmaligen "
+               "Festpreis (Server, Loxone, Datensicherung, IT-Umzug) werden nach "
+               "Bausteinen des Katalogs bepreist und schriftlich zugesagt.")
+    for e in einrichtungen.EINRICHTUNGEN:
+        s = etexte.get(e["slug"], {})
+        posten = _ANGEBOT_INDEX.get(e["preis"], {})
+        aus.append(f"\n### {sauber(s.get('h1') or s.get('nav'))}")
+        aus.append(f"URL: {base}/einrichten/{e['slug']}/")
+        if posten.get("once"):
+            aus.append(f"Preis: Festpreis {_festpreis_label(posten, words)}.")
+        else:
+            aus.append("Preis: auf Anfrage nach Aufnahme; Bausteine aus dem Katalog.")
+        aus.append(f"\n{sauber(s.get('kurz'))}")
+        if s.get("nicht_t"):
+            aus.append(f"\n**{sauber(s.get('nicht_h'))}**\n{sauber(s.get('nicht_t'))}")
+        if s.get("leistungen"):
+            aus.append(f"\n**{sauber(s.get('leistungen_h'))}**")
+            aus += [f"- {sauber(z)}" for z in s.get("leistungen", [])]
+        for f in s.get("faq", []):
+            aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
 
     # Vergleiche: das Format, das Antwortmaschinen am häufigsten zitieren. In der
     # Langfassung steht die Tabelle als Aufzählung — eine HTML-Tabelle ist für ein

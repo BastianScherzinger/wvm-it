@@ -15,8 +15,8 @@ BEITRAEGE = {
 
     "nis2-lieferkette-zulieferer": {
         "titel": "NIS2 und das NISG 2026: Was kommt auf Zulieferer zu, die selbst nicht betroffen sind?",
-        "meta_titel": "NISG 2026: Was Zulieferer nachweisen müssen | WVM-IT",
-        "desc": "Das NISG 2026 gilt ab 1. Oktober. Betroffene müssen ihre Lieferanten vertraglich verpflichten. Welche Nachweise auf Zulieferer zukommen — jetzt nachlesen.",
+        "meta_titel": "NIS2 für Zulieferer: NISG 2026 Lieferkette | WVM-IT",
+        "desc": "NIS2 und NISG 2026 (ab 1. Oktober): Betroffene müssen die Lieferkette regeln. Welche Nachweise Zulieferer schriftlich liefern müssen. Jetzt nachlesen.",
         "antwort": "Das NISG 2026 (BGBl. I Nr. 94/2025) tritt am 1. Oktober 2026 in Kraft und betrifft direkt rund 4.000 mittlere und große Einrichtungen in Österreich — ab 50 Beschäftigten oder 10 Mio. Euro Umsatz. Kleinere Betriebe fallen nicht darunter, bekommen die Anforderungen aber trotzdem: Paragraph 32 verpflichtet betroffene Einrichtungen ausdrücklich, die Sicherheit ihrer Lieferkette einschließlich ihrer unmittelbaren Dienstleister zu regeln. In der Praxis heißt das Fragebögen und Vertragsklauseln, die ab Herbst 2026 bei Zulieferern ankommen — bei Betrieben also, die selbst keine IT-Abteilung haben.",
         "abschnitte": [
             {"h": "Wer direkt betroffen ist — und wer nicht",
@@ -428,8 +428,8 @@ BEITRAEGE = {
 
     "alte-windows-version-im-betrieb": {
         "titel": "Alte Windows-Version im Betrieb: wann wird es wirklich gefährlich?",
-        "meta_titel": "Altes Windows im Betrieb: 3 Fragen vor dem Tausch | WVM-IT",
-        "desc": "Gefährlich wird ein System nicht mit dem Alter, sondern mit dem Ende der Updates. Ablösen oder abtrennen — was jetzt zu tun ist. Jetzt nachlesen.",
+        "meta_titel": "Altes Windows: Windows 10 Ende, 3 Fragen | WVM-IT",
+        "desc": "Windows 10 bekommt seit Oktober 2025 keine Updates mehr. Alte Windows-Version ablösen oder abtrennen — drei Fragen entscheiden. Jetzt nachlesen.",
         "antwort": "Der Punkt ist nicht das Alter, sondern das Ende der Sicherheitsupdates. Ab dem Tag, an dem keine Updates mehr erscheinen, wird jede neu entdeckte Lücke dauerhaft offen bleiben — und öffentlich bekannte Lücken werden binnen Tagen automatisiert ausgenutzt. Ein solches System gehört entweder abgelöst oder in ein eigenes, abgetrenntes Netz, in dem es nur noch mit dem sprechen darf, mit dem es sprechen muss. Für Maschinensteuerungen ist die zweite Variante der Normalfall, nicht der Notbehelf.",
         "abschnitte": [
             {"h": "Warum „läuft doch“ kein Argument ist",

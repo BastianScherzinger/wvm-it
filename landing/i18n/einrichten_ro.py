@@ -160,6 +160,17 @@ EINRICHTEN = {
                   "două-patru săptămâni înainte de a fi șters. Abia atunci transferul "
                   "este cu adevărat încheiat.",
 
+        "beschaff_h": "Achiziționare și configurare a echipamentelor",
+        "beschaff_t": "La cerere preluăm și achiziția noilor echipamente: "
+                      "clarificarea nevoilor, ofertă pentru hardware potrivit și apoi "
+                      "configurarea la prețul fix de 190 € pe stație, inclusiv "
+                      "transferul de date. Recomandăm după nevoia reală, nu după "
+                      "marcă — ce trebuie să ruleze pe aparat decide prețul rezonabil "
+                      "mai mult decât orice recomandare generică. Prețul aparatului "
+                      "urmează cerințele dumneavoastră; configurarea rămâne la 190 € "
+                      "pe unitate. Puteți cumpăra și singuri aparatele și să ne "
+                      "lăsați doar configurarea — ambele variante sunt încercate.",
+
         "faq_h": "Întrebări frecvente",
         "faq": [
             {"q": "Putem lucra în continuare între timp?",
@@ -885,8 +896,8 @@ EINRICHTEN = {
         ],
 
         "fern_h": "Mutare în același oraș, în aceeași regiune — sau mai departe",
-        "fern_t": "În același oraș mutarea intră de obicei într-o zi, în regiune "
-                  "într-un weekend. Mutările la distanță mai mare necesită mai "
+        "fern_t": "În același oraș mutarea intră de obicei într-o zi. "
+                  "Mutările la distanță mai mare necesită mai "
                   "multă pregătire și o fereastră dedicată pentru refacerea "
                   "serverului, pentru că o salvare întreruptă nu este o stare pe "
                   "care o lași zile întregi. În toate cazurile sediul vechi rămâne "
@@ -900,9 +911,12 @@ EINRICHTEN = {
                   "termenul critic este comanda de internet și telefon la noul "
                   "sediu — șase până la opt săptămâni. Dacă acele linii sunt "
                   "comandate prea târziu, nici cel mai bun plan nu ajută."},
-            {"q": "Ne putem muta la sfârșit de săptămână?",
-             "a": "În multe cazuri da. Dacă îl oferim depinde de amploare și de "
-                  "date; clarificăm asta cu dumneavoastră înainte de ofertă."},
+            {"q": "Când se face mutarea?",
+             "a": "Stabilim programul astfel încât să se potrivească cu "
+                  "activitatea dumneavoastră — amploarea, ferestrele disponibile și "
+                  "comutarea serverului dau cadrul. Orice angajament pentru intervale "
+                  "de seară sau în afara programului îl luăm doar după evaluare, "
+                  "când efortul poate fi estimat cu încredere."},
             {"q": "Ce se întâmplă cu serverele care trebuie să meargă 24/7?",
              "a": "Atunci construim un al doilea server la noul sediu, mutăm "
                   "salvarea și comutăm activitatea într-o fereastră planificată — "

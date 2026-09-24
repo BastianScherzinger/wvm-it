@@ -166,9 +166,9 @@ VERGLEICHE = {
     },
 
     "pc-aufruesten-oder-neu-kaufen": {
-        "titel": "PC aufrüsten oder neu kaufen? 3 Kriterien | WVM-IT",
-        "desc": "Wann sich eine SSD noch lohnt und wann nicht: Alter, Zustand und "
-                "Anschlussfähigkeit entscheiden. Mit Rechenweg für beide Wege.",
+        "titel": "Computer aufrüsten oder neu kaufen? Windows 11 | WVM-IT",
+        "desc": "Wann eine SSD im alten PC noch lohnt und wann Windows 11 den Neukauf "
+                "erzwingt: Alter, Zustand, Anschlussfähigkeit. Mit Rechenweg.",
         "nav": "Aufrüsten oder neu kaufen",
         "h1": "Aufrüsten oder neu kaufen — woran es wirklich hängt",
         "kurz": "Die Entscheidung hängt an drei Dingen: am Alter des Geräts, an der Art "
@@ -233,7 +233,7 @@ VERGLEICHE = {
             "große Tabellen.",
         ],
 
-        "rechnung_h": "Der Rechenweg",
+        "rechnung_h": "Windows 11 und der Rechenweg",
         "rechnung_t": 'Zwei Zahlen kennen wir, und nur die gehören hierher. Der Einbau einer SSD samt Übernahme des Systems dauert ein bis zwei Stunden, also 95 bis 190 € Arbeit. Die Einrichtung eines neuen Geräts einschließlich Datenübernahme kostet 190 €. Was das Bauteil oder das neue Gerät kostet, sagen wir Ihnen tagesaktuell — hier steht es bewusst nicht, weil eine Zahl über einen fremden Preis in drei Monaten falsch ist. Daraus wird eine Faustregel, die nicht altert: Kostet das Aufrüsten insgesamt mehr als ein Drittel eines gleichwertigen neuen Geräts, lohnt es sich nur noch bei einem jungen Rechner. Bleibt es darunter, ist es fast immer die bessere Wahl — vor allem, weil ein aufgerüstetes Gerät seine gewohnte Einrichtung behält. Und eine Zahl, die man leicht übersieht: Wenn Sie beides für fünf Arbeitsplätze rechnen, ist die Zeit, die fünf einzelne Aufrüstungen kosten, oft der größere Posten als die Bauteile. Ab etwa fünf Geräten lohnt es sich, in einem Zug zu tauschen statt einzeln nachzubessern.',
         "faq": [
             {"q": "Wie erkenne ich, ob eine SSD verbaut ist?",

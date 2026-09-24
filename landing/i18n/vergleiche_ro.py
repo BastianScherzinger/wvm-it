@@ -157,9 +157,9 @@ VERGLEICHE = {
     },
 
     "pc-aufruesten-oder-neu-kaufen": {
-        "titel": "Upgrade la PC sau cumpărare nouă? 3 criterii | WVM-IT",
-        "desc": "Când merită încă un SSD și când nu: vârsta, starea și compatibilitatea "
-                "decid. Cu calculul pentru ambele variante.",
+        "titel": "Upgrade la computer sau cumpărare nouă? Windows 11 | WVM-IT",
+        "desc": "Când mai merită un SSD la un PC vechi și când Windows 11 forțează "
+                "cumpărarea nouă: vârsta, starea și compatibilitatea decid. Cu calcul.",
         "nav": "Upgrade sau cumpărare",
         "h1": "Upgrade sau cumpărare nouă — de ce depinde de fapt",
         "kurz": "Decizia depinde de trei lucruri: de vârsta aparatului, de tipul "
@@ -225,7 +225,7 @@ VERGLEICHE = {
             "tabele mari.",
         ],
 
-        "rechnung_h": "Calculul",
+        "rechnung_h": "Windows 11 și calculul",
         "rechnung_t": 'Cunoaștem două cifre și doar acelea își au locul aici. Montarea unui SSD împreună cu mutarea sistemului durează una-două ore, deci 95 până la 190 € manoperă. Configurarea unui aparat nou, inclusiv transferul datelor, costă 190 €. Cât costă piesa sau aparatul nou vă spunem la zi — aici nu apare în mod deliberat, pentru că o cifră despre prețul altcuiva este greșită peste trei luni. De aici rezultă o regulă practică ce nu îmbătrânește: dacă upgrade-ul costă în total mai mult de o treime dintr-un aparat nou echivalent, merită doar la un calculator tânăr. Sub acest prag este aproape întotdeauna alegerea mai bună — nu în ultimul rând pentru că un aparat modernizat își păstrează configurarea obișnuită. Și o cifră ușor de trecut cu vederea: dacă socotiți ambele pentru cinci posturi de lucru, timpul cerut de cinci upgrade-uri separate este deseori postul mai mare decât piesele. De la aproximativ cinci aparate merită să schimbați dintr-o dată, în loc să reparați unul câte unul.',
         "faq": [
             {"q": "Cum îmi dau seama dacă este montat un SSD?",

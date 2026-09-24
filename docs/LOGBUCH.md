@@ -7,6 +7,76 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 24.09.2026 — Nachbesserung Runde 2: Vor-Ort, Wochenende, llms.txt
+
+Sechs Befunde aus der Abnahme, auf demselben Zweig `seo/2026-09-24-runde2`
+(Arbeitsbaum unter `scratchpad/wvm-it-r2`), Hauptordner nicht angefasst.
+
+Was war blockierend:
+
+* **Wochenend-Umzüge**: Die IT-Umzugsseite sagte in DE/EN/RO „in der Region an
+  einem Wochenende" und beantwortete die FAQ „Können wir am Wochenende umziehen?"
+  mit „in vielen Fällen ja" — das ist die ungeklärte Frage h aus der Florin-Liste.
+  Ist entfernt: `fern_t` sagt jetzt nur noch, dass ein Umzug in derselben Stadt in
+  einen Tag passt; die FAQ heißt jetzt „Wann wird der Umzug gemacht?" und
+  verspricht Wochenend- oder Abendtermine erst nach Bestandsaufnahme
+  (`einrichten_{de,en,ro}.py`).
+* **Vor-Ort in Deutschland**: Die Seite für größere Betriebe versprach in der
+  FAQ zu mehreren Standorten „bei Standorten in Deutschland planen wir das mit
+  mehr Vorlauf" und nannte im Preistext „kein Preisaufschlag für zusätzliche
+  Standorte innerhalb Österreichs und Deutschlands" — beides ist Frage d aus
+  derselben Liste und widerspricht dem Bestandssatz auf `/it-hilfe/` („Vor Ort
+  im Umkreis von rund einer Fahrstunde um Lenzing"). Ist zurückgenommen: Vor Ort
+  bleibt im Einzugsgebiet um Lenzing; für weiter entfernte Standorte wird
+  gesagt, dass wir selbst anreisen oder mit einem lokalen Partner arbeiten, und
+  die Anfahrt steht immer vorher schriftlich im Angebot (`seiten_{de,en,ro}.py`).
+
+Was war wichtig:
+
+* **llms.txt und llms-full.txt**: `_llms_festpreise` filterte Einrichtungen
+  ohne einmaligen Festpreis heraus — deshalb tauchten `/einrichten/datensicherung/`
+  und `/einrichten/it-umzug/` in beiden Fassungen nicht auf, obwohl es die
+  Seiten seit Runde 2 gibt. Der Filter fällt weg: Einrichtungen ohne
+  Festpreis tragen jetzt „Preis auf Anfrage nach Aufnahme; Bausteine aus dem
+  Katalog" (`landing/views.py::_llms_festpreise`). llms-full.txt hat einen
+  eigenen Abschnitt „Einrichtungen (einmalig, ohne Vertrag)" bekommen, der alle
+  zehn Einrichtungen zitierfähig auflistet.
+* **R2-08 H2 „Geräte beschaffen und einrichten"**: Bis zur Nachbesserung stand
+  die Beschaffung nur in zwei FAQ auf `/einrichten/pc-tausch/`, nicht als
+  eigener H2. `templates/einrichtung.html` hat einen optionalen Block
+  `{% if seite.beschaff_t %}` bekommen; die drei Sprachpakete tragen dazu
+  `beschaff_h`/`beschaff_t` (nur `pc-tausch`, sonst leer).
+* **R2-10 (Aufrüsten-Vergleich)**: Titel und ein H2 tragen jetzt „Computer
+  aufrüsten" und „Windows 11" — dreisprachig (`vergleiche_{de,en,ro}.py`).
+  Der Rechenweg-H2 heißt „Windows 11 und der Rechenweg".
+* **R2-03 Rest**: Auf `/leistungen/edv-it-betreuung/` steht jetzt ein H2
+  „Was in Kleinbetrieben ohne eigene IT schiefläuft" und ein H2 „Was wir für
+  kleine Betriebe übernehmen"; dazu drei neue FAQ (Kleinbetrieb-Definition,
+  Rechenbeispiel 5/10 Arbeitsplätze, Abgrenzung `/it-hilfe/`). Die Wortzahl-
+  Marke von 1.800 ist damit nicht erreicht; der Rest — eigener Ablauf-Block
+  für Kleinbetriebe und Rechenbeispiele-H2 — steht als Offen Nr. 31.
+* **R2-09 Rest**: Meta-Titel und Description für `/aktuelles/alte-windows-version-im-betrieb/`
+  (jetzt „Windows 10 Ende, 3 Fragen") und `/aktuelles/nis2-lieferkette-zulieferer/`
+  (jetzt „NIS2 für Zulieferer: NISG 2026 Lieferkette") geschärft. Der Title
+  von `/einrichten/microsoft-365/` bleibt („Microsoft 365 einrichten lassen —
+  290 € Festpreis" trägt schon Suchwort und Preis, keine Änderung nötig).
+* **doku/80-AUFGABEN.md**: R2-05, R2-12 und der Rest von R2-03 stehen jetzt
+  als Offen Nr. 29, 30 und 31 im Text — nicht mehr nur in der
+  Zusammenfassung. `offen:` ist auf 21 hochgezählt (vorher 18).
+
+Bewusst nicht gebaut:
+
+* R2-05 (Kleinauftrag-Include auf Hubs) und R2-12 (Wegweiser auf `/leistungen/`)
+  bleiben offen — R2-12 wartet auf Paket 338, R2-05 wird nach Nutzung entschieden.
+* Der Rest von R2-03 (H2 „Ablauf für Kleinbetriebe" und „Rechenbeispiele
+  5/10/20") kommt in einem eigenen Lauf, weil er reiner Fließtext ist.
+
+**Zahlen:** 213 URLs (unverändert), Tests grün, `pruefe_seite` grün,
+`pruefe_sicherheit` grün, `stand_schreiben --pruefen` grün. Noch nicht auf
+`main`, noch nicht deployt.
+
+---
+
 ## 24.09.2026 — Runde 2: eine Seite für größere Betriebe, zwei fürs Einrichten
 
 Aufbauend auf Runde 1 vom selben Tag, auf Zweig `seo/2026-09-24-runde2` in

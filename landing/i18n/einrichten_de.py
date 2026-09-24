@@ -164,6 +164,18 @@ EINRICHTEN = {
                   "zwei bis vier Wochen unangetastet stehen, bevor er gelöscht wird. "
                   "Erst dann ist die Übernahme wirklich abgeschlossen.",
 
+        "beschaff_h": "Geräte beschaffen und einrichten",
+        "beschaff_t": "Auf Wunsch übernehmen wir auch die Beschaffung der neuen "
+                      "Geräte: Bedarf klären, Angebot für passende Hardware zusammen"
+                      "stellen und danach zum Festpreis von 190 € je Arbeitsplatz "
+                      "einrichten samt Datenübernahme. Wir empfehlen nach dem "
+                      "tatsächlichen Bedarf, nicht nach Marke — was auf dem Gerät "
+                      "laufen soll, entscheidet mehr über den sinnvollen Preis als "
+                      "jede Empfehlung ins Blaue. Der Gerätepreis kommt nach Ihren "
+                      "Anforderungen; die Einrichtung bleibt bei 190 € je Gerät. "
+                      "Sie können die Geräte auch selbst besorgen und uns nur die "
+                      "Einrichtung geben — beides ist erprobt.",
+
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Können wir währenddessen weiterarbeiten?",
@@ -908,7 +920,7 @@ EINRICHTEN = {
 
         "fern_h": "Umzug in derselben Stadt, in derselben Region — oder weiter",
         "fern_t": "In derselben Stadt lässt sich der Umzug meist an einem Tag "
-                  "erledigen, in der Region an einem Wochenende. Weiter entfernte "
+                  "erledigen. Weiter entfernte "
                   "Umzüge brauchen mehr Vorlauf und einen Termin für den Aufbau "
                   "der Serverseite, weil eine unterbrochene Datensicherung kein "
                   "Zustand ist, den man tagelang lässt. In allen Fällen bleibt der "
@@ -922,9 +934,12 @@ EINRICHTEN = {
                   "Frist ist die Bestellung von Internet und Telefon am neuen "
                   "Standort — sechs bis acht Wochen. Werden diese Leitungen zu "
                   "spät bestellt, hilft auch die beste Planung nicht."},
-            {"q": "Können wir am Wochenende umziehen?",
-             "a": "In vielen Fällen ja. Ob wir das anbieten, hängt am Umfang und "
-                  "an den Terminen; das klären wir vor dem Angebot mit Ihnen."},
+            {"q": "Wann wird der Umzug gemacht?",
+             "a": "Wir stimmen den Termin so ab, dass er in Ihre Betriebsabläufe "
+                  "passt — Umfang, verfügbare Zeitfenster und die Server-Umstellung "
+                  "geben den Rahmen. Zusagen zu Wochenend- oder Abendterminen "
+                  "machen wir erst nach der Bestandsaufnahme, wenn der Aufwand "
+                  "belastbar geschätzt ist."},
             {"q": "Was ist mit Servern, die 24/7 laufen müssen?",
              "a": "Dann bauen wir am neuen Standort einen Zweiten auf, ziehen die "
                   "Sicherung um und schalten den Betrieb in einem geplanten Fenster "

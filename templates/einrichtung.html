@@ -96,6 +96,15 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
         <p class="sp-preis-text">{{ seite.fern_t|safe }}</p>
         {% endif %}
 
+        {% comment %}Optionaler Beschaffungs-Abschnitt: auf /einrichten/pc-tausch/
+        seit Runde 2 (24.09.2026, R2-08), damit die H2 „Geräte beschaffen und
+        einrichten" tatsächlich auf der Seite steht und nicht nur im FAQ auftaucht.
+        Auf allen anderen Einrichtungen ist `beschaff_t` leer und der Block fehlt.{% endcomment %}
+        {% if seite.beschaff_t %}
+        <h2 class="sp-h2" id="beschaffung">{{ seite.beschaff_h|safe }}</h2>
+        <p class="sp-preis-text">{{ seite.beschaff_t|safe }}</p>
+        {% endif %}
+
         {% comment %}Die Abgrenzung zu /leistungen/ wird ausgesprochen, nicht
         angedeutet — sonst konkurrieren beide Seiten um dieselbe Anfrage
         (siehe Plan §2.2 und den Kopf von landing/einrichtungen.py).{% endcomment %}
