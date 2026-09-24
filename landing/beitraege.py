@@ -53,6 +53,8 @@ geaendert   optional, letzte inhaltliche Überarbeitung
 thema       Slug der Leistung, zu der der Beitrag gehört (Querverweis + Silo)
 lesezeit    Minuten, ehrlich geschätzt (rund 200 Wörter je Minute)
 prio        Priorität in der Sitemap
+hilfe       optional True: der eine Verweis am Ende führt auf /it-hilfe/
+            (Einzelhilfe ohne Vertrag) statt auf eine Einrichtung
 """
 
 BEITRAEGE = [
@@ -128,6 +130,16 @@ BEITRAEGE = [
     {"slug": "pc-langsam-woran-liegt-es", "datum": "2026-09-08",
      "thema": "edv-it-betreuung", "lesezeit": 5, "prio": "0.8",
      "einrichtung": "pc-tausch"},
+
+    # Problem-Ratgeber für Kleinaufträge (W08, 24.09.2026). `hilfe` statt
+    # `einrichtung`: Am Ende steht genau ein Verweis, und zwar auf /it-hilfe/ —
+    # ein einzelnes Problem hat keinen Festpreis, sondern den Stundensatz.
+    {"slug": "drucker-druckt-nicht", "datum": "2026-09-24",
+     "thema": "edv-it-betreuung", "lesezeit": 5, "prio": "0.7", "hilfe": True},
+    {"slug": "outlook-email-geht-nicht", "datum": "2026-09-24",
+     "thema": "edv-it-betreuung", "lesezeit": 5, "prio": "0.7", "hilfe": True},
+    {"slug": "microsoft-365-konto-gesperrt", "datum": "2026-09-24",
+     "thema": "it-sicherheit", "lesezeit": 5, "prio": "0.7", "hilfe": True},
 ]
 
 NACH_SLUG = {b["slug"]: b for b in BEITRAEGE}

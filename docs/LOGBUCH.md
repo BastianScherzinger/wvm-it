@@ -7,6 +7,40 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 24.09.2026 — Kunden-Offensive: eine Seite für den kleinen Auftrag
+
+Die Search Console sagte etwas anderes, als die Frage vermuten ließ. Es gab
+kein Klickproblem, sondern ein Rangproblem: 698 Impressionen in 28 Tagen bei
+mittlerer Position 47,7, fast alles Wissensfragen auf Suchseite fünf bis zehn.
+Der einzige Klick über eine Kaufsuche kam über „pc einrichten lassen kosten"
+auf eine Festpreisseite ohne Vertrag. **Für das einzelne Problem — Drucker,
+Outlook, WLAN — gab es keine Seite, obwohl der Preis seit dem Relaunch im
+Katalog steht.**
+
+Gebaut auf dem Zweig `seo/2026-09-24-kunden-offensive`, in einem eigenen
+Arbeitsbaum, weil der Overview zur selben Zeit Paket 323 im Arbeitsordner
+hatte (`.overview-arbeitet`): `/it-hilfe/` in drei Sprachen, von Kopfzeile,
+Leistungsfinder und Vertrauensband verlinkt; drei Ratgeber mit Problemabsicht;
+Titel und Beschreibungen der Seiten, die sichtbar sind, aber nicht geklickt
+werden; Rechenbeispiele auf `/kosten/`; WhatsApp mit vorbelegtem Text;
+Einzelhilfe in `llms.txt`. Im Overview selbst (kein Git dort, Sicherung der
+alten Fassung im Scratchpad der Sitzung) liest `cockpit/search.py` jetzt
+1.000 Zeilen und sortiert nach Impressionen — vorher kamen die 25 Anfragen in
+Googles Reihenfolge, nach Klicks und dann alphabetisch, und die stärkste
+Kaufsuche „it betreuung kosten" fehlte in der Ansicht.
+
+**Zwei Funde, die nicht im Auftrag standen.** Die Analyse hielt die
+Öffnungszeiten im Schema für erfunden; sie stehen aber seit dem Relaunch auf
+`/kontakt/` und `/it-notfall/`, in allen drei Sprachen. Falsch war die Notiz in
+`doku/50-LOCAL-SEO.md`, nicht der Code — sie ist berichtigt, und ein Test hält
+Schema und Kontaktseite zusammen. Und `templates/beitrag.html` zeigte in jedem
+Ratgeber mit Einrichtung die Festpreis-Karte zweimal.
+
+**Merksatz:** Eine Analyse, die „unbelegt" sagt, hat vielleicht nur an der
+falschen Stelle gesucht. Erst nachsehen, dann löschen.
+
+---
+
 ## 10.09.2026 — Unternehmensprofil: nachgesehen statt angenommen
 
 "Es gibt keins" stand seit dem 28.08. in jeder Datei — aber nur, weil es nie

@@ -81,8 +81,8 @@ REGIONEN = {
     "gmunden": {
         "anfrage_h": "IT-Betreuung in Gmunden anfragen",
         "nav": "Gmunden",
-        "titel": "IT-Service Gmunden — EDV-Betreuung am Traunsee | WVM-IT",
-        "desc": "IT-Dienstleister für Betriebe in Gmunden und am Traunsee: EDV-Betreuung, Netzwerk, IT-Sicherheit. 22 km von Lenzing. Jetzt Angebot anfordern.",
+        "titel": "EDV-Betreuung Gmunden am Traunsee ab 29 €/Monat | WVM-IT",
+        "desc": "EDV-Betreuung für Betriebe in Gmunden, 22 km von Lenzing: ab 29 €/Monat je Arbeitsplatz, Fernwartung 95 €/Std., vor Ort 120 €/Std. Jetzt anfragen.",
         "h1": "IT-Service und EDV-Betreuung in Gmunden",
         "kurz": "WVM-IT betreut Betriebe in Gmunden und am Traunsee: Arbeitsplätze, Server, Netzwerk, E-Mail und Datensicherung. Von unserem Sitz in Lenzing sind es 22 Kilometer, rund 25 Minuten Fahrt. Der laufende Betrieb läuft per Fernwartung, vor Ort kommen wir für alles, was Hände braucht.",
         "intro": "Gmunden lebt von einer Mischung, die für die IT anspruchsvoll ist: produzierendes Gewerbe mit langer Tradition, Handel in der Altstadt, Tourismus am See und ein wachsender Anteil an Dienstleistern. Ein Keramikbetrieb, ein Hotel und eine Steuerkanzlei brauchen sehr Verschiedenes — was sie teilen, ist die Größe: zu klein für eine eigene IT-Abteilung, zu groß, um bei einem Ausfall einfach abzuwarten.",
@@ -110,8 +110,8 @@ REGIONEN = {
     "bad-ischl": {
         "anfrage_h": "Technik und IT in Bad Ischl anfragen",
         "nav": "Bad Ischl",
-        "titel": "IT & Veranstaltungstechnik Bad Ischl | WVM-IT",
-        "desc": "IT-Betreuung, Konferenz- und Veranstaltungstechnik für Bad Ischl und das Salzkammergut, 38 km von Lenzing. Jetzt unverbindlich anfragen.",
+        "titel": "IT-Service Bad Ischl: EDV und Veranstaltungstechnik | WVM-IT",
+        "desc": "EDV-Betreuung ab 29 €/Monat, Konferenz- und Veranstaltungstechnik für Bad Ischl und das Salzkammergut, 38 km von Lenzing. Vor Ort 120 €/Std.",
         "h1": "IT, Konferenz- und Veranstaltungstechnik in Bad Ischl",
         "kurz": "WVM-IT betreut Betriebe im Salzkammergut und stattet Räume mit Konferenz-, Ton- und Präsentationstechnik aus. Von Lenzing sind es 38 Kilometer, rund 40 Minuten. Neben der laufenden EDV-Betreuung per Fernwartung liegt der Schwerpunkt hier auf Technik für Veranstaltungen, Tagungen und Seminare.",
         "intro": "Bad Ischl ist Kur- und Veranstaltungsort. Zwischen Hotellerie, Gastronomie, Handel und Gesundheitsbetrieben gibt es hier ungewöhnlich viele Räume, in denen regelmäßig Menschen vor Publikum sprechen: Seminarräume, Tagungssäle, Vortragsräume, Foyers. Und ungewöhnlich viele Betriebe, bei denen die Technik in diesen Räumen über Jahre zusammengesteckt statt geplant wurde.",
@@ -168,8 +168,8 @@ REGIONEN = {
     "salzburg": {
         "anfrage_h": "IT-Betreuung und Sicherheit in Salzburg anfragen",
         "nav": "Salzburg",
-        "titel": "IT-Service und IT-Sicherheit Salzburg | WVM-IT",
-        "desc": "IT-Dienstleister für Betriebe in Salzburg: EDV-Betreuung, IT-Sicherheit, Netzwerk, laufender Betrieb per Fernwartung. Jetzt unverbindlich anfragen.",
+        "titel": "EDV-Betreuung Salzburg: IT-Service ab 29 €/Monat | WVM-IT",
+        "desc": "EDV-Betreuung für Betriebe in Salzburg: laufend ab 29 €/Monat je Arbeitsplatz oder einzeln per Fernwartung für 95 €/Std., ohne Vertrag. Jetzt anfragen.",
         "h1": "IT-Service und IT-Sicherheit in Salzburg",
         "kurz": "WVM-IT betreut Betriebe in der Stadt Salzburg und im Umland: laufende EDV, Server, Netzwerk und vor allem IT-Sicherheit. Von Lenzing sind es 55 Kilometer, rund 45 Minuten für Termine vor Ort. Der laufende Betrieb läuft per gesicherter Fernwartung, unabhängig von der Entfernung.",
         "intro": "Salzburg ist ein Dienstleistungsstandort: Agenturen, Kanzleien, Beratungen, Tourismusbetriebe, Handel. Der gemeinsame Nenner für die IT ist, dass hier mit fremden Daten gearbeitet wird — Mandantendaten, Gästedaten, Kundendaten. Damit ist IT-Sicherheit keine Fleißaufgabe, sondern eine Pflicht mit Haftung dahinter.",

@@ -81,7 +81,7 @@ Die Varianten stehen in content.json (T3).
         {% comment %} Vier Wege, uns zu erreichen. WhatsApp zuerst, weil er am meisten genutzt wird. {% endcomment %}
         <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
           {% if c.whatsapp %}
-          <a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">
+          <a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">
             {% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span>
           </a>
           {% endif %}
@@ -103,6 +103,10 @@ Die Varianten stehen in content.json (T3).
           <li>{% include 'icons.html' with name='net' %}{{ t.trust.t2|safe }}</li>
           <li>{% include 'icons.html' with name='check' %}{{ t.trust.t3|safe }}</li>
           <li>{% include 'icons.html' with name='bolt' %}{{ t.trust.t4|safe }} {{ startpreise.it }}</li>
+          {% comment %}Der Kleinauftrag im ersten Bildschirm (24.09.2026): Bis dahin
+          stand hier nur der Vertragspreis. Preis aus ANGEBOT_GROUPS (it_support),
+          ohne „ab" — der Stundensatz ist kein Einstiegspreis.{% endcomment %}
+          <li><a class="hero-trust-link" href="{% url 'it_hilfe' %}">{% include 'icons.html' with name='phone' %}{{ t.trust.hilfe|safe }} {{ hilfe_preis }}</a></li>
         </ul>
       </div>
 
@@ -150,14 +154,31 @@ Die Varianten stehen in content.json (T3).
                 <input class="fld" id="hero-rr-tel" type="tel" name="kontakt" required autocomplete="tel" placeholder="{{ t.rueckruf.tel_ph|safe }}">
               </div>
             </div>
-            <div class="field">
-              <label class="fld-l" for="hero-rr-zeit">{{ t.rueckruf.zeit|safe }}</label>
-              <select class="fld" id="hero-rr-zeit" name="zeit">
-                <option>{{ t.rueckruf.zeit_1|safe }}</option>
-                <option>{{ t.rueckruf.zeit_2|safe }}</option>
-                <option>{{ t.rueckruf.zeit_3|safe }}</option>
-                <option selected>{{ t.rueckruf.zeit_4|safe }}</option>
+            {% comment %}Zeitfenster und Anliegen nebeneinander (W05, 24.09.2026):
+            Das Anliegen ist freiwillig und kostet so auf breiten Schirmen keine
+            Zeile; Florin sieht vor dem Rueckruf, ob es um ein einzelnes Problem
+            oder um eine Betreuung geht.{% endcomment %}
+            <div class="of-grid">
+              <div class="field">
+                <label class="fld-l" for="hero-rr-zeit">{{ t.rueckruf.zeit|safe }}</label>
+                <select class="fld" id="hero-rr-zeit" name="zeit">
+                  <option>{{ t.rueckruf.zeit_1|safe }}</option>
+                  <option>{{ t.rueckruf.zeit_2|safe }}</option>
+                  <option>{{ t.rueckruf.zeit_3|safe }}</option>
+                  <option selected>{{ t.rueckruf.zeit_4|safe }}</option>
+                </select>
+              </div>
+              <div class="field">
+                <label class="fld-l" for="hero-rr-anliegen">{{ t.rueckruf.anliegen|safe }}</label>
+                <select class="fld" id="hero-rr-anliegen" name="anliegen">
+                <option value="">{{ t.rueckruf.anliegen_leer|safe }}</option>
+                <option value="einzel">{{ t.rueckruf.anliegen_einzel|safe }}</option>
+                <option value="einrichtung">{{ t.rueckruf.anliegen_einrichtung|safe }}</option>
+                <option value="betreuung">{{ t.rueckruf.anliegen_betreuung|safe }}</option>
+                <option value="web">{{ t.rueckruf.anliegen_web|safe }}</option>
+                <option value="notfall">{{ t.rueckruf.anliegen_notfall|safe }}</option>
               </select>
+              </div>
             </div>
             <button class="btn btn-lg lb-submit" type="submit">{{ t.rueckruf.submit|safe }}</button>
             <p class="lb-err" role="alert" hidden></p>
@@ -369,7 +390,7 @@ Die Varianten stehen in content.json (T3).
         </div>
 
         <div class="founder-contact">
-          {% if c.whatsapp %}<a class="founder-chip" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
+          {% if c.whatsapp %}<a class="founder-chip" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
           {% if c.telefon %}<a class="founder-chip" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
           {% if c.email %}<a class="founder-chip" href="mailto:{{ c.email }}">{% include 'icons.html' with name='mail' %}{{ c.email }}</a>{% endif %}
         </div>
@@ -1131,7 +1152,7 @@ Die Varianten stehen in content.json (T3).
         <p class="section-lead">{{ t.kontakt.lead|safe }}</p>
         <div class="contact-methods">
           {% if c.telefon %}<a class="cm" href="tel:{{ c.telefon_tel }}"><span class="cm-ic">{% include 'icons.html' with name='phone' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_call|safe }}</strong><span>{{ c.telefon }}</span></span></a>{% endif %}
-          {% if c.whatsapp %}<a class="cm cm-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
+          {% if c.whatsapp %}<a class="cm cm-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
           {% if c.email %}<a class="cm" href="mailto:{{ c.email }}"><span class="cm-ic">{% include 'icons.html' with name='mail' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_mail|safe }}</strong><span>{{ c.email }}</span></span></a>{% endif %}
           <a class="cm" href="#kontakt-form"><span class="cm-ic">{% include 'icons.html' with name='consulting' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_form|safe }}</strong><span>{{ t.kontakt.m_form_sub|safe }}</span></span></a>
           <button class="cm" type="button" data-rueckruf><span class="cm-ic">{% include 'icons.html' with name='clock' %}</span><span class="cm-t"><strong>{{ t.ways.callback|safe }}</strong><span>{{ t.rueckruf.zeit_4|safe }}</span></span></button>
@@ -1183,7 +1204,7 @@ Die Varianten stehen in content.json (T3).
         <p class="closer-sub">{{ t.schluss.sub|safe }}</p>
       </div>
       <div class="hero-ways closer-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
-        {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+        {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
         {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
         <button class="way" type="button" data-rueckruf>{% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span></button>
         <a class="way" href="#kontakt-form">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>

@@ -14,8 +14,8 @@ SEITEN = {
     # ══ IT ════════════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "Suport IT & administrare",
-        "titel": "Administrare IT de la 29 €/lună | WVM-IT",
-        "desc": "Departament IT extern pentru firme mici și mijlocii: de la 29 €/lună per post de lucru, suport de la 95 €/oră. Solicitați acum o ofertă.",
+        "titel": "Administrare IT Austria și Germania de la 29 €/lună | WVM-IT",
+        "desc": "Departament IT extern pentru firme mici din Austria și Germania: de la 29 €/lună pe stație, suport la distanță 95 €/oră. Solicitați o ofertă.",
         "h1": "Administrare IT pentru firmele fără departament IT propriu",
         "kurz": "WVM-IT preia IT-ul curent al firmelor mici și mijlocii din Austria și Germania: posturi de lucru, servere, e-mail, imprimante, actualizări și copii de siguranță. Administrarea curentă costă de la 29 € per post de lucru și lună, ajutorul punctual fără contract de la 95 € pe oră. Răspundem în 24 de ore și lucrăm în cea mai mare parte la distanță — drumul spre dumneavoastră trece printr-o conexiune securizată, nu pe autostradă.",
         "intro": "În majoritatea firmelor sub cincizeci de angajați nu există departament IT. Există cineva care „se pricepe un pic” — și care de fapt ar avea altceva de făcut. Cât timp nu se întâmplă nimic, merge. Se vede abia când imprimanta din birou se blochează exact când trebuie trimise ofertele, sau când după o actualizare Windows nu mai pornește un program de care depinde toată firma. Exact acest gol îl acoperim: primiți un număr, o adresă de e-mail și o persoană de contact care știe cum e construită tehnica dumneavoastră.",

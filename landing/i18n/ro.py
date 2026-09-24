@@ -6,6 +6,7 @@ from .regionen_ro import REGIONEN
 from .branchen_ro import BRANCHEN
 from .vergleiche_ro import VERGLEICHE
 from .einrichten_ro import EINRICHTEN, HUB as EINRICHTEN_HUB
+from .hilfe_ro import HILFE
 
 PACK = {
     "seiten": SEITEN,
@@ -14,12 +15,13 @@ PACK = {
     "vergleiche": VERGLEICHE,
     "einrichten": EINRICHTEN,
     "einrichten_hub": EINRICHTEN_HUB,
+    "hilfe": HILFE,
     "meta": {
         "html_lang": "ro",
         "locale": "ro_RO",
         "num_locale": "ro-RO",
-        "seo_title": "WVM-IT: furnizor IT în Austria de la 29 €/lună",
-        "seo_desc": "Departamentul IT extern pentru firme din Austria și Germania: de la 29 €/lună pe stație, suport 95 €/oră, răspuns în 24 de ore. Scrieți-ne acum.",
+        "seo_title": "WVM-IT: administrare IT în Austria și Germania de la 29 €",
+        "seo_desc": "Administrare IT la distanță pentru firme din Austria și Germania: 29 €/lună pe stație. Ajutor punctual fără contract 95 €/oră. Scrieți-ne acum.",
         "slogan": "Conectăm oamenii cu tehnologia informației.",
         "firmen_desc": "WVM-IT conectează oamenii cu tehnologia informației. De la sediul nostru din Lenzing, Austria Superioară, ne ocupăm de firme și de clienți privați cu soluții IT și digitale dintr-o singură sursă: stații de lucru, rețele și securitate IT, site-uri web profesionale, găzduire și SEO, automatizare cu inteligență artificială, smart home și automatizarea clădirilor, precum și tehnică de conferință, video, sunet și evenimente. Activitatea curentă se desfășoară în mare parte prin mentenanță la distanță, în toată Austria și Germania; lucrările la fața locului acoperă zona din jurul orașelor Vöcklabruck, Attersee, Gmunden, Wels, Linz și Salzburg. Tehnologia trebuie să fie ușor de înțeles, să funcționeze fiabil și să aducă un beneficiu real — de aceea oferim consiliere personală, comunicare clară și o persoană de contact fixă.",
         "og_image_alt_suffix": "IT, tehnică și digital pentru firme",
@@ -34,6 +36,8 @@ PACK = {
         "items": [
             {"q": "Cât costă administrarea IT curentă pentru o firmă?",
              "a": "Administrarea IT curentă costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Ajutorul punctual, fără contract, se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Toate sunt prețuri orientative, net plus TVA; prețul ferm îl comunicăm după o scurtă discuție."},
+            {"q": "Ajutați și la o singură problemă, fără contract?",
+             "a": "Da. Probleme IT punctuale — imprimantă, e-mail, WiFi, un PC lent — le rezolvăm fără contract, la distanță, cu 95 € pe oră, de obicei în aceeași zi; la fața locului 120 € pe oră plus deplasarea. Sarcinile complete au preț fix, de exemplu un post de lucru nou cu 190 €. Cum decurge găsiți pe pagina Ajutor IT fără contract."},
             {"q": "WVM-IT administrează și firme din afara Austriei?",
              "a": "Da. Asistența la distanță, monitorizarea, copiile de siguranță, Microsoft 365, site-urile, SEO și Google Ads le administrăm în toată Austria și Germania — aceste lucrări sunt independente de loc, drumul spre client trece printr-o conexiune securizată, nu pe autostradă. Intervențiile la fața locului le planificăm pe proiect."},
             {"q": "Nu avem pe nimeni pentru IT în firmă. Cum decurge colaborarea?",
@@ -560,12 +564,12 @@ PACK = {
     "vergleiche_seite": {
         "methode_h": "Cum comparăm",
         "methode_t": "Patru reguli țin aceste pagini împreună. Prima: comparăm un domeniu de servicii echivalent, nu varianta cea mai ieftină cu cea mai scumpă — altfel câștigă mereu aceeași parte, iar comparația nu spune nimic despre cazul dumneavoastră real. A doua: acolo unde o decizie depinde de bani, calculăm costurile totale pe trei ani, nu doar prețul de achiziție, pentru că, de-a lungul acestei perioade, costurile curente pentru întreținere, curent electric, timp de nefuncționare și înlocuire ajung adesea mai mari decât prețul de pornire singur — o achiziție ieftină poate fi, calculată pe trei ani, alegerea mai scumpă, iar una scumpă cea mai ieftină. Un exemplu face lucrul acesta concret: la server versus cloud, în cei trei ani intră nu doar hardware-ul și abonamentul, ci și curentul electric, o sursă neîntreruptibilă de alimentare, timpul pentru actualizări și riscul unei căderi totale fără echipament de rezervă la îndemână — elemente care lipsesc de obicei dintr-o simplă comparație de preț de achiziție. A treia: fiecare comparație spune explicit când câștigă cealaltă variantă, într-un bloc propriu, de aceeași mărime, nu într-o jumătate de frază la final, pentru că o pagină care arată doar propriul punct de vedere nu mai este o comparație, ci reclamă. A patra: prețurile altor furnizori nu apar aici, pentru că se schimbă, iar o cifră învechită despre un terț este mai rea decât niciuna — trimitem în schimb la ce spune public furnizorul respectiv. Calculul apare lângă fiecare cifră, ca să îl puteți urmări cu propriile valori și să îl refaceți pentru firma dumneavoastră, în loc să trebuiască să ne credeți pe cuvânt.",
-        "auswahl_h": "De ce exact acestea trei",
-        "auswahl_t": "Sunt cele trei decizii care rămân cel mai des deschise într-o primă discuție, de obicei chiar înainte să fie vorba despre un furnizor anume. Au un lucru în comun: nu pot fi luate rezonabil fără a privi firma respectivă — câte stații de lucru are, cât de mult variază încărcarea, ce software este obligatoriu și cât de costisitoare ar fi cu adevărat o defecțiune. De aceea fiecare pagină formulează întrebarea de care depinde decizia, nu o recomandare generală care ar ieși la fel pentru orice firmă. Acest lucru rămâne valabil și atunci când răspunsul onest este că, deocamdată, nici una, nici cealaltă variantă nu merită pentru dumneavoastră și soluția actuală mai rezistă o vreme bună — o comparație care nu ar permite această concluzie nu ar fi un ajutor de decizie, ci doar un ocol spre același rezultat de fiecare dată. Cele trei pagini se leagă și între ele: cine alege un server propriu trebuie oricum să rezolve din nou backupul, iar cine trece la Google Workspace schimbă astfel și întrebarea dacă un contract curent sau facturarea pe ore este mai potrivită. Merită deci să citiți mai mult de una dintre cele trei pagini, chiar dacă doar o singură întrebare pare urgentă acum. Dacă vă lipsește o comparație de care ați avea nevoie, scrieți-ne; o adăugăm de îndată ce întrebarea revine mai des, cu același calcul și aceeași deschidere ca la cele trei pagini existente.",
-        "titel": "Server sau cloud? 3 decizii IT comparate | WVM-IT",
-        "desc": "Abonament sau ore, server sau cloud, Microsoft 365 sau Google: cele trei comparații dinaintea alegerii unui furnizor. Comparați acum.",
+        "auswahl_h": "De ce exact acestea patru",
+        "auswahl_t": "Sunt cele patru decizii care rămân cel mai des deschise înaintea alegerii unui furnizor: primele trei apar aproape în orice primă discuție, iar a patra — dacă un PC mai vechi merită încă modernizat — este cea căutată cel mai des. Au un lucru în comun: nu pot fi luate rezonabil fără a privi firma respectivă — câte stații de lucru are, cât de mult variază încărcarea, ce software este obligatoriu și cât de costisitoare ar fi cu adevărat o defecțiune. De aceea fiecare pagină formulează întrebarea de care depinde decizia, nu o recomandare generală care ar ieși la fel pentru orice firmă. Acest lucru rămâne valabil și atunci când răspunsul onest este că, deocamdată, nici una, nici cealaltă variantă nu merită pentru dumneavoastră și soluția actuală mai rezistă o vreme bună — o comparație care nu ar permite această concluzie nu ar fi un ajutor de decizie, ci doar un ocol spre același rezultat de fiecare dată. Cele patru pagini se leagă și între ele: cine alege un server propriu trebuie oricum să rezolve din nou backupul, iar cine trece la Google Workspace schimbă astfel și întrebarea dacă un contract curent sau facturarea pe ore este mai potrivită. Merită deci să citiți mai mult de una dintre cele patru pagini, chiar dacă doar o singură întrebare pare urgentă acum. Dacă vă lipsește o comparație de care ați avea nevoie, scrieți-ne; o adăugăm de îndată ce întrebarea revine mai des, cu același calcul și aceeași deschidere ca la cele patru pagini existente.",
+        "titel": "Server sau cloud? 4 decizii IT comparate | WVM-IT",
+        "desc": "Abonament sau ore, server sau cloud, Microsoft 365 sau Google, modernizare sau PC nou: patru comparații înaintea alegerii furnizorului.",
         "h1": "Deciziile care preced alegerea unui furnizor",
-        "kurz": "Înainte ca cineva să caute un furnizor IT, în cameră stă de obicei o altă întrebare: contract de asistență sau facturare pe ore? Server în firmă sau cloud? Microsoft 365 sau Google Workspace? Calculul folosește tarifele noastre — 29 € pe stație și lună pentru asistența curentă, 95 € pe oră fără contract — iar la achiziții pornim de la costurile totale pe 3 ani, nu de la prețul de cumpărare. Pe aceste pagini se află comparațiile cu calculul la vedere — inclusiv cazurile în care răspunsul este împotriva ofertei noastre. Cine ajunge aici are de obicei această întrebare de fond încă deschisă și nu a ales un furnizor — de aceea paginile sunt scrise în mod deliberat neutru, nu ca o etapă premergătoare unei oferte, ci ca răspuns la o întrebare care precede orice alegere de furnizor. Toate cele trei comparații folosesc aceeași listă de prețuri ca restul site-ului; nu inventăm pentru ele o a doua realitate a cifrelor.",
+        "kurz": "Înainte ca cineva să caute un furnizor IT, în cameră stă de obicei o altă întrebare: contract de asistență sau facturare pe ore? Server în firmă sau cloud? Microsoft 365 sau Google Workspace? Modernizați PC-ul vechi sau cumpărați unul nou? Calculul folosește tarifele noastre — 29 € pe stație și lună pentru asistența curentă, 95 € pe oră fără contract — iar la achiziții pornim de la costurile totale pe 3 ani, nu de la prețul de cumpărare. Pe aceste pagini se află comparațiile cu calculul la vedere — inclusiv cazurile în care răspunsul este împotriva ofertei noastre. Cine ajunge aici are de obicei această întrebare de fond încă deschisă și nu a ales un furnizor — de aceea paginile sunt scrise în mod deliberat neutru, nu ca o etapă premergătoare unei oferte, ci ca răspuns la o întrebare care precede orice alegere de furnizor. Toate cele patru comparații folosesc aceeași listă de prețuri ca restul site-ului; nu inventăm pentru ele o a doua realitate a cifrelor.",
         "intro": "Aceste pagini există pentru că o decizie rareori începe cu un furnizor, ci cu o întrebare de fond dinaintea lui: contract sau facturare pe ore, server propriu sau cloud, un sistem sau altul. Cine nu a răspuns încă la această întrebare nu primește o ofertă potrivită nici de la noi, nici de la alt furnizor, pentru că prețul și amploarea diferă mult în funcție de răspuns — o ofertă pentru administrarea unui server nu ajută pe cineva care vrea de fapt să treacă în cloud. De aceea fiecare dintre aceste pagini spune explicit când cealaltă variantă este cea corectă, într-un bloc propriu, de aceeași mărime, nu într-o jumătate de frază la final. O comparație care duce mereu la propria ofertă nu este o comparație, ci reclamă cu tabel. La finalul acestor pagini poate la fel de bine să rezulte că niciuna dintre cele două variante prezentate nu vi se potrivește, ci o a treia soluție sau nicio schimbare față de ce funcționează deja astăzi. Și acesta este un rezultat util: o decizie luată cu cifre, nu cu o senzație, rămâne corectă chiar dacă la final este împotriva unei colaborări cu noi. Cine citește una dintre aceste pagini sperând doar să primească o confirmare pentru ce plănuise deja va fi dezamăgit cel puțin într-un punct — și este intenționat așa. Folosul nu stă în confirmare, ci în calculul pe care îl puteți repeta cu propriile cifre, chiar și fără să vorbiți cu noi.",
         "vergleiche_titel": "Comparații",
         "tabelle_hinweis": "Tabelul se derulează lateral.",
@@ -578,6 +582,7 @@ PACK = {
     },
     "notfall": {
         "nav": "Urgență IT",
+        "wa_text": "Urgență IT: ",
         "titel": "Urgență IT: primele 30 de minute | WVM-IT",
         "desc": "Criptare, cădere de server, căsuță compromisă: ce faceți în primele 30 de minute — și ce nu. În caz de urgență, sunați imediat.",
         "h1": "Urgență IT: ce trebuie făcut în primele 30 de minute",
@@ -779,8 +784,8 @@ PACK = {
                           "t": "Asistență curentă pentru firme fără departament IT propriu, de la 29 € per stație și lună."},
             "preis": {"h": "Cât ar costa asta?",
                       "t": "Introduceți stațiile și serverele, vedeți imediat totalul lunar și anual."},
-            "angebot": {"h": "Construiți o ofertă",
-                        "t": "Atingeți serviciile, primiți prețul orientativ. În mai puțin de un minut, fără obligații."},
+            "hilfe": {"h": "Doar o problemă, fără contract",
+                      "t": "Imprimantă, e-mail, WiFi, PC lent: ajutor la distanță cu 95 € pe oră, de obicei în aceeași zi."},
             "web": {"h": "Avem nevoie de un site",
                     "t": "De la o pagină de prezentare până la magazin — construit, găzduit și întreținut dintr-o singură mână."},
             "branche": {"h": "Ce înseamnă asta pentru domeniul meu?",
@@ -821,8 +826,8 @@ PACK = {
         "alle": "Toate articolele",
     },
     "hub": {
-        "titel": "Servicii: IT, web și tehnică în Austria | WVM-IT",
-        "desc": "Administrare IT de la 29 €/lună, site-uri de la 350 €, SEO de la 149 €/lună, tehnică la fața locului. Solicitați o ofertă acum.",
+        "titel": "Servicii IT cu prețuri afișate, de la 29 €/lună | WVM-IT",
+        "desc": "Administrare IT de la 29 €/lună pe stație, ajutor fără contract 95 €/oră, configurare de la 190 €, site-uri de la 350 € — în Austria și Germania.",
         "h1": "Ce preia WVM-IT pentru firme",
         "kurz": "WVM-IT administrează IT-ul firmelor mici și mijlocii din Austria și Germania și preia în plus tot ce le face vizibile: site-uri, SEO, Google Ads și automatizare. Accentul este pe administrarea IT curentă de la 29 € per post de lucru și lună, prestată în cea mai mare parte la distanță. Automatizarea clădirilor și tehnica pentru evenimente se adaugă pe proiect, la fața locului. Toate cele unsprezece servicii trec prin aceeași persoană de contact și aceeași listă de prețuri, fie că este vorba de un singur post de lucru, fie de un proiect mai mare.",
         "intro": "Unsprezece servicii, trei domenii – și o singură persoană de contact pentru toate. Ce găsiți aici nu este intenționat o listă de cuvinte-cheie: fiecare serviciu are pagina lui, cu ce include, cum decurge și cât costă. Dacă nu sunteți sigur de unde să începeți: IT și infrastructură se potrivește atunci când trebuie administrată o tehnică curentă – stații de lucru, servere, backup, securitate. Vizibilitate și web se potrivește atunci când clienții trebuie să vă găsească online sau trebuie construit un site nou. Tehnica la fața locului se potrivește de îndată ce ceva trebuie cablat, montat sau calibrat. O colaborare începe de cele mai multe ori la fel: cu o scurtă evaluare a ceea ce există deja și o estimare a ceea ce se poate rezolva la distanță și ce anume are nevoie de o vizită la fața locului. Stațiile de lucru, serverele, e-mailul, actualizările și backupul funcționează aproape întotdeauna de la distanță; cablarea, montarea hardware și tehnica la fața locului nu.",
@@ -859,7 +864,7 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "Cât costă administrarea IT? Prețuri de la 29 €/lună | WVM-IT",
-        "desc": "Toate prețurile la vedere: administrare IT de la 29 €/lună pe stație, suport 95 €/oră, site de la 350 €. Net, fără TVA. Întrebați-ne acum.",
+        "desc": "Cât costă administrarea IT, la vedere: 29 €/lună pe stație, suport 95 €/oră, cu exemple de calcul pentru 3, 5 și 10 stații. Austria și Germania.",
         "h1": "Cât costă? Toate prețurile pe o singură pagină",
         "kurz": "Administrarea IT curentă la WVM-IT costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Ajutorul punctual costă 95 € pe oră, intervențiile la fața locului 120 € pe oră plus deplasarea. Un site pornește de la 350 €, administrarea SEO de la 149 € pe lună, Google Ads de la 199 € pe lună. Toate sunt prețuri orientative, net plus TVA.",
         "intro": "\u201ePreț la cerere\u201d este comod pentru furnizor și enervant pentru client. De aceea aici scrie tot ce se poate cuantifica rezonabil – iar acolo unde nu se poate, scrie de ce. Cifrele de mai jos vin din aceeași sursă ca și configuratorul și ofertele noastre; nu există o a doua listă de prețuri.",
@@ -869,6 +874,24 @@ PACK = {
         "fair_1": "Fără durată minimă peste un trimestru.",
         "fair_2": "Fără sisteme din care nu mai puteți ieși – conturile și datele vă aparțin.",
         "fair_3": "Fără recomandări din care câștigăm noi mai mult decât economisiți dumneavoastră. Dacă ceva nu merită, o spunem.",
+        # Rechenbeispiele und Einordnung (W07, 24.09.2026)
+        "bsp_h": "Cât plătește pe lună o firmă ca a dumneavoastră",
+        "bsp_t": "Trei exemple, calculate cu aceleași tarife ca lista de mai sus: administrare continuă pe post de lucru și copii de siguranță monitorizate, iar la firma mai mare și un server administrat. Ajutorul punctual în afara contractului se adaugă doar dacă aveți nevoie de el.",
+        "bsp_cap": "Exemple de calcul, net, fără TVA",
+        "bsp_spalte_betrieb": "Firmă",
+        "bsp_spalte_monat": "pe lună",
+        "bsp_name": "{ap} posturi de lucru, fără server propriu",
+        "bsp_name_server": "{ap} posturi de lucru cu un server",
+        "bsp_zeile": "{ap} × {preis} € administrare + {backup} € copii de siguranță",
+        "bsp_server": " + {srv} € administrare server",
+        "bsp_fuss": "Cifra dumneavoastră o calculează calculatorul de costuri cu aceleași tarife — cu posturile și serverele dumneavoastră.",
+        "markt_h": "Cum se încadrează",
+        "markt_t_vor": "Potrivit unei prezentări de piață din iulie 2026, o oră de suport în Austria Superioară costă aproximativ între",
+        "markt_bis": "și",
+        "markt_t_nach": "net. Cele 95 € pe oră ale noastre sunt în treimea inferioară a acestui interval, iar cei 29 € pe post de lucru și lună se aplică la fel în Austria și Germania.",
+        "markt_quelle": "Sursa: techz.at (în germană)",
+        "ratgeber_t": "Această pagină este lista de prețuri. De ce firmele mici primesc oferte atât de diferite pentru administrarea IT și la ce să fiți atenți la comparație explicăm în ghid (în germană).",
+        "ratgeber_link": "Ghid: cât costă administrarea IT pentru firme mici?",
     },
     "rechner": {
         "titel": "Calculați costurile IT: prețul lunar în 2 minute",
@@ -1220,6 +1243,8 @@ PACK = {
     "ways": {
         "wa": "WhatsApp",
         "wa_text": "Bună ziua, mă interesează ",
+        # Vorbelegung fuer alle WhatsApp-Knoepfe ohne eigene (W05, 24.09.2026).
+        "wa_kurz": "Bună ziua, Florin, o întrebare IT scurtă: ",
         "call": "Sunați-ne",
         "callback": "Vă sunăm noi",
         "mail": "Scrieți-ne",
@@ -1230,6 +1255,7 @@ PACK = {
         "t2": "Asistență la distanță în AT și DE",
         "t3": "O singură persoană de contact",
         "t4": "Administrare IT",
+        "hilfe": "Ajutor punctual fără contract:",
         "t5": "Austria și Germania",
         "t6": "Pagină de probă gratuită, fără obligații",
     },
@@ -1266,6 +1292,10 @@ PACK = {
         "zeit_2": "După-amiaza (12 – 17)",
         "zeit_3": "Seara (după 17)",
         "zeit_4": "Oricând, cât mai repede",
+        # Optionales Anliegen (W05, 24.09.2026); Schluessel wie views._ANLIEGEN.
+        "anliegen": "Despre ce este vorba? (opțional)", "anliegen_leer": "Alegeți",
+        "anliegen_einzel": "O singură problemă", "anliegen_einrichtung": "Configurarea a ceva",
+        "anliegen_betreuung": "Administrare continuă", "anliegen_web": "Site web", "anliegen_notfall": "Urgență",
         "submit": "Solicitați un apel",
         "close": "Închideți",
         "done_h": "Notat",
@@ -1294,6 +1324,7 @@ PACK = {
             "technik": "tehnică la fața locului",
             "koop": "un parteneriat",
             "rueckruf": "apelul dumneavoastră",
+            "einzelhilfe": "ajutor IT fără contract",
         },
         "h": "Ce preluăm",
         "sub": "Fiecare serviciu cu un preț de pornire clar. Întrebați direct în câmpul potrivit – o propoziție ajunge, răspundem în 24 de ore.",

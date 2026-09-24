@@ -398,8 +398,8 @@ BEITRAEGE = {
 
     "aufbewahrungsfristen-oesterreich": {
         "titel": "Welche Daten muss ein Betrieb in Österreich wie lange aufbewahren?",
-        "meta_titel": "Aufbewahrungsfristen Österreich: 7 Jahre Regel | WVM-IT",
-        "desc": "Sieben Jahre für Bücher und Belege, länger bei Grundstücken und laufenden Verfahren. Was das für Server und Sicherung bedeutet. Jetzt nachlesen.",
+        "meta_titel": "Aufbewahrungsfristen Österreich: 7 Jahre, § 132 BAO | WVM-IT",
+        "desc": "7 Jahre für Bücher und Belege nach § 132 BAO, länger bei Grundstücken und offenen Verfahren. Was das für Server, Sicherung und Archiv heißt.",
         "antwort": "Der Grundsatz in Österreich: Bücher, Aufzeichnungen und Belege sind sieben Jahre aufzubewahren, gerechnet ab dem Ende des Kalenderjahres, für das die letzte Eintragung erfolgt ist (§ 132 BAO). Länger gilt es unter anderem bei Unterlagen zu Grundstücken und solange ein Verfahren anhängig ist. Für die IT ist dabei entscheidend, dass die Frist für die **Lesbarkeit** gilt, nicht für das Gerät: Wer nach fünf Jahren den Server wechselt, muss die alten Bestände weiterhin öffnen können — auch dann, wenn es das Programm dazu nicht mehr gibt.",
         "abschnitte": [
             {"h": "Was das für einen Serverwechsel bedeutet",
@@ -710,5 +710,249 @@ BEITRAEGE = {
                  "— Festplatte, Speicher, Autostart, Temperatur — trifft die "
                  "Entscheidung über ein neues Gerät auf einer Grundlage statt auf einem "
                  "Gefühl.",
+    },
+
+    # ── Drei Problem-Ratgeber für Kleinaufträge (W08, 24.09.2026) ─────────────
+    # Suchen mit Problemabsicht, zu denen es bis dahin keine Seite gab. Jeder
+    # endet mit genau einem Verweis: auf /it-hilfe/ (Feld `hilfe` in
+    # landing/beitraege.py). Keine erfundenen Fälle, Preise nur aus dem Katalog.
+    "drucker-druckt-nicht": {
+        "titel": "Der Drucker im Büro druckt nicht — die fünf häufigsten Ursachen",
+        "meta_titel": "Drucker druckt nicht: 5 Ursachen im Büro | WVM-IT",
+        "desc": "Warteschlange hängt, neue IP-Adresse, Treiber nach dem Update, falscher "
+                "Standarddrucker, Scannen geht nicht: fünf Ursachen und was hilft.",
+        "antwort": "Wenn ein Bürodrucker nicht mehr druckt, liegt es fast immer an einer "
+                   "von fünf Ursachen: Die Druckwarteschlange hängt, der Drucker hat im "
+                   "Netz eine neue Adresse bekommen, ein Windows-Update hat den Treiber "
+                   "ersetzt, Windows druckt auf den falschen Standarddrucker, oder — beim "
+                   "Scannen — die hinterlegte Anmeldung stimmt nicht mehr. Die ersten "
+                   "vier lassen sich meist in wenigen Minuten selbst prüfen; per "
+                   "Fernwartung lösen wir alle fünf, solange der Drucker im Netz "
+                   "erreichbar ist, für 95 € je Stunde ohne Vertrag.",
+        "abschnitte": [
+            {"h": "Ursache 1: Die Druckwarteschlange hängt",
+             "t": "Ein einzelner fehlerhafter Auftrag — oft ein großes PDF oder ein "
+                  "Dokument aus einem Webbrowser — bleibt stecken, und alle Aufträge "
+                  "dahinter warten mit. Zu erkennen ist das daran, dass in der "
+                  "Warteschlange mehrere Aufträge stehen und keiner vorankommt. Hilft "
+                  "das Löschen des obersten Auftrags nicht, muss der Dienst "
+                  "Druckwarteschlange neu gestartet werden; danach läuft es in den "
+                  "meisten Fällen sofort wieder."},
+            {"h": "Ursache 2: Der Drucker hat eine neue Adresse",
+             "t": "Netzwerkdrucker bekommen ihre Adresse meist automatisch vom Router. "
+                  "Nach einem Stromausfall, einem Routertausch oder einfach nach einer "
+                  "Weile kann das eine andere sein — und die Rechner suchen den Drucker "
+                  "weiter unter der alten. Typisch ist, dass der Drucker selbst "
+                  "einwandfrei läuft und am Gerät eine Testseite druckt, aber kein "
+                  "Rechner ihn erreicht. Die dauerhafte Lösung ist eine feste "
+                  "Adresse, im Router reserviert, damit das nicht wieder passiert."},
+            {"h": "Ursache 3: Ein Update hat den Treiber getauscht",
+             "t": "Windows-Updates bringen gelegentlich einen allgemeinen Treiber mit, "
+                  "der den des Herstellers ersetzt. Dann druckt der Drucker zwar noch, "
+                  "aber falsch: ohne Duplex, im falschen Fach, mit abgeschnittenen "
+                  "Rändern — oder gar nicht mehr. Geholfen ist mit dem aktuellen "
+                  "Treiber des Herstellers, installiert auf jedem Rechner, der den "
+                  "Drucker benutzt."},
+            {"h": "Ursache 4: Windows wählt den Standarddrucker selbst",
+             "t": "In Windows 10 und 11 gibt es eine Einstellung, mit der das System "
+                  "den zuletzt benutzten Drucker zum Standard macht. Wer einmal als PDF "
+                  "gespeichert hat, druckt danach unbemerkt weiter ins PDF. In den "
+                  "Einstellungen unter Drucker und Scanner lässt sich das abschalten "
+                  "und der richtige Drucker fest als Standard setzen."},
+            {"h": "Ursache 5: Scannen in den Ordner oder per Mail geht nicht mehr",
+             "t": "Scannen ist der Teil, der am häufigsten bricht, weil der Drucker "
+                  "sich dabei irgendwo anmelden muss: an einem Ordner im Netz oder an "
+                  "einem Mailkonto. Ändert sich das Kennwort dieses Kontos, scheitert "
+                  "jeder Scan. Dazu kommt, dass viele ältere Geräte nur die einfache "
+                  "Anmeldung beherrschen, die Microsoft 365 schrittweise abschaltet — "
+                  "dann braucht es einen anderen Weg, etwa einen eigenen Versanddienst "
+                  "oder den Scan in einen Ordner statt in ein Postfach."},
+            {"h": "In welcher Reihenfolge man prüft",
+             "t": "Zuerst am Drucker selbst eine Testseite drucken: Klappt das, ist "
+                  "das Gerät in Ordnung und das Problem liegt im Netz oder am Rechner. "
+                  "Dann die Warteschlange ansehen, dann die Adresse, dann den Treiber. "
+                  "Druckt ein zweiter Rechner problemlos, liegt es nicht am Drucker, "
+                  "sondern am ersten Rechner. Diese Reihenfolge spart den häufigsten "
+                  "Fehlkauf — einen neuen Drucker für ein Problem, das eine Einstellung "
+                  "war."},
+        ],
+        "faq": [
+            {"q": "Muss für ein Druckerproblem jemand vorbeikommen?",
+             "a": "Meist nicht. Solange der Drucker im Netz hängt und ein Rechner "
+                  "erreichbar ist, lassen sich Warteschlange, Adresse, Treiber und "
+                  "Scan-Einstellungen per Fernwartung prüfen und reparieren. Vor Ort "
+                  "braucht es jemanden erst bei Papierstau im Inneren, defekter "
+                  "Mechanik oder einem Drucker, der gar nicht mehr startet."},
+            {"q": "Lohnt sich die Reparatur eines alten Druckers?",
+             "a": "Bei einer Einstellung oder einem Treiber immer, das ist in der "
+                  "Regel schnell behoben. Bei einem mechanischen Defekt an einem "
+                  "älteren, günstigen Gerät meist nicht — dort ist ein neues Gerät oft "
+                  "billiger als die Reparatur. Das sagen wir Ihnen, bevor Kosten "
+                  "entstehen."},
+            {"q": "Warum druckt es von einem Rechner, vom anderen nicht?",
+             "a": "Dann liegt es fast sicher am Rechner, der nicht druckt: an seinem "
+                  "Treiber, an einer alten Adresse, die er noch gespeichert hat, oder "
+                  "am falschen Standarddrucker. Der Drucker selbst ist in diesem Fall "
+                  "in Ordnung, und genau das grenzt die Suche stark ein."},
+        ],
+        "fazit": "Fünf Ursachen, und vier davon sind Einstellungen. Wer mit der "
+                 "Testseite am Gerät beginnt und dann Warteschlange, Adresse und Treiber "
+                 "prüft, findet den Fehler meist, bevor jemand anreisen muss.",
+    },
+
+    "outlook-email-geht-nicht": {
+        "titel": "Outlook oder E-Mail geht nicht — was Sie zuerst selbst prüfen können",
+        "meta_titel": "Outlook geht nicht: was Sie selbst prüfen können | WVM-IT",
+        "desc": "Kennwortabfrage in Schleife, Mails im Postausgang, volles Postfach, "
+                "Outlook offline: die häufigsten Ursachen und was Sie selbst prüfen.",
+        "antwort": "Wenn Outlook keine Mails mehr sendet oder empfängt, sind es meistens "
+                   "vier Dinge: ein geändertes oder abgelaufenes Kennwort, ein Anhang, "
+                   "der zu groß ist und im Postausgang hängt, ein volles Postfach oder "
+                   "ein Outlook, das versehentlich auf offline steht. Ob das Konto "
+                   "selbst funktioniert, zeigt der schnellste Test: im Browser anmelden. "
+                   "Klappt dort alles, liegt das Problem im Outlook auf diesem Rechner "
+                   "— und das lösen wir per Fernwartung ohne Vertrag für 95 € je Stunde.",
+        "abschnitte": [
+            {"h": "Der schnellste Test: im Browser anmelden",
+             "t": "Bei Microsoft 365 unter outlook.office.com, bei anderen Anbietern "
+                  "im Webmail des Anbieters. Können Sie dort senden und empfangen, "
+                  "funktionieren Konto und Server, und der Fehler liegt im Programm auf "
+                  "dem Rechner. Geht es auch im Browser nicht, liegt es am Konto — "
+                  "Kennwort, Sperre, Lizenz — und dann hilft am Rechner keine Einstellung."},
+            {"h": "Outlook fragt immer wieder nach dem Kennwort",
+             "t": "Meist wurde das Kennwort geändert und Outlook hat noch das alte "
+                  "gespeichert, oder die Anmeldung verlangt inzwischen einen zweiten "
+                  "Faktor, den das Programm nicht sauber abfragt. Abhilfe bringt, die "
+                  "gespeicherte Anmeldung in der Windows-Anmeldeinformationsverwaltung "
+                  "zu löschen und sich neu anzumelden. Kommt die Abfrage danach weiter, "
+                  "lohnt ein Blick auf die Kontoeinstellungen — dann ist es kein "
+                  "Tippfehler mehr."},
+            {"h": "Mails bleiben im Postausgang",
+             "t": "Der häufigste Grund ist ein großer Anhang. Microsoft 365 nimmt in "
+                  "der Grundeinstellung Nachrichten bis 35 MB an, viele andere Anbieter "
+                  "deutlich weniger, und eine hängende Nachricht blockiert alle "
+                  "dahinter. Die Nachricht aus dem Postausgang löschen oder in die "
+                  "Entwürfe ziehen, den Anhang über einen Freigabelink statt als Datei "
+                  "schicken — danach läuft der Rest meist sofort."},
+            {"h": "Das Postfach ist voll",
+             "t": "Ein volles Postfach nimmt nichts mehr an, und Absender bekommen eine "
+                  "Fehlermeldung, die Sie selbst nie sehen. Bei Microsoft 365 haben die "
+                  "gängigen Business-Pläne 50 GB je Postfach. Wer seit Jahren alles mit "
+                  "Anhängen aufhebt, erreicht das. Hilfe bringen das Leeren von "
+                  "Gelöschten Elementen, ein Archivpostfach oder das Verschieben alter "
+                  "Anhänge in eine Ablage."},
+            {"h": "Outlook steht auf offline",
+             "t": "Unten in der Statusleiste steht dann „Offline“ oder „Getrennt“. Im "
+                  "Reiter Senden/Empfangen lässt sich Offline arbeiten mit einem Klick "
+                  "wieder ausschalten. Unscheinbar, aber einer der häufigsten Anrufe — "
+                  "und der einzige, der sich in fünf Sekunden erledigt."},
+            {"h": "Wenn nichts davon hilft",
+             "t": "Dann ist oft die lokale Datendatei von Outlook beschädigt oder das "
+                  "Profil fehlerhaft. Beides lässt sich neu anlegen, ohne dass Mails "
+                  "verloren gehen, solange das Postfach auf dem Server liegt, wie bei "
+                  "Microsoft 365. Bei älteren Konten, deren Mails nur lokal gespeichert "
+                  "sind, gehört vorher eine Sicherung dazu."},
+        ],
+        "faq": [
+            {"q": "Gehen meine Mails verloren, wenn Outlook neu eingerichtet wird?",
+             "a": "Bei Microsoft 365 und anderen Konten, die Mails auf dem Server "
+                  "halten, nicht: Outlook lädt nach dem Neuanlegen alles wieder "
+                  "herunter. Vorsicht ist nur bei älteren Konten geboten, die Mails "
+                  "lokal in einer Datei speichern — dort sichern wir diese Datei, "
+                  "bevor wir etwas ändern."},
+            {"q": "Auf dem Handy geht es, am PC nicht. Woran liegt das?",
+             "a": "Dann funktionieren Konto und Server, und das Problem sitzt im Outlook "
+                  "auf dem PC: gespeichertes altes Kennwort, Offline-Modus, beschädigtes "
+                  "Profil oder eine hängende Nachricht im Postausgang. Das grenzt die "
+                  "Suche auf diesen einen Rechner ein und lässt sich fast immer per "
+                  "Fernwartung beheben."},
+            {"q": "Können Sie das aus der Ferne lösen?",
+             "a": "In fast allen Fällen ja. Kennwortspeicher, Postausgang, Profil und "
+                  "Kontoeinstellungen sind per Fernwartung erreichbar. Wir sagen Ihnen "
+                  "vorher, ob wir helfen können, und rechnen nach Aufwand ab — 95 € je "
+                  "Stunde, ohne Vertrag."},
+        ],
+        "fazit": "Zuerst im Browser anmelden: Das trennt ein Kontoproblem von einem "
+                 "Outlook-Problem in einer Minute. Danach sind es meist Kennwort, "
+                 "Postausgang, Postfachgröße oder der Offline-Schalter.",
+    },
+
+    "microsoft-365-konto-gesperrt": {
+        "titel": "Microsoft-365-Konto gesperrt — was jetzt zu tun ist",
+        "meta_titel": "Microsoft 365 Konto gesperrt: was jetzt tun? | WVM-IT",
+        "desc": "Zu viele Fehlversuche, vom Administrator gesperrt, Abo abgelaufen oder "
+                "verdächtige Anmeldung: woran Sie die Ursache erkennen und was hilft.",
+        "antwort": "Ein gesperrtes Microsoft-365-Konto hat fast immer einen von vier "
+                   "Gründen: zu viele falsche Anmeldeversuche, eine Sperre durch den "
+                   "Administrator, ein abgelaufenes oder unbezahltes Abonnement oder eine "
+                   "Sperre, weil Microsoft eine verdächtige Anmeldung erkannt hat. Die "
+                   "Fehlermeldung beim Anmelden verrät meist, welcher es ist. Im "
+                   "letzten Fall gehört zuerst geklärt, ob jemand Fremdes im Konto war — "
+                   "entsperren allein reicht dann nicht. Helfen können wir per "
+                   "Fernwartung ohne Vertrag für 95 € je Stunde.",
+        "abschnitte": [
+            {"h": "Zu viele Fehlversuche",
+             "t": "Microsoft sperrt ein Konto nach wiederholten falschen Kennwörtern "
+                  "vorübergehend, in der Grundeinstellung zunächst für eine Minute, "
+                  "bei weiteren Fehlversuchen länger. Das ist ein Schutz gegen "
+                  "Passwortraten. Häufig steckt kein Angreifer dahinter, sondern ein "
+                  "Gerät mit altem Kennwort — ein Handy oder ein Drucker, der sich im "
+                  "Hintergrund immer wieder anmeldet. Solange dieses Gerät nicht das "
+                  "neue Kennwort hat, kommt die Sperre wieder."},
+            {"h": "Vom Administrator gesperrt",
+             "t": "Im Microsoft-365-Verwaltungsportal lässt sich die Anmeldung eines "
+                  "Benutzers blockieren — etwa beim Austritt eines Mitarbeiters oder "
+                  "versehentlich beim Aufräumen. Die Meldung spricht dann davon, dass "
+                  "das Konto gesperrt ist und man sich an den Administrator wenden "
+                  "soll. Aufheben kann das nur, wer im Betrieb die Verwaltungsrechte "
+                  "hat — und genau diese Person ist in kleinen Betrieben oft nicht mehr "
+                  "greifbar."},
+            {"h": "Abonnement abgelaufen oder nicht bezahlt",
+             "t": "Läuft ein Abonnement aus, bleibt zunächst rund 30 Tage alles nutzbar, "
+                  "danach ist es für weitere 90 Tage nur noch für Administratoren "
+                  "erreichbar, bevor die Daten gelöscht werden. Betroffen sind dann "
+                  "meist alle Benutzer gleichzeitig. Die Lösung liegt nicht am "
+                  "einzelnen Konto, sondern bei Zahlung und Lizenz im Verwaltungsportal "
+                  "— und die Frist ist ein Grund, das nicht liegen zu lassen."},
+            {"h": "Verdächtige Anmeldung erkannt",
+             "t": "Meldet sich jemand aus einem ungewöhnlichen Land oder mit auffälligem "
+                  "Muster an, kann Microsoft das Konto sperren oder eine zusätzliche "
+                  "Bestätigung verlangen. Dann ist die erste Frage nicht, wie man "
+                  "wieder hineinkommt, sondern ob jemand drin war: Kennwort von einem "
+                  "sauberen Gerät aus ändern, alle Sitzungen beenden, Zwei-Faktor "
+                  "einrichten und die Postfachregeln auf heimliche Weiterleitungen "
+                  "prüfen. Die Schritte stehen ausführlich auf unserer Notfallseite."},
+            {"h": "Was Sie selbst tun können",
+             "t": "Die Fehlermeldung genau lesen oder fotografieren — sie unterscheidet "
+                  "die vier Fälle. Bei Fehlversuchen eine Weile warten und dann mit dem "
+                  "richtigen Kennwort anmelden, vorher Handy und andere Geräte prüfen. "
+                  "Bei einer Administratorsperre oder einem Abo-Problem die Person "
+                  "fragen, die im Betrieb Microsoft 365 verwaltet. Gibt es diese "
+                  "Person nicht mehr, ist das der eigentliche Befund."},
+        ],
+        "faq": [
+            {"q": "Wir haben keinen Administratorzugang mehr. Was nun?",
+             "a": "Das ist häufiger, als man denkt: Der Zugang lag bei einem früheren "
+                  "Mitarbeiter oder Dienstleister. Microsoft bietet dafür einen Weg, "
+                  "die Verwaltung eines Mandanten nachzuweisen und zurückzuerhalten; er "
+                  "braucht Zeit und Unterlagen. Wir begleiten das und richten danach "
+                  "mindestens zwei Verwaltungszugänge ein, damit es nicht wieder "
+                  "passiert."},
+            {"q": "Gehen bei einer Sperre Mails verloren?",
+             "a": "Bei einer vorübergehenden Sperre wegen Fehlversuchen oder einer "
+                  "Administratorsperre nicht: Das Postfach nimmt weiter Mails an, man "
+                  "kommt nur nicht hinein. Anders ist es bei einem abgelaufenen "
+                  "Abonnement — dort werden die Daten nach Ablauf der Fristen gelöscht."},
+            {"q": "Wie verhindern wir, dass das wieder passiert?",
+             "a": "Mit Zwei-Faktor-Anmeldung für alle Konten, mindestens zwei "
+                  "Personen mit Verwaltungsrechten, einer Übersicht, auf welchen Geräten "
+                  "welches Konto angemeldet ist, und einer Erinnerung vor dem Ablauf "
+                  "des Abonnements. Das richten wir bei einer Microsoft-365-Einrichtung "
+                  "gleich mit ein."},
+        ],
+        "fazit": "Erst die Fehlermeldung lesen, dann handeln: Fehlversuche, "
+                 "Administratorsperre, Abonnement oder verdächtige Anmeldung verlangen "
+                 "vier verschiedene Schritte. Beim letzten Fall zählt zuerst, ob jemand "
+                 "im Konto war.",
     },
 }

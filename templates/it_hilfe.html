@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% comment %}
+IT-Hilfe ohne Vertrag (24.09.2026).
+
+Die Seite für Kleinaufträge: ein Problem, jetzt, ohne Vertrag. Aufbau wie die
+Notfallseite — Kontaktwege vor dem Antwortabsatz, weil wer hier landet, schon
+weiß, dass er Hilfe braucht. Danach die Fälle als Karten (mit Festpreis, wo es
+einen gibt), der Ablauf in drei Schritten, die Preise, die Abgrenzung zur
+laufenden Betreuung, die Folgefragen und das Formular.
+
+Keine eigene Gestaltung: jede Klasse gibt es schon (Notfall, Einrichtungs-Hub,
+Leistungsseiten). Jede Zahl kommt aus ANGEBOT_GROUPS über das Sprachpaket bzw.
+über `faelle` aus views._hilfe_faelle().
+{% endcomment %}
+{% block titel %}{{ hilfe.titel|safe }}{% endblock %}
+{% block beschreibung %}{{ hilfe.desc|safe }}{% endblock %}
+{% block og_titel %}{{ hilfe.h1|safe }}{% endblock %}
+{% block og_beschreibung %}{{ hilfe.desc|safe }}{% endblock %}
+{% block tw_titel %}{{ hilfe.h1|safe }}{% endblock %}
+{% block tw_beschreibung %}{{ hilfe.desc|safe }}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top on-dark nf-top">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ hilfe.nav|safe }}</span>
+    </nav>
+    <h1>{{ hilfe.h1|safe }}</h1>
+
+    <div class="nf-sofort">
+      <p class="nf-sofort-h">{{ hilfe.eilt_h|safe }}</p>
+      <div class="nf-wege">
+        {% if c.telefon %}<a class="btn btn-lg" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+        {% if c.whatsapp %}<a class="btn-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+        <a class="btn btn-ghost" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+      </div>
+      <p class="nf-sofort-t">{{ hilfe.eilt_t|safe }}</p>
+    </div>
+
+    {% include 'antwort.html' with text=hilfe.kurz %}
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap sp-wrap">
+    <p class="sp-intro" data-reveal>{{ hilfe.intro|safe }}</p>
+
+    <h2 class="sp-h2" id="faelle">{{ hilfe.faelle_h|safe }}</h2>
+    <p class="sp-preis-text">{{ hilfe.faelle_t|safe }}</p>
+    <div class="ein-grid" data-reveal>
+      {% for f in faelle %}
+      {% if f.url %}<a class="ein-karte spot" href="{{ f.url }}" id="{{ f.id }}" data-spot>{% else %}<div class="ein-karte" id="{{ f.id }}">{% endif %}
+        <span class="ein-ic" aria-hidden="true">{% include 'icons.html' with name=f.icon %}</span>
+        <h3 class="ein-h">{{ f.h|safe }}</h3>
+        <p class="ein-t">{{ f.t|safe }}</p>
+        <span class="ein-preis">{{ f.preis }}</span>
+      {% if f.url %}</a>{% else %}</div>{% endif %}
+      {% endfor %}
+    </div>
+
+    <h2 class="sp-h2" id="ablauf">{{ hilfe.ablauf_h|safe }}</h2>
+    <ol class="nf-schritte">
+      {% for s in hilfe.ablauf %}<li>{{ s|safe }}</li>{% endfor %}
+    </ol>
+
+    <h2 class="sp-h2" id="fernwartung">{{ hilfe.fernwartung_h|safe }}</h2>
+    <p class="sp-preis-text">{{ hilfe.fernwartung_t|safe }}</p>
+    <p class="lk-alle"><a href="/aktuelles/fernwartung-was-sieht-der-dienstleister/">{{ hilfe.fernwartung_link|safe }} →</a></p>
+
+    <h2 class="sp-h2" id="preise">{{ hilfe.preise_h|safe }}</h2>
+    <p class="sp-preis-text">{{ hilfe.preise_t|safe }}</p>
+    <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
+      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
+      <a href="{% url 'einrichtungen' %}">{{ t.seite.einrichten|safe }}</a></p>
+
+    <aside class="nf-regel" data-reveal>
+      <h2>{{ hilfe.erreichbar_h|safe }}</h2>
+      <p>{{ hilfe.erreichbar_t|safe }}</p>
+      <p><a href="{% url 'notfall' %}">{{ hilfe.notfall_link|safe }} →</a></p>
+    </aside>
+
+    {% comment %}Die Abgrenzung wird ausgesprochen, wie auf jeder
+    Einrichtungsseite: Wer öfter Hilfe braucht, ist bei der laufenden Betreuung
+    richtig — sonst konkurrieren beide Seiten um dieselbe Anfrage.{% endcomment %}
+    <div class="hb-text" data-reveal>
+      <h2 class="sp-h2" id="laufend">{{ hilfe.laufend_h|safe }}</h2>
+      <p>{{ hilfe.laufend_t|safe }}</p>
+      <p class="lk-alle"><a href="{% url 'leistung' slug='edv-it-betreuung' %}">{{ hilfe.laufend_link|safe }} →</a></p>
+      <p class="lk-alle"><a href="{% url 'vergleich' slug='it-betreuung-vs-stundenabrechnung' %}">{{ hilfe.vergleich_link|safe }} →</a></p>
+    </div>
+
+    <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
+    <div class="faq">
+      {% for f in hilfe.faq %}
+      <details class="faq-item"{% if forloop.first %} open{% endif %}>
+        <summary class="faq-q">
+          <h3 class="faq-q-h">{{ f.q|safe }}</h3>
+          <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+      </details>
+      {% endfor %}
+    </div>
+
+    {% include 'anfrage_karte.html' with bid='einzelhilfe' titel=hilfe.cta_h sub=hilfe.cta_t ph=hilfe.cta_ph %}
+  </div>
+</section>
+{% endblock %}

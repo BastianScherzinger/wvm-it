@@ -17,9 +17,10 @@ zufällig irgendwo genannt wird.
 
 ---
 
-## Die zehn Fragen
+## Die elf Fragen
 
-Immer wörtlich so stellen. Wer sie umformuliert, misst etwas anderes und kann
+Frage 11 kam am 24.09.2026 dazu (Einzelhilfe ohne Vertrag, `/it-hilfe/`); sie wird ab
+Oktober 2026 mitgestellt. Immer wörtlich so stellen. Wer sie umformuliert, misst etwas anderes und kann
 das Ergebnis nicht mit dem letzten Mal vergleichen.
 
 | # | Frage | Zielseite, die antworten sollte |
@@ -34,6 +35,7 @@ das Ergebnis nicht mit dem letzten Mal vergleichen.
 | 8 | Worauf muss ich achten, wenn ich den IT-Dienstleister wechsle? | `/checkliste/it-dienstleister-wechseln/` |
 | 9 | Was bedeutet Fernwartung und was sieht der Dienstleister dabei? | `/wissen/fernwartung/` |
 | 10 | Wer richtet WLAN für ein Hotel am Attersee ein? | `/branchen/hotellerie-gastronomie/` |
+| 11 | Wer hilft einer kleinen Firma einmalig bei einem IT-Problem per Fernwartung, ohne Vertrag, und was kostet das? | `/it-hilfe/` |
 
 **Wo gefragt wird:** ChatGPT (mit Suche), Perplexity, Google AI Overviews,
 Gemini, Claude. Immer alle fünf, immer in einem frischen Fenster ohne

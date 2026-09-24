@@ -92,19 +92,20 @@ Begruendung in Abschnitten.
     </aside>
     {% endif %}
 
-    {% comment %}Der eine gezielte Verweis: Der Ratgeber hat die Frage
-    beantwortet, hier steht, was die Antwort kostet (Plan §2.3). Bewusst EIN
-    Verweis und nicht sechs — an dieser Stelle ist Auswahl keine Hilfe.{% endcomment %}
-    {% if einrichtung %}
+    {% comment %}Bis zum 24.09.2026 stand der Block oben hier ein zweites Mal —
+    jeder Beitrag mit Einrichtung zeigte dieselbe Festpreis-Karte doppelt. An
+    seiner Stelle steht jetzt der Verweis der Problem-Ratgeber: ein einzelnes
+    Problem, der Stundensatz, ohne Vertrag (Feld `hilfe` in beitraege.py).{% endcomment %}
+    {% if hilfe_karte %}
     <aside class="rg-schwerpunkt bt-festpreis" data-reveal>
-      <p class="rg-sw-label">{{ t.einrichten_hub.h1|safe }}</p>
-      <a class="rg-sw-link" href="{{ einrichtung.url }}">
-        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=einrichtung.icon %}</span>
+      <p class="rg-sw-label">{{ hilfe_karte.label|safe }}</p>
+      <a class="rg-sw-link" href="{{ hilfe_karte.url }}">
+        <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name='phone' %}</span>
         <span>
-          <strong>{{ einrichtung.nav|safe }}</strong>
-          <em>{{ einrichtung.desc|safe }}</em>
+          <strong>{{ hilfe_karte.nav|safe }}</strong>
+          <em>{{ hilfe_karte.desc|safe }}</em>
         </span>
-        <span class="ein-preis">{{ einrichtung.preis_label }}</span>
+        <span class="ein-preis">{{ hilfe_karte.preis }}</span>
       </a>
     </aside>
     {% endif %}

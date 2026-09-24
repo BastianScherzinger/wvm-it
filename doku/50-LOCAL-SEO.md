@@ -1,10 +1,10 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-12
+stand: 2026-09-24
 status: teilweise
 fortschritt: 50
-zusammenfassung: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP. Am 12.09.2026 SU05 (Ortsseiten decken das Einzugsgebiet ab) als begruendete Ausnahme eingetragen, ohne eine Zeile Code: Der Befund zaehlt jetzt sieben Ortsseiten gegen eine Zielgroesse von acht, aber die achte ist in diesem Projekt schon entschieden -- und zwar dagegen. Weitere Ortsseiten sind in SEO-AUSBAU-3.md als Doorway-Pages verworfen (Regel A16, gestuetzt auf eine Messung an einer Schwesterseite), und den echten Auftrag aus einem achten Ort, den der Rat selbst verlangt, gibt es nicht.
+zusammenfassung: 24.09.2026: Die Oeffnungszeiten sind nicht offen, sondern belegt — Mo–Fr 9–18 Uhr stehen seit dem Relaunch sichtbar auf /kontakt/ und /it-notfall/ und identisch im Schema; so gehoeren sie ins Unternehmensprofil (Notiz unten berichtigt, EIG21). Neu fuer das Profil: /it-hilfe/ als Zielseite fuer Einzelhilfe ohne Vertrag (95 €/Std. per Fernwartung). Davor: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP. Am 12.09.2026 SU05 (Ortsseiten decken das Einzugsgebiet ab) als begruendete Ausnahme eingetragen, ohne eine Zeile Code: Der Befund zaehlt jetzt sieben Ortsseiten gegen eine Zielgroesse von acht, aber die achte ist in diesem Projekt schon entschieden -- und zwar dagegen. Weitere Ortsseiten sind in SEO-AUSBAU-3.md als Doorway-Pages verworfen (Regel A16, gestuetzt auf eine Messung an einer Schwesterseite), und den echten Auftrag aus einem achten Ort, den der Rat selbst verlangt, gibt es nicht.
 offen: 7
 unternehmensprofil: ja
 profil_bestaetigt: ausstehend
@@ -61,7 +61,7 @@ Das ist die Konkurrenz in genau der Nische 2 („der schnellste Kunde", `../docs
 | Hauptkategorie | IT-Berater bzw. IT-Service |
 | Weitere Kategorien | Webdesigner, Computerservice, Computersicherheitsdienst, Automatisierungsunternehmen, Veranstaltungstechnik |
 | Einzugsgebiet | Bezirk Vöcklabruck, Bezirk Gmunden, Wels, Linz, Salzburg |
-| Öffnungszeiten | Mo–Fr, wie tatsächlich erreichbar — **nicht dokumentiert**, nicht erfinden |
+| Öffnungszeiten | **Mo–Fr 9–18 Uhr** — so steht es seit dem Relaunch sichtbar auf `/kontakt/` und `/it-notfall/` (DE/EN/RO) und identisch im Schema (`openingHoursSpecification`); ins Unternehmensprofil genau so übernehmen. Die frühere Notiz „nicht dokumentiert“ war überholt (EIG21). Ändert Florin die Zeiten, fällt `OeffnungszeitenStimmenTest` auf |
 | Beschreibung | `content.json` → `beschreibung` |
 | Website | `https://www.wvm-it.tech` |
 | Leistungen | aus `ANGEBOT_GROUPS`, dieselben Preise wie auf der Seite |

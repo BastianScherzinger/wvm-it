@@ -80,6 +80,10 @@ urlpatterns += i18n_patterns(
     # ── Notfall (docs/SEO-AUSBAU-3.md, W3) ──────────────────────────────────
     # Kurzer, merkbarer Pfad: Diese Adresse wird im Ernstfall abgetippt.
     path("it-notfall/", views.notfall, name="notfall"),
+    # ── IT-Hilfe ohne Vertrag (24.09.2026) ──────────────────────────────────
+    # Neben dem Notfall, nicht darunter: „es brennt" und „etwas geht nicht"
+    # sind zwei Suchabsichten, und nur die zweite ist ein Kleinauftrag.
+    path("it-hilfe/", views.it_hilfe, name="it_hilfe"),
     # ── Sicherheits-Selbsttest (docs/SEO-AUSBAU-3.md, W2) ───────────────────
     # Antworten kommen als GET-Parameter und werden nicht gespeichert; deshalb
     # gibt es hier bewusst keinen POST-Endpunkt.

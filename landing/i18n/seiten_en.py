@@ -12,8 +12,8 @@ SEITEN = {
     # ══ IT ════════════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "IT support & management",
-        "titel": "IT support & management from €29/mo | WVM-IT",
-        "desc": "An outsourced IT department for small and mid-sized businesses: from €29 per workstation and month, support from €95/hr. Request a free quote now.",
+        "titel": "IT support Austria & Germany from €29/mo | WVM-IT",
+        "desc": "An outsourced IT department for small businesses in Austria and Germany: from €29 per workstation a month, remote support €95/hr. Request a quote.",
         "h1": "IT support for businesses without an IT department",
         "kurz": "WVM-IT takes on the day-to-day IT of small and mid-sized businesses in Austria and Germany: workstations, servers, email, printers, updates and backups. Ongoing support costs from €29 per workstation and month, individual help without a contract from €95 per hour. We answer within 24 hours and work mostly remotely — the route to you runs over a secured connection rather than the motorway.",
         "intro": "In most businesses under fifty staff there is no IT department. There is somebody who “knows a bit about computers” — and who actually has another job to do. As long as nothing happens, that works. It shows the moment the office printer stops while quotes have to go out, or when a program the whole company depends on refuses to start after a Windows update. That is the gap we close: you get a number, an email address and one contact who knows how your technology is put together.",

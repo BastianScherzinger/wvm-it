@@ -33,7 +33,11 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: 198 URLs (10.09.2026)
+## Stand: 204 URLs (24.09.2026)
+
+Seit dem 24.09.2026 (Zweig `seo/2026-09-24-kunden-offensive`) gibt es **`/it-hilfe/`** —
+die Zielseite für ein einzelnes Problem ohne Vertrag (95 €/Std. per Fernwartung), dazu
+drei Problem-Ratgeber. Stand und Begründung: `docs/LOGBUCH.md`, 24.09.2026.
 
 **Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend
 per Fernwartung in ganz Österreich und Deutschland. Webseiten, SEO, Google Ads und KI
@@ -54,10 +58,10 @@ Aus 2 rankbaren Seiten wurden **198 URLs** (94 Basis-Pfade):
 | **Branchen** | `/branchen/<slug>/` | 6 + Hub | DE/EN/RO |
 | **Vergleiche** | `/vergleich/<slug>/` | 4 + Hub | DE/EN/RO |
 | Regionen | `/it-service/<slug>/` | 7 + Hub | DE/EN/RO |
-| Fachbeiträge | `/aktuelles/<slug>/` | 18 + Hub | nur DE |
+| Fachbeiträge | `/aktuelles/<slug>/` | 21 + Hub | nur DE |
 | **Glossar** | `/wissen/<slug>/` | 14 + Hub | nur DE |
 | **Checklisten** | `/checkliste/<slug>/` | 3 + Hub | nur DE |
-| **Werkzeuge** | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/` | 3 | DE/EN/RO |
+| **Werkzeuge** | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/`, `/it-hilfe/` | 4 | DE/EN/RO |
 | **Einrichten** | `/einrichten/<slug>/` | 8 + Hub | DE/EN/RO |
 | Einzelseiten | Start, Kosten, Referenzen, Kontakt, Angebot, Recht | 8 | DE/EN/RO |
 

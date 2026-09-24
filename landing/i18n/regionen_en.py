@@ -69,8 +69,8 @@ REGIONEN = {
     "gmunden": {
         "anfrage_h": "Request IT support in Gmunden",
         "nav": "Gmunden",
-        "titel": "IT services Gmunden at Lake Traun | WVM-IT",
-        "desc": "IT provider for businesses in Gmunden and around Lake Traun: IT support, networks, IT security, 22 km from Lenzing. Request a quote now.",
+        "titel": "IT support Gmunden, Lake Traun, from €29/month | WVM-IT",
+        "desc": "IT support for businesses in Gmunden, 22 km from Lenzing: from €29 per workstation a month, remote €95/hr, on site €120/hr. Get in touch.",
         "h1": "IT services and support in Gmunden",
         "kurz": "WVM-IT looks after businesses in Gmunden and around Lake Traun: workstations, servers, networks, email and backups. It is 22 kilometres from our base in Lenzing, about a 25 minute drive. Day-to-day work runs by remote maintenance; we come on site for everything that needs hands.",
         "intro": "Gmunden lives from a mix that is demanding for IT: manufacturing with a long tradition, retail in the old town, tourism by the lake and a growing share of service businesses. A ceramics works, a hotel and a tax practice need very different things — what they share is their size: too small for an IT department of their own, too big to simply wait out an outage.",
@@ -98,8 +98,8 @@ REGIONEN = {
     "bad-ischl": {
         "anfrage_h": "Request technology and IT in Bad Ischl",
         "nav": "Bad Ischl",
-        "titel": "IT and event technology Bad Ischl | WVM-IT",
-        "desc": "IT support, conference and event technology for Bad Ischl and the Salzkammergut, 38 km from Lenzing. Request a free quote now.",
+        "titel": "IT services Bad Ischl: IT support and event tech | WVM-IT",
+        "desc": "IT support from €29 a month, conference and event technology for Bad Ischl and the Salzkammergut, 38 km from Lenzing. On site €120/hr.",
         "h1": "IT, conference and event technology in Bad Ischl",
         "kurz": "WVM-IT looks after businesses in the Salzkammergut and fits out rooms with conference, audio and presentation technology. It is 38 kilometres from Lenzing, about 40 minutes. Alongside day-to-day IT support by remote maintenance, the focus here is technology for events, conferences and seminars.",
         "intro": "Bad Ischl is a spa and event town. Among hotels, restaurants, retail and health businesses there are unusually many rooms in which people regularly speak in front of an audience: seminar rooms, conference halls, lecture rooms, foyers. And unusually many businesses whose technology in those rooms was plugged together over the years rather than planned.",
@@ -156,8 +156,8 @@ REGIONEN = {
     "salzburg": {
         "anfrage_h": "Request IT support and security in Salzburg",
         "nav": "Salzburg",
-        "titel": "IT services and security Salzburg | WVM-IT",
-        "desc": "IT provider for businesses in Salzburg: IT support, IT security, networks, day-to-day work by remote maintenance. Contact us today.",
+        "titel": "IT support Salzburg: IT services from €29/month | WVM-IT",
+        "desc": "IT support for businesses in Salzburg: ongoing from €29 per workstation a month, or one-off by remote access at €95/hr, no contract. Get in touch.",
         "h1": "IT services and IT security in Salzburg",
         "kurz": "WVM-IT looks after businesses in the city of Salzburg and the surrounding area: day-to-day IT, servers, networks and above all IT security. It is 55 kilometres from Lenzing, about 45 minutes for on-site appointments. Day-to-day work runs by secured remote maintenance, regardless of the distance.",
         "intro": "Salzburg is a services location: agencies, law and tax practices, consultancies, tourism businesses, retail. The common denominator for IT is that people here work with other people's data — client data, guest data, customer data. That makes IT security not an optional extra but a duty with liability attached.",

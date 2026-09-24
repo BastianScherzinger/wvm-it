@@ -427,6 +427,8 @@ EINRICHTEN = {
 
         "faq_h": "Întrebări frecvente",
         "faq": [
+            {"q": "Avem nevoie de un server propriu?",
+             "a": "Decide software-ul, nu numărul de posturi de lucru. De îndată ce un program de gestiune, o soluție de ramură sau o bază de date cere o instalare centrală, aveți nevoie de un server, chiar și cu cinci oameni. Dacă lucrați doar cu Office, e-mail și fișiere, cloudul este de regulă mai ieftin și cere mai puțină întreținere. Comparația server sau cloud explică pe larg."},
             {"q": "Cât durează configurarea?",
              "a": "Un server de fișiere pentru o firmă mică este gata într-o zi. Cu soft "
                   "de specialitate, servicii terminal sau mutarea datelor existente devin "
@@ -547,7 +549,8 @@ EINRICHTEN = {
                  "ci deloc: routerul furnizorului face ce făcea la scoaterea din cutie, "
                  "iar la un moment dat cineva a configurat o redirecționare, ca "
                  "contabilitatea să poată lucra de acasă. Acea unică redirecționare rămâne "
-                 "apoi deschisă ani de zile — și nimeni nu mai știe pentru ce era.",
+                 "apoi deschisă ani de zile — și nimeni nu mai știe pentru ce era."
+                 "</p><p class='sp-intro'>Firewallul și VPN-ul sunt două părți ale aceleiași uși: firewallul decide ce are voie să intre în rețeaua firmei, VPN-ul este drumul criptat pe care persoanele autorizate intră din exterior. E nevoie de ele în două situații. Cea mai frecventă este lucrul de acasă: angajații accesează de acasă sau din deplasare fișiere, programul de gestiune sau un server din birou — pentru asta este gândit prețul fix. Cea mai rară este legătura dintre două sedii, de exemplu birou și depozit; aceasta este o lucrare separată, pentru că depinde de aparatele de la ambele capete.",
 
         "leistungen_h": "Ce include prețul de 690 €",
         "leistungen": [
@@ -589,6 +592,12 @@ EINRICHTEN = {
 
         "faq_h": "Întrebări frecvente",
         "faq": [
+            {"q": "Care este diferența dintre firewall și VPN?",
+             "a": "Firewallul reglează ce are voie să intre în rețeaua firmei și să iasă din ea; VPN-ul este un acces criptat prin care persoanele autorizate intră din exterior. Unul fără celălalt este doar o jumătate de soluție: un VPN fără reguli de firewall curate deschide prea mult, un firewall fără VPN obligă la redirecționări deschise. Pentru 690 € le configurăm pe amândouă împreună."},
+            {"q": "Au nevoie de VPN angajații care lucrează de acasă?",
+             "a": "Dacă accesează ceva din birou — o unitate de rețea, programul de gestiune, un server —, da. Dacă firma lucrează doar cu servicii cloud precum Microsoft 365, nu e nevoie de VPN; atunci accesul este protejat de autentificarea în doi pași. Ce situație aveți clarificăm la inventarul inițial."},
+            {"q": "Putem lega două sedii prin VPN?",
+             "a": "Da, dar aceasta nu face parte din cei 690 €. O legătură între sedii depinde de aparatele de la ambele capete și de liniile de acolo; vă spunem cât costă după ce ne uităm la ambele părți și înainte de orice comandă."},
             {"q": "Avem deja un firewall în router.",
              "a": "Îl aveți și face strictul necesar. Diferența nu stă în existența lui, "
                   "ci în reguli: rețele separate, deschideri care se pot urmări și un VPN "
@@ -700,7 +709,7 @@ EINRICHTEN = {
 }
 
 HUB = {
-    "titel": "Configurare IT: prețuri fixe de la 190 € | WVM-IT",
+    "titel": "Configurare PC și IT: preț fix de la 190 € | WVM-IT",
     "desc": "Post de lucru, înlocuire PC, Microsoft 365, server, rețea: sarcini "
             "individuale la preț fix, fără contract. De la 190 €, de regulă la "
             "distanță. Cereți o ofertă.",

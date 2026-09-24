@@ -101,7 +101,12 @@
       <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
         <a href="{% url 'leistungen' %}">{{ t.nav.leistungen|safe }}</a>
         <a href="{% url 'branchen' %}">{{ t.branchen_seite.branchen_titel|safe }}</a>
-        <a href="{% url 'vergleiche' %}">{{ t.vergleiche_seite.vergleiche_titel|safe }}</a>
+        {% comment %}Seit 24.09.2026 steht hier die IT-Hilfe ohne Vertrag statt der
+        Vergleiche: Die Kopfleiste liegt bei rund 1440 von 1480 px, ein achter
+        Punkt passt nicht. Die Vergleiche bleiben in der Fusszeile, im Leistungs-
+        Hub und auf jeder Leistungsseite verlinkt; der Kleinauftrag hatte bis dahin
+        oben gar keinen Weg.{% endcomment %}
+        <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }}</a>
         <a href="{% url 'kosten' %}">{{ t.nav.preise|safe }}</a>
         <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
         <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
@@ -114,7 +119,7 @@
       </nav>
       {% include 'lang_switch.html' %}
       {% comment %} Kontakt ist nie weiter als ein Klick entfernt: WhatsApp + Telefon + CTA {% endcomment %}
-      {% if c.whatsapp %}<a class="btn-wa nav-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener" aria-label="{{ t.ways.wa|safe }}">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% if c.whatsapp %}<a class="btn-wa nav-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener" aria-label="{{ t.ways.wa|safe }}">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
       {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
       <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
     </div>
@@ -150,6 +155,17 @@
         <option>{{ t.rueckruf.zeit_3|safe }}</option>
         <option selected>{{ t.rueckruf.zeit_4|safe }}</option>
       </select>
+    </div>
+    <div class="field">
+      <label class="fld-l" for="rr-anliegen">{{ t.rueckruf.anliegen|safe }}</label>
+      <select class="fld" id="rr-anliegen" name="anliegen">
+                <option value="">{{ t.rueckruf.anliegen_leer|safe }}</option>
+                <option value="einzel">{{ t.rueckruf.anliegen_einzel|safe }}</option>
+                <option value="einrichtung">{{ t.rueckruf.anliegen_einrichtung|safe }}</option>
+                <option value="betreuung">{{ t.rueckruf.anliegen_betreuung|safe }}</option>
+                <option value="web">{{ t.rueckruf.anliegen_web|safe }}</option>
+                <option value="notfall">{{ t.rueckruf.anliegen_notfall|safe }}</option>
+              </select>
     </div>
     <button class="btn btn-lg lb-submit" type="submit">{{ t.rueckruf.submit|safe }}</button>
     <p class="lb-err" role="alert" hidden></p>
@@ -207,6 +223,7 @@
         <a href="{% url 'checklisten' %}">Checklisten</a>
         <a href="{% url 'rechner' %}">{{ t.rechner.h1|safe }}</a>
         <a href="{% url 'notfall' %}">{{ t.notfall.nav|safe }}</a>
+        <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }}</a>
         <a href="{% url 'sicherheitstest' %}">{{ t.selbsttest.nav|safe }}</a>
         <a href="{% url 'vergleiche' %}">{{ t.vergleiche_seite.vergleiche_titel|safe }}</a>
         <a href="{% url 'index' %}#faq">{{ t.footer.u_faq|safe }}</a>
@@ -242,7 +259,7 @@
 </footer>
 
 <div class="mobilebar">
-  {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
+  {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
   {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
   <a class="mobilebar-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
 </div>
