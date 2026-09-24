@@ -33,7 +33,7 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: 204 URLs (24.09.2026)
+## Stand: 213 URLs (24.09.2026, Runde 2)
 
 Seit dem 24.09.2026 (Zweig `seo/2026-09-24-kunden-offensive`) gibt es **`/it-hilfe/`** —
 die Zielseite für ein einzelnes Problem ohne Vertrag (95 €/Std. per Fernwartung), dazu
@@ -50,11 +50,11 @@ man konnte sie kaufen, aber nicht finden. `/leistungen/konferenztechnik/` wurde
 gleichzeitig auf **Besprechungsräume** geschärft, damit sich die beiden Seiten nicht
 um dieselbe Suchanfrage streiten.
 
-Aus 2 rankbaren Seiten wurden **198 URLs** (94 Basis-Pfade):
+Aus 2 rankbaren Seiten wurden **213 URLs** (Runde 2, 24.09.2026):
 
 | Silo | Pfad | Seiten | Sprachen |
 |---|---|---|---|
-| Leistungen | `/leistungen/<slug>/` | **13** + Hub | DE/EN/RO |
+| Leistungen | `/leistungen/<slug>/` | **14** + Hub | DE/EN/RO |
 | **Branchen** | `/branchen/<slug>/` | 6 + Hub | DE/EN/RO |
 | **Vergleiche** | `/vergleich/<slug>/` | 4 + Hub | DE/EN/RO |
 | Regionen | `/it-service/<slug>/` | 7 + Hub | DE/EN/RO |
@@ -62,7 +62,7 @@ Aus 2 rankbaren Seiten wurden **198 URLs** (94 Basis-Pfade):
 | **Glossar** | `/wissen/<slug>/` | 14 + Hub | nur DE |
 | **Checklisten** | `/checkliste/<slug>/` | 3 + Hub | nur DE |
 | **Werkzeuge** | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/`, `/it-hilfe/` | 4 | DE/EN/RO |
-| **Einrichten** | `/einrichten/<slug>/` | 8 + Hub | DE/EN/RO |
+| **Einrichten** | `/einrichten/<slug>/` | **10** + Hub | DE/EN/RO |
 | Einzelseiten | Start, Kosten, Referenzen, Kontakt, Angebot, Recht | 8 | DE/EN/RO |
 
 Seit dem 05.09.2026 dazu: **Über uns** (`/ueber-uns/`), **AGB** (`/agb/`),

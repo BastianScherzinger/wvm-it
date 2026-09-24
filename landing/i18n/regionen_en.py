@@ -127,8 +127,8 @@ REGIONEN = {
     "wels": {
         "anfrage_h": "Request IT support in Wels",
         "nav": "Wels",
-        "titel": "IT services Wels — business IT support | WVM-IT",
-        "desc": "IT provider for businesses in Wels: IT support, networks, servers, IT security, mainly by remote maintenance. Request a quote now.",
+        "titel": "IT support Wels: business IT from €29/month | WVM-IT",
+        "desc": "IT support for businesses in Wels: from €29/month per workstation, remote maintenance €95/hour, on-site €120/hour. Request a quote now.",
         "h1": "IT services and support in Wels",
         "kurz": "WVM-IT looks after the IT of businesses in and around Wels — workstations, servers, networks, email and backups, mainly by remote maintenance. It is 40 kilometres from Lenzing, about 35 minutes, for work that has to be done on site.",
         "intro": "Wels is a trade fair, retail and commercial location. The share of businesses with warehouses, production or workshops is far higher here than in pure office locations — and that is exactly where the network often ends at the office door. Handheld scanners with no connection in the warehouse, a label printer nobody can reach any more, a time clock at the works gate: those are the calls that come from Wels.",
@@ -185,8 +185,8 @@ REGIONEN = {
     "linz": {
         "anfrage_h": "Request IT support in Linz",
         "nav": "Linz",
-        "titel": "IT services Linz — business IT support | WVM-IT",
-        "desc": "IT provider for businesses in Linz: day-to-day IT support, servers, networks, IT security by remote maintenance. Request a quote now.",
+        "titel": "IT provider Linz: business IT from €29/month | WVM-IT",
+        "desc": "IT provider for businesses in Linz: day-to-day IT support from €29/month, remote €95/hour, on-site €120/hour. Request a quote.",
         "h1": "IT services and support in Linz",
         "kurz": "WVM-IT looks after the IT of businesses in and around Linz: workstations, servers, networks, email and backups. Day-to-day work runs by secured remote maintenance; for on-site work it is 60 kilometres from Lenzing, about 50 minutes.",
         "intro": "Linz is the state capital, an industrial location and the largest market for IT services in Upper Austria — with a correspondingly large number of providers. For small and medium businesses that has an uncomfortable flip side: at the large firms they are the smallest customer, and it shows in the response times.",

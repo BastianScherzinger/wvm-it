@@ -29,7 +29,7 @@ demselben `kurz`-Feld, das oben steht.
         <span aria-current="page">{{ begriff.titel }}</span>
       </nav>
       <p class="gl-label">Begriff</p>
-      <h1>{{ begriff.titel|safe }}</h1>
+      <h1>{{ begriff.h1|default:begriff.titel|safe }}</h1>
       {% include 'antwort.html' with text=begriff.kurz %}
     </div>
   </header>

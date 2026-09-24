@@ -336,8 +336,8 @@ BEITRAEGE = {
 
     "wie-viele-arbeitsplaetze-eigener-server": {
         "titel": "Wie viele Arbeitsplätze braucht ein eigener Server?",
-        "meta_titel": "Eigener Server: die 3 Fragen vor dem Kauf | WVM-IT",
-        "desc": "Nicht die Mitarbeiterzahl entscheidet über einen eigenen Server, sondern die Software. Wann sich Hardware im Haus lohnt. Jetzt nachlesen.",
+        "meta_titel": "Brauche ich einen Server? 3 Fragen vor dem Kauf | WVM-IT",
+        "desc": "Brauche ich einen eigenen Server? Die Antwort hängt an der Software, nicht an der Mitarbeiterzahl. Drei Fragen, die die Entscheidung klären.",
         "antwort": "Die Zahl der Arbeitsplätze ist nicht der entscheidende Punkt — es gibt Betriebe mit dreißig Leuten ohne Server und Betriebe mit fünf, die einen brauchen. Entscheidend ist die Software: Sobald eine Warenwirtschaft, eine Branchenlösung oder eine Datenbank eine zentrale Installation verlangt, brauchen Sie einen Server, und zwar unabhängig von der Betriebsgröße. Wird ausschließlich mit Office, Mail und Dateien gearbeitet, ist die Cloud in aller Regel günstiger und wartungsärmer. Ein betreuter Server kostet bei uns ab 89 € im Monat, dazu kommt die Hardware.",
         "abschnitte": [
             {"h": "Die drei Fragen, die die Antwort geben",

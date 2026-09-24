@@ -63,6 +63,7 @@ _FALLBACK = {
     "jahr": 2026,
     "wvm_url": "https://www.wvm-it.tech",
     "wvm_shop": "https://www.pystore.de",
+    "webagentur_url": "https://webagentur-scherzinger.com",
     "datenschutz": "",
     "impressum": "",
 }

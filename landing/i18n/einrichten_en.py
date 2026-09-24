@@ -98,7 +98,7 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "pc-tausch": {
-        "titel": "Replacing an old PC: data transfer for €190 | WVM-IT",
+        "titel": "PC replacement and setup: €190 per device | WVM-IT",
         "desc": "New computer, everything comes across: files, email, credentials, "
                 "programs. €190 fixed per device, mostly remote. Get in touch.",
         "h1": "Replace a computer without losing anything",
@@ -178,6 +178,16 @@ EINRICHTEN = {
                   "six years it rarely pays off, because by then the power supply and "
                   "the fans are at the end too. We tell you what we would do in your "
                   "position."},
+            {"q": "Can you also procure the new devices for us?",
+             "a": "Yes. We clarify what is needed, quote for the devices, set them "
+                  "up at the €190 fixed price per workstation and transfer the data "
+                  "as above. The price for the devices themselves comes from your "
+                  "actual requirements — what really runs on them decides the sensible "
+                  "price more than any guess."},
+            {"q": "What does the device itself cost?",
+             "a": "On request. We put together a quote fitting the actual need — no "
+                  "graphics power for video editing when the job is Excel and Outlook. "
+                  "The setup per device stays at €190."},
         ],
 
         "cta_h": "Request a device change",
@@ -686,6 +696,203 @@ EINRICHTEN = {
         "cta_h": "Ask about a Loxone system",
         "cta_t": "Tell us briefly what is installed and what no longer works. Reply "
                  "within 24 hours.",
+        "problem_h": "What is it about?",
+    },
+
+    # ── Round 2 (24.09.2026) ────────────────────────────────────────────────
+    "datensicherung": {
+        "titel": "Have automatic backups set up — verified | WVM-IT",
+        "desc": "Automatic backup set up: what, where to, how often, with a real "
+                "restore test. Price on request; ongoing monitoring from €49/month. "
+                "Ask now.",
+        "h1": "Backups set up to actually work when it matters",
+        "nav": "Backup setup",
+        "kurz": "WVM-IT sets up backups for businesses in a way that actually holds "
+                "up: we start with what is being backed up, where and how often; "
+                "then the 3-2-1 rule (three copies, two media, one off-site) and a "
+                "real restore test. What the setup costs, we say after an audit — "
+                "it depends on data volume, existing systems and requirements. "
+                "Ongoing monitoring after that starts at €49 per month.",
+        "intro": "Almost every business has a backup. Far fewer businesses know when "
+                 "it last ran, and even fewer have ever tried to bring anything back "
+                 "from it. That gap is exactly what a properly set up backup closes: "
+                 "it tells you in advance what it can do, it flags itself when it "
+                 "fails, and it proves its promises with a restore that was actually "
+                 "measured.",
+
+        "leistungen_h": "What the setup includes",
+        "leistungen": [
+            "Audit: which data must the business be able to bring back after an "
+            "incident — files, ERP, email, databases, configurations",
+            "Destinations: NAS in-house, a second medium off-site, cloud on top — "
+            "the 3-2-1 rule as a foundation, not a slogan",
+            "Schedule: daily, outside working hours; several times a day for systems "
+            "in constant use",
+            "Separation from the server: a copy sitting next to the server survives "
+            "no server-room fire",
+            "Restore test: a real file, a real folder, a real database — brought "
+            "back and timed",
+            "Alerting: who hears about it and how, when a backup fails",
+            "Documentation: what goes where, how long it is kept, who reaches for it",
+        ],
+        "nicht_h": "Why there is no fixed price here",
+        "nicht_t": "Because it would not hold up. Whether a business backs up 200 GB "
+                   "of files or mirrors 8 TB of databases to a second site is a "
+                   "difference of days and a difference in the hardware required. "
+                   "We give you the price in writing after the audit — before any "
+                   "work starts, and then it stands. The audit itself we bill by the "
+                   "hour (€95 remote, €120 on site plus travel); if it becomes an "
+                   "order, the audit is credited. Ongoing monitoring of the "
+                   "resulting backup starts at €49 per month.",
+
+        "ablauf_h": "How it runs",
+        "ablauf": [
+            {"h": "Audit", "t": "What lives where today, what is being backed up "
+             "today, how long can the business be down in an emergency. Those three "
+             "answers produce the plan."},
+            {"h": "Set up and separate", "t": "We configure destinations, schedule "
+             "and alerting, and physically separate at least one copy from the "
+             "server. From then on the backup runs without intervention."},
+            {"h": "Test, do not hope", "t": "To finish we restore data and record "
+             "how long it took. Only that number turns a backup into a reliable "
+             "promise."},
+        ],
+
+        "fern_h": "3-2-1 rule: what it means",
+        "fern_t": "Three copies of the data (the original counts), on two different "
+                  "media, one of them off-site. The rule is old and still rarely "
+                  "implemented, because it is inconvenient: you buy a second medium "
+                  "and you make sure a copy leaves the building. Those who do it "
+                  "survive a broken storage device, a server-room fire and a "
+                  "ransomware attack at the same time. Those with only one copy "
+                  "next to the server survive none of them.",
+
+        "faq_h": "Common questions",
+        "faq": [
+            {"q": "We already back up to a NAS. Is that enough?",
+             "a": "Not as the only copy. A NAS covers a broken disk, no more. If "
+                  "the server room fails or the NAS is encrypted along with the "
+                  "server, the decisive second copy off-site is missing. What we "
+                  "usually add is a second destination and a regular test."},
+            {"q": "How long does the setup take?",
+             "a": "A simple build (one server, one destination in-house, one "
+                  "off-site) is done in a day. With several sites, industry "
+                  "software with its own backup path or large first backups it "
+                  "becomes two to five. We name the frame in the offer."},
+            {"q": "What is the difference from ongoing support?",
+             "a": "The setup is one-off — it answers „who sets this up properly“. "
+                  "Ongoing monitoring from €49 per month answers „who notices when "
+                  "the backup fails tomorrow“. Both belong together, but one does "
+                  "not force the other: we also set it up if you want to monitor "
+                  "it yourself afterwards."},
+            {"q": "What about GDPR and data protection?",
+             "a": "The backup is part of your records of processing activities: "
+                  "what is backed up where, how long it is kept, who has access. "
+                  "We give you the details that belong there; where data lives in "
+                  "a cloud, we keep it in an EU data centre."},
+        ],
+
+        "cta_h": "Request a backup setup",
+        "cta_t": "Tell us briefly what systems are running today and how long the "
+                 "business can be down in an emergency. Reply within 24 hours.",
+        "problem_h": "What is it about?",
+    },
+
+    "it-umzug": {
+        "titel": "Office IT move: server, network, workstations | WVM-IT",
+        "desc": "IT move to the new office: server, network and workstations "
+                "planned, taken down, set up, tested on the first working day. "
+                "Price on request. Ask now.",
+        "h1": "IT move to the new office — planned, not improvised",
+        "nav": "IT move",
+        "kurz": "WVM-IT handles the IT move to a new office: server, network and "
+                "workstations are audited beforehand, planned with a checklist, "
+                "taken down and set up on moving day and tested on the first "
+                "working day. Building blocks from the catalogue: workstation "
+                "setup €190 per seat, network and Wi-Fi setup from €890, on-site "
+                "work €120 per hour plus travel. The total price depends on "
+                "scope and is given in writing after an audit.",
+        "intro": "An office move usually lands on the same day as a public holiday "
+                 "— not literally, but it feels that way: the shelving was faster "
+                 "in the van than in the plan, and at the new site the internet "
+                 "line is a week late. The IT part is where day one shows whether "
+                 "there was a plan or an improvisation. Two to four weeks of lead "
+                 "time is enough so that nobody stands with an HDMI cable in hand "
+                 "looking for the socket.",
+
+        "leistungen_h": "IT move checklist: what belongs to it",
+        "leistungen": [
+            "Before the move: a full backup of every server and workstation — and "
+            "a restore test so the backup actually helps if needed",
+            "Order lines at the new site in time: internet, phone and, where "
+            "needed, a fixed IP address; six to eight weeks lead time",
+            "Draw a network plan: where the server rack goes, where cables run, "
+            "where access points hang, where printers and terminals sit",
+            "Label boxes: which device belongs to which workstation, which cables "
+            "and peripherals go with it",
+            "On moving day: server and network first, workstations after, every "
+            "computer at the same socket as in the plan",
+            "On the first working day: a round through the office, every "
+            "workstation tested once — printers, shares, email, ERP",
+            "After that: the new documentation, so a later move or handover does "
+            "not start from zero again",
+        ],
+        "nicht_h": "Why there is no fixed price here",
+        "nicht_t": "Because it would not hold up. Twenty workstations on one floor "
+                   "are different from sixty across three floors with a server move "
+                   "at night. We give you the price in writing after auditing the "
+                   "old site and inspecting the new one — using the catalogue "
+                   "building blocks (workstation setup €190 per seat, network from "
+                   "€890, on-site €120 per hour plus travel). The audit itself we "
+                   "bill by the hour; if it becomes an order, it is credited.",
+
+        "ablauf_h": "How it runs",
+        "ablauf": [
+            {"h": "Audit and plan", "t": "Four to six weeks before the move: audit "
+             "of existing IT, inspection of the new site, network plan, orders for "
+             "lines and missing hardware, checklist per workstation."},
+            {"h": "Full backup and preparation", "t": "The week before: a verified "
+             "full backup, boxes and cables labelled, order set. At the new site "
+             "cables are pulled and sockets labelled before the furniture arrives."},
+            {"h": "Moving day and first working day", "t": "On the day: server and "
+             "network first, workstations after. On the first working day a "
+             "support round through the office, problems are solved on site."},
+        ],
+
+        "fern_h": "Move within the same town, in the same region — or further",
+        "fern_t": "Within the same town the move usually fits into a day, within "
+                  "the region into a weekend. Longer moves need more lead time and "
+                  "a dedicated slot for the server rebuild, because an interrupted "
+                  "backup is not a state you leave for days. In every case the old "
+                  "site stays reachable until the new one is tested — the way "
+                  "back is part of the plan, not the improvisation.",
+
+        "faq_h": "Common questions",
+        "faq": [
+            {"q": "How much lead time does an IT move need?",
+             "a": "The IT itself needs two to four weeks; the critical deadline is "
+                  "ordering internet and phone at the new site — six to eight "
+                  "weeks. If those lines are ordered too late, the best plan will "
+                  "not help."},
+            {"q": "Can we move at the weekend?",
+             "a": "In many cases yes. Whether we offer it depends on scope and "
+                  "dates; we clarify that with you before the quote."},
+            {"q": "What about servers that must run 24/7?",
+             "a": "Then we build a second server at the new site, migrate the "
+                  "backup and switch operations in a planned window — the old "
+                  "server stays reachable until confirmation. That costs more "
+                  "than a straightforward move but prevents downtime."},
+            {"q": "What about backups during the move?",
+             "a": "Before the move a verified full backup runs; during the move "
+                  "itself the backup is paused — otherwise it would back up data "
+                  "that does not currently exist. On the target day a fresh cycle "
+                  "starts immediately."},
+        ],
+
+        "cta_h": "Ask about an IT move",
+        "cta_t": "Tell us briefly how many workstations are moving, whether a "
+                 "server is involved and when the move is planned. Reply within "
+                 "24 hours.",
         "problem_h": "What is it about?",
     },
 }

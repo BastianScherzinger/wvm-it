@@ -229,6 +229,7 @@
         <a href="{% url 'index' %}#faq">{{ t.footer.u_faq|safe }}</a>
         <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
         {% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}
+        {% if c.webagentur_url %}<a href="{{ c.webagentur_url }}">{{ t.footer.u_webagentur|safe }}</a>{% endif %}
       </div>
       <div>
         <h3>{{ t.branchen_seite.branchen_titel|safe }}</h3>

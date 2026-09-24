@@ -89,6 +89,7 @@ STAND = {
     "/leistungen/google-ads/": "2026-09-24",
     "/leistungen/hosting-wartung/": "2026-09-24",
     "/leistungen/it-beratung/": "2026-09-24",
+    "/leistungen/it-betreuung-groessere-betriebe/": "2026-09-24",
     "/leistungen/it-sicherheit/": "2026-09-24",
     "/leistungen/ki-automatisierung/": "2026-09-24",
     "/leistungen/konferenztechnik/": "2026-09-24",

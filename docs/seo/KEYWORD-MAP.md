@@ -6,9 +6,9 @@
 >
 > **Angelegt:** 28.08.2026 · **Neu gewichtet:** 28.08.2026 (Relaunch, EDV zuerst)
 > · **Fortgeschrieben:** 29.08.2026 um Branchen, Vergleiche, Werkzeuge und Glossar (M5)
-> **Datenbasis:** noch keine echten Suchanfragen. Die Nullmessung (`BASELINE.md`) zeigt
-> ausschließlich Markensuchen. Nach dem nächsten Search-Console-Export (Ende September)
-> wird diese Tabelle gegen echte Anfragen nachgezogen (SEO-PLAN T9).
+> **Datenbasis:** GSC 25.08.–21.09.2026 (698 Impressionen, 17 Klicks, Pos. 47,7).
+> Bis dahin nur Markensuchen (`BASELINE.md`). Runde 2 (24.09.2026) unten schreibt die
+> Tabelle mit echten Anfragen und Suchvorschlägen fort.
 >
 > **Stand der Zielseiten:** Alle unten genannten URLs sind gebaut und live.
 
@@ -202,3 +202,74 @@ Stand 28.08.2026: alle beantwortet.
 | „Worauf achten beim Wechsel des IT-Dienstleisters?" | `/checkliste/it-dienstleister-wechseln/`, `/aktuelles/it-dienstleister-wechseln/` |
 | „Was sieht der Dienstleister bei einer Fernwartung?" | `/wissen/fernwartung/`, `/aktuelles/fernwartung-was-sieht-der-dienstleister/` |
 | „Wie lange muss ein Betrieb in Österreich Daten aufbewahren?" | `/aktuelles/aufbewahrungsfristen-oesterreich/` |
+
+---
+
+## Runde 2 (24.09.2026) — echte Anfragen und Suchvorschläge
+
+**Datenbasis:** Search Console aus cockpit.db (25.08.–21.09.2026: 698 Impressionen,
+17 Klicks, Position 47,7), Google-Suchvorschläge (gl=at), Wettbewerber-Stichprobe.
+Ersetzt die alte Vorbehaltszeile „noch keine echten Suchanfranger“ im Kopf. K =
+Kaufabsicht, I = Information.
+
+### A) Nach Größe des Betriebs
+
+| Keyword (AT/DE) | Absicht | Beleg | Zielseite |
+|---|---|---|---|
+| it betreuung für kleine unternehmen (kosten) / it support für kleine unternehmen / edv betreuung (unternehmen) / betreuung edv netzwerk | K | Suchvorschlag; GSC „edv betreuung unternehmen“ Pos. 65,7, „betreuung edv netzwerk“ Pos. 55,3 | `/leistungen/edv-it-betreuung/` (Runde 2 Ausbau um Abschnitt Kleinbetriebe). Reine Kostenfrage → `/kosten/` (Regel 2) |
+| it service für unternehmen / it service unternehmen deutschland / it dienstleister österreich / externe it betreuung / edv service | K | Suchvorschläge | `/leistungen/edv-it-betreuung/` (Synonyme in H2 und FAQ, keine eigene Seite) |
+| it betreuung mittelstand / it dienstleister größere unternehmen / managed it services kmu / it betreuung 50 arbeitsplätze | K | Wettbewerber (hillinger-it, sc24) | **NEU** `/leistungen/it-betreuung-groessere-betriebe/` (DE/EN/RO, Runde 2) |
+| it support / it hilfe ohne vertrag / pc hilfe firma / it support kleine firmen einmalig | K | Runde 1 | `/it-hilfe/` (unverändert). Regel 13 (neu): Einzelproblem → `/it-hilfe/`, laufend → `/leistungen/edv-it-betreuung/` |
+
+### B) Nach Aufgabe
+
+| Keyword | Absicht | Beleg | Zielseite |
+|---|---|---|---|
+| server einrichten lassen / server für kleine firma einrichten | K | Suchvorschlag | `/einrichten/server/` |
+| brauche ich einen eigenen server | I→K | GSC 14 Impr., Pos. 63,3 | `/aktuelles/wie-viele-arbeitsplaetze-eigener-server/` (Snippet neu, Runde 2) |
+| netzwerk einrichten lassen / netzwerk einrichten firma / wlan einrichten firma | K | Suchvorschläge | `/einrichten/netzwerk/` |
+| netzwerk betreuung / wlan ausleuchtung firma | K | Karte Runde 0 | `/leistungen/netzwerk-wlan/` |
+| pc einrichten lassen (kosten) / pc kaufen und einrichten lassen | K | GSC einziger Kaufklick; Suchvorschlag | `/einrichten/arbeitsplatz/`, `/einrichten/pc-tausch/` (Runde 2 Ausbau) |
+| hardware beschaffen firma / firmen pc kaufen und einrichten / pc tausch firma | K | Suchvorschläge | `/einrichten/pc-tausch/` (Ausbau um Beschaffung, keine eigene Seite) |
+| computer aufrüsten (lassen) / computer aufrüsten für windows 11 / computer aufrüstung | I→K | GSC 67 Impr. Pos. ≈70 | `/vergleich/pc-aufruesten-oder-neu-kaufen/` |
+| microsoft 365 einrichten lassen / m365 umstellung firma | K | — | `/einrichten/microsoft-365/` |
+| datensicherung einrichten (lassen) / automatische datensicherung / nas datensicherung firma | K | Suchvorschläge (viele) | **NEU** `/einrichten/datensicherung/` (Runde 2, DE/EN/RO) |
+| datensicherung unternehmen / backup betreuung / serverwartung | K | Karte Runde 0 | `/leistungen/server-datensicherung/` |
+| it umzug (checkliste) / büroumzug it / edv umzug firma / arbeitsplätze umziehen | K | Suchvorschlag „it umzug checkliste“ | **NEU** `/einrichten/it-umzug/` (Runde 2, DE/EN/RO, Checkliste auf der Seite) |
+
+### C) Region
+
+| Keyword | Absicht | Beleg | Zielseite |
+|---|---|---|---|
+| it betreuung wels / edv betreuung wels | K | Suchvorschlag | `/it-service/wels/` (Titel/Description Runde 2 geschärft) |
+| it dienstleister linz | K | Suchvorschlag | `/it-service/linz/` (Titel/Description Runde 2 geschärft) |
+| edv betreuung salzburg / it betreuung salzburg | K | GSC Pos. 12,7 | `/it-service/salzburg/` (Runde 1) |
+
+### D) Branche und Wissen
+
+| Keyword | Absicht | Beleg | Zielseite |
+|---|---|---|---|
+| it betreuung arztpraxis / edv arztpraxis / it betreuung zahnarztpraxis | K | Suchvorschläge; GSC Pos. 76 | `/branchen/arztpraxen-therapie/` (Titel Runde 2 auf Betreuung statt Sicherheitscheck) |
+| festplatte raid / festplatten raid / definition raid | I | GSC 16 Impr., Pos. 80 | `/wissen/raid/` (H1 Runde 2) |
+| alte windows version betrieb | I | GSC Pos. 6,8 | `/aktuelles/alte-windows-version-im-betrieb/` |
+| nis2 lieferkette zulieferer | I | GSC Pos. 6,0 | `/aktuelles/nis2-lieferkette-zulieferer/` |
+
+### E) EN und RO
+
+| Keyword | Absicht | Zielseite |
+|---|---|---|
+| IT support small business Austria / managed IT services Austria/Germany | K | `/en/leistungen/edv-it-betreuung/` bzw. `/en/leistungen/it-betreuung-groessere-betriebe/` (Runde 2 Titel geschärft) |
+| administrare IT firme / servicii IT firme / mentenanță IT | K | `/ro/leistungen/edv-it-betreuung/` (Runde 2 Titel „Administrare IT“) |
+
+### Entscheidungen gegen Kannibalisierung (Runde 2)
+
+1. **Kleinbetriebe bekommen keine eigene Seite.** `edv-it-betreuung` ist die Kleinbetriebs-Seite und wird ausgebaut (Runde 2 R2-03).
+2. **Größere Betriebe bekommen eine eigene Leistungsseite,** weil die Suchabsicht eine andere ist (Umfang, Dokumentation, mehrere Standorte). Grenze im ersten Absatz: unter 20 Arbeitsplätzen → EDV-Betreuung.
+3. **Hardware kommt in `/einrichten/pc-tausch/`,** keine eigene Beschaffungsseite (dünner Inhalt, überschneidet sich mit dem PC-Tausch).
+4. **Datensicherung wird aufgeteilt:** `/einrichten/datensicherung/` = einmalig einrichten; `/leistungen/server-datensicherung/` = laufend überwachen. Die Abgrenzung steht auf der Seite als Block `id="laufend"`.
+5. **Generische Suchen „IT-Dienstleister / IT-Service"** gehören zu `/leistungen/edv-it-betreuung/`, nicht zur Startseite (die trägt Marke und Land).
+
+### Neue Zuordnungsregeln
+
+13. **Einzelproblem ohne Vertrag** → `/it-hilfe/` (Runde 1); laufende Betreuung → `/leistungen/edv-it-betreuung/`.
+14. **Aufgabe einmalig** → `/einrichten/<slug>/`; **laufend** → `/leistungen/<slug>/`. Das ist die harte Grenze zwischen den beiden Silos.

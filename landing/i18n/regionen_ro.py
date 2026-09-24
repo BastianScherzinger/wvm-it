@@ -127,8 +127,8 @@ REGIONEN = {
     "wels": {
         "anfrage_h": "Solicitați asistență IT în Wels",
         "nav": "Wels",
-        "titel": "Servicii IT Wels — asistență IT pentru firme | WVM-IT",
-        "desc": "Furnizor IT pentru firme din Wels: asistență IT, rețele, servere, securitate, preponderent prin mentenanță la distanță. Sunați acum.",
+        "titel": "Asistență IT Wels: firme de la 29 €/lună | WVM-IT",
+        "desc": "Asistență IT pentru firme din Wels: de la 29 €/lună per stație, mentenanță la distanță 95 €/oră, la fața locului 120 €/oră. Cereți ofertă.",
         "h1": "Servicii IT și asistență în Wels",
         "kurz": "WVM-IT se ocupă de IT-ul firmelor din Wels și din împrejurimi — stații de lucru, servere, rețea, e-mail și copii de siguranță, preponderent prin mentenanță la distanță. De la Lenzing sunt 40 de kilometri, circa 35 de minute, pentru lucrările care trebuie făcute la fața locului.",
         "intro": "Wels este centru de târguri, comerț și industrie. Ponderea firmelor cu depozit, producție sau atelier este aici mult mai mare decât în locațiile pur administrative — și tocmai acolo rețeaua se oprește deseori la ușa biroului. Scannere care nu au semnal în depozit, o imprimantă de etichete pe care nimeni nu o mai găsește, un terminal de pontaj la poarta halei: acestea sunt apelurile care vin din Wels.",
@@ -185,8 +185,8 @@ REGIONEN = {
     "linz": {
         "anfrage_h": "Solicitați asistență IT în Linz",
         "nav": "Linz",
-        "titel": "Servicii IT Linz — asistență IT pentru firme | WVM-IT",
-        "desc": "Furnizor IT pentru firme din Linz: asistență IT curentă, servere, rețele, securitate, prin mentenanță la distanță. Solicitați o ofertă.",
+        "titel": "Furnizor IT Linz: asistență de la 29 €/lună | WVM-IT",
+        "desc": "Furnizor IT pentru firme din Linz: asistență de la 29 €/lună, mentenanță la distanță 95 €/oră, la fața locului 120 €/oră. Solicitați ofertă.",
         "h1": "Servicii IT și asistență în Linz",
         "kurz": "WVM-IT se ocupă de IT-ul firmelor din Linz și din împrejurimi: stații de lucru, servere, rețea, e-mail și copii de siguranță. Activitatea curentă se desfășoară prin mentenanță securizată la distanță; pentru lucrările la fața locului sunt 60 de kilometri de la Lenzing, circa 50 de minute.",
         "intro": "Linz este capitala landului, centru industrial și cea mai mare piață de servicii IT din Austria Superioară — cu un număr pe măsură de furnizori. Pentru firmele mici și mijlocii asta are un revers neplăcut: la companiile mari sunt cel mai mic client, iar acest lucru se vede în timpii de răspuns.",

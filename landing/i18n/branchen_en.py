@@ -101,8 +101,8 @@ BRANCHEN = {
 
     "arztpraxen-therapie": {
         "nav": "Medical & therapy practices",
-        "titel": "IT security check for medical practices, €490 | WVM-IT",
-        "desc": "IT for medical and therapy practices: patient data, access logs, separate device networks, resilience during hours. Security check €490. Request it now.",
+        "titel": "IT support for medical and dental practices | WVM-IT",
+        "desc": "IT support for medical and dental practices: from €29/month per workstation, security check €490. Remote maintenance without stopping the practice.",
         "h1": "IT for medical, dental and therapy practices",
         "kurz": "WVM-IT looks after the IT of medical, dental and therapy practices in Austria and Germany: workstations, the practice management environment, separate networks for medical devices, access rights and the backups behind them. The one-off IT security check costs €490, ongoing support from €29 per workstation and month. Work is done by remote maintenance — in a practice that is the only route that does not halt the consulting hour.",
         "intro": "A practice has two properties that are demanding in combination: it processes the most sensitive category of data there is, and it cannot stand still between eight and twelve. Together that means technology here does not need to be spectacular but reliably dull — and that every change happens outside consulting hours.",

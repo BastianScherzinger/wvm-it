@@ -103,6 +103,27 @@ EINRICHTUNGEN = [
      "quelle": "technik", "leistung": "smarthome-knx-loxone",
      "thema": "smarthome-knx-loxone",
      "vor_ort": True, "prio": "0.8", "verwandt": ["netzwerk"]},
+
+    # ── Runde 2 (24.09.2026) ────────────────────────────────────────────────
+    # Datensicherung einrichten: Preis „auf Anfrage" (wie Server, Loxone), weil
+    # der Katalog keinen einmaligen Einrichtungspreis nennt. Ein erfundener Preis
+    # wäre schlimmer als keiner. Der laufende 49-EUR-Satz steht im Text — die
+    # Position `edv` (anfrage) ist die technisch richtige Preisreferenz für die
+    # einmalige Einrichtung, weil sie im Katalog explizit auf Anfrage lautet.
+    # Abgrenzung: hier einmalig einrichten, laufend überwachen dagegen auf
+    # /leistungen/server-datensicherung/.
+    {"slug": "datensicherung", "icon": "shield", "preis": "edv",
+     "quelle": "it", "leistung": "server-datensicherung", "thema": "server-datensicherung",
+     "vor_ort": False, "prio": "0.8", "verwandt": ["server", "firewall-vpn"]},
+
+    # IT-Umzug im Büro (Büroumzug, Neueinrichtung). Bausteine aus dem Katalog:
+    # Arbeitsplatz 190 EUR/Platz, Netzwerk ab 890 EUR, Vor-Ort 120 EUR/Std. Der
+    # Umzug selbst ist eine Sammlung dieser Bausteine, keine eigene Zahl —
+    # deshalb auch hier `edv` als Anfrage-Referenz. Abgrenzung: hier der Umzug
+    # an einem Tag, laufend danach edv-it-betreuung.
+    {"slug": "it-umzug", "icon": "tausch", "preis": "edv",
+     "quelle": "it", "leistung": "edv-it-betreuung", "thema": "edv-it-betreuung",
+     "vor_ort": True, "prio": "0.8", "verwandt": ["netzwerk", "arbeitsplatz"]},
 ]
 
 NACH_SLUG = {e["slug"]: e for e in EINRICHTUNGEN}

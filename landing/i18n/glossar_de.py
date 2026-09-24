@@ -98,6 +98,7 @@ BEGRIFFE = {
 
     "raid": {
         "titel": "RAID",
+        "h1": "RAID: Festplatten im Verbund – und warum das kein Backup ist",
         "meta_titel": "RAID erklärt: Schutz vor Ausfall, nicht vor Verlust | WVM-IT",
         "desc": "Ein RAID verteilt Daten auf mehrere Festplatten, damit der Ausfall einer Platte den Betrieb nicht stoppt. Warum das keine Sicherung ist — jetzt nachlesen.",
         "kurz": "RAID bezeichnet einen Verbund mehrerer Festplatten, der den Ausfall einzelner Platten überstehen kann, ohne dass der Betrieb stehen bleibt. Es erhöht die Verfügbarkeit, nicht die Sicherheit der Daten: Gelöschtes, Überschriebenes und Verschlüsseltes wird sofort auf allen Platten gelöscht, überschrieben und verschlüsselt. Ein RAID ersetzt deshalb keine Datensicherung — es verhindert nur eine bestimmte Art von Ausfall. Damit der Ausfall der ersten Platte überhaupt auffällt, gehört der Verbund überwacht; in der Server-Betreuung ab 89 € im Monat ist das enthalten.",

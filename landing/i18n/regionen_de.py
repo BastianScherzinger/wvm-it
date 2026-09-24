@@ -139,8 +139,8 @@ REGIONEN = {
     "wels": {
         "anfrage_h": "IT-Betreuung in Wels anfragen",
         "nav": "Wels",
-        "titel": "IT-Service Wels — EDV-Betreuung für Betriebe | WVM-IT",
-        "desc": "IT-Dienstleister für Betriebe in Wels: EDV-Betreuung, Netzwerk, Server, IT-Sicherheit, überwiegend per Fernwartung. Jetzt Angebot anfordern.",
+        "titel": "IT-Betreuung Wels: EDV-Service ab 29 €/Monat | WVM-IT",
+        "desc": "EDV-Betreuung für Betriebe in Wels: laufend ab 29 €/Monat je Arbeitsplatz oder einzeln per Fernwartung 95 €/Std. Jetzt anfragen.",
         "h1": "IT-Service und EDV-Betreuung in Wels",
         "kurz": "WVM-IT betreut die EDV von Betrieben in Wels und Umgebung — Arbeitsplätze, Server, Netzwerk, E-Mail und Datensicherung, überwiegend per Fernwartung. Von Lenzing sind es 40 Kilometer, rund 35 Minuten für Arbeiten, die jemand vor Ort erledigen muss.",
         "intro": "Wels ist Messe-, Handels- und Gewerbestandort. Der Anteil an Betrieben mit Lager, Produktion oder Werkstatt ist hier deutlich höher als in reinen Bürostandorten — und genau dort endet das Netzwerk oft an der Bürotür. Handscanner, die im Lager keine Verbindung haben, ein Etikettendrucker, den keiner mehr erreicht, ein Zeiterfassungsterminal am Werkstor: Das sind die Anrufe, die aus Wels kommen.",
@@ -197,8 +197,8 @@ REGIONEN = {
     "linz": {
         "anfrage_h": "IT-Betreuung in Linz anfragen",
         "nav": "Linz",
-        "titel": "IT-Service Linz — EDV-Betreuung für Betriebe | WVM-IT",
-        "desc": "IT-Dienstleister für Betriebe in Linz: laufende EDV-Betreuung, Server, Netzwerk, IT-Sicherheit per Fernwartung. Jetzt unverbindlich anfragen.",
+        "titel": "IT-Dienstleister Linz: EDV-Betreuung ab 29 €/Monat | WVM-IT",
+        "desc": "IT-Dienstleister für Betriebe in Linz: EDV-Betreuung ab 29 €/Monat je Arbeitsplatz, Fernwartung 95 €/Std., Vor-Ort 120 €/Std. Jetzt anfragen.",
         "h1": "IT-Service und EDV-Betreuung in Linz",
         "kurz": "WVM-IT betreut die EDV von Betrieben in Linz und Umgebung: Arbeitsplätze, Server, Netzwerk, E-Mail und Datensicherung. Der laufende Betrieb läuft per gesicherter Fernwartung; für Arbeiten vor Ort sind es von Lenzing 60 Kilometer, rund 50 Minuten.",
         "intro": "Linz ist Landeshauptstadt, Industriestandort und der größte Markt für IT-Dienstleistung in Oberösterreich — mit entsprechend vielen Anbietern. Für kleine und mittlere Betriebe hat das eine unangenehme Kehrseite: Bei den großen Häusern sind sie der kleinste Kunde, und das merkt man an den Antwortzeiten.",

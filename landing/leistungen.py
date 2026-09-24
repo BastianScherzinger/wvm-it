@@ -35,12 +35,20 @@ einstieg  ID einer Position aus views.ANGEBOT_GROUPS — der **kleine erste Schr
 LEISTUNGEN = [
     {"slug": "edv-it-betreuung", "bereich": "it", "icon": "host", "quelle": "it", "preis": "it_betreuung",
      "vor_ort": False, "prio": "0.9",
-     "verwandt": ["server-datensicherung", "netzwerk-wlan", "it-sicherheit"],
+     "verwandt": ["it-betreuung-groessere-betriebe", "server-datensicherung", "netzwerk-wlan", "it-sicherheit"],
      # 07.09.2026: war `sicherheitscheck` (490 EUR). Wer auf der EDV-Hauptseite
      # landet, will meist einen Arbeitsplatz eingerichtet haben, nicht geprueft --
      # und 190 EUR sind der "kleine erste Schritt", den der Kopf dieser Datei meint.
      # Auf /leistungen/it-sicherheit/ bleibt der Check der richtige Einstieg.
      "einstieg": "arbeitsplatz",},
+
+    # Runde 2 (24.09.2026): grössere Betriebe (20-200 Arbeitsplätze). Suchabsicht
+    # ist eine andere als bei /edv-it-betreuung/ (Umfang, Dokumentation, Server,
+    # mehrere Standorte). Abgrenzung im ersten Absatz: unter 20 -> EDV-Betreuung.
+    {"slug": "it-betreuung-groessere-betriebe", "bereich": "it", "icon": "host", "quelle": "it", "preis": "it_betreuung",
+     "vor_ort": False, "prio": "0.9",
+     "verwandt": ["edv-it-betreuung", "server-datensicherung", "netzwerk-wlan", "it-sicherheit"],
+     "einstieg": "sicherheitscheck",},
 
     {"slug": "server-datensicherung", "bereich": "it", "icon": "server", "quelle": "it", "preis": "backup",
      "vor_ort": False, "prio": "0.8",

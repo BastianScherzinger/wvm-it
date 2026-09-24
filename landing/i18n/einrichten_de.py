@@ -104,9 +104,10 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "pc-tausch": {
-        "titel": "Alten PC tauschen: Datenübernahme für 190 € | WVM-IT",
-        "desc": "Neuer Rechner, alle Daten mit: Dateien, E-Mails, Zugänge, Programme. "
-                "190 € Festpreis je Gerät, meist per Fernwartung. Jetzt anfragen.",
+        "titel": "PC tauschen und einrichten lassen: 190 € je Gerät | WVM-IT",
+        "desc": "PC kaufen und einrichten lassen, alter Rechner mit allen Daten: "
+                "Dateien, E-Mails, Zugänge, Programme. 190 € je Gerät, meist per "
+                "Fernwartung. Jetzt anfragen.",
         "h1": "Rechner tauschen, ohne dass etwas verlorengeht",
         "nav": "PC tauschen",
         "kurz": "WVM-IT überträgt beim Gerätewechsel alles, was gebraucht wird — "
@@ -184,6 +185,17 @@ EINRICHTEN = {
                   "SSD bei jedem Start mehr als ein neues Gerät. Ab etwa sechs Jahren "
                   "lohnt sich das selten noch, weil dann auch Netzteil und Lüfter am "
                   "Ende sind. Wir sagen Ihnen, was wir an Ihrer Stelle täten."},
+            {"q": "Können wir die neuen Geräte auch bei Ihnen beschaffen?",
+             "a": "Ja. Bedarf klären, Angebot für die Geräte, Einrichtung zum "
+                  "Festpreis von 190 € je Arbeitsplatz, Datenübernahme wie oben. "
+                  "Der Preis der Geräte selbst kommt nach Ihren Anforderungen — "
+                  "was tatsächlich darauf laufen soll, entscheidet mehr über den "
+                  "sinnvollen Preis als jede Empfehlung ins Blaue."},
+            {"q": "Was kostet das Gerät selbst?",
+             "a": "Auf Anfrage. Wir stellen ein Angebot passend zum tatsächlichen "
+                  "Bedarf zusammen — ohne Grafikleistung für Videoschnitt, wenn "
+                  "Excel und Outlook laufen sollen. Die Einrichtung je Gerät "
+                  "bleibt bei 190 €."},
         ],
 
         "cta_h": "Gerätewechsel anfragen",
@@ -719,6 +731,217 @@ EINRICHTEN = {
         "cta_h": "Loxone-Anlage anfragen",
         "cta_t": "Schreiben Sie kurz, was verbaut ist und was nicht mehr funktioniert. "
                  "Antwort innerhalb von 24 Stunden.",
+        "problem_h": "Worum geht es?",
+    },
+
+    # ── Runde 2 (24.09.2026) ────────────────────────────────────────────────
+    "datensicherung": {
+        "titel": "Datensicherung einrichten: automatisch, geprüft | WVM-IT",
+        "desc": "Datensicherung einrichten: was, wohin, wie oft, plus "
+                "Test-Wiederherstellung. Preis nach Aufnahme, Überwachung ab "
+                "49 €/Monat. Jetzt anfragen.",
+        "h1": "Datensicherung einrichten, die im Ernstfall auch funktioniert",
+        "nav": "Datensicherung einrichten",
+        "kurz": "WVM-IT richtet die Datensicherung für Betriebe so ein, dass sie im "
+                "Ernstfall auch etwas taugt: geklärt wird zuerst, was gesichert wird, "
+                "wohin und wie oft; danach die 3-2-1-Regel (drei Kopien, zwei Medien, "
+                "eine außer Haus) und ein echter Wiederherstellungstest. Was die "
+                "Einrichtung kostet, sagen wir nach einer Bestandsaufnahme, weil es "
+                "an Datenmenge, Bestand und Anforderungen hängt. Die laufende "
+                "Überwachung danach beginnt bei 49 € im Monat.",
+        "intro": "Fast jeder Betrieb hat eine Datensicherung. Deutlich weniger "
+                 "Betriebe wissen, wann sie zuletzt gelaufen ist, und die wenigsten "
+                 "haben je versucht, etwas daraus zurückzuholen. Genau diese Lücke "
+                 "schließt eine ordentlich eingerichtete Sicherung: Sie sagt vorher, "
+                 "was sie kann, sie meldet sich, wenn sie ausfällt, und sie beweist "
+                 "ihre Zusagen mit einer Wiederherstellung, die auch gemessen wurde.",
+
+        "leistungen_h": "Was zur Einrichtung gehört",
+        "leistungen": [
+            "Aufnahme: Welche Daten muss der Betrieb im Ernstfall zurückholen können "
+            "— Dateien, Warenwirtschaft, E-Mail, Datenbanken, Konfigurationen",
+            "Zielorte: NAS im Haus, ein zweites Medium außer Haus, ergänzend Cloud — "
+            "die 3-2-1-Regel als Grundlage, nicht als Werbespruch",
+            "Zeitplan: täglich, außerhalb der Arbeitszeit; bei laufend genutzten "
+            "Systemen mehrmals am Tag",
+            "Trennung vom Server: eine Kopie, die neben dem Server steht, überlebt "
+            "keinen Serverraumbrand",
+            "Wiederherstellungstest: eine echte Datei, ein echter Ordner, eine echte "
+            "Datenbank zurückspielen und die Dauer messen",
+            "Meldeweg: Wer erfährt wie, wenn eine Sicherung fehlschlägt",
+            "Dokumentation: was wohin gesichert wird, wie lange es aufbewahrt wird, "
+            "wer im Ernstfall zugreift",
+        ],
+        "nicht_h": "Warum hier kein Festpreis steht",
+        "nicht_t": "Weil er nicht zu halten wäre. Ob ein Betrieb 200 GB an Dateien "
+                   "sichert oder 8 TB Datenbanken samt getrennter Kopie an einen "
+                   "zweiten Standort spiegelt, macht einen Unterschied von Tagen und "
+                   "einen Unterschied bei der benötigten Hardware. Wir nennen den "
+                   "Preis schriftlich nach der Bestandsaufnahme — vor dem ersten "
+                   "Handgriff, und dann gilt er. Die Bestandsaufnahme selbst rechnen "
+                   "wir nach Stunde ab (95 € per Fernwartung, 120 € vor Ort zuzüglich "
+                   "Anfahrt); wird daraus ein Auftrag, wird sie angerechnet. Die "
+                   "laufende Überwachung der eingerichteten Sicherung beginnt bei "
+                   "49 € im Monat und ist der Preis, den es im Katalog dafür gibt.",
+
+        "ablauf_h": "Wie es abläuft",
+        "ablauf": [
+            {"h": "Aufnahme", "t": "Was liegt heute wo, was wird heute gesichert, "
+             "wie lange darf der Betrieb im Ernstfall stillstehen. Aus diesen drei "
+             "Antworten ergibt sich der Plan."},
+            {"h": "Einrichten und trennen", "t": "Wir richten Ziele, Zeitplan und "
+             "Meldeweg ein und trennen mindestens eine Kopie physisch vom Server. "
+             "Ab da läuft die Sicherung ohne Zutun."},
+            {"h": "Testen, nicht hoffen", "t": "Zum Abschluss spielen wir Daten "
+             "zurück und halten fest, wie lange es gedauert hat. Erst diese Zahl "
+             "macht aus einer Sicherung eine belastbare Zusage."},
+        ],
+
+        "fern_h": "3-2-1-Regel: was das heißt",
+        "fern_t": "Drei Kopien der Daten (das Original zählt mit), auf zwei "
+                  "verschiedenen Medien, eine davon außer Haus. Diese Regel ist alt "
+                  "und trotzdem selten umgesetzt, weil sie unbequem ist: Man kauft "
+                  "ein zweites Medium und man kümmert sich, dass eine Kopie das Haus "
+                  "verlässt. Wer sie umsetzt, überlebt gleichzeitig ein defektes "
+                  "Speichermedium, einen Serverraumbrand und einen "
+                  "Verschlüsselungsangriff. Wer nur eine Kopie neben dem Server hat, "
+                  "überlebt keinen dieser drei Fälle.",
+
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            {"q": "Wir sichern schon auf ein NAS. Reicht das?",
+             "a": "Nicht als einzige Kopie. Das NAS deckt den Ausfall einer "
+                  "Festplatte ab, nicht mehr. Fällt der Serverraum aus oder wird "
+                  "das NAS mitverschlüsselt, fehlt die entscheidende zweite Kopie "
+                  "außer Haus. Was wir dann meist ergänzen, ist ein zweites Ziel "
+                  "und ein regelmäßiger Test."},
+            {"q": "Wie lange dauert die Einrichtung?",
+             "a": "Ein einfacher Aufbau (ein Server, ein Ziel im Haus, ein Ziel "
+                  "außer Haus) steht an einem Tag. Kommen mehrere Standorte, eine "
+                  "Branchensoftware mit eigenem Sicherungsweg oder große "
+                  "Erstsicherungen dazu, werden es zwei bis fünf. Den Rahmen "
+                  "nennen wir im Angebot."},
+            {"q": "Was ist der Unterschied zur laufenden Betreuung?",
+             "a": "Die Einrichtung ist einmalig — sie beantwortet die Frage „wer "
+                  "richtet das ordentlich ein“. Die laufende Überwachung ab 49 € "
+                  "im Monat beantwortet die Frage „wer merkt es, wenn die "
+                  "Sicherung morgen fehlschlägt“. Beides gehört zusammen, aber "
+                  "die eine Zahl bedingt die andere nicht: Wir richten auch ein, "
+                  "wenn Sie danach selbst überwachen wollen."},
+            {"q": "Was ist mit DSGVO und Datenschutz?",
+             "a": "Die Sicherung ist Teil Ihres Verarbeitungsverzeichnisses: was "
+                  "wird wohin gesichert, wie lange aufbewahrt, wer greift zu. Wir "
+                  "geben Ihnen die Angaben, die dort hineingehören; wo Daten in "
+                  "einer Cloud liegen, achten wir auf ein Rechenzentrum in der EU."},
+        ],
+
+        "cta_h": "Datensicherung einrichten anfragen",
+        "cta_t": "Schreiben Sie kurz, welche Systeme heute laufen und wie lange der "
+                 "Betrieb im Ernstfall stillstehen darf. Antwort innerhalb von "
+                 "24 Stunden.",
+        "problem_h": "Worum geht es?",
+    },
+
+    "it-umzug": {
+        "titel": "IT-Umzug im Büro: Server, Netzwerk, Arbeitsplätze | WVM-IT",
+        "desc": "IT-Umzug ins neue Büro: Server, Netzwerk und Arbeitsplätze geplant, "
+                "abgebaut, aufgebaut, am ersten Arbeitstag getestet. Preis nach "
+                "Aufnahme. Jetzt anfragen.",
+        "h1": "IT-Umzug ins neue Büro — geplant statt improvisiert",
+        "nav": "IT-Umzug",
+        "kurz": "WVM-IT begleitet den IT-Umzug ins neue Büro: Server, Netzwerk und "
+                "Arbeitsplätze werden vorher aufgenommen, mit einer Checkliste "
+                "geplant, am Umzugstag abgebaut und aufgebaut und am ersten "
+                "Arbeitstag getestet. Bausteine aus dem Katalog: Arbeitsplatz "
+                "einrichten 190 € je Platz, Netzwerk und WLAN einrichten ab 890 €, "
+                "Einsatz vor Ort 120 € je Stunde zuzüglich Anfahrt. Der Gesamtpreis "
+                "hängt am Umfang und steht nach einer Aufnahme schriftlich fest.",
+        "intro": "Ein Büroumzug fällt meist auf denselben Tag wie ein Feiertag — nicht "
+                 "wörtlich, aber vom Gefühl her: Das Regal war schneller im Auto als "
+                 "in der Planung, und im neuen Haus ist die Internetleitung eine "
+                 "Woche zu spät. Der IT-Teil ist der, an dem am ersten Arbeitstag "
+                 "auffällt, ob geplant oder improvisiert wurde. Zwei bis vier Wochen "
+                 "Vorlauf reichen aus, damit am Umzugstag niemand mit einem HDMI-"
+                 "Kabel in der Hand sucht, wo die Steckdose ist.",
+
+        "leistungen_h": "IT-Umzug Checkliste: was gehört dazu",
+        "leistungen": [
+            "Vor dem Umzug: Vollsicherung aller Server und Arbeitsplätze — und ein "
+            "Test-Rückspielen, damit die Sicherung im Zweifel wirklich hilft",
+            "Leitungen am neuen Standort rechtzeitig bestellen: Internet, Telefon "
+            "und, wo nötig, eine feste IP-Adresse; sechs bis acht Wochen Vorlauf",
+            "Netzplan zeichnen: wo steht der Serverschrank, wo verlaufen Kabel, "
+            "wo hängen Zugangspunkte, wo Drucker und Terminals",
+            "Kartons beschriften: welches Gerät gehört zu welchem Arbeitsplatz, "
+            "welche Kabel und Peripherie gehen mit",
+            "Am Umzugstag: Server und Netzwerktechnik zuerst aufbauen, Arbeitsplätze "
+            "danach, jeder Rechner an derselben Buchse wie im Netzplan",
+            "Am ersten Arbeitstag: eine Runde durch den Betrieb, jeder Arbeitsplatz "
+            "einmal getestet — Drucker, Freigabe, E-Mail, Warenwirtschaft",
+            "Danach: die neue Dokumentation, damit ein späterer Umzug oder eine "
+            "Übernahme nicht wieder bei null anfängt",
+        ],
+        "nicht_h": "Warum hier kein Festpreis steht",
+        "nicht_t": "Weil er nicht zu halten wäre. Zwanzig Arbeitsplätze in einem "
+                   "Stockwerk sind etwas anderes als sechzig auf drei Etagen mit "
+                   "einem Serverumzug in der Nacht. Wir nennen den Preis schriftlich "
+                   "nach einer Aufnahme des alten und einer Besichtigung des neuen "
+                   "Standorts — mit den Bausteinen des Katalogs (Arbeitsplatz "
+                   "einrichten 190 € je Platz, Netzwerk ab 890 €, Vor-Ort-Einsatz "
+                   "120 € je Stunde zuzüglich Anfahrt). Die Aufnahme selbst rechnen "
+                   "wir nach Stunde ab; wird daraus ein Auftrag, wird sie angerechnet.",
+
+        "ablauf_h": "Wie es abläuft",
+        "ablauf": [
+            {"h": "Bestandsaufnahme und Planung", "t": "Vier bis sechs Wochen vor "
+             "dem Umzug: Aufnahme der bestehenden IT, Besichtigung des neuen "
+             "Standorts, Netzplan, Bestellungen für Leitungen und fehlende "
+             "Hardware, Checkliste je Arbeitsplatz."},
+            {"h": "Vollsicherung und Vorbereitung", "t": "In der Woche vor dem "
+             "Umzug: eine geprüfte Vollsicherung, Kartons und Kabel beschriften, "
+             "Reihenfolge festlegen. Am neuen Standort Kabel ziehen und Buchsen "
+             "beschriften, bevor die Möbel kommen."},
+            {"h": "Umzugstag und erster Arbeitstag", "t": "Am Tag: Server und "
+             "Netz zuerst, Arbeitsplätze danach. Am ersten Arbeitstag eine "
+             "Betreuungsrunde durch den Betrieb, Probleme werden vor Ort gelöst."},
+        ],
+
+        "fern_h": "Umzug in derselben Stadt, in derselben Region — oder weiter",
+        "fern_t": "In derselben Stadt lässt sich der Umzug meist an einem Tag "
+                  "erledigen, in der Region an einem Wochenende. Weiter entfernte "
+                  "Umzüge brauchen mehr Vorlauf und einen Termin für den Aufbau "
+                  "der Serverseite, weil eine unterbrochene Datensicherung kein "
+                  "Zustand ist, den man tagelang lässt. In allen Fällen bleibt der "
+                  "alte Standort so lange erreichbar, bis der neue getestet ist — "
+                  "der Rückweg ist Teil der Planung, nicht der Improvisation.",
+
+        "faq_h": "Häufige Fragen",
+        "faq": [
+            {"q": "Wie viel Vorlauf braucht ein IT-Umzug?",
+             "a": "Für die IT selbst reichen zwei bis vier Wochen; die kritische "
+                  "Frist ist die Bestellung von Internet und Telefon am neuen "
+                  "Standort — sechs bis acht Wochen. Werden diese Leitungen zu "
+                  "spät bestellt, hilft auch die beste Planung nicht."},
+            {"q": "Können wir am Wochenende umziehen?",
+             "a": "In vielen Fällen ja. Ob wir das anbieten, hängt am Umfang und "
+                  "an den Terminen; das klären wir vor dem Angebot mit Ihnen."},
+            {"q": "Was ist mit Servern, die 24/7 laufen müssen?",
+             "a": "Dann bauen wir am neuen Standort einen Zweiten auf, ziehen die "
+                  "Sicherung um und schalten den Betrieb in einem geplanten Fenster "
+                  "um — der alte Server bleibt bis zur Bestätigung erreichbar. Das "
+                  "kostet mehr als ein einfacher Umzug, verhindert aber einen "
+                  "Stillstand."},
+            {"q": "Was ist mit der Datensicherung während des Umzugs?",
+             "a": "Vor dem Umzug läuft eine geprüfte Vollsicherung, in der "
+                  "Umzugsnacht selbst ist die Sicherung ausgesetzt — sonst würde sie "
+                  "Daten sichern, die gerade nicht existieren. Am Zieltag beginnt "
+                  "sofort wieder ein neuer Sicherungszyklus."},
+        ],
+
+        "cta_h": "IT-Umzug anfragen",
+        "cta_t": "Schreiben Sie kurz, wie viele Arbeitsplätze umziehen, ob ein "
+                 "Server dabei ist und wann der Umzug geplant ist. Antwort "
+                 "innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 }

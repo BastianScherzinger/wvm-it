@@ -7,6 +7,62 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 24.09.2026 — Runde 2: eine Seite für größere Betriebe, zwei fürs Einrichten
+
+Aufbauend auf Runde 1 vom selben Tag, auf Zweig `seo/2026-09-24-runde2` in
+einem eigenen Arbeitsbaum, weil der Overview den Hauptordner mit `.overview-arbeitet`
+belegt. Der Zweig baut auf `origin/main` auf.
+
+Kern der Runde: **drei neue Seiten** und mehrere gezielte Snippet-Änderungen,
+alle aus echten Suchanfragen (GSC 25.08.–21.09.2026) und Google-Suchvorschlägen
+(`gl=at`) begründet. Keine einzige Zahl außerhalb von `ANGEBOT_GROUPS`.
+
+* **`/leistungen/it-betreuung-groessere-betriebe/`** (DE/EN/RO) — für 20 bis 200
+  Arbeitsplätze, mit Rechenbeispiel aus der Stufe „gross" (30 × 29 € + 2 × 89 €
+  + 49 € = 1.097 €/Monat), einer Abgrenzung zu `edv-it-betreuung` im ersten
+  Absatz und einer Co-Betreuung neben einer internen IT. Keine SLA-Zusagen,
+  keine Referenzen, keine Zertifikate.
+* **`/einrichten/datensicherung/`** (DE/EN/RO) — einmal einrichten. Preis auf
+  Anfrage (wie Server, Loxone), weil der Katalog keinen einmaligen
+  Einrichtungspreis nennt; die laufende Überwachung ab 49 €/Monat steht im
+  Text, der Pflicht-Block `id="laufend"` zeigt auf `/leistungen/server-datensicherung/`.
+* **`/einrichten/it-umzug/`** (DE/EN/RO) — Büroumzug (Server, Netzwerk,
+  Arbeitsplätze) mit Checkliste als H2 auf der Seite. Bausteine aus dem
+  Katalog: Arbeitsplatz 190 €, Netzwerk ab 890 €, Vor-Ort 120 €/Std.
+  Abgrenzung `id="laufend"` auf `edv-it-betreuung`.
+
+Dazu **Snippets nachgezogen** (Titel/Description in DE/EN/RO):
+* `/leistungen/edv-it-betreuung/` (EN/RO): „IT support for small businesses“,
+  „Administrare IT pentru firme“ — die Begriffe, unter denen wirklich gesucht wird.
+* `/branchen/arztpraxen-therapie/` (DE/EN/RO): Titel von „IT-Sicherheitscheck"
+  auf „IT-Betreuung für Arzt- und Zahnarztpraxen" — passt zur Suche „edv/it betreuung arztpraxis" (GSC Pos. 76).
+* `/it-service/wels/` und `/it-service/linz/`: neue Muster nach Salzburg-Vorbild
+  („IT-Betreuung Wels: EDV-Service ab 29 €/Monat" / „IT-Dienstleister Linz").
+* `/einrichten/pc-tausch/` (DE/EN/RO): Titel enthält jetzt „einrichten lassen“,
+  zwei neue FAQ zur Beschaffung — statt einer eigenen Hardware-Seite.
+* `/aktuelles/wie-viele-arbeitsplaetze-eigener-server/`: neuer Meta-Titel
+  „Brauche ich einen Server? 3 Fragen vor dem Kauf".
+* `/wissen/raid/`: eigener H1 mit „Festplatten im Verbund – und warum das kein Backup ist"
+  (neues Feld `h1` mit Fallback auf `titel`, damit der Breadcrumb kurz bleibt).
+
+**Fußzeile:** Auf jeder Seite in allen drei Sprachen ein sichtbarer Link
+**„Website: Webagentur Scherzinger"** (`c.webagentur_url`) unter „Unternehmen",
+normaler Link ohne `nofollow`.
+
+Was **bewusst nicht gebaut** wurde: keine eigene Kleinbetriebs-Seite (würde
+`edv-it-betreuung` kannibalisieren), keine eigene Hardware-Beschaffungsseite,
+keine zweite Checkliste zum IT-Umzug in `/checkliste/`, keine Stadtseiten für
+Wien/Graz/Berlin/Hamburg ohne echten lokalen Inhalt, keine Zusagen zu
+Abrechnungstakt, Privatkunden, Vor-Ort in Deutschland, UID, Kammer oder
+Wochenendumzügen — bis Florin sie bestätigt hat (offen Nr. 24 und Runde-2-Block
+in `doku/80-AUFGABEN.md`).
+
+**Zahlen:** 213 URLs (vorher 204, +9 dreisprachige neue Seiten), 394 Tests
+grün, `pruefe_seite` grün, `pruefe_sicherheit` grün, `stand_schreiben --pruefen`
+grün. Noch nicht auf `main`, noch nicht deployt.
+
+---
+
 ## 24.09.2026 — Kunden-Offensive: eine Seite für den kleinen Auftrag
 
 Die Search Console sagte etwas anderes, als die Frage vermuten ließ. Es gab

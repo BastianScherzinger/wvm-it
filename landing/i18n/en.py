@@ -366,6 +366,7 @@ PACK = {
         "l_edv": "IT & security", "l_web": "Websites & AI",
         "col_unternehmen": "Company",
         "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_alle": "All services", "u_shop": "Shop", "u_referenzen": "Case studies", "u_faq": "FAQ",
+        "u_webagentur": "Website: Webagentur Scherzinger",
         "impressum_ph": "The legal notice will appear here as soon as the company details are on file.",
         "datenschutz_ph": "The privacy policy will appear here as soon as it has been finalised.",
         "u_ueber": "About us", "col_recht": "Legal",

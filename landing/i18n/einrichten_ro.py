@@ -100,7 +100,7 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "pc-tausch": {
-        "titel": "Înlocuirea unui PC vechi: transfer de date 190 € | WVM-IT",
+        "titel": "Înlocuire și configurare PC: 190 € per aparat | WVM-IT",
         "desc": "Calculator nou, toate datele vin cu el: fișiere, e-mailuri, date de "
                 "acces, programe. 190 € preț fix per aparat, de regulă la distanță. "
                 "Cereți o ofertă.",
@@ -183,6 +183,16 @@ EINRICHTEN = {
                   "aproximativ șase ani rareori mai merită, pentru că atunci și sursa "
                   "și ventilatoarele sunt la capăt. Vă spunem ce am face noi în locul "
                   "dumneavoastră."},
+            {"q": "Puteți achiziționa și aparatele noi pentru noi?",
+             "a": "Da. Clarificăm ce este nevoie, dăm ofertă pentru aparate, le "
+                  "configurăm la prețul fix de 190 € pe stație și transferăm datele "
+                  "ca mai sus. Prețul aparatelor rezultă din cerințele reale — ce "
+                  "urmează să ruleze pe ele decide prețul rezonabil mai mult decât "
+                  "orice recomandare la nimereală."},
+            {"q": "Cât costă aparatul propriu-zis?",
+             "a": "La cerere. Facem o ofertă pe măsura nevoii — fără plăci grafice "
+                  "pentru montaj video, când sarcina este Excel și Outlook. "
+                  "Configurarea pe aparat rămâne la 190 €."},
         ],
 
         "cta_h": "Solicitați schimbarea aparatului",
@@ -704,6 +714,210 @@ EINRICHTEN = {
         "cta_h": "Solicitați pentru instalația Loxone",
         "cta_t": "Scrieți pe scurt ce este montat și ce nu mai funcționează. Răspuns în "
                  "24 de ore.",
+        "problem_h": "Despre ce este vorba?",
+    },
+
+    # ── Runda 2 (24.09.2026) ────────────────────────────────────────────────
+    "datensicherung": {
+        "titel": "Copie de siguranță: automată, verificată | WVM-IT",
+        "desc": "Configurare copie de siguranță: ce, unde, cât de des, cu test "
+                "real de restaurare. Preț la cerere; monitorizare de la "
+                "49 €/lună. Solicitați acum.",
+        "h1": "Copie de siguranță configurată să funcționeze la nevoie",
+        "nav": "Copie de siguranță",
+        "kurz": "WVM-IT configurează copia de siguranță pentru firme astfel încât să "
+                "fie utilă la nevoie: clarificăm mai întâi ce se salvează, unde și "
+                "cât de des; apoi regula 3-2-1 (trei copii, două medii, una în "
+                "afara sediului) și un test real de restaurare. Prețul configurării "
+                "îl comunicăm după o evaluare, deoarece depinde de volumul de date, "
+                "sistemele existente și cerințe. Monitorizarea continuă începe de "
+                "la 49 € pe lună.",
+        "intro": "Aproape orice firmă are o copie de siguranță. Mult mai puține firme "
+                 "știu când a rulat ultima oară, iar cele mai puține au încercat "
+                 "vreodată să recupereze ceva din ea. Exact această lacună o închide "
+                 "o copie de siguranță configurată corect: spune dinainte ce poate, "
+                 "se anunță când eșuează și își dovedește promisiunile cu o "
+                 "restaurare măsurată.",
+
+        "leistungen_h": "Ce include configurarea",
+        "leistungen": [
+            "Evaluare: ce date trebuie să poată recupera firma în caz de incident "
+            "— fișiere, ERP, e-mail, baze de date, configurări",
+            "Destinații: NAS în sediu, un al doilea mediu în afara sediului, cloud "
+            "în plus — regula 3-2-1 ca fundament, nu ca slogan",
+            "Program: zilnic, în afara orelor de lucru; de mai multe ori pe zi "
+            "pentru sistemele folosite continuu",
+            "Separare de server: o copie care stă lângă server nu supraviețuiește "
+            "unui incendiu în camera serverelor",
+            "Test de restaurare: un fișier real, un folder real, o bază de date "
+            "reală — restaurate și cronometrate",
+            "Notificare: cine află cum, dacă o salvare eșuează",
+            "Documentație: ce se salvează unde, cât timp se păstrează, cine accesează",
+        ],
+        "nicht_h": "De ce nu există un preț fix aici",
+        "nicht_t": "Pentru că nu ar rezista. Dacă o firmă salvează 200 GB de fișiere "
+                   "sau oglindește 8 TB de baze de date pe un al doilea sediu — este "
+                   "o diferență de zile și o diferență de echipamente. Vă comunicăm "
+                   "prețul în scris după evaluare — înainte de orice intervenție, "
+                   "iar apoi rămâne valabil. Evaluarea în sine se facturează la oră "
+                   "(95 € la distanță, 120 € la fața locului plus deplasare); dacă "
+                   "se ajunge la comandă, evaluarea se scade. Monitorizarea "
+                   "continuă a copiei configurate începe de la 49 € pe lună.",
+
+        "ablauf_h": "Cum se desfășoară",
+        "ablauf": [
+            {"h": "Evaluare", "t": "Ce se află unde astăzi, ce se salvează astăzi, "
+             "cât timp poate firma să nu funcționeze la nevoie. Din aceste trei "
+             "răspunsuri rezultă planul."},
+            {"h": "Configurare și separare", "t": "Setăm destinațiile, programul "
+             "și notificarea și separăm fizic cel puțin o copie de server. De "
+             "atunci copierea rulează fără intervenție."},
+            {"h": "Testați, nu sperați", "t": "La final restaurăm date și "
+             "consemnăm cât a durat. Doar acest număr transformă o copie de "
+             "siguranță într-o promisiune reală."},
+        ],
+
+        "fern_h": "Regula 3-2-1: ce înseamnă",
+        "fern_t": "Trei copii ale datelor (originalul se numără), pe două medii "
+                  "diferite, una dintre ele în afara sediului. Regula este veche și "
+                  "totuși rar respectată, pentru că este incomodă: cumperi un al "
+                  "doilea mediu și te asiguri că o copie pleacă din clădire. Cine o "
+                  "aplică supraviețuiește simultan defectării unui mediu de stocare, "
+                  "unui incendiu în camera serverelor și unui atac cu criptare. "
+                  "Cine are o singură copie lângă server nu supraviețuiește niciunuia.",
+
+        "faq_h": "Întrebări frecvente",
+        "faq": [
+            {"q": "Deja salvăm pe un NAS. Este suficient?",
+             "a": "Nu ca singură copie. Un NAS acoperă defecțiunea unui disc, atât. "
+                  "Dacă cade camera serverelor sau NAS-ul este criptat împreună cu "
+                  "serverul, lipsește copia decisivă din afara sediului. Ce "
+                  "completăm de obicei este o a doua destinație și un test regulat."},
+            {"q": "Cât durează configurarea?",
+             "a": "O configurare simplă (un server, o destinație în sediu, o "
+                  "destinație în afara sediului) se face într-o zi. Dacă sunt mai "
+                  "multe sedii, un software de branșă cu propria cale de salvare "
+                  "sau salvări inițiale mari, durează două până la cinci zile. "
+                  "Cadrul îl comunicăm în ofertă."},
+            {"q": "Care este diferența față de mentenanța curentă?",
+             "a": "Configurarea este o singură dată — răspunde la întrebarea „cine "
+                  "o configurează corect”. Monitorizarea continuă de la 49 € pe "
+                  "lună răspunde la întrebarea „cine observă când salvarea eșuează "
+                  "mâine”. Cele două se completează, dar nu se condiționează: "
+                  "configurăm și dacă doriți să monitorizați dumneavoastră."},
+            {"q": "Cum stă situația cu GDPR și protecția datelor?",
+             "a": "Copia de siguranță face parte din registrul activităților de "
+                  "prelucrare: ce se salvează unde, cât timp se păstrează, cine "
+                  "accesează. Vă oferim datele care trebuie să figureze acolo; "
+                  "acolo unde datele stau într-un cloud, avem grijă să fie un "
+                  "centru de date în UE."},
+        ],
+
+        "cta_h": "Solicitați configurarea copiei de siguranță",
+        "cta_t": "Scrieți pe scurt ce sisteme funcționează astăzi și cât timp "
+                 "poate firma să stea la nevoie. Răspuns în 24 de ore.",
+        "problem_h": "Despre ce este vorba?",
+    },
+
+    "it-umzug": {
+        "titel": "Mutare IT de birou: server, rețea, stații de lucru | WVM-IT",
+        "desc": "Mutare IT în noul birou: server, rețea și stații de lucru "
+                "planificate, demontate, montate și testate în prima zi de lucru. "
+                "Preț la cerere. Solicitați acum.",
+        "h1": "Mutare IT în noul birou — planificată, nu improvizată",
+        "nav": "Mutare IT",
+        "kurz": "WVM-IT însoțește mutarea IT în noul birou: serverul, rețeaua și "
+                "stațiile de lucru sunt evaluate în prealabil, planificate cu o "
+                "listă, demontate și montate în ziua mutării și testate în prima "
+                "zi de lucru. Componente din catalog: configurare stație 190 € pe "
+                "post, configurare rețea și Wi-Fi de la 890 €, intervenție la "
+                "fața locului 120 € pe oră plus deplasare. Prețul total depinde "
+                "de amploare și este comunicat în scris după evaluare.",
+        "intro": "O mutare de birou pică de obicei în aceeași zi cu o sărbătoare — "
+                 "nu la propriu, dar așa se simte: rafturile au ajuns mai repede în "
+                 "camion decât în plan, iar la noul sediu linia de internet vine cu "
+                 "o săptămână întârziere. Partea IT este cea în care în prima zi de "
+                 "lucru se vede dacă s-a planificat sau s-a improvizat. Două până "
+                 "la patru săptămâni de pregătire sunt suficiente pentru ca nimeni "
+                 "să nu caute în ziua mutării unde este priza cu un cablu HDMI în "
+                 "mână.",
+
+        "leistungen_h": "Listă mutare IT: ce include",
+        "leistungen": [
+            "Înainte de mutare: o copie completă a fiecărui server și fiecărei "
+            "stații — plus un test de restaurare, ca să ajute la nevoie",
+            "Comandați liniile la noul sediu la timp: internet, telefon și, unde "
+            "este cazul, o adresă IP fixă; șase până la opt săptămâni",
+            "Desenați planul rețelei: unde stă dulapul de server, cum trec "
+            "cablurile, unde sunt punctele de acces, unde imprimantele și terminalele",
+            "Etichetați cutiile: ce echipament ține de ce stație, ce cabluri și "
+            "periferice merg cu el",
+            "În ziua mutării: server și tehnică de rețea mai întâi, stații apoi, "
+            "fiecare calculator la aceeași priză ca în planul rețelei",
+            "În prima zi de lucru: o tură prin birou, fiecare stație testată o "
+            "dată — imprimantă, partajări, e-mail, ERP",
+            "După aceea: documentația nouă, ca o mutare sau o preluare ulterioară "
+            "să nu înceapă de la zero",
+        ],
+        "nicht_h": "De ce nu există un preț fix aici",
+        "nicht_t": "Pentru că nu ar rezista. Douăzeci de stații pe un etaj sunt "
+                   "altceva decât șaizeci pe trei etaje cu mutarea serverului "
+                   "peste noapte. Comunicăm prețul în scris după evaluarea sediului "
+                   "vechi și inspecția celui nou — cu componentele catalogului "
+                   "(configurare stație 190 € pe post, rețea de la 890 €, "
+                   "intervenție la fața locului 120 € pe oră plus deplasare). "
+                   "Evaluarea în sine se facturează la oră; dacă se ajunge la "
+                   "comandă, se scade.",
+
+        "ablauf_h": "Cum se desfășoară",
+        "ablauf": [
+            {"h": "Evaluare și planificare", "t": "Cu patru–șase săptămâni "
+             "înainte de mutare: evaluarea IT-ului existent, inspecția noului "
+             "sediu, planul rețelei, comenzi pentru linii și echipamente lipsă, "
+             "listă pe stație."},
+            {"h": "Copie completă și pregătire", "t": "În săptămâna dinaintea "
+             "mutării: o copie completă verificată, etichetarea cutiilor și a "
+             "cablurilor, stabilirea ordinii. La noul sediu se trag cablurile și "
+             "se etichetează prizele înainte să vină mobila."},
+            {"h": "Ziua mutării și prima zi de lucru", "t": "În zi: server și "
+             "rețea mai întâi, stațiile apoi. În prima zi de lucru o tură de "
+             "asistență prin birou, problemele se rezolvă la fața locului."},
+        ],
+
+        "fern_h": "Mutare în același oraș, în aceeași regiune — sau mai departe",
+        "fern_t": "În același oraș mutarea intră de obicei într-o zi, în regiune "
+                  "într-un weekend. Mutările la distanță mai mare necesită mai "
+                  "multă pregătire și o fereastră dedicată pentru refacerea "
+                  "serverului, pentru că o salvare întreruptă nu este o stare pe "
+                  "care o lași zile întregi. În toate cazurile sediul vechi rămâne "
+                  "accesibil până la testarea celui nou — drumul de întoarcere face "
+                  "parte din plan, nu din improvizație.",
+
+        "faq_h": "Întrebări frecvente",
+        "faq": [
+            {"q": "Cât timp de pregătire cere o mutare IT?",
+             "a": "Pentru IT-ul propriu-zis sunt suficiente două-patru săptămâni; "
+                  "termenul critic este comanda de internet și telefon la noul "
+                  "sediu — șase până la opt săptămâni. Dacă acele linii sunt "
+                  "comandate prea târziu, nici cel mai bun plan nu ajută."},
+            {"q": "Ne putem muta la sfârșit de săptămână?",
+             "a": "În multe cazuri da. Dacă îl oferim depinde de amploare și de "
+                  "date; clarificăm asta cu dumneavoastră înainte de ofertă."},
+            {"q": "Ce se întâmplă cu serverele care trebuie să meargă 24/7?",
+             "a": "Atunci construim un al doilea server la noul sediu, mutăm "
+                  "salvarea și comutăm activitatea într-o fereastră planificată — "
+                  "serverul vechi rămâne accesibil până la confirmare. Costă mai "
+                  "mult decât o mutare simplă, dar previne oprirea activității."},
+            {"q": "Ce se întâmplă cu copiile de siguranță în timpul mutării?",
+             "a": "Înainte de mutare rulează o copie completă verificată; în "
+                  "noaptea mutării salvarea este suspendată — altfel ar salva "
+                  "date care nu există în acel moment. În ziua țintă începe "
+                  "imediat un nou ciclu."},
+        ],
+
+        "cta_h": "Solicitați mutarea IT",
+        "cta_t": "Scrieți pe scurt câte stații se mută, dacă este implicat un "
+                 "server și când este planificată mutarea. Răspuns în 24 de ore.",
         "problem_h": "Despre ce este vorba?",
     },
 }
