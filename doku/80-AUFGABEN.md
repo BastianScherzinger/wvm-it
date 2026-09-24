@@ -415,4 +415,5 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG132 | Ein grüner Test sichert eine Auslieferung, die es nicht gibt | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG133 | RE03 ist nachgeprüft ein Fehlbefund und steht weiter als „trotzdem nachsehen" | notizen | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
 | EIG134 | Das Ortsdatum steht auf dem 07.09., der Kommentar darüber begründet den 04.09. | technik | offen | bei einer anderen betreuten Seite aufgefallen am 12.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-12 |
+| EIG135 | Impressum verbietet gewerbliche Kopien, `robots.txt` lädt KI-Trainings-Crawler ausdrücklich ein | inhalte | offen | bei einer anderen betreuten Seite aufgefallen am 24.09.2026. **An dieser Seite noch nicht geprüft.** | 2026-09-24 |
 <!-- eigenepunkte:ende -->
