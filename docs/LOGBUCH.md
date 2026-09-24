@@ -52,6 +52,8 @@ Sicherung der Anfrage und bei der Reichweitenmessung (Summen je Anliegen).
 Schema und Kontaktseite zusammen. Und `templates/beitrag.html` zeigte in jedem
 Ratgeber mit Einrichtung die Festpreis-Karte zweimal.
 
+**Live-Abnahme am selben Tag.** Gemergt erst, als Overview-Paket 331 (VL15) den Arbeitsordner wieder freigab — es lag bis 10:09 auf `sofort/2026-09-24-vl15` und wurde in der Gegenprüfung abgelehnt. Merge-Commit `25ca39c` auf `main`, auf main noch einmal `pruefe_seite` (204 URLs, alles in Ordnung), 390 Tests grün, `stand_schreiben --pruefen` aktuell. Railway-Deploy `13ba51a7-0a78-4b9f-afa7-18f417f7099d` nach 46 Sekunden SUCCESS. Live: alle 204 URLs aus dem Sitemap-Index plus `/`, `/sitemap.xml`, `/robots.txt`, `/llms.txt` mit 200, keine 5xx; `/it-hilfe/` in drei Sprachen und die drei Ratgeber stehen in der Sitemap, tragen je eine `<h1>` und JSON-LD, `llms.txt` führt die Einzelhilfe. IndexNow: 204 URLs gemeldet. Google bleibt Handarbeit: Sitemap neu einreichen und die neuen Seiten einzeln beantragen (`doku/40-SEO.md`, Offen Nr. 14).
+
 **Merksatz:** Eine Analyse, die „unbelegt" sagt, hat vielleicht nur an der
 falschen Stelle gesucht. Erst nachsehen, dann löschen.
 
