@@ -279,3 +279,23 @@ if not DEBUG:
     # parkt, würde ein Eintrag in der Preload-Liste sie dauerhaft unerreichbar
     # machen — und aus dieser Liste kommt man nur schwer wieder heraus.
     SECURE_HSTS_PRELOAD = os.environ.get("SECURE_HSTS_PRELOAD", "False").strip().lower() in ("1", "true", "yes")
+
+# ── Fehler-Monitoring (VL19) ─────────────────────────────────────────────────
+# Serverfehler gehen an Sentry, sobald SENTRY_DSN im Railway-Dienst gesetzt ist.
+# Ohne `sentry-sdk`: landing/sentry.py spricht das Protokoll selbst und meldet
+# nichts Personenbezogenes (Begründung dort). Leer = aus, Logging wie bisher.
+#
+# Die Konsole steht mit drin, weil ein Handler an der Wurzel Pythons
+# Notausgabe (logging.lastResort) abschaltet — ohne sie verschwänden die
+# Warnungen der eigenen Module aus dem Railway-Log, sobald Sentry an ist.
+SENTRY_DSN = os.environ.get("SENTRY_DSN", "").strip()
+if SENTRY_DSN:
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "konsole": {"class": "logging.StreamHandler", "level": "WARNING"},
+            "sentry": {"class": "landing.sentry.SentryHandler", "dsn": SENTRY_DSN},
+        },
+        "root": {"handlers": ["konsole", "sentry"], "level": "WARNING"},
+    }
