@@ -1,7 +1,10 @@
 {% comment %}
 Fuß + Handy-Leiste (Design B1, docs/DESIGN-B1-2026-09-25.md §3.1).
 
-Eingebunden von base.html (und ab Paket 4 von angebot.html). Alle Links, die
+Eingebunden von base.html und angebot.html. angebot.html übergibt
+`mobilebar_ziel`/`mobilebar_text`: Dort führt der Hauptknopf der Handy-Leiste
+zum Konfigurator statt zum Rückruf. Die Leiste nutzt die kurze Beschriftung
+`t.ways.callback` (§3.1), damit sie auch auf EN/RO einzeilig bleibt. Alle Links, die
 heute im Fuß stehen, bleiben — nur neu geordnet in sechs Spalten. `foot-nav`
 muss vor dem ersten `href="/einrichten/"` stehen (Test).
 {% endcomment %}
@@ -89,6 +92,7 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
 <div class="mobilebar">
   {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
   {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
-  {% if request.resolver_match.url_name == "index" %}<a class="mobilebar-cta" href="#rueckruf">{{ t.rueckruf.submit|safe }}</a>
-  {% else %}<a class="mobilebar-cta" href="{% url 'kontakt' %}" data-rueckruf>{{ t.rueckruf.submit|safe }}</a>{% endif %}
+  {% if mobilebar_ziel %}<a class="mobilebar-cta" href="{{ mobilebar_ziel }}">{{ mobilebar_text|safe }}</a>
+  {% elif request.resolver_match.url_name == "index" %}<a class="mobilebar-cta" href="#rueckruf">{{ t.ways.callback|safe }}</a>
+  {% else %}<a class="mobilebar-cta" href="{% url 'kontakt' %}" data-rueckruf>{{ t.ways.callback|safe }}</a>{% endif %}
 </div>

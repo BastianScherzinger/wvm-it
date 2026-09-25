@@ -120,50 +120,48 @@ class ErrCodeKontrastTest(SimpleTestCase):
     """Die grosse Zahl auf der 404- und der 500-Seite (`BF18`, 12.09.2026).
 
     Der Fall, den `TokenKontrastTest` bauartbedingt nicht findet: Die Farbe war
-    tadellos — `--accent` auf dunklem Grund hält 8,41:1 —, aber die Regel setzte
-    zusätzlich `opacity:.5`. Damit kam effektiv #755a24 an, und das sind **2,94:1**:
-    zu wenig selbst für die 3:1, die grossem Text zugestanden werden. Am 12.09.2026
-    war das ausweislich der Messung das einzige beanstandete Element der Seite.
+    tadellos, aber die Regel setzte zusätzlich `opacity:.5`. Damit kam effektiv
+    eine andere, blassere Farbe an (damals **2,94:1**). Geprüft wird deshalb
+    nicht das Token, sondern was nach der Deckkraft übrig bleibt.
 
-    Geprüft wird deshalb nicht das Token, sondern was nach der Deckkraft übrig
-    bleibt. Der Grund ist `--bg` der **dunklen** Fassung: Beide Vorlagen setzen die
-    Zahl in einen Kopf mit `class="sp-top on-dark"`, und `.sp-top` legt darüber nur
-    einen Goldschimmer bei 82 % Breite — die Zahl steht links.
+    Design B1 (Abnahme 25.09.2026, docs/DESIGN-B1-2026-09-25.md §3.2): Die
+    Seitenköpfe sind jetzt **hell** (`class="sp-top"` auf Papier `--bg-2`), die
+    Zahl steht in `--accent` ohne Deckkraft. Gerechnet wird deshalb gegen die
+    helle Fassung aus `:root` — #0067a0 auf #eef1f3 hält 5,37:1.
     """
 
     def setUp(self):
         text = CSS.read_text(encoding="utf-8")
-        # `.on-dark` belegt nur die Token neu, die dunkel anders sein müssen —
-        # `--accent` steht **nur** im `:root` und gilt in beiden Fassungen. Wer
-        # hier allein den dunklen Block liest, findet die Farbe der Zahl nicht.
-        i_on = text.index(".on-dark{")
-        self.dunkel = {**_tokens(text[:i_on]), **_tokens(text[i_on:i_on + 900])}
+        i_root = text.index(":root{")
+        self.hell = _tokens(text[i_root:text.index(".on-dark{")])
         self.regeln = re.findall(r"\.err-code\s*\{([^}]*)\}", text)
 
-    def test_die_fehlerzahl_steht_auf_dunkel_und_haelt_45_zu_1(self):
+    def test_die_fehlerzahl_steht_auf_papier_und_haelt_45_zu_1(self):
         self.assertTrue(self.regeln, ".err-code ist aus style.css verschwunden")
         for regel in self.regeln:
             farbe = re.search(r"color:\s*var\(--([a-z0-9-]+)\)", regel)
             self.assertIsNotNone(farbe, f".err-code ohne Token als Farbe: {regel!r}")
             deckung = re.search(r"(?:^|;)\s*opacity:\s*([0-9.]+)", regel)
             deckkraft = float(deckung.group(1)) if deckung else 1.0
-            vorne = _gemischt(self.dunkel[farbe.group(1)], self.dunkel["bg"], deckkraft)
-            wert = kontrast(vorne, self.dunkel["bg"])
-            self.assertGreaterEqual(
-                round(wert, 2), MINDEST,
-                f".err-code kommt als {vorne} an (Deckkraft {deckkraft}) und hält "
-                f"nur {wert:.2f}:1 auf --bg ({self.dunkel['bg']})")
+            for grund in ("bg", "bg-2"):
+                vorne = _gemischt(self.hell[farbe.group(1)], self.hell[grund], deckkraft)
+                wert = kontrast(vorne, self.hell[grund])
+                with self.subTest(grund=grund):
+                    self.assertGreaterEqual(
+                        round(wert, 2), MINDEST,
+                        f".err-code kommt als {vorne} an (Deckkraft {deckkraft}) und hält "
+                        f"nur {wert:.2f}:1 auf --{grund} ({self.hell[grund]})")
 
-    def test_beide_fehlerseiten_stellen_die_zahl_auf_dunklen_grund(self):
-        """Die Rechnung oben gilt nur, solange der Kopf dunkel ist. Wechselt eine
-        der beiden Vorlagen auf hell, ist `--accent` als Text dort 2,17:1 — und
-        die Prüfung oben würde das nicht bemerken, weil sie den Grund kennt und
-        nicht nachsieht."""
+    def test_beide_fehlerseiten_stellen_die_zahl_in_den_hellen_kopf(self):
+        """Die Rechnung oben gilt nur, solange der Kopf hell ist. Wechselt eine
+        der beiden Vorlagen zurück auf `on-dark`, stünde die Zahl auf einem
+        anderen Grund — dann muss diese Prüfung mitgezogen werden."""
         for vorlage in ("templates/404.html", "templates/500.html"):
             inhalt = Path(vorlage).read_text(encoding="utf-8")
             with self.subTest(vorlage=vorlage):
                 self.assertIn("err-code", inhalt)
-                self.assertIn('class="sp-top on-dark"', inhalt)
+                self.assertIn('class="sp-top"', inhalt)
+                self.assertNotIn("on-dark", inhalt)
 
     def test_die_mischung_stimmt(self):
         """Gegenprobe: Halbe Deckkraft zwischen Weiss und Schwarz ergibt die
@@ -172,9 +170,9 @@ class ErrCodeKontrastTest(SimpleTestCase):
         self.assertEqual(_gemischt("#d8a43d", "#12100c", 1.0), "#d8a43d")
 
 
-# Regeln, die `--accent` als `color` setzen dürfen. Beide tragen damit keinen
-# Text auf hellem Grund: `.err-code` steht im `on-dark`-Kopf der Fehlerseiten
-# (nachgerechnet von `ErrCodeKontrastTest`), `.rb-cat-ic` ist der Rahmen um ein
+# Regeln, die `--accent` als `color` setzen dürfen. `.err-code` ist die grosse
+# Fehlerzahl im hellen Kopf der Fehlerseiten; seit B1 ist `--accent` dort
+# #0067a0 und hält als Text 5,37:1 (nachgerechnet von `ErrCodeKontrastTest`), `.rb-cat-ic` ist der Rahmen um ein
 # Symbol — eine Grafik, der die WCAG 3:1 zugesteht, und `color` vererbt dort nur
 # an das `currentColor` des SVG.
 # Design B1 (25.09.2026, Paket 3): `.faq-ic` ist ein reines Symbol (das Plus

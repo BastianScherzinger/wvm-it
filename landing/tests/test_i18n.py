@@ -134,6 +134,8 @@ B1_NEUE_SCHLUESSEL = (
     "start.anfrage_warum", "start.web_h", "start.angebot_h", "start.angebot_lead",
     "start.angebot_einzeln", "start.region_h", "start.branchen_link", "start.regionen_link",
     "start.faq_frage",
+    # Abnahme (25.09.2026):
+    "kontakt_seite.anschrift", "start.einrichten_lead", "start.einrichten_fuss",
     "blick.h", "blick.status", "blick.sp1", "blick.sp2", "blick.sp3",
     "wissen.werkzeuge_h", "wissen.vergleiche_h", "wissen.ratgeber_h", "wissen.glossar_nav",
     "wissen.lead",

@@ -71,9 +71,11 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
             </fieldset>
             <div class="of-grid rr-fuss-grid">
               <div class="field">
-                <label class="fld-l" for="hero-rr-anliegen">{{ t.rueckruf.anliegen|safe }}</label>
+                {% comment %}Abnahme 25.09.2026: Die Frage steht als erste Auswahlzeile im Feld;
+                     das Label bleibt für Screenreader (sr-only), spart aber eine Zeile.{% endcomment %}
+                <label class="fld-l sr-only" for="hero-rr-anliegen">{{ t.rueckruf.anliegen|safe }}</label>
                 <select class="fld" id="hero-rr-anliegen" name="anliegen">
-                  <option value="">{{ t.rueckruf.anliegen_leer|safe }}</option>
+                  <option value="">{{ t.rueckruf.anliegen|safe }}</option>
                   <option value="einzel">{{ t.rueckruf.anliegen_einzel|safe }}</option>
                   <option value="einrichtung">{{ t.rueckruf.anliegen_einrichtung|safe }}</option>
                   <option value="betreuung">{{ t.rueckruf.anliegen_betreuung|safe }}</option>
@@ -314,7 +316,6 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           </div>
 
           <div class="kr-start-fuss">
-            <p class="klein">{{ t.it_stufen.foot|safe }}</p>
             <div class="kr-start-fuss-knoepfe">
               <button class="btn" type="submit">{{ t.tool.rechner_submit|safe }}</button>
               <a class="btn btn-ghost" href="#rueckruf">{{ t.start.rechner_rueckruf|safe }}</a>
@@ -338,7 +339,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.festpreise|safe }}</p>
         <h2 class="section-t">{{ t.start.einrichten_h|safe }}</h2>
-        <p class="section-lead">{{ t.einrichten_hub.intro|safe }}</p>
+        <p class="section-lead">{{ t.start.einrichten_lead|safe }}</p>
       </header>
       <div class="preisliste" data-reveal>
         <div class="preisspalte">
@@ -363,6 +364,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           </ul>
         </div>
       </div>
+      <p class="pt-foot">{{ t.start.einrichten_fuss|safe }}</p>
       <p class="lk-alle"><a class="textlink" href="{% url 'einrichtungen' %}">{{ t.einrichten_hub.h1|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a></p>
     </div>
   </section>
@@ -791,7 +793,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           </label>
         </div>
         <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}"></textarea></label>
-        <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</label>
+        <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</span></label>
         <button class="btn btn-lg" type="submit">{{ t.kontakt.submit|safe }}</button>
         <p class="form-fine">{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}

@@ -37,15 +37,15 @@ Parameter: `titel` (Pflicht), `robots` (Vorgabe noindex,nofollow), `kanonisch`
   <link rel="alternate" type="application/atom+xml" title="{{ c.site_name }} — Ratgeber" href="{% url 'feed' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
   {% comment %}
-  Der eingebettete Block: Er traegt die Akzentfarben aus content.json — und seit
-  dem 05.09.2026 auch die Bewegungsreduzierung. Die steht zwar in style.css,
+  Der eingebettete Block: Er traegt seit Design B1 (25.09.2026) keine Akzentfarbe
+  aus content.json mehr (das war Gold; Farben kommen aus style.css), sondern die
+  Bewegungsreduzierung (seit 05.09.2026). Die steht zwar in style.css,
   aber erst ab Zeile 500: Wer die Systemeinstellung „Bewegung reduzieren" gesetzt
   hat, sieht bis zum Eintreffen des Stilblatts trotzdem die erste
   Einblendbewegung. Das ist genau der Moment, um den es geht — die Einstellung
   wird meist wegen Schwindel oder Migraene gesetzt, nicht aus Geschmack.
   {% endcomment %}
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}[data-reveal]{opacity:1;transform:none}}</style>
+  <style>@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}[data-reveal]{opacity:1;transform:none}}</style>
   {% comment %}
   Auch eine Seite mit noindex gehört in den Graphen: Wer den Link teilt oder ihn
   einer Antwortmaschine vorlegt, soll erkennen, zu welchem Betrieb er gehört.

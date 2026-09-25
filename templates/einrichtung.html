@@ -21,7 +21,7 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
 {% block inhalt %}
 <article class="sp">
 
-  <header class="sp-top on-dark">
+  <header class="sp-top">
     <div class="wrap">
       <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
         <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
@@ -65,7 +65,7 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
 
         {% if seite.leistungen %}
         <h2 class="sp-h2" id="enthalten">{{ seite.leistungen_h|safe }}</h2>
-        <ul class="sp-liste">
+        <ul class="sp-liste sp-liste-check">
           {% for punkt in seite.leistungen %}
           <li>{% include 'icons.html' with name='check' %}<span>{{ punkt|safe }}</span></li>
           {% endfor %}

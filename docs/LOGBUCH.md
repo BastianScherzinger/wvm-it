@@ -7,6 +7,30 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 25.09.2026 — Design B1 „Porträt", Abnahme
+
+Abnahme im Worktree `wvm-it-design-b1` (Zweig `design/2026-09-25-b1`), Vorschau Port 8840, Fotos und
+Messungen bei 1280/1366/1440 und 390 px. Die Befunde der Prüfrunde nach Paket 3 waren zweimal an eine Sitzung
+im falschen Worktree geschickt worden und lagen unbearbeitet; hier abgearbeitet. Einzelheiten mit Vorher/Nachher:
+`docs/DESIGN-B1-2026-09-25.md` §7.
+
+* **Handy:** Seite war auf 20 von 21 Prüf-URLs 494 statt 390 px breit (Fußkopf ohne Handy-Regel) — jetzt 390
+  überall. Handy-Leiste als Raster mit 48-px-Knöpfen, Statusleiste einzeilig, Kopf 60 px, Fußlinks 44 px.
+* **Hero:** Knopf „Rückruf anfordern" bei 1366×768 von 992 auf 736 px (über dem Knick); Cookie-Karte ab 701 px rechts.
+* **`/angebot/`:** Gold-Inline-Stil weg, Kopf/Fuß über `kopf.html`/`fuss.html`, mehrzeiliger `{# #}`-Kommentar
+  (in Django nur einzeilig gültig, stand als Text 18× auf der Seite) als `{% comment %}` — 38 705 → 10 291 px am Handy.
+* **Unterseiten (Teil von Paket 4):** Kopf hell (`sp-top on-dark` → `sp-top` in 31 Vorlagen), Verlaufsschrift
+  entfernt, FAQ und Ablauf als ruhige Zeilen, Datenblatt weiß. `ErrCodeKontrastTest` rechnet jetzt gegen den
+  hellen Kopf (5,37:1).
+* **`style.css`:** 59 Regeln mit „Space Grotesk"/„Inter" (Dateien seit Paket 1 gelöscht, fielen auf Arial) auf
+  `--serif`/`--mono`/`--sans`; alle `gradient(`, Blur, Glow, `999px`-Pillen und Radien über 8 px entfernt.
+* **Einzelfunde:** Preisspalte der Preisliste am Handy unsichtbar; Einwilligung in drei Spalten; 400-px-Haken auf
+  `/einrichten/…/`; Rechenweg „5 × 29 €145 €"; Adresse unter „Impressum" auf `/kontakt/` (neu
+  `kontakt_seite.anschrift`); roher Pfad „/it-hilfe/" im Leistungs-Hub; 30-Zeilen-Lead in Block 7 (neu
+  `start.einrichten_lead`/`_fuss`); dazu die alten Offen-Punkte `.ang-hint` und `.nf-call`-Symbol (20-DESIGN 5/6).
+* **Geprüft:** 415/415 Tests, `pruefe_seite` 0. **Offen:** Rest von Paket 4 (Konfigurator-/Hub-Kacheln),
+  §4.5-Entscheidungen (Cookie-Text 3D, Porträt, Logo-Vektor, Wochen-Mail-Farbe), echtes Gerät. Kein Push.
+
 ## 25.09.2026 — Design B1 „Porträt", Paket 3: Startseite unten (Webseiten bis Kooperationen)
 
 Dritter von vier Paketen im selben Worktree/Zweig (`wvm-it-design-b1`,

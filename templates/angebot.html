@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{{ t.meta.angebot_title|safe }} | {{ c.site_name }}</title>
   <meta name="description" content="{{ t.meta.angebot_desc|safe }}">
-  <meta name="theme-color" content="#0a0908">
+  <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="{{ c.wvm_url }}{{ canonical_path }}">
   {% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
   {% endfor %}
@@ -26,7 +26,8 @@
   {% comment %} Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }</style>
+  {% comment %}Design B1 (25.09.2026): keine Akzentfarbe aus content.json mehr (das war
+  Gold) — die Farben kommen wie auf jeder Seite aus den Tokens in style.css.{% endcomment %}
   {% comment %}
   Diese Seite hat ein eigenes Grundgeruest und erbt deshalb nicht von base.html —
   und hatte als einzige oeffentliche Seite gar kein JSON-LD. Gefunden hat das die
@@ -49,29 +50,8 @@
 </script>
 <a class="skip" href="#konfigurator">{{ t.nav.skip_konfigurator|safe }}</a>
 
-{% comment %} ── Navigation ──────────────────────────────────────────────────────────── {% endcomment %}
-<header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
-      {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
-    </a>
-    {% comment %} Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) {% endcomment %}
-    <div class="nav-lang-mobile">{% include 'lang_switch.html' %}</div>
-    <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
-    <div class="nav-menu" id="navMenu">
-      <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
-        <a href="/">{{ t.nav.home|safe }}</a>
-        <a href="/#leistungen">{{ t.nav.leistungen|safe }}</a>
-        <a href="/#preise">{{ t.nav.preise|safe }}</a>
-        <a href="{% url 'angebot' %}" aria-current="page">{{ t.nav.angebot|safe }}</a>
-        <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
-      </nav>
-      {% include 'lang_switch.html' %}
-      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
-      <a class="btn btn-sm btn-magnetic nav-cta" href="#konfigurator">{{ t.nav.cta_angebot|safe }}</a>
-    </div>
-  </div>
-</header>
+{% comment %} Kopf wie auf jeder Seite (Design B1 §3.1/§3.3). {% endcomment %}
+{% include 'kopf.html' %}
 
 <main id="main">
   {% comment %} ── KOPF: Überschrift links, Konfigurator rechts ──────────────────────── {% endcomment %}
@@ -151,9 +131,10 @@
 
               <div class="ang-item-grid">
                 {% for it in g.items %}
-                {# Zelle statt nacktem Label: Positionen, die je Stueck gelten, tragen
+                {% comment %}Zelle statt nacktem Label: Positionen, die je Stueck gelten, tragen
                    darunter ein Zahlenfeld. Es steht ausserhalb des <label>, weil ein
-                   Klick hinein sonst die Auswahl umschalten wuerde. #}
+                   Klick hinein sonst die Auswahl umschalten wuerde. (Mehrzeilig als comment-Block:
+                   die Rauten-Kurzform gilt in Django nur einzeilig.){% endcomment %}
                 <div class="ang-zelle">
                 <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
                   <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
@@ -231,7 +212,7 @@
                   </div>
                   <label>{{ t.angebot_page.f_phone|safe }} <span class="opt">{{ t.angebot_page.f_opt|safe }}</span><input type="tel" name="telefon" autocomplete="tel" placeholder="{{ t.angebot_page.f_phone_ph|safe }}"></label>
                   <label>{{ t.angebot_page.f_msg|safe }} <span class="opt">{{ t.angebot_page.f_opt|safe }}</span><textarea name="nachricht" rows="3" placeholder="{{ t.angebot_page.f_msg_ph|safe }}"></textarea></label>
-                  <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.angebot_page.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.angebot_page.consent_link|safe }}</a> {{ t.angebot_page.consent_post|safe }}</label>
+                  <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.angebot_page.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.angebot_page.consent_link|safe }}</a> {{ t.angebot_page.consent_post|safe }}</span></label>
                   <button class="btn btn-lg btn-magnetic ang-submit" type="submit" id="angSubmit">
                     {{ t.angebot_page.submit|safe }}
                     <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -298,29 +279,8 @@
   </section>
 </main>
 
-{% comment %} ── FOOTER ──────────────────────────────────────────────────────────────── {% endcomment %}
-<footer class="foot">
-  <div class="wrap foot-top">
-    <div class="foot-brand">
-      <a class="brand" href="/">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
-      <p>{{ t.footer.tagline|safe }}</p>
-    </div>
-    <nav class="foot-nav" aria-label="Footer">
-      <div><h4>{{ t.footer.col_leistungen|safe }}</h4><a href="/#leistungen">{{ t.footer.l_smarthome|safe }}</a><a href="/#leistungen">{{ t.footer.l_konferenz|safe }}</a><a href="/#leistungen">{{ t.footer.l_edv|safe }}</a><a href="/#leistungen">{{ t.footer.l_web|safe }}</a></div>
-      <div><h4>{{ t.footer.col_unternehmen|safe }}</h4><a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a><a href="/#preise">{{ t.footer.u_preise|safe }}</a><a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
-      <div><h4>{{ t.footer.col_recht|safe }}</h4><a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a><a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a></div>
-    </nav>
-  </div>
-  <div class="wrap foot-bottom">
-    <span>© {{ c.jahr }} {{ c.site_name }}</span>
-    <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
-  </div>
-</footer>
-
-<div class="mobilebar">
-  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
-  <a class="mobilebar-cta" href="#konfigurator">{{ t.nav.cta_angebot|safe }}</a>
-</div>
+{% comment %} Fuß wie auf jeder Seite; die Handy-Leiste führt hier zum Konfigurator. {% endcomment %}
+{% include 'fuss.html' with mobilebar_ziel='#konfigurator' mobilebar_text=t.nav.cta_angebot %}
 
 {% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>

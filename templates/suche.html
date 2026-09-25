@@ -15,7 +15,7 @@ und Antwortabsatz jeder Seite (views._such_index). Die Seite selbst steht auf
 {% block tw_beschreibung %}{{ t.suche.desc|safe }}{% endblock %}
 
 {% block inhalt %}
-<header class="sp-top on-dark">
+<header class="sp-top">
   <div class="wrap">
     <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
       <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
