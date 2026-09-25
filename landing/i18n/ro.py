@@ -97,7 +97,7 @@ PACK = {
         "chip_value": "de la {preis} €",
         "person_h": "Sunt Florin Feier.",
         "person_t": "Vorbiți cu mine – nu cu o linie de așteptare. Și vă spun și când ceva nu merită.",
-        "person_ort": "Proprietar WVM-IT · Lenzing, Austria Superioară",
+        "person_ort": "Proprietar WVM-IT · Lenzing, districtul Vöcklabruck",
         "scroll_aria": "Derulează în jos",
         "robot_msgs": [
             "Bună ziua. Mă bucur că sunteți aici.",
