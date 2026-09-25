@@ -38,8 +38,8 @@ Browser) — bis dahin bleiben A10 (Beiträge), K4 scharf schalten und K5
 nicht automatisch; Teil b von K3 (Kopf, „Es gibt keins.") folgt, sobald A1
 Bastian ein Ergebnis liefert.
 
-**Code-seitig bereits umgesetzt (K4, 25.09.2026):** `/bewerten/` ist gebaut und
-live — solange `content.json` → `bewertungslink` leer ist, antwortet die
+**Code-seitig bereits umgesetzt (K4, 25.09.2026):** `/bewerten/` ist gebaut
+(Zweig `seo/2026-09-25-kaufsuchen`, live erst mit dem nächsten Deploy) — solange `content.json` → `bewertungslink` leer ist, antwortet die
 Adresse mit 404. Sobald A1 den Link aus „Rezensionen anfordern" liefert, fehlt
 nur noch der eine Eintrag in `content.json`, kein weiterer Code. K5
 (`sameAs`/`llms.txt`) wartet auf dieselbe Maps-URL des **verwalteten** Profils
