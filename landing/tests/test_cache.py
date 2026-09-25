@@ -72,6 +72,18 @@ class CsrfDarfNieGecachtWerdenTest(SimpleTestCase):
                          "304 auf einer Formularseite — das Token wäre veraltet")
 
 
+class DankeseiteTest(SimpleTestCase):
+    """Die Seite nach einer Anfrage nennt deren Thema — sie wird nirgends
+    zwischengespeichert, auch nicht im Browser (SI27)."""
+
+    def test_danke_traegt_no_store(self):
+        antwort = _util.client().get("/anfrage/danke/?q=kontakt")
+        self.assertEqual(antwort.status_code, 200)
+        kopf = antwort.get("Cache-Control", "")
+        for teil in ("no-store", "no-cache", "must-revalidate"):
+            self.assertIn(teil, kopf, f"/anfrage/danke/ ohne {teil}: {kopf!r}")
+
+
 class MaschinelleEndpunkteTest(SimpleTestCase):
 
     def test_tragen_einen_cache_kopf(self):

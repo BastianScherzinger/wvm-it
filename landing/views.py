@@ -3775,7 +3775,7 @@ def anfrage_danke(request):
     dk = pack.get("danke", {})
     base = (c.get("wvm_url") or "").rstrip("/")
     quelle = (request.GET.get("q") or "").strip().lower()
-    return render(request, "danke.html", {
+    antwort = render(request, "danke.html", {
         "c": c,
         "kurz": dk.get("kurz", "").format(telefon=c.get("telefon", "")),
         "quelle_name": _ANFRAGE_QUELLEN.get(quelle, ""),
@@ -3783,6 +3783,10 @@ def anfrage_danke(request):
             c, lang, breadcrumb=_breadcrumb(
                 base, [(dk.get("h1", "Danke"), reverse("anfrage_danke"))])),
     })
+    # Die Seite folgt auf eine abgeschickte Anfrage und nennt deren Thema — sie
+    # gehoert in keinen Zwischenspeicher, auch nicht in den des Browsers (SI27).
+    antwort["Cache-Control"] = "no-store, no-cache, must-revalidate"
+    return antwort
 
 
 def ueber_uns(request):
