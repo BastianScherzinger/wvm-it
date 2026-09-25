@@ -24,7 +24,7 @@
         <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
       {% include 'lang_switch.html' %}
-      <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'angebot' %}">{{ t.nav.cta_angebot|safe }}</a>
+      <a class="btn btn-sm nav-cta" href="{% url 'angebot' %}">{{ t.nav.cta_angebot|safe }}</a>
     </div>
   </div>
 </header>
@@ -38,7 +38,7 @@
         <h3>{{ t.unsub.ok_h|safe }}</h3>
         <p>{{ t.unsub.ok_p|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/">{{ t.unsub.ok_home|safe }}</a>
+          <a class="btn" href="/">{{ t.unsub.ok_home|safe }}</a>
         </div>
       </div>
       {% else %}
@@ -47,7 +47,7 @@
         <h3>{{ t.unsub.fail_h|safe }}</h3>
         <p>{{ t.unsub.fail_pre|safe }} <a href="mailto:{{ c.email }}">{{ c.email }}</a>{{ t.unsub.fail_post|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/">{{ t.unsub.fail_home|safe }}</a>
+          <a class="btn" href="/">{{ t.unsub.fail_home|safe }}</a>
         </div>
       </div>
       {% endif %}

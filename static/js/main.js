@@ -286,18 +286,4 @@
     });
   }
 
-  /* ── 6) MAGNETIC ,  Buttons ziehen sanft zum Cursor ─────────────────────── */
-  if (!reduce && window.matchMedia("(pointer:fine)").matches) {
-    document.querySelectorAll(".btn-magnetic").forEach((btn) => {
-      let raf = 0;
-      const onMove = (e) => {
-        const r = btn.getBoundingClientRect();
-        const x = (e.clientX - (r.left + r.width / 2)) * 0.28;
-        const y = (e.clientY - (r.top + r.height / 2)) * 0.4;
-        if (!raf) raf = requestAnimationFrame(() => { btn.style.transform = `translate(${x}px,${y}px)`; raf = 0; });
-      };
-      btn.addEventListener("pointermove", onMove, { passive: true });
-      btn.addEventListener("pointerleave", () => { btn.style.transform = ""; });
-    });
-  }
 })();

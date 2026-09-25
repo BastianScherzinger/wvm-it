@@ -126,7 +126,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       {% endfor %}
     </div>
 
-    <p class="lk-alle"><a class="btn btn-magnetic" href="{% url 'angebot' %}">{{ t.preise.tab_cta|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+    <p class="lk-alle"><a class="btn" href="{% url 'angebot' %}">{{ t.preise.tab_cta|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
   </div>
 </section>
 {% endblock %}

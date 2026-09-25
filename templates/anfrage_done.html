@@ -22,7 +22,7 @@
         <h3>{{ t.anfrage_done.ok_h_pre|safe }}{% if name %}, {{ name }}{% endif %}{{ t.anfrage_done.ok_h_post|safe }}</h3>
         <p>{{ t.anfrage_done.ok_p|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/">{{ t.anfrage_done.ok_home|safe }}</a>
+          <a class="btn" href="/">{{ t.anfrage_done.ok_home|safe }}</a>
           <a class="btn btn-ghost" href="{% url 'angebot' %}">{{ t.anfrage_done.ok_offer|safe }}</a>
         </div>
       </div>
@@ -32,7 +32,7 @@
         <h3>{% if limit %}{{ t.anfrage_done.limit_h|safe }}{% else %}{{ t.anfrage_done.fail_h|safe }}{% endif %}</h3>
         <p>{% if limit %}{{ t.anfrage_done.limit_p|safe }}{% else %}{{ t.anfrage_done.fail_p|safe }}{% endif %}</p>
         <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/#gratis">{{ t.anfrage_done.fail_retry|safe }}</a>
+          <a class="btn" href="/#gratis">{{ t.anfrage_done.fail_retry|safe }}</a>
           <a class="btn btn-ghost" href="/">{{ t.anfrage_done.fail_home|safe }}</a>
         </div>
       </div>

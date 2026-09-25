@@ -35,7 +35,7 @@
       </nav>
       {% include 'lang_switch.html' %}
       {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
-      <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'angebot' %}">{{ t.nav.cta_angebot|safe }}</a>
+      <a class="btn btn-sm nav-cta" href="{% url 'angebot' %}">{{ t.nav.cta_angebot|safe }}</a>
     </div>
   </div>
 </header>
@@ -216,7 +216,7 @@
             <span class="wz-run" aria-live="polite"><span class="wz-run-count" data-run-count></span></span>
             <span class="wz-nav-spacer" aria-hidden="true"></span>
           </div>
-          <button class="btn btn-lg btn-magnetic af-submit" type="submit" id="afSubmit">{{ t.confirm_page.submit|safe }}</button>
+          <button class="btn btn-lg af-submit" type="submit" id="afSubmit">{{ t.confirm_page.submit|safe }}</button>
           <p class="af-note">{{ t.confirm_page.note|safe }}</p>
         </section>
       {% include 'datenschutzhinweis.html' %}
@@ -267,7 +267,7 @@
         <h3>{{ t.confirm_page.fail_h|safe }}</h3>
         <p>{{ t.confirm_page.fail_p|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn btn-magnetic" href="/#top">{{ t.confirm_page.fail_retry|safe }}</a>
+          <a class="btn" href="/#top">{{ t.confirm_page.fail_retry|safe }}</a>
           <a class="btn btn-ghost" href="/">{{ t.confirm_page.fail_home|safe }}</a>
         </div>
       </div>
