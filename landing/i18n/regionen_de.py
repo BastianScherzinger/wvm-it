@@ -23,8 +23,8 @@ REGIONEN = {
     "voecklabruck": {
         "anfrage_h": "IT-Betreuung in Vöcklabruck anfragen",
         "nav": "Vöcklabruck",
-        "titel": "IT-Service Vöcklabruck — EDV-Betreuung für Betriebe | WVM-IT",
-        "desc": "IT-Dienstleister im Bezirk Vöcklabruck: EDV-Betreuung, Netzwerk, IT-Sicherheit. Nur 6 km von unserem Sitz in Lenzing. Jetzt unverbindlich anfragen.",
+        "titel": "IT-Betreuung Vöcklabruck: EDV-Service ab 29 €/Monat | WVM-IT",
+        "desc": "IT-Betreuung für Betriebe im Bezirk Vöcklabruck, 6 km von Lenzing: ab 29 €/Monat je Arbeitsplatz, Einzelhilfe 95 €/Std. ohne Vertrag. Jetzt anfragen.",
         "h1": "IT-Service und EDV-Betreuung in Vöcklabruck",
         "kurz": "WVM-IT betreut die EDV von Betrieben in Vöcklabruck und im ganzen Bezirk. Unser Sitz in Lenzing liegt 6 Straßenkilometer entfernt, wir sind in rund 10 Minuten vor Ort. Der laufende Betrieb — Arbeitsplätze, Server, E-Mail, Updates, Datensicherung — läuft per Fernwartung und beginnt meist innerhalb von Minuten nach Ihrer Meldung.",
         "intro": "Vöcklabruck ist Bezirkshauptstadt und Verwaltungssitz, und der Bezirk gehört zu den industriestärksten Oberösterreichs. Zwischen den großen Betrieben sitzen die vielen kleinen: Handwerk, Handel, Kanzleien, Praxen, Zulieferer. Genau dort fehlt fast immer eine eigene IT-Abteilung — es gibt jemanden im Haus, der sich auskennt und eigentlich etwas anderes zu tun hätte.",
@@ -46,6 +46,8 @@ REGIONEN = {
              "a": "Ja. Timelkam, Attnang-Puchheim, Schörfling, Seewalchen, Vöcklamarkt, Frankenmarkt und die übrigen Gemeinden des Bezirks liegen alle im selben Einzugsgebiet. Für Arbeiten aus der Ferne spielt der Ort ohnehin keine Rolle."},
             {"q": "Wir haben schon eine IT-Firma. Lohnt sich ein Gespräch trotzdem?",
              "a": "Wenn Sie zufrieden sind: nein, und das sagen wir Ihnen auch. Sinnvoll wird es, wenn Sie auf Rückmeldungen warten, niemand mehr weiß, was eigentlich im Haus steht, oder seit Jahren niemand geprüft hat, ob sich die Datensicherung wiederherstellen lässt. Die Bestandsaufnahme sagt Ihnen das, unabhängig davon, wer danach betreut."},
+            {"q": "Wir haben nur ein einzelnes PC-Problem. Helfen Sie auch ohne Vertrag?",
+             "a": "Ja. Für einzelne Probleme wie einen Drucker, der nicht mehr druckt, fehlende E-Mails oder einen langsamen PC gibt es unsere IT-Hilfe ohne Vertrag: meist per Fernwartung, abgerechnet nach Aufwand mit 95 € je Stunde. Muss jemand vorbeikommen, kostet der Einsatz in Vöcklabruck 120 € je Stunde zuzüglich Anfahrt, und die ist von Lenzing aus kurz. Muss ein Gerät ersetzt werden, richten wir den neuen PC zum Festpreis von 190 € ein. Alle Angaben sind Richtpreise, netto zzgl. USt."},
         ],
     },
 
