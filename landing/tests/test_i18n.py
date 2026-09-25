@@ -117,6 +117,26 @@ B1_NEUE_SCHLUESSEL = (
     "nav.kosten_betreuung", "footer.col_wissen",
     "rueckruf.zeit_1_kurz", "rueckruf.zeit_2_kurz", "rueckruf.zeit_3_kurz", "rueckruf.zeit_4_kurz",
     "rueckruf.zeit_1_uhr", "rueckruf.zeit_2_uhr", "rueckruf.zeit_3_uhr", "rueckruf.zeit_4_uhr",
+    # Paket 2 (Startseite oben, Blöcke 1–7, 25.09.2026):
+    "hero.headline", "hero.alt_frage", "hero.person_t",
+    "vertrauen.h", "vertrauen.text", "vertrauen.p1", "vertrauen.p2", "vertrauen.region_t",
+    "vertrauen.fakt_vorort", "vertrauen.fakt_fern", "vertrauen.fakt_fern_t",
+    "vertrauen.fakt_sprachen", "vertrauen.sprachen",
+    "it_stufen.beliebt", "ablauf.s1_t",
+    "finder.wege.einrichten.h", "finder.wege.einrichten.t",
+    "koop.h", "kontakt.h", "faq.eyebrow", "faq.h", "faq.lead",
+    "abschnitt.wege", "abschnitt.leistungen", "abschnitt.ueber", "abschnitt.ablauf",
+    "abschnitt.kosten", "abschnitt.festpreise", "abschnitt.rechenweg",
+    "abschnitt.web", "abschnitt.angebot", "abschnitt.region", "abschnitt.wissen",
+    "abschnitt.faq", "abschnitt.kontakt", "abschnitt.koop",
+    "start.leistungen_h", "start.leistungen_lead", "start.ablauf_cta", "start.stufe_cta",
+    "start.rechner_rueckruf", "start.einrichten_h", "start.kenn_festpreis", "start.kenn_anfrage",
+    "start.anfrage_warum", "start.web_h", "start.angebot_h", "start.angebot_lead",
+    "start.angebot_einzeln", "start.region_h", "start.branchen_link", "start.regionen_link",
+    "start.faq_frage",
+    "blick.h", "blick.status", "blick.sp1", "blick.sp2", "blick.sp3",
+    "wissen.werkzeuge_h", "wissen.vergleiche_h", "wissen.ratgeber_h", "wissen.glossar_nav",
+    "wissen.lead",
 )
 # Echte Ausnahmen (Eigennamen o. ä., bei denen EN/RO absichtlich derselbe Text
 # wie DE sind) kommen mit Begründung hierher , heute leer.

@@ -186,3 +186,43 @@ mit jedem Kunden teurer. Wenn WVM-IT wächst, muss entweder die Zusage nachziehe
 
 Das ist kein Einwand gegen den Satz. Es ist der Grund, warum er wirkt: Er ist
 prüfbar — und Kunden prüfen ihn.
+
+---
+
+## § B1 (25.09.2026)
+
+Design-Umbau B1 „Porträt" (`docs/DESIGN-B1-2026-09-25.md`), Paket 2: der Hero wird
+hell, verliert Hintergrundbild und Reiter, bekommt die Rückruf-Karte direkt unter
+der Überschrift.
+
+**Was bleibt:**
+- Die Überschrift trägt weiter **zwei Stufen** (`hero.headline` + `headline_2`).
+- Das Vertrauensband (`person_h`/`person_t`/`person_ort`) steht weiter **vor**
+  der Subline; auf dem Handy zeigt `figure.hero-person` Name und Rolle zweizeilig
+  (`HeroKonzeptTest` bleibt unverändert grün: `class="hero-person"` weiterhin vor
+  `class="lead"`).
+- Rückruf zuerst — nur jetzt sichtbar statt hinter einem Reiter.
+
+**Was sich ändert:**
+- Heller Hero, kein `hero-bg`/`hero-scrim` mehr; großes Porträt rechts
+  (`figure.hero-foto-box`, ab 701 px), Handy-Fassung mit 64-px-Rundbild.
+- Die drei Reiter (Rückruf/Richtpreis/Gratis-Seite) sind aufgelöst: Rückruf steht
+  als `.rr-karte` fest im Hero, der Rechner zieht in Block 6 „Preise" um
+  (`#rechner-kurz`), das Gratis-Formular in Block 8 „Webseiten" (`#gratis`).
+- **Neue H1 (25.09.2026):** „IT-Betreuung mit einem Ansprechpartner, der Ihren
+  Betrieb kennt." Grund: Bastians Regel „ein einfacher Satz, der sagt, was er
+  macht" (§ 6 K1-9 des Bauplans) — „IT-Betreuung" bleibt als Suchbegriff in der
+  H1, `headline_2` hält weiter die Breite offen, die § 1 dieser Datei schützt
+  (groß **und** klein ausdrücklich benannt).
+- `hero.person_t` verliert den zweiten Satz („Ich sage Ihnen auch …") — er steht
+  jetzt als eigene Zusage (`vertrauen.p3`) in Block 4 „Wer dahintersteht"
+  (Regel „eine Aussage, ein Ort", § 6 K1-6).
+- **Ladepriorität:** Nicht mehr das `<img class="hero-person-bild">` trägt
+  `fetchpriority="high"`, sondern eine eigene `<link rel="preload">`-Vorladung
+  des großen Porträts im `{% block preload %}`, gebunden an
+  `media="(min-width:701px)"`. Auf dem Handy zeigt `<source media="(max-width:
+  700px)">` im `<picture>` auf `florin_320.webp` — dieselbe Datei, die das kleine
+  Rundbild ohnehin lädt, also keine zusätzliche Anfrage und keine hohe Priorität
+  dort (§ 6 K2-3). `landing/tests/test_bilder.py` prüft weiter die kleine
+  Fassung und `sizes="64px"`, nur die Docstring nennt jetzt die Vorladung als
+  Trägerin der Priorität.

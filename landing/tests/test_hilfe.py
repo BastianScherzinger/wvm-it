@@ -202,8 +202,9 @@ class AnliegenTest(SimpleTestCase):
 
     def test_beide_rueckrufformulare_bieten_das_feld_an(self):
         _, html = _html("/")
+        # Design B1 (25.09.2026): der Hero-Reiter ist die Rückruf-Karte geworden.
         self.assertEqual(html.count('name="anliegen"'), 2,
-                         "Hero-Reiter und Rückruf-Dialog")
+                         "Rückruf-Karte und Rückruf-Dialog")
 
 
 class OeffnungszeitenStimmenTest(SimpleTestCase):

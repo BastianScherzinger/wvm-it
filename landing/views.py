@@ -22,7 +22,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.http import (Http404, HttpResponse, HttpResponsePermanentRedirect,
-                         JsonResponse)
+                         JsonResponse, QueryDict)
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import translation
@@ -302,7 +302,10 @@ FINDER = [
     # sechs Karten bleiben sechs, das Raster bleibt, wie es gemessen ist (BF26).
     {"id": "hilfe", "icon": "phone", "route": "it_hilfe"},
     {"id": "betreuung", "icon": "care", "route": "leistung", "slug": "edv-it-betreuung"},
-    {"id": "preis", "icon": "gauge", "route": "rechner"},
+    # Design B1 (§2.4, §6 K1-2, 25.09.2026): "preis" (→ Rechner) ersetzt durch
+    # "einrichten" (→ Festpreise) — der Rechner doppelte sonst Block 6. Der
+    # Kostenrechner bleibt über Block 6 und den Kopf erreichbar.
+    {"id": "einrichten", "icon": "monitor", "route": "einrichtungen"},
     {"id": "web", "icon": "web", "route": "leistung", "slug": "webseite-erstellen"},
     {"id": "branche", "icon": "consulting", "route": "branchen"},
 ]
@@ -531,16 +534,32 @@ _IT_STUFEN = [
 ]
 
 
-def _it_stufen():
-    """Monatspreis je Betreuungsstufe, gerechnet aus ANGEBOT_GROUPS."""
+def _it_stufen(lang=None):
+    """Monatspreis je Betreuungsstufe, gerechnet aus ANGEBOT_GROUPS.
+
+    Design B1 (§2.8, 25.09.2026): Nur wenn `lang` gesetzt ist, bekommt jede
+    Stufe zusätzlich eine `zeile` (Rechenweg, Mono, z. B. "5 × 29 € +
+    Datensicherung 49 €") — gebaut genau wie `_kosten_beispiele()` aus
+    `kosten_seite.bsp_zeile`/`bsp_server`, nur aus Katalogzahlen. Ohne `lang`
+    bleibt das Verhalten unveraendert: `_it_stufen_zahlen_fuer_pruefung()` und
+    die drei Aufrufe in `landing/tests/test_preise.py` rufen ohne `lang` auf
+    und duerfen sich nicht aendern (§6 K2-5). Nur `views.index()` uebergibt die
+    aktive Sprache."""
     p = _ANGEBOT_INDEX
     ap = int(p.get("it_betreuung", {}).get("mtl") or 0)
     srv = int(p.get("server_care", {}).get("mtl") or 0)
     backup = int(p.get("backup", {}).get("mtl") or 0)
+    ks = i18n.get_pack(lang).get("kosten_seite", {}) if lang else {}
     out = []
     for s in _IT_STUFEN:
         mtl = s["ap"] * ap + s["srv"] * srv + (backup if s["backup"] else 0)
-        out.append(dict(s, mtl=mtl, mtl_anzeige=_eur(mtl)))
+        eintrag = dict(s, mtl=mtl, mtl_anzeige=_eur(mtl))
+        if lang:
+            zeile = ks.get("bsp_zeile", "").format(ap=s["ap"], preis=ap, backup=backup)
+            if s["srv"]:
+                zeile += ks.get("bsp_server", "").format(srv=srv)
+            eintrag["zeile"] = zeile
+        out.append(eintrag)
     return out
 
 
@@ -735,6 +754,15 @@ def _rechner_satz(werte, ergebnis, rs) -> str:
                           jahr=ergebnis.get("jahr", 0))
 
 
+def _rechner_saetze():
+    """Die Sätze für das mitlaufende Rechner-Skript — dieselbe Quelle, nur als
+    JSON. Design B1 (§2.8, 25.09.2026): aus `rechner()` herausgezogen, damit
+    `views.index()` (Block 6, Rechner mit Rechenweg) denselben JSON-Block
+    laden kann wie `/kosten/rechner/` — keine zweite Preisquelle."""
+    return {f["id"]: {"satz": int(_ANGEBOT_INDEX[f["preis"]].get(f["feld"]) or 0),
+                      "max": f["max"]} for f in _RECHNER_FELDER}
+
+
 def rechner(request):
     """/kosten/rechner/ — was die laufende IT im eigenen Betrieb kostet.
 
@@ -751,9 +779,7 @@ def rechner(request):
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = reverse("rechner")
 
-    # Die Sätze für das mitlaufende Skript — dieselbe Quelle, nur als JSON.
-    saetze = {f["id"]: {"satz": int(_ANGEBOT_INDEX[f["preis"]].get(f["feld"]) or 0),
-                        "max": f["max"]} for f in _RECHNER_FELDER}
+    saetze = _rechner_saetze()
 
     return render(request, "rechner.html", {
         "c": c, "rs": rs, "werte": werte, "e": ergebnis, "saetze": saetze,
@@ -2108,7 +2134,13 @@ def index(request):
         "paket_aktiv": (request.GET.get("paket") or "").strip().lower(),
         "paket_ziel": reverse("angebot"),
         "pakete": _paketpreise(),
-        "it_stufen": _it_stufen(),
+        # Design B1 (§2.8, 25.09.2026): views.index() ist die einzige Stelle,
+        # die _it_stufen() mit `lang` aufruft (§6 K2-5) — nur hier steht die
+        # Rechenzeile je Stufe.
+        "it_stufen": _it_stufen(lang),
+        # Design B1 (§2.5): Block 3 "Leistungen" nutzt dieselbe Gruppierung wie
+        # der Leistungs-Hub.
+        "leistungen_bereiche": _leistungen_nach_bereich(lang),
         "preis_stand": _preis_stand(lang),
         "angebot_groups": _localized_groups(lang),
         "kooperationen": _mit_bildvarianten(KOOPERATIONEN, "logo", (480,)),
@@ -2116,6 +2148,11 @@ def index(request):
         # holen Name, Text und Preis aus derselben Quelle wie das Silo selbst.
         "einrichtungen": [_einrichtung_daten(e, lang)
                           for e in einrichtungen.EINRICHTUNGEN],
+        # Design B1 (§2.8, Block 6): Rechner mit Rechenweg, dieselben Funktionen
+        # wie views.rechner() — keine zweite Preisquelle.
+        "kr_saetze": _rechner_saetze(),
+        "kr_werte": _rechner_werte(QueryDict("")),
+        "kr_e": _rechner_rechnen(_rechner_werte(QueryDict("")), lang),
         "structured_data": _startseiten_schema(c, lang),
     })
 
@@ -2140,6 +2177,22 @@ def _leistung_daten(eintrag, lang):
 
 def _alle_leistungen(lang):
     return [_leistung_daten(e, lang) for e in leistungen.LEISTUNGEN]
+
+
+def _leistungen_nach_bereich(lang):
+    """Alle Leistungen aus `leistungen.LEISTUNGEN`, gruppiert nach `bereich`
+    (it/sicht/vorort). Design B1 (§2.5, 25.09.2026): gemeinsame Quelle für
+    `/leistungen/` und Block 3 "Leistungen" der Startseite — die Gruppierung
+    entsteht an genau einer Stelle, das Ergebnis für den Hub bleibt
+    unveraendert."""
+    pack = i18n.get_pack(lang)
+    hub = pack.get("hub", {})
+    alle = _alle_leistungen(lang)
+    return [
+        {"id": b, "h": hub.get(f"{b}_h", ""), "t": hub.get(f"{b}_t", ""),
+         "posten": [l for l in alle if l.get("bereich") == b]}
+        for b in ("it", "sicht", "vorort")
+    ]
 
 
 def _seiten_pfade():
@@ -2442,13 +2495,8 @@ def leistungen_hub(request):
     lang = get_language()
     pack = i18n.get_pack(lang)
     hub = pack.get("hub", {})
-    alle = _alle_leistungen(lang)
     base = (c.get("wvm_url") or "").rstrip("/")
-    bereiche = [
-        {"id": b, "h": hub.get(f"{b}_h", ""), "t": hub.get(f"{b}_t", ""),
-         "posten": [l for l in alle if l.get("bereich") == b]}
-        for b in ("it", "sicht", "vorort")
-    ]
+    bereiche = _leistungen_nach_bereich(lang)
     return render(request, "leistungen.html", {
         "c": c, "hub": hub, "bereiche": bereiche,
         "wegweiser_aufgabe": _wegweiser_aufgabe(hub, lang),
@@ -3109,6 +3157,9 @@ def _einrichtung_daten(eintrag, lang):
         url=reverse("einrichtung", kwargs={"slug": eintrag["slug"]}),
         # Festpreis, nicht ab-Preis — siehe _festpreis_label().
         preis_label=_festpreis_label(posten, pack.get("catalog_words", {})),
+        # Design B1 (§2.9, 25.09.2026): ob diese Einrichtung einen Festpreis hat
+        # oder "Nach Aufnahme" — für die zweigeteilte Preisliste in Block 7.
+        anfrage=bool(posten.get("anfrage")),
         **texte,
     )
 
@@ -4637,7 +4688,21 @@ _ANFRAGE_QUELLEN = {
 # Quellen, deren Formular nicht auf der Startseite steht, sondern nur auf der
 # eigenen Seite. `pruefe_seite` verlangt sonst jede Quelle auf der Startseite
 # und prueft diese stattdessen auf ihrer Heimatseite (24.09.2026).
-_QUELLE_AUF_EIGENER_SEITE = {"einzelhilfe": "/it-hilfe/"}
+# Design B1 (§2.5, 25.09.2026): Die sechs Kurzformular-Blöcke und "#technik"
+# sind auf der Startseite entfallen (Block 3 "Leistungen" verlinkt jetzt statt
+# Kurzformular auf die jeweilige Leistungsseite, §2.1). Diese sieben Quellen
+# haben ihr Formular seither nur noch auf ihrer eigenen Leistungsseite — nicht
+# mehr zusätzlich als Kurzanfrage auf `/`.
+_QUELLE_AUF_EIGENER_SEITE = {
+    "einzelhilfe": "/it-hilfe/",
+    "it": "/leistungen/edv-it-betreuung/",
+    "web": "/leistungen/webseite-erstellen/",
+    "seo": "/leistungen/seo-betreuung/",
+    "ads": "/leistungen/google-ads/",
+    "hosting": "/leistungen/hosting-wartung/",
+    "ki": "/leistungen/ki-automatisierung/",
+    "technik": "/leistungen/smarthome-knx-loxone/",
+}
 
 # Worum es beim Rueckruf geht (W05, 24.09.2026). Optional und nur aus dieser
 # Liste: Ein freies Feld waere eine weitere Stelle, an der beliebiger Text in

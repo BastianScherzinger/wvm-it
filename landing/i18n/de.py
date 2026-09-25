@@ -71,12 +71,17 @@ PACK = {
     "hero": {
         "robot_alt": "Interaktiver 3D-Assistent von WVM-IT",
         "eyebrow": "EDV & IT-Betreuung · Österreich und Deutschland",
-        "headline": "Die ganze IT. Ein Ansprechpartner.",
+        # Design B1 (25.09.2026): H1 als einfacher Satz, was Florin macht;
+        # "IT-Betreuung" bleibt Suchbegriff in der H1. Begründung in
+        # docs/HERO-KONZEPT-2026-09-06.md, § B1.
+        "headline": "IT-Betreuung mit einem Ansprechpartner, der Ihren Betrieb kennt.",
         # Zweite Zeile der Ueberschrift: nennt gross und klein ausdruecklich.
         # Zahlen statt Adjektiven — "vom Zwei-Mann-Buero" ist pruefbar,
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
         "subline": "WVM-IT aus Lenzing, Oberösterreich, betreut Server, Netzwerk, Arbeitsplätze, E-Mail, Datensicherung und Sicherheit – dazu Webseite, SEO und KI. Ab 29 € je Arbeitsplatz und Monat, per Fernwartung in ganz Österreich und Deutschland.",
+        # Design B1: Frage neben dem Rückruf im Hero, führt zu Telefon/WhatsApp.
+        "alt_frage": "Lieber gleich sprechen?",
         "cta": "Gratis Beispiel-Website sichern",
         "note": "Kostenlos und unverbindlich · von unserer JARVIS-KI in ~10 Minuten gebaut.",
         "robot_aria": "3D-Assistent, klick mich",
@@ -89,7 +94,9 @@ PACK = {
         # weil "irgendwo in Oesterreich" niemandem hilft und Lenzing im
         # Einzugsgebiet ein Argument ist.
         "person_h": "Ich bin Florin Feier.",
-        "person_t": "Sie sprechen mit mir – nicht mit einer Warteschleife. Ich sage Ihnen auch, wenn sich etwas nicht lohnt.",
+        # Design B1 (§2.2, "eine Aussage, ein Ort"): der zweite Satz ("Ich sage
+        # Ihnen auch …") steht jetzt als Zusage p3 in Block 4 "Wer dahintersteht".
+        "person_t": "Sie sprechen mit mir, nicht mit einer Warteschleife.",
         "person_ort": "Inhaber von WVM-IT · Lenzing, Oberösterreich",
         "scroll_aria": "Weiter nach unten",
         "robot_msgs": [
@@ -257,7 +264,9 @@ PACK = {
     "it_stufen": {
         "h": "Was die laufende Betreuung kostet",
         "lead": "Drei typische Betriebsgrößen, gerechnet aus derselben Preisliste wie alles andere. Ihre genaue Zahl rechnen Sie im Rechner selbst aus.",
-        "beliebt": "am häufigsten",
+        # Design B1 (§2.8, §6 K1-12): beschreibt die Stufe statt eine unbelegte
+        # Kundenzahl zu behaupten.
+        "beliebt": "typisch für ein Büro mit Server",
         "unit": "€/Monat",
         "klein_h": "Bis 5 Arbeitsplätze",
         "klein_for": "Kleinbetrieb ohne eigenen Server.",
@@ -316,9 +325,11 @@ PACK = {
         "p3": "Faire Preise und schnelle Reaktion.",
     },
     "faq": {
-        "eyebrow": "Häufige Fragen",
-        "h": "Häufige Fragen zu WVM-IT",
-        "lead": "Kurze, ehrliche Antworten zu Preisen, Regionen und Leistungen. Noch eine Frage offen? Melden Sie sich, wir antworten innerhalb von 24 Stunden.",
+        # Design B1 (§2.2, §6 K1-11): eyebrow/h wortarm vom Kicker abschnitt.faq
+        # ("Fragen und Antworten") getrennt.
+        "eyebrow": "Fragen und Antworten",
+        "h": "Was Betriebe uns vor dem ersten Anruf fragen",
+        "lead": "Kurze, ehrliche Antworten zu Preisen, Regionen und Leistungen.",
         "items": [
             {"q": "Was kostet die laufende IT-Betreuung für einen Betrieb?",
              "a": "Die laufende IT-Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe ohne laufenden Vertrag rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Alle Angaben sind Richtpreise, netto zzgl. USt.; den verbindlichen Preis nennen wir nach einem kurzen Gespräch."},
@@ -346,7 +357,7 @@ PACK = {
     },
     "koop": {
         "eyebrow": "Kooperationen",
-        "h": "Gemeinsam mehr möglich machen.",
+        "h": "Mit wem wir zusammenarbeiten",
         "lead": "Wir arbeiten mit ausgewählten Partnern zusammen, die unseren Anspruch an Qualität und Verlässlichkeit teilen. Hier stellen wir sie vor.",
         "empty": "Bald stellen wir hier unsere Kooperationspartner vor.",
         "join_h": "Möchten Sie unser Kooperationspartner werden?",
@@ -363,7 +374,7 @@ PACK = {
         "js_error": "Das hat gerade nicht geklappt. Bitte in einem Moment erneut versuchen.",
     },
     "kontakt": {
-        "h": "Erzählen Sie uns von Ihrem Projekt.",
+        "h": "Reden wir über Ihre IT.",
         "lead": "Unverbindlich und kostenlos. Wir melden uns innerhalb von 24 Stunden mit einer ersten Einschätzung. Wählen Sie einfach Ihren Weg.",
         "m_call": "Anrufen",
         "m_wa": "WhatsApp", "m_wa_sub": "Schnell schreiben",
@@ -819,8 +830,10 @@ PACK = {
                         "t": "Ausfall, Verschlüsselung, gehacktes Postfach: die ersten 30 Minuten, Schritt für Schritt."},
             "betreuung": {"h": "Wir brauchen jemanden für die IT",
                           "t": "Laufende Betreuung für Betriebe ohne eigene IT-Abteilung, ab 29 € je Arbeitsplatz und Monat."},
-            "preis": {"h": "Was würde das kosten?",
-                      "t": "Arbeitsplätze und Server eintragen, Monats- und Jahressumme sofort sehen."},
+            # Design B1 (§2.4, §6 K1-2): ersetzt "preis" (doppelte Block 6) — der
+            # Kostenrechner bleibt über Block 6 und den Kopf erreichbar.
+            "einrichten": {"h": "Ein neuer PC, ein Netzwerk, Microsoft 365",
+                           "t": "Einzelne Aufgaben zum Festpreis, ohne Vertrag, ab 190 €."},
             "hilfe": {"h": "Nur ein Problem, kein Vertrag",
                       "t": "Drucker, E-Mail, WLAN, langsamer PC: per Fernwartung für 95 € je Stunde, meist am selben Tag."},
             "web": {"h": "Wir brauchen eine Webseite",
@@ -857,7 +870,7 @@ PACK = {
     "wissen": {
         "eyebrow": "Zum Nachlesen",
         "h": "Antworten, bevor Sie fragen",
-        "lead": "Die zwei Fragen, die uns am häufigsten gestellt werden — und drei Werkzeuge, die Ihnen ohne Gespräch weiterhelfen. Alles frei zugänglich, ohne Formular davor.",
+        "lead": "Kostenrechner, Sicherheits-Selbsttest, Vergleiche, Ratgeber und Checklisten — alles frei zugänglich, ohne Formular davor.",
         "rechner_h": "Kostenrechner",
         "rechner_t": "Arbeitsplätze und Server eintragen, Monats- und Jahressumme sehen.",
         "selbsttest_h": "Sicherheits-Selbsttest",
@@ -865,6 +878,10 @@ PACK = {
         "checklisten_h": "Checklisten",
         "checklisten_t": "Dienstleister wechseln, Arbeitsplatz einrichten, Jahrescheck.",
         "alle": "Alle Fachbeiträge",
+        "werkzeuge_h": "Werkzeuge",
+        "vergleiche_h": "Vergleiche",
+        "ratgeber_h": "Ratgeber",
+        "glossar_nav": "Glossar",
     },
     "hub": {
         "titel": "IT-Leistungen mit offenen Preisen ab 29 €/Monat | WVM-IT",
@@ -1374,19 +1391,33 @@ PACK = {
     },
     "vertrauen": {
         "eyebrow": "Wer dahintersteht",
-        "h": "Sie sprechen mit Florin Feier. Nicht mit einer Warteschleife.",
-        "text": "WVM-IT ist kein Rechenzentrum mit Ticketsystem. Sie haben eine Nummer, eine E-Mail-Adresse und einen Menschen, der Ihren Betrieb kennt. Wenn etwas nicht geht, meldet sich jemand, der weiß, wie Ihr Netzwerk aufgebaut ist.",
-        "p1": "Ein fester Ansprechpartner, kein Ticket-Karussell",
-        "p2": "Rückmeldung innerhalb von 24 Stunden, an Werktagen",
+        # Design B1 (§2.2, §6 K1-6): H2 wird zur Zusage direkt namentlich, Kicker
+        # dafür "Über WVM-IT" (abschnitt.ueber) — sonst wären Kicker und H2 fast
+        # wortgleich.
+        "h": "Wer dahintersteht: Florin Feier.",
+        # "kein Rechenzentrum mit Ticketsystem" faellt weg (§2.2): beginnt jetzt
+        # mit dem Satz ueber die eine Nummer.
+        "text": "Sie haben eine Nummer, eine E-Mail-Adresse und einen Menschen, der Ihren Betrieb kennt. Wenn etwas nicht geht, meldet sich jemand, der weiß, wie Ihr Netzwerk aufgebaut ist.",
+        # Zusagen §2.2: p1/p2 neu, p3 bleibt.
+        "p1": "Preise stehen offen auf dieser Seite, vor dem ersten Gespräch",
+        "p2": "Einzelhilfe und Festpreise auch ohne Vertrag",
         "p3": "Wir sagen auch, wenn sich etwas nicht lohnt",
         "sitz_label": "Unser Sitz:",
         "sitz_zusatz": "Von dort kommen wir für Technik vor Ort in den Bezirk Vöcklabruck, an den Attersee, nach Gmunden, Wels, Linz und Salzburg.",
         "region_h": "Wo wir arbeiten",
-        "region_t": "Fernwartung, Überwachung, Datensicherung, Webseiten, SEO und Ads betreuen wir ortsunabhängig – in ganz Österreich und Deutschland. Vor Ort kommen wir projektbezogen. Was aus der Ferne geht, machen wir aus der Ferne, weil es schneller geht.",
+        # Design B1 (§2.6): Wert der Tatsache "Vor Ort" in dl.fakten — kurze
+        # Ortsliste statt Fliesstext, passend zur neuen Tabellen-Darstellung.
+        "region_t": "Bezirk Vöcklabruck, Attersee, Gmunden, Wels, Linz und Salzburg.",
         "at": "Österreich",
         "de": "Deutschland",
         "seit_label": "Im Geschäft seit",
         "partner_label": "Partnerstatus",
+        # Design B1 (§2.6): vier Fakten in dl.fakten — Sitz, Vor Ort, Fernwartung, Sprachen.
+        "fakt_vorort": "Vor Ort",
+        "fakt_fern": "Fernwartung",
+        "fakt_fern_t": "in ganz Österreich und Deutschland",
+        "fakt_sprachen": "Sprachen",
+        "sprachen": "Deutsch, Englisch, Rumänisch",
     },
     "tool": {
         "aria": "Direkt loslegen",
@@ -1446,7 +1477,9 @@ PACK = {
         "h": "So läuft es ab",
         "sub": "Kein Papierkram, keine Überraschungen.",
         "s1_h": "Sie melden sich",
-        "s1_t": "Ein Satz per WhatsApp, Telefon oder Formular reicht. Antwort in 24 Stunden.",
+        # Design B1 (§2.2, "eine Aussage, ein Ort"): "24 Stunden" steht nur noch
+        # in der Hero-Vertrauenszeile und im Kontakt.
+        "s1_t": "Ein Satz per WhatsApp, Telefon oder Formular reicht.",
         "s2_h": "Wir sprechen darüber",
         "s2_t": "Kurzes Gespräch: was Sie brauchen, was es bringt, was es kostet.",
         "s3_h": "Festes Angebot",
@@ -1608,5 +1641,59 @@ PACK = {
             "Wir sehen uns Ihre Nachricht an und melden uns zeitnah bei Ihnen.\n\n"
             "Freundliche Grüße\nIhr Team von {site}\n{url}\n"
         ),
+    },
+    # Design B1 (25.09.2026): Kicker der 14 Startseiten-Abschnitte
+    # (docs/DESIGN-B1-2026-09-25.md §2.2, §1.6). Thema, nie wortgleich mit der H2.
+    # Paket 2 baut Blöcke 1–7 (die Startseite hat keinen Kicker im Hero), Paket 2
+    # schreibt hier bereits alle 14 Schlüssel (§5 Paket 2, "vollständig").
+    "abschnitt": {
+        "wege": "Einstieg",
+        "leistungen": "Leistungen",
+        "ueber": "Über WVM-IT",
+        "ablauf": "Ablauf",
+        "kosten": "Laufende Betreuung",
+        "festpreise": "Festpreise",
+        "rechenweg": "Rechenweg",
+        "web": "Webseiten",
+        "angebot": "Angebot",
+        "region": "Branchen und Regionen",
+        "wissen": "Wissen und Werkzeuge",
+        "faq": "Fragen und Antworten",
+        "kontakt": "Kontakt",
+        "koop": "Kooperationen",
+    },
+    # Neue Startseiten-Sätze, Blöcke 1–14 (§2.3–2.16).
+    "start": {
+        "leistungen_h": "Alles, was WVM-IT für Ihren Betrieb übernimmt",
+        "leistungen_lead": "Laufende IT, Sichtbarkeit im Netz und Technik vor Ort. Jede Leistung hat eine eigene Seite mit Preis und Ablauf.",
+        "ablauf_cta": "Rückruf für das Erstgespräch",
+        "stufe_cta": "Diese Größe anfragen",
+        "rechner_rueckruf": "Mit diesem Wert Rückruf anfordern",
+        "einrichten_h": "PC, Netzwerk und Microsoft 365 einrichten lassen: Festpreis, ohne Vertrag",
+        "kenn_festpreis": "Festpreis",
+        "kenn_anfrage": "Nach Aufnahme",
+        "anfrage_warum": "Weil jede Anlage anders ist, nennen wir den Preis nach einem kurzen Blick darauf.",
+        "web_h": "Webseiten, gebaut, gehostet und betreut aus einer Hand",
+        "angebot_h": "Mehrere Leistungen zusammenstellen und als Angebot anfordern",
+        "angebot_lead": "Für mehr als eine Leistung. Für eine einzelne Zahl reicht der Rechner oben.",
+        "angebot_einzeln": "Einzelne Leistungen auswählen",
+        "region_h": "Für Ihren Betrieb und Ihre Region",
+        "branchen_link": "Alle Branchen ansehen",
+        "regionen_link": "Alle Regionen ansehen",
+        "faq_frage": "Ihre Frage ist nicht dabei? Florin ruft zurück.",
+    },
+    # Kasten "Im Blick" in Block 5 "Ablauf" (dunkel), §2.7. Sachlich, kein
+    # grüner Punkt, kein "läuft" (§6 K1-5) — die Aussagen stehen so schon auf
+    # den Leistungsseiten.
+    "blick": {
+        "h": "Was wir jeden Tag im Blick haben",
+        "status": "Vier Bereiche, laufend geprüft",
+        "sp1": "Bereich", "sp2": "Was wir tun", "sp3": "Wie oft",
+        "zeilen": [
+            {"b": "Datensicherung", "t": "Wir prüfen, ob die Sicherung gelaufen ist, und testen die Wiederherstellung.", "takt": "täglich geprüft"},
+            {"b": "Updates", "t": "Windows, Programme und Firewall halten wir aktuell, ohne den Betrieb zu unterbrechen.", "takt": "laufend"},
+            {"b": "Server", "t": "Speicherplatz, Auslastung und Warnungen, bevor daraus ein Ausfall wird.", "takt": "automatisch überwacht, rund um die Uhr"},
+            {"b": "Hilfe bei Störungen", "t": "Per Fernwartung, ohne dass jemand anreisen muss.", "takt": "meist am selben Tag"},
+        ],
     },
 }

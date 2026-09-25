@@ -108,10 +108,11 @@ class SprachfassungTest(SimpleTestCase):
     """Eine vertauschte Sprachfassung ist der zweite stille Cache-Fehler: Die Seite
     funktioniert, sie ist nur in der falschen Sprache."""
 
+    # Design B1 (25.09.2026): neue Hero-Überschrift je Sprache.
     ERKENNUNG = {
-        "/": "Die ganze IT",
-        "/en/": "All of your IT",
-        "/ro/": "Tot IT-ul",
+        "/": "IT-Betreuung mit einem Ansprechpartner",
+        "/en/": "IT support with one contact",
+        "/ro/": "Mentenanță IT cu un singur interlocutor",
     }
 
     def test_jede_adresse_liefert_ihre_eigene_sprache(self):
@@ -146,8 +147,8 @@ class SprachfassungTest(SimpleTestCase):
         klient = _util.client()
         klient.cookies[settings.LANGUAGE_COOKIE_NAME] = "ro"
         html = klient.get("/en/").content.decode("utf-8")
-        self.assertIn("All of your IT", html)
-        self.assertNotIn("Tot IT-ul", html)
+        self.assertIn("IT support with one contact", html)
+        self.assertNotIn("Mentenanță IT", html)
 
 
 class MessungFaelltAufTest(SimpleTestCase):

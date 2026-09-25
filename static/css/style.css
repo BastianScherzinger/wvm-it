@@ -98,6 +98,140 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 .sec-head h2,.sec-head .section-t{grid-column:1/2}
 .sec-head .section-lead{grid-column:2/3;align-self:end;padding-bottom:6px}
 @media (max-width:900px){.sec-head{grid-template-columns:1fr;margin-bottom:32px}.sec-head .section-lead{grid-column:1}}
+/* Design B1 (§1.6): generisches Mono-Kenn-Label — Rechenweg, Festpreis/Nach
+   Aufnahme, "Vier Bereiche" im Blick-Kasten. */
+.kenn{font-family:var(--mono);font-size:12px;font-weight:500;line-height:1.4;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim)}
+
+/* ============================================================================
+   DESIGN B1 — STARTSEITE BLÖCKE 3–7 (docs/DESIGN-B1-2026-09-25.md, Paket 2)
+   ========================================================================== */
+
+/* Block 3 "Leistungen": Register-Raster (basis.css .register-raster). */
+.register-raster{display:grid;grid-template-columns:repeat(3,1fr);column-gap:56px}
+.register-gruppe h3{font-family:var(--serif);font-weight:500;font-size:25px;
+  padding-bottom:14px;border-bottom:2px solid var(--ink);margin:0}
+.register-satz{font-size:14.5px;color:var(--ink-dim);line-height:1.5;padding:12px 0 2px}
+.register-liste{list-style:none;margin:0;padding:0}
+.register-liste li a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:14px 0 13px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
+.rl-titel{font-family:var(--serif);font-size:19.5px;line-height:1.3}
+.rl-preis{font-family:var(--mono);font-size:13px;color:var(--ink-dim);white-space:nowrap;flex:none}
+.register-liste li a:hover .rl-titel{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+@media (max-width:900px){
+  .register-raster{grid-template-columns:1fr;row-gap:44px}
+}
+
+/* Block 4 "Wer dahintersteht": .ueber-raster/.zusagen/.fakten (basis.css). */
+.ueber-raster{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:start;margin-top:0}
+.ueber-text .gross{font-family:var(--serif);font-size:30px;line-height:1.35;letter-spacing:-.006em;max-width:24em;margin:0;color:var(--ink)}
+.zusagen{display:grid;grid-template-columns:repeat(3,1fr);margin-top:64px;border-top:2px solid var(--ink);list-style:none;padding:0}
+.zusagen li{font-family:var(--serif);font-size:26px;line-height:1.25;letter-spacing:-.01em;padding:28px 32px 0}
+.zusagen li:first-child{padding-left:0}
+.zusagen li+li{border-left:1px solid var(--line-2)}
+.fakten{display:grid;grid-template-columns:1fr 1.5fr 1.2fr 1fr;gap:32px;margin-top:48px;padding-top:24px;border-top:1px solid var(--line-2)}
+.fakten dt{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px}
+.fakten dd{font-size:16px;line-height:1.5;margin:0}
+.ueber-fuss{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:48px}
+.signatur{display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+.signatur img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.ueber-tel{font-family:var(--mono)}
+@media (max-width:900px){
+  .ueber-raster{grid-template-columns:1fr;gap:22px}
+  .ueber-text .gross{font-size:23px}
+  .zusagen{grid-template-columns:1fr;margin-top:40px}
+  .zusagen li{font-size:22px;padding:18px 0}
+  .zusagen li+li{border-left:0;border-top:1px solid var(--line-2)}
+  .fakten{grid-template-columns:1fr 1fr;gap:20px}
+  .ueber-fuss{flex-direction:column;align-items:flex-start}
+}
+
+/* Block 5 "Ablauf" (dunkel): vier Spalten statt der vertikalen Timeline anderer
+   Seiten — scoped auf #prozess, damit .timeline auf Leistungsseiten unangetastet
+   bleibt. Dazu der Kasten "Im Blick" (basis.css .blick), ohne grünen Punkt. */
+#prozess .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;
+  max-width:none;margin-left:0;list-style:none;padding:0}
+#prozess .timeline::before{display:none}
+#prozess .tl-item{display:block;grid-template-columns:none;gap:0;padding:22px 0 0;
+  border-top:1px solid var(--line-2)}
+#prozess .tl-item:first-child{border-top:3px solid var(--accent2);padding-top:20px}
+#prozess .tl-n{position:static;width:auto;height:auto;border-radius:0;background:none;
+  border:0;box-shadow:none;display:block;font-family:var(--serif);font-size:56px;line-height:1;
+  font-weight:500;margin-bottom:22px;color:var(--ink-dim);font-variant-numeric:lining-nums}
+#prozess .tl-body h3{font-size:23px;margin-bottom:10px;display:block}
+#prozess .tl-body p{color:var(--ink-dim);font-size:16px;max-width:none}
+.blick{margin-top:48px;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--radius)}
+.blick-kopf{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 32px;border-bottom:1px solid var(--line)}
+.blick-kopf h3{font-family:var(--serif);font-size:24px;font-weight:500;margin:0}
+.blick-tabelle{width:100%;border-collapse:collapse;font-size:15.5px}
+.blick-tabelle th,.blick-tabelle td{text-align:left;vertical-align:top;padding:16px 32px 16px 0;border-bottom:1px solid var(--line)}
+.blick-tabelle th:first-child{padding-left:32px}
+.blick-tabelle tbody tr:last-child>*{border-bottom:0}
+.blick-tabelle thead th{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-dim);padding-top:12px;padding-bottom:12px}
+.blick-tabelle tbody th{font-weight:600;width:230px;color:var(--ink)}
+.blick-tabelle td{color:var(--ink-dim)}
+.blick-tabelle .takt{width:200px;font-family:var(--mono);font-size:13.5px;color:var(--ink);white-space:nowrap}
+.prozess-cta{margin-top:48px}
+@media (max-width:900px){
+  #prozess .timeline{grid-template-columns:1fr;gap:0}
+  #prozess .tl-item{display:grid;grid-template-columns:48px 1fr;column-gap:12px;padding:20px 0;border-top:1px solid var(--line-2)}
+  #prozess .tl-item:first-child{padding-top:18px}
+  #prozess .tl-n{grid-row:span 2;font-size:40px;margin:0}
+  #prozess .tl-body{grid-column:2}
+  .blick-kopf{flex-direction:column;gap:6px;padding:18px}
+  .blick-tabelle thead{display:none}
+  .blick-tabelle,.blick-tabelle tbody,.blick-tabelle tr,.blick-tabelle th,.blick-tabelle td{display:block;width:auto}
+  .blick-tabelle tr{padding:16px 18px;border-bottom:1px solid var(--line)}
+  .blick-tabelle tbody tr:last-child{border-bottom:0}
+  .blick-tabelle th,.blick-tabelle td,.blick-tabelle th:first-child{padding:0;border:0}
+  .blick-tabelle tbody th{margin-bottom:4px}
+  .blick-tabelle td{font-size:15px}
+  .blick-tabelle .takt{width:auto;margin-top:8px}
+}
+
+/* Block 6 "Preise": Zusatzstile für die bestehenden .price-Karten + Rechner
+   mit Rechenweg (.kr-start), derselbe kostenrechner.js wie /kosten/rechner/. */
+/* Kein Verlauf/Glow auf der "beliebt"-Karte (§1.7, §6 K1-12) — Kenn-Zeile statt
+   Pille, innere Oberkante wie basis.css .groesse-haeufig. */
+#preise .price-featured{background:var(--surface);box-shadow:inset 0 3px 0 var(--accent);border-color:var(--line)}
+.preise-kenn{position:static;top:auto;right:auto;color:var(--accent-ink);background:none;
+  padding:0;border-radius:0;font-size:11.5px;margin-bottom:4px}
+.preise-zeile{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);letter-spacing:-.01em;margin:10px 0 0}
+.preise-rechner-link{display:block;margin-top:10px;font-size:14px}
+.kr-start{margin-top:56px;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--radius)}
+.kr-start-form{display:grid;grid-template-columns:7fr 5fr}
+.kr-start-eingabe{padding:28px 32px}
+.kr-start-feld{padding:12px 0}
+.kr-start-feld+.kr-start-feld{border-top:1px solid var(--line)}
+.kr-start-num{max-width:8rem;font-family:var(--mono);font-size:28px;min-height:56px;text-align:left}
+.kr-start-schalter{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:15px;font-weight:500;cursor:pointer}
+.kr-start-schalter input{width:20px;height:20px;accent-color:var(--accent)}
+.kr-start-weg{padding:26px 32px;background:var(--bg-2);border-left:1px solid var(--line)}
+.kr-weg{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:12px}
+.kr-weg th,.kr-weg td{padding:9px 0;border-bottom:1px dashed var(--line-2);text-align:left;font-weight:400;color:var(--ink-dim)}
+.kr-weg td{text-align:right;font-family:var(--mono);white-space:nowrap;color:var(--ink)}
+.kr-weg th{color:var(--ink)}
+.kr-start-summe{display:flex;align-items:baseline;gap:10px;margin-top:14px;padding-top:14px;border-top:2px solid var(--ink)}
+.kr-start-summe span[data-kr-out]{font-family:var(--mono);font-size:32px;font-weight:500;letter-spacing:-.03em;color:var(--ink)}
+.kr-start-summe-l{font-size:14px;color:var(--ink-dim)}
+.kr-start-fuss{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:18px 32px;border-top:1px solid var(--line)}
+.kr-start-fuss-knoepfe{display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:900px){
+  .kr-start-form{grid-template-columns:1fr}
+  .kr-start-eingabe{padding:20px}
+  .kr-start-weg{padding:20px;border-left:0;border-top:1px solid var(--line)}
+  .kr-start-fuss{flex-direction:column;align-items:stretch;padding:20px}
+  .kr-start-fuss-knoepfe .btn{flex:1}
+}
+
+/* Angebot (§2.11-Zusatz): volle Preisliste als <details>, unten in #angebot. */
+.pt-summary{cursor:pointer;list-style:none;font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(1.25rem,2.2vw,1.65rem);font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+.pt-summary::-webkit-details-marker{display:none}
+.pt-details[open] .pt-summary{margin-bottom:16px}
+.pt-details .pt-lead{margin-top:8px}
 
 /* ── Knöpfe und Textlinks (docs/DESIGN-B1-2026-09-25.md §1.7) ────────────────
    Flache Fläche, kein Verlauf, kein Schatten, keine Bewegung außer Farbe. */
@@ -174,50 +308,50 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 /* ── Eyebrow: siehe .sec-kick oben (docs/DESIGN-B1-2026-09-25.md §1.6) ───── */
 
 /* ── HERO (asymmetrischer Split) ─────────────────────────────────────────── */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-start;padding:38px 0 44px;overflow:hidden;isolation:isolate}
-.hero-bg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;opacity:.75}
-.hero-scrim{position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(90deg, rgba(10,8,4,.94) 0%, rgba(10,8,4,.72) 38%, rgba(10,8,4,.28) 70%, rgba(10,8,4,.55) 100%),
-    linear-gradient(180deg, rgba(10,8,4,.5), transparent 30%, var(--bg) 99%)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start;width:100%;position:relative;z-index:1}
-.hero-copy{max-width:60ch;align-self:start;padding-top:clamp(6px,4vh,48px)}
-.hero-copy .eyebrow{margin-bottom:16px}
-.hero h1{font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:700;max-width:16ch;
-  color:var(--ink)}
-/* Zweite Stufe der Ueberschrift (06.09.2026): dieselbe h1, eigene Groesse.
-   Sie traegt die Information "gross und klein" und darf die grosse Zeile nicht
-   ueberstimmen — deshalb rund ein Drittel der Groesse, normale Laufweite und
-   gedaempfte Farbe. `display:block` statt eigener Absatz, damit die Ueberschrift
-   ein Gedanke bleibt: fuer Suchmaschinen wie fuer Screenreader. */
-.h1-zusatz{display:block;margin-top:14px;max-width:26ch;
-  font-size:clamp(1.02rem,1.5vw,1.22rem);font-weight:500;line-height:1.45;
-  letter-spacing:0;color:var(--ink-soft);font-family:"Inter",system-ui,sans-serif}
+/* ── Design B1 (25.09.2026): Hero hell, kein Hintergrundbild, Rückruf-Karte
+   direkt unter der Überschrift. docs/DESIGN-B1-2026-09-25.md §2.3. ── */
+.hero{position:relative;padding:56px 0 var(--s8);background:var(--bg);color:var(--ink)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 416px;gap:80px;align-items:start;width:100%}
+.hero-copy{min-width:0}
+.hero h1{font-size:clamp(2rem,1.1rem + 3.2vw,3.5rem);font-weight:500;line-height:1.07;
+  letter-spacing:-.02em;max-width:12.2em;color:var(--ink)}
+/* Zweite Stufe der Ueberschrift: dieselbe h1, eigene Groesse. Sie traegt die
+   Information "gross und klein" und darf die grosse Zeile nicht ueberstimmen. */
+.h1-zusatz{display:block;margin-top:20px;max-width:30em;
+  font-family:var(--serif);font-weight:400;font-size:clamp(1.15rem,1.3vw,1.28rem);
+  line-height:1.3;letter-spacing:0;color:var(--ink-soft)}
 
-/* ── Vertrauensband im Hero: Gesicht, Name, ein Satz ──────────────────────────
-   Bewusst keine Karte: kein Rahmen, kein Schatten, keine Flaeche. Nur eine feine
-   Linie oben, die es vom Fliesstext trennt. Auf einer Seite, die von Verzicht
-   lebt, waere eine weitere Box genau die Dekoration, die den Eindruck kippt.
-   Der einzige Akzent ist der duenne Goldring um das Foto — er zieht den Blick
-   dorthin, wo die Frage "wem gebe ich meine Zugaenge?" beantwortet wird. */
-/* Steht direkt unter der Ueberschrift (06.09.2026). Die Linie trennt es von ihr,
-   der Abstand darunter fuehrt zur Erklaerung — Behauptung, Beleg, Begruendung. */
-.hero-person{display:flex;align-items:flex-start;gap:14px;margin:24px 0 4px;padding-top:20px;
-  border-top:1px solid var(--line);max-width:46ch}
-.hero-person-bild{width:64px;height:64px;flex:0 0 auto;border-radius:50%;object-fit:cover;
-  box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--accent),0 8px 20px -10px rgba(0,0,0,.55)}
+/* Handy-Fassung des Vertrauensbands: 56-px-Rundbild, Name + Rolle zweizeilig.
+   Ab 701 px display:none (das grosse Porträt rechts übernimmt). */
+.hero-person{display:none}
+.hero-person-bild{width:64px;height:64px;flex:0 0 auto;border-radius:50%;object-fit:cover;background:var(--bg-2)}
 .hero-person-text{display:block;min-width:0}
-.hero-person-name{display:block;font-family:"Space Grotesk",sans-serif;font-weight:600;
-  font-size:16px;color:var(--ink);letter-spacing:-.01em}
-.hero-person-rolle{display:block;margin-top:2px;font-size:12.5px;letter-spacing:.04em;
+.hero-person-name{display:block;font:600 15.5px/1.3 var(--sans);color:var(--ink)}
+.hero-person-rolle{display:block;margin-top:2px;font-family:var(--mono);font-size:12px;
   color:var(--ink-dim)}
-.hero-person-satz{display:block;margin-top:8px;font-size:14.5px;line-height:1.55;
-  color:var(--ink-soft)}
-.lead{font-size:clamp(1.06rem,1.6vw,1.28rem);color:var(--ink-soft);margin:22px 0 34px;max-width:44ch}
-.hero .lead{margin:16px 0 24px}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.hero-note{margin-top:18px;font-size:13.5px;color:var(--ink-dim)}
-/* Roboter rechts */
-.hero-figure{position:relative;justify-self:center;align-self:start;height:min(88svh,820px);display:flex;align-items:flex-start;margin-top:-8px}
+.hero-person-satz{display:none}
+.lead{font-size:19px;color:var(--ink-dim);margin-top:20px;max-width:34em;line-height:1.55}
+.hero-sprung{display:none}
+.hero-sprung svg{width:18px;height:18px;flex:none}
+.hero-alt{margin-top:20px;font-size:15px;color:var(--ink-dim)}
+.hero-alt a{display:inline-flex;align-items:center;gap:6px;margin-left:6px;font-family:var(--mono);
+  font-size:14.5px;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line-2)}
+.hero-alt a:hover{border-bottom-color:var(--ink)}
+.hero-alt svg{width:16px;height:16px;color:var(--accent-ink)}
+.rr-fuss-grid{margin-top:8px}
+.rr-submit-field{display:flex;align-items:flex-end}
+.rr-submit-field .btn{width:100%}
+
+/* Großes Porträt rechts: bis 700 px display:none (§6 K2-3 — <source> zeigt dort
+   auf florin_320.webp, dieselbe Datei, die das kleine Rundbild ohnehin lädt). */
+.hero-foto-box{margin:0}
+.hero-foto{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;
+  background:var(--bg-2);display:block}
+.hero-foto-box figcaption{padding:18px 0 0;border-top:2px solid var(--ink)}
+.hero-foto-name{display:block;font-family:var(--mono);font-size:12px;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px}
+.hero-foto-satz{display:block;font-family:var(--serif);font-size:23px;line-height:1.38;color:var(--ink)}
+/* Roboter (KI-Vitrine weiter unten, unverändert in diesem Paket) */
 .robot-stage{position:relative;width:min(46vw,520px);height:100%}
 /* Spline-3D-Canvas (folgt der Maus); per JS eingeblendet sobald geladen */
 .robot-canvas{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .6s var(--ease)}
@@ -264,17 +398,6 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 .band-p{color:var(--ink-soft);font-size:clamp(1.02rem,1.6vw,1.2rem);margin-top:16px}
 .hero-figure-glow{position:absolute;inset:auto 0 6%;height:60%;z-index:0;
   background:radial-gradient(50% 60% at 50% 60%, color-mix(in srgb,var(--accent) 34%,transparent), transparent 70%);filter:blur(20px)}
-.hero-price-chip{position:absolute;left:-6px;bottom:20%;z-index:2;display:flex;flex-direction:column;gap:2px;
-  padding:14px 18px;border-radius:16px;border:1px solid var(--line-2);background:color-mix(in srgb,var(--surface) 80%,transparent);
-  backdrop-filter:blur(14px);box-shadow:var(--shadow-lg);animation:float 7s ease-in-out infinite .4s}
-.hero-price-chip span{font-size:12px;color:var(--ink-soft)}
-.hero-price-chip strong{font-family:"Space Grotesk",sans-serif;font-size:22px;
-  color:var(--ink)}
-/* Scroll-Hinweis (Icon-only) */
-.hero-scroll{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:2;width:24px;height:38px;
-  border:1.5px solid var(--line-2);border-radius:14px;display:grid;justify-items:center;padding-top:7px}
-.hero-scroll span{width:3px;height:8px;border-radius:2px;background:var(--ink-soft);animation:scrolldot 1.8s var(--ease) infinite}
-@keyframes scrolldot{0%{opacity:0;transform:translateY(-3px)}40%{opacity:1}80%{opacity:0;transform:translateY(8px)}}
 
 /* ── Proof + Stats ───────────────────────────────────────────────────────── */
 .proof{border-block:1px solid var(--line);background:color-mix(in srgb,var(--surface) 45%,transparent);padding:30px 0}
@@ -438,11 +561,8 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 .founder-points li{position:relative;padding-left:30px;color:var(--ink-soft);font-size:15.5px}
 .founder-points li::before{content:"";position:absolute;left:0;top:7px;width:16px;height:9px;
   border:solid var(--accent2);border-width:0 0 2px 2px;transform:rotate(-45deg)}
-.founder-contact{display:flex;flex-wrap:wrap;gap:12px}
-.founder-chip{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:999px;font-size:14.5px;font-weight:500;
-  color:var(--ink);border:1px solid var(--line-2);background:var(--tint);transition:border-color .2s,color .2s,transform .2s var(--ease)}
-.founder-chip svg{width:18px;height:18px;color:var(--accent2)}
-.founder-chip:hover{border-color:color-mix(in srgb,var(--accent) 55%,transparent);color:var(--accent-ink);transform:translateY(-2px)}
+/* .founder-contact/.founder-chip (Design B1): entfielen mit der alten
+   "Wer dahintersteht"-Vitrine — Block 4 nutzt jetzt .ueber-fuss (§2.6). */
 
 /* ── Kontakt ─────────────────────────────────────────────────────────────── */
 .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,72px);align-items:start}
@@ -495,8 +615,6 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 .foot-kopf .brand-text b,.foot-kopf .brand-text small{color:var(--ink)}
 .foot-brand p{color:var(--ink-soft);font-size:14.5px;margin-top:16px;max-width:38ch}
 .foot-slogan{color:var(--ink);font-size:15px;font-weight:600;margin-top:14px;max-width:34ch;line-height:1.5}
-.vt-sitz{margin-top:12px;font-size:14.5px;line-height:1.7;color:var(--ink-soft)}
-.vt-sitz strong{color:var(--ink);font-weight:600}
 .foot-nap{color:var(--ink-soft);font-size:14px;line-height:1.7;margin-top:8px;font-style:normal;max-width:38ch;font-family:var(--mono)}
 .foot-nap a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid transparent}
 .foot-nap a:hover,.foot-nap a:focus-visible{color:var(--ink);border-bottom-color:currentColor}
@@ -535,14 +653,9 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width:980px){
-  /* Hero gestapelt: Text oben, Roboter (Cutout) darunter im Fluss, voll sichtbar */
-  /* Nav ist sticky (im Fluss) -> kleiner Abstand reicht, kein grosser Leerraum ueber der Ueberschrift */
-  .hero{min-height:auto;padding:40px 0 44px}
-  .hero-grid{grid-template-columns:1fr;gap:18px}
-  .hero-figure{position:relative;inset:auto;justify-self:center;align-self:auto;width:min(82%,360px);height:clamp(300px,46vh,440px);opacity:1;z-index:1}
+  /* Design B1: der Hero selbst hat seine eigene Handy-Fassung bei 700px (siehe
+     dort); .robot-stage bleibt hier fuer die KI-Vitrine (Paket 3, unveraendert). */
   .robot-stage{width:100%}
-  .hero-price-chip{display:none}
-  .hero-copy{max-width:none}
   /* Scroll-Sektionen: kein langes Scrubbing auf Mobil -> normale Höhe (Autoplay-Loop per JS) */
   .scrolly{height:auto}
   .scrolly-sticky{position:relative;height:clamp(440px,72vh,580px)}
@@ -1194,12 +1307,8 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .sp-abgrenzung{margin:10px 0 0;padding-left:20px;color:var(--ink-soft)}
 .sp-abgrenzung li{margin-bottom:8px}
 
-/* Zwischenueberschriften im Preisabschnitt (06.09.2026): Er traegt jetzt zwei
-   Gruppen — Betreuungsstufen zuerst, Webseiten-Pakete darunter. */
-.preis-gruppe-h{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.25rem,2.4vw,1.6rem);
-  font-weight:600;letter-spacing:-.01em;margin:0 0 6px;text-wrap:balance}
-.preis-gruppe-h-2{margin-top:var(--s7);padding-top:var(--s6);border-top:1px solid var(--line)}
-.preis-gruppe-lead{color:var(--ink-soft);font-size:15px;max-width:62ch;margin:0 0 var(--s5)}
+/* Design B1 (§2.8): Block 6 "Preise" hat jetzt einen einzigen sec-head; die
+   Webseiten-Paket-Gruppe darunter ist auf `/` entfallen (bleibt auf /kosten/). */
 
 .rb-sum{position:relative;min-block-size:104px;border-radius:14px;padding:14px 16px;
   border:1px solid var(--line);background:color-mix(in srgb,var(--accent) 4%,transparent);margin-bottom:16px}
@@ -1384,13 +1493,13 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
    Nur auf dunklen Bändern, wo weißer Verlaufstext lesbar ist; auf hellem Grund
    bleiben Überschriften schlicht --ink. Steht bewusst am Dateiende, damit die
    Regel die früheren Farbangaben (z. B. .hero h1) überschreibt. */
-.on-dark h1,.on-dark .section-t,.on-dark .band-h,.on-dark .offer-h,
-.on-dark .stat strong,.on-dark .hero-price-chip strong{
+.on-dark h1,.on-dark .band-h,.on-dark .offer-h,
+.on-dark .stat strong{
   background:linear-gradient(180deg,#fff 34%,var(--accent2));
   -webkit-background-clip:text;background-clip:text;color:transparent}
-/* Ausnahme: das helle Werkzeug im dunklen Hero behält schwarze Schrift. */
-.on-dark .hero-tool h1,.on-dark .hero-tool h2,.on-dark .hero-tool .tool-h{
-  background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink)}
+/* Design B1 (§1.13, Block 5 "Ablauf"): keine Verlaufsschrift auf neu gebauten
+   Abschnittsüberschriften — Bastians Geschmack verbietet Verläufe. */
+.on-dark .section-t{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--ink)}
 
 /* ── Kopfzeile: Platz für vier Elemente schaffen ─────────────────────────── */
 .brand{white-space:nowrap}
@@ -1431,50 +1540,9 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .hero-trust li{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:var(--ink-soft)}
 .hero-trust svg{width:16px;height:16px;color:var(--accent2);flex:0 0 auto}
 
-/* ── Hero-Werkzeug (zwei Reiter) ─────────────────────────────────────────── */
-.hero-tool{background:var(--surface);color:var(--ink);border:1px solid var(--line);
-  border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;align-self:start;
-  margin-top:clamp(6px,4vh,42px);max-width:520px;width:100%;justify-self:end}
-/* Die Karte bleibt hell, auch im dunklen Hero: sie ist das Werkzeug, nicht Deko. */
-.on-dark .hero-tool{--bg:#fbfaf8;--bg-2:#f4f1ec;--surface:#ffffff;--surface-2:#f7f5f1;
-  --ink:#14120e;--ink-soft:#55504a;--ink-dim:#746c64;
-  --line:rgba(20,18,14,.10);--line-2:rgba(20,18,14,.18);
-  --tint:rgba(20,18,14,.035);--tint-2:rgba(20,18,14,.06);
-  --accent2:#b8862b;--accent-ink:#8a6212;--accent-soft:#fdf6e6;--ring:#8a6212}
-/* Drei Reiter seit dem 06.09.2026 (Rueckruf, Richtpreis, Gratis-Seite). Die feste
-   Zweierteilung liess den dritten in eine zweite Zeile fallen. `1fr 1fr 1fr` statt
-   `auto`, damit alle drei gleich breit bleiben und der aktive Unterstrich passt. */
-.tool-tabs{display:grid;grid-template-columns:repeat(3,1fr);background:var(--surface-2);border-bottom:1px solid var(--line)}
-.tool-tab{appearance:none;border:0;background:transparent;font:inherit;font-weight:600;font-size:14.5px;
-  color:var(--ink-soft);padding:15px 8px;min-height:52px;cursor:pointer;position:relative;
-  line-height:1.25;text-wrap:balance;transition:color .18s,background .18s}
-.tool-tab:hover{color:var(--ink);background:var(--tint)}
-.tool-tab:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
-.tool-tab.is-active{color:var(--ink);background:var(--surface)}
-.tool-tab.is-active::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:3px;
-  border-radius:3px 3px 0 0;background:var(--accent)}
-.tool-panel{padding:clamp(20px,3vw,28px)}
-.tool-panel[hidden]{display:none}
-.tool-h{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.25rem,2vw,1.5rem);font-weight:700;
-  letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin-bottom:6px}
-.tool-sub{font-size:14.5px;color:var(--ink-soft);margin-bottom:18px;max-width:46ch}
+/* Design B1: Hero-Werkzeug (Reiter) entfallen — die Rückruf-Karte (.rr-karte)
+   ersetzt sie; .tool-fine bleibt (vom Gratis-Formular in Block 8 weiterverwendet). */
 .tool-fine{font-size:12.5px;color:var(--ink-dim);margin-top:12px;text-align:center}
-.tool-picks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tool-pick{display:flex;align-items:center;gap:10px;min-height:56px;padding:12px 14px;
-  border:1px solid var(--line-2);border-radius:var(--radius-in);background:var(--surface);
-  font-size:14.5px;font-weight:600;color:var(--ink);
-  transition:transform .18s var(--ease),border-color .18s,background .18s}
-.tool-pick svg{width:20px;height:20px;color:var(--accent2);flex:0 0 auto}
-.tool-pick:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--accent) 60%,transparent);background:var(--accent-soft)}
-.tool-pick:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
-.tool-alt{display:inline-block;margin-top:16px;font-size:14px;font-weight:600;color:var(--accent-ink);
-  text-decoration:underline;text-underline-offset:3px}
-
-/* ── Zusagen-Leiste unter dem Hero ───────────────────────────────────────── */
-.promise{background:var(--surface);border-bottom:1px solid var(--line)}
-.promise-in{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 34px;padding:20px 24px}
-.promise-i{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;color:var(--ink-soft)}
-.promise-i svg{width:18px;height:18px;color:var(--accent2);flex:0 0 auto}
 
 /* ── Leistungsblöcke mit eigenem Abschluss ───────────────────────────────── */
 .lb-list{display:grid;gap:clamp(20px,3vw,32px)}
@@ -1520,31 +1588,14 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .rr-karte-sub{font-size:15px;color:var(--ink-dim);margin-top:4px;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .rr-karte .lb-form{margin-top:16px}
 @media (max-width:480px){.rr-karte{padding:20px 18px}}
-/* Honeypot: für Menschen unsichtbar, für Bots ein Feld wie jedes andere. */
-/* Mini-Rechner im Hero-Reiter „Richtpreis" (06.09.2026). Nutzt die Feldklassen
-   des Formularsystems, damit er sich in beiden Kontexten (hell und .on-dark)
-   ohne Sonderregeln einfuegt. */
-.tool-rechner{margin-top:4px}
-.tool-rechner .btn{width:100%;margin-top:12px}
-.tool-sub-alt{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px}
-
 /* Honigtopf: display:none statt Verschieben — die Ausfuellhilfe des Browsers und
    Passwortverwalter ueberspringen Felder ohne Darstellungsbox weitgehend. Ein Feld,
    das nur aus dem Bild geschoben ist, fuellen sie dagegen aus und verwerfen damit
    echte Anfragen (06.09.2026, siehe templates/honigtopf.html). */
 .hp{display:none}
 
-/* ── Technik vor Ort (kompakter als die digitalen Blöcke) ────────────────── */
-.tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:26px}
-.tk-card{padding:26px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--line)}
-.tk-card h3{font-size:18px;font-weight:600;margin-bottom:8px}
-.tk-card p{font-size:14.5px;color:var(--ink-soft);margin:0}
-.tk-ask{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);align-items:start;
-  padding:clamp(22px,3vw,34px);border-radius:var(--radius);background:var(--surface);
-  border:1px solid var(--line);box-shadow:var(--shadow)}
-.tk-ask h3{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;
-  letter-spacing:-.02em;margin-bottom:8px}
-.tk-ask p{color:var(--ink-soft);font-size:15.5px;max-width:46ch;margin-bottom:14px}
+/* Design B1: "Technik vor Ort" (#technik) entfällt als eigener Abschnitt — die
+   drei Themen stehen jetzt als dritte Spalte in Block 3 "Leistungen" (.register-*). */
 
 /* ── Vollständige Preisliste (zugleich GEO-Futter) ───────────────────────── */
 .pt{margin-top:clamp(32px,5vw,56px);padding:clamp(22px,3vw,34px);border-radius:var(--radius);
@@ -1655,75 +1706,10 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
    der Rest; das Vertrauensband ist ein dunkles Marken-Band (.on-dark).
    ========================================================================== */
 
-/* ── Problemband ─────────────────────────────────────────────────────────────
-   Bewusst KEIN Kartenraster: sechs gleich große Kacheln lesen sich wie ein
-   Baukasten. Stattdessen eine zweispaltige, durch Haarlinien gegliederte Liste
-   , das wirkt redaktionell und lässt die Zitate die Hierarchie tragen. */
-.pb-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;
-  gap:0 clamp(32px,5vw,80px);margin:0;padding:0}
-.pb{display:grid;grid-template-columns:auto 1fr;gap:var(--s4);
-  padding:var(--s5) 0;border-top:1px solid var(--line)}
-/* Die ersten beiden Zeilen brauchen keine Linie nach oben , der Sektionskopf trennt schon. */
-.pb:nth-child(1),.pb:nth-child(2){border-top:0;padding-top:0}
-.pb-n{font-family:"Space Grotesk",sans-serif;font-size:13px;font-weight:700;
-  font-variant-numeric:tabular-nums;color:var(--ink-dim);line-height:1.9;letter-spacing:.02em}
-.pb-q{font-family:"Space Grotesk",sans-serif;font-size:clamp(1.06rem,1.7vw,1.24rem);
-  font-weight:600;line-height:1.3;letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
-.pb-a{margin-top:9px;font-size:15px;color:var(--ink-soft);max-width:46ch}
-.pb-l{display:inline-flex;align-items:center;gap:6px;margin-top:13px;
-  font-size:14.5px;font-weight:600;color:var(--accent-ink);
-  border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent);padding-bottom:2px;
-  transition:border-color .2s var(--ease),gap .2s var(--ease)}
-.pb-l .ic-arrow{width:16px;height:16px;transition:transform .2s var(--ease)}
-.pb-l:hover{border-color:var(--accent)}
-.pb-l:hover .ic-arrow{transform:translateX(3px)}
-.pb-l:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);
-  outline-offset:4px;border-radius:4px}
-
-/* ── Wer dahintersteht (dunkles Band mit Gesicht, Region und Kontaktwegen) ─── */
-.vt{padding:clamp(72px,10vw,120px) 0;background:
-  radial-gradient(58% 46% at 88% 4%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 68%),
-  var(--bg)}
-.vt-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:clamp(32px,5vw,72px);align-items:start}
-.vt-media{margin:0;max-width:340px}
-.vt-photo{width:100%;aspect-ratio:1;object-fit:cover;border-radius:22px;
-  border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);box-shadow:var(--shadow-lg)}
-.vt-cap{display:grid;gap:2px;margin-top:var(--s4)}
-.vt-cap strong{font-family:"Space Grotesk",sans-serif;font-size:17px;font-weight:600;color:var(--ink)}
-.vt-cap span{font-size:13.5px;color:var(--ink-dim);letter-spacing:.02em}
-.vt-text{color:var(--ink-soft);font-size:clamp(1.02rem,1.5vw,1.14rem);max-width:58ch;margin-top:var(--s4)}
-.vt-points{list-style:none;display:grid;gap:10px;margin:var(--s5) 0 0;padding:0}
-.vt-points li{display:flex;align-items:flex-start;gap:10px;font-size:15.5px;color:var(--ink)}
-.vt-points svg{width:17px;height:17px;color:var(--accent2);flex:0 0 auto;margin-top:4px}
-/* Belegbare Eckdaten , rendern nur, wenn sie in content.json gepflegt sind. */
-.vt-facts{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s6);margin-top:var(--s5);
-  padding-top:var(--s5);border-top:1px solid var(--line)}
-.vt-facts dt{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-dim)}
-.vt-facts dd{font-family:"Space Grotesk",sans-serif;font-size:19px;font-weight:600;color:var(--ink);margin-top:3px}
-.vt-region{margin-top:var(--s5);padding:var(--s5);border-radius:var(--radius-sm);
-  background:var(--tint);border:1px solid var(--line)}
-.vt-region h3{font-size:16px;font-weight:600;color:var(--ink)}
-.vt-region p{font-size:14.8px;color:var(--ink-soft);margin-top:8px;max-width:56ch}
-.vt-flags{display:flex;flex-wrap:wrap;align-items:center;gap:9px var(--s5);
-  margin-top:var(--s4);font-size:14.5px;font-weight:600;color:var(--ink)}
-/* Flaggen als reine CSS-Flächen: keine Bilddatei, keine Clipart-Anmutung. */
-.fl{width:24px;height:16px;border-radius:3px;flex:0 0 auto;margin-right:-3px;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
-.fl-at{background:linear-gradient(180deg,#ed2939 0 33.34%,#fff 33.34% 66.67%,#ed2939 66.67%)}
-.fl-de{background:linear-gradient(180deg,#000 0 33.34%,#dd0000 33.34% 66.67%,#ffce00 66.67%)}
-.vt .founder-contact{margin-top:var(--s5)}
-
-@media (max-width:1080px){
-  .vt-grid{grid-template-columns:1fr}
-  .vt-media{max-width:250px}
-}
-@media (max-width:820px){
-  .pb-list{grid-template-columns:1fr}
-  .pb:nth-child(2){border-top:1px solid var(--line);padding-top:var(--s5)}
-}
-@media (prefers-reduced-motion:reduce){
-  .pb-l,.pb-l .ic-arrow{transition:none}
-}
+/* Design B1 (25.09.2026): Problemband (#probleme) und die alte dunkle
+   "Wer dahintersteht"-Vitrine (.vt-*) entfallen — Block 4 "Wer dahintersteht"
+   nutzt jetzt .ueber-raster/.zusagen/.fakten auf Papier (§2.6). views.PROBLEME
+   und die Texte bleiben im Code (§6 K2-4, Zuarbeit SEO-Team). */
 
 /* ============================================================================
    RELAUNCH 2026-08 , Unterseiten des Leistungs-Silos
@@ -2200,25 +2186,25 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
    Beide beantworten dieselbe Frage an zwei Stellen: "Wo fange ich an?"
    Der Finder tut es für die Website, die Pakete für den Konfigurator.
    ========================================================================== */
-.fd-sec{padding-top:var(--s8)}
-.fd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:34px}
-.fd-karte{position:relative;display:block;padding:26px 24px 54px;border-radius:18px;
-  border:1px solid var(--line);background:var(--surface);text-decoration:none;color:inherit;
-  box-shadow:var(--shadow);transition:transform .22s var(--ease),border-color .22s var(--ease),box-shadow .22s var(--ease)}
-.fd-karte:hover,.fd-karte:focus-visible{transform:translateY(-3px);border-color:var(--accent);
-  box-shadow:var(--shadow-lg)}
-.fd-ic{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;
-  background:var(--accent-soft);color:var(--accent-ink);margin-bottom:16px}
-.fd-ic svg{width:23px;height:23px}
-.fd-h{font-size:19px;margin:0 0 9px;line-height:1.3}
-.fd-t{font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin:0}
-.fd-pfeil{position:absolute;left:24px;bottom:22px;width:22px;height:22px;color:var(--accent-ink);
-  transition:transform .22s var(--ease)}
-.fd-pfeil svg{width:22px;height:22px}
-.fd-karte:hover .fd-pfeil{transform:translateX(4px)}
-/* Der dringende Weg trägt als einziger einen roten Punkt — nicht mehr. */
-.fd-karte-eilig{border-left:3px solid #c2503a}
-.fd-karte-eilig .fd-ic{background:rgba(194,80,58,.12);color:#a03f2c}
+/* Design B1 (§2.4, 25.09.2026): Block 2 "Wegweiser" ist jetzt eine zweispaltige
+   Liste (wie basis.css .wege/.weg), keine Kartengrid mehr. */
+.fd-sec{padding-top:0}
+.wege{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;border-bottom:1px solid var(--line);
+  list-style:none;margin:0;padding:0}
+.wege li{border-top:1px solid var(--line)}
+.fd-karte{position:relative;display:grid;grid-template-columns:1fr auto;grid-template-areas:"h pfeil" "t pfeil";
+  column-gap:16px;row-gap:6px;padding:26px 0;color:var(--ink);text-decoration:none}
+.fd-h{grid-area:h;display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:27px;
+  line-height:1.2;font-weight:500;letter-spacing:-.008em;margin:0}
+.fd-t{grid-area:t;font-size:16px;line-height:1.5;color:var(--ink-dim);margin:0;max-width:30em}
+.fd-pfeil{grid-area:pfeil;align-self:center;width:20px;height:20px;color:var(--accent-ink);
+  transition:transform .15s ease-out}
+.fd-pfeil svg{width:20px;height:20px}
+.fd-karte:hover .fd-h,.fd-karte:focus-visible .fd-h{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.fd-karte:hover .fd-pfeil{transform:translateX(3px)}
+.fd-alert{display:inline-flex;color:var(--notfall);width:22px;height:22px}
+.fd-alert svg{width:22px;height:22px}
+.fd-karte-eilig .fd-pfeil{color:var(--notfall)}
 
 .pk{margin:0 0 40px}
 .pk-h{font-size:20px;margin:0 0 8px}
@@ -2259,21 +2245,39 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   .ts-opt{padding:12px 18px;min-height:44px}
   .ts-optionen{gap:10px}
   .nf-wege .btn,.nf-wege .btn-wa{min-height:48px}
-  .fd-karte{padding:22px 20px 50px}
+  .wege{grid-template-columns:1fr}
+  .fd-karte{grid-template-columns:1fr;grid-template-areas:"h" "t" "pfeil";padding:22px 0}
+  .fd-h{font-size:23px}
 }
 /* Einblenden und Scrollen respektieren die Systemeinstellung. */
 @media (prefers-reduced-motion: reduce){
-  .fd-karte,.pk-karte,.such-item a,.kr-teaser{transition:none}
-  .fd-karte:hover,.fd-karte:focus-visible{transform:none}
+  .fd-karte,.fd-pfeil,.pk-karte,.such-item a,.kr-teaser{transition:none}
+  .fd-karte:hover .fd-pfeil,.fd-karte:focus-visible .fd-pfeil{transform:none}
 }
 
-/* ── Hero-Bild nach Bildschirmbreite (docs/SEO-AUSBAU-3.md, T3) ───────────────
-   Die drei Varianten kommen als Custom Properties aus dem Template (Quelle:
-   content.json). Steht keine davon zur Verfügung, bleibt die JPEG-Deklaration
-   aus dem style-Attribut stehen — die Reihenfolge ist deshalb Absicht. */
-@media (max-width:700px){ .hero-bg{background-image:var(--hero-s)} }
-@media (min-width:701px) and (max-width:1100px){ .hero-bg{background-image:var(--hero-m)} }
-@media (min-width:1101px){ .hero-bg{background-image:var(--hero-l)} }
+/* ── Design B1 (§2.3): Hero-Handyfassung — Name+Rolle sichtbar, Rückruf-Knopf
+   im ersten Bildschirm über der Handy-Leiste. Großes Porträt erst ab 701px. ── */
+@media (min-width:701px){
+  .hero-person{display:none}
+  .hero-sprung{display:none}
+}
+@media (max-width:700px){
+  .hero{padding:24px 0 0}
+  .hero-grid{grid-template-columns:1fr;gap:0}
+  .hero-copy{display:flex;flex-direction:column}
+  .hero-person{order:1;display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .hero-copy h1{order:2;max-width:none}
+  .hero-sprung{order:3;display:flex;width:100%;margin-top:20px}
+  .hero-copy>.lead{order:4}
+  .hero-copy .rr-karte{order:5}
+  .hero-alt{order:6}
+  .hero-foto-box{display:none}
+  .rr-karte{margin-top:24px;padding:20px 18px}
+  .rr-fuss-grid{grid-template-columns:1fr}
+  .rr-submit-field .btn{width:100%}
+  .hero-trust{flex-direction:column;margin-top:36px}
+  .hero-trust li{padding:10px 0}
+}
 
 /* ============================================================================
    GLOSSAR  (docs/SEO-AUSBAU-3.md, W5)
@@ -2552,6 +2556,28 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .ein-preis{font-family:"Space Grotesk",sans-serif;font-size:19px;font-weight:700;
   letter-spacing:-.02em;color:var(--accent-ink);font-variant-numeric:tabular-nums;
   padding-top:10px;border-top:1px solid var(--line)}
+
+/* Design B1 (§2.9, 25.09.2026): Block 7 "Festpreise" auf der Startseite ist
+   eine zweispaltige Preisliste (wie basis.css .preisliste), keine Kartengrid —
+   scoped auf #einrichten, der Hub /einrichten/ bleibt bis Paket 4 unberührt. */
+.preisliste{display:grid;grid-template-columns:1fr 1fr;column-gap:72px;align-items:start}
+.preisspalte>.kenn{display:block;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.preisspalte-satz{font-size:15px;color:var(--ink-dim);padding:14px 0 4px;max-width:30em}
+.preisspalte ul{list-style:none;margin:0;padding:0}
+#einrichten .ein-karte{display:flex;flex-direction:row;align-items:baseline;justify-content:space-between;
+  gap:24px;padding:17px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;
+  background:none;box-shadow:none;transform:none}
+#einrichten .ein-karte:hover{transform:none;border-color:var(--ink);box-shadow:none}
+#einrichten .ein-h{font-family:var(--serif);font-size:22px;font-weight:500;letter-spacing:0;
+  line-height:1.3;color:var(--ink)}
+#einrichten .ein-karte:hover .ein-h{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+#einrichten .ein-preis{font-family:var(--mono);font-size:16px;font-weight:500;letter-spacing:0;
+  color:var(--ink);padding-top:0;border-top:0;white-space:nowrap}
+@media (max-width:700px){
+  .preisliste{grid-template-columns:1fr;row-gap:36px}
+  #einrichten .ein-h{font-size:19px}
+  #einrichten .ein-preis{font-size:15px}
+}
 
 /* Auf der Einzelseite steht der Festpreis oben in der Faktenspalte — auf dem
    Handy muss er ohne Scrollen sichtbar sein, er ist der Grund zu bleiben. */

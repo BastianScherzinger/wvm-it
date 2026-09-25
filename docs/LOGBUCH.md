@@ -7,6 +7,111 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 25.09.2026 — Design B1 „Porträt", Paket 2: Startseite oben (Hero bis Festpreise)
+
+Zweiter von vier Paketen im selben Worktree/Zweig (`wvm-it-design-b1`,
+`design/2026-09-25-b1`), aufbauend auf dem committeten Paket 1 (Fundament).
+`docs/SEO-VERTEILER-B1.md` neu: Warnungsliste von `pruefe_seite` vorher/nachher
+(§6 K2-4 des Bauplans).
+
+* **Block 1 Hero:** hell statt dunkel, kein Hintergrundbild/Reiter mehr. Rückruf-Karte
+  (`.rr-karte`) direkt unter der zweistufigen Überschrift, mit Zeitfenster-Segmenten
+  wie im Rückruf-Dialog aus Paket 1. Neue H1 „IT-Betreuung mit einem Ansprechpartner,
+  der Ihren Betrieb kennt." (Begründung in `docs/HERO-KONZEPT-2026-09-06.md`, § B1).
+  Großes Porträt rechts (`figure.hero-foto-box`, ab 701 px), Handy-Fassung mit
+  64-px-Rundbild + Name/Rolle. Ladepriorität trägt jetzt eine eigene
+  `<link rel="preload" media="(min-width:701px)">`, nicht mehr das `<img>` selbst;
+  auf dem Handy zeigt `<source media="(max-width:700px)">` auf dieselbe Datei, die
+  das Rundbild ohnehin lädt — keine zusätzliche Anfrage, keine hohe Priorität dort.
+* **Block 2 Wegweiser:** zweispaltige Liste statt Kartengrid (`.wege`/`.fd-karte`,
+  weiterhin genau 6 Karten). Weg „Was würde das kosten?" (→ Rechner) ersetzt durch
+  „Ein neuer PC, ein Netzwerk, Microsoft 365" (→ Festpreise, `views.FINDER`),
+  Kostenrechner bleibt über Block 6 und den Kopf erreichbar.
+* **Block 3 Leistungen:** neue `_leistungen_nach_bereich(lang)` in `views.py`
+  (gemeinsam mit dem Leistungs-Hub, Ergebnis dort unverändert) — drei Register-Spalten
+  (EDV/Sichtbarkeit/Technik) mit allen 14 Leistungen aus `leistungen.LEISTUNGEN`.
+  Die sechs alten Kurzformular-Blöcke (`leistung_block.html`, jetzt gelöscht) und der
+  Abschnitt `#technik` samt eigenem Formular entfallen; die sieben betroffenen
+  Anfrage-Quellen (it/web/seo/ads/hosting/ki/technik) stehen jetzt nur noch auf ihrer
+  jeweiligen Leistungsseite — `_QUELLE_AUF_EIGENER_SEITE` in `views.py` entsprechend
+  ergänzt, sonst hätte `pruefe_seite` sieben Fehlmeldungen geworfen.
+* **Block 4 Wer dahintersteht:** Papier statt dunkler Vitrine, `.ueber-raster`/
+  `.zusagen`/`.fakten` (wie `basis.css`). H2 „Wer dahintersteht: Florin Feier.",
+  Zusagen neu formuliert (Preise offen auf der Seite, Einzelhilfe/Festpreise ohne
+  Vertrag, dritte Zusage unverändert). Vier Fakten (Sitz, Vor Ort, Fernwartung,
+  Sprachen) statt Flaggen und Kontakt-Chips.
+* **Block 5 Ablauf:** dunkel (`section.on-dark`), vier Spalten statt vertikaler
+  Timeline (scoped auf `#prozess`, `/leistungen/…` behält seine eigene Timeline).
+  Neuer Kasten „Im Blick" (`.blick`, wie `basis.css`) — vier Bereiche/Takt, ohne
+  grünen Punkt und ohne das Wort „läuft" (§6 K1-5). Knopf „Rückruf für das
+  Erstgespräch" → `#rueckruf`. Verlaufsschrift (`.on-dark .section-t`) für neu
+  gebaute Abschnitte deaktiviert — keine Verläufe auf Überschriften.
+* **Block 6 Preise:** nur noch die drei Betreuungsgrößen + Rechner mit Rechenweg
+  (`#rechner-kurz`); die Webseiten-Pakettabelle ist auf `/` entfallen (bleibt auf
+  `/kosten/`). Rechner nutzt denselben `kostenrechner.js` und dieselben Funktionen
+  wie `/kosten/rechner/` — neue gemeinsame `_rechner_saetze()`, `views.index()` ruft
+  `_it_stufen(lang)` jetzt mit Sprache auf (einzige Aufrufstelle, §6 K2-5), damit
+  jede Größe ihre Rechenzeile bekommt. „Beliebt"-Karte trägt eine Kenn-Zeile
+  („typisch für ein Büro mit Server") statt Pille/Verlauf.
+* **Block 7 Festpreise:** zweispaltige Preisliste (Festpreis / Nach Aufnahme) statt
+  Kartengrid, Schleife über `einrichtungen.EINRICHTUNGEN` (neues Feld `anfrage` in
+  `_einrichtung_daten()`), `class="ein-karte"` bleibt exakt `len(EINRICHTUNGEN)`-mal
+  auf der Seite — nie hartkodiert. Regeln gescoped auf `#einrichten`, der Hub
+  `/einrichten/` bleibt unberührt.
+* **Blöcke 8–14:** bleiben in diesem Paket ALT (Paket 3 baut sie um), stehen jetzt
+  aber in der Reihenfolge #gratis, #angebot, die übrigen alten Abschnitte, #wissen,
+  #faq, #kontakt, #kooperationen. Das Gratis-Formular (`id="newsForm"`) zog
+  unverändert aus dem alten Hero-Reiter in den bestehenden `#gratis`-Abschnitt
+  (`action="#gratis"`). Die volle Preisliste (`table.pt-table` mit Stand) steht jetzt
+  als `<details class="pt pt-details">` am Ende von `#angebot`. Problemband
+  `#probleme` entfernt (`views.PROBLEME` und Texte bleiben im Code). Das Schlussband
+  (`.closer`) ist laut Bauplan erst eine Paket-3-Löschung — es bleibt deshalb
+  bestehen, zwischen Kontakt und Kooperationen (Abweichung von der wörtlichen
+  Reihenfolge, s. u.).
+* **Texte:** `abschnitt.*` (alle 14 Kicker) und `start.*` (alle neuen Sätze,
+  auch für Blöcke 8–14) vollständig in de/en/ro; `blick.*` neu; `hero.headline`,
+  `hero.person_t`, `hero.alt_frage` (neu), `vertrauen.h/p1/p2/text` und vier neue
+  `fakt_*`/`sprachen`, `it_stufen.beliebt`, `ablauf.s1_t`, `kontakt.h`, `koop.h`,
+  `faq.eyebrow/h/lead` an Ort und Stelle geändert (vorher per grep bestätigt: nur
+  `index.html` nutzt sie). `finder.wege.preis` gelöscht, `finder.wege.einrichten`
+  neu — in allen drei Sprachen. Alle Pfade in `B1_NEUE_SCHLUESSEL`
+  (`landing/tests/test_i18n.py`) nachgetragen.
+* **Tests:** `test_bilder.py`-Docstring aktualisiert (Vorladung trägt die Priorität),
+  „Hero-Reiter" → „Rückruf-Karte" in Kommentaren von `test_hilfe.py`/
+  `test_hub_erweiterung.py`, `test_cache.py`-Sprachfingerabdrücke auf die neue H1
+  je Sprache umgestellt (Fund, nicht im Plan benannt — die alten Fingerabdrücke
+  waren wortwörtlich die alte Überschrift), `GoldAlsTextTest` deckte einen echten
+  Fund auf (`.hero-alt svg` setzte `color:var(--accent)` statt `--accent-ink`).
+  `HeroKonzeptTest`, `test_einrichtungen.py`, `test_struktur.py`, `test_kopf.py`
+  bleiben unverändert grün. Testsuite: 415 grün (vorher 413 lt. Übergabe;
+  +2 stammen aus dem übernommenen Zwischenstand von `landing/i18n/de.py`, siehe
+  unten). `pruefe_seite`: 0, „Alles in Ordnung".
+* **Übernommener Zwischenstand:** Beim Start dieses Pakets lag in `landing/i18n/de.py`
+  bereits eine uncommittete Änderung (vier `wissen.*`-Schlüssel, `koop.h`, `kontakt.h`,
+  `faq.lead`, ein `abschnitt`/`start`-Grundgerüst für Blöcke 8–14) — vermutlich Rest
+  eines durch den Internetausfall abgebrochenen früheren Versuchs. Übernommen und zu
+  Ende geführt statt verworfen; EN/RO um die vier fehlenden `wissen.*`-Schlüssel und
+  passende `lead`-Übersetzungen ergänzt.
+* **Geprüft:** `collectstatic` sauber, volle Testsuite grün (415), `pruefe_seite` 0.
+  Vorschau-Server auf Port 8802: Bildschirmfotos von `/`, `/en/`, `/ro/` bei 1280 px
+  (ganze Seite + je Block per Anker) und `/` bei 390 px angesehen — Name und Knopf
+  „Rückruf anfordern" sichtbar im ersten Bildschirm, Hero/Wegweiser/Leistungen/
+  Wer-dahintersteht/Ablauf+Blick/Preise+Rechner/Festpreise sehen aus wie geplant.
+  Ein Fund dabei behoben: `.hero-sprung`-Symbol war ohne Größenangabe und füllte auf
+  dem Handy die ganze Knopf-Fläche — `.hero-sprung svg{width:18px;height:18px}`
+  ergänzt. Server danach beendet.
+* **Offen (nicht gemessen):** Der Netzwerk-Mitschnitt bei 390 px, der bestätigt,
+  dass `florin.webp`/`florin_480.webp` dort **nicht** mit hoher Priorität
+  angefragt werden, stand im Auftrag als „falls verfügbar" — in dieser Sitzung
+  ohne Chrome-DevTools-Zugriff nicht messbar. Die Vorladung selbst trägt
+  `media="(min-width:701px)"`, das `<picture>` zeigt auf dem Handy per
+  `<source media="(max-width:700px)">` auf `florin_320.webp` (dieselbe Datei wie
+  das Rundbild) — nach der Spezifikation dürfte auf dem Handy keine der beiden
+  großen Dateien geladen werden, das ist aber noch nicht am echten Netzwerk-Mitschnitt
+  bestätigt.
+
+---
+
 ## 25.09.2026 — Design B1 „Porträt", Paket 1: Fundament (Tokens, Schriften, Rahmen)
 
 Bastian hat im Designvergleich Runde 2 Variante B1 gewählt. Arbeit im eigenen Worktree

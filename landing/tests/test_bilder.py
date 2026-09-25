@@ -57,7 +57,11 @@ class BildgroesseTest(SimpleTestCase):
                         "es gibt keine kleinere Wahl.")
 
     def test_das_hero_portraet_laedt_die_kleine_fassung(self):
-        """Der teuerste Einzelfall, weil er `fetchpriority=high` trägt."""
+        """Design B1 (25.09.2026): Die hohe Ladepriorität trägt jetzt die
+        viewport-gebundene Vorladung des großen Porträts (`<link rel="preload">`
+        im `<head>`); das kleine Rundbild hier trägt selbst kein
+        `fetchpriority` mehr. Die Prüfungen (kleine Fassung, `sizes="64px"`)
+        bleiben unverändert."""
         for pfad in ("/", "/en/", "/ro/"):
             with self.subTest(pfad=pfad):
                 treffer = [t for t in self._bilder(pfad) if "hero-person-bild" in t]

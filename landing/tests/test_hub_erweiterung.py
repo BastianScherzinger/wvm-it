@@ -10,8 +10,8 @@ Was hier geprüft wird:
   betriebe` und `/it-hilfe/`.
 * Der Kleinauftrag-Absprung rendert und verlinkt auf `/it-hilfe/?anliegen=klein`
   (bzw. den Sprachpräfix davor).
-* Die beiden Rückruf-Formulare (Hero-Reiter und Base-Dialog) bieten die neue
-  Option „klein" in ihrem `<select name="anliegen">` an.
+* Die beiden Rückruf-Formulare (Rückruf-Karte im Hero, Design B1, und
+  Base-Dialog) bieten die neue Option „klein" in ihrem `<select name="anliegen">` an.
 * Das Anliegen `klein` steht in `views._ANLIEGEN` und wird von der Zählung
   akzeptiert (das gemachte Register-Verhalten).
 """
@@ -101,10 +101,10 @@ class KleinAlsAnliegen(SimpleTestCase):
 
     def test_rueckruf_formulare_bieten_klein_an(self):
         html = _html("/")
-        # Hero-Reiter und Base-Dialog: beide sollen die Option 'klein' tragen.
+        # Rückruf-Karte (Design B1) und Base-Dialog: beide sollen 'klein' tragen.
         self.assertEqual(
             html.count('value="klein"'), 2,
-            "Hero-Reiter und Base-Rueckruf-Dialog sollen 'klein' anbieten.")
+            "Rückruf-Karte und Base-Rueckruf-Dialog sollen 'klein' anbieten.")
 
     def test_klein_wird_beim_absenden_gesichert(self):
         cache.clear()
