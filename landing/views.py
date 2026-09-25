@@ -2269,9 +2269,20 @@ def _mit_knoten(schema_json, knoten):
 def _mit_itemlist(schema_json, itemlist):
     """Hängt eine ItemList in ein bereits gebautes @graph. Getrennte Funktion,
     weil `_seiten_schema` einen JSON-String zurückgibt und die Hub-Views sonst
-    alle dasselbe Auspacken und Einpacken wiederholen müssten."""
+    alle dasselbe Auspacken und Einpacken wiederholen müssten.
+
+    Trägt ein Eintrag einen vollständigen Knoten (`als_service=True`), wandert
+    der Knoten als eigener Eintrag in den `@graph`, und der Listeneintrag
+    verweist nur noch über `@id` darauf. Inhaltlich ist das derselbe Graph —
+    aber viele Leser werten nur die oberste Ebene aus, und dort stand der
+    Service bis zum 24.09.2026 nicht (Messung GE13, 45 von 50)."""
     graph = json.loads(schema_json)
     graph["@graph"].append(itemlist)
+    for eintrag in itemlist.get("itemListElement", []):
+        knoten = eintrag.get("item")
+        if isinstance(knoten, dict) and "@type" in knoten and "@id" in knoten:
+            graph["@graph"].append(knoten)
+            eintrag["item"] = {"@id": knoten["@id"]}
     return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
 
 
