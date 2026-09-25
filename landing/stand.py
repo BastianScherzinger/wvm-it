@@ -28,10 +28,10 @@ damit die letzte belastbare Aussage über den Bestand.
 
 # ── Erzeugt von `manage.py stand_schreiben` — nicht von Hand ändern ──────────
 # <stand:anfang>
-STAND_FALLBACK = "2026-09-24"
+STAND_FALLBACK = "2026-09-25"
 
 STAND = {
-    "/": "2026-09-24",
+    "/": "2026-09-25",
     "/agb/": "2026-09-24",
     "/aktuelles/": "2026-09-24",
     "/aktuelles/alte-windows-version-im-betrieb/": "2026-09-24",
@@ -71,7 +71,7 @@ STAND = {
     "/datenschutz/": "2026-09-24",
     "/impressum/": "2026-09-24",
     "/it-hilfe/": "2026-09-24",
-    "/it-notfall/": "2026-09-24",
+    "/it-notfall/": "2026-09-25",
     "/it-service/": "2026-09-06",
     "/it-service/attersee/": "2026-09-24",
     "/it-service/bad-ischl/": "2026-09-24",
@@ -81,10 +81,10 @@ STAND = {
     "/it-service/voecklabruck/": "2026-09-24",
     "/it-service/wels/": "2026-09-24",
     "/it-sicherheit-test/": "2026-09-06",
-    "/kontakt/": "2026-09-24",
-    "/kosten/": "2026-09-24",
+    "/kontakt/": "2026-09-25",
+    "/kosten/": "2026-09-25",
     "/kosten/rechner/": "2026-09-06",
-    "/leistungen/": "2026-09-24",
+    "/leistungen/": "2026-09-25",
     "/leistungen/edv-it-betreuung/": "2026-09-24",
     "/leistungen/google-ads/": "2026-09-24",
     "/leistungen/hosting-wartung/": "2026-09-24",
@@ -99,8 +99,8 @@ STAND = {
     "/leistungen/smarthome-knx-loxone/": "2026-09-24",
     "/leistungen/veranstaltungstechnik/": "2026-09-24",
     "/leistungen/webseite-erstellen/": "2026-09-24",
-    "/referenzen/": "2026-09-24",
-    "/ueber-uns/": "2026-09-24",
+    "/referenzen/": "2026-09-25",
+    "/ueber-uns/": "2026-09-25",
     "/vergleich/": "2026-09-24",
     "/vergleich/it-betreuung-vs-stundenabrechnung/": "2026-09-24",
     "/vergleich/microsoft365-vs-google-workspace/": "2026-09-24",
