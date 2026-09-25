@@ -1,0 +1,94 @@
+{% comment %}
+Fuß + Handy-Leiste (Design B1, docs/DESIGN-B1-2026-09-25.md §3.1).
+
+Eingebunden von base.html (und ab Paket 4 von angebot.html). Alle Links, die
+heute im Fuß stehen, bleiben — nur neu geordnet in sechs Spalten. `foot-nav`
+muss vor dem ersten `href="/einrichten/"` stehen (Test).
+{% endcomment %}
+<footer class="foot on-dark">
+  <div class="wrap foot-kopf">
+    <div class="foot-brand">
+      <a class="brand" href="{% url 'index' %}">
+        <svg class="brand-mark" viewBox="0 0 330 330" aria-hidden="true"><use href="#i-wvm_orbit"/></svg>
+        <span class="brand-text"><b>{{ c.site_name }}</b><small>{{ c.tagline|default:t.meta.slogan|safe }}</small></span>
+      </a>
+      <p>{{ t.footer.tagline|safe }}</p>
+    </div>
+    {% if c.adresse %}
+    <address class="foot-nap">
+      {{ c.site_name }}<br>
+      {{ c.adresse }}<br>
+      {{ c.plz }} {{ c.stadt }}{% if c.region %}, {{ c.region }}{% endif %}<br>
+      {% if c.telefon %}<a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a><br>{% endif %}
+      {% if c.email %}<a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}
+    </address>
+    {% endif %}
+    <div class="foot-status">
+      <p class="sl-status{% if erreichbarkeit.offen %} ist-offen{% endif %}"><span class="sl-dot" aria-hidden="true"></span>{{ erreichbarkeit.text|safe }}</p>
+      <p class="foot-status-notfall"><a class="sl-notfall" href="{% url 'notfall' %}">{% include 'icons.html' with name='alert' %}{{ t.notfall.nav|safe }}</a></p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <nav class="foot-nav" aria-label="Footer">
+      <div>
+        <h3>{{ t.footer.col_leistungen|safe }}</h3>
+        {% for l in footer_leistungen %}<a href="{{ l.url }}">{{ l.titel|safe }}</a>{% endfor %}
+        <a href="{% url 'leistungen' %}">{{ t.footer.u_alle|safe }}</a>
+        <a href="{% url 'einrichtungen' %}">{{ t.seite.einrichten|safe }}</a>
+      </div>
+      <div>
+        <h3>{{ t.footer.col_unternehmen|safe }}</h3>
+        <a href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}</a>
+        <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
+        <a href="{% url 'kosten' %}">{{ t.footer.u_preise|safe }}</a>
+        <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
+        <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
+        {% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}
+        {% if c.webagentur_url %}<a href="{{ c.webagentur_url }}">{{ t.footer.u_webagentur|safe }}</a>{% endif %}
+      </div>
+      <div>
+        <h3>{{ t.footer.col_wissen|safe }}</h3>
+        <a href="{% url 'aktuelles' %}">Aktuelles</a>
+        <a href="{% url 'wissen' %}">Wissen</a>
+        <a href="{% url 'checklisten' %}">Checklisten</a>
+        <a href="{% url 'rechner' %}">{{ t.rechner.h1|safe }}</a>
+        <a href="{% url 'vergleiche' %}">{{ t.vergleiche_seite.vergleiche_titel|safe }}</a>
+        <a href="{% url 'index' %}#faq">{{ t.footer.u_faq|safe }}</a>
+        <a href="{% url 'notfall' %}">{{ t.notfall.nav|safe }}</a>
+        <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }}</a>
+      </div>
+      <div>
+        <h3>{{ t.branchen_seite.branchen_titel|safe }}</h3>
+        {% for b in footer_branchen %}<a href="{{ b.url }}">{{ b.titel|safe }}</a>{% endfor %}
+        <a href="{% url 'branchen' %}">{{ t.branchen_seite.alle|safe }}</a>
+      </div>
+      <div>
+        <h3>{{ t.seite.regionen_titel|safe }}</h3>
+        {% for r in footer_regionen %}<a href="{{ r.url }}">{{ r.titel }}</a>{% endfor %}
+        <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
+      </div>
+      <div>
+        <h3>{{ t.footer.col_recht|safe }}</h3>
+        <a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a>
+        <a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a>
+        <a href="{% url 'agb' %}">{{ t.footer.agb|safe }}</a>
+        <a href="{% url 'barrierefreiheit' %}">{{ t.footer.barrierefreiheit|safe }}</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="wrap foot-bottom">
+    <span>© {{ c.jahr }} {{ c.site_name }}</span>
+    {% include 'lang_switch.html' %}
+    <a class="foot-join" href="{% url 'index' %}#kooperationen">{{ t.koop.join_h|safe }}</a>
+    <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
+  </div>
+</footer>
+
+<div class="mobilebar">
+  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
+  {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
+  {% if request.resolver_match.url_name == "index" %}<a class="mobilebar-cta" href="#rueckruf">{{ t.rueckruf.submit|safe }}</a>
+  {% else %}<a class="mobilebar-cta" href="{% url 'kontakt' %}" data-rueckruf>{{ t.rueckruf.submit|safe }}</a>{% endif %}
+</div>

@@ -34,6 +34,14 @@ PACK = {
         "angebot_og_desc": "Webseiten, KI, Automatisierung und mehr in wenigen Schritten zusammenstellen und Richtpreis sofort sehen.",
     },
     "lang": {"switch_aria": "Sprache wählen"},
+    # Statusleiste (Design B1, §3.1): Erreichbarkeit serverseitig nach
+    # Europe/Vienna, siehe landing/context.py::_erreichbarkeit.
+    "kopf": {
+        "erreichbar": "Erreichbar Mo–Fr 9–18 Uhr",
+        "wieder_heute": "Wieder erreichbar heute ab 9 Uhr",
+        "wieder_morgen": "Wieder erreichbar morgen ab 9 Uhr",
+        "wieder_montag": "Wieder erreichbar Montag ab 9 Uhr",
+    },
     "cookie": {
         "aria": "Cookie-Hinweis",
         "title": "Wir respektieren Ihre Privatsphäre",
@@ -53,6 +61,9 @@ PACK = {
         "leistungen": "Leistungen",
         "angebot": "Angebot",
         "preise": "Preise",
+        # Design B1 (§3.1): sechster Navigationspunkt „Betreuungskosten" statt
+        # „Preise" , sagt in einem Wort, was dahinter steht.
+        "kosten_betreuung": "Betreuungskosten",
         "kontakt": "Kontakt",
         "cta": "Projekt anfragen",
         "cta_angebot": "Angebot berechnen",
@@ -381,6 +392,9 @@ PACK = {
         "col_leistungen": "Leistungen",
         "l_smarthome": "Smarthome & KNX", "l_konferenz": "Konferenz & AV-Technik",
         "l_edv": "EDV & Sicherheit", "l_web": "Webseiten & KI",
+        # Design B1 (§3.1): eigene Fuß-Spalte „Wissen" statt der Wissensinhalte
+        # verstreut in „Unternehmen".
+        "col_wissen": "Wissen",
         "col_unternehmen": "Unternehmen",
         "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "Shop", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
         "u_webagentur": "Website: Webagentur Scherzinger",
@@ -1411,6 +1425,13 @@ PACK = {
         "zeit_2": "Nachmittags (12 bis 17 Uhr)",
         "zeit_3": "Abends (ab 17 Uhr)",
         "zeit_4": "Egal, sobald es geht",
+        # Design B1 (§2.3/§3.1): Zeitfenster als zweizeilige Segmente , kurzer
+        # Name (fett) + Uhrzeit (Mono). `zeit_N` (oben) bleibt der Volltext im
+        # `value`-Attribut, damit die Bestätigungsmail unverändert bleibt.
+        "zeit_1_kurz": "Vormittags", "zeit_1_uhr": "9–12 Uhr",
+        "zeit_2_kurz": "Nachmittags", "zeit_2_uhr": "12–17 Uhr",
+        "zeit_3_kurz": "Abends", "zeit_3_uhr": "ab 17 Uhr",
+        "zeit_4_kurz": "Egal", "zeit_4_uhr": "sobald es geht",
         # Optionales Anliegen (W05, 24.09.2026); Schluessel wie views._ANLIEGEN.
         "anliegen": "Worum geht es? (freiwillig)", "anliegen_leer": "Bitte wählen",
         "anliegen_einzel": "Ein einzelnes Problem", "anliegen_einrichtung": "Etwas einrichten lassen",

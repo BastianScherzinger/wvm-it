@@ -34,10 +34,9 @@ class FokusRahmenTest(SimpleTestCase):
         return m.group(1) if m else None
 
     def test_ring_ist_in_jeder_farbzone_definiert_und_haelt_3_zu_1(self):
-        # Hell (:root), dunkle Bänder (.on-dark) und die helle Karte im
-        # dunklen Hero (.on-dark .hero-tool) — jede Zone belegt --ring selbst,
-        # sonst erbt die Karte den hellen Goldton des Hero.
-        for selektor in (":root", ".on-dark", ".on-dark .hero-tool"):
+        # Design B1 (25.09.2026): nur noch zwei Farbzonen, hell (:root) und
+        # dunkel (.on-dark) — jede belegt --ring selbst.
+        for selektor in (":root", ".on-dark"):
             block = self._block(selektor)
             ring = self._wert(block, "ring")
             with self.subTest(zone=selektor):

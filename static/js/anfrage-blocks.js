@@ -116,8 +116,13 @@
     var dlg = document.getElementById("rueckrufDlg");
     if (!dlg || typeof dlg.showModal !== "function") return;   // sonst bleibt der Link zum Kontakt
 
+    // Design B1 (25.09.2026): [data-rueckruf] sitzt jetzt auf einem <a href="…">
+    // (Kopf, Handy-Leiste), nicht mehr auf einem <button> — ohne JS ein
+    // funktionierender Link zum Kontaktformular, mit JS öffnet sich der Dialog
+    // und der Linkwechsel wird unterdrückt.
     document.querySelectorAll("[data-rueckruf]").forEach(function (ausloeser) {
-      ausloeser.addEventListener("click", function () {
+      ausloeser.addEventListener("click", function (e) {
+        e.preventDefault();
         dlg.showModal();
         var erstes = dlg.querySelector('input:not([type="hidden"]):not([tabindex="-1"])');
         if (erstes) erstes.focus();

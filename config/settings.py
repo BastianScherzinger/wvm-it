@@ -145,6 +145,8 @@ TEMPLATES = [
             "landing.i18n.context_processor",
             # Footer-Navigation ins Leistungs-Silo (landing/context.py).
             "landing.context.navigation",
+            # Statuszeile in Kopf und Fuß: erreichbar / wieder ab wann (§3.1).
+            "landing.context.erreichbarkeit",
         ]},
     },
 ]

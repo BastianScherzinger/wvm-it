@@ -1,12 +1,12 @@
 ---
 bereich: design
 titel: Design
-stand: 2026-09-24
+stand: 2026-09-25
 status: teilweise
-fortschritt: 96
-zusammenfassung: Am 24.09.2026 (Paket 338, Zweig sofort/2026-09-24-bf28-und-2-weitere, lokal, nicht gepusht, nicht auf main) BF28 -- der Tastaturfokus war an fuenf Stellen unsichtbar (.way, .tool-tab, .tool-pick, .case-shot, .rr-close), weil deren Rahmen auf das nie definierte Token --ring zeigte. Jetzt belegt jede Farbzone --ring selbst (hell #8a6212, .on-dark #eec77a, helle Hero-Karte #8a6212), und der WhatsApp-Knopf nutzt es statt halbtransparenten Gruens. test_fokus.py verlangt 3:1 gegen jeden Grund und verbietet Fokusrahmen auf undefinierte Variablen. Nur Token und eine Deklaration, kein Element, keine Klasse. Davor am 18.09.2026 (Paket 253, Zweig sofort/2026-09-18-pr01-und-2-weitere, noch nicht auf main) FO04 -- Pflichtfelder tragen in allen drei Sprachen einen Stern hinter der Beschriftung, und der Datenschutzhinweis in jedem Anfrageformular erklaert ihn. Nur Text in den Sprachpaketen, kein Element, keine Klasse, keine Farbe; das freiwillige E-Mail-Feld des Richtangebots bewusst ohne Stern. Davor am selben Tag (Zweig sofort/2026-09-18-bf26, inzwischen auf main) ist die Mobilansicht zum ersten Mal in einer echten Browser-Engine vermessen worden statt nur analytisch geprueft -- BF26, nichts ragt auf schmalen Bildschirmen ueber den Rand. 19 Seitentypen bei 320, 360 und 390 px in Chromium 148.0.7778.96: vorher scrollten 23 von 57 Messungen waagrecht, nachher null. Die schlimmste war /ueber-uns/ mit 553 px statt 320, weil .btn white-space:nowrap traegt und die Beschriftung IT-Betreuung in Oberoesterreich und Salzburg den Knopf auf 529 px zwang. Die Kopfzeile ergab unter 400 px 332,7 px auf 272 px Platz, und der Burger wurde dabei vom Flex-Layout von 42 auf 20 px zerdrueckt -- das Antippziel schrumpfte genau dort, wo es gebraucht wird. Geaendert ist nur static/css/style.css, und nur angehaengt: kein Element, keine Klasse, keine Kennung, keine Ueberschrift, keine Farbe, kein Token. Ein Abdruck jedes Elements jeder Seite vor und nach der Aenderung belegt ab 560 px null Abweichungen -- und er hat zwei Regressionen gefangen, die sonst live gegangen waeren: global gesetztes white-space:normal liess den Navigationsknopf bei 1280 px von 43 auf 66 px Hoehe wachsen, min-width:0 ohne Media-Query zog das Kontaktformular bei 1024 px von 592 auf 429 px zusammen. Neu offen daraus: Das Symbol im Notruf-Knopf auf /it-notfall/ hat als einziges im Projekt keine Groessenangabe, sein svg-Kasten ist bei jeder Breite 0 px breit, und die 20 px des use darin ueberlappen die Rufnummer; behoben wird das erst in einem Lauf, der das Aussehen aendern darf, weil der Knopf dadurch rund 29 px breiter wird. Das echte Geraet ersetzt die Messung nicht: Sie lief gegen lokal gerendertes HTML mit der Quell-style.css, nicht gegen die Live-Adresse, und ein Telefon bringt Notch, Systemleisten und iOS-Safari mit. Davor: Design-System vom 27.08.2026 unveraendert. Am 12.09.2026 (Zweig sofort/2026-09-12-bf18-und-2-weitere) der groesste Kontrastfund der Seite, und er stand nicht in der Messung: --accent2 (#b8862b) ist im Kopf von style.css seit dem Umbau 2026-08 als dunklere Gold-Stufe fuer Verlaeufe und Icons deklariert, also als Grafikfarbe -- auf Weiss 3,24:1, genug fuer eine Grafik (WCAG 1.4.11 verlangt 3:1), zu wenig fuer Text (1.4.3 verlangt 4,5:1). Gefaerbt hat sie trotzdem 28 Regeln Text, und nicht die Randfaelle: jeden Preis im Konfigurator und im Preiskatalog, die Einmalsumme im Warenkorb, die Summe im Kurzrechner und in der mobilen Leiste, das Pflichtfeldzeichen in jedem Formular, die drei Einwilligungslinks, den Link im Cookie-Banner, den Kicker beider Trennerbaender. Alle 28 tragen jetzt --accent-ink (5,47:1); geaendert sind 28 Deklarationen und der Kommentar am Token, sonst nichts. Gefahrlos war das nur wegen einer Gleichheit, die jetzt selbst geprueft wird: .on-dark belegt --accent2 und --accent-ink mit demselben #eec77a, im Dunkeln aendert der Wechsel also nichts -- faellt das auseinander, aendert er dort doch die Farbe und niemand saehe es. Die zweite neue Pruefung verbietet color:var(--accent2) ueberall, wo der Selektor keine Grafik bezeichnet; beide Zahlen werden nachgerechnet statt behauptet. Merksatz: Ein Token, dessen Kommentar fuer Grafik sagt, ist damit noch nicht auf Grafik beschraenkt. Offen bleibt daraus ein Fall, der die Farbe mischt statt sie zu setzen -- .ang-hint setzt color-mix(--accent2 90%, #fff) auf weissem Grund und faellt damit durch das Muster der Pruefung. Davor am selben Tag die aelteste ungepruefte Farbregel der Seite endlich geprueft: Der Kopf von style.css schreibt seit dem Umbau 2026-08 fest, dass Gold als Text auf Hell nur ueber --accent-ink laufen darf -- geschrieben stand die Regel, geprueft wurde sie nie, und zwei Regeln hielten sich nicht daran. .marquee-track i, der Trenner im Leistungsband der Startseite, setzte --accent mit opacity:.75 und kam damit laut Commit auf 1,69:1; .rg-km (Datum und Lesezeit auf /aktuelles/, Punktzahl auf /checkliste/, Entfernung auf /it-service/) setzte --accent auf Weiss, also 2,02:1. Beide tragen jetzt --accent-ink, die Deckkraft faellt weg -- Aufbau, Klassen, Schriftgroessen und die Zahl der Elemente bleiben unberuehrt. Neu GoldAlsTextTest in landing/tests/test_kontrast.py: Keine Regel darf color:var(--accent) dauerhaft setzen, und die zwei geheilten Regeln duerfen nicht wieder ueber Deckkraft daempfen; die Pruefung liest die Eigenschaft, nicht die Zeichenkette, weil accent-color und border-color auf dieselben Buchstaben enden. Noch am selben Tag ist die Regel auf die Eingabezustaende ausgedehnt worden: Drei Regeln setzten Gold als Text erst auf Eingabe und blieben deshalb zunaechst stehen -- .rg-sw-link:hover strong und :focus-visible strong, .fld-recht a:hover in jedem Anfrageformular, .ub-fakten a:hover auf /ueber-uns/. Gemessen sind das laut Commit dieselben 2,02:1 auf Weiss, und :focus-visible ist der Zustand, in dem eine Tastaturbedienung dauerhaft steht; alle drei tragen jetzt --accent-ink, die Ausklammerung der Zustaende im Test ist entfallen. Der Verweis-Kasten dahinter steht dabei in fuenf Vorlagen, nicht nur auf den sieben Regionsseiten -- Glossar, Fachbeitraege, Checklisten und Vergleiche setzen ihn in denselben weissen Kasten. Suite jetzt 303 Testfunktionen in 20 Dateien (nachgezaehlt). Davor am selben Tag der letzte gemeldete Kontrastfehler behoben: .err-code, die grosse Zahl auf der 404- und der 500-Seite, trug ueber der richtigen Farbe ein opacity:.5 -- Deckkraft mischt mit dem Grund, aus #d8a43d auf #12100c wurde effektiv #755a24 und damit 2,94:1, zu wenig selbst fuer die 3:1 bei grossem Text. Ohne die Deckkraft haelt dieselbe Farbe 8,41:1. Daraus die zweite Farbregel: Eine Deckkraft unter 1 ist eine Farbaenderung, und die sieht kein Token-Test -- wer Text daempfen will, nimmt ein Token. Damit ist die Lighthouse-Kontrastliste in drei Schritten abgearbeitet (32 Elemente am 02.09., 15 nach der Korrektur von --ink-dim am 06.09., eines am 12.09.); die Antippziele bestanden durchweg. Am 06.09. der Hero neu gedacht (zweistufige Ueberschrift, Vertrauensband mit Gesicht) und vier Symbole neu gezeichnet: dns und domain waren zeichengleich, cog sah aus wie eine Sonne, seo wie das Zoom-Symbol, gauge hatte keine Skala. Zwei Tests sichern das jetzt. Neue Bausteine: Folgefragen-Liste, Hub-Fliesstext. Mobilansicht weiterhin nie am echten Geraet geprueft -- seit dem 18.09.2026 aber in einer echten Browser-Engine gemessen, siehe oben.
+fortschritt: 25
+zusammenfassung: 25.09.2026, Design B1 „Porträt" (Paket 1 von 4, Zweig design/2026-09-25-b1, Worktree wvm-it-design-b1, lokal, nicht gepusht, nicht auf main). Bastian hat im Designvergleich Runde 2 Variante B1 gewählt; der verbindliche Bauplan ist docs/DESIGN-B1-2026-09-25.md. Paket 1 (Fundament) ersetzt Gold (#d8a43d) durch eine Akzentfarbe aus dem Logo (Knopf-Blau #0067a0, Logo-Blau #009ae2 nur Fläche/Linie/Symbol), Inter/Space Grotesk durch Newsreader (Serif, Überschriften), Public Sans (Text) und JetBrains Mono (Zahlen, Statuszeile), alle drei selbst gehostet als woff2 von Fontsource. Neu: Token-Block komplett neu (Papier #eef1f3 als zweite Fläche mit Kanten, damit Blöcke sich als eigene Blöcke abzeichnen), Statusleiste mit serverseitig berechneter Erreichbarkeit (landing/context.py::_erreichbarkeit, Europe/Vienna), Kopf mit sechs Navigationspunkten (vorher acht) plus Orbit-Logo als Vektor-Symbol, Fuß in sechs Spalten, Handy-Leiste, Rückruf-Dialog mit Zeitfenster als Segmenten statt Dropdown, Cookie-Hinweis als kleine Karte unten links statt Vollbreite-Leiste. Gestrichen: Verläufe an Knöpfen, Glas/backdrop-blur im Kopf und Klappmenü, WhatsApp-Grün als Token (WhatsApp ist jetzt neutraler Zweitknopf). Hero, Laufband, Trennerbänder, Scroll-Video, KI-Showcase und die Blöcke 8–14 der Startseite bleiben unverändert (kommen mit den Paketen 2 und 3) — sie erben die neuen Farben automatisch über die Tokens, ohne dass ihr Markup angefasst wurde. Suite von 413 auf 415 Testfunktionen (neu: landing/tests/test_erreichbarkeit.py, B1TexteTest in test_i18n.py); pruefe_seite weiterhin 0.
 offen: 4
-quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
+quellen: docs/DESIGN-B1-2026-09-25.md, docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---
 
 # Design
@@ -15,154 +15,66 @@ quellen: docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.
 
 ## Gestaltungslinie
 
-**Hell mit dunklem Hero, Gold als einziger Akzent** — Entscheidung 4 der Fragerunde vom 27.08.2026 (`../docs/UMBAU-PLAN.md` §1). Vorher war die Seite ein durchgehendes Dark-Design mit Grau auf Schwarz (H1-Kontrast rund 2,5:1, Befund B7). Seriosität entsteht laut Relaunch-Entscheidung E7 „durch Verzicht, nicht durch Dekoration": konkrete Zahlen statt Adjektive, ein echtes Gesicht (Florin Feier) weit oben, ehrliche Grenzen, datierte Preise, keine Zähler, keine Stock-Superlative, keine erfundenen Logos oder Stimmen (drei erfundene Kundenstimmen wurden am 28.08.2026 entfernt).
+**Design B1 „Porträt"** (gewählt 25.09.2026, Designvergleich Runde 2) — hell und
+redaktionell, EIN Akzent aus dem Logo (Blau), Rhythmus weiß/Papier/dunkel macht jeden
+Block als eigenen Block erkennbar. Verbindlicher Bauplan: `../docs/DESIGN-B1-2026-09-25.md`
+(Designsystem §1, Startseite §2, Rahmen/Unterseiten §3, Bau in vier Paketen §5). Vorher
+(bis 24.09.2026): helle Seite mit dunklem Hero, Gold als Akzent (Entscheidung 4 der
+Fragerunde vom 27.08.2026, `../docs/UMBAU-PLAN.md` §1) — dieses System ist mit Paket 1
+abgelöst.
 
-Skills, die dafür gelten: `design-pro` für alles Visuelle (laut `../CLAUDE.md`), `redesign-existing-projects` beim Umbau. WhatsApp-Grün ist **Kanal-Code, kein zweiter Markenakzent** und darf nur auf dem WhatsApp-Knopf vorkommen.
+Seriosität entsteht weiterhin „durch Verzicht, nicht durch Dekoration": konkrete Zahlen
+statt Adjektive, ein echtes Gesicht (Florin Feier) weit oben, ehrliche Grenzen, datierte
+Preise, keine Zähler, keine Stock-Superlative, keine erfundenen Logos, Bewertungen oder
+Stimmen. Neu in B1: keine Verläufe, kein Glas/backdrop-blur, kein Glow, keine Pillen,
+keine Emoji-Icons (Bastians Geschmack, `../docs/DESIGN-B1-2026-09-25.md` Kopf).
+
+Skills, die dafür gelten: `design-pro` für alles Visuelle (laut `../CLAUDE.md`),
+`redesign-existing-projects` beim Umbau. WhatsApp ist ein **neutraler Zweitknopf mit
+Symbol**, kein grüner Markenakzent mehr (`--wa`/`--wa-ink` sind mit Paket 1 entfallen).
 
 ## Farben und Schriften
 
-Tokens stehen am Kopf von `static/css/style.css`; eine Sektion wird dunkel, indem sie die Klasse **`.on-dark`** bekommt — sie belegt dieselben Token-Namen neu, deshalb funktionieren Buttons, Karten und Felder in beiden Kontexten ohne Sonderregeln. (Dokumentiert am 27.08.2026, im Code am 02.09.2026 gegengelesen.)
+**Quelle der Wahrheit: `../docs/DESIGN-B1-2026-09-25.md` §1.1 (Farben) und §1.2
+(Schriften).** Diese Datei fasst nur zusammen; Werte, Kontraste und Begründungen stehen
+dort. Tokens stehen am Kopf von `static/css/style.css`: erst `:root{…}` (hell), direkt
+danach `.on-dark{…}` (dunkel — Block „Ablauf" auf der Startseite, Fuß). Eine Sektion wird
+dunkel, indem sie die Klasse **`.on-dark`** bekommt; sie belegt dieselben Token-Namen neu,
+deshalb funktionieren Buttons, Karten und Felder in beiden Kontexten ohne Sonderregeln.
 
-| Rolle | Token | Hell | Auf `.on-dark` |
+| Token | Rolle | Hell | Auf `.on-dark` |
 |---|---|---|---|
-| Seitengrund | `--bg` / `--bg-2` | `#fbfaf8` / `#f4f1ec` | `#12100c` / `#1b1811` |
-| Karten, Felder | `--surface` / `--surface-2` | `#ffffff` / `#f7f5f1` | `#1b1811` / `#221e17` |
-| Text | `--ink` / `--ink-soft` / `--ink-dim` | `#14120e` / `#55504a` / `#8a8177` | `#f7f4ee` / `#c9c2b6` / `#9d968a` |
-| Akzent-Fläche | `--accent` | `#d8a43d` | `#d8a43d` |
-| Akzent-Stufe **(Grafik, nie Text)** | `--accent2` | `#b8862b` — **3,24:1 auf Weiss** | `#eec77a` |
-| **Akzent als Text** | `--accent-ink` | `#8a6212` | `#eec77a` |
-| Akzent dezent | `--accent-soft` | `#fdf6e6` | `rgba(216,164,61,.14)` |
-| Text auf Gold | `--on-accent` | `#181206` | |
-| WhatsApp | `--wa` / `--wa-ink` | `#25d366` / `#0b3d20` | |
-| **Fokusrahmen** (seit 24.09.2026, `BF28`) | `--ring` | `#8a6212` (auch in der hellen Karte `.on-dark .hero-tool`) | `#eec77a` |
-| Linien, Tint | `--line`, `--line-2`, `--tint`, `--tint-2` | 10 % / 18 % / 3,5 % / 6 % Tinte | Weiß-Anteile |
+| `--bg` / `--bg-2` | Grund / Papier (zweite Fläche, mit Kante `--line-2`) | `#ffffff` / `#eef1f3` | `#0e1114` / `#161a1f` |
+| `--surface` / `--surface-2` | Karten, Felder / Tabellenkopf | `#ffffff` / `#f8f9fa` | `#161a1f` / `#1d232a` |
+| `--ink` / `--ink-soft` / `--ink-dim` | Text, drei Stufen | `#0b1116` / `#3d4852` / `#505b66` | `#eef2f5` / `#c5ced6` / `#9aa6b2` |
+| `--accent` | Knopf-Fläche **und** Text (Links, Symbole), 6,09:1 | `#0067a0` | `#009ae2` |
+| `--accent-hover` | Knopf hover | `#005c8f` | `#3db0ea` |
+| `--accent-ink` | Blau als Text (= `--accent` in Hell) | `#0067a0` | `#5dbdf0` |
+| `--accent2` | **Logo-Blau: nur Linie/Fläche/Symbol, nie Text auf Weiß**, 3,12:1 | `#009ae2` | `#5dbdf0` (= `--accent-ink`) |
+| `--accent-soft` | gewählter Zustand (Segment, Kachel) | `#eef5fa` | `#13222e` |
+| `--on-accent` | Text auf `--accent` | `#ffffff` | `#0e1114` |
+| `--ring` | Fokusrahmen, ≥ 3:1 | `#0067a0` | `#5dbdf0` |
+| `--ok` / `--notfall` | Status „erreichbar" (Grafik) / Notfall-Text | `#2e9e5b` / `#b42318` | `#4cc27e` / `#f97066` |
+| `--line` / `--line-2` / `--field` | Trennlinie / Kartenrand / Feldrand | `#dde2e6` / `#c5cdd3` / `#7d8893` | `#252d35` / `#36414b` / `#6b7885` |
 
-**Regel:** Gold ist Fläche mit dunklem Text darauf, niemals Text auf Hell — dafür `--accent-ink`. `#d8a43d` hält auf Weiß nur rund 2:1. Gemessen am 27.08.2026: schwächster Wert der Seite 5,47:1 (Gold-Text), alle übrigen ≥ 7,6:1. *(Die 5,47:1 sind seit dem 12.09.2026 **nachgerechnet** — `test_kontrast.py` rechnet `--accent-ink` gegen `#ffffff` und prüft den Wert auf zwei Stellen. Der Kommentar hinter dem Token in `style.css` nennt daneben weiter 4,6:1 und `UMBAU-PLAN.md` §2.2 nennt 5,5:1 — **keine der beiden ist der gerechnete Wert**. Der Kommentar an `--accent2` ist am 12.09.2026 nachgezogen worden („3,24:1: Grafik, NIE Text"), der an `--accent-ink` nicht; wer die Datei das nächste Mal anfasst, zieht ihn mit.)*
+**Gestrichen (Paket 1):** Gold (`#d8a43d`, `#b8862b`, `#8a6212`, `#eec77a`, `#fdf6e6`),
+WhatsApp-Grün (`--wa`, `--wa-ink`). Es gibt **eine** Akzentfarbe. `--radius` jetzt 6 px
+(vorher 18 px) — klein und sachlich, keine Pillen. `--maxw` jetzt 1208 px.
 
-**Seit dem 12.09.2026 wird diese Regel geprüft, und beim ersten Lauf hielten sich
-zwei Regeln nicht daran (`BF18`).** Geschrieben stand sie seit dem Umbau 2026-08 im
-Kopf von `style.css`; eine geschriebene Regel ist aber keine geprüfte. Betroffen waren
-`.marquee-track i` — der Trenner im Leistungsband der Startseite, `--accent` **und**
-`opacity:.75`, laut Commit angekommen als `#e1ba6c` auf `#fbfaf8` und damit **1,69:1** —
-und `.rg-km`, also Datum und Lesezeit auf `/aktuelles/`, die Punktzahl auf
-`/checkliste/` und Entfernung wie Fahrzeit auf `/it-service/`: `--accent` auf
-`--surface` (`#ffffff`), laut Commit **2,02:1**. Beide standen ausserhalb jedes
-`on-dark` und waren ohne jede Eingabe dauerhaft sichtbar. Geändert sind **zwei
-Deklarationen**: beide tragen jetzt `--accent-ink`, die Deckkraft am Trenner fällt weg —
-das Token hält seine Werte nur ungemischt, mit `opacity:.75` wären es laut Commit
-3,28:1 gewesen, deshalb geht beides nur zusammen. Aufbau, Klassen, Kennungen,
-Schriftgrössen und die Zahl der Elemente sind unberührt.
+**Schriften:** Newsreader (Serif, Überschriften), Public Sans (Text, Formulare,
+Knöpfe), JetBrains Mono (Zahlen, Preise, Statuszeile, Kicker) — alle drei variabel,
+selbst gehostet als woff2 (latin + latin-ext) von Fontsource über jsDelivr, mit
+Fallback-Metriken in `static/css/fonts.css`. Inter und Space Grotesk sind mit Paket 1
+entfernt (Dateien gelöscht). Tokens `--serif`, `--sans`, `--mono`; die alten Tokens
+`--display`/`--font` zeigen zur Rückwärtskompatibilität auf `--serif`/`--sans`.
 
-`GoldAlsTextTest` in `landing/tests/test_kontrast.py` hält das mit drei Prüfungen fest:
-keine Regel darf `color:var(--accent)` **dauerhaft** setzen, und die zwei geheilten
-Regeln dürfen nicht wieder über Deckkraft dämpfen. Zwei Ausnahmen sind namentlich
-erlaubt und begründet — `.err-code` steht im `on-dark`-Kopf der Fehlerseiten und wird
-von `ErrCodeKontrastTest` nachgerechnet, `.rb-cat-ic` ist der Rahmen um ein Symbol, also
-eine Grafik mit 3:1. Die Prüfung liest die **Eigenschaft**, nicht die Zeichenkette:
-`accent-color`, `border-color` und `border-top-color` enden auf dieselben fünf Buchstaben
-und färben Kästen.
+Kontrastregeln (`--ring` nirgends definiert, Blau als Text nur über `--accent-ink`,
+Deckkraft ist eine Farbänderung) gelten unverändert fort — nachgerechnet für die neue
+Palette in `landing/tests/test_kontrast.py` (`TokenKontrastTest`, `GoldAlsTextTest`) und
+`landing/tests/test_fokus.py`. Die ausführliche Vorgeschichte dieser Regeln (BF18, BF28,
+12.–24.09.2026, damals gegen die Gold-Palette) steht in `docs/LOGBUCH.md` und in der
+Git-Historie dieser Datei.
 
-**Noch am selben Tag ist die Regel auf die Eingabezustände ausgedehnt worden.** Der
-erste Durchgang hatte drei Regeln bewusst stehen lassen, weil sie ihre Goldfarbe erst
-auf Eingabe setzen und deshalb in keiner Lighthouse-Einzelprüfung auftauchen. Gemessen
-wird dort aber nichts anderes — `--accent` auf `--surface`, laut Commit **2,02:1** —,
-und **`:focus-visible` ist kein flüchtiger Zustand:** Wer die Seite mit der Tastatur
-bedient, steht dauerhaft darin. Geändert sind drei Deklarationen, alle drei auf
-`--accent-ink` (laut Commit 5,52:1 auf derselben Fläche):
-
-* **`.rg-sw-link:hover strong` und `:focus-visible strong`** (`style.css:1851`) — der
-  Verweis-Kasten am Fuss einer Unterseite. Er steht in **fünf Vorlagen**, nicht nur auf
-  den sieben Regionsseiten: `region.html:82`, `begriff.html:61`, `beitrag.html:84`/`:101`/`:115`,
-  `checkliste.html:89`/`:96` und `vergleich.html:96` — und alle fünf setzen ihn in
-  denselben weissen Kasten `.rg-schwerpunkt` (`style.css:1846`, `background:var(--surface)`).
-  Der Zustand trifft damit auch Glossar, Fachbeiträge, Checklisten und Vergleiche.
-* **`.fld-recht a:hover`** (`style.css:2364`) — der Link in den Datenschutzhinweis, der
-  über `templates/datenschutzhinweis.html:12` in **jedem** Anfrageformular steht.
-* **`.ub-fakten a:hover`** (`style.css:2387`) — die Eckdaten-Liste auf `/ueber-uns/`
-  (`templates/ueber_uns.html:54`).
-
-`.on-dark .fld-recht a:hover` bleibt unberührt: Dort steht derselbe Text auf dunklem
-Grund, und `--accent2` löst zu `#eec77a` auf — dort ist Gold als Text richtig. Im Test
-ist die Ausklammerung von `:hover`, `:focus`, `:active` und `:checked` deshalb entfallen;
-`test_die_drei_zustaende_tragen_accent_ink` hält die drei Selektoren einzeln fest und
-nimmt `.on-dark` aus. Daraus der Merksatz: **Ein Zustand, den Lighthouse nicht misst,
-ist trotzdem einer, den ein Mensch sieht — und `:focus-visible` sieht er dauerhaft.**
-
-**Noch am 12.09.2026 ein Schritt weiter, und der grösste (`BF18`): Die Regel gilt für
-die zweite Goldstufe genauso — dort färbte sie 28-mal Text.** Die Schritte davor gingen
-`--accent` nach. Daneben steht `--accent2` (`#b8862b`), und der Kopf von `style.css`
-deklariert es seit dem Umbau 2026-08 als „dunklere Gold-Stufe für Verläufe/Icons auf
-Hell", also als **Grafikfarbe**. Auf Weiss sind das **3,24:1**: genug für eine Grafik
-(WCAG 1.4.11 verlangt dort 3:1), zu wenig für Text (1.4.3 verlangt 4,5:1). Trotzdem
-setzten **28 Regeln** damit eine Textfarbe — und es sind nicht die Randfälle:
-
-* **jeder Preis im Konfigurator und im Preiskatalog** (`.ang-item-price`, `.pl-price`),
-  die Einmalsumme im Warenkorb (`.ang-total-row[data-total="once"] strong`), die Summe
-  im Kurzrechner (`.wz-run-sum`) und in der mobilen Leiste (`.ang-mobar-sum strong`)
-* **das Pflichtfeld-Zeichen in jedem Formular** (`.fld-req`) und die drei
-  Einwilligungslinks (`.contact-form .check a`, `.ang-lead .check a`, `.offer-consent a`)
-* der Link im **Cookie-Banner** (`.cookie-text a`), der Kicker beider Trennerbänder
-  (`.band-kick`, `.wz-panel-kick`), der Bestätigungscode (`.confirm-code strong`), die
-  Zählstände der Auswahl (`.ang-count`, `.rb-count`) und das „beliebt"-Zeichen
-  (`.pl-pop`)
-
-Alle 28 tragen jetzt `--accent-ink`; geändert sind **28 Deklarationen** und der
-Kommentar am Token, sonst nichts (29 geänderte Zeilen in `static/css/style.css`, am
-12.09.2026 im Diff nachgezählt). **Gefahrlos war das nur wegen einer Gleichheit, die
-jetzt selbst geprüft wird:** `.on-dark` belegt `--accent2` **und** `--accent-ink` mit
-demselben `#eec77a` — im Dunkeln ändert der Wechsel also nichts, auch dort nicht, wo die
-Regel nur im Dunkeln greift (Fusszeile, Einwilligung im Hero). Fällt diese Gleichheit
-auseinander, ändert er dort plötzlich doch die Farbe, und niemand sähe es;
-`test_die_beiden_goldstufen_sind_auf_dunkel_dieselbe_farbe` hält sie fest. Die zweite
-neue Prüfung verbietet `color:var(--accent2)` überall, wo der Selektor keine Grafik
-bezeichnet — erlaubt bleiben `<svg>`, die Symbolflächen (`-ic`), der Pfeil (`-arr`), der
-Punkt der Fortschrittsanzeige (`-dot`) und der Ladekringel, dazu die eine benannte
-Ausnahme `.on-dark .fld-recht a:hover` (Text, aber ausdrücklich auf dunklem Grund). Beide
-Zahlen, 3,24:1 und 5,47:1, werden dort **nachgerechnet statt behauptet**. Der Merksatz
-aus diesem Schritt: **Ein Token, dessen Kommentar „für Grafik" sagt, ist damit noch nicht
-auf Grafik beschränkt** — solange keine Prüfung die Verwendung liest, ist der Kommentar
-eine Absicht und kein Zustand.
-
-**Zweite Regel, seit dem 12.09.2026 (`BF18`): Eine Deckkraft unter 1 ist eine
-Farbänderung, und die sieht kein Token-Test.** `opacity` ist keine Eigenschaft des
-Textes, sondern die Anweisung, ihn mit dem Grund zu verrechnen — was ankommt, ist eine
-andere Farbe als die deklarierte. `.err-code`, die grosse Zahl auf der 404- und der
-500-Seite, stand auf `--accent` mit `opacity:.5` in einem `on-dark`-Kopf: aus `#d8a43d`
-auf `#12100c` wurde effektiv `#755a24`, und das hält 2,94:1 — zu wenig selbst für die
-3:1, die grossem Text zugestanden werden. Ohne die Deckkraft ist es dieselbe Farbe bei
-8,41:1. Wer eine Textfarbe dämpfen will, nimmt deshalb **ein Token**, nicht `opacity`;
-`--ink-soft` und `--ink-dim` sind dafür da und werden nachgerechnet.
-`ErrCodeKontrastTest` in `landing/tests/test_kontrast.py` rechnet seit dem 12.09.2026
-die Mischung nach, statt nur die Token zu lesen.
-
-**Dritte Regel, seit dem 24.09.2026 (`BF28`): Ein Token, das benutzt wird, muss auch
-definiert sein.** Fünf Regeln — `.way` (die Kontaktknöpfe im Hero), `.tool-tab`,
-`.tool-pick`, `.case-shot` und `.rr-close` — setzten `:focus-visible` auf
-`outline:3px solid var(--ring)`, und `--ring` stand nirgends. Eine Variable ohne Wert
-macht die ganze Deklaration ungültig: Der Rahmen fiel still weg, wer mit der Tastatur
-bediente, sah nicht, wo er stand. Jetzt belegt jede Farbzone das Token selbst, mit
-denselben Werten wie `--accent-ink` (Tabelle oben); die helle Karte im dunklen Hero
-(`.on-dark .hero-tool`) setzt es eigens zurück, sonst erbte sie den hellen Goldton.
-Der WhatsApp-Knopf trug statt dessen `color-mix` aus `--wa` mit 55 % Deckkraft — laut
-Kommentar im Stylesheet rund 1,5:1 auf dem hellen Kopf — und nutzt jetzt ebenfalls
-`--ring`. `landing/tests/test_fokus.py` rechnet `--ring` in allen drei Zonen gegen
-`--bg`, `--bg-2`, `--surface` und `--surface-2` auf mindestens **3:1** (WCAG 1.4.11,
-ein Rahmen ist Grafik) und verbietet jede Fokusregel, deren `outline` auf eine nicht
-definierte Variable zeigt. Geändert sind nur Token und eine Deklaration in
-`static/css/style.css` (Commit `2caa8be`), kein Element, keine Klasse. **Liegt noch
-nicht auf `main`** ([80-AUFGABEN.md](80-AUFGABEN.md) Offen Nr. 28); belegt sind die Farbwerte
-im Stylesheet — einen Browserlauf mit der Tabulatortaste nennen weder Commit noch Test.
-
-Radien `--radius` 18 px, `--radius-sm` 12 px, `--radius-in` 10 px · Spacing `--s1`…`--s9` = 4/8/12/16/24/32/48/72/112 px · Schatten warm getönt, mehrschichtig, nie reines Schwarz · `--maxw` 1180 px.
-
-| Rolle | Schrift | Einstellung |
-|---|---|---|
-| Display (H1–H4, Zahlen) | **Space Grotesk** (lokal, variabel) | `clamp(2.2rem, 5vw, 4.2rem)`, `line-height 1.05`, `letter-spacing -.02em`, 600–700, `text-wrap: balance` |
-| Fließtext, Formulare | **Inter** (lokal, variabel) | 17 px Basis, `line-height 1.65`, `max-width 65ch` |
-| Labels, Eyebrows | Inter 500/600 | 13 px, `letter-spacing .06em`, Versalien nur für Eyebrows |
-| Preise | Inter, `tabular-nums` | Preisspalten fluchten |
-
-Beide Schriften liegen als Variable Fonts mit Subsets latin + latin-ext (für RO) unter `static/fonts/`; kein externer Request.
 
 ## Seitenaufbau
 

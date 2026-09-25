@@ -54,14 +54,17 @@ class TokenKontrastTest(SimpleTestCase):
 
     def setUp(self):
         text = CSS.read_text(encoding="utf-8")
-        # Die helle Fassung steht im ersten :root, die dunkle im Block, der
-        # `--bg:#12100c` setzt. Beide werden getrennt geprüft: Ein Token kann in
-        # einer Fassung tadellos und in der anderen unlesbar sein — genau so war
-        # es bei `--ink-dim`.
+        # Design B1 (25.09.2026): Die Fassungen werden nicht mehr über einen
+        # bestimmten Hex-Wert gefunden (der ändert sich mit jeder Palette),
+        # sondern über ihre Blöcke: die helle Fassung ist der erste `:root{`,
+        # die dunkle der erste `.on-dark{`. Beide werden getrennt geprüft: Ein
+        # Token kann in einer Fassung tadellos und in der anderen unlesbar
+        # sein — genau so war es bei `--ink-dim`.
         self.fassungen = {}
-        for name, marke in (("hell", "#fbfaf8"), ("dunkel", "#12100c")):
-            i = text.index(f"--bg:{marke}")
-            self.fassungen[name] = _tokens(text[max(0, i - 400):i + 900])
+        for name, selektor in (("hell", ":root{"), ("dunkel", ".on-dark{")):
+            i = text.index(selektor)
+            ende = text.index("}", i)
+            self.fassungen[name] = _tokens(text[i:ende + 1])
 
     def test_jede_textfarbe_haelt_45_zu_1_auf_jedem_grund(self):
         for fassung, tok in self.fassungen.items():
@@ -250,19 +253,19 @@ class GoldAlsTextTest(SimpleTestCase):
     def test_die_zweite_goldstufe_faerbt_keinen_text(self):
         """`--accent2` ist die **Grafik**-Stufe, nicht die Textstufe (`BF18`,
         12.09.2026 — der Fall, den die Regel oben bauartbedingt nicht sieht).
+        Design B1 (25.09.2026) übernimmt dieselbe Unterscheidung mit der neuen,
+        blauen Palette: `--accent2:#009ae2` ist das Logo-Blau, deklariert als
+        „nur Linie/Fläche/Symbol, nie Text auf Weiß". Auf Weiss sind das
+        **3,12:1** — genug für eine Grafik (WCAG 1.4.11 verlangt dort 3:1), zu
+        wenig für Text (1.4.3 verlangt 4,5:1). Am 12.09.2026 färbten damit
+        **28 Regeln Text**, darunter jeder Preis im Konfigurator
+        (`.ang-item-price`, `.pl-price`), die Summe im Kurzrechner
+        (`.wz-run-sum`), das Pflichtfeld-Zeichen in jedem Formular (`.fld-req`)
+        und der Link im Cookie-Banner (`.cookie-text a`).
 
-        `GoldAlsTextTest` prüft `--accent`. Daneben steht seit dem Umbau 2026-08
-        `--accent2:#b8862b`, deklariert als „dunklere Gold-Stufe für
-        Verläufe/Icons auf Hell". Auf Weiss sind das **3,24:1** — genug für eine
-        Grafik (WCAG 1.4.11 verlangt dort 3:1), zu wenig für Text (1.4.3
-        verlangt 4,5:1). Am 12.09.2026 färbten damit **28 Regeln Text**, darunter
-        jeder Preis im Konfigurator (`.ang-item-price`, `.pl-price`), die Summe
-        im Kurzrechner (`.wz-run-sum`), das Pflichtfeld-Zeichen in jedem Formular
-        (`.fld-req`) und der Link im Cookie-Banner (`.cookie-text a`).
-
-        Sie tragen jetzt `--accent-ink` (hell `#8a6212`, **5,47:1**). Auf dunklem
+        Sie tragen jetzt `--accent-ink` (hell `#0067a0`, **6,09:1**). Auf dunklem
         Grund ändert der Wechsel **nichts**: `.on-dark` belegt beide Token mit
-        demselben `#eec77a` — deshalb war die Umstellung auch dort gefahrlos, wo
+        demselben `#5dbdf0` — deshalb war die Umstellung auch dort gefahrlos, wo
         die Regel nur im Dunkeln greift (Fusszeile, Hero-Einwilligung).
 
         Erlaubt bleibt `--accent2` als `color` dort, wo es **keinen Text**
@@ -276,8 +279,8 @@ class GoldAlsTextTest(SimpleTestCase):
         # Die zwei Zahlen, von denen der Absatz oben lebt — nachgerechnet statt
         # behauptet, damit eine Verschiebung der Palette hier auffliegt.
         hell = _tokens(text[:text.index(".on-dark{")])
-        self.assertAlmostEqual(kontrast(hell["accent2"], "#ffffff"), 3.24, places=2)
-        self.assertAlmostEqual(kontrast(hell["accent-ink"], "#ffffff"), 5.47, places=2)
+        self.assertAlmostEqual(kontrast(hell["accent2"], "#ffffff"), 3.12, places=2)
+        self.assertAlmostEqual(kontrast(hell["accent-ink"], "#ffffff"), 6.09, places=2)
 
         gold2 = re.compile(r"(?:^|;)\s*color\s*:\s*var\(--accent2\)\s*(?:;|$)", re.M)
         # Namensmuster, die eine Grafik bezeichnen — nicht geraten, sondern aus

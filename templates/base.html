@@ -9,7 +9,7 @@
   <meta name="author" content="{{ c.site_name }} · {{ c.inhaber_name }}">
   {% comment %} Google Search Console (URL-Praefix-Property www.wvm-it.tech) {% endcomment %}
   <meta name="google-site-verification" content="uS_ethpPIsf2uk4Y8sNnoU214PvveZFVt6EjTzCfl7g">
-  <meta name="theme-color" content="#0a0908">
+  <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="{% block canonical %}{{ c.wvm_url }}{{ canonical_path }}{% endblock %}">
   {% block alternates %}{% for a in alt_paths %}<link rel="alternate" hreflang="{{ a.hreflang }}" href="{{ c.wvm_url }}{{ a.path }}">
   {% endfor %}{% endblock %}
@@ -57,20 +57,25 @@
   auf jeder Seite - die Unterseiten haben aber gar kein Hero-Bild und luden 70 KB,
   die niemand anzeigt. Die Startseite fuellt den Block (T3/T8).
   {% endcomment %}
+  {% comment %}
+  Vorladung der zwei latin-Schriftdateien (§1.2): Newsreader für die H1, Public
+  Sans für den Fließtext. Mono wird nicht vorgeladen. font-display:swap in
+  fonts.css fängt den Rest ab.
+  {% endcomment %}
+  <link rel="preload" href="{% static 'fonts/public-sans-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{% static 'fonts/newsreader-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
   {% block preload %}{% endblock %}
   {% comment %} Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}?v={{ asset_v }}">
   {% comment %}
-  Der eingebettete Block: Er traegt die Akzentfarben aus content.json — und seit
-  dem 05.09.2026 auch die Bewegungsreduzierung. Die steht zwar in style.css,
-  aber erst ab Zeile 500: Wer die Systemeinstellung „Bewegung reduzieren" gesetzt
-  hat, sieht bis zum Eintreffen des Stilblatts trotzdem die erste
-  Einblendbewegung. Das ist genau der Moment, um den es geht — die Einstellung
-  wird meist wegen Schwindel oder Migraene gesetzt, nicht aus Geschmack.
+  Design B1 (25.09.2026): Die Akzentfarbe kommt aus den CSS-Tokens (--accent),
+  nicht mehr aus content.json — sonst überschriebe das Gold aus `c.akzent` das
+  neue Blau wieder. Die Bewegungsreduzierung bleibt: Wer „Bewegung reduzieren"
+  gesetzt hat, soll auch vor dem Eintreffen des Stilblatts keine
+  Einblendbewegung sehen.
   {% endcomment %}
-  <style>:root{ --accent: {{ c.akzent }}; --accent2: {{ c.akzent2 }}; }
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}[data-reveal]{opacity:1;transform:none}}</style>
+  <style>@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}[data-reveal]{opacity:1;transform:none}}</style>
   {% comment %} Strukturierte Daten (SEO + GEO): @graph mit ProfessionalService (Local-SEO AT+DE,
        Preise als OfferCatalog), WebSite und FAQPage — server-seitig gebaut (views._structured_data). {% endcomment %}
   <script type="application/ld+json" nonce="{{ request.csp_nonce }}">{{ structured_data|safe }}</script>
@@ -88,57 +93,23 @@
 </script>
 <a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
 
-{% comment %} ── Navigation (Glass, einzeilig) ──────────────────────────────────────── {% endcomment %}
-<header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="{% url 'index' %}" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
-      {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
-    </a>
-    {% comment %} Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) {% endcomment %}
-    <div class="nav-lang-mobile">{% include 'lang_switch.html' %}</div>
-    <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
-    <div class="nav-menu" id="navMenu">
-      <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
-        <a href="{% url 'leistungen' %}">{{ t.nav.leistungen|safe }}</a>
-        <a href="{% url 'branchen' %}">{{ t.branchen_seite.branchen_titel|safe }}</a>
-        {% comment %}Seit 24.09.2026 steht hier die IT-Hilfe ohne Vertrag statt der
-        Vergleiche: Die Kopfleiste liegt bei rund 1440 von 1480 px, ein achter
-        Punkt passt nicht. Die Vergleiche bleiben in der Fusszeile, im Leistungs-
-        Hub und auf jeder Leistungsseite verlinkt; der Kleinauftrag hatte bis dahin
-        oben gar keinen Weg.{% endcomment %}
-        <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }}</a>
-        <a href="{% url 'kosten' %}">{{ t.nav.preise|safe }}</a>
-        <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
-        <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
-        <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
-        {% comment %}
-        Der Notfall-Link steht in der Hauptnavigation, nicht im Footer: Wer ihn
-        braucht, sucht ihn oben und nicht nach dreimal Scrollen (W3).
-        {% endcomment %}
-        <a class="nav-notfall" href="{% url 'notfall' %}">{{ t.notfall.nav|safe }}</a>
-      </nav>
-      {% include 'lang_switch.html' %}
-      {% comment %} Kontakt ist nie weiter als ein Klick entfernt: WhatsApp + Telefon + CTA {% endcomment %}
-      {% if c.whatsapp %}<a class="btn-wa nav-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener" aria-label="{{ t.ways.wa|safe }}">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
-      <a class="btn btn-sm btn-magnetic nav-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
-    </div>
-  </div>
-</header>
+{% include 'kopf.html' %}
 
 <main id="main">
 {% block inhalt %}{% endblock %}
 </main>
 
-{% comment %} ── Rückruf: kleiner Dialog, aus Nav, Hero und Mobil-Leiste erreichbar ───── {% endcomment %}
+{% comment %} ── Rückruf: kleiner Dialog, aus Nav, Hero und Mobil-Leiste erreichbar ─────
+Bleibt in base.html (auch auf der Startseite): Die Tests zählen auf `/` genau
+2× `name="anliegen"` und 2× `value="klein"` (Hero-Karte + dieser Dialog). {% endcomment %}
 <dialog class="rr-dlg" id="rueckrufDlg" aria-labelledby="rr-h">
   <form class="lb-form rr-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage>
     {% csrf_token %}
     <input type="hidden" name="quelle" value="rueckruf">
     {% include 'honigtopf.html' %}
     <button class="rr-close" type="button" data-rr-close aria-label="{{ t.rueckruf.close|safe }}">&times;</button>
-    <h2 id="rr-h" class="tool-h">{{ t.rueckruf.h|safe }}</h2>
-    <p class="tool-sub">{{ t.rueckruf.sub|safe }}</p>
+    <h2 id="rr-h" class="rr-dlg-h">{{ t.rueckruf.h|safe }}</h2>
+    <p class="rr-dlg-sub">{{ t.rueckruf.sub|safe }}</p>
     <div class="field">
       <label class="fld-l" for="rr-name">{{ t.rueckruf.name|safe }}</label>
       <input class="fld" id="rr-name" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.rueckruf.name_ph|safe }}">
@@ -147,15 +118,15 @@
       <label class="fld-l" for="rr-tel">{{ t.rueckruf.tel|safe }}</label>
       <input class="fld" id="rr-tel" type="tel" name="kontakt" required autocomplete="tel" placeholder="{{ t.rueckruf.tel_ph|safe }}">
     </div>
-    <div class="field">
-      <label class="fld-l" for="rr-zeit">{{ t.rueckruf.zeit|safe }}</label>
-      <select class="fld" id="rr-zeit" name="zeit">
-        <option>{{ t.rueckruf.zeit_1|safe }}</option>
-        <option>{{ t.rueckruf.zeit_2|safe }}</option>
-        <option>{{ t.rueckruf.zeit_3|safe }}</option>
-        <option selected>{{ t.rueckruf.zeit_4|safe }}</option>
-      </select>
-    </div>
+    <fieldset class="zeitfenster">
+      <legend class="fld-l">{{ t.rueckruf.zeit|safe }}</legend>
+      <div class="segmente">
+        <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_1|safe }}"><span><b>{{ t.rueckruf.zeit_1_kurz|safe }}</b><small>{{ t.rueckruf.zeit_1_uhr|safe }}</small></span></label>
+        <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_2|safe }}"><span><b>{{ t.rueckruf.zeit_2_kurz|safe }}</b><small>{{ t.rueckruf.zeit_2_uhr|safe }}</small></span></label>
+        <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_3|safe }}"><span><b>{{ t.rueckruf.zeit_3_kurz|safe }}</b><small>{{ t.rueckruf.zeit_3_uhr|safe }}</small></span></label>
+        <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_4|safe }}" checked><span><b>{{ t.rueckruf.zeit_4_kurz|safe }}</b><small>{{ t.rueckruf.zeit_4_uhr|safe }}</small></span></label>
+      </div>
+    </fieldset>
     <div class="field">
       <label class="fld-l" for="rr-anliegen">{{ t.rueckruf.anliegen|safe }}</label>
       <select class="fld" id="rr-anliegen" name="anliegen">
@@ -180,91 +151,7 @@
   </div>
 </dialog>
 
-{% comment %} ── FOOTER ──────────────────────────────────────────────────────────────── {% endcomment %}
-<footer class="foot">
-  <div class="wrap foot-top">
-    <div class="foot-brand">
-      <a class="brand" href="{% url 'index' %}">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
-      {% if t.meta.slogan %}<p class="foot-slogan">{{ t.meta.slogan|safe }}</p>{% endif %}
-      <p>{{ t.footer.tagline|safe }}</p>
-      {% comment %}
-      NAP , Name, Anschrift, Telefon in identischer Schreibweise auf jeder Seite und
-      in jedem Verzeichnis. Das ist das Standard-Signal für lokale Suche; Abweichungen
-      zwischen Website, Google-Profil und Branchenbuch kosten Sichtbarkeit.
-      Erscheint erst, wenn die Anschrift in content.json gepflegt ist.
-      {% endcomment %}
-      {% if c.adresse %}
-      <address class="foot-nap">
-        {{ c.site_name }}<br>
-        {{ c.adresse }}<br>
-        {{ c.plz }} {{ c.stadt }}{% if c.region %}, {{ c.region }}{% endif %}<br>
-        {% if c.telefon %}<a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a><br>{% endif %}
-        {% if c.email %}<a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}
-      </address>
-      {% endif %}
-    </div>
-    <nav class="foot-nav" aria-label="Footer">
-      <div>
-        <h3>{{ t.footer.col_leistungen|safe }}</h3>
-        {% for l in footer_leistungen %}<a href="{{ l.url }}">{{ l.titel|safe }}</a>{% endfor %}
-        <a href="{% url 'leistungen' %}">{{ t.footer.u_alle|safe }}</a>
-        {% comment %}Direkt unter den Leistungen, weil es die Gegenfrage
-        beantwortet: nicht "wer betreut uns", sondern "wer macht das jetzt".
-        In der Kopfleiste ist dafuer kein Platz — sie liegt mit sieben Punkten
-        plus Notfall-Link bereits bei rund 1440 von 1480 px.{% endcomment %}
-        <a href="{% url 'einrichtungen' %}">{{ t.seite.einrichten|safe }}</a>
-      </div>
-      <div>
-        <h3>{{ t.footer.col_unternehmen|safe }}</h3>
-        <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a>
-        <a href="{% url 'kosten' %}">{{ t.footer.u_preise|safe }}</a>
-        <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
-        <a href="{% url 'aktuelles' %}">Aktuelles</a>
-        <a href="{% url 'wissen' %}">Wissen</a>
-        <a href="{% url 'checklisten' %}">Checklisten</a>
-        <a href="{% url 'rechner' %}">{{ t.rechner.h1|safe }}</a>
-        <a href="{% url 'notfall' %}">{{ t.notfall.nav|safe }}</a>
-        <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }}</a>
-        <a href="{% url 'sicherheitstest' %}">{{ t.selbsttest.nav|safe }}</a>
-        <a href="{% url 'vergleiche' %}">{{ t.vergleiche_seite.vergleiche_titel|safe }}</a>
-        <a href="{% url 'index' %}#faq">{{ t.footer.u_faq|safe }}</a>
-        <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
-        {% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}
-        {% if c.webagentur_url %}<a href="{{ c.webagentur_url }}">{{ t.footer.u_webagentur|safe }}</a>{% endif %}
-      </div>
-      <div>
-        <h3>{{ t.branchen_seite.branchen_titel|safe }}</h3>
-        {% for b in footer_branchen %}<a href="{{ b.url }}">{{ b.titel|safe }}</a>{% endfor %}
-        <a href="{% url 'branchen' %}">{{ t.branchen_seite.alle|safe }}</a>
-      </div>
-      <div>
-        <h3>{{ t.seite.regionen_titel|safe }}</h3>
-        {% for r in footer_regionen %}<a href="{{ r.url }}">{{ r.titel }}</a>{% endfor %}
-        <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
-      </div>
-      <div>
-        <h3>{{ t.footer.col_recht|safe }}</h3>
-        <a href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}</a>
-        <a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a>
-        <a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a>
-        <a href="{% url 'agb' %}">{{ t.footer.agb|safe }}</a>
-        <a href="{% url 'barrierefreiheit' %}">{{ t.footer.barrierefreiheit|safe }}</a>
-      </div>
-    </nav>
-  </div>
-
-
-  <div class="wrap foot-bottom">
-    <span>© {{ c.jahr }} {{ c.site_name }}</span>
-    <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
-  </div>
-</footer>
-
-<div class="mobilebar">
-  {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
-  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
-  <a class="mobilebar-cta" href="{% url 'kontakt' %}">{{ t.nav.cta|safe }}</a>
-</div>
+{% include 'fuss.html' %}
 
 {% include 'cookie_banner.html' %}
 <script src="{% static 'js/main.js' %}?v={{ asset_v }}" defer></script>

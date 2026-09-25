@@ -7,6 +7,50 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 25.09.2026 — Design B1 „Porträt", Paket 1: Fundament (Tokens, Schriften, Rahmen)
+
+Bastian hat im Designvergleich Runde 2 Variante B1 gewählt. Arbeit im eigenen Worktree
+`wvm-it-design-b1`, Zweig `design/2026-09-25-b1`, `../web_wvm-it` nicht angefasst.
+Verbindlicher Bauplan: `docs/DESIGN-B1-2026-09-25.md` (§6 dokumentiert die Besprechung
+zweier Prüfer, kein Einwand abgelehnt). Paket 1 von 4 (Fundament):
+
+* **Farben:** Gold (`#d8a43d`) ersetzt durch eine Akzentfarbe aus dem Logo — Knopf-Blau
+  `#0067a0` (Fläche und Text, 6,09:1) und Logo-Blau `#009ae2` (nur Linie/Fläche/Symbol,
+  3,12:1). WhatsApp-Grün als Token (`--wa`) entfällt; WhatsApp ist jetzt ein neutraler
+  Zweitknopf. Papier-Fläche `--bg-2` von `#f4f1ec` (warmes Beige) auf `#eef1f3` (kühles
+  Grau-Blau), jetzt mit Kante `--line-2` oben/unten an jedem `.section-alt` — Rhythmus
+  weiß/Papier/dunkel macht die Blöcke der Startseite als eigene Blöcke erkennbar
+  (Paket 2/3 bauen die Startseite selbst um; Paket 1 legt nur das Fundament).
+* **Schriften:** Newsreader (Serif, Überschriften), Public Sans (Text), JetBrains Mono
+  (Zahlen, Statuszeile) ersetzen Inter und Space Grotesk — sechs woff2-Dateien
+  (latin + latin-ext je Schrift) von Fontsource über jsDelivr geladen, Inter/Space-
+  Grotesk-Dateien gelöscht, Fallback-Metriken in `fonts.css` neu.
+* **Rahmen:** Statusleiste neu — Erreichbarkeit wird serverseitig aus der echten Uhrzeit
+  (Europe/Vienna) berechnet (`landing/context.py::_erreichbarkeit`, neuer
+  Kontextprozessor), der grüne Punkt zeigt also nur innerhalb der Geschäftszeiten grün.
+  Kopf/Fuß aus `base.html` in eigene Includes `templates/kopf.html`/`fuss.html`
+  ausgelagert (auch von `angebot.html` nutzbar, ab Paket 4). Navigation von acht auf
+  sechs Punkte verschlankt (Leistungen · IT-Hilfe · Festpreise · Betreuungskosten ·
+  Über uns · Kontakt), Branchen/Regionen/Referenzen stehen nur noch im Fuß. Rückruf- und
+  Handy-Leiste-Knopf sind jetzt echte Links (`<a href="#rueckruf">` auf der Startseite,
+  sonst zum Kontaktformular) statt toter Buttons ohne JavaScript;
+  `anfrage-blocks.js::rueckruf()` unterdrückt den Linkwechsel, wenn der Dialog
+  unterstützt wird. Rückruf-Dialog: Zeitfenster jetzt als Segmente (Name + Uhrzeit)
+  statt Dropdown. Cookie-Hinweis: kleine Karte unten links statt Vollbreite-Leiste.
+* **Zwölf neue Symbole** im Satz (`arrow`, `alert`, `pin`, `plus`, `minus`, `user`,
+  `book`, `list`, `compare`, `callback`, `monitor`, `menu`) plus das Markenzeichen
+  `i-wvm_orbit` (fill-basiert, zwei gekreuzte Ringe + Kern, ohne `stroke-width`).
+* **Was unangetastet bleibt (Paket 2/3):** Hero, Laufband, Trennerbänder, Scroll-Video,
+  KI-Showcase, die Startseiten-Blöcke 8–14 — sie erben die neue Palette automatisch über
+  die Tokens, ohne dass ihr Markup angefasst wurde; optisch fallen sie deshalb nicht
+  auseinander, auch wenn ihre eigenen Muster (Verläufe, Glow) erst später verschwinden.
+
+Tests: `test_kontrast.py` (Fassungen jetzt über `:root{`/`.on-dark{` statt Hex-Anker
+gefunden, Zahlen für `accent2`/`accent-ink` nachgezogen), `test_fokus.py` (nur noch zwei
+Farbzonen), `test_i18n.py` neu `test_keine_fehlenden_schluessel_in_en_ro` (heute 0
+fehlend) und `B1TexteTest` (neue B1-Texte wirklich übersetzt, nicht nur angelegt), neu
+`test_erreichbarkeit.py` (feste Zeitpunkte). Suite 413 → 415, `pruefe_seite` weiterhin 0.
+
 ## 24.09.2026 — Nachbesserung Runde 2 (dritte Runde): Kleinauftrag ohne fremde Zahl, Wegweiser nach Aufgabe
 
 Sechs Befunde aus der Opus-Abnahme desselben Zweigs `seo/2026-09-24-runde2`,

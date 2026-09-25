@@ -86,6 +86,73 @@ class SprachpaketeTest(SimpleTestCase):
         self.assertEqual(i18n.norm_lang("de_AT"), "de")
         self.assertEqual(i18n.norm_lang("fr"), "de")  # unbekannt -> Default
 
+    def test_keine_fehlenden_schluessel_in_en_ro(self):
+        """Die Umkehrung von `test_keine_ueberzaehligen_schluessel_in_en_ro`
+        (Design B1, K2-2): Jeder DE-Schlüssel muss auch in EN und RO **stehen**,
+        nicht nur beim Rendern über den Deep-Merge von DE erben.
+
+        Ohne diesen Test fällt eine vergessene Übersetzung nirgends auf , die
+        Seite zeigt klaglos den deutschen Text auf `/en/` und `/ro/` an.
+        Gemessen am 25.09.2026 fehlt kein einziger Schlüssel , auch die drei
+        rein deutschen Silos (Fachbeiträge, Glossar, Checklisten) sind in
+        EN/RO strukturell vorhanden. Sollte sich das ändern, gehört die
+        begründete Ausnahme hierher, nicht ein stilles Erben.
+        """
+        basis = _schluessel(i18n._RAW["de"])
+        for lang in ("en", "ro"):
+            with self.subTest(lang=lang):
+                eigen = _schluessel(i18n._RAW[lang])
+                fehlend = basis - eigen
+                self.assertEqual(fehlend, set(),
+                                 f"{lang}.py: Schlüssel fehlen (erben stumm von DE): "
+                                 f"{sorted(fehlend)[:10]}")
+
+
+# Neue oder umformulierte Texte je B1-Paket (docs/DESIGN-B1-2026-09-25.md
+# §4.2, K2-2). Jedes Paket hängt seine eigenen Pfade an diese Liste an , nie
+# eine neue eigene Liste aufmachen, sonst prüft am Ende nur die Hälfte.
+# Paket 1 (Fundament, Statusleiste, Kopf, Rückruf-Dialog):
+B1_NEUE_SCHLUESSEL = (
+    "kopf.erreichbar", "kopf.wieder_heute", "kopf.wieder_morgen", "kopf.wieder_montag",
+    "nav.kosten_betreuung", "footer.col_wissen",
+    "rueckruf.zeit_1_kurz", "rueckruf.zeit_2_kurz", "rueckruf.zeit_3_kurz", "rueckruf.zeit_4_kurz",
+    "rueckruf.zeit_1_uhr", "rueckruf.zeit_2_uhr", "rueckruf.zeit_3_uhr", "rueckruf.zeit_4_uhr",
+)
+# Echte Ausnahmen (Eigennamen o. ä., bei denen EN/RO absichtlich derselbe Text
+# wie DE sind) kommen mit Begründung hierher , heute leer.
+B1_AUSNAHMEN_GLEICHER_TEXT = ()
+
+
+def _pfad_wert(d, pfad):
+    wert = d
+    for teil in pfad.split("."):
+        wert = wert[teil]
+    return wert
+
+
+class B1TexteTest(SimpleTestCase):
+    """Jeder neue B1-Text ist wirklich übersetzt, nicht nur angelegt.
+
+    `test_keine_fehlenden_schluessel_in_en_ro` prüft nur, dass der Schlüssel
+    **existiert** , er wäre auch dann grün, wenn `en.py` versehentlich den
+    deutschen Satz kopiert hätte. Diese Klasse prüft den **Inhalt**: EN und RO
+    müssen sich vom deutschen Text unterscheiden, außer der Pfad steht in
+    `B1_AUSNAHMEN_GLEICHER_TEXT` mit einer Begründung.
+    """
+
+    def test_neue_b1_texte_sind_uebersetzt(self):
+        for pfad in B1_NEUE_SCHLUESSEL:
+            de_wert = _pfad_wert(i18n.PACKS["de"], pfad)
+            for lang in ("en", "ro"):
+                with self.subTest(pfad=pfad, lang=lang):
+                    wert = _pfad_wert(i18n.PACKS[lang], pfad)
+                    self.assertTrue(wert, f"{pfad} ist in {lang}.py leer")
+                    if pfad in B1_AUSNAHMEN_GLEICHER_TEXT:
+                        continue
+                    self.assertNotEqual(
+                        wert, de_wert,
+                        f"{pfad} ist in {lang}.py wortgleich mit DE ({de_wert!r})")
+
 
 class PfadHelferTest(SimpleTestCase):
     def test_add_prefix_de_bleibt_praefixlos(self):

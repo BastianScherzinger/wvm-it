@@ -1,0 +1,54 @@
+{% comment %}
+Statusleiste + Kopf (Design B1, docs/DESIGN-B1-2026-09-25.md §3.1).
+
+Eingebunden von base.html (und ab Paket 4 von angebot.html). Braucht aus dem
+Kontext: `c` (content.json), `t` (Sprachpaket), `erreichbarkeit` (Kontext-
+prozessor landing/context.py). Ob es die Startseite ist, wird direkt an
+`request.resolver_match.url_name` erkannt (i18n_patterns registriert „index"
+in jeder Sprache) — keine eigene Kontextvariable nötig, views.py bleibt unberührt.
+
+Der Rückruf-/Kontakt-Knopf ist ein reiner Link, kein <button>: Auf der
+Startseite springt er ohne JavaScript zur sichtbaren Rückruf-Karte
+(`#rueckruf`), auf jeder anderen Seite führt er zum Kontaktformular. Erst
+`anfrage-blocks.js` (Funktion `rueckruf()`) hängt bei vorhandenem
+`<dialog>`-Support ein `preventDefault()` an jeden `[data-rueckruf]`-Auslöser
+und öffnet stattdessen den Dialog — ohne JS bleibt der einfache Link gültig.
+{% endcomment %}
+<div class="statusleiste">
+  <div class="wrap statusleiste-innen">
+    <p class="sl-status{% if erreichbarkeit.offen %} ist-offen{% endif %}">
+      <span class="sl-dot" aria-hidden="true"></span>{{ erreichbarkeit.text|safe }}
+    </p>
+    <div class="sl-rechts">
+      <a class="sl-notfall" href="{% url 'notfall' %}">{% include 'icons.html' with name='alert' %}{{ t.notfall.nav|safe }}</a>
+      <span class="sl-ort">{% include 'icons.html' with name='pin' %}{{ c.stadt }}, {{ c.region }}</span>
+      {% include 'lang_switch.html' %}
+    </div>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="{% url 'index' %}" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
+      <svg class="brand-mark" viewBox="0 0 330 330" aria-hidden="true"><use href="#i-wvm_orbit"/></svg>
+      <span class="brand-text"><b>{{ c.site_name }}</b><small>{{ c.tagline|default:t.meta.slogan|safe }}</small></span>
+    </a>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    {% if c.telefon %}<a class="nav-tel-mobil" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}</a>{% endif %}
+    <div class="nav-menu" id="navMenu">
+      <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
+        <a href="{% url 'leistungen' %}">{{ t.nav.leistungen|safe }}</a>
+        <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }}</a>
+        <a href="{% url 'einrichtungen' %}">{{ t.seite.einrichten|safe }}</a>
+        <a href="{% url 'kosten' %}">{{ t.nav.kosten_betreuung|safe }}</a>
+        <a href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}</a>
+        <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
+        <a class="nav-notfall" href="{% url 'notfall' %}">{{ t.notfall.nav|safe }}</a>
+      </nav>
+      {% include 'lang_switch.html' %}
+      {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+      {% if request.resolver_match.url_name == "index" %}<a class="btn btn-sm nav-cta" href="#rueckruf">{{ t.rueckruf.submit|safe }}</a>
+      {% else %}<a class="btn btn-sm nav-cta" href="{% url 'kontakt' %}" data-rueckruf>{{ t.rueckruf.submit|safe }}</a>{% endif %}
+    </div>
+  </div>
+</header>
