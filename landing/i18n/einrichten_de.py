@@ -581,7 +581,7 @@ EINRICHTEN = {
                  "Weiterleitung eingerichtet, damit die Buchhaltung von zu Hause "
                  "arbeiten kann. Diese eine Weiterleitung ist dann jahrelang offen — "
                  "und niemand weiß mehr, wofür sie war."
-                 "</p><p class='sp-intro'>Firewall und VPN sind zwei Teile derselben Tür: Die Firewall entscheidet, was überhaupt ins Firmennetz darf, das VPN ist der verschlüsselte Weg, auf dem berechtigte Personen von außen hineinkommen. Gebraucht wird das in zwei Fällen. Der häufigere ist das Homeoffice: Mitarbeiter greifen von zu Hause oder unterwegs auf Dateien, Warenwirtschaft oder einen Server im Büro zu — dafür ist der Festpreis gemacht. Der seltenere ist die Verbindung zweier Standorte, etwa Büro und Lager; das ist ein eigener Auftrag, weil er von den Geräten an beiden Enden abhängt. Was ein VPN technisch ist, steht im <a href='/wissen/vpn/'>Glossar</a>, wie man Heimarbeitsplätze sicher anbindet, im <a href='/aktuelles/homeoffice-sicher-anbinden/'>Beitrag zum Homeoffice</a>.",
+                 "\n\nFirewall und VPN sind zwei Teile derselben Tür: Die Firewall entscheidet, was überhaupt ins Firmennetz darf, das VPN ist der verschlüsselte Weg, auf dem berechtigte Personen von außen hineinkommen. Gebraucht wird das in zwei Fällen. Der häufigere ist das Homeoffice: Mitarbeiter greifen von zu Hause oder unterwegs auf Dateien, Warenwirtschaft oder einen Server im Büro zu — dafür ist der Festpreis gemacht. Der seltenere ist die Verbindung zweier Standorte, etwa Büro und Lager; das ist ein eigener Auftrag, weil er von den Geräten an beiden Enden abhängt. Was ein VPN technisch ist, steht im <a href='/wissen/vpn/'>Glossar</a>, wie man Heimarbeitsplätze sicher anbindet, im <a href='/aktuelles/homeoffice-sicher-anbinden/'>Beitrag zum Homeoffice</a>.",
 
         "leistungen_h": "Was für 690 € enthalten ist",
         "leistungen": [
@@ -963,9 +963,9 @@ EINRICHTEN = {
 
 # ── Texte des Hubs /einrichten/ ─────────────────────────────────────────────
 HUB = {
-    "titel": "PC und IT einrichten lassen: Festpreis ab 190 € | WVM-IT",
-    "desc": "Arbeitsplatz, PC-Tausch, Microsoft 365, Server, Netzwerk: einzelne "
-            "Aufgaben zum Festpreis, ohne Vertrag. Ab 190 €, meist per Fernwartung. "
+    "titel": "PC & IT einrichten lassen: Festpreise ohne Vertrag | WVM-IT",
+    "desc": "Arbeitsplatz, PC-Tausch, Microsoft 365, Server, Netzwerk: "
+            "Aufgaben zum Festpreis ohne Vertrag, z. B. Arbeitsplatz 190 €, meist per Fernwartung. "
             "Jetzt anfragen.",
     "h1": "Einzelne Aufgaben — Festpreis, ohne Vertrag",
     "kurz": "WVM-IT erledigt einzelne IT-Aufgaben zum Festpreis, ohne dass eine "

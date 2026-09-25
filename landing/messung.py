@@ -34,9 +34,11 @@ Jeder Fehler wird gefangen. Eine Messung darf niemals eine Seite kaputt machen.
 """
 from __future__ import annotations
 
+import atexit
 import json
 import os
 import threading
+import uuid
 from collections import defaultdict
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -50,6 +52,12 @@ _sperre = threading.Lock()
 _stand: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
 _tag: date = date.today()
 _seit_schreiben = 0
+# Kennung dieses Prozesses (EIG17, 25.09.2026). Jede Zeile ist eine Momentaufnahme
+# **eines** Prozesses; nach einem Deploy zählt ein neuer Prozess wieder ab null.
+# Mit der Kennung kann `manage.py messung --dateien` je Prozess die letzte Zeile
+# nehmen und die Prozesse eines Tages addieren, statt den Verkehr vor dem
+# Neustart still fallen zu lassen. Zufall, keine Besucherkennung.
+_LAUF = uuid.uuid4().hex[:12]
 
 
 def _ziel() -> Path:
@@ -117,6 +125,7 @@ def _schreibe_ohne_sperre(grund: str = "") -> None:
         "tag": _tag.isoformat(),
         "geschrieben": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "grund": grund,
+        "lauf": _LAUF,
         "werte": {art: dict(werte) for art, werte in _stand.items()},
     }
     if os.environ.get("MESSUNG_STUMM"):
@@ -144,6 +153,19 @@ def schreibe_jetzt(grund: str = "manuell") -> None:
     """Erzwingt das Schreiben — für den Management-Befehl und Tests."""
     with _sperre:
         _schreibe_ohne_sperre(grund=grund)
+
+
+def _beim_beenden() -> None:
+    """Schreibt den laufenden Stand, wenn der Prozess endet (EIG17). Gunicorn
+    beendet seine Arbeiter beim Deploy mit SIGTERM und regulärem Exit — dabei
+    laufen atexit-Handler. Bis hierher ging alles seit dem letzten Takt verloren."""
+    try:
+        schreibe_jetzt(grund="ende")
+    except Exception:  # pragma: no cover - Schutznetz beim Herunterfahren
+        pass
+
+
+atexit.register(_beim_beenden)
 
 
 def _zuruecksetzen_fuer_tests() -> None:

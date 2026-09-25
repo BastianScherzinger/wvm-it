@@ -85,14 +85,12 @@
       const hint = document.getElementById("robotHint");
       const tap = document.getElementById("robotTap");
       if (!bubble) return;
-      // Sprechblasen-Texte kommen lokalisiert aus window.I18N (Fallback: Deutsch).
-      const msgs = (window.I18N && window.I18N.robot && window.I18N.robot.length) ? window.I18N.robot : [
-        "Hi! Schön, dass du da bist.",
-        "Wir bauen Webseiten, Hosting, KI und SEO. Alles aus einer Hand.",
-        "Schon ab 350 Euro hast du deine eigene Webseite.",
-        "Tipp: Hol dir ein unverbindliches Angebot in 24 Stunden.",
-        "Bereit? Klick auf Projekt anfragen, wir melden uns schnell.",
-      ];
+      // Sprechblasen-Texte kommen lokalisiert aus window.I18N. Ohne sie bleibt die
+      // Blase stumm (25.09.2026, EIG20): Der fruehere deutsche Notnagel trug die alte
+      // Positionierung und einen getippten Preis ausserhalb von ANGEBOT_GROUPS, den
+      // pruefe_seite im Skript nicht sieht - und erschien auch auf /en/ und /ro/.
+      const msgs = (window.I18N && window.I18N.robot && window.I18N.robot.length) ? window.I18N.robot : [];
+      if (!msgs.length) return;
       let idx = -1, hideT, started = false;
       function say() {
         started = true;

@@ -571,7 +571,7 @@ EINRICHTEN = {
                  "iar la un moment dat cineva a configurat o redirecționare, ca "
                  "contabilitatea să poată lucra de acasă. Acea unică redirecționare rămâne "
                  "apoi deschisă ani de zile — și nimeni nu mai știe pentru ce era."
-                 "</p><p class='sp-intro'>Firewallul și VPN-ul sunt două părți ale aceleiași uși: firewallul decide ce are voie să intre în rețeaua firmei, VPN-ul este drumul criptat pe care persoanele autorizate intră din exterior. E nevoie de ele în două situații. Cea mai frecventă este lucrul de acasă: angajații accesează de acasă sau din deplasare fișiere, programul de gestiune sau un server din birou — pentru asta este gândit prețul fix. Cea mai rară este legătura dintre două sedii, de exemplu birou și depozit; aceasta este o lucrare separată, pentru că depinde de aparatele de la ambele capete.",
+                 "\n\nFirewallul și VPN-ul sunt două părți ale aceleiași uși: firewallul decide ce are voie să intre în rețeaua firmei, VPN-ul este drumul criptat pe care persoanele autorizate intră din exterior. E nevoie de ele în două situații. Cea mai frecventă este lucrul de acasă: angajații accesează de acasă sau din deplasare fișiere, programul de gestiune sau un server din birou — pentru asta este gândit prețul fix. Cea mai rară este legătura dintre două sedii, de exemplu birou și depozit; aceasta este o lucrare separată, pentru că depinde de aparatele de la ambele capete.",
 
         "leistungen_h": "Ce include prețul de 690 €",
         "leistungen": [
@@ -937,10 +937,10 @@ EINRICHTEN = {
 }
 
 HUB = {
-    "titel": "Configurare PC și IT: preț fix de la 190 € | WVM-IT",
+    "titel": "Configurare PC și IT: prețuri fixe, fără contract | WVM-IT",
     "desc": "Post de lucru, înlocuire PC, Microsoft 365, server, rețea: sarcini "
-            "individuale la preț fix, fără contract. De la 190 €, de regulă la "
-            "distanță. Cereți o ofertă.",
+            "la preț fix, fără contract, ex. post de lucru 190 €, "
+            "de regulă la distanță. Cereți o ofertă.",
     "h1": "Sarcini individuale — preț fix, fără contract",
     "kurz": "WVM-IT rezolvă sarcini IT individuale la preț fix, fără să fie nevoie de o "
             "administrare curentă: configurarea unui post de lucru pentru 190 €, "

@@ -230,7 +230,11 @@ class Command(BaseCommand):
         # für KI-Antwortmaschinen (docs/SEO-PLAN.md, G10).
         from landing.views import _seiten_pfade
         gefunden, unbekannt = set(), {}
-        for pfad, _p, _f, _mehr in _seiten_pfade():
+        # Dazu die beiden Kurzfassungen für Antwortmaschinen (EIG85, 25.09.2026):
+        # Dort stand eine abgetippte Preisliste, und keine Prüfung sah sie — dabei
+        # ist genau das der Text, den eine KI wörtlich zitiert.
+        pfade = [p[0] for p in _seiten_pfade()] + ["/llms.txt", "/llms-full.txt"]
+        for pfad in pfade:
             html = client.get(pfad).content.decode("utf-8")
             zahlen = set()
             for treffer in re.findall(r"(\d[\d.]{0,8})\s*(?:€|&euro;)", html):

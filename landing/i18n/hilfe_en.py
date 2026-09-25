@@ -59,7 +59,7 @@ HILFE = {
         {"q": "Do I need a contract for you to help me?",
          "a": "No. One-off help is billed by time: remote €95 per hour, on site €120 per hour plus travel."},
         {"q": "How quickly do I get help?",
-         "a": "By remote access usually the same day. We can be reached Monday to Friday from 9am to 6pm; enquiries outside those hours are answered on the next working day, in any case within 24 hours."},
+         "a": "By remote access usually the same day. We can be reached Monday to Friday from 9am to 6pm; enquiries outside those hours are answered on the next working day."},
         {"q": "What happens if you cannot solve the problem?",
          "a": "We tell you beforehand whether we can help. If it turns out along the way that a manufacturer or a specialist is the better address, we say so openly and tell you the next step."},
         {"q": "What does a new workstation or Microsoft 365 cost?",

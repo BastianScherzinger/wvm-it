@@ -52,7 +52,7 @@
 {% comment %} ── Navigation ──────────────────────────────────────────────────────────── {% endcomment %}
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
+    <a class="brand" href="{% url 'index' %}" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
     {% comment %} Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) {% endcomment %}
@@ -60,11 +60,11 @@
     <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
-        <a href="/">{{ t.nav.home|safe }}</a>
-        <a href="/#leistungen">{{ t.nav.leistungen|safe }}</a>
-        <a href="/#preise">{{ t.nav.preise|safe }}</a>
+        <a href="{% url 'index' %}">{{ t.nav.home|safe }}</a>
+        <a href="{% url 'leistungen' %}">{{ t.nav.leistungen|safe }}</a>
+        <a href="{% url 'kosten' %}">{{ t.nav.preise|safe }}</a>
         <a href="{% url 'angebot' %}" aria-current="page">{{ t.nav.angebot|safe }}</a>
-        <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
+        <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
       </nav>
       {% include 'lang_switch.html' %}
       {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
@@ -110,7 +110,7 @@
           <h3>{{ t.angebot_page.sent_h|safe }}</h3>
           <p>{{ t.angebot_page.sent_p|safe }}</p>
           <div class="ang-sent-actions">
-            <a class="btn btn-magnetic" href="/">{{ t.angebot_page.sent_back|safe }}</a>
+            <a class="btn btn-magnetic" href="{% url 'index' %}">{{ t.angebot_page.sent_back|safe }}</a>
             <a class="btn btn-ghost" href="{% url 'angebot' %}">{{ t.angebot_page.sent_new|safe }}</a>
           </div>
         </div>
@@ -302,13 +302,13 @@
 <footer class="foot">
   <div class="wrap foot-top">
     <div class="foot-brand">
-      <a class="brand" href="/">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
+      <a class="brand" href="{% url 'index' %}">{% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}</a>
       <p>{{ t.footer.tagline|safe }}</p>
     </div>
     <nav class="foot-nav" aria-label="Footer">
-      <div><h4>{{ t.footer.col_leistungen|safe }}</h4><a href="/#leistungen">{{ t.footer.l_smarthome|safe }}</a><a href="/#leistungen">{{ t.footer.l_konferenz|safe }}</a><a href="/#leistungen">{{ t.footer.l_edv|safe }}</a><a href="/#leistungen">{{ t.footer.l_web|safe }}</a></div>
-      <div><h4>{{ t.footer.col_unternehmen|safe }}</h4><a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a><a href="/#preise">{{ t.footer.u_preise|safe }}</a><a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
-      <div><h4>{{ t.footer.col_recht|safe }}</h4><a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a><a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a></div>
+      <div><h4>{{ t.footer.col_leistungen|safe }}</h4>{% for l in footer_leistungen %}<a href="{{ l.url }}">{{ l.titel|safe }}</a>{% endfor %}<a href="{% url 'leistungen' %}">{{ t.footer.u_alle|safe }}</a><a href="{% url 'einrichtungen' %}">{{ t.seite.einrichten|safe }}</a></div>
+      <div><h4>{{ t.footer.col_unternehmen|safe }}</h4><a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a><a href="{% url 'kosten' %}">{{ t.footer.u_preise|safe }}</a><a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>{% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}</div>
+      <div><h4>{{ t.footer.col_recht|safe }}</h4><a href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}</a><a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a><a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a><a href="{% url 'agb' %}">{{ t.footer.agb|safe }}</a><a href="{% url 'barrierefreiheit' %}">{{ t.footer.barrierefreiheit|safe }}</a></div>
     </nav>
   </div>
   <div class="wrap foot-bottom">

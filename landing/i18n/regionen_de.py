@@ -170,7 +170,7 @@ REGIONEN = {
         "nav": "Salzburg",
         "titel": "EDV-Betreuung Salzburg: IT-Service ab 29 €/Monat | WVM-IT",
         "desc": "EDV-Betreuung für Betriebe in Salzburg: laufend ab 29 €/Monat je Arbeitsplatz oder einzeln per Fernwartung für 95 €/Std., ohne Vertrag. Jetzt anfragen.",
-        "h1": "IT-Service und IT-Sicherheit in Salzburg",
+        "h1": "EDV-Betreuung und IT-Sicherheit in Salzburg",
         "kurz": "WVM-IT betreut Betriebe in der Stadt Salzburg und im Umland: laufende EDV, Server, Netzwerk und vor allem IT-Sicherheit. Von Lenzing sind es 55 Kilometer, rund 45 Minuten für Termine vor Ort. Der laufende Betrieb läuft per gesicherter Fernwartung, unabhängig von der Entfernung.",
         "intro": "Salzburg ist ein Dienstleistungsstandort: Agenturen, Kanzleien, Beratungen, Tourismusbetriebe, Handel. Der gemeinsame Nenner für die IT ist, dass hier mit fremden Daten gearbeitet wird — Mandantendaten, Gästedaten, Kundendaten. Damit ist IT-Sicherheit keine Fleißaufgabe, sondern eine Pflicht mit Haftung dahinter.",
         "wirtschaft": "Was wir dabei am häufigsten finden, ist kein fehlender Virenschutz, sondern drei andere Dinge: eine Datensicherung, deren Wiederherstellung nie getestet wurde; Zugänge ehemaliger Mitarbeiter, die noch funktionieren; und Fernzugriffe, die während der Pandemie schnell eingerichtet und danach nie wieder angesehen wurden. Genau danach sehen wir im Sicherheitscheck zuerst.",
