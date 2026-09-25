@@ -197,3 +197,18 @@ class MessungFaelltAufTest(SimpleTestCase):
         self.assertEqual(antwort.status_code, 200, "die Antwort muss durchkommen")
         self.assertEqual(len(protokoll.output), 1,
                          f"{len(protokoll.output)} Meldungen statt einer")
+
+    def test_ausfall_beim_beenden_wird_gemeldet(self):
+        """Auch das Schreiben beim Herunterfahren darf nicht still scheitern (PJ05)."""
+        import io
+        from contextlib import redirect_stdout
+        from unittest import mock
+        from landing import messung
+
+        ausgabe = io.StringIO()
+        with mock.patch("landing.messung.schreibe_jetzt",
+                        side_effect=RuntimeError("kaputt")):
+            with redirect_stdout(ausgabe):
+                messung._beim_beenden()
+        self.assertIn("MESSUNG-HINWEIS", ausgabe.getvalue())
+        self.assertIn("kaputt", ausgabe.getvalue())

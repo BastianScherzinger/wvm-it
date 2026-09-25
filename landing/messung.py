@@ -208,8 +208,11 @@ def _beim_beenden() -> None:
     laufen atexit-Handler. Bis hierher ging alles seit dem letzten Takt verloren."""
     try:
         schreibe_jetzt(grund="ende")
-    except Exception:  # pragma: no cover - Schutznetz beim Herunterfahren
-        pass
+    except Exception as fehler:
+        # Schutznetz beim Herunterfahren: Der Prozess soll trotzdem sauber enden,
+        # aber ein verlorener Stand darf nicht spurlos bleiben (PJ05).
+        print(f"[MESSUNG-HINWEIS] Stand beim Beenden nicht geschrieben ({fehler})",
+              flush=True)
 
 
 atexit.register(_beim_beenden)
