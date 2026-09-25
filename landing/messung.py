@@ -75,17 +75,32 @@ KAMPAGNEN = frozenset({
     "karte-bewerten",
 })
 _INHALT = re.compile(r"^[a-z0-9-]{1,20}$")
+# `utm_content` ist frei wählbar (Muster oben) — ohne Obergrenze könnte jeder
+# über die Adresse beliebig viele Schlüssel anlegen, und jede Tageszeile würde
+# mitwachsen. Deshalb höchstens so viele verschiedene Schlüssel je Art und Tag;
+# danach zählt ein neuer `utm_content` nur noch als '<kampagne>/-'.
+# `utm_content` benennt einen Beitrag oder eine Anzeige (p03, a1), **nie** einen
+# Empfänger — sonst wäre die Summe doch eine Kennung.
+_KAMPAGNEN_SCHLUESSEL_HOECHSTENS = 60
 
 
-def kampagne(abfrage) -> str | None:
+def kampagne(abfrage, art: str = "kampagne") -> str | None:
     """'<utm_campaign>/<utm_content>' aus einem QueryDict/dict, oder None.
-    utm_content nur, wenn es dem Muster entspricht, sonst '-'."""
+    utm_content nur, wenn es dem Muster entspricht, sonst '-'. Ist die
+    Obergrenze verschiedener Schlüssel für `art` heute erreicht, wird ein
+    neuer utm_content ebenfalls zu '-'."""
     try:
         name = (abfrage.get("utm_campaign") or "").strip().lower()[:40]
         if name not in KAMPAGNEN:
             return None
         inhalt = (abfrage.get("utm_content") or "").strip().lower()
-        return f"{name}/{inhalt if _INHALT.match(inhalt) else '-'}"
+        schluessel = f"{name}/{inhalt if _INHALT.match(inhalt) else '-'}"
+        with _sperre:
+            vorhanden = _stand.get(art, {})
+            if (schluessel not in vorhanden
+                    and len(vorhanden) >= _KAMPAGNEN_SCHLUESSEL_HOECHSTENS):
+                schluessel = f"{name}/-"
+        return schluessel
     except Exception:
         return None
 

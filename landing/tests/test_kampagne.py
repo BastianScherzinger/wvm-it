@@ -55,3 +55,33 @@ class KampagnenZaehlungTest(SimpleTestCase):
                               follow=True, HTTP_USER_AGENT=_BROWSER)
         self.assertEqual(antwort.status_code, 200)
         self.assertEqual(messung.stand()["kampagne"]["gbp-post/-"], 1)
+
+
+class KampagnenObergrenzeTest(SimpleTestCase):
+    """`utm_content` ist frei wählbar — die Zahl verschiedener Schlüssel je Tag
+    muss trotzdem begrenzt sein, sonst legt jeder über die Adresse beliebig
+    viele an (Prüfung 25.09.2026)."""
+
+    def setUp(self):
+        messung._zuruecksetzen_fuer_tests()
+
+    def test_ueber_der_grenze_zaehlt_nur_der_strich(self):
+        grenze = messung._KAMPAGNEN_SCHLUESSEL_HOECHSTENS
+        for i in range(grenze + 25):
+            k = messung.kampagne({"utm_campaign": "gbp-post", "utm_content": f"x{i}"})
+            messung.zaehle("kampagne", k)
+        stand = messung.stand()["kampagne"]
+        self.assertLessEqual(len(stand), grenze + 1)
+        self.assertEqual(stand["gbp-post/-"], 25)
+        # Ein schon vorhandener Schlüssel zählt weiter unter seinem Namen.
+        messung.zaehle("kampagne", messung.kampagne(
+            {"utm_campaign": "gbp-post", "utm_content": "x0"}))
+        self.assertEqual(messung.stand()["kampagne"]["gbp-post/x0"], 2)
+
+    def test_grenze_gilt_je_art(self):
+        grenze = messung._KAMPAGNEN_SCHLUESSEL_HOECHSTENS
+        for i in range(grenze):
+            messung.zaehle("kampagne", f"gbp-post/x{i}")
+        k = messung.kampagne({"utm_campaign": "gbp-post", "utm_content": "neu"},
+                             art="anfrage_kampagne")
+        self.assertEqual(k, "gbp-post/neu")

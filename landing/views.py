@@ -1263,7 +1263,7 @@ def _kampagne_aus_verweis(request) -> str | None:
         _, _, qs = rest.partition("?")
         abfrage = parse_qs(qs)
         einfach = {schluessel: werte[0] for schluessel, werte in abfrage.items() if werte}
-        return messung.kampagne(einfach)
+        return messung.kampagne(einfach, art="anfrage_kampagne")
     except Exception:
         return None
 
