@@ -65,7 +65,7 @@ PACK = {
         # Zahlen statt Adjektiven — "vom Zwei-Mann-Buero" ist pruefbar,
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
-        "subline": "WVM-IT aus Lenzing betreut Server, Netzwerk, Arbeitsplätze, E-Mail, Datensicherung und Sicherheit – dazu Webseite, SEO und KI. Ab 29 € je Arbeitsplatz und Monat, per Fernwartung in ganz Österreich und Deutschland.",
+        "subline": "WVM-IT aus Lenzing, Oberösterreich, betreut Server, Netzwerk, Arbeitsplätze, E-Mail, Datensicherung und Sicherheit – dazu Webseite, SEO und KI. Ab 29 € je Arbeitsplatz und Monat, per Fernwartung in ganz Österreich und Deutschland.",
         "cta": "Gratis Beispiel-Website sichern",
         "note": "Kostenlos und unverbindlich · von unserer JARVIS-KI in ~10 Minuten gebaut.",
         "robot_aria": "3D-Assistent, klick mich",
