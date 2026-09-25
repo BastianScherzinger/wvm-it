@@ -276,8 +276,8 @@ BEITRAEGE = {
 
     "it-dienstleister-wechseln": {
         "titel": "Wie übergibt man die IT an einen neuen Dienstleister, ohne dass etwas verloren geht?",
-        "meta_titel": "IT-Dienstleister wechseln ohne Datenverlust | WVM-IT",
-        "desc": "Was Sie beim Wechsel des IT-Dienstleisters herausverlangen müssen: Zugänge, Lizenzen, Dokumentation, Domains. Vor der Kündigung — jetzt nachlesen.",
+        "meta_titel": "IT-Übergabe an neuen Dienstleister: der Ablauf | WVM-IT",
+        "desc": "In welcher Reihenfolge die IT übergeben wird, warum es meist an der Domain hakt und was Sie mit dem neuen Dienstleister vereinbaren sollten.",
         "antwort": "Der Wechsel gelingt, wenn die Übergabe vor der Kündigung geklärt ist — nicht danach. Verlangen Sie schriftlich: alle Administratorzugänge zu Server, Netzwerk, Microsoft 365 und Firewall, die Inhaberschaft an Domain und Hosting, die Lizenzunterlagen, eine Liste aller Geräte mit Standort und Seriennummer sowie die Zugangsdaten zu allen Verträgen, die auf Ihren Betrieb laufen. Solange das Verhältnis funktioniert, bekommen Sie diese Liste in ein paar Tagen; nach einer Kündigung kann daraus ein Monat werden.",
         "abschnitte": [
             {"h": "Warum die Reihenfolge über den Aufwand entscheidet",
