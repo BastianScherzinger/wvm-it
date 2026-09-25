@@ -159,7 +159,7 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
   {% if passt_dazu %}
   <section class="section section-alt">
     <div class="wrap">
-      <h2 class="sp-h2">{{ t.seite.passt_dazu|safe }}</h2>
+      <h2 class="sp-h2">{{ t.seite.passt_dazu_h|safe }}</h2>
       <div class="lk-grid">
         {% for p in passt_dazu %}
         <a class="lk spot" href="{{ p.url }}" data-spot>

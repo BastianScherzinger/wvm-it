@@ -159,6 +159,20 @@ class SeitenTest(SimpleTestCase):
                     html = _util.client().get(pfad, follow=True).content.decode("utf-8")
                     self.assertIn('id="nicht-enthalten"', html)
 
+    def test_keine_leere_ueberschrift(self):
+        """Bis zum 25.09.2026 las der Block „Passt dazu" den Schlüssel
+        `t.seite.passt_dazu`, den es nicht gibt (er heisst `passt_dazu_h`).
+        Django rendert einen fehlenden Schlüssel still als Leertext — auf allen
+        30 Einrichtungsseiten stand eine h2 ohne Inhalt (BF14)."""
+        for prefix in SPRACHEN:
+            for e in einrichtungen.EINRICHTUNGEN:
+                pfad = f"{prefix}/einrichten/{e['slug']}/"
+                with self.subTest(pfad=pfad):
+                    html = _util.client().get(pfad, follow=True).content.decode("utf-8")
+                    for m in re.finditer(r"<h([1-6])[^>]*>(.*?)</h\1>", html, re.S):
+                        text = re.sub(r"<[^>]+>", "", m.group(2)).strip()
+                        self.assertTrue(text, f"{pfad}: leere Überschrift {m.group(0)[:80]}")
+
     def test_jede_seite_traegt_ein_formular_mit_vorbelegtem_thema(self):
         for prefix in SPRACHEN:
             for e in einrichtungen.EINRICHTUNGEN:

@@ -87,7 +87,7 @@ PACK = {
         "eyebrow": "Suport IT & administrare · Austria și Germania",
         "headline": "Tot IT-ul. Un singur contact.",
         "headline_2": "De la biroul cu doi oameni până la firma cu 200 de posturi de lucru.",
-        "subline": "WVM-IT din Lenzing administrează servere, rețea, posturi de lucru, e-mail, copii de siguranță și securitate – plus site, SEO și AI. De la 29 € per post de lucru și lună, la distanță în toată Austria și Germania.",
+        "subline": "WVM-IT din Lenzing, Austria Superioară, administrează servere, rețea, posturi de lucru, e-mail, copii de siguranță și securitate – plus site, SEO și AI. De la 29 € per post de lucru și lună, la distanță în toată Austria și Germania.",
         "cta": "Primește site-ul demonstrativ gratuit",
         "note": "Gratuit și fără obligații · construit de AI-ul nostru JARVIS în circa 10 minute.",
         "robot_aria": "Asistent 3D, apasă-mă",
