@@ -59,7 +59,7 @@ HILFE = {
         {"q": "Am nevoie de un contract ca să mă ajutați?",
          "a": "Nu. Ajutorul punctual se facturează după timp: la distanță 95 € pe oră, la fața locului 120 € pe oră plus deplasarea."},
         {"q": "Cât de repede primesc ajutor?",
-         "a": "La distanță, de obicei în aceeași zi. Ne găsiți de luni până vineri între 9 și 18; solicitările din afara acestor ore primesc răspuns în următoarea zi lucrătoare, în orice caz în 24 de ore."},
+         "a": "La distanță, de obicei în aceeași zi. Ne găsiți de luni până vineri între 9 și 18; solicitările din afara acestor ore primesc răspuns în următoarea zi lucrătoare."},
         {"q": "Ce se întâmplă dacă nu puteți rezolva problema?",
          "a": "Vă spunem dinainte dacă vă putem ajuta. Dacă pe parcurs se vede că un producător sau un specialist este adresa mai bună, spunem deschis și vă indicăm pasul următor."},
         {"q": "Cât costă un post de lucru nou sau Microsoft 365?",

@@ -7,6 +7,16 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 25.09.2026 — Cloud-Triage: 170 offene Befunde eingeordnet, 73 im Code behoben
+
+Alle `EIG`-Zeilen mit Zustand „offen“ aus `doku/80-AUFGABEN.md` am Code und an lokal
+gerenderten Seiten geprüft (Zweig `claude/charming-edison-wrtl7v`, Pull Request, nicht auf
+`main`). 73 im Code behoben, 65 treffen hier nicht zu, 6 waren schon erledigt, 26 liegen
+außerhalb des Codes. Der wichtigste Fund: Das Pflichtkästchen der Gratis-Website koppelte
+den Referenz-Newsletter — jetzt ein eigenes, freiwilliges Kästchen. Suite 413 → 451 Tests,
+`pruefe_seite` prüft jetzt auch `llms.txt`. Alles Weitere, samt Handlungsliste für Florin,
+Bastian und die Designrunde: [`TRIAGE-2026-09-25.md`](TRIAGE-2026-09-25.md).
+
 ## 24.09.2026 — Nachbesserung Runde 2 (dritte Runde): Kleinauftrag ohne fremde Zahl, Wegweiser nach Aufgabe
 
 Sechs Befunde aus der Opus-Abnahme desselben Zweigs `seo/2026-09-24-runde2`,

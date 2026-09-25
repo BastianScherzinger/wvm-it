@@ -220,6 +220,11 @@ Die Varianten stehen in content.json (T3).
               </div>
             </div>
             <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
+            {% comment %} Der Newsletter ist eine eigene, freiwillige Einwilligung (25.09.2026, EIG151):
+              Bis dahin stand er im Pflichtkästchen, ohne ihn gab es keine Beispiel-Website —
+              gekoppelt und damit unwirksam (Art. 7 Abs. 4 DSGVO, § 174 TKG 2021).
+              Nicht vorausgewählt; der Nachweis entsteht erst mit dem Bestätigungsklick. {% endcomment %}
+            <label class="offer-consent"><input type="checkbox" name="newsletter" value="1"> {{ t.offer.consent_nl|safe }}</label>
             <button class="btn btn-lg btn-magnetic offer-submit" type="submit">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <p class="tool-fine" aria-live="polite">{% if news_fehler %}{{ t.form.fehler_pruefen|safe }} {% endif %}{{ t.hero.note|safe }}</p>
           {% include 'datenschutzhinweis.html' %}
@@ -1177,11 +1182,11 @@ Die Varianten stehen in content.json (T3).
         {% csrf_token %}
           {% include 'honigtopf.html' %}
         <div class="f-row">
-          <label>{{ t.kontakt.f_name|safe }}<input type="text" name="name" required autocomplete="name" placeholder="{{ t.kontakt.f_name_ph|safe }}"></label>
-          <label>{{ t.kontakt.f_email|safe }}<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
+          <label>{{ t.kontakt.f_name|safe }}<input type="text" name="name" required autocomplete="name" placeholder="{{ t.kontakt.f_name_ph|safe }}" value="{{ kontakt_werte.name|default:'' }}"></label>
+          <label>{{ t.kontakt.f_email|safe }}<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at" value="{{ kontakt_werte.email|default:'' }}"></label>
         </div>
         <div class="f-row">
-          <label>{{ t.kontakt.f_phone|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span><input type="tel" name="telefon" autocomplete="tel" placeholder="{{ t.kontakt.f_phone_ph|safe }}"></label>
+          <label>{{ t.kontakt.f_phone|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span><input type="tel" name="telefon" autocomplete="tel" placeholder="{{ t.kontakt.f_phone_ph|safe }}" value="{{ kontakt_werte.telefon|default:'' }}"></label>
           <label>{{ t.kontakt.f_budget|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span>
             <select name="budget">
               <option value="">{{ t.kontakt.budget_choose|safe }}</option>
@@ -1192,8 +1197,9 @@ Die Varianten stehen in content.json (T3).
             </select>
           </label>
         </div>
-        <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}"></textarea></label>
+        <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}">{{ kontakt_werte.nachricht|default:'' }}</textarea></label>
         <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</label>
+        {% if kontakt_werte %}<p class="lb-err" role="alert">{{ t.kontakt.err|safe }}</p>{% endif %}
         <button class="btn btn-lg btn-magnetic" type="submit">{{ t.kontakt.submit|safe }}</button>
         <p class="form-fine" aria-live="polite">{% if kontakt_fehler %}{{ t.form.fehler_pruefen|safe }} {% endif %}{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}

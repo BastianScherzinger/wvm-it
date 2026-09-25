@@ -14,19 +14,19 @@ VERGLEICHE = {
         "titel": "IT contract or hourly billing: the math in 2 steps | WVM-IT",
         "desc": "Ongoing contract or billing by effort: the arithmetic showing which model pays off, with your own figures. Request a calculation now.",
         "h1": "Ongoing IT support or billing by the hour?",
-        "kurz": "The decision hangs on a single number: how many support hours you actually need per month. With us ongoing support costs from €29 per workstation and month, help without a contract €95 per hour. From roughly three support hours a month the contract is cheaper — and it already includes monitoring, updates and verified backups, which under hourly billing nobody pays for and therefore nobody does.",
+        "kurz": "The decision hangs on a single number: how many support hours you actually need per month. With us ongoing support costs from €29 per workstation and month, help without a contract €95 per hour. From roughly three support hours a month the contract is cheaper — and it already includes monitoring and updates, while verified backups come as a separate item from €49 per month. Under hourly billing nobody pays for either, and therefore nobody does them.",
         "intro": "The difference between the two models is smaller in price and larger in behaviour. Whoever bills by the hour earns from faults; whoever supports monthly earns from there being none. That is not a moral argument but a statement about which work takes place in which model at all.",
         "a_h": "Ongoing support",
         "b_h": "Billing by the hour",
         "tabelle_h": "Side by side",
         "tabelle": [
             {"k": "Billing", "a": "Fixed amount per workstation and month", "b": "Only the hours actually worked"},
-            {"k": "Prevention", "a": "Updates, monitoring and backup checks are included", "b": "Does not happen — it would be unpaid work"},
+            {"k": "Prevention", "a": "Updates and monitoring are included, verified backups from €49 per month", "b": "Does not happen — it would be unpaid work"},
             {"k": "Predictability", "a": "The amount sits in the budget, even in a bad month", "b": "Varies widely; a month with an outage costs a multiple"},
             {"k": "Response", "a": "Faults are covered, no cost discussion beforehand", "b": "Every report is an order — which delays reports"},
             {"k": "Knowledge of your systems", "a": "Maintained and documented continuously", "b": "Has to be rebuilt at every visit, and that costs hours"},
             {"k": "The provider's interest", "a": "Earns from little going wrong", "b": "Earns from something going wrong"},
-            {"k": "Lock-in", "a": "Quarterly cancellation, credentials and docs are yours", "b": "No commitment, but no assurances either"},
+            {"k": "Lock-in", "a": "One month’s notice to the end of a quarter, credentials and docs are yours", "b": "No commitment, but no assurances either"},
         ],
         "fuer_a_h": "When ongoing support fits",
         "fuer_a": [
@@ -50,7 +50,7 @@ VERGLEICHE = {
             {"q": "Is the contract not more expensive in a year when nothing happens?",
              "a": "Arithmetically yes — and that is the honest heart of the matter. But less happens in a supported year, because updates are applied, drives monitored and restores tested. A year without incidents is not proof that the support was unnecessary; it is its result. If that does not convince you, billing by effort is the right choice for you."},
             {"q": "Do you have a minimum term?",
-             "a": "Not beyond a quarter. You cancel quarterly and receive all credentials, passwords and documentation in full. We deliberately build in nothing that ties you to us technically — that would be a disadvantage for you and no lasting earning for us."},
+             "a": "Not beyond a quarter. You cancel with one month’s notice to the end of a quarter and receive all credentials, passwords and documentation in full. We deliberately build in nothing that ties you to us technically — that would be a disadvantage for you and no lasting earning for us."},
             {"q": "How do we move from one model to the other?",
              "a": "In both directions without difficulty. Moving from hourly to contract begins with taking stock, so that we know what we are taking on. The other way round we end the monitoring and hand over the documentation. Both are a matter of days, not months."},
         ],
@@ -200,7 +200,7 @@ VERGLEICHE = {
              "a": "Cleaning and fresh thermal paste often help",
              "b": "On older machines, a sign the end is near"},
             {"k": "What it costs",
-             "a": "Work from €95 per hour plus the part",
+             "a": "On-site work at €120 per hour plus the part and travel",
              "b": "The device plus €190 setup with data transfer"},
         ],
 
@@ -223,7 +223,7 @@ VERGLEICHE = {
         ],
 
         "rechnung_h": "Windows 11 and the arithmetic",
-        "rechnung_t": "We know two figures, and only those belong here. Fitting an SSD including moving the system takes one to two hours, so €95 to €190 of work. Setting up a new device including the data transfer costs €190. What the part or the new machine costs we will tell you at current prices — it deliberately does not appear here, because a figure about somebody else's price is wrong three months later. Out of that comes a rule of thumb that does not age: if the upgrade costs more than a third of an equivalent new machine, it only pays off on a young computer. Below that it is almost always the better choice — not least because an upgraded machine keeps its familiar setup. And one figure that is easily missed: if you work both out for five workstations, the time five separate upgrades take is often the larger item, not the parts. From about five devices it pays to replace in one go rather than patch one at a time.",
+        "rechnung_t": "We know two figures, and only those belong here. Fitting an SSD including moving the system takes one to two hours; because someone has to be at the device, the on-site rate applies, €120 per hour plus travel. Setting up a new device including the data transfer costs €190. What the part or the new machine costs we will tell you at current prices — it deliberately does not appear here, because a figure about somebody else's price is wrong three months later. Out of that comes a rule of thumb that does not age: if the upgrade costs more than a third of an equivalent new machine, it only pays off on a young computer. Below that it is almost always the better choice — not least because an upgraded machine keeps its familiar setup. And one figure that is easily missed: if you work both out for five workstations, the time five separate upgrades take is often the larger item, not the parts. From about five devices it pays to replace in one go rather than patch one at a time.",
         "faq": [
             {"q": "How do I tell whether an SSD is fitted?",
              "a": "Easiest from the start-up: a machine with an SSD is ready about ten "

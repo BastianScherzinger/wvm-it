@@ -150,9 +150,12 @@ ANGEBOT_GROUPS = [
     #
     # "start" sagt, aus welchem Feld der Ab-Preis der Gruppe gebildet wird. Ohne Angabe
     # gewinnt "once"; bei laufender Betreuung ist der Monatspreis die ehrlichere Zahl.
+    # Ein getipptes "from_label" je Gruppe gab es bis zum 25.09.2026 (EIG177): nirgends
+    # gelesen, nur deutsch, und bei „SEO & Ads“ falsch (199 statt 149). Der Ab-Preis
+    # wird gebildet, nicht getippt.
     {
         "id": "it", "title": "EDV & IT-Betreuung", "icon": "host", "short": "EDV & IT",
-        "from_label": "ab 29 €/Mt", "start": "mtl",
+        "start": "mtl",
         "sub": "Damit die Technik läuft, ohne dass Sie sich kümmern.",
         "items": [
             # `menge_max` und `menge_label`: Positionen, die je Stück gelten. Ohne sie
@@ -173,7 +176,7 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "web", "title": "Webseiten & Shop", "icon": "web", "short": "Webseiten", "from_label": "ab 350 €",
+        "id": "web", "title": "Webseiten & Shop", "icon": "web", "short": "Webseiten",
         "sub": "Ihr digitaler Auftritt, sauber gebaut.",
         "items": [
             {"id": "onepager", "name": "One-Pager / Landingpage", "desc": "Eine starke Seite, die verkauft.", "once": 350, "icon": "bolt"},
@@ -183,7 +186,7 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "infra", "title": "Domain, Hosting & Wartung", "icon": "server", "short": "Hosting", "from_label": "ab 15 €/Mt",
+        "id": "infra", "title": "Domain, Hosting & Wartung", "icon": "server", "short": "Hosting",
         "sub": "Damit Ihre Seite schnell bleibt und immer läuft.",
         "items": [
             {"id": "domain", "name": "Domain", "desc": "Ihre Wunschadresse (.at, .de, .com ...).", "yr": 15, "icon": "domain"},
@@ -192,7 +195,7 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "ki", "title": "KI & Automatisierung", "icon": "ai", "short": "KI", "from_label": "ab 390 €",
+        "id": "ki", "title": "KI & Automatisierung", "icon": "ai", "short": "KI",
         "sub": "Lassen Sie die Technik für sich arbeiten.",
         "items": [
             {"id": "chatbot", "name": "KI-Chatbot / Anfrage-Bot", "desc": "Beantwortet Fragen und sammelt Leads, rund um die Uhr.", "once": 690, "mtl": 39, "icon": "ai"},
@@ -202,7 +205,7 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "extra", "title": "SEO, Google Ads & Custom", "icon": "rocket", "short": "SEO & Ads", "from_label": "ab 199 €/Mt",
+        "id": "extra", "title": "SEO, Google Ads & Custom", "icon": "rocket", "short": "SEO & Ads",
         "sub": "Gefunden werden — bei Google und in KI-Antworten.",
         "items": [
             {"id": "seo", "name": "SEO-Grundoptimierung", "desc": "Einmalig sauber für Google und KI-Antworten aufgestellt.", "once": 390, "icon": "seo"},
@@ -214,7 +217,7 @@ ANGEBOT_GROUPS = [
         ],
     },
     {
-        "id": "technik", "title": "Technik & Vor-Ort", "icon": "home", "short": "Technik", "from_label": "auf Anfrage",
+        "id": "technik", "title": "Technik & Vor-Ort", "icon": "home", "short": "Technik",
         "sub": "Installation und Technik vor Ort, projektbezogen.",
         "items": [
             {"id": "smarthome", "name": "Gebäude- & Smarthome-Automation", "desc": "Loxone, KNX, Licht, Heizung, Beschattung, Sicherheit.", "anfrage": True, "icon": "home"},
@@ -505,9 +508,11 @@ def _paketpreise():
     KI-Antwortmaschinen bestrafen widersprüchliche Zahlen (siehe SEO-PLAN.md, Block S-F).
     Deshalb kommen die Zahlen jetzt aus derselben Quelle wie überall sonst."""
     p = _ANGEBOT_INDEX
-    starter = p.get("onepager", {}).get("once", 350)
-    business = p.get("business", {}).get("once", 1490)
-    betreuung = p.get("hosting", {}).get("mtl", 15) + p.get("wartung", {}).get("mtl", 39)
+    # Ohne Ersatzwerte (EIG147, 25.09.2026): Wird eine ID umbenannt, soll das laut
+    # scheitern, statt still einen Altpreis auf die Startseite zu schreiben.
+    starter = p["onepager"]["once"]
+    business = p["business"]["once"]
+    betreuung = p["hosting"]["mtl"] + p["wartung"]["mtl"]
     return {
         "starter": _eur(starter),
         "business": _eur(business),
@@ -522,8 +527,14 @@ def _paketpreise():
 # Webagentur. Diese drei Stufen rechnen aus denselben Katalogpositionen und
 # stehen jetzt davor; die Webseiten-Pakete bleiben unverändert darunter.
 #
-# Die Größen sind bewusst dieselben wie die Beispiele im Kostenrechner, damit ein
-# Besucher, der beides ansieht, nicht zwei Wahrheiten findet.
+# Die kleine Stufe (5 Arbeitsplätze, KEIN Server, Sicherung = 194 €) ist dieselbe
+# Rechnung wie das 5-Platz-Beispiel auf /kosten/. Der Kostenrechner ist dagegen mit
+# 5 Arbeitsplätzen UND einem Server vorbelegt (283 €), wie das Rechenbeispiel auf
+# /leistungen/edv-it-betreuung/. Bis zum 25.09.2026 behauptete dieser Kommentar,
+# Stufen und Rechner seien dieselben Beispiele (EIG22) — sie sind es nicht, und die
+# Stufe sagt deshalb selbst „ohne eigenen Server“ (`klein_for`).
+# Die Überschriften sagen „Beispiel: 5 Arbeitsplätze“, nicht „Bis 5“ (EIG136):
+# Gerechnet wird genau diese Zahl, und je Arbeitsplatz gibt es keinen Pauschalpreis.
 _IT_STUFEN = [
     {"id": "klein", "ap": 5, "srv": 0, "backup": True},
     {"id": "mittel", "ap": 15, "srv": 1, "backup": True, "beliebt": True},
@@ -534,9 +545,9 @@ _IT_STUFEN = [
 def _it_stufen():
     """Monatspreis je Betreuungsstufe, gerechnet aus ANGEBOT_GROUPS."""
     p = _ANGEBOT_INDEX
-    ap = int(p.get("it_betreuung", {}).get("mtl") or 0)
-    srv = int(p.get("server_care", {}).get("mtl") or 0)
-    backup = int(p.get("backup", {}).get("mtl") or 0)
+    ap = int(p["it_betreuung"]["mtl"])
+    srv = int(p["server_care"]["mtl"])
+    backup = int(p["backup"]["mtl"])
     out = []
     for s in _IT_STUFEN:
         mtl = s["ap"] * ap + s["srv"] * srv + (backup if s["backup"] else 0)
@@ -1116,8 +1127,20 @@ def _limit_erreicht(request, bereich: str = "anfrage") -> bool:
     limit, fenster = _LIMITS.get(bereich, _LIMITS["anfrage"])
     schluessel = f"wvm-{bereich}-{_client_ip(request)}"
     try:
-        anzahl = cache.get(schluessel, 0) + 1
-        cache.set(schluessel, anzahl, fenster)
+        # Festes Fenster ab der ersten Absendung (EIG51, 25.09.2026). Vorher setzte
+        # jeder Treffer die Ablaufzeit neu (`cache.set`) — das Fenster wanderte mit,
+        # und wer weiter probierte, blieb unbegrenzt gesperrt, obwohl die
+        # Datenschutzerklärung von einem Eintrag spricht, der nach Ablauf der Frist
+        # verworfen wird. `add` legt den Zähler nur an, `incr` lässt die Frist stehen.
+        if cache.add(schluessel, 1, fenster):
+            anzahl = 1
+        else:
+            try:
+                anzahl = cache.incr(schluessel)
+            except ValueError:
+                # Zwischen `add` und `incr` abgelaufen: neues Fenster.
+                cache.set(schluessel, 1, fenster)
+                anzahl = 1
         if anzahl > limit:
             print(f"[LIMIT] {bereich}: {anzahl} Versuche von {_client_ip(request)}",
                   flush=True)
@@ -1379,9 +1402,13 @@ def _newsletter_code() -> str:
     return os.environ.get("NEWSLETTER_CODE", "WVM25").strip() or "WVM25"
 
 
-def _newsletter_deliver(email: str, wunsch: str, c: dict, name: str = "", lang: str = "de") -> None:
+def _newsletter_deliver(email: str, wunsch: str, c: dict, name: str = "", lang: str = "de",
+                        newsletter: bool = False) -> None:
     """Nach BESTÄTIGTEM Opt-in: Postfach benachrichtigen + Willkommens-Mail mit Code.
-    Die Willkommens-Mail (an den Kunden) ist in dessen Sprache; die Inhaber-Notiz bleibt Deutsch."""
+    Die Willkommens-Mail (an den Kunden) ist in dessen Sprache; die Inhaber-Notiz bleibt Deutsch.
+
+    `newsletter`: das getrennte, freiwillige Kästchen war angehakt (EIG151). Nur dann
+    spricht die Mail vom Referenz-Newsletter."""
     code = _newsletter_code()
     site = c.get("site_name", "WVM-IT")
     empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
@@ -1394,12 +1421,14 @@ def _newsletter_deliver(email: str, wunsch: str, c: dict, name: str = "", lang: 
         f"Name:           {name or '-'}\n"
         f"E-Mail:         {email}\n"
         f"Sprache:        {lang}\n"
-        f"Angaben/Wunsch: {wunsch or '-'}\n\n"
+        f"Angaben/Wunsch: {wunsch or '-'}\n"
+        f"Newsletter:     {'ja, freiwillig angehakt' if newsletter else 'nein'}\n\n"
         f"Ausgegebener Rabattcode: {code}\n"
         "To-do: kostenlose Beispiel-Website (JARVIS) erstellen und zuschicken.\n"
     )
     welcome = em["nl_welcome_body"].format(
-        anrede=anrede, code=code, wunsch_line=wunsch_line, site=site, url=c.get("wvm_url", ""))
+        anrede=anrede, code=code, wunsch_line=wunsch_line, site=site, url=c.get("wvm_url", ""),
+        nl_line=em["nl_welcome_nl"] if newsletter else "")
     if empfaenger:
         _send_mail_logged(f"Newsletter bestätigt: {email}", notify, from_email, [empfaenger], tag="NEWSLETTER-NOTIFY")
     _send_mail_logged(em["nl_welcome_subject"].format(site=site), welcome, from_email, [email], tag="NEWSLETTER-WELCOME")
@@ -1445,6 +1474,9 @@ def _handle_newsletter(request, c) -> bool:
         return False
     if not _einwilligung_erteilt(request):                # FO10
         return False
+    # Der Newsletter ist eine eigene, freiwillige Einwilligung (EIG151, 25.09.2026).
+    # Sie reist im signierten Link mit und gilt erst mit dem Bestätigungsklick.
+    newsletter = (request.POST.get("newsletter") or "").strip().lower() in _ZUSTIMMUNG_WERTE
     # FO08: gezählt wird die gültige Eintragung, auch wenn die Tagesbremse je
     # Adresse die zweite Bestätigungsmail gleich unterdrückt.
     messung.zaehle("anfrage", "newsletter")
@@ -1452,7 +1484,7 @@ def _handle_newsletter(request, c) -> bool:
     wunsch = _compose_wunsch(request)
     lang = i18n.norm_lang(get_language())
     # Angaben + Sprache kompakt + komprimiert in den signierten Link legen (kein DB-Zugriff noetig).
-    token = signing.dumps({"e": email, "w": wunsch, "n": name, "l": lang},
+    token = signing.dumps({"e": email, "w": wunsch, "n": name, "l": lang, "nl": newsletter},
                           salt=_NEWSLETTER_SALT, compress=True)
     base = (c.get("wvm_url") or "").rstrip("/") or request.build_absolute_uri("/").rstrip("/")
     # Bestätigungslink in der Sprache des Anmeldenden (präfixierte URL /en/ bzw. /ro/).
@@ -1475,7 +1507,8 @@ def _handle_newsletter(request, c) -> bool:
     # Bewusst die Anrede OHNE Namen: Der Name ist Text, den ein Fremder tippt,
     # und diese Mail geht an eine Adresse, die niemand bestaetigt hat (17.09.2026).
     anrede = em["greeting"]
-    confirm = em["nl_confirm_body"].format(anrede=anrede, site=site, link=link)
+    confirm = em["nl_confirm_body"].format(anrede=anrede, site=site, link=link,
+                                           nl_line=em["nl_confirm_nl"] if newsletter else "")
     _send_mail_logged(em["nl_confirm_subject"].format(site=site), confirm, from_email, [email], tag="NEWSLETTER-CONFIRM")
     return True
 
@@ -1505,6 +1538,7 @@ def newsletter_confirm(request):
         wunsch = (data.get("w") or "").strip()
         name = (data.get("n") or "").strip()
         tlang = i18n.norm_lang(data.get("l") or get_language())
+        newsletter = data.get("nl") is True
         if email:
             # Einmaligkeit: Willkommens-/Info-Mail nur beim ERSTEN Bestätigen verschicken.
             # E-Mail-Scanner rufen Links vorab auf (Prefetch) und Reloads/erneute Klicks
@@ -1521,8 +1555,18 @@ def newsletter_confirm(request):
                 print(f"[NEWSLETTER] Status nicht abfragbar: {fehler}", flush=True)
                 already = False
             if not already:
-                _newsletter_deliver(email, wunsch, c, name=name, lang=tlang)
+                _newsletter_deliver(email, wunsch, c, name=name, lang=tlang,
+                                    newsletter=newsletter)
                 _subscriber_confirm(email, wunsch, _client_ip(request))
+                if newsletter:
+                    # Nachweis der Werbeeinwilligung (Art. 7 Abs. 1 DSGVO, § 174 TKG
+                    # 2021): Zeitpunkt, Formular, Adresse, IP des Bestätigungsklicks.
+                    # Derselbe Weg wie bei den Kurzanfragen; `anfragen_loeschen`
+                    # lässt genau diesen Nachweis stehen.
+                    _anfrage_sichern(quelle="newsletter", thema="Referenz-Newsletter (bestätigt)",
+                                     kontakt=email, lang=tlang, werbung="ja",
+                                     werbung_ip=_client_ip(request))
+                    messung.zaehle("werbeeinwilligung", "newsletter")
             # signiertes Token trägt E-Mail/Name/erste Angaben/Sprache sicher zum Detail-Bogen
             anfrage_token = signing.dumps({"e": email, "n": name, "w": wunsch, "l": tlang},
                                           salt=_ANFRAGE_SALT, compress=True)
@@ -1724,7 +1768,7 @@ def _weekly_html(refs, c, unsub_url):
         f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">{cards}</table>'
         f'<div style="margin-top:22px"><a href="{url}/angebot/" style="background:{accent};color:#181206;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;display:inline-block">Eigenes Angebot berechnen</a></div>'
         '</td></tr>'
-        f'<tr><td style="padding:16px 26px;background:#faf9f7;color:#999;font-size:12px">Du bekommst diese Mail, weil du den {site}-Newsletter bestätigt hast. <a href="{unsub_url}" style="color:#999">Abmelden</a></td></tr>'
+        f'<tr><td style="padding:16px 26px;background:#faf9f7;color:#999;font-size:12px">Sie bekommen diese Mail, weil Sie den {site}-Newsletter bestätigt haben. <a href="{unsub_url}" style="color:#999">Abmelden</a></td></tr>'
         '</table></td></tr></table></body></html>'
     )
 
@@ -1739,6 +1783,12 @@ def _send_weekly(force=False):
     c = _content()
     y, w, _ = date.today().isocalendar()
     run_key = f"{y}-W{w:02d}"
+    if not supa.published_references():
+        # Ohne veröffentlichte Referenz hätte die Mail keinen Inhalt — nur den
+        # Betreff „unsere aktuellen Projekte“ und eine leere Liste (EIG10). Geprüft
+        # VOR dem Belegen der Woche, damit eine später veröffentlichte Referenz
+        # in derselben Woche noch verschickt werden kann.
+        return {"ok": True, "sent": 0, "msg": "keine veröffentlichten Referenzen", "run": run_key}
     if not force and not supa.claim_newsletter_run(run_key):
         return {"ok": True, "sent": 0, "msg": "diese Woche bereits gesendet", "run": run_key}
     subs = supa.active_subscribers()
@@ -1801,7 +1851,7 @@ def newsletter_diag(request):
             conn = get_connection(fail_silently=False)
             conn.open()  # erzwingt Verbindung + Login -> Auth-/TLS-Fehler werden sofort sichtbar
             msg = EmailMultiAlternatives(
-                "WVM-IT SMTP-Test", "Test-Mail zur SMTP-Diagnose. Wenn du das liest, funktioniert der Versand.",
+                "WVM-IT SMTP-Test", "Test-Mail zur SMTP-Diagnose. Wenn Sie das lesen, funktioniert der Versand.",
                 from_email, [to], connection=conn)
             n = msg.send(fail_silently=False)
             conn.close()
@@ -1824,8 +1874,11 @@ def newsletter_diag(request):
 #                  Fernwartung wäre diese Liste eine Lüge; mit ihr ist sie wahr.
 _VOR_ORT_ORTE = ["Lenzing", "Vöcklabruck", "Attnang-Puchheim", "Schörfling am Attersee",
                  "Seewalchen am Attersee", "Timelkam", "Gmunden", "Vöcklamarkt",
-                 "Frankenmarkt", "Mondsee", "Bad Ischl", "Wels", "Salzburg"]
-_AREA_CITIES = ["Linz", "Wien", "Graz", "Innsbruck", "Klagenfurt",
+                 "Frankenmarkt", "Mondsee", "Bad Ischl", "Wels", "Salzburg", "Linz"]
+# Linz steht seit dem 25.09.2026 oben (EIG86): /it-service/linz/ bietet Arbeiten vor Ort
+# an (regionen.py, 60 km), llms.txt nannte Linz vor Ort — nur das Schema nicht.
+# `EinzugsgebietTest` hält jede Regionsseite in dieser Liste.
+_AREA_CITIES = ["Wien", "Graz", "Innsbruck", "Klagenfurt",
                 "München", "Stuttgart", "Nürnberg", "Frankfurt am Main", "Berlin"]
 
 
@@ -1921,7 +1974,10 @@ def _structured_data(c, lang, *, mit_katalog=True):
         "image": f"{base}{c.get('hero_bg', '')}",
         "telephone": c.get("telefon", ""),
         "email": c.get("email", ""),
-        "priceRange": f"ab {c.get('preis_ab', '350')} EUR",
+        # Aus dem Katalog, nicht aus content.json (EIG12, 25.09.2026): Hier stand
+        # „ab 350 EUR“ — der One-Pager-Preis, nicht der Einstieg ins Kerngeschäft —,
+        # und mit „EUR“ statt „€“ sah die Preisprüfung die Zahl nie.
+        "priceRange": f"ab {_ANGEBOT_INDEX['it_betreuung']['mtl']} € je Arbeitsplatz und Monat",
         "currenciesAccepted": "EUR",
         "paymentAccepted": "Überweisung, Rechnung",
         "founder": {"@id": f"{base}/#inhaber"},
@@ -2049,7 +2105,7 @@ def _startseiten_schema(c, lang):
     base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
     url = base + i18n.add_prefix(i18n.norm_lang(lang), "/")
     graph = json.loads(_structured_data(c, lang))
-    graph["@graph"].append(_webpage_knoten(base, lang, url.rstrip("/") + "/", None))
+    graph["@graph"].append(_webpage_knoten(base, lang, url.rstrip("/") + "/", None, speakable=False))
     return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
 
 
@@ -2082,6 +2138,7 @@ def index(request):
     # wieder leer da, ohne ein Wort, warum. Die Vorlage sagt es im aria-live-Absatz.
     news_fehler = False
     kontakt_fehler = False
+    kontakt_werte = None
     if request.method == "POST":
         if (request.POST.get("form") or "").strip() == "newsletter":
             news_sent = _handle_newsletter(request, c)
@@ -2089,6 +2146,12 @@ def index(request):
         else:
             sent = _handle_contact(request, c)
             kontakt_fehler = not sent
+            if not sent:
+                # Abgelehnt (EIG107, 25.09.2026): Bis hierher kam dasselbe leere
+                # Formular zurück, ohne Hinweis — alles Getippte war weg. Jetzt
+                # stehen die Eingaben wieder drin, dazu eine Meldung inline.
+                kontakt_werte = {feld: _feld(request, feld) for feld in
+                                 ("name", "email", "telefon", "budget", "nachricht")}
     lang = get_language()
     # Ohne JavaScript abgesendete Kurzanfragen kommen mit ?ok=<quelle> zurück , der
     # betroffene Block zeigt dann seine Erfolgsmeldung (siehe leistung_anfrage).
@@ -2098,6 +2161,7 @@ def index(request):
     return render(request, "index.html", {
         "c": c, "sent": sent, "news_sent": news_sent, "anfrage_ok": anfrage_ok,
         "news_fehler": news_fehler, "kontakt_fehler": kontakt_fehler,
+        "kontakt_werte": kontakt_werte,
         "startpreise": _startpreise(lang),
         "preise_item": _itempreise(lang),
         "probleme": _probleme(lang),
@@ -2316,7 +2380,7 @@ def _seiten_url(base, breadcrumb):
     return f"{base}/"
 
 
-def _webpage_knoten(base, lang, url, breadcrumb):
+def _webpage_knoten(base, lang, url, breadcrumb, speakable=True):
     """Der WebPage-Knoten, den bis zum 05.09.2026 keine Seite hatte (VL10).
 
     Er ist der Anker, an dem alles andere haengt: Er nennt die Adresse der Seite,
@@ -2340,8 +2404,12 @@ def _webpage_knoten(base, lang, url, breadcrumb):
         "author": {"@id": f"{base}/#business"},
         "inLanguage": i18n.get_pack(lang)["meta"]["html_lang"],
         "dateModified": stand.datum(basis_pfad),
-        "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".antwort"]},
     }
+    # Nur wo `.antwort` wirklich steht (EIG114/EIG128, 25.09.2026): Startseite und
+    # die vier Rechtstexte haben keinen Antwortabsatz, trugen die Angabe aber —
+    # ein Selektor ins Leere. Geprüft über alle URLs von SpeakableTest.
+    if speakable:
+        knoten["speakable"] = {"@type": "SpeakableSpecification", "cssSelector": [".antwort"]}
     if breadcrumb:
         knoten["breadcrumb"] = {"@id": f"{url}#breadcrumb"}
     return knoten
@@ -2379,7 +2447,7 @@ def _ratgeber_artikel(base, pfad, *, titel, beschreibung, worte=0, sprache="de-A
 
 
 def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id="",
-                   katalog=False):
+                   katalog=False, speakable=True):
     """@graph einer Unterseite: immer der Betrieb, die Website und die Seite selbst,
     dazu optional Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben
     Entitaet (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8).
@@ -2391,7 +2459,7 @@ def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id="
     # Die FAQPage der Startseite gehoert nicht auf eine Unterseite.
     graph = [k for k in graph if k.get("@type") != "FAQPage"]
     url = _seiten_url(base, breadcrumb)
-    graph.append(_webpage_knoten(base, lang, url, breadcrumb))
+    graph.append(_webpage_knoten(base, lang, url, breadcrumb, speakable=speakable))
     if breadcrumb:
         # Eine @id, damit der WebPage-Knoten sie referenzieren kann statt sie zu
         # wiederholen — sonst zeigt der Verweis ins Leere (Messung GE07/VL10).
@@ -2450,6 +2518,9 @@ def leistungen_hub(request):
     pack = i18n.get_pack(lang)
     hub = pack.get("hub", {})
     alle = _alle_leistungen(lang)
+    # Gezählt statt getippt (EIG87, 25.09.2026): Hier stand „Elf Leistungen“,
+    # während die Seite 14 verlinkte. Wer eine Anzahl pflegt, hat sie irgendwann falsch.
+    hub = dict(hub, intro=(hub.get("intro") or "").replace("{anzahl}", str(len(alle))))
     base = (c.get("wvm_url") or "").rstrip("/")
     bereiche = [
         {"id": b, "h": hub.get(f"{b}_h", ""), "t": hub.get(f"{b}_t", ""),
@@ -3695,7 +3766,8 @@ def _rechtsseite(request, art):
         "nur_deutsch": lang != "de",
         "kanonisch": deutsch,
         "structured_data": _seiten_schema(
-            c, lang, breadcrumb=_breadcrumb(base, [(ueberschrift, reverse(art))])),
+            c, lang, breadcrumb=_breadcrumb(base, [(ueberschrift, reverse(art))]),
+            speakable=False),
     })
 
 
@@ -3909,20 +3981,29 @@ def _llms_kopf(c, base):
                                  "Österreich"] if x)
     standort = (f"Sitz: {sitz}. Telefon {c.get('telefon','')}, "
                 f"E-Mail {c.get('email','')}.\n") if sitz else ""
+    # Preise und Einzugsgebiet aus den Strukturquellen, nicht abgetippt (EIG85/EIG86,
+    # 25.09.2026). Hier stand bis dahin eine getippte Preisliste und „Vor Ort …
+    # Linz und Salzburg“ ohne Bad Ischl, während das Schema Linz nur aus der Ferne
+    # führte. Seitdem prüft `pruefe_seite` auch /llms.txt und /llms-full.txt.
+    p = _ANGEBOT_INDEX
+    orte = [r["ort"] for r in sorted(regionen.REGIONEN, key=lambda r: r["km"])]
+    einzugsgebiet = ", ".join(orte[:-1]) + " und " + orte[-1]
     return (
         f"# WVM-IT , EDV und IT-Betreuung für Betriebe\n\n"
         f"> WVM-IT (Inhaber {inhaber}) betreut die EDV kleiner und mittlerer Betriebe in "
         f"Österreich und Deutschland: Arbeitsplätze, Server, Netzwerk, E-Mail und "
         f"Datensicherung, überwiegend per Fernwartung. Die laufende IT-Betreuung kostet "
-        f"ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe 95 € je Stunde, Einsätze vor "
-        f"Ort 120 € je Stunde zzgl. Anfahrt. Dazu kommen Webseiten ab 350 €, SEO ab "
-        f"149 €/Monat, Google Ads ab 199 €/Monat und KI-Automatisierung ab 390 €. "
+        f"ab {p['it_betreuung']['mtl']} € je Arbeitsplatz und Monat, einzelne Hilfe "
+        f"{p['it_support']['std']} € je Stunde, Einsätze vor Ort {p['vor_ort']['std']} € je "
+        f"Stunde zzgl. Anfahrt. Dazu kommen Webseiten ab {p['onepager']['once']} €, SEO ab "
+        f"{p['seo_care']['mtl']} €/Monat, Google Ads ab {p['ads_care']['mtl']} €/Monat und "
+        f"KI-Automatisierung ab {p['termin']['once']} €. "
         f"Gebäudeautomation (Loxone, KNX) sowie Konferenz- und Veranstaltungstechnik "
         f"werden projektbezogen vor Ort umgesetzt. Ein fester Ansprechpartner, Antwort "
         f"innerhalb von 24 Stunden. Alle Preise sind Richtpreise netto zzgl. USt. "
         f"{standort}"
-        f"Vor Ort im Einzugsgebiet Vöcklabruck, Attersee, Gmunden, Wels, Linz und "
-        f"Salzburg; alles Übrige per Fernwartung in ganz Österreich und Deutschland.\n"
+        f"Vor Ort im Einzugsgebiet {einzugsgebiet}; alles Übrige per Fernwartung in ganz "
+        f"Österreich und Deutschland.\n"
     )
 
 
@@ -4368,13 +4449,22 @@ def llms_full_txt(request):
     return HttpResponse("\n".join(aus), content_type="text/markdown; charset=utf-8")
 
 
+# Bis wann die Angaben in security.txt gelten (RFC 9116, Abschnitt 2.5.5).
+# **Fest, nicht „heute plus ein Jahr“** (EIG50/EIG78, 25.09.2026): Ein Datum, das
+# bei jedem Abruf neu gerechnet wird, läuft nie ab — und genau das Ablaufen ist
+# der Zweck des Felds: Es zwingt dazu, die Kontaktangabe regelmäßig zu prüfen.
+# Die alte Rechnung brach außerdem an jedem 29. Februar (`replace(year=…)`).
+# Wer die Angaben geprüft hat, setzt das Datum neu, höchstens ein Jahr voraus;
+# `SecurityTxtTest` meldet, wenn es verstrichen ist.
+_SECURITY_TXT_ABLAUF = date(2027, 9, 25)
+
+
 @_maschinenantwort(1440)
 def security_txt(request):
     """/.well-known/security.txt , wohin eine Sicherheitsmeldung gehen soll.
     Kostet nichts und ist bei einem IT-Dienstleister schlicht erwartbar."""
     c = _content()
-    from datetime import date, timedelta
-    ablauf = date.today().replace(year=date.today().year + 1)
+    ablauf = _SECURITY_TXT_ABLAUF
     zeilen = [
         f"Contact: mailto:{c.get('email', '')}",
         f"Expires: {ablauf.isoformat()}T00:00:00.000Z",
@@ -4791,10 +4881,15 @@ def leistung_anfrage(request):
                           from_email, [kontakt], tag="LEISTUNG-ACK",
                           antwort_an=empf or None)
 
-    # Zusätzlich in Supabase protokollieren, falls konfiguriert (best effort).
+    # Zusätzlich in Supabase protokollieren, falls konfiguriert (best effort) —
+    # aber NUR mit Werbeeinwilligung (EIG80, 25.09.2026). `upsert_subscriber` legt
+    # einen bestätigten Abonnenten an und setzt dabei auch ein früheres
+    # „unsubscribed“ zurück. Wer nur anfragt, hat dem nicht zugestimmt; die
+    # Datenschutzerklärung sagt „ausschließlich zur Bearbeitung Ihrer Anfrage“.
+    # Derselbe Maßstab wie in `angebot_anfordern` (`if consent:`).
     try:
         from . import supa
-        if supa.enabled() and _ist_email(kontakt):
+        if werbung and supa.enabled() and _ist_email(kontakt):
             unsub = signing.dumps({"e": kontakt}, salt=_NEWSLETTER_UNSUB_SALT)
             supa.upsert_subscriber(kontakt, f"[{thema}] {text}",
                                    consent_ip=_client_ip(request), unsub_token=unsub)
