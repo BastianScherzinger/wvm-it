@@ -1099,6 +1099,8 @@ PACK = {
         "dsgvo_1": "Ihre Angaben verwenden wir nur, um diese Anfrage zu beantworten – keine Weitergabe, keine Werbung ohne Ihre Zustimmung. Einzelheiten in der",
         "dsgvo_link": "Datenschutzerklärung",
         "dsgvo_2": ". Mit * gekennzeichnete Felder sind Pflichtfelder.",
+        # Ansage, wenn der Server eine Einsendung der Startseite abweist (BF24, 25.09.2026).
+        "fehler_pruefen": "Die Anfrage wurde nicht gesendet: Bitte prüfen Sie die E-Mail-Adresse, die Pflichtfelder und die Einwilligung.",
     },
     "recht": {
         "impressum_titel": "Impressum | WVM-IT",
