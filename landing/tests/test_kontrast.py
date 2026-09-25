@@ -177,7 +177,10 @@ class ErrCodeKontrastTest(SimpleTestCase):
 # (nachgerechnet von `ErrCodeKontrastTest`), `.rb-cat-ic` ist der Rahmen um ein
 # Symbol — eine Grafik, der die WCAG 3:1 zugesteht, und `color` vererbt dort nur
 # an das `currentColor` des SVG.
-GOLD_ALS_TEXT_ERLAUBT = (".err-code", ".rb-cat-ic")
+# Design B1 (25.09.2026, Paket 3): `.faq-ic` ist ein reines Symbol (das Plus
+# aus dem Symbolsatz, `color` faerbt hier den Icon-Umriss, keinen Text) — wie
+# `.rb-cat-ic` daneben, das aus demselben Grund schon auf der Liste stand.
+GOLD_ALS_TEXT_ERLAUBT = (".err-code", ".rb-cat-ic", ".faq-ic")
 # Zustände (`:hover`, `:focus-visible`) waren bis zum 12.09.2026 ausgeklammert,
 # weil sie in keiner Lighthouse-Einzelprüfung stehen. Die Ausklammerung ist
 # wieder weg: Lighthouse misst sie nicht, ein Mensch sieht sie trotzdem, und
@@ -242,7 +245,11 @@ class GoldAlsTextTest(SimpleTestCase):
         ungemischt. Eine Deckkraft darueber waere dieselbe Farbaenderung, die
         `.err-code` am 12.09.2026 durch jede Pruefung gebracht hat."""
         text = CSS.read_text(encoding="utf-8")
-        for selektor in (r"\.marquee-track i", r"\.rg-km"):
+        # Design B1 (25.09.2026, Paket 3): `.marquee-track` ist mit dem
+        # Laufband aus `templates/index.html` verschwunden (docs/DESIGN-B1-…
+        # §5) — die zweite geheilte Regel, `.rg-km`, lebt auf den Unterseiten
+        # weiter (Paket 4) und bleibt hier geprüft.
+        for selektor in (r"\.rg-km",):
             treffer = re.findall(selektor + r"\s*\{([^}]*)\}", text)
             with self.subTest(selektor=selektor):
                 self.assertTrue(treffer, f"{selektor} ist aus style.css verschwunden")

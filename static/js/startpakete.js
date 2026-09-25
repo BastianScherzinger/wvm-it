@@ -47,6 +47,11 @@
       ereignis.preventDefault();
       setze(roh.split(/\s+/));
       markiere(karte);
+      // Design B1 (§2.11, 25.09.2026): die Einzelpositionen stehen auf der
+      // Startseite in <details class="rb-einzeln"> — ein Klick auf ein
+      // Startpaket klappt sie auf, damit die gesetzten Haken sichtbar sind.
+      var einzeln = document.getElementById("rbEinzeln");
+      if (einzeln) einzeln.open = true;
       // Der Konfigurator steht direkt darunter — dorthin scrollen, damit die
       // gesetzten Haken und die Summe sichtbar werden.
       var ziel = document.getElementById("konfigurator") || form;

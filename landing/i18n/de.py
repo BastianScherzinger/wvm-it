@@ -882,6 +882,10 @@ PACK = {
         "vergleiche_h": "Vergleiche",
         "ratgeber_h": "Ratgeber",
         "glossar_nav": "Glossar",
+        # Design B1 (§2.13, 25.09.2026, Paket 3): Block 11 "Wissen und Werkzeuge"
+        # zeigt IT-Notfall und IT-Hilfe zusätzlich zu Rechner und Selbsttest.
+        "notfall_t": "Die ersten 30 Minuten bei Verschlüsselung, Serverausfall oder gehacktem Postfach.",
+        "hilfe_t": "Ein einzelnes Problem, ohne Vertrag, per Fernwartung.",
     },
     "hub": {
         "titel": "IT-Leistungen mit offenen Preisen ab 29 €/Monat | WVM-IT",
@@ -1678,6 +1682,8 @@ PACK = {
         "angebot_lead": "Für mehr als eine Leistung. Für eine einzelne Zahl reicht der Rechner oben.",
         "angebot_einzeln": "Einzelne Leistungen auswählen",
         "region_h": "Für Ihren Betrieb und Ihre Region",
+        # Design B1 (§2.12, 25.09.2026, Paket 3): Lead-Satz von Block 10.
+        "region_lead": "Eine Kanzlei braucht andere IT als eine Werkstatt. Und manches geht nur vor Ort.",
         "branchen_link": "Alle Branchen ansehen",
         "regionen_link": "Alle Regionen ansehen",
         "faq_frage": "Ihre Frage ist nicht dabei? Florin ruft zurück.",

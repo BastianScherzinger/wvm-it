@@ -7,6 +7,83 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 25.09.2026 — Design B1 „Porträt", Paket 3: Startseite unten (Webseiten bis Kooperationen)
+
+Dritter von vier Paketen im selben Worktree/Zweig (`wvm-it-design-b1`,
+`design/2026-09-25-b1`), aufbauend auf den committeten Paketen 1 (Fundament) und
+2 (Startseite oben). `../web_wvm-it` wurde nicht verändert (nur dessen Python
+ausgeführt).
+
+* **Block 8 Webseiten (`#gratis`, weiß):** Preiszeilen (`.preiszeilen`, Webseite/
+  Hosting/SEO/Google Ads/KI aus `startpreise`/`preise_item`) statt Pakettabelle
+  (§6 K1-13 — die volle Tabelle steht in Block 9). Referenz auf Rümpelwerk jetzt im
+  schlichten Browserrahmen (`.browser`, wie `basis.css`) statt im alten Karten-
+  Showcase. Gratis-Formular (`id="newsForm"`) unverändert aus dem alten Hero-Reiter
+  hierher verschoben, jetzt in einer schlichten weißen Karte (`.beispiel`).
+* **Block 9 Angebot (`#angebot`, Papier):** Funktion unverändert — `startpakete.html`,
+  alle `rb*`-ids/`data-*`, das inline-Skript mit Nonce. Die Einzelpositionen stehen
+  jetzt in `<details class="rb-einzeln">`; ein Klick auf ein Startpaket klappt sie
+  per einer neuen Zeile in `startpakete.js` auf (`document.getElementById("rbEinzeln").open = true`),
+  ohne JS lässt sich `<details>` von Hand öffnen. Volle Preisliste (`.pt-details`)
+  bleibt unverändert darunter.
+* **Block 10 Branchen und Regionen (`#branchen`, weiß, neu):** neue
+  `_startseite_verteiler(lang)` in `views.py` — zwei Hälften (`.region-raster`/
+  `.index-liste`, wie `basis.css`) mit *allen* Branchen und *allen* Regionen, keine
+  Fernwartungs-Zeile darunter (die steht schon in Block 4 und der Hero-Vertrauenszeile).
+* **Block 11 Wissen und Werkzeuge (`#wissen`, Papier):** neue `_wissen_register(lang)`
+  ersetzt die alte `_wissen_teaser()` — vier Register-Spalten (Werkzeuge, Vergleiche,
+  Ratgeber, Checklisten) statt zwei großer Beitragskarten. `_STARTSEITE_BEITRAEGE` von
+  zwei auf vier Slugs erweitert. Ratgeber/Checklisten/Glossar nur bei `lang == 'de'`
+  (die Silos sind einsprachig); EN/RO zeigen Werkzeuge (jetzt inkl. IT-Notfall und
+  IT-Hilfe, nicht mehr nur Rechner/Selbsttest) und Vergleiche.
+* **Block 12 FAQ (`#faq`, weiß):** `.faq-raster` (4fr/8fr) mit Signatur und einer
+  neuen Handlungszeile „Ihre Frage ist nicht dabei? Florin ruft zurück." (Textlink
+  → `#rueckruf`) plus Telefon-Textlink (§6 K1-3). FAQPage-Schema unverändert. Die
+  gemeinsamen `.faq`/`.faq-item`/`.faq-q`/`.faq-ic`-Regeln (dieselben auf jeder
+  Leistungs-/Vergleichs-/Checklisten-Seite) wurden dabei sitebreit auf B1 umgestellt:
+  Serif-Frage statt Space-Grotesk-Chip, `i-plus` in `--accent` (45° gedreht statt
+  Kreis-Chevron mit Verlauf) statt Farbverlauf-Kreis.
+* **Block 13 Kontakt (`#kontakt`, Papier):** `.kontakt-raster` (6fr/6fr) statt der
+  alten `.9fr/1.1fr`-Aufteilung, Signaturfoto (72 px) über der Überschrift, flache
+  weiße Formularkarte statt Verlaufsfläche mit 22-px-Radius. Rückruf steht als
+  `<a href="#rueckruf">` ohne `data-rueckruf` in der Kanalliste (Startseite).
+  `form#kontakt-form` unverändert.
+* **Block 14 Kooperationen (`#kooperationen`, weiß, schmaler Streifen):** ruhige
+  Zeilen (`.coop-card`, Logo links/Text rechts) statt Karten-Grid. Das Formular
+  `#coopForm`/`#coopSubmit`/`#coopErr`/`#coopDone` steht unverändert in
+  `<details class="koop-werden">`; ein neues Mini-Skript mit Nonce öffnet die
+  Details, wenn der Seitenanker beim Laden `#partner-werden` oder `#kooperationen`
+  ist (`:target` allein hätte das Formular nicht geöffnet).
+* **Entfernt** (Markup und zugehörige CSS-Regeln): Laufband (`.marquee`), beide
+  Trennerbänder (`.band`), beide Scroll-Videos (`.scrolly`), Kennzahlen (`.proof`/
+  `.stats`), Partner-Chips (`#partner`), KI-Showcase mit 3D-Roboter (`.showcase`,
+  `.robot-*` bis auf `.spinner`/`@keyframes spin` — dieselbe Klasse dreht sich in
+  `.wait-orb::before` auf der Warteseite weiter), der Referenzen-Abschnitt auf der
+  Startseite (`#referenzen`, `.refs`/`.ref`; die drei Bilder bleiben auf
+  `/referenzen/`) und das Schlussband (`.closer`). `views.PROBLEME`/`_probleme()`
+  bleiben im Code (unbenutzt auf der Startseite, wie schon seit Paket 2).
+* **Ein Fund unterwegs behoben:** die generischen Icon-Container `.cm-ic`/
+  `.cm-ic-sm`/`.sent-ic`/`.coop-done-ic` standen zunächst auf `--accent` (Knopf-
+  Blau) statt `--accent2` (Logo-Blau, „nur Symbol") — `GoldAlsTextTest` schlug
+  zurecht an, weil `--accent` als Textfarbe nur 2,06:1 hält. Korrigiert auf
+  `--accent2`, wie es vor dem Umbau schon für `.cm-ic` galt. `.faq-ic` bleibt
+  bewusst bei `--accent` (Plan §2.14) und steht dafür jetzt neben `.rb-cat-ic`
+  in `GOLD_ALS_TEXT_ERLAUBT` (`test_kontrast.py`) — beides reine Symbole, keine
+  Textfarbe im Sinn der Regel.
+* **Tests:** `test_kontrast.py` — `.marquee-track i` aus dem Tupel der geheilten
+  Regeln genommen (Laufband gelöscht, `.rg-km` bleibt geprüft), `.faq-ic` neu in
+  `GOLD_ALS_TEXT_ERLAUBT`. `test_i18n.py` — drei neue Pfade in
+  `B1_NEUE_SCHLUESSEL` (`start.region_lead`, `wissen.notfall_t`, `wissen.hilfe_t`).
+  Kein Test gelöscht.
+* **Geprüft:** `collectstatic` sauber, volle Testsuite grün (415/415),
+  `pruefe_seite` → „Alles in Ordnung" (Rückgabe 0, 0 Waisenkandidaten, siehe
+  `docs/SEO-VERTEILER-B1.md`). Vorschau-Server auf Port 8803 lief; Bildschirmfotos
+  von `/` (ganze Seite, 1280 und 390 px) sowie den Ankern `/#gratis`, `/#angebot`,
+  `/#branchen`, `/#wissen`, `/#faq`, `/#kontakt`, `/#kooperationen` bei 1280 px und
+  `/en/`, `/ro/` bei 1280 px angesehen; Server danach beendet.
+
+---
+
 ## 25.09.2026 — Design B1 „Porträt", Paket 2: Startseite oben (Hero bis Festpreise)
 
 Zweiter von vier Paketen im selben Worktree/Zweig (`wvm-it-design-b1`,

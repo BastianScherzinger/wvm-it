@@ -137,6 +137,8 @@ B1_NEUE_SCHLUESSEL = (
     "blick.h", "blick.status", "blick.sp1", "blick.sp2", "blick.sp3",
     "wissen.werkzeuge_h", "wissen.vergleiche_h", "wissen.ratgeber_h", "wissen.glossar_nav",
     "wissen.lead",
+    # Paket 3 (Startseite unten, Blöcke 8–14, 25.09.2026):
+    "start.region_lead", "wissen.notfall_t", "wissen.hilfe_t",
 )
 # Echte Ausnahmen (Eigennamen o. ä., bei denen EN/RO absichtlich derselbe Text
 # wie DE sind) kommen mit Begründung hierher , heute leer.

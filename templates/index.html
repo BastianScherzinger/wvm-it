@@ -369,167 +369,177 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
   {% endif %}
 
   {% comment %} ══════════════════════════════════════════════════════════════════════
-       Blöcke 8–14: bleiben in Paket 2 ALT (Paket 3 baut sie im Design B1 um), stehen
-       aber ab hier in der neuen Reihenfolge: #gratis, #angebot, die übrigen alten
-       Abschnitte, #wissen, #faq, #kontakt, #kooperationen (siehe AUFTRAG Paket 2).
-       Das Problemband (#probleme) entfällt hier (views.PROBLEME bleibt im Code);
-       die alten Leistungsblöcke und #technik entfallen (siehe Block 3 oben).
+       Design B1 (25.09.2026, Paket 3, docs/DESIGN-B1-2026-09-25.md §2.10–2.16):
+       Blöcke 8–14. Laufband, Trennerbänder, beide Scroll-Videos, Kennzahlen
+       (.proof), Partner-Chips, KI-Showcase mit 3D-Roboter, der Referenzen-
+       Abschnitt (die drei Bilder bleiben auf /referenzen/) und das Schlussband
+       entfallen hier vollständig (§2.1). Neu: Block 10 "Branchen und Regionen".
   ══════════════════════════════════════════════════════════════════════ {% endcomment %}
 
-  {% comment %} ── GRATIS-BLOCK: Newsletter + kostenlose JARVIS-Beispielseite ────────────
-       Design B1: das Formular zieht unveraendert aus dem alten Hero-Reiter hierher. ── {% endcomment %}
-  <section class="offer-sec" id="gratis">
-    <div class="offer-glow" aria-hidden="true"></div>
-    <div class="wrap offer-grid">
-      <div class="offer-pitch" data-reveal>
-        <span class="eyebrow eyebrow-dark"><span class="dot"></span>{{ t.offer.eyebrow|safe }}</span>
-        <h2 class="offer-h">{{ t.offer.h|safe }}</h2>
-        <p class="offer-lead">{{ t.offer.lead|safe }}</p>
-        <div class="offer-benefits">
-          <span class="offer-chip">{% include 'icons.html' with name='gift' %}{{ t.offer.chip_rabatt|safe }}</span>
-          <span class="offer-chip">{% include 'icons.html' with name='bolt' %}{{ t.offer.chip_speed|safe }}</span>
+  {% comment %} ── Block 8: WEBSEITEN `#gratis` (weiß). §2.10. Referenz im
+       Browserrahmen statt Karten-Showcase; keine Pakettabelle (§6 K1-13, die
+       volle Preisliste steht in Block 9). Gratis-Formular (id=newsForm)
+       unveraendert aus dem alten Hero-Reiter hierher verschoben. ── {% endcomment %}
+  <section class="section" id="gratis">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <p class="sec-kick">{{ t.abschnitt.web|safe }}</p>
+        <h2 class="section-t">{{ t.start.web_h|safe }}</h2>
+        <p class="section-lead">{{ t.lb.web_lead|safe }}</p>
+      </header>
+      <div class="web-raster" data-reveal>
+        <div class="web-links">
+          <dl class="preiszeilen">
+            <div><dt>{{ t.lb.web_h|safe }}</dt><dd>{{ startpreise.web }}</dd></div>
+            <div><dt>{{ t.lb.hosting_h|safe }}</dt><dd>{{ startpreise.infra }}</dd></div>
+            <div><dt>{{ t.lb.seo_h|safe }}</dt><dd>{{ preise_item.seo }}</dd></div>
+            <div><dt>{{ t.lb.ads_h|safe }}</dt><dd>{{ preise_item.ads_setup }}</dd></div>
+            <div><dt>{{ t.lb.ki_h|safe }}</dt><dd>{{ startpreise.ki }}</dd></div>
+          </dl>
+          <figure class="referenz">
+            <a class="browser" href="https://ruempelwerk-mitteldeutschland.de/" target="_blank" rel="noopener">
+              <span class="browser-leiste" aria-hidden="true"><span class="browser-punkte"><i></i><i></i><i></i></span><span class="browser-adresse">ruempelwerk-mitteldeutschland.de</span></span>
+              <img src="{% static 'img/ref_ruempelwerk.webp' %}"
+                   srcset="{% static 'img/ref_ruempelwerk_640.webp' %} 640w, {% static 'img/ref_ruempelwerk_960.webp' %} 960w, {% static 'img/ref_ruempelwerk.webp' %} 1280w"
+                   sizes="(max-width:720px) 100vw, (max-width:1100px) 60vw, 560px"
+                   alt="{{ t.case.alt|safe }}" loading="lazy" decoding="async" width="1280" height="529">
+            </a>
+            <figcaption>
+              <span>{{ t.case.h|safe }} · {{ t.case.rolle|safe }}</span>
+              <a class="textlink" href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a>
+            </figcaption>
+          </figure>
         </div>
-        <ol class="offer-steps">
-          <li class="offer-step"><span class="offer-step-n">1</span><span class="offer-step-tx"><strong>{{ t.offer.step1_h|safe }}</strong><span>{{ t.offer.step1_t|safe }}</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">2</span><span class="offer-step-tx"><strong>{{ t.offer.step2_h|safe }}</strong><span>{{ t.offer.step2_t|safe }}</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">3</span><span class="offer-step-tx"><strong>{{ t.offer.step3_h|safe }}</strong><span>{{ t.offer.step3_t|safe }}</span></span></li>
-          <li class="offer-step"><span class="offer-step-n">4</span><span class="offer-step-tx"><strong>{{ t.offer.step4_h|safe }}</strong><span>{{ t.offer.step4_t|safe }}</span></span></li>
-        </ol>
-        <p class="offer-note">
-          <span class="offer-note-ic" aria-hidden="true">{% include 'icons.html' with name='mail' %}</span>
-          <span><strong>{{ t.offer.note_strong|safe }}</strong> {{ t.offer.note_rest|safe }}</span>
-        </p>
-      </div>
-      <div class="offer-card offer-card-lean" data-reveal>
-        {% if news_sent %}
-        <div class="hero-offer-done">
-          <span class="offer-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div>
+        <div class="beispiel" data-reveal>
+          {% if news_sent %}
+          <div class="lb-done">
+            <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
             <strong>{{ t.offer.done_h|safe }}</strong>
             <p>{{ t.offer.done_t|safe }}</p>
           </div>
-        </div>
-        {% else %}
-        <span class="offer-card-badge">{{ t.offer.card_badge|safe }}</span>
-        <h3 class="offer-card-h">{{ t.offer.card_h|safe }}</h3>
-        <p class="offer-card-sub">{{ t.offer.card_sub|safe }}</p>
-        <form class="offer-form offer-form-slim" id="newsForm" method="post" action="#gratis">
-          {% csrf_token %}
-          {% include 'honigtopf.html' %}
-          <input type="hidden" name="form" value="newsletter">
-          <div class="of-grid">
-            <div class="field">
-              <label class="fld-l" for="of-name">{{ t.offer.name_label|safe }} <span class="fld-opt">{{ t.offer.name_opt|safe }}</span></label>
-              <input id="of-name" class="fld" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.offer.name_ph|safe }}">
+          {% else %}
+          <h3>{{ t.offer.card_h|safe }}</h3>
+          <p>{{ t.offer.card_sub|safe }}</p>
+          <form class="lb-form" id="newsForm" method="post" action="#gratis">
+            {% csrf_token %}
+            {% include 'honigtopf.html' %}
+            <input type="hidden" name="form" value="newsletter">
+            <div class="of-grid">
+              <div class="field">
+                <label class="fld-l" for="of-name">{{ t.offer.name_label|safe }} <span class="fld-opt">{{ t.offer.name_opt|safe }}</span></label>
+                <input id="of-name" class="fld" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.offer.name_ph|safe }}">
+              </div>
+              <div class="field">
+                <label class="fld-l" for="of-mail">{{ t.offer.mail_label|safe }}</label>
+                <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
+              </div>
             </div>
-            <div class="field">
-              <label class="fld-l" for="of-mail">{{ t.offer.mail_label|safe }}</label>
-              <input id="of-mail" class="fld" type="email" name="email" required autocomplete="email" placeholder="name@beispiel.at">
-            </div>
-          </div>
-          <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
-          <button class="btn btn-lg btn-magnetic offer-submit" type="submit">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <p class="tool-fine">{{ t.hero.note|safe }}</p>
-          {% include 'datenschutzhinweis.html' %}
-        </form>
-        {% endif %}
-        <div class="offer-foot">
-          <span class="offer-jarvis"><span class="jarvis-tag">{{ t.offer.foot_tag|safe }}</span> {{ t.offer.foot_rest|safe }}</span>
-          <a class="offer-alt" href="{% url 'angebot' %}">{{ t.offer.foot_alt|safe }}</a>
+            <label class="haken"><input type="checkbox" name="einwilligung" required><span>{{ t.offer.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</span></label>
+            <button class="btn btn-lg" type="submit">{{ t.offer.submit|safe }}</button>
+            <p class="klein">{{ t.hero.note|safe }}</p>
+            {% include 'datenschutzhinweis.html' %}
+          </form>
+          {% endif %}
+          <p class="lk-alle"><a class="textlink" href="#angebot">{{ t.offer.foot_alt|safe }}</a></p>
         </div>
       </div>
     </div>
   </section>
 
-  {% comment %} ── ANGEBOT (inline: Leistungen wählen, Richtpreis per E-Mail freischalten) ─ {% endcomment %}
-  <section class="section rb-sec" id="angebot" aria-labelledby="rb-title">
+  {% comment %} ── Block 9: ANGEBOT ZUSAMMENSTELLEN `#angebot` (Papier). §2.11.
+       Funktion unveraendert: startpakete.html, alle rb*-ids/data-*, inline-
+       Skript mit Nonce. Startpakete zuerst sichtbar; Einzelpositionen in
+       <details class="rb-einzeln">, oeffnet sich beim Klick auf ein Startpaket
+       (eine Zeile in startpakete.js) oder wenn der Server schon Positionen aus
+       ?paket= vorbelegt hat. Volle Preisliste bleibt darunter. ── {% endcomment %}
+  <section class="section section-alt rb-sec" id="angebot" aria-labelledby="rb-title">
     <div class="wrap">
-      <header class="sec-head rb-head" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>{{ t.rb.eyebrow|safe }}</span>
-        <h2 class="section-t" id="rb-title">{{ t.rb.title|safe }}</h2>
-        <p class="section-lead">{{ t.rb.lead|safe }}</p>
+      <header class="sec-head" data-reveal>
+        <p class="sec-kick">{{ t.abschnitt.angebot|safe }}</p>
+        <h2 class="section-t" id="rb-title">{{ t.start.angebot_h|safe }}</h2>
+        <p class="section-lead">{{ t.start.angebot_lead|safe }}</p>
       </header>
 
       {% include 'startpakete.html' with ziel=paket_ziel %}
 
-      <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
-        {% csrf_token %}
-          {% include 'honigtopf.html' %}
-        <div class="rb-grid">
-          <div class="rb-cats">
-            {% for g in angebot_groups %}
-            <fieldset class="rb-cat" data-reveal>
-              <legend class="rb-cat-head">
-                <span class="rb-cat-ic">{% include 'icons.html' with name=g.icon %}</span>
-                <span class="rb-cat-tx"><strong>{{ g.title }}</strong><small>{{ g.sub }}</small></span>
-              </legend>
-              <div class="rb-items">
-                {% for it in g.items %}
-                <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
-                  <input class="ang-check rb-check" type="checkbox" id="rb-{{ it.id }}" name="item" value="{{ it.id }}"
-                         {% if it.id in paket_items %}checked{% endif %}
-                         data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
-                  <span class="ang-item-box">
-                    <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
-                    <span class="ang-item-main">
-                      <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
-                      <span class="ang-item-desc">{{ it.desc }}</span>
+      <details class="rb-einzeln" id="rbEinzeln"{% if paket_items %} open{% endif %}>
+        <summary class="rb-einzeln-summary">{{ t.start.angebot_einzeln|safe }}</summary>
+        <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
+          {% csrf_token %}
+            {% include 'honigtopf.html' %}
+          <div class="rb-grid">
+            <div class="rb-cats">
+              {% for g in angebot_groups %}
+              <fieldset class="rb-cat" data-reveal>
+                <legend class="rb-cat-head">
+                  <span class="rb-cat-ic">{% include 'icons.html' with name=g.icon %}</span>
+                  <span class="rb-cat-tx"><strong>{{ g.title }}</strong><small>{{ g.sub }}</small></span>
+                </legend>
+                <div class="rb-items">
+                  {% for it in g.items %}
+                  <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
+                    <input class="ang-check rb-check" type="checkbox" id="rb-{{ it.id }}" name="item" value="{{ it.id }}"
+                           {% if it.id in paket_items %}checked{% endif %}
+                           data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
+                           data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
+                    <span class="ang-item-box">
+                      <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
+                      <span class="ang-item-main">
+                        <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
+                        <span class="ang-item-desc">{{ it.desc }}</span>
+                      </span>
+                      <span class="ang-item-price">{{ it.price_label }}</span>
+                      <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
                     </span>
-                    <span class="ang-item-price">{{ it.price_label }}</span>
-                    <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-                  </span>
-                </label>
-                {% endfor %}
-              </div>
-            </fieldset>
-            {% endfor %}
-          </div>
-
-          <aside class="rb-side">
-            <div class="rb-card" data-reveal>
-              <div class="rb-card-head">
-                <h3>{{ t.rb.card_h|safe }}</h3>
-                <span class="rb-count" id="rbCount">{{ t.rb.count|safe }}</span>
-              </div>
-
-              <div class="rb-sum" id="rbSum">
-                <div class="rb-sum-rows">
-                  <div class="rb-sum-empty" id="rbSumEmpty">{{ t.rb.sum_empty|safe }}</div>
-                  <div class="rb-sum-row" data-k="once" hidden><span>{{ t.rb.row_once|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="once">0</span>&nbsp;€</strong></div>
-                  <div class="rb-sum-row" data-k="mtl" hidden><span>{{ t.rb.row_mtl|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="mtl">0</span>&nbsp;€<small>{{ t.rb.per_month|safe }}</small></strong></div>
-                  <div class="rb-sum-row" data-k="yr" hidden><span>{{ t.rb.row_yr|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="yr">0</span>&nbsp;€<small>{{ t.rb.per_year|safe }}</small></strong></div>
-                  <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>{{ t.rb.row_more|safe }}</span><strong>{{ t.rb.on_request|safe }}</strong></div>
+                  </label>
+                  {% endfor %}
                 </div>
-              </div>
-
-              <div class="rb-gate" id="rbGate">
-                <div class="rb-field">
-                  <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
-                  <input class="fld" type="email" name="email" id="rbEmail" required autocomplete="email" placeholder="name@firma.at">
-                </div>
-                <label class="rb-consent">
-                  <input type="checkbox" name="angebote" id="rbConsent" value="1">
-                  <span>{{ t.rb.consent|safe }}</span>
-                </label>
-                <button class="btn btn-lg btn-magnetic rb-submit" type="submit" id="rbSubmit" disabled>
-                  {{ t.rb.submit|safe }}
-                  <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <p class="rb-fine">{{ t.rb.fine|safe }}</p>
-              </div>
-
-              <div class="rb-done" id="rbDone" hidden>
-                <div class="rb-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <h4>{{ t.rb.done_h|safe }}</h4>
-                <p>{{ t.rb.done_t|safe }}</p>
-              </div>
+              </fieldset>
+              {% endfor %}
             </div>
-            <a class="rb-all" href="{% url 'angebot' %}#preisliste">{{ t.rb.all_link|safe }}</a>
-          </aside>
-        </div>
-      {% include 'datenschutzhinweis.html' %}
-      </form>
+
+            <aside class="rb-side">
+              <div class="rb-card" data-reveal>
+                <div class="rb-card-head">
+                  <h3>{{ t.rb.card_h|safe }}</h3>
+                  <span class="rb-count" id="rbCount">{{ t.rb.count|safe }}</span>
+                </div>
+
+                <div class="rb-sum" id="rbSum">
+                  <div class="rb-sum-rows">
+                    <div class="rb-sum-empty" id="rbSumEmpty">{{ t.rb.sum_empty|safe }}</div>
+                    <div class="rb-sum-row" data-k="once" hidden><span>{{ t.rb.row_once|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="once">0</span>&nbsp;€</strong></div>
+                    <div class="rb-sum-row" data-k="mtl" hidden><span>{{ t.rb.row_mtl|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="mtl">0</span>&nbsp;€<small>{{ t.rb.per_month|safe }}</small></strong></div>
+                    <div class="rb-sum-row" data-k="yr" hidden><span>{{ t.rb.row_yr|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="yr">0</span>&nbsp;€<small>{{ t.rb.per_year|safe }}</small></strong></div>
+                    <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>{{ t.rb.row_more|safe }}</span><strong>{{ t.rb.on_request|safe }}</strong></div>
+                  </div>
+                </div>
+
+                <div class="rb-gate" id="rbGate">
+                  <div class="rb-field">
+                    <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
+                    <input class="fld" type="email" name="email" id="rbEmail" required autocomplete="email" placeholder="name@firma.at">
+                  </div>
+                  <label class="rb-consent">
+                    <input type="checkbox" name="angebote" id="rbConsent" value="1">
+                    <span>{{ t.rb.consent|safe }}</span>
+                  </label>
+                  <button class="btn btn-lg rb-submit" type="submit" id="rbSubmit" disabled>{{ t.rb.submit|safe }}</button>
+                  <p class="rb-fine">{{ t.rb.fine|safe }}</p>
+                </div>
+
+                <div class="rb-done" id="rbDone" hidden>
+                  <div class="rb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</div>
+                  <h4>{{ t.rb.done_h|safe }}</h4>
+                  <p>{{ t.rb.done_t|safe }}</p>
+                </div>
+              </div>
+              <a class="rb-all" href="{% url 'angebot' %}#preisliste">{{ t.rb.all_link|safe }}</a>
+            </aside>
+          </div>
+        {% include 'datenschutzhinweis.html' %}
+        </form>
+      </details>
 
       {% comment %} Volle Preisliste (mit Stand) — zog aus dem alten #preise-Abschnitt hierher. ── {% endcomment %}
       <details class="pt pt-details" data-reveal>
@@ -613,260 +623,150 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
   })();
   </script>
 
-  {% comment %} ── Service-Marquee (unveraendert, Paket 3) ────────────────────────────── {% endcomment %}
-  <div class="marquee" aria-label="{{ t.marquee_aria|safe }}">
-    <div class="marquee-track">
-      {% for w in t.marquee %}<span>{{ w|safe }}</span><i>·</i>{% endfor %}
-      {% for w in t.marquee %}<span aria-hidden="true">{{ w|safe }}</span><i aria-hidden="true">·</i>{% endfor %}
-    </div>
-  </div>
-  {% comment %} ── Trenner-Text: Überleitung zur ersten Scroll-Animation ─────────────── {% endcomment %}
-  <section class="band">
-    <div class="wrap band-in" data-reveal>
-      <span class="band-kick">{{ t.band1.kick|safe }}</span>
-      <h2 class="band-h">{{ t.band1.h|safe }}</h2>
-      <p class="band-p">{{ t.band1.p|safe }}</p>
-    </div>
-  </section>
-  {% comment %} ── SCROLL-VIDEO 1, PC: Webseite baut sich auf, per Scroll gescrubbt ──── {% endcomment %}
-  <section class="scrolly" id="aufbau" data-scrolly>
-    <div class="scrolly-sticky">
-      <video class="scrolly-video" id="scrollyVideoPc" playsinline muted preload="none"
-             {% if c.pc_poster %}poster="{{ c.pc_poster }}"{% endif %}>
-        {% if c.pc_video %}<source src="{{ c.pc_video }}" type="video/mp4">{% endif %}
-        <track kind="captions" src="{% static 'vtt/empty.vtt' %}" srclang="de" label="Ohne Ton">
-      </video>
-      <div class="scrolly-shade" aria-hidden="true"></div>
-      <div class="wrap scrolly-overlay">
-        <div class="scrolly-step is-active" data-step="0"><h2>{{ t.scrolly_pc.s0_h|safe }}</h2><p>{{ t.scrolly_pc.s0_p|safe }}</p></div>
-        <div class="scrolly-step" data-step="1"><h3>{{ t.scrolly_pc.s1_h|safe }}</h3><p>{{ t.scrolly_pc.s1_p|safe }}</p></div>
-        <div class="scrolly-step" data-step="2"><h3>{{ t.scrolly_pc.s2_h|safe }}</h3><p>{{ t.scrolly_pc.s2_p|safe }}</p></div>
-        <div class="scrolly-step" data-step="3"><h3>{{ t.scrolly_pc.s3_h|safe }}</h3><p>{{ t.scrolly_pc.s3_p|safe }}</p></div>
-      </div>
-      <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
-    </div>
-  </section>
-  {% comment %} ── Vertrauens-Leiste + Kennzahlen ────────────────────────────────────── {% endcomment %}
-  <section class="proof">
-    <div class="wrap">
-      <p class="proof-line" data-reveal>{{ t.proof.line|safe }}</p>
-      <div class="stats" data-reveal>
-        <div class="stat"><strong data-count="350" data-prefix="{{ t.proof.stat1_prefix }}" data-suffix=" €">0</strong><span>{{ t.proof.stat1_label|safe }}</span></div>
-        <div class="stat"><strong data-count="24" data-suffix=" h">0</strong><span>{{ t.proof.stat2_label|safe }}</span></div>
-        <div class="stat"><strong data-count="100" data-suffix="">0</strong><span>{{ t.proof.stat3_label|safe }}</span></div>
-        <div class="stat"><strong data-count="99" data-suffix=" %">0</strong><span>{{ t.proof.stat4_label|safe }}</span></div>
-      </div>
-    </div>
-  </section>
-  {% comment %} ── Trenner-Text: Überleitung zum Server-Raum ─────────────────────────── {% endcomment %}
-  <section class="band">
-    <div class="wrap band-in" data-reveal>
-      <span class="band-kick">{{ t.band2.kick|safe }}</span>
-      <h2 class="band-h">{{ t.band2.h|safe }}</h2>
-      <p class="band-p">{{ t.band2.p|safe }}</p>
-    </div>
-  </section>
-  {% comment %} ── SCROLL-VIDEO 2 ,  Higgsfield-Rechenzentrum (Server-Raum), per Scroll gescrubbt ── {% endcomment %}
-  <section class="scrolly" id="infrastruktur" data-scrolly>
-    <div class="scrolly-sticky">
-      <video class="scrolly-video" id="scrollyVideo" playsinline muted preload="none"
-             {% if c.server_poster %}poster="{{ c.server_poster }}"{% endif %}>
-        {% if c.server_video %}<source src="{{ c.server_video }}" type="video/mp4">{% endif %}
-        <track kind="captions" src="{% static 'vtt/empty.vtt' %}" srclang="de" label="Ohne Ton">
-      </video>
-      <div class="scrolly-shade" aria-hidden="true"></div>
-      <div class="wrap scrolly-overlay">
-        <div class="scrolly-step is-active" data-step="0">
-          <h2>{{ t.scrolly_srv.s0_h|safe }}</h2>
-          <p>{{ t.scrolly_srv.s0_p|safe }}</p>
-        </div>
-        <div class="scrolly-step" data-step="1"><h3>{{ t.scrolly_srv.s1_h|safe }}</h3><p>{{ t.scrolly_srv.s1_p|safe }}</p></div>
-        <div class="scrolly-step" data-step="2"><h3>{{ t.scrolly_srv.s2_h|safe }}</h3><p>{{ t.scrolly_srv.s2_p|safe }}</p></div>
-        <div class="scrolly-step" data-step="3"><h3>{{ t.scrolly_srv.s3_h|safe }}</h3><p>{{ t.scrolly_srv.s3_p|safe }}</p></div>
-      </div>
-      <div class="scrolly-progress" aria-hidden="true"><span class="scrolly-bar"></span></div>
-    </div>
-  </section>
-  {% comment %} ── PARTNER / ALLES AUS EINER HAND ────────────────────────────────────── {% endcomment %}
-  <section class="section section-alt" id="partner">
-    <div class="wrap">
-      <header class="sec-head sec-head-center" data-reveal>
-        <h2 class="section-t">{{ t.partner.h|safe }}</h2>
-        {% if t.partner.text %}<p class="section-lead">{{ t.partner.text|safe }}</p>{% endif %}
-      </header>
-      <div class="partner-row" data-reveal>
-        <span class="partner-chip">{% include 'icons.html' with name='home' %}Loxone</span>
-        <span class="partner-chip">{% include 'icons.html' with name='net' %}KNX</span>
-        <span class="partner-chip">{% include 'icons.html' with name='av' %}{{ t.partner.chip_av|safe }}</span>
-        <span class="partner-chip">{% include 'icons.html' with name='shield' %}{{ t.partner.chip_security|safe }}</span>
-        <span class="partner-chip">{% include 'icons.html' with name='consulting' %}{{ t.partner.chip_beratung|safe }}</span>
-      </div>
-    </div>
-  </section>
-  {% comment %} ── KI-HIGHLIGHT (Glass-Showcase, Split) ──────────────────────────────── {% endcomment %}
-  <section class="section">
-    <div class="wrap">
-      <div class="showcase" data-reveal>
-        <div class="showcase-glow" aria-hidden="true"></div>
-        <div class="showcase-copy">
-          <h2 class="section-t">{{ t.showcase.h|safe }}</h2>
-          <p class="section-lead">{{ t.showcase.lead|safe }}</p>
-          <ul class="check-list">
-            <li>{{ t.showcase.li1|safe }}</li>
-            <li>{{ t.showcase.li2|safe }}</li>
-            <li>{{ t.showcase.li3|safe }}</li>
-          </ul>
-          <a class="btn btn-magnetic" href="#kontakt">{{ t.showcase.cta|safe }}</a>
-        </div>
-        <div class="showcase-visual showcase-robot">
-          <div class="robot-stage" id="robotStage" role="button" tabindex="0" aria-label="{{ t.hero.robot_aria|safe }}" data-spline="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode">
-            <div class="hero-figure-glow" aria-hidden="true"></div>
-            <div class="robot-canvas" id="robotCanvas" aria-hidden="true">
-              <div class="robot-loader" id="robotLoader"><span class="spinner"></span><span class="robot-loadtxt">{{ t.hero.robot_loading|safe }}</span></div>
-            </div>
-            {% if c.robot_image %}<img src="{{ c.robot_image }}"
-            srcset="{% static 'img/robot_410.webp' %} 410w, {{ c.robot_image }} 820w"
-            sizes="(max-width:760px) 60vw, 410px"
-            alt="{{ t.hero.robot_alt|safe }}" class="robot robot-fallback" width="820" height="1098" loading="lazy">{% endif %}
-            <div class="robot-bubble" id="robotBubble" aria-live="polite"></div>
-            <div class="robot-hint" id="robotHint" aria-hidden="true">{{ t.hero.robot_click|safe }}</div>
-          </div>
-          <button class="robot-tap" id="robotTap" type="button">{{ t.hero.robot_click|safe }}</button>
-        </div>
-      </div>
-    </div>
-  </section>
-  {% comment %} ── REFERENZEN (Beispiel-Projekte) ────────────────────────────────────── {% endcomment %}
-  <section class="section" id="referenzen">
+  {% comment %} ── Block 10: BRANCHEN UND REGIONEN `#branchen` (weiß, neu). §2.12.
+       Alle Branchen und alle Regionen, aus derselben Quelle wie die jeweiligen
+       Hubs (views._startseite_verteiler). Keine Fernwartungs-Zeile. ── {% endcomment %}
+  <section class="section" id="branchen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <h2 class="section-t">{{ t.referenzen.h|safe }}</h2>
-        <p class="section-lead">{{ t.referenzen.lead|safe }}</p>
+        <p class="sec-kick">{{ t.abschnitt.region|safe }}</p>
+        <h2 class="section-t">{{ t.start.region_h|safe }}</h2>
+        <p class="section-lead">{{ t.start.region_lead|safe }}</p>
       </header>
-
-      <article class="case" data-reveal>
-        <a class="case-shot" href="https://ruempelwerk-mitteldeutschland.de/" target="_blank" rel="noopener">
-          <img src="{% static 'img/ref_ruempelwerk.webp' %}"
-               srcset="{% static 'img/ref_ruempelwerk_640.webp' %} 640w, {% static 'img/ref_ruempelwerk_960.webp' %} 960w, {% static 'img/ref_ruempelwerk.webp' %} 1280w"
-               sizes="(max-width: 720px) 100vw, (max-width: 1100px) 60vw, 620px"
-               alt="{{ t.case.alt|safe }}" loading="lazy" decoding="async" width="1280" height="529">
-        </a>
-        <div class="case-body">
-          <span class="eyebrow"><span class="dot"></span>{{ t.case.eyebrow|safe }}</span>
-          <h3 class="case-h">{{ t.case.h|safe }}</h3>
-          <p class="case-rolle">{{ t.case.rolle|safe }}</p>
-          <p class="case-text">{{ t.case.text|safe }}</p>
-          <ul class="lb-points">
-            <li>{% include 'icons.html' with name='check' %}{{ t.case.p1|safe }}</li>
-            <li>{% include 'icons.html' with name='check' %}{{ t.case.p2|safe }}</li>
-            <li>{% include 'icons.html' with name='check' %}{{ t.case.p3|safe }}</li>
+      <div class="region-raster" data-reveal>
+        <div class="register-gruppe">
+          <h3>{{ t.branchen_seite.branchen_titel|safe }}</h3>
+          <ul class="index-liste">
+            {% for b in verteiler.branchen %}
+            <li><a href="{{ b.url }}">{{ b.nav|safe }}</a></li>
+            {% endfor %}
           </ul>
-          <a class="btn btn-sm" href="https://ruempelwerk-mitteldeutschland.de/" target="_blank" rel="noopener">{{ t.case.link|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <p class="case-partner">{{ t.case.partner|safe }}</p>
+          <p class="lk-alle"><a class="textlink" href="{% url 'branchen' %}">{{ t.start.branchen_link|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a></p>
         </div>
-      </article>
-
-      <div class="refs">
-        <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_smarthome.webp' %}"
-            srcset="{% static 'img/ref_smarthome_640.webp' %} 640w, {% static 'img/ref_smarthome_960.webp' %} 960w, {% static 'img/ref_smarthome.webp' %} 1264w"
-            sizes="(max-width: 720px) 100vw, (max-width: 1100px) 45vw, 400px"
-            alt="{{ t.referenzen.r1_alt|safe }}" loading="lazy" decoding="async" width="1264" height="848"></div>
-          <figcaption><strong>{{ t.referenzen.r1_h|safe }}</strong><span>{{ t.referenzen.r1_p|safe }}</span></figcaption>
-        </figure>
-        <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_konferenz.webp' %}"
-            srcset="{% static 'img/ref_konferenz_640.webp' %} 640w, {% static 'img/ref_konferenz_960.webp' %} 960w, {% static 'img/ref_konferenz.webp' %} 1264w"
-            sizes="(max-width: 720px) 100vw, (max-width: 1100px) 45vw, 400px"
-            alt="{{ t.referenzen.r2_alt|safe }}" loading="lazy" decoding="async" width="1264" height="848"></div>
-          <figcaption><strong>{{ t.referenzen.r2_h|safe }}</strong><span>{{ t.referenzen.r2_p|safe }}</span></figcaption>
-        </figure>
-        <figure class="ref" data-reveal>
-          <div class="ref-img"><img src="{% static 'img/ref_buehne.webp' %}"
-            srcset="{% static 'img/ref_buehne_640.webp' %} 640w, {% static 'img/ref_buehne_960.webp' %} 960w, {% static 'img/ref_buehne.webp' %} 1264w"
-            sizes="(max-width: 720px) 100vw, (max-width: 1100px) 45vw, 400px"
-            alt="{{ t.referenzen.r3_alt|safe }}" loading="lazy" decoding="async" width="1264" height="848"></div>
-          <figcaption><strong>{{ t.referenzen.r3_h|safe }}</strong><span>{{ t.referenzen.r3_p|safe }}</span></figcaption>
-        </figure>
+        <div class="register-gruppe">
+          <h3>{{ t.seite.regionen_titel|safe }}</h3>
+          <ul class="index-liste">
+            {% for r in verteiler.regionen %}
+            <li><a href="{{ r.url }}">{{ r.ort }}</a></li>
+            {% endfor %}
+          </ul>
+          <p class="lk-alle"><a class="textlink" href="{% url 'regionen' %}">{{ t.start.regionen_link|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a></p>
+        </div>
       </div>
     </div>
   </section>
 
-  {% comment %} ── VERTEILERBLOCK: Beitraege + Werkzeuge ─────────────────────────────── {% endcomment %}
-  <section class="section wt-sec" id="wissen" aria-labelledby="wt-title">
+  {% comment %} ── Block 11: WISSEN UND WERKZEUGE `#wissen` (Papier). §2.13.
+       Vier Register-Spalten: Werkzeuge, Vergleiche, Ratgeber, Checklisten.
+       Ratgeber/Checklisten/Glossar nur bei lang == 'de' (die Silos sind
+       einsprachig); EN/RO zeigen nur Werkzeuge und Vergleiche. ── {% endcomment %}
+  <section class="section section-alt wt-sec" id="wissen" aria-labelledby="wt-title">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>{{ t.wissen.eyebrow|safe }}</span>
+        <p class="sec-kick">{{ t.abschnitt.wissen|safe }}</p>
         <h2 class="section-t" id="wt-title">{{ t.wissen.h|safe }}</h2>
         <p class="section-lead">{{ t.wissen.lead|safe }}</p>
       </header>
+      <div class="wissen-raster{% if not wissen_register.ratgeber %} wissen-halb{% endif %}" data-reveal>
+        <div class="register-gruppe">
+          <h3>{% include 'icons.html' with name='gauge' %}{{ t.wissen.werkzeuge_h|safe }}</h3>
+          <ul class="register-liste eng">
+            {% for w in wissen_register.werkzeuge %}
+            <li><a href="{{ w.url }}"><span class="rl-titel">{{ w.h|safe }}</span><span class="rl-text">{{ w.t|safe }}</span></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="register-gruppe">
+          <h3>{% include 'icons.html' with name='compare' %}{{ t.wissen.vergleiche_h|safe }}</h3>
+          <ul class="register-liste eng">
+            {% for v in wissen_register.vergleiche %}
+            <li><a href="{{ v.url }}"><span class="rl-titel">{{ v.nav|safe }}</span></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% if wissen_register.ratgeber %}
+        <div class="register-gruppe">
+          <h3>{% include 'icons.html' with name='book' %}{{ t.wissen.ratgeber_h|safe }}</h3>
+          <ul class="register-liste eng">
+            {% for b in wissen_register.ratgeber %}
+            <li><a href="{{ b.url }}"><span class="rl-titel">{{ b.titel|safe }}</span></a></li>
+            {% endfor %}
+          </ul>
+          <a class="textlink" href="{% url 'aktuelles' %}">{{ t.wissen.alle|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a>
+        </div>
+        <div class="register-gruppe">
+          <h3>{% include 'icons.html' with name='list' %}{{ t.wissen.checklisten_h|safe }}</h3>
+          <ul class="register-liste eng">
+            {% for k in wissen_register.checklisten %}
+            <li><a href="{{ k.url }}"><span class="rl-titel">{{ k.titel|safe }}</span></a></li>
+            {% endfor %}
+          </ul>
+          <a class="glossar" href="{{ wissen_register.glossar_url }}"><span class="rl-titel">{{ t.wissen.glossar_nav|safe }}</span></a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
 
-      <div class="wt-grid">
-        {% for b in wissen_teaser.beitraege %}
-        <a class="wt-beitrag spot" href="{{ b.url }}" data-spot data-reveal>
-          <span class="wt-typ">{{ b.lesezeit }} Min. Lesezeit</span>
-          <h3 class="wt-h">{{ b.titel|safe }}</h3>
-          <p class="wt-t">{{ b.antwort|safe|truncatewords:32 }}</p>
-        </a>
-        {% endfor %}
-
-        <div class="wt-werkzeuge" data-reveal>
-          {% for w in wissen_teaser.werkzeuge %}
-          <a class="wt-wz" href="{{ w.url }}">
-            <span class="wt-wz-ic" aria-hidden="true">{% include 'icons.html' with name=w.icon %}</span>
-            <span>
-              <strong>{% if w.schluessel == 'rechner' %}{{ t.wissen.rechner_h|safe }}{% elif w.schluessel == 'selbsttest' %}{{ t.wissen.selbsttest_h|safe }}{% else %}{{ t.wissen.checklisten_h|safe }}{% endif %}</strong>
-              <span>{% if w.schluessel == 'rechner' %}{{ t.wissen.rechner_t|safe }}{% elif w.schluessel == 'selbsttest' %}{{ t.wissen.selbsttest_t|safe }}{% else %}{{ t.wissen.checklisten_t|safe }}{% endif %}</span>
-            </span>
-          </a>
+  {% comment %} ── Block 12: FRAGEN UND ANTWORTEN `#faq` (weiß). §2.14.
+       FAQPage-Schema unveraendert. Signaturzeile + Frage-Zeile als Handlung
+       (§6 K1-3): Textlink zum Rückruf, Telefon-Textlink daneben. ── {% endcomment %}
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="faq-raster" data-reveal>
+        <div class="faq-side">
+          <p class="sec-kick">{{ t.abschnitt.faq|safe }}</p>
+          <h2 class="section-t" id="faq-title">{{ t.faq.h|safe }}</h2>
+          <p class="section-lead">{{ t.faq.lead|safe }}</p>
+          <p class="signatur">
+            {% if c.founder_image %}<img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="40px" width="40" height="40" loading="lazy" alt="">{% endif %}
+            {{ c.inhaber_name }} · {{ c.site_name }}
+          </p>
+          <p class="faq-frage-zeile">
+            <a class="textlink" href="#rueckruf">{{ t.start.faq_frage|safe }}</a>
+            {% if c.telefon %}<a class="textlink faq-tel" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
+          </p>
+        </div>
+        <div class="faq">
+          {% for item in t.faq.items %}
+          <details class="faq-item"{% if forloop.first %} open{% endif %}>
+            <summary class="faq-q">
+              <h3 class="faq-q-h">{{ item.q }}</h3>
+              <span class="faq-ic" aria-hidden="true">{% include 'icons.html' with name='plus' %}</span>
+            </summary>
+            <div class="faq-a"><p>{{ item.a }}</p></div>
+          </details>
           {% endfor %}
-          <p class="lk-alle"><a href="{% url 'aktuelles' %}">{{ t.wissen.alle|safe }}</a> · <a href="{% url 'wissen' %}">Glossar</a></p>
         </div>
       </div>
     </div>
   </section>
 
-  {% comment %} ── FAQ (GEO: sichtbare Antworten + FAQPage-Schema für KI-Antwortmaschinen) ── {% endcomment %}
-  <section class="section" id="faq" aria-labelledby="faq-title">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>{{ t.faq.eyebrow|safe }}</span>
-        <h2 class="section-t" id="faq-title">{{ t.faq.h|safe }}</h2>
-        <p class="section-lead">{{ t.faq.lead|safe }}</p>
-      </header>
-      <div class="faq" data-reveal>
-        {% for item in t.faq.items %}
-        <details class="faq-item"{% if forloop.first %} open{% endif %}>
-          <summary class="faq-q">
-            <h3 class="faq-q-h">{{ item.q }}</h3>
-            <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </summary>
-          <div class="faq-a"><p>{{ item.a }}</p></div>
-        </details>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {% comment %} ── KONTAKT ───────────────────────────────────────────────────────────── {% endcomment %}
+  {% comment %} ── Block 13: KONTAKT `#kontakt` (Papier). §2.15. Rückruf-Zeile
+       als <a href="#rueckruf"> ohne data-rueckruf (Startseite); form#kontakt-
+       form unveraendert. ── {% endcomment %}
   <section class="section section-alt" id="kontakt">
-    <div class="wrap contact">
-      <div class="contact-info" data-reveal>
+    <div class="wrap kontakt-raster">
+      <div class="kontakt-info" data-reveal>
+        <p class="sec-kick">{{ t.abschnitt.kontakt|safe }}</p>
+        {% if c.founder_image %}
+        <p class="kontakt-person"><img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="72px" width="72" height="72" loading="lazy" alt="{{ c.inhaber_name }}"></p>
+        {% endif %}
         <h2 class="section-t">{{ t.kontakt.h|safe }}</h2>
         <p class="section-lead">{{ t.kontakt.lead|safe }}</p>
         <div class="contact-methods">
           {% if c.telefon %}<a class="cm" href="tel:{{ c.telefon_tel }}"><span class="cm-ic">{% include 'icons.html' with name='phone' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_call|safe }}</strong><span>{{ c.telefon }}</span></span></a>{% endif %}
-          {% if c.whatsapp %}<a class="cm cm-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
+          {% if c.whatsapp %}<a class="cm" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
           {% if c.email %}<a class="cm" href="mailto:{{ c.email }}"><span class="cm-ic">{% include 'icons.html' with name='mail' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_mail|safe }}</strong><span>{{ c.email }}</span></span></a>{% endif %}
           <a class="cm" href="#kontakt-form"><span class="cm-ic">{% include 'icons.html' with name='consulting' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_form|safe }}</strong><span>{{ t.kontakt.m_form_sub|safe }}</span></span></a>
           <a class="cm" href="#rueckruf"><span class="cm-ic">{% include 'icons.html' with name='clock' %}</span><span class="cm-t"><strong>{{ t.ways.callback|safe }}</strong><span>{{ t.rueckruf.zeit_4|safe }}</span></span></a>
         </div>
         <p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='clock' %}</span> {{ t.kontakt.avail|safe }}</p>
-        {% if c.tagline %}<p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='shield' %}</span> {{ c.inhaber_name }}, {{ c.tagline }}.</p>{% endif %}
       </div>
 
       {% if sent %}
       <div class="contact-form form-sent" data-reveal>
-        <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="sent-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</div>
         <h3>{{ t.kontakt.sent_h|safe }}</h3>
         <p>{{ t.kontakt.sent_p|safe }}</p>
       </div>
@@ -892,53 +792,39 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         </div>
         <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}"></textarea></label>
         <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</label>
-        <button class="btn btn-lg btn-magnetic" type="submit">{{ t.kontakt.submit|safe }}</button>
+        <button class="btn btn-lg" type="submit">{{ t.kontakt.submit|safe }}</button>
         <p class="form-fine">{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}
       </form>
       {% endif %}
     </div>
   </section>
-  {% comment %} ── SCHLUSSBAND: bleibt in Paket 2 ALT (Paket 3 entfernt es, §2.1); nur
-       umsortiert, damit Kooperationen als letzter Block vor dem Fuß steht (AUFTRAG
-       Paket 2). ── {% endcomment %}
-  <section class="closer on-dark">
-    <div class="wrap closer-in" data-reveal>
-      <div class="closer-copy">
-        <h2 class="closer-h">{{ t.schluss.h|safe }}</h2>
-        <p class="closer-sub">{{ t.schluss.sub|safe }}</p>
-      </div>
-      <div class="hero-ways closer-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
-        {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-        {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
-        <button class="way" type="button" data-rueckruf>{% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span></button>
-        <a class="way" href="#kontakt-form">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
-      </div>
-    </div>
-  </section>
-  {% comment %} ── KOOPERATIONEN ─────────────────────────────────────────────────────── {% endcomment %}
-  <section class="section" id="kooperationen">
+
+  {% comment %} ── Block 14: KOOPERATIONEN `#kooperationen` (weiß, schmaler
+       Streifen direkt über dem Fuß). §2.16. coopForm/#coopSubmit/#coopErr/
+       #coopDone/Honigtopf/Datenschutzhinweis/inline-Skript unveraendert in
+       <details class="koop-werden">; Mini-Skript öffnet sie, wenn der
+       Seitenanker beim Laden #partner-werden oder #kooperationen ist. ── {% endcomment %}
+  <section class="section section-streifen" id="kooperationen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <span class="eyebrow"><span class="dot"></span>{{ t.koop.eyebrow|safe }}</span>
+        <p class="sec-kick">{{ t.abschnitt.koop|safe }}</p>
         <h2 class="section-t">{{ t.koop.h|safe }}</h2>
         <p class="section-lead">{{ t.koop.lead|safe }}</p>
       </header>
 
       <div class="coop-grid" data-reveal>
         {% for k in kooperationen %}
-        <a class="coop-card spot" data-spot href="{{ k.url }}" target="_blank" rel="noopener" aria-label="{{ k.name }} ({{ k.rolle }})">
+        <a class="coop-card" href="{{ k.url }}" target="_blank" rel="noopener" aria-label="{{ k.name }} ({{ k.rolle }})">
           <div class="coop-logo"><img src="{% static k.logo %}"
                {% if k.logo_480 %}srcset="{% static k.logo_480 %} 480w, {% static k.logo %} 1100w"
-               sizes="(max-width:760px) 90vw, 340px"{% endif %}
-               alt="{{ k.name }} Logo" loading="lazy" width="1100" height="618"></div>
+               sizes="(max-width:760px) 90vw, 220px"{% endif %}
+               alt="{{ k.name }} Logo" loading="lazy" width="220" height="124"></div>
           <div class="coop-meta">
-            <div class="coop-meta-top">
-              <strong class="coop-name">{{ k.name }}</strong>
-              <span class="coop-role">{{ k.rolle }}</span>
-            </div>
+            <strong class="coop-name">{{ k.name }}</strong>
+            <span class="coop-role">{{ k.rolle }}</span>
             <p class="coop-text">{{ k.text }}</p>
-            <span class="coop-link">{{ k.domain }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="coop-link">{{ k.domain }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></span>
           </div>
         </a>
         {% empty %}
@@ -946,34 +832,30 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         {% endfor %}
       </div>
 
-      {% comment %} Partner werden {% endcomment %}
-      <div class="coop-join" id="partner-werden" data-reveal>
-        <div class="coop-join-copy">
-          <span class="coop-join-ic" aria-hidden="true">{% include 'icons.html' with name='handshake' %}</span>
-          <div>
-            <h3>{{ t.koop.join_h|safe }}</h3>
-            <p>{{ t.koop.join_p|safe }}</p>
-          </div>
+      <details class="koop-werden" id="koopWerden">
+        <summary>{{ t.koop.join_h|safe }}</summary>
+        <div class="coop-join" id="partner-werden">
+          <p class="coop-join-p">{{ t.koop.join_p|safe }}</p>
+          <form class="coop-form" id="coopForm" method="post" action="{% url 'kooperation_anfordern' %}">
+            {% csrf_token %}
+            {% include 'honigtopf.html' %}
+            <div class="coop-f-row">
+              <label class="fld"><span>{{ t.koop.f_name|safe }}</span><input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="{{ t.koop.f_name_ph|safe }}"></label>
+              <label class="fld"><span>{{ t.koop.f_firma|safe }}</span><input type="text" name="firma" maxlength="120" autocomplete="organization" placeholder="{{ t.koop.f_firma_ph|safe }}"></label>
+            </div>
+            <label class="fld"><span>{{ t.koop.f_email|safe }}</span><input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
+            <label class="fld"><span>{{ t.koop.f_msg|safe }}</span><textarea name="nachricht" rows="3" required maxlength="1200" placeholder="{{ t.koop.f_msg_ph|safe }}"></textarea></label>
+            <button class="btn btn-lg coop-submit" type="submit" id="coopSubmit">{{ t.koop.submit|safe }}</button>
+            <p class="lb-err" id="coopErr" role="alert" hidden></p>
+            <p class="coop-fine">{{ t.koop.fine|safe }}</p>
+            <div class="coop-done" id="coopDone" hidden>
+              <span class="coop-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+              <div><strong>{{ t.koop.done_h|safe }}</strong><p>{{ t.koop.done_p|safe }}</p></div>
+            </div>
+          {% include 'datenschutzhinweis.html' %}
+          </form>
         </div>
-        <form class="coop-form" id="coopForm" method="post" action="{% url 'kooperation_anfordern' %}">
-          {% csrf_token %}
-          {% include 'honigtopf.html' %}
-          <div class="coop-f-row">
-            <label class="fld"><span>{{ t.koop.f_name|safe }}</span><input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="{{ t.koop.f_name_ph|safe }}"></label>
-            <label class="fld"><span>{{ t.koop.f_firma|safe }}</span><input type="text" name="firma" maxlength="120" autocomplete="organization" placeholder="{{ t.koop.f_firma_ph|safe }}"></label>
-          </div>
-          <label class="fld"><span>{{ t.koop.f_email|safe }}</span><input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
-          <label class="fld"><span>{{ t.koop.f_msg|safe }}</span><textarea name="nachricht" rows="3" required maxlength="1200" placeholder="{{ t.koop.f_msg_ph|safe }}"></textarea></label>
-          <button class="btn btn-lg btn-magnetic coop-submit" type="submit" id="coopSubmit">{{ t.koop.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <p class="lb-err" id="coopErr" role="alert" hidden></p>
-          <p class="coop-fine">{{ t.koop.fine|safe }}</p>
-          <div class="coop-done" id="coopDone" hidden>
-            <div class="coop-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><strong>{{ t.koop.done_h|safe }}</strong><p>{{ t.koop.done_p|safe }}</p></div>
-          </div>
-        {% include 'datenschutzhinweis.html' %}
-        </form>
-      </div>
+      </details>
     </div>
   </section>
 
@@ -998,6 +880,13 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           submit.textContent=I.submit||'…';
           if(fehler){ fehler.textContent=I.error||'Error'; fehler.hidden=false; } });
     });
+    // Design B1 (§2.16): das Formular oeffnet sich nicht von selbst per
+    // :target-Sprung — dieses Mini-Skript oeffnet es, wenn der Seitenanker
+    // beim Laden #partner-werden oder #kooperationen ist.
+    var koopWerden=document.getElementById('koopWerden');
+    if (koopWerden && (location.hash === '#partner-werden' || location.hash === '#kooperationen')) {
+      koopWerden.open = true;
+    }
   })();
   </script>
 {% endblock %}

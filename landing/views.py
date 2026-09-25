@@ -2079,24 +2079,48 @@ def _startseiten_schema(c, lang):
     return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
 
 
-# Die beiden Beiträge mit der größten Suchnachfrage. Bewusst fest gewählt und
-# nicht „die neuesten": Auf der Startseite steht der Platz zur Verfügung, der am
-# meisten Gewicht überträgt — der gehört den Fragen, die am häufigsten gestellt
-# werden, nicht dem zuletzt Geschriebenen (docs/SEO-AUSBAU-3.md, V4).
-_STARTSEITE_BEITRAEGE = ["was-kostet-it-betreuung", "it-dienstleister-wechseln"]
+# Design B1 (§2.13, 25.09.2026, Paket 3): die vier Beiträge des Ratgeber-
+# Registers in Block 11. Bewusst fest gewählt und nicht „die neuesten": Auf der
+# Startseite steht der Platz zur Verfügung, der am meisten Gewicht überträgt —
+# der gehört den Fragen, die am häufigsten gestellt werden (docs/SEO-AUSBAU-3.md, V4).
+_STARTSEITE_BEITRAEGE = ["was-kostet-it-betreuung", "datensicherung-richtig-pruefen",
+                         "it-sicherheit-kleine-firma", "it-dienstleister-wechseln"]
 
 
-def _wissen_teaser():
-    """Zwei Beiträge und die drei Werkzeuge für den Verteilerblock der Startseite."""
-    posten = [_beitrag_daten(beitraege.NACH_SLUG[s])
-              for s in _STARTSEITE_BEITRAEGE if s in beitraege.NACH_SLUG]
-    return {
-        "beitraege": posten,
+def _wissen_register(lang):
+    """Vier Register-Spalten für Block 11 "Wissen und Werkzeuge" (§2.13,
+    25.09.2026, docs/DESIGN-B1-2026-09-25.md). Werkzeuge und Vergleiche gibt es
+    in allen drei Sprachen; Ratgeber, Checklisten und Glossar nur auf Deutsch
+    (die Silos sind einsprachig, Kopf von landing/beitraege.py)."""
+    pack = i18n.get_pack(lang)
+    tw = pack.get("wissen", {})
+    out = {
         "werkzeuge": [
-            {"url": reverse("rechner"), "icon": "gauge", "schluessel": "rechner"},
-            {"url": reverse("sicherheitstest"), "icon": "shield", "schluessel": "selbsttest"},
-            {"url": reverse("checklisten"), "icon": "check", "schluessel": "checklisten"},
+            {"url": reverse("rechner"), "icon": "gauge",
+             "h": tw.get("rechner_h", ""), "t": tw.get("rechner_t", "")},
+            {"url": reverse("sicherheitstest"), "icon": "shield",
+             "h": tw.get("selbsttest_h", ""), "t": tw.get("selbsttest_t", "")},
+            {"url": reverse("notfall"), "icon": "alert",
+             "h": pack.get("notfall", {}).get("nav", ""), "t": tw.get("notfall_t", "")},
+            {"url": reverse("it_hilfe"), "icon": "phone",
+             "h": pack.get("hilfe", {}).get("nav", ""), "t": tw.get("hilfe_t", "")},
         ],
+        "vergleiche": [_vergleich_daten(v, lang) for v in vergleiche.VERGLEICHE],
+    }
+    if lang == "de":
+        out["ratgeber"] = [_beitrag_daten(beitraege.NACH_SLUG[s])
+                            for s in _STARTSEITE_BEITRAEGE if s in beitraege.NACH_SLUG]
+        out["checklisten"] = [_checkliste_daten(k) for k in checklisten.CHECKLISTEN]
+        out["glossar_url"] = reverse("wissen")
+    return out
+
+
+def _startseite_verteiler(lang):
+    """Block 10 "Branchen und Regionen" (§2.12, 25.09.2026, Paket 3): alle
+    Branchen und alle Regionen, aus derselben Quelle wie ihre eigenen Hubs."""
+    return {
+        "branchen": [_branche_daten(b, lang) for b in branchen.BRANCHEN],
+        "regionen": [_region_daten(r, lang) for r in regionen.REGIONEN],
     }
 
 
@@ -2125,10 +2149,14 @@ def index(request):
         "hilfe_preis": _festpreis_label(_ANGEBOT_INDEX[_HILFE_STUNDE],
                                         i18n.get_pack(lang).get("catalog_words", {})),
         # V4: Die Startseite ist die stärkste Seite der Domain. Was von hier
-        # verlinkt wird, bekommt Gewicht — deshalb stehen hier die beiden
-        # meistgesuchten Beiträge und die drei Werkzeuge, nicht ein
+        # verlinkt wird, bekommt Gewicht — deshalb stehen hier die vier
+        # meistgesuchten Beiträge und alle Werkzeuge, nicht ein
         # „mehr erfahren" auf eine weitere Übersichtsseite.
-        "wissen_teaser": _wissen_teaser(),
+        # Design B1 (§2.13, Paket 3): vier Register-Spalten statt eines
+        # Teasers — Werkzeuge, Vergleiche, Ratgeber, Checklisten (Block 11).
+        "wissen_register": _wissen_register(lang),
+        # Design B1 (§2.12, Paket 3): Block 10 "Branchen und Regionen".
+        "verteiler": _startseite_verteiler(lang),
         "startpakete": _startpakete(lang),
         "paket_items": _paket_items(request),
         "paket_aktiv": (request.GET.get("paket") or "").strip().lower(),
