@@ -1,7 +1,7 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-24
+stand: 2026-09-25
 status: teilweise
 fortschritt: 50
 zusammenfassung: 24.09.2026: Die Oeffnungszeiten sind nicht offen, sondern belegt — Mo–Fr 9–18 Uhr stehen seit dem Relaunch sichtbar auf /kontakt/ und /it-notfall/ und identisch im Schema; so gehoeren sie ins Unternehmensprofil (Notiz unten berichtigt, EIG21). Neu fuer das Profil: /it-hilfe/ als Zielseite fuer Einzelhilfe ohne Vertrag (95 €/Std. per Fernwartung). Davor: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP. Am 12.09.2026 SU05 (Ortsseiten decken das Einzugsgebiet ab) als begruendete Ausnahme eingetragen, ohne eine Zeile Code: Der Befund zaehlt jetzt sieben Ortsseiten gegen eine Zielgroesse von acht, aber die achte ist in diesem Projekt schon entschieden -- und zwar dagegen. Weitere Ortsseiten sind in SEO-AUSBAU-3.md als Doorway-Pages verworfen (Regel A16, gestuetzt auf eine Messung an einer Schwesterseite), und den echten Auftrag aus einem achten Ort, den der Rat selbst verlangt, gibt es nicht.
@@ -22,6 +22,28 @@ quellen: docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/BASELINE.md, do
 *Woran sich der Fortschritt bemisst: an vier Punkten zu je 25 — Unternehmensprofil vorhanden · Search Console verbunden · Bewertungen vorhanden · NAP überall gleich. Bei allen sechs betreuten Seiten dieselben vier Punkte.*
 
 Local SEO ist für WVM-IT seit dem 28.08.2026 überhaupt erst möglich: Bis dahin hatte die Seite keinen Firmensitz (`address` enthielt nur `addressCountry: AT`), und Ortsseiten wären Doorway-Pages gewesen. Mit **Waldstraße 19/1, 4860 Lenzing** (Bezirk Vöcklabruck, Oberösterreich) gibt es ein echtes Einzugsgebiet — Nische 2 des Konzepts, „der schnellste Kunde": Wer `it service vöcklabruck` sucht, sieht zuerst die Kartenergebnisse, und die gewinnt kein Ranking, sondern das Unternehmensprofil.
+
+## Stand 25.09.2026 (SEO-, Local- und Google-Strategie)
+
+`10-strategie.md`/`11-code-auftraege.md` (SEO-Team, 25.09.2026, nicht im Repo)
+ordnen alles hier Säule A unter, mit Schritt 0 „Identität klären" (A1) **vor**
+jedem weiteren Profil-Schritt: Am 25.09. war WVM-IT bei „WVM IT Lenzing"
+öffentlich **doppelt** gelistet (Wallstraße mit Logo, Waldstraße ohne Foto,
+beide als „Softwareentwickler/-hersteller"), bei „Computer Hilfe Lenzing" mit
+„Keine Website gefunden". Die Verwaltungsansicht zeigte dagegen IT-Berater, ein
+blaues Häkchen und 4 Rezensionen, öffentlich keine Sterne. Woher das Duplikat
+kommt und welcher Eintrag der verwaltete ist, klärt A1 (Bastian/Florin,
+Browser) — bis dahin bleiben A10 (Beiträge), K4 scharf schalten und K5
+(`sameAs`) bewusst ausgesetzt. Diese Auswertung berichtigt die Zahlen unten
+nicht automatisch; Teil b von K3 (Kopf, „Es gibt keins.") folgt, sobald A1
+Bastian ein Ergebnis liefert.
+
+**Code-seitig bereits umgesetzt (K4, 25.09.2026):** `/bewerten/` ist gebaut
+(Zweig `seo/2026-09-25-kaufsuchen`, live erst mit dem nächsten Deploy) — solange `content.json` → `bewertungslink` leer ist, antwortet die
+Adresse mit 404. Sobald A1 den Link aus „Rezensionen anfordern" liefert, fehlt
+nur noch der eine Eintrag in `content.json`, kein weiterer Code. K5
+(`sameAs`/`llms.txt`) wartet auf dieselbe Maps-URL des **verwalteten** Profils
+und ist noch nicht umgesetzt.
 
 ## Google-Unternehmensprofil
 

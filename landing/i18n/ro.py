@@ -106,7 +106,7 @@ PACK = {
         "chip_value": "de la {preis} €",
         "person_h": "Sunt Florin Feier.",
         "person_t": "Vorbiți cu mine, nu cu o linie de așteptare.",
-        "person_ort": "Proprietar WVM-IT · Lenzing, Austria Superioară",
+        "person_ort": "Proprietar WVM-IT · Lenzing, districtul Vöcklabruck",
         "scroll_aria": "Derulează în jos",
         "robot_msgs": [
             "Bună ziua. Mă bucur că sunteți aici.",
@@ -130,8 +130,8 @@ PACK = {
         "step3_t": "Primiți linkul către site și codul dumneavoastră de reducere.",
         "step4_h": "Îl adaptăm împreună cu dumneavoastră",
         "step4_t": "Lucrăm îndeaproape cu dumneavoastră și rămânem alături până când totul se potrivește exact.",
-        "note_strong": "Newsletter de referință inclus:",
-        "note_rest": "cam o dată pe săptămână vă arătăm proiecte reale pe care le-am construit. Vă puteți dezabona oricând cu un clic.",
+        "note_strong": "La cerere: newsletterul de referință.",
+        "note_rest": "cam o dată pe săptămână vă arătăm proiecte reale pe care le-am construit. Bifat separat și voluntar, vă puteți dezabona oricând cu un clic — site-ul demonstrativ îl primiți și fără.",
         "done_h": "Aproape gata!",
         "done_t": "V-am trimis un e-mail. Confirmați linkul din el, iar codul de 25% și site-ul demonstrativ gratuit pornesc spre dumneavoastră. Verificați eventual și folderul de spam.",
         "card_badge": "JARVIS free",
@@ -140,7 +140,8 @@ PACK = {
         "mail_label": "E-mailul dumneavoastră *",
         "name_label": "Numele dumneavoastră", "name_opt": "(opțional)", "name_ph": "Cum să vă spunem?",
         "wunsch_label": "Pe scurt: ce aveți în minte?", "wunsch_ph": "ex. culori, stil, ce ar trebui arătat (opțional)",
-        "consent_pre": "Doresc să primesc site-ul demonstrativ gratuit, codul meu de 25% și newsletterul săptămânal de referință (cam 1×/săptămână, dezabonare oricând) și sunt de acord cu",
+        "consent_pre": "Doresc să primesc site-ul demonstrativ gratuit și codul meu de 25% și sunt de acord cu",
+        "consent_nl": "Opțional: trimiteți-mi în plus și newsletterul de referință (cam 1×/săptămână, dezabonare oricând). Site-ul demonstrativ îl primesc și fără.",
         "consent_link": "politica de confidențialitate",
         "consent_post": ". *",
         "submit": "Primiți site-ul gratuit",
@@ -268,21 +269,21 @@ PACK = {
         "lead": "Trei mărimi tipice de firmă, calculate din aceeași listă de prețuri ca tot restul. Cifra exactă o calculați singur în calculator.",
         "beliebt": "tipic pentru un birou cu server",
         "unit": "€/lună",
-        "klein_h": "Până la 5 posturi",
+        "klein_h": "Exemplu: 5 posturi",
         "klein_for": "Firmă mică fără server propriu.",
         "klein_li": [
             "5 posturi de lucru administrate curent",
             "Backup verificat zilnic",
             "Ajutor prin acces la distanță, pe oră",
         ],
-        "mittel_h": "Până la 15 posturi",
+        "mittel_h": "Exemplu: 15 posturi",
         "mittel_for": "Firmă cu un server.",
         "mittel_li": [
             "15 posturi de lucru administrate curent",
             "Un server monitorizat non-stop",
             "Backup verificat zilnic",
         ],
-        "gross_h": "Până la 30 de posturi",
+        "gross_h": "Exemplu: 30 de posturi",
         "gross_for": "Mai multe sedii sau servere.",
         "gross_li": [
             "30 de posturi administrate curent",
@@ -314,15 +315,6 @@ PACK = {
         "growth_li": ["Tot din Business", "Automatizări AI", "Mentenanță și actualizări", "Monitorizare performanță", "Suport SEO continuu"],
         "growth_cta": "Cere consultanță",
         "foot": "Toate prețurile net plus TVA. Găzduire și domeniu opțional ca pachet lunar.",
-    },
-    "ueber": {
-        "badge_fallback": "IT · service · consulting",
-        "h": "Un singur contact dedicat. Fără vorbe goale de agenție.",
-        "lead_pre": "În spatele", "lead_mid": "se află",
-        "lead_rest": ". Din pasiune pentru tehnica curată, aduc împreună automatizarea clădirilor, tehnica de evenimente, IT-ul și prezențele digitale — totul dintr-o singură sursă și cu parteneri puternici. Personal, onest și direct accesibil.",
-        "p1": "Totul dintr-o singură sursă, de la idee până la funcționarea curentă.",
-        "p2": "Comunicare clară, fără jargon.",
-        "p3": "Prețuri corecte și reacție rapidă.",
     },
     "koop": {
         "eyebrow": "Parteneriate",
@@ -359,6 +351,7 @@ PACK = {
         "budget_choose": "Te rugăm să alegi",
         "budget_1": "sub 1.000 euro", "budget_2": "1.000 până la 3.000 euro",
         "budget_3": "3.000 până la 7.000 euro", "budget_4": "peste 7.000 euro",
+        "err": "Nu a funcționat: vă rugăm să completați numele, o adresă de e-mail validă și mesajul și să acceptați nota de confidențialitate. Datele introduse sunt încă aici.",
         "f_project": "Proiectul tău *", "f_project_ph": "Despre ce e vorba? Câteva cuvinte-cheie sunt suficiente.",
         "consent_pre": "Am citit", "consent_link": "politica de confidențialitate", "consent_post": "și sunt de acord. *",
         "submit": "Trimite solicitarea",
@@ -371,7 +364,7 @@ PACK = {
         "l_edv": "IT & securitate", "l_web": "Site-uri web & AI",
         "col_wissen": "Cunoștințe",
         "col_unternehmen": "Companie",
-        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_alle": "Toate serviciile", "u_shop": "Magazin", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
+        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_alle": "Toate serviciile", "u_shop": "PyStore (partener)", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
         "u_webagentur": "Site web: Webagentur Scherzinger",
         "impressum_ph": "Datele de identificare apar aici de îndată ce datele firmei sunt înregistrate.",
         "datenschutz_ph": "Politica de confidențialitate apare aici de îndată ce este finalizată.",
@@ -512,10 +505,10 @@ PACK = {
         "einstieg_cta": "Solicitați acest pas",
         "abgrenzung_h": "Ce nu primiți de la noi",
         "abgrenzung": [
-            "Fără durată minimă peste un trimestru — puteți renunța oricând.",
+            "Fără durată minimă peste un trimestru — reziliere cu o lună înainte de sfârșitul trimestrului.",
             "Fără sisteme din care nu mai puteți ieși: conturile și datele vă aparțin.",
             "Fără echipamente de care nu aveți nevoie. Recomandăm ce e necesar și spunem și când ceva nu merită.",
-            "Fără disponibilitate non-stop. Suntem disponibili în zilele lucrătoare; pagina de urgență explică ce înseamnă asta.",
+            "Fără disponibilitate non-stop. Monitorizarea semnalează și noaptea și în weekend, dar alertele se tratează de luni până vineri, între 9 și 18; pagina de urgență explică ce înseamnă asta.",
         ],
         "ausgang_h": "Preferați să calculați mai întâi singur?",
         "ausgang_rechner": "Calculați prețul lunar pentru firma dumneavoastră",
@@ -602,7 +595,7 @@ PACK = {
         "titel": "Urgență IT: primele 30 de minute | WVM-IT",
         "desc": "Criptare, cădere de server, căsuță compromisă: ce faceți în primele 30 de minute — și ce nu. În caz de urgență, sunați imediat.",
         "h1": "Urgență IT: ce trebuie făcut în primele 30 de minute",
-        "kurz": "Într-o urgență IT, primele minute decid paguba. O singură regulă este valabilă în toate cele patru cazuri: deconectați aparatele afectate de la rețea, dar nu le opriți și nu ștergeți nimic — memoria și jurnalele conțin urmele necesare pentru recuperare și pentru o eventuală notificare. Apoi cereți ajutor. Suntem disponibili în zilele lucrătoare între orele 9 și 18 la numărul de mai jos și începem prin mentenanță la distanță, de obicei în câteva minute — inclusiv dacă nu sunteți clientul nostru.",
+        "kurz": "Într-o urgență IT, primele minute decid paguba. O singură regulă este valabilă în toate cele patru cazuri: deconectați aparatele afectate de la rețea, dar nu le opriți și nu ștergeți nimic — memoria și jurnalele conțin urmele necesare pentru recuperare și pentru o eventuală notificare. Apoi cereți ajutor. Suntem disponibili de luni până vineri între orele 9 și 18 la numărul de mai jos și începem prin mentenanță la distanță, de obicei în câteva minute — inclusiv dacă nu sunteți clientul nostru.",
         "eilt_h": "Este urgent — pe aici",
         "eilt_t": "Sunați, nu scrieți. În timpul unei defecțiuni în desfășurare, un telefon economisește mai mult timp decât orice descriere prin e-mail.",
         "intro": "Această pagină este pentru acțiune, nu pentru lectură. Găsiți mai jos cazul dumneavoastră și parcurgeți pașii în ordine. Restul — cauza, recuperarea, obligațiile de notificare — vine după. Suntem disponibili în mod explicit și dacă nu sunteți clientul nostru; o urgență acută este momentul nepotrivit pentru o discuție despre contract.",
@@ -685,7 +678,7 @@ PACK = {
             },
         ],
         "erreichbar_h": "Când nu sunt disponibil",
-        "erreichbar_t": "Sincer: suntem o firmă mică, și tocmai de aceea nu aveți aici nici listă de așteptare, nici sistem de tichete. Înseamnă însă și că nu promitem disponibilitate non-stop. Suntem disponibili în zilele lucrătoare, de la 9 la 18, iar în acest interval defecțiunile clienților cu contract au prioritate — înaintea tuturor. În afara programului lăsați un mesaj pe robot sau prin WhatsApp; le ascultăm.",
+        "erreichbar_t": "Sincer: suntem o firmă mică, și tocmai de aceea nu aveți aici nici listă de așteptare, nici sistem de tichete. Înseamnă însă și că nu promitem disponibilitate non-stop. Suntem disponibili de luni până vineri, de la 9 la 18, iar în acest interval defecțiunile clienților cu contract au prioritate — înaintea tuturor. În afara programului lăsați un mesaj pe robot sau prin WhatsApp; le ascultăm.",
         "erreichbar_vertretung": "Pentru absențe mai lungi (concediu, boală) există o înțelegere fixă de înlocuire cu o firmă parteneră care cunoaște accesele și documentația. Clienții cu contract primesc numele și numărul în scris la începutul contractului.",
         "erreichbar_fuss": "Dacă aveți nevoie de disponibilitate garantată non-stop, vă spunem deschis — și vă recomandăm pe cineva care o poate oferi.",
         "danach_h": "Ce urmează după",
@@ -852,7 +845,7 @@ PACK = {
         "desc": "Administrare IT de la 29 €/lună pe stație, ajutor fără contract 95 €/oră, configurare de la 190 €, site-uri de la 350 € — în Austria și Germania.",
         "h1": "Ce preia WVM-IT pentru firme",
         "kurz": "WVM-IT administrează IT-ul firmelor mici și mijlocii din Austria și Germania și preia în plus tot ce le face vizibile: site-uri, SEO, Google Ads și automatizare. Accentul este pe administrarea IT curentă de la 29 € per post de lucru și lună, prestată în cea mai mare parte la distanță. Automatizarea clădirilor și tehnica pentru evenimente se adaugă pe proiect, la fața locului. Toate cele unsprezece servicii trec prin aceeași persoană de contact și aceeași listă de prețuri, fie că este vorba de un singur post de lucru, fie de un proiect mai mare.",
-        "intro": "Unsprezece servicii, trei domenii – și o singură persoană de contact pentru toate. Ce găsiți aici nu este intenționat o listă de cuvinte-cheie: fiecare serviciu are pagina lui, cu ce include, cum decurge și cât costă. Dacă nu sunteți sigur de unde să începeți: IT și infrastructură se potrivește atunci când trebuie administrată o tehnică curentă – stații de lucru, servere, backup, securitate. Vizibilitate și web se potrivește atunci când clienții trebuie să vă găsească online sau trebuie construit un site nou. Tehnica la fața locului se potrivește de îndată ce ceva trebuie cablat, montat sau calibrat. O colaborare începe de cele mai multe ori la fel: cu o scurtă evaluare a ceea ce există deja și o estimare a ceea ce se poate rezolva la distanță și ce anume are nevoie de o vizită la fața locului. Stațiile de lucru, serverele, e-mailul, actualizările și backupul funcționează aproape întotdeauna de la distanță; cablarea, montarea hardware și tehnica la fața locului nu.",
+        "intro": "{anzahl} servicii, trei domenii – și o singură persoană de contact pentru toate. Ce găsiți aici nu este intenționat o listă de cuvinte-cheie: fiecare serviciu are pagina lui, cu ce include, cum decurge și cât costă. Dacă nu sunteți sigur de unde să începeți: IT și infrastructură se potrivește atunci când trebuie administrată o tehnică curentă – stații de lucru, servere, backup, securitate. Vizibilitate și web se potrivește atunci când clienții trebuie să vă găsească online sau trebuie construit un site nou. Tehnica la fața locului se potrivește de îndată ce ceva trebuie cablat, montat sau calibrat. O colaborare începe de cele mai multe ori la fel: cu o scurtă evaluare a ceea ce există deja și o estimare a ceea ce se poate rezolva la distanță și ce anume are nevoie de o vizită la fața locului. Stațiile de lucru, serverele, e-mailul, actualizările și backupul funcționează aproape întotdeauna de la distanță; cablarea, montarea hardware și tehnica la fața locului nu.",
         # Wegweiser (R2-12, 24.09.2026): trei căi.
         "wegweiser_h": "Care este drumul potrivit pentru firma dumneavoastră?",
         "wegweiser_aria": "Selector de rută prin serviciile noastre",
@@ -990,7 +983,7 @@ PACK = {
             {"q": "Backupul nu este oricum inclus?",
              "a": "Un backup rulează cumva în majoritatea firmelor. Ce se calculează aici este altceva: un backup supravegheat, la care fiecare rulare este verificată și restaurarea este testată periodic. Un backup din care nu s-a recuperat niciodată nimic nu este un backup, ci o speranță."},
             {"q": "Există o durată minimă?",
-             "a": "Peste un trimestru, nu. Puteți rezilia trimestrial și primiți toate accesele, parolele și documentația complet. Nu construim în mod deliberat nimic care să vă lege de noi."},
+             "a": "Peste un trimestru, nu. Puteți rezilia cu o lună înainte de sfârșitul trimestrului și primiți toate accesele, parolele și documentația complet. Nu construim în mod deliberat nimic care să vă lege de noi."},
         ],
         "anfrage_satz": "{posten} — {mtl} €/lună conform calculului dumneavoastră",
         "cta_h": "Se potrivește cifra? Atunci o calculăm exact",
@@ -1012,10 +1005,10 @@ PACK = {
         "desc": "WhatsApp, telefon, apel invers sau e-mail — răspuns în 24 de ore în zilele lucrătoare, în toată Austria și Germania. Contactați-ne acum.",
         "h1": "Cum ne găsiți",
         "kurz": "WVM-IT poate fi contactat prin WhatsApp, telefon, apel invers sau e-mail. Solicitările primesc răspuns în 24 de ore în zilele lucrătoare, iar în cazul unei defecțiuni acute de obicei mult mai repede. Administrăm firme din toată Austria și Germania, în cea mai mare parte la distanță; o vizită la fața locului se stabilește dinainte.",
-        "intro": "Cel mai rapid este prin WhatsApp sau telefon: o propoziție despre ce se întâmplă este suficientă. În timpul unei defecțiuni, două minute la telefon economisesc mai mult timp decât orice descriere scrisă. Dacă nu puteți vorbi acum, lăsați numărul și un cuvânt-cheie prin formularul de apel invers.</p><p class='sp-intro'>Cu cât cererea este mai precisă, cu atât primul răspuns este mai concret. Spuneți pe scurt despre ce este vorba — o defecțiune acută, o întreținere curentă, un site nou sau un proiect la fața locului —, câte stații sau servere sunt afectate și până când trebuie să funcționeze. Atunci răspunsul nostru în 24 de ore conține deja un ordin de mărime, nu o altă întrebare. Asistența la distanță este aici cazul obișnuit, nu o soluție de avarie: asistența la distanță înseamnă că un tehnician accesează un calculator sau un server printr-o conexiune securizată, în loc să se deplaseze — într-o sesiune aprobată de dumneavoastră vede exact ce este pe ecranul dumneavoastră, urmăriți fiecare mișcare și puteți întrerupe oricând, iar fără o nouă aprobare nimeni nu revine pe aparat. La fața locului venim acolo unde este nevoie de mâini: cabluri, montaj, schimb de aparate.",
+        "intro": "Cel mai rapid este prin WhatsApp sau telefon: o propoziție despre ce se întâmplă este suficientă. În timpul unei defecțiuni, două minute la telefon economisesc mai mult timp decât orice descriere scrisă. Dacă nu puteți vorbi acum, lăsați numărul și un cuvânt-cheie prin formularul de apel invers.\n\nCu cât cererea este mai precisă, cu atât primul răspuns este mai concret. Spuneți pe scurt despre ce este vorba — o defecțiune acută, o întreținere curentă, un site nou sau un proiect la fața locului —, câte stații sau servere sunt afectate și până când trebuie să funcționeze. Atunci răspunsul nostru în 24 de ore conține deja un ordin de mărime, nu o altă întrebare. Asistența la distanță este aici cazul obișnuit, nu o soluție de avarie: asistența la distanță înseamnă că un tehnician accesează un calculator sau un server printr-o conexiune securizată, în loc să se deplaseze — într-o sesiune aprobată de dumneavoastră vede exact ce este pe ecranul dumneavoastră, urmăriți fiecare mișcare și puteți întrerupe oricând, iar fără o nouă aprobare nimeni nu revine pe aparat. La fața locului venim acolo unde este nevoie de mâini: cabluri, montaj, schimb de aparate.",
         "wege_h": "Patru moduri de a ne contacta",
         "zeiten_h": "Disponibilitate",
-        "zeiten_t": "De luni până vineri, între 9 și 18. Cererile din afara acestor ore primesc răspuns în următoarea zi lucrătoare, în orice caz în 24 de ore.</p><p class='sp-intro'>În cazul unei defecțiuni acute sunați, nu scrieți: un apel ne ajunge și atunci când nimeni nu se uită în căsuța poștală. Ce trebuie făcut în primele treizeci de minute ale unei urgențe este descris pe pagina de urgență — și este valabil și înainte să ne fi contactat.",
+        "zeiten_t": "De luni până vineri, între 9 și 18. Cererile din afara acestor ore primesc răspuns în următoarea zi lucrătoare.\n\nÎn cazul unei defecțiuni acute sunați, nu scrieți: un apel ne ajunge și atunci când nimeni nu se uită în căsuța poștală. Ce trebuie făcut în primele treizeci de minute ale unei urgențe este descris pe pagina de urgență — și este valabil și înainte să ne fi contactat.",
         "daten_h": "Date de firmă",
         "anschrift": "Adresă",
         "daten_fehlt": "Adresa completă o adăugăm aici de îndată ce sediul firmei este înregistrat. Până atunci ne găsiți la telefon și pe e-mail.",
@@ -1029,7 +1022,7 @@ PACK = {
         "titel": "Cererea a ajuns — răspuns în 24 de ore | WVM-IT",
         "desc": "Cererea dumneavoastră a ajuns la noi. Ce urmează, cât de repede răspundem și unde ne găsiți dacă este urgent. Citiți acum.",
         "h1": "Cererea dumneavoastră a ajuns la noi",
-        "kurz": "Cererea dumneavoastră se află în căsuța noastră poștală. Răspundem în 24 de ore în zilele lucrătoare, de regulă mult mai repede. Dacă este urgent și nu vreți să așteptați, sunați: {telefon}. Nu apar costuri până când ceva nu este comandat în scris.",
+        "kurz": "Cererea dumneavoastră a ajuns la noi. Răspundem în 24 de ore în zilele lucrătoare, de regulă mult mai repede. Dacă este urgent și nu vreți să așteptați, sunați: {telefon}. Nu apar costuri până când ceva nu este comandat în scris.",
         "thema_label": "Subiect",
         "notfall": "Urgență IT",
         "w1_h": "Calculator de costuri",
@@ -1052,6 +1045,10 @@ PACK = {
         "zurueck": "Înapoi la pagina principală",
     },
     "ueber": {
+        # Bildunterschrift unter dem Inhaberfoto der Startseite, wenn `tagline` leer
+        # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
+        # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
+        "badge_fallback": "IT · service · consulting",
         "titel": "Despre WVM-IT — Florin Feier, Lenzing (Austria)",
         "desc": "Cine este în spatele WVM-IT, cum lucrăm și ce nu facem în mod deliberat. O singură persoană de contact, sediu în Austria Superioară. Cunoașteți-ne.",
         "h1": "Cine este în spatele WVM-IT",
@@ -1083,6 +1080,7 @@ PACK = {
         "dsgvo_1": "Folosim datele dumneavoastră doar pentru a răspunde acestei cereri – fără transmitere mai departe, fără publicitate fără acordul dumneavoastră. Detalii în",
         "dsgvo_link": "Datenschutzerklärung (politica de confidențialitate, în germană)",
         "dsgvo_2": ". Câmpurile marcate cu * sunt obligatorii.",
+        "fehler_pruefen": "Cererea nu a fost trimisă: vă rugăm să verificați adresa de e-mail, câmpurile obligatorii și acordul.",
     },
     "recht": {
         "impressum_titel": "Date de identificare | WVM-IT",
@@ -1142,7 +1140,7 @@ PACK = {
         "fine": "Fără angajament. Datele tale sunt tratate confidențial.",
         "pl_h": "Toate prețurile dintr-o privire.",
         "pl_lead": "Prezentarea completă a tuturor serviciilor cu prețuri de start. Oferta exactă o stabilim într-o discuție, în funcție de proiectul tău.",
-        "pl_foot": "Toate prețurile net plus TVA. Prețuri orientative; prețul final rezultă după discuție. Serviciile lunare pot fi anulate oricând.",
+        "pl_foot": "Toate prețurile net plus TVA. Prețuri orientative; prețul final rezultă după discuție. Serviciile lunare pot fi reziliate cu o lună înainte de sfârșitul trimestrului.",
         "js_leistung": "serviciu", "js_leistungen": "servicii",
         "js_remove": "Elimină:", "js_from": "de la", "js_on_request": "la cerere",
         "js_per_month": "€/lună", "js_per_year": "€/an",
@@ -1345,11 +1343,11 @@ PACK = {
         "zeit": "Când vă convine?",
         "zeit_1": "Dimineața (9 – 12)",
         "zeit_2": "După-amiaza (12 – 17)",
-        "zeit_3": "Seara (după 17)",
+        "zeit_3": "Spre seară (17 – 18)",
         "zeit_4": "Oricând, cât mai repede",
         "zeit_1_kurz": "Dimineața", "zeit_1_uhr": "9–12",
         "zeit_2_kurz": "După-amiaza", "zeit_2_uhr": "12–17",
-        "zeit_3_kurz": "Seara", "zeit_3_uhr": "după ora 17",
+        "zeit_3_kurz": "Seara", "zeit_3_uhr": "17–18",
         "zeit_4_kurz": "Oricând", "zeit_4_uhr": "cât mai repede",
         # Optionales Anliegen (W05, 24.09.2026); Schluessel wie views._ANLIEGEN.
         "anliegen": "Despre ce este vorba? (opțional)", "anliegen_leer": "Alegeți",
@@ -1487,8 +1485,8 @@ PACK = {
             "{anrede},\n\n"
             "aproape gata. Te rugăm să confirmi înscrierea la {site} cu un clic:\n\n"
             "{link}\n\n"
-            "După aceea primești codul tău de 25% reducere și site-ul demonstrativ gratuit. "
-            "În plus, primești newsletterul nostru de referință cam o dată pe săptămână (dezabonare oricând).\n"
+            "După aceea primești codul tău de 25% reducere și site-ul demonstrativ gratuit.\n"
+            "{nl_line}"
             "Linkul e valabil 3 zile. Dacă nu te-ai înscris tu, ignoră pur și simplu acest e-mail.\n"
         ),
         "nl_welcome_subject": "Bine ai venit la {site}: codul tău de 25%",
@@ -1500,12 +1498,14 @@ PACK = {
             "ca să vezi imediat ce e posibil. Apoi îl implementăm împreună cu tine, "
             "până când totul se potrivește.\n\n"
             "{wunsch_line}"
-            "De acum primești și newsletterul nostru de referință cam o dată pe săptămână, "
-            "cu proiecte reale de-ale noastre. Te poți dezabona oricând prin linkul de la "
-            "finalul fiecărui e-mail.\n\n"
+            "{nl_line}"
             "Pe curând,\nechipa ta de la {site}\n{url}\n"
         ),
         "nl_welcome_wunsch": "Datele tale către noi: {wunsch}\n\n",
+        "nl_confirm_nl": "Odată cu confirmarea primești și newsletterul nostru de referință cam o dată pe săptămână (dezabonare oricând), așa cum ai cerut.\n",
+        "nl_welcome_nl": ("Așa cum ai cerut, primești și newsletterul nostru de referință cam o dată pe săptămână, "
+                          "cu proiecte reale de-ale noastre. Te poți dezabona oricând prin linkul de la "
+                          "finalul fiecărui e-mail.\n\n"),
         "angebot_kunde_subject": "Oferta ta orientativă de la {site}",
         "angebot_kunde_body": (
             "Bună ziua,\n\nvă mulțumim pentru interes. Iată oferta dvs. orientativă fără obligații de la {site}:\n\n"

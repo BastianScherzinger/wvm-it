@@ -112,7 +112,7 @@ PACK = {
         "chip_value": "from €{preis}",
         "person_h": "I'm Florin Feier.",
         "person_t": "You talk to me, not to a hold queue.",
-        "person_ort": "Owner of WVM-IT · Lenzing, Upper Austria",
+        "person_ort": "Owner of WVM-IT · Lenzing, Vöcklabruck district",
         "scroll_aria": "Scroll down",
         "robot_msgs": [
             "Hello. Good to have you here.",
@@ -136,8 +136,8 @@ PACK = {
         "step3_t": "You receive the link to the site and your discount code.",
         "step4_h": "We tailor it with you",
         "step4_t": "We work closely with you and stay by your side until everything fits just right.",
-        "note_strong": "Reference newsletter included:",
-        "note_rest": "about once a week we show you real projects we've built, as inspiration. Unsubscribe any time with one click.",
+        "note_strong": "Optional extra: the reference newsletter.",
+        "note_rest": "about once a week we show you real projects we've built, as inspiration. Ticked separately and voluntarily, unsubscribe any time with one click — you get the sample website without it too.",
         "done_h": "Almost there!",
         "done_t": "We've sent you an email. Confirm the link inside and your 25% code and free sample website are on their way. Take a quick look in your spam folder if needed.",
         "card_badge": "JARVIS free",
@@ -146,7 +146,8 @@ PACK = {
         "mail_label": "Your email *",
         "name_label": "Your name", "name_opt": "(optional)", "name_ph": "What should we call you?",
         "wunsch_label": "Briefly: what do you have in mind?", "wunsch_ph": "e.g. colours, style, what should be shown (optional)",
-        "consent_pre": "I'd like to receive the free sample website, my 25% code and the weekly reference newsletter (about 1×/week, unsubscribe any time) and I agree to the",
+        "consent_pre": "I'd like to receive the free sample website and my 25% code and I agree to the",
+        "consent_nl": "Optional: also send me the reference newsletter (about 1×/week, unsubscribe any time). I get the sample website either way.",
         "consent_link": "privacy policy",
         "consent_post": ". *",
         "submit": "Claim free website",
@@ -274,21 +275,21 @@ PACK = {
         "lead": "Three typical company sizes, calculated from the same price list as everything else. Work out your exact figure in the calculator.",
         "beliebt": "typical for an office with a server",
         "unit": "€/month",
-        "klein_h": "Up to 5 workstations",
+        "klein_h": "Example: 5 workstations",
         "klein_for": "Small business without its own server.",
         "klein_li": [
             "5 workstations under ongoing support",
             "Daily verified backup",
             "Remote help billed by the hour",
         ],
-        "mittel_h": "Up to 15 workstations",
+        "mittel_h": "Example: 15 workstations",
         "mittel_for": "Business with one server.",
         "mittel_li": [
             "15 workstations under ongoing support",
             "One server monitored around the clock",
             "Daily verified backup",
         ],
-        "gross_h": "Up to 30 workstations",
+        "gross_h": "Example: 30 workstations",
         "gross_for": "Several sites or servers.",
         "gross_li": [
             "30 workstations under ongoing support",
@@ -320,15 +321,6 @@ PACK = {
         "growth_li": ["Everything in Business", "AI automations", "Maintenance and updates", "Performance monitoring", "Ongoing SEO support"],
         "growth_cta": "Get advice",
         "foot": "All prices net plus VAT. Hosting and domain optional as a monthly package.",
-    },
-    "ueber": {
-        "badge_fallback": "IT · service · consulting",
-        "h": "One dedicated contact. No agency waffle.",
-        "lead_pre": "Behind", "lead_mid": "stands",
-        "lead_rest": ". Out of a passion for clean technology, I bring together building automation, event technology, IT and digital presences — all from a single source and with strong partners. Personal, honest and directly reachable.",
-        "p1": "All from a single source, from the idea to ongoing operation.",
-        "p2": "Clear communication, without the jargon.",
-        "p3": "Fair prices and a fast response.",
     },
     "koop": {
         "eyebrow": "Partnerships",
@@ -365,6 +357,7 @@ PACK = {
         "budget_choose": "Please choose",
         "budget_1": "under €1,000", "budget_2": "€1,000 to €3,000",
         "budget_3": "€3,000 to €7,000", "budget_4": "over €7,000",
+        "err": "That did not go through: please give your name, a valid e-mail address and your message, and accept the privacy notice. What you typed is still there.",
         "f_project": "Your project *", "f_project_ph": "What's it about? A few keywords are enough.",
         "consent_pre": "I have read the", "consent_link": "privacy policy", "consent_post": "and agree. *",
         "submit": "Send enquiry",
@@ -377,7 +370,7 @@ PACK = {
         "l_edv": "IT & security", "l_web": "Websites & AI",
         "col_wissen": "Knowledge",
         "col_unternehmen": "Company",
-        "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_alle": "All services", "u_shop": "Shop", "u_referenzen": "Case studies", "u_faq": "FAQ",
+        "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_alle": "All services", "u_shop": "PyStore (partner)", "u_referenzen": "Case studies", "u_faq": "FAQ",
         "u_webagentur": "Website: Webagentur Scherzinger",
         "impressum_ph": "The legal notice will appear here as soon as the company details are on file.",
         "datenschutz_ph": "The privacy policy will appear here as soon as it has been finalised.",
@@ -518,10 +511,10 @@ PACK = {
         "einstieg_cta": "Request this step",
         "abgrenzung_h": "What you will not get from us",
         "abgrenzung": [
-            "No minimum term beyond one quarter — you can stop at any time.",
+            "No minimum term beyond one quarter — cancellable with one month’s notice to the end of a quarter.",
             "No systems you cannot leave: accounts and data belong to you.",
             "No hardware you don't need. We recommend what is necessary and say so when something isn't worth it.",
-            "No round-the-clock on-call. We are reachable on working days; the emergency page explains what that means.",
+            "No round-the-clock on-call. Monitoring alerts at night and at weekends too, but alerts are handled Monday to Friday from 9am to 6pm; the emergency page explains what that means.",
         ],
         "ausgang_h": "Rather work it out yourself first?",
         "ausgang_rechner": "Calculate the monthly price for your business",
@@ -608,7 +601,7 @@ PACK = {
         "h1": "IT emergency: what to do in the first 30 minutes",
         "nav": "IT emergency",
         "wa_text": "IT emergency: ",
-        "kurz": "In an IT emergency the first minutes decide the damage. One rule applies in all four cases: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report. Then get help. We are reachable on working days from 9 to 18 on the number below and usually begin by remote maintenance within minutes — including if you are not a client of ours.",
+        "kurz": "In an IT emergency the first minutes decide the damage. One rule applies in all four cases: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report. Then get help. We are reachable Monday to Friday from 9am to 6pm on the number below and usually begin by remote maintenance within minutes — including if you are not a client of ours.",
         "eilt_h": "It is urgent — this way",
         "eilt_t": "Call rather than write. During an ongoing incident a phone call saves more time than any description by email.",
         "intro": "This page is for acting, not for reading. Find your case below and work through the steps in order. Everything else — cause analysis, recovery, notification duties — comes afterwards. We are explicitly reachable even if you are not a client of ours; an acute emergency is the wrong moment for a contract question.",
@@ -691,7 +684,7 @@ PACK = {
             },
         ],
         "erreichbar_h": "If I am unavailable",
-        "erreichbar_t": "Honestly: we are a small operation, and that is exactly why there is no hold queue and no ticket system here. It also means we do not promise round-the-clock standby. We are reachable on working days from 9 to 18, and during those hours ongoing faults at support customers come first — before everything else. Outside those hours, leave a message on voicemail or via WhatsApp; we listen to them.",
+        "erreichbar_t": "Honestly: we are a small operation, and that is exactly why there is no hold queue and no ticket system here. It also means we do not promise round-the-clock standby. We are reachable Monday to Friday from 9am to 6pm, and during those hours ongoing faults at support customers come first — before everything else. Outside those hours, leave a message on voicemail or via WhatsApp; we listen to them.",
         "erreichbar_vertretung": "For longer absences (holiday, illness) there is a fixed cover arrangement with a partner business that knows the accounts and the documentation. Support customers receive the name and number in writing when the contract starts.",
         "erreichbar_fuss": "If you need guaranteed round-the-clock standby, we will tell you so plainly — and recommend someone who can provide it.",
         "danach_h": "What comes afterwards",
@@ -858,7 +851,7 @@ PACK = {
         "desc": "IT support from €29 per workstation a month, help without a contract €95/hr, set-up from €190, websites from €350 — in Austria and Germany.",
         "h1": "What WVM-IT takes on for businesses",
         "kurz": "WVM-IT looks after the IT of small and mid-sized businesses in Austria and Germany and additionally covers everything that makes them visible: websites, SEO, Google Ads and automation. The focus is ongoing IT support from €29 per workstation and month, mostly delivered remotely. Building and event technology are added on site, per project. All eleven services run through the same contact and the same price list, whether it is a single workstation or a larger project.",
-        "intro": "Eleven services, three areas – and one contact for all of them. What you find here is deliberately not a list of buzzwords: every service has its own page stating what is included, how it works and what it costs. If you are not sure where to start: IT and infrastructure fits when ongoing technology needs looking after – workstations, servers, backups, security. Visibility and web fits when customers should be able to find you online or a new site is needed. On-site technology fits as soon as something has to be wired, installed or calibrated. A collaboration usually starts the same way: with a short review of what already exists and an assessment of what can be handled remotely and what needs an on-site visit. Workstations, servers, email, updates and backups run almost always from a distance; cabling, hardware installation and on-site technology do not.",
+        "intro": "{anzahl} services, three areas – and one contact for all of them. What you find here is deliberately not a list of buzzwords: every service has its own page stating what is included, how it works and what it costs. If you are not sure where to start: IT and infrastructure fits when ongoing technology needs looking after – workstations, servers, backups, security. Visibility and web fits when customers should be able to find you online or a new site is needed. On-site technology fits as soon as something has to be wired, installed or calibrated. A collaboration usually starts the same way: with a short review of what already exists and an assessment of what can be handled remotely and what needs an on-site visit. Workstations, servers, email, updates and backups run almost always from a distance; cabling, hardware installation and on-site technology do not.",
         # Wegweiser (R2-12, 24.09.2026): three routes.
         "wegweiser_h": "Which route fits your business?",
         "wegweiser_aria": "Route selector across our services",
@@ -996,7 +989,7 @@ PACK = {
             {"q": "Are backups not included anyway?",
              "a": "A backup runs somehow in most businesses. What is calculated here is something else: a monitored backup where every run is verified and the restore is tested regularly. A backup nothing has ever been restored from is not a backup but a hope."},
             {"q": "Is there a minimum term?",
-             "a": "Not beyond a quarter. You can cancel quarterly and receive all credentials, passwords and documentation in full. We deliberately build in nothing that ties you to us."},
+             "a": "Not beyond a quarter. You can cancel with one month’s notice to the end of a quarter and receive all credentials, passwords and documentation in full. We deliberately build in nothing that ties you to us."},
         ],
         "anfrage_satz": "{posten} — {mtl} €/month according to your calculation",
         "cta_h": "Does the figure fit? Then we will work it out precisely",
@@ -1018,10 +1011,10 @@ PACK = {
         "desc": "WhatsApp, phone, callback or e-mail — an answer within 24 hours on working days, across Austria and Germany. Get in touch today.",
         "h1": "How to reach us",
         "kurz": "WVM-IT can be reached by WhatsApp, phone, callback or email. Enquiries are answered within 24 hours on business days, and usually much faster during an acute outage. We serve businesses across Austria and Germany, mostly by remote support; an on-site visit is arranged in advance.",
-        "intro": "WhatsApp or the phone is the fastest way: one sentence about what is going on is enough. During an ongoing fault, two minutes on the phone save more time than any written description. If you cannot talk right now, leave your number and a keyword through the callback form.</p><p class='sp-intro'>The more precise the enquiry, the more concrete the first answer. Tell us briefly what this is about — an acute outage, ongoing support, a new website or a project on site — how many workstations or servers are affected and by when it has to run. Then our answer within 24 hours already carries an order of magnitude instead of another question. Remote support is the normal case here, not a stopgap: remote support means that a technician reaches your computer or server over a secured connection instead of driving out — in a session you have approved, they see exactly what is on your screen, you watch every move and can stop at any time, and without a new approval nobody gets back onto the device. We come on site where hands are needed: cabling, installation, hardware replacement.",
+        "intro": "WhatsApp or the phone is the fastest way: one sentence about what is going on is enough. During an ongoing fault, two minutes on the phone save more time than any written description. If you cannot talk right now, leave your number and a keyword through the callback form.\n\nThe more precise the enquiry, the more concrete the first answer. Tell us briefly what this is about — an acute outage, ongoing support, a new website or a project on site — how many workstations or servers are affected and by when it has to run. Then our answer within 24 hours already carries an order of magnitude instead of another question. Remote support is the normal case here, not a stopgap: remote support means that a technician reaches your computer or server over a secured connection instead of driving out — in a session you have approved, they see exactly what is on your screen, you watch every move and can stop at any time, and without a new approval nobody gets back onto the device. We come on site where hands are needed: cabling, installation, hardware replacement.",
         "wege_h": "Four ways to reach us",
         "zeiten_h": "Availability",
-        "zeiten_t": "Monday to Friday, 9am to 6pm. Enquiries outside those hours are answered on the next working day, in any case within 24 hours.</p><p class='sp-intro'>In an acute outage, call rather than write: a phone call reaches us even when nobody is looking at the inbox. What to do in the first thirty minutes of an emergency is set out on the emergency page — and it applies before you have reached us.",
+        "zeiten_t": "Monday to Friday, 9am to 6pm. Enquiries outside those hours are answered on the next working day.\n\nIn an acute outage, call rather than write: a phone call reaches us even when nobody is looking at the inbox. What to do in the first thirty minutes of an emergency is set out on the emergency page — and it applies before you have reached us.",
         "daten_h": "Company details",
         "anschrift": "Address",
         "daten_fehlt": "The full postal address will be added here once the registered office is on file. Until then you can reach us by phone and email.",
@@ -1035,7 +1028,7 @@ PACK = {
         "titel": "Enquiry received — answer within 24 hours | WVM-IT",
         "desc": "Your enquiry has reached us. What happens next, how fast we answer and where to reach us if it is urgent. Read on now.",
         "h1": "Your enquiry has reached us",
-        "kurz": "Your enquiry is in our inbox. We answer within 24 hours on working days, usually a good deal sooner. If it is urgent and you would rather not wait, call us: {telefon}. Nothing is chargeable until something has been ordered in writing.",
+        "kurz": "Your enquiry has reached us. We answer within 24 hours on working days, usually a good deal sooner. If it is urgent and you would rather not wait, call us: {telefon}. Nothing is chargeable until something has been ordered in writing.",
         "thema_label": "Subject",
         "notfall": "IT emergency",
         "w1_h": "Cost calculator",
@@ -1058,6 +1051,10 @@ PACK = {
         "zurueck": "Back to the home page",
     },
     "ueber": {
+        # Bildunterschrift unter dem Inhaberfoto der Startseite, wenn `tagline` leer
+        # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
+        # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
+        "badge_fallback": "IT · service · consulting",
         "titel": "About WVM-IT — Florin Feier, Lenzing, Austria",
         "desc": "Who is behind WVM-IT, how we work and what we deliberately do not do. One contact person, based in Upper Austria. Get to know us now.",
         "h1": "Who is behind WVM-IT",
@@ -1089,6 +1086,7 @@ PACK = {
         "dsgvo_1": "We use your details only to answer this enquiry – no passing on, no advertising without your consent. Details in the",
         "dsgvo_link": "Datenschutzerklärung (privacy policy, German)",
         "dsgvo_2": ". Fields marked * are required.",
+        "fehler_pruefen": "Your request was not sent: please check the email address, the required fields and the consent box.",
     },
     "recht": {
         "impressum_titel": "Legal notice | WVM-IT",
@@ -1148,7 +1146,7 @@ PACK = {
         "fine": "No commitment. Your data is treated confidentially.",
         "pl_h": "All prices at a glance.",
         "pl_lead": "The full overview of all services with starting prices. We tailor the exact quote to your project in a conversation.",
-        "pl_foot": "All prices net plus VAT. Ballpark prices; the final price is set after the conversation. Monthly services can be cancelled at any time.",
+        "pl_foot": "All prices net plus VAT. Ballpark prices; the final price is set after the conversation. Monthly services can be cancelled with one month’s notice to the end of a quarter.",
         "js_leistung": "service", "js_leistungen": "services",
         "js_remove": "Remove:", "js_from": "from", "js_on_request": "on request",
         "js_per_month": "€/mo", "js_per_year": "€/yr",
@@ -1351,11 +1349,11 @@ PACK = {
         "zeit": "When suits you?",
         "zeit_1": "Morning (9 am to 12 pm)",
         "zeit_2": "Afternoon (12 pm to 5 pm)",
-        "zeit_3": "Evening (after 5 pm)",
+        "zeit_3": "Late afternoon (5 to 6 pm)",
         "zeit_4": "Any time, as soon as possible",
         "zeit_1_kurz": "Morning", "zeit_1_uhr": "9 am–12 pm",
         "zeit_2_kurz": "Afternoon", "zeit_2_uhr": "12 pm–5 pm",
-        "zeit_3_kurz": "Evening", "zeit_3_uhr": "after 5 pm",
+        "zeit_3_kurz": "Evening", "zeit_3_uhr": "5 pm–6 pm",
         "zeit_4_kurz": "Any time", "zeit_4_uhr": "as soon as possible",
         # Optionales Anliegen (W05, 24.09.2026); Schluessel wie views._ANLIEGEN.
         "anliegen": "What is it about? (optional)", "anliegen_leer": "Please choose",
@@ -1493,8 +1491,8 @@ PACK = {
             "{anrede},\n\n"
             "almost done. Please confirm your registration with {site} with one click:\n\n"
             "{link}\n\n"
-            "After that you'll get your 25% discount code and your free sample website. "
-            "You'll also receive our reference newsletter about once a week (unsubscribe any time).\n"
+            "After that you'll get your 25% discount code and your free sample website.\n"
+            "{nl_line}"
             "The link is valid for 3 days. If you didn't sign up, simply ignore this email.\n"
         ),
         "nl_welcome_subject": "Welcome to {site}: your 25% code",
@@ -1506,12 +1504,14 @@ PACK = {
             "so you can see straight away what's possible. Then we'll implement it "
             "together with you until everything fits.\n\n"
             "{wunsch_line}"
-            "From now on you'll also receive our reference newsletter about once a week "
-            "with real projects of ours. You can unsubscribe any time via the link at the "
-            "bottom of every email.\n\n"
+            "{nl_line}"
             "See you soon,\nyour team at {site}\n{url}\n"
         ),
         "nl_welcome_wunsch": "Your details to us: {wunsch}\n\n",
+        "nl_confirm_nl": "With your confirmation you'll also receive our reference newsletter about once a week (unsubscribe any time), as you requested.\n",
+        "nl_welcome_nl": ("As requested, you'll also receive our reference newsletter about once a week "
+                          "with real projects of ours. You can unsubscribe any time via the link at the "
+                          "bottom of every email.\n\n"),
         "angebot_kunde_subject": "Your ballpark quote from {site}",
         "angebot_kunde_body": (
             "Hello,\n\nthank you for your interest. Here's your no-obligation ballpark quote from {site}:\n\n"

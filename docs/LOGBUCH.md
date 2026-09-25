@@ -7,6 +7,30 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 25.09.2026 — Design B1: `main` (18c3bbc, Stand af33c52) eingearbeitet
+
+Merge von `origin/main` bis `af33c52` (enthält 18c3bbc: Cloud-Triage, Kaufsuchen K1–K8; dazu PJ05, SI27, VL06, GE19, GE29) in `design/2026-09-25-b1`. Regel: **Funktion
+und Inhalt von `main`, Gestaltung von B1.** Neun Konflikte:
+
+* **`index.html`:** Newsletter als eigenes, freiwilliges Kästchen (EIG151) und die Fehleransage
+  `news_fehler` (BF24) im B1-Markup (`.haken`, `.klein`); Kontaktformular mit `kontakt_werte`
+  (Wiederbefüllung, `lb-err`, EIG107) im B1-Markup; `#rbGate` bleibt in der B1-Seitenkarte und trägt
+  `aria-live="polite"` — das alte Gate aus `main` in der Kategorienspalte wurde nicht übernommen (sonst
+  doppelte IDs). Zwei Einwilligungen untereinander stehen per `.haken + .haken` als eine Gruppe.
+* **`angebot.html`:** Kopf/Fuß bleiben `kopf.html`/`fuss.html`; `main`s Korrekturen am alten Kopf/Fuß
+  (EIG88) sind dort schon erfüllt. `fuss.html` bekommt den Selbsttest-Link zurück, den der alte Fuß trug.
+* **`views.py`:** beide Importe (`HttpResponseRedirect`, `QueryDict`), `{anzahl}` im Leistungs-Hub,
+  `_it_stufen()` mit `main`s strengem Katalogzugriff plus B1-Rechenweg.
+* **Sprachpakete:** `person_t` kurz (B1, zweiter Satz steht in Block 4), `person_ort` „Lenzing, Bezirk
+  Vöcklabruck" (`main`). B1-Kurzlabel `zeit_3_uhr` von „ab 17 Uhr" auf „17–18 Uhr" (EIG176, DE/EN/RO).
+* **`stand.py`** aus `main` übernommen und neu geschrieben; **LOGBUCH/20-DESIGN** beide Seiten.
+* **Test angepasst:** `test_angebot_hat_den_ganzen_fuss` verbot jedes `href="/#`; seit B1 teilt
+  `/angebot/` den Fuß aller Seiten mit `/#faq` und `/#kooperationen`. Geprüft werden jetzt die drei
+  alten Sprungziele (`/#leistungen`, `/#preise`, `/#kontakt`).
+* **Geprüft:** 480/480 Tests, `pruefe_seite` 0, `pruefe_sicherheit` grün; Startseite, `/angebot/`,
+  `/kontakt/` bei 1280/390 px ohne Querscrollen und ohne Konsolenfehler, Formulare und Konfigurator per
+  Playwright durchgeklickt (ohne Absenden). Kein Push.
+
 ## 25.09.2026 — Design B1 „Porträt", Abnahme
 
 Abnahme im Worktree `wvm-it-design-b1` (Zweig `design/2026-09-25-b1`), Vorschau Port 8840, Fotos und
@@ -256,6 +280,78 @@ gefunden, Zahlen für `accent2`/`accent-ink` nachgezogen), `test_fokus.py` (nur 
 Farbzonen), `test_i18n.py` neu `test_keine_fehlenden_schluessel_in_en_ro` (heute 0
 fehlend) und `B1TexteTest` (neue B1-Texte wirklich übersetzt, nicht nur angelegt), neu
 `test_erreichbarkeit.py` (feste Zeitpunkte). Suite 413 → 415, `pruefe_seite` weiterhin 0.
+
+## 25.09.2026 — Kaufsuchen-Offensive: K1, K2, K4, K6, K7, K8 aus der SEO-Strategie umgesetzt
+
+Zweig `seo/2026-09-25-kaufsuchen` (Basis `main`), Auftrag: WVM-IT soll bei
+Kaufsuchen im Heimatgebiet gefunden werden statt nur bei Ratgebersuchen
+(`10-strategie.md`/`11-code-auftraege.md`, SEO-Team, 25.09.2026, nicht im Repo).
+Keine Design-/CSS-Änderung (Team 1 baut parallel B1 auf `templates/index.html`,
+`base.html`, `style.css`).
+
+* **K1 — Kampagnen-Zählung beim Seitenaufruf.** `landing/messung.py` zählt jetzt
+  zusätzlich eine Summe je erlaubter Kampagne (`utm_campaign`/`utm_content`,
+  `KAMPAGNEN`-Liste: `gbp-website`, `gbp-termin`, `gbp-post`, `gbp-produkt`,
+  `ads-lokal`, `ads-hilfe`, `ads-einrichtung`, `ads-sicherheit`,
+  `karte-bewerten`), ohne Kennung — dieselbe Art Zählung wie Seitenaufrufe je
+  Pfad. `MessungMiddleware` ruft `messung.kampagne()` nur bei echten
+  Seitenaufrufen auf, nicht bei Automaten. `manage.py messung` zeigt die neue
+  Tabelle „Kampagnen". Test: `landing/tests/test_kampagne.py`.
+* **K2 — Vöcklabruck: Titel und Beschreibung.** `/it-service/voecklabruck/`
+  trifft „IT Betreuung Vöcklabruck" jetzt wörtlich im `<title>` und in der
+  Description (DE/EN/RO), nach dem Muster der bereits organisch sichtbaren
+  Gmunden-Seite. Nur `titel`/`desc` geändert, `h1`/`kurz`/`intro` bleiben.
+* **K4 — Kurzadresse `/bewerten/`.** Neue View `views.bewerten`, Route ohne
+  Sprachpräfix. Solange `content.json` → `bewertungslink` leer ist: 404.
+  Gültiger Link (nur `g.page`, `search.google.com`, `www.google.com`,
+  `maps.google.com`, `maps.app.goo.gl`, nur `https://`): 302 mit
+  `X-Robots-Tag: noindex`, `Cache-Control: no-store`, gezählt als
+  `kurzlink/bewerten`. Nicht in Sitemap, `llms.txt` oder Navigation. Sobald A1
+  (Profil-Diagnose) den Link liefert, fehlt nur noch der Eintrag in
+  `content.json`. Test: `landing/tests/test_bewerten.py`.
+* **K6 — Kampagne bei der Anfrage mitzählen.** Neue Hilfsfunktion
+  `_kampagne_aus_verweis()` liest den `Referer` (nur eigener Host, wie
+  `_herkunft_aus_verweis`) und zählt `anfrage_kampagne` an allen sechs
+  Anfragewegen (Kontaktformular, Angebots-Konfigurator, Website-Bogen,
+  Richtangebot, Kooperation, Kurzanfrage) außer dem Newsletter. Kontaktformular
+  und Kurzanfrage bekommen zusätzlich eine Zeile `Kampagne: <k>` im Mailtext an
+  Florin. Test: `landing/tests/test_anfragen_kampagne.py`.
+* **K7 — Vöcklabruck-FAQ „einzelnes PC-Problem ohne Vertrag".** Vierte FAQ-Frage
+  auf der Vöcklabruck-Seite (DE/EN/RO) mit echten Katalogpreisen (95 €/Std.
+  Fernwartung, 120 €/Std. vor Ort, 190 € Festpreis PC-Einrichtung) und Anfahrt
+  von Lenzing — bewusst ortsbezogen, nicht auf andere Regionsseiten übertragen
+  (Doorway-Regel).
+* **K8 — „IT-Dienstleister wechseln" von der Checkliste getrennt (DE).** Der
+  Fachbeitrag trägt jetzt `meta_titel`/`desc` zum Ablauf der Übergabe (Domain,
+  Reihenfolge, Vereinbarung mit dem neuen Dienstleister), die Checkliste bleibt
+  bei „was abhaken". Keine internen Links mit dem Anker „IT-Dienstleister
+  wechseln" zeigten auf den Beitrag — nichts umzuhängen.
+* **Zusätzlich (Task-2-Schärfung, ohne Hero-Struktur):** Das Vertrauensband der
+  Startseite nennt jetzt „Lenzing, Bezirk Vöcklabruck" statt „Lenzing,
+  Oberösterreich" (DE/EN/RO) — „Oberösterreich" steht bereits in der Subline.
+  Schema `areaServed` deckte alle sieben Regionsseiten-Orte schon ab, keine
+  Änderung nötig.
+* **Bewusst nicht umgesetzt (warten auf Florin/Profil, siehe `10-strategie.md`
+  A1 und `doku/80-AUFGABEN.md` Nr. 9):** K5 (`sameAs`/`llms.txt` braucht die
+  Maps-URL des verwalteten Profils), K9 (`seit_jahr`, Kammer/GISA), K10
+  (Preisschreibweise Sicherheitscheck/Firewall — Florin entscheidet), K11
+  (echte Referenzfälle — Kundeneinwilligung fehlt), K12 (Google-Bewertungen
+  zeigen — braucht ≥5 öffentlich sichtbare), K13 (Serverplatz/
+  Gebäudesicherung — Florin bestätigt), K14 (Öffnungszeiten — nur bei
+  Abweichung). K15 (Anker „IT-Betreuung Kosten") wartet auf Bastians
+  GSC-Filter.
+* Suite 451 → 466 Tests, alle grün; `pruefe_seite` weiterhin 213 URLs, 0
+  Fehler; `pruefe_sicherheit` grün; `stand_schreiben` gelaufen.
+
+## 25.09.2026 — Cloud-Triage: 170 offene Befunde eingeordnet, 73 im Code behoben
+
+Alle `EIG`-Zeilen mit Zustand „offen“ aus `doku/80-AUFGABEN.md` am Code und an lokal
+gerenderten Seiten geprüft (Zweig `claude/charming-edison-wrtl7v`, Pull Request, nicht auf
+`main`). 73 im Code behoben, 65 treffen hier nicht zu, 6 waren schon erledigt, 26 liegen
+außerhalb des Codes. Der wichtigste Fund: Das Pflichtkästchen der Gratis-Website koppelte
+den Referenz-Newsletter — jetzt ein eigenes, freiwilliges Kästchen. Suite 413 → 451 Tests,
+`pruefe_seite` prüft jetzt auch `llms.txt`. Alles Weitere, samt Handlungsliste für Florin,
+Bastian und die Designrunde: [`TRIAGE-2026-09-25.md`](TRIAGE-2026-09-25.md).
 
 ## 24.09.2026 — Nachbesserung Runde 2 (dritte Runde): Kleinauftrag ohne fremde Zahl, Wegweiser nach Aufgabe
 

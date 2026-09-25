@@ -24,6 +24,13 @@ Spam-Falle. **Keine IP-Adresse, kein Cookie, keine Kennung, kein Verlauf, nichts
 sich auf eine Person zurückführen ließe** — deshalb ist das keine Verarbeitung
 personenbezogener Daten und braucht weder Einwilligung noch Banner-Eintrag.
 
+**Kampagnen (K1, 25.09.2026).** Zusätzlich wird die Summe je erlaubter Kampagne
+gezählt (`utm_campaign`, aus Unternehmensprofil, Ads und der gedruckten Karte),
+damit sichtbar wird, ob diese Quellen überhaupt Besucher bringen. Dieselbe Art
+Zählung wie die Seitenaufrufe je Pfad: eine Summe, kein Verlauf, keine Kennung.
+Nur die Werte aus `KAMPAGNEN` werden gezählt, alles andere wird ignoriert, damit
+niemand über die Adresse beliebige Schlüssel anlegt.
+
 **Wie gespeichert wird.** Die Zähler leben im Arbeitsspeicher des Prozesses und werden
 beim Tageswechsel sowie alle `_SCHREIB_TAKT` Ereignisse als eine Zeile JSON an
 `var/messung/<jahr>-<monat>.jsonl` angehängt **und** ins Log gedruckt. Das Dateisystem
@@ -34,9 +41,12 @@ Jeder Fehler wird gefangen. Eine Messung darf niemals eine Seite kaputt machen.
 """
 from __future__ import annotations
 
+import atexit
 import json
 import os
+import re
 import threading
+import uuid
 from collections import defaultdict
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -50,6 +60,49 @@ _sperre = threading.Lock()
 _stand: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
 _tag: date = date.today()
 _seit_schreiben = 0
+# Kennung dieses Prozesses (EIG17, 25.09.2026). Jede Zeile ist eine Momentaufnahme
+# **eines** Prozesses; nach einem Deploy zählt ein neuer Prozess wieder ab null.
+# Mit der Kennung kann `manage.py messung --dateien` je Prozess die letzte Zeile
+# nehmen und die Prozesse eines Tages addieren, statt den Verkehr vor dem
+# Neustart still fallen zu lassen. Zufall, keine Besucherkennung.
+_LAUF = uuid.uuid4().hex[:12]
+
+# Erlaubte Kampagnen (utm_campaign). Nur diese werden gezählt; alles andere
+# wird ignoriert, damit niemand über die Adresse beliebige Schlüssel anlegt.
+KAMPAGNEN = frozenset({
+    "gbp-website", "gbp-termin", "gbp-post", "gbp-produkt",
+    "ads-lokal", "ads-hilfe", "ads-einrichtung", "ads-sicherheit",
+    "karte-bewerten",
+})
+_INHALT = re.compile(r"^[a-z0-9-]{1,20}$")
+# `utm_content` ist frei wählbar (Muster oben) — ohne Obergrenze könnte jeder
+# über die Adresse beliebig viele Schlüssel anlegen, und jede Tageszeile würde
+# mitwachsen. Deshalb höchstens so viele verschiedene Schlüssel je Art und Tag;
+# danach zählt ein neuer `utm_content` nur noch als '<kampagne>/-'.
+# `utm_content` benennt einen Beitrag oder eine Anzeige (p03, a1), **nie** einen
+# Empfänger — sonst wäre die Summe doch eine Kennung.
+_KAMPAGNEN_SCHLUESSEL_HOECHSTENS = 60
+
+
+def kampagne(abfrage, art: str = "kampagne") -> str | None:
+    """'<utm_campaign>/<utm_content>' aus einem QueryDict/dict, oder None.
+    utm_content nur, wenn es dem Muster entspricht, sonst '-'. Ist die
+    Obergrenze verschiedener Schlüssel für `art` heute erreicht, wird ein
+    neuer utm_content ebenfalls zu '-'."""
+    try:
+        name = (abfrage.get("utm_campaign") or "").strip().lower()[:40]
+        if name not in KAMPAGNEN:
+            return None
+        inhalt = (abfrage.get("utm_content") or "").strip().lower()
+        schluessel = f"{name}/{inhalt if _INHALT.match(inhalt) else '-'}"
+        with _sperre:
+            vorhanden = _stand.get(art, {})
+            if (schluessel not in vorhanden
+                    and len(vorhanden) >= _KAMPAGNEN_SCHLUESSEL_HOECHSTENS):
+                schluessel = f"{name}/-"
+        return schluessel
+    except Exception:
+        return None
 
 
 def _ziel() -> Path:
@@ -105,6 +158,8 @@ def zusammenfassung() -> dict:
         "honigtopf": jetzt.get("honigtopf", {}),
         "seiten": dict(sorted(jetzt.get("seite", {}).items(), key=lambda p: -p[1])[:25]),
         "quellen": dict(sorted(jetzt.get("anfrage", {}).items(), key=lambda p: -p[1])),
+        "kampagnen": dict(sorted(jetzt.get("kampagne", {}).items(), key=lambda p: -p[1])),
+        "anfrage_kampagnen": dict(sorted(jetzt.get("anfrage_kampagne", {}).items(), key=lambda p: -p[1])),
     }
 
 
@@ -117,6 +172,7 @@ def _schreibe_ohne_sperre(grund: str = "") -> None:
         "tag": _tag.isoformat(),
         "geschrieben": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "grund": grund,
+        "lauf": _LAUF,
         "werte": {art: dict(werte) for art, werte in _stand.items()},
     }
     if os.environ.get("MESSUNG_STUMM"):
@@ -144,6 +200,22 @@ def schreibe_jetzt(grund: str = "manuell") -> None:
     """Erzwingt das Schreiben — für den Management-Befehl und Tests."""
     with _sperre:
         _schreibe_ohne_sperre(grund=grund)
+
+
+def _beim_beenden() -> None:
+    """Schreibt den laufenden Stand, wenn der Prozess endet (EIG17). Gunicorn
+    beendet seine Arbeiter beim Deploy mit SIGTERM und regulärem Exit — dabei
+    laufen atexit-Handler. Bis hierher ging alles seit dem letzten Takt verloren."""
+    try:
+        schreibe_jetzt(grund="ende")
+    except Exception as fehler:
+        # Schutznetz beim Herunterfahren: Der Prozess soll trotzdem sauber enden,
+        # aber ein verlorener Stand darf nicht spurlos bleiben (PJ05).
+        print(f"[MESSUNG-HINWEIS] Stand beim Beenden nicht geschrieben ({fehler})",
+              flush=True)
+
+
+atexit.register(_beim_beenden)
 
 
 def _zuruecksetzen_fuer_tests() -> None:

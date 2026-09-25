@@ -557,7 +557,7 @@ EINRICHTEN = {
                  "box, and at some point someone set up a forwarding so that accounting "
                  "could work from home. That single forwarding then stays open for years "
                  "— and nobody remembers what it was for."
-                 "</p><p class='sp-intro'>Firewall and VPN are two parts of the same door: the firewall decides what may enter the company network at all, the VPN is the encrypted route by which authorised people get in from outside. It is needed in two cases. The more common one is working from home: staff reach files, the merchandise management system or a server in the office from home or on the road — that is what the fixed price is made for. The rarer one is connecting two sites, such as an office and a warehouse; that is a separate job, because it depends on the devices at both ends.",
+                 "\n\nFirewall and VPN are two parts of the same door: the firewall decides what may enter the company network at all, the VPN is the encrypted route by which authorised people get in from outside. It is needed in two cases. The more common one is working from home: staff reach files, the merchandise management system or a server in the office from home or on the road — that is what the fixed price is made for. The rarer one is connecting two sites, such as an office and a warehouse; that is a separate job, because it depends on the devices at both ends.",
 
         "leistungen_h": "What €690 includes",
         "leistungen": [
@@ -911,9 +911,9 @@ EINRICHTEN = {
 }
 
 HUB = {
-    "titel": "Have a PC or IT set up: fixed price from €190 | WVM-IT",
+    "titel": "Have a PC or IT set up: fixed prices, no contract | WVM-IT",
     "desc": "Workstation, PC replacement, Microsoft 365, server, network: single tasks "
-            "at a fixed price, no contract. From €190, mostly remote. Get in touch.",
+            "at a fixed price, no contract, e.g. a workstation €190, mostly remote. Get in touch.",
     "h1": "Single tasks — fixed price, no contract",
     "kurz": "WVM-IT handles single IT tasks at a fixed price, without any running "
             "support being necessary: setting up a workstation for €190, replacing a "

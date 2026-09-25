@@ -19,7 +19,10 @@ Ohne JavaScript funktioniert es genauso: Die Kacheln sind Links auf
 Parameter: `ziel` = Pfad, auf den die Kacheln ohne JavaScript verlinken.
 {% endcomment %}
 <div class="pk" data-startpakete>
-  <h3 class="pk-h">{{ t.startpakete.h|safe }}</h3>
+  {% comment %} h2, nicht h3 (EIG108, 25.09.2026): Auf /angebot/ folgt dieser Block
+    direkt auf die h1 — mit h3 sprang die Gliederung eine Ebene. Die Größe kommt
+    aus .pk-h, nicht aus dem Element. {% endcomment %}
+  <h2 class="pk-h">{{ t.startpakete.h|safe }}</h2>
   <p class="pk-lead">{{ t.startpakete.lead|safe }}</p>
   <div class="pk-grid">
     {% for p in startpakete %}

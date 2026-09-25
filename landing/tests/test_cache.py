@@ -72,6 +72,18 @@ class CsrfDarfNieGecachtWerdenTest(SimpleTestCase):
                          "304 auf einer Formularseite — das Token wäre veraltet")
 
 
+class DankeseiteTest(SimpleTestCase):
+    """Die Seite nach einer Anfrage nennt deren Thema — sie wird nirgends
+    zwischengespeichert, auch nicht im Browser (SI27)."""
+
+    def test_danke_traegt_no_store(self):
+        antwort = _util.client().get("/anfrage/danke/?q=kontakt")
+        self.assertEqual(antwort.status_code, 200)
+        kopf = antwort.get("Cache-Control", "")
+        for teil in ("no-store", "no-cache", "must-revalidate"):
+            self.assertIn(teil, kopf, f"/anfrage/danke/ ohne {teil}: {kopf!r}")
+
+
 class MaschinelleEndpunkteTest(SimpleTestCase):
 
     def test_tragen_einen_cache_kopf(self):
@@ -198,3 +210,18 @@ class MessungFaelltAufTest(SimpleTestCase):
         self.assertEqual(antwort.status_code, 200, "die Antwort muss durchkommen")
         self.assertEqual(len(protokoll.output), 1,
                          f"{len(protokoll.output)} Meldungen statt einer")
+
+    def test_ausfall_beim_beenden_wird_gemeldet(self):
+        """Auch das Schreiben beim Herunterfahren darf nicht still scheitern (PJ05)."""
+        import io
+        from contextlib import redirect_stdout
+        from unittest import mock
+        from landing import messung
+
+        ausgabe = io.StringIO()
+        with mock.patch("landing.messung.schreibe_jetzt",
+                        side_effect=RuntimeError("kaputt")):
+            with redirect_stdout(ausgabe):
+                messung._beim_beenden()
+        self.assertIn("MESSUNG-HINWEIS", ausgabe.getvalue())
+        self.assertIn("kaputt", ausgabe.getvalue())

@@ -470,7 +470,7 @@ SEITEN = {
 
     "konferenztechnik": {
         "nav": "Conference technology",
-        "titel": "Conference room technology from €120/hr | WVM-IT",
+        "titel": "Conference room technology in Austria | WVM-IT",
         "desc": "Equipping meeting rooms: displays, cameras, microphones, sound and control at the push of a button. On-site from €120/hr. Request a quote.",
         "h1": "Meeting room technology that gets a meeting started on time",
         "kurz": "WVM-IT equips meeting and training rooms with technology: displays, cameras, microphones, sound and a control system somebody who did not install it can also operate. A typical meeting room is finished in one to two days, provided the cabling is in place. Planning and calibration happen on site; on-site work is billed at €120 per hour plus travel, and we quote the project price after a site visit. For halls, stages and live events there's a dedicated page: Event technology.",
@@ -543,7 +543,7 @@ SEITEN = {
             {"h": "A visit to the room, not a call", "t": "We listen to the room and see what's there. Reverberation, seating plan, stage height and existing cabling decide the result more than the speaker brand."},
             {"h": "Concept with equipment list and price", "t": "You get a solution matched to the events that actually happen at your venue. What exists and still works stays — we don't replace things just to sell something."},
             {"h": "Setup, calibration, briefing", "t": "Installation, sound calibration in the empty and the occupied room, fixed presets for the typical occasions. At the end there's a short briefing and a guide that still makes sense in two years."},
-            {"h": "Staying reachable afterwards", "t": "Before a bigger event we're happy to check in again on request. If something still comes up, you can reach us at +43 676 3808501."},
+            {"h": "Staying reachable afterwards", "t": "Before a bigger event we're happy to check in again on request. If something still comes up, you can reach us Monday to Friday from 9am to 6pm on the number on this page."},
         ],
         "preis_h": "Why there is no starting price here",
         "preis_t": "Between sound for a club hall and a stage with light, video and streaming lie orders of magnitude; a starting price here would be a number that says nothing. We look at the room and calculate per project with an equipment list. On-site work is billed at €120 per hour plus travel unless a fixed price is agreed; remote planning and coordination at €95 per hour. Estimated prices, net plus VAT.",

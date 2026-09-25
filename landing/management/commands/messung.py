@@ -23,6 +23,33 @@ from django.core.management.base import BaseCommand
 from landing import messung
 
 
+def tagessummen(dateien):
+    """Summen je Tag aus den geschriebenen Zeilen.
+
+    Die Zeilen sind Momentaufnahmen **eines Prozesses** am laufenden Tag, keine
+    Zuwächse — je Prozess (`lauf`) zählt deshalb nur die letzte. Verschiedene
+    Prozesse desselben Tages (vor und nach einem Deploy) werden addiert (EIG17,
+    25.09.2026). Bis dahin gewann die letzte Zeile des Tages, und der Verkehr vor
+    dem Neustart fiel still weg. Zeilen ohne `lauf` (vor dem 25.09.2026) gelten
+    als ein Prozess — für sie ändert sich nichts."""
+    je_lauf = {}
+    for datei in dateien:
+        for zeile in Path(datei).read_text(encoding="utf-8").splitlines():
+            try:
+                satz = json.loads(zeile)
+            except ValueError:
+                continue
+            je_lauf[(satz.get("tag", "?"), satz.get("lauf"))] = satz.get("werte", {})
+    je_tag = {}
+    for (tag, _lauf), werte in je_lauf.items():
+        summe = je_tag.setdefault(tag, {})
+        for art, zahlen in werte.items():
+            ziel = summe.setdefault(art, {})
+            for schluessel, n in zahlen.items():
+                ziel[schluessel] = ziel.get(schluessel, 0) + n
+    return je_tag
+
+
 class Command(BaseCommand):
     help = "Zeigt die serverseitige Reichweitenmessung (Aufrufe, Anfragen, Spam-Falle)."
 
@@ -57,6 +84,8 @@ class Command(BaseCommand):
                 "  --dateien oder die [MESSUNG]-Zeilen im Log.")
         self._tabelle("Seiten", z["seiten"])
         self._tabelle("Anfragen je Quelle", z["quellen"])
+        self._tabelle("Kampagnen", z["kampagnen"])
+        self._tabelle("Anfragen je Kampagne", z["anfrage_kampagnen"])
 
     # ── Die gespeicherten Tage ───────────────────────────────────────────────
     def _aus_dateien(self, tage):
@@ -68,27 +97,19 @@ class Command(BaseCommand):
         if not dateien:
             self.stdout.write(f"Keine Tagesdateien in {ordner}.")
             return
-        # Je Tag zählt der zuletzt geschriebene Satz: Die Zeilen sind Momentaufnahmen
-        # desselben laufenden Tages, keine Zuwächse. Wer sie addiert, zählt mehrfach.
-        je_tag = {}
-        for datei in dateien:
-            for zeile in datei.read_text(encoding="utf-8").splitlines():
-                try:
-                    satz = json.loads(zeile)
-                except ValueError:
-                    continue
-                je_tag[satz.get("tag", "?")] = satz.get("werte", {})
+        je_tag = tagessummen(dateien)
         self.stdout.write(self.style.MIGRATE_HEADING(f"Messung aus {ordner}"))
         for tag in sorted(je_tag)[-tage:]:
             werte = je_tag[tag]
             aufrufe = sum(werte.get("seite", {}).values())
             anfragen = sum(werte.get("anfrage", {}).values())
             automaten = sum(werte.get("automat", {}).values())
+            kampagne = sum(werte.get("kampagne", {}).values())
             falle = werte.get("honigtopf", {})
             quote = f"{anfragen / aufrufe * 100:.1f} %" if aufrufe else "—"
             self.stdout.write(
                 f"  {tag}  Aufrufe {aufrufe:>5}  Anfragen {anfragen:>4}  "
-                f"Anteil {quote:>7}  Automaten {automaten:>5}"
+                f"Anteil {quote:>7}  Automaten {automaten:>5}  Kampagnen {kampagne:>4}"
                 + (f"  Falle {falle}" if falle else ""))
 
     def _tabelle(self, titel, werte):

@@ -65,7 +65,7 @@ SEITEN = {
 
     "server-datensicherung": {
         "nav": "Servere & copii de siguranță",
-        "titel": "Servere și copii de siguranță de la 49 € | WVM-IT",
+        "titel": "Servere și copii de siguranță de la 49 €/lună | WVM-IT",
         "desc": "Monitorizare server de la 89 €/lună, copii de siguranță verificate de la 49 €/lună. Vedem defecțiunea înainte să se oprească activitatea. Cereți o ofertă.",
         "h1": "Administrare de server și copii de siguranță care rezistă la nevoie",
         "kurz": "WVM-IT supraveghează serverele firmelor non-stop și operează copiile de siguranță astfel încât ele să funcționeze și la nevoie: salvate zilnic, fiecare salvare verificată, restaurarea testată periodic. Administrarea serverului costă de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Totul se administrează la distanță în toată Austria și Germania.",
@@ -291,7 +291,7 @@ SEITEN = {
 
     "google-ads": {
         "nav": "Google Ads",
-        "titel": "Administrare Google Ads de la 199 € | WVM-IT",
+        "titel": "Administrare Google Ads de la 199 €/lună | WVM-IT",
         "desc": "Configurare Google Ads de la 490 €, administrare curentă de la 199 €/lună plus buget, cu măsurarea conversiilor și raport lunar. Cereți o ofertă.",
         "h1": "Google Ads care aduc solicitări — nu doar clicuri",
         "kurz": "WVM-IT configurează conturi Google Ads și le administrează în continuare: campanii, cuvinte de căutare, anunțuri, cuvinte excluse și, mai ales, o măsurare a conversiilor care chiar funcționează. Configurarea costă de la 490 €, administrarea curentă de la 199 € pe lună plus bugetul dumneavoastră de publicitate. Lucrăm independent de loc pentru firme din Austria și Germania.",
@@ -336,7 +336,7 @@ SEITEN = {
 
     "hosting-wartung": {
         "nav": "Găzduire & întreținere",
-        "titel": "Găzduire și întreținere de la 15 € | WVM-IT",
+        "titel": "Găzduire și întreținere de la 15 €/lună | WVM-IT",
         "desc": "Găzduire cu SSL și copii zilnice de la 15 €/lună, întreținere de la 39 €/lună, domeniu de la 15 €/an. Solicitați o ofertă.",
         "h1": "Găzduire și întreținere: ca pagina să meargă și când nu se uită nimeni",
         "kurz": "WVM-IT operează și întreține site-uri de firmă: găzduire cu SSL și copii zilnice de siguranță de la 15 € pe lună, întreținere cu actualizări și modificări mici de la 39 € pe lună, domeniu de la 15 € pe an — împreună 54 € pe lună. Preluăm și site-uri construite de altcineva și le administrăm independent de loc, în Austria și Germania.",
@@ -472,7 +472,7 @@ SEITEN = {
 
     "konferenztechnik": {
         "nav": "Tehnică de conferință",
-        "titel": "Tehnică pentru sala de ședințe de la 120 € | WVM-IT",
+        "titel": "Tehnică pentru sala de ședințe în Austria | WVM-IT",
         "desc": "Dotarea sălilor de ședințe: ecrane, camere, microfoane, sunet și control la o apăsare de buton. La fața locului de la 120 €/oră. Cereți o ofertă.",
         "h1": "Tehnică pentru sala de ședințe care pornește o întâlnire la timp",
         "kurz": "WVM-IT dotează săli de ședințe și de instruire cu tehnică: ecrane, camere, microfoane, sunet și un sistem de control pe care îl poate folosi și cineva care nu l-a montat. O sală de ședințe obișnuită este gata într-una-două zile, dacă există cablarea. Planificarea și calibrarea se fac la fața locului, lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea; prețul proiectului îl comunicăm după vizionare. Pentru săli mari, scenă și evenimente live există pagina dedicată Tehnică pentru evenimente.",
@@ -545,7 +545,7 @@ SEITEN = {
             {"h": "Întâlnire în încăpere, nu la telefon", "t": "Ascultăm încăperea și vedem ce există deja. Reverberația, planul locurilor, înălțimea scenei și cablarea existentă decid rezultatul mai mult decât marca difuzoarelor."},
             {"h": "Concept cu listă de echipamente și preț", "t": "Primiți o soluție potrivită evenimentelor care chiar au loc la dumneavoastră. Ce există și funcționează rămâne — nu înlocuim nimic doar ca să vindem ceva."},
             {"h": "Montaj, calibrare, instruire", "t": "Instalare, calibrarea sunetului în încăperea goală și ocupată, preseturi fixe pentru ocaziile obișnuite. La final urmează o scurtă instruire și un ghid care rămâne clar și peste doi ani."},
-            {"h": "Rămânem la dispoziție și după aceea", "t": "Înainte de un eveniment mai mare, la cerere, mai verificăm o dată. Dacă totuși apare o problemă, ne găsiți la +43 676 3808501."},
+            {"h": "Rămânem la dispoziție și după aceea", "t": "Înainte de un eveniment mai mare, la cerere, mai verificăm o dată. Dacă totuși apare o problemă, ne găsiți de luni până vineri între 9 și 18 la numărul de pe această pagină."},
         ],
         "preis_h": "De ce aici nu apare un preț de pornire",
         "preis_t": "Între o sonorizare pentru sala unei asociații și o scenă cu lumină, video și streaming sunt ordine de mărime distanță; un preț de pornire aici ar fi o cifră fără sens. Ne uităm la încăpere și calculăm pe proiect, cu listă de echipamente. Lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea, dacă nu s-a convenit un preț fix; planificarea și coordonarea de la distanță cu 95 € pe oră. Prețuri orientative, nete plus TVA.",

@@ -477,7 +477,7 @@ SEITEN = {
 
     "konferenztechnik": {
         "nav": "Konferenztechnik",
-        "titel": "Konferenzraum-Technik ab 120 €/Std | WVM-IT",
+        "titel": "Konferenzraum-Technik in Oberösterreich | WVM-IT",
         "desc": "Besprechungsräume ausstatten: Displays, Kameras, Mikrofone, Ton und Steuerung auf einem Knopf. Vor Ort ab 120 €/Std. Jetzt anfragen.",
         "h1": "Konferenzraum-Technik, mit der eine Besprechung pünktlich anfängt",
         "kurz": "WVM-IT stattet Besprechungs- und Schulungsräume technisch aus: Displays, Kameras, Mikrofone, Ton und eine Steuerung, die auch jemand bedienen kann, der sie nicht eingebaut hat. Ein üblicher Besprechungsraum ist an ein bis zwei Tagen fertig, sofern die Verkabelung liegt. Geplant und eingemessen wird vor Ort, Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab; den Projektpreis nennen wir nach der Besichtigung. Für Säle, Bühnen und Live-Veranstaltungen gibt es die eigene Seite Veranstaltungstechnik.",
@@ -550,7 +550,7 @@ SEITEN = {
             {"h": "Termin im Raum, nicht am Telefon", "t": "Wir hören uns den Raum an und sehen, was vorhanden ist. Nachhall, Sitzplan, Bühnenhöhe und die vorhandene Verkabelung entscheiden mehr über das Ergebnis als die Marke der Lautsprecher."},
             {"h": "Konzept mit Geräteliste und Preis", "t": "Sie bekommen eine Lösung, die zu den Veranstaltungen passt, die bei Ihnen tatsächlich stattfinden. Was vorhanden ist und taugt, bleibt — wir ersetzen nichts, um etwas zu verkaufen."},
             {"h": "Aufbau, Einmessung, Einweisung", "t": "Installation, Einmessung des Tons im besetzten und leeren Raum, feste Voreinstellungen für die typischen Anlässe. Am Ende steht eine kurze Einweisung und eine Anleitung, die auch in zwei Jahren noch verständlich ist."},
-            {"h": "Danach erreichbar bleiben", "t": "Vor einer größeren Veranstaltung sehen wir auf Wunsch noch einmal nach. Kommt trotzdem etwas dazwischen, erreichen Sie uns unter +43 676 3808501."},
+            {"h": "Danach erreichbar bleiben", "t": "Vor einer größeren Veranstaltung sehen wir auf Wunsch noch einmal nach. Kommt trotzdem etwas dazwischen, erreichen Sie uns Montag bis Freitag von 9 bis 18 Uhr über die Nummer auf dieser Seite."},
         ],
         "preis_h": "Warum hier kein Ab-Preis steht",
         "preis_t": "Zwischen einer Beschallung für einen Vereinssaal und einer Bühne mit Licht, Video und Streaming liegen Größenordnungen; ein Startpreis an dieser Stelle wäre eine Zahl ohne Aussage. Wir sehen uns den Raum an und kalkulieren projektbezogen mit Geräteliste. Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab, sofern kein Festpreis vereinbart ist; Planung und Abstimmung aus der Ferne mit 95 € je Stunde. Richtpreise, netto zzgl. USt.",

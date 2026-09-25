@@ -981,6 +981,10 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 .haken{display:flex;gap:12px;align-items:flex-start;margin:14px 0 18px;font-size:14px;line-height:1.5;color:var(--ink-dim);cursor:pointer}
 .haken input{width:20px;height:20px;margin:1px 0 0;flex:none;accent-color:var(--accent)}
 .haken a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+/* Zwei Einwilligungen untereinander (Pflicht + freiwilliger Newsletter, EIG151):
+   als eine Gruppe, nur der Rasterabstand dazwischen. */
+.haken:has(+ .haken){margin-bottom:0}
+.haken + .haken{margin-top:0}
 @media (max-width:900px){ .web-raster{grid-template-columns:1fr;gap:40px} }
 /* Feld-Grid + Felder (shared: Hero-Rückrufkarte, Block 8, Kooperationen) */
 .of-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}

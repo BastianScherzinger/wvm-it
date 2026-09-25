@@ -90,7 +90,7 @@
           <h3>{{ t.angebot_page.sent_h|safe }}</h3>
           <p>{{ t.angebot_page.sent_p|safe }}</p>
           <div class="ang-sent-actions">
-            <a class="btn btn-magnetic" href="/">{{ t.angebot_page.sent_back|safe }}</a>
+            <a class="btn btn-magnetic" href="{% url 'index' %}">{{ t.angebot_page.sent_back|safe }}</a>
             <a class="btn btn-ghost" href="{% url 'angebot' %}">{{ t.angebot_page.sent_new|safe }}</a>
           </div>
         </div>

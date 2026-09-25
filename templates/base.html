@@ -37,7 +37,10 @@
 
   <meta property="og:title" content="{% block og_titel %}{{ t.meta.seo_title|safe }}{% endblock %}">
   <meta property="og:description" content="{% block og_beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
-  <meta property="og:type" content="website">
+  {% comment %} Ratgeberseiten mit Article-Knoten im Schema überschreiben den Block mit
+    „article“ (EIG28, 25.09.2026) — sonst sagt Open Graph „website“, wo das Schema
+    „Article“ sagt. Geprüft von test_triage_2026_09_25.OgTypeTest. {% endcomment %}
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
   <meta property="og:site_name" content="{{ c.site_name }}">
   <meta property="og:locale" content="{{ t.meta.locale }}">
   {% if lang != 'de' %}<meta property="og:locale:alternate" content="de_AT">{% endif %}

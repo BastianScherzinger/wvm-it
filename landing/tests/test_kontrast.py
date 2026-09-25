@@ -352,3 +352,31 @@ class GoldAlsTextTest(SimpleTestCase):
                     self.assertIn("var(--accent-ink)", regel,
                                   f"{selektor.strip()} faerbt Text auf hellem "
                                   f"Grund: {regel!r}")
+
+    def test_gold_wird_auch_gemischt_nicht_zur_textfarbe(self):
+        """Der Weg an den beiden Prüfungen oben vorbei (`BF18`, 25.09.2026).
+
+        Beide Muster verlangen `color:var(--accent…)` **direkt**. `.ang-hint`,
+        der Hinweis unter dem Absende-Knopf des Konfigurators
+        (`templates/angebot.html`, weisse Karte `.ang-lead`, kein `on-dark`),
+        setzte stattdessen `color:color-mix(in srgb,var(--accent2) 90%,#fff)` und
+        fiel so durch beide. Besser wird die Grafikstufe durch Weiss nicht —
+        sie wird heller; was dabei herauskommt, rechnet diese Prüfung nach.
+        Der Hinweis trägt jetzt `--accent-ink`.
+        """
+        text = CSS.read_text(encoding="utf-8")
+        hell = _tokens(text[:text.index(".on-dark{")])
+        # Die alte Mischung nachgerechnet: 90 % --accent2, 10 % Weiss, in sRGB.
+        r, g, b = (int(hell["accent2"].lstrip("#")[i:i + 2], 16) for i in (0, 2, 4))
+        gemischt = "#" + "".join(f"{round(k * 0.9 + 255 * 0.1):02x}" for k in (r, g, b))
+        self.assertLess(kontrast(gemischt, "#ffffff"), MINDEST)
+
+        gemischtes_gold = re.compile(
+            r"(?:^|;)\s*color\s*:\s*color-mix\([^;]*var\(--accent2?\)", re.M)
+        treffer = [sel.strip() for sel, rumpf in re.findall(r"([^{}]+)\{([^{}]*)\}", text)
+                   if gemischtes_gold.search(rumpf) and ".on-dark" not in sel]
+        self.assertEqual(treffer, [], "Gold als gemischte Textfarbe auf hellem Grund — "
+                                      "fuer Gold als Text gibt es --accent-ink")
+        regel = re.findall(r"\.ang-hint\s*\{([^}]*)\}", text)
+        self.assertTrue(regel, ".ang-hint ist aus style.css verschwunden")
+        self.assertIn("var(--accent-ink)", regel[0])

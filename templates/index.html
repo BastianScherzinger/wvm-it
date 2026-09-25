@@ -437,8 +437,13 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
               </div>
             </div>
             <label class="haken"><input type="checkbox" name="einwilligung" required><span>{{ t.offer.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</span></label>
+            {% comment %} Der Newsletter ist eine eigene, freiwillige Einwilligung (25.09.2026, EIG151):
+              Bis dahin stand er im Pflichtkästchen, ohne ihn gab es keine Beispiel-Website —
+              gekoppelt und damit unwirksam (Art. 7 Abs. 4 DSGVO, § 174 TKG 2021).
+              Nicht vorausgewählt; der Nachweis entsteht erst mit dem Bestätigungsklick. {% endcomment %}
+            <label class="haken"><input type="checkbox" name="newsletter" value="1"><span>{{ t.offer.consent_nl|safe }}</span></label>
             <button class="btn btn-lg" type="submit">{{ t.offer.submit|safe }}</button>
-            <p class="klein">{{ t.hero.note|safe }}</p>
+            <p class="klein" aria-live="polite">{% if news_fehler %}{{ t.form.fehler_pruefen|safe }} {% endif %}{{ t.hero.note|safe }}</p>
             {% include 'datenschutzhinweis.html' %}
           </form>
           {% endif %}
@@ -517,7 +522,9 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
                   </div>
                 </div>
 
-                <div class="rb-gate" id="rbGate">
+                {% comment %} aria-live (BF24): Das Skript legt #rbErr erst im Fehlerfall
+                   hier an; der Rahmen sagt ihn dann an. {% endcomment %}
+                <div class="rb-gate" id="rbGate" aria-live="polite">
                   <div class="rb-field">
                     <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
                     <input class="fld" type="email" name="email" id="rbEmail" required autocomplete="email" placeholder="name@firma.at">
@@ -619,7 +626,11 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           // Fehler inline statt als alert(): Ein Systemdialog reisst den Besucher aus
           // der Seite, ist auf dem Handy kaum lesbar und widerspricht der
           // Komponentenregel in doku/20-DESIGN.md („Fehler inline — nie alert()").
-          if(fehler){ fehler.textContent=I.error||'Error'; fehler.hidden=false; } });
+          // #rbErr stand nie in der Vorlage; ohne ihn blieb der Fehler stumm (BF24).
+          // Er entsteht deshalb erst hier, im bereits ansagenden #rbGate.
+          if(!fehler){ fehler=document.createElement('p'); fehler.className='lb-err';
+            fehler.id='rbErr'; fehler.setAttribute('role','alert'); submit.insertAdjacentElement('afterend',fehler); }
+          fehler.textContent=I.error||'Error'; fehler.hidden=false; });
     });
     refresh();
   })();
@@ -777,11 +788,11 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         {% csrf_token %}
           {% include 'honigtopf.html' %}
         <div class="f-row">
-          <label>{{ t.kontakt.f_name|safe }}<input type="text" name="name" required autocomplete="name" placeholder="{{ t.kontakt.f_name_ph|safe }}"></label>
-          <label>{{ t.kontakt.f_email|safe }}<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at"></label>
+          <label>{{ t.kontakt.f_name|safe }}<input type="text" name="name" required autocomplete="name" placeholder="{{ t.kontakt.f_name_ph|safe }}" value="{{ kontakt_werte.name|default:'' }}"></label>
+          <label>{{ t.kontakt.f_email|safe }}<input type="email" name="email" required autocomplete="email" placeholder="name@firma.at" value="{{ kontakt_werte.email|default:'' }}"></label>
         </div>
         <div class="f-row">
-          <label>{{ t.kontakt.f_phone|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span><input type="tel" name="telefon" autocomplete="tel" placeholder="{{ t.kontakt.f_phone_ph|safe }}"></label>
+          <label>{{ t.kontakt.f_phone|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span><input type="tel" name="telefon" autocomplete="tel" placeholder="{{ t.kontakt.f_phone_ph|safe }}" value="{{ kontakt_werte.telefon|default:'' }}"></label>
           <label>{{ t.kontakt.f_budget|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span>
             <select name="budget">
               <option value="">{{ t.kontakt.budget_choose|safe }}</option>
@@ -792,10 +803,11 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
             </select>
           </label>
         </div>
-        <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}"></textarea></label>
+        <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}">{{ kontakt_werte.nachricht|default:'' }}</textarea></label>
         <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</span></label>
+        {% if kontakt_werte %}<p class="lb-err" role="alert">{{ t.kontakt.err|safe }}</p>{% endif %}
         <button class="btn btn-lg" type="submit">{{ t.kontakt.submit|safe }}</button>
-        <p class="form-fine">{{ t.kontakt.fine|safe }}</p>
+        <p class="form-fine" aria-live="polite">{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}
       </form>
       {% endif %}

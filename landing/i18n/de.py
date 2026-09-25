@@ -97,7 +97,7 @@ PACK = {
         # Design B1 (§2.2, "eine Aussage, ein Ort"): der zweite Satz ("Ich sage
         # Ihnen auch …") steht jetzt als Zusage p3 in Block 4 "Wer dahintersteht".
         "person_t": "Sie sprechen mit mir, nicht mit einer Warteschleife.",
-        "person_ort": "Inhaber von WVM-IT · Lenzing, Oberösterreich",
+        "person_ort": "Inhaber von WVM-IT · Lenzing, Bezirk Vöcklabruck",
         "scroll_aria": "Weiter nach unten",
         "robot_msgs": [
             "Guten Tag. Schön, dass Sie da sind.",
@@ -121,8 +121,8 @@ PACK = {
         "step3_t": "Sie bekommen den Link zur Seite und Ihren Rabattcode.",
         "step4_h": "Wir passen sie mit Ihnen an",
         "step4_t": "Wir arbeiten eng mit Ihnen zusammen und bleiben dran, bis alles genau passt.",
-        "note_strong": "Inklusive Referenz-Newsletter:",
-        "note_rest": "ca. 1×/Woche zeigen wir Ihnen echte Projekte, die wir gebaut haben. Jederzeit mit einem Klick abbestellbar.",
+        "note_strong": "Auf Wunsch dazu: der Referenz-Newsletter.",
+        "note_rest": "ca. 1×/Woche zeigen wir Ihnen echte Projekte, die wir gebaut haben. Freiwillig und getrennt angekreuzt, jederzeit mit einem Klick abbestellbar — die Beispiel-Website gibt es auch ohne.",
         "done_h": "Fast geschafft!",
         "done_t": "Wir haben Ihnen eine E-Mail geschickt. Bestätigen Sie den Link darin, dann sind Ihr 25%-Code und Ihre kostenlose Beispiel-Website unterwegs. Sehen Sie gegebenenfalls kurz im Spam-Ordner nach.",
         "card_badge": "JARVIS free",
@@ -131,7 +131,8 @@ PACK = {
         "mail_label": "Ihre E-Mail *",
         "name_label": "Ihr Name", "name_opt": "(optional)", "name_ph": "Wie dürfen wir Sie ansprechen?",
         "wunsch_label": "Kurz: was schwebt Ihnen vor?", "wunsch_ph": "z. B. Farben, Stil, was gezeigt werden soll (optional)",
-        "consent_pre": "Ich möchte die kostenlose Beispiel-Website, meinen 25%-Code und den wöchentlichen Referenz-Newsletter (ca. 1×/Woche, jederzeit abbestellbar) erhalten und stimme der",
+        "consent_pre": "Ich möchte die kostenlose Beispiel-Website und meinen 25%-Code erhalten und stimme der",
+        "consent_nl": "Freiwillig: Schicken Sie mir zusätzlich den Referenz-Newsletter (ca. 1×/Woche, jederzeit abbestellbar). Die Beispiel-Website bekomme ich auch ohne.",
         "consent_link": "Datenschutzerklärung",
         "consent_post": "zu. *",
         "submit": "Gratis-Website sichern",
@@ -268,21 +269,21 @@ PACK = {
         # Kundenzahl zu behaupten.
         "beliebt": "typisch für ein Büro mit Server",
         "unit": "€/Monat",
-        "klein_h": "Bis 5 Arbeitsplätze",
+        "klein_h": "Beispiel: 5 Arbeitsplätze",
         "klein_for": "Kleinbetrieb ohne eigenen Server.",
         "klein_li": [
             "5 Arbeitsplätze laufend betreut",
             "Täglich geprüfte Datensicherung",
             "Hilfe per Fernwartung nach Aufwand",
         ],
-        "mittel_h": "Bis 15 Arbeitsplätze",
+        "mittel_h": "Beispiel: 15 Arbeitsplätze",
         "mittel_for": "Betrieb mit einem Server.",
         "mittel_li": [
             "15 Arbeitsplätze laufend betreut",
             "Ein Server rund um die Uhr im Blick",
             "Täglich geprüfte Datensicherung",
         ],
-        "gross_h": "Bis 30 Arbeitsplätze",
+        "gross_h": "Beispiel: 30 Arbeitsplätze",
         "gross_for": "Mehrere Standorte oder Server.",
         "gross_li": [
             "30 Arbeitsplätze laufend betreut",
@@ -314,15 +315,6 @@ PACK = {
         "growth_li": ["Alles aus Business", "KI-Automatisierungen", "Wartung und Updates", "Performance-Monitoring", "Laufende SEO-Betreuung"],
         "growth_cta": "Beraten lassen",
         "foot": "Alle Preise netto zzgl. USt. Hosting und Domain optional als Monatspaket.",
-    },
-    "ueber": {
-        "badge_fallback": "IT · service · consulting",
-        "h": "Ein fester Ansprechpartner. Kein Agentur-Bla.",
-        "lead_pre": "Hinter", "lead_mid": "steht",
-        "lead_rest": ". Aus Leidenschaft für saubere Technik bringe ich Gebäudeautomation, Veranstaltungstechnik, EDV und digitale Auftritte zusammen, alles aus einer Hand und mit starken Partnern. Persönlich, ehrlich und direkt erreichbar.",
-        "p1": "Alles aus einer Hand, von der Idee bis zum laufenden Betrieb.",
-        "p2": "Klare Kommunikation ohne Fachchinesisch.",
-        "p3": "Faire Preise und schnelle Reaktion.",
     },
     "faq": {
         # Design B1 (§2.2, §6 K1-11): eyebrow/h wortarm vom Kicker abschnitt.faq
@@ -390,6 +382,7 @@ PACK = {
         "budget_choose": "Bitte wählen",
         "budget_1": "unter 1.000 Euro", "budget_2": "1.000 bis 3.000 Euro",
         "budget_3": "3.000 bis 7.000 Euro", "budget_4": "über 7.000 Euro",
+        "err": "Das ging nicht durch: Bitte Name, eine gültige E-Mail-Adresse und Ihre Nachricht angeben und dem Datenschutzhinweis zustimmen. Ihre Eingaben stehen noch da.",
         "f_project": "Ihr Projekt *", "f_project_ph": "Worum geht es? Ein paar Stichworte genügen.",
         "consent_pre": "Ich habe die", "consent_link": "Datenschutzerklärung", "consent_post": "gelesen und stimme zu. *",
         "submit": "Anfrage absenden",
@@ -407,7 +400,7 @@ PACK = {
         # verstreut in „Unternehmen".
         "col_wissen": "Wissen",
         "col_unternehmen": "Unternehmen",
-        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "Shop", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
+        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
         "u_webagentur": "Website: Webagentur Scherzinger",
         "u_ueber": "Über uns", "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
@@ -520,10 +513,10 @@ PACK = {
         # jemand kauft. Gilt gleichlautend fuer alle Leistungen.
         "abgrenzung_h": "Was Sie von uns nicht bekommen",
         "abgrenzung": [
-            "Keine Mindestlaufzeit über ein Quartal hinaus — Sie können jederzeit aufhören.",
+            "Keine Mindestlaufzeit über ein Quartal hinaus — kündbar mit einem Monat Frist zum Quartalsende.",
             "Keine Systeme, aus denen Sie nicht wieder herauskommen: Zugänge und Daten gehören Ihnen.",
             "Keine Hardware auf Vorrat. Wir empfehlen, was nötig ist, und sagen es auch, wenn sich etwas nicht lohnt.",
-            "Keine Rufbereitschaft rund um die Uhr. Erreichbar sind wir werktags; was das im Notfall bedeutet, steht auf der Notfallseite.",
+            "Keine Rufbereitschaft rund um die Uhr. Die Überwachung meldet auch nachts und am Wochenende, bearbeitet wird Montag bis Freitag von 9 bis 18 Uhr; was das im Notfall bedeutet, steht auf der Notfallseite.",
         ],
         # ── Zwei weitere Wege, ohne Kontaktdaten ─────────────────────────────
         "ausgang_h": "Lieber erst selbst rechnen?",
@@ -623,7 +616,7 @@ PACK = {
         # abgeschnittener Seitentitel, der im Kopf dreizeilig umbrach.
         "nav": "IT-Notfall",
         "wa_text": "IT-Notfall: ",
-        "kurz": "Bei einem IT-Notfall entscheiden die ersten Minuten über den Schaden. Die wichtigste Regel gilt in allen vier Fällen: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden. Danach Hilfe holen. Wir sind an Werktagen von 9 bis 18 Uhr unter der unten stehenden Nummer erreichbar und beginnen per Fernwartung meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind.",
+        "kurz": "Bei einem IT-Notfall entscheiden die ersten Minuten über den Schaden. Die wichtigste Regel gilt in allen vier Fällen: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden. Danach Hilfe holen. Wir sind Montag bis Freitag von 9 bis 18 Uhr unter der unten stehenden Nummer erreichbar und beginnen per Fernwartung meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind.",
         "eilt_h": "Es eilt — hier entlang",
         "eilt_t": "Rufen Sie an, statt zu schreiben. Ein Anruf spart bei einer laufenden Störung mehr Zeit als jede Beschreibung per E-Mail.",
         "intro": "Diese Seite ist zum Handeln da, nicht zum Lesen. Suchen Sie unten Ihren Fall und arbeiten Sie die Schritte der Reihe nach ab. Alles Weitere — Ursachensuche, Wiederherstellung, Meldepflichten — kommt danach. Wir sind ausdrücklich auch dann erreichbar, wenn Sie kein Kunde von uns sind; ein akuter Notfall ist der falsche Zeitpunkt für eine Vertragsfrage.",
@@ -708,7 +701,7 @@ PACK = {
         # Erreichbarkeit und Vertretung (06.09.2026) — die K.-o.-Frage, die ein
         # sichtbarer Ein-Personen-Betrieb aufwirft und die bisher unbeantwortet blieb.
         "erreichbar_h": "Wenn ich einmal nicht kann",
-        "erreichbar_t": "Ehrlich gesagt: Wir sind ein kleiner Betrieb, und das ist der Grund, warum Sie hier keine Warteschleife und kein Ticket-System haben. Es heißt aber auch, dass wir keine Rufbereitschaft rund um die Uhr versprechen. Erreichbar sind wir werktags von 9 bis 18 Uhr, und in dieser Zeit melden wir uns bei laufenden Störungen von Betreuungskunden vorrangig — vor allem anderen. Außerhalb dieser Zeiten hinterlassen Sie eine Nachricht auf der Mailbox oder per WhatsApp; wir hören sie ab.",
+        "erreichbar_t": "Ehrlich gesagt: Wir sind ein kleiner Betrieb, und das ist der Grund, warum Sie hier keine Warteschleife und kein Ticket-System haben. Es heißt aber auch, dass wir keine Rufbereitschaft rund um die Uhr versprechen. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr, und in dieser Zeit melden wir uns bei laufenden Störungen von Betreuungskunden vorrangig — vor allem anderen. Außerhalb dieser Zeiten hinterlassen Sie eine Nachricht auf der Mailbox oder per WhatsApp; wir hören sie ab.",
         "erreichbar_vertretung": "Für längere Abwesenheiten (Urlaub, Krankheit) gibt es eine feste Vertretungsregelung mit einem Partnerbetrieb, die Zugänge und Dokumentation kennt. Betreuungskunden bekommen den Namen und die Nummer bei Vertragsbeginn schriftlich.",
         "erreichbar_fuss": "Wenn Sie eine zugesagte Rufbereitschaft rund um die Uhr brauchen, sagen wir Ihnen das offen — und empfehlen jemanden, der sie leisten kann.",
         "danach_h": "Was danach zu tun ist",
@@ -892,7 +885,7 @@ PACK = {
         "desc": "EDV-Betreuung ab 29 €/Monat je Arbeitsplatz, Hilfe ohne Vertrag 95 €/Std., Einrichtung ab 190 €, Webseiten ab 350 € — in Österreich und Deutschland.",
         "h1": "Was WVM-IT für Betriebe übernimmt",
         "kurz": "WVM-IT betreut die EDV kleiner und mittlerer Betriebe in Österreich und Deutschland und übernimmt zusätzlich alles, was digital sichtbar macht: Webseiten, SEO, Google Ads und Automatisierung. Der Schwerpunkt liegt auf laufender IT-Betreuung ab 29 € je Arbeitsplatz und Monat, überwiegend per Fernwartung. Gebäude- und Veranstaltungstechnik kommen projektbezogen vor Ort dazu. Alle elf Leistungen laufen über denselben Ansprechpartner und dieselbe Preisliste, unabhängig davon, ob es um einen einzelnen Arbeitsplatz oder um ein größeres Projekt geht.",
-        "intro": "Elf Leistungen, drei Bereiche – und ein Ansprechpartner für alle. Was Sie hier finden, ist bewusst keine Liste von Schlagworten: Zu jeder Leistung gibt es eine eigene Seite mit dem, was enthalten ist, wie es abläuft und was es kostet. Wenn Sie nicht sicher sind, wo Sie anfangen sollen: EDV und IT passt, wenn eine laufende Technik betreut werden soll – Arbeitsplätze, Server, Datensicherung, Sicherheit. Sichtbarkeit und Web passt, wenn Kundschaft Sie online finden oder ein Auftritt entstehen soll. Technik vor Ort passt, sobald etwas verkabelt, aufgebaut oder eingemessen werden muss. Eine Zusammenarbeit beginnt in den meisten Fällen gleich: mit einer kurzen Bestandsaufnahme dessen, was heute schon da ist, und einer Einschätzung, was sich davon per Fernwartung erledigen lässt und was einen Termin vor Ort braucht. Arbeitsplätze, Server, E-Mail, Updates und die Datensicherung laufen fast immer aus der Ferne; Verkabelung, Hardware-Einbau und Vor-Ort-Technik nicht.",
+        "intro": "{anzahl} Leistungen, drei Bereiche – und ein Ansprechpartner für alle. Was Sie hier finden, ist bewusst keine Liste von Schlagworten: Zu jeder Leistung gibt es eine eigene Seite mit dem, was enthalten ist, wie es abläuft und was es kostet. Wenn Sie nicht sicher sind, wo Sie anfangen sollen: EDV und IT passt, wenn eine laufende Technik betreut werden soll – Arbeitsplätze, Server, Datensicherung, Sicherheit. Sichtbarkeit und Web passt, wenn Kundschaft Sie online finden oder ein Auftritt entstehen soll. Technik vor Ort passt, sobald etwas verkabelt, aufgebaut oder eingemessen werden muss. Eine Zusammenarbeit beginnt in den meisten Fällen gleich: mit einer kurzen Bestandsaufnahme dessen, was heute schon da ist, und einer Einschätzung, was sich davon per Fernwartung erledigen lässt und was einen Termin vor Ort braucht. Arbeitsplätze, Server, E-Mail, Updates und die Datensicherung laufen fast immer aus der Ferne; Verkabelung, Hardware-Einbau und Vor-Ort-Technik nicht.",
         # Wegweiser (R2-12, 24.09.2026): drei Bedarfsmuster.
         "wegweiser_h": "Welcher Weg passt zu Ihnen?",
         "wegweiser_aria": "Wegweiser durch die Leistungen",
@@ -1033,7 +1026,7 @@ PACK = {
             {"q": "Ist die Datensicherung nicht ohnehin dabei?",
              "a": "Eine Sicherung läuft in den meisten Betrieben irgendwie. Was hier berechnet wird, ist etwas anderes: eine überwachte Sicherung, bei der jeder Durchlauf geprüft und die Wiederherstellung regelmäßig getestet wird. Eine Sicherung, aus der noch nie etwas zurückgeholt wurde, ist keine Sicherung, sondern eine Hoffnung."},
             {"q": "Gibt es eine Mindestlaufzeit?",
-             "a": "Über ein Quartal hinaus nicht. Sie können quartalsweise kündigen und bekommen alle Zugänge, Passwörter und die Dokumentation vollständig ausgehändigt. Wir bauen bewusst nichts ein, das Sie an uns bindet."},
+             "a": "Über ein Quartal hinaus nicht. Sie können mit einem Monat Frist zum Quartalsende kündigen und bekommen alle Zugänge, Passwörter und die Dokumentation vollständig ausgehändigt. Wir bauen bewusst nichts ein, das Sie an uns bindet."},
         ],
         # Vorbelegung des Anfragefelds mit dem eigenen Ergebnis (06.09.2026).
         "anfrage_satz": "{posten} — {mtl} €/Monat laut Ihrem Rechner",
@@ -1056,10 +1049,10 @@ PACK = {
         "desc": "WhatsApp, Telefon, Rückruf oder E-Mail — Antwort innerhalb von 24 Stunden an Werktagen, in ganz Österreich und Deutschland. Jetzt Kontakt aufnehmen.",
         "h1": "So erreichen Sie uns",
         "kurz": "WVM-IT ist per WhatsApp, Telefon, Rückruf oder E-Mail erreichbar. Anfragen beantworten wir an Werktagen innerhalb von 24 Stunden, bei einem akuten Ausfall meist deutlich schneller. Betreut werden Betriebe in ganz Österreich und Deutschland, überwiegend per Fernwartung; ein Termin vor Ort wird vorher vereinbart.",
-        "intro": "Am schnellsten geht es per WhatsApp oder Telefon: Ein Satz genügt, worum es geht. Bei einer laufenden Störung sparen zwei Minuten am Telefon mehr Zeit als jede Beschreibung per E-Mail. Können Sie gerade nicht sprechen, hinterlassen Sie über den Rückruf Ihre Nummer und ein Stichwort.</p><p class='sp-intro'>Je genauer die Anfrage, desto konkreter die erste Antwort. Nennen Sie kurz, worum es geht — ein akuter Ausfall, eine laufende Betreuung, eine neue Webseite oder ein Projekt vor Ort —, wie viele Arbeitsplätze oder Server betroffen sind und bis wann es laufen muss. Dann steht in unserer Antwort innerhalb von 24 Stunden bereits eine Größenordnung statt einer Rückfrage. Fernwartung ist dabei der Normalfall und kein Notbehelf: Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Vor Ort kommen wir dort, wo Hände gebraucht werden: Kabel, Aufbau, Gerätetausch.",
+        "intro": "Am schnellsten geht es per WhatsApp oder Telefon: Ein Satz genügt, worum es geht. Bei einer laufenden Störung sparen zwei Minuten am Telefon mehr Zeit als jede Beschreibung per E-Mail. Können Sie gerade nicht sprechen, hinterlassen Sie über den Rückruf Ihre Nummer und ein Stichwort.\n\nJe genauer die Anfrage, desto konkreter die erste Antwort. Nennen Sie kurz, worum es geht — ein akuter Ausfall, eine laufende Betreuung, eine neue Webseite oder ein Projekt vor Ort —, wie viele Arbeitsplätze oder Server betroffen sind und bis wann es laufen muss. Dann steht in unserer Antwort innerhalb von 24 Stunden bereits eine Größenordnung statt einer Rückfrage. Fernwartung ist dabei der Normalfall und kein Notbehelf: Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Vor Ort kommen wir dort, wo Hände gebraucht werden: Kabel, Aufbau, Gerätetausch.",
         "wege_h": "Vier Wege, uns zu erreichen",
         "zeiten_h": "Erreichbarkeit",
-        "zeiten_t": "Montag bis Freitag, 9 bis 18 Uhr. Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag, in jedem Fall innerhalb von 24 Stunden.</p><p class='sp-intro'>Bei einem akuten Ausfall rufen Sie an, statt zu schreiben: Ein Anruf erreicht uns auch dann, wenn gerade niemand ins Postfach sieht. Was in den ersten dreißig Minuten eines Notfalls zu tun ist, steht auf der Notfallseite — und gilt auch, bevor Sie uns erreicht haben.",
+        "zeiten_t": "Montag bis Freitag, 9 bis 18 Uhr. Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag.\n\nBei einem akuten Ausfall rufen Sie an, statt zu schreiben: Ein Anruf erreicht uns auch dann, wenn gerade niemand ins Postfach sieht. Was in den ersten dreißig Minuten eines Notfalls zu tun ist, steht auf der Notfallseite — und gilt auch, bevor Sie uns erreicht haben.",
         "daten_h": "Firmendaten",
         "anschrift": "Anschrift",
         "daten_fehlt": "Die vollständige Anschrift ergänzen wir hier, sobald der Firmensitz eingetragen ist. Bis dahin erreichen Sie uns über Telefon und E-Mail.",
@@ -1077,7 +1070,7 @@ PACK = {
         "titel": "Anfrage angekommen — Antwort in 24 Stunden | WVM-IT",
         "desc": "Ihre Anfrage liegt bei uns. Was jetzt passiert, wie schnell wir antworten und wo Sie uns im dringenden Fall sofort erreichen. Jetzt nachlesen.",
         "h1": "Ihre Anfrage ist angekommen",
-        "kurz": "Ihre Anfrage liegt in unserem Postfach. Wir antworten an Werktagen innerhalb von 24 Stunden, meist deutlich schneller. Wenn es eilt und Sie nicht warten wollen, rufen Sie an: {telefon}. Es entstehen keine Kosten, solange nichts schriftlich beauftragt ist.",
+        "kurz": "Ihre Anfrage ist bei uns eingegangen. Wir antworten an Werktagen innerhalb von 24 Stunden, meist deutlich schneller. Wenn es eilt und Sie nicht warten wollen, rufen Sie an: {telefon}. Es entstehen keine Kosten, solange nichts schriftlich beauftragt ist.",
         "thema_label": "Thema",
         "notfall": "IT-Notfall",
         "w1_h": "Kostenrechner",
@@ -1101,6 +1094,10 @@ PACK = {
     },
     # ── Über uns (/ueber-uns/) ───────────────────────────────────────────────
     "ueber": {
+        # Bildunterschrift unter dem Inhaberfoto der Startseite, wenn `tagline` leer
+        # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
+        # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
+        "badge_fallback": "IT · service · consulting",
         "titel": "Über WVM-IT — Florin Feier, Lenzing (OÖ)",
         "desc": "Wer hinter WVM-IT steht, wie wir arbeiten und was wir bewusst nicht tun. Ein Ansprechpartner, Sitz in Oberösterreich. Jetzt kennenlernen.",
         "h1": "Wer hinter WVM-IT steht",
@@ -1135,11 +1132,13 @@ PACK = {
         "dsgvo_1": "Ihre Angaben verwenden wir nur, um diese Anfrage zu beantworten – keine Weitergabe, keine Werbung ohne Ihre Zustimmung. Einzelheiten in der",
         "dsgvo_link": "Datenschutzerklärung",
         "dsgvo_2": ". Mit * gekennzeichnete Felder sind Pflichtfelder.",
+        # Ansage, wenn der Server eine Einsendung der Startseite abweist (BF24, 25.09.2026).
+        "fehler_pruefen": "Die Anfrage wurde nicht gesendet: Bitte prüfen Sie die E-Mail-Adresse, die Pflichtfelder und die Einwilligung.",
     },
     "recht": {
-        "impressum_titel": "Impressum | WVM-IT",
-        "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT.",
-        "datenschutz_titel": "Datenschutzerklärung | WVM-IT",
+        "impressum_titel": "Impressum von WVM-IT aus Lenzing, Oberösterreich",
+        "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT: Inhaber, Anschrift in Lenzing, Oberösterreich, Kontakt und Offenlegung nach MedienG.",
+        "datenschutz_titel": "Datenschutzerklärung von WVM-IT aus Lenzing",
         "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer und Ihre Rechte.",
         "agb_titel": "AGB von WVM-IT — Bedingungen im Klartext",
         "agb_desc": "Die Geschäftsbedingungen von WVM-IT: Preise, Zahlung, Kündigung, Haftung und Nutzungsrechte — auf einer Seite. Jetzt nachlesen.",
@@ -1194,7 +1193,7 @@ PACK = {
         "fine": "Keine Verpflichtung. Ihre Daten werden vertraulich behandelt.",
         "pl_h": "Alle Preise auf einen Blick.",
         "pl_lead": "Die komplette Übersicht aller Leistungen mit Startpreisen. Das genaue Angebot stimmen wir im Gespräch auf Ihr Projekt ab.",
-        "pl_foot": "Alle Preise netto zzgl. USt. Richtpreise, der Endpreis ergibt sich nach dem Gespräch. Monatliche Leistungen sind jederzeit kündbar.",
+        "pl_foot": "Alle Preise netto zzgl. USt. Richtpreise, der Endpreis ergibt sich nach dem Gespräch. Monatliche Leistungen sind mit einem Monat Frist zum Quartalsende kündbar.",
         "js_leistung": "Leistung", "js_leistungen": "Leistungen",
         "js_remove": "Entfernen:", "js_from": "ab", "js_on_request": "auf Anfrage",
         "js_per_month": "€/Mt", "js_per_year": "€/Jahr",
@@ -1203,19 +1202,19 @@ PACK = {
         "bild_alt": "Hochgeladenes Bild",
         "title_ok": "Anmeldung bestätigt",
         "title_fail": "Bestätigung fehlgeschlagen",
-        "meta_desc": "Bestätigung deiner Newsletter-Anmeldung.",
+        "meta_desc": "Bestätigung Ihrer Anmeldung.",
         "ok_h_pre": "Bestätigt", "ok_h_post": "! Nur noch ein kurzer Schritt.",
-        "ok_p": "Dein <strong>25%-Rabattcode</strong> ist per E-Mail unterwegs. Damit wir deine <strong>kostenlose Beispiel-Website</strong> (bleibt 1 Woche live) genau passend bauen, füll bitte kurz diesen Bogen aus — je mehr du anklickst, desto besser das Ergebnis.",
-        "code_aria": "Dein Rabattcode", "code_label": "Dein Code",
+        "ok_p": "Ihr <strong>25%-Rabattcode</strong> ist per E-Mail unterwegs. Damit wir Ihre <strong>kostenlose Beispiel-Website</strong> (bleibt 1 Woche live) genau passend bauen, füllen Sie bitte kurz diesen Bogen aus — je mehr Sie anklicken, desto besser das Ergebnis.",
+        "code_aria": "Ihr Rabattcode", "code_label": "Ihr Code",
         "step_word": "Schritt", "of_word": "von",
         "nav_back": "← Zurück", "nav_next": "Weiter →",
-        "restored_notice": "Deine vorherigen Eingaben wurden wiederhergestellt.",
-        "sec1_h": "Über euch", "sec1_p": "Wer ihr seid und was ihr macht.",
+        "restored_notice": "Ihre vorherigen Eingaben wurden wiederhergestellt.",
+        "sec1_h": "Über Sie", "sec1_p": "Wer Sie sind und was Sie machen.",
         "f_titel": "Titel / Firmenname *", "f_titel_ph": "z. B. Bäckerei Sonnenschein",
         "f_branche": "Branche", "f_branche_ph": "z. B. Bäckerei, Kanzlei, Friseur",
-        "f_beschreibung": "Was macht ihr genau?", "f_beschreibung_ph": "In 1–2 Sätzen: euer Angebot, eure Leistung, euer Standort …",
-        "f_zielgruppe": "Wer sind eure Kunden?", "f_zielgruppe_ph": "z. B. Familien aus der Region, kleine Firmen …",
-        "f_usp": "Was macht euch besonders?", "f_usp_ph": "euer Vorteil, euer Versprechen …",
+        "f_beschreibung": "Was machen Sie genau?", "f_beschreibung_ph": "In 1–2 Sätzen: Ihr Angebot, Ihre Leistung, Ihr Standort …",
+        "f_zielgruppe": "Wer sind Ihre Kunden?", "f_zielgruppe_ph": "z. B. Familien aus der Region, kleine Firmen …",
+        "f_usp": "Was macht Sie besonders?", "f_usp_ph": "Ihr Vorteil, Ihr Versprechen …",
         "sec2_h": "Die Website", "sec2_p": "Welche Bereiche und welches Ziel.",
         "sektionen_legend": "Welche Bereiche soll die Seite haben?", "sektionen_small": "(anklicken, was passt)",
         "sektionen": [
@@ -1238,12 +1237,12 @@ PACK = {
             {"v": "Verkauf", "l": "Verkauf"},
             {"v": "Info/Präsenz", "l": "Info/Präsenz"},
         ],
-        "site_lang_legend": "In welcher Sprache soll deine Website sein?",
+        "site_lang_legend": "In welcher Sprache soll Ihre Website sein?",
         "site_lang_small": "(eine Option wählen)",
         "site_lang": [
-            {"v": "de", "flag": "🇩🇪", "l": "Nur Deutsch", "d": "Deine Seite entsteht komplett auf Deutsch."},
-            {"v": "en", "flag": "🇬🇧", "l": "Nur Englisch", "d": "Deine Seite entsteht komplett auf Englisch."},
-            {"v": "ro", "flag": "🇷🇴", "l": "Nur Rumänisch", "d": "Deine Seite entsteht komplett auf Rumänisch."},
+            {"v": "de", "flag": "🇩🇪", "l": "Nur Deutsch", "d": "Ihre Seite entsteht komplett auf Deutsch."},
+            {"v": "en", "flag": "🇬🇧", "l": "Nur Englisch", "d": "Ihre Seite entsteht komplett auf Englisch."},
+            {"v": "ro", "flag": "🇷🇴", "l": "Nur Rumänisch", "d": "Ihre Seite entsteht komplett auf Rumänisch."},
             {"v": "multi", "flag": "🌍", "l": "Mehrsprachig — DE + EN + RO", "d": "Mit Sprachumschalter, genau wie diese Website.", "badge": "Empfohlen"},
         ],
         "sec3_h": "Look & Feel", "sec3_p": "Wie soll die Seite wirken?",
@@ -1273,18 +1272,18 @@ PACK = {
         "f_telefon": "Telefon", "f_telefon_ph": "optional",
         "f_kontaktmail": "Kontakt-E-Mail", "f_kontaktmail_ph": "optional",
         "f_zeiten": "Öffnungszeiten", "f_zeiten_ph": "z. B. Mo–Fr 8–18 Uhr",
-        "f_slogan": "Slogan / Claim", "f_slogan_small": "(optional)", "f_slogan_ph": "Ein kurzer Satz, der euch beschreibt",
+        "f_slogan": "Slogan / Claim", "f_slogan_small": "(optional)", "f_slogan_ph": "Ein kurzer Satz, der Sie beschreibt",
         "sec5_h": "Bilder", "sec5_p": "Logo und Fotos machen die Seite echt (optional, bis 8).",
         "upload_h": "Bilder auswählen", "upload_sub": "PNG/JPG, per Klick oder Drag & Drop",
         "uploading": "Lädt hoch …",
         "sec6_h": "Sonstiges", "sec6_p": "Vorbilder und alles, was uns beim Bauen hilft.",
-        "f_website": "Habt ihr schon eine Website?", "f_website_ph": "https:// … (optional)",
-        "f_vorbilder": "Vorbild-Seiten, die euch gefallen", "f_vorbilder_ph": "Links oder Namen (optional)",
+        "f_website": "Haben Sie schon eine Website?", "f_website_ph": "https:// … (optional)",
+        "f_vorbilder": "Vorbild-Seiten, die Ihnen gefallen", "f_vorbilder_ph": "Links oder Namen (optional)",
         "f_extra": "Weitere Wünsche", "f_extra_ph": "Alles, was uns beim Bauen hilft — Besonderheiten, No-Gos …",
         "submit": "Anfrage absenden & Website bauen lassen",
-        "note": "Kostenlos & unverbindlich. Deine Beispiel-Website bleibt 1 Woche live — danach melden wir uns.",
+        "note": "Kostenlos & unverbindlich. Ihre Beispiel-Website bleibt 1 Woche live — danach melden wir uns.",
         "fail_h": "Link ungültig oder abgelaufen.",
-        "fail_p": "Dieser Bestätigungslink funktioniert nicht mehr (er ist maximal 3 Tage gültig). Melde dich einfach noch einmal an, dann schicken wir dir einen frischen Link.",
+        "fail_p": "Dieser Bestätigungslink funktioniert nicht mehr (er ist maximal 3 Tage gültig). Melden Sie sich einfach noch einmal an, dann schicken wir Ihnen einen frischen Link.",
         "fail_retry": "Erneut anmelden", "fail_home": "Zur Startseite",
     },
     "anfrage_done": {
@@ -1319,13 +1318,13 @@ PACK = {
         "step2": "JARVIS schreibt & baut die Seite",
         "step3": "Geht online",
         "step4": "Live & bereit",
-        "view": "Deine Seite ansehen", "home": "Zur Startseite",
-        "hint": "Du bekommst den Link auch per E-Mail — du kannst diese Seite also jederzeit schließen.",
-        "js_done_title": "Fertig! Deine Seite ist live.",
-        "js_done_sub": "Schau sie dir an — danach setzen wir sie gemeinsam mit dir perfekt um.",
-        "js_done_hint": "Den Link findest du auch in deiner E-Mail.",
+        "view": "Ihre Seite ansehen", "home": "Zur Startseite",
+        "hint": "Sie bekommen den Link auch per E-Mail — Sie können diese Seite also jederzeit schließen.",
+        "js_done_title": "Fertig! Ihre Seite ist live.",
+        "js_done_sub": "Sehen Sie sie sich an — danach setzen wir sie gemeinsam mit Ihnen perfekt um.",
+        "js_done_hint": "Den Link finden Sie auch in Ihrer E-Mail.",
         "js_fail_title": "Da ist gerade etwas schiefgelaufen.",
-        "js_fail_sub": "Kein Problem — wir kümmern uns persönlich darum und melden uns bei dir.",
+        "js_fail_sub": "Kein Problem — wir kümmern uns persönlich darum und melden uns bei Ihnen.",
     },
     # ── Umbau 2026-08: Kontaktwege, Hero-Werkzeug, Zusagen, Ablauf, Leistungsblöcke ──
     # Fallberichte je Referenz (06.09.2026). Bis dahin rendete referenzen.html in
@@ -1459,14 +1458,14 @@ PACK = {
         "zeit": "Wann passt es Ihnen?",
         "zeit_1": "Vormittags (9 bis 12 Uhr)",
         "zeit_2": "Nachmittags (12 bis 17 Uhr)",
-        "zeit_3": "Abends (ab 17 Uhr)",
+        "zeit_3": "Spätnachmittag (17 bis 18 Uhr)",
         "zeit_4": "Egal, sobald es geht",
         # Design B1 (§2.3/§3.1): Zeitfenster als zweizeilige Segmente , kurzer
         # Name (fett) + Uhrzeit (Mono). `zeit_N` (oben) bleibt der Volltext im
         # `value`-Attribut, damit die Bestätigungsmail unverändert bleibt.
         "zeit_1_kurz": "Vormittags", "zeit_1_uhr": "9–12 Uhr",
         "zeit_2_kurz": "Nachmittags", "zeit_2_uhr": "12–17 Uhr",
-        "zeit_3_kurz": "Abends", "zeit_3_uhr": "ab 17 Uhr",
+        "zeit_3_kurz": "Abends", "zeit_3_uhr": "17–18 Uhr",
         "zeit_4_kurz": "Egal", "zeit_4_uhr": "sobald es geht",
         # Optionales Anliegen (W05, 24.09.2026); Schluessel wie views._ANLIEGEN.
         "anliegen": "Worum geht es? (freiwillig)", "anliegen_leer": "Bitte wählen",
@@ -1608,8 +1607,8 @@ PACK = {
             "{anrede},\n\n"
             "fast geschafft. Bitte bestätigen Sie Ihre Anmeldung bei {site} mit einem Klick:\n\n"
             "{link}\n\n"
-            "Danach bekommen Sie Ihren 25%-Rabattcode und Ihre kostenlose Beispiel-Website. "
-            "Außerdem erhalten Sie ca. einmal pro Woche unseren Referenz-Newsletter (jederzeit abbestellbar).\n"
+            "Danach bekommen Sie Ihren 25%-Rabattcode und Ihre kostenlose Beispiel-Website.\n"
+            "{nl_line}"
             "Der Link ist 3 Tage gültig. Falls Sie sich nicht angemeldet haben, ignorieren Sie diese E-Mail einfach.\n"
         ),
         "nl_welcome_subject": "Willkommen bei {site}: Ihr 25%-Code",
@@ -1621,12 +1620,15 @@ PACK = {
             "in Kürze zu, damit Sie direkt sehen, was möglich ist. Danach setzen wir sie "
             "gemeinsam mit Ihnen um, bis alles genau passt.\n\n"
             "{wunsch_line}"
-            "Sie bekommen ab jetzt außerdem etwa einmal pro Woche unseren Referenz-Newsletter "
-            "mit echten Projekten von uns. Sie können ihn jederzeit über den Link am Ende jeder "
-            "Mail wieder abbestellen.\n\n"
+            "{nl_line}"
             "Freundliche Grüße\nIhr Team von {site}\n{url}\n"
         ),
         "nl_welcome_wunsch": "Ihre Angaben an uns: {wunsch}\n\n",
+        # Nur wenn das getrennte Newsletter-Kästchen angehakt war (25.09.2026, EIG151).
+        "nl_confirm_nl": "Mit der Bestätigung erhalten Sie außerdem ca. einmal pro Woche unseren Referenz-Newsletter (jederzeit abbestellbar), wie von Ihnen gewünscht.\n",
+        "nl_welcome_nl": ("Wie gewünscht bekommen Sie außerdem etwa einmal pro Woche unseren Referenz-Newsletter "
+                          "mit echten Projekten von uns. Sie können ihn jederzeit über den Link am Ende jeder "
+                          "Mail wieder abbestellen.\n\n"),
         "angebot_kunde_subject": "Ihr Richtangebot von {site}",
         "angebot_kunde_body": (
             "Hallo,\n\ndanke für Ihr Interesse. Hier Ihr unverbindliches Richtangebot von {site}:\n\n"
