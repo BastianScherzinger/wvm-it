@@ -1,14 +1,33 @@
 ---
 bereich: ads
 titel: Google Ads
-stand: 2026-09-17
+stand: 2026-09-25
 status: nicht zutreffend
-zusammenfassung: Fuer WVM-IT laufen weiterhin keine Google Ads. Seit 17.09.2026 zaehlt jeder Anfrageweg seinen Abschluss serverseitig und cookielos ueber landing/messung.py (FO08, ohne gtag) -- das ist eine eigene Summe, kein Conversion-Signal fuer ein Werbekonto. Seit dem 06.09.2026 waere es erstmals sinnvoll: Es gibt eine serverseitige Messung, die Danke-Seite ist erreichbar, und der Kostenrechner taugt als Landeseite. Empfehlung der Strategie: **nicht vor den ersten Bewertungen** — bezahlte Klicks auf ein Profil ohne Rezension sind gekaufter Absprung.
+zusammenfassung: Fuer WVM-IT laufen weiterhin keine Google Ads. Seit der SEO-Strategie vom 25.09.2026 ist Ads Säule D, Entscheidung durch Florin offen (D1); Start fruehestens nach A1 (Profil-Duplikat geklaert) und ab 3 oeffentlich sichtbaren Bewertungen. Seit 17.09.2026 zaehlt jeder Anfrageweg seinen Abschluss serverseitig und cookielos ueber landing/messung.py (FO08, ohne gtag), seit 25.09.2026 zusaetzlich je Kampagne (K1/K6) -- das ist eine eigene Summe, kein Conversion-Signal fuer ein Werbekonto. Empfehlung der Strategie: **nicht vor den ersten Bewertungen** — bezahlte Klicks auf ein Profil ohne Rezension sind gekaufter Absprung.
 offen: 5
 quellen: docs/AUSBAU-2026-09.md, docs/AKQUISE-SOFORT.md, docs/RELAUNCH-START.md, docs/recht-und-cookies.md
 ---
 
 # Google Ads
+
+## Stand 25.09.2026
+
+Google Ads ist seit der SEO-, Local- und Google-Strategie vom 25.09.2026
+(`10-strategie.md`) **Säule D**: der einzige Google-Kanal, der bei Kaufsuchen im
+Bezirk sofort sichtbar ist, aber organisch heute nicht messbar. Ein
+Kampagnenentwurf liegt vor (§ „Kampagnen" unten, `docs/AKQUISE-SOFORT.md` Kanal 3),
+wurde aber nie umgesetzt.
+
+**Entscheidung: Florin, noch offen (D1).** Start frühestens, wenn (a) das
+Unternehmensprofil geklärt ist (Duplikat, Kategorie — A1 in `10-strategie.md`) und
+(b) mindestens 3 Bewertungen öffentlich sichtbar sind — bezahlte Klicks auf ein
+Profil ohne Rezension verpuffen. `status` bleibt `nicht zutreffend`, bis ein Konto
+existiert.
+
+**Messung ohne Google-Tag** (unverändert, siehe unten): Anrufberichte im
+Werbekonto (Anruf-Asset), `messung.py` mit den Kampagnen-Zählungen K1
+(Seitenaufrufe je `utm_campaign`) und K6 (Anfragen je Kampagne über den Referer,
+seit 25.09.2026 im Code), und Florins Frage bei jedem Erstkontakt.
 
 ## Stand
 
