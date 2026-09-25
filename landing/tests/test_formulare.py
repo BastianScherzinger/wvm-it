@@ -206,6 +206,17 @@ class KontaktFormularTest(SimpleTestCase):
         self.assertEqual(antwort.status_code, 200)
         self.assertGreaterEqual(len(mail.outbox), 1)
 
+    def test_antwort_geht_an_den_interessenten(self):
+        """MW21: „Antworten" im Postfach erreicht den Anfragenden, nicht die
+        technische Versandadresse."""
+        self.client_.post(reverse("index"), {
+            "name": "Anna", "email": "anna@example.com", "nachricht": "Hallo",
+            "einwilligung": "on",
+        })
+        self.assertTrue(mail.outbox)
+        self.assertEqual(mail.outbox[0].extra_headers.get("Reply-To"),
+                         "anna@example.com")
+
     def test_honeypot_verhindert_die_mail(self):
         antwort = self.client_.post(reverse("index"), {
             "name": "Bot", "email": "bot@example.com", "nachricht": "Spam",
@@ -344,6 +355,9 @@ class AngebotFormularTest(SimpleTestCase):
         })
         self.assertEqual(antwort.status_code, 200)
         self.assertGreaterEqual(len(mail.outbox), 1)
+        # MW21: Die Anfrage ans Postfach antwortet an den Interessenten.
+        self.assertEqual(mail.outbox[0].extra_headers.get("Reply-To"),
+                         "anna@example.com")
 
     def test_ohne_einwilligung_keine_mail(self):
         """Das Formular trägt `novalidate`; das Pflichtkästchen prüfte bis

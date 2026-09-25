@@ -185,7 +185,9 @@ class ContextProcessorTest(SimpleTestCase):
     def test_hreflang_ziele_antworten_alle_mit_200(self):
         """Jede hreflang-Adresse einer dreisprachigen Seite muss existieren."""
         from . import _util
-        for pfad in ("/", "/kontakt/", "/leistungen/edv-it-betreuung/", "/branchen/"):
+        # Die Rechtsseiten seit TS44: ihre /en/- und /ro/-Adressen leiten um.
+        for pfad in ("/", "/kontakt/", "/leistungen/edv-it-betreuung/", "/branchen/",
+                     "/impressum/", "/datenschutz/", "/agb/", "/barrierefreiheit/"):
             antwort = _util.client().get(pfad)
             for eintrag in antwort.context["alt_paths"]:
                 # Je Ziel ein frischer Klient: Ein wiederverwendeter sammelt das

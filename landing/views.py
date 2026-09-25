@@ -1032,6 +1032,7 @@ def _handle_angebot(request, c) -> bool:
     _send_mail_logged(
         _betreff(f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="ANGEBOT",
+        antwort_an=email,                                   # MW21
     )
     _eingangsbestaetigung(c, email, name, "angebot",
                           "\n".join(zeilen) + ("\n\n" + "\n".join(summen) if summen else ""))
@@ -1074,6 +1075,7 @@ def _handle_contact(request, c) -> bool:
     _send_mail_logged(
         _betreff(f"Neue Projektanfrage von {name}"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
+        antwort_an=email,                                   # MW21
     )
     _eingangsbestaetigung(c, email, name, "kontakt", nachricht)
     return True
@@ -1698,7 +1700,8 @@ def anfrage_absenden(request):
             _send_mail_logged(
                 f"Neue Website-Anfrage (Detailbogen): {email}",
                 f"Name: {name or '-'}\nE-Mail: {email}\nBilder: {len(images)}\n\n{full}\n",
-                from_email, [empfaenger], tag="ANFRAGE-NOTIFY")
+                from_email, [empfaenger], tag="ANFRAGE-NOTIFY",
+                antwort_an=email)                           # MW21
     except Exception as fehler:
         # Der Besucher soll wegen einer fehlgeschlagenen Benachrichtigung keinen
         # Fehler sehen — seine Anfrage ist angekommen. Der Inhaber muss aber
@@ -3961,7 +3964,10 @@ def angebot_anfordern(request):
                 f"E-Mail: {email}\nSprache: {lang}\nWeitere Angebote erwünscht: {'ja' if consent else 'nein'}\n\n"
                 + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}\n"
             )
-            _send_mail_logged(f"Angebots-Anfrage: {email}", notify, from_email, [empf], tag="ANGEBOT-NOTIFY")
+            # MW21: Reply-To nur mit geprüfter Adresse — dieser Endpunkt prüft
+            # oben nur auf „@“, und ein Zeilenumbruch im Kopf bräche den Versand ab.
+            _send_mail_logged(f"Angebots-Anfrage: {email}", notify, from_email, [empf], tag="ANGEBOT-NOTIFY",
+                              antwort_an=email if _ist_email(email) else None)
     if consent:
         try:
             from . import supa
@@ -4791,7 +4797,8 @@ def kooperation_anfordern(request):
     k = _kampagne_aus_verweis(request)
     if k:
         messung.zaehle("anfrage_kampagne", k)
-    _send_mail_logged(_betreff(f"Kooperations-Anfrage von {name}"), body, from_email, [empf], tag="KOOPERATION")
+    _send_mail_logged(_betreff(f"Kooperations-Anfrage von {name}"), body, from_email, [empf], tag="KOOPERATION",
+                      antwort_an=email)                     # MW21
     em = i18n.get_pack(get_language())["emails"]
     site = c.get("site_name", "WVM-IT")
     ack = em["kooperation_ack_body"].format(name=name, site=site, url=c.get("wvm_url", ""))

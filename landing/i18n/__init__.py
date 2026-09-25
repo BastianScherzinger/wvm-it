@@ -115,9 +115,16 @@ def _loest_auf(pfad, lang):
 
 
 def hat_sprachfassung(base_path, lang):
-    """True, wenn es base_path in dieser Sprache als eigene Adresse gibt."""
+    """True, wenn es base_path in dieser Sprache als eigene Adresse gibt.
+
+    TS44 (25.09.2026): Der Router loest `/en/impressum/` auf, die Middleware
+    leitet es aber seit dem 10.09.2026 per 301 auf `/impressum/` um (`nur_deutsch`).
+    Ohne diese Abfrage trugen die vier Rechtsseiten hreflang-Verweise auf
+    Weiterleitungen — ein hreflang-Ziel muss selbst mit 200 antworten."""
     if lang == "de":
         return True
+    if nur_deutsch(base_path, lang):
+        return False
     schluessel = (base_path, lang)
     if schluessel not in _UEBERSETZT:
         _UEBERSETZT[schluessel] = _loest_auf(add_prefix(lang, base_path), lang)
