@@ -32,7 +32,7 @@ STAND_FALLBACK = "2026-09-25"
 
 STAND = {
     "/": "2026-09-25",
-    "/agb/": "2026-09-24",
+    "/agb/": "2026-09-25",
     "/aktuelles/": "2026-09-24",
     "/aktuelles/alte-windows-version-im-betrieb/": "2026-09-25",
     "/aktuelles/aufbewahrungsfristen-oesterreich/": "2026-09-25",
@@ -56,7 +56,7 @@ STAND = {
     "/aktuelles/wlan-im-betrieb-planen/": "2026-09-25",
     "/aktuelles/zugaenge-fuer-it-dienstleister/": "2026-09-25",
     "/angebot/": "2026-09-25",
-    "/barrierefreiheit/": "2026-09-24",
+    "/barrierefreiheit/": "2026-09-25",
     "/branchen/": "2026-08-29",
     "/branchen/arztpraxen-therapie/": "2026-09-25",
     "/branchen/handwerk-baugewerbe/": "2026-09-25",
@@ -68,8 +68,8 @@ STAND = {
     "/checkliste/it-dienstleister-wechseln/": "2026-09-25",
     "/checkliste/it-jahrescheck/": "2026-09-25",
     "/checkliste/neuer-arbeitsplatz/": "2026-09-25",
-    "/datenschutz/": "2026-09-24",
-    "/impressum/": "2026-09-24",
+    "/datenschutz/": "2026-09-25",
+    "/impressum/": "2026-09-25",
     "/it-hilfe/": "2026-09-25",
     "/it-notfall/": "2026-09-25",
     "/it-service/": "2026-09-06",
