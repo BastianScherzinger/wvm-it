@@ -76,7 +76,7 @@ HILFE = {
         {"q": "Brauche ich einen Vertrag, damit Sie mir helfen?",
          "a": "Nein. Einzelne Hilfe rechnen wir nach Aufwand ab: per Fernwartung 95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt."},
         {"q": "Wie schnell bekomme ich Hilfe?",
-         "a": "Per Fernwartung meist am selben Tag. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr; Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag, in jedem Fall innerhalb von 24 Stunden."},
+         "a": "Per Fernwartung meist am selben Tag. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr; Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag."},
         {"q": "Was passiert, wenn Sie das Problem nicht lösen können?",
          "a": "Wir sagen Ihnen vorher, ob wir helfen können. Stellt sich unterwegs heraus, dass ein Hersteller oder ein Spezialist die bessere Adresse ist, sagen wir das offen und nennen Ihnen den nächsten Schritt."},
         {"q": "Was kostet ein neuer Arbeitsplatz oder Microsoft 365?",

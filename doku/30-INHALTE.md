@@ -15,29 +15,25 @@ quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-I
 
 ## Seitenbestand
 
-**158 URLs, 76 Basis-Pfade, 114.641 Wörter** (Stand 29.08.2026, `python manage.py seo_bericht`; Sitemap live am 02.09.2026: 158 `<loc>`). Gewachsen aus **2 rankbaren Seiten** im Juli 2026 → 6 (Umbau) → 57 (Relaunch 28.08.) → 87 (Ausbau 28./29.08.) → 158 (SEO-Ausbau 3, 29.08.2026).
+**213 URLs, 101 Basis-Pfade** (nachgezählt am 25.09.2026 aus `views._seiten_pfade()`, Cloud-Triage — dieselbe Quelle wie Sitemap und IndexNow). Gewachsen aus **2 rankbaren Seiten** im Juli; die Wortzahlen vom 29.08.2026 stehen weiter unten und sind älter als diese Tabelle.
 
-| Silo | Pfad | Seiten | Sprachen | URLs | Seit |
-|---|---|---:|---|---:|---|
-| Einzelseiten | `/`, `/kosten/`, `/referenzen/`, `/kontakt/`, `/angebot/`, `/impressum/`, `/datenschutz/` + `/it-notfall/`, `/it-sicherheit-test/` | 8 | DE/EN/RO | 24 | Juli / 28.08. |
-| Leistungen | `/leistungen/<slug>/` | 11 + Hub | DE/EN/RO | 36 | 28.08.2026 |
-| Branchen | `/branchen/<slug>/` | 6 + Hub | DE/EN/RO | 21 | 29.08.2026 |
-| Vergleiche | `/vergleich/<slug>/` | 3 + Hub | DE/EN/RO | 12 | 29.08.2026 |
-| Regionen | `/it-service/<slug>/` | 7 + Hub | DE/EN/RO | 24 | 29.08.2026 |
-| Fachbeiträge | `/aktuelles/<slug>/` | 15 + Hub | **nur DE** | 16 | 29.08.2026 (5), 29.08. (+10) |
-| Glossar | `/wissen/<slug>/` | 14 + Hub | **nur DE** | 15 | 29.08.2026 |
-| Checklisten | `/checkliste/<slug>/` | 3 + Hub | **nur DE** | 4 | 29.08.2026 |
-| Werkzeuge | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/` | 3 | DE/EN/RO | (in Einzelseiten/Preise gezählt) | 29.08.2026 |
+| Silo | Pfad | Seiten | Sprachen | URLs |
+|---|---|---:|---|---:|
+| Einzelseiten | `/`, `/kosten/`, `/referenzen/`, `/kontakt/`, `/angebot/`, `/ueber-uns/` | 6 | DE/EN/RO | 18 |
+| Rechtstexte | `/impressum/`, `/datenschutz/`, `/agb/`, `/barrierefreiheit/` | 4 | **nur DE** in der Sitemap | 4 |
+| Leistungen | `/leistungen/<slug>/` | 14 + Hub | DE/EN/RO | 45 |
+| Einrichten | `/einrichten/<slug>/` | 10 + Hub | DE/EN/RO | 33 |
+| Branchen | `/branchen/<slug>/` | 6 + Hub | DE/EN/RO | 21 |
+| Vergleiche | `/vergleich/<slug>/` | 4 + Hub | DE/EN/RO | 15 |
+| Regionen | `/it-service/<slug>/` | 7 + Hub | DE/EN/RO | 24 |
+| Fachbeiträge | `/aktuelles/<slug>/` | 21 + Hub | **nur DE** | 22 |
+| Glossar | `/wissen/<slug>/` | 14 + Hub | **nur DE** | 15 |
+| Checklisten | `/checkliste/<slug>/` | 3 + Hub | **nur DE** | 4 |
+| Werkzeuge | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/`, `/it-hilfe/` | 4 | DE/EN/RO | 12 |
 
 Dazu ohne Index: eigene **404-/500-Seite** (Status bleibt 404 — eine hilfreiche Seite mit 200 wäre eine Soft-404) und die interne **Suche** `/suche/` (noindex, in `robots.txt` gesperrt). Die drei nur-deutschen Silos sind begründete Ausnahmen (kein Suchvolumen auf EN/RO in diesem Markt, `landing/beitraege.py`); die Einsprachigkeit ist über das vierte Feld `mehrsprachig` in `views._seiten_pfade()` modelliert, damit Sitemap und IndexNow keine `/en/aktuelles/…`-Adressen melden, die es nicht gibt.
 
-**Die Zahlen der Tabelle sind der Stand vom 29.08.2026 und inzwischen zu niedrig** — der
-aktuelle Bestand steht in `../CLAUDE.md` („Stand: 198 URLs"). Stichprobe am 12.09.2026 an
-der Quelle statt an dieser Datei: `landing/beitraege.py` führt **18** Fachbeiträge (nicht
-15), `landing/vergleiche.py` **vier** Vergleiche (nicht 3), `landing/glossar.py`
-unverändert 14 Begriffe. Genau daran hing der zweite Fund von `GE25`: Wer eine Zahl
-pflegt, statt sie zu zählen, hat sie irgendwann falsch — auf einer Hub-Seite hat das
-am 12.09.2026 vier Tage lang gestanden (siehe „Texte und Bilder").
+**Bis zum 25.09.2026 stand hier der Bestand vom 29.08.2026** (158 URLs, 11 Leistungen, 3 Vergleiche, 15 Beiträge, kein Silo `/einrichten/`) — Befund `EIG98`. Wer eine Zahl pflegt, statt sie zu zählen, hat sie irgendwann falsch; deshalb steht oben jetzt die Quelle dazu.
 
 **Wortzahlen je Seitenart** (`../docs/seo/URL-INVENTAR.md`, 29.08.2026): Startseite 4.222 · Leistungsseiten 639–1.024 · Branchen 950–995 · Vergleiche 745–818 · Regionen 542–619 · Fachbeiträge 555–650 · Glossar 355–406 · Checklisten 663–747 · `/it-notfall/` 1.315 · `/angebot/` 1.221 · `/kosten/` 1.005 · Hubs 300–608 · `/kontakt/` 184 · `/referenzen/` 201 · `/impressum/` 141 · `/datenschutz/` 461.
 
@@ -134,14 +130,14 @@ weiter von **drei** Vergleichen; seit dem 08.09.2026 sind es vier
 
 | Was fehlt | Warum / wer | Regel |
 |---|---|---|
-| **Über-uns-Seite** mit benannter Person (das Band `#ueber` auf der Startseite ist kein eigener Seitentyp) und **AGB** | Pflicht-Seitentypen der Vorlage; AGB/Widerruf laut Messung „nicht messbar" (`RE09`, `RE10`), aber als Seitentyp fehlend | `VL11` |
+| ~~**Über-uns-Seite** mit benannter Person (das Band `#ueber` auf der Startseite ist kein eigener Seitentyp) und **AGB**~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): `/ueber-uns/` und `/agb/` antworten 200. Vorher: Pflicht-Seitentypen der Vorlage; AGB/Widerruf laut Messung „nicht messbar" (`RE09`, `RE10`), aber als Seitentyp fehlend | `VL11` |
 | **UID-Nummer und Kammerzugehörigkeit** im Impressum | Florin muss beides nennen; Felder vorbereitet; Gewerbebehörde BH Vöcklabruck und Rechtsvorschrift stehen bereits | `RE04` nicht messbar |
 | **Gründungsjahr** (`seit_jahr`) und **Loxone-/KNX-Partnerstatus** (`partner_status`, welcher Level genau) | Florin; starke Vertrauenssignale, rendern erst wenn gefüllt | `KV09` (2 von 6 Vertrauenssignalen) |
 | **Echte Bewertungen** und **Referenzen mit Einverständnis** (Fallstudien Rhein-Neckar, RTC-Service, FSH GmbH) | Florin bzw. Kundenzustimmung; drei erfundene Stimmen standen schon einmal live — nichts erfinden | `KV09`, T3/T5 |
-| **Erklärung zur Barrierefreiheit** (BFSG) mit Rückmeldeweg | sofern der Betrieb nicht als Kleinstunternehmen ausgenommen ist | `RE12` |
-| **Danke-Seite** nach Formularversand (eigene URL `/anfrage/danke/`) | ohne eigene URL ist kein Abschluss zählbar | `KV07` |
-| **Autor und Article-Schema auf Vergleichsseiten** (15 von 47 Ratgeberseiten als Article) | Vergleiche tragen `FAQPage`, aber kein `Article`/`author` | `GE15`, `GE16` |
-| **Feed** (RSS/Atom) für 47 Ratgeberseiten; `/feed/` antwortet 404 (02.09.2026) | | `GE32`, `BT06` |
+| ~~**Erklärung zur Barrierefreiheit** (BFSG) mit Rückmeldeweg~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): `/barrierefreiheit/` antwortet 200. Vorher: sofern der Betrieb nicht als Kleinstunternehmen ausgenommen ist | `RE12` |
+| ~~**Danke-Seite** nach Formularversand (eigene URL `/anfrage/danke/`)~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): `/anfrage/danke/` besteht (noindex); gezählt wird jeder Abschluss serverseitig über `landing/messung.py`. Vorher: ohne eigene URL ist kein Abschluss zählbar | `KV07` |
+| ~~**Autor und Article-Schema auf Vergleichsseiten** (15 von 47 Ratgeberseiten als Article)~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): alle vier Vergleiche tragen `Article` mit Autor (`views._ratgeber_artikel`). Vorher: Vergleiche tragen `FAQPage`, aber kein `Article`/`author` | `GE15`, `GE16` |
+| ~~**Feed** (RSS/Atom) für 47 Ratgeberseiten; `/feed/` antwortet 404 (02.09.2026)~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): `/feed/` antwortet 200 (Atom). Vorher: | `GE32`, `BT06` |
 | Weitere Beiträge im Takt von zwei pro Monat | T2 begonnen; Septembervorschläge (M365, Serverausfall) sind inzwischen geschrieben | T2 |
 
 ## Offen

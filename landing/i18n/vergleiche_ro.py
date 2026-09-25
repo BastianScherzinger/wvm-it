@@ -14,19 +14,19 @@ VERGLEICHE = {
         "titel": "Contract IT sau ore: calculul în 2 pași | WVM-IT",
         "desc": "Contract curent sau facturare după timp: calculul care arată ce model se justifică, cu cifrele dumneavoastră. Solicitați un calcul acum.",
         "h1": "Asistență IT curentă sau facturare pe ore?",
-        "kurz": "Decizia depinde de un singur număr: câte ore de suport aveți nevoie efectiv pe lună. La noi asistența curentă costă de la 29 € per stație și lună, ajutorul fără contract 95 € pe oră. De la aproximativ trei ore de suport pe lună contractul este mai ieftin — iar în el sunt deja incluse supravegherea, actualizările și backupul verificat, pe care la facturarea pe ore nu le plătește nimeni și, prin urmare, nu le face nimeni.",
+        "kurz": "Decizia depinde de un singur număr: câte ore de suport aveți nevoie efectiv pe lună. La noi asistența curentă costă de la 29 € per stație și lună, ajutorul fără contract 95 € pe oră. De la aproximativ trei ore de suport pe lună contractul este mai ieftin — iar în el sunt deja incluse supravegherea și actualizările, backupul verificat vine ca poziție separată de la 49 € pe lună. La facturarea pe ore nu le plătește nimeni și, prin urmare, nu le face nimeni.",
         "intro": "Diferența dintre cele două modele este mai mică la preț și mai mare la comportament. Cine facturează pe ore câștigă din defecțiuni; cine asigură asistență lunară câștigă din faptul că nu apar. Nu este un argument moral, ci o afirmație despre ce muncă are loc în ce model.",
         "a_h": "Asistență curentă",
         "b_h": "Facturare pe ore",
         "tabelle_h": "Față în față",
         "tabelle": [
             {"k": "Facturare", "a": "Sumă fixă per stație și lună", "b": "Doar orele lucrate efectiv"},
-            {"k": "Prevenție", "a": "Actualizări, supraveghere și verificarea backupului sunt incluse", "b": "Nu are loc — ar fi muncă neplătită"},
+            {"k": "Prevenție", "a": "Actualizările și supravegherea sunt incluse, backupul verificat de la 49 € pe lună", "b": "Nu are loc — ar fi muncă neplătită"},
             {"k": "Previzibilitate", "a": "Suma stă în buget, și într-o lună slabă", "b": "Variază mult; o lună cu avarie costă de câteva ori mai mult"},
             {"k": "Reacție", "a": "Defecțiunile sunt acoperite, fără discuții de cost în prealabil", "b": "Fiecare sesizare este o comandă — asta întârzie sesizările"},
             {"k": "Cunoașterea sistemelor", "a": "Este întreținută și documentată continuu", "b": "Trebuie refăcută la fiecare intervenție, iar asta costă ore"},
             {"k": "Interesul furnizorului", "a": "Câștigă din faptul că se strică puțin", "b": "Câștigă din faptul că se strică ceva"},
-            {"k": "Dependență", "a": "Reziliere trimestrială, accesele și documentația sunt ale dumneavoastră", "b": "Fără angajament, dar și fără garanții"},
+            {"k": "Dependență", "a": "Reziliere cu o lună înainte de sfârșitul trimestrului, accesele și documentația sunt ale dumneavoastră", "b": "Fără angajament, dar și fără garanții"},
         ],
         "fuer_a_h": "Când se potrivește asistența curentă",
         "fuer_a": [
@@ -50,7 +50,7 @@ VERGLEICHE = {
             {"q": "Contractul nu este mai scump într-un an în care nu se întâmplă nimic?",
              "a": "Aritmetic, da — și acesta este miezul onest al chestiunii. Doar că într-un an cu asistență se întâmplă mai puțin, pentru că actualizările se aplică, discurile se supraveghează și restaurările se testează. Anul fără incidente nu este dovada că asistența a fost inutilă, ci rezultatul ei. Dacă asta nu vă convinge, facturarea după timp este alegerea potrivită pentru dumneavoastră."},
             {"q": "Aveți o durată minimă?",
-             "a": "Peste un trimestru, nu. Reziliați trimestrial și primiți toate accesele, parolele și documentația complet. Nu construim în mod deliberat nimic care să vă lege tehnic de noi — ar fi un dezavantaj pentru dumneavoastră și un câștig care nu ține mult pentru noi."},
+             "a": "Peste un trimestru, nu. Reziliați cu o lună înainte de sfârșitul trimestrului și primiți toate accesele, parolele și documentația complet. Nu construim în mod deliberat nimic care să vă lege tehnic de noi — ar fi un dezavantaj pentru dumneavoastră și un câștig care nu ține mult pentru noi."},
             {"q": "Cum trecem de la un model la celălalt?",
              "a": "În ambele direcții, fără efort. Trecerea de la ore la contract începe cu o analiză, ca să știm ce preluăm. Invers, oprim supravegherea și predăm documentația. Ambele sunt o chestiune de zile, nu de luni."},
         ],
@@ -202,7 +202,7 @@ VERGLEICHE = {
              "a": "Curățarea și pasta termică ajută deseori",
              "b": "La aparatele mai vechi, semn că sfârșitul se apropie"},
             {"k": "Cât costă",
-             "a": "Manoperă de la 95 € pe oră plus componenta",
+             "a": "Manoperă la fața locului 120 € pe oră plus componenta și deplasarea",
              "b": "Aparatul plus 190 € configurare cu transferul datelor"},
         ],
 
@@ -226,7 +226,7 @@ VERGLEICHE = {
         ],
 
         "rechnung_h": "Windows 11 și calculul",
-        "rechnung_t": 'Cunoaștem două cifre și doar acelea își au locul aici. Montarea unui SSD împreună cu mutarea sistemului durează una-două ore, deci 95 până la 190 € manoperă. Configurarea unui aparat nou, inclusiv transferul datelor, costă 190 €. Cât costă piesa sau aparatul nou vă spunem la zi — aici nu apare în mod deliberat, pentru că o cifră despre prețul altcuiva este greșită peste trei luni. De aici rezultă o regulă practică ce nu îmbătrânește: dacă upgrade-ul costă în total mai mult de o treime dintr-un aparat nou echivalent, merită doar la un calculator tânăr. Sub acest prag este aproape întotdeauna alegerea mai bună — nu în ultimul rând pentru că un aparat modernizat își păstrează configurarea obișnuită. Și o cifră ușor de trecut cu vederea: dacă socotiți ambele pentru cinci posturi de lucru, timpul cerut de cinci upgrade-uri separate este deseori postul mai mare decât piesele. De la aproximativ cinci aparate merită să schimbați dintr-o dată, în loc să reparați unul câte unul.',
+        "rechnung_t": 'Cunoaștem două cifre și doar acelea își au locul aici. Montarea unui SSD împreună cu mutarea sistemului durează una-două ore; pentru că cineva trebuie să fie la aparat, se aplică tariful pentru intervenții la fața locului, 120 € pe oră plus deplasarea. Configurarea unui aparat nou, inclusiv transferul datelor, costă 190 €. Cât costă piesa sau aparatul nou vă spunem la zi — aici nu apare în mod deliberat, pentru că o cifră despre prețul altcuiva este greșită peste trei luni. De aici rezultă o regulă practică ce nu îmbătrânește: dacă upgrade-ul costă în total mai mult de o treime dintr-un aparat nou echivalent, merită doar la un calculator tânăr. Sub acest prag este aproape întotdeauna alegerea mai bună — nu în ultimul rând pentru că un aparat modernizat își păstrează configurarea obișnuită. Și o cifră ușor de trecut cu vederea: dacă socotiți ambele pentru cinci posturi de lucru, timpul cerut de cinci upgrade-uri separate este deseori postul mai mare decât piesele. De la aproximativ cinci aparate merită să schimbați dintr-o dată, în loc să reparați unul câte unul.',
         "faq": [
             {"q": "Cum îmi dau seama dacă este montat un SSD?",
              "a": "Cel mai simplu după pornire: un aparat cu SSD este gata în vreo zece "

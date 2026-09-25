@@ -21,19 +21,19 @@ VERGLEICHE = {
         "titel": "IT-Vertrag oder Stunden: Rechenweg in 2 Schritten | WVM-IT",
         "desc": "Laufender Vertrag oder Abrechnung nach Aufwand: der Rechenweg, ab wann sich welches Modell trägt, mit Ihren eigenen Zahlen. Jetzt durchrechnen lassen.",
         "h1": "Laufende IT-Betreuung oder Abrechnung nach Stunden?",
-        "kurz": "Die Entscheidung hängt an einer einzigen Zahl: wie viele Supportstunden Sie im Monat tatsächlich brauchen. Bei uns kostet die laufende Betreuung ab 29 € je Arbeitsplatz und Monat, Hilfe ohne Vertrag 95 € je Stunde. Ab etwa drei Stunden Support im Monat ist die Betreuung günstiger — und darin sind Überwachung, Updates und geprüfte Datensicherung bereits enthalten, die bei Stundenabrechnung niemand bezahlt und deshalb niemand macht.",
+        "kurz": "Die Entscheidung hängt an einer einzigen Zahl: wie viele Supportstunden Sie im Monat tatsächlich brauchen. Bei uns kostet die laufende Betreuung ab 29 € je Arbeitsplatz und Monat, Hilfe ohne Vertrag 95 € je Stunde. Ab etwa drei Stunden Support im Monat ist die Betreuung günstiger — und darin sind Überwachung und Updates bereits enthalten, die geprüfte Datensicherung kommt als eigene Position ab 49 € im Monat dazu. Bei Stundenabrechnung bezahlt beides niemand, und deshalb macht es niemand.",
         "intro": "Der Unterschied zwischen den beiden Modellen ist kleiner beim Preis und größer beim Verhalten. Wer nach Stunden abrechnet, verdient an Störungen; wer monatlich betreut, verdient daran, dass keine auftreten. Das ist kein moralisches Argument, sondern eine Aussage darüber, welche Arbeit in welchem Modell überhaupt stattfindet.",
         "a_h": "Laufende Betreuung",
         "b_h": "Abrechnung nach Stunden",
         "tabelle_h": "Die Gegenüberstellung",
         "tabelle": [
             {"k": "Abrechnung", "a": "Fester Betrag je Arbeitsplatz und Monat", "b": "Nur die tatsächlich geleisteten Stunden"},
-            {"k": "Vorbeugung", "a": "Updates, Überwachung und Prüfung der Sicherung sind enthalten", "b": "Findet nicht statt — sie wäre unbezahlte Arbeit"},
+            {"k": "Vorbeugung", "a": "Updates und Überwachung sind enthalten, die geprüfte Sicherung ab 49 € im Monat", "b": "Findet nicht statt — sie wäre unbezahlte Arbeit"},
             {"k": "Planbarkeit", "a": "Der Betrag steht im Budget, auch in einem schlechten Monat", "b": "Schwankt stark; ein Ausfallmonat kostet ein Vielfaches"},
             {"k": "Reaktion", "a": "Störungen sind abgedeckt, es gibt keine Kostendiskussion vorab", "b": "Jede Meldung ist eine Beauftragung — das verzögert Meldungen"},
             {"k": "Wissen über Ihre Technik", "a": "Wird laufend gepflegt und dokumentiert", "b": "Muss bei jedem Einsatz neu erarbeitet werden, und das kostet Stunden"},
             {"k": "Interessenlage des Anbieters", "a": "Verdient daran, dass wenig ausfällt", "b": "Verdient daran, dass etwas ausfällt"},
-            {"k": "Bindung", "a": "Kündigung quartalsweise, Zugänge und Doku gehören Ihnen", "b": "Keine Bindung, aber auch keine Zusagen"},
+            {"k": "Bindung", "a": "Kündigung mit einem Monat Frist zum Quartalsende, Zugänge und Doku gehören Ihnen", "b": "Keine Bindung, aber auch keine Zusagen"},
         ],
         "fuer_a_h": "Wann die laufende Betreuung passt",
         "fuer_a": [
@@ -57,7 +57,7 @@ VERGLEICHE = {
             {"q": "Ist die Betreuung nicht teurer, wenn ein Jahr lang nichts passiert?",
              "a": "Rein rechnerisch ja — und das ist der ehrliche Kern der Sache. Nur passiert in einem betreuten Jahr weniger, weil Updates eingespielt, Platten überwacht und Sicherungen getestet werden. Das Jahr ohne Vorfälle ist nicht der Beweis, dass die Betreuung unnötig war, sondern ihr Ergebnis. Wenn Sie das nicht überzeugt, ist die Abrechnung nach Aufwand für Sie die richtige Wahl."},
             {"q": "Gibt es bei Ihnen eine Mindestlaufzeit?",
-             "a": "Über ein Quartal hinaus nicht. Sie kündigen quartalsweise und bekommen alle Zugänge, Passwörter und die Dokumentation vollständig ausgehändigt. Wir bauen bewusst nichts ein, das Sie technisch an uns bindet — das wäre für Sie ein Nachteil und für uns kein Verdienst, der lange trägt."},
+             "a": "Über ein Quartal hinaus nicht. Sie kündigen mit einem Monat Frist zum Quartalsende und bekommen alle Zugänge, Passwörter und die Dokumentation vollständig ausgehändigt. Wir bauen bewusst nichts ein, das Sie technisch an uns bindet — das wäre für Sie ein Nachteil und für uns kein Verdienst, der lange trägt."},
             {"q": "Wie kommen wir vom einen Modell ins andere?",
              "a": "In beide Richtungen ohne Aufwand. Vom Stundenmodell in die Betreuung beginnt mit einer Bestandsaufnahme, damit wir wissen, was wir übernehmen. Umgekehrt beenden wir die Überwachung und übergeben die Dokumentation. Beides ist eine Frage von Tagen, nicht von Monaten."},
         ],
@@ -209,7 +209,7 @@ VERGLEICHE = {
              "a": "Reinigung und Wärmeleitpaste helfen oft",
              "b": "Bei älteren Geräten Zeichen für das nahende Ende"},
             {"k": "Was es kostet",
-             "a": "Arbeit ab 95 € je Stunde plus Bauteil",
+             "a": "Arbeit vor Ort 120 € je Stunde plus Bauteil und Anfahrt",
              "b": "Gerät plus 190 € Einrichtung mit Datenübernahme"},
         ],
 
@@ -234,7 +234,7 @@ VERGLEICHE = {
         ],
 
         "rechnung_h": "Windows 11 und der Rechenweg",
-        "rechnung_t": 'Zwei Zahlen kennen wir, und nur die gehören hierher. Der Einbau einer SSD samt Übernahme des Systems dauert ein bis zwei Stunden, also 95 bis 190 € Arbeit. Die Einrichtung eines neuen Geräts einschließlich Datenübernahme kostet 190 €. Was das Bauteil oder das neue Gerät kostet, sagen wir Ihnen tagesaktuell — hier steht es bewusst nicht, weil eine Zahl über einen fremden Preis in drei Monaten falsch ist. Daraus wird eine Faustregel, die nicht altert: Kostet das Aufrüsten insgesamt mehr als ein Drittel eines gleichwertigen neuen Geräts, lohnt es sich nur noch bei einem jungen Rechner. Bleibt es darunter, ist es fast immer die bessere Wahl — vor allem, weil ein aufgerüstetes Gerät seine gewohnte Einrichtung behält. Und eine Zahl, die man leicht übersieht: Wenn Sie beides für fünf Arbeitsplätze rechnen, ist die Zeit, die fünf einzelne Aufrüstungen kosten, oft der größere Posten als die Bauteile. Ab etwa fünf Geräten lohnt es sich, in einem Zug zu tauschen statt einzeln nachzubessern.',
+        "rechnung_t": 'Zwei Zahlen kennen wir, und nur die gehören hierher. Der Einbau einer SSD samt Übernahme des Systems dauert ein bis zwei Stunden; weil dafür jemand am Gerät sein muss, gilt der Satz für Einsätze vor Ort, 120 € je Stunde zuzüglich Anfahrt. Die Einrichtung eines neuen Geräts einschließlich Datenübernahme kostet 190 €. Was das Bauteil oder das neue Gerät kostet, sagen wir Ihnen tagesaktuell — hier steht es bewusst nicht, weil eine Zahl über einen fremden Preis in drei Monaten falsch ist. Daraus wird eine Faustregel, die nicht altert: Kostet das Aufrüsten insgesamt mehr als ein Drittel eines gleichwertigen neuen Geräts, lohnt es sich nur noch bei einem jungen Rechner. Bleibt es darunter, ist es fast immer die bessere Wahl — vor allem, weil ein aufgerüstetes Gerät seine gewohnte Einrichtung behält. Und eine Zahl, die man leicht übersieht: Wenn Sie beides für fünf Arbeitsplätze rechnen, ist die Zeit, die fünf einzelne Aufrüstungen kosten, oft der größere Posten als die Bauteile. Ab etwa fünf Geräten lohnt es sich, in einem Zug zu tauschen statt einzeln nachzubessern.',
         "faq": [
             {"q": "Wie erkenne ich, ob eine SSD verbaut ist?",
              "a": "Am einfachsten am Startverhalten: Ein Gerät mit SSD ist nach dem "
