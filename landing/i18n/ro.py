@@ -1061,6 +1061,7 @@ PACK = {
         "dsgvo_1": "Folosim datele dumneavoastră doar pentru a răspunde acestei cereri – fără transmitere mai departe, fără publicitate fără acordul dumneavoastră. Detalii în",
         "dsgvo_link": "Datenschutzerklärung (politica de confidențialitate, în germană)",
         "dsgvo_2": ". Câmpurile marcate cu * sunt obligatorii.",
+        "fehler_pruefen": "Cererea nu a fost trimisă: vă rugăm să verificați adresa de e-mail, câmpurile obligatorii și acordul.",
     },
     "recht": {
         "impressum_titel": "Date de identificare | WVM-IT",

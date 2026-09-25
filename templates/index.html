@@ -221,7 +221,7 @@ Die Varianten stehen in content.json (T3).
             </div>
             <label class="offer-consent"><input type="checkbox" name="einwilligung" required> {{ t.offer.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</label>
             <button class="btn btn-lg btn-magnetic offer-submit" type="submit">{{ t.offer.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <p class="tool-fine">{{ t.hero.note|safe }}</p>
+            <p class="tool-fine" aria-live="polite">{% if news_fehler %}{{ t.form.fehler_pruefen|safe }} {% endif %}{{ t.hero.note|safe }}</p>
           {% include 'datenschutzhinweis.html' %}
           </form>
           {% endif %}
@@ -570,7 +570,7 @@ Die Varianten stehen in content.json (T3).
                 </div>
               </div>
 
-              <div class="rb-gate" id="rbGate">
+              <div class="rb-gate" id="rbGate" aria-live="polite">
                 <div class="rb-field">
                   <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
                   <input class="fld" type="email" name="email" id="rbEmail" required autocomplete="email" placeholder="name@firma.at">
@@ -650,7 +650,11 @@ Die Varianten stehen in content.json (T3).
           // Fehler inline statt als alert(): Ein Systemdialog reisst den Besucher aus
           // der Seite, ist auf dem Handy kaum lesbar und widerspricht der
           // Komponentenregel in doku/20-DESIGN.md („Fehler inline — nie alert()").
-          if(fehler){ fehler.textContent=I.error||'Error'; fehler.hidden=false; } });
+          // #rbErr stand nie in der Vorlage; ohne ihn blieb der Fehler stumm (BF24).
+          // Er entsteht deshalb erst hier, im bereits ansagenden #rbGate.
+          if(!fehler){ fehler=document.createElement('p'); fehler.className='lb-err';
+            fehler.id='rbErr'; fehler.setAttribute('role','alert'); submit.insertAdjacentElement('afterend',fehler); }
+          fehler.textContent=I.error||'Error'; fehler.hidden=false; });
     });
     refresh();
   })();
@@ -1191,7 +1195,7 @@ Die Varianten stehen in content.json (T3).
         <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required placeholder="{{ t.kontakt.f_project_ph|safe }}"></textarea></label>
         <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</label>
         <button class="btn btn-lg btn-magnetic" type="submit">{{ t.kontakt.submit|safe }}</button>
-        <p class="form-fine">{{ t.kontakt.fine|safe }}</p>
+        <p class="form-fine" aria-live="polite">{% if kontakt_fehler %}{{ t.form.fehler_pruefen|safe }} {% endif %}{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}
       </form>
       {% endif %}

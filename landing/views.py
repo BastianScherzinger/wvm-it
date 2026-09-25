@@ -2078,11 +2078,17 @@ def index(request):
     c = _content()
     sent = False
     news_sent = False
+    # Abgewiesene Einsendung (BF24): Sonst stand das Formular nach dem Absenden
+    # wieder leer da, ohne ein Wort, warum. Die Vorlage sagt es im aria-live-Absatz.
+    news_fehler = False
+    kontakt_fehler = False
     if request.method == "POST":
         if (request.POST.get("form") or "").strip() == "newsletter":
             news_sent = _handle_newsletter(request, c)
+            news_fehler = not news_sent
         else:
             sent = _handle_contact(request, c)
+            kontakt_fehler = not sent
     lang = get_language()
     # Ohne JavaScript abgesendete Kurzanfragen kommen mit ?ok=<quelle> zurück , der
     # betroffene Block zeigt dann seine Erfolgsmeldung (siehe leistung_anfrage).
@@ -2091,6 +2097,7 @@ def index(request):
         anfrage_ok = ""
     return render(request, "index.html", {
         "c": c, "sent": sent, "news_sent": news_sent, "anfrage_ok": anfrage_ok,
+        "news_fehler": news_fehler, "kontakt_fehler": kontakt_fehler,
         "startpreise": _startpreise(lang),
         "preise_item": _itempreise(lang),
         "probleme": _probleme(lang),

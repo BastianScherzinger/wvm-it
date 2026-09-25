@@ -1065,6 +1065,7 @@ PACK = {
         "dsgvo_1": "We use your details only to answer this enquiry – no passing on, no advertising without your consent. Details in the",
         "dsgvo_link": "Datenschutzerklärung (privacy policy, German)",
         "dsgvo_2": ". Fields marked * are required.",
+        "fehler_pruefen": "Your request was not sent: please check the email address, the required fields and the consent box.",
     },
     "recht": {
         "impressum_titel": "Legal notice | WVM-IT",
