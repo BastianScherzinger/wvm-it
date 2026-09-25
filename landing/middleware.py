@@ -363,6 +363,10 @@ class MessungMiddleware:
             if response.status_code == 200 and typ in ("text/html", "application/xhtml+xml"):
                 art = "automat" if _ist_automat(request) else "seite"
                 messung.zaehle(art, request.path[:120])
+                if art == "seite":
+                    k = messung.kampagne(request.GET)
+                    if k:
+                        messung.zaehle("kampagne", k)
         except Exception as fehler:            # noqa: BLE001
             # Eine Messung darf niemals eine Antwort verhindern -- deshalb wird
             # hier jeder Grund gefangen. Bis zum 06.09.2026 stand hier `pass`,

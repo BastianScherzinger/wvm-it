@@ -84,6 +84,8 @@ class Command(BaseCommand):
                 "  --dateien oder die [MESSUNG]-Zeilen im Log.")
         self._tabelle("Seiten", z["seiten"])
         self._tabelle("Anfragen je Quelle", z["quellen"])
+        self._tabelle("Kampagnen", z["kampagnen"])
+        self._tabelle("Anfragen je Kampagne", z["anfrage_kampagnen"])
 
     # ── Die gespeicherten Tage ───────────────────────────────────────────────
     def _aus_dateien(self, tage):
@@ -102,11 +104,12 @@ class Command(BaseCommand):
             aufrufe = sum(werte.get("seite", {}).values())
             anfragen = sum(werte.get("anfrage", {}).values())
             automaten = sum(werte.get("automat", {}).values())
+            kampagne = sum(werte.get("kampagne", {}).values())
             falle = werte.get("honigtopf", {})
             quote = f"{anfragen / aufrufe * 100:.1f} %" if aufrufe else "—"
             self.stdout.write(
                 f"  {tag}  Aufrufe {aufrufe:>5}  Anfragen {anfragen:>4}  "
-                f"Anteil {quote:>7}  Automaten {automaten:>5}"
+                f"Anteil {quote:>7}  Automaten {automaten:>5}  Kampagnen {kampagne:>4}"
                 + (f"  Falle {falle}" if falle else ""))
 
     def _tabelle(self, titel, werte):

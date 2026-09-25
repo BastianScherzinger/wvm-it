@@ -24,6 +24,13 @@ Spam-Falle. **Keine IP-Adresse, kein Cookie, keine Kennung, kein Verlauf, nichts
 sich auf eine Person zurückführen ließe** — deshalb ist das keine Verarbeitung
 personenbezogener Daten und braucht weder Einwilligung noch Banner-Eintrag.
 
+**Kampagnen (K1, 25.09.2026).** Zusätzlich wird die Summe je erlaubter Kampagne
+gezählt (`utm_campaign`, aus Unternehmensprofil, Ads und der gedruckten Karte),
+damit sichtbar wird, ob diese Quellen überhaupt Besucher bringen. Dieselbe Art
+Zählung wie die Seitenaufrufe je Pfad: eine Summe, kein Verlauf, keine Kennung.
+Nur die Werte aus `KAMPAGNEN` werden gezählt, alles andere wird ignoriert, damit
+niemand über die Adresse beliebige Schlüssel anlegt.
+
 **Wie gespeichert wird.** Die Zähler leben im Arbeitsspeicher des Prozesses und werden
 beim Tageswechsel sowie alle `_SCHREIB_TAKT` Ereignisse als eine Zeile JSON an
 `var/messung/<jahr>-<monat>.jsonl` angehängt **und** ins Log gedruckt. Das Dateisystem
@@ -37,6 +44,7 @@ from __future__ import annotations
 import atexit
 import json
 import os
+import re
 import threading
 import uuid
 from collections import defaultdict
@@ -58,6 +66,28 @@ _seit_schreiben = 0
 # nehmen und die Prozesse eines Tages addieren, statt den Verkehr vor dem
 # Neustart still fallen zu lassen. Zufall, keine Besucherkennung.
 _LAUF = uuid.uuid4().hex[:12]
+
+# Erlaubte Kampagnen (utm_campaign). Nur diese werden gezählt; alles andere
+# wird ignoriert, damit niemand über die Adresse beliebige Schlüssel anlegt.
+KAMPAGNEN = frozenset({
+    "gbp-website", "gbp-termin", "gbp-post", "gbp-produkt",
+    "ads-lokal", "ads-hilfe", "ads-einrichtung", "ads-sicherheit",
+    "karte-bewerten",
+})
+_INHALT = re.compile(r"^[a-z0-9-]{1,20}$")
+
+
+def kampagne(abfrage) -> str | None:
+    """'<utm_campaign>/<utm_content>' aus einem QueryDict/dict, oder None.
+    utm_content nur, wenn es dem Muster entspricht, sonst '-'."""
+    try:
+        name = (abfrage.get("utm_campaign") or "").strip().lower()[:40]
+        if name not in KAMPAGNEN:
+            return None
+        inhalt = (abfrage.get("utm_content") or "").strip().lower()
+        return f"{name}/{inhalt if _INHALT.match(inhalt) else '-'}"
+    except Exception:
+        return None
 
 
 def _ziel() -> Path:
@@ -113,6 +143,8 @@ def zusammenfassung() -> dict:
         "honigtopf": jetzt.get("honigtopf", {}),
         "seiten": dict(sorted(jetzt.get("seite", {}).items(), key=lambda p: -p[1])[:25]),
         "quellen": dict(sorted(jetzt.get("anfrage", {}).items(), key=lambda p: -p[1])),
+        "kampagnen": dict(sorted(jetzt.get("kampagne", {}).items(), key=lambda p: -p[1])),
+        "anfrage_kampagnen": dict(sorted(jetzt.get("anfrage_kampagne", {}).items(), key=lambda p: -p[1])),
     }
 
 
