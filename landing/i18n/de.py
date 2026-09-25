@@ -1100,9 +1100,9 @@ PACK = {
         "fehler_pruefen": "Die Anfrage wurde nicht gesendet: Bitte prüfen Sie die E-Mail-Adresse, die Pflichtfelder und die Einwilligung.",
     },
     "recht": {
-        "impressum_titel": "Impressum | WVM-IT",
-        "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT.",
-        "datenschutz_titel": "Datenschutzerklärung | WVM-IT",
+        "impressum_titel": "Impressum von WVM-IT aus Lenzing, Oberösterreich",
+        "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT: Inhaber, Anschrift in Lenzing, Oberösterreich, Kontakt und Offenlegung nach MedienG.",
+        "datenschutz_titel": "Datenschutzerklärung von WVM-IT aus Lenzing",
         "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer und Ihre Rechte.",
         "agb_titel": "AGB von WVM-IT — Bedingungen im Klartext",
         "agb_desc": "Die Geschäftsbedingungen von WVM-IT: Preise, Zahlung, Kündigung, Haftung und Nutzungsrechte — auf einer Seite. Jetzt nachlesen.",
