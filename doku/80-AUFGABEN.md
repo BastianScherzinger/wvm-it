@@ -347,6 +347,7 @@ und rendert, sobald das Feld gefüllt ist.
 | GE19 | bewusst so | Die sieben Seiten ohne `speakable` (Startseite DE/EN/RO und die vier Rechtstexte) haben keinen Absatz `.antwort`, und die Angabe wurde dort am 25.09.2026 absichtlich entfernt, weil sie ins Leere zeigte (EIG114/EIG128, gesichert durch `AlleSeitenTest`). | 2026-09-25 |
 | GE29 | bewusst so | `/ro/referenzen/` liegt mit 55 % auf der Schwelle, zeigt die einzige Referenz mit Kundenzustimmung und erklärt selbst, warum sie kurz ist; mehr Inhalt entsteht nur durch echte weitere Referenzen. | 2026-09-25 |
 | TS46 | beim Kunden | Die Seiten, die die Messung als nicht bei Google indexiert führt, stehen bereits in `/sitemap.xml` (Index auf vier Segmente aus `views._seiten_pfade()`) und gehen per `manage.py indexnow` an Bing, Yandex und Seznam; Google nimmt Indexierungsanträge nur über die Search Console an, im angemeldeten Browser (Bastian), siehe „Offen“ Nr. 25 und [40-SEO.md](40-SEO.md) Offen Nr. 14. Im Code ist dafür nichts zu tun. | 2026-09-25 |
+| PJ10 | bewusst so | Keine der drei gemeldeten Views ist ohne Route: `indexnow_key` (`landing/views.py:5002`) hängt über `re_path` an `config/urls.py:53`, `fehler_404` und `fehler_500` (`views.py:5063`/`5081`) sind in `config/urls.py:150–151` als `handler404`/`handler500` verdrahtet — Django ruft Fehlerseiten nie über ein URL-Muster auf, und die Nachweisdatei für IndexNow braucht ein Regex-Muster; die Messung erkennt beide Verdrahtungen nicht. | 2026-09-25 |
 <!-- bewertung:ende -->
 
 ## Eigene Punkte
