@@ -24,6 +24,13 @@ Spam-Falle. **Keine IP-Adresse, kein Cookie, keine Kennung, kein Verlauf, nichts
 sich auf eine Person zurückführen ließe** — deshalb ist das keine Verarbeitung
 personenbezogener Daten und braucht weder Einwilligung noch Banner-Eintrag.
 
+**Kampagnen (K1, 25.09.2026).** Zusätzlich wird die Summe je erlaubter Kampagne
+gezählt (`utm_campaign`, aus Unternehmensprofil, Ads und der gedruckten Karte),
+damit sichtbar wird, ob diese Quellen überhaupt Besucher bringen. Dieselbe Art
+Zählung wie die Seitenaufrufe je Pfad: eine Summe, kein Verlauf, keine Kennung.
+Nur die Werte aus `KAMPAGNEN` werden gezählt, alles andere wird ignoriert, damit
+niemand über die Adresse beliebige Schlüssel anlegt.
+
 **Wie gespeichert wird.** Die Zähler leben im Arbeitsspeicher des Prozesses und werden
 beim Tageswechsel sowie alle `_SCHREIB_TAKT` Ereignisse als eine Zeile JSON an
 `var/messung/<jahr>-<monat>.jsonl` angehängt **und** ins Log gedruckt. Das Dateisystem
@@ -37,6 +44,7 @@ from __future__ import annotations
 import atexit
 import json
 import os
+import re
 import threading
 import uuid
 from collections import defaultdict
@@ -58,6 +66,43 @@ _seit_schreiben = 0
 # nehmen und die Prozesse eines Tages addieren, statt den Verkehr vor dem
 # Neustart still fallen zu lassen. Zufall, keine Besucherkennung.
 _LAUF = uuid.uuid4().hex[:12]
+
+# Erlaubte Kampagnen (utm_campaign). Nur diese werden gezählt; alles andere
+# wird ignoriert, damit niemand über die Adresse beliebige Schlüssel anlegt.
+KAMPAGNEN = frozenset({
+    "gbp-website", "gbp-termin", "gbp-post", "gbp-produkt",
+    "ads-lokal", "ads-hilfe", "ads-einrichtung", "ads-sicherheit",
+    "karte-bewerten",
+})
+_INHALT = re.compile(r"^[a-z0-9-]{1,20}$")
+# `utm_content` ist frei wählbar (Muster oben) — ohne Obergrenze könnte jeder
+# über die Adresse beliebig viele Schlüssel anlegen, und jede Tageszeile würde
+# mitwachsen. Deshalb höchstens so viele verschiedene Schlüssel je Art und Tag;
+# danach zählt ein neuer `utm_content` nur noch als '<kampagne>/-'.
+# `utm_content` benennt einen Beitrag oder eine Anzeige (p03, a1), **nie** einen
+# Empfänger — sonst wäre die Summe doch eine Kennung.
+_KAMPAGNEN_SCHLUESSEL_HOECHSTENS = 60
+
+
+def kampagne(abfrage, art: str = "kampagne") -> str | None:
+    """'<utm_campaign>/<utm_content>' aus einem QueryDict/dict, oder None.
+    utm_content nur, wenn es dem Muster entspricht, sonst '-'. Ist die
+    Obergrenze verschiedener Schlüssel für `art` heute erreicht, wird ein
+    neuer utm_content ebenfalls zu '-'."""
+    try:
+        name = (abfrage.get("utm_campaign") or "").strip().lower()[:40]
+        if name not in KAMPAGNEN:
+            return None
+        inhalt = (abfrage.get("utm_content") or "").strip().lower()
+        schluessel = f"{name}/{inhalt if _INHALT.match(inhalt) else '-'}"
+        with _sperre:
+            vorhanden = _stand.get(art, {})
+            if (schluessel not in vorhanden
+                    and len(vorhanden) >= _KAMPAGNEN_SCHLUESSEL_HOECHSTENS):
+                schluessel = f"{name}/-"
+        return schluessel
+    except Exception:
+        return None
 
 
 def _ziel() -> Path:
@@ -113,6 +158,8 @@ def zusammenfassung() -> dict:
         "honigtopf": jetzt.get("honigtopf", {}),
         "seiten": dict(sorted(jetzt.get("seite", {}).items(), key=lambda p: -p[1])[:25]),
         "quellen": dict(sorted(jetzt.get("anfrage", {}).items(), key=lambda p: -p[1])),
+        "kampagnen": dict(sorted(jetzt.get("kampagne", {}).items(), key=lambda p: -p[1])),
+        "anfrage_kampagnen": dict(sorted(jetzt.get("anfrage_kampagne", {}).items(), key=lambda p: -p[1])),
     }
 
 

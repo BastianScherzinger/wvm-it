@@ -79,7 +79,7 @@ PACK = {
         # Einzugsgebiet ein Argument ist.
         "person_h": "Ich bin Florin Feier.",
         "person_t": "Sie sprechen mit mir – nicht mit einer Warteschleife. Ich sage Ihnen auch, wenn sich etwas nicht lohnt.",
-        "person_ort": "Inhaber von WVM-IT · Lenzing, Oberösterreich",
+        "person_ort": "Inhaber von WVM-IT · Lenzing, Bezirk Vöcklabruck",
         "scroll_aria": "Weiter nach unten",
         "robot_msgs": [
             "Guten Tag. Schön, dass Sie da sind.",

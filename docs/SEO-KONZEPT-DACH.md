@@ -226,7 +226,7 @@ Jede Seite hat eine Aufgabe im Fluss:
 | **1. Google-Unternehmensprofil anlegen und verifizieren** | 1 Std. + Wartezeit auf Postkarte | **Florin/Bastian** | **1–4 Wochen** ← der einzige schnelle Kanal |
 | 2. Restliche URLs in der Search Console anmelden (Kontingent ~10/Tag) | 15 Min./Tag | Bastian | 2–6 Wochen |
 | 3. SPF- und DMARC-Eintrag setzen (siehe §8) | 30 Min. | Bastian | sofort für Zustellbarkeit |
-| 4. Zwei Fachbeiträge im Monat | 3 Std./Monat | Bastian | 6–12 Wochen, kumulativ |
+| 4. ~~Zwei Fachbeiträge im Monat~~ — **geändert 25.09.2026:** höchstens ein Fachbeitrag im Monat (nur echter Kundenfall/Fristanlass mit Ortsbezug), Rest der Zeit in zwei Profil-Beiträge pro Woche (siehe `doku/40-SEO.md`, `10-strategie.md` K3/C6) | 3 Std./Monat | Bastian | 6–12 Wochen, kumulativ |
 | 5. Verzeichniseinträge mit identischen Daten (§7) | 3 Std. einmalig | Bastian | 4–8 Wochen |
 | 6. Erste echte Bewertungen einsammeln | laufend | Florin | 2–8 Wochen |
 | 7. Fallstudien zu Rhein-Neckar, RTC-Service, FSH | 4 Std. | Bastian | 8–16 Wochen |

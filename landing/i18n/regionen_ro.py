@@ -11,8 +11,8 @@ REGIONEN = {
     "voecklabruck": {
         "anfrage_h": "Solicitați asistență IT în Vöcklabruck",
         "nav": "Vöcklabruck",
-        "titel": "Servicii IT Vöcklabruck — asistență pentru firme | WVM-IT",
-        "desc": "Furnizor IT în districtul Vöcklabruck: asistență IT, rețele și securitate, la 6 km de Lenzing. Solicitați o ofertă acum.",
+        "titel": "Asistență IT Vöcklabruck: firme de la 29 €/lună | WVM-IT",
+        "desc": "Asistență IT pentru firme din districtul Vöcklabruck, la 6 km de Lenzing: de la 29 €/lună pe stație, ajutor punctual 95 €/oră, fără contract.",
         "h1": "Servicii IT și asistență în Vöcklabruck",
         "kurz": "WVM-IT se ocupă de IT-ul firmelor din Vöcklabruck și din întregul district. Sediul nostru din Lenzing se află la 6 kilometri, ceea ce înseamnă circa 10 minute până la dumneavoastră. Activitatea curentă — stații de lucru, servere, e-mail, actualizări, copii de siguranță — se desfășoară prin mentenanță la distanță și începe de obicei în câteva minute după sesizare.",
         "intro": "Vöcklabruck este reședință de district și centru administrativ, iar districtul se numără printre cele mai industrializate din Austria Superioară. Între marile companii se află numeroase firme mici: meșteșuguri, comerț, cabinete de avocatură și contabilitate, cabinete medicale, furnizori. Tocmai acolo lipsește aproape întotdeauna un departament IT propriu — există cineva care se pricepe puțin și care, de fapt, are altceva de făcut.",
@@ -34,6 +34,8 @@ REGIONEN = {
              "a": "Da. Timelkam, Attnang-Puchheim, Schörfling, Seewalchen, Vöcklamarkt, Frankenmarkt și celelalte comune ale districtului se află în aceeași zonă. Pentru lucrările la distanță, localitatea nu contează deloc."},
             {"q": "Avem deja o firmă de IT. Merită totuși o discuție?",
              "a": "Dacă sunteți mulțumiți: nu, și v-o spunem deschis. Devine util atunci când așteptați răspunsuri, când nimeni nu mai știe ce echipamente există în firmă sau când de ani de zile nimeni nu a verificat dacă backupul chiar poate fi restaurat. Inventarul vă spune asta, indiferent cine se ocupă mai departe."},
+            {"q": "Avem doar o singură problemă la un PC. Ajutați și fără contract?",
+             "a": "Da. Pentru probleme punctuale, de exemplu o imprimantă care nu mai printează, e-mailuri care nu sosesc sau un PC lent, oferim ajutor IT fără contract: de cele mai multe ori prin mentenanță la distanță, facturat după timpul lucrat, cu 95 €/oră. Dacă trebuie să venim la fața locului, o intervenție în Vöcklabruck costă 120 €/oră plus deplasarea, iar de la Lenzing drumul este scurt. Dacă un aparat trebuie înlocuit, configurăm noul PC la preț fix de 190 €. Toate sunt prețuri orientative, net plus TVA."},
         ],
     },
 

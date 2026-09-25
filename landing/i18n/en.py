@@ -101,7 +101,7 @@ PACK = {
         "chip_value": "from €{preis}",
         "person_h": "I'm Florin Feier.",
         "person_t": "You talk to me – not to a hold queue. And I'll tell you when something isn't worth it.",
-        "person_ort": "Owner of WVM-IT · Lenzing, Upper Austria",
+        "person_ort": "Owner of WVM-IT · Lenzing, Vöcklabruck district",
         "scroll_aria": "Scroll down",
         "robot_msgs": [
             "Hello. Good to have you here.",

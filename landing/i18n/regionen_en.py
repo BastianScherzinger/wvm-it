@@ -11,8 +11,8 @@ REGIONEN = {
     "voecklabruck": {
         "anfrage_h": "Request IT support in Vöcklabruck",
         "nav": "Vöcklabruck",
-        "titel": "IT services Vöcklabruck for businesses | WVM-IT",
-        "desc": "IT provider in the Vöcklabruck district: workstation support, networks, IT security. 6 km from Lenzing. Request a free quote now.",
+        "titel": "IT support Vöcklabruck: business IT from €29/month | WVM-IT",
+        "desc": "IT support for businesses in the Vöcklabruck district, 6 km from Lenzing: from €29 per workstation a month, one-off help €95/hr, no contract. Get in touch.",
         "h1": "IT services and support in Vöcklabruck",
         "kurz": "WVM-IT looks after the IT of businesses in Vöcklabruck and across the district. Our base in Lenzing is 6 road kilometres away, putting us on site in about 10 minutes. Day-to-day work — workstations, servers, email, updates, backups — runs by remote maintenance and usually starts within minutes of your call.",
         "intro": "Vöcklabruck is the district capital and administrative centre, and the district is one of the most industrial in Upper Austria. Among the large employers sit many small ones: trades, retail, law and tax practices, medical practices, suppliers. That is exactly where an in-house IT department is almost always missing — there is someone who knows a bit about computers and who really has another job to do.",
@@ -34,6 +34,8 @@ REGIONEN = {
              "a": "Yes. Timelkam, Attnang-Puchheim, Schörfling, Seewalchen, Vöcklamarkt, Frankenmarkt and the other municipalities of the district are all in the same catchment area. For remote work the location makes no difference at all."},
             {"q": "We already have an IT company. Is a conversation still worth it?",
              "a": "If you are happy with them: no, and we will tell you so. It becomes worthwhile when you wait for replies, when nobody knows any more what is actually in the building, or when nobody has checked in years whether the backup can actually be restored. The inventory tells you that, regardless of who supports you afterwards."},
+            {"q": "We only have a single PC problem. Do you help without a contract?",
+             "a": "Yes. For one-off problems such as a printer that no longer prints, missing e-mails or a slow PC, there is our IT help without a contract: mostly by remote access, billed by the hour at €95. If someone needs to come by, a visit in Vöcklabruck costs €120 per hour plus travel, and from Lenzing that is a short trip. If a device has to be replaced, we set up the new PC for a fixed price of €190. All prices are guide prices, net plus VAT."},
         ],
     },
 
