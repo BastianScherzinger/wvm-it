@@ -18,6 +18,10 @@ urlpatterns = [
     re_path(r"^de/(?P<rest>.*)$", views.de_praefix_umleiten,
             name="de_praefix_umleiten"),
     path("sprache/<str:lang>/", views.set_language, name="set_language"),
+    # Kurzadresse für Karte, QR-Code und Mail-Signatur (K4, 25.09.2026): bleibt
+    # gültig, auch wenn sich der Google-Bewertungslink später ändert. Ohne
+    # Sprachpräfix-Variante, weil sie nur auf Karte/QR-Code gedruckt wird.
+    path("bewerten/", views.bewerten, name="bewerten"),
     path("bau/status/", views.bau_status, name="bau_status"),
     path("cloudinary/signatur/", views.cloudinary_sign, name="cloudinary_sign"),
     path("newsletter/wochenversand/", views.newsletter_weekly, name="newsletter_weekly"),

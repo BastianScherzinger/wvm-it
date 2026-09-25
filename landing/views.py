@@ -10,11 +10,13 @@ wird sie still geloggt. In beiden Fällen sieht der Besucher eine Erfolgsmeldung
 import hashlib
 import hmac
 import json
+import logging
 import os
 import re
 from datetime import date, datetime, timezone
 from functools import wraps
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.core import signing
@@ -22,7 +24,7 @@ from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.http import (Http404, HttpResponse, HttpResponsePermanentRedirect,
-                         JsonResponse)
+                         HttpResponseRedirect, JsonResponse)
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils import translation
@@ -32,6 +34,8 @@ from django.utils.translation import get_language
 from . import (beitraege, branchen, checklisten, einrichtungen,
                glossar, i18n, leistungen, messung,
                regionen, selbsttest, stand, vergleiche)
+
+_log = logging.getLogger(__name__)
 
 _CONTENT = Path(__file__).resolve().parent.parent / "content.json"
 
@@ -55,6 +59,7 @@ _FALLBACK = {
     "seit_jahr": "",
     "partner_status": "",
     "profile": [],
+    "bewertungslink": "",
     "cta_text": "Projekt anfragen",
     "cta_sub": "Unverbindlich · Antwort in 24 h",
     "hero_image": "",
@@ -1021,6 +1026,9 @@ def _handle_angebot(request, c) -> bool:
     # Jeder Anfrageweg endet gezählt (FO08) — über dieselbe cookielose Summe wie
     # die Kurzanfragen, nicht über ein Fremdskript (Begründung in messung.py).
     messung.zaehle("anfrage", "angebot")
+    k = _kampagne_aus_verweis(request)
+    if k:
+        messung.zaehle("anfrage_kampagne", k)
     _send_mail_logged(
         _betreff(f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="ANGEBOT",
@@ -1046,10 +1054,12 @@ def _handle_contact(request, c) -> bool:
     telefon = _feld(request, "telefon")
     budget = _feld(request, "budget")
     empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+    k = _kampagne_aus_verweis(request)
     body = (
         f"Neue Anfrage über wvm-it.tech\n\n"
         f"Name:    {name}\nE-Mail:  {email}\nTelefon: {telefon}\nBudget:  {budget}\n\n"
-        f"Nachricht:\n{nachricht}\n"
+        + (f"Kampagne: {k}\n\n" if k else "")
+        + f"Nachricht:\n{nachricht}\n"
     )
     # Erst sichern, dann senden (07.09.2026, MW18). Das Kontaktformular ist der
     # Weg, über den die ausführlichen Anfragen kommen — ausgerechnet hier war der
@@ -1059,6 +1069,8 @@ def _handle_contact(request, c) -> bool:
                      kontakt=email, telefon=telefon, budget=budget,
                      lang=i18n.norm_lang(get_language()), text=nachricht)
     messung.zaehle("anfrage", "kontakt")                  # FO08
+    if k:
+        messung.zaehle("anfrage_kampagne", k)
     _send_mail_logged(
         _betreff(f"Neue Projektanfrage von {name}"), body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
@@ -1227,6 +1239,33 @@ def _herkunft_aus_verweis(request) -> str:
         return ("/" + rest.split("?", 1)[0].split("#", 1)[0])[:120]
     except Exception:
         return ""
+
+
+def _kampagne_aus_verweis(request) -> str | None:
+    """Die Kampagne (`utm_campaign`/`utm_content`) aus dem `Referer`, oder `None`.
+
+    Nicht Anfrage nach Kennung, sondern nach derselben Regel wie ein Aufruf: nur
+    der eigene Host zählt (dieselbe Prüfung wie `_herkunft_aus_verweis`), und nur
+    Werte aus `messung.KAMPAGNEN` (K6, 25.09.2026). Grenze: Gezählt wird nur, wenn
+    das Formular auf der Seite abgeschickt wird, auf der der Besucher mit der
+    Kampagne gelandet ist. Klickt er vorher weiter, fehlt die Kampagne — mehr
+    ginge nur mit Cookie oder Sitzung, und das ist ausgeschlossen.
+    """
+    verweis = (request.META.get("HTTP_REFERER") or "").strip()
+    if not verweis:
+        return None
+    try:
+        ohne_schema = verweis.split("://", 1)[-1]
+        host, _, rest = ohne_schema.partition("/")
+        if host.split(":", 1)[0] not in (request.get_host().lower(),
+                                         request.get_host().lower().removeprefix("www.")):
+            return None
+        _, _, qs = rest.partition("?")
+        abfrage = parse_qs(qs)
+        einfach = {schluessel: werte[0] for schluessel, werte in abfrage.items() if werte}
+        return messung.kampagne(einfach)
+    except Exception:
+        return None
 
 
 def _anfragen_ordner() -> Path:
@@ -1636,6 +1675,9 @@ def anfrage_absenden(request):
         return render(request, "anfrage_done.html", {"c": c, "ok": False,
             "seiten_titel": _vorgangs_titel("anfrage_done", "title_fail")})
     messung.zaehle("anfrage", "website-bogen")            # FO08
+    k = _kampagne_aus_verweis(request)
+    if k:
+        messung.zaehle("anfrage_kampagne", k)
     images = _parse_images(request)
     full = _compose_full_wunsch(request, hero_wunsch, name, images)
     site_lang = _norm_site_lang(request.POST.get("site_lang"))
@@ -3646,6 +3688,42 @@ def kontakt(request):
     })
 
 
+# Nur diese Hosts dürfen als Bewertungslink eingetragen werden — ein
+# `sameAs`-artiger Verweis ist eine Identitätsbehauptung, keine geratene oder
+# tote URL (K4/K5, 25.09.2026, siehe `views.py` Kommentar bei `sameAs`).
+_BEWERTUNGSLINK_HOSTS = frozenset({
+    "g.page", "search.google.com", "www.google.com", "maps.google.com",
+    "maps.app.goo.gl",
+})
+
+
+def bewerten(request):
+    """`/bewerten/` — Kurzadresse für Karte, QR-Code und Mail-Signatur (K4).
+
+    Bleibt gültig, auch wenn sich der Google-Bewertungslink später ändert:
+    Gedruckt wird immer dieselbe Adresse, nur das Ziel in `content.json` wird
+    ausgetauscht. Solange kein gültiger Link eingetragen ist, antwortet die
+    Adresse mit 404 — es gibt noch kein Ziel. 302, nicht 301, damit ein
+    späterer Linkwechsel nicht im Browser-Cache hängen bleibt.
+    """
+    ziel = (_content().get("bewertungslink") or "").strip()
+    gueltig = False
+    if ziel.startswith("https://"):
+        try:
+            gueltig = urlparse(ziel).hostname in _BEWERTUNGSLINK_HOSTS
+        except ValueError:
+            gueltig = False
+    if not gueltig:
+        if ziel:
+            _log.warning("Ungültiger Bewertungslink in content.json: %r", ziel[:200])
+        raise Http404("Kein Bewertungslink hinterlegt.")
+    messung.zaehle("kurzlink", "bewerten")
+    antwort = HttpResponseRedirect(ziel)
+    antwort.headers["X-Robots-Tag"] = "noindex"
+    antwort.headers["Cache-Control"] = "no-store"
+    return antwort
+
+
 # ── Rechtstexte ──────────────────────────────────────────────────────────────
 # Vier Seiten aus einer Vorlage. Die Ueberschrift kommt aus der Fussleiste des
 # Sprachpakets, der Text aus content.json — dort wird er gepflegt.
@@ -3860,6 +3938,9 @@ def angebot_anfordern(request):
                          lang=lang, positionen="; ".join(lines), summen=summe_txt,
                          werbung="ja" if consent else "nein")
         messung.zaehle("anfrage", "angebot_start")        # FO08
+        k = _kampagne_aus_verweis(request)
+        if k:
+            messung.zaehle("anfrage_kampagne", k)
         anfrage_line = em["angebot_anfrage_line"] if anfrage else ""
         kunde = em["angebot_kunde_body"].format(
             site=site, lines="\n".join(lines), summe=summe_txt,
@@ -4699,6 +4780,9 @@ def kooperation_anfordern(request):
                      kontakt=email, firma=firma,
                      lang=i18n.norm_lang(get_language()), text=nachricht)
     messung.zaehle("anfrage", "kooperation")              # FO08
+    k = _kampagne_aus_verweis(request)
+    if k:
+        messung.zaehle("anfrage_kampagne", k)
     _send_mail_logged(_betreff(f"Kooperations-Anfrage von {name}"), body, from_email, [empf], tag="KOOPERATION")
     em = i18n.get_pack(get_language())["emails"]
     site = c.get("site_name", "WVM-IT")
@@ -4826,6 +4910,7 @@ def leistung_anfrage(request):
     # Betreff — ein IT-Notfall und eine Glossarfrage waren im Postfach nicht zu
     # unterscheiden, und es blieb unbekannt, welche Seite je etwas eingebracht hat.
     herkunft = zurueck or _herkunft_aus_verweis(request)
+    k = _kampagne_aus_verweis(request)
     betreff = _betreff(f"[WVM] Anfrage: {thema}" + (f" — {herkunft}" if herkunft else ""))
     body = (
         f"Neue Kurzanfrage über wvm-it.tech\n\n"
@@ -4833,8 +4918,9 @@ def leistung_anfrage(request):
         f"Name:    {name or '-'}\nKontakt: {kontakt}\n"
         f"{'Zeit:    ' + zeit + chr(10) if zeit else ''}"
         f"{'Anliegen: ' + _ANLIEGEN[anliegen] + chr(10) if anliegen else ''}"
-        f"Sprache: {lang}\n\n"
-        f"Nachricht:\n{text or '-'}\n"
+        f"Sprache: {lang}\n"
+        f"{'Kampagne: ' + k + chr(10) if k else ''}"
+        f"\nNachricht:\n{text or '-'}\n"
     )
     # Freiwillige Werbeeinwilligung (§ 174 TKG 2021). Nur wo das Formular sie
     # anbietet, nur wenn aktiv angehakt — und dann mit Zeitstempel und IP
@@ -4853,6 +4939,8 @@ def leistung_anfrage(request):
     if werbung:
         messung.zaehle("werbeeinwilligung", quelle)
     messung.zaehle("anfrage", quelle)
+    if k:
+        messung.zaehle("anfrage_kampagne", k)
     if anliegen:
         # Nur der Schluessel aus _ANLIEGEN, ohne Kennung — wie jede Zaehlung hier.
         messung.zaehle("anliegen", anliegen)
