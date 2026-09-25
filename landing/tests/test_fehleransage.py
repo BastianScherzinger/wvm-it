@@ -81,12 +81,17 @@ class FehleransageTest(SimpleTestCase):
 
     def test_abgewiesene_einsendung_wird_benannt(self):
         for lang in i18n.LANGS:
-            text = i18n.get_pack(lang)["form"]["fehler_pruefen"]
+            pack = i18n.get_pack(lang)
             pfad = i18n.add_prefix(lang, "/")
             for daten in ({"form": "newsletter", "email": "keine-adresse"},
                           {"name": "Test", "email": "keine-adresse", "nachricht": "Hallo"}):
+                formular = daten.get("form", "kontakt")
+                # Newsletter meldet weiter über `form.fehler_pruefen` (BF24); das
+                # Kontaktformular meldet seit der Merge-Bereinigung (25.09.2026)
+                # nur noch über `kontakt.err` (EIG107) — nicht mehr doppelt.
+                text = pack["form"]["fehler_pruefen"] if formular == "newsletter" else pack["kontakt"]["err"]
                 cache.clear()
-                with self.subTest(lang=lang, formular=daten.get("form", "kontakt")):
+                with self.subTest(lang=lang, formular=formular):
                     with translation.override(lang):
                         html = client().post(pfad, daten).content.decode("utf-8")
                     self.assertIn(text, html)
@@ -103,3 +108,46 @@ class FehleransageTest(SimpleTestCase):
         self.assertIn("fehler.id='rbErr'", vorlage)
         self.assertIn("fehler.setAttribute('role','alert')", vorlage)
         self.assertIn('id="rbGate" aria-live="polite"', vorlage)
+
+
+class KontaktGenauEineMeldungTest(SimpleTestCase):
+    """Merge `b5633a1` (25.09.2026) hat beide Lösungen für dasselbe Problem
+    behalten: BF24 (dieser Datei) und EIG107 (`test_triage_2026_09_25.py`).
+    Ein abgewiesenes Kontaktformular zeigte danach zwei Fehlermeldungen —
+    `kontakt.err` (mit `role="alert"`, lässt die Eingaben stehen) UND
+    `form.fehler_pruefen` (BF24s generischer Text im Feinabsatz). Behalten
+    bleibt nur `kontakt.err`; die Ansage-Eigenschaft von BF24 (das
+    `aria-live="polite"` auf dem immer vorhandenen Feinabsatz) bleibt
+    erhalten, ohne den zweiten Text zu zeigen."""
+
+    def setUp(self):
+        cache.clear()
+
+    @staticmethod
+    def _kontakt_ausschnitt(html):
+        start = html.index('id="kontakt-form"')
+        ende = html.index("</form>", start)
+        return html[start:ende]
+
+    def test_genau_eine_meldung_und_eingaben_bleiben(self):
+        daten = {"name": "Erika Muster", "email": "keine-adresse",
+                 "telefon": "0664 1234567", "nachricht": "Testnachricht",
+                 "einwilligung": "on"}
+        html = client().post("/", daten).content.decode("utf-8")
+        ausschnitt = self._kontakt_ausschnitt(html)
+
+        # Eingaben bleiben stehen (EIG107)
+        self.assertIn('value="Erika Muster"', ausschnitt)
+        self.assertIn('value="0664 1234567"', ausschnitt)
+        self.assertIn("Testnachricht", ausschnitt)
+
+        # Genau EINE Fehlermeldung — nicht zwei
+        kontakt_err = i18n.get_pack("de")["kontakt"]["err"]
+        fehler_pruefen = i18n.get_pack("de")["form"]["fehler_pruefen"]
+        self.assertEqual(ausschnitt.count(kontakt_err), 1)
+        self.assertNotIn(fehler_pruefen, ausschnitt)
+
+        # Ansage-Eigenschaft bleibt (BF24): role=alert an der Meldung, dazu
+        # das immer vorhandene aria-live="polite" am Feinabsatz.
+        self.assertIn('class="lb-err" role="alert"', ausschnitt)
+        self.assertIn('class="form-fine" aria-live="polite"', ausschnitt)

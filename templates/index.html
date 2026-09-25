@@ -1201,7 +1201,7 @@ Die Varianten stehen in content.json (T3).
         <label class="check"><input type="checkbox" name="einwilligung" required> {{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</label>
         {% if kontakt_werte %}<p class="lb-err" role="alert">{{ t.kontakt.err|safe }}</p>{% endif %}
         <button class="btn btn-lg btn-magnetic" type="submit">{{ t.kontakt.submit|safe }}</button>
-        <p class="form-fine" aria-live="polite">{% if kontakt_fehler %}{{ t.form.fehler_pruefen|safe }} {% endif %}{{ t.kontakt.fine|safe }}</p>
+        <p class="form-fine" aria-live="polite">{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}
       </form>
       {% endif %}

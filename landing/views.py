@@ -2137,7 +2137,6 @@ def index(request):
     # Abgewiesene Einsendung (BF24): Sonst stand das Formular nach dem Absenden
     # wieder leer da, ohne ein Wort, warum. Die Vorlage sagt es im aria-live-Absatz.
     news_fehler = False
-    kontakt_fehler = False
     kontakt_werte = None
     if request.method == "POST":
         if (request.POST.get("form") or "").strip() == "newsletter":
@@ -2145,11 +2144,13 @@ def index(request):
             news_fehler = not news_sent
         else:
             sent = _handle_contact(request, c)
-            kontakt_fehler = not sent
             if not sent:
                 # Abgelehnt (EIG107, 25.09.2026): Bis hierher kam dasselbe leere
                 # Formular zurück, ohne Hinweis — alles Getippte war weg. Jetzt
-                # stehen die Eingaben wieder drin, dazu eine Meldung inline.
+                # stehen die Eingaben wieder drin, dazu eine Meldung inline
+                # (`kontakt.err`, mit `role="alert"` — das ist die einzige
+                # Fehlermeldung des Formulars; Merge b5633a1 hatte hier
+                # zusätzlich BF24s generischen Text verdoppelt, 25.09.2026).
                 kontakt_werte = {feld: _feld(request, feld) for feld in
                                  ("name", "email", "telefon", "budget", "nachricht")}
     lang = get_language()
@@ -2160,7 +2161,7 @@ def index(request):
         anfrage_ok = ""
     return render(request, "index.html", {
         "c": c, "sent": sent, "news_sent": news_sent, "anfrage_ok": anfrage_ok,
-        "news_fehler": news_fehler, "kontakt_fehler": kontakt_fehler,
+        "news_fehler": news_fehler,
         "kontakt_werte": kontakt_werte,
         "startpreise": _startpreise(lang),
         "preise_item": _itempreise(lang),
