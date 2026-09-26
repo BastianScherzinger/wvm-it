@@ -216,7 +216,7 @@ BEITRAEGE = {
 
     "microsoft-365-lizenz-kleine-firma": {
         "titel": "Microsoft 365 für kleine Betriebe: welche Lizenz reicht wirklich?",
-        "meta_titel": "Microsoft 365 ab 290 €: welche Lizenz reicht? | WVM-IT",
+        "meta_titel": "Microsoft 365: welche Lizenz? Einrichtung 290 € | WVM-IT",
         "desc": "Business Basic, Standard oder Premium? Woran Sie festmachen, welche Microsoft-365-Lizenz Ihr Betrieb wirklich braucht. Jetzt nachlesen.",
         "antwort": "Für die meisten kleinen Betriebe reicht Business Standard: E-Mail mit eigener Domain, Teams, OneDrive und die installierten Office-Programme auf dem Rechner. Business Basic genügt, wenn ausschließlich im Browser gearbeitet wird — was in der Praxis selten stimmt, sobald jemand Excel ernsthaft benutzt. Business Premium lohnt sich, sobald Geräte verwaltet, Zugriffe erzwungen und Notebooks verschlüsselt werden sollen; das ist weniger eine Frage der Betriebsgröße als der Datenart. Die Einrichtung kostet bei uns einmalig 290 €, die Lizenzen selbst kommen von Microsoft und werden monatlich je Benutzer abgerechnet.",
         "abschnitte": [

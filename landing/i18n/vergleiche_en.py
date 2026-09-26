@@ -109,7 +109,7 @@ VERGLEICHE = {
 
     "microsoft365-vs-google-workspace": {
         "nav": "Microsoft 365 or Google",
-        "titel": "Microsoft 365 or Google: setup from €290 | WVM-IT",
+        "titel": "Microsoft 365 or Google: setup €290 fixed price | WVM-IT",
         "desc": "Microsoft 365 or Google Workspace for small businesses: the factual comparison of where the packages differ. Request advice now.",
         "h1": "Microsoft 365 or Google Workspace — what suits a small business?",
         "kurz": "Both packages do what a business needs: email on your own domain, storage, calendars, video meetings and shared editing. The difference lies in two points: Microsoft 365 includes the installed Office applications and is the obvious choice when business software, templates or bookkeeping depend on Word and Excel. Google Workspace is faster and simpler in the browser as long as nobody relies on complex Excel files or Office templates. Setting up Microsoft 365 costs €290 as a one-off with us.",

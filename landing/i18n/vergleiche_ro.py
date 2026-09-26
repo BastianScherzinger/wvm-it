@@ -109,7 +109,7 @@ VERGLEICHE = {
 
     "microsoft365-vs-google-workspace": {
         "nav": "Microsoft 365 sau Google",
-        "titel": "Microsoft 365 sau Google: configurare de la 290 € | WVM-IT",
+        "titel": "Microsoft 365 sau Google: setup 290 € preț fix | WVM-IT",
         "desc": "Microsoft 365 sau Google Workspace pentru firme mici: comparația obiectivă a punctelor unde diferă. Solicitați o consultanță acum.",
         "h1": "Microsoft 365 sau Google Workspace — ce se potrivește unei firme mici?",
         "kurz": "Ambele pachete acoperă ce are nevoie o firmă: e-mail pe domeniu propriu, stocare, calendar, ședințe video și lucru în comun la documente. Diferența stă în două puncte: Microsoft 365 include programele Office instalate și este alegerea evidentă când software-ul de business, șabloanele sau contabilitatea depind de Word și Excel. Google Workspace este mai rapid și mai simplu în browser, atâta timp cât nimeni nu depinde de fișiere Excel complexe sau de șabloane Office. Configurarea Microsoft 365 costă la noi o singură dată 290 €.",
