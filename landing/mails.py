@@ -28,7 +28,7 @@ DOMAIN = "https://www.wvm-it.tech"
 # Das Logo liegt auf der eigenen Live-Domain (keine Fremdserver in Mails).
 LOGO = DOMAIN + "/static/img/wvm_mark_128.png"
 ZEITZONE = ZoneInfo("Europe/Vienna")        # Kunde in Lenzing, Oberösterreich
-VORGABE_KOPIE = "bastian.scherzinger69@gmail.com"
+VORGABE_KOPIE = "bastian.scherzinger05@gmail.com"
 _AUS = {"", "aus", "off", "0", "nein", "false", "no"}
 
 # Tokens aus static/css/style.css (:root, helle Fassung). Alle Textfarben halten

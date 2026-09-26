@@ -30,7 +30,7 @@ from landing import mails, views
 from landing.views import _ANGEBOT_INDEX
 from . import _util
 
-BASTIAN = "bastian.scherzinger69@gmail.com"
+BASTIAN = "bastian.scherzinger05@gmail.com"
 _POSITION = next(iter(_ANGEBOT_INDEX))
 _KONTAKT = {"name": "Max Muster", "email": "max@example.org", "telefon": "+43 660 1234567",
             "nachricht": "Acht Arbeitsplätze.\nZweite Zeile mit Umlauten: äöüß.",
