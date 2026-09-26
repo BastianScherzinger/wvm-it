@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>{{ betreff }}</title>
+{# Nur Media Queries und die dunkle Fassung — alles andere steht inline. #}
+<style>
+@media (max-width:620px){
+  .aussen{padding:0 !important}
+  .karte{border-radius:0 !important;border-left:0 !important;border-right:0 !important}
+  .innen{padding:24px 20px !important}
+  .fl-l,.fl-w{display:block !important;width:auto !important}
+  .fl-l{padding:12px 16px 2px 16px !important;border-bottom:0 !important}
+  .fl-w{padding:0 16px 12px 16px !important}
+}
+@media (prefers-color-scheme:dark){
+  body,.aussen{background:#0e1114 !important}
+  .karte{background:#161a1f !important;border-color:#252d35 !important}
+  .fl{background:#1d232a !important;border-color:#252d35 !important}
+  .t{color:#eef2f5 !important}
+  .ts{color:#c5ced6 !important}
+  .td{color:#9aa6b2 !important}
+  .lk{color:#5dbdf0 !important}
+  .ln{border-color:#252d35 !important}
+  .band{background:#13222e !important;border-color:#252d35 !important}
+}
+</style>
+</head>
+<body style="margin:0;padding:0;background:{{ f.grund }};-webkit-text-size-adjust:100%;">
+<div style="display:none;max-height:0;max-width:0;overflow:hidden;opacity:0;mso-hide:all;font-size:1px;line-height:1px;color:{{ f.grund }};">{{ preheader }}&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;</div>
+<table role="presentation" class="aussen" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{{ f.grund }};padding:24px 12px;">
+<tr><td align="center">
+<table role="presentation" class="karte" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:{{ f.karte }};border:1px solid {{ f.linie }};border-radius:6px;border-collapse:separate;overflow:hidden;">
+<tr><td style="height:4px;line-height:4px;font-size:0;background:{{ f.akzent }};border-radius:6px 6px 0 0;">&nbsp;</td></tr>
+<tr><td class="innen ln" style="padding:22px 32px 18px 32px;border-bottom:1px solid {{ f.linie }};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td style="vertical-align:middle;">
+      <a href="{{ domain }}" style="text-decoration:none;">
+        <img src="{{ logo }}" width="28" height="28" alt="" style="display:inline-block;vertical-align:middle;border:0;border-radius:4px;">
+        <span class="t" style="display:inline-block;vertical-align:middle;margin-left:8px;font-family:{{ serif }};font-size:21px;line-height:28px;color:{{ f.ink }};letter-spacing:-.01em;">{{ seite }}</span>
+      </a>
+    </td>
+    <td align="right" class="td" style="vertical-align:middle;font-family:{{ schrift }};font-size:12px;line-height:18px;color:{{ f.ink_dim }};">{% block marke_zusatz %}{{ domain_kurz }}{% endblock %}</td>
+  </tr></table>
+</td></tr>
+{% block inhalt %}{% endblock %}
+<tr><td class="innen ln" style="padding:18px 32px 22px 32px;border-top:1px solid {{ f.linie }};font-family:{{ schrift }};font-size:12px;line-height:18px;">
+  <p class="td" style="margin:0;color:{{ f.ink_dim }};">{% block fuss %}{% endblock %}</p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends "emails/basis.html" %}
+{% block marke_zusatz %}Neue Anfrage{% endblock %}
+{% block inhalt %}
+<tr><td class="innen" style="padding:28px 32px 8px 32px;font-family:{{ schrift }};">
+  <p class="td" style="margin:0 0 6px 0;font-size:12px;line-height:18px;letter-spacing:.06em;text-transform:uppercase;color:{{ f.ink_dim }};">{{ zeit }}</p>
+  <h1 class="t" style="margin:0 0 8px 0;font-family:{{ serif }};font-size:26px;line-height:32px;font-weight:normal;color:{{ f.ink }};letter-spacing:-.01em;">{{ titel }}</h1>
+  {% if wer %}<p class="ts" style="margin:0;font-size:16px;line-height:24px;color:{{ f.ink_soft }};">von {{ wer }}</p>{% endif %}
+</td></tr>
+{% if antwort_mail or antwort_tel %}
+<tr><td class="innen" style="padding:18px 32px 4px 32px;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+    {% if antwort_mail %}<td style="padding:0 8px 8px 0;">
+      <a href="mailto:{{ antwort_mail }}" style="display:inline-block;padding:11px 20px;background:{{ f.akzent }};color:{{ f.auf_akzent }};font-family:{{ schrift }};font-size:15px;line-height:20px;font-weight:600;text-decoration:none;border-radius:4px;">Antworten</a>
+    </td>{% endif %}
+    {% if antwort_tel %}<td style="padding:0 0 8px 0;">
+      <a class="lk" href="tel:{{ antwort_tel }}" style="display:inline-block;padding:10px 19px;border:1px solid {{ f.akzent }};color:{{ f.akzent }};font-family:{{ schrift }};font-size:15px;line-height:20px;font-weight:600;text-decoration:none;border-radius:4px;">Anrufen</a>
+    </td>{% endif %}
+  </tr></table>
+</td></tr>
+{% endif %}
+<tr><td class="innen" style="padding:14px 32px 8px 32px;">
+  {% include "emails/_felder.html" %}
+</td></tr>
+{% if hinweis %}
+<tr><td class="innen" style="padding:8px 32px 0 32px;font-family:{{ schrift }};">
+  <p class="ts" style="margin:0;font-size:14px;line-height:21px;color:{{ f.ink_soft }};">{{ hinweis }}</p>
+</td></tr>
+{% endif %}
+<tr><td class="innen" style="padding:16px 32px 26px 32px;font-family:{{ schrift }};">
+  <p class="td" style="margin:0;font-size:13px;line-height:20px;color:{{ f.ink_dim }};">Die Anfrage ist gesichert, bevor diese Mail rausging: im Anfragenordner des Servers (<code style="font-family:Consolas,monospace;font-size:12px;">var/anfragen/</code>) und im Railway-Log unter <code style="font-family:Consolas,monospace;font-size:12px;">[ANFRAGE]</code>.</p>
+</td></tr>
+{% endblock %}
+{% block fuss %}Eingegangen über das Formular auf <a class="lk" href="{{ domain }}" style="color:{{ f.akzent }};">{{ domain_kurz }}</a>. „Antworten“ in Ihrem Mailprogramm geht direkt an den Absender.{% endblock %}

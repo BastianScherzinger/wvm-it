@@ -34,6 +34,7 @@ from django.utils.translation import get_language
 from . import (beitraege, branchen, checklisten, einrichtungen,
                glossar, i18n, leistungen, messung,
                regionen, selbsttest, stand, vergleiche)
+from . import mails
 
 _log = logging.getLogger(__name__)
 
@@ -944,6 +945,106 @@ def _send_mail_logged(subject, message, from_email, recipients, html=None, tag="
         return False
 
 
+# ── Gestaltete Mails und Betreiber-Kopie (26.09.2026) ─────────────────────────
+# Jede Mail bleibt multipart/alternative: der bisherige Text als Textteil, dazu
+# eine HTML-Fassung aus templates/emails/. Scheitert das Rendern, geht die Mail
+# als reiner Text raus (mails.rendern liefert dann None).
+
+def _admin_html(titel: str, betreff: str, felder: list, wer: str = "",
+                antwort_an: str = "", telefon: str = "", hinweis: str = ""):
+    """HTML der Mail an den Inhaber: alle Felder, „Antworten"-Knopf, `tel:`-Link."""
+    return mails.rendern("admin", {
+        "betreff": betreff, "preheader": f"{titel} – {wer}" if wer else titel,
+        "titel": titel, "wer": wer, "zeit": mails.zeitpunkt(),
+        "felder": [z for z in felder if z.get("wert")],
+        "antwort_mail": antwort_an if _ist_email(antwort_an or "") else "",
+        "antwort_tel": mails.tel_uri(telefon), "hinweis": hinweis,
+    })
+
+
+def _kunden_html(betreff: str, text: str, c: dict, lang: str,
+                 knopf_url: str = "", knopf_text: str = ""):
+    """HTML einer Mail an den Anfragenden. `text` ist der bisherige, übersetzte
+    Textteil (Anrede, nächste Schritte, Zusammenfassung) — das HTML fasst ihn
+    nur ein und ergänzt Kontaktwege und Impressum-Zeile. Nichts Neues zugesagt."""
+    lang = i18n.norm_lang(lang or get_language())
+    k = mails.kunde_texte(lang)
+    anschrift = _adresszeile(c)
+    impressum = " · ".join(x for x in [
+        c.get("site_name", "WVM-IT"),
+        f"{k['inhaber']} {c.get('inhaber_name', '')}".strip() if c.get("inhaber_name") else "",
+        f"{anschrift}, {k['land']}" if anschrift else ""] if x)
+    return mails.rendern("kunde", {
+        "betreff": betreff, "preheader": betreff, "text": text, "c": c, "lang": lang,
+        "k": k, "impressum": impressum, "knopf_url": knopf_url, "knopf_text": knopf_text,
+    })
+
+
+def _kunde_status(ok, hat_adresse: bool = True) -> str:
+    """Wie es um die Bestätigung an den Absender steht — für die Betreiber-Kopie."""
+    if not hat_adresse:
+        return "entfällt (keine E-Mail-Adresse angegeben)"
+    if not getattr(settings, "KUNDENMAIL_AN_ABSENDER", False):
+        return "abgeschaltet (KUNDENMAIL_AN_ABSENDER, seit 17.09.2026)"
+    return "verschickt" if ok else "nicht verschickt (siehe Log)"
+
+
+def _betreiber_kopie(*, art: str, wer: str, text: str, felder: list,
+                     admin_empf=(), admin_ok=None, kunde: str = "",
+                     antwort_an: str = "", herkunft: str = "",
+                     kampagne: str = "") -> bool:
+    """Zusätzliche Mail an die Webagentur, die die Seite betreut (26.09.2026).
+
+    Eine **eigene** Mail nach der an den Inhaber und nach der Bestätigung — nie
+    ein Cc: Scheitert sie, bleiben Sicherung, Inhaber-Mail und Bestätigung
+    unberührt. Deshalb fängt sie jeden Fehler selbst. Aufgerufen wird sie nur
+    von Wegen, die Honigtopf, Spam-Bremse und Pflichtfelder schon hinter sich
+    haben — ein Bot-Treffer erzeugt also keine Kopie.
+
+    Empfänger: ``BETREIBER_KOPIE_AN`` (settings), leer oder ``aus`` schaltet ab;
+    wer schon Inhaber-Empfänger ist, bekommt sie nicht noch einmal."""
+    try:
+        empf = mails.betreiber_empfaenger(admin_empf)
+        if not empf:
+            return False
+        betreff = _betreff(f"[{mails.SEITE}] {art}" + (f" – {wer}" if wer else ""))
+        zeit = mails.zeitpunkt()
+        admin_txt = ("verschickt" if admin_ok else
+                     "nicht verschickt (siehe Log)" if admin_ok is not None else "–")
+        status = [mails.feld("Mail an Inhaber", admin_txt)]
+        if kunde:
+            status.append(mails.feld("Bestätigung", kunde))
+        kopf = (f"Kopie für die Webagentur Scherzinger – {mails.SEITE} "
+                f"({mails.DOMAIN})\n\n"
+                f"Formular:        {art}\nZeitpunkt:       {zeit} (Europe/Vienna)\n"
+                + (f"Seite:           {herkunft}\n" if herkunft else "")
+                + (f"Kampagne:        {kampagne}\n" if kampagne else "")
+                + f"Mail an Inhaber: {admin_txt}\n"
+                + (f"Bestätigung:     {kunde}\n" if kunde else "")
+                + "\n" + "-" * 60 + "\n\n")
+        fuss = ("\n" + "-" * 60 + "\nKopie für die Webagentur Scherzinger – "
+                "Betreuung dieser Website\n")
+        alle = list(felder)
+        if herkunft:
+            alle.append(mails.feld("Herkunftsseite", herkunft, "seite"))
+        if kampagne:
+            alle.append(mails.feld("Kampagne", kampagne))
+        html = mails.rendern("bastian", {
+            "betreff": betreff, "preheader": f"{art} – {wer}" if wer else art,
+            "titel": art, "wer": wer, "zeit": zeit,
+            "felder": [z for z in alle if z.get("wert")], "status": status,
+            "antwort_mail": antwort_an if _ist_email(antwort_an or "") else "",
+        })
+        from_email = getattr(settings, "DEFAULT_FROM_EMAIL", "")
+        return _send_mail_logged(
+            betreff, kopf + text + fuss, from_email, empf, html=html,
+            tag="BETREIBER-KOPIE",
+            antwort_an=antwort_an if _ist_email(antwort_an or "") else None)
+    except Exception as exc:  # die Kopie darf nie die Anfrage gefährden
+        print(f"[BETREIBER-KOPIE-FEHLER] {type(exc).__name__}: {exc}", flush=True)
+        return False
+
+
 def _adresszeile(c) -> str:
     """Sitz einzeilig für E-Mail-Signaturen. Leer, solange keine Anschrift gepflegt ist."""
     ort = " ".join(x for x in [(c.get("plz") or "").strip(),
@@ -951,7 +1052,7 @@ def _adresszeile(c) -> str:
     return ", ".join(x for x in [(c.get("adresse") or "").strip(), ort] if x)
 
 
-def _eingangsbestaetigung(c, empfaenger: str, name: str, art: str, echo: str) -> None:
+def _eingangsbestaetigung(c, empfaenger: str, name: str, art: str, echo: str) -> bool:
     """Schickt dem Anfragenden eine Eingangsbestätigung.
 
     Warum das nicht bloß Höflichkeit ist: Wer ein Formular absendet und danach nichts
@@ -964,23 +1065,27 @@ def _eingangsbestaetigung(c, empfaenger: str, name: str, art: str, echo: str) ->
     was abgeschickt wurde — das beantwortet die häufigste Rückfrage im Voraus.
     """
     if not _ist_email(empfaenger):
-        return
-    pack = i18n.get_pack(get_language())
+        return False
+    lang = get_language()
+    pack = i18n.get_pack(lang)
     em = pack["emails"]
     anrede = (em["greeting_named"].format(name=name) if name else em["greeting"])
     try:
-        _send_mail_logged(
-            _betreff(em[f"{art}_ack_subject"].format(site=c.get("site_name", "WVM-IT"))),
-            em[f"{art}_ack_body"].format(
-                anrede=anrede, site=c.get("site_name", "WVM-IT"),
-                inhaber=c.get("inhaber_name", ""), telefon=c.get("telefon", ""),
-                adresse=_adresszeile(c), url=c.get("wvm_url", ""), echo=echo),
+        betreff = _betreff(em[f"{art}_ack_subject"].format(site=c.get("site_name", "WVM-IT")))
+        text = em[f"{art}_ack_body"].format(
+            anrede=anrede, site=c.get("site_name", "WVM-IT"),
+            inhaber=c.get("inhaber_name", ""), telefon=c.get("telefon", ""),
+            adresse=_adresszeile(c), url=c.get("wvm_url", ""), echo=echo)
+        return _send_mail_logged(
+            betreff, text,
             getattr(settings, "DEFAULT_FROM_EMAIL", c.get("email", "")),
-            [empfaenger], tag=f"{art.upper()}-ACK")
+            [empfaenger], html=_kunden_html(betreff, text, c, lang),
+            tag=f"{art.upper()}-ACK")
     except Exception as exc:
         # Die Bestätigung darf die Anfrage selbst nie gefährden: Sie ist bereits im
         # Postfach des Inhabers, wenn wir hier ankommen.
         print(f"[{art.upper()}-ACK-FEHLER] {type(exc).__name__}: {exc}", flush=True)
+        return False
 
 
 _ZUSTIMMUNG_WERTE = ("1", "on", "true", "ja", "yes")
@@ -1055,13 +1160,27 @@ def _handle_angebot(request, c) -> bool:
     k = _kampagne_aus_verweis(request)
     if k:
         messung.zaehle("anfrage_kampagne", k)
-    _send_mail_logged(
-        _betreff(f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)"), body,
+    betreff = _betreff(f"Angebots-Anfrage von {name} ({len(ids)} Leistungen)")
+    felder = [mails.feld("Name", name), mails.feld("E-Mail", email, "email"),
+              mails.feld("Telefon", telefon, "tel"),
+              mails.feld("Leistungen", "\n".join(zeilen), "lang"),
+              mails.feld("Summen", "\n".join(summen), "lang"),
+              mails.feld("Nachricht", nachricht, "lang")]
+    admin_ok = _send_mail_logged(
+        betreff, body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="ANGEBOT",
         antwort_an=email,                                   # MW21
+        html=_admin_html("Angebots-Anfrage (Konfigurator)", betreff, felder, wer=name,
+                         antwort_an=email, telefon=telefon,
+                         hinweis="Richtpreise, unverbindlich. Endpreis nach Gespräch."),
     )
-    _eingangsbestaetigung(c, email, name, "angebot",
-                          "\n".join(zeilen) + ("\n\n" + "\n".join(summen) if summen else ""))
+    kunde_ok = _eingangsbestaetigung(
+        c, email, name, "angebot",
+        "\n".join(zeilen) + ("\n\n" + "\n".join(summen) if summen else ""))
+    _betreiber_kopie(art="Neue Angebotsanfrage (Konfigurator)", wer=name, text=body,
+                     felder=felder, admin_empf=[empfaenger], admin_ok=admin_ok,
+                     kunde=_kunde_status(kunde_ok), antwort_an=email,
+                     herkunft=_herkunft_aus_verweis(request), kampagne=k or "")
     return True
 
 
@@ -1098,12 +1217,23 @@ def _handle_contact(request, c) -> bool:
     messung.zaehle("anfrage", "kontakt")                  # FO08
     if k:
         messung.zaehle("anfrage_kampagne", k)
-    _send_mail_logged(
-        _betreff(f"Neue Projektanfrage von {name}"), body,
+    betreff = _betreff(f"Neue Projektanfrage von {name}")
+    felder = [mails.feld("Name", name), mails.feld("E-Mail", email, "email"),
+              mails.feld("Telefon", telefon, "tel"), mails.feld("Budget", budget),
+              mails.feld("Kampagne", k or ""), mails.feld("Nachricht", nachricht, "lang")]
+    admin_ok = _send_mail_logged(
+        betreff, body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
         antwort_an=email,                                   # MW21
+        html=_admin_html("Neue Projektanfrage (Kontaktformular)", betreff, felder,
+                         wer=name, antwort_an=email, telefon=telefon),
     )
-    _eingangsbestaetigung(c, email, name, "kontakt", nachricht)
+    kunde_ok = _eingangsbestaetigung(c, email, name, "kontakt", nachricht)
+    _betreiber_kopie(art="Neue Kontaktanfrage", wer=name, text=body,
+                     felder=[z for z in felder if z["label"] != "Kampagne"],
+                     admin_empf=[empfaenger], admin_ok=admin_ok,
+                     kunde=_kunde_status(kunde_ok), antwort_an=email,
+                     herkunft=_herkunft_aus_verweis(request), kampagne=k or "")
     return True
 
 
@@ -1232,6 +1362,14 @@ def _honigtopf(request) -> bool:
     messung.zaehle("honigtopf", "bot")
     print(f"[HONIGTOPF] verworfen | {pfad} | {knapp}", flush=True)
     return True
+
+
+def _fallenfeld_fremd(request) -> bool:
+    """Wie `_honigtopf`, aber still (ohne Zählung und Protokoll): True, wenn das
+    Fallenfeld eine fremde Adresse trägt. Für Wege, deren Verhalten sonst
+    unverändert bleiben soll und die nur die Betreiber-Kopie auslassen."""
+    wert = ((request.POST.get("website") or request.POST.get("hp") or "")).strip()
+    return bool(wert) and not _ist_eigene_adresse(request, wert)
 
 
 def _ist_eigene_adresse(request, wert: str) -> bool:
@@ -1496,9 +1634,31 @@ def _newsletter_deliver(email: str, wunsch: str, c: dict, name: str = "", lang: 
     welcome = em["nl_welcome_body"].format(
         anrede=anrede, code=code, wunsch_line=wunsch_line, site=site, url=c.get("wvm_url", ""),
         nl_line=em["nl_welcome_nl"] if newsletter else "")
+    felder = [mails.feld("Name", name), mails.feld("E-Mail", email, "email"),
+              mails.feld("Sprache", lang), mails.feld("Angaben/Wunsch", wunsch, "lang"),
+              mails.feld("Newsletter", "ja, freiwillig angehakt" if newsletter else "nein"),
+              mails.feld("Rabattcode", code)]
+    admin_ok = None
     if empfaenger:
-        _send_mail_logged(f"Newsletter bestätigt: {email}", notify, from_email, [empfaenger], tag="NEWSLETTER-NOTIFY")
-    _send_mail_logged(em["nl_welcome_subject"].format(site=site), welcome, from_email, [email], tag="NEWSLETTER-WELCOME")
+        betreff = f"Newsletter bestätigt: {email}"
+        admin_ok = _send_mail_logged(
+            betreff, notify, from_email, [empfaenger], tag="NEWSLETTER-NOTIFY",
+            html=_admin_html("Bestätigte Anmeldung (Gratis-Website)", betreff, felder,
+                             wer=name or email, antwort_an=email,
+                             hinweis="To-do: kostenlose Beispiel-Website (JARVIS) "
+                                     "erstellen und zuschicken."))
+    welcome_betreff = em["nl_welcome_subject"].format(site=site)
+    welcome_ok = _send_mail_logged(
+        welcome_betreff, welcome, from_email, [email], tag="NEWSLETTER-WELCOME",
+        html=_kunden_html(welcome_betreff, welcome, c, lang))
+    # Erst hier ist die Anmeldung echt (Double-Opt-in bestätigt) — vorher gibt
+    # es keine Kopie, sonst könnte jeder Bot-Eintrag eine auslösen.
+    _betreiber_kopie(art="Bestätigte Gratis-Website-Anmeldung", wer=name or email,
+                     text=notify, felder=felder, admin_empf=[empfaenger],
+                     admin_ok=admin_ok,
+                     kunde="Willkommens-Mail " + ("verschickt" if welcome_ok
+                                                  else "nicht verschickt (siehe Log)"),
+                     antwort_an=email)
 
 
 def _compose_wunsch(request) -> str:
@@ -1576,7 +1736,11 @@ def _handle_newsletter(request, c) -> bool:
     anrede = em["greeting"]
     confirm = em["nl_confirm_body"].format(anrede=anrede, site=site, link=link,
                                            nl_line=em["nl_confirm_nl"] if newsletter else "")
-    _send_mail_logged(em["nl_confirm_subject"].format(site=site), confirm, from_email, [email], tag="NEWSLETTER-CONFIRM")
+    confirm_betreff = em["nl_confirm_subject"].format(site=site)
+    knopf = mails.kunde_texte(lang)["bestaetigen"]
+    _send_mail_logged(confirm_betreff, confirm, from_email, [email], tag="NEWSLETTER-CONFIRM",
+                      html=_kunden_html(confirm_betreff, confirm, c, lang,
+                                        knopf_url=link, knopf_text=knopf))
     return True
 
 
@@ -1719,20 +1883,33 @@ def anfrage_absenden(request):
     except Exception as exc:
         print(f"[ANFRAGE-FEHLER] {exc}", flush=True)
     # Postfach-Notiz (best effort)
+    empfaenger = ""
+    admin_ok = None
+    text = f"Name: {name or '-'}\nE-Mail: {email}\nBilder: {len(images)}\n\n{full}\n"
+    felder = [mails.feld("Name", name), mails.feld("E-Mail", email, "email"),
+              mails.feld("Bilder", str(len(images))),
+              mails.feld("Sprache der Seite", _SITE_LANG_LABELS.get(site_lang, site_lang)),
+              mails.feld("Angaben", full, "lang")]
     try:
         empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
         if empfaenger:
             from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger)
-            _send_mail_logged(
-                f"Neue Website-Anfrage (Detailbogen): {email}",
-                f"Name: {name or '-'}\nE-Mail: {email}\nBilder: {len(images)}\n\n{full}\n",
+            betreff = f"Neue Website-Anfrage (Detailbogen): {email}"
+            admin_ok = _send_mail_logged(
+                betreff, text,
                 from_email, [empfaenger], tag="ANFRAGE-NOTIFY",
-                antwort_an=email)                           # MW21
+                antwort_an=email,                           # MW21
+                html=_admin_html("Website-Anfrage (Detailbogen)", betreff, felder,
+                                 wer=name or email, antwort_an=email))
     except Exception as fehler:
         # Der Besucher soll wegen einer fehlgeschlagenen Benachrichtigung keinen
         # Fehler sehen — seine Anfrage ist angekommen. Der Inhaber muss aber
         # erfahren, dass er sie nicht bekommen hat.
         print(f"[ANFRAGE-NOTIFY] Benachrichtigung fehlgeschlagen: {fehler}", flush=True)
+    _betreiber_kopie(art="Neue Website-Anfrage (Detailbogen)", wer=name or email,
+                     text=text, felder=felder, admin_empf=[empfaenger],
+                     admin_ok=admin_ok, kunde="entfällt (Warteseite statt Mail)",
+                     antwort_an=email, kampagne=k or "")
     # Auf die Live-Status-Warteseite schicken (pollt bis die Seite gebaut + live ist),
     # in der Sprache des Kunden (präfixierte URL).
     status_token = signing.dumps({"e": email, "n": name, "l": lang}, salt=_STATUS_SALT, compress=True)
@@ -4040,18 +4217,37 @@ def angebot_anfordern(request):
         kunde = em["angebot_kunde_body"].format(
             site=site, lines="\n".join(lines), summe=summe_txt,
             anfrage_line=anfrage_line, url=c.get("wvm_url", ""))
-        _send_mail_logged(em["angebot_kunde_subject"].format(site=site), kunde, from_email, [email], tag="ANGEBOT-KUNDE")
+        kunde_betreff = em["angebot_kunde_subject"].format(site=site)
+        kunde_ok = _send_mail_logged(kunde_betreff, kunde, from_email, [email], tag="ANGEBOT-KUNDE",
+                                     html=_kunden_html(kunde_betreff, kunde, c, lang))
         empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+        notify = (
+            "Neue Angebots-Anfrage (Startseite) über wvm-it.tech\n\n"
+            f"E-Mail: {email}\nSprache: {lang}\nWeitere Angebote erwünscht: {'ja' if consent else 'nein'}\n\n"
+            + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}\n"
+        )
+        felder = [mails.feld("E-Mail", email, "email" if _ist_email(email) else "text"),
+                  mails.feld("Sprache", lang),
+                  mails.feld("Weitere Angebote", "ja" if consent else "nein"),
+                  mails.feld("Positionen", "\n".join(lines), "lang"),
+                  mails.feld("Richtpreis", summe_txt)]
+        admin_ok = None
         if empf:
-            notify = (
-                "Neue Angebots-Anfrage (Startseite) über wvm-it.tech\n\n"
-                f"E-Mail: {email}\nSprache: {lang}\nWeitere Angebote erwünscht: {'ja' if consent else 'nein'}\n\n"
-                + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}\n"
-            )
             # MW21: Reply-To nur mit geprüfter Adresse — dieser Endpunkt prüft
             # oben nur auf „@“, und ein Zeilenumbruch im Kopf bräche den Versand ab.
-            _send_mail_logged(f"Angebots-Anfrage: {email}", notify, from_email, [empf], tag="ANGEBOT-NOTIFY",
-                              antwort_an=email if _ist_email(email) else None)
+            betreff = f"Angebots-Anfrage: {email}"
+            admin_ok = _send_mail_logged(
+                betreff, notify, from_email, [empf], tag="ANGEBOT-NOTIFY",
+                antwort_an=email if _ist_email(email) else None,
+                html=_admin_html("Richtangebot (Startseite)", betreff, felder, wer=email,
+                                 antwort_an=email))
+        # Die Betreiber-Kopie nur bei gültiger Adresse und leerem Fallenfeld:
+        # Dieser Endpunkt hat (noch) keine eigene Honigtopf-Prüfung.
+        if _ist_email(email) and not _fallenfeld_fremd(request):
+            _betreiber_kopie(art="Neues Richtangebot (Startseite)", wer=email, text=notify,
+                             felder=felder, admin_empf=[empf], admin_ok=admin_ok,
+                             kunde=_kunde_status(kunde_ok), antwort_an=email,
+                             herkunft=_herkunft_aus_verweis(request), kampagne=k or "")
     if consent:
         try:
             from . import supa
@@ -4881,12 +5077,24 @@ def kooperation_anfordern(request):
     k = _kampagne_aus_verweis(request)
     if k:
         messung.zaehle("anfrage_kampagne", k)
-    _send_mail_logged(_betreff(f"Kooperations-Anfrage von {name}"), body, from_email, [empf], tag="KOOPERATION",
-                      antwort_an=email)                     # MW21
-    em = i18n.get_pack(get_language())["emails"]
+    betreff = _betreff(f"Kooperations-Anfrage von {name}")
+    felder = [mails.feld("Name", name), mails.feld("Firma", firma),
+              mails.feld("E-Mail", email, "email"), mails.feld("Nachricht", nachricht, "lang")]
+    admin_ok = _send_mail_logged(
+        betreff, body, from_email, [empf], tag="KOOPERATION",
+        antwort_an=email,                                   # MW21
+        html=_admin_html("Kooperations-Anfrage", betreff, felder, wer=name, antwort_an=email))
+    lang = get_language()
+    em = i18n.get_pack(lang)["emails"]
     site = c.get("site_name", "WVM-IT")
     ack = em["kooperation_ack_body"].format(name=name, site=site, url=c.get("wvm_url", ""))
-    _send_mail_logged(em["kooperation_ack_subject"], ack, from_email, [email], tag="KOOPERATION-ACK")
+    kunde_ok = _send_mail_logged(em["kooperation_ack_subject"], ack, from_email, [email],
+                                 tag="KOOPERATION-ACK",
+                                 html=_kunden_html(em["kooperation_ack_subject"], ack, c, lang))
+    _betreiber_kopie(art="Neue Kooperationsanfrage", wer=name + (f", {firma}" if firma else ""),
+                     text=body, felder=felder, admin_empf=[empf], admin_ok=admin_ok,
+                     kunde=_kunde_status(kunde_ok), antwort_an=email,
+                     herkunft=_herkunft_aus_verweis(request), kampagne=k or "")
     return JsonResponse({"ok": True})
 
 
@@ -5057,8 +5265,23 @@ def leistung_anfrage(request):
     if anliegen:
         # Nur der Schluessel aus _ANLIEGEN, ohne Kennung — wie jede Zaehlung hier.
         messung.zaehle("anliegen", anliegen)
-    _send_mail_logged(betreff, body, from_email, [empf], tag="LEISTUNG",
-                      antwort_an=kontakt if _ist_email(kontakt) else None)
+    ist_mail = _ist_email(kontakt)
+    felder = [mails.feld("Thema", thema), mails.feld("Seite", herkunft, "seite"),
+              mails.feld("Name", name),
+              mails.feld("Kontakt", kontakt, "email" if ist_mail else "tel"),
+              mails.feld("Rückruf-Zeit", zeit),
+              mails.feld("Anliegen", _ANLIEGEN.get(anliegen, "") if anliegen else ""),
+              mails.feld("Sprache", lang), mails.feld("Kampagne", k or ""),
+              mails.feld("Werbeeinwilligung", "ja" if werbung else ""),
+              mails.feld("Nachricht", text, "lang")]
+    art_titel = "Rückrufwunsch" if quelle == "rueckruf" else f"Kurzanfrage: {thema}"
+    admin_ok = _send_mail_logged(
+        betreff, body, from_email, [empf], tag="LEISTUNG",
+        antwort_an=kontakt if ist_mail else None,
+        html=_admin_html(art_titel, betreff, felder, wer=name or kontakt,
+                         antwort_an=kontakt if ist_mail else "",
+                         telefon="" if ist_mail else kontakt))
+    kunde_ok = False
 
     # Bestätigung an den Absender , nur wenn er eine E-Mail hinterlassen hat.
     if _ist_email(kontakt):
@@ -5071,9 +5294,19 @@ def leistung_anfrage(request):
         ack = em["leistung_ack_body"].format(
             anrede=anrede, thema=thema_kunde,
             site=c.get("site_name", "WVM-IT"), url=c.get("wvm_url", ""))
-        _send_mail_logged(em["leistung_ack_subject"].format(thema=thema_kunde), ack,
-                          from_email, [kontakt], tag="LEISTUNG-ACK",
-                          antwort_an=empf or None)
+        ack_betreff = em["leistung_ack_subject"].format(thema=thema_kunde)
+        kunde_ok = _send_mail_logged(ack_betreff, ack,
+                                     from_email, [kontakt], tag="LEISTUNG-ACK",
+                                     antwort_an=empf or None,
+                                     html=_kunden_html(ack_betreff, ack, c, lang))
+
+    _betreiber_kopie(art=("Neuer " if quelle == "rueckruf" else "Neue ") + art_titel,
+                     wer=name or kontakt, text=body,
+                     felder=[z for z in felder if z["label"] not in ("Seite", "Kampagne")],
+                     admin_empf=[empf], admin_ok=admin_ok,
+                     kunde=_kunde_status(kunde_ok, ist_mail),
+                     antwort_an=kontakt if ist_mail else "",
+                     herkunft=herkunft, kampagne=k or "")
 
     # Zusätzlich in Supabase protokollieren, falls konfiguriert (best effort) —
     # aber NUR mit Werbeeinwilligung (EIG80, 25.09.2026). `upsert_subscriber` legt

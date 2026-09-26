@@ -254,6 +254,13 @@ DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER or "ko
 # Bestaetigung (Double-Opt-in) bleibt - ohne eingetippten Namen und hoechstens
 # eine je Adresse am Tag. Durchgesetzt in landing.views._send_mail_logged.
 KUNDENMAIL_AN_ABSENDER = os.environ.get("KUNDENMAIL_AN_ABSENDER", "").strip().lower() in ("1", "true", "yes", "on")
+
+# Betreiber-Kopie (26.09.2026): Jede echte Anfrage geht zusaetzlich als eigene
+# Mail an die Webagentur Scherzinger, die die Seite betreut. Kommagetrennt
+# erlaubt; leer ("") oder "aus" schaltet die Kopie ab. Unabhaengig vom Schalter
+# KUNDENMAIL_AN_ABSENDER - sie geht nie an eine eingetippte Adresse.
+# Umgesetzt in landing.views._betreiber_kopie / landing.mails.
+BETREIBER_KOPIE_AN = os.environ.get("BETREIBER_KOPIE_AN", "bastian.scherzinger69@gmail.com")
 EMAIL_BACKEND = (
     "django.core.mail.backends.smtp.EmailBackend" if EMAIL_HOST
     else "django.core.mail.backends.console.EmailBackend"
