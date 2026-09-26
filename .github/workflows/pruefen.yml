@@ -25,13 +25,20 @@ jobs:
       # Fassung prueft nicht das, was deployt wird.
       PYTHON_VERSION: "3.12"
       DEBUG: "False"
-      SECRET_KEY: "nur-fuer-den-pruef-lauf-nicht-in-produktion-verwenden-0123456789"
+      # SECRET_KEY steht bewusst nicht hier: Er wird im ersten Schritt je Lauf
+      # neu gewuerfelt (Messung PJ05, Zugangsdaten im Quelltext). Im Repository
+      # liegt so kein Schluessel, auch kein Wegwerfwert.
       ALLOWED_HOSTS: "*"
       # Leer lassen: Sonst leitet die Host-Middleware jede Anfrage im Prueflauf
       # auf die Live-Domain um, und pruefe_seite sieht lauter 301.
       KANONISCHER_HOST: ""
 
     steps:
+      - name: Wegwerf-Schluessel fuer diesen Lauf
+        # Gilt nur fuer die folgenden Schritte dieses Laufs, wird nie
+        # ausgegeben und nirgends gespeichert.
+        run: echo "SECRET_KEY=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+
       - uses: actions/checkout@v4
         with:
           # Volle Historie, nicht der flache Standard-Klon.
