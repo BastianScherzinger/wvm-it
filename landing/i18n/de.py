@@ -24,7 +24,7 @@ PACK = {
         "html_lang": "de-AT",
         "locale": "de_AT",
         "num_locale": "de-DE",
-        "seo_title": "WVM-IT: IT-Betreuung in Österreich und Deutschland ab 29 €",
+        "seo_title": "IT-Betreuung in Österreich und Deutschland ab 29 € | WVM-IT",
         "seo_desc": "IT-Betreuung per Fernwartung für Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz. Einzelhilfe ohne Vertrag 95 €/Std. Jetzt anfragen.",
         "slogan": "Wir verbinden Menschen mit Informationstechnologie.",
         "firmen_desc": "WVM-IT verbindet Menschen mit Informationstechnologie. Von unserem Standort in Lenzing in Oberösterreich betreuen wir Unternehmen und Privatkunden mit IT- und Digitallösungen aus einer Hand: EDV, Netzwerk und IT-Sicherheit, professionelle Webseiten, Hosting und SEO, KI-Automatisierung, Smarthome und Gebäudeautomation sowie Konferenz-, Video-, Ton- und Veranstaltungstechnik. Der laufende Betrieb läuft überwiegend per Fernwartung in ganz Österreich und Deutschland; Arbeiten vor Ort übernehmen wir im Einzugsgebiet rund um Vöcklabruck, den Attersee, Gmunden, Wels, Linz und Salzburg. Technik soll verständlich sein, zuverlässig funktionieren und einen echten Mehrwert schaffen — dafür gibt es persönliche Beratung, klare Kommunikation und einen festen Ansprechpartner.",
@@ -1045,7 +1045,7 @@ PACK = {
         "ansehen": "Seite ansehen",
     },
     "kontakt_seite": {
-        "titel": "Kontakt zu WVM-IT: Antwort in 24 Stunden",
+        "titel": "Kontakt: Antwort in 24 Stunden | WVM-IT",
         "desc": "WhatsApp, Telefon, Rückruf oder E-Mail — Antwort innerhalb von 24 Stunden an Werktagen, in ganz Österreich und Deutschland. Jetzt Kontakt aufnehmen.",
         "h1": "So erreichen Sie uns",
         "kurz": "WVM-IT ist per WhatsApp, Telefon, Rückruf oder E-Mail erreichbar. Anfragen beantworten wir an Werktagen innerhalb von 24 Stunden, bei einem akuten Ausfall meist deutlich schneller. Betreut werden Betriebe in ganz Österreich und Deutschland, überwiegend per Fernwartung; ein Termin vor Ort wird vorher vereinbart.",
@@ -1098,7 +1098,7 @@ PACK = {
         # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
         # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
         "badge_fallback": "IT · service · consulting",
-        "titel": "Über WVM-IT — Florin Feier, Lenzing (OÖ)",
+        "titel": "Über uns: Florin Feier, Lenzing (OÖ) | WVM-IT",
         "desc": "Wer hinter WVM-IT steht, wie wir arbeiten und was wir bewusst nicht tun. Ein Ansprechpartner, Sitz in Oberösterreich. Jetzt kennenlernen.",
         "h1": "Wer hinter WVM-IT steht",
         "kurz": "Hinter WVM-IT steht {inhaber}. Ein Betrieb, ein Ansprechpartner: Wer anruft, spricht mit der Person, die die Anlage auch kennt. Der Sitz ist {adresse}; betreut wird überwiegend per Fernwartung in ganz Österreich und Deutschland, auf Deutsch, Englisch und Rumänisch. Auf Anfragen antworten wir an Werktagen innerhalb von 24 Stunden.",
@@ -1136,11 +1136,11 @@ PACK = {
         "fehler_pruefen": "Die Anfrage wurde nicht gesendet: Bitte prüfen Sie die E-Mail-Adresse, die Pflichtfelder und die Einwilligung.",
     },
     "recht": {
-        "impressum_titel": "Impressum von WVM-IT aus Lenzing, Oberösterreich",
+        "impressum_titel": "Impressum: Lenzing, Oberösterreich | WVM-IT",
         "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT: Inhaber, Anschrift in Lenzing, Oberösterreich, Kontakt und Offenlegung nach MedienG.",
-        "datenschutz_titel": "Datenschutzerklärung von WVM-IT aus Lenzing",
+        "datenschutz_titel": "Datenschutzerklärung aus Lenzing | WVM-IT",
         "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer und Ihre Rechte.",
-        "agb_titel": "AGB von WVM-IT — Bedingungen im Klartext",
+        "agb_titel": "AGB: Bedingungen im Klartext | WVM-IT",
         "agb_desc": "Die Geschäftsbedingungen von WVM-IT: Preise, Zahlung, Kündigung, Haftung und Nutzungsrechte — auf einer Seite. Jetzt nachlesen.",
         "barrierefreiheit_titel": "Erklärung zur Barrierefreiheit | WVM-IT",
         "barrierefreiheit_desc": "Wie barrierefrei wvm-it.tech ist, was noch fehlt und wie Sie einen Mangel melden. Antwort an Werktagen in 24 Stunden. Jetzt melden.",

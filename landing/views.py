@@ -3716,7 +3716,11 @@ def beitrag_seite(request, slug):
         "headline": beitrag.get("titel", ""),
         "description": beitrag.get("antwort", "")[:300],
         "datePublished": eintrag.get("datum", ""),
-        "dateModified": eintrag.get("geaendert") or eintrag.get("datum", ""),
+        # Dieselbe Quelle wie WebPage-Knoten und Sitemap (EIG180): landing/stand.py.
+        # Bis zum 26.09.2026 stand hier `geaendert or datum` — ein Feld, das kein
+        # Beitrag setzt, also immer das Veröffentlichungsdatum, während die Sitemap
+        # und der WebPage-Knoten derselben Seite das echte Änderungsdatum nannten.
+        "dateModified": stand.datum(pfad) or eintrag.get("datum", ""),
         "inLanguage": "de-AT",
         "author": {"@id": f"{base}/#inhaber"},
         "publisher": {"@id": f"{base}/#business"},
@@ -4506,6 +4510,27 @@ def _llms_festpreise(base):
     return raus
 
 
+def _llms_einmalig_zeile():
+    """Die Zeile „Einmalig" unter „Preise" in llms.txt — aus dem Katalog gebildet.
+
+    Sie stand bis zum 26.09.2026 fest getippt mit „ab" vor jeder Zahl, zwei Zeilen
+    unter der Liste aus `_llms_festpreise()`, die dieselben Einrichtungen als
+    „Festpreis" nennt (EIG179). Eine Antwortmaschine liest beides und weiss nicht,
+    welche Zeile gilt. Jetzt tragen Einrichtungen mit eigener Seite in
+    /einrichten/ dasselbe Label ohne „ab" wie dort; der IT-Sicherheitscheck hat
+    keine Einrichtungsseite und behält sein „ab"."""
+    words = i18n.get_pack("de").get("catalog_words", {})
+    festpreis = [("Arbeitsplatz einrichten", "arbeitsplatz"),
+                 ("Microsoft 365", "m365"),
+                 ("Firewall/VPN", "firewall"),
+                 ("Netzwerk/WLAN", "netzwerk_setup")]
+    teile = [f"{name} {_festpreis_label(_ANGEBOT_INDEX[pid], words)}"
+             for name, pid in festpreis]
+    check = _make_price_label(_ANGEBOT_INDEX["sicherheitscheck"], words)
+    return (f"- Einmalig: {', '.join(teile)} (Festpreis je Vorgang, siehe oben), "
+            f"IT-Sicherheitscheck {check}.")
+
+
 @_maschinenantwort(180)
 def llms_txt(request):
     """/llms.txt , kompakte Klartext-Fassung für KI-Antwortmaschinen (GEO).
@@ -4556,7 +4581,7 @@ def llms_txt(request):
         "\n## Preise (Richtpreise, netto zzgl. USt.)",
         "- IT-Betreuung: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, Datensicherung ab 49 €/Monat.",
         "- Support: 95 €/Stunde per Fernwartung, 120 €/Stunde vor Ort zzgl. Anfahrt.",
-        "- Einmalig: Arbeitsplatz einrichten ab 190 €, Microsoft 365 ab 290 €, IT-Sicherheitscheck ab 490 €, Firewall/VPN ab 690 €, Netzwerk/WLAN ab 890 €.",
+        _llms_einmalig_zeile(),
         "- Webseiten: One-Pager ab 350 €, Business-Website ab 1.490 €, Premium ab 2.900 €, Shop ab 3.500 €.",
         "- Betrieb: Hosting 15 €/Monat, Wartung 39 €/Monat, Domain 15 €/Jahr.",
         "- Sichtbarkeit: SEO einmalig ab 390 €, SEO-Betreuung ab 149 €/Monat, Google Ads Einrichtung ab 490 €, Ads-Betreuung ab 199 €/Monat.",

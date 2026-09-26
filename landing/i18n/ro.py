@@ -20,7 +20,7 @@ PACK = {
         "html_lang": "ro",
         "locale": "ro_RO",
         "num_locale": "ro-RO",
-        "seo_title": "WVM-IT: administrare IT în Austria și Germania de la 29 €",
+        "seo_title": "Administrare IT în Austria și Germania de la 29 € | WVM-IT",
         "seo_desc": "Administrare IT la distanță pentru firme din Austria și Germania: de la 29 €/lună pe stație. Ajutor punctual fără contract 95 €/oră. Scrieți-ne acum.",
         "slogan": "Conectăm oamenii cu tehnologia informației.",
         "firmen_desc": "WVM-IT conectează oamenii cu tehnologia informației. De la sediul nostru din Lenzing, Austria Superioară, ne ocupăm de firme și de clienți privați cu soluții IT și digitale dintr-o singură sursă: stații de lucru, rețele și securitate IT, site-uri web profesionale, găzduire și SEO, automatizare cu inteligență artificială, smart home și automatizarea clădirilor, precum și tehnică de conferință, video, sunet și evenimente. Activitatea curentă se desfășoară în mare parte prin mentenanță la distanță, în toată Austria și Germania; lucrările la fața locului acoperă zona din jurul orașelor Vöcklabruck, Attersee, Gmunden, Wels, Linz și Salzburg. Tehnologia trebuie să fie ușor de înțeles, să funcționeze fiabil și să aducă un beneficiu real — de aceea oferim consiliere personală, comunicare clară și o persoană de contact fixă.",
@@ -941,7 +941,7 @@ PACK = {
         "ratgeber_link": "Ghid: cât costă administrarea IT pentru firme mici?",
     },
     "rechner": {
-        "titel": "Calculați costurile IT: prețul lunar în 2 minute",
+        "titel": "Calculați costurile IT: prețul lunar în 2 minute | WVM-IT",
         "desc": "Introduceți stațiile, serverele și salvarea datelor și vedeți pe loc suma lunară și anuală, cu tarifele din ofertă. Încercați gratuit acum.",
         "h1": "Cât costă asistența IT pentru firma dumneavoastră?",
         "kurz": "Introduceți câte stații de lucru și servere aveți și dacă backupul trebuie supravegheat — vedeți imediat totalul lunar și pe cel anual. Calculul folosește aceleași prețuri orientative care apar pe pagina noastră de prețuri și în ofertele noastre: 29 € per post de lucru și lună, 89 € per server administrat, 49 € pentru backupul supravegheat. Nu există o a doua listă de prețuri.",
@@ -1001,7 +1001,7 @@ PACK = {
         "ansehen": "Vedeți site-ul",
     },
     "kontakt_seite": {
-        "titel": "Contact WVM-IT: răspuns în 24 de ore",
+        "titel": "Contact: răspuns în 24 de ore | WVM-IT",
         "desc": "WhatsApp, telefon, apel invers sau e-mail — răspuns în 24 de ore în zilele lucrătoare, în toată Austria și Germania. Contactați-ne acum.",
         "h1": "Cum ne găsiți",
         "kurz": "WVM-IT poate fi contactat prin WhatsApp, telefon, apel invers sau e-mail. Solicitările primesc răspuns în 24 de ore în zilele lucrătoare, iar în cazul unei defecțiuni acute de obicei mult mai repede. Administrăm firme din toată Austria și Germania, în cea mai mare parte la distanță; o vizită la fața locului se stabilește dinainte.",
@@ -1049,7 +1049,7 @@ PACK = {
         # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
         # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
         "badge_fallback": "IT · service · consulting",
-        "titel": "Despre WVM-IT — Florin Feier, Lenzing (Austria)",
+        "titel": "Despre noi: Florin Feier, Lenzing (Austria) | WVM-IT",
         "desc": "Cine este în spatele WVM-IT, cum lucrăm și ce nu facem în mod deliberat. O singură persoană de contact, sediu în Austria Superioară. Cunoașteți-ne.",
         "h1": "Cine este în spatele WVM-IT",
         "kurz": "În spatele WVM-IT se află {inhaber}. O firmă, o persoană de contact: cine sună vorbește cu persoana care cunoaște și instalația. Sediul este {adresse}; lucrăm preponderent prin întreținere la distanță în toată Austria și Germania, în germană, engleză și română. Răspundem cererilor în 24 de ore în zilele lucrătoare.",

@@ -947,7 +947,7 @@ PACK = {
         "ratgeber_link": "Guide: what does IT support cost for small businesses?",
     },
     "rechner": {
-        "titel": "Calculate IT costs: your monthly price in 2 minutes",
+        "titel": "Calculate IT costs: your monthly price in 2 minutes | WVM-IT",
         "desc": "Enter workstations, servers and backup, and see the monthly and yearly total right away — at the rates that appear in the quote. Try it free now.",
         "h1": "What does IT support cost for your business?",
         "kurz": "Enter how many workstations and servers you have and whether backups should be monitored — you see the monthly and the annual total immediately. The calculation uses the same guide prices that appear on our pricing page and in our quotes: €29 per workstation and month, €89 per managed server, €49 for monitored backups. There is no second price list.",
@@ -997,7 +997,7 @@ PACK = {
         "zur_preisliste": "See the full price list",
     },
     "referenzen_seite": {
-        "titel": "References: 1 case study, fully documented",
+        "titel": "References: 1 case study, fully documented | WVM-IT",
         "desc": "Only projects we can prove, published with the client's consent: website, SEO and Google Ads for Rümpelwerk Mitteldeutschland. Take a look now.",
         "h1": "Case studies",
         "kurz": "WVM-IT lists only projects that genuinely exist and whose clients have agreed to be named. Currently that is R\u00fcmpelwerk Mitteldeutschland, for whom we built the website, SEO/GEO and Google Ads and keep them running. If you want to form a picture before getting in touch, this website offers more to go on than a client list: 33 openly listed price items, a cost calculator and a security self-test with 10 questions.",
@@ -1007,7 +1007,7 @@ PACK = {
         "ansehen": "View the site",
     },
     "kontakt_seite": {
-        "titel": "Contact WVM-IT: an answer within 24 hours",
+        "titel": "Contact: an answer within 24 hours | WVM-IT",
         "desc": "WhatsApp, phone, callback or e-mail — an answer within 24 hours on working days, across Austria and Germany. Get in touch today.",
         "h1": "How to reach us",
         "kurz": "WVM-IT can be reached by WhatsApp, phone, callback or email. Enquiries are answered within 24 hours on business days, and usually much faster during an acute outage. We serve businesses across Austria and Germany, mostly by remote support; an on-site visit is arranged in advance.",
@@ -1055,7 +1055,7 @@ PACK = {
         # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
         # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
         "badge_fallback": "IT · service · consulting",
-        "titel": "About WVM-IT — Florin Feier, Lenzing, Austria",
+        "titel": "About us: Florin Feier, Lenzing, Austria | WVM-IT",
         "desc": "Who is behind WVM-IT, how we work and what we deliberately do not do. One contact person, based in Upper Austria. Get to know us now.",
         "h1": "Who is behind WVM-IT",
         "kurz": "Behind WVM-IT stands {inhaber}. One business, one contact person: whoever calls speaks to the person who also knows the systems. The registered office is {adresse}; most work is done by remote support across Austria and Germany, in German, English and Romanian. Enquiries are answered within 24 hours on working days.",
