@@ -3716,7 +3716,11 @@ def beitrag_seite(request, slug):
         "headline": beitrag.get("titel", ""),
         "description": beitrag.get("antwort", "")[:300],
         "datePublished": eintrag.get("datum", ""),
-        "dateModified": eintrag.get("geaendert") or eintrag.get("datum", ""),
+        # Dieselbe Quelle wie WebPage-Knoten und Sitemap (EIG180): landing/stand.py.
+        # Bis zum 26.09.2026 stand hier `geaendert or datum` — ein Feld, das kein
+        # Beitrag setzt, also immer das Veröffentlichungsdatum, während die Sitemap
+        # und der WebPage-Knoten derselben Seite das echte Änderungsdatum nannten.
+        "dateModified": stand.datum(pfad) or eintrag.get("datum", ""),
         "inLanguage": "de-AT",
         "author": {"@id": f"{base}/#inhaber"},
         "publisher": {"@id": f"{base}/#business"},
