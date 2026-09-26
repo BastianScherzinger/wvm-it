@@ -201,7 +201,7 @@ class BetreiberKopieTest(SimpleTestCase):
 
     # e) ──────────────────────────────────────────────────────────────────────
     def test_keine_dublette_wenn_schon_inhaber_empfaenger(self):
-        with mock.patch.dict(os.environ, {"KONTAKT_EMPFAENGER": "Bastian.Scherzinger69@Gmail.com"}):
+        with mock.patch.dict(os.environ, {"KONTAKT_EMPFAENGER": "Bastian.Scherzinger05@Gmail.com"}):
             self.client_.post(reverse("index"), _KONTAKT)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(_kopien(), [])
