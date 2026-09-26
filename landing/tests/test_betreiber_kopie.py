@@ -30,7 +30,7 @@ from landing import mails, views
 from landing.views import _ANGEBOT_INDEX
 from . import _util
 
-BASTIAN = "bastian.scherzinger69@gmail.com"
+BASTIAN = "bastian.scherzinger05@gmail.com"
 _POSITION = next(iter(_ANGEBOT_INDEX))
 _KONTAKT = {"name": "Max Muster", "email": "max@example.org", "telefon": "+43 660 1234567",
             "nachricht": "Acht Arbeitsplätze.\nZweite Zeile mit Umlauten: äöüß.",
@@ -201,7 +201,7 @@ class BetreiberKopieTest(SimpleTestCase):
 
     # e) ──────────────────────────────────────────────────────────────────────
     def test_keine_dublette_wenn_schon_inhaber_empfaenger(self):
-        with mock.patch.dict(os.environ, {"KONTAKT_EMPFAENGER": "Bastian.Scherzinger69@Gmail.com"}):
+        with mock.patch.dict(os.environ, {"KONTAKT_EMPFAENGER": "Bastian.Scherzinger05@Gmail.com"}):
             self.client_.post(reverse("index"), _KONTAKT)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(_kopien(), [])

@@ -83,7 +83,7 @@ Nur Namen, nie Werte. Erhoben aus `config/settings.py`, `landing/*.py` und den M
 | `KANONISCHER_HOST` | 301 aller Neben-Hosts | muss `www.wvm-it.tech` sein; leer = Railway-Subdomain bleibt zweiter Bestand |
 | `SECURE_SSL_REDIRECT`, `SECURE_HSTS_SECONDS`, `SECURE_HSTS_INCLUDE_SUBDOMAINS`, `SECURE_HSTS_PRELOAD` | Transportsicherheit | Vorbelegt: Redirect an, 31536000 s, **`includeSubDomains` an, `preload` aus** (`config/settings.py:247`, `:254`, `:261`, `:266`). **Am 12.09.2026 berichtigt:** Hier stand „includeSubDomains und preload aus — live fehlen beide"; `includeSubDomains` ist seit dem 05.09.2026 vorbelegt (Grund im Kommentar `:256–260`: keine Subdomain wird absichtlich ohne HTTPS bedient). Offen ist allein `preload` (`SI03`), und das steht mit Begründung aus (`:262–266`) — siehe unten „Offen" Nr. 6 |
 | `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USE_TLS`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, `DEFAULT_FROM_EMAIL`, `KONTAKT_EMPFAENGER` | Mailversand | ohne SMTP werden Anfragen nur geloggt; Versand läuft laut `SEO-KONZEPT-DACH.md` §8.1 über eine private Gmail-Adresse mit Anzeigename „WVM-IT" |
-| `BETREIBER_KOPIE_AN` | Betreiber-Kopie jeder Anfrage an die Webagentur (seit 26.09.2026) | Vorgabe im Code `bastian.scherzinger69@gmail.com`; leer oder `aus` = ab; siehe Abschnitt „E-Mail-Versand“ |
+| `BETREIBER_KOPIE_AN` | Betreiber-Kopie jeder Anfrage an die Webagentur (seit 26.09.2026) | Vorgabe im Code `bastian.scherzinger05@gmail.com`; leer oder `aus` = ab; siehe Abschnitt „E-Mail-Versand“ |
 | `INDEXNOW_KEY` | IndexNow-Schlüssel | öffentlich per Verfahren; nur zusammen mit der Nachweisdatei ändern |
 | `WVM_DB_URL` | Supabase-Postgres (Pooler), Schema `wvm` | ohne Wert sind alle Aufrufe stille No-Ops |
 | `CLOUDINARY_URL` | Bild-Upload | |
@@ -160,7 +160,7 @@ stattdessen `var/anfragen/` und das Railway-Log (`[ANFRAGE]`). Honigtopf,
 Spam-Bremse und Pflichtfelder greifen vorher — ein Bot-Treffer erzeugt keine Kopie.
 
 - **Einstellung `BETREIBER_KOPIE_AN`** (`config/settings.py`): Vorgabe
-  `bastian.scherzinger69@gmail.com`, kommagetrennt erlaubt; leer (`""`) oder `aus`
+  `bastian.scherzinger05@gmail.com`, kommagetrennt erlaubt; leer (`""`) oder `aus`
   schaltet ab. Adressen, die schon Inhaber-Empfänger sind, fallen heraus (Groß-/
   Kleinschreibung egal). Keine Railway-Variable nötig.
 - **Notschalter:** `KUNDENMAIL_AN_ABSENDER` (Standard aus) gilt unverändert für alle
