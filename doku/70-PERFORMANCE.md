@@ -6,9 +6,9 @@ status: teilweise
 fortschritt: 88
 zusammenfassung: Am 24.09.2026 VL16 als begruendete Ausnahme eingetragen (Paket 343, Zweig sofort/2026-09-24-vl16-und-2-weitere, 315811f), ohne eine Zeile Code: Gemeldet ist allein HTML ueber 120 KiB auf /, /en/ und /ro/, und der Umfang der Startseite (Konfigurator, Preistabelle, FAQ) ist seit T2 bewusst so; Critical CSS (PF14, Offen Nr. 5) bleibt offen. Davor am 18.09.2026 PF28 anders eingebaut und als begruendete Ausnahme eingetragen (Zweig sofort/2026-09-18-fo09-und-2-weitere, laut Bausitzung ungeprueft, Offen Nr. 7): Ein eigener Speicher landing/verkleinern.py streicht beim collectstatic Kommentarzeilen, Einrueckung und Leerzeilen aus den Skripten, bevor WhiteNoise komprimiert -- ohne neues Paket, Zeilenumbrueche und Adressen bleiben, CSS unveraendert. Die Ersparnis ist nicht gemessen. Davor am 12.09.2026 PF13 (weit gesetztes Ablaufdatum an statischen Dateien) als begruendete Ausnahme eingetragen, ohne eine Zeile Code -- und dabei eine falsche Angabe in dieser Datei berichtigt: Die Dateinamen tragen hier KEINEN Hash, und WhiteNoise laeuft NICHT mit Manifest-Storage. Das Jahr steht laengst (max-age=31536000, public), gemeldet wird allein das fehlende immutable, und genau das schliesst derselbe Rat ohne Hash im Namen selbst aus. CSS und JavaScript haengen an der Versions-Abfrage ?v= im Template; unter der Adresse ohne Abfrage waere immutable ein Versprechen, das die Auslieferung ein Jahr lang nicht zuruecknehmen kann. Schriften, Bilder und Videos bekommen es bereits, weil sie unter neuem Namen ersetzt statt ueberschrieben werden. Davor: Am 06.09. nachgemessen statt fortgeschrieben: Django rendert in 8 bis 34 ms, der TTFB live liegt bei 172 bis 234 ms — die Anwendung ist rund 13 Prozent davon. Der Seitencache aus der Aufgabenliste haette also 30 von 230 ms gespart und dafuer auf jeder Formularseite ein fremdes CSRF-Token riskiert; er bleibt bewusst ungebaut. Gebaut: ConditionalGetMiddleware und Cache-Koepfe auf den sieben Endpunkten ohne Formular — 310 KB weniger je Crawl-Durchgang. Am 07.09. PF18 dort gebaut, wo er zutrifft: Das Portraet auf /ueber-uns/ stand auf loading=lazy und traegt jetzt fetchpriority=high; auf den uebrigen Seiten bleibt die hohe Ladeprioritaet bewusst aus, weil deren erstes Bild ein 44-Pixel-Dekobild unten im Formular ist. Am 10.09.2026 ist genau diese Trennung als begruendete Ausnahme eingetragen -- gebaut ist der Punkt an den drei Stellen, an denen es ein LCP-Bild gibt: Hero-Portraet, /ueber-uns/ und das erste Referenzbild. Am selben Tag PF17 aus demselben Grund: Er trifft dasselbe Dekobild von der anderen Seite. Jedes Bild nach dem ersten laedt verzoegert, eifrig laedt nur, wo es ein echtes LCP-Bild gibt -- damit bleiben in diesem Hebel PF19 und VL15 offen.
 offen: 4
-pagespeed_mobil: 99
-pagespeed_desktop: 98
-antwortzeit_ms: 5
+pagespeed_mobil: 100
+pagespeed_desktop: 100
+antwortzeit_ms: 4
 quellen: docs/AUSBAU-2026-09.md, docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 antwortzeit_quelle: PageSpeed server-response-time
 ---
@@ -20,37 +20,35 @@ antwortzeit_quelle: PageSpeed server-response-time
 ## Messwerte
 
 <!-- tempo:anfang -->
-**Messung vom 20.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-17b). Bereich „Performance & Core Web Vitals“: **97,9 von 100**, Reifegrad „Referenz“.
+**Messung vom 26.09.2026** (Webagentur Scherzinger Overview, Regelstand 2026-09-26a). Bereich „Performance & Core Web Vitals“: **98,0 von 100**, Reifegrad „Referenz“.
 
 ### Lighthouse je Seite
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **97** | 2,40 s | 0,000 | 34 ms | 9 ms |
-| `/` | desktop | **100** | 0,52 s | 0,002 | 0 ms | 8 ms |
-| `/datenschutz/` | mobile | **100** | 1,35 s | 0,003 | 0 ms | 5 ms |
-| `/datenschutz/` | desktop | **100** | 0,35 s | 0,000 | 0 ms | 4 ms |
-| `/impressum/` | mobile | **99** | 1,96 s | 0,000 | 0 ms | 2 ms |
-| `/impressum/` | desktop | **96** | 0,28 s | 0,122 | 0 ms | 6 ms |
-| `/kontakt/` | mobile | **100** | 1,45 s | 0,000 | 0 ms | 2 ms |
-| `/kontakt/` | desktop | **100** | 0,37 s | 0,018 | 0 ms | 1 ms |
-| `/kosten/rechner/` | mobile | **100** | 1,54 s | 0,010 | 0 ms | 2 ms |
-| `/kosten/rechner/` | desktop | **96** | 0,38 s | 0,125 | 0 ms | 2 ms |
-| `/leistungen/` | mobile | **99** | 1,67 s | 0,015 | 0 ms | 3 ms |
-| `/leistungen/` | desktop | **93** | 0,41 s | 0,159 | 0 ms | 17 ms |
+| `/` | mobile | **99** | 1,95 s | 0,000 | 0 ms | 9 ms |
+| `/` | desktop | **100** | 0,54 s | 0,000 | 6 ms | 5 ms |
+| `/datenschutz/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 2 ms |
+| `/datenschutz/` | desktop | **100** | 0,38 s | 0,000 | 0 ms | 2 ms |
+| `/impressum/` | mobile | **100** | 1,67 s | 0,000 | 0 ms | 2 ms |
+| `/impressum/` | desktop | **100** | 0,41 s | 0,000 | 0 ms | 9 ms |
+| `/kontakt/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 2 ms |
+| `/kontakt/` | desktop | **100** | 0,39 s | 0,000 | 0 ms | 3 ms |
+| `/kosten/rechner/` | mobile | **99** | 2,01 s | 0,000 | 0 ms | 1 ms |
+| `/kosten/rechner/` | desktop | **100** | 0,49 s | 0,000 | 0 ms | 3 ms |
+| `/leistungen/` | mobile | **99** | 1,99 s | 0,000 | 0 ms | 3 ms |
+| `/leistungen/` | desktop | **100** | 0,50 s | 0,000 | 3 ms | 3 ms |
 
 12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 5,1 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 3,7 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
 | Regel | Titel | Ergebnis | Beleg |
 |---|---|---|---|
-| `PF19` | Das LCP-Bild wird vorgeladen, und nur dort, wo es eins gibt | teilweise | 1 von 2 Schlüsselseiten mit Bild laden es nicht vor: /kosten/rechner/ |
-| `PF27` | Höchstens vier Schriftdateien, die wichtigste vorgeladen | teilweise | 4 Schriftdateien (inter-latin-ext.woff2, inter-latin.woff2, space-grotesk-latin-ext.woff2, space-grotesk-latin.woff2), 0 vorgeladen — fehlt: Hauptschrift vorgeladen |
-| `PF30` | Keine Seite hat mehr als 1500 Elemente | teilweise | 3 Seiten über 1500 Elemente: / (2514), /en/ (2514), /ro/ (2514) |
-| `PF14` | Keine Seite liefert mehr als 200 kB HTML | teilweise | 3 von 198 Seiten über 200 kB HTML: / (198 KB), /en/ (195 KB), /ro/ (202 KB) |
+| `PF27` | Höchstens vier Schriftdateien, die wichtigste vorgeladen | teilweise | 6 Schriftdateien (jetbrains-mono-latin-ext.woff2, jetbrains-mono-latin.woff2, newsreader-latin-ext.woff2, newsreader-latin.woff2 … (+2)), 2 vorgeladen — fehlt: höchstens vier Dateien |
+| `PF30` | Keine Seite hat mehr als 1500 Elemente | teilweise | 3 Seiten über 1500 Elemente: / (2125), /en/ (2088), /ro/ (2088) |
 
 ### Die grössten Bremsen laut Lighthouse
 
