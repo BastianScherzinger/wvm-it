@@ -58,6 +58,19 @@ python manage.py indexnow            # nach jedem Deploy mit neuen URLs
 
 Niemals einen Token in den Push-Befehl schreiben. **Wenn ein Deploy hängt:** `snapshotId: null` und `updatedAt == createdAt` heißt, der Build hat nie begonnen — nicht am Code, `redeploy` scheitert dann („no snapshot"), abwarten oder `railway up --ci` (Details `../docs/DEPLOY.md`).
 
+### Railway-Inventur 26.09.2026
+
+Erhoben lesend am 26.09.2026 (Werte nie notiert; „gleich“ über Hash im Speicher verglichen). Gesamtbild und Befunde K1–K13: `Webagentur Scherzinger\Betrieb-Railway\RAILWAY-INVENTAR.md`; Plan zur Entflechtung: `…\Betrieb-Railway\TRENNUNGSPLAN.md`.
+
+| Punkt | Stand 26.09.2026 |
+|---|---|
+| Railway | Projekt `webseiten`, Umgebung `shop`, Dienst `wvm-it` (`caeee26a-576a-41e6-abe9-a6af3e3c6ebf`), Repo `main`, Auto-Deploy |
+| Letzter Deploy | SUCCESS 26.09.2026; 5xx-Quote 7 Tage: 8 von 38 402 |
+| Datenbank | `WVM_DB_URL`: **gemeinsame Supabase-Datenbank „A“** (Sitzungs-Pooler), eigenes Schema `wvm` (4 Tabellen) plus `public` — dieselbe Datenbank wie RTC, Rümpelwerk, Luviq und JARVIS 4 (K1, hoch) |
+| Variablen (eigene Werte) | `CLOUDINARY_URL`, `CSRF_TRUSTED_ORIGINS`, `DEFAULT_FROM_EMAIL`, `EMAIL_HOST`, `EMAIL_HOST_PASSWORD`, `EMAIL_HOST_USER`, `EMAIL_PORT`, `EMAIL_USE_TLS`, `KONTAKT_EMPFAENGER`, `SECRET_KEY`, `WEEKLY_TRIGGER_KEY`, `WVM_DB_URL` (kein `ALLOWED_HOSTS`, kein `DEBUG` gesetzt) |
+| Geteilte Werte | **Gmail-Zugang (`EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`) und `WVM_DB_URL` sind gleich wie bei JARVIS 4** (eigenes Railway-Projekt `jarvis4`, K9). `CLOUDINARY_URL` = JARVIS 4 und Luviq-`WERBUNG_CLOUDINARY_URL` (K6) |
+| Domains | www.wvm-it.tech (200). **`wvm-it.tech` ohne www zeigt per A-Eintrag auf einen fremden Server (213.145.224.30) mit falschem Zertifikat** (K11) |
+
 ## Umgebungsvariablen
 
 Nur Namen, nie Werte. Erhoben aus `config/settings.py`, `landing/*.py` und den Management-Befehlen (02.09.2026).
