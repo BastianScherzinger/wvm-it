@@ -39,3 +39,17 @@ class BeitragAenderungsdatumTest(SimpleTestCase):
                 self.assertEqual(webseite[0]["dateModified"], erwartet)
                 self.assertGreaterEqual(artikel[0]["dateModified"],
                                         artikel[0]["datePublished"])
+
+    def test_article_verweist_auf_den_webpage_knoten_statt_ihn_zu_wiederholen(self):
+        """EIG181: `mainEntityOfPage` trug `@type: WebPage` und die nackte Adresse als
+        `@id` — ein zweiter WebPage-Eintrag neben `<adresse>#webpage`. `_pruefe_schema`
+        sah das nicht, weil der Knoten verschachtelt steht."""
+        client = _util.client()
+        for eintrag in beitraege.BEITRAEGE:
+            pfad = f"/aktuelles/{eintrag['slug']}/"
+            with self.subTest(pfad=pfad):
+                seite = client.get(pfad).content.decode("utf-8")
+                graph = json.loads(_LDJSON.search(seite).group(1))["@graph"]
+                artikel = [k for k in graph if k.get("@type") == "Article"][0]
+                webseite = [k for k in graph if k.get("@type") == "WebPage"][0]
+                self.assertEqual(artikel["mainEntityOfPage"], {"@id": webseite["@id"]})
