@@ -85,11 +85,13 @@ class Command(BaseCommand):
 
     # ── Prüfungen ─────────────────────────────────────────────────────────────
 
-    # Aus einer durchgelassenen Kontaktanfrage entstehen ZWEI Mails: die Anfrage an
-    # den Inhaber und die Eingangsbestätigung an den Absender. Wer hier nur die
+    # Aus einer durchgelassenen Kontaktanfrage entstehen bis zu DREI Mails: die Anfrage
+    # an den Inhaber, die Betreiber-Kopie an die Webagentur (seit 26.09.2026,
+    # BETREIBER_KOPIE_AN) und die Eingangsbestätigung an den Absender (nur mit
+    # KUNDENMAIL_AN_ABSENDER). Wer hier nur die
     # Anfragen zählt, übersieht genau die Verdopplung, die eine Spam-Welle teuer
     # macht — deshalb wird weiter in Mails gerechnet und der Faktor benannt.
-    MAILS_JE_KONTAKTANFRAGE = 2
+    MAILS_JE_KONTAKTANFRAGE = 3
 
     def _formular_bremse(self):
         c = self._frisch()
@@ -171,9 +173,12 @@ class Command(BaseCommand):
             c.post("/kooperation/anfordern/",
                    {"name": "Bot", "email": f"o{i}@example.org", "nachricht": "x"})
         n = len(mail.outbox)
-        # Je durchgelassener Anfrage entstehen zwei Mails (an uns + Bestätigung).
+        # Je durchgelassener Anfrage entstehen bis zu drei Mails (an uns,
+        # Betreiber-Kopie, Bestätigung).
+        grenze = 3 * self.MAILS_JE_KONTAKTANFRAGE
         self._melde("Kooperation, 8 Versuche", f"{n} Mails",
-                    "höchstens 6 (3 Anfragen à 2 Mails)", n <= 6)
+                    f"höchstens {grenze} (3 Anfragen à {self.MAILS_JE_KONTAKTANFRAGE} Mails)",
+                    n <= grenze)
 
     def _upload_signatur(self):
         """Die Cloudinary-Signatur erlaubt Uploads auf unsere Rechnung — sie darf

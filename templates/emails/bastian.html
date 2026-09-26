@@ -1,0 +1,27 @@
+{% extends "emails/basis.html" %}
+{% block marke_zusatz %}Betreiber-Kopie{% endblock %}
+{% block inhalt %}
+<tr><td class="innen" style="padding:22px 32px 0 32px;">
+  <table role="presentation" class="band" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{{ f.akzent_soft }};border:1px solid {{ f.linie }};border-left:3px solid {{ f.akzent2 }};border-radius:4px;border-collapse:separate;">
+    <tr><td style="padding:12px 16px;font-family:{{ schrift }};">
+      <p class="t" style="margin:0;font-size:15px;line-height:22px;font-weight:600;color:{{ f.ink }};">{{ seite }} · <a class="lk" href="{{ domain }}" style="color:{{ f.akzent }};text-decoration:none;">{{ domain_kurz }}</a></p>
+      <p class="ts" style="margin:2px 0 0 0;font-size:13px;line-height:20px;color:{{ f.ink_soft }};">Kunde: Florin Feier, Lenzing (AT) · Zeit: Europe/Vienna</p>
+    </td></tr>
+  </table>
+</td></tr>
+<tr><td class="innen" style="padding:22px 32px 6px 32px;font-family:{{ schrift }};">
+  <p class="td" style="margin:0 0 6px 0;font-size:12px;line-height:18px;letter-spacing:.06em;text-transform:uppercase;color:{{ f.ink_dim }};">{{ zeit }}</p>
+  <h1 class="t" style="margin:0;font-family:{{ serif }};font-size:24px;line-height:30px;font-weight:normal;color:{{ f.ink }};letter-spacing:-.01em;">{{ titel }}</h1>
+  {% if wer %}<p class="ts" style="margin:6px 0 0 0;font-size:16px;line-height:24px;color:{{ f.ink_soft }};">von {{ wer }}</p>{% endif %}
+</td></tr>
+<tr><td class="innen" style="padding:16px 32px 8px 32px;">
+  {% include "emails/_felder.html" %}
+</td></tr>
+<tr><td class="innen" style="padding:12px 32px 4px 32px;">
+  {% with felder=status %}{% include "emails/_felder.html" %}{% endwith %}
+</td></tr>
+<tr><td class="innen" style="padding:12px 32px 26px 32px;font-family:{{ schrift }};">
+  <p class="td" style="margin:0;font-size:13px;line-height:20px;color:{{ f.ink_dim }};">Kein Admin-Eintrag: Die Seite hat keine Datenbank. Gesichert ist die Anfrage im Anfragenordner des Servers (<code style="font-family:Consolas,monospace;font-size:12px;">var/anfragen/</code>, bis zum nächsten Deploy) und dauerhaft im Railway-Log unter <code style="font-family:Consolas,monospace;font-size:12px;">[ANFRAGE]</code>.{% if antwort_mail %} „Antworten“ geht direkt an den Absender.{% endif %}</p>
+</td></tr>
+{% endblock %}
+{% block fuss %}Kopie für die Webagentur Scherzinger – Betreuung dieser Website. Abschalten: <code style="font-family:Consolas,monospace;">BETREIBER_KOPIE_AN=aus</code>.{% endblock %}
