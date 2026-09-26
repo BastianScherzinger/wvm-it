@@ -3724,7 +3724,10 @@ def beitrag_seite(request, slug):
         "inLanguage": "de-AT",
         "author": {"@id": f"{base}/#inhaber"},
         "publisher": {"@id": f"{base}/#business"},
-        "mainEntityOfPage": {"@type": "WebPage", "@id": f"{base}{pfad}"},
+        # Verweis auf den WebPage-Knoten derselben Seite (`#webpage`, wie bei den
+        # übrigen Ratgebern) — ein Knoten mit @type und der nackten Adresse als
+        # @id war ein zweiter WebPage-Eintrag für dieselbe URL (EIG181).
+        "mainEntityOfPage": {"@id": f"{base}{pfad}#webpage"},
         "about": {"@id": f"{base}/#business"},
         "wordCount": worte,
         # ISO-8601-Dauer. Die Lesezeit steht auch sichtbar auf der Seite; beide
