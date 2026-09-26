@@ -362,6 +362,7 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG153 | beim Kunden | AGB Abschnitt 4 (`content.json:52`) nennt den 15-Minuten-Takt, `doku/80-AUFGABEN.md` (Offen Nr. 24) führt ihn als unbestätigt; welche Seite recht hat, kann nur Florin sagen, am besten zusammen mit der Gegenzeichnung der AGB (`docs/TRIAGE-2026-09-25.md:338`). | 2026-09-26 |
 | EIG158 | beim Kunden | In `ANGEBOT_GROUPS` und in `landing/einrichtungen.py` gibt es keine Position „PC aufrüsten“ (in `views.py` erscheint das Wort nur in einem Beschreibungstext, Zeile 4341); ob Florin das anbietet und zu welchem Preis, muss er selbst festlegen, sonst wäre der Preis erfunden (`docs/TRIAGE-2026-09-25.md:344`). | 2026-09-26 |
 | EIG16 | beim Kunden | Die Datenschutzerklärung (`content.json:33`, §3) nennt als Werbeeinwilligung nur den Selbsttest; der Code hat aber noch zwei weitere (Kästchen `werbung` bei Kurzanfragen und das Newsletter-Kästchen mit Double-Opt-in) – diese Formulierung muss der Betreiber verantworten und nachtragen (`docs/TRIAGE-2026-09-25.md:361–363`). | 2026-09-26 |
+| EIG160 | beim Kunden | Florin Feier muss sagen, ob Hilfe bei Störungen in den 29 € je Arbeitsplatz enthalten ist oder mit 95 €/Std. abgerechnet wird. `landing/views.py:171` und `landing/i18n/hilfe_de.py:72` sagen „Hilfe bei Störungen“ inklusive, die Startseite `landing/i18n/de.py:277/294/303` sagt „nach Aufwand“ (siehe `docs/TRIAGE-2026-09-25.md:330`). | 2026-09-26 |
 <!-- bewertung:ende -->
 
 ## Eigene Punkte
