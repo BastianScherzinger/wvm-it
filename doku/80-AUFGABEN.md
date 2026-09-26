@@ -366,6 +366,7 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG163 | beim Kunden | Florin Feier muss den 15-Minuten-Takt aus AGB Abschnitt 4 (`content.json:52`) bestätigen oder ändern, am besten bei der Gegenzeichnung der AGB; erst dann lassen sich Doku (Offen Nr. 24, `landing/i18n/hilfe_de.py`) und AGB angleichen, ohne eine Seite zu raten (wie EIG153, `doku/80-AUFGABEN.md:362`). | 2026-09-26 |
 | EIG165 | beim Kunden | Ab wann sich die Betreuung lohnt, lässt sich erst rechnen, wenn Florin Feier den Umfang der 29 € je Arbeitsplatz festgelegt hat (EIG160). Bis dahin stehen „ab etwa drei Stunden im Monat“ (`landing/i18n/vergleiche_de.py:24`, `beitraege_de.py:104`) und „mehrmals im Jahr“ (`landing/i18n/hilfe_de.py:72`) nebeneinander. | 2026-09-26 |
 | EIG168 | beim Kunden | Florin Feier muss mit Rechtsberatung entscheiden, ob Privathaushalte bedient werden: Dann braucht `content.json` eine Belehrung zum Rücktrittsrecht nach FAGG (heute kein Treffer für „Rücktritt“ oder „FAGG“), sonst fallen Sätze wie „Privathaushalte“ in `landing/i18n/regionen_de.py:60` weg. | 2026-09-26 |
+| EIG178 | beim Kunden | Ob der Beitrag `/aktuelles/was-kostet-it-betreuung/` (`landing/i18n/beitraege_de.py:51`) umbenannt wird, entscheidet Bastian erst mit Search-Console-Daten aus der Messung nach vier Wochen (Offen Nr. 27, `doku/80-AUFGABEN.md:108`), denn Titeländerungen sind bis dahin gesperrt; `docs/seo/KEYWORD-MAP.md` weist die Frage `/kosten/` zu. | 2026-09-26 |
 <!-- bewertung:ende -->
 
 ## Eigene Punkte
