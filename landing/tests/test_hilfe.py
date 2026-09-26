@@ -26,7 +26,7 @@ from django.core.cache import cache
 from django.test import SimpleTestCase, override_settings
 from django.urls import reverse
 
-from landing import i18n
+from landing import beitraege, einrichtungen, i18n
 from landing.views import _ANGEBOT_INDEX
 from landing.views import _HILFE_STUNDE
 from landing.views import _HILFE_VOR_ORT
@@ -118,6 +118,24 @@ class HilfeSeiteTest(SimpleTestCase):
             with self.subTest(position=iid):
                 preis = _ANGEBOT_INDEX[iid]["once"]
                 self.assertRegex(html, rf'class="ein-preis">{preis} €<')
+
+    def test_jede_fallkarte_hat_ein_ziel_das_es_gibt(self):
+        """`_hilfe_faelle` lässt bei unbekanntem Slug still den Link weg (EIG183),
+        und bei fehlendem `ziel` ebenso (EIG184: die WLAN-Karte). Kein anderer Test
+        und keine Prüfung meldet das — eine Karte ohne Link ist kein toter Link."""
+        gueltig = {"beitrag": beitraege.NACH_SLUG, "einrichtung": einrichtungen.NACH_SLUG}
+        for lang in ("de", "en", "ro"):
+            for fall in i18n.get_pack(lang)["hilfe"]["faelle"]:
+                with self.subTest(sprache=lang, karte=fall["id"]):
+                    art, _, slug = fall.get("ziel", "").partition(":")
+                    self.assertIn(art, gueltig, "Karte ohne ziel oder mit falscher Art")
+                    self.assertIn(slug, gueltig[art], f"{art}:{slug} gibt es nicht")
+
+    def test_wlan_karte_verlinkt_den_ratgeber(self):
+        for pfad in PFADE:
+            with self.subTest(pfad=pfad):
+                _, html = _html(pfad)
+                self.assertIn('href="/aktuelles/wlan-im-betrieb-planen/"', html)
 
 
 class WegeZurHilfeTest(SimpleTestCase):
