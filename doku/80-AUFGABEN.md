@@ -365,6 +365,7 @@ und rendert, sobald das Feld gefüllt ist.
 | EIG160 | beim Kunden | Florin Feier muss sagen, ob Hilfe bei Störungen in den 29 € je Arbeitsplatz enthalten ist oder mit 95 €/Std. abgerechnet wird. `landing/views.py:171` und `landing/i18n/hilfe_de.py:72` sagen „Hilfe bei Störungen“ inklusive, die Startseite `landing/i18n/de.py:277/294/303` sagt „nach Aufwand“ (siehe `docs/TRIAGE-2026-09-25.md:330`). | 2026-09-26 |
 | EIG163 | beim Kunden | Florin Feier muss den 15-Minuten-Takt aus AGB Abschnitt 4 (`content.json:52`) bestätigen oder ändern, am besten bei der Gegenzeichnung der AGB; erst dann lassen sich Doku (Offen Nr. 24, `landing/i18n/hilfe_de.py`) und AGB angleichen, ohne eine Seite zu raten (wie EIG153, `doku/80-AUFGABEN.md:362`). | 2026-09-26 |
 | EIG165 | beim Kunden | Ab wann sich die Betreuung lohnt, lässt sich erst rechnen, wenn Florin Feier den Umfang der 29 € je Arbeitsplatz festgelegt hat (EIG160). Bis dahin stehen „ab etwa drei Stunden im Monat“ (`landing/i18n/vergleiche_de.py:24`, `beitraege_de.py:104`) und „mehrmals im Jahr“ (`landing/i18n/hilfe_de.py:72`) nebeneinander. | 2026-09-26 |
+| EIG168 | beim Kunden | Florin Feier muss mit Rechtsberatung entscheiden, ob Privathaushalte bedient werden: Dann braucht `content.json` eine Belehrung zum Rücktrittsrecht nach FAGG (heute kein Treffer für „Rücktritt“ oder „FAGG“), sonst fallen Sätze wie „Privathaushalte“ in `landing/i18n/regionen_de.py:60` weg. | 2026-09-26 |
 <!-- bewertung:ende -->
 
 ## Eigene Punkte
