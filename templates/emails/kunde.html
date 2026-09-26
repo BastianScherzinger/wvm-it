@@ -1,0 +1,24 @@
+{% extends "emails/basis.html" %}
+{% block marke_zusatz %}{{ domain_kurz }}{% endblock %}
+{% block inhalt %}
+<tr><td class="innen" style="padding:28px 32px 6px 32px;font-family:{{ schrift }};">
+  <h1 class="t" style="margin:0 0 18px 0;font-family:{{ serif }};font-size:24px;line-height:30px;font-weight:normal;color:{{ f.ink }};letter-spacing:-.01em;">{{ betreff }}</h1>
+  <p class="t" style="margin:0;font-size:16px;line-height:25px;color:{{ f.ink }};">{{ text|linebreaksbr }}</p>
+</td></tr>
+{% if knopf_url %}
+<tr><td class="innen" style="padding:18px 32px 4px 32px;">
+  <a href="{{ knopf_url }}" style="display:inline-block;padding:12px 22px;background:{{ f.akzent }};color:{{ f.auf_akzent }};font-family:{{ schrift }};font-size:15px;line-height:20px;font-weight:600;text-decoration:none;border-radius:4px;">{{ knopf_text }}</a>
+</td></tr>
+{% endif %}
+<tr><td class="innen" style="padding:22px 32px 26px 32px;">
+  <table role="presentation" class="fl" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{{ f.flaeche }};border:1px solid {{ f.linie }};border-radius:6px;border-collapse:separate;">
+    <tr><td style="padding:14px 16px;font-family:{{ schrift }};">
+      <p class="td" style="margin:0 0 6px 0;font-size:12px;line-height:18px;letter-spacing:.06em;text-transform:uppercase;color:{{ f.ink_dim }};">{{ k.kontakt }}</p>
+      {% if c.telefon %}<p class="t" style="margin:0;font-size:15px;line-height:23px;color:{{ f.ink }};">{{ k.telefon }}: <a class="lk" href="tel:{{ c.telefon_tel }}" style="color:{{ f.akzent }};text-decoration:none;">{{ c.telefon }}</a></p>{% endif %}
+      {% if c.email %}<p class="t" style="margin:0;font-size:15px;line-height:23px;color:{{ f.ink }};">{{ k.email }}: <a class="lk" href="mailto:{{ c.email }}" style="color:{{ f.akzent }};text-decoration:none;">{{ c.email }}</a></p>{% endif %}
+      <p class="t" style="margin:0;font-size:15px;line-height:23px;color:{{ f.ink }};">{{ k.web }}: <a class="lk" href="{{ domain }}" style="color:{{ f.akzent }};text-decoration:none;">{{ domain_kurz }}</a></p>
+    </td></tr>
+  </table>
+</td></tr>
+{% endblock %}
+{% block fuss %}{{ impressum }}<br>{{ k.hinweis }}{% endblock %}
