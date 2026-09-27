@@ -150,7 +150,7 @@ VERGLEICHE = {
             {"q": "Ce facem cu e-mailul de la furnizorul actual?",
              "a": "O căsuță simplă la un furnizor de găzduire este mai ieftină decât ambele pachete și uneori exact potrivită pentru o firmă cu două adrese. Însă de îndată ce intervin calendare comune, stocare, ședințe video sau aparate administrate, comparația este nedreaptă — atunci comparați o căsuță poștală cu un mediu de lucru."},
             {"q": "Configurați ambele?",
-             "a": "Configurăm Microsoft 365 și îl întreținem curent; configurarea costă o singură dată 290 €. Configurăm și Google Workspace atunci când este alegerea potrivită pentru firma dumneavoastră — în acest caz facturăm după timp, cu 95 € pe oră. Nu recomandăm ce ni se potrivește nouă, ci ce se potrivește software-ului dumneavoastră."},
+             "a": "Configurăm Microsoft 365; configurarea costă o singură dată 290 €. Întreținerea curentă este separată și se convine distinct. Configurăm și Google Workspace atunci când este alegerea potrivită pentru firma dumneavoastră — în acest caz facturăm după timp, cu 95 € pe oră. Nu recomandăm ce ni se potrivește nouă, ci ce se potrivește software-ului dumneavoastră."},
         ],
         "cta_h": "Ce programe trebuie să funcționeze în continuare?",
         "cta_t": "Spuneți-ne software-ul de branșă și de câte căsuțe poștale aveți nevoie. În zilele lucrătoare vă spunem în 24 de ore ce pachet se potrivește — și ce înseamnă concret trecerea.",
