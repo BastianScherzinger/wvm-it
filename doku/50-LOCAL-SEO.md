@@ -1,10 +1,10 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-25
+stand: 2026-09-27
 status: teilweise
 fortschritt: 50
-zusammenfassung: 24.09.2026: Die Oeffnungszeiten sind nicht offen, sondern belegt — Mo–Fr 9–18 Uhr stehen seit dem Relaunch sichtbar auf /kontakt/ und /it-notfall/ und identisch im Schema; so gehoeren sie ins Unternehmensprofil (Notiz unten berichtigt, EIG21). Neu fuer das Profil: /it-hilfe/ als Zielseite fuer Einzelhilfe ohne Vertrag (95 €/Std. per Fernwartung). Davor: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP. Am 12.09.2026 SU05 (Ortsseiten decken das Einzugsgebiet ab) als begruendete Ausnahme eingetragen, ohne eine Zeile Code: Der Befund zaehlt jetzt sieben Ortsseiten gegen eine Zielgroesse von acht, aber die achte ist in diesem Projekt schon entschieden -- und zwar dagegen. Weitere Ortsseiten sind in SEO-AUSBAU-3.md als Doorway-Pages verworfen (Regel A16, gestuetzt auf eine Messung an einer Schwesterseite), und den echten Auftrag aus einem achten Ort, den der Rat selbst verlangt, gibt es nicht.
+zusammenfassung: 27.09.2026 (EIG198): Die Datei sagt das Profil jetzt widerspruchsfrei — angelegt am 11.09.2026, am 25.09.2026 öffentlich doppelt in Maps; offen ist Schritt A1 (verwalteten Eintrag klären, Duplikat entfernen oder zusammenführen), keine Neuanlage. Der frühere Wortlaut „es gibt keins“ gilt nur für den 10.09.2026. 24.09.2026: Die Oeffnungszeiten sind nicht offen, sondern belegt — Mo–Fr 9–18 Uhr stehen seit dem Relaunch sichtbar auf /kontakt/ und /it-notfall/ und identisch im Schema; so gehoeren sie ins Unternehmensprofil (Notiz unten berichtigt, EIG21). Neu fuer das Profil: /it-hilfe/ als Zielseite fuer Einzelhilfe ohne Vertrag (95 €/Std. per Fernwartung). Davor: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP. Am 12.09.2026 SU05 (Ortsseiten decken das Einzugsgebiet ab) als begruendete Ausnahme eingetragen, ohne eine Zeile Code: Der Befund zaehlt jetzt sieben Ortsseiten gegen eine Zielgroesse von acht, aber die achte ist in diesem Projekt schon entschieden -- und zwar dagegen. Weitere Ortsseiten sind in SEO-AUSBAU-3.md als Doorway-Pages verworfen (Regel A16, gestuetzt auf eine Messung an einer Schwesterseite), und den echten Auftrag aus einem achten Ort, den der Rat selbst verlangt, gibt es nicht.
 offen: 7
 unternehmensprofil: ja
 profil_bestaetigt: ausstehend
@@ -35,8 +35,9 @@ blaues Häkchen und 4 Rezensionen, öffentlich keine Sterne. Woher das Duplikat
 kommt und welcher Eintrag der verwaltete ist, klärt A1 (Bastian/Florin,
 Browser) — bis dahin bleiben A10 (Beiträge), K4 scharf schalten und K5
 (`sameAs`) bewusst ausgesetzt. Diese Auswertung berichtigt die Zahlen unten
-nicht automatisch; Teil b von K3 (Kopf, „Es gibt keins.") folgt, sobald A1
-Bastian ein Ergebnis liefert.
+nicht automatisch; der Abschnitt „Google-Unternehmensprofil“ unten ist seit
+dem 27.09.2026 (EIG198) an den Stand angeglichen, das Ergebnis von A1 steht
+noch aus.
 
 **Code-seitig bereits umgesetzt (K4, 25.09.2026):** `/bewerten/` ist gebaut
 (Zweig `seo/2026-09-25-kaufsuchen`, live erst mit dem nächsten Deploy) — solange `content.json` → `bewertungslink` leer ist, antwortet die
