@@ -1,7 +1,7 @@
 ---
 bereich: wegweiser
 titel: WVM-IT — Wegweiser durch die Dokumentation
-stand: 2026-09-05
+stand: 2026-09-27
 status: vollständig
 fortschritt: 100
 zusammenfassung: Elf Dateien nach Doku-Standard; die Original-Doku (20 Dateien, rund 26.500 Wörter) bleibt in ../docs/ und wird von hier verlinkt.
@@ -12,7 +12,7 @@ quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/SEO-AUSBAU-3.md, docs/SEO-KO
 # WVM-IT — Wegweiser
 
 > **Kundenseite:** EDV- und IT-Betreuung für Betriebe · Inhaber **Florin Feier** · Sitz Lenzing (Oberösterreich)
-> · live unter **https://www.wvm-it.tech** · dreisprachig DE/EN/RO · **158 URLs** (Stand 29.08.2026).
+> · live unter **https://www.wvm-it.tech** · dreisprachig DE/EN/RO · **213 URLs** (nachgezählt 25.09.2026 aus `views._seiten_pfade()`, Beleg in [30-INHALTE.md](30-INHALTE.md); am 29.08.2026 waren es 158).
 >
 > Dieser Ordner `doku/` folgt dem Doku-Standard vom 02.09.2026 (`pystore-overview/docs/DOKU-STANDARD.md`).
 > Er **fasst zusammen und verweist** — die Wahrheit im Detail steht in `../docs/` und `../CLAUDE.md`.
@@ -24,9 +24,9 @@ quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/SEO-AUSBAU-3.md, docs/SEO-KO
 | [00-STATUS.md](00-STATUS.md) | Status | Steckbrief, Ampel je Bereich, Messblock des Werkzeugs, die drei wichtigsten offenen Punkte |
 | [10-TECHNIK.md](10-TECHNIK.md) | Technik | Django-Stack, Railway-Deploy, Umgebungsvariablen (nur Namen), die vier Prüfbefehle, Aufbau, Fallen |
 | [20-DESIGN.md](20-DESIGN.md) | Design | Gestaltungslinie (hell mit dunklen Bändern, Gold als einziger Akzent), Tokens, Schriften, Seitenbauplan |
-| [30-INHALTE.md](30-INHALTE.md) | Inhalte | 158 URLs in acht Silos, Wortzahlen, Sprachen, Preise als eine Quelle, fehlende Inhalte |
+| [30-INHALTE.md](30-INHALTE.md) | Inhalte | 213 URLs in elf Silos, Wortzahlen, Sprachen, Preise als eine Quelle, fehlende Inhalte |
 | [40-SEO.md](40-SEO.md) | SEO und GEO | SEO-Ausbau 3 (56/56), SEO-PLAN (37/48), Technik, Keywords, GEO-Bausteine, Messtermin Oktober 2026 |
-| [50-LOCAL-SEO.md](50-LOCAL-SEO.md) | Local SEO | Unternehmensprofil (fehlt), Search Console (Property, Konto), NAP, Verzeichnisse |
+| [50-LOCAL-SEO.md](50-LOCAL-SEO.md) | Local SEO | Unternehmensprofil (angelegt, Duplikat und Bestätigung offen), Search Console (Property, Konto), NAP, Verzeichnisse |
 | [60-ADS.md](60-ADS.md) | Ads | **Keine Google Ads** — und was für einen Start nötig wäre |
 | [70-PERFORMANCE.md](70-PERFORMANCE.md) | Performance | PageSpeed-Werte vom 02.09.2026, Antwortzeiten, GZip-Fund, offene Punkte |
 | [80-AUFGABEN.md](80-AUFGABEN.md) | Aufgaben | Offen · Fehlt · Verbesserungsmöglichkeiten · Beim Kunden · Erledigt |
