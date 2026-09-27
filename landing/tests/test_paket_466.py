@@ -16,6 +16,23 @@ _BASIS = Path(settings.BASE_DIR)
 _INHALT = json.loads((_BASIS / "content.json").read_text(encoding="utf-8"))
 
 
+class KatalognameVersprichtNichtsEIG185Test(SimpleTestCase):
+    """Ein Posten, der nur einmalig kostet, darf nicht „betreuen“ heißen."""
+
+    def test_einmalposten_heissen_nicht_betreuen(self):
+        for gruppe in views.ANGEBOT_GROUPS:
+            for posten in gruppe["items"]:
+                if posten.get("once") and not (posten.get("mtl") or posten.get("yr") or posten.get("std")):
+                    with self.subTest(posten=posten["id"]):
+                        self.assertNotIn("betreu", posten["name"].lower())
+
+    def test_sprachpakete_nennen_m365_ohne_betreuung(self):
+        for sprache, wort in (("de", "betreu"), ("en", "support"), ("ro", "administrare")):
+            with self.subTest(sprache=sprache):
+                name = i18n.get_pack(sprache)["catalog_items"]["m365"]["name"]
+                self.assertNotIn(wort, name.lower())
+
+
 class IpZaehlerFristenStehenInDerDatenschutzerklaerungEIG186Test(SimpleTestCase):
     """Jede Frist aus ``_LIMITS`` muss im Text vorkommen — sonst verspricht er zu wenig oder zu viel."""
 

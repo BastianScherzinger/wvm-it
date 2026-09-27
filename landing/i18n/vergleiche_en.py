@@ -150,7 +150,7 @@ VERGLEICHE = {
             {"q": "What about email with our current provider?",
              "a": "A plain mailbox at a web host is cheaper than either package and sometimes exactly right for a business with two addresses. But as soon as shared calendars, storage, video meetings or managed devices come into play, the comparison is unfair — you are then comparing a mailbox with a working environment."},
             {"q": "Do you set up both?",
-             "a": "We set up Microsoft 365 and support it on an ongoing basis; the setup costs €290 as a one-off. We set up Google Workspace as well when it is the right choice for your business — billed by effort at €95 per hour. We do not recommend what suits us better but what suits your software."},
+             "a": "We set up Microsoft 365; the setup costs €290 as a one-off. Ongoing support is separate and agreed on its own. We set up Google Workspace as well when it is the right choice for your business — billed by effort at €95 per hour. We do not recommend what suits us better but what suits your software."},
         ],
         "cta_h": "Which programmes have to keep working?",
         "cta_t": "Tell us your business software and how many mailboxes you need. On working days we will tell you within 24 hours which package fits — and what switching would actually mean.",

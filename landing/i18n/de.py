@@ -466,7 +466,7 @@ PACK = {
         "it_support": {"name": "IT-Support & Fernwartung", "desc": "Hilfe, wenn etwas nicht geht. Meist per Fernwartung, meist am selben Tag."},
         "backup": {"name": "Datensicherung, täglich geprüft", "desc": "Automatische Sicherung, überwacht, Wiederherstellung getestet."},
         "server_care": {"name": "Server-Betreuung & Überwachung", "desc": "Ein Server, rund um die Uhr im Blick. Wir sehen den Ausfall vor Ihnen."},
-        "m365": {"name": "Microsoft 365 einrichten & betreuen", "desc": "E-Mail, Teams, OneDrive: sauber aufgesetzt und übergeben."},
+        "m365": {"name": "Microsoft 365 einrichten", "desc": "E-Mail, Teams, OneDrive: sauber aufgesetzt und übergeben."},
         "arbeitsplatz": {"name": "Neuen Arbeitsplatz einrichten", "desc": "PC, Programme, Konten, Drucker — einsatzbereit übergeben."},
         "netzwerk_setup": {"name": "Netzwerk & WLAN einrichten", "desc": "Ausgemessen, geplant, aufgebaut. Auch für Hallen und mehrere Etagen."},
         "firewall": {"name": "Firewall & VPN einrichten", "desc": "Sicherer Zugriff von außen, geschütztes Netz nach innen."},

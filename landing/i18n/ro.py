@@ -423,7 +423,7 @@ PACK = {
         "it_support": {"name": "Suport IT & asistență la distanță", "desc": "Ajutor când ceva nu merge. De obicei la distanță, de obicei în aceeași zi."},
         "backup": {"name": "Copii de siguranță, verificate zilnic", "desc": "Salvare automată, monitorizată, restaurare testată."},
         "server_care": {"name": "Administrare & monitorizare server", "desc": "Un server, urmărit non-stop. Vedem defecțiunea înaintea ta."},
-        "m365": {"name": "Microsoft 365: configurare & administrare", "desc": "E-mail, Teams, OneDrive: configurate curat și predate."},
+        "m365": {"name": "Microsoft 365: configurare", "desc": "E-mail, Teams, OneDrive: configurate curat și predate."},
         "arbeitsplatz": {"name": "Configurarea unui post de lucru nou", "desc": "PC, programe, conturi, imprimantă — predat gata de lucru."},
         "netzwerk_setup": {"name": "Configurare rețea & Wi-Fi", "desc": "Măsurat, planificat, montat. Inclusiv hale și mai multe etaje."},
         "firewall": {"name": "Configurare firewall & VPN", "desc": "Acces sigur din exterior, rețea protejată în interior."},

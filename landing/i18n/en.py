@@ -429,7 +429,7 @@ PACK = {
         "it_support": {"name": "IT support & remote assistance", "desc": "Help when something stops working. Usually remote, usually the same day."},
         "backup": {"name": "Backups, checked every day", "desc": "Automatic backup, monitored, restore tested."},
         "server_care": {"name": "Server management & monitoring", "desc": "One server, watched around the clock. We see the outage before you do."},
-        "m365": {"name": "Microsoft 365 setup & support", "desc": "Mail, Teams, OneDrive: set up properly and handed over."},
+        "m365": {"name": "Microsoft 365 setup", "desc": "Mail, Teams, OneDrive: set up properly and handed over."},
         "arbeitsplatz": {"name": "Set up a new workstation", "desc": "PC, software, accounts, printer — handed over ready to use."},
         "netzwerk_setup": {"name": "Network & Wi-Fi setup", "desc": "Surveyed, planned, installed. Including halls and multiple floors."},
         "firewall": {"name": "Firewall & VPN setup", "desc": "Secure access from outside, a protected network inside."},

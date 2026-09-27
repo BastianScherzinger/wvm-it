@@ -159,7 +159,7 @@ VERGLEICHE = {
             {"q": "Was ist mit E-Mail beim bisherigen Anbieter?",
              "a": "Ein einfaches Postfach beim Webhoster ist günstiger als beide Pakete und für einen Betrieb mit zwei Adressen manchmal genau richtig. Sobald es aber um gemeinsame Kalender, Ablage, Videobesprechungen oder verwaltete Geräte geht, ist der Vergleich unfair — dann vergleicht man ein Postfach mit einer Arbeitsumgebung."},
             {"q": "Richten Sie beides ein?",
-             "a": "Wir richten Microsoft 365 ein und betreuen es laufend; die Einrichtung kostet einmalig 290 €. Google Workspace richten wir ebenfalls ein, wenn es für Ihren Betrieb die passende Wahl ist — dann rechnen wir nach Aufwand mit 95 € je Stunde ab. Wir empfehlen nicht das, was uns besser passt, sondern das, was zu Ihrer Software passt."},
+             "a": "Wir richten Microsoft 365 ein; die Einrichtung kostet einmalig 290 €. Die laufende Betreuung ist davon getrennt und wird gesondert vereinbart. Google Workspace richten wir ebenfalls ein, wenn es für Ihren Betrieb die passende Wahl ist — dann rechnen wir nach Aufwand mit 95 € je Stunde ab. Wir empfehlen nicht das, was uns besser passt, sondern das, was zu Ihrer Software passt."},
         ],
         "cta_h": "Welche Programme müssen weiterlaufen?",
         "cta_t": "Nennen Sie uns Ihre Fachsoftware und wie viele Postfächer Sie brauchen. Wir sagen Ihnen an Werktagen innerhalb von 24 Stunden, welches Paket passt — und was der Umstieg konkret bedeutet.",
