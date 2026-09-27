@@ -222,6 +222,33 @@ class SprachpaketAufbauTest(SimpleTestCase):
                 with self.subTest(datei=name):
                     self.assertIsNone(muster.search(quelle))
 
+    def test_rumaenisch_durchgehend_gesiezt(self):
+        """EIG195: „dumneavoastră“ überall — keine Du-Formen, weder als Pronomen
+        (tău, tale, ți-, te …) noch als Verb (cumperi, poți, ești …) noch als
+        Befehl in der Einzahl („Arată …“, „Resetează …“).
+
+        Das Netz kennt nur, was einmal gefunden wurde: Es ersetzt keine Durchsicht
+        neuer Texte. „cumperi … și vă asigurați“ (einrichten_ro.py) stand nach der
+        ersten Umstellung im selben Satz in beiden Anreden, weil nur „te asiguri“
+        auf der Liste war."""
+        pronomen = re.compile(r"\b(tău|tale|tăi|tine|te|Te|ți|Ți|Salut|Bine ai)\b|\bți-|\b[Îî]ți\b"
+                              r"|[a-zăâîșț]-ți\b|\b[Tt]e rugăm\b")
+        verben = re.compile(r"\b(ești|Ești|poți|Poți|primești|găsești|cumperi|asiguri|aștepți|lași"
+                            r"|faci|vrei|știi|ceri|alegi|scrii|folosești|plătești)\b")
+        befehle = re.compile(r'"(Arată|Începe|Aplică|Resetează|Recalculează|Deblochează|Alege|Trimite'
+                             r'|Descarcă|Copiază|Adaugă|Șterge|Închide|Deschide|Citește|Vezi|Cere'
+                             r'|Solicită|Sună|Scrie|Află|Calculează|Salvează|Afișează|Ascunde'
+                             r'|Continuă|Caută|Selectează|Bifează|Completează|Verifică|Testează'
+                             r'|Încearcă|Programează|Rezervă|Configurează|Pornește|Oprește'
+                             r'|Acceptă|Refuză|Sari|Derulează|Apasă|Lasă|Întoarce|Elimină'
+                             r'|Alcătuiește|Parcurge|Verifică|Contactează)\b')
+        for name, quelle in _paketquellen().items():
+            if name == "ro.py" or name.endswith("_ro.py"):
+                with self.subTest(datei=name):
+                    self.assertIsNone(pronomen.search(quelle))
+                    self.assertIsNone(verben.search(quelle))
+                    self.assertIsNone(befehle.search(quelle))
+
     def test_absaetze_werden_gebaut(self):
         html = _html("/kontakt/")
         self.assertNotIn("\\n\\n", html)

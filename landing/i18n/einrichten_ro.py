@@ -791,8 +791,8 @@ EINRICHTEN = {
         "fern_h": "Regula 3-2-1: ce înseamnă",
         "fern_t": "Trei copii ale datelor (originalul se numără), pe două medii "
                   "diferite, una dintre ele în afara sediului. Regula este veche și "
-                  "totuși rar respectată, pentru că este incomodă: cumperi un al "
-                  "doilea mediu și te asiguri că o copie pleacă din clădire. Cine o "
+                  "totuși rar respectată, pentru că este incomodă: cumpărați un al "
+                  "doilea mediu și vă asigurați că o copie pleacă din clădire. Cine o "
                   "aplică supraviețuiește simultan defectării unui mediu de stocare, "
                   "unui incendiu în camera serverelor și unui atac cu criptare. "
                   "Cine are o singură copie lângă server nu supraviețuiește niciunuia.",
@@ -900,7 +900,7 @@ EINRICHTEN = {
                   "Mutările la distanță mai mare necesită mai "
                   "multă pregătire și o fereastră dedicată pentru refacerea "
                   "serverului, pentru că o salvare întreruptă nu este o stare pe "
-                  "care o lași zile întregi. În toate cazurile sediul vechi rămâne "
+                  "care o lăsați zile întregi. În toate cazurile sediul vechi rămâne "
                   "accesibil până la testarea celui nou — drumul de întoarcere face "
                   "parte din plan, nu din improvizație.",
 
