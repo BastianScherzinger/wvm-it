@@ -632,6 +632,14 @@ def _it_stufen_zahlen_fuer_pruefung():
 # Wer den Absatz aendert, aendert die Zahl an derselben Stelle mit.
 _HUB_FREMDPREISE = (600, 1400)
 
+# Die drei Bruchgrenzen des Budget-Auswahlfelds im Kontaktformular
+# (t.kontakt.budget_1..4, templates/index.html): Der Kunde waehlt seinen
+# EIGENEN Rahmen fuer ein individuelles Projekt, das ist kein Preisversprechen
+# von WVM-IT. Nur die englische Fassung schreibt sie mit dem €-Zeichen statt
+# ausgeschrieben ("Euro") -- seit EIG201 (27.09.2026) prueft die Preiskontrolle
+# auch die englischen Seiten und wuerde sie sonst als erfundene Preise melden.
+_KONTAKT_BUDGET_ZAHLEN = (1000, 3000, 7000)
+
 
 def _hub_zahlen_fuer_pruefung():
     """Die Zahlen des Leistungs-Hubs, die `pruefe_seite` sonst anschlagen laesst.

@@ -196,6 +196,16 @@ class Command(BaseCommand):
         self.stdout.write(f"Listen geprüft ({schluessel}: {len(de)} Seiten).")
 
     # ── 2. Preise ────────────────────────────────────────────────────────────
+    # Zahl-vor-Zeichen (Deutsch/Rumänisch: "29 €") ODER Zeichen-vor-Zahl
+    # (Englisch: "€29" — EIG201, 27.09.2026: Ein Teil der englischen Texte
+    # schreibt das Zeichen vor die Zahl, die alte Regel sah dort keinen Preis).
+    # Die Tausendertrennung selbst unterscheidet sich je Sprache (catalog_words.
+    # thousands: "." auf Deutsch/Rumänisch, "," auf Englisch, views._thousands) —
+    # ohne das Komma in der Ziffernklasse zerfiel "€1,490" in die Fantasiezahlen
+    # 1 und 490.
+    _PREIS_MUSTER = re.compile(
+        r"(\d[\d.,]{0,8})\s*(?:€|&euro;)|(?:€|&euro;)\s*(\d[\d.,]{0,8})")
+
     def _pruefe_preise(self):
         erlaubt = set()
         for g in ANGEBOT_GROUPS:
@@ -223,23 +233,34 @@ class Command(BaseCommand):
         erlaubt |= _kosten_zahlen_fuer_pruefung()
         # Startwert der laufenden Summe im Konfigurator, bevor etwas gewählt wurde.
         erlaubt.add(0)
+        # Budget-Bruchgrenzen des Kontaktformulars — der Kunde wählt seinen eigenen
+        # Rahmen, das ist kein Preis von WVM-IT (EIG201, 27.09.2026).
+        from landing.views import _KONTAKT_BUDGET_ZAHLEN
+        erlaubt |= set(_KONTAKT_BUDGET_ZAHLEN)
         client = _client()
-        # Jede deutsche Seite wird geprüft, nicht nur die Startseite: Ein Preis, der
+        # Jede Seite wird geprüft, nicht nur die deutsche Startseite: Ein Preis, der
         # nur im Fließtext einer Leistungsseite steht, ist genau der, der später
         # widerspricht — und widersprüchliche Zahlen sind das stärkste Negativsignal
-        # für KI-Antwortmaschinen (docs/SEO-PLAN.md, G10).
+        # für KI-Antwortmaschinen (docs/SEO-PLAN.md, G10). Bis 27.09.2026 (EIG201)
+        # prüfte diese Funktion nur die deutschen Adressen ohne Sprachpräfix — auf
+        # Englisch und Rumänisch stand jeder erfundene Preis unbemerkt.
         from landing.views import _seiten_pfade
         gefunden, unbekannt = set(), {}
+        pfade = [i18n.add_prefix(lang, pfad)
+                 for pfad, _prio, _freq, mehr in _seiten_pfade()
+                 for lang in (i18n.LANGS if mehr else ("de",))]
         # Dazu die beiden Kurzfassungen für Antwortmaschinen (EIG85, 25.09.2026):
         # Dort stand eine abgetippte Preisliste, und keine Prüfung sah sie — dabei
-        # ist genau das der Text, den eine KI wörtlich zitiert.
-        pfade = [p[0] for p in _seiten_pfade()] + ["/llms.txt", "/llms-full.txt"]
+        # ist genau das der Text, den eine KI wörtlich zitiert. Beide liegen
+        # außerhalb von i18n_patterns und existieren nur auf Deutsch.
+        pfade += ["/llms.txt", "/llms-full.txt"]
         for pfad in pfade:
             html = client.get(pfad).content.decode("utf-8")
             zahlen = set()
-            for treffer in re.findall(r"(\d[\d.]{0,8})\s*(?:€|&euro;)", html):
+            for treffer in self._PREIS_MUSTER.finditer(html):
+                ziffer = treffer.group(1) or treffer.group(2)
                 try:
-                    zahlen.add(int(treffer.replace(".", "")))
+                    zahlen.add(int(ziffer.replace(".", "").replace(",", "")))
                 except ValueError:
                     continue
             gefunden |= zahlen
@@ -250,7 +271,7 @@ class Command(BaseCommand):
             self.fehler.append(
                 f"{pfad}: Preise, die nicht aus ANGEBOT_GROUPS stammen: {werte}")
         self.stdout.write(f"Preise geprüft ({len(gefunden)} verschiedene Zahlen, "
-                          f"{len(erlaubt)} erlaubte Werte).")
+                          f"{len(erlaubt)} erlaubte Werte, {len(pfade)} Seiten).")
 
     # ── 3. Seiten-Technik und Formulare ──────────────────────────────────────
     def _pruefe_seiten(self):
