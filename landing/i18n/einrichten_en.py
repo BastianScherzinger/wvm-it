@@ -92,7 +92,7 @@ EINRICHTEN = {
 
         "cta_h": "Request a workstation setup",
         "cta_t": "Tell us briefly how many devices are involved and what should run on "
-                 "them. Reply within 24 hours.",
+                 "them. Reply within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -203,7 +203,7 @@ EINRICHTEN = {
 
         "cta_h": "Request a device change",
         "cta_t": "Tell us briefly how many devices are being replaced and how old the "
-                 "current ones are. Reply within 24 hours.",
+                 "current ones are. Reply within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -290,7 +290,7 @@ EINRICHTEN = {
 
         "cta_h": "Request a migration",
         "cta_t": "Tell us briefly how many workstations are still on Windows 10. Reply "
-                 "within 24 hours.",
+                 "within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -370,7 +370,7 @@ EINRICHTEN = {
 
         "cta_h": "Ask about Microsoft 365",
         "cta_t": "Tell us briefly how many mailboxes there will be and whether anything "
-                 "already exists. Reply within 24 hours.",
+                 "already exists. Reply within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -457,7 +457,7 @@ EINRICHTEN = {
 
         "cta_h": "Ask about a server setup",
         "cta_t": "Tell us briefly how many workstations will use it and what should run "
-                 "on the server. Reply within 24 hours.",
+                 "on the server. Reply within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -537,7 +537,7 @@ EINRICHTEN = {
 
         "cta_h": "Ask about a network setup",
         "cta_t": "Tell us briefly how large the area is and how many devices should be "
-                 "on the network. Reply within 24 hours.",
+                 "on the network. Reply within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -622,7 +622,7 @@ EINRICHTEN = {
 
         "cta_h": "Ask about firewall and VPN",
         "cta_t": "Tell us briefly how many people work on the move and which device is "
-                 "in use today. Reply within 24 hours.",
+                 "in use today. Reply within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -706,7 +706,7 @@ EINRICHTEN = {
 
         "cta_h": "Ask about a Loxone system",
         "cta_t": "Tell us briefly what is installed and what no longer works. Reply "
-                 "within 24 hours.",
+                 "within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -805,7 +805,7 @@ EINRICHTEN = {
 
         "cta_h": "Request a backup setup",
         "cta_t": "Tell us briefly what systems are running today and how long the "
-                 "business can be down in an emergency. Reply within 24 hours.",
+                 "business can be down in an emergency. Reply within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 
@@ -904,8 +904,8 @@ EINRICHTEN = {
 
         "cta_h": "Ask about an IT move",
         "cta_t": "Tell us briefly how many workstations are moving, whether a "
-                 "server is involved and when the move is planned. Reply within "
-                 "24 hours.",
+                 "server is involved and when the move is planned. Reply "
+                 "within 24 hours on working days.",
         "problem_h": "What is it about?",
     },
 }

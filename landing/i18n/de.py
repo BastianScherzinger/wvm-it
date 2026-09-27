@@ -165,7 +165,7 @@ PACK = {
         "email_label": "Richtangebot per E-Mail (freiwillig)",
         "consent": "Zusätzlich künftig passende Angebote per E-Mail. Freiwillig, jederzeit abbestellbar.",
         "submit": "Richtangebot per E-Mail schicken",
-        "fine": "Richtpreise, netto zzgl. USt. Unverbindlich, kein Konto nötig. Antwort in 24 Stunden.",
+        "fine": "Richtpreise, netto zzgl. USt. Unverbindlich, kein Konto nötig. Antwort an Werktagen in 24 Stunden.",
         "done_h": "Unterwegs — Ihr Richtangebot liegt gleich im Postfach.",
         "done_t": "Wir haben Ihnen die Übersicht per E-Mail geschickt und melden uns mit dem genauen Angebot.",
         "all_link": "Lieber die komplette Preisliste ansehen →",

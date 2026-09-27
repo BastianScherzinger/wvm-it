@@ -17,7 +17,7 @@ SEITEN = {
         "titel": "Administrare IT pentru firme de la 29 €/lună | WVM-IT",
         "desc": "Servicii IT și mentenanță pentru firme mici din Austria și Germania: administrare IT de la 29 €/lună pe stație, suport la distanță 95 €/oră. Cereți ofertă.",
         "h1": "Administrare IT pentru firmele fără departament IT propriu",
-        "kurz": "WVM-IT preia IT-ul curent al firmelor mici și mijlocii din Austria și Germania: posturi de lucru, servere, e-mail, imprimante, actualizări și copii de siguranță. Administrarea curentă costă de la 29 € per post de lucru și lună, ajutorul punctual fără contract de la 95 € pe oră. Răspundem în 24 de ore și lucrăm în cea mai mare parte la distanță — drumul spre dumneavoastră trece printr-o conexiune securizată, nu pe autostradă.",
+        "kurz": "WVM-IT preia IT-ul curent al firmelor mici și mijlocii din Austria și Germania: posturi de lucru, servere, e-mail, imprimante, actualizări și copii de siguranță. Administrarea curentă costă de la 29 € per post de lucru și lună, ajutorul punctual fără contract de la 95 € pe oră. Răspundem în 24 de ore în zilele lucrătoare și lucrăm în cea mai mare parte la distanță — drumul spre dumneavoastră trece printr-o conexiune securizată, nu pe autostradă.",
         "intro": "În majoritatea firmelor sub cincizeci de angajați nu există departament IT. Există cineva care „se pricepe un pic” — și care de fapt ar avea altceva de făcut. Cât timp nu se întâmplă nimic, merge. Se vede abia când imprimanta din birou se blochează exact când trebuie trimise ofertele, sau când după o actualizare Windows nu mai pornește un program de care depinde toată firma. Exact acest gol îl acoperim: primiți un număr, o adresă de e-mail și o persoană de contact care știe cum e construită tehnica dumneavoastră.",
         "problem_h": "Ce se strică în firmele mici fără IT propriu",
         "probleme": [
@@ -60,7 +60,7 @@ SEITEN = {
              "a": "Rareori. Sub aproximativ cinci stații, facturarea la oră este mai onestă: 95 € pe oră prin mentenanță la distanță, fără contract, fără durată minimă. Pentru cazul individual există <a href=\"/ro/it-hilfe/\">/ro/it-hilfe/</a>. Vă spunem în prima discuție care variantă este mai ieftină pentru dimensiunea dumneavoastră — chiar dacă noi câștigăm mai puțin."},
         ],
         "cta_h": "Unde apasă acum?",
-        "cta_t": "Descrieți într-o propoziție ce nu funcționează. Răspundem în 24 de ore cu o evaluare onestă — inclusiv atunci când răspunsul este că nu merită.",
+        "cta_t": "Descrieți într-o propoziție ce nu funcționează. Răspundem în 24 de ore în zilele lucrătoare cu o evaluare onestă — inclusiv atunci când răspunsul este că nu merită.",
     },
 
     "server-datensicherung": {
@@ -195,7 +195,7 @@ SEITEN = {
              "a": "Furnizează o mare parte din datele tehnice pe care oricum trebuie să le documentați pentru registrul de prelucrări și pentru măsurile tehnice și organizatorice. Nu înlocuiește consultanța juridică."},
         ],
         "cta_h": "Puneți pe cineva să se uite o dată sistematic",
-        "cta_t": "O propoziție ajunge: câte posturi de lucru, câte servere, există deja o copie de siguranță? Răspundem în 24 de ore cu procedura și prețul.",
+        "cta_t": "O propoziție ajunge: câte posturi de lucru, câte servere, există deja o copie de siguranță? Răspundem în 24 de ore în zilele lucrătoare cu procedura și prețul.",
     },
 
     # ══ Vizibilitate ══════════════════════════════════════════════════════════
@@ -241,7 +241,7 @@ SEITEN = {
              "a": "Uneori da, alteori nu. Ne uităm la pagina existentă și vă spunem dacă o revizuire ajunge sau dacă o reconstrucție iese mai ieftin. Dacă pagina actuală își face treaba, spunem și asta."},
         ],
         "cta_h": "Mai întâi vedeți, apoi decideți",
-        "cta_t": "Scrieți într-o propoziție despre ce e vorba. Primiți pagina de probă gratuită și un răspuns în 24 de ore.",
+        "cta_t": "Scrieți într-o propoziție despre ce e vorba. Primiți pagina de probă gratuită și un răspuns în 24 de ore în zilele lucrătoare.",
     },
 
     "seo-betreuung": {
@@ -286,7 +286,7 @@ SEITEN = {
              "a": "Rümpelwerk Mitteldeutschland: acolo administrăm site-ul, SEO/GEO și Google Ads, cu pagini proprii pentru fiecare serviciu și fiecare regiune. Prin acea pagină intră comenzi reale. Realizat împreună cu partenerul nostru PyStore."},
         ],
         "cta_h": "După ce ar trebui să vă găsească clienții?",
-        "cta_t": "Spuneți-ne două-trei cuvinte de căutare pentru care vreți să fiți găsit. Verificăm cât de realist este și răspundem în 24 de ore.",
+        "cta_t": "Spuneți-ne două-trei cuvinte de căutare pentru care vreți să fiți găsit. Verificăm cât de realist este și răspundem în 24 de ore în zilele lucrătoare.",
     },
 
     "google-ads": {
@@ -331,7 +331,7 @@ SEITEN = {
              "a": "În fiecare lună: un raport în limbaj clar, cu cheltuieli, solicitări, cost pe solicitare și ce am modificat. Fără termeni pe care trebuie să îi căutați."},
         ],
         "cta_h": "Pentru ce să ruleze reclamele?",
-        "cta_t": "Spuneți-ne ce vindeți și în ce regiune. Estimăm prețurile pe clic și solicitările posibile și răspundem în 24 de ore.",
+        "cta_t": "Spuneți-ne ce vindeți și în ce regiune. Estimăm prețurile pe clic și solicitările posibile și răspundem în 24 de ore în zilele lucrătoare.",
     },
 
     "hosting-wartung": {
@@ -376,7 +376,7 @@ SEITEN = {
              "a": "Primiți pagina completă ca salvare și toate datele de acces. Domeniul rămâne al dumneavoastră și se transferă la cerere către noul furnizor."},
         ],
         "cta_h": "Pagina dumneavoastră rulează deja undeva?",
-        "cta_t": "Trimiteți-ne adresa. Verificăm pe ce rulează și ce ar însemna o mutare — răspuns în 24 de ore.",
+        "cta_t": "Trimiteți-ne adresa. Verificăm pe ce rulează și ce ar însemna o mutare — răspuns în 24 de ore în zilele lucrătoare.",
     },
 
     "ki-automatisierung": {
@@ -421,7 +421,7 @@ SEITEN = {
              "a": "De aceea începem mic și lăsăm fiecare pas să ruleze în paralel înainte să decidă singur. Vedeți oricând ce s-a întâmplat automat și puteți opri."},
         ],
         "cta_h": "Ce ar trebui să ruleze automat?",
-        "cta_t": "Descrieți procesul care vă costă cel mai mult timp. Vă spunem dacă și cum se poate automatiza — în 24 de ore.",
+        "cta_t": "Descrieți procesul care vă costă cel mai mult timp. Vă spunem dacă și cum se poate automatiza — în 24 de ore în zilele lucrătoare.",
     },
 
     # ══ La fața locului ═══════════════════════════════════════════════════════
@@ -512,7 +512,7 @@ SEITEN = {
              "a": "O sală de ședințe este de obicei gata într-una-două zile, dacă există cablarea. Dacă trebuie pozat din nou, se adaugă partea electrică — asta o spunem după vizita la fața locului."},
         ],
         "cta_h": "Despre ce încăpere este vorba?",
-        "cta_t": "Mărimea, utilizarea și ce există deja — mai mult nu ne trebuie pentru o primă estimare. Răspuns în 24 de ore.",
+        "cta_t": "Mărimea, utilizarea și ce există deja — mai mult nu ne trebuie pentru o primă estimare. Răspuns în 24 de ore în zilele lucrătoare.",
     },
 
     "veranstaltungstechnik": {
@@ -520,7 +520,7 @@ SEITEN = {
         "titel": "Tehnică video, audio și de scenă în Austria | WVM-IT",
         "desc": "Tehnică pentru evenimente: săli, asociații, primării și hoteluri — sunet, lumină, video și scenă. La fața locului de la 120 €/oră. Cereți o ofertă.",
         "h1": "Tehnică video, audio și de scenă pentru săli și evenimente",
-        "kurz": "WVM-IT planifică, instalează și asistă tehnica pentru evenimente în Austria Superioară și nu numai: sonorizare, lumină, tehnică video și de scenă pentru săli, sedii de asociații, centre comunitare, hoteluri și evenimente de firmă. Instalațiile fixe le calculăm pe proiect, după vizionare; lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea, dacă nu s-a convenit un preț fix. Răspundem la solicitări în 24 de ore.",
+        "kurz": "WVM-IT planifică, instalează și asistă tehnica pentru evenimente în Austria Superioară și nu numai: sonorizare, lumină, tehnică video și de scenă pentru săli, sedii de asociații, centre comunitare, hoteluri și evenimente de firmă. Instalațiile fixe le calculăm pe proiect, după vizionare; lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea, dacă nu s-a convenit un preț fix. Răspundem la solicitări în 24 de ore în zilele lucrătoare.",
         "intro": "În majoritatea sălilor există o tehnică pe care cineva a montat-o cândva și pe care de atunci nimeni nu o mai înțelege cu adevărat. Există trei telecomenzi, două fără baterii, și un mixer la care are voie să umble doar o anumită persoană. Cât timp persoana asta are timp, merge bine. Seara în care ceva merge prost este mereu seara în care în sală stau o sută de oameni. Construim instalații pe care le poate opera și cineva care le vede prima dată — și documentăm ce este conectat unde.",
         "problem_h": "De ce depinde de obicei o sală",
         "probleme": [
@@ -562,7 +562,7 @@ SEITEN = {
              "a": "Sediul nostru este în Lenzing, districtul Vöcklabruck. Suntem frecvent prezenți în Salzkammergut, în zona Vöcklabruck, Gmunden, Wels, Linz și Salzburg; dincolo de asta calculăm deplasarea transparent și o comunicăm înainte de confirmare."},
         ],
         "cta_h": "Ce are loc la dumneavoastră?",
-        "cta_t": "Mărimea sălii, evenimentele obișnuite și ce tehnică există deja — mai mult nu ne trebuie pentru o primă estimare. Răspuns în 24 de ore.",
+        "cta_t": "Mărimea sălii, evenimentele obișnuite și ce tehnică există deja — mai mult nu ne trebuie pentru o primă estimare. Răspuns în 24 de ore în zilele lucrătoare.",
     },
 
     "it-beratung": {
@@ -570,7 +570,7 @@ SEITEN = {
         "titel": "Consultanță IT de la 95 €/oră | WVM-IT",
         "desc": "Consultanță IT fără legături cu producători: evaluare, concept, comparație de oferte și asistență — 95 € pe oră. Solicitați o consultanță.",
         "h1": "Consultanță IT pentru firme care trebuie să ia o decizie",
-        "kurz": "WVM-IT consiliază firme mici și mijlocii din Austria și Germania înainte de investiții în IT și tehnică pentru clădiri: evaluare, concept scris, comparație de oferte externe și asistență la implementare. Consultanța costă 95 € pe oră, întâlnirile la fața locului 120 € pe oră plus deplasarea. Răspundem la solicitări în 24 de ore — chiar și atunci când răspunsul onest este că investiția nu se justifică.",
+        "kurz": "WVM-IT consiliază firme mici și mijlocii din Austria și Germania înainte de investiții în IT și tehnică pentru clădiri: evaluare, concept scris, comparație de oferte externe și asistență la implementare. Consultanța costă 95 € pe oră, întâlnirile la fața locului 120 € pe oră plus deplasarea. Răspundem la solicitări în 24 de ore în zilele lucrătoare — chiar și atunci când răspunsul onest este că investiția nu se justifică.",
         "intro": "Cele mai costisitoare decizii IT rareori sunt echipamentele greșite. Sunt deciziile pe care nu le-a luat nimeni: serverul care mai merge încă un an pentru că nimeni nu știe ce urmează; software-ul ales pentru că un furnizor a sunat primul; cele două oferte pe care nu le puteți compara pentru că descriu lucruri diferite. Aici, consultanța nu înseamnă o prezentare. Înseamnă că cineva se uită la ce aveți, ascultă ce plănuiți și scrie ce înseamnă asta pentru tehnica dumneavoastră.",
         "problem_h": "Când merită o consultanță",
         "probleme": [
@@ -611,7 +611,7 @@ SEITEN = {
              "a": "Atunci asta scrie în concept. Se întâmplă des ca o instalație să mai reziste încă doi ani, iar banii să fie mai bine investiți altundeva. O consultanță care duce mereu la o investiție nu este o consultanță."},
         ],
         "cta_h": "În fața cărei decizii vă aflați?",
-        "cta_t": "Descrieți în două propoziții ce urmează — un server pe final de viață, o mutare, două oferte pe care nu le puteți compara. Vă răspundem în 24 de ore cu o estimare dacă și cât de multă consultanță e nevoie.",
+        "cta_t": "Descrieți în două propoziții ce urmează — un server pe final de viață, o mutare, două oferte pe care nu le puteți compara. Vă răspundem în 24 de ore în zilele lucrătoare cu o estimare dacă și cât de multă consultanță e nevoie.",
     },
 
     # ══ Runda 2 (24.09.2026) ══════════════════════════════════════════════════
@@ -661,6 +661,6 @@ SEITEN = {
              "a": "Primiți documentația completă și toate accesele. Nu construim nimic care să funcționeze doar cu noi — nici software propriu, nici conturi doar la noi. Termenul de preaviz este în condițiile noastre (o lună până la sfârșitul trimestrului)."},
         ],
         "cta_h": "Solicitați administrare IT pentru firmă mai mare",
-        "cta_t": "Scrieți pe scurt câte stații și câte sedii aveți și ce nu merge bine astăzi. Vă răspundem în 24 de ore cu o propunere de evaluare și un cadru de costuri.",
+        "cta_t": "Scrieți pe scurt câte stații și câte sedii aveți și ce nu merge bine astăzi. Vă răspundem în 24 de ore în zilele lucrătoare cu o propunere de evaluare și un cadru de costuri.",
     },
 }

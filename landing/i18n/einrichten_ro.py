@@ -94,7 +94,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați configurarea unui post de lucru",
         "cta_t": "Scrieți pe scurt despre câte aparate este vorba și ce trebuie să "
-                 "ruleze pe ele. Răspuns în 24 de ore.",
+                 "ruleze pe ele. Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -208,7 +208,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați schimbarea aparatului",
         "cta_t": "Scrieți pe scurt câte aparate se schimbă și cât de vechi sunt cele "
-                 "actuale. Răspuns în 24 de ore.",
+                 "actuale. Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -297,7 +297,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați trecerea",
         "cta_t": "Scrieți pe scurt câte posturi de lucru mai rulează pe Windows 10. "
-                 "Răspuns în 24 de ore.",
+                 "Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -379,7 +379,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați Microsoft 365",
         "cta_t": "Scrieți pe scurt câte căsuțe poștale vor fi și dacă există deja ceva. "
-                 "Răspuns în 24 de ore.",
+                 "Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -468,7 +468,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați configurarea serverului",
         "cta_t": "Scrieți pe scurt câte posturi de lucru accesează și ce trebuie să "
-                 "ruleze pe server. Răspuns în 24 de ore.",
+                 "ruleze pe server. Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -550,7 +550,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați configurarea rețelei",
         "cta_t": "Scrieți pe scurt cât de mare este suprafața și câte aparate trebuie "
-                 "conectate. Răspuns în 24 de ore.",
+                 "conectate. Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -638,7 +638,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați firewall și VPN",
         "cta_t": "Scrieți pe scurt câte persoane lucrează din deplasare și ce aparat este "
-                 "astăzi în uz. Răspuns în 24 de ore.",
+                 "astăzi în uz. Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -724,7 +724,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați pentru instalația Loxone",
         "cta_t": "Scrieți pe scurt ce este montat și ce nu mai funcționează. Răspuns în "
-                 "24 de ore.",
+                 "24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -826,7 +826,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați configurarea copiei de siguranță",
         "cta_t": "Scrieți pe scurt ce sisteme funcționează astăzi și cât timp "
-                 "poate firma să stea la nevoie. Răspuns în 24 de ore.",
+                 "poate firma să stea la nevoie. Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 
@@ -931,7 +931,7 @@ EINRICHTEN = {
 
         "cta_h": "Solicitați mutarea IT",
         "cta_t": "Scrieți pe scurt câte stații se mută, dacă este implicat un "
-                 "server și când este planificată mutarea. Răspuns în 24 de ore.",
+                 "server și când este planificată mutarea. Răspuns în 24 de ore, în zilele lucrătoare.",
         "problem_h": "Despre ce este vorba?",
     },
 }
