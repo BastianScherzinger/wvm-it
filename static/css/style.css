@@ -187,7 +187,7 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
   .blick-tabelle th,.blick-tabelle td,.blick-tabelle th:first-child{padding:0;border:0}
   .blick-tabelle tbody th{margin-bottom:4px}
   .blick-tabelle td{font-size:15px}
-  .blick-tabelle .takt{width:auto;margin-top:8px}
+  .blick-tabelle .takt{width:auto;margin-top:8px;white-space:normal}
 }
 
 /* Block 6 "Preise": Zusatzstile für die bestehenden .price-Karten + Rechner
@@ -2413,6 +2413,15 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
   .wz-steps{gap:0}
   .wz-step{padding:8px 0}
   .wz-step-n{width:30px;height:30px;font-size:13.5px}
+
+  /* Posten-Tabelle des Kostenrechners (BF26, 27.09.2026): Die Namensspalte
+     bricht um, die beiden Zahlenspalten stehen bewusst auf `nowrap` (Zeile
+     ~1715), damit „20 × 29 €" nicht mitten in der Zahl bricht. Das laesst der
+     Tabelle aber keine Mindestbreite unter der Summe aus unteilbarem
+     laengstem Wort („Datensicherung,") und beiden Zahlenspalten — auf
+     /kosten/rechner/ bei 320 px gemessen knapp ueber dem Rand. Nur hier, ab
+     400 px abwaerts, duerfen auch die Zahlen umbrechen. */
+  .kr-tabelle td{white-space:normal}
 }
 
 /* ── Einzelhilfe im Vertrauensband (24.09.2026) ─────────────────────────────
