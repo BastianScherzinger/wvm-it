@@ -148,7 +148,7 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
 
         {% include 'kleinauftrag.html' %}
 
-        <p class="sp-fuss">{{ preis_stand }}</p>
+        <p class="sp-fuss">{{ t.seite.festpreis_fuss|safe }} {{ preis_stand }}</p>
       </div>
 
       <div class="sp-aside">
