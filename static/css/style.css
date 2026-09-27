@@ -2422,6 +2422,18 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
      /kosten/rechner/ bei 320 px gemessen knapp ueber dem Rand. Nur hier, ab
      400 px abwaerts, duerfen auch die Zahlen umbrechen. */
   .kr-tabelle td{white-space:normal}
+
+  /* Derselbe Fund, eine zweite Tabelle (BF26, dritter Fund, 27.09.2026): Der
+     Rechner mit Rechenweg auf der Startseite (`#rechner-kurz`, Block 6) zeigt
+     dieselbe Position „Datensicherung, taeglich geprueft" in einer eigenen
+     Tabelle `.kr-weg` — vorherige Fassung dieses Punktes hat nur `.kr-tabelle`
+     auf /kosten/rechner/ behoben, `.kr-weg` blieb unberuehrt und ragte auf /
+     bei 320 px ueber den Rand. Gleicher Grund, gleicher Fix. Die Mindestbreite
+     der Summenspalte (5,5 em, Zeile ~217) bliebe sonst ein eigener Bodensatz
+     unterhalb des Umbruchs — hier faellt sie weg, die Spalte darf so schmal
+     werden wie ihr Inhalt. */
+  .kr-weg td{white-space:normal}
+  .kr-weg td:last-child{min-width:0}
 }
 
 /* ── Einzelhilfe im Vertrauensband (24.09.2026) ─────────────────────────────
