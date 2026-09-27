@@ -31,7 +31,7 @@ quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-I
 | Checklisten | `/checkliste/<slug>/` | 3 + Hub | **nur DE** | 4 |
 | Werkzeuge | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/`, `/it-hilfe/` | 4 | DE/EN/RO | 12 |
 
-Dazu ohne Index: eigene **404-/500-Seite** (Status bleibt 404 — eine hilfreiche Seite mit 200 wäre eine Soft-404) und die interne **Suche** `/suche/` (noindex, in `robots.txt` gesperrt). Die drei nur-deutschen Silos sind begründete Ausnahmen (kein Suchvolumen auf EN/RO in diesem Markt, `landing/beitraege.py`); die Einsprachigkeit ist über das vierte Feld `mehrsprachig` in `views._seiten_pfade()` modelliert, damit Sitemap und IndexNow keine `/en/aktuelles/…`-Adressen melden, die es nicht gibt.
+Dazu ohne Index: eigene **404-/500-Seite** (Status bleibt 404 — eine hilfreiche Seite mit 200 wäre eine Soft-404), die interne **Suche** `/suche/` (noindex, in `robots.txt` gesperrt) und die **Danke-Seite** `/anfrage/danke/` (noindex; `config/urls.py:126`). Ebenfalls vorhanden, aber keine Seite: der Atom-**Feed** `/feed/` (`config/urls.py:56`). **Über uns, AGB und Barrierefreiheitserklärung** stehen in der Tabelle oben (`config/urls.py:124,132,133`) und gelten nicht mehr als fehlend. Die drei nur-deutschen Silos sind begründete Ausnahmen (kein Suchvolumen auf EN/RO in diesem Markt, `landing/beitraege.py`); die Einsprachigkeit ist über das vierte Feld `mehrsprachig` in `views._seiten_pfade()` modelliert, damit Sitemap und IndexNow keine `/en/aktuelles/…`-Adressen melden, die es nicht gibt.
 
 **Bis zum 25.09.2026 stand hier der Bestand vom 29.08.2026** (158 URLs, 11 Leistungen, 3 Vergleiche, 15 Beiträge, kein Silo `/einrichten/`) — Befund `EIG98`. Wer eine Zahl pflegt, statt sie zu zählen, hat sie irgendwann falsch; deshalb steht oben jetzt die Quelle dazu.
 
@@ -137,7 +137,7 @@ weiter von **drei** Vergleichen; seit dem 08.09.2026 sind es vier
 | ~~**Erklärung zur Barrierefreiheit** (BFSG) mit Rückmeldeweg~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): `/barrierefreiheit/` antwortet 200. Vorher: sofern der Betrieb nicht als Kleinstunternehmen ausgenommen ist | `RE12` |
 | ~~**Danke-Seite** nach Formularversand (eigene URL `/anfrage/danke/`)~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): `/anfrage/danke/` besteht (noindex); gezählt wird jeder Abschluss serverseitig über `landing/messung.py`. Vorher: ohne eigene URL ist kein Abschluss zählbar | `KV07` |
 | ~~**Autor und Article-Schema auf Vergleichsseiten** (15 von 47 Ratgeberseiten als Article)~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): alle vier Vergleiche tragen `Article` mit Autor (`views._ratgeber_artikel`). Vorher: Vergleiche tragen `FAQPage`, aber kein `Article`/`author` | `GE15`, `GE16` |
-| ~~**Feed** (RSS/Atom) für 47 Ratgeberseiten; `/feed/` antwortet 404 (02.09.2026)~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): `/feed/` antwortet 200 (Atom). Vorher: | `GE32`, `BT06` |
+| ~~**Feed** (RSS/Atom) für 47 Ratgeberseiten; `/feed/` antwortet 404 (02.09.2026)~~ | **erledigt** — geprüft 25.09.2026 (Cloud-Triage, `EIG98`): `/feed/` antwortet 200 (Atom, `config/urls.py:56`). Vorher: `/feed/` antwortete 404 | `GE32`, `BT06` |
 | Weitere Beiträge im Takt von zwei pro Monat | T2 begonnen; Septembervorschläge (M365, Serverausfall) sind inzwischen geschrieben | T2 |
 
 ## Offen
