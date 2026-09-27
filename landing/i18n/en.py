@@ -97,6 +97,8 @@ PACK = {
     },
     "hero": {
         "robot_alt": "Interactive 3D assistant by WVM-IT",
+        "person_alt": "Florin Feier, owner of WVM-IT",
+        "foto_alt": "Florin Feier smiling in a portrait photo, owner of WVM-IT",
         "eyebrow": "IT support & management · Austria and Germany",
         # Design B1 (25.09.2026): H1 as a plain sentence saying what Florin does.
         "headline": "IT support with one contact who knows your business.",
@@ -343,6 +345,7 @@ PACK = {
     "kontakt": {
         "h": "Let's talk about your IT.",
         "lead": "No obligation and free of charge. We'll get back to you within 24 hours on working days with an initial assessment. Just choose your way.",
+        "person_alt": "Florin Feier, your point of contact at WVM-IT",
         "m_call": "Call",
         "m_wa": "WhatsApp", "m_wa_sub": "Message us quickly",
         "m_mail": "Email",
@@ -1055,6 +1058,7 @@ PACK = {
         # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
         # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
         "badge_fallback": "IT · service · consulting",
+        "foto_alt": "Florin Feier, owner and point of contact at WVM-IT",
         "titel": "About us: Florin Feier, Lenzing, Austria | WVM-IT",
         "desc": "Who is behind WVM-IT, how we work and what we deliberately do not do. One contact person, based in Upper Austria. Get to know us now.",
         "h1": "Who is behind WVM-IT",

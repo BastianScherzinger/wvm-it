@@ -91,6 +91,8 @@ PACK = {
     },
     "hero": {
         "robot_alt": "Asistent 3D interactiv de la WVM-IT",
+        "person_alt": "Florin Feier, proprietarul WVM-IT",
+        "foto_alt": "Florin Feier zâmbind într-o fotografie portret, proprietarul WVM-IT",
         "eyebrow": "Suport IT & administrare · Austria și Germania",
         # Design B1 (25.09.2026): H1 ca propoziție simplă, ce face Florin.
         "headline": "Mentenanță IT cu un singur interlocutor care vă cunoaște firma.",
@@ -337,6 +339,7 @@ PACK = {
     "kontakt": {
         "h": "Să vorbim despre IT-ul dumneavoastră.",
         "lead": "Fără obligații și gratuit. Revenim în 24 de ore în zilele lucrătoare cu o primă evaluare. Alegeți pur și simplu calea dumneavoastră.",
+        "person_alt": "Florin Feier, persoana dvs. de contact la WVM-IT",
         "m_call": "Sunați",
         "m_wa": "WhatsApp", "m_wa_sub": "Scrieți-ne rapid",
         "m_mail": "E-mail",
@@ -1049,6 +1052,7 @@ PACK = {
         # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
         # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
         "badge_fallback": "IT · service · consulting",
+        "foto_alt": "Florin Feier, proprietar și persoană de contact la WVM-IT",
         "titel": "Despre noi: Florin Feier, Lenzing (Austria) | WVM-IT",
         "desc": "Cine este în spatele WVM-IT, cum lucrăm și ce nu facem în mod deliberat. O singură persoană de contact, sediu în Austria Superioară. Cunoașteți-ne.",
         "h1": "Cine este în spatele WVM-IT",
