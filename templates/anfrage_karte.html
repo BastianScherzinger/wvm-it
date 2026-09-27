@@ -65,7 +65,7 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     <div class="field">
       <label class="fld-l" for="ak-kontakt-{{ bid }}">{{ t.lb.kontakt_ph|safe }}</label>
       <input class="fld" id="ak-kontakt-{{ bid }}" type="text" name="kontakt" required
-             autocomplete="email" placeholder="{{ t.lb.kontakt_bsp|safe }}">
+             maxlength="254" autocomplete="email" placeholder="{{ t.lb.kontakt_bsp|safe }}">
     </div>
     {% comment %} ── Werbeeinwilligung (06.09.2026), nur wo ausdrücklich gewünscht ──
       § 174 TKG 2021 verbietet in Österreich unaufgeforderte Werbe-E-Mails

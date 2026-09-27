@@ -119,7 +119,7 @@ Bleibt in base.html (auch auf der Startseite): Die Tests zählen auf `/` genau
     </div>
     <div class="field">
       <label class="fld-l" for="rr-tel">{{ t.rueckruf.tel|safe }}</label>
-      <input class="fld" id="rr-tel" type="tel" name="kontakt" required autocomplete="tel" placeholder="{{ t.rueckruf.tel_ph|safe }}">
+      <input class="fld" id="rr-tel" type="tel" name="kontakt" required maxlength="254" autocomplete="tel" placeholder="{{ t.rueckruf.tel_ph|safe }}">
     </div>
     <fieldset class="zeitfenster">
       <legend class="fld-l">{{ t.rueckruf.zeit|safe }}</legend>
