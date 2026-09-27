@@ -47,11 +47,11 @@ und ist noch nicht umgesetzt.
 
 ## Google-Unternehmensprofil
 
-**Es gibt keins.** Das ist laut jeder Projektdoku der wichtigste offene Punkt überhaupt: „158 URLs gleichen sein Fehlen nicht aus" (`../CLAUDE.md`, `../docs/SEO-AUSBAU-3.md` §10/§12). Erwartung mit gepflegtem Profil: erste Anrufe **1–4 Wochen** nach Freischaltung; ohne Profil: lokal nichts.
+**Es gibt eins, aber es ist nicht in Ordnung.** Es wurde am 11.09.2026 angelegt und war laut Verwaltungsansicht am 25.09.2026 verwaltet (IT-Berater, blaues Häkchen, 4 Rezensionen, öffentlich keine Sterne); öffentlich stand WVM-IT am 25.09.2026 zugleich **doppelt** in Google Maps (siehe „Stand 25.09.2026" oben). Was ansteht, ist deshalb weder Neuanlage noch reine Verifizierung, sondern **Schritt A1: klären, welcher Eintrag der verwaltete ist, und das Duplikat entfernen oder zusammenführen lassen** (Bastian/Florin, im Browser). Der Wortlaut „es gibt keins" stammt vom 10.09.2026, dem Tag vor der Anlage; die Prüfungstabelle darunter ist Geschichte, kein Ist-Stand. Es bleibt der wichtigste offene Punkt überhaupt: „213 URLs gleichen sein Fehlen nicht aus" (`../CLAUDE.md`, `../docs/SEO-AUSBAU-3.md` §10/§12) — wirksam wird es erst, wenn genau ein bestätigter Eintrag öffentlich erscheint. Erwartung mit gepflegtem Profil: erste Anrufe **1–4 Wochen** nach Freischaltung; ohne sichtbares Profil: lokal nichts.
 
-### Nachgeprüft am 10.09.2026 (Browser)
+### Nachgeprüft am 10.09.2026 (Browser) — vor der Anlage
 
-Bis dahin stand „es gibt keins" in der Doku, weil es nie angelegt **wurde** — nicht, weil jemand nachgesehen hätte. Florin hätte es zwischendurch selbst anlegen können. Vier Prüfungen, alle negativ:
+Bis dahin stand „es gibt keins" in der Doku, weil es nie angelegt **wurde** — nicht, weil jemand nachgesehen hätte. Florin hätte es zwischendurch selbst anlegen können. Vier Prüfungen, alle negativ (Stand 10.09.2026, überholt seit der Anlage am 11.09.2026):
 
 | Prüfung | Ergebnis |
 |---|---|
@@ -75,7 +75,7 @@ Das ist die Konkurrenz in genau der Nische 2 („der schnellste Kunde", `../docs
 
 **Zwei Kategorien der Nachbarn taugen als Vorlage:** „IT-Berater" führen die zwei stärksten Betriebe, „Computerservice" und „Webdesigner" decken die zweite und dritte Säule. Das deckt sich mit der Kategorienliste unten — sie muss nicht überdacht werden.
 
-**Muss Florin anlegen** — öffentlicher Eintrag über sein reales Unternehmen, Verifizierung per Postkarte an seine Anschrift (5–14 Tage, deshalb der Engpass). Alle Angaben liegen fertig in `../docs/SEO-KONZEPT-DACH.md` §7, es ist reines Abtippen:
+**Vorlage für Anlage und Pflege** (angelegt ist es seit dem 11.09.2026, die Tabelle gilt für die Pflege des verwalteten Eintrags). Ursprünglich als Neuanlage durch Florin gedacht — öffentlicher Eintrag über sein reales Unternehmen, Verifizierung per Postkarte an seine Anschrift (5–14 Tage, deshalb der Engpass). Alle Angaben liegen fertig in `../docs/SEO-KONZEPT-DACH.md` §7, es ist reines Abtippen:
 
 | Feld | Eintrag |
 |---|---|
@@ -114,7 +114,7 @@ Während der Wartezeit: Fotos, Leistungen mit Preisen, Beschreibung. Nach Freisc
 
 ## Bewertungen
 
-**Keine** — es gibt kein Profil, auf dem welche stehen könnten, und auf der Seite steht kein Bewertungsblock. Regel T5: erst echte Bewertungen einsammeln, dann darf ein Block auf die Seite; **nichts erfinden** — drei erfundene Kundenstimmen standen bis zum 28.08.2026 live und sind nach UWG angreifbar. Messung `KV09`: 2 von 6 Vertrauenssignalen auf der Startseite (Zertifikate/Meister, Referenzen), es fehlen Bewertungen mit Zahl, Erfahrung mit Jahreszahl, Absicherung, `AggregateRating`.
+**Öffentlich keine** — die Verwaltungsansicht zeigte am 25.09.2026 4 Rezensionen, öffentlich erscheinen keine Sterne (Duplikat und offene Bestätigung, siehe oben), und auf der Seite steht kein Bewertungsblock. Regel T5: erst echte Bewertungen einsammeln, dann darf ein Block auf die Seite; **nichts erfinden** — drei erfundene Kundenstimmen standen bis zum 28.08.2026 live und sind nach UWG angreifbar. Messung `KV09`: 2 von 6 Vertrauenssignalen auf der Startseite (Zertifikate/Meister, Referenzen), es fehlen Bewertungen mit Zahl, Erfahrung mit Jahreszahl, Absicherung, `AggregateRating`.
 
 Belegbare Referenz ist Rümpelwerk Mitteldeutschland (Website, SEO/GEO, Ads, über Partner PyStore); Fallstudien zu Rhein-Neckar, RTC-Service und FSH GmbH brauchen das Einverständnis der Kunden (T3).
 
@@ -166,7 +166,7 @@ später einen achten Ort, entsteht die Seite; auf Vorrat entsteht sie nicht.**
 
 | # | Punkt | Wer | Quelle |
 |---|---|---|---|
-| 1 | **Google-Unternehmensprofil anlegen und verifizieren** — der entscheidende lokale Hebel; am 10.09.2026 vierfach nachgeprüft, es gibt weiterhin keins, während sechs Mitbewerber im Bezirk in der Karte stehen | **Florin** | Konzept §7, AKQUISE-SOFORT Kanal 1 |
+| 1 | **Google-Unternehmensprofil: Identität klären (A1)** — das Profil ist seit dem 11.09.2026 angelegt; am 25.09.2026 stand WVM-IT öffentlich doppelt in Maps (Wallstraße mit Logo, Waldstraße ohne Foto). Klären, welcher Eintrag der verwaltete ist, Duplikat entfernen bzw. zusammenführen, danach Bestätigung abschließen. Nicht neu anlegen | **Bastian/Florin** (Browser) | Stand 25.09.2026 oben, Konzept §7, AKQUISE-SOFORT Kanal 1 |
 | 2 | Sitemap (158 URLs) neu einreichen, 71 neue URLs anstoßen, täglich ~10 | Bastian (Browser, Konto `…05@gmail.com`) | Ausbau 3 §12 |
 | 3 | Erste Bewertungen einsammeln — erst nach Freischaltung des Profils | Florin | T5 |
 | 4 | Herold, Bing Places, Apple Business Connect mit identischer NAP anlegen | Bastian | T6, Konzept §7 |
