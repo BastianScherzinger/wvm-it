@@ -148,7 +148,11 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
 
         {% include 'kleinauftrag.html' %}
 
-        <p class="sp-fuss">{{ preis_stand }}</p>
+        {% comment %}RE20/Nachbesserung: "Festpreise" gilt nur, wenn diese
+        Einrichtung wirklich einen hat — server, loxone, datensicherung und
+        it-umzug stehen "auf Anfrage" (seite.anfrage, siehe
+        landing/views.py::_einrichtung_daten).{% endcomment %}
+        <p class="sp-fuss">{% if seite.anfrage %}{{ t.seite.preis_fuss|safe }}{% else %}{{ t.seite.festpreis_fuss|safe }}{% endif %} {{ preis_stand }}</p>
       </div>
 
       <div class="sp-aside">
