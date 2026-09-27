@@ -4,19 +4,28 @@ Wöchentlicher Referenz-Newsletter — Scheduler (APScheduler).
 Startet einmal pro Prozess (aus config/wsgi.py). Feuert Mo 09:00 (Europe/Berlin) und
 ruft `_send_weekly()`. Der Versand ist über `wvm.newsletter_runs` idempotent pro ISO-Woche,
 sodass auch mehrere Prozesse/Neustarts nie doppelt senden. Dazu täglich 03:15
-`manage.py anfragen_loeschen` (RE14: 90-Tage-Frist der gesicherten Anfragen). Per Env `WEEKLY_SCHEDULER=0`
-abschaltbar (z. B. lokal). Ohne APScheduler bleibt der HTTP-Trigger `/newsletter/wochenversand/`.
+`manage.py anfragen_loeschen` (RE14: 90-Tage-Frist der gesicherten Anfragen). Zwei getrennte Schalter
+(EIG187): `WEEKLY_SCHEDULER=0` nimmt nur den Newsletter aus dem Planer, die Löschfrist läuft weiter —
+sie ist in der Datenschutzerklärung zugesagt. Nur `ANFRAGEN_FRIST_SCHEDULER=0` schaltet den Löschlauf ab
+(lokal, Testlauf). Ohne APScheduler bleibt der HTTP-Trigger `/newsletter/wochenversand/`.
 """
 import os
 
 _started = False
+_AUS = ("0", "false", "no")
+
+
+def _an(name):
+    return os.environ.get(name, "1").strip().lower() not in _AUS
 
 
 def start():
     global _started
     if _started:
         return
-    if os.environ.get("WEEKLY_SCHEDULER", "1").strip().lower() in ("0", "false", "no"):
+    newsletter_an = _an("WEEKLY_SCHEDULER")
+    frist_an = _an("ANFRAGEN_FRIST_SCHEDULER")
+    if not (newsletter_an or frist_an):
         return
     try:
         from apscheduler.schedulers.background import BackgroundScheduler
@@ -42,7 +51,12 @@ def start():
             print(f"[SCHEDULER-FEHLER] anfragen_loeschen: {exc}", flush=True)
 
     sched = BackgroundScheduler(timezone="Europe/Berlin", daemon=True)
-    sched.add_job(job, "cron", day_of_week="mon", hour=9, minute=0, id="weekly_nl", replace_existing=True)
-    sched.add_job(frist_job, "cron", hour=3, minute=15, id="anfragen_frist", replace_existing=True)
+    aktiv = []
+    if newsletter_an:
+        sched.add_job(job, "cron", day_of_week="mon", hour=9, minute=0, id="weekly_nl", replace_existing=True)
+        aktiv.append("Wochen-Newsletter (Mo 09:00)")
+    if frist_an:
+        sched.add_job(frist_job, "cron", hour=3, minute=15, id="anfragen_frist", replace_existing=True)
+        aktiv.append("Anfragen-Frist (täglich 03:15)")
     sched.start()
-    print("[SCHEDULER] Wochen-Newsletter aktiv (Mo 09:00), Anfragen-Frist täglich 03:15.", flush=True)
+    print(f"[SCHEDULER] Aktiv: {', '.join(aktiv)}.", flush=True)

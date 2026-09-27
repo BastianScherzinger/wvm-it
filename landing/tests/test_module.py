@@ -479,10 +479,31 @@ class SchedulerTest(SimpleTestCase):
     def tearDown(self):
         scheduler._started = False
 
-    def test_mit_weekly_scheduler_null_startet_nichts(self):
-        with mock.patch.dict(os.environ, {"WEEKLY_SCHEDULER": "0"}):
+    def test_mit_beiden_schaltern_null_startet_nichts(self):
+        with mock.patch.dict(os.environ, {"WEEKLY_SCHEDULER": "0", "ANFRAGEN_FRIST_SCHEDULER": "0"}):
             scheduler.start()
         self.assertFalse(scheduler._started)
+
+    def _jobs(self, umgebung):
+        """Startet `start()` mit einem Attrappen-Planer und liefert die angelegten Job-IDs."""
+        planer = mock.MagicMock()
+        with mock.patch.dict(os.environ, umgebung), \
+                mock.patch("apscheduler.schedulers.background.BackgroundScheduler",
+                           return_value=planer):
+            scheduler.start()
+        return [aufruf.kwargs["id"] for aufruf in planer.add_job.call_args_list]
+
+    def test_newsletter_schalter_nimmt_die_loeschfrist_nicht_mit(self):
+        """EIG187: Die 90-Tage-Löschung ist zugesagt; `WEEKLY_SCHEDULER=0` betrifft nur den Newsletter."""
+        self.assertEqual(self._jobs({"WEEKLY_SCHEDULER": "0"}), ["anfragen_frist"])
+        self.assertTrue(scheduler._started)
+
+    def test_loeschfrist_hat_einen_eigenen_schalter(self):
+        self.assertEqual(self._jobs({"ANFRAGEN_FRIST_SCHEDULER": "0"}), ["weekly_nl"])
+
+    def test_standard_legt_beide_jobs_an(self):
+        self.assertEqual(sorted(self._jobs({"WEEKLY_SCHEDULER": "1", "ANFRAGEN_FRIST_SCHEDULER": "1"})),
+                         ["anfragen_frist", "weekly_nl"])
 
     def test_ein_zweiter_aufruf_startet_keinen_zweiten_planer(self):
         """Zwei Planer im selben Prozess wären zwei Newsletter je Woche."""
@@ -543,7 +564,7 @@ class KonfigurationTest(SimpleTestCase):
         # `config.wsgi` ruft beim Laden `scheduler.start()`. Ohne die Abschaltung
         # liefe im Testlauf ein echter Hintergrundplaner los — ein Test, der
         # nebenbei einen Newsletter-Job anlegt, ist kein Test.
-        with mock.patch.dict(os.environ, {"WEEKLY_SCHEDULER": "0"}):
+        with mock.patch.dict(os.environ, {"WEEKLY_SCHEDULER": "0", "ANFRAGEN_FRIST_SCHEDULER": "0"}):
             for name in ("config.urls", "config.wsgi", "config.asgi"):
                 with self.subTest(modul=name):
                     self.assertTrue(importlib.import_module(name))
