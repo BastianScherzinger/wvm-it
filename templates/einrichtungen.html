@@ -57,7 +57,10 @@ Aufgabe.
 
     {% include 'kleinauftrag.html' %}
 
-    <p class="sp-fuss">{{ t.seite.festpreis_fuss|safe }} {{ preis_stand }}</p>
+    {% comment %}RE20/Nachbesserung: der Hub mischt Fest- und Anfrage-Preise
+    (server, loxone, datensicherung, it-umzug haben keinen Festpreis) — deshalb
+    der neutrale Satz statt der Zusage "Festpreise".{% endcomment %}
+    <p class="sp-fuss">{{ t.seite.preis_fuss_neutral|safe }} {{ preis_stand }}</p>
   </div>
 </section>
 {% endblock %}

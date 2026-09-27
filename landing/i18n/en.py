@@ -561,6 +561,7 @@ PACK = {
         "vorort_t": "This one cannot be done remotely. We plan it per project; date and price are agreed beforehand.",
         "preis_fuss": "Guide prices, net plus VAT.",
         "festpreis_fuss": "Fixed prices, net plus VAT.",
+        "preis_fuss_neutral": "All prices net plus VAT.",
         "stand": "As of:",
         "alle_preise": "All prices at a glance",
         "kontakt_alt": "Prefer to talk?",

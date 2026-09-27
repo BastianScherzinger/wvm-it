@@ -555,6 +555,7 @@ PACK = {
         "vorort_t": "Acesta nu se poate presta de la distanță. Îl planificăm pe proiect; termenul și prețul se stabilesc dinainte.",
         "preis_fuss": "Prețuri orientative, net plus TVA.",
         "festpreis_fuss": "Prețuri fixe, net plus TVA.",
+        "preis_fuss_neutral": "Toate prețurile net plus TVA.",
         "stand": "Valabil:",
         "alle_preise": "Toate prețurile dintr-o privire",
         "kontakt_alt": "Preferați să vorbiți direct?",

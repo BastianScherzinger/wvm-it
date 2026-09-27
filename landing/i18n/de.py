@@ -568,6 +568,10 @@ PACK = {
         "vorort_t": "Diese Leistung lässt sich nicht aus der Ferne erbringen. Wir planen sie projektbezogen; Termin und Preis stehen vorher fest.",
         "preis_fuss": "Richtpreise, netto zzgl. USt.",
         "festpreis_fuss": "Festpreise, netto zzgl. USt.",
+        # Neutral fuer Seiten/Listen, die Fest- und Anfrage-Preise mischen —
+        # weder "Festpreise" (RE20: vier Einrichtungen ohne Festpreis) noch
+        # "Richtpreise" waeren fuer alle Positionen zugleich wahr.
+        "preis_fuss_neutral": "Alle Preise netto zzgl. USt.",
         "stand": "Stand:",
         "alle_preise": "Alle Preise auf einen Blick",
         "kontakt_alt": "Lieber direkt sprechen?",
