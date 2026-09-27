@@ -62,7 +62,7 @@ _FALLBACK = {
     "profile": [],
     "bewertungslink": "",
     "cta_text": "Projekt anfragen",
-    "cta_sub": "Unverbindlich · Antwort in 24 h",
+    "cta_sub": "Unverbindlich · Antwort an Werktagen in 24 h",
     "hero_image": "",
     "seo_title": "WVM-IT ,  Webseiten, Hosting, KI & SEO",
     "seo_desc": "Performante Webseiten, Hosting, KI-Automatisierungen und SEO für Unternehmen.",
