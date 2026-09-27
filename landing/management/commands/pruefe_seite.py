@@ -196,13 +196,89 @@ class Command(BaseCommand):
         self.stdout.write(f"Listen geprüft ({schluessel}: {len(de)} Seiten).")
 
     # ── 2. Preise ────────────────────────────────────────────────────────────
-    def _pruefe_preise(self):
-        erlaubt = set()
+    # Zahl-vor-Zeichen (Deutsch/Rumänisch: "29 €") ODER Zeichen-vor-Zahl
+    # (Englisch: "€29" — EIG201, 27.09.2026: Ein Teil der englischen Texte
+    # schreibt das Zeichen vor die Zahl, die alte Regel sah dort keinen Preis).
+    # Die Tausendertrennung selbst unterscheidet sich je Sprache (catalog_words.
+    # thousands: "." auf Deutsch/Rumänisch, "," auf Englisch, views._thousands) —
+    # ohne das Komma in der Ziffernklasse zerfiel "€1,490" in die Fantasiezahlen
+    # 1 und 490.
+    _PREIS_MUSTER = re.compile(
+        r"(\d[\d.,]{0,8})\s*(?:€|&euro;)|(?:€|&euro;)\s*(\d[\d.,]{0,8})")
+    # Fenster links/rechts eines Treffers, in dem ein Leistungsname stehen muss,
+    # wenn die Zahl zu mehr als einer Leistung gehört (EIG202). Reicht in jeder
+    # geprüften Vorlage von einer Preiszelle bis zum Namen derselben Zeile/Karte.
+    _MEHRDEUTIG_FENSTER = 320
+
+    def _preis_item_karte(self):
+        """Katalogwert -> Menge der Item-IDs, die ihn tragen."""
+        karte = {}
         for g in ANGEBOT_GROUPS:
             for it in g["items"]:
                 for feld in ("once", "mtl", "yr", "std"):
                     if it.get(feld):
-                        erlaubt.add(int(it[feld]))
+                        karte.setdefault(int(it[feld]), set()).add(it["id"])
+        return karte
+
+    def _item_gruppe_karte(self):
+        """Item-ID -> Gruppen-ID aus ANGEBOT_GROUPS (z. B. "sicherheitscheck" -> "it")."""
+        return {it["id"]: g["id"] for g in ANGEBOT_GROUPS for it in g["items"]}
+
+    def _eigene_gruppen_ids(self):
+        """Basis-Pfad einer Leistungs-/Einrichtungs-/Branchenseite -> alle Item-IDs
+        derselben ANGEBOT_GROUPS-Gruppe wie ihr eigener Katalogpreis.
+
+        Auf einer Seite, die genau eine Leistung behandelt, steht der Preis oft in
+        einem Fakten-Kasten weit vom Namen entfernt ("Einstiegspreis: 490 €" liegt
+        Bildschirmlängen unter der Überschrift {{ seite.h1 }}) — das Fenster reicht
+        dahin nicht, obwohl die Seite eindeutig ihr eigenes Thema behandelt."""
+        from landing import leistungen as _l, einrichtungen as _e, branchen as _b
+        gruppe = self._item_gruppe_karte()
+        karte = {}
+        for basis, eintraege in (("/leistungen/", _l.LEISTUNGEN),
+                                  ("/einrichten/", _e.EINRICHTUNGEN),
+                                  ("/branchen/", _b.BRANCHEN)):
+            for eintrag in eintraege:
+                g = gruppe.get(eintrag.get("preis"))
+                if g:
+                    karte[f"{basis}{eintrag['slug']}/"] = {
+                        iid for iid, git in gruppe.items() if git == g}
+        return karte
+
+    # Wartung und Domain haben keine eigene Leistungsseite — beide werden
+    # ausschliesslich auf der Hosting-Seite eingefuehrt (ANGEBOT_GROUPS-Gruppe
+    # "infra"). Ihr Name in Fusszeile und Querverlinkung ist deshalb der
+    # Navigationstitel dieser Seite, nicht ihr eigener Katalogname.
+    _OHNE_EIGENE_SEITE = {"wartung": "hosting", "domain": "hosting"}
+
+    def _seiten_nav_stichwoerter(self, item_id, lang):
+        """Wörter aus dem Navigationstitel jeder Leistungs-/Einrichtungsseite, die
+        diese Position als ihren Katalogpreis führt — dieselbe Formulierung, die
+        in Fußzeile und Querverlinkung sitewide neben dem Preis steht und vom
+        Katalognamen abweichen darf (z. B. „IT-Sicherheit" statt
+        „IT-Sicherheitscheck", „Hosting & Wartung" statt „Wartung & Updates")."""
+        from landing import leistungen as _l, einrichtungen as _e
+        item_id = self._OHNE_EIGENE_SEITE.get(item_id, item_id)
+        pack = i18n.get_pack(lang)
+        seiten, einrichten = pack.get("seiten", {}), pack.get("einrichten", {})
+        treffer = set()
+        for eintraege, texte in ((_l.LEISTUNGEN, seiten), (_e.EINRICHTUNGEN, einrichten)):
+            for eintrag in eintraege:
+                if eintrag.get("preis") == item_id:
+                    nav = texte.get(eintrag["slug"], {}).get("nav", "")
+                    treffer |= set(re.findall(r"[a-zäöüßăâîșț0-9]{3,}", nav.lower()))
+        return treffer
+
+    def _stichwoerter(self, item_id, lang):
+        """Eigene Wörter (≥3 Zeichen) aus Katalogname und Navigationstitel."""
+        name = i18n.get_pack(lang).get("catalog_items", {}).get(item_id, {}).get("name", "")
+        treffer = set(re.findall(r"[a-zäöüßăâîșț0-9]{3,}", name.lower()))
+        treffer |= self._seiten_nav_stichwoerter(item_id, lang)
+        return treffer
+
+    def _pruefe_preise(self):
+        preis_ids = self._preis_item_karte()
+        erlaubt = set(preis_ids)
         # Summen, die die Seite bewusst bildet (Betreuungspaket = Hosting + Wartung).
         erlaubt.add(15 + 39)
         # Der Kostenrechner (SEO-AUSBAU-3.md, W1) bildet ebenfalls Summen. Er liefert
@@ -223,25 +299,63 @@ class Command(BaseCommand):
         erlaubt |= _kosten_zahlen_fuer_pruefung()
         # Startwert der laufenden Summe im Konfigurator, bevor etwas gewählt wurde.
         erlaubt.add(0)
+        # Budget-Bruchgrenzen des Kontaktformulars — der Kunde wählt seinen eigenen
+        # Rahmen, das ist kein Preis von WVM-IT (EIG201, 27.09.2026).
+        from landing.views import _KONTAKT_BUDGET_ZAHLEN
+        erlaubt |= set(_KONTAKT_BUDGET_ZAHLEN)
+        # Zahlen, die nur über eine Summenformel entstehen, tragen keinen einzelnen
+        # Leistungsnamen — sie aus der Mehrdeutigkeits-Prüfung auszunehmen ist
+        # ehrlicher, als bei jeder Rechenbeispiel-Zahl einen Treffer zu erfinden.
+        nur_summe = erlaubt - set(preis_ids)
+        # Katalogwerte, die mehr als eine Leistung tragen (EIG202, 27.09.2026):
+        # "490 €" gehört ebenso zum IT-Sicherheitscheck wie zur WhatsApp-Automatisierung
+        # und zur Google-Ads-Einrichtung. Ein Fließtext, der die Zahl neben den
+        # falschen Namen stellt — "Firewall 490 €" statt "Firewall 690 €" —, bestand
+        # bisher, weil 490 irgendwo im Katalog vorkommt. Jetzt muss mindestens einer
+        # der Namen, die diesen Wert tragen, in der Nähe stehen.
+        mehrdeutig = {wert: ids for wert, ids in preis_ids.items()
+                      if len(ids) > 1 and wert not in nur_summe}
+        stichwoerter = {
+            wert: {lang: set().union(*(self._stichwoerter(iid, lang) for iid in ids))
+                   for lang in i18n.LANGS}
+            for wert, ids in mehrdeutig.items()
+        }
+        eigene_gruppen = self._eigene_gruppen_ids()
         client = _client()
-        # Jede deutsche Seite wird geprüft, nicht nur die Startseite: Ein Preis, der
+        # Jede Seite wird geprüft, nicht nur die deutsche Startseite: Ein Preis, der
         # nur im Fließtext einer Leistungsseite steht, ist genau der, der später
         # widerspricht — und widersprüchliche Zahlen sind das stärkste Negativsignal
-        # für KI-Antwortmaschinen (docs/SEO-PLAN.md, G10).
+        # für KI-Antwortmaschinen (docs/SEO-PLAN.md, G10). Bis 27.09.2026 (EIG201)
+        # prüfte diese Funktion nur die deutschen Adressen ohne Sprachpräfix — auf
+        # Englisch und Rumänisch stand jeder erfundene Preis unbemerkt.
         from landing.views import _seiten_pfade
-        gefunden, unbekannt = set(), {}
+        gefunden, unbekannt, mehrdeutig_treffer = set(), {}, {}
+        pfade = [(i18n.add_prefix(lang, pfad), lang, pfad)
+                 for pfad, _prio, _freq, mehr in _seiten_pfade()
+                 for lang in (i18n.LANGS if mehr else ("de",))]
         # Dazu die beiden Kurzfassungen für Antwortmaschinen (EIG85, 25.09.2026):
         # Dort stand eine abgetippte Preisliste, und keine Prüfung sah sie — dabei
-        # ist genau das der Text, den eine KI wörtlich zitiert.
-        pfade = [p[0] for p in _seiten_pfade()] + ["/llms.txt", "/llms-full.txt"]
-        for pfad in pfade:
+        # ist genau das der Text, den eine KI wörtlich zitiert. Beide liegen
+        # außerhalb von i18n_patterns und existieren nur auf Deutsch.
+        pfade += [("/llms.txt", "de", "/llms.txt"), ("/llms-full.txt", "de", "/llms-full.txt")]
+        for pfad, lang, basis in pfade:
             html = client.get(pfad).content.decode("utf-8")
             zahlen = set()
-            for treffer in re.findall(r"(\d[\d.]{0,8})\s*(?:€|&euro;)", html):
+            for treffer in self._PREIS_MUSTER.finditer(html):
+                ziffer = treffer.group(1) or treffer.group(2)
                 try:
-                    zahlen.add(int(treffer.replace(".", "")))
+                    wert = int(ziffer.replace(".", "").replace(",", ""))
                 except ValueError:
                     continue
+                zahlen.add(wert)
+                ids = mehrdeutig.get(wert)
+                if ids and not (ids & eigene_gruppen.get(basis, set())):
+                    namen = stichwoerter.get(wert, {}).get(lang)
+                    start = max(0, treffer.start() - self._MEHRDEUTIG_FENSTER)
+                    ende = treffer.end() + self._MEHRDEUTIG_FENSTER
+                    kontext = html[start:ende].lower()
+                    if not any(n in kontext for n in namen):
+                        mehrdeutig_treffer.setdefault(pfad, set()).add(wert)
             gefunden |= zahlen
             fremd = sorted(z for z in zahlen if z not in erlaubt)
             if fremd:
@@ -249,8 +363,12 @@ class Command(BaseCommand):
         for pfad, werte in unbekannt.items():
             self.fehler.append(
                 f"{pfad}: Preise, die nicht aus ANGEBOT_GROUPS stammen: {werte}")
+        for pfad, werte in mehrdeutig_treffer.items():
+            self.fehler.append(
+                f"{pfad}: Preis(e) {sorted(werte)} ohne den Namen einer der "
+                f"Leistungen, die diesen Wert tragen, in der Nähe")
         self.stdout.write(f"Preise geprüft ({len(gefunden)} verschiedene Zahlen, "
-                          f"{len(erlaubt)} erlaubte Werte).")
+                          f"{len(erlaubt)} erlaubte Werte, {len(pfade)} Seiten).")
 
     # ── 3. Seiten-Technik und Formulare ──────────────────────────────────────
     def _pruefe_seiten(self):

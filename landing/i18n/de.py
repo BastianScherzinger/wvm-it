@@ -104,7 +104,7 @@ PACK = {
             "Wir übernehmen die EDV kleiner und mittlerer Betriebe.",
             "Laufende IT-Betreuung ab 29 Euro je Arbeitsplatz und Monat.",
             "Fast alles per Fernwartung, in ganz Österreich und Deutschland.",
-            "Ein Satz genügt. Wir melden uns innerhalb von 24 Stunden.",
+            "Ein Satz genügt. Wir melden uns an Werktagen innerhalb von 24 Stunden.",
         ],
     },
     "offer": {
@@ -330,7 +330,7 @@ PACK = {
             {"q": "Betreut WVM-IT auch Betriebe außerhalb Österreichs?",
              "a": "Ja. Fernwartung, Überwachung, Datensicherung, Microsoft 365, Webseiten, SEO und Google Ads betreuen wir in ganz Österreich und Deutschland — diese Arbeiten sind ortsunabhängig, der Weg zum Kunden geht über eine gesicherte Verbindung statt über die Autobahn. Einsätze vor Ort planen wir projektbezogen."},
             {"q": "Wir haben niemanden für IT im Haus. Wie läuft die Zusammenarbeit ab?",
-             "a": "Sie bekommen einen festen Ansprechpartner und eine Nummer, an die sich alle im Betrieb wenden können. Wir nehmen Ihre bestehende Technik einmal auf, übernehmen Updates, Überwachung und Datensicherung und melden uns bei Störungen innerhalb von 24 Stunden. Sie brauchen weder eigenes IT-Personal noch ein Ticketsystem."},
+             "a": "Sie bekommen einen festen Ansprechpartner und eine Nummer, an die sich alle im Betrieb wenden können. Wir nehmen Ihre bestehende Technik einmal auf, übernehmen Updates, Überwachung und Datensicherung und melden uns bei Störungen an Werktagen innerhalb von 24 Stunden. Sie brauchen weder eigenes IT-Personal noch ein Ticketsystem."},
             {"q": "Wie schnell bekommen wir Hilfe, wenn etwas ausfällt?",
              "a": "Wir melden uns an Werktagen innerhalb von 24 Stunden. Weil der Zugriff per Fernwartung erfolgt, beginnt die Arbeit meist innerhalb von Minuten nach der Rückmeldung und nicht erst nach einer Anfahrt. Was sich aus der Ferne nicht lösen lässt, terminieren wir vor Ort — mit vorher genanntem Preis."},
             {"q": "Was passiert, wenn der Server ausfällt oder Daten verloren gehen?",
@@ -367,7 +367,7 @@ PACK = {
     },
     "kontakt": {
         "h": "Reden wir über Ihre IT.",
-        "lead": "Unverbindlich und kostenlos. Wir melden uns innerhalb von 24 Stunden mit einer ersten Einschätzung. Wählen Sie einfach Ihren Weg.",
+        "lead": "Unverbindlich und kostenlos. Wir melden uns an Werktagen innerhalb von 24 Stunden mit einer ersten Einschätzung. Wählen Sie einfach Ihren Weg.",
         "m_call": "Anrufen",
         "m_wa": "WhatsApp", "m_wa_sub": "Schnell schreiben",
         "m_mail": "E-Mail",
@@ -1045,11 +1045,11 @@ PACK = {
         "ansehen": "Seite ansehen",
     },
     "kontakt_seite": {
-        "titel": "Kontakt: Antwort in 24 Stunden | WVM-IT",
+        "titel": "Kontakt: Antwort an Werktagen in 24 Stunden | WVM-IT",
         "desc": "WhatsApp, Telefon, Rückruf oder E-Mail — Antwort innerhalb von 24 Stunden an Werktagen, in ganz Österreich und Deutschland. Jetzt Kontakt aufnehmen.",
         "h1": "So erreichen Sie uns",
         "kurz": "WVM-IT ist per WhatsApp, Telefon, Rückruf oder E-Mail erreichbar. Anfragen beantworten wir an Werktagen innerhalb von 24 Stunden, bei einem akuten Ausfall meist deutlich schneller. Betreut werden Betriebe in ganz Österreich und Deutschland, überwiegend per Fernwartung; ein Termin vor Ort wird vorher vereinbart.",
-        "intro": "Am schnellsten geht es per WhatsApp oder Telefon: Ein Satz genügt, worum es geht. Bei einer laufenden Störung sparen zwei Minuten am Telefon mehr Zeit als jede Beschreibung per E-Mail. Können Sie gerade nicht sprechen, hinterlassen Sie über den Rückruf Ihre Nummer und ein Stichwort.\n\nJe genauer die Anfrage, desto konkreter die erste Antwort. Nennen Sie kurz, worum es geht — ein akuter Ausfall, eine laufende Betreuung, eine neue Webseite oder ein Projekt vor Ort —, wie viele Arbeitsplätze oder Server betroffen sind und bis wann es laufen muss. Dann steht in unserer Antwort innerhalb von 24 Stunden bereits eine Größenordnung statt einer Rückfrage. Fernwartung ist dabei der Normalfall und kein Notbehelf: Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Vor Ort kommen wir dort, wo Hände gebraucht werden: Kabel, Aufbau, Gerätetausch.",
+        "intro": "Am schnellsten geht es per WhatsApp oder Telefon: Ein Satz genügt, worum es geht. Bei einer laufenden Störung sparen zwei Minuten am Telefon mehr Zeit als jede Beschreibung per E-Mail. Können Sie gerade nicht sprechen, hinterlassen Sie über den Rückruf Ihre Nummer und ein Stichwort.\n\nJe genauer die Anfrage, desto konkreter die erste Antwort. Nennen Sie kurz, worum es geht — ein akuter Ausfall, eine laufende Betreuung, eine neue Webseite oder ein Projekt vor Ort —, wie viele Arbeitsplätze oder Server betroffen sind und bis wann es laufen muss. Dann steht in unserer Antwort an Werktagen innerhalb von 24 Stunden bereits eine Größenordnung statt einer Rückfrage. Fernwartung ist dabei der Normalfall und kein Notbehelf: Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Vor Ort kommen wir dort, wo Hände gebraucht werden: Kabel, Aufbau, Gerätetausch.",
         "wege_h": "Vier Wege, uns zu erreichen",
         "zeiten_h": "Erreichbarkeit",
         "zeiten_t": "Montag bis Freitag, 9 bis 18 Uhr. Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag.\n\nBei einem akuten Ausfall rufen Sie an, statt zu schreiben: Ein Anruf erreicht uns auch dann, wenn gerade niemand ins Postfach sieht. Was in den ersten dreißig Minuten eines Notfalls zu tun ist, steht auf der Notfallseite — und gilt auch, bevor Sie uns erreicht haben.",
@@ -1067,7 +1067,7 @@ PACK = {
     # URL laesst sich nicht messen, und wer gerade angefragt hat, ist der
     # aufmerksamste Besucher des Tages — dieser Platz gehoert nicht einem Haken.
     "danke": {
-        "titel": "Anfrage angekommen — Antwort in 24 Stunden | WVM-IT",
+        "titel": "Anfrage angekommen — Antwort an Werktagen in 24 h | WVM-IT",
         "desc": "Ihre Anfrage liegt bei uns. Was jetzt passiert, wie schnell wir antworten und wo Sie uns im dringenden Fall sofort erreichen. Jetzt nachlesen.",
         "h1": "Ihre Anfrage ist angekommen",
         "kurz": "Ihre Anfrage ist bei uns eingegangen. Wir antworten an Werktagen innerhalb von 24 Stunden, meist deutlich schneller. Wenn es eilt und Sie nicht warten wollen, rufen Sie an: {telefon}. Es entstehen keine Kosten, solange nichts schriftlich beauftragt ist.",
@@ -1123,7 +1123,7 @@ PACK = {
         "sprachen_h": "Sprachen",
         "sprachen_t": "Deutsch, Englisch und Rumänisch. Diese Website gibt es in allen drei Sprachen; Fachbeiträge, Glossar und Checklisten stehen nur auf Deutsch, weil danach nur auf Deutsch gesucht wird.",
         "cta_h": "Wollen Sie wissen, wie Ihre IT dasteht?",
-        "cta_t": "Beschreiben Sie in zwei Sätzen, was gerade nicht rundläuft. Sie bekommen innerhalb von 24 Stunden eine ehrliche Einschätzung — auch dann, wenn sie lautet, dass Sie nichts ändern müssen.",
+        "cta_t": "Beschreiben Sie in zwei Sätzen, was gerade nicht rundläuft. Sie bekommen an Werktagen innerhalb von 24 Stunden eine ehrliche Einschätzung — auch dann, wenn sie lautet, dass Sie nichts ändern müssen.",
     },
     # ── Pflichthinweis unter jedem Anfrageformular ──────────────────────────
     # Dreigeteilt, damit der Verweis auf die Datenschutzerklaerung mitten im Satz
@@ -1156,7 +1156,7 @@ PACK = {
         "promise4": "Richtpreis vor jeder Dateneingabe",
         "talk": "Lieber direkt sprechen?",
         "sent_h": "Vielen Dank. Ihre Angebots-Anfrage ist da.",
-        "sent_p": "Wir schauen uns Ihre Auswahl an und melden uns innerhalb von 24 Stunden mit einem persönlichen Angebot bei Ihnen.",
+        "sent_p": "Wir schauen uns Ihre Auswahl an und melden uns an Werktagen innerhalb von 24 Stunden mit einem persönlichen Angebot bei Ihnen.",
         "sent_back": "Zurück zur Startseite",
         "sent_new": "Neues Angebot zusammenstellen",
         "step_last": "Angebot",
@@ -1349,7 +1349,7 @@ PACK = {
     },
     "schluss": {
         "h": "Reden wir über Ihr Projekt.",
-        "sub": "Ein Satz reicht. Wir melden uns innerhalb von 24 Stunden mit einer ehrlichen Einschätzung. Wir sagen auch, wenn etwas nicht sinnvoll ist.",
+        "sub": "Ein Satz reicht. Wir melden uns an Werktagen innerhalb von 24 Stunden mit einer ehrlichen Einschätzung. Wir sagen auch, wenn etwas nicht sinnvoll ist.",
     },
     "ways": {
         "wa": "WhatsApp",
@@ -1505,7 +1505,7 @@ PACK = {
             "einzelhilfe": "IT-Hilfe ohne Vertrag",
         },
         "h": "Was wir übernehmen",
-        "sub": "Jede Leistung mit klarem Startpreis. Fragen Sie direkt im passenden Feld an – ein Satz genügt, wir melden uns innerhalb von 24 Stunden.",
+        "sub": "Jede Leistung mit klarem Startpreis. Fragen Sie direkt im passenden Feld an – ein Satz genügt, wir melden uns an Werktagen innerhalb von 24 Stunden.",
         "text_ph": "Worum geht es?",
         "kontakt_ph": "E-Mail oder Telefonnummer *",
         # Freiwillige Werbeeinwilligung (06.09.2026) — siehe templates/anfrage_karte.html.
@@ -1515,7 +1515,7 @@ PACK = {
         "mehr": "Alles dazu ansehen",
         "sending": "Wird gesendet …",
         "done_h": "Angekommen",
-        "done_t": "Wir melden uns innerhalb von 24 Stunden.",
+        "done_t": "Wir melden uns an Werktagen innerhalb von 24 Stunden.",
         "err_kontakt": "Bitte eine E-Mail-Adresse oder Telefonnummer eintragen.",
         "err_allg": "Das hat nicht geklappt. Bitte per WhatsApp oder Telefon melden.",
         "ab": "ab",
@@ -1596,7 +1596,7 @@ PACK = {
         "leistung_ack_body": (
             "{anrede},\n\n"
             "danke für Ihre Anfrage zum Thema {thema}. Sie ist bei uns angekommen, "
-            "wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.\n\n"
+            "wir melden uns an Werktagen innerhalb von 24 Stunden persönlich bei Ihnen.\n\n"
             "Wenn es schneller gehen soll, erreichen Sie uns direkt per WhatsApp oder Telefon.\n\n"
             "Freundliche Grüße\n{site}\n{url}\n"
         ),

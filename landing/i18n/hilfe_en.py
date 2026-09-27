@@ -48,7 +48,7 @@ HILFE = {
     "fernwartung_t": "Remote support means that a technician reaches your computer or server over a secured connection instead of driving out — in a session you have approved, they see exactly what is on your screen, you watch every move and can stop at any time, and without a new approval nobody gets back onto the device. What a provider can and cannot see is explained in detail in our article on remote support (in German).",
     "fernwartung_link": "What does the provider see during remote support? (in German)",
     "preise_h": "What a single job costs",
-    "preise_t": "Remote €95 per hour, on site €120 per hour plus travel. Completed tasks have fixed prices: setting up a workstation €190, setting up Microsoft 365 €290, firewall and VPN €690. All prices net plus VAT.",
+    "preise_t": "Remote €95 per hour, on site €120 per hour plus travel. Completed tasks have fixed prices: setting up a workstation €190, Microsoft 365 set up €290, firewall and VPN €690. All prices net plus VAT.",
     "erreichbar_h": "When you can reach us",
     "erreichbar_t": "Monday to Friday, 9am to 6pm. Outside those hours leave a message on WhatsApp or the voicemail; we get back to you on the next working day. If data is being encrypted right now or the server is down, go to the emergency page first.",
     "notfall_link": "To the emergency page: the first 30 minutes",

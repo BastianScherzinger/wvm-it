@@ -47,7 +47,7 @@ PACK = {
             {"q": "Does WVM-IT also look after businesses outside Austria?",
              "a": "Yes. Remote support, monitoring, backups, Microsoft 365, websites, SEO and Google Ads are handled across Austria and Germany — this work is independent of location, and the route to the client runs over a secured connection rather than the motorway. On-site work is arranged per project."},
             {"q": "We have nobody for IT in house. How does this work?",
-             "a": "You get one dedicated contact and one number everybody in the company can use. We record your existing technology once, take on updates, monitoring and backups, and respond to faults within 24 hours. You need neither IT staff of your own nor a ticket system."},
+             "a": "You get one dedicated contact and one number everybody in the company can use. We record your existing technology once, take on updates, monitoring and backups, and respond to faults within 24 hours on working days. You need neither IT staff of your own nor a ticket system."},
             {"q": "How quickly do we get help when something fails?",
              "a": "We respond within 24 hours on business days. Because access runs remotely, work usually begins within minutes of that response rather than after a drive. Anything that cannot be solved remotely is scheduled on site — with the price quoted beforehand."},
             {"q": "What happens if the server fails or data is lost?",
@@ -119,7 +119,7 @@ PACK = {
             "We take care of IT for small and mid-sized businesses.",
             "Ongoing IT support from 29 euros per workstation and month.",
             "Almost everything remotely, across Austria and Germany.",
-            "One sentence is enough. We reply within 24 hours.",
+            "One sentence is enough. We reply within 24 hours on working days.",
         ],
     },
     "offer": {
@@ -342,7 +342,7 @@ PACK = {
     },
     "kontakt": {
         "h": "Let's talk about your IT.",
-        "lead": "No obligation and free of charge. We'll get back to you within 24 hours with an initial assessment. Just choose your way.",
+        "lead": "No obligation and free of charge. We'll get back to you within 24 hours on working days with an initial assessment. Just choose your way.",
         "m_call": "Call",
         "m_wa": "WhatsApp", "m_wa_sub": "Message us quickly",
         "m_mail": "Email",
@@ -1007,11 +1007,11 @@ PACK = {
         "ansehen": "View the site",
     },
     "kontakt_seite": {
-        "titel": "Contact: an answer within 24 hours | WVM-IT",
+        "titel": "Contact: an answer within 24 hours on working days | WVM-IT",
         "desc": "WhatsApp, phone, callback or e-mail — an answer within 24 hours on working days, across Austria and Germany. Get in touch today.",
         "h1": "How to reach us",
         "kurz": "WVM-IT can be reached by WhatsApp, phone, callback or email. Enquiries are answered within 24 hours on business days, and usually much faster during an acute outage. We serve businesses across Austria and Germany, mostly by remote support; an on-site visit is arranged in advance.",
-        "intro": "WhatsApp or the phone is the fastest way: one sentence about what is going on is enough. During an ongoing fault, two minutes on the phone save more time than any written description. If you cannot talk right now, leave your number and a keyword through the callback form.\n\nThe more precise the enquiry, the more concrete the first answer. Tell us briefly what this is about — an acute outage, ongoing support, a new website or a project on site — how many workstations or servers are affected and by when it has to run. Then our answer within 24 hours already carries an order of magnitude instead of another question. Remote support is the normal case here, not a stopgap: remote support means that a technician reaches your computer or server over a secured connection instead of driving out — in a session you have approved, they see exactly what is on your screen, you watch every move and can stop at any time, and without a new approval nobody gets back onto the device. We come on site where hands are needed: cabling, installation, hardware replacement.",
+        "intro": "WhatsApp or the phone is the fastest way: one sentence about what is going on is enough. During an ongoing fault, two minutes on the phone save more time than any written description. If you cannot talk right now, leave your number and a keyword through the callback form.\n\nThe more precise the enquiry, the more concrete the first answer. Tell us briefly what this is about — an acute outage, ongoing support, a new website or a project on site — how many workstations or servers are affected and by when it has to run. Then our answer within 24 hours on working days already carries an order of magnitude instead of another question. Remote support is the normal case here, not a stopgap: remote support means that a technician reaches your computer or server over a secured connection instead of driving out — in a session you have approved, they see exactly what is on your screen, you watch every move and can stop at any time, and without a new approval nobody gets back onto the device. We come on site where hands are needed: cabling, installation, hardware replacement.",
         "wege_h": "Four ways to reach us",
         "zeiten_h": "Availability",
         "zeiten_t": "Monday to Friday, 9am to 6pm. Enquiries outside those hours are answered on the next working day.\n\nIn an acute outage, call rather than write: a phone call reaches us even when nobody is looking at the inbox. What to do in the first thirty minutes of an emergency is set out on the emergency page — and it applies before you have reached us.",
@@ -1025,7 +1025,7 @@ PACK = {
         "gebiet_t": "Austria and Germany. Our registered office is in Lenzing in the Vöcklabruck district, in the Salzkammergut region of Upper Austria – the A1 motorway junctions at Regau and Vöcklabruck are nearby. On-site visits are mostly in the Salzkammergut and the surrounding area; everything that can be done remotely we support regardless of location in either country.",
     },
     "danke": {
-        "titel": "Enquiry received — answer within 24 hours | WVM-IT",
+        "titel": "Enquiry received — answer in 24h on working days | WVM-IT",
         "desc": "Your enquiry has reached us. What happens next, how fast we answer and where to reach us if it is urgent. Read on now.",
         "h1": "Your enquiry has reached us",
         "kurz": "Your enquiry has reached us. We answer within 24 hours on working days, usually a good deal sooner. If it is urgent and you would rather not wait, call us: {telefon}. Nothing is chargeable until something has been ordered in writing.",
@@ -1080,7 +1080,7 @@ PACK = {
         "sprachen_h": "Languages",
         "sprachen_t": "German, English and Romanian. This website exists in all three; the articles, glossary and checklists are German only, because those questions are only searched for in German.",
         "cta_h": "Want to know where your IT stands?",
-        "cta_t": "Describe in two sentences what is not running smoothly. You will get an honest assessment within 24 hours — including if it says you need to change nothing.",
+        "cta_t": "Describe in two sentences what is not running smoothly. You will get an honest assessment within 24 hours on working days — including if it says you need to change nothing.",
     },
     "form": {
         "dsgvo_1": "We use your details only to answer this enquiry – no passing on, no advertising without your consent. Details in the",
@@ -1109,7 +1109,7 @@ PACK = {
         "promise4": "Price before any details",
         "talk": "Prefer to talk directly?",
         "sent_h": "Thank you. Your quote request has arrived.",
-        "sent_p": "We'll review your selection and get back to you within 24 hours with a personal quote.",
+        "sent_p": "We'll review your selection and get back to you within 24 hours on working days with a personal quote.",
         "sent_back": "Back to home",
         "sent_new": "Put together a new quote",
         "step_last": "Quote",
@@ -1297,7 +1297,7 @@ PACK = {
     },
     "schluss": {
         "h": "Let's talk about your project.",
-        "sub": "One sentence is enough. We reply within 24 hours with an honest assessment. That includes telling you when something is not worth doing.",
+        "sub": "One sentence is enough. We reply within 24 hours on working days with an honest assessment. That includes telling you when something is not worth doing.",
     },
     "ways": {
         "wa": "WhatsApp",
@@ -1391,7 +1391,7 @@ PACK = {
             "einzelhilfe": "IT help without a contract",
         },
         "h": "What we take on",
-        "sub": "Every service with a clear starting price. Ask directly in the matching field – one sentence is enough, we reply within 24 hours.",
+        "sub": "Every service with a clear starting price. Ask directly in the matching field – one sentence is enough, we reply within 24 hours on working days.",
         "text_ph": "What is it about?",
         "kontakt_ph": "Email or phone number *",
         "werbung": "Also: send me occasional notes on IT security and deadlines (e.g. NIS2). Optional, unsubscribe any time.",
@@ -1400,7 +1400,7 @@ PACK = {
         "mehr": "See everything about this",
         "sending": "Sending …",
         "done_h": "Received",
-        "done_t": "We will get back to you within 24 hours.",
+        "done_t": "We will get back to you within 24 hours on working days.",
         "err_kontakt": "Please enter an email address or a phone number.",
         "err_allg": "That did not work. Please reach us by WhatsApp or phone.",
         "ab": "from",
@@ -1480,7 +1480,7 @@ PACK = {
         "leistung_ack_body": (
             "{anrede},\n\n"
             "thank you for your enquiry about {thema}. It has reached us and we will "
-            "get back to you personally within 24 hours.\n\n"
+            "get back to you personally within 24 hours on working days.\n\n"
             "If it needs to be quicker, reach us directly by WhatsApp or phone.\n\n"
             "Kind regards\n{site}\n{url}\n"
         ),
