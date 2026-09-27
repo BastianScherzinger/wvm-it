@@ -178,7 +178,7 @@ PACK = {
         "email_label": "Estimate by email (optional)",
         "consent": "Also send me relevant offers by email in future. Optional, unsubscribe any time.",
         "submit": "Email me the estimate",
-        "fine": "Ballpark prices, net plus VAT. No obligation, no account needed. Reply within 24 hours.",
+        "fine": "Ballpark prices, net plus VAT. No obligation, no account needed. Reply within 24 hours on working days.",
         "done_h": "On its way — your estimate will be in your inbox shortly.",
         "done_t": "We've emailed you the overview and will follow up with the exact quote.",
         "all_link": "Rather see the full price list →",

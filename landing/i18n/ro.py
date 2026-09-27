@@ -172,7 +172,7 @@ PACK = {
         "email_label": "Oferta pe e-mail (opțional)",
         "consent": "Trimiteți-mi pe viitor și oferte potrivite prin e-mail. Opțional, dezabonare oricând.",
         "submit": "Trimiteți oferta pe e-mail",
-        "fine": "Prețuri orientative, net plus TVA. Fără obligații, fără cont necesar. Răspuns în 24 de ore.",
+        "fine": "Prețuri orientative, net plus TVA. Fără obligații, fără cont necesar. Răspuns în 24 de ore în zilele lucrătoare.",
         "done_h": "Pe drum — oferta ajunge imediat în căsuța dumneavoastră.",
         "done_t": "V-am trimis prezentarea generală pe e-mail și revenim cu oferta exactă.",
         "all_link": "Preferați să vedeți lista completă de prețuri →",
