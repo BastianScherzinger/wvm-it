@@ -431,7 +431,7 @@ SEITEN = {
         "desc": "Automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces și securitate într-un singur sistem. Solicitați o ofertă.",
         "h1": "Automatizarea clădirilor cu Loxone și KNX",
         "kurz": "WVM-IT planifică, programează și întreține automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces, securitate și tehnică media într-un singur sistem — KNX ca normă independentă de producător, cu peste 400 de producători, Loxone ca sistem închis dintr-o singură mână. Astfel de instalații se calculează pe proiect și se montează la fața locului — prețul îl comunicăm după o scurtă discuție și o evaluare, nu înainte.",
-        "intro": "La automatizarea clădirilor rezultatul nu îl decide hardware-ul, ci programarea. Aceleași echipamente pot da o instalație pe care nimeni nu o înțelege și care după prima vară se operează iar manual — sau una care pur și simplu face ce te aștepți. De aceea planificăm întâi comportamentul și abia apoi lista de componente.",
+        "intro": "La automatizarea clădirilor rezultatul nu îl decide hardware-ul, ci programarea. Aceleași echipamente pot da o instalație pe care nimeni nu o înțelege și care după prima vară se operează iar manual — sau una care pur și simplu face ce vă așteptați. De aceea planificăm întâi comportamentul și abia apoi lista de componente.",
         "problem_h": "Pentru cine merită",
         "probleme": [
             "Lumina, încălzirea și umbrirea funcționează ca trei sisteme separate, unul lângă altul.",
@@ -571,7 +571,7 @@ SEITEN = {
         "desc": "Consultanță IT fără legături cu producători: evaluare, concept, comparație de oferte și asistență — 95 € pe oră. Solicitați o consultanță.",
         "h1": "Consultanță IT pentru firme care trebuie să ia o decizie",
         "kurz": "WVM-IT consiliază firme mici și mijlocii din Austria și Germania înainte de investiții în IT și tehnică pentru clădiri: evaluare, concept scris, comparație de oferte externe și asistență la implementare. Consultanța costă 95 € pe oră, întâlnirile la fața locului 120 € pe oră plus deplasarea. Răspundem la solicitări în 24 de ore — chiar și atunci când răspunsul onest este că investiția nu se justifică.",
-        "intro": "Cele mai costisitoare decizii IT rareori sunt echipamentele greșite. Sunt deciziile pe care nu le-a luat nimeni: serverul care mai merge încă un an pentru că nimeni nu știe ce urmează; software-ul ales pentru că un furnizor a sunat primul; cele două oferte pe care nu le poți compara pentru că descriu lucruri diferite. Aici, consultanța nu înseamnă o prezentare. Înseamnă că cineva se uită la ce aveți, ascultă ce plănuiți și scrie ce înseamnă asta pentru tehnica dumneavoastră.",
+        "intro": "Cele mai costisitoare decizii IT rareori sunt echipamentele greșite. Sunt deciziile pe care nu le-a luat nimeni: serverul care mai merge încă un an pentru că nimeni nu știe ce urmează; software-ul ales pentru că un furnizor a sunat primul; cele două oferte pe care nu le puteți compara pentru că descriu lucruri diferite. Aici, consultanța nu înseamnă o prezentare. Înseamnă că cineva se uită la ce aveți, ascultă ce plănuiți și scrie ce înseamnă asta pentru tehnica dumneavoastră.",
         "problem_h": "Când merită o consultanță",
         "probleme": [
             "Există două sau trei oferte, iar nimeni din firmă nu le poate compara din punct de vedere tehnic.",
