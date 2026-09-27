@@ -4375,7 +4375,7 @@ def _llms_kopf(c, base):
         f"KI-Automatisierung ab {p['termin']['once']} €. "
         f"Gebäudeautomation (Loxone, KNX) sowie Konferenz- und Veranstaltungstechnik "
         f"werden projektbezogen vor Ort umgesetzt. Ein fester Ansprechpartner, Antwort "
-        f"innerhalb von 24 Stunden. Alle Preise sind Richtpreise netto zzgl. USt. "
+        f"an Werktagen innerhalb von 24 Stunden. Alle Preise sind Richtpreise netto zzgl. USt. "
         f"{standort}"
         f"Vor Ort im Einzugsgebiet {einzugsgebiet}; alles Übrige per Fernwartung in ganz "
         f"Österreich und Deutschland.\n"

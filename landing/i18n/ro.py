@@ -41,7 +41,7 @@ PACK = {
             {"q": "WVM-IT administrează și firme din afara Austriei?",
              "a": "Da. Asistența la distanță, monitorizarea, copiile de siguranță, Microsoft 365, site-urile, SEO și Google Ads le administrăm în toată Austria și Germania — aceste lucrări sunt independente de loc, drumul spre client trece printr-o conexiune securizată, nu pe autostradă. Intervențiile la fața locului le planificăm pe proiect."},
             {"q": "Nu avem pe nimeni pentru IT în firmă. Cum decurge colaborarea?",
-             "a": "Primiți o persoană de contact fixă și un număr la care se poate adresa oricine din firmă. Inventariem o dată tehnica existentă, preluăm actualizările, monitorizarea și copiile de siguranță și răspundem la defecțiuni în 24 de ore. Nu aveți nevoie nici de personal IT propriu, nici de un sistem de tichete."},
+             "a": "Primiți o persoană de contact fixă și un număr la care se poate adresa oricine din firmă. Inventariem o dată tehnica existentă, preluăm actualizările, monitorizarea și copiile de siguranță și răspundem la defecțiuni în 24 de ore în zilele lucrătoare. Nu aveți nevoie nici de personal IT propriu, nici de un sistem de tichete."},
             {"q": "Cât de repede primim ajutor când ceva se oprește?",
              "a": "Răspundem în zilele lucrătoare în 24 de ore. Pentru că accesul se face la distanță, lucrul începe de obicei la câteva minute după răspuns, nu abia după o deplasare. Ce nu se poate rezolva de la distanță programăm la fața locului — cu prețul comunicat dinainte."},
             {"q": "Ce se întâmplă dacă cade serverul sau se pierd date?",
@@ -113,7 +113,7 @@ PACK = {
             "Preluăm IT-ul firmelor mici și mijlocii.",
             "Administrare IT curentă de la 29 de euro per post de lucru și lună.",
             "Aproape totul la distanță, în toată Austria și Germania.",
-            "O propoziție ajunge. Răspundem în 24 de ore.",
+            "O propoziție ajunge. Răspundem în 24 de ore în zilele lucrătoare.",
         ],
     },
     "offer": {
@@ -336,7 +336,7 @@ PACK = {
     },
     "kontakt": {
         "h": "Să vorbim despre IT-ul dumneavoastră.",
-        "lead": "Fără obligații și gratuit. Revenim în 24 de ore cu o primă evaluare. Alegeți pur și simplu calea dumneavoastră.",
+        "lead": "Fără obligații și gratuit. Revenim în 24 de ore în zilele lucrătoare cu o primă evaluare. Alegeți pur și simplu calea dumneavoastră.",
         "m_call": "Sunați",
         "m_wa": "WhatsApp", "m_wa_sub": "Scrieți-ne rapid",
         "m_mail": "E-mail",
@@ -1001,11 +1001,11 @@ PACK = {
         "ansehen": "Vedeți site-ul",
     },
     "kontakt_seite": {
-        "titel": "Contact: răspuns în 24 de ore | WVM-IT",
+        "titel": "Contact: răspuns în 24 de ore în zilele lucrătoare | WVM-IT",
         "desc": "WhatsApp, telefon, apel invers sau e-mail — răspuns în 24 de ore în zilele lucrătoare, în toată Austria și Germania. Contactați-ne acum.",
         "h1": "Cum ne găsiți",
         "kurz": "WVM-IT poate fi contactat prin WhatsApp, telefon, apel invers sau e-mail. Solicitările primesc răspuns în 24 de ore în zilele lucrătoare, iar în cazul unei defecțiuni acute de obicei mult mai repede. Administrăm firme din toată Austria și Germania, în cea mai mare parte la distanță; o vizită la fața locului se stabilește dinainte.",
-        "intro": "Cel mai rapid este prin WhatsApp sau telefon: o propoziție despre ce se întâmplă este suficientă. În timpul unei defecțiuni, două minute la telefon economisesc mai mult timp decât orice descriere scrisă. Dacă nu puteți vorbi acum, lăsați numărul și un cuvânt-cheie prin formularul de apel invers.\n\nCu cât cererea este mai precisă, cu atât primul răspuns este mai concret. Spuneți pe scurt despre ce este vorba — o defecțiune acută, o întreținere curentă, un site nou sau un proiect la fața locului —, câte stații sau servere sunt afectate și până când trebuie să funcționeze. Atunci răspunsul nostru în 24 de ore conține deja un ordin de mărime, nu o altă întrebare. Asistența la distanță este aici cazul obișnuit, nu o soluție de avarie: asistența la distanță înseamnă că un tehnician accesează un calculator sau un server printr-o conexiune securizată, în loc să se deplaseze — într-o sesiune aprobată de dumneavoastră vede exact ce este pe ecranul dumneavoastră, urmăriți fiecare mișcare și puteți întrerupe oricând, iar fără o nouă aprobare nimeni nu revine pe aparat. La fața locului venim acolo unde este nevoie de mâini: cabluri, montaj, schimb de aparate.",
+        "intro": "Cel mai rapid este prin WhatsApp sau telefon: o propoziție despre ce se întâmplă este suficientă. În timpul unei defecțiuni, două minute la telefon economisesc mai mult timp decât orice descriere scrisă. Dacă nu puteți vorbi acum, lăsați numărul și un cuvânt-cheie prin formularul de apel invers.\n\nCu cât cererea este mai precisă, cu atât primul răspuns este mai concret. Spuneți pe scurt despre ce este vorba — o defecțiune acută, o întreținere curentă, un site nou sau un proiect la fața locului —, câte stații sau servere sunt afectate și până când trebuie să funcționeze. Atunci răspunsul nostru în 24 de ore în zilele lucrătoare conține deja un ordin de mărime, nu o altă întrebare. Asistența la distanță este aici cazul obișnuit, nu o soluție de avarie: asistența la distanță înseamnă că un tehnician accesează un calculator sau un server printr-o conexiune securizată, în loc să se deplaseze — într-o sesiune aprobată de dumneavoastră vede exact ce este pe ecranul dumneavoastră, urmăriți fiecare mișcare și puteți întrerupe oricând, iar fără o nouă aprobare nimeni nu revine pe aparat. La fața locului venim acolo unde este nevoie de mâini: cabluri, montaj, schimb de aparate.",
         "wege_h": "Patru moduri de a ne contacta",
         "zeiten_h": "Disponibilitate",
         "zeiten_t": "De luni până vineri, între 9 și 18. Cererile din afara acestor ore primesc răspuns în următoarea zi lucrătoare.\n\nÎn cazul unei defecțiuni acute sunați, nu scrieți: un apel ne ajunge și atunci când nimeni nu se uită în căsuța poștală. Ce trebuie făcut în primele treizeci de minute ale unei urgențe este descris pe pagina de urgență — și este valabil și înainte să ne fi contactat.",
@@ -1019,7 +1019,7 @@ PACK = {
         "gebiet_t": "Austria și Germania. Sediul firmei este în Lenzing, în districtul Vöcklabruck, în regiunea Salzkammergut din Austria Superioară – nodurile de autostradă A1 de la Regau și Vöcklabruck sunt aproape. Vizitele la fața locului le preluăm mai ales în Salzkammergut și în împrejurimi; tot ce se poate face la distanță administrăm indiferent de locație, în ambele țări.",
     },
     "danke": {
-        "titel": "Cererea a ajuns — răspuns în 24 de ore | WVM-IT",
+        "titel": "Cererea a ajuns — răspuns în 24h, zilele lucrătoare | WVM-IT",
         "desc": "Cererea dumneavoastră a ajuns la noi. Ce urmează, cât de repede răspundem și unde ne găsiți dacă este urgent. Citiți acum.",
         "h1": "Cererea dumneavoastră a ajuns la noi",
         "kurz": "Cererea dumneavoastră a ajuns la noi. Răspundem în 24 de ore în zilele lucrătoare, de regulă mult mai repede. Dacă este urgent și nu vreți să așteptați, sunați: {telefon}. Nu apar costuri până când ceva nu este comandat în scris.",
@@ -1074,7 +1074,7 @@ PACK = {
         "sprachen_h": "Limbi",
         "sprachen_t": "Germană, engleză și română. Acest site există în toate trei; articolele, glosarul și listele de verificare sunt doar în germană, pentru că doar în germană se caută aceste întrebări.",
         "cta_h": "Vreți să știți cum stă IT-ul dumneavoastră?",
-        "cta_t": "Descrieți în două propoziții ce nu merge bine. Primiți în 24 de ore o evaluare onestă — inclusiv dacă aceasta spune că nu trebuie să schimbați nimic.",
+        "cta_t": "Descrieți în două propoziții ce nu merge bine. Primiți în 24 de ore în zilele lucrătoare o evaluare onestă — inclusiv dacă aceasta spune că nu trebuie să schimbați nimic.",
     },
     "form": {
         "dsgvo_1": "Folosim datele dumneavoastră doar pentru a răspunde acestei cereri – fără transmitere mai departe, fără publicitate fără acordul dumneavoastră. Detalii în",
@@ -1103,7 +1103,7 @@ PACK = {
         "promise4": "Preț înainte de orice date",
         "talk": "Preferați să vorbim direct?",
         "sent_h": "Mulțumim. Solicitarea dumneavoastră de ofertă a ajuns.",
-        "sent_p": "Analizăm selecția dumneavoastră și revenim în 24 de ore cu o ofertă personală.",
+        "sent_p": "Analizăm selecția dumneavoastră și revenim în 24 de ore în zilele lucrătoare cu o ofertă personală.",
         "sent_back": "Înapoi la pagina principală",
         "sent_new": "Alcătuiți o ofertă nouă",
         "step_last": "Ofertă",
@@ -1291,7 +1291,7 @@ PACK = {
     },
     "schluss": {
         "h": "Să discutăm despre proiectul dumneavoastră.",
-        "sub": "O propoziție este de ajuns. Revenim în 24 de ore cu o evaluare sinceră. Vă spunem și atunci când ceva nu merită făcut.",
+        "sub": "O propoziție este de ajuns. Revenim în 24 de ore în zilele lucrătoare cu o evaluare sinceră. Vă spunem și atunci când ceva nu merită făcut.",
     },
     "ways": {
         "wa": "WhatsApp",
@@ -1385,7 +1385,7 @@ PACK = {
             "einzelhilfe": "ajutor IT fără contract",
         },
         "h": "Ce preluăm",
-        "sub": "Fiecare serviciu cu un preț de pornire clar. Întrebați direct în câmpul potrivit – o propoziție ajunge, răspundem în 24 de ore.",
+        "sub": "Fiecare serviciu cu un preț de pornire clar. Întrebați direct în câmpul potrivit – o propoziție ajunge, răspundem în 24 de ore în zilele lucrătoare.",
         "text_ph": "Despre ce este vorba?",
         "kontakt_ph": "E-mail sau număr de telefon *",
         "werbung": "În plus: trimiteți-mi ocazional informații despre securitate IT și termene (de ex. NIS2). Opțional, dezabonare oricând.",
@@ -1394,7 +1394,7 @@ PACK = {
         "mehr": "Vedeți totul despre acest serviciu",
         "sending": "Se trimite …",
         "done_h": "Am primit",
-        "done_t": "Revenim în cel mult 24 de ore.",
+        "done_t": "Revenim în cel mult 24 de ore în zilele lucrătoare.",
         "err_kontakt": "Vă rugăm să introduceți o adresă de e-mail sau un număr de telefon.",
         "err_allg": "Nu a funcționat. Contactați-ne pe WhatsApp sau telefonic.",
         "ab": "de la",
@@ -1474,7 +1474,7 @@ PACK = {
         "leistung_ack_body": (
             "{anrede},\n\n"
             "vă mulțumim pentru cererea privind {thema}. A ajuns la noi și revenim "
-            "personal în cel mult 24 de ore.\n\n"
+            "personal în cel mult 24 de ore în zilele lucrătoare.\n\n"
             "Dacă este urgent, ne găsiți direct pe WhatsApp sau la telefon.\n\n"
             "Cu stimă\n{site}\n{url}\n"
         ),
