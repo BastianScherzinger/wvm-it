@@ -98,7 +98,7 @@ EINRICHTEN = {
 
         "cta_h": "Arbeitsplatz einrichten lassen",
         "cta_t": "Schreiben Sie kurz, um wie viele Geräte es geht und was darauf "
-                 "laufen soll. Antwort innerhalb von 24 Stunden.",
+                 "laufen soll. Antwort an Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -212,7 +212,7 @@ EINRICHTEN = {
 
         "cta_h": "Gerätewechsel anfragen",
         "cta_t": "Schreiben Sie kurz, wie viele Geräte getauscht werden und wie alt die "
-                 "bisherigen sind. Antwort innerhalb von 24 Stunden.",
+                 "bisherigen sind. Antwort an Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -302,7 +302,7 @@ EINRICHTEN = {
 
         "cta_h": "Umstellung anfragen",
         "cta_t": "Schreiben Sie kurz, wie viele Arbeitsplätze noch auf Windows 10 "
-                 "laufen. Antwort innerhalb von 24 Stunden.",
+                 "laufen. Antwort an Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -384,7 +384,7 @@ EINRICHTEN = {
 
         "cta_h": "Microsoft 365 anfragen",
         "cta_t": "Schreiben Sie kurz, wie viele Postfächer es werden und ob schon etwas "
-                 "besteht. Antwort innerhalb von 24 Stunden.",
+                 "besteht. Antwort an Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -478,7 +478,7 @@ EINRICHTEN = {
 
         "cta_h": "Server-Einrichtung anfragen",
         "cta_t": "Schreiben Sie kurz, wie viele Arbeitsplätze zugreifen und was auf dem "
-                 "Server laufen soll. Antwort innerhalb von 24 Stunden.",
+                 "Server laufen soll. Antwort an Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -559,7 +559,7 @@ EINRICHTEN = {
 
         "cta_h": "Netzwerk-Einrichtung anfragen",
         "cta_t": "Schreiben Sie kurz, wie groß die Fläche ist und wie viele Geräte ins "
-                 "Netz sollen. Antwort innerhalb von 24 Stunden.",
+                 "Netz sollen. Antwort an Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -651,7 +651,7 @@ EINRICHTEN = {
 
         "cta_h": "Firewall und VPN anfragen",
         "cta_t": "Schreiben Sie kurz, wie viele Personen von unterwegs arbeiten und "
-                 "welches Gerät heute im Einsatz ist. Antwort innerhalb von 24 Stunden.",
+                 "welches Gerät heute im Einsatz ist. Antwort an Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -742,7 +742,7 @@ EINRICHTEN = {
 
         "cta_h": "Loxone-Anlage anfragen",
         "cta_t": "Schreiben Sie kurz, was verbaut ist und was nicht mehr funktioniert. "
-                 "Antwort innerhalb von 24 Stunden.",
+                 "Antwort an Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -849,8 +849,8 @@ EINRICHTEN = {
 
         "cta_h": "Datensicherung einrichten anfragen",
         "cta_t": "Schreiben Sie kurz, welche Systeme heute laufen und wie lange der "
-                 "Betrieb im Ernstfall stillstehen darf. Antwort innerhalb von "
-                 "24 Stunden.",
+                 "Betrieb im Ernstfall stillstehen darf. Antwort an Werktagen "
+                 "innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 
@@ -955,8 +955,8 @@ EINRICHTEN = {
 
         "cta_h": "IT-Umzug anfragen",
         "cta_t": "Schreiben Sie kurz, wie viele Arbeitsplätze umziehen, ob ein "
-                 "Server dabei ist und wann der Umzug geplant ist. Antwort "
-                 "innerhalb von 24 Stunden.",
+                 "Server dabei ist und wann der Umzug geplant ist. Antwort an "
+                 "Werktagen innerhalb von 24 Stunden.",
         "problem_h": "Worum geht es?",
     },
 }

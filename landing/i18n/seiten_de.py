@@ -22,7 +22,7 @@ SEITEN = {
         "titel": "EDV-Betreuung Österreich & Deutschland ab 29 €/Mt | WVM-IT",
         "desc": "Externe IT-Abteilung für kleine Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std. per Fernwartung. Jetzt anfragen.",
         "h1": "EDV- und IT-Betreuung für Betriebe ohne eigene IT-Abteilung",
-        "kurz": "WVM-IT übernimmt die laufende EDV kleiner und mittlerer Betriebe in Österreich und Deutschland: Arbeitsplätze, Server, E-Mail, Drucker, Updates und Datensicherung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag ab 95 € je Stunde. Wir melden uns innerhalb von 24 Stunden und arbeiten überwiegend per Fernwartung — der Weg zu Ihnen führt über eine gesicherte Verbindung statt über die Autobahn.",
+        "kurz": "WVM-IT übernimmt die laufende EDV kleiner und mittlerer Betriebe in Österreich und Deutschland: Arbeitsplätze, Server, E-Mail, Drucker, Updates und Datensicherung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag ab 95 € je Stunde. Wir melden uns an Werktagen innerhalb von 24 Stunden und arbeiten überwiegend per Fernwartung — der Weg zu Ihnen führt über eine gesicherte Verbindung statt über die Autobahn.",
         "intro": "In den meisten Betrieben unter fünfzig Mitarbeitern gibt es keine IT-Abteilung. Es gibt jemanden, der sich „ein bisschen auskennt“ — und der eigentlich etwas anderes zu tun hätte. Solange nichts passiert, funktioniert das. Es fällt erst auf, wenn der Drucker im Büro streikt, während gleichzeitig die Angebote raus müssen, oder wenn nach einem Windows-Update ein Programm nicht mehr startet, das der ganze Betrieb braucht. Genau diese Lücke schließen wir: Sie bekommen eine Nummer, eine E-Mail-Adresse und einen festen Ansprechpartner, der weiß, wie Ihre Technik aufgebaut ist. Der Ablauf in einem Kleinbetrieb ist bewusst schlank gehalten — drei Schritte, damit kein Vertrag entsteht, bevor beide Seiten wissen, worauf sie sich einlassen. Zuerst ein kurzes Gespräch am Telefon (rund zwanzig Minuten), in dem wir uns anhören, wie viele Arbeitsplätze und Server im Haus sind, was heute stört und wer sich bisher gekümmert hat. Danach eine Bestandsaufnahme per Fernwartung oder — wenn ein Netz erst dokumentiert werden muss — vor Ort, an deren Ende Sie eine schriftliche Liste dessen bekommen, was heute da ist und was uns Sorgen macht. Erst dann ein Angebot mit Zahlen: was laufend kostet, steht als Monatsbetrag, was einmalig anfällt, als Summe. Lohnt sich etwas nicht, sagen wir das im Gespräch — auch, wenn dabei weniger für uns herauskommt. Die Übernahme läuft danach in Abschnitten (Sicherung zuerst, dann Server und Zugänge, dann die Arbeitsplätze) und stört den laufenden Betrieb bewusst nicht.",
         "problem_h": "Was in Kleinbetrieben ohne eigene IT schiefläuft",
         "probleme": [
@@ -65,7 +65,7 @@ SEITEN = {
              "a": "Selten. Unterhalb von etwa fünf Arbeitsplätzen ist die Abrechnung nach Aufwand ehrlicher: 95 € je Stunde per Fernwartung, ohne Vertrag, ohne Mindestlaufzeit. Für den einzelnen Fall gibt es <a href=\"/it-hilfe/\">/it-hilfe/</a>. Wir sagen Ihnen im Erstgespräch, welcher Weg für Ihre Größe günstiger ist — auch wenn dabei weniger für uns herauskommt."},
         ],
         "cta_h": "Wo drückt es gerade?",
-        "cta_t": "Beschreiben Sie in einem Satz, was nicht läuft. Wir antworten innerhalb von 24 Stunden mit einer ehrlichen Einschätzung — auch dann, wenn die Antwort lautet, dass es sich nicht lohnt.",
+        "cta_t": "Beschreiben Sie in einem Satz, was nicht läuft. Wir antworten an Werktagen innerhalb von 24 Stunden mit einer ehrlichen Einschätzung — auch dann, wenn die Antwort lautet, dass es sich nicht lohnt.",
     },
 
     "server-datensicherung": {
@@ -200,7 +200,7 @@ SEITEN = {
              "a": "Er liefert einen großen Teil der technischen Angaben, die Sie für Ihr Verarbeitungsverzeichnis und Ihre technisch-organisatorischen Maßnahmen ohnehin dokumentieren müssen. Eine Rechtsberatung ersetzt er nicht."},
         ],
         "cta_h": "Einmal systematisch nachsehen lassen",
-        "cta_t": "Ein Satz genügt: Wie viele Arbeitsplätze, wie viele Server, gibt es schon eine Sicherung? Wir melden uns innerhalb von 24 Stunden mit Ablauf und Preis.",
+        "cta_t": "Ein Satz genügt: Wie viele Arbeitsplätze, wie viele Server, gibt es schon eine Sicherung? Wir melden uns an Werktagen innerhalb von 24 Stunden mit Ablauf und Preis.",
     },
 
     # ══ Sichtbarkeit ══════════════════════════════════════════════════════════
@@ -246,7 +246,7 @@ SEITEN = {
              "a": "Manchmal ja, manchmal nicht. Wir sehen uns die bestehende Seite an und sagen Ihnen, ob eine Überarbeitung reicht oder ein Neubau günstiger kommt. Wenn die vorhandene Seite ihren Zweck erfüllt, sagen wir auch das."},
         ],
         "cta_h": "Erst ansehen, dann entscheiden",
-        "cta_t": "Schreiben Sie in einem Satz, worum es geht. Sie bekommen die kostenlose Beispielseite und innerhalb von 24 Stunden eine Rückmeldung.",
+        "cta_t": "Schreiben Sie in einem Satz, worum es geht. Sie bekommen die kostenlose Beispielseite und an Werktagen innerhalb von 24 Stunden eine Rückmeldung.",
     },
 
     "seo-betreuung": {
@@ -291,7 +291,7 @@ SEITEN = {
              "a": "Rümpelwerk Mitteldeutschland: Website, SEO/GEO und Google Ads betreuen wir dort laufend, mit eigenen Seiten je Leistung und je Region. Über diese Seite kommen echte Aufträge herein. Umgesetzt gemeinsam mit unserem Partner PyStore."},
         ],
         "cta_h": "Wonach sollen Kunden Sie finden?",
-        "cta_t": "Nennen Sie uns zwei, drei Suchbegriffe, unter denen Sie gefunden werden wollen. Wir sehen nach, wie realistisch das ist, und antworten innerhalb von 24 Stunden.",
+        "cta_t": "Nennen Sie uns zwei, drei Suchbegriffe, unter denen Sie gefunden werden wollen. Wir sehen nach, wie realistisch das ist, und antworten an Werktagen innerhalb von 24 Stunden.",
     },
 
     "google-ads": {
@@ -336,7 +336,7 @@ SEITEN = {
              "a": "Jeden Monat: ein Bericht in Klartext mit Ausgaben, Anfragen, Kosten je Anfrage und dem, was wir geändert haben. Ohne Fachwörter, die man nachschlagen muss."},
         ],
         "cta_h": "Wofür sollen Anzeigen laufen?",
-        "cta_t": "Sagen Sie uns, was Sie verkaufen und in welcher Region. Wir schätzen Klickpreise und mögliche Anfragen und melden uns innerhalb von 24 Stunden.",
+        "cta_t": "Sagen Sie uns, was Sie verkaufen und in welcher Region. Wir schätzen Klickpreise und mögliche Anfragen und melden uns an Werktagen innerhalb von 24 Stunden.",
     },
 
     "hosting-wartung": {
@@ -381,7 +381,7 @@ SEITEN = {
              "a": "Sie bekommen die vollständige Seite als Datensicherung und alle Zugänge. Die Domain bleibt Ihre und wird auf Wunsch zum neuen Anbieter übertragen."},
         ],
         "cta_h": "Läuft Ihre Seite schon irgendwo?",
-        "cta_t": "Nennen Sie uns die Adresse. Wir sehen nach, worauf sie läuft und was ein Umzug bedeuten würde — Antwort innerhalb von 24 Stunden.",
+        "cta_t": "Nennen Sie uns die Adresse. Wir sehen nach, worauf sie läuft und was ein Umzug bedeuten würde — Antwort an Werktagen innerhalb von 24 Stunden.",
     },
 
     "ki-automatisierung": {
@@ -426,7 +426,7 @@ SEITEN = {
              "a": "Deshalb starten wir klein und lassen jeden Schritt erst mitlaufen, bevor er selbst entscheidet. Sie sehen jederzeit, was automatisch passiert ist, und können es abschalten."},
         ],
         "cta_h": "Was soll automatisch laufen?",
-        "cta_t": "Beschreiben Sie den Ablauf, der Sie am meisten Zeit kostet. Wir sagen Ihnen, ob und wie er sich automatisieren lässt — innerhalb von 24 Stunden.",
+        "cta_t": "Beschreiben Sie den Ablauf, der Sie am meisten Zeit kostet. Wir sagen Ihnen, ob und wie er sich automatisieren lässt — an Werktagen innerhalb von 24 Stunden.",
     },
 
     # ══ Technik vor Ort ═══════════════════════════════════════════════════════
@@ -517,7 +517,7 @@ SEITEN = {
              "a": "Ein Besprechungsraum ist üblicherweise an einem bis zwei Tagen fertig, sofern die Verkabelung vorhanden ist. Muss neu verlegt werden, kommt der Elektroteil dazu — das sagen wir nach der Besichtigung."},
         ],
         "cta_h": "Um welchen Raum geht es?",
-        "cta_t": "Größe, Nutzung und was heute schon da ist — mehr brauchen wir für eine erste Einschätzung nicht. Antwort innerhalb von 24 Stunden.",
+        "cta_t": "Größe, Nutzung und was heute schon da ist — mehr brauchen wir für eine erste Einschätzung nicht. Antwort an Werktagen innerhalb von 24 Stunden.",
     },
 
     "veranstaltungstechnik": {
@@ -525,7 +525,7 @@ SEITEN = {
         "titel": "Video-, Ton- & Bühnentechnik in Oberösterreich | WVM-IT",
         "desc": "Veranstaltungstechnik für Säle, Vereine, Gemeinden und Hotels: Ton, Licht, Video und Bühne. Vor Ort ab 120 €/Std. Jetzt anfragen.",
         "h1": "Video-, Ton- und Bühnentechnik für Säle und Veranstaltungen",
-        "kurz": "WVM-IT plant, installiert und betreut Veranstaltungstechnik in Oberösterreich und darüber hinaus: Beschallung, Licht, Video- und Bühnentechnik für Säle, Vereinsheime, Gemeindezentren, Hotels und Firmenveranstaltungen. Fest eingebaute Anlagen kalkulieren wir projektbezogen nach Besichtigung, Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab, sofern kein Festpreis vereinbart ist. Auf eine Anfrage antworten wir innerhalb von 24 Stunden.",
+        "kurz": "WVM-IT plant, installiert und betreut Veranstaltungstechnik in Oberösterreich und darüber hinaus: Beschallung, Licht, Video- und Bühnentechnik für Säle, Vereinsheime, Gemeindezentren, Hotels und Firmenveranstaltungen. Fest eingebaute Anlagen kalkulieren wir projektbezogen nach Besichtigung, Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab, sofern kein Festpreis vereinbart ist. Auf eine Anfrage antworten wir an Werktagen innerhalb von 24 Stunden.",
         "intro": "In den meisten Sälen steht Technik, die einmal jemand aufgebaut hat und die seitdem niemand mehr versteht. Es gibt drei Fernbedienungen, zwei davon ohne Batterien, und einen Mischer, an dem nur ein bestimmter Mensch etwas verstellen darf. Solange dieser Mensch Zeit hat, geht das gut. Der Abend, an dem es schiefgeht, ist immer der Abend, an dem hundert Leute im Raum sitzen. Wir bauen Anlagen so, dass sie auch jemand bedienen kann, der sie zum ersten Mal sieht — und dokumentieren, was wo angeschlossen ist.",
         "problem_h": "Woran es in Sälen meistens hängt",
         "probleme": [
@@ -567,7 +567,7 @@ SEITEN = {
              "a": "Unser Sitz ist in Lenzing im Bezirk Vöcklabruck. Im Salzkammergut, im Raum Vöcklabruck, Gmunden, Wels, Linz und Salzburg sind wir regelmäßig unterwegs; darüber hinaus rechnen wir die Anfahrt offen aus und nennen sie vor der Zusage."},
         ],
         "cta_h": "Was findet bei Ihnen statt?",
-        "cta_t": "Saalgröße, die üblichen Veranstaltungen und was heute schon an Technik da ist — mehr brauchen wir für eine erste Einschätzung nicht. Antwort innerhalb von 24 Stunden.",
+        "cta_t": "Saalgröße, die üblichen Veranstaltungen und was heute schon an Technik da ist — mehr brauchen wir für eine erste Einschätzung nicht. Antwort an Werktagen innerhalb von 24 Stunden.",
     },
 
     "it-beratung": {
@@ -575,7 +575,7 @@ SEITEN = {
         "titel": "IT-Beratung ab 95 €/Std | WVM-IT",
         "desc": "IT-Beratung ohne Herstellerbindung: Bestandsaufnahme, Konzept, Angebotsvergleich und Begleitung — 95 € je Stunde. Jetzt unverbindlich anfragen.",
         "h1": "IT-Beratung für Betriebe, die eine Entscheidung treffen müssen",
-        "kurz": "WVM-IT berät kleine und mittlere Betriebe in Österreich und Deutschland vor Investitionen in IT und Gebäudetechnik: Bestandsaufnahme, schriftliches Konzept, Vergleich fremder Angebote und Begleitung bei der Umsetzung. Die Beratung kostet 95 € je Stunde, Termine vor Ort 120 € je Stunde zuzüglich Anfahrt. Auf Anfragen antworten wir innerhalb von 24 Stunden — auch dann, wenn die ehrliche Antwort lautet, dass sich die Investition nicht lohnt.",
+        "kurz": "WVM-IT berät kleine und mittlere Betriebe in Österreich und Deutschland vor Investitionen in IT und Gebäudetechnik: Bestandsaufnahme, schriftliches Konzept, Vergleich fremder Angebote und Begleitung bei der Umsetzung. Die Beratung kostet 95 € je Stunde, Termine vor Ort 120 € je Stunde zuzüglich Anfahrt. Auf Anfragen antworten wir an Werktagen innerhalb von 24 Stunden — auch dann, wenn die ehrliche Antwort lautet, dass sich die Investition nicht lohnt.",
         "intro": "Die teuersten IT-Entscheidungen sind selten die falschen Geräte. Es sind die Entscheidungen, die niemand getroffen hat: der Server, der noch ein Jahr mitläuft, weil keiner weiß, was danach kommt; die Software, die ausgesucht wurde, weil ein Anbieter zuerst angerufen hat; die zwei Angebote, die man nicht vergleichen kann, weil sie verschiedene Dinge beschreiben. Beratung heißt hier nicht Präsentation. Sie heißt: jemand sieht sich an, was Sie haben, hört zu, was Sie vorhaben, und schreibt auf, was das für Ihre Technik bedeutet.",
         "problem_h": "Wann eine Beratung sich rechnet",
         "probleme": [
@@ -616,7 +616,7 @@ SEITEN = {
              "a": "Dann steht das so im Konzept. Es kommt regelmäßig vor, dass eine Anlage noch zwei Jahre trägt und das Geld anderswo besser aufgehoben ist. Eine Beratung, die immer zu einer Investition führt, ist keine."},
         ],
         "cta_h": "Vor welcher Entscheidung stehen Sie?",
-        "cta_t": "Beschreiben Sie in zwei Sätzen, was ansteht — ein auslaufender Server, ein Umbau, zwei Angebote, die Sie nicht vergleichen können. Wir melden uns innerhalb von 24 Stunden mit einer Einschätzung, ob und wie viel Beratung das braucht.",
+        "cta_t": "Beschreiben Sie in zwei Sätzen, was ansteht — ein auslaufender Server, ein Umbau, zwei Angebote, die Sie nicht vergleichen können. Wir melden uns an Werktagen innerhalb von 24 Stunden mit einer Einschätzung, ob und wie viel Beratung das braucht.",
     },
 
     # ══ Runde 2 (24.09.2026) ══════════════════════════════════════════════════
@@ -666,6 +666,6 @@ SEITEN = {
              "a": "Sie bekommen die vollständige Dokumentation und alle Zugänge. Wir bauen bewusst nichts, das nur mit uns weitergeht — weder eigene Software noch Zugänge, die nur wir haben. Die Frist steht in unseren AGB (ein Monat zum Quartalsende)."},
         ],
         "cta_h": "Größere IT-Betreuung anfragen",
-        "cta_t": "Beschreiben Sie kurz, wie viele Arbeitsplätze und Standorte Sie haben und was heute nicht rundläuft. Wir melden uns innerhalb von 24 Stunden mit Vorschlag zur Bestandsaufnahme und einem Rahmen zu den Kosten.",
+        "cta_t": "Beschreiben Sie kurz, wie viele Arbeitsplätze und Standorte Sie haben und was heute nicht rundläuft. Wir melden uns an Werktagen innerhalb von 24 Stunden mit Vorschlag zur Bestandsaufnahme und einem Rahmen zu den Kosten.",
     },
 }

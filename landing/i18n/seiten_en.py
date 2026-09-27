@@ -15,7 +15,7 @@ SEITEN = {
         "titel": "IT support for small businesses from €29/month | WVM-IT",
         "desc": "IT support for small businesses in Austria and Germany: managed IT services from €29 per workstation and month, remote support €95/hour. Request a quote.",
         "h1": "IT support for businesses without an IT department",
-        "kurz": "WVM-IT takes on the day-to-day IT of small and mid-sized businesses in Austria and Germany: workstations, servers, email, printers, updates and backups. Ongoing support costs from €29 per workstation and month, individual help without a contract from €95 per hour. We answer within 24 hours and work mostly remotely — the route to you runs over a secured connection rather than the motorway.",
+        "kurz": "WVM-IT takes on the day-to-day IT of small and mid-sized businesses in Austria and Germany: workstations, servers, email, printers, updates and backups. Ongoing support costs from €29 per workstation and month, individual help without a contract from €95 per hour. We answer within 24 hours on working days and work mostly remotely — the route to you runs over a secured connection rather than the motorway.",
         "intro": "In most businesses under fifty staff there is no IT department. There is somebody who “knows a bit about computers” — and who actually has another job to do. As long as nothing happens, that works. It shows the moment the office printer stops while quotes have to go out, or when a program the whole company depends on refuses to start after a Windows update. That is the gap we close: you get a number, an email address and one contact who knows how your technology is put together.",
         "problem_h": "What goes wrong in small businesses without their own IT",
         "probleme": [
@@ -58,7 +58,7 @@ SEITEN = {
              "a": "Rarely. Below about five workstations, billing by the hour is more honest: €95 per hour via remote maintenance, no contract, no minimum term. For the individual case there is <a href=\"/en/it-hilfe/\">/en/it-hilfe/</a>. We tell you in the first conversation which route is cheaper for your size — even when it earns us less."},
         ],
         "cta_h": "Where does it hurt right now?",
-        "cta_t": "Describe in one sentence what is not working. We answer within 24 hours with an honest assessment — including when the answer is that it is not worth doing.",
+        "cta_t": "Describe in one sentence what is not working. We answer within 24 hours on working days with an honest assessment — including when the answer is that it is not worth doing.",
     },
 
     "server-datensicherung": {
@@ -193,7 +193,7 @@ SEITEN = {
              "a": "It supplies a large part of the technical details you have to document anyway for your record of processing activities and your technical and organisational measures. It does not replace legal advice."},
         ],
         "cta_h": "Have somebody look properly, once",
-        "cta_t": "One sentence is enough: how many workstations, how many servers, is there a backup already? We reply within 24 hours with the procedure and the price.",
+        "cta_t": "One sentence is enough: how many workstations, how many servers, is there a backup already? We reply within 24 hours on working days with the procedure and the price.",
     },
 
     # ══ Visibility ════════════════════════════════════════════════════════════
@@ -239,7 +239,7 @@ SEITEN = {
              "a": "Sometimes yes, sometimes no. We look at the existing site and tell you whether a revision is enough or a rebuild comes out cheaper. If the current site does its job, we say that too."},
         ],
         "cta_h": "Look first, decide after",
-        "cta_t": "Write one sentence about what it is about. You get the free sample page and a reply within 24 hours.",
+        "cta_t": "Write one sentence about what it is about. You get the free sample page and a reply within 24 hours on working days.",
     },
 
     "seo-betreuung": {
@@ -284,7 +284,7 @@ SEITEN = {
              "a": "Rümpelwerk Mitteldeutschland: we run the website, SEO/GEO and Google Ads there, with a dedicated page per service and per region. Real jobs come in through that site. Delivered together with our partner PyStore."},
         ],
         "cta_h": "What should customers find you for?",
-        "cta_t": "Give us two or three search terms you want to be found under. We check how realistic that is and reply within 24 hours.",
+        "cta_t": "Give us two or three search terms you want to be found under. We check how realistic that is and reply within 24 hours on working days.",
     },
 
     "google-ads": {
@@ -329,7 +329,7 @@ SEITEN = {
              "a": "Every month: a plain-language report with spend, enquiries, cost per enquiry and what we changed. Without jargon you have to look up."},
         ],
         "cta_h": "What should the ads promote?",
-        "cta_t": "Tell us what you sell and in which region. We estimate click prices and possible enquiries and reply within 24 hours.",
+        "cta_t": "Tell us what you sell and in which region. We estimate click prices and possible enquiries and reply within 24 hours on working days.",
     },
 
     "hosting-wartung": {
@@ -374,7 +374,7 @@ SEITEN = {
              "a": "You receive the complete site as a backup and all credentials. The domain stays yours and is transferred to the new provider on request."},
         ],
         "cta_h": "Is your site already running somewhere?",
-        "cta_t": "Send us the address. We will check what it runs on and what a move would involve — a reply within 24 hours.",
+        "cta_t": "Send us the address. We will check what it runs on and what a move would involve — a reply within 24 hours on working days.",
     },
 
     "ki-automatisierung": {
@@ -419,7 +419,7 @@ SEITEN = {
              "a": "That is why we start small and let every step run alongside before it decides on its own. You can see what happened automatically at any time and can switch it off."},
         ],
         "cta_h": "What should run automatically?",
-        "cta_t": "Describe the process that costs you the most time. We will tell you whether and how it can be automated — within 24 hours.",
+        "cta_t": "Describe the process that costs you the most time. We will tell you whether and how it can be automated — within 24 hours on working days.",
     },
 
     # ══ On site ═══════════════════════════════════════════════════════════════
@@ -510,7 +510,7 @@ SEITEN = {
              "a": "A meeting room is usually finished in one to two days, provided the cabling is in place. If new cabling is needed, the electrical work comes on top — we say so after the site visit."},
         ],
         "cta_h": "Which room is it about?",
-        "cta_t": "Size, use and what is already there — that is all we need for a first assessment. A reply within 24 hours.",
+        "cta_t": "Size, use and what is already there — that is all we need for a first assessment. A reply within 24 hours on working days.",
     },
 
     "veranstaltungstechnik": {
@@ -518,7 +518,7 @@ SEITEN = {
         "titel": "Video, sound & stage technology in Austria | WVM-IT",
         "desc": "Event technology for halls, clubs, municipalities and hotels: sound, light, video and stage. On-site from €120/hr. Request a quote.",
         "h1": "Video, sound and stage technology for halls and events",
-        "kurz": "WVM-IT plans, installs and supports event technology in Upper Austria and beyond: sound, light, video and stage technology for halls, clubhouses, community centres, hotels and company events. Fixed installations are quoted per project after a site visit; on-site work is billed at €120 per hour plus travel unless a fixed price is agreed. We reply to enquiries within 24 hours.",
+        "kurz": "WVM-IT plans, installs and supports event technology in Upper Austria and beyond: sound, light, video and stage technology for halls, clubhouses, community centres, hotels and company events. Fixed installations are quoted per project after a site visit; on-site work is billed at €120 per hour plus travel unless a fixed price is agreed. We reply to enquiries within 24 hours on working days.",
         "intro": "In most halls there is technology somebody once set up and that nobody has really understood since. There are three remote controls, two of them without batteries, and a mixer that only one particular person is allowed to touch. As long as that person has time, it works. The evening it goes wrong is always the evening a hundred people are sitting in the room. We build systems somebody can operate the first time they see them — and document what is connected where.",
         "problem_h": "What usually holds a hall back",
         "probleme": [
@@ -560,7 +560,7 @@ SEITEN = {
              "a": "We're based in Lenzing in the Vöcklabruck district. We're regularly on the road in the Salzkammergut and around Vöcklabruck, Gmunden, Wels, Linz and Salzburg; beyond that we calculate travel openly and state it before you commit."},
         ],
         "cta_h": "What's happening at your venue?",
-        "cta_t": "Hall size, the usual events and what technology is already there — that is all we need for a first assessment. A reply within 24 hours.",
+        "cta_t": "Hall size, the usual events and what technology is already there — that is all we need for a first assessment. A reply within 24 hours on working days.",
     },
 
     "it-beratung": {
@@ -568,7 +568,7 @@ SEITEN = {
         "titel": "IT consulting from €95/hr | WVM-IT",
         "desc": "IT consulting with no vendor ties: assessment, concept, quote comparison and support — €95 per hour. Request a free consultation now.",
         "h1": "IT consulting for businesses that need to make a decision",
-        "kurz": "WVM-IT advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. Consulting costs €95 per hour, on-site appointments €120 per hour plus travel. We reply to enquiries within 24 hours — even when the honest answer is that the investment isn't worth it.",
+        "kurz": "WVM-IT advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. Consulting costs €95 per hour, on-site appointments €120 per hour plus travel. We reply to enquiries within 24 hours on working days — even when the honest answer is that the investment isn't worth it.",
         "intro": "The most expensive IT decisions are rarely the wrong devices. They're the decisions nobody made: the server that keeps running for another year because nobody knows what comes next; the software chosen because one vendor called first; the two quotes you can't compare because they describe different things. Here, consulting doesn't mean a presentation. It means someone looks at what you have, listens to what you're planning, and writes down what that means for your technology.",
         "problem_h": "When consulting pays off",
         "probleme": [
@@ -609,7 +609,7 @@ SEITEN = {
              "a": "Then that's what the concept says. It happens regularly that a system still has two good years left and the money is better spent elsewhere. Consulting that always leads to an investment isn't consulting."},
         ],
         "cta_h": "What decision are you facing?",
-        "cta_t": "Describe in two sentences what's coming up — an ageing server, a move, two quotes you can't compare. We'll get back to you within 24 hours with an assessment of whether and how much consulting that needs.",
+        "cta_t": "Describe in two sentences what's coming up — an ageing server, a move, two quotes you can't compare. We'll get back to you within 24 hours on working days with an assessment of whether and how much consulting that needs.",
     },
 
     # ══ Round 2 (24.09.2026) ══════════════════════════════════════════════════
@@ -659,6 +659,6 @@ SEITEN = {
              "a": "You get the complete documentation and all access. We deliberately build nothing that only works with us — no proprietary software, no accounts only we have. The notice period is in our terms (one month to the end of the quarter)."},
         ],
         "cta_h": "Ask about IT support for a larger business",
-        "cta_t": "Tell us briefly how many workstations and sites you have and what is not running smoothly today. We reply within 24 hours with a proposal for the audit and a cost frame.",
+        "cta_t": "Tell us briefly how many workstations and sites you have and what is not running smoothly today. We reply within 24 hours on working days with a proposal for the audit and a cost frame.",
     },
 }
