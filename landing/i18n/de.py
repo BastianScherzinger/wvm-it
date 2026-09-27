@@ -70,6 +70,11 @@ PACK = {
     },
     "hero": {
         "robot_alt": "Interaktiver 3D-Assistent von WVM-IT",
+        # IS25 (27.09.2026): eigene Alt-Texte statt des blossen Namens fuer die
+        # beiden Fotos derselben Aufnahme im Hero — Rundbild im Vertrauensband
+        # und grosses Portraet daneben zeigen dasselbe Bild in anderem Zweck.
+        "person_alt": "Florin Feier, Inhaber von WVM-IT",
+        "foto_alt": "Florin Feier lächelt im Porträtfoto, Inhaber von WVM-IT",
         "eyebrow": "EDV & IT-Betreuung · Österreich und Deutschland",
         # Design B1 (25.09.2026): H1 als einfacher Satz, was Florin macht;
         # "IT-Betreuung" bleibt Suchbegriff in der H1. Begründung in
@@ -368,6 +373,8 @@ PACK = {
     "kontakt": {
         "h": "Reden wir über Ihre IT.",
         "lead": "Unverbindlich und kostenlos. Wir melden uns an Werktagen innerhalb von 24 Stunden mit einer ersten Einschätzung. Wählen Sie einfach Ihren Weg.",
+        # IS25 (27.09.2026): eigener Alt-Text statt des blossen Namens.
+        "person_alt": "Florin Feier, Ihr Ansprechpartner bei WVM-IT",
         "m_call": "Anrufen",
         "m_wa": "WhatsApp", "m_wa_sub": "Schnell schreiben",
         "m_mail": "E-Mail",
@@ -1098,6 +1105,8 @@ PACK = {
         # ist. Stand bis 25.09.2026 in einem ersten, gleichnamigen Block, den dieser
         # hier still überschrieb (EIG91) — der Rest davon wurde nirgends gelesen.
         "badge_fallback": "IT · service · consulting",
+        # IS25 (27.09.2026): eigener Alt-Text statt des blossen Namens.
+        "foto_alt": "Florin Feier, Inhaber und Ansprechpartner von WVM-IT",
         "titel": "Über uns: Florin Feier, Lenzing (OÖ) | WVM-IT",
         "desc": "Wer hinter WVM-IT steht, wie wir arbeiten und was wir bewusst nicht tun. Ein Ansprechpartner, Sitz in Oberösterreich. Jetzt kennenlernen.",
         "h1": "Wer hinter WVM-IT steht",

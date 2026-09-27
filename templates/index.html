@@ -25,7 +25,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           {% if c.founder_image %}
           <img class="hero-person-bild" src="{% static 'img/florin_320.webp' %}"
                srcset="{% static 'img/florin_320.webp' %} 320w, {{ c.founder_image }} 640w"
-               sizes="64px" alt="{{ c.inhaber_name }}"
+               sizes="64px" alt="{{ t.hero.person_alt|safe }}"
                width="64" height="64" decoding="async">
           {% endif %}
           <figcaption class="hero-person-text">
@@ -113,7 +113,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           <img class="hero-foto" src="{{ c.founder_image }}"
                srcset="{% static 'img/florin_480.webp' %} 480w, {{ c.founder_image }} 640w"
                sizes="(max-width:1100px) 34vw, 416px"
-               width="640" height="640" alt="{{ c.inhaber_name }}" decoding="async">
+               width="640" height="640" alt="{{ t.hero.foto_alt|safe }}" decoding="async">
         </picture>
         <figcaption>
           <span class="hero-foto-name">{{ t.hero.person_h|safe }} · {{ t.hero.person_ort|safe }}</span>
@@ -763,7 +763,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       <div class="kontakt-info" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.kontakt|safe }}</p>
         {% if c.founder_image %}
-        <p class="kontakt-person"><img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="72px" width="72" height="72" loading="lazy" alt="{{ c.inhaber_name }}"></p>
+        <p class="kontakt-person"><img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="72px" width="72" height="72" loading="lazy" alt="{{ t.kontakt.person_alt|safe }}"></p>
         {% endif %}
         <h2 class="section-t">{{ t.kontakt.h|safe }}</h2>
         <p class="section-lead">{{ t.kontakt.lead|safe }}</p>
