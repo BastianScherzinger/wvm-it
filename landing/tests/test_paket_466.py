@@ -10,10 +10,23 @@ from pathlib import Path
 from django.conf import settings
 from django.test import SimpleTestCase
 
-from landing import i18n
+from landing import i18n, views
 
 _BASIS = Path(settings.BASE_DIR)
 _INHALT = json.loads((_BASIS / "content.json").read_text(encoding="utf-8"))
+
+
+class IpZaehlerFristenStehenInDerDatenschutzerklaerungEIG186Test(SimpleTestCase):
+    """Jede Frist aus ``_LIMITS`` muss im Text vorkommen — sonst verspricht er zu wenig oder zu viel."""
+
+    BEZEICHNUNG = {15 * 60: "15 Minuten", 60 * 60: "eine Stunde"}
+
+    def test_jede_frist_ist_benannt(self):
+        text = _INHALT["datenschutz"]
+        for bereich, (_, sekunden) in views._LIMITS.items():
+            with self.subTest(bereich=bereich):
+                self.assertIn(sekunden, self.BEZEICHNUNG, "neue Frist: Bezeichnung und Text ergänzen")
+                self.assertIn(self.BEZEICHNUNG[sekunden], text)
 
 
 class AntwortzeitNurAnWerktagenEIG188Test(SimpleTestCase):
