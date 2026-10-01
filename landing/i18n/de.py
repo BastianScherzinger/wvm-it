@@ -910,7 +910,7 @@ PACK = {
     },
     "hub": {
         "titel": "IT-Leistungen mit offenen Preisen ab 29 €/Monat | WVM-IT",
-        "desc": "EDV-Betreuung ab 29 €/Monat je Arbeitsplatz, Hilfe ohne Vertrag 95 €/Std., Einrichtung ab 190 €, Webseiten ab 350 € — in Österreich und Deutschland. Jetzt anfragen.",
+        "desc": "EDV-Betreuung ab 29 €/Monat je Arbeitsplatz, Hilfe ohne Vertrag 95 €/Std., Einrichtung ab 190 €, Webseiten ab 350 € in AT und DE. Jetzt anfragen.",
         "h1": "Was WVM-IT für Betriebe übernimmt",
         "kurz": "WVM-IT betreut die EDV kleiner und mittlerer Betriebe in Österreich und Deutschland und übernimmt zusätzlich alles, was digital sichtbar macht: Webseiten, SEO, Google Ads und Automatisierung. Der Schwerpunkt liegt auf laufender IT-Betreuung ab 29 € je Arbeitsplatz und Monat, überwiegend per Fernwartung. Gebäude- und Veranstaltungstechnik kommen projektbezogen vor Ort dazu. Alle vierzehn Leistungen laufen über denselben Ansprechpartner und dieselbe Preisliste, unabhängig davon, ob es um einen einzelnen Arbeitsplatz oder um ein größeres Projekt geht.",
         "intro": "{anzahl} Leistungen, drei Bereiche – und ein Ansprechpartner für alle. Was Sie hier finden, ist bewusst keine Liste von Schlagworten: Zu jeder Leistung gibt es eine eigene Seite mit dem, was enthalten ist, wie es abläuft und was es kostet. Wenn Sie nicht sicher sind, wo Sie anfangen sollen: EDV und IT passt, wenn eine laufende Technik betreut werden soll – Arbeitsplätze, Server, Datensicherung, Sicherheit. Sichtbarkeit und Web passt, wenn Kundschaft Sie online finden oder ein Auftritt entstehen soll. Technik vor Ort passt, sobald etwas verkabelt, aufgebaut oder eingemessen werden muss. Eine Zusammenarbeit beginnt in den meisten Fällen gleich: mit einer kurzen Bestandsaufnahme dessen, was heute schon da ist, und einer Einschätzung, was sich davon per Fernwartung erledigen lässt und was einen Termin vor Ort braucht. Arbeitsplätze, Server, E-Mail, Updates und die Datensicherung laufen fast immer aus der Ferne; Verkabelung, Hardware-Einbau und Vor-Ort-Technik nicht. Die genannten Preise sind Richtpreise, netto zzgl. USt.",
@@ -981,7 +981,7 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "Was kostet IT-Betreuung? Alle Preise ab 29 €/Monat | WVM-IT",
-        "desc": "Was IT-Betreuung kostet, offen: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE. Angebot anfordern.",
+        "desc": "Was IT-Betreuung kostet: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE. Angebot anfordern.",
         "h1": "Was kostet das? Alle Preise auf einer Seite",
         "kurz": "Die laufende IT-Betreuung bei WVM-IT kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
         "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt – und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",

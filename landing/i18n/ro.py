@@ -26,7 +26,7 @@ PACK = {
         "firmen_desc": "WVM-IT conectează oamenii cu tehnologia informației. De la sediul nostru din Lenzing, Austria Superioară, ne ocupăm de firme și de clienți privați cu soluții IT și digitale dintr-o singură sursă: stații de lucru, rețele și securitate IT, site-uri web profesionale, găzduire și SEO, automatizare cu inteligență artificială, smart home și automatizarea clădirilor, precum și tehnică de conferință, video, sunet și evenimente. Activitatea curentă se desfășoară în mare parte prin mentenanță la distanță, în toată Austria și Germania; lucrările la fața locului acoperă zona din jurul orașelor Vöcklabruck, Attersee, Gmunden, Wels, Linz și Salzburg. Tehnologia trebuie să fie ușor de înțeles, să funcționeze fiabil și să aducă un beneficiu real — de aceea oferim consiliere personală, comunicare clară și o persoană de contact fixă.",
         "og_image_alt_suffix": "IT, tehnică și digital pentru firme",
         "angebot_title": "Oferta în 3 minute, prețul pe loc",
-        "angebot_desc": "Atingeți ce vă trebuie și vedeți prețul în mai puțin de un minut: administrare IT de la 29 €/lună, site de la 350 €, SEO de la 149 €/lună. Gratuit și fără obligații.",
+        "angebot_desc": "Atingeți ce vă trebuie și vedeți prețul într-un minut: administrare IT de la 29 €/lună, site de la 350 €, SEO de la 149 €/lună. Gratuit și fără obligații.",
         "angebot_og_desc": "Alcătuiți site-uri web, AI, automatizări și altele în câțiva pași și vedeți prețul orientativ imediat.",
     },
     "faq": {
@@ -863,7 +863,7 @@ PACK = {
     },
     "hub": {
         "titel": "Servicii IT cu prețuri afișate, de la 29 €/lună | WVM-IT",
-        "desc": "Administrare IT de la 29 €/lună pe stație, ajutor fără contract 95 €/oră, configurare de la 190 €, site-uri de la 350 € — în Austria și Germania. Cereți o ofertă.",
+        "desc": "Administrare IT de la 29 €/lună pe stație, ajutor fără contract 95 €/oră, configurare de la 190 €, site-uri de la 350 € în AT și DE. Cereți o ofertă.",
         "h1": "Ce preia WVM-IT pentru firme",
         "kurz": "WVM-IT administrează IT-ul firmelor mici și mijlocii din Austria și Germania și preia în plus tot ce le face vizibile: site-uri, SEO, Google Ads și automatizare. Accentul este pe administrarea IT curentă de la 29 € per post de lucru și lună, prestată în cea mai mare parte la distanță. Automatizarea clădirilor și tehnica pentru evenimente se adaugă pe proiect, la fața locului. Toate cele paisprezece servicii trec prin aceeași persoană de contact și aceeași listă de prețuri, fie că este vorba de un singur post de lucru, fie de un proiect mai mare.",
         "intro": "{anzahl} servicii, trei domenii – și o singură persoană de contact pentru toate. Ce găsiți aici nu este intenționat o listă de cuvinte-cheie: fiecare serviciu are pagina lui, cu ce include, cum decurge și cât costă. Dacă nu sunteți sigur de unde să începeți: IT și infrastructură se potrivește atunci când trebuie administrată o tehnică curentă – stații de lucru, servere, backup, securitate. Vizibilitate și web se potrivește atunci când clienții trebuie să vă găsească online sau trebuie construit un site nou. Tehnica la fața locului se potrivește de îndată ce ceva trebuie cablat, montat sau calibrat. O colaborare începe de cele mai multe ori la fel: cu o scurtă evaluare a ceea ce există deja și o estimare a ceea ce se poate rezolva la distanță și ce anume are nevoie de o vizită la fața locului. Stațiile de lucru, serverele, e-mailul, actualizările și backupul funcționează aproape întotdeauna de la distanță; cablarea, montarea hardware și tehnica la fața locului nu. Prețurile menționate sunt orientative, net plus TVA.",
@@ -934,7 +934,7 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "Cât costă administrarea IT? Prețuri de la 29 €/lună | WVM-IT",
-        "desc": "Cât costă administrarea IT, la vedere: de la 29 €/lună pe stație, suport 95 €/oră, cu exemple de calcul pentru 3, 5 și 10 stații. Austria și Germania. Cereți ofertă.",
+        "desc": "Cât costă administrarea IT: de la 29 €/lună pe stație, suport 95 €/oră, cu exemple de calcul pentru 3, 5 și 10 stații. Austria și Germania. Cereți ofertă.",
         "h1": "Cât costă? Toate prețurile pe o singură pagină",
         "kurz": "Administrarea IT curentă la WVM-IT costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Ajutorul punctual costă 95 € pe oră, intervențiile la fața locului 120 € pe oră plus deplasarea. Un site pornește de la 350 €, administrarea SEO de la 149 € pe lună, Google Ads de la 199 € pe lună. Toate sunt prețuri orientative, net plus TVA.",
         "intro": "\u201ePreț la cerere\u201d este comod pentru furnizor și enervant pentru client. De aceea aici scrie tot ce se poate cuantifica rezonabil – iar acolo unde nu se poate, scrie de ce. Cifrele de mai jos vin din aceeași sursă ca și configuratorul și ofertele noastre; nu există o a doua listă de prețuri.",
