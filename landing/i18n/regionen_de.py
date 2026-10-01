@@ -113,7 +113,7 @@ REGIONEN = {
         "anfrage_h": "Technik und IT in Bad Ischl anfragen",
         "nav": "Bad Ischl",
         "titel": "IT-Service Bad Ischl: EDV und Veranstaltungstechnik | WVM-IT",
-        "desc": "EDV-Betreuung ab 29 €/Monat, Konferenz- und Veranstaltungstechnik für Bad Ischl und das Salzkammergut, 38 km von Lenzing. Vor Ort 120 €/Std.",
+        "desc": "EDV-Betreuung ab 29 €/Monat, Konferenz- und Veranstaltungstechnik für Bad Ischl und das Salzkammergut, 38 km von Lenzing. Vor Ort 120 €/Std. Jetzt anfragen.",
         "h1": "IT, Konferenz- und Veranstaltungstechnik in Bad Ischl",
         "kurz": "WVM-IT betreut Betriebe im Salzkammergut und stattet Räume mit Konferenz-, Ton- und Präsentationstechnik aus. Von Lenzing sind es 38 Kilometer, rund 40 Minuten. Neben der laufenden EDV-Betreuung per Fernwartung liegt der Schwerpunkt hier auf Technik für Veranstaltungen, Tagungen und Seminare.",
         "intro": "Bad Ischl ist Kur- und Veranstaltungsort. Zwischen Hotellerie, Gastronomie, Handel und Gesundheitsbetrieben gibt es hier ungewöhnlich viele Räume, in denen regelmäßig Menschen vor Publikum sprechen: Seminarräume, Tagungssäle, Vortragsräume, Foyers. Und ungewöhnlich viele Betriebe, bei denen die Technik in diesen Räumen über Jahre zusammengesteckt statt geplant wurde.",

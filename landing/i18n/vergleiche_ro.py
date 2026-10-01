@@ -159,7 +159,7 @@ VERGLEICHE = {
     "pc-aufruesten-oder-neu-kaufen": {
         "titel": "Upgrade la computer sau cumpărare nouă? Windows 11 | WVM-IT",
         "desc": "Când mai merită un SSD la un PC vechi și când Windows 11 forțează "
-                "cumpărarea nouă: vârsta, starea și compatibilitatea decid. Cu calcul.",
+                "cumpărarea nouă: vârsta, starea și compatibilitatea decid. Cu calcul. Comparați acum.",
         "nav": "Upgrade sau cumpărare",
         "h1": "Upgrade sau cumpărare nouă — de ce depinde de fapt",
         "kurz": "Decizia depinde de trei lucruri: de vârsta aparatului, de tipul "

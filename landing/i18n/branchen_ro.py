@@ -102,7 +102,7 @@ BRANCHEN = {
     "arztpraxen-therapie": {
         "nav": "Cabinete medicale & terapie",
         "titel": "Asistență IT pentru cabinete medicale | WVM-IT",
-        "desc": "Asistență IT pentru cabinete medicale: de la 29 €/lună pe stație, verificare de securitate de la 490 €. Mentenanță la distanță fără oprire.",
+        "desc": "Asistență IT pentru cabinete medicale: de la 29 €/lună pe stație, verificare de securitate de la 490 €. Mentenanță la distanță fără oprire. Cereți o ofertă.",
         "h1": "IT pentru cabinete medicale, stomatologice și de terapie",
         "kurz": "WVM-IT se ocupă de IT-ul cabinetelor medicale, stomatologice și de terapie din Austria și Germania: stații de lucru, mediul software-ului de cabinet, rețele separate pentru aparatura medicală, drepturi de acces și backupul din spate. Verificarea unică de securitate IT costă de la 490 €, asistența curentă de la 29 € per stație și lună. Lucrăm prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu oprește consultația.",
         "intro": "Un cabinet are două însușiri care împreună sunt pretențioase: prelucrează cea mai sensibilă categorie de date care există și nu are voie să stea între orele opt și douăsprezece. Împreună, asta înseamnă că tehnologia nu trebuie să fie spectaculoasă, ci plictisitor de fiabilă — și că fiecare modificare se face în afara programului de consultații.",
