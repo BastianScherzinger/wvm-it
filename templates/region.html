@@ -46,6 +46,11 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
   <div class="wrap sp-wrap">
     <p class="sp-intro" data-reveal>{{ region.intro|safe }}</p>
     <p class="sp-intro" data-reveal>{{ region.wirtschaft|safe }}</p>
+    {% if region.quellen %}
+    <p class="rg-hinweis rg-quellen" data-reveal>{{ t.seite.rg_quellen|safe }}:
+      {% for q in region.quellen %}<a href="{{ q.url }}" rel="noopener" target="_blank">{{ q.titel }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+    </p>
+    {% endif %}
 
     <div class="rg-zwei">
       <div class="rg-karte rg-karte-ort" data-reveal>
@@ -104,6 +109,18 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
     Woher die Anfrage kam, steckt bereits in `zurueck` und damit in der Mail.
     {% endcomment %}
     {% include 'anfrage_karte.html' with bid='it' titel=region.anfrage_h sub=region.kurz ph=t.lb.text_ph %}
+
+    {% comment %}Die drei geografisch naechsten Regionsseiten (regionen.nachbarn, Luftlinie).{% endcomment %}
+    {% if nachbarn %}
+    <nav class="rg-weitere" aria-label="{{ t.seite.rg_nachbarn|safe }}">
+      <h2>{{ t.seite.rg_nachbarn|safe }}</h2>
+      <ul>
+        {% for r in nachbarn %}
+        <li><a href="{% url 'region' slug=r.slug %}">{{ r.ort }}<span>{{ r.km }} km</span></a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
 
     <nav class="rg-weitere" aria-label="{{ t.seite.regionen_titel|safe }}">
       <h2>{{ t.seite.rg_weitere|safe }}</h2>
