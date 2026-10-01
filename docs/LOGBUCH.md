@@ -7,6 +7,16 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 01.10.2026 — Startseite „Ein Anruf“ + beide SEO-Runden live (Zweig `design/2026-10-01-hero`)
+
+Bastians Auftrag: zu viel Text, keine Conversions, Florins Foto bleibt, kein KI-Look. Runde 1:
+Hero mit Anruf als Hauptaktion, 14 → 9 Blöcke. Runde 2 nach seiner Rückmeldung („am Anfang zu
+viel Text, zu wenig Bilder“): Wegweiser als sechs Fotokarten, Fotos bei Preisen und Ablauf,
+Leistungszeile, Einleitungen auf einen Satz. Darin zusammengeführt: `seo/2026-10-01-team` und
+`seo/2026-10-01-runde2`. Freigabe durch Bastian am 01.10.2026, dann nach `main`.
+543 Tests, `pruefe_seite` (234 URLs) und `stand_schreiben --pruefen` grün. Einzelheiten:
+`docs/DESIGN-2026-10-01.md`.
+
 ## 01.10.2026 — SEO-Runde 2: sieben neue Ortsseiten (Zweig `seo/2026-10-01-runde2`)
 
 Orchestrator (Opus) mit fünf Sonnet-Agenten in eigenen Worktrees, jedes Ergebnis gelesen, nachgebessert und gemergt; nicht gepusht. Grundlage: Bastians Auftrag vom 01.10.2026, weitere Ortsseiten in Österreich — die Entscheidung SU05 („sieben genügen“) ist damit geändert, ihr Maßstab gegen Doorway-Pages bleibt.
