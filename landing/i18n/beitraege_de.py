@@ -61,7 +61,7 @@ BEITRAEGE = {
         # ohnehin schon besser stand (`it betreuung fuer kleine unternehmen
         # kosten`: hier Position 76,6, auf /kosten/ 98,3).
         "meta_titel": "IT-Betreuung für kleine Firmen: was rechnet sich? | WVM-IT",
-        "desc": "Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung günstiger als Hilfe nach Stunden. Die Rechnung dahinter — und was enthalten sein muss.",
+        "desc": "Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung günstiger als Hilfe nach Stunden. Die Rechnung dahinter — und was enthalten sein muss. Jetzt beraten lassen.",
         "antwort": "Laufende IT-Betreuung wird in Österreich und Deutschland üblicherweise je Arbeitsplatz und Monat abgerechnet; bei uns beginnt sie bei 29 €. Wer keinen Vertrag will, zahlt Hilfe nach Aufwand — bei uns 95 € je Stunde aus der Ferne und 120 € je Stunde vor Ort zuzüglich Anfahrt. Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung meist günstiger, weil sie sich schon rechnet, wenn sie einen einzigen Ausfalltag im Jahr verhindert.",
         "abschnitte": [
             {"h": "Die zwei Abrechnungsarten",
@@ -337,7 +337,7 @@ BEITRAEGE = {
     "wie-viele-arbeitsplaetze-eigener-server": {
         "titel": "Wie viele Arbeitsplätze braucht ein eigener Server?",
         "meta_titel": "Brauche ich einen Server? 3 Fragen vor dem Kauf | WVM-IT",
-        "desc": "Brauche ich einen eigenen Server? Die Antwort hängt an der Software, nicht an der Mitarbeiterzahl. Drei Fragen, die die Entscheidung klären.",
+        "desc": "Brauche ich einen eigenen Server? Die Antwort hängt an der Software, nicht an der Mitarbeiterzahl. Drei Fragen, die die Entscheidung klären. Beratung anfragen.",
         "antwort": "Die Zahl der Arbeitsplätze ist nicht der entscheidende Punkt — es gibt Betriebe mit dreißig Leuten ohne Server und Betriebe mit fünf, die einen brauchen. Entscheidend ist die Software: Sobald eine Warenwirtschaft, eine Branchenlösung oder eine Datenbank eine zentrale Installation verlangt, brauchen Sie einen Server, und zwar unabhängig von der Betriebsgröße. Wird ausschließlich mit Office, Mail und Dateien gearbeitet, ist die Cloud in aller Regel günstiger und wartungsärmer. Ein betreuter Server kostet bei uns ab 89 € im Monat, dazu kommt die Hardware.",
         "abschnitte": [
             {"h": "Die drei Fragen, die die Antwort geben",
@@ -399,7 +399,7 @@ BEITRAEGE = {
     "aufbewahrungsfristen-oesterreich": {
         "titel": "Welche Daten muss ein Betrieb in Österreich wie lange aufbewahren?",
         "meta_titel": "Aufbewahrungsfristen Österreich: 7 Jahre, § 132 BAO | WVM-IT",
-        "desc": "7 Jahre für Bücher und Belege nach § 132 BAO, länger bei Grundstücken und offenen Verfahren. Was das für Server, Sicherung und Archiv heißt.",
+        "desc": "7 Jahre für Bücher und Belege nach § 132 BAO, länger bei Grundstücken und offenen Verfahren. Was das für Server, Sicherung und Archiv heißt. Kontakt aufnehmen.",
         "antwort": "Der Grundsatz in Österreich: Bücher, Aufzeichnungen und Belege sind sieben Jahre aufzubewahren, gerechnet ab dem Ende des Kalenderjahres, für das die letzte Eintragung erfolgt ist (§ 132 BAO). Länger gilt es unter anderem bei Unterlagen zu Grundstücken und solange ein Verfahren anhängig ist. Für die IT ist dabei entscheidend, dass die Frist für die **Lesbarkeit** gilt, nicht für das Gerät: Wer nach fünf Jahren den Server wechselt, muss die alten Bestände weiterhin öffnen können — auch dann, wenn es das Programm dazu nicht mehr gibt.",
         "abschnitte": [
             {"h": "Was das für einen Serverwechsel bedeutet",
@@ -522,7 +522,7 @@ BEITRAEGE = {
         "meta_titel": "Windows 10 Support-Ende: was Betriebe jetzt tun | WVM-IT",
         "desc": "Seit Oktober 2025 keine Sicherheitsupdates mehr. Was das praktisch "
                 "bedeutet, welche Geräte Windows 11 schaffen und was mit den anderen "
-                "passiert.",
+                "passiert. Termin vereinbaren.",
         "antwort": "Windows 10 erhält seit dem 14. Oktober 2025 keine "
                    "Sicherheitsupdates mehr. Jede seither gefundene Lücke bleibt offen "
                    "— dauerhaft. Für einen Betrieb heißt das nicht, dass am Montag "
@@ -626,7 +626,7 @@ BEITRAEGE = {
         "meta_titel": "PC langsam im Betrieb: die vier häufigsten Ursachen | WVM-IT",
         "desc": "Vier Ursachen erklären fast alle langsamen Bürorechner. Wie man sie "
                 "unterscheidet, was sich beheben lässt und wann ein neues Gerät "
-                "günstiger ist.",
+                "günstiger ist. Termin vereinbaren.",
         "antwort": "In den allermeisten Fällen liegt es an der Festplatte: Ein Gerät "
                    "mit klassischer Festplatte statt SSD ist bei jedem Start und bei "
                    "jedem Programmaufruf langsam, egal wie stark der Prozessor ist. "
@@ -720,7 +720,7 @@ BEITRAEGE = {
         "titel": "Der Drucker im Büro druckt nicht — die fünf häufigsten Ursachen",
         "meta_titel": "Drucker druckt nicht: 5 Ursachen im Büro | WVM-IT",
         "desc": "Warteschlange hängt, neue IP-Adresse, Treiber nach dem Update, falscher "
-                "Standarddrucker, Scannen geht nicht: fünf Ursachen und was hilft.",
+                "Standarddrucker, Scannen geht nicht: fünf Ursachen und was hilft. Jetzt Hilfe anfragen.",
         "antwort": "Wenn ein Bürodrucker nicht mehr druckt, liegt es fast immer an einer "
                    "von fünf Ursachen: Die Druckwarteschlange hängt, der Drucker hat im "
                    "Netz eine neue Adresse bekommen, ein Windows-Update hat den Treiber "
@@ -803,7 +803,7 @@ BEITRAEGE = {
         "titel": "Outlook oder E-Mail geht nicht — was Sie zuerst selbst prüfen können",
         "meta_titel": "Outlook geht nicht: was Sie selbst prüfen können | WVM-IT",
         "desc": "Kennwortabfrage in Schleife, Mails im Postausgang, volles Postfach, "
-                "Outlook offline: die häufigsten Ursachen und was Sie selbst prüfen.",
+                "Outlook offline: die häufigsten Ursachen und was Sie selbst prüfen. Sonst Kontakt aufnehmen.",
         "antwort": "Wenn Outlook keine Mails mehr sendet oder empfängt, sind es meistens "
                    "vier Dinge: ein geändertes oder abgelaufenes Kennwort, ein Anhang, "
                    "der zu groß ist und im Postausgang hängt, ein volles Postfach oder "
@@ -880,7 +880,7 @@ BEITRAEGE = {
         "titel": "Microsoft-365-Konto gesperrt — was jetzt zu tun ist",
         "meta_titel": "Microsoft 365 Konto gesperrt: was jetzt tun? | WVM-IT",
         "desc": "Zu viele Fehlversuche, vom Administrator gesperrt, Abo abgelaufen oder "
-                "verdächtige Anmeldung: woran Sie die Ursache erkennen und was hilft.",
+                "verdächtige Anmeldung: woran Sie die Ursache erkennen und was hilft. Jetzt Hilfe anfragen.",
         "antwort": "Ein gesperrtes Microsoft-365-Konto hat fast immer einen von vier "
                    "Gründen: zu viele falsche Anmeldeversuche, eine Sperre durch den "
                    "Administrator, ein abgelaufenes oder unbezahltes Abonnement oder eine "

@@ -101,7 +101,7 @@ REGIONEN = {
         "anfrage_h": "Request technology and IT in Bad Ischl",
         "nav": "Bad Ischl",
         "titel": "IT services Bad Ischl: IT support and event tech | WVM-IT",
-        "desc": "IT support from €29 a month, conference and event technology for Bad Ischl and the Salzkammergut, 38 km from Lenzing. On site €120/hr.",
+        "desc": "IT support from €29 a month, conference and event technology for Bad Ischl and the Salzkammergut, 38 km from Lenzing. On site €120/hr. Get a quote today.",
         "h1": "IT, conference and event technology in Bad Ischl",
         "kurz": "WVM-IT looks after businesses in the Salzkammergut and fits out rooms with conference, audio and presentation technology. It is 38 kilometres from Lenzing, about 40 minutes. Alongside day-to-day IT support by remote maintenance, the focus here is technology for events, conferences and seminars.",
         "intro": "Bad Ischl is a spa and event town. Among hotels, restaurants, retail and health businesses there are unusually many rooms in which people regularly speak in front of an audience: seminar rooms, conference halls, lecture rooms, foyers. And unusually many businesses whose technology in those rooms was plugged together over the years rather than planned.",
