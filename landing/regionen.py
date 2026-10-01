@@ -61,9 +61,8 @@ Neuen Ort anlegen
 3. Ort in `views._VOR_ORT_ORTE` kommt automatisch (wird aus dieser Liste gebildet).
 
 Gemessen, aber noch ohne Seite (01.10.2026; km / Fahrzeit, lat, lon):
-schwanenstadt 19/25 48.0545 13.7749 · voecklamarkt 16/20 48.0022 13.4851 ·
-ried-im-innkreis 38/45 48.2086 13.4884 · grieskirchen 45/55 48.2350 13.8262 ·
-kirchdorf-an-der-krems 65/50 47.9052 14.1244
+schwanenstadt 19/25 48.0545 13.7749 · voecklamarkt 16/20 48.0022 13.4851
+(ried-im-innkreis, grieskirchen und kirchdorf-an-der-krems haben seit 01.10.2026 eine Seite)
 """
 
 from math import asin, cos, radians, sin, sqrt
@@ -121,6 +120,34 @@ REGIONEN = [
      "quellen": [
          {"titel": "Austria-Forum: Mondsee", "url": "https://austria-forum.org/af/AustriaWiki/Mondsee"},
          {"titel": "Land Oberösterreich Tourismus: Mondsee", "url": "https://www.oberoesterreich.at/oesterreich-stadt-ort/detail/430001260/mondsee-am-mondsee.html"},
+     ]},
+
+    {"slug": "ried-im-innkreis", "ort": "Ried im Innkreis", "plz": "4910",
+     "bezirk": "Bezirk Ried im Innkreis", "lat": 48.2086, "lon": 13.4884,
+     "km": 38, "fahrzeit": 45,
+     "schwerpunkt": "seo-betreuung", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Ried im Innkreis", "url": "https://de.wikipedia.org/wiki/Ried_im_Innkreis"},
+     ]},
+
+    {"slug": "grieskirchen", "ort": "Grieskirchen", "plz": "4710",
+     "bezirk": "Bezirk Grieskirchen", "lat": 48.235, "lon": 13.8262,
+     "km": 45, "fahrzeit": 55,
+     "schwerpunkt": "it-beratung", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Grieskirchen", "url": "https://de.wikipedia.org/wiki/Grieskirchen"},
+         {"titel": "Wikipedia: Pöttinger Landtechnik", "url": "https://de.wikipedia.org/wiki/P%C3%B6ttinger_Landtechnik"},
+         {"titel": "Wikipedia: Fröling Heizkessel- und Behälterbau", "url": "https://de.wikipedia.org/wiki/Fr%C3%B6ling_Heizkessel-_und_Beh%C3%A4lterbau"},
+     ]},
+
+    {"slug": "kirchdorf-an-der-krems", "ort": "Kirchdorf an der Krems", "plz": "4560",
+     "bezirk": "Bezirk Kirchdorf an der Krems", "lat": 47.9052, "lon": 14.1244,
+     "km": 65, "fahrzeit": 50,
+     "schwerpunkt": "it-sicherheit", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Kirchdorf an der Krems", "url": "https://de.wikipedia.org/wiki/Kirchdorf_an_der_Krems"},
+         {"titel": "Wikipedia: Kirchdorfer Gruppe", "url": "https://de.wikipedia.org/wiki/Kirchdorfer_Gruppe"},
+         {"titel": "Wikipedia: Pyhrn-Eisenwurzen Klinikum Kirchdorf", "url": "https://de.wikipedia.org/wiki/Pyhrn-Eisenwurzen_Klinikum_Kirchdorf"},
      ]},
 ]
 
