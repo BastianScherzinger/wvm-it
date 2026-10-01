@@ -54,6 +54,8 @@ Umkreis, per Fernwartung ueberall.
 
     <p class="rg-fern" data-reveal>{{ t.seite.regionen_fern|safe }}</p>
     <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a></p>
+
+    {% include 'hub_abschluss.html' %}
   </div>
 </section>
 {% endblock %}

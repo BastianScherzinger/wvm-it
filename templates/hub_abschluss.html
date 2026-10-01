@@ -1,0 +1,13 @@
+{% comment %}
+Angebotsblock für die Hubs /branchen/ und /it-service/ (KV12/KV14, 01.10.2026):
+Nutzenliste mit belegten Punkten, danach die Anfrage-Karte (sie trägt Gesicht,
+Telefon und die Zeitzusage selbst). Dieselben Bausteine wie auf branche.html/region.html.
+Quelle bleibt 'it' (im Postfach soll die Leistung stehen, nicht der Hub).
+{% endcomment %}
+<h2 class="sp-h2">{{ t.seite.hub_nutzen_h|safe }}</h2>
+<ul class="sp-liste sp-liste-check">
+  <li>{% include 'icons.html' with name='check' %}<span>{{ t.seite.hub_nutzen_1|safe }}</span></li>
+  <li>{% include 'icons.html' with name='check' %}<span>{{ t.seite.hub_nutzen_2|safe }}</span></li>
+  <li>{% include 'icons.html' with name='check' %}<span>{{ t.seite.hub_nutzen_3|safe }}</span></li>
+</ul>
+{% include 'anfrage_karte.html' with bid='it' titel=t.seite.hub_cta_h sub=t.seite.hub_cta_sub ph=t.lb.text_ph %}

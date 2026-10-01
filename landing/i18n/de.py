@@ -511,6 +511,14 @@ PACK = {
         # einzige Ausgang war ein leeres Textfeld.
         # Wer antwortet — steht seit dem 06.09.2026 auf jeder Anfrage-Karte.
         "person_vor": "Ihre Anfrage liest",
+        "ap_h": "Ihr Ansprechpartner",
+        "ap_zusage": "Antwort an Werktagen innerhalb von 24 Stunden.",
+        "hub_nutzen_h": "Was Sie auf jeder dieser Seiten erwartet",
+        "hub_nutzen_1": "Ein fester Ansprechpartner: Wer anruft, spricht mit der Person, die Ihre Anlage auch kennt.",
+        "hub_nutzen_2": "Preise stehen offen auf der Preisseite — der Kostenrechner nennt vorab eine Größenordnung.",
+        "hub_nutzen_3": "Betreuung per gesicherter Fernwartung in ganz Österreich und Deutschland; vor Ort nur nach Terminabsprache.",
+        "hub_cta_h": "Kurz schildern, worum es geht",
+        "hub_cta_sub": "Ein Satz genügt. Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.",
         "einstieg_h": "Der erste Schritt, ohne sich zu binden",
         "einstieg_vor": "Sie müssen nicht mit einem Vertrag anfangen:",
         "einstieg_nach": "Danach wissen Sie, woran Sie sind — und entscheiden in Ruhe.",
