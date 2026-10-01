@@ -45,7 +45,7 @@ class ProfilSameAsTest(SimpleTestCase):
         with _mit_profilen([_MAPS, _MAPS]):
             graph = self._graph("/")
             self.assertEqual(self._knoten(graph, "/#business")["sameAs"], [_MAPS])
-            self.assertFalse(self._knoten(graph, "/#inhaber").get("sameAs"))
+            self.assertNotIn("sameAs", self._knoten(graph, "/#inhaber"))
             for pfad in ("/llms.txt", "/llms-full.txt"):
                 text = self.c.get(pfad).content.decode("utf-8")
                 self.assertEqual(text.count(f"Google-Unternehmensprofil: {_MAPS}"), 1)

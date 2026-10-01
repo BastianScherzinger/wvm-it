@@ -2330,7 +2330,9 @@ def _structured_data(c, lang, *, mit_katalog=True):
     profile = _profil_urls(c)
     if profile:
         business["sameAs"] = profile
-        inhaber["sameAs"] = [u for u in profile if "linkedin." in u.lower()]
+        linkedin = [u for u in profile if "linkedin." in u.lower()]
+        if linkedin:
+            inhaber["sameAs"] = linkedin
 
     graph = [business, inhaber, website]
 
