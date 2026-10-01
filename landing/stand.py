@@ -70,7 +70,7 @@ STAND = {
     "/checkliste/neuer-arbeitsplatz/": "2026-10-01",
     "/datenschutz/": "2026-10-01",
     "/impressum/": "2026-10-01",
-    "/it-hilfe/": "2026-09-27",
+    "/it-hilfe/": "2026-10-01",
     "/it-notfall/": "2026-10-01",
     "/it-service/": "2026-10-01",
     "/it-service/attersee/": "2026-10-01",
