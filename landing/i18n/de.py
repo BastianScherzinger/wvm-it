@@ -407,7 +407,7 @@ PACK = {
         # verstreut in „Unternehmen".
         "col_wissen": "Wissen",
         "col_unternehmen": "Unternehmen",
-        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
+        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner-Shop)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
         "u_webagentur": "Website: Webagentur Scherzinger",
         "u_ueber": "Über uns", "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",

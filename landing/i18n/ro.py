@@ -367,7 +367,7 @@ PACK = {
         "l_edv": "IT & securitate", "l_web": "Site-uri web & AI",
         "col_wissen": "Cunoștințe",
         "col_unternehmen": "Companie",
-        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_alle": "Toate serviciile", "u_shop": "PyStore (partener)", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
+        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_alle": "Toate serviciile", "u_shop": "PyStore (magazin partener)", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
         "u_webagentur": "Site web: Webagentur Scherzinger",
         "impressum_ph": "Datele de identificare apar aici de îndată ce datele firmei sunt înregistrate.",
         "datenschutz_ph": "Politica de confidențialitate apare aici de îndată ce este finalizată.",

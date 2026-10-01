@@ -140,3 +140,18 @@ class FromDichteTest(SimpleTestCase):
     def test_deutsch_und_rumaenisch_unveraendert(self):
         self.assertIn("ab 29 €/Mt", _html("/kosten/"))
         self.assertIn("de la 29 €/lună", _html("/ro/kosten/"))
+
+
+class ShopLinkTest(SimpleTestCase):
+    """EIG196: Der Fußlink zu pystore.de sagt in jeder Sprache, dass es ein fremder Shop ist."""
+
+    def test_fusslink_nennt_partner_shop_und_oeffnet_sicher(self):
+        erwartet = {"/": "PyStore (Partner-Shop)", "/en/": "PyStore (partner shop)",
+                    "/ro/": "PyStore (magazin partener)"}
+        for pfad, text in erwartet.items():
+            with self.subTest(pfad=pfad):
+                html = _html(pfad)
+                m = re.search(r'<a href="https://www\.pystore\.de"([^>]*)>([^<]*)</a>', html)
+                self.assertIsNotNone(m)
+                self.assertEqual(m.group(2), text)
+                self.assertIn('rel="noopener"', m.group(1))
