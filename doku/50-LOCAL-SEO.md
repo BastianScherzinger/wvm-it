@@ -1,7 +1,7 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-09-27
+stand: 2026-10-01
 status: teilweise
 fortschritt: 50
 zusammenfassung: 27.09.2026 (EIG198): Die Datei sagt das Profil jetzt widerspruchsfrei — angelegt am 11.09.2026, am 25.09.2026 öffentlich doppelt in Maps; offen ist Schritt A1 (verwalteten Eintrag klären, Duplikat entfernen oder zusammenführen), keine Neuanlage. Der frühere Wortlaut „es gibt keins“ gilt nur für den 10.09.2026. 24.09.2026: Die Oeffnungszeiten sind nicht offen, sondern belegt — Mo–Fr 9–18 Uhr stehen seit dem Relaunch sichtbar auf /kontakt/ und /it-notfall/ und identisch im Schema; so gehoeren sie ins Unternehmensprofil (Notiz unten berichtigt, EIG21). Neu fuer das Profil: /it-hilfe/ als Zielseite fuer Einzelhilfe ohne Vertrag (95 €/Std. per Fernwartung). Davor: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP. Am 12.09.2026 SU05 (Ortsseiten decken das Einzugsgebiet ab) als begruendete Ausnahme eingetragen, ohne eine Zeile Code: Der Befund zaehlt jetzt sieben Ortsseiten gegen eine Zielgroesse von acht, aber die achte ist in diesem Projekt schon entschieden -- und zwar dagegen. Weitere Ortsseiten sind in SEO-AUSBAU-3.md als Doorway-Pages verworfen (Regel A16, gestuetzt auf eine Messung an einer Schwesterseite), und den echten Auftrag aus einem achten Ort, den der Rat selbst verlangt, gibt es nicht.
@@ -146,22 +146,9 @@ Der WKO-Eintrag ist der wertvollere und der problematischere zugleich: Er ist di
 
 Der Loxone-Eintrag ist ein Rückschlag ohne Schuld: Google zeigt ihn noch, das Ziel ist weg — vermutlich hat Loxone das Partnerverzeichnis umgebaut. Bis die URL wieder auflöst, ist er als `sameAs`-Ziel unbrauchbar; **ein `sameAs` auf eine 404 ist schlechter als keins.**
 
-**Regionsseiten** (`/it-service/<slug>/`, 7 Orte + Hub, DE/EN/RO, 542–619 Wörter): Vöcklabruck 6 km · Attersee 8 · Gmunden 22 · Bad Ischl 38 · Wels 40 · Salzburg 55 · Linz 60 — je mit echter Entfernung, Fahrzeit und ortsspezifischem Inhalt (Industrie, Saison-WLAN, gewachsene Netze, Veranstaltungsräume, Hallen/Messe, Haftung für fremde Daten, Antwortzeiten der Großanbieter). Im Schema `areaServed` = Ort, Sitz bleibt Lenzing. *Die Messung vom 02.09.2026 zählte „0 Ortsseiten" (`SU05`, `VL12`) — das Werkzeug erkannte das Präfix `/it-service/` nicht als Ortsseite; kein Mangel der Seite, siehe [90-NOTIZEN.md](90-NOTIZEN.md).*
+**Regionsseiten** (`/it-service/<slug>/`, **14 Orte** + Hub, DE/EN/RO, Stand 01.10.2026, Zweig `seo/2026-10-01-runde2`): Vöcklabruck 6 km · Attersee 8 · Attnang-Puchheim 12 · Vöcklamarkt 16 · Schwanenstadt 19 · Gmunden 25 · Ried im Innkreis 38 · Mondsee 39 · Bad Ischl 43 · Grieskirchen 45 · Wels 58 · Kirchdorf an der Krems 65 · Salzburg 67 · Linz 82 — Straßenkilometer ab Waldstraße 19/1, am 01.10.2026 mit zwei Routern (OSRM, Valhalla) nachgemessen; Gmunden, Bad Ischl, Wels, Salzburg und Linz standen vorher zu niedrig (22/38/40/55/60 km). Vöcklabruck bleibt bis zum Ende der K2-Messung (~23.10.2026) bei 6 km/10 min, gemessen sind 6,8 km und 11–14 min. Jede Seite trägt ortsspezifischen Inhalt mit Quellenzeile, einen Block „Nachbarorte“ (drei nächste Orte) und im Schema `areaServed` = Ort mit `geo`; der Sitz bleibt Lenzing.
 
-**Die achte Ortsseite entsteht bewusst nicht — seit dem 12.09.2026 als Ausnahme
-eingetragen** ([80-AUFGABEN.md](80-AUFGABEN.md), „Bewertung der Messpunkte"). Der
-Befund dieses Tages zählt laut Commit **sieben** Ortsseiten gegen eine Zielgrösse von
-acht, liest das Präfix also inzwischen richtig. Die Zahl stimmt, die Folgerung nicht:
-Weitere Ortsseiten sind in `../docs/SEO-AUSBAU-3.md` (§ „Nicht enthalten") ausdrücklich
-verworfen — „Sieben genügen für das echte Einzugsgebiet. Mehr wären Doorway-Pages
-(A16)" —, und Regel A16 in `../docs/SEO-PLAN.md` steht auf einer Messung: Bei einer
-Schwesterseite standen 131 fast gleiche Stadtseiten online, 88 % textgleich, Position
-85–90, „Gefunden – zurzeit nicht indexiert", danach per 301/410 entsorgt.
-`landing/regionen.py` hält die zwei Bedingungen fest, unter denen es die sieben gibt:
-nur Orte in rund einer Fahrstunde um Lenzing (Zeile 20–22) und **keine erfundenen
-Referenzen** (Zeile 30–31). Damit schliesst der Rat sich selbst aus — er verlangt „einen
-echten Auftrag von dort", und den gibt es für keinen achten Ort. **Belegt ein Auftrag
-später einen achten Ort, entsteht die Seite; auf Vorrat entsteht sie nicht.**
+**Mehr Ortsseiten seit dem 01.10.2026 — auf Bastians Entscheidung.** Bis dahin galt: „Sieben genügen für das echte Einzugsgebiet. Mehr wären Doorway-Pages (A16)“ (`../docs/SEO-AUSBAU-3.md`), gestützt auf die Schwesterseite mit 131 fast gleichen Stadtseiten (88 % textgleich, nicht indexiert). Die Begründung bleibt als Maßstab: nur Orte in rund einer Fahrstunde, keine erfundenen Referenzen, und kein Satz, der durch Tausch des Ortsnamens auf eine andere Seite passt — Letzteres prüft jetzt `landing/tests/test_ortsseiten_aehnlichkeit.py` (Grenze 0,20, Höchstwert 0,091). Nicht angelegt: Steyr, Braunau am Inn, Bad Aussee (je rund 75 Minuten) und Landeshauptstädte „nur per Fernwartung“.
 
 ## Offen
 

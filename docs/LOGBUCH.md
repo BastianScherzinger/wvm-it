@@ -7,6 +7,21 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 01.10.2026 — SEO-Runde 2: sieben neue Ortsseiten (Zweig `seo/2026-10-01-runde2`)
+
+Orchestrator (Opus) mit fünf Sonnet-Agenten in eigenen Worktrees, jedes Ergebnis gelesen, nachgebessert und gemergt; nicht gepusht. Grundlage: Bastians Auftrag vom 01.10.2026, weitere Ortsseiten in Österreich — die Entscheidung SU05 („sieben genügen“) ist damit geändert, ihr Maßstab gegen Doorway-Pages bleibt.
+
+- **Ortsseiten:** Attnang-Puchheim (12 km/20 min), Vöcklamarkt (16/20), Schwanenstadt (19/25), Ried im Innkreis (38/45), Mondsee (39/35), Grieskirchen (45/55), Kirchdorf an der Krems (65/50), je DE/EN/RO mit belegter Wirtschaftsstruktur (Quellenzeile), eigenem Schwerpunkt und mindestens 690 Wörtern im Sprachpaket. Nicht angelegt: Steyr, Braunau, Bad Aussee (je rund 75 Minuten) und Landeshauptstädte „nur per Fernwartung“ — ohne Ortsbezug wäre das die Doorway-Seite, die A16 verbietet.
+- **Doorway-Schutz als Test:** `test_ortsseiten_aehnlichkeit.py` — Jaccard über 4-Wort-Shingles je Sprache und Paar, Ortsname/Bezirk/PLZ/Ziffern ersetzt, Grenze 0,20 (Höchstwert 0,091, Gmunden/Linz), dazu eine Mindestwortzahl.
+- **Fund beim Nachmessen:** Fünf bestehende Entfernungen waren zu niedrig (Wels 40 statt 58 km, Linz 60 statt 82, Salzburg 55 statt 67, Bad Ischl 38 statt 43, Gmunden 22 statt 25). Gemessen mit OSRM und Valhalla ab Waldstraße 19/1; korrigiert in Struktur und allen drei Sprachen. Vöcklabruck erst nach der K2-Messung (~23.10.).
+- **Struktur:** `lat`/`lon`, `regionen.nachbarn()` mit Block „Nachbarorte“, `quellen`, `geo` im `areaServed`, Hub nach km sortiert, `_VOR_ORT_ORTE` aus `REGIONEN` abgeleitet.
+- **Offen Nr. 12:** FAQ zum Hardwaredefekt auf `/einrichten/pc-tausch/` und `/it-hilfe/` (Tausch statt Werkstattreparatur, Preise aus dem Katalog), `test_hardwaredefekt.py`.
+- **Beschreibungen:** elf über 160 Zeichen gekürzt; `/ro/ueber-uns/` liegt im Designteam-Block. IS11 und IS28 nachgemessen — im Zweig schon erfüllt, die Messung 1791 lief gegen die ältere Live-Seite.
+
+Suite 538 → 543 Tests, rot nur die drei bekannten `test_verlinkung_ts46` (Startseite, Designteam); `pruefe_seite` „Alles in Ordnung“ (234 URLs), `stand_schreiben --pruefen` grün.
+
+---
+
 ## 01.10.2026 — SEO-Team-Runde zur Overview-Messung 1791 (Zweig `seo/2026-10-01-team`)
 
 Orchestrator (Opus) mit fünf Sonnet-Agenten in eigenen Worktrees, alles einzeln geprüft und gemergt; nicht gepusht.
