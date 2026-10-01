@@ -373,7 +373,7 @@ PACK = {
         "l_edv": "IT & security", "l_web": "Websites & AI",
         "col_wissen": "Knowledge",
         "col_unternehmen": "Company",
-        "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_alle": "All services", "u_shop": "PyStore (partner)", "u_referenzen": "Case studies", "u_faq": "FAQ",
+        "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_alle": "All services", "u_shop": "PyStore (partner shop)", "u_referenzen": "Case studies", "u_faq": "FAQ",
         "u_webagentur": "Website: Webagentur Scherzinger",
         "impressum_ph": "The legal notice will appear here as soon as the company details are on file.",
         "datenschutz_ph": "The privacy policy will appear here as soon as it has been finalised.",
@@ -418,6 +418,11 @@ PACK = {
         "per_month": "€/mo", "per_year": "€/yr", "per_hour": "€/hr",
         "popular": "popular", "thousands": ",",
         "menge": "Quantity",
+        # IS37: Auf den Listen- und Hub-Seiten steht „from“ nicht vor jedem Preis.
+        # Tabellen/Listen zeigen nur die Zahl und sagen es einmal im Kopf; Karten
+        # wechseln zu „starting at“. Bedeutung bleibt Startpreis.
+        "ab_im_kopf": True, "from_liste": "starting at",
+        "start_head": "starting prices", "start_hint": "All prices are starting prices.",
     },
     "catalog": {
         "it": {"title": "IT support & management", "short": "IT support", "sub": "So the technology runs without you having to think about it."},

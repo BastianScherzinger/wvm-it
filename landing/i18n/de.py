@@ -407,7 +407,7 @@ PACK = {
         # verstreut in „Unternehmen".
         "col_wissen": "Wissen",
         "col_unternehmen": "Unternehmen",
-        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
+        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner-Shop)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
         "u_webagentur": "Website: Webagentur Scherzinger",
         "u_ueber": "Über uns", "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
@@ -456,6 +456,9 @@ PACK = {
         "from": "ab", "on_request": "auf Anfrage",
         "per_month": "€/Mt", "per_year": "€/Jahr", "per_hour": "€/Std.",
         "popular": "beliebt", "thousands": ".",
+        # Siehe en.py (IS37): im Deutschen unverändert „ab“ vor jedem Preis.
+        "ab_im_kopf": False, "from_liste": "ab",
+        "start_head": "Startpreise", "start_hint": "Alle Preise sind Startpreise.",
         # Stueckzahl im Konfigurator (06.09.2026) — Positionen mit `menge_max`
         # im Katalog werden je Stueck gerechnet, nicht pauschal.
         "menge": "Anzahl",

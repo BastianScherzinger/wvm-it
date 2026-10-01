@@ -367,7 +367,7 @@ PACK = {
         "l_edv": "IT & securitate", "l_web": "Site-uri web & AI",
         "col_wissen": "Cunoștințe",
         "col_unternehmen": "Companie",
-        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_alle": "Toate serviciile", "u_shop": "PyStore (partener)", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
+        "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_alle": "Toate serviciile", "u_shop": "PyStore (magazin partener)", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
         "u_webagentur": "Site web: Webagentur Scherzinger",
         "impressum_ph": "Datele de identificare apar aici de îndată ce datele firmei sunt înregistrate.",
         "datenschutz_ph": "Politica de confidențialitate apare aici de îndată ce este finalizată.",
@@ -412,6 +412,9 @@ PACK = {
         "per_month": "€/lună", "per_year": "€/an", "per_hour": "€/oră",
         "popular": "popular", "thousands": ".",
         "menge": "Cantitate",
+        # Vezi en.py (IS37): în română rămâne „de la” înaintea fiecărui preț.
+        "ab_im_kopf": False, "from_liste": "de la",
+        "start_head": "prețuri de pornire", "start_hint": "Toate prețurile sunt prețuri de pornire.",
     },
     "catalog": {
         "it": {"title": "Suport IT & administrare", "short": "Suport IT", "sub": "Ca tehnica să funcționeze fără să vă ocupați dumneavoastră."},
