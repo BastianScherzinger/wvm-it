@@ -168,7 +168,7 @@ VERGLEICHE = {
     "pc-aufruesten-oder-neu-kaufen": {
         "titel": "Computer aufrüsten oder neu kaufen? Windows 11 | WVM-IT",
         "desc": "Wann eine SSD im alten PC noch lohnt und wann Windows 11 den Neukauf "
-                "erzwingt: Alter, Zustand, Anschlussfähigkeit. Mit Rechenweg.",
+                "erzwingt: Alter, Zustand, Anschlussfähigkeit. Mit Rechenweg. Jetzt vergleichen.",
         "nav": "Aufrüsten oder neu kaufen",
         "h1": "Aufrüsten oder neu kaufen — woran es wirklich hängt",
         "kurz": "Die Entscheidung hängt an drei Dingen: am Alter des Geräts, an der Art "

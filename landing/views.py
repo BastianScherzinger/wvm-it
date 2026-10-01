@@ -442,6 +442,10 @@ def _localized_groups(lang):
             nit["name"] = ci.get("name", it["name"])
             nit["desc"] = ci.get("desc", it["desc"])
             nit["price_label"] = _make_price_label(it, words)
+            # Liste/Tabelle: nur die Zahl, wenn der Spaltenkopf „Startpreise“ sagt
+            # (IS37, EN: „from“ stand vor jedem Preis). Sonst dasselbe Label.
+            nit["price_zahl"] = (_festpreis_label(it, words)
+                                 if words.get("ab_im_kopf") else nit["price_label"])
             items.append(nit)
         ng["items"] = items
         out.append(ng)
@@ -507,6 +511,19 @@ def _itempreise(lang):
     words = i18n.get_pack(lang).get("catalog_words", {})
     return {it["id"]: _make_price_label(it, words)
             for g in ANGEBOT_GROUPS for it in g["items"]}
+
+
+def _preis_liste(label, words) -> str:
+    """Label für Karten auf Hub-Seiten mit dem Wechselwort aus `from_liste`.
+
+    Dieselbe Bedeutung (Startpreis), anderes Wort: Auf /en/kosten/ und
+    /en/branchen/ stand „from“ vor jedem Preis und lag über der 5-%-Grenze für das
+    häufigste Inhaltswort (IS37). Ohne `from_liste` bleibt das Label unverändert."""
+    alt = words.get("from_liste")
+    vorwort = words.get("from", "ab") + " "
+    if alt and label.startswith(vorwort):
+        return alt + " " + label[len(vorwort):]
+    return label
 
 
 def _paketpreise():
@@ -2327,10 +2344,12 @@ def _structured_data(c, lang, *, mit_katalog=True):
     #   4. Facebook- oder Instagram-Seite, falls gepflegt
     # Eintragen heißt: URL in content.json → "profile" ergänzen, sonst nichts.
     # Der Rest passiert hier automatisch, inklusive Ausgabe im @graph.
-    profile = [u.strip() for u in (c.get("profile") or []) if u and u.strip()]
+    profile = _profil_urls(c)
     if profile:
         business["sameAs"] = profile
-        inhaber["sameAs"] = [u for u in profile if "linkedin." in u.lower()]
+        linkedin = [u for u in profile if "linkedin." in u.lower()]
+        if linkedin:
+            inhaber["sameAs"] = linkedin
 
     graph = [business, inhaber, website]
 
@@ -2501,6 +2520,8 @@ def _leistung_daten(eintrag, lang):
         eintrag,
         url=reverse("leistung", kwargs={"slug": eintrag["slug"]}),
         preis_label=preise.get(eintrag["preis"], ""),
+        preis_liste=_preis_liste(preise.get(eintrag["preis"], ""),
+                                 pack.get("catalog_words", {})),
         **texte,
     )
 
@@ -2940,6 +2961,8 @@ def _branche_daten(eintrag, lang):
         eintrag,
         url=reverse("branche", kwargs={"slug": eintrag["slug"]}),
         preis_label=preise.get(eintrag["preis"], ""),
+        preis_liste=_preis_liste(preise.get(eintrag["preis"], ""),
+                                 i18n.get_pack(lang).get("catalog_words", {})),
         **texte,
     )
 
@@ -2960,8 +2983,11 @@ def branchen_hub(request):
     bs = pack.get("branchen_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
     liste = _alle_branchen(lang)
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
     return render(request, "branchen.html", {
-        "c": c, "bs": bs, "branchen": liste,
+        "c": c, "bs": bs, "branchen": liste, "anfrage_ok": anfrage_ok,
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
@@ -3849,8 +3875,11 @@ def regionen_hub(request):
     pack = i18n.get_pack(lang)
     base = (c.get("wvm_url") or "").rstrip("/")
     liste = [_region_daten(r, lang) for r in regionen.REGIONEN]
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
     return render(request, "regionen.html", {
-        "c": c, "regionen": liste,
+        "c": c, "regionen": liste, "anfrage_ok": anfrage_ok,
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen"))])),
@@ -4351,6 +4380,32 @@ def robots_txt(request):
     return HttpResponse("\n".join(lines), content_type="text/plain; charset=utf-8")
 
 
+_GOOGLE_PROFIL_MUSTER = ("google.com/maps", "google.at/maps", "google.de/maps",
+                         "maps.google.", "g.page/", "maps.app.goo.gl")
+
+
+def _profil_urls(c):
+    """Profil-URLs aus content.json: nur `https://`, ohne Duplikate, Reihenfolge
+    bleibt. Alles andere wird still verworfen — `sameAs` ist eine Identitätsbehauptung."""
+    gesehen, ergebnis = set(), []
+    for u in (c.get("profile") or []):
+        if not isinstance(u, str):
+            continue
+        u = u.strip()
+        if not u.lower().startswith("https://") or len(u) <= len("https://"):
+            continue
+        if u in gesehen:
+            continue
+        gesehen.add(u)
+        ergebnis.append(u)
+    return ergebnis
+
+
+def _google_profil_urls(c):
+    return [u for u in _profil_urls(c)
+            if any(m in u.lower() for m in _GOOGLE_PROFIL_MUSTER)]
+
+
 def _llms_kopf(c, base):
     """Erste Zeilen von llms.txt und llms-full.txt , die Kurzfassung, die eine
     KI zitiert, wenn sie nur einen Absatz übernimmt."""
@@ -4387,6 +4442,7 @@ def _llms_kopf(c, base):
         f"{standort}"
         f"Vor Ort im Einzugsgebiet {einzugsgebiet}; alles Übrige per Fernwartung in ganz "
         f"Österreich und Deutschland.\n"
+        + "".join(f"Google-Unternehmensprofil: {u}\n" for u in _google_profil_urls(c))
     )
 
 

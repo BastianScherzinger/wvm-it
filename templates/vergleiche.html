@@ -47,6 +47,8 @@
       <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
       <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a>
     </p>
+
+    {% include 'ansprechpartner.html' %}
   </div>
 </section>
 {% endblock %}

@@ -66,11 +66,11 @@ LEISTUNGEN = [
 
     {"slug": "it-beratung", "bereich": "it", "icon": "consulting", "quelle": "it", "preis": "it_support",
      "vor_ort": False, "prio": "0.8",
-     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"], "einstieg": "it_support",},
+     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone", "ki-automatisierung"], "einstieg": "it_support",},
 
     {"slug": "webseite-erstellen", "bereich": "sicht", "icon": "web", "quelle": "web", "preis": "onepager",
      "vor_ort": False, "prio": "0.9",
-     "verwandt": ["seo-betreuung", "hosting-wartung", "google-ads"], "einstieg": "onepager",},
+     "verwandt": ["seo-betreuung", "hosting-wartung", "google-ads", "ki-automatisierung"], "einstieg": "onepager",},
 
     {"slug": "seo-betreuung", "bereich": "sicht", "icon": "seo", "quelle": "seo", "preis": "seo",
      "vor_ort": False, "prio": "0.9",
@@ -78,7 +78,7 @@ LEISTUNGEN = [
 
     {"slug": "google-ads", "bereich": "sicht", "icon": "rocket", "quelle": "ads", "preis": "ads_setup",
      "vor_ort": False, "prio": "0.8",
-     "verwandt": ["seo-betreuung", "webseite-erstellen", "hosting-wartung"]},
+     "verwandt": ["seo-betreuung", "webseite-erstellen", "hosting-wartung", "ki-automatisierung"]},
 
     {"slug": "hosting-wartung", "bereich": "sicht", "icon": "domain", "quelle": "hosting", "preis": "hosting",
      "vor_ort": False, "prio": "0.7",

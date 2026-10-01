@@ -53,6 +53,8 @@
       <a href="{% url 'sicherheitstest' %}">{{ t.selbsttest.h1|safe }}</a> ·
       <a href="{% url 'notfall' %}">{{ t.notfall.h1|safe }}</a>
     </p>
+
+    {% include 'ansprechpartner.html' %}
   </div>
 </section>
 {% endblock %}

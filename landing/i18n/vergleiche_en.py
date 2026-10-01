@@ -159,7 +159,7 @@ VERGLEICHE = {
     "pc-aufruesten-oder-neu-kaufen": {
         "titel": "Upgrade a computer or buy new? Windows 11 | WVM-IT",
         "desc": "When an SSD is still worth it and when Windows 11 forces a new "
-                "computer: age, condition and compatibility decide. With the arithmetic.",
+                "computer: age, condition and compatibility decide. With the arithmetic. Compare now.",
         "nav": "Upgrade or replace",
         "h1": "Upgrade or buy new — what it actually depends on",
         "kurz": "The decision rests on three things: the age of the device, the kind of "

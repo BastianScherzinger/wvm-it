@@ -35,6 +35,8 @@
       {% endfor %}
     </div>
     <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a></p>
+
+    {% include 'ansprechpartner.html' %}
   </div>
 </section>
 {% endblock %}

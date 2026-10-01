@@ -412,7 +412,7 @@ PACK = {
         # verstreut in „Unternehmen".
         "col_wissen": "Wissen",
         "col_unternehmen": "Unternehmen",
-        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
+        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner-Shop)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
         "u_webagentur": "Website: Webagentur Scherzinger",
         "u_ueber": "Über uns", "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
@@ -461,6 +461,9 @@ PACK = {
         "from": "ab", "on_request": "auf Anfrage",
         "per_month": "€/Mt", "per_year": "€/Jahr", "per_hour": "€/Std.",
         "popular": "beliebt", "thousands": ".",
+        # Siehe en.py (IS37): im Deutschen unverändert „ab“ vor jedem Preis.
+        "ab_im_kopf": False, "from_liste": "ab",
+        "start_head": "Startpreise", "start_hint": "Alle Preise sind Startpreise.",
         # Stueckzahl im Konfigurator (06.09.2026) — Positionen mit `menge_max`
         # im Katalog werden je Stueck gerechnet, nicht pauschal.
         "menge": "Anzahl",
@@ -516,6 +519,14 @@ PACK = {
         # einzige Ausgang war ein leeres Textfeld.
         # Wer antwortet — steht seit dem 06.09.2026 auf jeder Anfrage-Karte.
         "person_vor": "Ihre Anfrage liest",
+        "ap_h": "Ihr Ansprechpartner",
+        "ap_zusage": "Antwort an Werktagen innerhalb von 24 Stunden.",
+        "hub_nutzen_h": "Was Sie bei WVM-IT erwartet",
+        "hub_nutzen_1": "Ein fester Ansprechpartner: Wer anruft, spricht mit der Person, die Ihre Anlage auch kennt.",
+        "hub_nutzen_2": "Preise stehen offen auf der Preisseite — der Kostenrechner nennt vorab eine Größenordnung.",
+        "hub_nutzen_3": "Betreuung per gesicherter Fernwartung in ganz Österreich und Deutschland; vor Ort nur nach Terminabsprache.",
+        "hub_cta_h": "Kurz schildern, worum es geht",
+        "hub_cta_sub": "Ein Satz genügt. Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.",
         "einstieg_h": "Der erste Schritt, ohne sich zu binden",
         "einstieg_vor": "Sie müssen nicht mit einem Vertrag anfangen:",
         "einstieg_nach": "Danach wissen Sie, woran Sie sind — und entscheiden in Ruhe.",
@@ -606,7 +617,7 @@ PACK = {
         "auswahl_h": "Warum genau diese vier",
         "auswahl_t": "Es sind die vier Entscheidungen, die vor einer Anbieterwahl am häufigsten offen sind: Die ersten drei kommen in Erstgesprächen fast immer zur Sprache, die vierte — ob sich ein älterer PC noch aufrüsten lässt — ist die, nach der am meisten gesucht wird. Sie haben eines gemeinsam: Man kann sie nicht sinnvoll treffen, ohne den eigenen Betrieb anzusehen — wie viele Arbeitsplätze es gibt, wie stark die Auslastung schwankt, welche Software zwingend vorausgesetzt wird und wie teuer ein Ausfall im Ernstfall tatsächlich wäre. Deshalb steht auf jeder Seite die Frage, an der die Entscheidung hängt, und nicht eine pauschale Empfehlung, die für jeden Betrieb gleich ausfallen würde. Das gilt ausdrücklich auch dann, wenn die ehrliche Antwort lautet, dass sich für Sie im Moment weder das eine noch das andere lohnt und die bestehende Lösung noch eine ganze Weile trägt — ein Vergleich, der dieses Ergebnis nicht zulässt, wäre keine Entscheidungshilfe, sondern nur ein Umweg zum immer gleichen Ergebnis. Zwischen den vier Seiten bestehen außerdem Berührungspunkte: Wer sich für einen Server im Haus entscheidet, muss die Datensicherung ohnehin neu regeln, und wer auf Google Workspace wechselt, verändert damit auch die Frage, ob eine laufende Betreuung oder eine Abrechnung nach Stunden sinnvoller ist. Es lohnt sich deshalb, mehr als eine der vier Seiten zu lesen, auch wenn nur eine Frage akut erscheint. Fehlt Ihnen ein Vergleich, den Sie in Ihrer Situation bräuchten, schreiben Sie uns; wir ergänzen ihn, sobald die Frage öfter gestellt wird, mit demselben Rechenweg und derselben Offenheit wie bei den bestehenden vier Seiten.",
         "titel": "Server oder Cloud? 4 IT-Entscheidungen im Vergleich | WVM-IT",
-        "desc": "Betreuung oder Stunden, Server oder Cloud, Microsoft 365 oder Google, PC aufrüsten oder neu: vier Vergleiche vor der Anbieterwahl.",
+        "desc": "Betreuung oder Stunden, Server oder Cloud, Microsoft 365 oder Google, PC aufrüsten oder neu: vier Vergleiche vor der Anbieterwahl. Jetzt vergleichen.",
         "h1": "Die Entscheidungen, die vor der Anbieterwahl stehen",
         "kurz": "Bevor jemand einen IT-Dienstleister sucht, steht meistens eine andere Frage im Raum: Betreuung im Vertrag oder Abrechnung nach Stunden? Server im Haus oder Cloud? Microsoft 365 oder Google Workspace? Den alten PC aufrüsten oder neu kaufen? Gerechnet wird dabei mit unseren eigenen Sätzen — 29 € je Arbeitsplatz und Monat für die laufende Betreuung, 95 € je Stunde ohne Vertrag, und bei Anschaffungen mit den Gesamtkosten über 3 Jahre statt mit dem Kaufpreis. Auf diesen Seiten stehen die Gegenüberstellungen mit dem Rechenweg — einschließlich der Fälle, in denen die Antwort gegen unser eigenes Angebot ausfällt. Wer hier landet, hat diese Grundsatzfrage meist noch vor sich und noch keinen Anbieter ausgewählt — die Seiten sind deshalb bewusst neutral geschrieben und nicht als Vorstufe zu einem Angebot gedacht, sondern als Antwort auf eine Frage, die jeder Anbieterwahl vorausgeht. Alle vier Vergleiche verwenden dieselbe Preisliste wie der Rest der Website; wir erfinden dafür keine zweite Zahlenwelt.",
         "intro": "Diese Seiten gibt es, weil eine Entscheidung selten mit einem Anbieter beginnt, sondern mit einer Grundsatzfrage davor: Vertrag oder Stundenabrechnung, eigener Server oder Cloud, ein System oder ein anderes. Wer diese Frage noch nicht beantwortet hat, bekommt bei uns oder bei jedem anderen Anbieter kein passendes Angebot, weil Preis und Umfang je nach Antwort stark auseinanderlaufen — ein Angebot für Serverbetreuung nützt niemandem, der eigentlich in die Cloud wechseln will. Jede dieser Seiten nennt deshalb ausdrücklich, wann die andere Variante die richtige ist, und zwar in einem eigenen, gleich großen Abschnitt, nicht in einem Halbsatz am Ende. Ein Vergleich, der immer zum eigenen Angebot führt, ist keiner — er ist Werbung mit Tabelle. Am Ende dieser Seiten kann bei Ihnen ebenso gut stehen, dass keine der beiden vorgestellten Varianten passt, sondern eine dritte Lösung oder gar keine Änderung an dem, was heute schon läuft. Auch das ist ein brauchbares Ergebnis: Eine Entscheidung, die Sie mit Zahlen statt mit einem Bauchgefühl treffen, bleibt richtig, selbst wenn sie am Ende gegen eine Zusammenarbeit mit uns ausfällt. Wer eine dieser Seiten liest, um am Ende einfach nur bestätigt zu bekommen, was er ohnehin schon vorhatte, wird an mindestens einer Stelle enttäuscht — und das ist beabsichtigt. Der Nutzen liegt nicht in der Bestätigung, sondern im Rechenweg, den Sie mit Ihren eigenen Zahlen wiederholen können, auch ohne mit uns zu sprechen.",
@@ -899,7 +910,7 @@ PACK = {
     },
     "hub": {
         "titel": "IT-Leistungen mit offenen Preisen ab 29 €/Monat | WVM-IT",
-        "desc": "EDV-Betreuung ab 29 €/Monat je Arbeitsplatz, Hilfe ohne Vertrag 95 €/Std., Einrichtung ab 190 €, Webseiten ab 350 € — in Österreich und Deutschland.",
+        "desc": "EDV-Betreuung ab 29 €/Monat je Arbeitsplatz, Hilfe ohne Vertrag 95 €/Std., Einrichtung ab 190 €, Webseiten ab 350 € — in Österreich und Deutschland. Jetzt anfragen.",
         "h1": "Was WVM-IT für Betriebe übernimmt",
         "kurz": "WVM-IT betreut die EDV kleiner und mittlerer Betriebe in Österreich und Deutschland und übernimmt zusätzlich alles, was digital sichtbar macht: Webseiten, SEO, Google Ads und Automatisierung. Der Schwerpunkt liegt auf laufender IT-Betreuung ab 29 € je Arbeitsplatz und Monat, überwiegend per Fernwartung. Gebäude- und Veranstaltungstechnik kommen projektbezogen vor Ort dazu. Alle vierzehn Leistungen laufen über denselben Ansprechpartner und dieselbe Preisliste, unabhängig davon, ob es um einen einzelnen Arbeitsplatz oder um ein größeres Projekt geht.",
         "intro": "{anzahl} Leistungen, drei Bereiche – und ein Ansprechpartner für alle. Was Sie hier finden, ist bewusst keine Liste von Schlagworten: Zu jeder Leistung gibt es eine eigene Seite mit dem, was enthalten ist, wie es abläuft und was es kostet. Wenn Sie nicht sicher sind, wo Sie anfangen sollen: EDV und IT passt, wenn eine laufende Technik betreut werden soll – Arbeitsplätze, Server, Datensicherung, Sicherheit. Sichtbarkeit und Web passt, wenn Kundschaft Sie online finden oder ein Auftritt entstehen soll. Technik vor Ort passt, sobald etwas verkabelt, aufgebaut oder eingemessen werden muss. Eine Zusammenarbeit beginnt in den meisten Fällen gleich: mit einer kurzen Bestandsaufnahme dessen, was heute schon da ist, und einer Einschätzung, was sich davon per Fernwartung erledigen lässt und was einen Termin vor Ort braucht. Arbeitsplätze, Server, E-Mail, Updates und die Datensicherung laufen fast immer aus der Ferne; Verkabelung, Hardware-Einbau und Vor-Ort-Technik nicht. Die genannten Preise sind Richtpreise, netto zzgl. USt.",
@@ -970,7 +981,7 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "Was kostet IT-Betreuung? Alle Preise ab 29 €/Monat | WVM-IT",
-        "desc": "Was IT-Betreuung kostet, offen: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE.",
+        "desc": "Was IT-Betreuung kostet, offen: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE. Angebot anfordern.",
         "h1": "Was kostet das? Alle Preise auf einer Seite",
         "kurz": "Die laufende IT-Betreuung bei WVM-IT kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
         "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt – und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",
@@ -1158,7 +1169,7 @@ PACK = {
         "impressum_titel": "Impressum: Lenzing, Oberösterreich | WVM-IT",
         "impressum_desc": "Impressum und Anbieterkennzeichnung von WVM-IT: Inhaber, Anschrift in Lenzing, Oberösterreich, Kontakt und Offenlegung nach MedienG.",
         "datenschutz_titel": "Datenschutzerklärung aus Lenzing | WVM-IT",
-        "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer und Ihre Rechte.",
+        "datenschutz_desc": "Wie WVM-IT personenbezogene Daten verarbeitet: Zweck, Rechtsgrundlage, Speicherdauer und Ihre Rechte. Fragen dazu? Jetzt Kontakt aufnehmen.",
         "agb_titel": "AGB: Bedingungen im Klartext | WVM-IT",
         "agb_desc": "Die Geschäftsbedingungen von WVM-IT: Preise, Zahlung, Kündigung, Haftung und Nutzungsrechte — auf einer Seite. Jetzt nachlesen.",
         "barrierefreiheit_titel": "Erklärung zur Barrierefreiheit | WVM-IT",
