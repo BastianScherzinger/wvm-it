@@ -113,7 +113,7 @@ BRANCHEN = {
     "arztpraxen-therapie": {
         "nav": "Arztpraxen & Therapie",
         "titel": "IT-Betreuung für Arzt- und Zahnarztpraxen | WVM-IT",
-        "desc": "IT-Betreuung für Arzt- und Zahnarztpraxen: ab 29 €/Monat je Arbeitsplatz, Sicherheitscheck ab 490 €. Fernwartung ohne Sprechstunden-Stopp. Jetzt Beratung anfragen.",
+        "desc": "IT-Betreuung für Arzt- und Zahnarztpraxen: ab 29 €/Monat je Arbeitsplatz, Sicherheitscheck ab 490 €. Fernwartung ohne Praxisstopp. Jetzt Beratung anfragen.",
         "h1": "IT für Arztpraxen, Therapie- und Gesundheitsbetriebe",
         "kurz": "WVM-IT betreut die EDV von Arzt-, Zahnarzt- und Therapiepraxen in Österreich und Deutschland: Arbeitsplätze, Praxisverwaltungssoftware, getrennte Netze für medizinische Geräte, Zugriffsrechte und die Sicherung dahinter. Der einmalige IT-Sicherheitscheck kostet ab 490 €, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat. Gearbeitet wird per Fernwartung — in einer Praxis ist das der einzige Weg, der die Sprechstunde nicht anhält.",
         "intro": "Eine Praxis hat zwei Eigenschaften, die zusammen anspruchsvoll sind: Sie verarbeitet die sensibelste Datenkategorie, die es gibt, und sie darf zwischen acht und zwölf Uhr nicht stillstehen. Beides zugleich bedeutet, dass Technik hier nicht spektakulär sein muss, sondern langweilig zuverlässig — und dass jede Änderung außerhalb der Sprechzeit passiert.",

@@ -187,6 +187,17 @@ EINRICHTEN = {
                   "defect, este vorba de recuperare de date — atunci discutăm dinainte "
                   "despre efort și șanse, în loc să dăm o cifră care nu poate fi "
                   "respectată."},
+            {"q": "Ce se întâmplă cu un calculator defect — se repară?",
+             "a": "Nu, este înlocuit: preluăm datele de pe aparatul defect pe cel nou "
+                  "și îl configurăm la prețul fix de 190 € pe stație. Nu suntem un "
+                  "atelier și nu facem reparații de atelier — la aparatele de birou "
+                  "ele sunt aproape niciodată mai ieftine decât un aparat nou. Dacă "
+                  "aparatul vechi nu mai pornește, stabilim mai întâi ce are; dacă "
+                  "este afectat doar hard diskul, este vorba de recuperare de date, "
+                  "facturată după efort. Ce se întâmplă apoi cu aparatul vechi "
+                  "decideți dumneavoastră. Dacă vreți mai întâi să aflați ce este "
+                  "defect de fapt, găsiți <a href=\"/ro/it-hilfe/\">ajutorul pentru "
+                  "probleme punctuale</a> pe o pagină separată."},
             {"q": "Merită înlocuirea sau ar fi suficient un upgrade?",
              "a": "Depinde de vechime și de stare. Dacă hard diskul este încă unul "
                   "clasic, iar calculatorul este în rest sănătos, trecerea la un SSD "

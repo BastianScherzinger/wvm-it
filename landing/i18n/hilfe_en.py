@@ -63,6 +63,8 @@ HILFE = {
          "a": "By remote access usually the same day. We can be reached Monday to Friday from 9am to 6pm; enquiries outside those hours are answered on the next working day."},
         {"q": "What happens if you cannot solve the problem?",
          "a": "We tell you beforehand whether we can help. If it turns out along the way that a manufacturer or a specialist is the better address, we say so openly and tell you the next step."},
+        {"q": "My PC is broken — will you come, and what does it cost?",
+         "a": "Yes, we take on the troubleshooting: by remote access at €95 per hour as long as the computer still starts and is online, otherwise on site at €120 per hour plus travel (within roughly an hour's drive of Lenzing). After that we tell you honestly whether a repair pays off or a new device is better; we do not carry out workshop repairs. We set up the replacement device at the fixed price of €190, including the data transfer — more on the <a href=\"/en/einrichten/pc-tausch/\">data transfer when changing devices</a> is on a page of its own."},
         {"q": "What does a new workstation or Microsoft 365 cost?",
          "a": "We set up a new workstation at a fixed price of €190 — computer, programs, accounts and printers. Microsoft 365 with e-mail, Teams and OneDrive costs €290 set up. Neither needs an ongoing contract."},
         {"q": "Do you also help businesses in Germany?",

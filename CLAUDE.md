@@ -57,7 +57,7 @@ Aus 2 rankbaren Seiten wurden **213 URLs** (Runde 2, 24.09.2026):
 | Leistungen | `/leistungen/<slug>/` | **14** + Hub | DE/EN/RO |
 | **Branchen** | `/branchen/<slug>/` | 6 + Hub | DE/EN/RO |
 | **Vergleiche** | `/vergleich/<slug>/` | 4 + Hub | DE/EN/RO |
-| Regionen | `/it-service/<slug>/` | 7 + Hub | DE/EN/RO |
+| Regionen | `/it-service/<slug>/` | **14** + Hub (seit 01.10.2026, Ähnlichkeitstest) | DE/EN/RO |
 | Fachbeiträge | `/aktuelles/<slug>/` | 21 + Hub | nur DE |
 | **Glossar** | `/wissen/<slug>/` | 14 + Hub | nur DE |
 | **Checklisten** | `/checkliste/<slug>/` | 3 + Hub | nur DE |

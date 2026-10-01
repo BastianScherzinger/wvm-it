@@ -182,6 +182,16 @@ EINRICHTEN = {
                   "even on a dead machine. If the disk itself has failed, that is data "
                   "recovery — then we talk about effort and prospects beforehand, rather "
                   "than quoting a figure that cannot be held."},
+            {"q": "What happens to a broken computer — is it repaired?",
+             "a": "No, it is replaced: we move the data from the broken device to the "
+                  "new one and set that up at the fixed price of €190 per workstation. "
+                  "We are not a repair workshop and do not carry out workshop repairs "
+                  "— on office devices they are almost never cheaper than a new one. "
+                  "If the old device no longer runs, we first find out what is wrong; "
+                  "if only the hard disk is affected, that is data recovery, billed by "
+                  "effort. What happens to the old device afterwards is up to you. If "
+                  "you first want to know what is actually broken, there is a separate "
+                  "page on <a href=\"/en/it-hilfe/\">help with individual problems</a>."},
             {"q": "Is replacing it worth it at all, or would an upgrade do?",
              "a": "That depends on age and condition. If the hard disk is still a "
                   "classic one and the computer is otherwise healthy, moving to an SSD "

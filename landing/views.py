@@ -2148,11 +2148,16 @@ def newsletter_diag(request):
 #                  Umkreis von rund einer Fahrstunde um den Sitz in Lenzing.
 # _AREA_CITIES   — Ballungsräume, die per Fernwartung bedient werden. Ohne die
 #                  Fernwartung wäre diese Liste eine Lüge; mit ihr ist sie wahr.
-_VOR_ORT_ORTE = ["Lenzing", "Vöcklabruck", "Attnang-Puchheim", "Schörfling am Attersee",
-                 "Seewalchen am Attersee", "Timelkam", "Gmunden", "Vöcklamarkt",
-                 "Frankenmarkt", "Mondsee", "Bad Ischl", "Wels", "Salzburg", "Linz"]
+# Orte ohne eigene Regionsseite (Lenzing selbst, Gemeinden im Nahbereich). Alle
+# Orte mit Regionsseite kommen aus `regionen.REGIONEN` dazu — so fehlt nach dem
+# Anlegen einer Ortsseite nie der Schema-Eintrag. Die Attersee-Region ist ein
+# Gebiet, kein Ort; dort stehen Schörfling und Seewalchen.
+_VOR_ORT_ZUSATZ = ["Lenzing", "Schörfling am Attersee", "Seewalchen am Attersee",
+                   "Timelkam", "Vöcklamarkt", "Frankenmarkt"]
+_VOR_ORT_ORTE = list(dict.fromkeys(
+    _VOR_ORT_ZUSATZ + [r["ort"] for r in regionen.REGIONEN if r["slug"] != "attersee"]))
 # Linz steht seit dem 25.09.2026 oben (EIG86): /it-service/linz/ bietet Arbeiten vor Ort
-# an (regionen.py, 60 km), llms.txt nannte Linz vor Ort — nur das Schema nicht.
+# an (regionen.py, 82 km), llms.txt nannte Linz vor Ort — nur das Schema nicht.
 # `EinzugsgebietTest` hält jede Regionsseite in dieser Liste.
 _AREA_CITIES = ["Wien", "Graz", "Innsbruck", "Klagenfurt",
                 "München", "Stuttgart", "Nürnberg", "Frankfurt am Main", "Berlin"]
@@ -3845,6 +3850,8 @@ def region_seite(request, slug):
         # Der Ort ist das Einsatzgebiet, nicht der Sitz. Ein zweiter Sitz im Schema
         # wäre eine Falschangabe und genau das, was Google als Doorway-Signal liest.
         "areaServed": {"@type": "City", "name": region.get("ort", ""),
+                       "geo": {"@type": "GeoCoordinates",
+                               "latitude": eintrag["lat"], "longitude": eintrag["lon"]},
                        "address": {"@type": "PostalAddress",
                                    "postalCode": region.get("plz", ""),
                                    "addressLocality": region.get("ort", ""),
@@ -3854,8 +3861,9 @@ def region_seite(request, slug):
     return render(request, "region.html", {
         "c": c, "region": region,
         "schwerpunkt": _leistung_daten(schwerpunkt, lang) if schwerpunkt else None,
-        "alle_regionen": [_region_daten(r, lang) for r in regionen.REGIONEN
-                          if r["slug"] != slug],
+        "alle_regionen": [_region_daten(r, lang) for r in sorted(
+            regionen.REGIONEN, key=lambda r: r["km"]) if r["slug"] != slug],
+        "nachbarn": [_region_daten(r, lang) for r in regionen.nachbarn(slug, 3)],
         "leistungen_liste": [_leistung_daten(l, lang) for l in leistungen.LEISTUNGEN
                              if not l.get("vor_ort")][:6],
         # Einzelne Aufgaben mit Festpreis, verlinkt aus der Vor-Ort-Karte: Damit
@@ -3877,7 +3885,7 @@ def regionen_hub(request):
     lang = get_language()
     pack = i18n.get_pack(lang)
     base = (c.get("wvm_url") or "").rstrip("/")
-    liste = [_region_daten(r, lang) for r in regionen.REGIONEN]
+    liste = [_region_daten(r, lang) for r in sorted(regionen.REGIONEN, key=lambda r: r["km"])]
     anfrage_ok = (request.GET.get("ok") or "").strip().lower()
     if anfrage_ok not in _ANFRAGE_QUELLEN:
         anfrage_ok = ""
@@ -4469,7 +4477,7 @@ def _llms_regionen(base, lang):
 
     Die Zahlen gehoeren hier hinein, nicht nur auf die Seite: Wenn eine KI gefragt
     wird "Gibt es IT-Betreuung in Gmunden?", ist die brauchbare Antwort nicht "ja",
-    sondern "ja, Sitz 22 km entfernt, laufender Betrieb ohnehin per Fernwartung"."""
+    sondern "ja, Sitz 25 km entfernt, laufender Betrieb ohnehin per Fernwartung"."""
     texte = i18n.get_pack(lang).get("regionen", {})
     zeilen = []
     for eintrag in regionen.REGIONEN:
@@ -4841,7 +4849,7 @@ def llms_full_txt(request):
     # Einsatzgebiet: Die Langfassung trägt hier die Fakten, die eine KI für eine
     # ortsbezogene Frage braucht — Entfernung, Fahrzeit und die Trennung zwischen
     # Arbeiten vor Ort und Fernwartung. Auf „Gibt es IT-Betreuung in Gmunden?" ist
-    # die brauchbare Antwort nicht „ja", sondern „ja, Sitz 22 km entfernt, der
+    # die brauchbare Antwort nicht „ja", sondern „ja, Sitz 25 km entfernt, der
     # laufende Betrieb ohnehin per Fernwartung".
     rtexte = pack.get("regionen", {})
     aus.append("\n\n## Einsatzgebiet")

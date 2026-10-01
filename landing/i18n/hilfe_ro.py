@@ -63,6 +63,8 @@ HILFE = {
          "a": "La distanță, de obicei în aceeași zi. Ne găsiți de luni până vineri între 9 și 18; solicitările din afara acestor ore primesc răspuns în următoarea zi lucrătoare."},
         {"q": "Ce se întâmplă dacă nu puteți rezolva problema?",
          "a": "Vă spunem dinainte dacă vă putem ajuta. Dacă pe parcurs se vede că un producător sau un specialist este adresa mai bună, spunem deschis și vă indicăm pasul următor."},
+        {"q": "Calculatorul meu este defect — veniți și cât costă?",
+         "a": "Da, ne ocupăm de depistarea defectului: la distanță cu 95 € pe oră, atât timp cât calculatorul încă pornește și este online, altfel la fața locului cu 120 € pe oră plus deplasarea (pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing). Apoi vă spunem sincer dacă merită o reparație sau este mai bun un aparat nou; reparații de atelier nu facem. Aparatul de înlocuire îl configurăm la prețul fix de 190 €, inclusiv transferul datelor — detalii despre <a href=\"/ro/einrichten/pc-tausch/\">transferul datelor la schimbarea aparatului</a> găsiți pe o pagină separată."},
         {"q": "Cât costă un post de lucru nou sau Microsoft 365?",
          "a": "Un post de lucru nou îl configurăm la prețul fix de 190 € — calculator, programe, conturi și imprimante. Microsoft 365 cu e-mail, Teams și OneDrive costă 290 € configurat. Ambele fără contract continuu."},
         {"q": "Ajutați și firme din Germania?",

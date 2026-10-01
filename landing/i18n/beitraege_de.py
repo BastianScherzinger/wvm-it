@@ -61,7 +61,7 @@ BEITRAEGE = {
         # ohnehin schon besser stand (`it betreuung fuer kleine unternehmen
         # kosten`: hier Position 76,6, auf /kosten/ 98,3).
         "meta_titel": "IT-Betreuung für kleine Firmen: was rechnet sich? | WVM-IT",
-        "desc": "Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung günstiger als Hilfe nach Stunden. Die Rechnung dahinter — und was enthalten sein muss. Jetzt beraten lassen.",
+        "desc": "Ab etwa fünf Arbeitsplätzen ist die Monatsbetreuung günstiger als Hilfe nach Stunden. Die Rechnung dazu — und was enthalten sein muss. Jetzt beraten lassen.",
         "antwort": "Laufende IT-Betreuung wird in Österreich und Deutschland üblicherweise je Arbeitsplatz und Monat abgerechnet; bei uns beginnt sie bei 29 €. Wer keinen Vertrag will, zahlt Hilfe nach Aufwand — bei uns 95 € je Stunde aus der Ferne und 120 € je Stunde vor Ort zuzüglich Anfahrt. Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung meist günstiger, weil sie sich schon rechnet, wenn sie einen einzigen Ausfalltag im Jahr verhindert.",
         "abschnitte": [
             {"h": "Die zwei Abrechnungsarten",
@@ -520,7 +520,7 @@ BEITRAEGE = {
     "windows-10-ende-was-jetzt": {
         "titel": "Windows 10 ist ausgelaufen — was ein Betrieb jetzt tun sollte",
         "meta_titel": "Windows 10 Support-Ende: was Betriebe jetzt tun | WVM-IT",
-        "desc": "Seit Oktober 2025 keine Sicherheitsupdates mehr. Was das praktisch "
+        "desc": "Seit Oktober 2025 keine Sicherheitsupdates mehr. Was das "
                 "bedeutet, welche Geräte Windows 11 schaffen und was mit den anderen "
                 "passiert. Termin vereinbaren.",
         "antwort": "Windows 10 erhält seit dem 14. Oktober 2025 keine "
@@ -624,8 +624,8 @@ BEITRAEGE = {
     "pc-langsam-woran-liegt-es": {
         "titel": "Der Rechner ist langsam — woran es meistens wirklich liegt",
         "meta_titel": "PC langsam im Betrieb: die vier häufigsten Ursachen | WVM-IT",
-        "desc": "Vier Ursachen erklären fast alle langsamen Bürorechner. Wie man sie "
-                "unterscheidet, was sich beheben lässt und wann ein neues Gerät "
+        "desc": "Vier Ursachen erklären fast alle langsamen Bürorechner. Woran man sie "
+                "erkennt, was sich beheben lässt und wann ein Neukauf "
                 "günstiger ist. Termin vereinbaren.",
         "antwort": "In den allermeisten Fällen liegt es an der Festplatte: Ein Gerät "
                    "mit klassischer Festplatte statt SSD ist bei jedem Start und bei "
@@ -879,7 +879,7 @@ BEITRAEGE = {
     "microsoft-365-konto-gesperrt": {
         "titel": "Microsoft-365-Konto gesperrt — was jetzt zu tun ist",
         "meta_titel": "Microsoft 365 Konto gesperrt: was jetzt tun? | WVM-IT",
-        "desc": "Zu viele Fehlversuche, vom Administrator gesperrt, Abo abgelaufen oder "
+        "desc": "Zu viele Fehlversuche, vom Admin gesperrt, Abo abgelaufen oder "
                 "verdächtige Anmeldung: woran Sie die Ursache erkennen und was hilft. Jetzt Hilfe anfragen.",
         "antwort": "Ein gesperrtes Microsoft-365-Konto hat fast immer einen von vier "
                    "Gründen: zu viele falsche Anmeldeversuche, eine Sperre durch den "
