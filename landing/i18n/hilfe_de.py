@@ -80,6 +80,8 @@ HILFE = {
          "a": "Per Fernwartung meist am selben Tag. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr; Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag."},
         {"q": "Was passiert, wenn Sie das Problem nicht lösen können?",
          "a": "Wir sagen Ihnen vorher, ob wir helfen können. Stellt sich unterwegs heraus, dass ein Hersteller oder ein Spezialist die bessere Adresse ist, sagen wir das offen und nennen Ihnen den nächsten Schritt."},
+        {"q": "Mein PC ist kaputt — kommen Sie, und was kostet das?",
+         "a": "Ja, die Fehlersuche übernehmen wir: per Fernwartung für 95 € je Stunde, solange der Rechner noch startet und online ist, sonst vor Ort für 120 € je Stunde zuzüglich Anfahrt (im Umkreis von rund einer Fahrstunde um Lenzing). Danach sagen wir ehrlich, ob sich eine Reparatur lohnt oder ein neues Gerät besser ist; Werkstattreparaturen führen wir nicht durch. Das Ersatzgerät richten wir zum Festpreis von 190 € ein, samt Datenübernahme — Näheres zur <a href=\"/einrichten/pc-tausch/\">Datenübernahme beim Gerätewechsel</a> steht auf einer eigenen Seite."},
         {"q": "Was kostet ein neuer Arbeitsplatz oder Microsoft 365?",
          "a": "Einen neuen Arbeitsplatz richten wir zum Festpreis von 190 € ein — Rechner, Programme, Konten und Drucker. Microsoft 365 mit E-Mail, Teams und OneDrive kostet eingerichtet 290 €. Beides ohne laufenden Vertrag."},
         {"q": "Helfen Sie auch Betrieben in Deutschland?",

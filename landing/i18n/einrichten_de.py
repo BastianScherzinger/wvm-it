@@ -191,6 +191,18 @@ EINRICHTEN = {
                   "an einem toten Gerät an die Daten. Ist die Festplatte selbst defekt, "
                   "ist das eine Datenrettung — dann sprechen wir vorher über Aufwand "
                   "und Aussichten, statt eine Zahl zu nennen, die nicht zu halten ist."},
+            {"q": "Was passiert mit einem defekten Rechner — wird er repariert?",
+             "a": "Nein, er wird ersetzt: Wir übernehmen die Daten vom defekten Gerät "
+                  "auf das neue und richten dieses zum Festpreis von 190 € je "
+                  "Arbeitsplatz ein. Eine Werkstatt sind wir nicht, Werkstatt"
+                  "reparaturen führen wir nicht durch — bei Bürogeräten sind sie fast "
+                  "nie günstiger als ein neues Gerät. Läuft das alte Gerät nicht mehr, "
+                  "stellen wir zuerst fest, woran es liegt; ist nur die Festplatte "
+                  "betroffen, ist das eine Datenrettung nach Aufwand. Was mit dem "
+                  "alten Gerät danach geschieht, entscheiden Sie. Wer erst einmal "
+                  "wissen will, was überhaupt kaputt ist, findet die <a "
+                  "href=\"/it-hilfe/\">Hilfe bei einzelnen Problemen</a> auf einer "
+                  "eigenen Seite."},
             {"q": "Lohnt sich der Tausch überhaupt, oder reicht Aufrüsten?",
              "a": "Das hängt am Alter und am Zustand. Ist die Festplatte noch eine "
                   "klassische und der Rechner sonst gesund, bringt der Umstieg auf eine "
