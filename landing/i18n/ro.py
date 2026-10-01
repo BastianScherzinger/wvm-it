@@ -413,7 +413,7 @@ PACK = {
         "popular": "popular", "thousands": ".",
         "menge": "Cantitate",
         # Vezi en.py (IS37): în română rămâne „de la” înaintea fiecărui preț.
-        "ab_im_kopf": False, "from_liste": "",
+        "ab_im_kopf": False, "from_liste": "de la",
         "start_head": "prețuri de pornire", "start_hint": "Toate prețurile sunt prețuri de pornire.",
     },
     "catalog": {
