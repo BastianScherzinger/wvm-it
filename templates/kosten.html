@@ -45,7 +45,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       <table class="pt-table">
         <caption class="pt-cap">{{ t.preise.tab_cap|safe }} · {{ t.preise.stand|safe }} {{ preis_stand }}</caption>
         <thead>
-          <tr><th scope="col">{{ t.preise.tab_leistung|safe }}</th><th scope="col">{{ t.preise.tab_preis|safe }}</th></tr>
+          <tr><th scope="col">{{ t.preise.tab_leistung|safe }}</th><th scope="col">{{ t.preise.tab_preis|safe }}{% if t.catalog_words.ab_im_kopf %} ({{ t.catalog_words.start_head }}){% endif %}</th></tr>
         </thead>
         <tbody>
           {% for g in angebot_groups %}
@@ -53,7 +53,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
             {% for it in g.items %}
             <tr>
               <th scope="row"><strong>{{ it.name }}</strong><span>{{ it.desc }}</span></th>
-              <td>{{ it.price_label }}</td>
+              <td>{{ it.price_zahl }}</td>
             </tr>
             {% endfor %}
           {% endfor %}
@@ -121,7 +121,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
         <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=l.icon %}</span>
         <h3 class="lk-h">{{ l.nav|safe }}</h3>
         <p class="lk-t">{{ l.desc|safe }}</p>
-        <span class="lk-p">{{ l.preis_label }}</span>
+        <span class="lk-p">{{ l.preis_liste }}</span>
       </a>
       {% endfor %}
     </div>

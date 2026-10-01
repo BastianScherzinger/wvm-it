@@ -124,7 +124,7 @@
                 <div>
                   <span class="wz-panel-kick">{{ t.angebot_page.step_word|safe }} {{ forloop.counter }} {{ t.angebot_page.of_word|safe }} {{ groups|length|add:1 }}</span>
                   <h3>{{ g.title }}</h3>
-                  <span class="wz-panel-sub">{{ g.sub }} {{ t.angebot_page.sub_suffix|safe }}</span>
+                  <span class="wz-panel-sub">{{ g.sub }} {{ t.angebot_page.sub_suffix|safe }}{% if t.catalog_words.ab_im_kopf %} {{ t.catalog_words.start_hint }}{% endif %}</span>
                 </div>
               </div>
 
@@ -148,7 +148,7 @@
                       <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
                       <span class="ang-item-desc">{{ it.desc }}</span>
                     </span>
-                    <span class="ang-item-price">{{ it.price_label }}</span>
+                    <span class="ang-item-price">{{ it.price_zahl }}</span>
                     <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
                   </span>
                 </label>
@@ -260,13 +260,13 @@
         <article class="pl-card spot" data-reveal data-spot>
           <div class="pl-card-head">
             <span class="pl-ic">{% include 'icons.html' with name=g.icon %}</span>
-            <div><h3>{{ g.title }}</h3><span class="pl-sub">{{ g.sub }}</span></div>
+            <div><h3>{{ g.title }}</h3><span class="pl-sub">{{ g.sub }}{% if t.catalog_words.ab_im_kopf %} {{ t.catalog_words.start_hint }}{% endif %}</span></div>
           </div>
           <ul class="pl-list">
             {% for it in g.items %}
             <li>
               <span class="pl-name">{{ it.name }}{% if it.popular %} <span class="pl-pop">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
-              <span class="pl-price">{{ it.price_label }}</span>
+              <span class="pl-price">{{ it.price_zahl }}</span>
             </li>
             {% endfor %}
           </ul>

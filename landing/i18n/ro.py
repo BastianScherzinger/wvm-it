@@ -412,6 +412,9 @@ PACK = {
         "per_month": "€/lună", "per_year": "€/an", "per_hour": "€/oră",
         "popular": "popular", "thousands": ".",
         "menge": "Cantitate",
+        # Vezi en.py (IS37): în română rămâne „de la” înaintea fiecărui preț.
+        "ab_im_kopf": False, "from_liste": "",
+        "start_head": "prețuri de pornire", "start_hint": "Toate prețurile sunt prețuri de pornire.",
     },
     "catalog": {
         "it": {"title": "Suport IT & administrare", "short": "Suport IT", "sub": "Ca tehnica să funcționeze fără să vă ocupați dumneavoastră."},

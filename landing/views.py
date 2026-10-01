@@ -442,6 +442,10 @@ def _localized_groups(lang):
             nit["name"] = ci.get("name", it["name"])
             nit["desc"] = ci.get("desc", it["desc"])
             nit["price_label"] = _make_price_label(it, words)
+            # Liste/Tabelle: nur die Zahl, wenn der Spaltenkopf „Startpreise“ sagt
+            # (IS37, EN: „from“ stand vor jedem Preis). Sonst dasselbe Label.
+            nit["price_zahl"] = (_festpreis_label(it, words)
+                                 if words.get("ab_im_kopf") else nit["price_label"])
             items.append(nit)
         ng["items"] = items
         out.append(ng)
@@ -507,6 +511,19 @@ def _itempreise(lang):
     words = i18n.get_pack(lang).get("catalog_words", {})
     return {it["id"]: _make_price_label(it, words)
             for g in ANGEBOT_GROUPS for it in g["items"]}
+
+
+def _preis_liste(label, words) -> str:
+    """Label für Karten auf Hub-Seiten mit dem Wechselwort aus `from_liste`.
+
+    Dieselbe Bedeutung (Startpreis), anderes Wort: Auf /en/kosten/ und
+    /en/branchen/ stand „from“ vor jedem Preis und lag über der 5-%-Grenze für das
+    häufigste Inhaltswort (IS37). Ohne `from_liste` bleibt das Label unverändert."""
+    alt = words.get("from_liste")
+    vorwort = words.get("from", "ab") + " "
+    if alt and label.startswith(vorwort):
+        return alt + " " + label[len(vorwort):]
+    return label
 
 
 def _paketpreise():
@@ -2501,6 +2518,8 @@ def _leistung_daten(eintrag, lang):
         eintrag,
         url=reverse("leistung", kwargs={"slug": eintrag["slug"]}),
         preis_label=preise.get(eintrag["preis"], ""),
+        preis_liste=_preis_liste(preise.get(eintrag["preis"], ""),
+                                 pack.get("catalog_words", {})),
         **texte,
     )
 
@@ -2940,6 +2959,8 @@ def _branche_daten(eintrag, lang):
         eintrag,
         url=reverse("branche", kwargs={"slug": eintrag["slug"]}),
         preis_label=preise.get(eintrag["preis"], ""),
+        preis_liste=_preis_liste(preise.get(eintrag["preis"], ""),
+                                 i18n.get_pack(lang).get("catalog_words", {})),
         **texte,
     )
 

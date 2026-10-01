@@ -418,6 +418,11 @@ PACK = {
         "per_month": "€/mo", "per_year": "€/yr", "per_hour": "€/hr",
         "popular": "popular", "thousands": ",",
         "menge": "Quantity",
+        # IS37: Auf den Listen- und Hub-Seiten steht „from“ nicht vor jedem Preis.
+        # Tabellen/Listen zeigen nur die Zahl und sagen es einmal im Kopf; Karten
+        # wechseln zu „starting at“. Bedeutung bleibt Startpreis.
+        "ab_im_kopf": True, "from_liste": "starting at",
+        "start_head": "starting prices", "start_hint": "All prices are starting prices.",
     },
     "catalog": {
         "it": {"title": "IT support & management", "short": "IT support", "sub": "So the technology runs without you having to think about it."},
