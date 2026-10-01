@@ -114,6 +114,27 @@ REGIONEN = [
          {"titel": "Wikipedia: STIWA Group", "url": "https://de.wikipedia.org/wiki/STIWA_Group"},
      ]},
 
+    {"slug": "schwanenstadt", "ort": "Schwanenstadt", "plz": "4690",
+     "bezirk": "Bezirk Vöcklabruck", "lat": 48.0545, "lon": 13.7749,
+     "km": 19, "fahrzeit": 25,
+     "schwerpunkt": "webseite-erstellen", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Schwanenstadt", "url": "https://de.wikipedia.org/wiki/Schwanenstadt"},
+         {"titel": "Austria-Forum: Schwanenstadt", "url": "https://austria-forum.org/af/AustriaWiki/Schwanenstadt"},
+         {"titel": "WKO Firmen A–Z: Schwanenstadt (Gemeinde)", "url": "https://firmen.wko.at/-/schwanenstadt_gemeinde/"},
+         {"titel": "WKO Firmen A–Z: Händler in Schwanenstadt", "url": "https://firmen.wko.at/h%C3%A4ndler/schwanenstadt_gemeinde"},
+     ]},
+
+    {"slug": "voecklamarkt", "ort": "Vöcklamarkt", "plz": "4870",
+     "bezirk": "Bezirk Vöcklabruck", "lat": 48.0022, "lon": 13.4851,
+     "km": 16, "fahrzeit": 20,
+     "schwerpunkt": "it-beratung", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Vöcklamarkt", "url": "https://de.wikipedia.org/wiki/V%C3%B6cklamarkt"},
+         {"titel": "Land Oberösterreich Tourismus: Vöcklamarkt", "url": "https://www.oberoesterreich.at/oesterreich-stadt-ort/detail/430001292/voecklamarkt.html"},
+         {"titel": "Marktgemeinde Vöcklamarkt: Firmen von A bis Z", "url": "https://www.voecklamarkt.ooe.gv.at/Unsere_Gemeinde/Wirtschaft/Firmen_von_A_bis_Z"},
+     ]},
+
     {"slug": "mondsee", "ort": "Mondsee", "plz": "5310",
      "bezirk": "Bezirk Vöcklabruck", "lat": 47.8560, "lon": 13.3501,
      "km": 39, "fahrzeit": 35,
