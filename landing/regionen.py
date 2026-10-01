@@ -60,9 +60,10 @@ Neuen Ort anlegen
    `attnang-puchheim` und `mondsee`. Der Ähnlichkeitstest verlangt eigenen Inhalt.
 3. Ort in `views._VOR_ORT_ORTE` kommt automatisch (wird aus dieser Liste gebildet).
 
-Gemessen, aber noch ohne Seite (01.10.2026; km / Fahrzeit, lat, lon):
-schwanenstadt 19/25 48.0545 13.7749 · voecklamarkt 16/20 48.0022 13.4851
-(ried-im-innkreis, grieskirchen und kirchdorf-an-der-krems haben seit 01.10.2026 eine Seite)
+Seit 01.10.2026 haben alle gemessenen Orte eine Seite (Attnang-Puchheim,
+Mondsee, Schwanenstadt, Vöcklamarkt, Ried im Innkreis, Grieskirchen,
+Kirchdorf an der Krems). Gemessen und bewusst ohne Seite: Steyr, Braunau am
+Inn und Bad Aussee (je rund 75 Minuten, also über einer Fahrstunde).
 """
 
 from math import asin, cos, radians, sin, sqrt
