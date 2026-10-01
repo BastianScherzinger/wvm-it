@@ -142,19 +142,28 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.wege|safe }}</p>
         <h2 class="section-t" id="fd-title">{{ t.finder.h|safe }}</h2>
-        <p class="section-lead">{{ t.finder.lead|safe }}</p>
       </header>
-      <ul class="wege" data-reveal>
+      <ul class="wege wege-bild" data-reveal>
         {% for w in finder %}
         <li>
           <a class="fd-karte{% if w.dringend %} fd-karte-eilig{% endif %}" href="{{ w.url }}">
+            {% if w.bild %}<img class="fd-bild" src="{% static w.bild %}"{% if w.bild_480 %} srcset="{% static w.bild_480 %} 480w{% if w.bild_800 %}, {% static w.bild_800 %} 800w{% endif %}, {% static w.bild %} 1200w" sizes="(max-width:700px) 100vw, (max-width:1100px) 46vw, 368px"{% endif %} width="1200" height="800" alt="" loading="lazy" decoding="async">{% endif %}
             <span class="fd-h">{% if w.dringend %}<span class="fd-alert" aria-hidden="true">{% include 'icons.html' with name='alert' %}</span>{% endif %}{{ w.h|safe }}</span>
             <span class="fd-t">{{ w.t|safe }}</span>
-            <span class="fd-pfeil" aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span>
           </a>
         </li>
         {% endfor %}
       </ul>
+
+      {% comment %} Upgrade 01.10.2026: „Was wir alles anbieten“ als eine ruhige
+           Linkzeile je Bereich — alle Leistungsseiten bleiben von der Startseite
+           aus einen Klick entfernt (interne Verlinkung, TS46). {% endcomment %}
+      <div class="fd-alle" data-reveal>
+        <h3 class="fd-alle-h">{{ t.finder.alle_h|safe }}</h3>
+        {% for g in leistungen_bereiche %}
+        <p class="fd-alle-zeile"><span class="fd-alle-l">{{ g.h|safe }}</span>{% for l in g.posten %}<a href="{{ l.url }}">{{ l.nav|safe }}</a>{% endfor %}</p>
+        {% endfor %}
+      </div>
     </div>
   </section>
 
@@ -405,11 +414,14 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
        /kosten/), die volle Preisliste zieht nach #angebot um. ── {% endcomment %}
   <section class="section" id="preise">
     <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.kosten|safe }}</p>
-        <h2 class="section-t">{{ t.it_stufen.h|safe }}</h2>
-        <p class="section-lead">{{ t.it_stufen.lead|safe }}</p>
-      </header>
+      <div class="kopf-bild" data-reveal>
+        <header class="sec-head">
+          <p class="sec-kick">{{ t.abschnitt.kosten|safe }}</p>
+          <h2 class="section-t">{{ t.it_stufen.h|safe }}</h2>
+          <p class="section-lead">{{ t.it_stufen.lead|safe }}</p>
+        </header>
+        <img class="kopf-foto" src="{% static 'img/foto_server.webp' %}" srcset="{% static 'img/foto_server_480.webp' %} 480w, {% static 'img/foto_server_800.webp' %} 800w, {% static 'img/foto_server.webp' %} 1200w" sizes="(max-width:700px) 100vw, 560px" width="1200" height="800" alt="" loading="lazy" decoding="async">
+      </div>
       <div class="price-grid preise-stufen" data-reveal>
         {% for s in it_stufen %}
         <article class="price{% if s.beliebt %} price-featured{% endif %}">
@@ -484,6 +496,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         <h2 class="section-t">{{ t.ablauf.h|safe }}</h2>
         <p class="section-lead">{{ t.ablauf.sub|safe }}</p>
       </header>
+      <img class="band-foto" src="{% static 'img/foto_vorort.webp' %}" srcset="{% static 'img/foto_vorort_480.webp' %} 480w, {% static 'img/foto_vorort_800.webp' %} 800w, {% static 'img/foto_vorort.webp' %} 1200w" sizes="(max-width:1240px) 100vw, 1160px" width="1200" height="800" alt="" loading="lazy" decoding="async">
       <ol class="timeline" data-reveal>
         <li class="tl-item"><span class="tl-n">01</span><div class="tl-body"><h3>{{ t.ablauf.s1_h|safe }}</h3><p>{{ t.ablauf.s1_t|safe }}</p></div></li>
         <li class="tl-item"><span class="tl-n">02</span><div class="tl-body"><h3>{{ t.ablauf.s2_h|safe }}</h3><p>{{ t.ablauf.s2_t|safe }}</p></div></li>

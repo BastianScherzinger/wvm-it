@@ -305,18 +305,18 @@ def _startpakete(lang):
 # sagen; hier stehen die Wege, die sie danach gehen wollen — einschließlich der
 # beiden, die nicht zu einer Leistungsseite führen (Notfall und Preis).
 FINDER = [
-    {"id": "notfall", "icon": "bolt", "route": "notfall", "dringend": True},
+    {"id": "notfall", "bild": "img/foto_notfall.webp", "icon": "bolt", "route": "notfall", "dringend": True},
     # Seit 24.09.2026 der zweite Weg: ein einzelnes Problem, ohne Vertrag. Er
     # ersetzt den Konfigurator, der weiter in Kopfzeile und Fusszeile steht —
     # sechs Karten bleiben sechs, das Raster bleibt, wie es gemessen ist (BF26).
-    {"id": "hilfe", "icon": "phone", "route": "it_hilfe"},
-    {"id": "betreuung", "icon": "care", "route": "leistung", "slug": "edv-it-betreuung"},
+    {"id": "hilfe", "bild": "img/foto_hilfe.webp", "icon": "phone", "route": "it_hilfe"},
+    {"id": "betreuung", "bild": "img/foto_betreuung.webp", "icon": "care", "route": "leistung", "slug": "edv-it-betreuung"},
     # Design B1 (§2.4, §6 K1-2, 25.09.2026): "preis" (→ Rechner) ersetzt durch
     # "einrichten" (→ Festpreise) — der Rechner doppelte sonst Block 6. Der
     # Kostenrechner bleibt über Block 6 und den Kopf erreichbar.
-    {"id": "einrichten", "icon": "monitor", "route": "einrichtungen"},
-    {"id": "web", "icon": "web", "route": "leistung", "slug": "webseite-erstellen"},
-    {"id": "branche", "icon": "consulting", "route": "branchen"},
+    {"id": "einrichten", "bild": "img/foto_einrichten.webp", "icon": "monitor", "route": "einrichtungen"},
+    {"id": "web", "bild": "img/foto_web.webp", "icon": "web", "route": "leistung", "slug": "webseite-erstellen"},
+    {"id": "branche", "bild": "img/foto_branche.webp", "icon": "consulting", "route": "branchen"},
 ]
 
 
@@ -329,6 +329,9 @@ def _finder(lang):
             url = reverse("leistung", kwargs={"slug": eintrag["slug"]})
         else:
             url = reverse(eintrag["route"])
+        # Upgrade 01.10.2026: jede Karte trägt ein Foto (Fassungen _480/_800
+        # werden abgeleitet, siehe _mit_bildvarianten).
+        eintrag = _mit_bildvarianten([eintrag], "bild", (480, 800))[0]
         raus.append({**eintrag, "url": url,
                      "h": texte.get(eintrag["id"], {}).get("h", ""),
                      "t": texte.get(eintrag["id"], {}).get("t", "")})

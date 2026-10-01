@@ -84,7 +84,7 @@ PACK = {
         # Zahlen statt Adjektiven — "vom Zwei-Mann-Buero" ist pruefbar,
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
-        "subline": "WVM-IT aus Lenzing betreut Server, Netzwerk, Arbeitsplätze und Sicherheit: per Fernwartung in ganz Österreich und Deutschland, vor Ort in der Region. Ab 29 € je Arbeitsplatz im Monat.",
+        "subline": "WVM-IT aus Lenzing betreut Server, Netzwerk und Arbeitsplätze in Ihrem Betrieb, ab 29 € je Arbeitsplatz im Monat.",
         # Design B1: Frage neben dem Rückruf im Hero, führt zu Telefon/WhatsApp.
         "alt_frage": "Lieber gleich sprechen?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
@@ -274,7 +274,7 @@ PACK = {
     # views._it_stufen() aus denselben Katalogpositionen.
     "it_stufen": {
         "h": "Was die laufende Betreuung kostet",
-        "lead": "Drei typische Betriebsgrößen, gerechnet aus derselben Preisliste wie alles andere. Ihre genaue Zahl rechnen Sie im Rechner selbst aus.",
+        "lead": "Drei typische Betriebsgrößen. Ihre genaue Zahl rechnen Sie im Rechner aus.",
         # Design B1 (§2.8, §6 K1-12): beschreibt die Stufe statt eine unbelegte
         # Kundenzahl zu behaupten.
         "beliebt": "typisch für ein Büro mit Server",
@@ -846,21 +846,22 @@ PACK = {
         "eyebrow": "Direkt zum Ziel",
         "h": "Wobei dürfen wir helfen?",
         "lead": "Ein Klick, und Sie sind dort, wo Ihre Antwort steht.",
+        "alle_h": "Alles, was wir anbieten",
         "wege": {
             "notfall": {"h": "Es geht gerade etwas nicht",
-                        "t": "Ausfall, Verschlüsselung, gehacktes Postfach: die ersten 30 Minuten, Schritt für Schritt."},
+                        "t": "Die ersten 30 Minuten, Schritt für Schritt."},
             "betreuung": {"h": "Wir brauchen jemanden für die IT",
-                          "t": "Laufende Betreuung für Betriebe ohne eigene IT-Abteilung, ab 29 € je Arbeitsplatz und Monat."},
+                          "t": "Laufende Betreuung ab 29 € je Arbeitsplatz im Monat."},
             # Design B1 (§2.4, §6 K1-2): ersetzt "preis" (doppelte Block 6) — der
             # Kostenrechner bleibt über Block 6 und den Kopf erreichbar.
             "einrichten": {"h": "Ein neuer PC, ein Netzwerk, Microsoft 365",
-                           "t": "Einzelne Aufgaben zum Festpreis, ohne Vertrag, ab 190 €."},
+                           "t": "Zum Festpreis, ohne Vertrag, ab 190 €."},
             "hilfe": {"h": "Nur ein Problem, kein Vertrag",
-                      "t": "Drucker, E-Mail, WLAN, langsamer PC: per Fernwartung für 95 € je Stunde, meist am selben Tag."},
+                      "t": "Per Fernwartung für 95 € je Stunde, meist am selben Tag."},
             "web": {"h": "Wir brauchen eine Webseite",
-                    "t": "Von der Landingpage bis zum Shop — gebaut, gehostet und betreut aus einer Hand."},
+                    "t": "Gebaut, gehostet und betreut aus einer Hand."},
             "branche": {"h": "Was heißt das für meine Branche?",
-                        "t": "Kanzlei, Handwerk, Praxis, Hotel, Produktion, Verein: was jeweils technisch anders ist."},
+                        "t": "Kanzlei, Handwerk, Praxis, Hotel, Produktion."},
         },
     },
     # ── Schnellstart-Pakete für den Konfigurator (UX) ─────────────────────────
@@ -1562,7 +1563,7 @@ PACK = {
         "ads_p3": "Monatlicher Bericht: was gekostet hat und was gebracht hat",
         "ads_ph": "Wofür sollen Anzeigen laufen?",
         "web_h": "Webseite und Online-Shop",
-        "web_lead": "Eine Seite, die Anfragen bringt statt nur gut auszusehen. Sie sehen vorher, was Sie bekommen: die kostenlose Testseite baut unsere KI in etwa zehn Minuten.",
+        "web_lead": "Sie sehen vorher, was Sie bekommen: Die kostenlose Testseite steht in etwa zehn Minuten.",
         "web_p1": "One-Pager, mehrseitige Firmenseite oder Shop",
         "web_p2": "Text, Bilder und Technik aus einer Hand",
         "web_p3": "Für Handy gebaut, nicht nur angepasst",

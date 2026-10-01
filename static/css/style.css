@@ -2559,3 +2559,54 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
 @media (min-width:901px){.rb-sec .pk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:900px) and (min-width:561px){.rb-sec .pk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:700px){.hero-wa{min-height:52px}}
+
+/* ============================================================================
+   UPGRADE 01.10.2026 (Runde 2) — Bilder statt Text
+   Wegweiser als Fotokarten, Leistungszeile, Fotos bei Preisen und Ablauf.
+   Fotos: eigene Aufnahmen-Stil (ChatGPT, ohne Schrift), _480/_800/1200 WebP.
+   ========================================================================== */
+.wege.wege-bild{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 28px;border-bottom:0}
+.wege-bild li{border-top:0}
+.wege-bild .fd-karte{grid-template-columns:1fr auto;grid-template-areas:"bild bild" "h pfeil" "t pfeil";
+  row-gap:8px;padding:0}
+.fd-bild{grid-area:bild;display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+  border-radius:4px;background:var(--line);margin-bottom:12px;
+  transition:filter .25s var(--ease,ease-out)}
+.wege-bild .fd-h{font-size:23px}
+.wege-bild .fd-t{font-size:15.5px}
+.wege-bild .fd-karte:hover .fd-bild{filter:brightness(1.05) saturate(1.05)}
+.fd-alle{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);display:grid;gap:10px}
+.fd-alle-h{font-family:var(--serif);font-weight:500;font-size:22px;margin:0 0 6px}
+.fd-alle-zeile{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;font-size:15px;line-height:1.6}
+.fd-alle-l{flex:0 0 220px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+.fd-alle-zeile a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:4px}
+.fd-alle-zeile a:hover{color:var(--accent-ink);text-decoration-color:currentColor}
+.kopf-bild{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:56px;align-items:end;margin-bottom:48px}
+.kopf-bild .sec-head{margin-bottom:0}
+.kopf-foto,.band-foto{display:block;width:100%;height:auto;object-fit:cover;border-radius:4px;background:var(--line)}
+.kopf-foto{aspect-ratio:16/9}
+.band-foto{aspect-ratio:21/8;margin:0 0 48px}
+@media (max-width:1100px){
+  .wege.wege-bild{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .kopf-bild{grid-template-columns:1fr;gap:28px}
+  .band-foto{aspect-ratio:16/9}
+}
+@media (max-width:700px){
+  .wege.wege-bild{grid-template-columns:1fr;gap:0;border-bottom:1px solid var(--line)}
+  .wege-bild li{border-top:1px solid var(--line)}
+  .wege-bild .fd-karte{grid-template-columns:112px 1fr;grid-template-areas:"bild h" "bild t";
+    column-gap:16px;row-gap:4px;padding:16px 0;align-items:start}
+  .fd-bild{aspect-ratio:1/1;margin:0}
+  .wege-bild .fd-pfeil{display:none}
+  .wege-bild .fd-h{font-size:19px}
+  .wege-bild .fd-t{font-size:14.5px}
+  .fd-alle{margin-top:40px}
+  .fd-alle-l{flex-basis:100%}
+}
+@media (prefers-reduced-motion: reduce){.fd-bild{transition:none}}
+.kopf-bild .sec-head{display:block}
+.kopf-bild .sec-head .section-lead{margin-top:14px;max-width:34em}
+.wege-bild .fd-karte{grid-template-areas:"bild" "h" "t";grid-template-columns:1fr}
+@media (max-width:700px){.wege-bild .fd-karte{grid-template-areas:"bild h" "bild t";grid-template-columns:112px 1fr}}
