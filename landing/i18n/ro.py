@@ -1075,7 +1075,7 @@ PACK = {
         "badge_fallback": "IT · service · consulting",
         "foto_alt": "Florin Feier, proprietar și persoană de contact la WVM-IT",
         "titel": "Despre noi: Florin Feier, Lenzing (Austria) | WVM-IT",
-        "desc": "Cine este în spatele WVM-IT, cum lucrăm și ce nu facem în mod deliberat. O singură persoană de contact, sediu în Austria Superioară. Cunoașteți-ne și contactați-ne.",
+        "desc": "Cine este în spatele WVM-IT, cum lucrăm și ce nu facem în mod deliberat. O singură persoană de contact, din Austria Superioară. Cunoașteți-ne și contactați-ne.",
         "h1": "Cine este în spatele WVM-IT",
         "kurz": "În spatele WVM-IT se află {inhaber}. O firmă, o persoană de contact: cine sună vorbește cu persoana care cunoaște și instalația. Sediul este {adresse}; lucrăm preponderent prin întreținere la distanță în toată Austria și Germania, în germană, engleză și română. Răspundem cererilor în 24 de ore în zilele lucrătoare.",
         "intro": "Majoritatea firmelor care sună aici nu au un departament IT. Au pe cineva care se pricepe puțin și o tehnică ce a crescut aparat cu aparat, an după an, de cele mai multe ori fără un plan în spate. Merge până când nu mai merge. Munca noastră începe aproape întotdeauna cu cineva care scrie ce există de fapt. Surprinzător de des, este prima listă de acest fel din firmă.",

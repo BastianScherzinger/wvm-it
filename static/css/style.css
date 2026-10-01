@@ -2610,3 +2610,6 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
 .kopf-bild .sec-head .section-lead{margin-top:14px;max-width:34em}
 .wege-bild .fd-karte{grid-template-areas:"bild" "h" "t";grid-template-columns:1fr}
 @media (max-width:700px){.wege-bild .fd-karte{grid-template-areas:"bild h" "bild t";grid-template-columns:112px 1fr}}
+/* Quellenzeile der Ortsseiten (SEO-Runde 2, 01.10.2026): leiser als der Hinweis. */
+.rg-quellen{font-size:12.5px;color:var(--ink-dim);line-height:1.6}
+.rg-quellen a{color:inherit;text-decoration:underline;text-underline-offset:3px}
