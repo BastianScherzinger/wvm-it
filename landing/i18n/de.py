@@ -79,14 +79,19 @@ PACK = {
         # Design B1 (25.09.2026): H1 als einfacher Satz, was Florin macht;
         # "IT-Betreuung" bleibt Suchbegriff in der H1. Begründung in
         # docs/HERO-KONZEPT-2026-09-06.md, § B1.
-        "headline": "IT-Betreuung mit einem Ansprechpartner, der Ihren Betrieb kennt.",
+        "headline": "IT-Betreuung für Ihren Betrieb, persönlich und aus einer Hand.",
         # Zweite Zeile der Ueberschrift: nennt gross und klein ausdruecklich.
         # Zahlen statt Adjektiven — "vom Zwei-Mann-Buero" ist pruefbar,
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
-        "subline": "WVM-IT aus Lenzing, Oberösterreich, betreut Server, Netzwerk, Arbeitsplätze, E-Mail, Datensicherung und Sicherheit – dazu Webseite, SEO und KI. Ab 29 € je Arbeitsplatz und Monat, per Fernwartung in ganz Österreich und Deutschland.",
+        "subline": "WVM-IT aus Lenzing betreut Server, Netzwerk, Arbeitsplätze und Sicherheit: per Fernwartung in ganz Österreich und Deutschland, vor Ort in der Region. Ab 29 € je Arbeitsplatz im Monat.",
         # Design B1: Frage neben dem Rückruf im Hero, führt zu Telefon/WhatsApp.
         "alt_frage": "Lieber gleich sprechen?",
+        # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
+        "anrufen": "Jetzt anrufen",
+        "rr_h": "Lieber zurückgerufen werden?",
+        "rr_ph": "Ihre Telefonnummer",
+        "rr_mehr": "Name, Zeitfenster und Anliegen angeben (freiwillig)",
         "cta": "Gratis Beispiel-Website sichern",
         "note": "Kostenlos und unverbindlich · von unserer JARVIS-KI in ~10 Minuten gebaut.",
         "robot_aria": "3D-Assistent, klick mich",
@@ -296,7 +301,7 @@ PACK = {
             "Täglich geprüfte Datensicherung",
         ],
         "cta": "Eigene Zahl ausrechnen",
-        "foot": "Richtpreise, netto zzgl. USt. Einsatzstunden und einmalige Einrichtung kommen nach Aufwand dazu — die Sätze stehen in der Preisliste darunter.",
+        "foot": "Richtpreise, netto zzgl. USt. Einsatzstunden und einmalige Einrichtung kommen nach Aufwand dazu — die Sätze stehen in der vollständigen Preisliste.",
     },
     "preise": {
         "tab_h": "Alle Leistungen und Preise auf einen Blick",
@@ -828,8 +833,8 @@ PACK = {
     # lesen, und wer nach dem Preis sucht, will rechnen.
     "finder": {
         "eyebrow": "Direkt zum Ziel",
-        "h": "Womit können wir anfangen?",
-        "lead": "Sechs Wege, je nachdem, warum Sie hier sind. Jeder führt in einem Klick dorthin, wo die Antwort steht — nicht auf eine weitere Übersichtsseite.",
+        "h": "Wobei dürfen wir helfen?",
+        "lead": "Ein Klick, und Sie sind dort, wo Ihre Antwort steht.",
         "wege": {
             "notfall": {"h": "Es geht gerade etwas nicht",
                         "t": "Ausfall, Verschlüsselung, gehacktes Postfach: die ersten 30 Minuten, Schritt für Schritt."},
@@ -1697,8 +1702,8 @@ PACK = {
         "kenn_anfrage": "Nach Aufnahme",
         "anfrage_warum": "Weil jede Anlage anders ist, nennen wir den Preis nach einem kurzen Blick darauf.",
         "web_h": "Webseiten, gebaut, gehostet und betreut aus einer Hand",
-        "angebot_h": "Mehrere Leistungen zusammenstellen und als Angebot anfordern",
-        "angebot_lead": "Für mehr als eine Leistung. Für eine einzelne Zahl reicht der Rechner oben.",
+        "angebot_h": "Ihr Richtangebot in zwei Minuten",
+        "angebot_lead": "Typischen Bedarf anklicken, ergänzen, den Preis sofort sehen. Das Angebot kommt per E-Mail.",
         "angebot_einzeln": "Einzelne Leistungen auswählen",
         "region_h": "Für Ihren Betrieb und Ihre Region",
         # Design B1 (§2.12, 25.09.2026, Paket 3): Lead-Satz von Block 10.

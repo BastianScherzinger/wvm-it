@@ -2466,3 +2466,94 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
   box-shadow:var(--shadow);max-width:66ch}
 .hb-klein .sp-h2{margin-top:0}
 .hb-klein p{color:var(--ink-soft);font-size:15.5px;max-width:60ch;margin-bottom:16px}
+
+/* ============================================================================
+   UPGRADE 01.10.2026 — Hero „Ein Anruf“ (docs/DESIGN-2026-10-01.md)
+   Ein Bildschirm beantwortet drei Fragen: was, wer, wie erreiche ich ihn.
+   Der Anruf ist die einzige laute Fläche; WhatsApp ist Umriss, der Rückruf
+   eine schmale Zeile ohne Kartenschatten. Steht bewusst am Dateiende und
+   überstimmt die B1-Verdichtung (ab 701 px) von oben.
+   ========================================================================== */
+.hero{padding:56px 0 64px}
+.hero-grid{grid-template-columns:minmax(0,1fr) 456px;gap:72px;align-items:start}
+.hero h1{font-size:clamp(2.25rem,1.2rem + 3vw,3.6rem);line-height:1.04;letter-spacing:-.022em;max-width:13em}
+.h1-zusatz{margin-top:18px;font-size:clamp(1.12rem,1rem + .4vw,1.3rem);color:var(--ink-soft)}
+.hero .lead{font-size:18px;line-height:1.55;margin-top:18px;max-width:31em;color:var(--ink-dim)}
+
+.hero-aktion{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-anruf{min-height:64px;padding:0 28px 0 22px;gap:14px}
+.hero-anruf svg{width:22px;height:22px;flex:none}
+.hero-anruf-t{display:flex;flex-direction:column;align-items:flex-start;line-height:1.15;text-align:left}
+.hero-anruf-t small{font:500 12.5px/1.2 var(--sans);letter-spacing:.02em;opacity:.86}
+.hero-anruf-t b{font:600 20px/1.2 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.hero-wa{min-height:64px;padding:0 24px;gap:10px}
+.hero-wa svg{width:20px;height:20px;flex:none}
+
+/* Rückruf als schmale Zeile: keine Karte, eine Haarlinie darüber. */
+.hero .rr-kompakt{margin-top:28px;padding:20px 0 0;border:0;border-top:1px solid var(--line);
+  border-radius:0;box-shadow:none;background:none;max-width:560px}
+.hero .rr-kompakt .rr-karte-h{font:600 15.5px/1.3 var(--sans);letter-spacing:0;color:var(--ink)}
+.hero .rr-kompakt .lb-form{margin-top:10px;gap:10px}
+.rr-zeile{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:stretch}
+.rr-zeile .fld{min-height:52px}
+.rr-zeile .lb-submit{min-height:52px;white-space:nowrap}
+.rr-mehr summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;
+  font-size:14px;color:var(--ink-dim);padding:2px 0;border-bottom:1px solid var(--line-2)}
+.rr-mehr summary::-webkit-details-marker{display:none}
+.rr-mehr summary::after{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s var(--ease)}
+.rr-mehr[open] summary::after{transform:translateY(1px) rotate(-135deg)}
+.rr-mehr summary:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.rr-mehr summary:focus-visible{outline:2px solid var(--ring);outline-offset:3px}
+.rr-mehr-inhalt{display:grid;gap:14px;margin-top:14px}
+.hero .rr-kompakt .fld-recht{font-size:12.5px;line-height:1.5;margin-top:0;max-width:none;color:var(--ink-dim)}
+.hero-trust{margin-top:26px;gap:8px 22px}
+
+/* Porträt: größer, Bildunterschrift als Zitat und Name — ohne Versalien-Mono. */
+.hero-foto{border-radius:var(--radius)}
+.hero-foto-box figcaption{padding:18px 0 0;margin-top:16px;border-top:2px solid var(--ink)}
+.hero-foto-satz{font-size:24px;line-height:1.35;margin:0}
+.hero-foto-name{margin:10px 0 0;font:400 14.5px/1.4 var(--sans);letter-spacing:0;text-transform:none;color:var(--ink-dim)}
+.hero-foto-name b{font-weight:600;color:var(--ink)}
+
+@media (min-width:701px){
+  .hero{padding-top:48px}
+  .hero h1{font-size:clamp(2.25rem,1.2rem + 2.6vw,3.5rem);max-width:13em;line-height:1.04}
+  .h1-zusatz{margin-top:16px;font-size:1.2rem}
+  .hero .lead{font-size:18px;margin-top:16px;max-width:31em}
+  .hero .rr-kompakt{padding:18px 0 0}
+  .hero .rr-kompakt .fld{min-height:52px}
+}
+@media (max-width:1100px) and (min-width:701px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) 38vw;gap:48px}
+}
+/* Handy: Personenkarte mit echtem Foto statt Rundbildchen, Anruf als volle
+   Breite im ersten Bildschirm, Rückruf direkt darunter. */
+@media (max-width:700px){
+  .hero{padding:20px 0 40px}
+  .hero-grid{grid-template-columns:1fr;gap:0}
+  .hero-person{order:1;display:grid;grid-template-columns:88px 1fr;align-items:center;gap:14px;
+    margin:0 0 22px;padding:0 0 18px;border-bottom:1px solid var(--line)}
+  .hero-person-bild{width:88px;height:88px;border-radius:var(--radius)}
+  .hero-person-name{font:600 17px/1.25 var(--sans)}
+  .hero-person-rolle{font:400 13px/1.35 var(--sans);color:var(--ink-dim);margin-top:2px}
+  .hero-person-satz{display:block;margin-top:6px;font:400 15.5px/1.35 var(--serif);color:var(--ink)}
+  .hero h1{font-size:clamp(1.9rem,1.2rem + 3.6vw,2.4rem);line-height:1.08}
+  .h1-zusatz{font-size:1.05rem;margin-top:10px}
+  .hero .lead{font-size:16.5px;margin-top:12px}
+  .hero-copy .hero-aktion{order:5;margin-top:22px;display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-anruf,.hero-wa{width:100%;justify-content:center}
+  .hero-copy .rr-kompakt{order:6;margin-top:22px;padding:18px 0 0}
+  .hero-copy .hero-trust{order:7;margin-top:22px;flex-direction:column}
+  .hero-trust li{padding:6px 0}
+}
+@media (max-width:420px){
+  .rr-zeile{grid-template-columns:1fr}
+  .rr-zeile .lb-submit{width:100%}
+}
+@media (prefers-reduced-motion:reduce){.rr-mehr summary::after{transition:none}}
+/* Startseite: sechs Startpakete als ruhiges 3×2-Raster statt 4 + 2 Waisen. */
+.rb-sec .pk{margin-top:8px}
+@media (min-width:901px){.rb-sec .pk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:900px) and (min-width:561px){.rb-sec .pk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.hero-wa{min-height:52px}}

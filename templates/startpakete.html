@@ -23,14 +23,16 @@ Parameter: `ziel` = Pfad, auf den die Kacheln ohne JavaScript verlinken.
     direkt auf die h1 — mit h3 sprang die Gliederung eine Ebene. Die Größe kommt
     aus .pk-h, nicht aus dem Element. {% endcomment %}
   <h2 class="pk-h">{{ t.startpakete.h|safe }}</h2>
-  <p class="pk-lead">{{ t.startpakete.lead|safe }}</p>
+  {% comment %} Upgrade 01.10.2026: Kein Symbol mehr auf der Kachel (KI-Merkmal ohne
+    Information, Bastians Rückmeldung „KI-Symbole raus“ vom 26.09.). Auf der Startseite
+    trägt der Abschnittskopf die Erklärung, dort entfällt die zweite. {% endcomment %}
+  {% if not ohne_lead %}<p class="pk-lead">{{ t.startpakete.lead|safe }}</p>{% endif %}
   <div class="pk-grid">
     {% for p in startpakete %}
     <a class="pk-karte{% if p.id == paket_aktiv %} is-aktiv{% endif %}"
        href="{{ ziel }}?paket={{ p.id }}#konfigurator"
        data-paket="{{ p.ids }}" data-paket-id="{{ p.id }}"
        aria-label="{{ t.startpakete.aria|safe }}: {{ p.name }}">
-      <span class="pk-ic" aria-hidden="true">{% include 'icons.html' with name=p.icon %}</span>
       <strong class="pk-name">{{ p.name }}</strong>
       <span class="pk-sub">{{ p.sub }}</span>
       <span class="pk-inhalt">

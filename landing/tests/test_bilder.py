@@ -74,7 +74,9 @@ class BildgroesseTest(SimpleTestCase):
                 # Fassung), nicht der Dateiname.
                 self.assertIn("florin_320.", tag,
                               "das Hero-Porträt lädt wieder die grosse Fassung")
-                self.assertIn('sizes="64px"', tag)
+                # Upgrade 01.10.2026: Die Personenkarte am Handy zeigt das Foto mit
+                # 88 px statt als 52-px-Rundbild — die kleine Fassung bleibt.
+                self.assertIn('sizes="96px"', tag)
 
     def test_die_anfragekarte_laedt_die_kleine_fassung(self):
         """Sie steht auf jeder Unterseite mit Formular — der Fehler wog dort

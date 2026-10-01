@@ -95,10 +95,15 @@ PACK = {
         "foto_alt": "Florin Feier zâmbind într-o fotografie portret, proprietarul WVM-IT",
         "eyebrow": "Suport IT & administrare · Austria și Germania",
         # Design B1 (25.09.2026): H1 ca propoziție simplă, ce face Florin.
-        "headline": "Mentenanță IT cu un singur interlocutor care vă cunoaște firma.",
+        "headline": "Mentenanță IT pentru firma dumneavoastră, personal și dintr-o singură sursă.",
         "headline_2": "De la biroul cu doi oameni până la firma cu 200 de posturi de lucru.",
-        "subline": "WVM-IT din Lenzing, Austria Superioară, administrează servere, rețea, posturi de lucru, e-mail, copii de siguranță și securitate – plus site, SEO și AI. De la 29 € per post de lucru și lună, la distanță în toată Austria și Germania.",
+        "subline": "WVM-IT din Lenzing administrează servere, rețea, posturi de lucru și securitate: la distanță în toată Austria și Germania, la fața locului în regiune. De la 29 € per post de lucru și lună.",
         "alt_frage": "Preferați să vorbim direct?",
+        # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
+        "anrufen": "Sunați acum",
+        "rr_h": "Preferați să vă sunăm noi?",
+        "rr_ph": "Numărul dumneavoastră de telefon",
+        "rr_mehr": "Adăugați nume, interval orar și subiect (opțional)",
         "cta": "Primiți site-ul demonstrativ gratuit",
         "note": "Gratuit și fără obligații · construit de AI-ul nostru JARVIS în circa 10 minute.",
         "robot_aria": "Asistent 3D, apăsați-mă",
@@ -293,7 +298,7 @@ PACK = {
             "Backup verificat zilnic",
         ],
         "cta": "Calculați cifra dumneavoastră",
-        "foot": "Prețuri orientative, net plus TVA. Orele la fața locului și instalarea unică se facturează separat — tarifele sunt în lista de mai jos.",
+        "foot": "Prețuri orientative, net plus TVA. Orele la fața locului și instalarea unică se facturează separat — tarifele sunt în lista completă de prețuri.",
     },
     "preise": {
         "tab_h": "Toate serviciile și prețurile dintr-o privire",
@@ -789,8 +794,8 @@ PACK = {
     },
     "finder": {
         "eyebrow": "Direct la țintă",
-        "h": "Cu ce începem?",
-        "lead": "Șase drumuri, în funcție de motivul pentru care sunteți aici. Fiecare vă duce dintr-un clic acolo unde este răspunsul — nu la încă o pagină de prezentare.",
+        "h": "Cu ce vă putem ajuta?",
+        "lead": "Un clic vă duce acolo unde este răspunsul.",
         "wege": {
             "notfall": {"h": "Ceva nu funcționează chiar acum",
                         "t": "Avarie, criptare, căsuță compromisă: primele 30 de minute, pas cu pas."},
@@ -1562,8 +1567,8 @@ PACK = {
         "kenn_anfrage": "După o evaluare",
         "anfrage_warum": "Pentru că fiecare instalație este diferită, comunicăm prețul după o scurtă evaluare.",
         "web_h": "Site-uri web construite, găzduite și întreținute dintr-o singură mână",
-        "angebot_h": "Alcătuiți mai multe servicii și solicitați o ofertă",
-        "angebot_lead": "Pentru mai mult de un serviciu. Pentru o singură cifră, calculatorul de mai sus este suficient.",
+        "angebot_h": "Oferta orientativă în două minute",
+        "angebot_lead": "Alegeți o nevoie tipică, ajustați, vedeți imediat prețul. Oferta vine pe e-mail.",
         "angebot_einzeln": "Alegeți servicii individuale",
         "region_h": "Pentru firma și regiunea dumneavoastră",
         "region_lead": "Un cabinet are nevoie de altă IT decât un atelier. Și unele lucruri se fac doar la fața locului.",

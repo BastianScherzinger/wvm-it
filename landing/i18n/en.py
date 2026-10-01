@@ -101,10 +101,15 @@ PACK = {
         "foto_alt": "Florin Feier smiling in a portrait photo, owner of WVM-IT",
         "eyebrow": "IT support & management · Austria and Germany",
         # Design B1 (25.09.2026): H1 as a plain sentence saying what Florin does.
-        "headline": "IT support with one contact who knows your business.",
+        "headline": "IT support for your business, personal and from a single source.",
         "headline_2": "From a two-person office to a plant with 200 workstations.",
-        "subline": "WVM-IT, based in Lenzing, Upper Austria, looks after servers, network, workstations, email, backups and security – plus website, SEO and AI. From €29 per workstation and month, remotely across Austria and Germany.",
+        "subline": "WVM-IT in Lenzing looks after servers, network, workstations and security: remotely across Austria and Germany, on site in the region. From €29 per workstation and month.",
         "alt_frage": "Rather talk right away?",
+        # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
+        "anrufen": "Call now",
+        "rr_h": "Prefer a call back?",
+        "rr_ph": "Your phone number",
+        "rr_mehr": "Add name, time slot and topic (optional)",
         "cta": "Claim your free sample website",
         "note": "Free and no obligation · built by our JARVIS AI in about 10 minutes.",
         "robot_aria": "3D assistant, click me",
@@ -299,7 +304,7 @@ PACK = {
             "Daily verified backup",
         ],
         "cta": "Calculate your own figure",
-        "foot": "Guide prices, net plus VAT. On-site hours and one-off setup are billed separately — those rates are in the price list below.",
+        "foot": "Guide prices, net plus VAT. On-site hours and one-off setup are billed separately — those rates are in the full price list.",
     },
     "preise": {
         "tab_h": "All services and prices at a glance",
@@ -795,8 +800,8 @@ PACK = {
     },
     "finder": {
         "eyebrow": "Straight to the point",
-        "h": "Where shall we start?",
-        "lead": "Six routes, depending on why you are here. Each takes you in one click to where the answer is — not to another overview page.",
+        "h": "What can we help with?",
+        "lead": "One click takes you to where your answer is.",
         "wege": {
             "notfall": {"h": "Something is down right now",
                         "t": "Outage, encryption, hijacked mailbox: the first 30 minutes, step by step."},
@@ -1568,8 +1573,8 @@ PACK = {
         "kenn_anfrage": "After a look at it",
         "anfrage_warum": "Because every setup is different, we name the price after a brief look at it.",
         "web_h": "Websites, built, hosted and maintained from one source",
-        "angebot_h": "Put together several services and request a quote",
-        "angebot_lead": "For more than one service. For a single figure the calculator above is enough.",
+        "angebot_h": "Your estimate in two minutes",
+        "angebot_lead": "Pick a typical need, adjust it, see the price right away. The quote arrives by email.",
         "angebot_einzeln": "Choose individual services",
         "region_h": "For your business and your region",
         "region_lead": "A law firm needs different IT than a workshop. And some things only work on site.",

@@ -15,8 +15,13 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 {% endblock %}
 
 {% block inhalt %}
-  {% comment %} ── Block 1: HERO (Design B1) — hell, kein Hintergrundbild, Rückruf-Karte
-       direkt unter der Überschrift. docs/DESIGN-B1-2026-09-25.md §2.3. ── {% endcomment %}
+  {% comment %} ── Block 1: HERO (Upgrade 01.10.2026, docs/DESIGN-2026-10-01.md) ──
+       Ein Bildschirm, drei Fragen: Was macht WVM-IT? Wer steckt dahinter? Wie
+       erreiche ich ihn? Der Anruf ist die EINE Hauptaktion (NN/g, MSP-Praxis),
+       WhatsApp leiser daneben, der Rückruf als schmale Zeile darunter.
+       Zeitfenster und Anliegen sind freiwillig und stecken in <details>.
+       Tests zählen auf `/` genau 2× name="anliegen" / value="klein" — diese
+       Karte plus der Rückruf-Dialog in base.html. {% endcomment %}
   <section class="hero" id="top">
     <div class="wrap hero-grid">
       <div class="hero-copy">
@@ -25,11 +30,11 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           {% if c.founder_image %}
           <img class="hero-person-bild" src="{% static 'img/florin_320.webp' %}"
                srcset="{% static 'img/florin_320.webp' %} 320w, {{ c.founder_image }} 640w"
-               sizes="64px" alt="{{ t.hero.person_alt|safe }}"
-               width="64" height="64" decoding="async">
+               sizes="96px" alt="{{ t.hero.person_alt|safe }}"
+               width="96" height="96" decoding="async">
           {% endif %}
           <figcaption class="hero-person-text">
-            <span class="hero-person-name">{{ t.hero.person_h|safe }}</span>
+            <span class="hero-person-name">{{ c.inhaber_name }}</span>
             <span class="hero-person-rolle">{{ t.hero.person_ort|safe }}</span>
             <span class="hero-person-satz">{{ t.hero.person_t|safe }}</span>
           </figcaption>
@@ -37,57 +42,63 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         {% endif %}
         <h1>{{ t.hero.headline|safe }}<span class="h1-zusatz">{{ t.hero.headline_2|safe }}</span></h1>
         <p class="lead">{{ t.hero.subline|safe }}</p>
-        <a class="btn btn-lg hero-sprung" href="#rueckruf">{% include 'icons.html' with name='callback' %}<span>{{ t.rueckruf.submit|safe }}</span></a>
 
-        {% comment %} Rückruf-Karte: Formular direkt unter der Überschrift, kein Dialog nötig.
-             Tests zählen auf `/` genau 2× name="anliegen" / value="klein" — diese Karte plus
-             der Rückruf-Dialog in base.html. {% endcomment %}
-        <div class="rr-karte" id="rueckruf">
-          <h2 class="rr-karte-h">{{ t.rueckruf.h|safe }}</h2>
-          <p class="rr-karte-sub">{{ t.rueckruf.sub|safe }}</p>
+        <div class="hero-aktion">
+          {% if c.telefon %}
+          <a class="btn btn-lg hero-anruf" href="tel:{{ c.telefon_tel }}">
+            {% include 'icons.html' with name='phone' %}
+            <span class="hero-anruf-t"><small>{{ t.hero.anrufen|safe }}</small><b>{{ c.telefon }}</b></span>
+          </a>
+          {% endif %}
+          {% if c.whatsapp %}
+          <a class="btn btn-lg btn-ghost hero-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>
+          {% endif %}
+        </div>
+
+        <div class="rr-karte rr-kompakt" id="rueckruf">
+          <h2 class="rr-karte-h">{{ t.hero.rr_h|safe }}</h2>
           <form class="lb-form rr-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage>
             {% csrf_token %}
             <input type="hidden" name="quelle" value="rueckruf">
             <input type="hidden" name="zurueck" value="{{ request.path }}">
             {% include 'honigtopf.html' %}
-            <div class="of-grid">
+            <div class="rr-zeile">
               <div class="field">
-                <label class="fld-l" for="hero-rr-tel">{{ t.rueckruf.tel|safe }}</label>
-                <input class="fld" id="hero-rr-tel" type="tel" name="kontakt" required maxlength="254" autocomplete="tel" placeholder="{{ t.rueckruf.tel_ph|safe }}">
+                <label class="fld-l sr-only" for="hero-rr-tel">{{ t.rueckruf.tel|safe }}</label>
+                <input class="fld" id="hero-rr-tel" type="tel" name="kontakt" required maxlength="254" autocomplete="tel" placeholder="{{ t.hero.rr_ph|safe }}">
               </div>
-              <div class="field">
-                <label class="fld-l" for="hero-rr-name">{{ t.rueckruf.name|safe }}</label>
-                <input class="fld" id="hero-rr-name" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.rueckruf.name_ph|safe }}">
-              </div>
+              <button class="btn btn-lg lb-submit" type="submit">{{ t.rueckruf.submit|safe }}</button>
             </div>
-            <fieldset class="zeitfenster">
-              <legend class="fld-l">{{ t.rueckruf.zeit|safe }}</legend>
-              <div class="segmente">
-                <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_1|safe }}"><span><b>{{ t.rueckruf.zeit_1_kurz|safe }}</b><small>{{ t.rueckruf.zeit_1_uhr|safe }}</small></span></label>
-                <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_2|safe }}"><span><b>{{ t.rueckruf.zeit_2_kurz|safe }}</b><small>{{ t.rueckruf.zeit_2_uhr|safe }}</small></span></label>
-                <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_3|safe }}"><span><b>{{ t.rueckruf.zeit_3_kurz|safe }}</b><small>{{ t.rueckruf.zeit_3_uhr|safe }}</small></span></label>
-                <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_4|safe }}" checked><span><b>{{ t.rueckruf.zeit_4_kurz|safe }}</b><small>{{ t.rueckruf.zeit_4_uhr|safe }}</small></span></label>
+            <details class="rr-mehr">
+              <summary>{{ t.hero.rr_mehr|safe }}</summary>
+              <div class="rr-mehr-inhalt">
+                <div class="field">
+                  <label class="fld-l" for="hero-rr-name">{{ t.rueckruf.name|safe }}</label>
+                  <input class="fld" id="hero-rr-name" type="text" name="name" maxlength="80" autocomplete="name" placeholder="{{ t.rueckruf.name_ph|safe }}">
+                </div>
+                <fieldset class="zeitfenster">
+                  <legend class="fld-l">{{ t.rueckruf.zeit|safe }}</legend>
+                  <div class="segmente">
+                    <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_1|safe }}"><span><b>{{ t.rueckruf.zeit_1_kurz|safe }}</b><small>{{ t.rueckruf.zeit_1_uhr|safe }}</small></span></label>
+                    <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_2|safe }}"><span><b>{{ t.rueckruf.zeit_2_kurz|safe }}</b><small>{{ t.rueckruf.zeit_2_uhr|safe }}</small></span></label>
+                    <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_3|safe }}"><span><b>{{ t.rueckruf.zeit_3_kurz|safe }}</b><small>{{ t.rueckruf.zeit_3_uhr|safe }}</small></span></label>
+                    <label class="segment"><input type="radio" name="zeit" value="{{ t.rueckruf.zeit_4|safe }}" checked><span><b>{{ t.rueckruf.zeit_4_kurz|safe }}</b><small>{{ t.rueckruf.zeit_4_uhr|safe }}</small></span></label>
+                  </div>
+                </fieldset>
+                <div class="field">
+                  <label class="fld-l" for="hero-rr-anliegen">{{ t.rueckruf.anliegen|safe }}</label>
+                  <select class="fld" id="hero-rr-anliegen" name="anliegen">
+                    <option value="">{{ t.rueckruf.anliegen|safe }}</option>
+                    <option value="einzel">{{ t.rueckruf.anliegen_einzel|safe }}</option>
+                    <option value="einrichtung">{{ t.rueckruf.anliegen_einrichtung|safe }}</option>
+                    <option value="betreuung">{{ t.rueckruf.anliegen_betreuung|safe }}</option>
+                    <option value="klein">{{ t.rueckruf.anliegen_klein|safe }}</option>
+                    <option value="web">{{ t.rueckruf.anliegen_web|safe }}</option>
+                    <option value="notfall">{{ t.rueckruf.anliegen_notfall|safe }}</option>
+                  </select>
+                </div>
               </div>
-            </fieldset>
-            <div class="of-grid rr-fuss-grid">
-              <div class="field">
-                {% comment %}Abnahme 25.09.2026: Die Frage steht als erste Auswahlzeile im Feld;
-                     das Label bleibt für Screenreader (sr-only), spart aber eine Zeile.{% endcomment %}
-                <label class="fld-l sr-only" for="hero-rr-anliegen">{{ t.rueckruf.anliegen|safe }}</label>
-                <select class="fld" id="hero-rr-anliegen" name="anliegen">
-                  <option value="">{{ t.rueckruf.anliegen|safe }}</option>
-                  <option value="einzel">{{ t.rueckruf.anliegen_einzel|safe }}</option>
-                  <option value="einrichtung">{{ t.rueckruf.anliegen_einrichtung|safe }}</option>
-                  <option value="betreuung">{{ t.rueckruf.anliegen_betreuung|safe }}</option>
-                  <option value="klein">{{ t.rueckruf.anliegen_klein|safe }}</option>
-                  <option value="web">{{ t.rueckruf.anliegen_web|safe }}</option>
-                  <option value="notfall">{{ t.rueckruf.anliegen_notfall|safe }}</option>
-                </select>
-              </div>
-              <div class="field rr-submit-field">
-                <button class="btn btn-lg lb-submit" type="submit">{{ t.rueckruf.submit|safe }}</button>
-              </div>
-            </div>
+            </details>
             <p class="lb-err" role="alert" hidden></p>
             {% include 'datenschutzhinweis.html' %}
           </form>
@@ -98,37 +109,28 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           </div>
         </div>
 
-        <p class="hero-alt">{{ t.hero.alt_frage|safe }}
-          {% if c.telefon %}<a href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
-          {% if c.whatsapp %}<a href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
-        </p>
+        <ul class="hero-trust">
+          <li>{% include 'icons.html' with name='clock' %}{{ t.trust.t1|safe }}</li>
+          <li>{% include 'icons.html' with name='net' %}{{ t.trust.t2|safe }}</li>
+          <li><a class="hero-trust-link" href="{% url 'it_hilfe' %}">{% include 'icons.html' with name='phone' %}{{ t.trust.hilfe|safe }} {{ hilfe_preis }}</a></li>
+        </ul>
       </div>
 
-      {% comment %} Großes Porträt: bis 700 px display:none, kein fetchpriority am <img>
-           (die hohe Priorität trägt die Vorladung oben, §6 K2-3). Auf dem Handy zeigt
-           <source> auf florin_320.webp — dieselbe Datei, die das Rundbild ohnehin lädt. {% endcomment %}
+      {% comment %} Großes Porträt: bis 700 px display:none (dort übernimmt die
+           Personenkarte oben); die hohe Ladepriorität trägt die Vorladung im Kopf. {% endcomment %}
       <figure class="hero-foto-box">
         <picture>
           <source media="(max-width:700px)" srcset="{% static 'img/florin_320.webp' %}">
           <img class="hero-foto" src="{{ c.founder_image }}"
                srcset="{% static 'img/florin_480.webp' %} 480w, {{ c.founder_image }} 640w"
-               sizes="(max-width:1100px) 34vw, 416px"
+               sizes="(max-width:1100px) 38vw, 456px"
                width="640" height="640" alt="{{ t.hero.foto_alt|safe }}" decoding="async">
         </picture>
         <figcaption>
-          <span class="hero-foto-name">{{ t.hero.person_h|safe }} · {{ t.hero.person_ort|safe }}</span>
           <span class="hero-foto-satz">{{ t.hero.person_t|safe }}</span>
+          <span class="hero-foto-name"><b>{{ c.inhaber_name }}</b> · {{ t.hero.person_ort|safe }}</span>
         </figcaption>
       </figure>
-    </div>
-
-    <div class="wrap">
-      <ul class="hero-trust">
-        <li>{% include 'icons.html' with name='clock' %}{{ t.trust.t1|safe }}</li>
-        <li>{% include 'icons.html' with name='net' %}{{ t.trust.t2|safe }}</li>
-        <li>{% include 'icons.html' with name='user' %}{{ t.trust.t3|safe }}</li>
-        <li><a class="hero-trust-link" href="{% url 'it_hilfe' %}">{% include 'icons.html' with name='phone' %}{{ t.trust.hilfe|safe }} {{ hilfe_preis }}</a></li>
-      </ul>
     </div>
   </section>
 
@@ -156,233 +158,177 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
     </div>
   </section>
 
-  {% comment %} ── Block 3: LEISTUNGEN IM ÜBERBLICK `#leistungen` (weiß). §2.5. Alle
-       Leistungen aus leistungen.LEISTUNGEN, gruppiert über _leistungen_nach_bereich(). ── {% endcomment %}
-  <section class="section" id="leistungen">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.leistungen|safe }}</p>
-        <h2 class="section-t">{{ t.start.leistungen_h|safe }}</h2>
-        <p class="section-lead">{{ t.start.leistungen_lead|safe }}</p>
-      </header>
-      <div class="register-raster" data-reveal>
-        {% for g in leistungen_bereiche %}
-        <div class="register-gruppe">
-          <h3>{{ g.h|safe }}</h3>
-          <ul class="register-liste">
-            {% for l in g.posten %}
-            <li><a href="{{ l.url }}"><span class="rl-titel">{{ l.nav|safe }}</span><span class="rl-preis">{{ l.preis_label }}</span></a></li>
-            {% endfor %}
-          </ul>
-          {% if g.id == 'vorort' %}<p class="register-satz">{{ t.technik.sub|safe }} <span class="rl-preis">{{ startpreise.technik }}</span></p>{% endif %}
-        </div>
-        {% endfor %}
-      </div>
-      <p class="lk-alle"><a class="textlink" href="{% url 'leistungen' %}">{{ t.seite.zurueck|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a></p>
-    </div>
-  </section>
-
-  {% comment %} ── Block 4: WER DAHINTERSTEHT `#ueber` (Papier). §2.6. ── {% endcomment %}
-  <section class="section section-alt" id="ueber">
-    <div class="wrap">
-      <p class="sec-kick" data-reveal>{{ t.abschnitt.ueber|safe }}</p>
-      <div class="ueber-raster" data-reveal>
-        <h2 class="section-t">{{ t.vertrauen.h|safe }}</h2>
-        <div class="ueber-text">
-          <p class="gross">{{ t.vertrauen.text|safe }}</p>
-        </div>
-      </div>
-
-      <ol class="zusagen" data-reveal>
-        <li>{{ t.vertrauen.p1|safe }}</li>
-        <li>{{ t.vertrauen.p2|safe }}</li>
-        <li>{{ t.vertrauen.p3|safe }}</li>
-      </ol>
-
-      <dl class="fakten" data-reveal>
-        {% if c.adresse %}<div><dt>{{ t.vertrauen.sitz_label|safe }}</dt><dd>{{ c.adresse }}, {{ c.plz }} {{ c.stadt }}</dd></div>{% endif %}
-        <div><dt>{{ t.vertrauen.fakt_vorort|safe }}</dt><dd>{{ t.vertrauen.region_t|safe }}</dd></div>
-        <div><dt>{{ t.vertrauen.fakt_fern|safe }}</dt><dd>{{ t.vertrauen.fakt_fern_t|safe }}</dd></div>
-        <div><dt>{{ t.vertrauen.fakt_sprachen|safe }}</dt><dd>{{ t.vertrauen.sprachen|safe }}</dd></div>
-      </dl>
-
-      <div class="ueber-fuss" data-reveal>
-        <p class="signatur">
-          {% if c.founder_image %}<img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="40px" width="40" height="40" loading="lazy" alt="">{% endif %}
-          {{ c.inhaber_name }} · {{ c.site_name }}
-        </p>
-        {% if c.telefon %}<a class="textlink ueber-tel" href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a>{% endif %}
-        <a class="textlink" href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a>
-      </div>
-    </div>
-  </section>
-
-  {% comment %} ── Block 5: ABLAUF `#prozess` (dunkel). §2.7. Kasten "Im Blick" ohne
-       gruenen Punkt, ohne "läuft" (§6 K1-5). ── {% endcomment %}
-  <section class="section on-dark" id="prozess">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.ablauf|safe }}</p>
-        <h2 class="section-t">{{ t.ablauf.h|safe }}</h2>
-        <p class="section-lead">{{ t.ablauf.sub|safe }}</p>
-      </header>
-      <ol class="timeline" data-reveal>
-        <li class="tl-item"><span class="tl-n">01</span><div class="tl-body"><h3>{{ t.ablauf.s1_h|safe }}</h3><p>{{ t.ablauf.s1_t|safe }}</p></div></li>
-        <li class="tl-item"><span class="tl-n">02</span><div class="tl-body"><h3>{{ t.ablauf.s2_h|safe }}</h3><p>{{ t.ablauf.s2_t|safe }}</p></div></li>
-        <li class="tl-item"><span class="tl-n">03</span><div class="tl-body"><h3>{{ t.ablauf.s3_h|safe }}</h3><p>{{ t.ablauf.s3_t|safe }}</p></div></li>
-        <li class="tl-item"><span class="tl-n">04</span><div class="tl-body"><h3>{{ t.ablauf.s4_h|safe }}</h3><p>{{ t.ablauf.s4_t|safe }}</p></div></li>
-      </ol>
-
-      <div class="blick" data-reveal>
-        <div class="blick-kopf">
-          <h3 id="blick-titel">{{ t.blick.h|safe }}</h3>
-          <p class="kenn">{{ t.blick.status|safe }}</p>
-        </div>
-        <table class="blick-tabelle" aria-labelledby="blick-titel">
-          <thead><tr><th scope="col">{{ t.blick.sp1|safe }}</th><th scope="col">{{ t.blick.sp2|safe }}</th><th scope="col">{{ t.blick.sp3|safe }}</th></tr></thead>
-          <tbody>
-            {% for z in t.blick.zeilen %}
-            <tr><th scope="row">{{ z.b|safe }}</th><td>{{ z.t|safe }}</td><td class="takt">{{ z.takt|safe }}</td></tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-
-      <a class="btn btn-lg prozess-cta" href="#rueckruf">{{ t.start.ablauf_cta|safe }}</a>
-    </div>
-  </section>
-
-  {% comment %} ── Block 6: WAS LAUFENDE BETREUUNG KOSTET `#preise` (weiß). §2.8. Nur
-       Größen und Rechner — die Webseiten-Pakettabelle faellt hier weg (bleibt auf
-       /kosten/), die volle Preisliste zieht nach #angebot um. ── {% endcomment %}
-  <section class="section" id="preise">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.kosten|safe }}</p>
-        <h2 class="section-t">{{ t.it_stufen.h|safe }}</h2>
-        <p class="section-lead">{{ t.it_stufen.lead|safe }}</p>
-      </header>
-      <div class="price-grid preise-stufen" data-reveal>
-        {% for s in it_stufen %}
-        <article class="price{% if s.beliebt %} price-featured{% endif %}">
-          {% if s.beliebt %}<p class="kenn preise-kenn">{{ t.it_stufen.beliebt|safe }}</p>{% endif %}
-          <h3>{% if s.id == 'klein' %}{{ t.it_stufen.klein_h|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_h|safe }}{% else %}{{ t.it_stufen.gross_h|safe }}{% endif %}</h3>
-          <p class="price-for">{% if s.id == 'klein' %}{{ t.it_stufen.klein_for|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_for|safe }}{% else %}{{ t.it_stufen.gross_for|safe }}{% endif %}</p>
-          <div class="price-tag">{{ s.mtl_anzeige }}<span class="cur">{{ t.it_stufen.unit|safe }}</span></div>
-          <p class="preise-zeile">{{ s.zeile }}</p>
-          <ul class="price-list">
-            {% if s.id == 'klein' %}{% for li in t.it_stufen.klein_li %}<li>{{ li|safe }}</li>{% endfor %}
-            {% elif s.id == 'mittel' %}{% for li in t.it_stufen.mittel_li %}<li>{{ li|safe }}</li>{% endfor %}
-            {% else %}{% for li in t.it_stufen.gross_li %}<li>{{ li|safe }}</li>{% endfor %}{% endif %}
-          </ul>
-          <a class="btn btn-ghost" href="#rueckruf">{{ t.start.stufe_cta|safe }}</a>
-          <a class="textlink preise-rechner-link" href="{% url 'rechner' %}?ap={{ s.ap }}&amp;srv={{ s.srv }}&amp;backup=1">{{ t.it_stufen.cta|safe }}</a>
-        </article>
-        {% endfor %}
-      </div>
-      <p class="price-foot" data-reveal>{{ t.it_stufen.foot|safe }}</p>
-
-      {% comment %} Rechner mit Rechenweg — derselbe kostenrechner.js wie /kosten/rechner/,
-           gefuettert aus denselben Funktionen wie views.rechner() (§2.8). {% endcomment %}
-      <div class="kr-start" id="rechner-kurz" data-reveal>
-        {{ kr_saetze|json_script:"rechner-saetze" }}
-        <form class="kr-start-form" id="krForm" method="get" action="{% url 'rechner' %}">
-          <div class="kr-start-eingabe">
-            <div class="kr-start-feld">
-              <label class="fld-l" for="kr-start-ap">{{ t.tool.rechner_ap|safe }}</label>
-              <input class="fld kr-start-num" id="kr-start-ap" type="number" name="ap" inputmode="numeric" min="0" max="250" step="1" value="{{ kr_werte.ap }}" data-kr="ap">
-            </div>
-            <div class="kr-start-feld">
-              <label class="fld-l" for="kr-start-srv">{{ t.tool.rechner_srv|safe }}</label>
-              <input class="fld kr-start-num" id="kr-start-srv" type="number" name="srv" inputmode="numeric" min="0" max="20" step="1" value="{{ kr_werte.srv }}" data-kr="srv">
-            </div>
-            <label class="kr-start-schalter">
-              <input type="checkbox" name="backup" value="1" data-kr="backup" {% if kr_werte.backup %}checked{% endif %}>
-              <span>{{ t.rechner.backup_l|safe }}</span>
-            </label>
-          </div>
-
-          <div class="kr-start-weg">
-            <p class="kenn">{{ t.abschnitt.rechenweg|safe }}</p>
-            <table class="kr-weg">
-              <tbody data-kr-posten>
-                {% for p in kr_e.laufend %}
-                <tr {% if not p.menge %}hidden{% endif %}><th scope="row" data-kr-id="{{ p.id }}">{{ p.name }}</th><td>{{ p.menge }} × {{ p.satz }} €</td><td>{{ p.summe }} €</td></tr>
-                {% endfor %}
-              </tbody>
-            </table>
-            <p class="kr-leer" data-kr-leer {% if not kr_e.leer %}hidden{% endif %}>{{ t.rechner.leer|safe }}</p>
-            <p class="kr-start-summe"><span data-kr-out="mtl">{{ kr_e.mtl }}</span> € <span class="kr-start-summe-l">{{ t.rechner.mtl_l|safe }}</span></p>
-          </div>
-
-          <div class="kr-start-fuss">
-            <div class="kr-start-fuss-knoepfe">
-              <button class="btn" type="submit">{{ t.tool.rechner_submit|safe }}</button>
-              <a class="btn btn-ghost" href="#rueckruf">{{ t.start.rechner_rueckruf|safe }}</a>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <p class="lk-alle">
-        <a class="textlink" href="{% url 'rechner' %}">{{ t.wissen.rechner_h|safe }}</a>
-        <a class="textlink" href="#angebot">{{ t.rb.title|safe }}</a>
-      </p>
-    </div>
-  </section>
-
-  {% comment %} ── Block 7: FESTPREISE `#einrichten` (Papier). §2.9. Zweispaltige Liste,
-       Schleife über einrichtungen.EINRICHTUNGEN — "ein-karte" darf nie hartkodiert sein. ── {% endcomment %}
-  {% if einrichtungen %}
-  <section class="section section-alt" id="einrichten">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.festpreise|safe }}</p>
-        <h2 class="section-t">{{ t.start.einrichten_h|safe }}</h2>
-        <p class="section-lead">{{ t.start.einrichten_lead|safe }}</p>
-      </header>
-      <div class="preisliste" data-reveal>
-        <div class="preisspalte">
-          <p class="kenn">{{ t.start.kenn_festpreis|safe }}</p>
-          <ul>
-            {% for e in einrichtungen %}
-            {% if not e.anfrage %}
-            <li><a class="ein-karte" href="{{ e.url }}"><span class="ein-h">{{ e.nav|safe }}</span><span class="ein-preis">{{ e.preis_label }}</span></a></li>
-            {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="preisspalte">
-          <p class="kenn">{{ t.start.kenn_anfrage|safe }}</p>
-          <p class="preisspalte-satz">{{ t.start.anfrage_warum|safe }}</p>
-          <ul>
-            {% for e in einrichtungen %}
-            {% if e.anfrage %}
-            <li><a class="ein-karte" href="{{ e.url }}"><span class="ein-h">{{ e.nav|safe }}</span><span class="ein-preis">{{ e.preis_label }}</span></a></li>
-            {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-      <p class="pt-foot">{{ t.start.einrichten_fuss|safe }}</p>
-      <p class="lk-alle"><a class="textlink" href="{% url 'einrichtungen' %}">{{ t.einrichten_hub.h1|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a></p>
-    </div>
-  </section>
-  {% endif %}
 
   {% comment %} ══════════════════════════════════════════════════════════════════════
-       Design B1 (25.09.2026, Paket 3, docs/DESIGN-B1-2026-09-25.md §2.10–2.16):
-       Blöcke 8–14. Laufband, Trennerbänder, beide Scroll-Videos, Kennzahlen
-       (.proof), Partner-Chips, KI-Showcase mit 3D-Roboter, der Referenzen-
-       Abschnitt (die drei Bilder bleiben auf /referenzen/) und das Schlussband
-       entfallen hier vollständig (§2.1). Neu: Block 10 "Branchen und Regionen".
+       Upgrade 01.10.2026 (docs/DESIGN-2026-10-01.md): Von 14 auf 9 Blöcke. Reihenfolge
+       nach Bastians Auftrag: Was wir machen → Richtangebot → kostenlose Webseite →
+       Preise → wer dahintersteht → Fragen → Kontakt. Entfallen sind Leistungsregister,
+       Festpreisliste, Branchen/Regionen und Wissen — jede dieser Seiten steht weiter
+       in der Fußnavigation (fuss.html) und im eigenen Hub; der Finder führt hin.
   ══════════════════════════════════════════════════════════════════════ {% endcomment %}
+
+  {% comment %} ── Block 9: ANGEBOT ZUSAMMENSTELLEN `#angebot` (Papier). §2.11.
+       Funktion unveraendert: startpakete.html, alle rb*-ids/data-*, inline-
+       Skript mit Nonce. Startpakete zuerst sichtbar; Einzelpositionen in
+       <details class="rb-einzeln">, oeffnet sich beim Klick auf ein Startpaket
+       (eine Zeile in startpakete.js) oder wenn der Server schon Positionen aus
+       ?paket= vorbelegt hat. Volle Preisliste bleibt darunter. ── {% endcomment %}
+  <section class="section rb-sec" id="angebot" aria-labelledby="rb-title">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <p class="sec-kick">{{ t.abschnitt.angebot|safe }}</p>
+        <h2 class="section-t" id="rb-title">{{ t.start.angebot_h|safe }}</h2>
+        <p class="section-lead">{{ t.start.angebot_lead|safe }}</p>
+      </header>
+
+      {% include 'startpakete.html' with ziel=paket_ziel ohne_lead=True %}
+
+      <details class="rb-einzeln" id="rbEinzeln"{% if paket_items %} open{% endif %}>
+        <summary class="rb-einzeln-summary">{{ t.start.angebot_einzeln|safe }}</summary>
+        <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
+          {% csrf_token %}
+            {% include 'honigtopf.html' %}
+          <div class="rb-grid">
+            <div class="rb-cats">
+              {% for g in angebot_groups %}
+              <fieldset class="rb-cat" data-reveal>
+                <legend class="rb-cat-head">
+                  <span class="rb-cat-tx"><strong>{{ g.title }}</strong><small>{{ g.sub }}</small></span>
+                </legend>
+                <div class="rb-items">
+                  {% for it in g.items %}
+                  <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
+                    <input class="ang-check rb-check" type="checkbox" id="rb-{{ it.id }}" name="item" value="{{ it.id }}"
+                           {% if it.id in paket_items %}checked{% endif %}
+                           data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
+                           data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
+                    <span class="ang-item-box">
+                      <span class="ang-item-main">
+                        <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
+                        <span class="ang-item-desc">{{ it.desc }}</span>
+                      </span>
+                      <span class="ang-item-price">{{ it.price_label }}</span>
+                      <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+                    </span>
+                  </label>
+                  {% endfor %}
+                </div>
+              </fieldset>
+              {% endfor %}
+            </div>
+
+            <aside class="rb-side">
+              <div class="rb-card" data-reveal>
+                <div class="rb-card-head">
+                  <h3>{{ t.rb.card_h|safe }}</h3>
+                  <span class="rb-count" id="rbCount">{{ t.rb.count|safe }}</span>
+                </div>
+
+                <div class="rb-sum" id="rbSum">
+                  <div class="rb-sum-rows">
+                    <div class="rb-sum-empty" id="rbSumEmpty">{{ t.rb.sum_empty|safe }}</div>
+                    <div class="rb-sum-row" data-k="once" hidden><span>{{ t.rb.row_once|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="once">0</span>&nbsp;€</strong></div>
+                    <div class="rb-sum-row" data-k="mtl" hidden><span>{{ t.rb.row_mtl|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="mtl">0</span>&nbsp;€<small>{{ t.rb.per_month|safe }}</small></strong></div>
+                    <div class="rb-sum-row" data-k="yr" hidden><span>{{ t.rb.row_yr|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="yr">0</span>&nbsp;€<small>{{ t.rb.per_year|safe }}</small></strong></div>
+                    <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>{{ t.rb.row_more|safe }}</span><strong>{{ t.rb.on_request|safe }}</strong></div>
+                  </div>
+                </div>
+
+                {% comment %} aria-live (BF24): Das Skript legt #rbErr erst im Fehlerfall
+                   hier an; der Rahmen sagt ihn dann an. {% endcomment %}
+                <div class="rb-gate" id="rbGate" aria-live="polite">
+                  <div class="rb-field">
+                    <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
+                    <input class="fld" type="email" name="email" id="rbEmail" required maxlength="254" autocomplete="email" placeholder="name@firma.at">
+                  </div>
+                  <label class="rb-consent">
+                    <input type="checkbox" name="angebote" id="rbConsent" value="1">
+                    <span>{{ t.rb.consent|safe }}</span>
+                  </label>
+                  <button class="btn btn-lg rb-submit" type="submit" id="rbSubmit" disabled>{{ t.rb.submit|safe }}</button>
+                  <p class="rb-fine">{{ t.rb.fine|safe }}</p>
+                </div>
+
+                <div class="rb-done" id="rbDone" hidden>
+                  <div class="rb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</div>
+                  <h4>{{ t.rb.done_h|safe }}</h4>
+                  <p>{{ t.rb.done_t|safe }}</p>
+                </div>
+              </div>
+              <a class="rb-all" href="{% url 'angebot' %}#preisliste">{{ t.rb.all_link|safe }}</a>
+            </aside>
+          </div>
+        {% include 'datenschutzhinweis.html' %}
+        </form>
+      </details>
+
+    </div>
+  </section>
+
+  <script nonce="{{ request.csp_nonce }}">
+  (function(){
+    var form=document.getElementById('rbForm'); if(!form) return;
+    var I=(window.I18N&&window.I18N.rb)||{};
+    var NL=(window.I18N&&window.I18N.numLocale)||'de-DE';
+    var checks=form.querySelectorAll('.rb-check'),
+        count=document.getElementById('rbCount'), sum=document.getElementById('rbSum'),
+        empty=document.getElementById('rbSumEmpty'), email=document.getElementById('rbEmail'),
+        consent=document.getElementById('rbConsent'), submit=document.getElementById('rbSubmit'),
+        gate=document.getElementById('rbGate'), done=document.getElementById('rbDone'),
+        fehler=document.getElementById('rbErr');
+    function eur(n){ return (Number(n)||0).toLocaleString(NL); }
+    function row(k){ return form.querySelector('[data-k="'+k+'"]'); }
+    function setRow(k,v){ var r=row(k); if(!r) return; r.hidden=!(v>0);
+      var s=r.querySelector('[data-t="'+k+'"]'); if(s) s.textContent=eur(v); }
+    function tally(){
+      var once=0,mtl=0,yr=0,anf=false,n=0;
+      checks.forEach(function(c){ if(c.checked){ n++; once+=+c.dataset.once||0;
+        mtl+=+c.dataset.mtl||0; yr+=+c.dataset.yr||0; if(c.dataset.anfrage==='1') anf=true; }});
+      count.textContent=n+' '+(n===1?(I.leistung||'Leistung'):(I.leistungen||'Leistungen'));
+      if(empty) empty.hidden=n>0;
+      setRow('once',once); setRow('mtl',mtl); setRow('yr',yr);
+      var ar=row('anfrage'); if(ar) ar.hidden=!anf;
+      return {n:n,once:once,mtl:mtl,yr:yr,anf:anf};
+    }
+    function refresh(){ var t=tally();
+      // Die Einwilligung ist freiwillig und darf den Versand nicht blockieren — der
+      // Preis steht ohnehin schon oben.
+      submit.disabled=!(t.n>0 && email.value && email.checkValidity()); }
+    checks.forEach(function(c){ c.addEventListener('change',refresh); });
+    email.addEventListener('input',refresh); consent.addEventListener('change',refresh);
+    form.addEventListener('submit',function(e){
+      e.preventDefault(); if(submit.disabled) return;
+      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent=I.busy||'…';
+      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if(!j.ok) throw new Error('fail');
+          setRow('once',j.once); setRow('mtl',j.mtl); setRow('yr',j.yr);
+          var ar=row('anfrage'); if(ar) ar.hidden=!j.anfrage;
+          gate.hidden=true; done.hidden=false;
+          done.scrollIntoView({behavior:'smooth',block:'center'});
+        })
+        .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
+          submit.textContent=I.submit||'…';
+          // Fehler inline statt als alert(): Ein Systemdialog reisst den Besucher aus
+          // der Seite, ist auf dem Handy kaum lesbar und widerspricht der
+          // Komponentenregel in doku/20-DESIGN.md („Fehler inline — nie alert()").
+          // #rbErr stand nie in der Vorlage; ohne ihn blieb der Fehler stumm (BF24).
+          // Er entsteht deshalb erst hier, im bereits ansagenden #rbGate.
+          if(!fehler){ fehler=document.createElement('p'); fehler.className='lb-err';
+            fehler.id='rbErr'; fehler.setAttribute('role','alert'); submit.insertAdjacentElement('afterend',fehler); }
+          fehler.textContent=I.error||'Error'; fehler.hidden=false; });
+    });
+    refresh();
+  })();
+  </script>
+
 
   {% comment %} ── Block 8: WEBSEITEN `#gratis` (weiß). §2.10. Referenz im
        Browserrahmen statt Karten-Showcase; keine Pakettabelle (§6 K1-13, die
        volle Preisliste steht in Block 9). Gratis-Formular (id=newsForm)
        unveraendert aus dem alten Hero-Reiter hierher verschoben. ── {% endcomment %}
-  <section class="section" id="gratis">
+  <section class="section section-alt" id="gratis">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.web|safe }}</p>
@@ -453,273 +399,102 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
     </div>
   </section>
 
-  {% comment %} ── Block 9: ANGEBOT ZUSAMMENSTELLEN `#angebot` (Papier). §2.11.
-       Funktion unveraendert: startpakete.html, alle rb*-ids/data-*, inline-
-       Skript mit Nonce. Startpakete zuerst sichtbar; Einzelpositionen in
-       <details class="rb-einzeln">, oeffnet sich beim Klick auf ein Startpaket
-       (eine Zeile in startpakete.js) oder wenn der Server schon Positionen aus
-       ?paket= vorbelegt hat. Volle Preisliste bleibt darunter. ── {% endcomment %}
-  <section class="section section-alt rb-sec" id="angebot" aria-labelledby="rb-title">
+
+  {% comment %} ── Block 6: WAS LAUFENDE BETREUUNG KOSTET `#preise` (weiß). §2.8. Nur
+       Größen und Rechner — die Webseiten-Pakettabelle faellt hier weg (bleibt auf
+       /kosten/), die volle Preisliste zieht nach #angebot um. ── {% endcomment %}
+  <section class="section" id="preise">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.angebot|safe }}</p>
-        <h2 class="section-t" id="rb-title">{{ t.start.angebot_h|safe }}</h2>
-        <p class="section-lead">{{ t.start.angebot_lead|safe }}</p>
+        <p class="sec-kick">{{ t.abschnitt.kosten|safe }}</p>
+        <h2 class="section-t">{{ t.it_stufen.h|safe }}</h2>
+        <p class="section-lead">{{ t.it_stufen.lead|safe }}</p>
       </header>
+      <div class="price-grid preise-stufen" data-reveal>
+        {% for s in it_stufen %}
+        <article class="price{% if s.beliebt %} price-featured{% endif %}">
+          {% if s.beliebt %}<p class="kenn preise-kenn">{{ t.it_stufen.beliebt|safe }}</p>{% endif %}
+          <h3>{% if s.id == 'klein' %}{{ t.it_stufen.klein_h|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_h|safe }}{% else %}{{ t.it_stufen.gross_h|safe }}{% endif %}</h3>
+          <p class="price-for">{% if s.id == 'klein' %}{{ t.it_stufen.klein_for|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_for|safe }}{% else %}{{ t.it_stufen.gross_for|safe }}{% endif %}</p>
+          <div class="price-tag">{{ s.mtl_anzeige }}<span class="cur">{{ t.it_stufen.unit|safe }}</span></div>
+          <p class="preise-zeile">{{ s.zeile }}</p>
+          <ul class="price-list">
+            {% if s.id == 'klein' %}{% for li in t.it_stufen.klein_li %}<li>{{ li|safe }}</li>{% endfor %}
+            {% elif s.id == 'mittel' %}{% for li in t.it_stufen.mittel_li %}<li>{{ li|safe }}</li>{% endfor %}
+            {% else %}{% for li in t.it_stufen.gross_li %}<li>{{ li|safe }}</li>{% endfor %}{% endif %}
+          </ul>
+          <a class="btn btn-ghost" href="#rueckruf">{{ t.start.stufe_cta|safe }}</a>
+          <a class="textlink preise-rechner-link" href="{% url 'rechner' %}?ap={{ s.ap }}&amp;srv={{ s.srv }}&amp;backup=1">{{ t.it_stufen.cta|safe }}</a>
+        </article>
+        {% endfor %}
+      </div>
+      <p class="price-foot" data-reveal>{{ t.it_stufen.foot|safe }}</p>
 
-      {% include 'startpakete.html' with ziel=paket_ziel %}
-
-      <details class="rb-einzeln" id="rbEinzeln"{% if paket_items %} open{% endif %}>
-        <summary class="rb-einzeln-summary">{{ t.start.angebot_einzeln|safe }}</summary>
-        <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
-          {% csrf_token %}
-            {% include 'honigtopf.html' %}
-          <div class="rb-grid">
-            <div class="rb-cats">
-              {% for g in angebot_groups %}
-              <fieldset class="rb-cat" data-reveal>
-                <legend class="rb-cat-head">
-                  <span class="rb-cat-ic">{% include 'icons.html' with name=g.icon %}</span>
-                  <span class="rb-cat-tx"><strong>{{ g.title }}</strong><small>{{ g.sub }}</small></span>
-                </legend>
-                <div class="rb-items">
-                  {% for it in g.items %}
-                  <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
-                    <input class="ang-check rb-check" type="checkbox" id="rb-{{ it.id }}" name="item" value="{{ it.id }}"
-                           {% if it.id in paket_items %}checked{% endif %}
-                           data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                           data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
-                    <span class="ang-item-box">
-                      <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
-                      <span class="ang-item-main">
-                        <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
-                        <span class="ang-item-desc">{{ it.desc }}</span>
-                      </span>
-                      <span class="ang-item-price">{{ it.price_label }}</span>
-                      <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-                    </span>
-                  </label>
-                  {% endfor %}
-                </div>
-              </fieldset>
-              {% endfor %}
-            </div>
-
-            <aside class="rb-side">
-              <div class="rb-card" data-reveal>
-                <div class="rb-card-head">
-                  <h3>{{ t.rb.card_h|safe }}</h3>
-                  <span class="rb-count" id="rbCount">{{ t.rb.count|safe }}</span>
-                </div>
-
-                <div class="rb-sum" id="rbSum">
-                  <div class="rb-sum-rows">
-                    <div class="rb-sum-empty" id="rbSumEmpty">{{ t.rb.sum_empty|safe }}</div>
-                    <div class="rb-sum-row" data-k="once" hidden><span>{{ t.rb.row_once|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="once">0</span>&nbsp;€</strong></div>
-                    <div class="rb-sum-row" data-k="mtl" hidden><span>{{ t.rb.row_mtl|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="mtl">0</span>&nbsp;€<small>{{ t.rb.per_month|safe }}</small></strong></div>
-                    <div class="rb-sum-row" data-k="yr" hidden><span>{{ t.rb.row_yr|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="yr">0</span>&nbsp;€<small>{{ t.rb.per_year|safe }}</small></strong></div>
-                    <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>{{ t.rb.row_more|safe }}</span><strong>{{ t.rb.on_request|safe }}</strong></div>
-                  </div>
-                </div>
-
-                {% comment %} aria-live (BF24): Das Skript legt #rbErr erst im Fehlerfall
-                   hier an; der Rahmen sagt ihn dann an. {% endcomment %}
-                <div class="rb-gate" id="rbGate" aria-live="polite">
-                  <div class="rb-field">
-                    <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
-                    <input class="fld" type="email" name="email" id="rbEmail" required maxlength="254" autocomplete="email" placeholder="name@firma.at">
-                  </div>
-                  <label class="rb-consent">
-                    <input type="checkbox" name="angebote" id="rbConsent" value="1">
-                    <span>{{ t.rb.consent|safe }}</span>
-                  </label>
-                  <button class="btn btn-lg rb-submit" type="submit" id="rbSubmit" disabled>{{ t.rb.submit|safe }}</button>
-                  <p class="rb-fine">{{ t.rb.fine|safe }}</p>
-                </div>
-
-                <div class="rb-done" id="rbDone" hidden>
-                  <div class="rb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</div>
-                  <h4>{{ t.rb.done_h|safe }}</h4>
-                  <p>{{ t.rb.done_t|safe }}</p>
-                </div>
-              </div>
-              <a class="rb-all" href="{% url 'angebot' %}#preisliste">{{ t.rb.all_link|safe }}</a>
-            </aside>
-          </div>
-        {% include 'datenschutzhinweis.html' %}
-        </form>
-      </details>
-
-      {% comment %} Volle Preisliste (mit Stand) — zog aus dem alten #preise-Abschnitt hierher. ── {% endcomment %}
-      <details class="pt pt-details" data-reveal>
-        <summary class="pt-summary">{{ t.preise.tab_h|safe }}</summary>
-        <p class="pt-lead">{{ t.preise.tab_lead|safe }}</p>
-        <div class="pt-scroll">
-          <table class="pt-table">
-            <caption class="pt-cap">{{ t.preise.tab_cap|safe }} · {{ t.preise.stand|safe }} {{ preis_stand }}</caption>
-            <thead>
-              <tr><th scope="col">{{ t.preise.tab_leistung|safe }}</th><th scope="col">{{ t.preise.tab_preis|safe }}</th></tr>
-            </thead>
-            <tbody>
-              {% for g in angebot_groups %}
-              <tr class="pt-group"><th scope="rowgroup" colspan="2">{{ g.title }}</th></tr>
-                {% for it in g.items %}
-                <tr>
-                  <th scope="row"><strong>{{ it.name }}</strong><span>{{ it.desc }}</span></th>
-                  <td>{{ it.price_label }}</td>
-                </tr>
-                {% endfor %}
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        <p class="pt-foot">{{ t.preise.tab_foot|safe }}</p>
-      </details>
+      <p class="lk-alle">
+        <a class="textlink" href="{% url 'rechner' %}">{{ t.wissen.rechner_h|safe }}</a>
+        <a class="textlink" href="{% url 'einrichtungen' %}">{{ t.einrichten_hub.h1|safe }}</a>
+        <a class="textlink" href="{% url 'angebot' %}#preisliste">{{ t.rb.all_link|safe }}</a>
+      </p>
     </div>
   </section>
 
-  <script nonce="{{ request.csp_nonce }}">
-  (function(){
-    var form=document.getElementById('rbForm'); if(!form) return;
-    var I=(window.I18N&&window.I18N.rb)||{};
-    var NL=(window.I18N&&window.I18N.numLocale)||'de-DE';
-    var checks=form.querySelectorAll('.rb-check'),
-        count=document.getElementById('rbCount'), sum=document.getElementById('rbSum'),
-        empty=document.getElementById('rbSumEmpty'), email=document.getElementById('rbEmail'),
-        consent=document.getElementById('rbConsent'), submit=document.getElementById('rbSubmit'),
-        gate=document.getElementById('rbGate'), done=document.getElementById('rbDone'),
-        fehler=document.getElementById('rbErr');
-    function eur(n){ return (Number(n)||0).toLocaleString(NL); }
-    function row(k){ return form.querySelector('[data-k="'+k+'"]'); }
-    function setRow(k,v){ var r=row(k); if(!r) return; r.hidden=!(v>0);
-      var s=r.querySelector('[data-t="'+k+'"]'); if(s) s.textContent=eur(v); }
-    function tally(){
-      var once=0,mtl=0,yr=0,anf=false,n=0;
-      checks.forEach(function(c){ if(c.checked){ n++; once+=+c.dataset.once||0;
-        mtl+=+c.dataset.mtl||0; yr+=+c.dataset.yr||0; if(c.dataset.anfrage==='1') anf=true; }});
-      count.textContent=n+' '+(n===1?(I.leistung||'Leistung'):(I.leistungen||'Leistungen'));
-      if(empty) empty.hidden=n>0;
-      setRow('once',once); setRow('mtl',mtl); setRow('yr',yr);
-      var ar=row('anfrage'); if(ar) ar.hidden=!anf;
-      return {n:n,once:once,mtl:mtl,yr:yr,anf:anf};
-    }
-    function refresh(){ var t=tally();
-      // Die Einwilligung ist freiwillig und darf den Versand nicht blockieren — der
-      // Preis steht ohnehin schon oben.
-      submit.disabled=!(t.n>0 && email.value && email.checkValidity()); }
-    checks.forEach(function(c){ c.addEventListener('change',refresh); });
-    email.addEventListener('input',refresh); consent.addEventListener('change',refresh);
-    form.addEventListener('submit',function(e){
-      e.preventDefault(); if(submit.disabled) return;
-      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent=I.busy||'…';
-      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
-        .then(function(r){ return r.json(); })
-        .then(function(j){
-          if(!j.ok) throw new Error('fail');
-          setRow('once',j.once); setRow('mtl',j.mtl); setRow('yr',j.yr);
-          var ar=row('anfrage'); if(ar) ar.hidden=!j.anfrage;
-          gate.hidden=true; done.hidden=false;
-          done.scrollIntoView({behavior:'smooth',block:'center'});
-        })
-        .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
-          submit.textContent=I.submit||'…';
-          // Fehler inline statt als alert(): Ein Systemdialog reisst den Besucher aus
-          // der Seite, ist auf dem Handy kaum lesbar und widerspricht der
-          // Komponentenregel in doku/20-DESIGN.md („Fehler inline — nie alert()").
-          // #rbErr stand nie in der Vorlage; ohne ihn blieb der Fehler stumm (BF24).
-          // Er entsteht deshalb erst hier, im bereits ansagenden #rbGate.
-          if(!fehler){ fehler=document.createElement('p'); fehler.className='lb-err';
-            fehler.id='rbErr'; fehler.setAttribute('role','alert'); submit.insertAdjacentElement('afterend',fehler); }
-          fehler.textContent=I.error||'Error'; fehler.hidden=false; });
-    });
-    refresh();
-  })();
-  </script>
 
-  {% comment %} ── Block 10: BRANCHEN UND REGIONEN `#branchen` (weiß, neu). §2.12.
-       Alle Branchen und alle Regionen, aus derselben Quelle wie die jeweiligen
-       Hubs (views._startseite_verteiler). Keine Fernwartungs-Zeile. ── {% endcomment %}
-  <section class="section" id="branchen">
+  {% comment %} ── Block 4: WER DAHINTERSTEHT `#ueber` (Papier). §2.6. ── {% endcomment %}
+  <section class="section section-alt" id="ueber">
     <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.region|safe }}</p>
-        <h2 class="section-t">{{ t.start.region_h|safe }}</h2>
-        <p class="section-lead">{{ t.start.region_lead|safe }}</p>
-      </header>
-      <div class="region-raster" data-reveal>
-        <div class="register-gruppe">
-          <h3>{{ t.branchen_seite.branchen_titel|safe }}</h3>
-          <ul class="index-liste">
-            {% for b in verteiler.branchen %}
-            <li><a href="{{ b.url }}">{{ b.nav|safe }}</a></li>
-            {% endfor %}
-          </ul>
-          <p class="lk-alle"><a class="textlink" href="{% url 'branchen' %}">{{ t.start.branchen_link|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a></p>
+      <p class="sec-kick" data-reveal>{{ t.abschnitt.ueber|safe }}</p>
+      <div class="ueber-raster" data-reveal>
+        <h2 class="section-t">{{ t.vertrauen.h|safe }}</h2>
+        <div class="ueber-text">
+          <p class="gross">{{ t.vertrauen.text|safe }}</p>
         </div>
-        <div class="register-gruppe">
-          <h3>{{ t.seite.regionen_titel|safe }}</h3>
-          <ul class="index-liste">
-            {% for r in verteiler.regionen %}
-            <li><a href="{{ r.url }}">{{ r.ort }}</a></li>
-            {% endfor %}
-          </ul>
-          <p class="lk-alle"><a class="textlink" href="{% url 'regionen' %}">{{ t.start.regionen_link|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a></p>
-        </div>
+      </div>
+
+      <ol class="zusagen" data-reveal>
+        <li>{{ t.vertrauen.p1|safe }}</li>
+        <li>{{ t.vertrauen.p2|safe }}</li>
+        <li>{{ t.vertrauen.p3|safe }}</li>
+      </ol>
+
+      <dl class="fakten" data-reveal>
+        {% if c.adresse %}<div><dt>{{ t.vertrauen.sitz_label|safe }}</dt><dd>{{ c.adresse }}, {{ c.plz }} {{ c.stadt }}</dd></div>{% endif %}
+        <div><dt>{{ t.vertrauen.fakt_vorort|safe }}</dt><dd>{{ t.vertrauen.region_t|safe }}</dd></div>
+        <div><dt>{{ t.vertrauen.fakt_fern|safe }}</dt><dd>{{ t.vertrauen.fakt_fern_t|safe }}</dd></div>
+        <div><dt>{{ t.vertrauen.fakt_sprachen|safe }}</dt><dd>{{ t.vertrauen.sprachen|safe }}</dd></div>
+      </dl>
+
+      <div class="ueber-fuss" data-reveal>
+        <p class="signatur">
+          {% if c.founder_image %}<img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="40px" width="40" height="40" loading="lazy" alt="">{% endif %}
+          {{ c.inhaber_name }} · {{ c.site_name }}
+        </p>
+        {% if c.telefon %}<a class="textlink ueber-tel" href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a>{% endif %}
+        <a class="textlink" href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a>
       </div>
     </div>
   </section>
 
-  {% comment %} ── Block 11: WISSEN UND WERKZEUGE `#wissen` (Papier). §2.13.
-       Vier Register-Spalten: Werkzeuge, Vergleiche, Ratgeber, Checklisten.
-       Ratgeber/Checklisten/Glossar nur bei lang == 'de' (die Silos sind
-       einsprachig); EN/RO zeigen nur Werkzeuge und Vergleiche. ── {% endcomment %}
-  <section class="section section-alt wt-sec" id="wissen" aria-labelledby="wt-title">
+
+  {% comment %} ── Block 5: ABLAUF `#prozess` (dunkel). §2.7. Kasten "Im Blick" ohne
+       gruenen Punkt, ohne "läuft" (§6 K1-5). ── {% endcomment %}
+  <section class="section on-dark" id="prozess">
     <div class="wrap">
       <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.wissen|safe }}</p>
-        <h2 class="section-t" id="wt-title">{{ t.wissen.h|safe }}</h2>
-        <p class="section-lead">{{ t.wissen.lead|safe }}</p>
+        <p class="sec-kick">{{ t.abschnitt.ablauf|safe }}</p>
+        <h2 class="section-t">{{ t.ablauf.h|safe }}</h2>
+        <p class="section-lead">{{ t.ablauf.sub|safe }}</p>
       </header>
-      <div class="wissen-raster{% if not wissen_register.ratgeber %} wissen-halb{% endif %}" data-reveal>
-        <div class="register-gruppe">
-          <h3>{% include 'icons.html' with name='gauge' %}{{ t.wissen.werkzeuge_h|safe }}</h3>
-          <ul class="register-liste eng">
-            {% for w in wissen_register.werkzeuge %}
-            <li><a href="{{ w.url }}"><span class="rl-titel">{{ w.h|safe }}</span><span class="rl-text">{{ w.t|safe }}</span></a></li>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="register-gruppe">
-          <h3>{% include 'icons.html' with name='compare' %}{{ t.wissen.vergleiche_h|safe }}</h3>
-          <ul class="register-liste eng">
-            {% for v in wissen_register.vergleiche %}
-            <li><a href="{{ v.url }}"><span class="rl-titel">{{ v.nav|safe }}</span></a></li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% if wissen_register.ratgeber %}
-        <div class="register-gruppe">
-          <h3>{% include 'icons.html' with name='book' %}{{ t.wissen.ratgeber_h|safe }}</h3>
-          <ul class="register-liste eng">
-            {% for b in wissen_register.ratgeber %}
-            <li><a href="{{ b.url }}"><span class="rl-titel">{{ b.titel|safe }}</span></a></li>
-            {% endfor %}
-          </ul>
-          <a class="textlink" href="{% url 'aktuelles' %}">{{ t.wissen.alle|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a>
-        </div>
-        <div class="register-gruppe">
-          <h3>{% include 'icons.html' with name='list' %}{{ t.wissen.checklisten_h|safe }}</h3>
-          <ul class="register-liste eng">
-            {% for k in wissen_register.checklisten %}
-            <li><a href="{{ k.url }}"><span class="rl-titel">{{ k.titel|safe }}</span></a></li>
-            {% endfor %}
-          </ul>
-          <a class="glossar" href="{{ wissen_register.glossar_url }}"><span class="rl-titel">{{ t.wissen.glossar_nav|safe }}</span></a>
-        </div>
-        {% endif %}
-      </div>
+      <ol class="timeline" data-reveal>
+        <li class="tl-item"><span class="tl-n">01</span><div class="tl-body"><h3>{{ t.ablauf.s1_h|safe }}</h3><p>{{ t.ablauf.s1_t|safe }}</p></div></li>
+        <li class="tl-item"><span class="tl-n">02</span><div class="tl-body"><h3>{{ t.ablauf.s2_h|safe }}</h3><p>{{ t.ablauf.s2_t|safe }}</p></div></li>
+        <li class="tl-item"><span class="tl-n">03</span><div class="tl-body"><h3>{{ t.ablauf.s3_h|safe }}</h3><p>{{ t.ablauf.s3_t|safe }}</p></div></li>
+        <li class="tl-item"><span class="tl-n">04</span><div class="tl-body"><h3>{{ t.ablauf.s4_h|safe }}</h3><p>{{ t.ablauf.s4_t|safe }}</p></div></li>
+      </ol>
+
+      <a class="btn btn-lg prozess-cta" href="#rueckruf">{{ t.start.ablauf_cta|safe }}</a>
     </div>
   </section>
+
 
   {% comment %} ── Block 12: FRAGEN UND ANTWORTEN `#faq` (weiß). §2.14.
        FAQPage-Schema unveraendert. Signaturzeile + Frage-Zeile als Handlung
@@ -754,6 +529,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       </div>
     </div>
   </section>
+
 
   {% comment %} ── Block 13: KONTAKT `#kontakt` (Papier). §2.15. Rückruf-Zeile
        als <a href="#rueckruf"> ohne data-rueckruf (Startseite); form#kontakt-
@@ -813,6 +589,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       {% endif %}
     </div>
   </section>
+
 
   {% comment %} ── Block 14: KOOPERATIONEN `#kooperationen` (weiß, schmaler
        Streifen direkt über dem Fuß). §2.16. coopForm/#coopSubmit/#coopErr/
@@ -906,7 +683,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 {% endblock %}
 
 {% block extra_js %}
-{% comment %}Setzt die Haken der Schnellstart-Pakete und rechnet den Rechner in Block 6 mit.{% endcomment %}
+{% comment %}Setzt die Haken der Schnellstart-Pakete. Der Kurzrechner ist am 01.10.2026
+von der Startseite auf /kosten/rechner/ gewandert, kostenrechner.js laedt nur noch dort.{% endcomment %}
 <script src="{% static 'js/startpakete.js' %}?v={{ asset_v }}" defer></script>
-<script src="{% static 'js/kostenrechner.js' %}?v={{ asset_v }}" defer></script>
 {% endblock %}

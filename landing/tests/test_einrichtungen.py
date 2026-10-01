@@ -280,13 +280,19 @@ class SichtbarkeitTest(SimpleTestCase):
     der Ersatz, und sie sind zusammen wirksamer als ein Menüeintrag.
     """
 
-    def test_die_startseite_zeigt_das_band_mit_preisen(self):
+    def test_die_startseite_fuehrt_mit_preis_ins_silo(self):
+        """Upgrade 01.10.2026: Das Band mit allen zehn Einrichtungen ist von der
+        Startseite gegangen (zu viel Text vor der ersten Anfrage). Geblieben sind
+        die Finder-Karte mit dem Einstiegspreis und der Verweis unter den
+        Betreuungspreisen — beide müssen ins Silo führen."""
         for prefix in SPRACHEN:
             with self.subTest(prefix=prefix or "/"):
                 html = _util.client().get(f"{prefix}/", follow=True).content.decode("utf-8")
-                self.assertIn('id="einrichten"', html, "Band fehlt auf der Startseite")
-                self.assertEqual(html.count("ein-karte"),
-                                 len(einrichtungen.EINRICHTUNGEN))
+                finder = re.search(r'id="finder".*?</section>', html, re.S).group(0)
+                self.assertIn(f'href="{prefix}/einrichten/"', finder)
+                self.assertRegex(finder, r"190\s?€|€\s?190")
+                preise = re.search(r'id="preise".*?</section>', html, re.S).group(0)
+                self.assertIn(f'href="{prefix}/einrichten/"', preise)
 
     def test_der_footer_verweist_auf_das_silo(self):
         html = _util.client().get("/", follow=True).content.decode("utf-8")
