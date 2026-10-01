@@ -2327,10 +2327,12 @@ def _structured_data(c, lang, *, mit_katalog=True):
     #   4. Facebook- oder Instagram-Seite, falls gepflegt
     # Eintragen heißt: URL in content.json → "profile" ergänzen, sonst nichts.
     # Der Rest passiert hier automatisch, inklusive Ausgabe im @graph.
-    profile = [u.strip() for u in (c.get("profile") or []) if u and u.strip()]
+    profile = _profil_urls(c)
     if profile:
         business["sameAs"] = profile
-        inhaber["sameAs"] = [u for u in profile if "linkedin." in u.lower()]
+        linkedin = [u for u in profile if "linkedin." in u.lower()]
+        if linkedin:
+            inhaber["sameAs"] = linkedin
 
     graph = [business, inhaber, website]
 
@@ -4357,6 +4359,32 @@ def robots_txt(request):
     return HttpResponse("\n".join(lines), content_type="text/plain; charset=utf-8")
 
 
+_GOOGLE_PROFIL_MUSTER = ("google.com/maps", "google.at/maps", "google.de/maps",
+                         "maps.google.", "g.page/", "maps.app.goo.gl")
+
+
+def _profil_urls(c):
+    """Profil-URLs aus content.json: nur `https://`, ohne Duplikate, Reihenfolge
+    bleibt. Alles andere wird still verworfen — `sameAs` ist eine Identitätsbehauptung."""
+    gesehen, ergebnis = set(), []
+    for u in (c.get("profile") or []):
+        if not isinstance(u, str):
+            continue
+        u = u.strip()
+        if not u.lower().startswith("https://") or len(u) <= len("https://"):
+            continue
+        if u in gesehen:
+            continue
+        gesehen.add(u)
+        ergebnis.append(u)
+    return ergebnis
+
+
+def _google_profil_urls(c):
+    return [u for u in _profil_urls(c)
+            if any(m in u.lower() for m in _GOOGLE_PROFIL_MUSTER)]
+
+
 def _llms_kopf(c, base):
     """Erste Zeilen von llms.txt und llms-full.txt , die Kurzfassung, die eine
     KI zitiert, wenn sie nur einen Absatz übernimmt."""
@@ -4393,6 +4421,7 @@ def _llms_kopf(c, base):
         f"{standort}"
         f"Vor Ort im Einzugsgebiet {einzugsgebiet}; alles Übrige per Fernwartung in ganz "
         f"Österreich und Deutschland.\n"
+        + "".join(f"Google-Unternehmensprofil: {u}\n" for u in _google_profil_urls(c))
     )
 
 

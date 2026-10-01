@@ -13,6 +13,9 @@ from django.utils.translation import get_language
 
 from . import branchen, i18n, leistungen, regionen
 
+# Wie viele Orte der Footer nennt (die nach Entfernung nächsten, Reihenfolge wie in regionen.py).
+FOOTER_REGIONEN = 5
+
 _WIEN = ZoneInfo("Europe/Vienna")
 
 
@@ -66,10 +69,12 @@ def navigation(request):
             continue
         daten = _leistung_daten(eintrag, lang)
         posten.append({"url": daten["url"], "titel": daten.get("nav") or daten.get("h1", slug)})
-    # Die vier naechstgelegenen Orte in den Footer: Sie sind das Local-Signal
+    # Die fuenf naechstgelegenen Orte in den Footer: Sie sind das Local-Signal
     # auf jeder Seite und zugleich die Grundverlinkung des Regions-Silos.
+    # Wels (40 km, fuenfter Ort) steht seit 01.10.2026 dabei: Die Seite hing nur an
+    # den Regionsseiten selbst und war Google unbekannt (TS46).
     orte = []
-    for eintrag in regionen.REGIONEN[:4]:
+    for eintrag in regionen.REGIONEN[:FOOTER_REGIONEN]:
         orte.append({"url": reverse("region", kwargs={"slug": eintrag["slug"]}),
                      "titel": eintrag["ort"]})
     # Die vier gefragtesten Branchen in den Footer: Sie sind die Grundverlinkung
