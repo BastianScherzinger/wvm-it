@@ -90,7 +90,7 @@ PACK = {
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
         "anrufen": "Jetzt anrufen",
         "rr_h": "Lieber zurückgerufen werden?",
-        "rr_ph": "Ihre Telefonnummer",
+        "rr_ph": "Ihre Telefonnummer *",
         "rr_mehr": "Name, Zeitfenster und Anliegen angeben (freiwillig)",
         "cta": "Gratis Beispiel-Website sichern",
         "note": "Kostenlos und unverbindlich · von unserer JARVIS-KI in ~10 Minuten gebaut.",
@@ -172,7 +172,7 @@ PACK = {
         # `lock` wird seit dem 06.09.2026 nicht mehr gerendert: Die Summe steht sofort.
         # Der Schluessel bleibt, damit keine Sprachfassung auf einen fehlenden Wert laeuft.
         "lock": "Richtpreis mit E-Mail freischalten",
-        "email_label": "Richtangebot per E-Mail (freiwillig)",
+        "email_label": "E-Mail für Ihr Richtangebot *",
         "consent": "Zusätzlich künftig passende Angebote per E-Mail. Freiwillig, jederzeit abbestellbar.",
         "submit": "Richtangebot per E-Mail schicken",
         "fine": "Richtpreise, netto zzgl. USt. Unverbindlich, kein Konto nötig. Antwort an Werktagen in 24 Stunden.",

@@ -102,7 +102,7 @@ PACK = {
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
         "anrufen": "Sunați acum",
         "rr_h": "Preferați să vă sunăm noi?",
-        "rr_ph": "Numărul dumneavoastră de telefon",
+        "rr_ph": "Numărul dumneavoastră de telefon *",
         "rr_mehr": "Adăugați nume, interval orar și subiect (opțional)",
         "cta": "Primiți site-ul demonstrativ gratuit",
         "note": "Gratuit și fără obligații · construit de AI-ul nostru JARVIS în circa 10 minute.",
@@ -176,7 +176,7 @@ PACK = {
         "per_month": "/lună",
         "per_year": "/an",
         "lock": "Deblocați prețul orientativ cu e-mail",
-        "email_label": "Oferta pe e-mail (opțional)",
+        "email_label": "E-mail pentru oferta dumneavoastră *",
         "consent": "Trimiteți-mi pe viitor și oferte potrivite prin e-mail. Opțional, dezabonare oricând.",
         "submit": "Trimiteți oferta pe e-mail",
         "fine": "Prețuri orientative, net plus TVA. Fără obligații, fără cont necesar. Răspuns în 24 de ore în zilele lucrătoare.",

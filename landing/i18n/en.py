@@ -108,7 +108,7 @@ PACK = {
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
         "anrufen": "Call now",
         "rr_h": "Prefer a call back?",
-        "rr_ph": "Your phone number",
+        "rr_ph": "Your phone number *",
         "rr_mehr": "Add name, time slot and topic (optional)",
         "cta": "Claim your free sample website",
         "note": "Free and no obligation · built by our JARVIS AI in about 10 minutes.",
@@ -182,7 +182,7 @@ PACK = {
         "per_month": "/mo",
         "per_year": "/yr",
         "lock": "Unlock your ballpark price with email",
-        "email_label": "Estimate by email (optional)",
+        "email_label": "Email for your estimate *",
         "consent": "Also send me relevant offers by email in future. Optional, unsubscribe any time.",
         "submit": "Email me the estimate",
         "fine": "Ballpark prices, net plus VAT. No obligation, no account needed. Reply within 24 hours on working days.",
