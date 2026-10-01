@@ -51,6 +51,8 @@ nur im Quelltext.
         <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a>
       </p>
     </aside>
+
+    {% include 'hub_abschluss.html' %}
   </div>
 </section>
 {% endblock %}

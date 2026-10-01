@@ -2960,8 +2960,11 @@ def branchen_hub(request):
     bs = pack.get("branchen_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
     liste = _alle_branchen(lang)
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
     return render(request, "branchen.html", {
-        "c": c, "bs": bs, "branchen": liste,
+        "c": c, "bs": bs, "branchen": liste, "anfrage_ok": anfrage_ok,
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
@@ -3849,8 +3852,11 @@ def regionen_hub(request):
     pack = i18n.get_pack(lang)
     base = (c.get("wvm_url") or "").rstrip("/")
     liste = [_region_daten(r, lang) for r in regionen.REGIONEN]
+    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
+    if anfrage_ok not in _ANFRAGE_QUELLEN:
+        anfrage_ok = ""
     return render(request, "regionen.html", {
-        "c": c, "regionen": liste,
+        "c": c, "regionen": liste, "anfrage_ok": anfrage_ok,
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen"))])),
