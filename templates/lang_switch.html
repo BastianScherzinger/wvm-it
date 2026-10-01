@@ -8,5 +8,5 @@ Gibt es die Seite in der Sprache nicht (Fachbeitraege, Glossar, Checklisten sind
 nur deutsch), fuehrt der Link auf die Startseite dieser Sprache; das sagt
 title/aria dann auch.
 {% endcomment %}<div class="lang-switch" role="group" aria-label="{{ t.lang.switch_aria }}">
-  {% for l in lang_switch %}<a class="lang-opt{% if l.active %} is-active{% endif %}" href="{{ l.url }}" hreflang="{{ l.code }}" lang="{{ l.code }}"{% if l.active %} aria-current="true"{% endif %} title="{{ l.name }}{% if not l.gleiche_seite %} &ndash; {{ t.lang.nur_start|default:"Startseite" }}{% endif %}">{{ l.label }}</a>{% endfor %}
+  {% for l in lang_switch %}<a class="lang-opt{% if l.active %} is-active{% endif %}" href="{{ l.url }}" hreflang="{{ l.code }}" lang="{{ l.code }}"{% if l.active %} aria-current="true"{% endif %} title="{{ l.name }}{% if not l.gleiche_seite %} &ndash; {{ t.lang.nur_start|default:"Startseite" }}{% endif %}">{{ l.label }}<span class="sr-only"> – {{ l.name }}</span></a>{% endfor %}
 </div>
