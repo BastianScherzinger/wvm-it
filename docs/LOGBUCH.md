@@ -7,6 +7,25 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 01.10.2026 — SEO-Team-Runde zur Overview-Messung 1791 (Zweig `seo/2026-10-01-team`)
+
+Orchestrator (Opus) mit fünf Sonnet-Agenten in eigenen Worktrees, alles einzeln geprüft und gemergt; nicht gepusht.
+Die Overview-Zahlen wurden vorher mit einem lokalen Nachbau (Testclient über alle 213 Seiten) exakt reproduziert.
+
+- **KV14/KV12:** `/branchen/` und `/it-service/` tragen den Angebotsblock (Nutzenliste, Anfrage-Karte mit `tel:`, Zeitzusage „an Werktagen innerhalb von 24 Stunden“) — `templates/hub_abschluss.html`, `test_hub_abschluss.py`.
+- **KV13:** Ansprechpartner-Zeile mit echtem Porträt auf zehn Hubs (`templates/ansprechpartner.html`, `test_hub_bild.py`); 28 → 4 Seiten ohne Bild. Die vier Rechtsseiten bleiben bewusst ohne Bild (kein Inhaltsbezug).
+- **IS11/IS09:** 34 Beschreibungen mit Handlungsaufforderung, `/datenschutz/` 101 → 139 Zeichen (`test_beschreibungen.py`). `/it-service/voecklabruck/` bleibt bis zur K2-Messung (~23.10.) unverändert.
+- **IS28:** Ursache waren die Sprachlinks „DE/EN/RO“ (Text unter 3 Zeichen, 3 × 213 Seiten); jetzt `DE<span class="sr-only"> – Deutsch</span>` — 1917 → 0.
+- **IS37:** EN-Preislisten sagen „starting prices“ einmal im Kopf statt „from“ vor jedem Preis; Preise unverändert.
+- **K5 (GE11/GE46/VL10):** `profile` = verwaltetes Google-Profil (cid 4953433262951163842, Beleg `docs/seo/strategie-2026-09-25/20-profil-diagnose.md` §3) → `sameAs` und Zeile in `llms.txt`. Eigener Commit `35567eb`, einzeln zurücknehmbar, falls A1 (Duplikat) etwas ändert.
+- **TS46:** beide Adressen standen in der Sitemap; Wels jetzt im Fuß (fünf Orte), KI-Automatisierung in drei weiteren Querverweisen.
+- **EIG196, EIG206:** Partner-Shop benannt; Startpreise je Gruppe durch Test gesichert (das feste `from_label` war schon entfernt).
+- **PF23** war schon erfüllt (kein Bild über 300 kB). **BF18** und **FO04** gefunden, liegen im Startseiten-/CSS-Bereich des Designteams (Details `doku/80-AUFGABEN.md` Offen Nr. 34).
+
+Suite 517 → 538 Tests grün, `pruefe_seite` und `stand_schreiben --pruefen` grün.
+
+---
+
 ## 25.09.2026 — Design B1: `main` (18c3bbc, Stand af33c52) eingearbeitet
 
 Merge von `origin/main` bis `af33c52` (enthält 18c3bbc: Cloud-Triage, Kaufsuchen K1–K8; dazu PJ05, SI27, VL06, GE19, GE29) in `design/2026-09-25-b1`. Regel: **Funktion
