@@ -504,7 +504,7 @@ PACK = {
         "person_vor": "Cererea dumneavoastră este citită de",
         "ap_h": "Persoana dvs. de contact",
         "ap_zusage": "Răspuns în 24 de ore în zilele lucrătoare.",
-        "hub_nutzen_h": "Ce vă așteaptă pe fiecare dintre aceste pagini",
+        "hub_nutzen_h": "Ce vă oferă WVM-IT",
         "hub_nutzen_1": "O persoană de contact fixă: cine sună vorbește cu persoana care cunoaște și instalația dumneavoastră.",
         "hub_nutzen_2": "Prețurile sunt afișate deschis pe pagina de prețuri — calculatorul de costuri indică din timp un ordin de mărime.",
         "hub_nutzen_3": "Asistență prin mentenanță securizată la distanță, în toată Austria și Germania; la fața locului doar după programare.",

@@ -513,7 +513,7 @@ PACK = {
         "person_vor": "Ihre Anfrage liest",
         "ap_h": "Ihr Ansprechpartner",
         "ap_zusage": "Antwort an Werktagen innerhalb von 24 Stunden.",
-        "hub_nutzen_h": "Was Sie auf jeder dieser Seiten erwartet",
+        "hub_nutzen_h": "Was Sie bei WVM-IT erwartet",
         "hub_nutzen_1": "Ein fester Ansprechpartner: Wer anruft, spricht mit der Person, die Ihre Anlage auch kennt.",
         "hub_nutzen_2": "Preise stehen offen auf der Preisseite — der Kostenrechner nennt vorab eine Größenordnung.",
         "hub_nutzen_3": "Betreuung per gesicherter Fernwartung in ganz Österreich und Deutschland; vor Ort nur nach Terminabsprache.",

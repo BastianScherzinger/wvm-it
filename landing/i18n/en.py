@@ -510,7 +510,7 @@ PACK = {
         "person_vor": "Your enquiry is read by",
         "ap_h": "Your point of contact",
         "ap_zusage": "Reply on working days within 24 hours.",
-        "hub_nutzen_h": "What you can expect on every one of these pages",
+        "hub_nutzen_h": "What you can expect from WVM-IT",
         "hub_nutzen_1": "One dedicated contact: whoever calls speaks to the person who also knows your setup.",
         "hub_nutzen_2": "Prices are open on the pricing page — the cost calculator gives a ballpark figure in advance.",
         "hub_nutzen_3": "Support by secured remote maintenance across Austria and Germany; on site only by appointment.",
