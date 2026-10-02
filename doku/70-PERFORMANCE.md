@@ -6,9 +6,9 @@ status: teilweise
 fortschritt: 88
 zusammenfassung: Am 27.09.2026 PF27 als begruendete Ausnahme eingetragen (Zweig sofort/2026-09-27-pf27-und-1-weitere, Commit db18c8b), ohne eine Zeile Code: die sechs Schriftdateien sind drei von Design B1 vorgeschriebene Familien mal zwei Sprachsubsets (latin/latin-ext), jede bereits eine einzige Variable-Font-Datei ueber die volle Gewichtsspanne; die zwei above-the-fold-kritischen Dateien sind schon vorgeladen. Davor am 24.09.2026 VL16 als begruendete Ausnahme eingetragen (Paket 343, Zweig sofort/2026-09-24-vl16-und-2-weitere, 315811f), ohne eine Zeile Code: Gemeldet ist allein HTML ueber 120 KiB auf /, /en/ und /ro/, und der Umfang der Startseite (Konfigurator, Preistabelle, FAQ) ist seit T2 bewusst so; Critical CSS (PF14, Offen Nr. 5) bleibt offen. Davor am 18.09.2026 PF28 anders eingebaut und als begruendete Ausnahme eingetragen (Zweig sofort/2026-09-18-fo09-und-2-weitere, laut Bausitzung ungeprueft, Offen Nr. 7): Ein eigener Speicher landing/verkleinern.py streicht beim collectstatic Kommentarzeilen, Einrueckung und Leerzeilen aus den Skripten, bevor WhiteNoise komprimiert -- ohne neues Paket, Zeilenumbrueche und Adressen bleiben, CSS unveraendert. Die Ersparnis ist nicht gemessen. Davor am 12.09.2026 PF13 (weit gesetztes Ablaufdatum an statischen Dateien) als begruendete Ausnahme eingetragen, ohne eine Zeile Code -- und dabei eine falsche Angabe in dieser Datei berichtigt: Die Dateinamen tragen hier KEINEN Hash, und WhiteNoise laeuft NICHT mit Manifest-Storage. Das Jahr steht laengst (max-age=31536000, public), gemeldet wird allein das fehlende immutable, und genau das schliesst derselbe Rat ohne Hash im Namen selbst aus. CSS und JavaScript haengen an der Versions-Abfrage ?v= im Template; unter der Adresse ohne Abfrage waere immutable ein Versprechen, das die Auslieferung ein Jahr lang nicht zuruecknehmen kann. Schriften, Bilder und Videos bekommen es bereits, weil sie unter neuem Namen ersetzt statt ueberschrieben werden. Davor: Am 06.09. nachgemessen statt fortgeschrieben: Django rendert in 8 bis 34 ms, der TTFB live liegt bei 172 bis 234 ms — die Anwendung ist rund 13 Prozent davon. Der Seitencache aus der Aufgabenliste haette also 30 von 230 ms gespart und dafuer auf jeder Formularseite ein fremdes CSRF-Token riskiert; er bleibt bewusst ungebaut. Gebaut: ConditionalGetMiddleware und Cache-Koepfe auf den sieben Endpunkten ohne Formular — 310 KB weniger je Crawl-Durchgang. Am 07.09. PF18 dort gebaut, wo er zutrifft: Das Portraet auf /ueber-uns/ stand auf loading=lazy und traegt jetzt fetchpriority=high; auf den uebrigen Seiten bleibt die hohe Ladeprioritaet bewusst aus, weil deren erstes Bild ein 44-Pixel-Dekobild unten im Formular ist. Am 10.09.2026 ist genau diese Trennung als begruendete Ausnahme eingetragen -- gebaut ist der Punkt an den drei Stellen, an denen es ein LCP-Bild gibt: Hero-Portraet, /ueber-uns/ und das erste Referenzbild. Am selben Tag PF17 aus demselben Grund: Er trifft dasselbe Dekobild von der anderen Seite. Jedes Bild nach dem ersten laedt verzoegert, eifrig laedt nur, wo es ein echtes LCP-Bild gibt -- damit bleiben in diesem Hebel PF19 und VL15 offen.
 offen: 4
-pagespeed_mobil: 99
+pagespeed_mobil: 100
 pagespeed_desktop: 100
-antwortzeit_ms: 3
+antwortzeit_ms: 4
 quellen: docs/AUSBAU-2026-09.md, docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 antwortzeit_quelle: PageSpeed server-response-time
 ---
@@ -26,22 +26,22 @@ antwortzeit_quelle: PageSpeed server-response-time
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **99** | 1,95 s | 0,000 | 0 ms | 9 ms |
-| `/` | desktop | **100** | 0,49 s | 0,000 | 76 ms | 7 ms |
-| `/datenschutz/` | mobile | **99** | 1,81 s | 0,000 | 0 ms | 2 ms |
-| `/datenschutz/` | desktop | **100** | 0,42 s | 0,000 | 0 ms | 2 ms |
-| `/impressum/` | mobile | **98** | 1,99 s | 0,000 | 122 ms | 2 ms |
-| `/impressum/` | desktop | **100** | 0,47 s | 0,000 | 4 ms | 2 ms |
-| `/kontakt/` | mobile | **100** | 1,69 s | 0,000 | 0 ms | 2 ms |
-| `/kontakt/` | desktop | **100** | 0,43 s | 0,000 | 0 ms | 1 ms |
-| `/kosten/rechner/` | mobile | **99** | 1,96 s | 0,000 | 0 ms | 3 ms |
-| `/kosten/rechner/` | desktop | **100** | 0,46 s | 0,000 | 0 ms | 1 ms |
-| `/leistungen/` | mobile | **99** | 2,03 s | 0,000 | 14 ms | 4 ms |
-| `/leistungen/` | desktop | **100** | 0,50 s | 0,000 | 1 ms | 3 ms |
+| `/` | mobile | **99** | 2,03 s | 0,000 | 0 ms | 8 ms |
+| `/` | desktop | **100** | 0,48 s | 0,000 | 0 ms | 7 ms |
+| `/datenschutz/` | mobile | **100** | 1,73 s | 0,000 | 24 ms | 2 ms |
+| `/datenschutz/` | desktop | **100** | 0,42 s | 0,000 | 4 ms | 2 ms |
+| `/impressum/` | mobile | **100** | 1,68 s | 0,000 | 0 ms | 2 ms |
+| `/impressum/` | desktop | **100** | 0,49 s | 0,000 | 0 ms | 3 ms |
+| `/kontakt/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 2 ms |
+| `/kontakt/` | desktop | **99** | 0,46 s | 0,000 | 100 ms | 5 ms |
+| `/kosten/rechner/` | mobile | **100** | 1,68 s | 0,000 | 0 ms | 4 ms |
+| `/kosten/rechner/` | desktop | **100** | 0,48 s | 0,000 | 0 ms | 2 ms |
+| `/leistungen/` | mobile | **99** | 2,06 s | 0,000 | 42 ms | 3 ms |
+| `/leistungen/` | desktop | **100** | 0,52 s | 0,000 | 13 ms | 4 ms |
 
 12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 3,2 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 3,7 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
