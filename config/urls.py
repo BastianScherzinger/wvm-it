@@ -41,6 +41,7 @@ urlpatterns = [
     path("wissen/", views.wissen, name="wissen"),
     path("wissen/<slug:slug>/", views.begriff_seite, name="begriff"),
     path("robots.txt", views.robots_txt, name="robots_txt"),
+    path("favicon.ico", views.favicon_ico, name="favicon_ico"),
     # Reihenfolge zaehlt: Die Langfassung steht VOR dem allgemeinen .txt-Muster
     # weiter unten, damit sie nicht davon verschluckt wird (dieselbe Falle steht
     # in ruempelwerks config/urls.py dokumentiert).

@@ -4944,6 +4944,26 @@ def llms_full_txt(request):
 _SECURITY_TXT_ABLAUF = date(2027, 9, 25)
 
 
+_FAVICON_ICO = Path(settings.BASE_DIR) / "static" / "favicon.ico"
+
+
+def favicon_ico(request):
+    """/favicon.ico unter fester Adresse ohne Hash (02.10.2026, Befund B64).
+
+    Google und viele Programme fragen das Symbol an genau dieser Adresse ab, nicht
+    über das `<link rel="icon">` mit Versionsanhang. Ohne sie zeigt die Suche nach
+    jedem Redesign wochenlang ein altes oder gar kein Symbol (Agenturregel,
+    `Webagentur Scherzinger/CLAUDE.md`). Die Datei ist aus `img/wvm_mark_128.png`
+    erzeugt (16/32/48 px)."""
+    try:
+        daten = _FAVICON_ICO.read_bytes()
+    except OSError:
+        raise Http404("favicon.ico fehlt")
+    antwort = HttpResponse(daten, content_type="image/x-icon")
+    antwort["Cache-Control"] = "public, max-age=86400"
+    return antwort
+
+
 @_maschinenantwort(1440)
 def security_txt(request):
     """/.well-known/security.txt , wohin eine Sicherheitsmeldung gehen soll.

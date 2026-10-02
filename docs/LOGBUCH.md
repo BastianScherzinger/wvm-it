@@ -14,7 +14,7 @@ als zweites Profil in `content.json` → `profile` (`GE11` 2 von 3, der dritte k
 Herold-Gratiseintrag am 02.10. abgeschickt. Lauf 1822: 97,4 %, alles Übrige liegt bei Florin
 (Apex-DNS, SPF/DMARC, Postfach, Bewertungen, Angaben) oder ist Indexierungszeit (`TS46`: die
 neuen EN/RO-Ortsseiten sind Google noch unbekannt). Backlink-Liste für Florin und die Lehren für
-alle Kundenseiten stehen im Overview: `docs/BACKLINK-PLAN.md` §4.2, `docs/LEHREN-KUNDENSEITEN.md`.
+alle Kundenseiten stehen im Overview: `docs/BACKLINK-PLAN.md` §4.2, `docs/LEHREN-KUNDENSEITEN.md`. Nachzug: `/favicon.ico` antwortete mit 404 (Befund B64) — jetzt feste Adresse ohne Hash, `views.favicon_ico`, Datei `static/favicon.ico` aus `wvm_mark_128.png` (16/32/48 px), Test `test_favicon.py`.
 
 ## 02.10.2026 — Rest-Runde: PF22 gebaut, KV12/KV14/BF18 nachgewiesen (Zweig `fix/2026-10-02-rest`)
 
