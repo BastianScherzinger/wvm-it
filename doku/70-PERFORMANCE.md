@@ -20,28 +20,28 @@ antwortzeit_quelle: PageSpeed server-response-time
 ## Messwerte
 
 <!-- tempo:anfang -->
-**Messung vom 02.10.2026** (Webagentur Scherzinger Overview, Regelstand 2026-10-02d). Bereich „Performance & Core Web Vitals“: **100,0 von 100**, Reifegrad „Referenz“.
+**Messung vom 02.10.2026** (Webagentur Scherzinger Overview, Regelstand 2026-10-02e). Bereich „Performance & Core Web Vitals“: **100,0 von 100**, Reifegrad „Referenz“.
 
 ### Lighthouse je Seite
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **99** | 2,03 s | 0,000 | 0 ms | 9 ms |
-| `/` | desktop | **100** | 0,48 s | 0,000 | 0 ms | 7 ms |
-| `/datenschutz/` | mobile | **100** | 1,71 s | 0,000 | 2 ms | 4 ms |
-| `/datenschutz/` | desktop | **100** | 0,41 s | 0,000 | 0 ms | 4 ms |
-| `/impressum/` | mobile | **100** | 1,68 s | 0,000 | 0 ms | 3 ms |
-| `/impressum/` | desktop | **100** | 0,38 s | 0,000 | 0 ms | 3 ms |
-| `/kontakt/` | mobile | **100** | 1,73 s | 0,000 | 16 ms | 3 ms |
-| `/kontakt/` | desktop | **100** | 0,43 s | 0,000 | 0 ms | 3 ms |
-| `/kosten/rechner/` | mobile | **100** | 1,65 s | 0,000 | 0 ms | 3 ms |
-| `/kosten/rechner/` | desktop | **100** | 0,47 s | 0,000 | 0 ms | 3 ms |
-| `/leistungen/` | mobile | **99** | 1,95 s | 0,000 | 0 ms | 4 ms |
-| `/leistungen/` | desktop | **100** | 0,49 s | 0,000 | 0 ms | 5 ms |
+| `/` | mobile | **99** | 1,80 s | 0,000 | 12 ms | 7 ms |
+| `/` | desktop | _nicht gemessen_ | — | — | — | — |
+| `/datenschutz/` | mobile | **100** | 1,69 s | 0,000 | 0 ms | 2 ms |
+| `/datenschutz/` | desktop | **100** | 0,45 s | 0,000 | 22 ms | 7 ms |
+| `/impressum/` | mobile | _nicht gemessen_ | — | — | — | — |
+| `/impressum/` | desktop | _nicht gemessen_ | — | — | — | — |
+| `/kontakt/` | mobile | **100** | 1,69 s | 0,000 | 0 ms | 3 ms |
+| `/kontakt/` | desktop | **100** | 0,41 s | 0,000 | 0 ms | 4 ms |
+| `/kosten/rechner/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 1 ms |
+| `/kosten/rechner/` | desktop | **100** | 0,47 s | 0,000 | 0 ms | 4 ms |
+| `/leistungen/` | mobile | **99** | 2,03 s | 0,000 | 18 ms | 4 ms |
+| `/leistungen/` | desktop | **100** | 0,48 s | 0,000 | 0 ms | 4 ms |
 
-12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
+12 Abrufe, davon 0 wiederholt und **3 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 4,2 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 4,0 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
@@ -49,9 +49,7 @@ Keine. Alle messbaren Tempo-Regeln sind bestanden.
 
 ### Die grössten Bremsen laut Lighthouse
 
-| Audit | Titel | Ersparnis |
-|---|---|---:|
-| `unused-css-rules` | Reduce unused CSS | 300 ms |
+Keine Einsparchance über 150 ms.
 <!-- tempo:ende -->
 
 **Was hier erzeugt wird und was von Hand kommt.** Jede gemessene Zahl steht im Block
