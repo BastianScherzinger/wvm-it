@@ -118,9 +118,16 @@ gemessen werden:
 
 | Datum | Seite | Gerät | LCP | CLS | INP | Punkte |
 |---|---|---|---|---|---|---|
-| _offen_ | `/` | Mobil | | | | |
-| _offen_ | `/` | Desktop | | | | |
-| _offen_ | `/leistungen/edv-it-betreuung/` | Mobil | | | | |
+| 02.10.2026 | `/` | Mobil | 1,80 s | 0,000 | nicht gemessen (Labor-TBT 12 ms) | 99 |
+| 02.10.2026 | `/leistungen/` | Mobil | 2,03 s | 0,000 | nicht gemessen (Labor-TBT 18 ms) | 99 |
+| 02.10.2026 | `/leistungen/` | Desktop | 0,48 s | 0,000 | nicht gemessen (Labor-TBT 0 ms) | 100 |
+| 02.10.2026 | `/kosten/rechner/` | Mobil | 1,66 s | 0,000 | nicht gemessen (Labor-TBT 0 ms) | 100 |
+| 02.10.2026 | `/kosten/rechner/` | Desktop | 0,47 s | 0,000 | nicht gemessen (Labor-TBT 0 ms) | 100 |
+| 02.10.2026 | `/kontakt/` | Mobil | 1,69 s | 0,000 | nicht gemessen (Labor-TBT 0 ms) | 100 |
+| 02.10.2026 | `/kontakt/` | Desktop | 0,41 s | 0,000 | nicht gemessen (Labor-TBT 0 ms) | 100 |
+
+Quelle: Pystore Overview, Lauf 1824, Regelstand `2026-10-02e` (PageSpeed Insights, Labordaten; der Block steht erzeugt in `../../doku/70-PERFORMANCE.md`). Die Desktop-Messung von `/` und beide von `/impressum/` lieferten
+keinen Wert und stehen deshalb nicht hier. **Feldwerte (CrUX) gibt es weiter nicht** — zu wenig Traffic; INP ist deshalb nur als Labor-TBT bekannt. Der früher gemeldete CLS-Ausreißer auf Desktop (0,18–0,23) ist in dieser Messung nicht mehr vorhanden.
 
 **Erwartung vor der Messung** (damit sich das Ergebnis daran messen lässt):
 CLS sollte nahe null liegen — alle Bilder tragen `width` und `height`, die

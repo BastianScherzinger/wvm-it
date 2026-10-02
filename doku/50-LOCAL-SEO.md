@@ -1,18 +1,18 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-10-01
+stand: 2026-10-02
 status: teilweise
 fortschritt: 50
-zusammenfassung: 27.09.2026 (EIG198): Die Datei sagt das Profil jetzt widerspruchsfrei — angelegt am 11.09.2026, am 25.09.2026 öffentlich doppelt in Maps; offen ist Schritt A1 (verwalteten Eintrag klären, Duplikat entfernen oder zusammenführen), keine Neuanlage. Der frühere Wortlaut „es gibt keins“ gilt nur für den 10.09.2026. 24.09.2026: Die Oeffnungszeiten sind nicht offen, sondern belegt — Mo–Fr 9–18 Uhr stehen seit dem Relaunch sichtbar auf /kontakt/ und /it-notfall/ und identisch im Schema; so gehoeren sie ins Unternehmensprofil (Notiz unten berichtigt, EIG21). Neu fuer das Profil: /it-hilfe/ als Zielseite fuer Einzelhilfe ohne Vertrag (95 €/Std. per Fernwartung). Davor: Das Google-Unternehmensprofil ist am 11.09.2026 angelegt (IT-Berater, Servicegebiet ohne öffentliche Adresse, 20 Leistungen, Logo, Fotos; Florin als Inhaber eingeladen), aber von Google noch nicht bestätigt — bis dahin erscheint es nicht in der Suche (am selben Abend geprüft: kein Profil, keine Vorschläge beim Tippen). Öffnungszeiten und Bewertungen fehlen und kommen von Florin. Der WKO-Eintrag läuft weiter unter „Florin Feier" mit abweichender NAP. Am 12.09.2026 SU05 (Ortsseiten decken das Einzugsgebiet ab) als begruendete Ausnahme eingetragen, ohne eine Zeile Code: Der Befund zaehlt jetzt sieben Ortsseiten gegen eine Zielgroesse von acht, aber die achte ist in diesem Projekt schon entschieden -- und zwar dagegen. Weitere Ortsseiten sind in SEO-AUSBAU-3.md als Doorway-Pages verworfen (Regel A16, gestuetzt auf eine Messung an einer Schwesterseite), und den echten Auftrag aus einem achten Ort, den der Rat selbst verlangt, gibt es nicht.
-offen: 7
+zusammenfassung: 02.10.2026 geprüft: 2 von 4 Punkten erfüllt (Rechnung nach der Formel unter der Überschrift: Profil vorhanden 25, Search Console verbunden 25, Bewertungen öffentlich 0, NAP überall gleich 0). Das Google-Unternehmensprofil ist angelegt (11.09.2026) und laut Diagnose vom 25.09.2026 bestätigt (blaues Häkchen) — die frühere Angabe „ausstehend“ war überholt; es steht als sameAs im Schema (35567eb), dazu der WKO-Eintrag (dd88be7). Öffentlich sichtbar sind keine Bewertungen (4 in der Verwaltungsansicht, Herkunft ungeklärt), und zwei fremde Maps-Einträge mit abweichender Anschrift existieren (Diagnose 25.09.2026). Offen sind nur noch Schritte, die Bastian im Browser oder Florin bei sich tun muss.
+offen: 2
 unternehmensprofil: ja
-profil_bestaetigt: ausstehend
+profil_bestaetigt: ja
 profil_link: https://share.google/TQfo3LKfZtIANvyqu
 search_console: ja
 gsc_property: https://www.wvm-it.tech/
 gsc_konto: bastian.scherzinger05@gmail.com
-bewertung: nicht dokumentiert
+bewertung: nicht öffentlich sichtbar
 bewertungen_anzahl: 0
 quellen: docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/BASELINE.md, docs/AUSBAU-2026-08.md, docs/AKQUISE-SOFORT.md
 ---
@@ -48,7 +48,7 @@ und ist noch nicht umgesetzt.
 
 ## Google-Unternehmensprofil
 
-**Es gibt eins, aber es ist nicht in Ordnung.** Es wurde am 11.09.2026 angelegt und war laut Verwaltungsansicht am 25.09.2026 verwaltet (IT-Berater, blaues Häkchen, 4 Rezensionen, öffentlich keine Sterne); öffentlich stand WVM-IT am 25.09.2026 zugleich **doppelt** in Google Maps (siehe „Stand 25.09.2026" oben). Was ansteht, ist deshalb weder Neuanlage noch reine Verifizierung, sondern **Schritt A1: klären, welcher Eintrag der verwaltete ist, und das Duplikat entfernen oder zusammenführen lassen** (Bastian/Florin, im Browser). Der Wortlaut „es gibt keins" stammt vom 10.09.2026, dem Tag vor der Anlage; die Prüfungstabelle darunter ist Geschichte, kein Ist-Stand. Es bleibt der wichtigste offene Punkt überhaupt: „213 URLs gleichen sein Fehlen nicht aus" (`../CLAUDE.md`, `../docs/SEO-AUSBAU-3.md` §10/§12) — wirksam wird es erst, wenn genau ein bestätigter Eintrag öffentlich erscheint. Erwartung mit gepflegtem Profil: erste Anrufe **1–4 Wochen** nach Freischaltung; ohne sichtbares Profil: lokal nichts.
+**Es gibt eins; es ist bestätigt, aber noch nicht aufgeräumt.** Es wurde am 11.09.2026 angelegt; die Diagnose A1 vom 25.09.2026 (`../docs/seo/strategie-2026-09-25/20-profil-diagnose.md`, nur gelesen) fand das verwaltete Profil **bestätigt** (blaues Häkchen, IT-Berater primär, Karten-CID 4953433262951163842, kein Geschäftsstandort — nur Einzugsgebiet) im Konto …05@, 4 Rezensionen nur in der Verwaltungsansicht, öffentlich keine Sterne. Zugleich standen zwei **fremde** Maps-Einträge „WVM-IT“ (Wallstraße 19 mit Logo, Waldstraße ohne Foto) öffentlich in der Karte; keiner liegt in Bastians Konten, und im verwalteten Profil ist eine Inhaber-Einladung an eine fremde Adresse offen. Das verwaltete Profil steht seit 01.10.2026 als `sameAs` im Schema (`35567eb`). Was ansteht, ist weder Neuanlage noch Verifizierung, sondern das Aufräumen (siehe „Offen“, Nr. 1). Der Wortlaut „es gibt keins“ stammt vom 10.09.2026, die Prüfungstabelle darunter ist Geschichte. Erwartung mit gepflegtem Profil: erste Anrufe **1–4 Wochen** nach sichtbarer Freischaltung; ohne sichtbares Profil: lokal nichts.
 
 ### Nachgeprüft am 10.09.2026 (Browser) — vor der Anlage
 
@@ -97,8 +97,8 @@ Während der Wartezeit: Fotos, Leistungen mit Preisen, Beschreibung. Nach Freisc
 |---|---|
 | **Property** | `https://www.wvm-it.tech/` — eine **URL-Präfix**-Property, keine `sc-domain`; verifiziert über das Meta-Tag auf der Startseite (Commit `149b221`). Genau diese Zeichenkette steht in `sites.json` des Werkzeugs (geprüft 03.09.2026); der Hinweis „URL-Präfix" gehört in diesen Fließtext, nicht in den Kopfwert, weil das Werkzeug ihn wörtlich vergleicht |
 | **Konto** | **`bastian.scherzinger05@gmail.com`** — am 03.09.2026 einzeln nachgeprüft: dort liegen alle sieben Properties, das zweite Konto (`…69@gmail.com`) hat keine einzige. Die frühere Angabe „drittes Google-Konto, weder …05 noch …69" war falsch. Kein Passwort hier |
-| **Sitemap** | am 28.08.2026 neu eingereicht (zuvor gelesen 16.07.2026), damals 6 bzw. 57 URLs; die **158er-Sitemap vom 29.08. wurde noch nicht neu eingereicht** |
-| **Indexierung beantragt** | 28.08.: alle 6 URLs; 29.08.: 4 Kern-URLs, dann Tageskontingent (~10/Tag) erschöpft; **71 neue URLs vom 29.08. noch offen** |
+| **Sitemap** | am 02.10.2026 neu eingereicht (Sitemap-Index mit vier Segmenten, 234 URLs; Beleg `40-SEO.md` Erledigt und `INDEXIERUNG.md`) |
+| **Indexierung beantragt** | 28.08.: alle 6 URLs; später laufend im Tageskontingent (~10 je Property und Tag); 30.09.2026: 212 von 213 Adressen indexiert, 02.10.2026: 10 Anträge für die neuen Ortsseiten; Warteschlange in `40-SEO.md` Nr. 15 |
 | **Index (28.08.2026)** | 6 von 6, 0 nicht indexiert, keine Probleme in 90 Tagen, keine manuellen Maßnahmen; Live-Test Startseite „kann indexiert werden" |
 | **Nullmessung** (3 Monate bis 28.08.2026) | 7 Klicks · 54 Impressionen · CTR 13 % · Ø Position 13,9 · drei Suchanfragen (`wwwwvm` 1 Klick/3 Impr., `wvm` 0/11 Pos. 41,9, `vm it` 0/1 Pos. 86) · **0 Suchanfragen mit Leistungsbezug** |
 | **Property-Zuschnitt** | Eine Domain-Property (`wvm-it.tech`) würde Subdomains und die Variante ohne `www` einschließen, braucht aber DNS-Verifizierung — beim nächsten Anfassen der DNS-Zone lohnt sich der Wechsel (`../docs/INDEXIERUNG.md`) |
@@ -152,15 +152,24 @@ Der Loxone-Eintrag ist ein Rückschlag ohne Schuld: Google zeigt ihn noch, das Z
 
 ## Offen
 
+Geprüft am 02.10.2026 gegen `origin/main`, `content.json` und die Live-Seite (JSON-LD der Startseite: `sameAs` mit Google-Profil und WKO-Eintrag, `geo` und Öffnungszeiten stehen). Erledigtes steht unter „Erledigt“.
+
 | # | Punkt | Wer | Quelle |
 |---|---|---|---|
-| 1 | **Google-Unternehmensprofil: Identität klären (A1)** — das Profil ist seit dem 11.09.2026 angelegt; am 25.09.2026 stand WVM-IT öffentlich doppelt in Maps (Wallstraße mit Logo, Waldstraße ohne Foto). Klären, welcher Eintrag der verwaltete ist, Duplikat entfernen bzw. zusammenführen, danach Bestätigung abschließen. Nicht neu anlegen | **Bastian/Florin** (Browser) | Stand 25.09.2026 oben, Konzept §7, AKQUISE-SOFORT Kanal 1 |
-| 2 | Sitemap (158 URLs) neu einreichen, 71 neue URLs anstoßen, täglich ~10 | Bastian (Browser, Konto `…05@gmail.com`) | Ausbau 3 §12 |
-| 3 | Erste Bewertungen einsammeln — erst nach Freischaltung des Profils | Florin | T5 |
-| 4 | Herold, Bing Places, Apple Business Connect mit identischer NAP anlegen | Bastian | T6, Konzept §7 |
-| 4b | **WKO-Eintrag korrigieren** — läuft auf „Florin Feier", Anschrift und Telefonnummer weichen ab. Nicht anlegen, sondern ändern (Unternehmerservice, Mitgliedsnummer) | **Florin** | 10.09.2026, siehe oben |
-| 5 | `sameAs` füllen, sobald Profile existieren; Geokoordinaten ins Schema. **Loxone-Eintrag vorher prüfen** — die indexierte URL liefert derzeit 404 | Bastian, nach 1 | `GE11`, `GE22` |
-| 6 | Domain-Property statt URL-Präfix, beim nächsten DNS-Zugriff | Bastian / Kunde (DNS) | INDEXIERUNG.md |
+| 1 | Bei Bastian: **Profil aufräumen (Rest von A1)** — die zwei fremden Maps-Einträge (Wallstraße 19 mit Logo und „Vom Inhaber“-Fotos, Waldstraße ohne Foto) als Duplikat melden oder Inhaberschaft klären; die offene Inhaber-Einladung an `webpartner360@gmail.com` im verwalteten Profil klären (wer hat sie verschickt?); Florin als Hauptinhaber eintragen; Öffnungszeiten (im Profil bis 21:00, samstags offen), Einzugsgebiet (ohne Lenzing) und Beschreibung auf die Fassung aus `12-profil-beitraege.md` bringen; Herkunft der 4 Rezensionen klären, bevor jemand antwortet (A12); Loxone-Partnereintrag (indexierte URL lieferte 404) neu prüfen. Grund: nur im angemeldeten Browser mit dem Konto …05@ und teils nur mit Florins Mitwirkung möglich; der Stand nach dem 25.09.2026 ist nicht dokumentiert | Bastian (Browser), Florin | Diagnose `docs/seo/strategie-2026-09-25/20-profil-diagnose.md` §1, §4, §5 |
+| 2 | Bei Bastian: **Apple Business Connect** — WVM-IT als eigenes Unternehmen (nicht als Standort der Webagentur) in Bastians Apple-ID anlegen. Grund: wartet auf den fertigen Eintrag der Webagentur und auf Florins Nachweise (DNS-TXT oder Gewerbeschein) | Bastian | `docs/wvm-it.md` (Overview) „Nächstes Mal“ Nr. 3, `BACKLINK-PLAN.md` §4.2 |
+
+**Beim Kunden, nicht hier gezählt** (stehen einmal mit Grund in [80-AUFGABEN.md](80-AUFGABEN.md) „Beim Kunden“): erste echte Bewertungen (Florin), WKO-Eintrag auf `WVM-IT` und die NAP-Schreibweise korrigieren (Florin, Unternehmerservice), Herold-Freischaltung und weitere Profile (LinkedIn, Herold als drittes `sameAs`), Domain-Property in der Search Console (braucht DNS-Zugriff beim Registrar).
+
+## Erledigt
+
+| Was | Beleg, geprüft 02.10.2026 |
+|---|---|
+| Profil angelegt und bestätigt | 11.09.2026 angelegt; Diagnose 25.09.2026: bestätigt, blaues Häkchen |
+| `sameAs` füllen, Geokoordinaten ins Schema (`GE11`, `GE22`) | Live-JSON-LD der Startseite: `sameAs` = Google-Profil `…cid=4953433262951163842` und WKO-Eintrag, `geo` 47,9714/13,6206, `openingHoursSpecification` Mo–Fr; Commits `35567eb`, `dd88be7` auf main |
+| Sitemap neu einreichen, neue URLs anstoßen | 02.10.2026 Sitemap neu eingereicht, 10 Anträge; 30.09.2026 212 von 213 indexiert |
+| Bing Places | Import erledigt (Backlink-Plan 16.09.2026); Bing Webmaster Tools ✔ |
+| Herold-Gratiseintrag | am 02.10.2026 abgeschickt (Adresse ausgeblendet); Freischaltung liegt bei Florin |
 
 ## Backlink-Plan (16.09.2026)
 

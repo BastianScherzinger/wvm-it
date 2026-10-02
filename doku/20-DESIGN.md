@@ -1,17 +1,17 @@
 ---
 bereich: design
 titel: Design
-stand: 2026-10-01
+stand: 2026-10-02
 status: teilweise
-fortschritt: 25
-zusammenfassung: 01.10.2026, über main live: Startseiten-Upgrade „Ein Anruf“ (Zweig design/2026-10-01-hero, Runde 1 + 2, von Bastian freigegeben) zusammen mit SEO-Team-Runde 1 und 2. Startseite 14 → 9 Blöcke, Anruf als einziger gefüllter Knopf, Rückruf als eine Zeile, Wegweiser als sechs Fotokarten (acht ChatGPT-Fotos ohne Schrift, static/img/foto_*.webp), Zeile „Alles, was wir anbieten“, Fotos bei Preisen und Ablauf, 2.101 → 1.427 Wörter, 2.125 → 1.482 Elemente (PF30 hält). Dazu sieben neue Ortsseiten (234 URLs), Hardware-FAQ, elf Beschreibungen gekürzt, BF18 und FO04 behoben. 543 Tests, pruefe_seite und stand_schreiben --pruefen grün. Bauplan docs/DESIGN-2026-10-01.md. Davor: 27.09.2026, Zweig sofort/2026-09-27-bf26, nicht auf main. `BF26` (dritter Fund): Die zweite, fast identische Kostenrechner-Tabelle der Startseite (`.kr-weg` im Block `#rechner-kurz`) trug dasselbe `white-space:nowrap` wie zuvor `.kr-tabelle` auf `/kosten/rechner/` und ragte bei 320 px über den Rand — der vorige Fix hatte nur `.kr-tabelle` behoben. Gleicher Fix, jetzt auch hier: `.kr-weg td` darf ab 400 px umbrechen, dazu `.kr-weg td:last-child{min-width:0}` (`static/css/style.css`, Commit `d325afc`). Einzelheiten unten unter „Offen" Nr. 1. Davor: 27.09.2026, Zweig sofort/2026-09-27-pf27-und-1-weitere, nicht auf main. `BF26` (zweiter Fund): Zwei weitere Reste des horizontalen Scrollens bei 320 px behoben — `.blick-tabelle .takt` (Startseite) und `.kr-tabelle td` (`/kosten/rechner/`) trugen im schmalen Modus noch `white-space:nowrap` aus der Desktop-Ansicht; beide dürfen jetzt ab 400 px umbrechen (`static/css/style.css`, Commit `8974fb6`). Davor: 25.09.2026, Design B1 „Porträt" abgenommen (Zweig design/2026-09-25-b1, Worktree wvm-it-design-b1, lokal, nicht gepusht, nicht auf main). Gold (#d8a43d), Inter/Space Grotesk und der dunkle Hero sind ersetzt: EIN Akzent aus dem Logo (Knopf-Blau #0067a0, Logo-Blau #009ae2 nur Fläche/Linie/Symbol), Newsreader (Überschriften), Public Sans (Text), JetBrains Mono (Zahlen, Statuszeile), alle selbst gehostet. Startseite in 14 Blöcken im Rhythmus weiß/Papier/dunkel (Hero hell mit Florins Porträt und Rückruf-Karte, Ablauf dunkel), Rahmen mit Statusleiste (Erreichbarkeit nach Europe/Vienna), sechs Navigationspunkten, Fuß in sechs Spalten, Handy-Leiste. Abnahme: Unterseiten-Köpfe hell, alle Schriftreste und alle Verläufe/Glas/Glow/Pillen aus style.css entfernt, Handy ohne Querscrollen (390 px auf allen Prüf-URLs), Hero-Knopf bei 1366×768 über dem Knick, /angebot/ auf Kopf und Fuß der übrigen Seiten. Offen: Paket 4 im Detail (Konfigurator- und Hub-Kacheln), Entscheidungen aus Bauplan §4.5 (3D-Hinweis im Cookie-Text, Porträt-Original, Logo-Vektor, Wochen-Mail-Farbe). 415 Tests grün, pruefe_seite 0. Einzelheiten: docs/DESIGN-B1-2026-09-25.md §7. Am selben Tag main (bis af33c52, enthält 18c3bbc: Cloud-Triage, Kaufsuchen K1–K8) in den Zweig gemergt — Funktion und Inhalt von main, Gestaltung von B1 (Newsletter-Kästchen EIG151, Fehleransage BF24/EIG107 ins B1-Markup übersetzt; Einordnung der Triage in docs/TRIAGE-2026-09-25.md).
-offen: 5
+fortschritt: 100
+zusammenfassung: 02.10.2026, gegen origin/main und die Live-Seite geprüft: Design B1 „Porträt“ (seit 25.09.) und das Startseiten-Upgrade „Ein Anruf“ (seit 01.10.) sind auf main und live; der Bereichswert Barrierefreiheit liegt im Lauf 1824 vom 02.10.2026 bei 100, der frühere Kopfwert 25 stammte aus der Messung vom 02.09.2026 (vor dem Umbau) und war überholt. Die Zahl kommt wie angegeben aus dem gemessenen Bereichswert; offen bleiben drei Punkte außerhalb des Codes (Handy-Prüfung am echten Gerät, Entscheidung über Referenzbilder, Entscheidungen aus Bauplan §4.5), dazu unter „Verbesserungsmöglichkeiten“ zwei Kürpunkte. Seitenaufbau unten auf den Stand der Live-Startseite gebracht (zehn Blöcke statt 14).
+offen: 3
 quellen: docs/DESIGN-B1-2026-09-25.md, docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---
 
 # Design
 
-*Woran sich der Fortschritt bemisst: am gemessenen Bereichswert **Barrierefreiheit** des Laufs vom 02.09.2026 (Regelstand `2026-09-02a`), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße.*
+*Woran sich der Fortschritt bemisst: am gemessenen Bereichswert **Barrierefreiheit** des Laufs 1824 vom 02.10.2026 (Regelstand `2026-10-02e`: 100), gerundet — bei allen sechs betreuten Seiten dieselbe Bezugsgröße.*
 
 ## Gestaltungslinie
 
@@ -87,33 +87,33 @@ Git-Historie dieser Datei.
 
 ## Seitenaufbau
 
-Startseite von oben nach unten (Design B1, `../docs/DESIGN-B1-2026-09-25.md` §2). Fläche in Klammern;
+Startseite von oben nach unten, wie `templates/index.html` und die Live-Seite sie am 02.10.2026 ausliefern
+(Upgrade „Ein Anruf“, `../docs/DESIGN-2026-10-01.md`; vorher 14 Blöcke nach `../docs/DESIGN-B1-2026-09-25.md` §2). Fläche in Klammern;
 nie zwei gleiche Flächen hintereinander, damit jeder Block als eigener Block erkennbar ist.
 
 | # | Block | Fläche | Zweck |
 |---|---|---|---|
-| – | Statusleiste (Erreichbarkeit, IT-Notfall, Ort, Sprache) + Kopf (6 Punkte, Telefon, „Rückruf anfordern") | Papier / weiß | Kontakt nie weiter als ein Klick |
-| 1 | Hero `#top`: H1 in zwei Stufen, Rückruf-Karte direkt darunter, Florins Porträt rechts | weiß | Wer, was, sofort Rückruf |
-| 2 | Wegweiser `#finder`: sechs Wege als Liste | Papier | jeder Besucher findet seinen Einstieg |
-| 3 | Leistungen `#leistungen`: 14 Leistungen in drei Registern (EDV · Sichtbarkeit · Technik) | weiß | alles, was Florin macht, auf einen Blick |
-| 4 | Wer dahintersteht `#ueber`: Zusagen, vier Fakten, Signatur | Papier | Gesicht und Region |
-| 5 | Ablauf `#prozess`: vier Schritte + Tabelle „Im Blick" | dunkel | Ruhe durch Ordnung |
-| 6 | Betreuungskosten `#preise`: drei Größen + Rechner mit Rechenweg | weiß | Preis vor dem Gespräch |
-| 7 | Festpreise `#einrichten`: Preisliste Festpreis / Nach Aufnahme | Papier | Hardware und Einrichtung ohne Vertrag |
-| 8 | Webseiten `#gratis`: Preiszeilen, Referenz im Browserrahmen, Gratis-Website-Formular | weiß | zweites Standbein |
-| 9 | Angebot `#angebot`: Startpakete, Einzelpositionen, volle Preisliste (aufklappbar) | Papier | mehrere Leistungen zusammenstellen |
-| 10 | Branchen und Regionen `#branchen` | weiß | Verteiler ins Silo |
-| 11 | Wissen und Werkzeuge `#wissen`: vier Register | Papier | Antworten ohne Formular |
-| 12 | FAQ `#faq` | weiß | FAQPage-Schema |
-| 13 | Kontakt `#kontakt` | Papier | Formular + vier Wege |
-| 14 | Kooperationen `#kooperationen` (Streifen) | weiß | Partner |
+| – | Statusleiste (Erreichbarkeit, IT-Notfall, Ort, Sprache) + Kopf (6 Punkte, Telefon, „Rückruf anfordern“) | Papier / weiß | Kontakt nie weiter als ein Klick |
+| 1 | Hero `#top`: Überschrift in zwei Stufen, Anruf als einziger gefüllter Knopf, WhatsApp als Umriss, Rückruf als eine Zeile, drei Belege, Florins Porträt | weiß | Wer, was, sofort anrufen |
+| 2 | Wegweiser `#finder`: sechs Wege als Fotokarten, darunter „Was wir alles anbieten“ als Linkzeile je Bereich | Papier | jeder Besucher findet seinen Einstieg, jede Leistungsseite ist einen Klick entfernt |
+| 3 | Richtangebot `#angebot`: Startpakete, Einzelpositionen (aufklappbar), volle Preisliste | weiß | mehrere Leistungen zusammenstellen |
+| 4 | Gratis-Website `#gratis`: Preiszeilen, Referenz im Browserrahmen, Formular | Papier | zweites Standbein |
+| 5 | Betreuungskosten `#preise`: drei Größen mit Rechenweg | weiß | Preis vor dem Gespräch |
+| 6 | Wer dahintersteht `#ueber`: Zusagen, Fakten, Signatur | Papier | Gesicht und Region |
+| 7 | Ablauf `#prozess`: vier Schritte, Fotos | dunkel | Ruhe durch Ordnung |
+| 8 | FAQ `#faq` | weiß | FAQPage-Schema |
+| 9 | Kontakt `#kontakt`: vier Wege + Formular | Papier | Anfrage |
+| 10 | Kooperationen `#kooperationen` (Streifen) | weiß | Partner |
 | – | Fuß: Marke, NAP, Status, sechs Spalten Links, Sprache | dunkel | |
 
-**Unterseiten** erben von `templates/base.html` (seit der Abnahme nutzt auch `/angebot/` `kopf.html`/`fuss.html`). Kopf `header.sp-top` hell auf Papier mit Kante, Brotkrume in Mono, H1 in der Antiqua, Datenblatt `.sp-fakten` als weiße Karte. Leistungsseite: Antwort-zuerst-Absatz (`antwort.html`), Befunde, Umfang, Ablauf (Serif-Nummern mit Trennlinien), Preis, FAQ als ruhige Zeilen, Anfrageformular (`anfrage_karte.html`), Querverweise über `thema`. Der 3D-Roboter und die Scroll-Videos sind mit Paket 3 von der Startseite verschwunden; Spline-Skript und Cookie-Gate bleiben, bis Bastian über den Cookie-Text entscheidet (Bauplan §4.5).
+Entfallen sind mit dem Upgrade (jede Seite bleibt über Kopfnavigation, Fuß und Hub erreichbar): Leistungsregister, Festpreisliste `#einrichten`,
+Branchen/Regionen, Wissen/Werkzeuge, Tabelle „Im Blick“, Kurzrechner (steht auf `/kosten/rechner/`), doppelte Preistabelle (steht auf `/angebot/#preisliste`).
+
+**Unterseiten** erben von `templates/base.html` (seit der Abnahme nutzt auch `/angebot/` `kopf.html`/`fuss.html`). Kopf `header.sp-top` hell auf Papier mit Kante, Brotkrume in Mono, H1 in der Antiqua, Datenblatt `.sp-fakten` als weiße Karte. Leistungsseite: Antwort-zuerst-Absatz (`antwort.html`), Befunde, Umfang, Ablauf (Serif-Nummern mit Trennlinien), Preis, FAQ als ruhige Zeilen, Anfrageformular (`anfrage_karte.html`), Querverweise über `thema`. Der 3D-Roboter und die Scroll-Videos stehen auf keiner Seite mehr; Cookie-Gate, Spline-Ladecode in `static/js/main.js` und der Hinweis im Cookie-Text sind geblieben (Entscheidung offen, siehe „Offen“ in [80-AUFGABEN.md](80-AUFGABEN.md), `EIG349`).
 
 **Schmale Bildschirme** (`BF26`, 18.09.2026): Unter 820 px dürfen Knopfbeschriftungen umbrechen (`.btn` außer `.cookie-accept` und `.nf-call`), Formularspalten und -felder gehen unter ihre Inhaltsbreite; unter 400 px rücken Kopfzeile, feste Aktionsleiste und Schrittbalken des Konfigurators enger zusammen, der Burger behält seine 42 px. Überschriften brechen überlange Wörter um (`overflow-wrap:break-word`, ohne Media-Query). Ab 560 px ändert das nach dem Abdruckvergleich der Bausitzung nichts. Bewusst **nicht** gesetzt: `.brand{min-width:0}` — die Marke würde sonst den Sprachumschalter überlappen.
 
-**Komponentenregeln** (B1, Bauplan §1.7–1.12): Knöpfe primär Blau-Fläche `--accent` mit weißer Schrift, sekundär Rahmen, WhatsApp neutraler Zweitknopf, tertiär Textlink; flach, ohne Verlauf, ohne Schatten, Übergänge nur Farbe/Rand; `:focus-visible` Ring in `--ring`, Touch-Ziel ≥ 44 px. Karten mit Rand `--line-2` und `--radius` (6 px), Schatten nur an Rückruf-/Anfragekarte, Dialog und Cookie-Hinweis. Verboten (§1.13): `gradient(`, `backdrop-filter`, Glow, Pillen (`999px`), Emoji-Icons. Formularfelder 52 px hoch, 16 px Schrift (kein iOS-Zoom), Label oben, Fehler inline — nie `alert()`. **Pflichtfelder tragen einen Stern** am Ende ihrer Beschriftung, erklärt im Datenschutzhinweis unter dem Formular (`form.dsgvo_2`: „Mit * gekennzeichnete Felder sind Pflichtfelder.“); seit 18.09.2026 (`FO04`, Commit `7ea7caa`) in Kontaktformular, Konfigurator, Gratis-Website-Formular, Rückruf und Kurzanfragen, vorher nur im Kooperationsformular. Der Stern steht im Text des Sprachpakets, nicht als eigenes Element; ein Feld mit „(freiwillig)“ bekommt keinen. Icons ein Satz 24×24, Strich 1.8, Inline-SVG aus `templates/icons.html`, keine Emojis. Animation nur `transform`/`opacity`, 150–400 ms; `@media (prefers-reduced-motion: reduce)` in `style.css` Zeile 500 vorhanden.
+**Komponentenregeln** (B1, Bauplan §1.7–1.12): Knöpfe primär Blau-Fläche `--accent` mit weißer Schrift, sekundär Rahmen, WhatsApp neutraler Zweitknopf, tertiär Textlink; flach, ohne Verlauf, ohne Schatten, Übergänge nur Farbe/Rand; `:focus-visible` Ring in `--ring`, Touch-Ziel ≥ 44 px. Karten mit Rand `--line-2` und `--radius` (6 px), Schatten nur an Rückruf-/Anfragekarte, Dialog und Cookie-Hinweis. Verboten (§1.13): `gradient(`, `backdrop-filter`, Glow, Pillen (`999px`), Emoji-Icons. Formularfelder 52 px hoch, 16 px Schrift (kein iOS-Zoom), Label oben, Fehler inline — nie `alert()`. **Pflichtfelder tragen einen Stern** am Ende ihrer Beschriftung, erklärt im Datenschutzhinweis unter dem Formular (`form.dsgvo_2`: „Mit * gekennzeichnete Felder sind Pflichtfelder.“); seit 18.09.2026 (`FO04`, Commit `7ea7caa`) in Kontaktformular, Konfigurator, Gratis-Website-Formular, Rückruf und Kurzanfragen, vorher nur im Kooperationsformular. Der Stern steht im Text des Sprachpakets, nicht als eigenes Element; ein Feld mit „(freiwillig)“ bekommt keinen. Icons ein Satz 24×24, Strich 1.8, Inline-SVG aus `templates/icons.html`, keine Emojis. Animation nur `transform`/`opacity`, 150–400 ms; `@media (prefers-reduced-motion: reduce)` ist in `style.css` mehrfach gesetzt (u. a. Z. 529, 563, 1420).
 
 ## Entscheidungen
 
@@ -133,13 +133,28 @@ nie zwei gleiche Flächen hintereinander, damit jeder Block als eigener Block er
 
 ## Offen
 
-| # | Punkt | Stand |
-|---|---|---|
-| 1 | **Mobilansicht am echten Gerät** — bisher nur analytisch geprüft (keine festen Breiten über 46 px außer Preistabelle, Touch-Ziele ≥ 44 px, eigene Regeln bei 1080/820/560 px, seit `BF26` zusätzlich bei 400 px für Kopfzeile, Aktionsleiste und Schrittbalken des Konfigurators); die Chrome-Erweiterung war am 28.08.2026 nicht verbunden. **Am 18.09.2026 zum ersten Mal in einer echten Browser-Engine gemessen** (`BF26`, Commit `ebd6737`, Einzelheiten im Eintrag vom 18.09.2026 unter „Erledigt" in [80-AUFGABEN.md](80-AUFGABEN.md) und im Kommentarblock am Ende von `static/css/style.css`): 19 Seitentypen bei 320/360/390 px in Chromium 148, 23 von 57 Messungen scrollten waagrecht, nachher null. **Das ersetzt das Gerät nicht:** gemessen wurde lokal gerendertes HTML mit der Quell-`style.css`, nicht die Live-Adresse — und ein echtes Telefon bringt Dinge mit, die kein Ansichtsbereich nachstellt (Notch und Systemleisten über `env(safe-area-inset-*)`, Berührungsgenauigkeit, iOS-Safari statt Chromium). Was jetzt belegt ist: **nichts ragt mehr über den Rand.** **Am 27.09.2026 fand eine erneute Messung bei 320 px zwei weitere Reste** (`.blick-tabelle .takt` auf der Startseite, +31 px; `.kr-tabelle td` auf `/kosten/rechner/`, +3 px) — beide behielten `white-space:nowrap` aus der Desktop-Tabellenansicht und sind jetzt ab 400 px auf `normal` gestellt (Commit `8974fb6`). **Derselbe Tag, dritter Fund:** Die zweite, fast identische Tabelle desselben Kostenrechners — `.kr-weg` im Block „Betreuungskosten" der Startseite (`#rechner-kurz`) — blieb vom Fix der Schwestertabelle `.kr-tabelle` unberührt, weil sie eine eigene Klasse trägt, und ragte bei 320 px ebenfalls über den Rand. Gleicher Fix: `.kr-weg td` ab 400 px auf `normal`, zusätzlich `.kr-weg td:last-child{min-width:0}`, weil diese Tabelle sonst die feste Mindestbreite der Summenspalte als Bodensatz behalten hätte (Commit `d325afc`). Offen bleibt der Rest | U7.4, seit 28.08.2026 offen; Teilbeleg 18.09.2026, 27.09.2026 |
-| ~~2~~ | ~~**Kontrast laut Lighthouse:** 32 betroffene Elemente, Kontrast-Einzelprüfung 0 %, Antippziele 100 % (`BF18`, Messung vom 02.09.2026)~~ — **in drei Schritten abgearbeitet, der letzte am 12.09.2026.** Die Eigenmessung vom 27.08. war nicht falsch, aber unvollständig: Sie rechnete Token gegen Grund, und genau daneben lagen die beiden Fälle. **06.09.2026:** `--ink-dim` stand hell auf `#8a8177` und hielt auf `--bg-2` nur 3,40:1 — dunkel 6,04:1, deshalb fiel es nie auf; neu `#746c64` mit 4,58:1, danach meldete die Messung 15 Elemente. **12.09.2026:** Von den fünfzehn war noch **eines** übrig, `.err-code` auf der 404- und der 500-Seite: `--accent` mit `opacity:.5` in einem `on-dark`-Kopf, effektiv `#755a24` auf `#12100c` und damit 2,94:1. Die Deckkraft ist entfernt, dieselbe Farbe hält 8,41:1. Die **Antippziele** bestanden in allen drei Messungen (100 %). **Noch am selben Tag zwei weitere Fälle geheilt, die keine Messung gemeldet hatte:** `.marquee-track i` (1,69:1) und `.rg-km` (2,02:1) setzten Gold als Text auf hellem Grund, obwohl der Kopf von `style.css` das seit dem Umbau 2026-08 untersagt — geschrieben stand die Regel, geprüft wurde sie nie. Beide tragen jetzt `--accent-ink`, und `GoldAlsTextTest` prüft die Regel ab sofort (siehe „Farben und Schriften"). **Zuletzt an demselben Tag die drei Eingabezustände**, die dabei ausgeklammert geblieben waren — `.rg-sw-link:hover`/`:focus-visible strong`, `.fld-recht a:hover`, `.ub-fakten a:hover`, laut Commit ebenfalls 2,02:1 auf Weiss: Sie stehen in keiner Lighthouse-Einzelprüfung, aber `:focus-visible` ist der Zustand jeder Tastaturbedienung; alle drei tragen jetzt `--accent-ink`, die Ausklammerung im Test ist weg. **Nicht nachgezogen ist die Barrierefreiheitserklärung** — sie räumt in Abschnitt 3 weiter fünfzehn Elemente und eine laufende Ursachensuche ein; als Punkt 13 in [80-AUFGABEN.md](80-AUFGABEN.md). **Zuletzt am selben Tag die zweite Goldstufe, und das war der grösste Fund:** `--accent2` ist als Grafikfarbe deklariert (3,24:1 auf Weiss) und färbte **28 Regeln Text** — jeden Preis im Konfigurator, die Summe im Kurzrechner, das Pflichtfeld-Zeichen in jedem Formular, den Link im Cookie-Banner; alle 28 tragen jetzt `--accent-ink`, zwei neue Prüfungen halten es fest (siehe „Farben und Schriften"). Übrig bleibt daraus **ein** Fall, der die Farbe mischt statt sie zu setzen — Punkt 5 unten | erledigt, Rechtstext offen, ein `color-mix`-Fall offen |
-| 3 | `prefers-reduced-motion` laut Messung „im ausgelieferten Stilblatt nicht gefunden" (`BF19`) — im Quelltext vorhanden (`style.css:500`); prüfen, ob das Werkzeug nur `fonts.css` liest | Werkzeugfrage |
-| 4 | Referenzbilder: Mit Paket 3 (B1) ist der Abschnitt „Ein Eindruck unserer Arbeit" von der Startseite entfernt (Bilder bleiben auf `/referenzen/`). Offen bleibt für `/referenzen/`: eigene Projektfotos oder Stock? | offen (Bastian), Startseite erledigt 25.09.2026 |
-| ~~5~~ | ~~`.ang-hint` mischte Logo-Blau (`color-mix`) als Textfarbe~~ — **erledigt 25.09.2026** (Abnahme B1, auf `main` gleichzeitig mit Commit `c97e62a`): trägt `--accent-ink`; `GoldAlsTextTest.test_gold_wird_auch_gemischt_nicht_zur_textfarbe` verbietet jedes `color-mix` mit Akzent als Textfarbe | erledigt |
-| ~~6~~ | ~~Symbol im Notruf-Knopf `.nf-call` ohne Größe~~ — **erledigt 25.09.2026** (Abnahme B1): `.nf-call svg{width:20px;height:20px}` | erledigt |
-| 7 | **Design B1, Rest von Paket 4:** Konfigurator-Kacheln auf `/angebot/` (Symbolkästchen, Versprechen-Chips), Hub-Kacheln `.rg-kachel`/`.lk` mit Hover-Hub, `.price:hover` mit Bewegung, ungenutzte Alt-Regeln (`.bento`, `.founder*`, `.quotes`, `.badge`) in `style.css` | offen seit 25.09.2026, `../docs/DESIGN-B1-2026-09-25.md` §7.4 |
-| 8 | **Entscheidungen aus Bauplan §4.5** (Bastian/Florin): Cookie-Text nennt noch den 3D-Assistenten; größeres Porträt-Original; Logo als Vektor; Wochen-Mail färbt mit `c.akzent` (Gold) | offen seit 25.09.2026 |
+Geprüft am 02.10.2026 gegen `origin/main` und die Live-Seite. Was hier stand und inzwischen erledigt ist, steht mit Beleg unter „Erledigt“.
+
+| # | Punkt | Wer | Stand |
+|---|---|---|---|
+| 1 | Bei Bastian: **Mobilansicht am echten Telefon prüfen** (iOS-Safari statt Chromium, Notch und Systemleisten über `env(safe-area-inset-*)`, Berührungsgenauigkeit, ob die feste Aktionsleiste unten auf einem schmalen Gerät ganz zu treffen ist). Grund: Gemessen ist nur Chromium 148 an lokal gerendertem HTML bei 320/360/390 px (`BF26`: 23 von 57 Messungen scrollten waagrecht, danach null; Folgefunde `8974fb6`, `d325afc`) — ein Gerät ersetzt das nicht, und der Agent hat keins | Bastian | seit 28.08.2026 (U7.4) |
+| 2 | Bei Bastian: **Referenzbilder auf `/referenzen/`** — eigene Projektfotos oder Stock? Grund: Entscheidung über Bildmaterial, Stock schwächt laut Projektregel die Glaubwürdigkeit; die Startseite ist erledigt (Abschnitt entfernt) | Bastian | offen seit 25.09.2026 |
+| 3 | Bei Bastian: **Entscheidungen aus Bauplan §4.5** — größeres Porträt-Original, Logo als Vektor (beides nur von Florin zu liefern), Wochen-Mail färbt mit `c.akzent` (Gold). Der Cookie-Text zum 3D-Assistenten steht als `EIG349` in [80-AUFGABEN.md](80-AUFGABEN.md). Grund: Entscheidungen bzw. Dateien, die weder Code noch Doku liefern | Bastian / Florin | offen seit 25.09.2026 |
+
+## Verbesserungsmöglichkeiten
+
+Kür, kein Mangel (wird nicht gezählt):
+
+- Design B1, Rest von Paket 4: Konfigurator-Kacheln auf `/angebot/` (Symbolkästchen, Versprechen-Chips), Hub-Kacheln `.rg-kachel`/`.lk` mit Hover-Hub, `.price:hover` mit Bewegung, ungenutzte Alt-Regeln (`.bento`, `.founder*`, `.quotes`, `.badge`) in `style.css` (`../docs/DESIGN-B1-2026-09-25.md` §7.4). Die Seite ist ohne sie vollständig; da sie an Florin verkauft ist, wird nichts Neues gebaut.
+
+## Erledigt
+
+| Was | Beleg (02.10.2026 gegen origin/main geprüft) |
+|---|---|
+| Design B1 „Porträt“ (Gold, Inter/Space Grotesk, dunkler Hero ersetzt) | Zweig `design/2026-09-25-b1` liegt vollständig auf main (`git log origin/main..design/2026-09-25-b1` leer); Abnahme `../docs/DESIGN-B1-2026-09-25.md` §7 |
+| Startseiten-Upgrade „Ein Anruf“ (14 → 10 Blöcke, Fotokarten, Anruf als Hauptknopf) | `bdd0257` auf main; `templates/index.html` zeigt genau diese Blöcke; Live `https://www.wvm-it.tech/` 200 |
+| Kontrast laut Lighthouse (`BF18`, 32 Elemente im Lauf vom 02.09.) | in drei Schritten bis 12.09.2026 abgearbeitet, danach `.mobilebar-cta` (`c21d3f5`); Bereichswert Barrierefreiheit im Lauf 1824 vom 02.10.2026: 100; Tests `test_kontrast.py` |
+| `.ang-hint` mischte Logo-Blau als Textfarbe | `c97e62a` auf main; `GoldAlsTextTest.test_gold_wird_auch_gemischt_nicht_zur_textfarbe` |
+| Symbol im Notruf-Knopf `.nf-call` ohne Größe | `.nf-call svg{width:20px;height:20px}` (Abnahme B1, 25.09.2026) |
+| `prefers-reduced-motion` „nicht gefunden“ (`BF19`) | war eine Werkzeugfrage: der Quelltext hat mehrere Blöcke in `static/css/style.css` (u. a. Z. 529, 563, 1420); Barrierefreiheit 100 am 02.10.2026 |
+| Handy ohne Querscrollen bei 320 px | `BF26`: `ebd6737`, `8974fb6`, `d325afc` — alle auf main |

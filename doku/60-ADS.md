@@ -1,10 +1,10 @@
 ---
 bereich: ads
 titel: Google Ads
-stand: 2026-09-25
+stand: 2026-10-02
 status: nicht zutreffend
-zusammenfassung: Fuer WVM-IT laufen weiterhin keine Google Ads. Seit der SEO-Strategie vom 25.09.2026 ist Ads Säule D, Entscheidung durch Florin offen (D1); Start fruehestens nach A1 (Profil-Duplikat geklaert) und ab 3 oeffentlich sichtbaren Bewertungen. Seit 17.09.2026 zaehlt jeder Anfrageweg seinen Abschluss serverseitig und cookielos ueber landing/messung.py (FO08, ohne gtag), seit 25.09.2026 zusaetzlich je Kampagne (K1/K6) -- das ist eine eigene Summe, kein Conversion-Signal fuer ein Werbekonto. Empfehlung der Strategie: **nicht vor den ersten Bewertungen** — bezahlte Klicks auf ein Profil ohne Rezension sind gekaufter Absprung.
-offen: 5
+zusammenfassung: Für WVM-IT laufen keine Google Ads und es ist keine Aufgabe offen (geprüft 02.10.2026: kein Google-Tag im Quelltext von templates, static/js und landing, Danke-Seite und serverseitige Zählung stehen auf main). Ads sind seit der SEO-Strategie vom 25.09.2026 Säule D mit offener Entscheidung durch Florin; Start frühestens nach geklärtem Profil und mindestens drei öffentlich sichtbaren Bewertungen. Die Voraussetzungen für einen späteren Start stehen unter „Verbesserungsmöglichkeiten“, nicht als Aufgabe — die Seite ist an Florin verkauft.
+offen: 0
 quellen: docs/AUSBAU-2026-09.md, docs/AKQUISE-SOFORT.md, docs/RELAUNCH-START.md, docs/recht-und-cookies.md
 ---
 
@@ -59,7 +59,7 @@ Nichts eingerichtet. Zwei Dinge fehlen auf der Seite selbst, bevor überhaupt et
 - **Die Danke-Seite gibt es seit dem 05.09.2026** unter `/anfrage/danke/` (`noindex`, aber `follow`). Sie greift bei jedem Absenden **ohne JavaScript**; wer JavaScript hat, bekommt weiter die Meldung an Ort und Stelle. Für ein Werbekonto heißt das: Der URL-basierte Abschluss ist möglich, deckt aber nur den Teil ohne JavaScript ab. **Sobald Ads laufen, braucht es zusätzlich ein Ereignis** aus dem JavaScript-Zweig (`anfrage-blocks.js`, Erfolgspfad) — sonst zählt das Konto einen Bruchteil und optimiert auf die falsche Gruppe. Das ist keine Nacharbeit an der Seite, sondern Teil der Ads-Einrichtung.
 - **Kein Tracking-Skript und keine Einwilligung dafür:** Das Cookie-Banner kennt nur `all`/`essential` und lädt nach Zustimmung ausschließlich Spline; Google-Tags brauchen laut `../CLAUDE.md` („Keine Tracking-Skripte ohne neue Einwilligung") eine neue Einwilligungsstufe und einen Eintrag in der Datenschutzerklärung (`content.json`).
 
-**Seit 17.09.2026 (`FO08`, Commit `f24bd1d`) zählt jeder Anfrageweg seinen Abschluss auf dem Server** — über `landing/messung.py`, ohne Cookie, ohne IP, ohne Kennung, als `messung.zaehle("anfrage", <Weg>)`: Kontaktformular (`kontakt`), Angebots-Konfigurator (`angebot`), Richtangebot der Startseite (`angebot_start`), Kooperationsanfrage (`kooperation`), Newsletter-Eintrag (`newsletter`) und Website-Bogen (`website-bogen`); die Kurzanfragen der Leistungsblöcke zählten schon vorher je Quelle. Bis dahin fehlten gerade die ausführlichen Anfragen in der Summe, die `manage.py messung` den Aufrufen gegenüberstellt (Testkopf `landing/tests/test_anfragen_gezaehlt.py`). Gezählt wird im View vor der Antwort, also auch dort, wo JavaScript die Meldung an Ort und Stelle zeigt. **Anders als vorgeschlagen ohne `gtag`:** Die Seite bindet bewusst kein Fremdskript ein (CSP, keine Tracking-Einwilligung). Für ein künftiges Werbekonto ändert das nichts am Punkt oben — die eigene Zählung ist eine Summe auf dem Server, kein Conversion-Signal, das ein Werbekonto empfangen kann. ⚠ Liegt auf `sofort/2026-09-17-fo08-und-1-weitere`; die Tests dazu sind laut Bausitzung nicht gelaufen.
+**Seit 17.09.2026 (`FO08`, Commit `f24bd1d`) zählt jeder Anfrageweg seinen Abschluss auf dem Server** — über `landing/messung.py`, ohne Cookie, ohne IP, ohne Kennung, als `messung.zaehle("anfrage", <Weg>)`: Kontaktformular (`kontakt`), Angebots-Konfigurator (`angebot`), Richtangebot der Startseite (`angebot_start`), Kooperationsanfrage (`kooperation`), Newsletter-Eintrag (`newsletter`) und Website-Bogen (`website-bogen`); die Kurzanfragen der Leistungsblöcke zählten schon vorher je Quelle. Bis dahin fehlten gerade die ausführlichen Anfragen in der Summe, die `manage.py messung` den Aufrufen gegenüberstellt (Testkopf `landing/tests/test_anfragen_gezaehlt.py`). Gezählt wird im View vor der Antwort, also auch dort, wo JavaScript die Meldung an Ort und Stelle zeigt. **Anders als vorgeschlagen ohne `gtag`:** Die Seite bindet bewusst kein Fremdskript ein (CSP, keine Tracking-Einwilligung). Für ein künftiges Werbekonto ändert das nichts am Punkt oben — die eigene Zählung ist eine Summe auf dem Server, kein Conversion-Signal, das ein Werbekonto empfangen kann. Auf `main` (Merge bis `origin/main`, `git log origin/main..` leer); die Testsuite ist am 02.10.2026 mit `test_anfragen_gezaehlt.py` gelaufen (Ergebnis siehe [10-TECHNIK.md](10-TECHNIK.md) „Prüfbefehle und Tests“).
 
 ## Regeln und Sperren
 
@@ -71,15 +71,16 @@ Nichts. Die **Voraussetzung auf der Seite** ist erledigt: Seit dem 28./29.08.202
 
 ## Offen
 
-Keine laufende Aufgabe. **Was für einen Start nötig wäre**, falls Florin ihn wünscht — ohne Zahlen, die es noch nicht gibt:
+Keine Aufgabe. Es gibt kein Konto, keine Kampagne und keinen Tag, und das ist gewollt: Die Entscheidung über Ads liegt bei Florin (D1, Strategie vom 25.09.2026), die Empfehlung lautet „nicht vor den ersten Bewertungen“.
+Die Seite hat die Voraussetzungen auf ihrer Seite erfüllt (Landingpages, Danke-Seite `/anfrage/danke/` seit 05.09.2026, serverseitige Zählung `FO08`), siehe „Erledigt“.
 
-| Schritt | Wer | Warum |
-|---|---|---|
-| Google-Ads-Konto **im Namen des Kunden** mit seinem Zahlungsmittel, Agenturzugang für Bastian, Zwei-Faktor an | Florin | Konto muss beim Kunden liegen |
-| Danke-Seite mit eigener URL je Formularweg (`/anfrage/danke/`), Weiterleitung nach dem Absenden | Bastian | ohne sie kein zählbarer Abschluss (`KV07`) |
-| Conversion-Tag (Google-Tag oder Consent-Mode) **nur nach Einwilligung**, neue Einwilligungsstufe im Banner, Eintrag in der Datenschutzerklärung | Bastian | Cookie-Gate und `CLAUDE.md`-Regel |
-| Landingpages nach der Tabelle oben zuordnen; die Seiten existieren | Bastian | vorhanden |
-| Kampagnenstruktur, Anzeigentexte, Negativliste, Budgetvorschlag als Freigabevorlage | Bastian | Vorschlag in `AKQUISE-SOFORT.md` |
-| Messphase festlegen, in der keine Strukturänderung erfolgt | beide | Standard-Schlüssel `messphase_bis` |
+## Verbesserungsmöglichkeiten
+
+**Falls Florin später Ads wünscht**, wäre für einen Start nötig (Kür, nicht gezählt, ohne Zahlen, die es noch nicht gibt):
+
+- Google-Ads-Konto **im Namen des Kunden** mit seinem Zahlungsmittel, Agenturzugang, Zwei-Faktor an — das Konto muss beim Kunden liegen (Kleinunternehmergrenze der Agentur).
+- Ein Ereignis aus dem JavaScript-Zweig für den Abschluss (die Danke-Seite greift nur ohne JavaScript) und ein Conversion-Tag **nur nach Einwilligung**: neue Einwilligungsstufe im Cookie-Banner, Eintrag in der Datenschutzerklärung (`content.json`).
+- Kampagnenstruktur, Anzeigentexte, Negativliste und Budget als Freigabevorlage (Vorschlag in `../docs/AKQUISE-SOFORT.md`, Kanal 3); die Landingpages je Anzeigengruppe existieren.
+- Messphase festlegen, in der keine Strukturänderung erfolgt (Schlüssel `messphase_bis`).
 
 Erst wenn ein Konto existiert, bekommt dieser Kopf `status: teilweise` und die Ads-Schlüssel (`konto`, `konto_inhaber`, `conversion_tracking` …) nach `DOKU-STANDARD.md` §2.

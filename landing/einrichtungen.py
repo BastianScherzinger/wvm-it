@@ -3,7 +3,7 @@
 
 Warum es dieses Silo gibt
 -------------------------
-Alle dreizehn Leistungsseiten sind um **laufende Betreuung** oder um ein
+Alle vierzehn Leistungsseiten (am 08.09.2026 waren es dreizehn) sind um **laufende Betreuung** oder um ein
 **Projekt** gebaut. Für den Fall „ein einzelnes Gerät, jetzt, ohne Vertrag" gab
 es bis zum 08.09.2026 keine einzige Seite — obwohl der Preis dafür seit jeher im
 Katalog steht: ``arbeitsplatz``, 190 €. Fünf bezifferte Positionen standen
