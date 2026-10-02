@@ -4215,6 +4215,20 @@ def angebot_anfordern(request):
     c = _content()
     if request.method != "POST":
         return JsonResponse({"ok": False}, status=405)
+    # FO14 (02.10.2026): Honigtopf und Ratenbegrenzung wie bei jedem anderen
+    # Anfrageweg. Bis dahin speicherte dieser Endpunkt auch Anfragen mit gefülltem
+    # Fallenfeld, löste die Betreiber-Benachrichtigung aus und trug die Adresse bei
+    # `angebote=1` als Interessent in Supabase ein. Ein Bot sieht hier dieselbe
+    # Erfolgsantwort wie ein Mensch (Form wie unten, Summen 0), es wird aber nichts
+    # gesichert, gemailt oder eingetragen.
+    if _honigtopf(request):
+        return JsonResponse({"ok": True, "once": 0, "mtl": 0, "yr": 0,
+                             "anfrage": False, "summe": "", "count": 0})
+    # Gleicher Eimer „kontakt“ wie Kontakt- und Angebotsformular (5 je 15 Minuten
+    # und IP). Ehrlicher Fehler statt stiller Erfolg: Hier sitzt ein Mensch hinter
+    # der IP, das Skript zeigt dafür `I.error` inline an.
+    if _limit_erreicht(request, "kontakt"):
+        return JsonResponse({"ok": False, "error": "limit"}, status=429)
     email = (request.POST.get("email") or "").strip()
     if not email or "@" not in email or " " in email:
         return JsonResponse({"ok": False, "error": "email"}, status=400)
@@ -4296,9 +4310,9 @@ def angebot_anfordern(request):
                 antwort_an=email if _ist_email(email) else None,
                 html=_admin_html("Richtangebot (Startseite)", betreff, felder, wer=email,
                                  antwort_an=email))
-        # Die Betreiber-Kopie nur bei gültiger Adresse und leerem Fallenfeld:
-        # Dieser Endpunkt hat (noch) keine eigene Honigtopf-Prüfung.
-        if _ist_email(email) and not _fallenfeld_fremd(request):
+        # Die Betreiber-Kopie nur bei gültiger Adresse (der Honigtopf hat oben
+        # schon ausgesondert, was ein Fallenfeld mit fremder Adresse trägt).
+        if _ist_email(email):
             _betreiber_kopie(art="Neues Richtangebot (Startseite)", wer=email, text=notify,
                              felder=felder, admin_empf=[empf], admin_ok=admin_ok,
                              kunde=_kunde_status(kunde_ok), antwort_an=email,

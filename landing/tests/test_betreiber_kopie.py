@@ -245,6 +245,89 @@ class BetreiberKopieTest(SimpleTestCase):
 
 @override_settings(EMAIL_HOST="smtp.test.invalid", BETREIBER_KOPIE_AN=BASTIAN,
                    KUNDENMAIL_AN_ABSENDER=True)
+class RichtangebotHonigtopfTest(SimpleTestCase):
+    """FO14 (02.10.2026): `/angebot/anfordern/` prüft Honigtopf und Rate wie jeder
+    andere Anfrageweg. Vorher speicherte der Endpunkt auch Anfragen mit gefülltem
+    Fallenfeld, benachrichtigte den Betreiber und trug die Adresse bei `angebote=1`
+    in Supabase ein."""
+
+    def setUp(self):
+        cache.clear()
+        mail.outbox = []
+        self.client_ = _util.client(enforce_csrf_checks=False)
+        self._ordner = tempfile.TemporaryDirectory()
+        self._env = mock.patch.dict(os.environ, {"ANFRAGEN_PFAD": self._ordner.name})
+        self._env.start()
+        os.environ.pop("KONTAKT_EMPFAENGER", None)
+
+    def tearDown(self):
+        self._env.stop()
+        self._ordner.cleanup()
+
+    def _zeilen(self):
+        return [z for d in Path(self._ordner.name).glob("*.jsonl")
+                for z in d.read_text(encoding="utf-8").splitlines() if z.strip()]
+
+    def _senden(self, **extra):
+        daten = {"email": "bot@example.org", "item": _POSITION, "angebote": "1", **extra}
+        with mock.patch("landing.supa.enabled", return_value=True), \
+             mock.patch("landing.supa.upsert_subscriber") as supa_eintrag:
+            antwort = self.client_.post(reverse("angebot_anfordern"), daten)
+        return antwort, supa_eintrag
+
+    def test_fallenfeld_mit_fremder_adresse_speichert_nichts(self):
+        antwort, supa_eintrag = self._senden(website="http://billige-uhren.example.com")
+        self.assertEqual(antwort.status_code, 200)
+        j = antwort.json()
+        self.assertTrue(j["ok"], "der Bot soll Erfolg sehen")
+        # Dieselben Schlüssel wie die echte Antwort, sonst bräche das Skript.
+        for schluessel in ("once", "mtl", "yr", "anfrage", "summe", "count"):
+            self.assertIn(schluessel, j)
+        self.assertEqual(self._zeilen(), [], "Anfrage wurde gesichert")
+        self.assertEqual(mail.outbox, [], "es wurde gemailt")
+        supa_eintrag.assert_not_called()
+
+    def test_altes_fallenfeld_hp_gilt_ebenso(self):
+        antwort, supa_eintrag = self._senden(hp="http://billige-uhren.example.com")
+        self.assertTrue(antwort.json()["ok"])
+        self.assertEqual(self._zeilen(), [])
+        self.assertEqual(mail.outbox, [])
+        supa_eintrag.assert_not_called()
+
+    def test_ausfuellhilfe_mit_eigener_adresse_wird_normal_verarbeitet(self):
+        antwort, supa_eintrag = self._senden(website="https://www.wvm-it.tech/")
+        j = antwort.json()
+        self.assertTrue(j["ok"])
+        self.assertEqual(j["count"], 1)
+        self.assertEqual(len(self._zeilen()), 1)
+        self.assertTrue(mail.outbox, "keine Mail an den Inhaber")
+        supa_eintrag.assert_called_once()
+
+    def test_ohne_fallenfeld_wird_normal_verarbeitet(self):
+        antwort, supa_eintrag = self._senden()
+        j = antwort.json()
+        self.assertTrue(j["ok"])
+        self.assertEqual(j["count"], 1)
+        self.assertEqual(len(self._zeilen()), 1)
+        self.assertTrue(mail.outbox)
+        self.assertTrue(_kopien(), "Betreiber-Kopie fehlt")
+        supa_eintrag.assert_called_once()
+
+    def test_ratenbegrenzung_greift_mit_429(self):
+        status = []
+        for _ in range(6):
+            antwort, _eintrag = self._senden()
+            status.append(antwort.status_code)
+        self.assertEqual(status[:5], [200] * 5)
+        self.assertEqual(status[5], 429)
+        self.assertEqual(self.client_.post(reverse("angebot_anfordern"),
+                                           {"email": "x@example.org", "item": _POSITION}
+                                           ).json(), {"ok": False, "error": "limit"})
+        self.assertEqual(len(self._zeilen()), 5, "über dem Limit wurde noch gesichert")
+
+
+@override_settings(EMAIL_HOST="smtp.test.invalid", BETREIBER_KOPIE_AN=BASTIAN,
+                   KUNDENMAIL_AN_ABSENDER=True)
 class KundenmailMitHtmlTest(SimpleTestCase):
     """Mit eingeschaltetem Kundenmail-Schalter: Bestätigung in der Sprache der
     Anfrage, mit HTML-Teil, Kontaktwegen und Impressum-Zeile."""
