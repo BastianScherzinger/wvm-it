@@ -7,6 +7,19 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 02.10.2026 — Overview-Runde: sieben offene Punkte eingeordnet (Zweig `fix/2026-10-02-overview`)
+
+Bastians Ziel: im Overview keine offenen WVM-IT-Aufgaben mehr. Die sieben gemeldeten Punkte
+stammten aus Messung 1799, die **vor** dem Push von `39b7096` gegen die alte Live-Seite lief.
+Nachmessung 1807 gegen den neuen Stand: `IS09`, `IS28`, `IS37`, `PF30`, `FO04` erfüllt. `MW22`
+(Absender aus der Railway-Variable, Domain ohne SPF/DKIM) „beim Kunden“, `IS11` (rumänische
+Vöcklabruck-Beschreibung, K2-Messung bis ~23.10.) „bewusst so“. Neu gemeldet `FO01`/`FO02`:
+ein Messfehler der Sendeprobe, die den Konfigurator im geschlossenen `<details>` nicht bedienen
+konnte, korrigiert im Overview (`fix/2026-10-02-sendeprobe-stufen`, Katalog `2026-10-02b`). Mit
+der korrigierten Probe fiel ein echter Fehler auf: `/angebot/anfordern/` hatte keinen Honigtopf
+und keine Ratenbegrenzung (`FO14`, `99c7485`). 548 Tests, `pruefe_seite`, `check`,
+`stand_schreiben --pruefen` grün. Orchestrator (Opus) mit drei Sonnet-Agenten.
+
 ## 01.10.2026 — Startseite „Ein Anruf“ + beide SEO-Runden live (Zweig `design/2026-10-01-hero`)
 
 Bastians Auftrag: zu viel Text, keine Conversions, Florins Foto bleibt, kein KI-Look. Runde 1:
