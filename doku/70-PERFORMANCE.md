@@ -8,7 +8,7 @@ zusammenfassung: Am 27.09.2026 PF27 als begruendete Ausnahme eingetragen (Zweig 
 offen: 4
 pagespeed_mobil: 99
 pagespeed_desktop: 100
-antwortzeit_ms: 4
+antwortzeit_ms: 3
 quellen: docs/AUSBAU-2026-09.md, docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 antwortzeit_quelle: PageSpeed server-response-time
 ---
@@ -26,22 +26,22 @@ antwortzeit_quelle: PageSpeed server-response-time
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **99** | 1,95 s | 0,000 | 0 ms | 9 ms |
-| `/` | desktop | **100** | 0,58 s | 0,000 | 24 ms | 5 ms |
-| `/datenschutz/` | mobile | **99** | 1,81 s | 0,000 | 0 ms | 3 ms |
-| `/datenschutz/` | desktop | **100** | 0,43 s | 0,000 | 0 ms | 2 ms |
-| `/impressum/` | mobile | **99** | 1,84 s | 0,000 | 0 ms | 3 ms |
-| `/impressum/` | desktop | **100** | 0,42 s | 0,000 | 0 ms | 3 ms |
-| `/kontakt/` | mobile | **99** | 1,92 s | 0,000 | 65 ms | 3 ms |
-| `/kontakt/` | desktop | **100** | 0,45 s | 0,000 | 0 ms | 3 ms |
-| `/kosten/rechner/` | mobile | **99** | 2,05 s | 0,000 | 16 ms | 4 ms |
-| `/kosten/rechner/` | desktop | **100** | 0,48 s | 0,000 | 0 ms | 10 ms |
-| `/leistungen/` | mobile | **99** | 1,97 s | 0,000 | 0 ms | 6 ms |
-| `/leistungen/` | desktop | **100** | 0,44 s | 0,000 | 0 ms | 3 ms |
+| `/` | mobile | **99** | 1,95 s | 0,000 | 0 ms | 7 ms |
+| `/` | desktop | **100** | 0,50 s | 0,000 | 0 ms | 8 ms |
+| `/datenschutz/` | mobile | **99** | 1,84 s | 0,000 | 0 ms | 3 ms |
+| `/datenschutz/` | desktop | **100** | 0,46 s | 0,000 | 0 ms | 2 ms |
+| `/impressum/` | mobile | **99** | 1,84 s | 0,000 | 0 ms | 2 ms |
+| `/impressum/` | desktop | **100** | 0,41 s | 0,000 | 0 ms | 2 ms |
+| `/kontakt/` | mobile | **99** | 1,86 s | 0,000 | 2 ms | 2 ms |
+| `/kontakt/` | desktop | **100** | 0,44 s | 0,000 | 0 ms | 2 ms |
+| `/kosten/rechner/` | mobile | **99** | 2,02 s | 0,000 | 0 ms | 2 ms |
+| `/kosten/rechner/` | desktop | **100** | 0,51 s | 0,000 | 0 ms | 2 ms |
+| `/leistungen/` | mobile | **99** | 2,00 s | 0,000 | 0 ms | 3 ms |
+| `/leistungen/` | desktop | **100** | 0,45 s | 0,000 | 0 ms | 4 ms |
 
 12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 4,5 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 3,2 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
