@@ -51,28 +51,28 @@ Gefüllt aus den Köpfen der zehn Bereichsdateien (Stand 02.09.2026).
 ## Messung
 
 <!-- messung:anfang -->
-**Messung vom 01.10.2026** (Webagentur Scherzinger Overview, Regelstand 2026-10-02a) — **Gesamtstand 96,3 von 100**, Reifegrad „Referenz“. 343 von 374 Regeln an 213 URLs und 235 Dateien (54.482 Zeilen) geprüft.
+**Messung vom 02.10.2026** (Webagentur Scherzinger Overview, Regelstand 2026-10-02a) — **Gesamtstand 96,9 von 100**, Reifegrad „Referenz“. 342 von 374 Regeln an 234 URLs und 247 Dateien (56.326 Zeilen) geprüft.
 
 | Bereich | Wert | Reifegrad |
 |---|---:|---|
-| Erreichbarkeit & Postfach | **80** | Solide |
-| GEO — KI-Sichtbarkeit | **90** | Solide |
-| Konversion | **94** | Referenz |
+| Erreichbarkeit & Postfach | **79** | Solide |
+| Formulare & Preisrechner | **90** | Solide |
 | SEO — Technik | **95** | Referenz |
+| Konversion | **95** | Referenz |
+| GEO — KI-Sichtbarkeit | **96** | Referenz |
 | Sicherheit | **97** | Referenz |
-| Barrierefreiheit | **98** | Referenz |
-| SEO — Inhalt | **99** | Referenz |
-| Vorlagen-Konformität | **99** | Referenz |
-| Formulare & Preisrechner | **100** | Referenz |
-| Performance & Core Web Vitals | **100** | Referenz |
+| SEO — Inhalt | **100** | Referenz |
 | Substanz & Reichweite | **100** | Referenz |
+| Vorlagen-Konformität | **100** | Referenz |
 | Code-Qualität & Projektreife | **100** | Referenz |
+| Performance & Core Web Vitals | **100** | Referenz |
+| Barrierefreiheit | **100** | Referenz |
 | Recht & Vertrauen | **100** | Referenz |
 | Betrieb & Auslieferung | **100** | Referenz |
 
 Keine Sperre greift.
 
-Quelltext: 235 Dateien, **498 Befunde**, davon 0 kritisch und 408 wichtig.
+Quelltext: 247 Dateien, **508 Befunde**, davon 0 kritisch und 415 wichtig.
 
 Kritische Befunde:
 
