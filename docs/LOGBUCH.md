@@ -7,6 +7,15 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 02.10.2026 — Abschluss: WKO in `sameAs`, Backlinks, Lehren (Zweig `fix/2026-10-02-sameas`)
+
+Der WKO-Eintrag „Florin Feier“ (EDV, Lenzing) existiert und verlinkt die Seite; er steht jetzt
+als zweites Profil in `content.json` → `profile` (`GE11` 2 von 3, der dritte kommt mit Herold).
+Herold-Gratiseintrag am 02.10. abgeschickt. Lauf 1822: 97,4 %, alles Übrige liegt bei Florin
+(Apex-DNS, SPF/DMARC, Postfach, Bewertungen, Angaben) oder ist Indexierungszeit (`TS46`: die
+neuen EN/RO-Ortsseiten sind Google noch unbekannt). Backlink-Liste für Florin und die Lehren für
+alle Kundenseiten stehen im Overview: `docs/BACKLINK-PLAN.md` §4.2, `docs/LEHREN-KUNDENSEITEN.md`.
+
 ## 02.10.2026 — Rest-Runde: PF22 gebaut, KV12/KV14/BF18 nachgewiesen (Zweig `fix/2026-10-02-rest`)
 
 Drei Punkte standen in „Bewertung der Messpunkte“ noch als „beim Kunden“. `PF22`: `landing/verkleinern.py`
