@@ -16,6 +16,7 @@ nicht mehr als Anleitung lesen darf.
 | Frage | Datei |
 |---|---|
 | Was ist zuletzt passiert? | [`LOGBUCH.md`](LOGBUCH.md) |
+| **Ist das SEO-Konzept fertig, und was bringt jetzt Anfragen — wer zieht welchen Hebel?** (02.10.2026) | [`SEO-ABSCHLUSS-2026-10-02.md`](SEO-ABSCHLUSS-2026-10-02.md) |
 | **Welche offenen Punkte stimmen, welche nicht — und wer muss was tun?** (25.09.2026) | [`TRIAGE-2026-09-25.md`](TRIAGE-2026-09-25.md) |
 | Was hat der jüngste Durchgang gebaut, was blieb offen? | [`UMBAU-2026-09-06.md`](UMBAU-2026-09-06.md) |
 | **Wie kommt WVM-IT zu echten Kunden?** | [`STRATEGIE-2026-09.md`](STRATEGIE-2026-09.md) |

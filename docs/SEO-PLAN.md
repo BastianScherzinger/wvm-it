@@ -12,7 +12,12 @@
 > **Stand 29.08.2026 — der Ausbau ist live.** **87 URLs** sind öffentlich; Sitemap und
 > IndexNow (87 URLs, HTTP 200) tragen den vollen Bestand.
 >
-> **37 von 48 Aufgaben sind erledigt**, eine begonnen, zehn offen. Seit dem Relaunch dazugekommen:
+> **Nachtrag 02.10.2026:** **39 von 48 erledigt** (G2 und G11 über S1/M1 des Ausbaus 3),
+> vier begonnen (G6, T2, T4, T6), fünf offen (T3, T5, T7, T8, T9) — alle fünf brauchen
+> Zuarbeit oder Zeit, keiner ist im Code lösbar. Der Abschluss steht in
+> `SEO-ABSCHLUSS-2026-10-02.md`.
+>
+> **Stand 29.08.2026: 37 von 48 Aufgaben sind erledigt**, eine begonnen, zehn offen. Seit dem Relaunch dazugekommen:
 > der **Firmensitz Lenzing** (F3) — der alles Weitere erst möglich machte —, **sieben
 > Regionsseiten** (A16), **fünf Fachbeiträge** (T1), die Aufnahme aller neuen Seiten in
 > `llms.txt`/`llms-full.txt` (G9) sowie der Formular-Schutz mit eigenem Prüfbefehl.
@@ -155,16 +160,16 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 > KI-Chatbot?", bekommt WVM-IT namentlich genannt. **Wirkung:** 4–10 Wochen.
 
 - [x] **G1 — durchgezogen** *(29.08.2026)*. Auf allen 87 Seiten: Leistungsseiten öffnen mit `kurz`, Regionsseiten mit `kurz` plus Entfernung/Fahrzeit als Faktenzeile, Fachbeiträge mit `antwort`. Jeweils zwei bis drei Sätze mit Zahl und Region, ganz oben, vor jeder Begründung — das ist der Absatz, den eine KI-Antwort übernimmt
-- [ ] **G2 — Antwortblock-Komponente** (`answer_block.html`): Frage als Überschrift, Antwort in ≤ 3 Sätzen, darunter Details. Auf allen Leistungsseiten einsetzen
+- [x] **G2 — erledigt über S1 des Ausbaus 3** *(29.08.2026, Commit `02d8c8a`; abgehakt 02.10.2026)*. Die Komponente heißt `templates/antwort.html` statt `answer_block.html` und steht auf **allen** Seitentypen, nicht nur auf den Leistungsseiten — seit dem 06.09.2026 auch auf Hubs und Einzelseiten. Ihre Klasse `.antwort` ist das Ziel von `speakable` im Schema. Ursprünglicher Plan: Frage als Überschrift, Antwort in ≤ 3 Sätzen, darunter Details
 - [x] **G3 — Zahlen statt Adjektive** *(28.08.2026)*: Startseite trägt durchgehend konkrete Werte (ab 350 €, 15 €/Monat, 54 €/Monat, Antwort in 24 Stunden, Testseite in ~10 Minuten). Beim Ausbau der Unterseiten beibehalten.
 - [x] **G4 — Preise datiert** *(28.08.2026)*: Die Preistabelle trägt „Stand: <Monat> <Jahr>", serverseitig erzeugt und in allen drei Sprachen lokalisiert.
 - [x] **G5 — Tabelle steht** *(28.08.2026)*: vollständige Preisliste als echte `<table>` mit `<caption>` und Gruppenzeilen, direkt aus `ANGEBOT_GROUPS`. Auf schmalen Geräten scrollt sie im eigenen Container, nicht die Seite.
-- [ ] **G6 — Entitäts-Klarheit.** `sameAs` im Schema (GitHub, PyStore, LinkedIn, Google-Profil), einheitliche Schreibweise „WVM-IT" auf allen Kanälen, Person-Schema für Florin Feier mit Foto und Rolle
+- [~] **G6 — Entitäts-Klarheit, begonnen** *(Stand 02.10.2026)*. Gebaut: eigene `Person`-Entität `#inhaber` für Florin Feier, einheitlich „WVM-IT“, `alternateName` für die Marke; seit 01.10.2026 `sameAs` mit dem verwalteten Google-Profil (`content.json` → `profile`, Commit `6c3b873`). Offen: weitere echte Profile (LinkedIn, WKO) — erst, wenn es sie gibt; geratene Adressen kommen nicht hinein. Ursprünglicher Plan: `sameAs` im Schema (GitHub, PyStore, LinkedIn, Google-Profil), einheitliche Schreibweise „WVM-IT" auf allen Kanälen, Person-Schema für Florin Feier mit Foto und Rolle
 - [x] **G7 — steht** *(live geprüft 29.08.2026)*. Jede Leistungsseite trägt vier FAQ im `@graph` (`/leistungen/edv-it-betreuung/` geprüft: `FAQPage` mit 4 Fragen), jede Regionsseite drei, dazu die 10 der Startseite — in allen drei Sprachen aus dem jeweiligen Paket
 - [x] **G8 — steht** *(live geprüft 29.08.2026)*. `Service` mit `offers` und `areaServed`, über `provider` an `#business` gehängt. Auf Regionsseiten trägt derselbe Block den Ort als `areaServed`; auf Beiträgen steht stattdessen `Article` mit `datePublished` und der Person-Entität als Autor
 - [x] **G9 — erledigt** *(29.08.2026)*. Befund beim Nachprüfen: Die zwölf neuen URLs standen in Sitemap und IndexNow, aber **nicht** in den beiden Dateien, aus denen sich KI-Antwortmaschinen bedienen — und der Abschnitt „Regionen" beschrieb noch den Zustand ohne Firmensitz. Jetzt trägt `llms.txt` je Regionsseite Ort, Entfernung und Fahrzeit und je Beitrag die Frage samt vollständigem Antwortabsatz; `llms-full.txt` wuchs von 45 auf 76 KB und enthält Einsatzgebiet und Fachbeiträge im Volltext. Beides wird weiterhin aus der Datenquelle erzeugt, nicht abgetippt
 - [x] **G10 — maschinell abgesichert** *(29.08.2026)*. `pruefe_seite` liest jede Zahl vor einem €-Zeichen aus **allen 87 gerenderten Seiten** und vergleicht sie mit `ANGEBOT_GROUPS`; Rückgabewert 1 bei Abweichung. Der Prüfer hat sich beim Schreiben der Fachbeiträge selbst bewährt: Er fing zwei Marktangaben ab, die nicht aus der Preisquelle stammten
-- [ ] **G11 — GEO-Monitoring.** Monatlich zehn feste Fragen an ChatGPT, Perplexity und Google AI Overview stellen und protokollieren, ob und wie WVM-IT genannt wird (`docs/seo/GEO-MONITORING.md`)
+- [x] **G11 — eingerichtet über M1 des Ausbaus 3** *(29.08.2026, Commit `4ed4adb`; abgehakt 02.10.2026)*. `docs/seo/GEO-MONITORING.md` legt die Fragen (seit 24.09.2026 elf), das Protokollformat und den Takt fest — **vierteljährlich statt monatlich**, weil sich KI-Antworten in einem Monat kaum messbar ändern. **Die erste Messung ist für Oktober 2026 angesetzt**, die zweite für Januar 2027. Ursprünglicher Plan: monatlich zehn feste Fragen an ChatGPT, Perplexity und Google AI Overview
 
 ## Block S-T — Autorität
 
@@ -173,11 +178,11 @@ eingehende interne Links besitzt und in der Keyword-Map genau ein Hauptkeyword t
 
 - [x] **T1 — umgesetzt** *(29.08.2026)*. `/aktuelles/<slug>/` mit `Article`-Schema, echtem `datePublished` und der bestehenden Person-Entität als Autor. Fünf Beiträge stehen.
   **Bewusst nur auf Deutsch:** Die Beiträge liegen außerhalb von `i18n_patterns`. Nach „Was kostet IT-Betreuung" sucht in diesem Markt niemand auf Englisch oder Rumänisch. Damit daraus kein Schaden wird, ist die Einsprachigkeit ausdrücklich modelliert — `_seiten_pfade()` hat ein viertes Feld `mehrsprachig`, und Sitemap wie IndexNow melden für diese Pfade nur die deutsche Adresse ohne hreflang-Alternates. Sonst stünden dort `/en/aktuelles/…`-Adressen, die es nicht gibt
-- [~] **T2 — begonnen** *(29.08.2026)*. Fünf Beiträge live, jeder zu einer Frage mit echter Suchabsicht: Kosten der IT-Betreuung, Datensicherung prüfen, WLAN im Betrieb, IT-Sicherheit für kleine Firmen, Loxone oder KNX. **Der Takt von zwei Beiträgen im Monat muss sich noch bewähren** — Vorschläge für September stehen in `SEO-KONZEPT-DACH.md` §12
+- [~] **T2 — begonnen, am 25.09.2026 geändert** *(K3/C6)*: höchstens ein Fachbeitrag im Monat, nur aus einem echten Kundenfall oder Fristanlass; die frei werdende Zeit geht in Profil-Beiträge. Neubewertung Ende Dezember 2026 (`doku/40-SEO.md`, Offen Nr. 11). Stand 02.10.2026: 21 Fachbeiträge. Ursprünglich *(29.08.2026)*: Fünf Beiträge live, jeder zu einer Frage mit echter Suchabsicht: Kosten der IT-Betreuung, Datensicherung prüfen, WLAN im Betrieb, IT-Sicherheit für kleine Firmen, Loxone oder KNX. **Der Takt von zwei Beiträgen im Monat muss sich noch bewähren** — Vorschläge für September stehen in `SEO-KONZEPT-DACH.md` §12
 - [ ] **T3 — Fallstudien ausbauen**: nach Rümpelwerk je eine für Rhein-Neckar (3D-Showroom), RTC-Service, FSH GmbH — jeweils mit Einverständnis des Kunden
-- [ ] **T4 — Google-Unternehmensprofil** für den österreichischen Firmensitz anlegen und pflegen (setzt F3 voraus)
+- [~] **T4 — Google-Unternehmensprofil, begonnen**: am 11.09.2026 angelegt, verwaltet; am 25.09.2026 öffentlich doppelt gelistet — offen ist Schritt A1 (verwalteten Eintrag klären, Duplikat entfernen), danach Pflege durch Florin. Stand in `doku/50-LOCAL-SEO.md`. Ursprünglicher Plan: für den österreichischen Firmensitz anlegen und pflegen (setzt F3 voraus)
 - [ ] **T5 — Erste echte Bewertungen einsammeln** — erst danach darf ein Bewertungsblock auf die Seite. Nichts erfinden
-- [ ] **T6 — Verzeichnisse mit identischen NAP-Daten**: WKO-Firmen-A-Z, Herold, regionale Branchenbücher, einschlägige Agenturverzeichnisse
+- [~] **T6 — Verzeichnisse mit identischen NAP-Daten, begonnen**: Built with Django (16.09.2026), Bing Places (Import 16.09.2026), herold.at am 02.10.2026 abgeschickt (Prüfung durch Herold steht aus). Offen: WKO Firmen A–Z (pflegt nur Florin als Mitglied), weitere österreichische Verzeichnisse — Konten legen Florin oder Bastian an. Bestand: `pystore-overview\docs\BACKLINK-PLAN.md` §4.2. Ursprünglicher Plan: WKO-Firmen-A-Z, Herold, regionale Branchenbücher, einschlägige Agenturverzeichnisse
 - [ ] **T7 — Partner-Verlinkung**: gegenseitige, thematisch begründete Links zwischen wvm-it.tech, pystore.de und den betreuten Kundenseiten — als Referenzhinweis, nicht als Linkliste
 - [ ] **T8 — Search Console monatlich auswerten.** Achtung: Die Tabelle ist standardmäßig nach Klicks sortiert — die interessanten Longtail-Anfragen mit Impressionen stehen weiter hinten
 - [ ] **T9 — Quartals-Review**: Keyword-Map gegen den echten Export nachziehen, Seiten ohne Impressionen überarbeiten oder zusammenlegen
