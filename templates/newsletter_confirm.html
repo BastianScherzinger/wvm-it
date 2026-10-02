@@ -43,7 +43,17 @@
 <main id="main">
   <section class="section confirm-sec">
     <div class="wrap">
-      {% if ok %}
+      {% if bestaetigen %}
+      <div class="ang-sent" data-reveal>
+        <h3>{{ t.confirm_page.pre_h|safe }}</h3>
+        <p>{{ t.confirm_page.pre_p|safe }}</p>
+        <form method="post" action="{% url 'newsletter_confirm' %}">
+          {% csrf_token %}
+          <input type="hidden" name="t" value="{{ token }}">
+          <button class="btn btn-lg" type="submit">{{ t.confirm_page.pre_btn|safe }}</button>
+        </form>
+      </div>
+      {% elif ok %}
       <div class="ang-sent" data-reveal>
         <div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <h3>{{ t.confirm_page.ok_h_pre|safe }}{% if name %}, {{ name }}{% endif %}{{ t.confirm_page.ok_h_post|safe }}</h3>
