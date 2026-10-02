@@ -49,8 +49,8 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
       </dl>
       {% if not c.adresse %}<p class="sp-fuss">{{ ks.daten_fehlt|safe }}</p>{% endif %}
 
-      <p class="sp-fuss"><a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a> ·
-        <a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a></p>
+      <p class="sp-fuss"><a href="{{ recht_url.impressum }}">{{ t.footer.impressum|safe }}</a> ·
+        <a href="{{ recht_url.datenschutz }}">{{ t.footer.datenschutz|safe }}</a></p>
     </div>
 
     <div class="sp-aside">

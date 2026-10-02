@@ -1,0 +1,5 @@
+{% comment %}
+Sichtbares Änderungsdatum einer Ratgeberseite (Regel GE47, 02.10.2026).
+`seiten_stand` kommt aus views._seiten_stand() — dieselbe Quelle wie
+`dateModified` im Schema und `lastmod` in der Sitemap (landing/stand.py).
+{% endcomment %}{% if seiten_stand.iso %}<p class="sp-stand">{{ t.seite.seiten_stand|safe }} <time datetime="{{ seiten_stand.iso }}">{{ seiten_stand.text }}</time></p>{% endif %}

@@ -281,8 +281,12 @@ class KleineWahrheitenTest(SimpleTestCase):
                 # auf /#faq und /#kooperationen zeigen auf Abschnitte, die es gibt.
                 for alt in ("leistungen", "preise", "kontakt"):
                     self.assertNotIn(f'href="/#{alt}"', html)
-                for ziel in ("agb/", "barrierefreiheit/", "ueber-uns/", "leistungen/"):
+                for ziel in ("ueber-uns/", "leistungen/"):
                     self.assertIn(f'href="{start}{ziel}"', html)
+                # Die Rechtstexte gibt es nur auf Deutsch; seit 02.10.2026 (TS47)
+                # verlinkt der Fuß direkt dorthin statt auf die 301 unter /en/.
+                for ziel in ("agb/", "barrierefreiheit/"):
+                    self.assertIn(f'href="/{ziel}"', html)
                 self.assertIn(f'class="brand" href="{start}"', html)
 
     def test_danke_behauptet_kein_postfach(self):

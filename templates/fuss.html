@@ -74,10 +74,10 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
       </div>
       <div>
         <h3>{{ t.footer.col_recht|safe }}</h3>
-        <a href="{% url 'impressum' %}">{{ t.footer.impressum|safe }}</a>
-        <a href="{% url 'datenschutz' %}">{{ t.footer.datenschutz|safe }}</a>
-        <a href="{% url 'agb' %}">{{ t.footer.agb|safe }}</a>
-        <a href="{% url 'barrierefreiheit' %}">{{ t.footer.barrierefreiheit|safe }}</a>
+        <a href="{{ recht_url.impressum }}">{{ t.footer.impressum|safe }}</a>
+        <a href="{{ recht_url.datenschutz }}">{{ t.footer.datenschutz|safe }}</a>
+        <a href="{{ recht_url.agb }}">{{ t.footer.agb|safe }}</a>
+        <a href="{{ recht_url.barrierefreiheit }}">{{ t.footer.barrierefreiheit|safe }}</a>
       </div>
     </nav>
   </div>

@@ -32,6 +32,10 @@ Begruendung in Abschnitten.
       <span>{{ beitrag.lesezeit }} Min. Lesezeit</span>
       <span aria-hidden="true">·</span>
       <span>{{ c.inhaber_name }}</span>
+      {% if seiten_stand.iso and seiten_stand.iso != beitrag.datum %}
+      <span aria-hidden="true">·</span>
+      <span>{{ t.seite.seiten_stand|safe }} <time datetime="{{ seiten_stand.iso }}">{{ seiten_stand.text }}</time></span>
+      {% endif %}
     </p>
   </div>
 </header>

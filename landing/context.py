@@ -9,6 +9,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from django.urls import reverse
+from django.utils import translation
 from django.utils.translation import get_language
 
 from . import branchen, i18n, leistungen, regionen
@@ -88,5 +89,13 @@ def navigation(request):
         texte = i18n.get_pack(lang).get("branchen", {}).get(eintrag, {})
         fach.append({"url": reverse("branche", kwargs={"slug": eintrag}),
                      "titel": texte.get("nav", eintrag)})
+    # Die vier Rechtstexte gibt es nur auf Deutsch; /en/impressum/ & Co. leiten
+    # seit dem 10.09.2026 per 301 auf die deutsche Adresse um (i18n.nur_deutsch).
+    # Bis zum 02.10.2026 verlinkten Fuß, Datenschutzhinweis und Cookie-Band auf
+    # EN/RO trotzdem die präfigierte Adresse — jeder dieser Links zeigte auf eine
+    # Weiterleitung (Regel TS47). `recht_url` nennt direkt das Ziel.
+    with translation.override("de"):
+        recht = {name: reverse(name) for name in
+                 ("impressum", "datenschutz", "agb", "barrierefreiheit")}
     return {"footer_leistungen": posten, "footer_regionen": orte,
-            "footer_branchen": fach}
+            "footer_branchen": fach, "recht_url": recht}

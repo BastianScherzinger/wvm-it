@@ -7,6 +7,19 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 02.10.2026 — Regelstand 2026-10-02d: sichtbares Datum, Rechtslinks (Zweig `fix/2026-10-02d-standard`)
+
+`GE47`: Glossar (`/wissen/<slug>/`), Checklisten und Vergleiche (DE/EN/RO) zeigen unter der H1
+„Stand: 02.10.2026“ / „Updated: 2 October 2026“ / „Actualizat: …“ als `<time datetime>`. Quelle ist
+`views._seiten_stand()` → `landing/stand.py`, dieselbe wie `dateModified` im Article-Knoten und `lastmod`
+in der Sitemap; Fachbeiträge nennen zusätzlich das Änderungsdatum, wenn es vom Veröffentlichungstag
+abweicht. Baustein `templates/seiten_stand.html`, Klasse `.sp-stand`. `TS47`: Fuß, Datenschutzhinweis,
+Cookie-Band, Kontakt- und Angebotsseite verlinkten auf EN/RO `/en/impressum/` & Co. — Adressen, die per
+301 auf Deutsch umleiten; jetzt direkt über `recht_url` (Kontextprozessor `navigation`). Bewusst nicht
+geändert: die `?lang=`-Links des Sprachumschalters (302, Absicht seit 06.09.2026, siehe
+`middleware._maybe_redirect`). `RE12` war schon erfüllt (Abschnitt 6 nennt das Sozialministeriumservice,
+BaFG erwähnt); Rechtstexte unverändert. Tests `test_standard_2026_10_02d.py`.
+
 ## 02.10.2026 — Abschluss: WKO in `sameAs`, Backlinks, Lehren (Zweig `fix/2026-10-02-sameas`)
 
 Der WKO-Eintrag „Florin Feier“ (EDV, Lenzing) existiert und verlinkt die Seite; er steht jetzt

@@ -2001,6 +2001,8 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
    ========================================================================== */
 .gl-label{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-ink);
   margin:0 0 8px}
+/* Sichtbares Änderungsdatum unter der H1 der Ratgeberseiten (GE47) */
+.sp-stand{font-size:13px;color:var(--ink-dim);margin:-4px 0 14px}
 .gl-praxis,.gl-irrtum{margin:34px 0;padding:24px 24px 20px;border-radius:var(--radius);background:var(--surface)}
 .gl-praxis{border:1px solid var(--line);border-left:3px solid var(--accent)}
 .gl-irrtum{border:1px dashed var(--line-2)}
