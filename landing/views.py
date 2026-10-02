@@ -2787,6 +2787,34 @@ def _ratgeber_artikel(base, pfad, *, titel, beschreibung, worte=0, sprache="de-A
     return knoten
 
 
+_MONATE_EN = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"]
+
+
+def _seiten_stand(pfad, lang="de"):
+    """Das sichtbare Änderungsdatum einer Ratgeberseite (Regel GE47, 02.10.2026).
+
+    Bis zum 02.10.2026 stand das Datum nur im Schema (`dateModified`) — der
+    Leser sah nicht, wie alt eine Erklärung ist. Es kommt aus **derselben**
+    Quelle wie `_ratgeber_artikel()` und die Sitemap: landing/stand.py, also
+    der letzte Commit an den Dateien, aus denen die Seite entsteht. Ein
+    zweites, eigenes Datum wäre eine zweite Wahrheit.
+
+    Rückgabe: {"iso": "2026-10-02", "text": "02.10.2026"} — die Schreibweise
+    je Sprache, der Maschinenwert immer ISO für `<time datetime>`.
+    """
+    iso = stand.datum(i18n.strip_prefix(pfad)[1])
+    try:
+        tag = date.fromisoformat(iso)
+    except (TypeError, ValueError):
+        return {"iso": "", "text": ""}
+    if i18n.norm_lang(lang) == "en":
+        text = f"{tag.day} {_MONATE_EN[tag.month - 1]} {tag.year}"
+    else:
+        text = tag.strftime("%d.%m.%Y")
+    return {"iso": iso, "text": text}
+
+
 def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id="",
                    katalog=False, speakable=True):
     """@graph einer Unterseite: immer der Betrieb, die Website und die Seite selbst,
@@ -3168,6 +3196,7 @@ def checkliste_seite(request, slug):
     beitrag = beitraege.NACH_SLUG.get(eintrag.get("beitrag") or "")
     return render(request, "checkliste.html", {
         "c": c, "liste": liste,
+        "seiten_stand": _seiten_stand(pfad, "de"),
         "leistung": _leistung_daten(leistung, "de") if leistung else None,
         "beitrag": _beitrag_daten(beitrag) if beitrag else None,
         "weitere": [_checkliste_daten(k) for k in checklisten.CHECKLISTEN
@@ -3271,6 +3300,7 @@ def begriff_seite(request, slug):
         beschreibung=begriff.get("kurz", begriff.get("definition", ""))))
     return render(request, "begriff.html", {
         "c": c, "begriff": begriff,
+        "seiten_stand": _seiten_stand(pfad, "de"),
         "leistung": _leistung_daten(leistung, "de") if leistung else None,
         "verwandt": [_begriff_daten(glossar.NACH_SLUG[v])
                      for v in eintrag.get("verwandt", []) if v in glossar.NACH_SLUG],
@@ -3666,6 +3696,7 @@ def vergleich_seite(request, slug):
         anfrage_ok = ""
     return render(request, "vergleich.html", {
         "c": c, "vs": vs, "seite": seite, "anfrage_ok": anfrage_ok,
+        "seiten_stand": _seiten_stand(pfad, lang),
         "einrichtung": _einrichtung_verweis(eintrag.get("einrichtung"), lang),
         "leistungen_liste": [_leistung_daten(leistungen.NACH_SLUG[s], lang)
                              for s in eintrag.get("leistungen", [])
@@ -3782,6 +3813,9 @@ def beitrag_seite(request, slug):
     }
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag,
+        # Sichtbar nur, wenn es vom Veröffentlichungstag abweicht — sonst
+        # stünde dasselbe Datum zweimal in der Meta-Zeile (GE47).
+        "seiten_stand": _seiten_stand(pfad, "de"),
         "einrichtung": _einrichtung_verweis(eintrag.get("einrichtung"), "de"),
         "hilfe_karte": _hilfe_karte("de") if eintrag.get("hilfe") else None,
         "thema": _leistung_daten(thema, "de") if thema else None,

@@ -391,7 +391,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
                 <input id="of-mail" class="fld" type="email" name="email" required maxlength="254" autocomplete="email" placeholder="name@beispiel.at">
               </div>
             </div>
-            <label class="haken"><input type="checkbox" name="einwilligung" required><span>{{ t.offer.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</span></label>
+            <label class="haken"><input type="checkbox" name="einwilligung" required><span>{{ t.offer.consent_pre|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.offer.consent_link|safe }}</a> {{ t.offer.consent_post|safe }}</span></label>
             {% comment %} Der Newsletter ist eine eigene, freiwillige Einwilligung (25.09.2026, EIG151):
               Bis dahin stand er im Pflichtkästchen, ohne ihn gab es keine Beispiel-Website —
               gekoppelt und damit unwirksam (Art. 7 Abs. 4 DSGVO, § 174 TKG 2021).
@@ -593,7 +593,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           </label>
         </div>
         <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required maxlength="4000" placeholder="{{ t.kontakt.f_project_ph|safe }}">{{ kontakt_werte.nachricht|default:'' }}</textarea></label>
-        <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.kontakt.consent_pre|safe }} <a href="{% url 'datenschutz' %}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</span></label>
+        <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.kontakt.consent_pre|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</span></label>
         {% if kontakt_werte %}<p class="lb-err" role="alert">{{ t.kontakt.err|safe }}</p>{% endif %}
         <button class="btn btn-lg" type="submit">{{ t.kontakt.submit|safe }}</button>
         <p class="form-fine" aria-live="polite">{{ t.kontakt.fine|safe }}</p>

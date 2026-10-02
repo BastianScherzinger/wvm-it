@@ -575,6 +575,8 @@ PACK = {
         "festpreis_fuss": "Prețuri fixe, net plus TVA.",
         "preis_fuss_neutral": "Toate prețurile net plus TVA.",
         "stand": "Valabil:",
+        # Sichtbares Änderungsdatum der Ratgeberseiten (GE47, 02.10.2026)
+        "seiten_stand": "Actualizat:",
         "alle_preise": "Toate prețurile dintr-o privire",
         "kontakt_alt": "Preferați să vorbiți direct?",
     },

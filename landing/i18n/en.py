@@ -583,6 +583,8 @@ PACK = {
         "festpreis_fuss": "Fixed prices, net plus VAT.",
         "preis_fuss_neutral": "All prices net plus VAT.",
         "stand": "As of:",
+        # Sichtbares Änderungsdatum der Ratgeberseiten (GE47, 02.10.2026)
+        "seiten_stand": "Updated:",
         "alle_preise": "All prices at a glance",
         "kontakt_alt": "Prefer to talk?",
     },

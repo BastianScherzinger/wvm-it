@@ -591,6 +591,8 @@ PACK = {
         # "Richtpreise" waeren fuer alle Positionen zugleich wahr.
         "preis_fuss_neutral": "Alle Preise netto zzgl. USt.",
         "stand": "Stand:",
+        # Sichtbares Änderungsdatum der Ratgeberseiten (GE47, 02.10.2026)
+        "seiten_stand": "Stand:",
         "alle_preise": "Alle Preise auf einen Blick",
         "kontakt_alt": "Lieber direkt sprechen?",
     },

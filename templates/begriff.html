@@ -31,6 +31,7 @@ demselben `kurz`-Feld, das oben steht.
       </nav>
       <p class="gl-label">Begriff</p>
       <h1>{{ begriff.h1|default:begriff.titel|safe }}</h1>
+      {% include 'seiten_stand.html' %}
       {% include 'antwort.html' with text=begriff.kurz %}
     </div>
   </header>

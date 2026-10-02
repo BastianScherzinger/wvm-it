@@ -9,4 +9,4 @@ Hemmung.
 
 Steht INNERHALB des <form>, nicht daneben: Nur so gehört er sichtbar zu dem
 Vorgang, für den er gilt.
-{% endcomment %}<p class="fld-recht">{{ t.form.dsgvo_1|safe }} <a href="{% url 'datenschutz' %}">{{ t.form.dsgvo_link|safe }}</a>{{ t.form.dsgvo_2|safe }}</p>
+{% endcomment %}<p class="fld-recht">{{ t.form.dsgvo_1|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.form.dsgvo_link|safe }}</a>{{ t.form.dsgvo_2|safe }}</p>
