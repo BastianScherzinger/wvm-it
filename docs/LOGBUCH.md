@@ -7,6 +7,15 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 02.10.2026 — Rest-Runde: PF22 gebaut, KV12/KV14/BF18 nachgewiesen (Zweig `fix/2026-10-02-rest`)
+
+Drei Punkte standen in „Bewertung der Messpunkte“ noch als „beim Kunden“. `PF22`: `landing/verkleinern.py`
+streicht beim `collectstatic` jetzt auch die CSS-Kommentare (zeichenweise, Zeichenketten, `url()` und `/*!`
+bleiben), `style.css` wird ausgeliefert 131.565 statt 178.903 Byte, Screenshots gegen die Live-Seite pixelgleich
+(`dc3c796`). `KV12`/`KV14` (Anfrageblock auf `/branchen/` und `/it-service/`) lagen seit `e4ef1c8` schon auf
+`main`, `BF18` (Handy-Leiste) seit `c21d3f5`; Messung 1817 und eine eigene Playwright-Kontrastprobe bestätigen
+beides — nur die Doku war nicht nachgezogen.
+
 ## 02.10.2026 — Overview-Runde: sieben offene Punkte eingeordnet (Zweig `fix/2026-10-02-overview`)
 
 Bastians Ziel: im Overview keine offenen WVM-IT-Aufgaben mehr. Die sieben gemeldeten Punkte
