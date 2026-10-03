@@ -18,7 +18,7 @@ Parameter: `titel` (Pflicht), `robots` (Vorgabe noindex,nofollow), `kanonisch`
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{{ titel }} | {{ c.site_name }}</title>
   <meta name="robots" content="{{ robots|default:'noindex,nofollow' }}">
-  <meta name="theme-color" content="#0a0908">
+  <meta name="theme-color" content="#ffffff">
   {% comment %}Selbstverweis, auch bei noindex: Er sagt, welche der
   moeglichen Adressen mit Anhaengseln die richtige ist.{% endcomment %}
   <link rel="canonical" href="{{ c.wvm_url }}{{ kanonisch|default:request.path }}">

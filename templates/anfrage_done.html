@@ -7,7 +7,7 @@
 {% include 'icons_sprite.html' %}
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
+    <a class="brand" href="{% url 'index' %}" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
   </div>
@@ -22,7 +22,7 @@
         <h3>{{ t.anfrage_done.ok_h_pre|safe }}{% if name %}, {{ name }}{% endif %}{{ t.anfrage_done.ok_h_post|safe }}</h3>
         <p>{{ t.anfrage_done.ok_p|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn" href="/">{{ t.anfrage_done.ok_home|safe }}</a>
+          <a class="btn" href="{% url 'index' %}">{{ t.anfrage_done.ok_home|safe }}</a>
           <a class="btn btn-ghost" href="{% url 'angebot' %}">{{ t.anfrage_done.ok_offer|safe }}</a>
         </div>
       </div>
@@ -32,8 +32,8 @@
         <h3>{% if limit %}{{ t.anfrage_done.limit_h|safe }}{% else %}{{ t.anfrage_done.fail_h|safe }}{% endif %}</h3>
         <p>{% if limit %}{{ t.anfrage_done.limit_p|safe }}{% else %}{{ t.anfrage_done.fail_p|safe }}{% endif %}</p>
         <div class="ang-sent-actions">
-          <a class="btn" href="/#gratis">{{ t.anfrage_done.fail_retry|safe }}</a>
-          <a class="btn btn-ghost" href="/">{{ t.anfrage_done.fail_home|safe }}</a>
+          <a class="btn" href="{% url 'index' %}#gratis">{{ t.anfrage_done.fail_retry|safe }}</a>
+          <a class="btn btn-ghost" href="{% url 'index' %}">{{ t.anfrage_done.fail_home|safe }}</a>
         </div>
       </div>
       {% endif %}

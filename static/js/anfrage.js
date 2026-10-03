@@ -129,9 +129,15 @@
   });
   form.addEventListener("change", saveDraft);
 
-  // Nach echtem Absenden (normaler POST, keine AJAX-Umleitung) den Entwurf löschen ,
-  // läuft synchron vor der Navigation.
+  // Beim Absenden wird der Entwurf NICHT mehr gelöscht (EIG298/337). Bis hierher
+  // verschwanden die Eingaben von sechs Schritten, noch bevor der Server sie
+  // angenommen hatte; bei einer Sperre (429), einem abgelaufenen Link oder einem
+  // Verbindungsabbruch war alles weg. Gelöscht wird erst auf der Warteseite
+  // (templates/warten.html), die nur nach angenommenem Absenden erscheint. Hier
+  // wird der Stand zuletzt noch einmal gesichert, falls das 300-ms-Zeitfenster der
+  // letzten Eingabe noch nicht abgelaufen war.
   form.addEventListener("submit", function () {
-    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    if (saveTimer) clearTimeout(saveTimer);
+    saveDraft();
   });
 })();

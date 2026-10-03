@@ -104,7 +104,15 @@ class ZahlenStimmenTest(SimpleTestCase):
                          len(beitraege.BEITRAEGE))
 
     def test_der_glossar_hub_nennt_die_zahl_der_begriffe(self):
-        self.assertEqual(self._zahl_in("wissen.html"), len(glossar.BEGRIFFE))
+        # Seit dem 03.10.2026 (EIG223) steht die Zahl nicht mehr im Text, sondern
+        # kommt aus der Liste: Die Vorlage liest `anzahl`, und der Hub rendert
+        # genau len(BEGRIFFE) in den Antwortabsatz.
+        text = (Path(settings.BASE_DIR) / "templates" / "wissen.html").read_text(
+            encoding="utf-8")
+        self.assertRegex(text, r"with text=anzahl\|add:")
+        from ._util import client as _c
+        html = _c().get("/wissen/").content.decode("utf-8")
+        self.assertRegex(html, r"%d Begriffe, die in Angeboten" % len(glossar.BEGRIFFE))
 
 
 class ZahlenImTitelStimmenTest(SimpleTestCase):

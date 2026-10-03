@@ -19,7 +19,7 @@
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
+    <a class="brand" href="{% url 'index' %}" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
     {% comment %} Sprachumschalter auf Mobile dauerhaft sichtbar (nicht im Burger versteckt) {% endcomment %}
@@ -27,11 +27,11 @@
     <button class="nav-burger" id="navBurger" type="button" aria-label="{{ t.nav.menu_open|safe }}" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
     <div class="nav-menu" id="navMenu">
       <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
-        <a href="/">{{ t.nav.home|safe }}</a>
-        <a href="/#leistungen">{{ t.nav.leistungen|safe }}</a>
-        <a href="/#preise">{{ t.nav.preise|safe }}</a>
+        <a href="{% url 'index' %}">{{ t.nav.home|safe }}</a>
+        <a href="{% url 'index' %}#leistungen">{{ t.nav.leistungen|safe }}</a>
+        <a href="{% url 'index' %}#preise">{{ t.nav.preise|safe }}</a>
         <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
-        <a href="/#kontakt">{{ t.nav.kontakt|safe }}</a>
+        <a href="{% url 'index' %}#kontakt">{{ t.nav.kontakt|safe }}</a>
       </nav>
       {% include 'lang_switch.html' %}
       {% if c.telefon %}<a class="nav-phone" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
@@ -277,8 +277,8 @@
         <h3>{{ t.confirm_page.fail_h|safe }}</h3>
         <p>{{ t.confirm_page.fail_p|safe }}</p>
         <div class="ang-sent-actions">
-          <a class="btn" href="/#top">{{ t.confirm_page.fail_retry|safe }}</a>
-          <a class="btn btn-ghost" href="/">{{ t.confirm_page.fail_home|safe }}</a>
+          <a class="btn" href="{% url 'index' %}#top">{{ t.confirm_page.fail_retry|safe }}</a>
+          <a class="btn btn-ghost" href="{% url 'index' %}">{{ t.confirm_page.fail_home|safe }}</a>
         </div>
       </div>
       {% endif %}

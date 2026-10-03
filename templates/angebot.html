@@ -44,7 +44,8 @@
       leistung: "{{ t.angebot_page.js_leistung|escapejs }}", leistungen: "{{ t.angebot_page.js_leistungen|escapejs }}",
       remove: "{{ t.angebot_page.js_remove|escapejs }}", from: "{{ t.angebot_page.js_from|escapejs }}",
       on_request: "{{ t.angebot_page.js_on_request|escapejs }}",
-      per_month: "{{ t.angebot_page.js_per_month|escapejs }}", per_year: "{{ t.angebot_page.js_per_year|escapejs }}"
+      per_month: "{{ t.angebot_page.js_per_month|escapejs }}", per_year: "{{ t.angebot_page.js_per_year|escapejs }}",
+      per_hour: "{{ t.catalog_words.per_hour|escapejs }}"
     }
   };
 </script>
@@ -140,7 +141,7 @@
                          {% if it.id in paket_items %}checked{% endif %}
                          data-name="{{ it.name }}" data-group="{{ g.title }}"
                          data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                         data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}"
+                         data-yr="{{ it.yr|default:0 }}" data-std="{{ it.std|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}"
                          {% if it.menge_max %}data-menge="menge-{{ it.id }}"{% endif %}>
                   <span class="ang-item-box">
                     <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>

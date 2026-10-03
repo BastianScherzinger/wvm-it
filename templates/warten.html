@@ -7,7 +7,7 @@
 {% include 'icons_sprite.html' %}
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
+    <a class="brand" href="{% url 'index' %}" aria-label="{{ c.site_name }} {{ t.nav.start_aria|safe }}">
       {% if c.logo_mark %}<img class="brand-logo" src="{{ c.logo_mark }}" alt="" aria-hidden="true" width="30" height="30">{% else %}<span class="brand-mark" aria-hidden="true"><span></span></span>{% endif %}{{ c.site_name }}
     </a>
   </div>
@@ -32,10 +32,13 @@
           <a class="btn btn-lg" id="waitLink" href="#" target="_blank" rel="noopener">{{ t.wait.view|safe }}
             <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="btn btn-ghost" href="/">{{ t.wait.home|safe }}</a>
+          <a class="btn btn-ghost" href="{% url 'index' %}">{{ t.wait.home|safe }}</a>
         </div>
 
         <p class="wait-hint" id="waitHint">{{ t.wait.hint|safe }}</p>
+        {% comment %}Ausweg, wenn der Bau nicht durchläuft, der Link abgelaufen ist oder es zu lange dauert
+        (EIG137/324/391): Das Skript blendet diesen Link ein, statt endlos weiterzufragen.{% endcomment %}
+        <p class="wait-hint" id="waitHelp" hidden><a class="btn btn-ghost" href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a></p>
       </div>
     </div>
   </section>
@@ -53,7 +56,8 @@
     wait: {
       done_title: "{{ t.wait.js_done_title|escapejs }}", done_sub: "{{ t.wait.js_done_sub|escapejs }}",
       done_hint: "{{ t.wait.js_done_hint|escapejs }}",
-      fail_title: "{{ t.wait.js_fail_title|escapejs }}", fail_sub: "{{ t.wait.js_fail_sub|escapejs }}"
+      fail_title: "{{ t.wait.js_fail_title|escapejs }}", fail_sub: "{{ t.wait.js_fail_sub|escapejs }}",
+      slow_title: "{{ t.wait.js_slow_title|escapejs }}", slow_sub: "{{ t.wait.js_slow_sub|escapejs }}"
     }
   };
 </script>
@@ -65,12 +69,26 @@
   // Failsafe: Reveal-Elemente sofort sichtbar machen — diese Seite darf NIE „schwarz"
   // erscheinen, auch wenn main.js (IntersectionObserver) mal nicht greift.
   Array.prototype.forEach.call(document.querySelectorAll('[data-reveal]'), function(el){ el.classList.add('in'); });
+  // Der Bogen wurde angenommen (nur dann führt der Weg hierher): erst jetzt den
+  // gespeicherten Entwurf löschen (EIG298/337, siehe static/js/anfrage.js).
+  try { localStorage.removeItem('wvmAnfrageDraft'); } catch(e) {}
   var wrap=document.querySelector('.wait-wrap'); if(!wrap) return;
   var url=wrap.getAttribute('data-status-url');
   var steps=document.getElementById('waitSteps'), orb=document.getElementById('waitOrb'),
       title=document.getElementById('waitTitle'), sub=document.getElementById('waitSub'),
       live=document.getElementById('waitLive'), link=document.getElementById('waitLink'),
-      hint=document.getElementById('waitHint');
+      hint=document.getElementById('waitHint'), help=document.getElementById('waitHelp');
+  // Obergrenze (EIG137/324/391): Die Seite fragte bisher ohne Ende weiter. Nach
+  // 30 Minuten ist das kein „meist wenige Minuten“ mehr; ein abgelaufener Link
+  // (Status „unknown“) und eine fehlende Marke brauchen gar keine Wartezeit.
+  var MAX_MS=30*60*1000, t0=Date.now();
+  function gibAuf(){
+    stopped=true; orb.classList.add('is-err');
+    title.textContent=W.slow_title||'';
+    sub.textContent=W.slow_sub||'';
+    hint.textContent='';
+    if(help) help.hidden=false;
+  }
   function setStep(active, allDone){
     Array.prototype.forEach.call(steps.querySelectorAll('.wait-step'), function(li){
       var s=+li.getAttribute('data-s');
@@ -78,10 +96,11 @@
       li.classList.toggle('is-active', !allDone && s===active);
     });
   }
-  if(!url){ setStep(1); return; }
   var tries=0, stopped=false;
+  if(!url){ setStep(1); gibAuf(); return; }
   function poll(){
     if(stopped) return;
+    if(Date.now()-t0>MAX_MS){ gibAuf(); return; }
     fetch(url,{headers:{'X-Requested-With':'fetch'}}).then(function(r){return r.json();}).then(function(j){
       var st=j.state;
       if(st==='done' && j.url){
@@ -97,8 +116,10 @@
         title.textContent=W.fail_title||'';
         sub.textContent=W.fail_sub||'';
         hint.textContent='';
+        if(help) help.hidden=false;
         return;
       }
+      if(st==='unknown'){ gibAuf(); return; }
       setStep((st==='processing'||st==='review') ? 3 : (st==='queued' ? 1 : 2));
       tries++;
       setTimeout(poll, tries>45 ? 12000 : 4000);

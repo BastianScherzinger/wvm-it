@@ -656,6 +656,9 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
   padding:10px 12px;border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px solid color-mix(in srgb,var(--accent) 18%,transparent)}
 .ang-total-note svg{width:16px;height:16px;flex:0 0 auto;color:var(--accent2);margin-top:1px}
 .ang-cart-fine{font-size:12px;color:var(--ink-dim);margin-top:12px}
+/* `display:flex` schlägt `[hidden]` (EIG398): Die per Skript ausgeblendeten Summenzeilen,
+   die Anfragenotiz und der Summenkasten blieben sichtbar — mit Nullbeträgen. */
+.ang-totals[hidden],.ang-total-row[hidden],.ang-total-note[hidden]{display:none}
 
 /* ── Lead-Formular (im Konfigurator) ─────────────────────────────────────── */
 .ang-lead h4{font-size:1.05rem;margin-bottom:14px}
@@ -710,7 +713,8 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 /* ── Wizard (mehrstufiges Klickmenü) ─────────────────────────────────────── */
 .wz{max-width:940px;margin:0 auto}
 /* Schritt-Anzeige */
-.wz-steps{list-style:none;display:flex;gap:6px;justify-content:space-between;margin-bottom:12px}
+.wz-steps{list-style:none;display:flex;gap:6px;justify-content:space-between;margin-bottom:12px;
+  scroll-margin-top:88px}   /* unter der klebenden Kopfleiste (EIG397) */
 .wz-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;color:var(--ink-dim);
   text-align:center;min-width:0;transition:color .2s}
 .wz-step-n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;
@@ -1018,7 +1022,8 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .ak-person-text{font-size:14px;color:var(--ink-soft);line-height:1.4}
 .ak-person-text strong{color:var(--ink);font-weight:600}
 .ak-rueckruf{appearance:none;border:0;background:none;font:inherit;color:var(--accent-ink);
-  text-decoration:underline;text-underline-offset:2px;cursor:pointer;padding:0;min-height:44px}
+  text-decoration:underline;text-underline-offset:2px;cursor:pointer;padding:0;min-height:44px;
+  display:inline-flex;align-items:center}
 .ak-rueckruf:hover{color:var(--ink)}
 
 /* Leistungsseite: Einstieg, Ausgaenge, Abgrenzung (06.09.2026) ------------- */

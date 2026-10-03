@@ -41,6 +41,7 @@ PACK = {
         "wieder_heute": "Wieder erreichbar heute ab 9 Uhr",
         "wieder_morgen": "Wieder erreichbar morgen ab 9 Uhr",
         "wieder_montag": "Wieder erreichbar Montag ab 9 Uhr",
+        "wieder_werktag": "Wieder erreichbar am nächsten Werktag ab 9 Uhr",
     },
     "cookie": {
         "aria": "Cookie-Hinweis",
@@ -157,7 +158,7 @@ PACK = {
     "rb": {
         "eyebrow": "Ihr Richtangebot",
         "title": "Angebot zusammenstellen, Richtpreis erhalten.",
-        "lead": "Tippen Sie an, was Sie interessiert – von Webseiten, Hosting und KI bis Smarthome, Netzwerk, EDV und Veranstaltungstechnik. Ihren persönlichen Richtpreis schalten wir mit Ihrer E-Mail frei und senden ihn Ihnen zu. Unverbindlich, in unter einer Minute.",
+        "lead": "Tippen Sie an, was Sie interessiert – von Webseiten, Hosting und KI bis Smarthome, Netzwerk, EDV und Veranstaltungstechnik. Ihren persönlichen Richtpreis sehen Sie sofort; mit Ihrer E-Mail fordern Sie das genaue Angebot an. Unverbindlich, in unter einer Minute.",
         "card_h": "Ihr Richtangebot",
         "count": "0 Leistungen",
         "sum_empty": "Noch nichts gewählt – tippen Sie links Leistungen an.",
@@ -174,10 +175,13 @@ PACK = {
         "lock": "Richtpreis mit E-Mail freischalten",
         "email_label": "E-Mail für Ihr Richtangebot *",
         "consent": "Zusätzlich künftig passende Angebote per E-Mail. Freiwillig, jederzeit abbestellbar.",
-        "submit": "Richtangebot per E-Mail schicken",
+        "submit": "Richtangebot anfordern",
         "fine": "Richtpreise, netto zzgl. USt. Unverbindlich, kein Konto nötig. Antwort an Werktagen in 24 Stunden.",
-        "done_h": "Unterwegs — Ihr Richtangebot liegt gleich im Postfach.",
-        "done_t": "Wir haben Ihnen die Übersicht per E-Mail geschickt und melden uns mit dem genauen Angebot.",
+        # EIG236: Keine E-Mail zusagen. Die automatische Bestätigung an eingetippte
+        # Adressen ist seit 17.09.2026 aus (KUNDENMAIL_AN_ABSENDER); zugesagt wird nur,
+        # was auch ohne sie stimmt: Eingang und Antwort an Werktagen in 24 Stunden.
+        "done_h": "Angekommen — wir melden uns mit Ihrem Richtangebot.",
+        "done_t": "Ihre Auswahl ist bei uns eingegangen. Wir melden uns an Werktagen innerhalb von 24 Stunden mit dem genauen Angebot.",
         "all_link": "Lieber die komplette Preisliste ansehen →",
         "js_leistung": "Leistung",
         "js_leistungen": "Leistungen",
@@ -1364,6 +1368,8 @@ PACK = {
         "js_done_hint": "Den Link finden Sie auch in Ihrer E-Mail.",
         "js_fail_title": "Da ist gerade etwas schiefgelaufen.",
         "js_fail_sub": "Kein Problem — wir kümmern uns persönlich darum und melden uns bei Ihnen.",
+        "js_slow_title": "Das dauert länger als üblich.",
+        "js_slow_sub": "Ihre Seite ist noch nicht fertig. Sie können dieses Fenster schließen und uns direkt schreiben oder anrufen.",
     },
     # ── Umbau 2026-08: Kontaktwege, Hero-Werkzeug, Zusagen, Ablauf, Leistungsblöcke ──
     # Fallberichte je Referenz (06.09.2026). Bis dahin rendete referenzen.html in

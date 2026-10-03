@@ -27,7 +27,10 @@ if (len(sys.argv) > 1 and Path(sys.argv[0]).name == "manage.py"
     os.environ.setdefault("MESSUNG_STUMM", "1")
 
 # SECRET_KEY MUSS in Produktion via Umgebungsvariable gesetzt werden (Railway).
-SECRET_KEY = os.environ.get("SECRET_KEY", "dev-insecure-nur-lokal-bitte-ueberschreiben")
+# Fehlt er dort, bricht `manage.py check --deploy` in start.sh ab (landing/checks.py, EIG350);
+# lokal und im Prüflauf (der würfelt einen Wegwerfschlüssel) gilt der Entwicklungsschlüssel.
+ENTWICKLUNGS_SECRET_KEY = "dev-insecure-nur-lokal-bitte-ueberschreiben"
+SECRET_KEY = os.environ.get("SECRET_KEY", ENTWICKLUNGS_SECRET_KEY)
 
 DEBUG = os.environ.get("DEBUG", "False").strip().lower() in ("1", "true", "yes")
 
@@ -147,6 +150,8 @@ TEMPLATES = [
             "landing.context.navigation",
             # Statuszeile in Kopf und Fuß: erreichbar / wieder ab wann (§3.1).
             "landing.context.erreichbarkeit",
+            # Meldung nach einer Kurzanfrage ohne JavaScript, ?fehler=… (EIG291/377).
+            "landing.context.anfrage_fehler",
         ]},
     },
 ]
@@ -272,12 +277,12 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    # HSTS: erzwingt HTTPS im Browser (1 Jahr). Bewusst OHNE includeSubDomains/preload,
-    # da nur www.wvm-it.tech per HTTPS bedient wird (die Apex-/übrige Subdomains nicht
-    # versehentlich mit-erfassen). Per Env feinjustierbar.
+    # HSTS: erzwingt HTTPS im Browser (1 Jahr). Per Env feinjustierbar.
     SECURE_HSTS_SECONDS = int(os.environ.get("SECURE_HSTS_SECONDS", "31536000"))
     #
-    # Stand 05.09.2026 auf True gezogen: Es gibt keine Subdomain, die absichtlich
+    # includeSubDomains: Stand 05.09.2026 auf True gezogen (EIG352: Der Kommentar hier
+    # behauptete bis zum 03.10.2026 das Gegenteil, „bewusst OHNE includeSubDomains“ —
+    # das war der Stand vor dem 05.09.). Standard ist AN: Es gibt keine Subdomain, die absichtlich
     # ohne HTTPS bedient wird — wvm-it-shop.up.railway.app leitet seit dem
     # 28.08.2026 per 301 auf die Hauptdomain um und spricht dabei HTTPS. Bleibt
     # per Umgebungsvariable abschaltbar, falls doch einmal eine Subdomain ohne

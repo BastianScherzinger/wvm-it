@@ -203,8 +203,12 @@ class Command(BaseCommand):
     # thousands: "." auf Deutsch/Rumänisch, "," auf Englisch, views._thousands) —
     # ohne das Komma in der Ziffernklasse zerfiel "€1,490" in die Fantasiezahlen
     # 1 und 490.
+    #
+    # Auch die ausgeschriebene Währung zählt (EIG208, 03.10.2026): „490 Euro“ und
+    # „EUR 490“ blieben bis dahin ungeprüft, obwohl die Texte sie verwenden.
+    _WAEHRUNG = r"(?:€|&euro;|\bEUR\b|\bEuro\b)"
     _PREIS_MUSTER = re.compile(
-        r"(\d[\d.,]{0,8})\s*(?:€|&euro;)|(?:€|&euro;)\s*(\d[\d.,]{0,8})")
+        r"(\d[\d.,]{0,8})\s*" + _WAEHRUNG + r"|" + _WAEHRUNG + r"\s*(\d[\d.,]{0,8})")
     # Fenster links/rechts eines Treffers, in dem ein Leistungsname stehen muss,
     # wenn die Zahl zu mehr als einer Leistung gehört (EIG202). Reicht in jeder
     # geprüften Vorlage von einer Preiszelle bis zum Namen derselben Zeile/Karte.
@@ -303,6 +307,12 @@ class Command(BaseCommand):
         # Rahmen, das ist kein Preis von WVM-IT (EIG201, 27.09.2026).
         from landing.views import _KONTAKT_BUDGET_ZAHLEN
         erlaubt |= set(_KONTAKT_BUDGET_ZAHLEN)
+        # Gesetzliche Höchststrafen, die der Fachbeitrag zur NIS2-Lieferkette nennt
+        # (50.000 Euro für eine versäumte Registrierung, 100.000 Euro für eine
+        # versäumte Selbstdeklaration). Sie treffen die betroffene Einrichtung, sind
+        # kein Preis von WVM-IT. Seit die Prüfung auch „Euro“ ausgeschrieben erkennt
+        # (EIG208, 03.10.2026), fielen sie auf — eigens und nur diese beiden Werte.
+        erlaubt |= {50000, 100000}
         # Zahlen, die nur über eine Summenformel entstehen, tragen keinen einzelnen
         # Leistungsnamen — sie aus der Mehrdeutigkeits-Prüfung auszunehmen ist
         # ehrlicher, als bei jeder Rechenbeispiel-Zahl einen Treffer zu erfinden.
