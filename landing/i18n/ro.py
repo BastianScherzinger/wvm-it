@@ -827,6 +827,21 @@ PACK = {
                         "t": "Cabinet, meserii, cabinet medical, hotel, producție."},
         },
     },
+    "hosting_band": {
+        "h": "Ne ocupăm și de acestea: domeniu, hosting și e-mail",
+        "lead": "Domeniu, găzduire și căsuțe de e-mail pe adresa proprie, dintr-o singură sursă. O singură persoană de contact în loc de trei furnizori, iar noi știm unde se află totul.",
+        "karten": {
+            "domain": {"h": "Domeniu",
+                       "t": "Adresa dorită (.at, .de, .com): înregistrată, reînnoită și administrată — inclusiv transferul de la alt furnizor."},
+            "hosting": {"h": "Hosting",
+                        "t": "Rapid, cu SSL și backup zilnic. Preluăm și site-uri construite de altcineva."},
+            "mail": {"h": "E-mail pe domeniul propriu",
+                     "t": "Căsuțe precum office@firma-dumneavoastra.at pe Microsoft 365, configurate și predate."},
+        },
+        "einmalig": "o singură dată",
+        "web_frage": "Nu aveți încă un site?",
+        "web_link": "Comandați un site web",
+    },
     "startpakete": {
         "h": "Start rapid: combinații tipice",
         "lead": "Un clic bifează căsuțele pentru o nevoie frecventă. După aceea adăugați sau scoateți ce este diferit la dumneavoastră — pachetul este un punct de plecare, nu o prescripție.",

@@ -835,6 +835,21 @@ PACK = {
                         "t": "Practice, trades, surgery, hotel, manufacturing."},
         },
     },
+    "hosting_band": {
+        "h": "We do this too: domain, hosting and email",
+        "lead": "Domain, web hosting and mailboxes on your own address from one source. One contact instead of three providers, and we know where everything is.",
+        "karten": {
+            "domain": {"h": "Domain",
+                       "t": "Your preferred address (.at, .de, .com): registered, renewed and managed — including the transfer from another provider."},
+            "hosting": {"h": "Hosting",
+                        "t": "Fast, with SSL and daily backups. We also take over sites that someone else built."},
+            "mail": {"h": "Email on your own domain",
+                     "t": "Mailboxes like office@your-company.at on Microsoft 365, set up and handed over."},
+        },
+        "einmalig": "one-off",
+        "web_frage": "No website yet?",
+        "web_link": "Have a website built",
+    },
     "startpakete": {
         "h": "Quick start: typical combinations",
         "lead": "One click ticks the boxes for a common need. After that you add or remove whatever is different in your case — the package is a starting point, not a prescription.",

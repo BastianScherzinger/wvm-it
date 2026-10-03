@@ -2620,3 +2620,24 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
 /* Quellenzeile der Ortsseiten (SEO-Runde 2, 01.10.2026): leiser als der Hinweis. */
 .rg-quellen{font-size:12.5px;color:var(--ink-dim);line-height:1.6}
 .rg-quellen a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+/* ── Block „Domain, Hosting, E-Mail“ im Wegweiser (03.10.2026) ────────────────
+   Drei ruhige Karten auf Weiß über dem Papiergrund, Preis in Mono wie in der
+   Preistabelle. Keine Symbole: die Startseite steht an der 1.500-Elemente-Grenze. */
+.hb{margin-top:clamp(48px,6vw,72px);padding-top:28px;border-top:1px solid var(--line-2)}
+.hb-titel{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,1.1rem + 1.2vw,2rem);line-height:1.15;
+  letter-spacing:-.012em;margin:0 0 10px;text-wrap:balance}
+.hb-lead{font-size:17px;line-height:1.55;color:var(--ink-dim);max-width:46em;margin:0 0 28px}
+.hb-lead a{color:var(--accent-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.hb-liste{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.hb-karte{display:flex;flex-direction:column;gap:8px;padding:24px 24px 20px;background:var(--surface);
+  border:1px solid var(--line-2);border-radius:var(--radius);font-size:15.5px;line-height:1.55;color:var(--ink-dim);
+  text-decoration:none;transition:border-color .2s var(--ease),transform .2s var(--ease)}
+.hb-karte:hover{border-color:var(--accent);transform:translateY(-2px)}
+.hb-karte:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:3px}
+.hb-h{font-family:var(--serif);font-size:23px;font-weight:500;line-height:1.2;letter-spacing:-.008em;color:var(--ink)}
+.hb-karte:hover .hb-h{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.hb-preis{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-family:var(--mono);font-size:14px;
+  font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink)}
+@media (max-width:900px){.hb-liste{grid-template-columns:1fr}.hb-karte{padding:20px}}
+@media (prefers-reduced-motion: reduce){.hb-karte{transition:none}.hb-karte:hover{transform:none}}
+@media print{.hb{display:none!important}}

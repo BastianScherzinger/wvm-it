@@ -871,6 +871,23 @@ PACK = {
                         "t": "Kanzlei, Handwerk, Praxis, Hotel, Produktion."},
         },
     },
+    # ── Band „Domain, Hosting, E-Mail“ unter dem Wegweiser (03.10.2026) ─────
+    # Ersetzt die Kacheln der Registrar-Parkseite; Zahlen aus ANGEBOT_GROUPS.
+    "hosting_band": {
+        "h": "Auch das machen wir: Domain, Hosting und E-Mail",
+        "lead": "Domain, Webspace und Postfächer mit eigener Adresse aus einer Hand. Ein Ansprechpartner statt drei Anbietern, und wir wissen, wo alles liegt.",
+        "karten": {
+            "domain": {"h": "Domain",
+                       "t": "Ihre Wunschadresse (.at, .de, .com): registriert, verlängert und verwaltet — auch der Umzug von einem anderen Anbieter."},
+            "hosting": {"h": "Hosting",
+                        "t": "Schnell, mit SSL und täglicher Sicherung. Wir übernehmen auch Seiten, die jemand anderes gebaut hat."},
+            "mail": {"h": "E-Mail mit eigener Adresse",
+                     "t": "Postfächer wie office@ihre-firma.at über Microsoft 365, eingerichtet und übergeben."},
+        },
+        "einmalig": "einmalig",
+        "web_frage": "Noch keine Webseite?",
+        "web_link": "Webseite erstellen lassen",
+    },
     # ── Schnellstart-Pakete für den Konfigurator (UX) ─────────────────────────
     # Namen und Untertitel; die Zusammensetzung steht in views.STARTPAKETE, die
     # Preise ausschließlich in ANGEBOT_GROUPS.

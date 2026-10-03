@@ -7,6 +7,20 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 03.10.2026 — Block „Domain, Hosting, E-Mail“ auf der Startseite
+
+Unter `wvm-it.tech` (ohne www) steht seit 2020 die Parkseite des Registrars domaintechnik.at:
+„Seite im Aufbau“ und sechs Werbekacheln (Domain, Hosting, E-Mail-Hosting, Homepage-Baukasten,
+WordPress-Hosting, Webhosting-FAQ), alle mit Links zum Anbieter. Impressum oder Firmenangaben gab es
+dort keine, also auch nichts zu übernehmen. Die Themen stehen jetzt als Block `#hosting` im Wegweiser
+der Startseite (DE/EN/RO): drei Karten Domain → `/leistungen/hosting-wartung/`, Hosting → dieselbe Seite,
+E-Mail mit eigener Adresse → `/einrichten/microsoft-365/`, dazu „Webseite erstellen lassen“ für
+Baukasten/WordPress. Preise aus `ANGEBOT_GROUPS` über `views._hosting_band()`, M365 als Festpreis ohne
+„ab“. Bewusst ohne Symbole: Die Startseite stand vorher bei 1.484 Elementen, mit dem Block bei 1.498
+(PF30: höchstens 1.500); eine erste Fassung als eigene Sektion hatte 1.525. Test
+`test_hosting_band.py` sichert Ziele, Preise und die Grenze. Die Parkseite selbst verschwindet erst,
+wenn Florin beim Registrar die Apex-Domain auf `www` umleitet (`TS11`).
+
 ## 02.10.2026 — Regelstand 2026-10-02d: sichtbares Datum, Rechtslinks (Zweig `fix/2026-10-02d-standard`)
 
 `GE47`: Glossar (`/wissen/<slug>/`), Checklisten und Vergleiche (DE/EN/RO) zeigen unter der H1

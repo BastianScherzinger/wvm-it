@@ -155,6 +155,20 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         {% endfor %}
       </ul>
 
+      {% comment %} Block „Domain, Hosting, E-Mail“ `#hosting` (03.10.2026): übernimmt die
+           Kacheln der alten Registrar-Parkseite unter wvm-it.tech, führt aber auf
+           die eigenen Seiten. Bewusst sparsam (14 Elemente, keine Symbole), weil die
+           Startseite an der Grenze von 1.500 Elementen steht (PF30). Daten aus
+           views._hosting_band(), Preise aus ANGEBOT_GROUPS. {% endcomment %}
+      <div class="hb" id="hosting" data-reveal>
+        <h3 class="hb-titel">{{ t.hosting_band.h|safe }}</h3>
+        <p class="hb-lead">{{ t.hosting_band.lead|safe }} {{ t.hosting_band.web_frage|safe }} <a href="{% url 'leistung' slug='webseite-erstellen' %}">{{ t.hosting_band.web_link|safe }}</a></p>
+        <div class="hb-liste">
+          {% for k in hosting_band %}<a class="hb-karte" href="{{ k.url }}"><strong class="hb-h">{{ k.h|safe }}</strong>{{ k.t|safe }}<span class="hb-preis">{{ k.preis_label }}{% if k.route == 'einrichtung' %} {{ t.hosting_band.einmalig|safe }}{% endif %}</span></a>
+          {% endfor %}
+        </div>
+      </div>
+
       {% comment %} Upgrade 01.10.2026: „Was wir alles anbieten“ als eine ruhige
            Linkzeile je Bereich — alle Leistungsseiten bleiben von der Startseite
            aus einen Klick entfernt (interne Verlinkung, TS46). {% endcomment %}

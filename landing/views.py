@@ -338,6 +338,39 @@ def _finder(lang):
     return raus
 
 
+# ── Band „Domain, Hosting, E-Mail“ auf der Startseite (03.10.2026) ────────────
+# Ersetzt, was die Parkseite des Registrars unter der Apex-Domain an Kacheln
+# zeigte (Domain, Hosting, E-Mail-Hosting …) — nur dass die Kacheln hier auf
+# unsere eigenen Seiten führen. Texte im Sprachpaket unter "hosting_band",
+# jede Zahl aus ANGEBOT_GROUPS; E-Mail ist das Einrichten von Microsoft 365.
+HOSTING_BAND = [
+    {"id": "domain", "icon": "domain", "preis": "domain",
+     "route": "leistung", "slug": "hosting-wartung"},
+    {"id": "hosting", "icon": "host", "preis": "hosting",
+     "route": "leistung", "slug": "hosting-wartung"},
+    {"id": "mail", "icon": "mail", "preis": "m365",
+     "route": "einrichtung", "slug": "microsoft-365"},
+]
+
+
+def _hosting_band(lang):
+    """Die drei Kacheln mit Text, Preis-Label und fertiger URL."""
+    pack = i18n.get_pack(lang)
+    texte = pack.get("hosting_band", {}).get("karten", {})
+    words = pack.get("catalog_words", {})
+    raus = []
+    for eintrag in HOSTING_BAND:
+        posten = _ANGEBOT_INDEX[eintrag["preis"]]
+        # Microsoft 365 ist im Silo /einrichten/ ein Festpreis: ohne „ab".
+        label = (_festpreis_label(posten, words) if eintrag["route"] == "einrichtung"
+                 else _make_price_label(posten, words))
+        raus.append({**eintrag, "preis_label": label,
+                     "url": reverse(eintrag["route"], kwargs={"slug": eintrag["slug"]}),
+                     "h": texte.get(eintrag["id"], {}).get("h", ""),
+                     "t": texte.get(eintrag["id"], {}).get("t", "")})
+    return raus
+
+
 # ── Problemband auf der Startseite ────────────────────────────────────────────
 # Sechs Sätze, die Kunden wirklich sagen. Die Texte stehen in den Sprachpaketen
 # unter "probleme" (<id>_q Frage, <id>_a Antwort, <id>_l Linktext); hier stehen nur
@@ -2582,6 +2615,7 @@ def index(request):
         "preise_item": _itempreise(lang),
         "probleme": _probleme(lang),
         "finder": _finder(lang),
+        "hosting_band": _hosting_band(lang),
         # Stundensatz der Einzelhilfe fuers Vertrauensband, ohne „ab" (24.09.2026).
         "hilfe_preis": _festpreis_label(_ANGEBOT_INDEX[_HILFE_STUNDE],
                                         i18n.get_pack(lang).get("catalog_words", {})),
