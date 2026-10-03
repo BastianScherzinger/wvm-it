@@ -51,7 +51,7 @@ Gefüllt aus den Köpfen der Bereichsdateien (Stand 02.10.2026). Jeder Fortschri
 ## Messung
 
 <!-- messung:anfang -->
-**Messung vom 02.10.2026** (Webagentur Scherzinger Overview, Regelstand 2026-10-02e) — **Gesamtstand 97,7 von 100**, Reifegrad „Referenz“. 348 von 380 Regeln an 234 URLs und 251 Dateien (56.896 Zeilen) geprüft.
+**Messung vom 03.10.2026** (Webagentur Scherzinger Overview, Regelstand 2026-10-02e) — **Gesamtstand 50,0 von 100**, Reifegrad „Lückenhaft“. 348 von 380 Regeln an 234 URLs und 259 Dateien (58.854 Zeilen) geprüft.
 
 | Bereich | Wert | Reifegrad |
 |---|---:|---|
@@ -59,20 +59,20 @@ Gefüllt aus den Köpfen der Bereichsdateien (Stand 02.10.2026). Jeder Fortschri
 | SEO — Technik | **94** | Referenz |
 | Konversion | **96** | Referenz |
 | Sicherheit | **97** | Referenz |
+| Vorlagen-Konformität | **98** | Referenz |
 | GEO — KI-Sichtbarkeit | **98** | Referenz |
+| Formulare & Preisrechner | **99** | Referenz |
 | SEO — Inhalt | **100** | Referenz |
 | Substanz & Reichweite | **100** | Referenz |
-| Vorlagen-Konformität | **100** | Referenz |
 | Code-Qualität & Projektreife | **100** | Referenz |
-| Formulare & Preisrechner | **100** | Referenz |
 | Performance & Core Web Vitals | **100** | Referenz |
 | Barrierefreiheit | **100** | Referenz |
 | Recht & Vertrauen | **100** | Referenz |
 | Betrieb & Auslieferung | **100** | Referenz |
 
-Keine Sperre greift.
+**Sperren greifen:** None (Zugangsdaten im Quelltext)
 
-Quelltext: 251 Dateien, **507 Befunde**, davon 0 kritisch und 414 wichtig.
+Quelltext: 259 Dateien, **508 Befunde**, davon 1 kritisch und 410 wichtig.
 
 Kritische Befunde:
 
