@@ -21,6 +21,11 @@ python manage.py collectstatic --noinput
 echo "[start] Konfiguration pruefen"
 python manage.py check --deploy --fail-level ERROR
 
+# Das Zugriffsprotokoll trägt den Pfad OHNE Abfrage und ohne Verweis (EIG238/252/300).
+# Der Standard (`%(r)s`, `%(f)s`) schreibt die ganze Adresse samt `?t=<Token>` des
+# Bestätigungslinks (E-Mail, Name und Wunsch, nur signiert, nicht verschlüsselt) und
+# `?key=<WEEKLY_TRIGGER_KEY>` der Schlüssel-Endpunkte in das Railway-Protokoll (Format unten, `--access-logformat`).
+
 # EIN Arbeitsprozess, dafuer mehrere Faeden — und das mit Absicht:
 # Die Spam-Bremse der Formulare zaehlt im Arbeitsspeicher des Prozesses
 # (settings.CACHES, LocMemCache). Bei zwei Prozessen zaehlt jeder fuer sich, und
@@ -35,4 +40,5 @@ exec gunicorn config.wsgi \
   --threads "${WEB_THREADS:-8}" \
   --timeout "${WEB_TIMEOUT:-60}" \
   --access-logfile - \
+  --access-logformat '%(h)s %(l)s %(u)s %(t)s "%(m)s %(U)s %(H)s" %(s)s %(b)s "%(a)s"' \
   --error-logfile -
