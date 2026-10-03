@@ -81,6 +81,28 @@ Kritische Befunde:
 - **Ein DMARC-Eintrag ist gesetzt** (`MW06`) — Kein DMARC-Eintrag auf `_dmarc.wvm-it.tech`.
 <!-- messung:ende -->
 
+## Conversion-Runde 03.10.2026 (Zweig `seo/2026-10-03-conversion`, nicht gemergt, nicht gepusht)
+
+Auftrag von Bastian: Kunden sollen sofort sehen, was WVM-IT anbietet, und anrufen; Partnerlink Domaintechnik sinnvoll einbauen; SEO als externe Agentur durchgehen. Drei Pakete nacheinander auf demselben Zweig (Einzelheiten und Messplan: [../docs/LOGBUCH.md](../docs/LOGBUCH.md) oberster Eintrag).
+
+| Paket | Inhalt |
+|---|---|
+| 1 · Startseite und Conversion | Einzel-Konfigurator und Partner-Formular von `/` genommen, Reihenfolge Hero, Wegweiser, `#gratis`, Startpakete; Hero-Subline nennt alle Leistungen; Partnerlink gekennzeichnet |
+| 2 · SEO Technik und Onpage | Startseiten-Title/-Description, Hub-Title, Fuß-Orte nach Messdaten, Kontextlinks, 301 `/ratgeber/` |
+| 3 · Ortsseiten, Antwortabsätze, Doku | Antwortabsatz und Description der Ortsseiten in Reichweite, Folgefragen, Anrufknopf, Webseite- und Hosting-Seite, Profil-Beiträge P13–P15, diese Doku |
+
+**Element-Bilanz der Startseite** (Test `test_hosting_band`, Grenze 1.500 nach PF30, Ziel 1.200): vorher DE 1.498 · EN 1.498 · RO 1.498, **nachher DE 1.050 · EN 1.050 · RO 1.050** (nachgezählt am Ende von Paket 3). Die Ortsseiten und die Leistungsseiten haben keine Elementgrenze; Paket 3 hat dort nur Text und eine Folgefrage-Verknüpfung ergänzt.
+
+**Wo der Partnerlink (`views.PARTNER_DOMAINTECHNIK_URL`, `?affiliate=24853`) steht:**
+- Startseite: eine Zeile im Block `#hosting`, gekennzeichnet („Anzeige“ / „Ad“ / „Publicitate“, Provisionshinweis, `rel="sponsored noopener"`, `target="_blank"`).
+- `/leistungen/hosting-wartung/` (DE/EN/RO): ein gekennzeichneter Kasten (Feld `partner` in `leistungen.py`). Die Folgefrage „Kann ich Domain und Hosting selbst buchen?“ nennt den Partner im Text **ohne Link** und steht **nicht** im FAQPage-Schema (Feld `ohne_schema`, sonst bricht `test_partnerlink_nicht_im_schema`).
+- `/llms.txt`: Abschnitt „Webseiten, Hosting und E-Mail“ mit Provisionshinweis.
+- **Nicht** im Fuß, **nicht** auf Ortsseiten (Test `test_keine_ortsseite_nennt_domaintechnik`), **nicht** im JSON-LD.
+
+**Tests:** 722 grün, seriell ohne `--parallel` (vorher 710; neue Datei `landing/tests/test_ortsseiten_geo_2026_10_03.py` mit 12 Tests). `manage.py check`, `pruefe_seite` und `stand_schreiben --pruefen` ohne Befund.
+
+**Was bei Bastian und Florin liegt:** [80-AUFGABEN.md](80-AUFGABEN.md) „Beim Kunden“, Nachtrag 03.10.2026 (Nr. 19 bis 33), jede Zeile mit Wer, Was und Anleitung.
+
 ## Die drei wichtigsten offenen Punkte
 
 Stand 02.10.2026; die Einzelheiten stehen je einmal in den genannten Dateien. Im Code der Seite ist aus den Plänen nichts mehr offen — alles Folgende liegt bei Bastian, im Railway-Dashboard oder bei Florin.
@@ -93,6 +115,7 @@ Stand 02.10.2026; die Einzelheiten stehen je einmal in den genannten Dateien. Im
 
 | Datum | Was |
 |---|---|
+| **03.10.2026** | **Conversion-Runde** (Zweig `seo/2026-10-03-conversion`, drei Pakete, nicht gemergt): Startseite von 1.498 auf 1.050 Elemente entrümpelt, Partnerlink Domaintechnik gekennzeichnet, Startseiten-Title mit Oberösterreich, Fuß-Orte nach Messdaten (Salzburg/Linz 15 auf 107 eingehende Links), Antwortabsätze, Descriptions und Folgefragen der Ortsseiten, Webseite- und Hosting-Seite, Profil-Beiträge P13–P15; 722 Tests grün |
 | **02.10.2026** | **Doku-Prüfung gegen Code und Live-Seite** (Zweig `doku/2026-10-02-a3`): alle elf Dateien auf den Doku-Standard gebracht, jede offene Zeile gegen `origin/main`, Testlauf und Live-Seite geprüft; 87 erledigte Zeilen in [80-AUFGABEN.md](80-AUFGABEN.md), Core-Web-Vitals-Tabelle in `../docs/seo/PERFORMANCE.md` §3 gefüllt, Widersprüche in dieser Datei aufgelöst. Testlauf wie im CI (DEBUG=False): `check --deploy`, 563 Tests, `pruefe_seite` (234 URLs), `pruefe_sicherheit`, `stand_schreiben --pruefen`, `collectstatic`, `node --check` — alles grün |
 | **02.10.2026** | **Overview-Messung Lauf 1824** (Regelstand 2026-10-02e): Gesamtstand 97,7, Reifegrad „Referenz“; 13 von 14 Bereichen 94–100, Erreichbarkeit & Postfach 80 (SPF/DMARC fehlen, beim Kunden) |
 | **24.09.2026** | **Paket 343** (Commit `315811f`, Zweig `sofort/2026-09-24-vl16-und-2-weitere`, ohne eine Zeile Code): `VL16` und `GE27` als begründete Ausnahmen eingetragen — HTML-Größe der Startseite bewusst so ([70-PERFORMANCE.md](70-PERFORMANCE.md)), Kontakt-, Rechts- und Hubseiten bewusst ohne neue Listen, in der Nachbesserung auf alle 21 gemeldeten Seiten bestimmt ([40-SEO.md](40-SEO.md)); `GE13` war schon mit Paket 338 gebaut |

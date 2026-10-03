@@ -7,6 +7,31 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 03.10.2026 — Conversion-Runde: Zusammenfassung der drei Pakete (Zweig `seo/2026-10-03-conversion`)
+
+**Nicht gemergt, nicht gepusht.** Drei Pakete nacheinander: (1) Startseite und Conversion, (2) SEO Technik und Onpage, (3) Ortsseiten, Antwortabsätze und Doku. Die Einträge von (1) und (2) stehen darunter, hier steht Paket 3 und das Gesamtbild.
+
+**Gesamtbild.** Startseite von 1.498 auf 1.050 Elemente (DE/EN/RO, Grenze 1.500), Anruf und Anfrage vorn, `#gratis` nach oben, Partnerlink Domaintechnik gekennzeichnet auf Startseite (`#hosting`), Hosting-Seite und in `llms.txt`; Startseiten-Title mit Oberösterreich, Fuß mit Salzburg und Linz statt Attersee und Bad Ischl; Ortsseiten, Webseite- und Hosting-Seite beantworten ihre Suche im ersten Satz. Tests: 722 grün (vorher 710).
+
+**Paket 3 im Einzelnen** (Tests `landing/tests/test_ortsseiten_geo_2026_10_03.py`):
+- **Ortsseiten Gmunden, Salzburg, Vöcklabruck, Linz, Wels** (`regionen_{de,en,ro}.py`): `kurz` beginnt jetzt mit der Suche und nennt im ersten Satz WVM-IT, Florin Feier aus Lenzing, Entfernung aus `regionen.py`, vor Ort plus Fernwartung, 29 € je Arbeitsplatz (`it_betreuung`) und Hilfe ohne Vertrag 95 € je Stunde (`it_support`). Salzburg zusätzlich „EDV-Betreuung“ und „IT-Diensten“. Descriptions (außer Vöcklabruck, Messfenster bis ~23.10.) mit Ort, Preis und „Florin Feier ruft zurück“ / Rückruf anfordern, **ohne Zeitzusage**. **Alter Text zum Vergleich** (Description): Gmunden „EDV-Betreuung für Betriebe in Gmunden, 25 km von Lenzing: ab 29 €/Monat je Arbeitsplatz, Fernwartung 95 €/Std., vor Ort 120 €/Std. Jetzt anfragen.“; Salzburg „EDV-Betreuung für Betriebe in Salzburg: laufend ab 29 €/Monat je Arbeitsplatz oder einzeln per Fernwartung für 95 €/Std., ohne Vertrag. Jetzt anfragen.“; Linz „IT-Dienstleister für Betriebe in Linz: EDV-Betreuung ab 29 €/Monat je Arbeitsplatz, Fernwartung 95 €/Std., Vor-Ort 120 €/Std. Jetzt anfragen.“; Wels „EDV-Betreuung für Betriebe in Wels: laufend ab 29 €/Monat je Arbeitsplatz oder einzeln per Fernwartung 95 €/Std. Jetzt anfragen.“ Titel unverändert.
+- **Folgefragen:** Gmunden, Salzburg, Linz und Wels je zwei („Kommen Sie für IT-Arbeiten nach <Ort>?“ mit Kilometern und 120 € je Stunde zuzüglich Anfahrt; „Geht es auch ohne Vertrag?“ mit 95 € je Stunde), im FAQPage-Schema. Vöcklabruck hatte beides schon.
+- **Anrufweg:** `templates/region.html` zeigt Anruf, WhatsApp und Anfrage direkt unter dem Antwortabsatz, vor den Fakten (vorher darunter); kein neuer Text.
+- **Hub `/it-service/`:** Antwortabsatz beginnt mit „IT-Betreuung in Oberösterreich und Salzburg“ (EN/RO entsprechend), „IT-Dienstleister in Oberösterreich“ einmal. Hub-Title blieb bei Paket 2.
+- **Webseite erstellen:** Antwortabsatz beginnt mit „Webseite erstellen lassen in Oberösterreich“, ab 350 € (One-Pager) und der kostenlosen Testseite exakt mit den Bedingungen des Gratis-Blocks (E-Mail-Adresse, Zustimmung zur Datenschutzerklärung, etwa zehn Minuten, Newsletter nicht nötig); „kostenlose Webseite“ heißt überall nur Test-/Beispielseite. Folgefragen „Was kostet eine Webseite für einen kleinen Betrieb?“ und „Kann ich meine Webseite erst kostenlos ansehen?“ mit Link auf `/#gratis` (neues Feld `link` an Folgefragen, aufgelöst in `leistung_seite`, nur sichtbar, nicht im Schema).
+- **Hosting:** Antwortabsatz „Hosting und Domain für Betriebe in Österreich“ mit 15 €/Monat, 15 €/Jahr und Microsoft 365 zum Festpreis 290 €; Folgefrage „Kann ich Domain und Hosting selbst buchen?“ nennt den Partner ohne Link; zusätzlich „Richten Sie auch E-Mail mit eigener Adresse ein?“ mit Link auf `/einrichten/microsoft-365/`. Die Partnerfrage trägt `ohne_schema`, weil `test_partnerlink_nicht_im_schema` jeden Partnernamen im JSON-LD verbietet. Keine Aussage zum Serverstandort im Antwortabsatz.
+- **Profil-Beiträge** P13–P15 in `docs/seo/strategie-2026-09-25/12-profil-beitraege.md` §6a.
+- **Bewusst nicht gemacht:** keine Rückruffrist („Florin ruft zurück“ ohne Zeit), keine Kundenzahlen, kein Serverstandort, kein Partnerlink auf Ortsseiten oder im Fuß, keine neue Folgefrage für Vöcklabruck (Duplikat), Vöcklabruck-Description unverändert (Messfenster).
+
+**Offene Punkte** stehen einmal in `doku/80-AUFGABEN.md` „Beim Kunden“, Nachtrag 03.10.2026 (Nr. 19 bis 33).
+
+**Messplan (GSC-Vergleich am 02.11.2026 mit `suchzahlen.py`, Webagentur Scherzinger):**
+- Startseiten-Title und -Description (Paket 2): Impressionen, Klicks, Position, besonders für „it betreuung oberösterreich“ (Pos. 45 am 03.10.2026) und Marken-/Webseiten-Suchen. Alter Title: „IT-Betreuung in Österreich und Deutschland ab 29 € | WVM-IT“.
+- Ortsseiten Salzburg (Pos. 18) und Linz: Position und Klicks, dazu Gmunden (9), Vöcklabruck (22), Wels. Referenz vom 27.09.2026: 3.926 Impressionen und 62 Klicks je Woche insgesamt, Prognose Ende Oktober rund 5.500 und rund 100.
+- Ratgeber Kosten (`/aktuelles/was-kostet-it-betreuung/`): Klicks gegen `/kosten/` (Kannibalisierung).
+- Unternehmensprofil: Anrufe und Website-Klicks je Woche (Leistungsansicht), solange Anruf-Klicks auf der Seite nicht gezählt werden (Nr. 21).
+- Nicht vor dem 31.10. auswerten; zwischendurch geänderte Titel verfälschen den Vergleich. Vöcklabruck-Messfenster endet ~23.10.2026.
+
 ## 03.10.2026 — SEO-Technik und Onpage (Paket seo-technik-onpage)
 
 Für die Vorher/nachher-Messung in der Search Console (Messpunkt ~31.10.2026) stehen hier die **alten Texte**:

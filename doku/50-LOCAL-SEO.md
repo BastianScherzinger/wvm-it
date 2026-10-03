@@ -151,6 +151,21 @@ Der Loxone-Eintrag ist ein Rückschlag ohne Schuld: Google zeigt ihn noch, das Z
 
 **Mehr Ortsseiten seit dem 01.10.2026 — auf Bastians Entscheidung.** Bis dahin galt: „Sieben genügen für das echte Einzugsgebiet. Mehr wären Doorway-Pages (A16)“ (`../docs/SEO-AUSBAU-3.md`), gestützt auf die Schwesterseite mit 131 fast gleichen Stadtseiten (88 % textgleich, nicht indexiert). Die Begründung bleibt als Maßstab: nur Orte in rund einer Fahrstunde, keine erfundenen Referenzen, und kein Satz, der durch Tausch des Ortsnamens auf eine andere Seite passt — Letzteres prüft jetzt `landing/tests/test_ortsseiten_aehnlichkeit.py` (Grenze 0,20, Höchstwert 0,091). Nicht angelegt: Steyr, Braunau am Inn, Bad Aussee (je rund 75 Minuten) und Landeshauptstädte „nur per Fernwartung“.
 
+## Conversion-Runde 03.10.2026: Fuß-Orte und Ortsseiten (Zweig `seo/2026-10-03-conversion`, nicht gemergt)
+
+**Fuß:** `regionen.FOOTER_REGIONEN_SLUGS` = Salzburg, Linz, Wels, Vöcklabruck, Gmunden (vorher `REGIONEN[:5]`: Vöcklabruck, Attersee, Gmunden, Bad Ischl, Wels). Grund: Salzburg und Linz haben Impressionen, bekamen aber nur 15 eingehende Links; jetzt 107 je Ortsseite. Attersee und Bad Ischl (keine Impressionen) bleiben über den Hub und die Nachbarlinks der Ortsseiten erreichbar.
+
+**Ortsseiten in Reichweite** (Gmunden, Salzburg, Vöcklabruck, Linz, Wels; `landing/i18n/regionen_{de,en,ro}.py`):
+- Der **Antwortabsatz** (`kurz`) beginnt mit der Suche („IT-Betreuung in Gmunden von WVM-IT: …“, Salzburg „EDV-Betreuung in Salzburg …“ und „IT-Diensten“) und nennt im ersten Satz Florin Feier aus Lenzing, Entfernung und Fahrzeit (aus `regionen.py`), vor Ort plus Fernwartung, ab 29 € je Arbeitsplatz im Monat und Hilfe ohne Vertrag zu 95 € je Stunde (beide aus `ANGEBOT_GROUPS`).
+- **Description** von Gmunden, Salzburg, Linz und Wels: Ort, 29 €, 95 €, „Florin Feier ruft zurück“ und „Rückruf anfordern“, **ohne Zeitzusage**. Die von **Vöcklabruck** bleibt bis zur Messung (~23.10.2026) unverändert (Ausnahme in `test_beschreibungen.py`); nur ihr Antwortabsatz wurde geschärft.
+- **Zwei Folgefragen** je Ort (außer Vöcklabruck, dessen FAQ beides schon enthält): „Kommen Sie für IT-Arbeiten nach <Ort>?“ (Kilometer, 120 € je Stunde zuzüglich Anfahrt) und „Geht es auch ohne Vertrag?“ (95 € je Stunde, Betreuung ab 29 € als Angebot). Sie stehen im FAQPage-Schema.
+- **Anrufweg:** Im Template `region.html` steht der Anruf-Baustein jetzt direkt unter dem Antwortabsatz, vor den Fakten; `tel:` über `c.telefon_tel`. Auf dem Handy liegt der Knopf damit im ersten Bildschirm; die Prüfung am echten Gerät steht in [80-AUFGABEN.md](80-AUFGABEN.md) Nr. 30.
+- **Keine Domaintechnik-Erwähnung** auf Ortsseiten (Test).
+- Der **Hub** `/it-service/` beginnt jetzt mit „IT-Betreuung in Oberösterreich und Salzburg“ und nennt „IT-Dienstleister in Oberösterreich“ einmal; der Hub-Title blieb bei Paket 2.
+- **Doorway-Schutz:** `test_ortsseiten_aehnlichkeit.py` bleibt grün; die neuen Sätze unterscheiden sich je Ort (Entfernung, Anlass), sie sind keine Ortsnamen-Tausch-Vorlage.
+
+**Profil-Beiträge:** drei neue Texte P13–P15 (Webseite mit kostenloser Testseite, IT-Hilfe ohne Vertrag, Domain/Hosting/E-Mail) in `docs/seo/strategie-2026-09-25/12-profil-beitraege.md` §6a, je mit Ziel-URL auf `www` und `utm_campaign=gbp-post`. Veröffentlicht ist nichts; Florin gibt frei, nach dem Aufräumen des Profils (Offen Nr. 1) und der Bewertungsbitte.
+
 ## Offen
 
 Geprüft am 02.10.2026 gegen `origin/main`, `content.json` und die Live-Seite (JSON-LD der Startseite: `sameAs` mit Google-Profil und WKO-Eintrag, `geo` und Öffnungszeiten stehen). Erledigtes steht unter „Erledigt“.

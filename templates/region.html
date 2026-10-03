@@ -27,18 +27,20 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
     <h1>{{ region.h1|safe }}</h1>
     {% include 'antwort.html' with text=region.kurz %}
 
+    {% comment %}Der Anrufweg steht direkt unter dem Antwortabsatz, damit er auf dem Handy im
+    ersten Bildschirm liegt (03.10.2026); die Fakten folgen darunter.{% endcomment %}
+    <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
+      {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
+      <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
+    </div>
+
     {% comment %}Die Zahlen stehen ganz oben, weil sie die erste Frage beantworten.{% endcomment %}
     <dl class="rg-fakten">
       <div><dt>{{ t.seite.rg_entfernung|safe }}</dt><dd>{{ region.km }} km</dd></div>
       <div><dt>{{ t.seite.rg_fahrzeit|safe }}</dt><dd>{{ region.fahrzeit }} min</dd></div>
       <div><dt>{{ t.seite.rg_bezirk|safe }}</dt><dd>{{ region.bezirk }}</dd></div>
     </dl>
-
-    <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
-      {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
-      <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
-    </div>
   </div>
 </header>
 

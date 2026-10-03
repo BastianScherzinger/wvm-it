@@ -156,7 +156,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
               <h3 class="faq-q-h">{{ f.q|safe }}</h3>
               <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </summary>
-            <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+            <div class="faq-a"><p>{{ f.a|safe }}</p>{% if f.link_url %}<p><a href="{{ f.link_url }}">{{ f.link_text|safe }}</a></p>{% endif %}</div>
           </details>
           {% endfor %}
         </div>

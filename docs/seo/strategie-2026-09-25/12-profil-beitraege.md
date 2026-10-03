@@ -466,6 +466,78 @@ Preise netto zzgl. USt.
 
 ---
 
+## 6a. Zusätzliche Beiträge P13–P15 (03.10.2026, Webseiten, Hilfe ohne Vertrag, Domain/Hosting/E-Mail)
+
+Ergänzung zur Conversion-Runde vom 03.10.2026. Dieselben Regeln wie in §0: Florin gibt jeden Text frei, keine Telefonnummer im Beitragstext, Preise netto zzgl. USt. und aus `ANGEBOT_GROUPS` (350 `onepager`, 1.490 `business`, 15 `hosting`, 15 `domain`, 39 `wartung`, 290 `m365`, 95 `it_support`, 120 `vor_ort`, 29 `it_betreuung`). „Kostenlose Webseite“ heißt im Bestand ausschließlich die **kostenlose Testseite** (E-Mail eintragen, etwa zehn Minuten, verpflichtet zu nichts, Newsletter nicht nötig) — nie mehr versprechen. Ziel-URL immer `www`, `utm_campaign=gbp-post` (steht in `messung.KAMPAGNEN`). Der Domaintechnik-Partnerlink kommt in keinen Beitrag; die Seite selbst kennzeichnet ihn.
+
+**LinkedIn (Florins Profil):** denselben Text verwenden, ersten Absatz in der Ich-Form lassen, Link mit `utm_source=linkedin&utm_medium=social` und `utm_content` mit Endung `-li` (z. B. `p13-li`), damit die Zählung in `messung.py` Google und LinkedIn trennt. Eine eigene Kampagne `linkedin-post` gibt es in `KAMPAGNEN` nicht; wer sie will, ergänzt sie dort (Code-Auftrag, Zählung bleibt ohne Kennung).
+
+---
+
+### P13 · Neuigkeit · Webseite mit kostenloser Testseite
+
+Knopf „Mehr erfahren“ → `https://www.wvm-it.tech/leistungen/webseite-erstellen/?utm_source=google&utm_medium=organic&utm_campaign=gbp-post&utm_content=p13`
+LinkedIn-Link → `https://www.wvm-it.tech/leistungen/webseite-erstellen/?utm_source=linkedin&utm_medium=social&utm_campaign=gbp-post&utm_content=p13-li`
+Länge: 886 von 1.500 Zeichen (Google).
+
+```text
+Webseite erstellen lassen: erst ansehen, dann entscheiden
+
+Viele Betriebe haben eine Webseite, die gut aussieht und trotzdem keine Anfrage bringt. Wir bauen Webseiten von der Anfrage her: Telefonnummer und Kontakt gleich oben, Preise statt „auf Anfrage“, fürs Handy gebaut.
+
+Bevor Sie sich entscheiden, bekommen Sie eine kostenlose Testseite. Sie tragen auf unserer Startseite nur Ihre E-Mail-Adresse ein, nach etwa zehn Minuten steht eine echte, aufrufbare Beispielseite. Die kostet nichts und verpflichtet zu nichts, den Newsletter brauchen Sie dafür nicht.
+
+Ein One-Pager startet ab 350 €, eine mehrseitige Firmenseite ab 1.490 €. Hosting mit SSL und Sicherungen kostet ab 15 € im Monat, die Domain ab 15 € im Jahr. Domain und Inhalte gehören Ihnen.
+
+Für Betriebe in Oberösterreich, Salzburg und Deutschland. Die Abstimmung läuft per Telefon und Fernwartung.
+
+Preise netto zzgl. USt.
+```
+
+---
+
+### P14 · Neuigkeit · IT-Hilfe ohne Vertrag
+
+Knopf „Mehr erfahren“ → `https://www.wvm-it.tech/it-hilfe/?utm_source=google&utm_medium=organic&utm_campaign=gbp-post&utm_content=p14`
+LinkedIn-Link → `https://www.wvm-it.tech/it-hilfe/?utm_source=linkedin&utm_medium=social&utm_campaign=gbp-post&utm_content=p14-li`
+Länge: 812 von 1.500 Zeichen (Google).
+
+```text
+IT-Hilfe ohne Vertrag: ein Problem, ein Anruf
+
+Der Drucker druckt nicht mehr, E-Mails kommen nicht an, der PC ist langsam: Dafür brauchen Sie keinen Betreuungsvertrag. Wir lösen einzelne Probleme ohne Vertrag, meist per Fernwartung, und rechnen nach Aufwand mit 95 € je Stunde ab.
+
+Muss jemand vorbeikommen, kostet der Einsatz vor Ort 120 € je Stunde zuzüglich Anfahrt. Wer danach dauerhaft betreut werden möchte, kann das tun, muss es aber nicht: Die laufende Betreuung beginnt ab 29 € je Arbeitsplatz und Monat.
+
+Sie sprechen mit Florin Feier, der Ihre Technik kennt, nicht mit einer Warteschleife. Wir sind in Lenzing zu Hause und für Betriebe in Vöcklabruck, am Attersee, in Gmunden, Wels, Linz und Salzburg da; alles Weitere läuft per Fernwartung in ganz Österreich und Deutschland.
+
+Preise netto zzgl. USt.
+```
+
+---
+
+### P15 · Neuigkeit · Domain, Hosting und E-Mail aus einer Hand
+
+Knopf „Mehr erfahren“ → `https://www.wvm-it.tech/leistungen/hosting-wartung/?utm_source=google&utm_medium=organic&utm_campaign=gbp-post&utm_content=p15`
+LinkedIn-Link → `https://www.wvm-it.tech/leistungen/hosting-wartung/?utm_source=linkedin&utm_medium=social&utm_campaign=gbp-post&utm_content=p15-li`
+Länge: 748 von 1.500 Zeichen (Google).
+
+```text
+Domain, Hosting und E-Mail aus einer Hand
+
+Eine Webseite braucht mehr als eine Webseite: eine Domain, einen Ort, an dem sie läuft, und E-Mail-Adressen mit dem eigenen Namen. Wir kümmern uns um alle drei und betreuen sie danach weiter.
+
+Hosting mit SSL und täglichen Sicherungen kostet ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat, die Domain ab 15 € im Jahr. E-Mail mit Microsoft 365 richten wir zum Festpreis von 290 € ein und übergeben sie einsatzbereit.
+
+Wir übernehmen auch Seiten, die jemand anderes gebaut hat. Wer Domain und Hosting lieber selbst bucht, kann das tun; auf unserer Seite steht, wie das geht.
+
+Für Betriebe in Österreich und Deutschland, ortsunabhängig per Fernwartung.
+
+Preise netto zzgl. USt.
+```
+
+---
+
 ## 7. Fall-Beiträge F1–F4 (Vorlagen, nur mit echten Daten und Einwilligung)
 
 **Regeln:** Nur ein echter, abgeschlossener Auftrag. Der Kunde willigt **schriftlich** ein, und zwar in

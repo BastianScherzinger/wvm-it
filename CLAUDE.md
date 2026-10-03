@@ -62,7 +62,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
   Console, `docs/INDEXIERUNG.md`).
 - **Nach jeder Inhaltsänderung:** `python manage.py stand_schreiben` (Änderungsdaten nach
   `landing/stand.py`; `--pruefen` meldet Abweichung im CI mit Rückgabewert 1).
-- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 710 Tests (Stand 03.10.2026) in
+- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 722 Tests (Stand 03.10.2026) in
   `landing/tests/`, strukturell geschrieben (URL-Liste aus `_seiten_pfade()`, Preise aus
   `ANGEBOT_GROUPS`). Läuft bei jedem Push über `.github/workflows/pruefen.yml`.
 - Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
@@ -103,7 +103,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 | Wahrheit | Keine erfundenen Bewertungen, Zertifikate, Partnerlevel oder Kundenzahlen. `seit_jahr`, `partner_status` und `profile` in `content.json` rendern nur, wenn sie gefüllt sind |
 | Skripte | Jeder inline-`<script>`-Block braucht `nonce="{{ request.csp_nonce }}"`. Die Content-Security-Policy wird **durchgesetzt**; ein Block ohne Nonce wird vom Browser nicht ausgeführt — man merkt es sofort, aber nur, wenn man hinsieht |
 | Symbole | Keine zwei Symbole zeichengleich, Strichstärke überall dieselbe — beides prüfen Tests |
-| Folgefragen | Jeder Fachbeitrag traegt mindestens drei; sie erzeugen das FAQPage-Schema und tragen den Umfang. Antwort im ersten Satz, Zahlen nur aus ANGEBOT_GROUPS |
+| Folgefragen | Jeder Fachbeitrag traegt mindestens drei; sie erzeugen das FAQPage-Schema und tragen den Umfang. Antwort im ersten Satz, Zahlen nur aus ANGEBOT_GROUPS. Leistungsseiten: optional `link` (`text`, `route`, `slug`, `anker`; nur sichtbar) und `ohne_schema` (sichtbar, nicht im FAQPage — für Partnernamen) |
 | Icons | Die Formen stehen **einmal** in `templates/icons_sprite.html` als `<symbol>`; `templates/icons.html` ist nur der Verweis. Aufruf unverändert `{% include 'icons.html' with name='web' %}`. Ein neues Icon kommt in den Symbolsatz |
 | Formulare | Jedes Anfrageformular braucht `{% include 'honigtopf.html' %}` und `{% include 'datenschutzhinweis.html' %}` **innerhalb** des `<form>`. `pruefe_seite` bricht sonst ab. Das Honigtopf-Feld heißt `website` (nicht `hp`) — ein Feld namens „hp" ist als Falle erkennbar |
 | Änderungsdaten | `landing/stand.py` wird **erzeugt**, nicht gepflegt: `manage.py stand_schreiben`. `views.py` und `base.html` zählen bewusst nicht mit, sonst trügen wieder alle Seiten dasselbe Datum |
@@ -118,7 +118,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 710 Tests in 60 Dateien (Stand 03.10.2026)
+- `landing/tests/` — 722 Tests in 61 Dateien (Stand 03.10.2026)
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/` — `base.html` (Gerüst), `antwort.html`, `anfrage_karte.html`, `icons_sprite.html`, `honigtopf.html`, `datenschutzhinweis.html` u. a.; Liste in `docs/CLAUDE-AUSGELAGERT.md`
 - `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang; `static/js/kostenrechner.js` · `startpakete.js` rechnen nichts selbst

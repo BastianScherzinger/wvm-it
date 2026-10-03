@@ -3103,6 +3103,21 @@ def leistung_seite(request, slug):
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = reverse("leistung", kwargs={"slug": slug})
 
+    # Folgefragen mit Link (03.10.2026): Im Sprachpaket steht {"link": {"text", "route",
+    # "slug"?, "anker"?}}; die Adresse wird hier aufgeloest (Sprachpraefix), im
+    # FAQPage-Schema bleibt die Antwort reiner Text.
+    faq_mit_link = []
+    for f in seite.get("faq") or []:
+        ln = f.get("link")
+        if ln:
+            url = (reverse(ln["route"], kwargs={"slug": ln["slug"]}) if ln.get("slug")
+                   else reverse(ln["route"]))
+            if ln.get("anker"):
+                url += "#" + ln["anker"]
+            f = dict(f, link_url=url, link_text=ln["text"])
+        faq_mit_link.append(f)
+    seite = dict(seite, faq=faq_mit_link)
+
     # Satz mit Link auf eine Einrichtungsseite samt Festpreis (03.10.2026); die Zahl
     # kommt aus ANGEBOT_GROUPS, nie aus dem Text.
     ziel = einrichtungen.NACH_SLUG.get(eintrag.get("einrichtung_link", ""))
@@ -3145,7 +3160,12 @@ def leistung_seite(request, slug):
                       for v in eintrag.get("verwandt", []) if v in leistungen.NACH_SLUG],
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
-            c, lang, service=service, faq=seite.get("faq") or [], faq_id=pfad,
+            # "ohne_schema": sichtbare Frage, die nicht ins FAQPage-Schema soll (der
+            # Name des Partners gehoert nicht in strukturierte Daten, siehe
+            # test_partnerlink_nicht_im_schema).
+            c, lang, service=service,
+            faq=[f for f in seite.get("faq") or [] if not f.get("ohne_schema")],
+            faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
                 (pack["seite"]["leistungen"], reverse("leistungen")),
                 (seite.get("h1", slug), pfad)])),
