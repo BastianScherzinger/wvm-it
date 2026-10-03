@@ -81,6 +81,7 @@ PACK = {
         "decline": "Only necessary",
     },
     "nav": {
+        "webseiten": "Websites",
         "skip": "Skip to content",
         "skip_konfigurator": "Skip to the configurator",
         "start_aria": "Home",
@@ -104,7 +105,7 @@ PACK = {
         # Design B1 (25.09.2026): H1 as a plain sentence saying what Florin does.
         "headline": "IT support for your business, personal and from a single source.",
         "headline_2": "From a two-person office to a plant with 200 workstations.",
-        "subline": "WVM-IT in Lenzing looks after the servers, network and workstations of your business, from €29 per workstation and month.",
+        "subline": "IT help for businesses in and around Lenzing: ongoing support from €29 per workstation and month, help without a contract, websites with a free sample site, domain, hosting and email, AI and on-site technology. One fixed contact: Florin calls you back.",
         "alt_frage": "Rather talk right away?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
         "anrufen": "Call now",
@@ -849,6 +850,12 @@ PACK = {
         "einmalig": "one-off",
         "web_frage": "No website yet?",
         "web_link": "Have a website built",
+        "partner_anz": "Ad",
+        "partner_t": "Prefer to book your domain, hosting or email yourself? You can do that directly with our partner Domaintechnik. Or we set everything up for you and keep looking after it.",
+        "partner_link": "Go to Domaintechnik (partner link)",
+        "partner_hinweis": "Partner link: we receive a commission if you book through this link.",
+        "partner_h": "Prefer to book it yourself?",
+        "partner_cta": "We set it up for you",
     },
     "startpakete": {
         "h": "Quick start: typical combinations",
@@ -1617,6 +1624,7 @@ PACK = {
         "angebot_h": "Your estimate in two minutes",
         "angebot_lead": "Pick a typical need, adjust it, see the price right away. The quote arrives by email.",
         "angebot_einzeln": "Choose individual services",
+        "angebot_preisliste": "Choose individual services and see all prices",
         "region_h": "For your business and your region",
         "region_lead": "A law firm needs different IT than a workshop. And some things only work on site.",
         "branchen_link": "See all industries",

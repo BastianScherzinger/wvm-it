@@ -52,6 +52,7 @@ PACK = {
         "decline": "Nur notwendige",
     },
     "nav": {
+        "webseiten": "Webseiten",
         "skip": "Zum Inhalt springen",
         "skip_konfigurator": "Zum Konfigurator springen",
         "start_aria": "Startseite",
@@ -85,7 +86,7 @@ PACK = {
         # Zahlen statt Adjektiven — "vom Zwei-Mann-Buero" ist pruefbar,
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
-        "subline": "WVM-IT aus Lenzing betreut Server, Netzwerk und Arbeitsplätze in Ihrem Betrieb, ab 29 € je Arbeitsplatz im Monat.",
+        "subline": "IT-Hilfe für Betriebe aus Lenzing und Umgebung: laufende Betreuung ab 29 € je Arbeitsplatz im Monat, Hilfe ohne Vertrag, Webseiten mit kostenloser Testseite, Domain, Hosting und E-Mail, KI und Technik vor Ort. Ein fester Ansprechpartner: Florin ruft zurück.",
         # Design B1: Frage neben dem Rückruf im Hero, führt zu Telefon/WhatsApp.
         "alt_frage": "Lieber gleich sprechen?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
@@ -887,6 +888,12 @@ PACK = {
         "einmalig": "einmalig",
         "web_frage": "Noch keine Webseite?",
         "web_link": "Webseite erstellen lassen",
+        "partner_anz": "Anzeige",
+        "partner_t": "Domain, Hosting oder E-Mail lieber selbst buchen? Das geht direkt bei unserem Partner Domaintechnik. Oder wir richten alles für Sie ein und betreuen es weiter.",
+        "partner_link": "Zu Domaintechnik (Partnerlink)",
+        "partner_hinweis": "Partnerlink: Bei einer Buchung über diesen Link erhalten wir eine Provision.",
+        "partner_h": "Lieber selbst buchen?",
+        "partner_cta": "Wir richten es für Sie ein",
     },
     # ── Schnellstart-Pakete für den Konfigurator (UX) ─────────────────────────
     # Namen und Untertitel; die Zusammensetzung steht in views.STARTPAKETE, die
@@ -1749,6 +1756,7 @@ PACK = {
         "angebot_h": "Ihr Richtangebot in zwei Minuten",
         "angebot_lead": "Typischen Bedarf anklicken, ergänzen, den Preis sofort sehen. Das Angebot kommt per E-Mail.",
         "angebot_einzeln": "Einzelne Leistungen auswählen",
+        "angebot_preisliste": "Einzelne Leistungen wählen und alle Preise ansehen",
         "region_h": "Für Ihren Betrieb und Ihre Region",
         # Design B1 (§2.12, 25.09.2026, Paket 3): Lead-Satz von Block 10.
         "region_lead": "Eine Kanzlei braucht andere IT als eine Werkstatt. Und manches geht nur vor Ort.",

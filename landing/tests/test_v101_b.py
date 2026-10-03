@@ -101,7 +101,12 @@ class DatenschutzNenntDieDatenwegeTest(SimpleTestCase):
         """Gegenprobe zu den Behauptungen: Newsletter-Kästchen und Richtangebot-Kästchen."""
         index = (_BASIS / "templates" / "index.html").read_text(encoding="utf-8")
         self.assertIn('name="newsletter"', index)
-        self.assertIn('name="angebote"', index)
+        # Das Richtangebot-Kästchen stand im Einzel-Konfigurator der Startseite, der am
+        # 03.10.2026 auf /angebot/ gewandert ist (dort ohne Summenkarte-Formular).
+        # Der Endpunkt `angebot_anfordern` wertet `angebote` weiter aus — der
+        # Datenschutztext beschreibt ihn deshalb zu Recht.
+        views_quelle = (_BASIS / "landing" / "views.py").read_text(encoding="utf-8")
+        self.assertIn('request.POST.get("angebote")', views_quelle)
         self.assertIn("wa.me", (_BASIS / "templates" / "kontakt.html").read_text(encoding="utf-8"))
 
 
@@ -209,8 +214,12 @@ class KooperationOhneJavaScriptTest(SimpleTestCase):
         self.assertEqual(fehler.json()["error"], "eingabe")
 
     def test_die_adresse_stimmt_mit_dem_formular_ueberein(self):
+        # Seit 03.10.2026 steht das Formular auf /kontakt/#kooperationen, nicht
+        # mehr im Kundenfluss der Startseite.
+        kontakt = (_BASIS / "templates" / "kontakt.html").read_text(encoding="utf-8")
+        self.assertIn("kooperation_anfordern", kontakt)
         index = (_BASIS / "templates" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("kooperation_anfordern", index)
+        self.assertNotIn("kooperation_anfordern", index)
 
 
 class ImpressumFelderTest(SimpleTestCase):

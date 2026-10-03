@@ -16,7 +16,7 @@ import re
 from datetime import date, datetime, timezone
 from functools import wraps
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlencode, urlparse
 
 from django.conf import settings
 from django.core import signing
@@ -343,6 +343,12 @@ def _finder(lang):
 # zeigte (Domain, Hosting, E-Mail-Hosting …) — nur dass die Kacheln hier auf
 # unsere eigenen Seiten führen. Texte im Sprachpaket unter "hosting_band",
 # jede Zahl aus ANGEBOT_GROUPS; E-Mail ist das Einrichten von Microsoft 365.
+# Partnerlink Domaintechnik (03.10.2026): Florin erhält eine Provision. Die URL steht
+# nur hier und wird an die Startseite (#hosting) und /leistungen/hosting-wartung/
+# durchgereicht; dort ist sie als Anzeige gekennzeichnet (rel="sponsored noopener").
+# Nicht in den Fuß und nicht auf Ortsseiten: Dann stünde Werbung auf jeder Seite.
+PARTNER_DOMAINTECHNIK_URL = "https://www.domaintechnik.at/?affiliate=24853"
+
 HOSTING_BAND = [
     {"id": "domain", "icon": "domain", "preis": "domain",
      "route": "leistung", "slug": "hosting-wartung"},
@@ -2586,6 +2592,12 @@ def _startseite_verteiler(lang):
 
 
 def index(request):
+    # Der Einzel-Konfigurator wohnt seit 03.10.2026 nur noch auf /angebot/. Alte
+    # Links und Lesezeichen mit ?paket=… führen dorthin (302, nicht 301: Die
+    # Startseite bleibt die kanonische Adresse ohne Parameter).
+    if request.method == "GET" and (request.GET.get("paket") or "").strip():
+        return redirect(reverse("angebot") + "?" + urlencode(
+            {"paket": request.GET.get("paket").strip()}))
     c = _content()
     sent = False
     news_sent = False
@@ -2610,6 +2622,7 @@ def index(request):
                                  ("name", "email", "telefon", "budget", "nachricht")}
     lang = get_language()
     return render(request, "index.html", {
+        "partner_domaintechnik_url": PARTNER_DOMAINTECHNIK_URL,
         "c": c, "sent": sent, "news_sent": news_sent,
         "news_fehler": news_fehler,
         # Bremse getroffen (EIG239/251): eigene Meldung statt „bitte prüfen“.
@@ -3110,6 +3123,8 @@ def leistung_seite(request, slug):
         # Der kleine erste Schritt (06.09.2026). Name und Preis kommen aus dem
         # Katalog und aus dem Sprachpaket — nie aus dem Fließtext.
         "einstieg": _einstieg_daten(eintrag, lang),
+        "partner_domaintechnik_url": (PARTNER_DOMAINTECHNIK_URL
+                                      if eintrag.get("partner") == "domaintechnik" else None),
         "kleinauftrag": _kleinauftrag(lang) if eintrag.get("kleinauftrag") else None,
         # V1/V2: alles, was zum selben Thema gehört — Beiträge, Vergleiche,
         # Branchen, Checklisten, Begriffe. Ohne diesen Block hängen die
@@ -5404,7 +5419,7 @@ def kooperation_anfordern(request):
                                 status=status)
         if ok:
             return redirect(reverse("anfrage_danke") + "?q=koop")
-        return redirect(reverse("index") + "#partner-werden")
+        return redirect(reverse("kontakt") + "#partner-werden")
 
     if request.method != "POST":
         return JsonResponse({"ok": False}, status=405)

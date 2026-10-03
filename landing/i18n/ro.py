@@ -75,6 +75,7 @@ PACK = {
         "decline": "Doar necesare",
     },
     "nav": {
+        "webseiten": "Site-uri web",
         "skip": "Săriți la conținut",
         "skip_konfigurator": "Săriți la configurator",
         "start_aria": "Pagina principală",
@@ -98,7 +99,7 @@ PACK = {
         # Design B1 (25.09.2026): H1 ca propoziție simplă, ce face Florin.
         "headline": "Mentenanță IT pentru firma dumneavoastră, personal și dintr-o singură sursă.",
         "headline_2": "De la biroul cu doi oameni până la firma cu 200 de posturi de lucru.",
-        "subline": "WVM-IT din Lenzing administrează serverele, rețeaua și posturile de lucru ale firmei dumneavoastră, de la 29 € per post de lucru și lună.",
+        "subline": "Ajutor IT pentru firme din Lenzing și împrejurimi: administrare continuă de la 29 € per post de lucru și lună, ajutor fără contract, site-uri web cu pagină de probă gratuită, domeniu, hosting și e-mail, IA și tehnică la fața locului. O singură persoană de contact: Florin vă sună înapoi.",
         "alt_frage": "Preferați să vorbim direct?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
         "anrufen": "Sunați acum",
@@ -841,6 +842,12 @@ PACK = {
         "einmalig": "o singură dată",
         "web_frage": "Nu aveți încă un site?",
         "web_link": "Comandați un site web",
+        "partner_anz": "Publicitate",
+        "partner_t": "Preferați să rezervați singur domeniul, găzduirea sau e-mailul? Puteți face asta direct la partenerul nostru Domaintechnik. Sau configurăm totul pentru dumneavoastră și ne ocupăm în continuare.",
+        "partner_link": "Spre Domaintechnik (link de partener)",
+        "partner_hinweis": "Link de partener: primim un comision dacă rezervați prin acest link.",
+        "partner_h": "Preferați să rezervați singur?",
+        "partner_cta": "Configurăm noi pentru dumneavoastră",
     },
     "startpakete": {
         "h": "Start rapid: combinații tipice",
@@ -1609,6 +1616,7 @@ PACK = {
         "angebot_h": "Oferta orientativă în două minute",
         "angebot_lead": "Alegeți o nevoie tipică, ajustați, vedeți imediat prețul. Oferta vine pe e-mail.",
         "angebot_einzeln": "Alegeți servicii individuale",
+        "angebot_preisliste": "Alegeți servicii individuale și vedeți toate prețurile",
         "region_h": "Pentru firma și regiunea dumneavoastră",
         "region_lead": "Un cabinet are nevoie de altă IT decât un atelier. Și unele lucruri se fac doar la fața locului.",
         "branchen_link": "Vedeți toate domeniile",

@@ -111,7 +111,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
         <ul class="hero-trust">
           <li>{% include 'icons.html' with name='clock' %}{{ t.trust.t1|safe }}</li>
-          <li>{% include 'icons.html' with name='net' %}{{ t.trust.t2|safe }}</li>
+          <li><a class="hero-trust-link" href="#gratis">{% include 'icons.html' with name='net' %}{{ t.trust.t6|safe }}</a></li>
           <li><a class="hero-trust-link" href="{% url 'it_hilfe' %}">{% include 'icons.html' with name='phone' %}{{ t.trust.hilfe|safe }} {{ hilfe_preis }}</a></li>
         </ul>
       </div>
@@ -157,7 +157,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
       {% comment %} Block „Domain, Hosting, E-Mail“ `#hosting` (03.10.2026): übernimmt die
            Kacheln der alten Registrar-Parkseite unter wvm-it.tech, führt aber auf
-           die eigenen Seiten. Bewusst sparsam (14 Elemente, keine Symbole), weil die
+           die eigenen Seiten. Bewusst sparsam (keine Symbole, eine gekennzeichnete Partnerzeile), weil die
            Startseite an der Grenze von 1.500 Elementen steht (PF30). Daten aus
            views._hosting_band(), Preise aus ANGEBOT_GROUPS. {% endcomment %}
       <div class="hb" id="hosting" data-reveal>
@@ -167,6 +167,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           {% for k in hosting_band %}<a class="hb-karte" href="{{ k.url }}"><strong class="hb-h">{{ k.h|safe }}</strong>{{ k.t|safe }}<span class="hb-preis">{{ k.preis_label }}{% if k.route == 'einrichtung' %} {{ t.hosting_band.einmalig|safe }}{% endif %}</span></a>
           {% endfor %}
         </div>
+        <p class="hb-partner"><span class="hb-anz">{{ t.hosting_band.partner_anz|safe }}</span> {{ t.hosting_band.partner_t|safe }} <a href="{{ partner_domaintechnik_url }}" target="_blank" rel="sponsored noopener">{{ t.hosting_band.partner_link|safe }}</a> <small>{{ t.hosting_band.partner_hinweis|safe }}</small></p>
       </div>
 
       {% comment %} Upgrade 01.10.2026: „Was wir alles anbieten“ als eine ruhige
@@ -183,175 +184,21 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
 
   {% comment %} ══════════════════════════════════════════════════════════════════════
-       Upgrade 01.10.2026 (docs/DESIGN-2026-10-01.md): Von 14 auf 9 Blöcke. Reihenfolge
-       nach Bastians Auftrag: Was wir machen → Richtangebot → kostenlose Webseite →
-       Preise → wer dahintersteht → Fragen → Kontakt. Entfallen sind Leistungsregister,
-       Festpreisliste, Branchen/Regionen und Wissen — jede dieser Seiten steht weiter
-       in der Fußnavigation (fuss.html) und im eigenen Hub; der Finder führt hin.
+       Reihenfolge (03.10.2026, Conversion-Umbau): Hero → Wegweiser `#finder` (mit
+       `#hosting`) → kostenlose Testseite `#gratis` → Startpakete `#angebot` →
+       Preise `#preise` → wer dahintersteht `#ueber` → Ablauf `#prozess` → Fragen
+       `#faq` → Kontakt `#kontakt` → schmaler Streifen `#kooperationen`.
+       Der Einzel-Konfigurator ist auf /angebot/ umgezogen (stand hier mit rund
+       420 Elementen); `/?paket=…` leitet dorthin weiter (views.index). Das
+       Partner-Formular steht auf /kontakt/#kooperationen. Jede Leistungs-, Branchen-
+       und Ortsseite bleibt über den Wegweiser, die Hubs und den Fuß verlinkt.
   ══════════════════════════════════════════════════════════════════════ {% endcomment %}
-
-  {% comment %} ── Block 9: ANGEBOT ZUSAMMENSTELLEN `#angebot` (Papier). §2.11.
-       Funktion unveraendert: startpakete.html, alle rb*-ids/data-*, inline-
-       Skript mit Nonce. Startpakete zuerst sichtbar; Einzelpositionen in
-       <details class="rb-einzeln">, oeffnet sich beim Klick auf ein Startpaket
-       (eine Zeile in startpakete.js) oder wenn der Server schon Positionen aus
-       ?paket= vorbelegt hat. Volle Preisliste bleibt darunter. ── {% endcomment %}
-  <section class="section rb-sec" id="angebot" aria-labelledby="rb-title">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.angebot|safe }}</p>
-        <h2 class="section-t" id="rb-title">{{ t.start.angebot_h|safe }}</h2>
-        <p class="section-lead">{{ t.start.angebot_lead|safe }}</p>
-      </header>
-
-      {% include 'startpakete.html' with ziel=paket_ziel ohne_lead=True %}
-
-      <details class="rb-einzeln" id="rbEinzeln"{% if paket_items %} open{% endif %}>
-        <summary class="rb-einzeln-summary">{{ t.start.angebot_einzeln|safe }}</summary>
-        <form class="rb" id="rbForm" method="post" action="{% url 'angebot_anfordern' %}">
-          {% csrf_token %}
-            {% include 'honigtopf.html' %}
-          <div class="rb-grid">
-            <div class="rb-cats">
-              {% for g in angebot_groups %}
-              <fieldset class="rb-cat" data-reveal>
-                <legend class="rb-cat-head">
-                  <span class="rb-cat-tx"><strong>{{ g.title }}</strong><small>{{ g.sub }}</small></span>
-                </legend>
-                <div class="rb-items">
-                  {% for it in g.items %}
-                  <label class="ang-item{% if it.popular %} ang-item-pop{% endif %}">
-                    <input class="ang-check rb-check" type="checkbox" id="rb-{{ it.id }}" name="item" value="{{ it.id }}"
-                           {% if it.id in paket_items %}checked{% endif %}
-                           data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                           data-yr="{{ it.yr|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}">
-                    <span class="ang-item-box">
-                      <span class="ang-item-main">
-                        <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
-                        <span class="ang-item-desc">{{ it.desc }}</span>
-                      </span>
-                      <span class="ang-item-price">{{ it.price_label }}</span>
-                      <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-                    </span>
-                  </label>
-                  {% endfor %}
-                </div>
-              </fieldset>
-              {% endfor %}
-            </div>
-
-            <aside class="rb-side">
-              <div class="rb-card" data-reveal>
-                <div class="rb-card-head">
-                  <h3>{{ t.rb.card_h|safe }}</h3>
-                  <span class="rb-count" id="rbCount">{{ t.rb.count|safe }}</span>
-                </div>
-
-                <div class="rb-sum" id="rbSum">
-                  <div class="rb-sum-rows">
-                    <div class="rb-sum-empty" id="rbSumEmpty">{{ t.rb.sum_empty|safe }}</div>
-                    <div class="rb-sum-row" data-k="once" hidden><span>{{ t.rb.row_once|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="once">0</span>&nbsp;€</strong></div>
-                    <div class="rb-sum-row" data-k="mtl" hidden><span>{{ t.rb.row_mtl|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="mtl">0</span>&nbsp;€<small>{{ t.rb.per_month|safe }}</small></strong></div>
-                    <div class="rb-sum-row" data-k="yr" hidden><span>{{ t.rb.row_yr|safe }}</span><strong>{{ t.rb.from|safe }} <span data-t="yr">0</span>&nbsp;€<small>{{ t.rb.per_year|safe }}</small></strong></div>
-                    <div class="rb-sum-row rb-sum-anfrage" data-k="anfrage" hidden><span>{{ t.rb.row_more|safe }}</span><strong>{{ t.rb.on_request|safe }}</strong></div>
-                  </div>
-                </div>
-
-                {% comment %} aria-live (BF24): Das Skript legt #rbErr erst im Fehlerfall
-                   hier an; der Rahmen sagt ihn dann an. {% endcomment %}
-                <div class="rb-gate" id="rbGate" aria-live="polite">
-                  <div class="rb-field">
-                    <label class="fld-l" for="rbEmail">{{ t.rb.email_label|safe }}</label>
-                    <input class="fld" type="email" name="email" id="rbEmail" required maxlength="254" autocomplete="email" placeholder="name@firma.at">
-                  </div>
-                  <label class="rb-consent">
-                    <input type="checkbox" name="angebote" id="rbConsent" value="1">
-                    <span>{{ t.rb.consent|safe }}</span>
-                  </label>
-                  <button class="btn btn-lg rb-submit" type="submit" id="rbSubmit" disabled>{{ t.rb.submit|safe }}</button>
-                  <p class="rb-fine">{{ t.rb.fine|safe }}</p>
-                </div>
-
-                <div class="rb-done" id="rbDone" hidden>
-                  <div class="rb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</div>
-                  <h4>{{ t.rb.done_h|safe }}</h4>
-                  <p>{{ t.rb.done_t|safe }}</p>
-                </div>
-              </div>
-              <a class="rb-all" href="{% url 'angebot' %}#preisliste">{{ t.rb.all_link|safe }}</a>
-            </aside>
-          </div>
-        {% include 'datenschutzhinweis.html' %}
-        </form>
-      </details>
-
-    </div>
-  </section>
-
-  <script nonce="{{ request.csp_nonce }}">
-  (function(){
-    var form=document.getElementById('rbForm'); if(!form) return;
-    var I=(window.I18N&&window.I18N.rb)||{};
-    var NL=(window.I18N&&window.I18N.numLocale)||'de-DE';
-    var checks=form.querySelectorAll('.rb-check'),
-        count=document.getElementById('rbCount'), sum=document.getElementById('rbSum'),
-        empty=document.getElementById('rbSumEmpty'), email=document.getElementById('rbEmail'),
-        consent=document.getElementById('rbConsent'), submit=document.getElementById('rbSubmit'),
-        gate=document.getElementById('rbGate'), done=document.getElementById('rbDone'),
-        fehler=document.getElementById('rbErr');
-    function eur(n){ return (Number(n)||0).toLocaleString(NL); }
-    function row(k){ return form.querySelector('[data-k="'+k+'"]'); }
-    function setRow(k,v){ var r=row(k); if(!r) return; r.hidden=!(v>0);
-      var s=r.querySelector('[data-t="'+k+'"]'); if(s) s.textContent=eur(v); }
-    function tally(){
-      var once=0,mtl=0,yr=0,anf=false,n=0;
-      checks.forEach(function(c){ if(c.checked){ n++; once+=+c.dataset.once||0;
-        mtl+=+c.dataset.mtl||0; yr+=+c.dataset.yr||0; if(c.dataset.anfrage==='1') anf=true; }});
-      count.textContent=n+' '+(n===1?(I.leistung||'Leistung'):(I.leistungen||'Leistungen'));
-      if(empty) empty.hidden=n>0;
-      setRow('once',once); setRow('mtl',mtl); setRow('yr',yr);
-      var ar=row('anfrage'); if(ar) ar.hidden=!anf;
-      return {n:n,once:once,mtl:mtl,yr:yr,anf:anf};
-    }
-    function refresh(){ var t=tally();
-      // Die Einwilligung ist freiwillig und darf den Versand nicht blockieren — der
-      // Preis steht ohnehin schon oben.
-      submit.disabled=!(t.n>0 && email.value && email.checkValidity()); }
-    checks.forEach(function(c){ c.addEventListener('change',refresh); });
-    email.addEventListener('input',refresh); consent.addEventListener('change',refresh);
-    form.addEventListener('submit',function(e){
-      e.preventDefault(); if(submit.disabled) return;
-      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent=I.busy||'…';
-      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
-        .then(function(r){ return r.json(); })
-        .then(function(j){
-          if(!j.ok) throw new Error('fail');
-          setRow('once',j.once); setRow('mtl',j.mtl); setRow('yr',j.yr);
-          var ar=row('anfrage'); if(ar) ar.hidden=!j.anfrage;
-          gate.hidden=true; done.hidden=false;
-          done.scrollIntoView({behavior:'smooth',block:'center'});
-        })
-        .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
-          submit.textContent=I.submit||'…';
-          // Fehler inline statt als alert(): Ein Systemdialog reisst den Besucher aus
-          // der Seite, ist auf dem Handy kaum lesbar und widerspricht der
-          // Komponentenregel in doku/20-DESIGN.md („Fehler inline — nie alert()").
-          // #rbErr stand nie in der Vorlage; ohne ihn blieb der Fehler stumm (BF24).
-          // Er entsteht deshalb erst hier, im bereits ansagenden #rbGate.
-          if(!fehler){ fehler=document.createElement('p'); fehler.className='lb-err';
-            fehler.id='rbErr'; fehler.setAttribute('role','alert'); submit.insertAdjacentElement('afterend',fehler); }
-          fehler.textContent=I.error||'Error'; fehler.hidden=false; });
-    });
-    refresh();
-  })();
-  </script>
-
 
   {% comment %} ── Block 8: WEBSEITEN `#gratis` (weiß). §2.10. Referenz im
        Browserrahmen statt Karten-Showcase; keine Pakettabelle (§6 K1-13, die
        volle Preisliste steht in Block 9). Gratis-Formular (id=newsForm)
        unveraendert aus dem alten Hero-Reiter hierher verschoben. ── {% endcomment %}
-  <section class="section section-alt" id="gratis">
+  <section class="section" id="gratis">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.web|safe }}</p>
@@ -419,6 +266,24 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           <p class="lk-alle"><a class="textlink" href="#angebot">{{ t.offer.foot_alt|safe }}</a></p>
         </div>
       </div>
+    </div>
+  </section>
+
+
+
+  {% comment %} ── `#angebot`: die sechs Startpakete (startpakete.html), jede Kachel führt auf
+       /angebot/?paket=…#konfigurator. Keine Summenkarte, kein Konfigurator hier. {% endcomment %}
+  <section class="section section-alt rb-sec" id="angebot" aria-labelledby="rb-title">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <p class="sec-kick">{{ t.abschnitt.angebot|safe }}</p>
+        <h2 class="section-t" id="rb-title">{{ t.start.angebot_h|safe }}</h2>
+        <p class="section-lead">{{ t.start.angebot_lead|safe }}</p>
+      </header>
+
+      {% include 'startpakete.html' with ziel=paket_ziel ohne_lead=True %}
+
+      <p class="lk-alle"><a class="textlink" href="{% url 'angebot' %}#preisliste">{{ t.start.angebot_preisliste|safe }}</a></p>
     </div>
   </section>
 
@@ -618,17 +483,13 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
   </section>
 
 
-  {% comment %} ── Block 14: KOOPERATIONEN `#kooperationen` (weiß, schmaler
-       Streifen direkt über dem Fuß). §2.16. coopForm/#coopSubmit/#coopErr/
-       #coopDone/Honigtopf/Datenschutzhinweis/inline-Skript unveraendert in
-       <details class="koop-werden">; Mini-Skript öffnet sie, wenn der
-       Seitenanker beim Laden #partner-werden oder #kooperationen ist. ── {% endcomment %}
+  {% comment %} ── `#kooperationen`: schmaler Streifen mit der bestehenden Partnerkarte.
+       Das Formular „Kooperationspartner werden“ steht auf /kontakt/#kooperationen. {% endcomment %}
   <section class="section section-streifen" id="kooperationen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.koop|safe }}</p>
         <h2 class="section-t">{{ t.koop.h|safe }}</h2>
-        <p class="section-lead">{{ t.koop.lead|safe }}</p>
       </header>
 
       <div class="coop-grid" data-reveal>
@@ -649,65 +510,10 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         <div class="coop-empty">{{ t.koop.empty|safe }}</div>
         {% endfor %}
       </div>
-
-      <details class="koop-werden" id="koopWerden">
-        <summary>{{ t.koop.join_h|safe }}</summary>
-        <div class="coop-join" id="partner-werden">
-          <p class="coop-join-p">{{ t.koop.join_p|safe }}</p>
-          <form class="coop-form" id="coopForm" method="post" action="{% url 'kooperation_anfordern' %}">
-            {% csrf_token %}
-            {% include 'honigtopf.html' %}
-            <div class="coop-f-row">
-              <label class="fld"><span>{{ t.koop.f_name|safe }}</span><input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="{{ t.koop.f_name_ph|safe }}"></label>
-              <label class="fld"><span>{{ t.koop.f_firma|safe }}</span><input type="text" name="firma" maxlength="120" autocomplete="organization" placeholder="{{ t.koop.f_firma_ph|safe }}"></label>
-            </div>
-            <label class="fld"><span>{{ t.koop.f_email|safe }}</span><input type="email" name="email" required maxlength="254" autocomplete="email" placeholder="name@firma.at"></label>
-            <label class="fld"><span>{{ t.koop.f_msg|safe }}</span><textarea name="nachricht" rows="3" required maxlength="1200" placeholder="{{ t.koop.f_msg_ph|safe }}"></textarea></label>
-            <button class="btn btn-lg coop-submit" type="submit" id="coopSubmit">{{ t.koop.submit|safe }}</button>
-            <p class="lb-err" id="coopErr" role="alert" hidden></p>
-            <p class="coop-fine">{{ t.koop.fine|safe }}</p>
-            <div class="coop-done" id="coopDone" hidden>
-              <span class="coop-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-              <div><strong>{{ t.koop.done_h|safe }}</strong><p>{{ t.koop.done_p|safe }}</p></div>
-            </div>
-          {% include 'datenschutzhinweis.html' %}
-          </form>
-        </div>
-      </details>
     </div>
   </section>
-
-  <script nonce="{{ request.csp_nonce }}">
-  (function(){
-    var form=document.getElementById('coopForm'); if(!form) return;
-    var I=(window.I18N&&window.I18N.coop)||{};
-    var submit=document.getElementById('coopSubmit'), done=document.getElementById('coopDone'),
-        fehler=document.getElementById('coopErr');
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      if(!form.checkValidity()){ form.reportValidity(); return; }
-      submit.disabled=true; submit.classList.add('is-busy'); submit.textContent=I.busy||'…';
-      fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
-        .then(function(r){ return r.json(); })
-        .then(function(j){
-          if(!j.ok) throw new Error('fail');
-          form.querySelectorAll('.fld,.coop-f-row,.coop-submit,.coop-fine').forEach(function(el){ el.hidden=true; });
-          done.hidden=false; done.scrollIntoView({behavior:'smooth',block:'center'});
-        })
-        .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
-          submit.textContent=I.submit||'…';
-          if(fehler){ fehler.textContent=I.error||'Error'; fehler.hidden=false; } });
-    });
-    // Design B1 (§2.16): das Formular oeffnet sich nicht von selbst per
-    // :target-Sprung — dieses Mini-Skript oeffnet es, wenn der Seitenanker
-    // beim Laden #partner-werden oder #kooperationen ist.
-    var koopWerden=document.getElementById('koopWerden');
-    if (koopWerden && (location.hash === '#partner-werden' || location.hash === '#kooperationen')) {
-      koopWerden.open = true;
-    }
-  })();
-  </script>
 {% endblock %}
+
 
 {% block extra_js %}
 {% comment %}Setzt die Haken der Schnellstart-Pakete. Der Kurzrechner ist am 01.10.2026

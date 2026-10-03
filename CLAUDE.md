@@ -62,7 +62,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
   Console, `docs/INDEXIERUNG.md`).
 - **Nach jeder Inhaltsänderung:** `python manage.py stand_schreiben` (Änderungsdaten nach
   `landing/stand.py`; `--pruefen` meldet Abweichung im CI mit Rückgabewert 1).
-- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 691 Tests (Stand 03.10.2026) in
+- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 696 Tests (Stand 03.10.2026) in
   `landing/tests/`, strukturell geschrieben (URL-Liste aus `_seiten_pfade()`, Preise aus
   `ANGEBOT_GROUPS`). Läuft bei jedem Push über `.github/workflows/pruefen.yml`.
 - Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
@@ -118,7 +118,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 691 Tests in 59 Dateien (Stand 03.10.2026)
+- `landing/tests/` — 696 Tests in 59 Dateien (Stand 03.10.2026)
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/` — `base.html` (Gerüst), `antwort.html`, `anfrage_karte.html`, `icons_sprite.html`, `honigtopf.html`, `datenschutzhinweis.html` u. a.; Liste in `docs/CLAUDE-AUSGELAGERT.md`
 - `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang; `static/js/kostenrechner.js` · `startpakete.js` rechnen nichts selbst

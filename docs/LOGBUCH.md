@@ -7,6 +7,27 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 03.10.2026 — Startseite entrümpelt, Partnerlink Domaintechnik, Conversion
+
+Ziel: Besucher sehen sofort, was WVM-IT anbietet, und rufen an. **Element-Bilanz der Startseite
+(Test `test_hosting_band`, Grenze 1.500, Ziel 1.200): vorher DE 1.498 · EN 1.498 · RO 1.498, nachher
+DE 1.050 · EN 1.050 · RO 1.050.**
+- Einzel-Konfigurator (`details#rbEinzeln` mit Skript und Summenkarte, rund 420 Elemente) von `/` entfernt;
+  die sechs Startpakete bleiben, darunter eine Zeile auf `/angebot/#preisliste`. `/?paket=x` leitet per 302
+  auf `/angebot/?paket=x`. Der Endpunkt `angebot_anfordern` bleibt (nur die Startseite hat ihn nicht mehr).
+- Partner-Formular `coopForm` nach `/kontakt/#kooperationen` (mit Honigtopf und Datenschutzhinweis); auf der
+  Startseite bleibt ein schmaler Streifen mit der pystore.de-Karte. Fuß-Link zeigt auf die Kontaktseite,
+  Fehler-Redirect von `kooperation_anfordern` ebenfalls.
+- Reihenfolge: Hero, Wegweiser (mit `#hosting`), `#gratis`, Startpakete, Preise, Über, Ablauf, FAQ, Kontakt, Streifen.
+- Hero-Subline nennt Betreuung, Hilfe ohne Vertrag, Webseiten mit kostenloser Testseite, Domain/Hosting/E-Mail,
+  KI, Technik vor Ort und Florin; Vertrauenspunkt „Testseite gratis“ verlinkt auf `#gratis`. Navigation: „Webseiten“.
+- **Partnerlink** `views.PARTNER_DOMAINTECHNIK_URL` (`?affiliate=24853`): eine gekennzeichnete Zeile
+  („Anzeige“, Provisionshinweis, `rel="sponsored noopener"`, `target="_blank"`) im `#hosting`-Band und ein Kasten auf
+  `/leistungen/hosting-wartung/` (Feld `partner` in `leistungen.py`). Nicht im Fuß, nicht auf Ortsseiten (Test).
+- Cookie-Banner unter 820 px über der Anruf-Leiste, höchstens 40 % Fensterhöhe (nur CSS).
+- Offen für Bastian: Der Datenschutztext nennt weiter das Richtangebot-Kästchen, das nur im entfernten
+  Konfigurator stand (Rechtstexte nur über den Generator). Meta der Startseite gehört Paket seo-technik-onpage.
+
 ## 03.10.2026 — Florins LinkedIn-Profil, Parkseite per Chrome geprüft
 
 Florins Profil `linkedin.com/in/florin-feier-186bb0425/` (WVM-IT-Banner, dasselbe Foto, Beiträge

@@ -58,4 +58,61 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
     </div>
   </div>
 </section>
+
+{% comment %} Kooperationsformular (03.10.2026 von der Startseite hierher, damit der
+     Kundenfluss dort nicht von einem Partner-Formular unterbrochen wird). Endpunkt
+     kooperation_anfordern unverändert; Fuß-Link „Kooperationspartner werden“ zeigt hierher. {% endcomment %}
+<section class="section section-alt section-streifen" id="kooperationen">
+  <div class="wrap">
+    <header class="sec-head" data-reveal>
+      <p class="sec-kick">{{ t.koop.eyebrow|safe }}</p>
+      <h2 class="section-t">{{ t.koop.join_h|safe }}</h2>
+      <p class="section-lead">{{ t.koop.join_p|safe }}</p>
+    </header>
+    <div class="coop-join" id="partner-werden">
+      <form class="coop-form" id="coopForm" method="post" action="{% url 'kooperation_anfordern' %}">
+        {% csrf_token %}
+        {% include 'honigtopf.html' %}
+        <div class="coop-f-row">
+          <label class="fld"><span>{{ t.koop.f_name|safe }}</span><input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="{{ t.koop.f_name_ph|safe }}"></label>
+          <label class="fld"><span>{{ t.koop.f_firma|safe }}</span><input type="text" name="firma" maxlength="120" autocomplete="organization" placeholder="{{ t.koop.f_firma_ph|safe }}"></label>
+        </div>
+        <label class="fld"><span>{{ t.koop.f_email|safe }}</span><input type="email" name="email" required maxlength="254" autocomplete="email" placeholder="name@firma.at"></label>
+        <label class="fld"><span>{{ t.koop.f_msg|safe }}</span><textarea name="nachricht" rows="3" required maxlength="1200" placeholder="{{ t.koop.f_msg_ph|safe }}"></textarea></label>
+        <button class="btn btn-lg coop-submit" type="submit" id="coopSubmit">{{ t.koop.submit|safe }}</button>
+        <p class="lb-err" id="coopErr" role="alert" hidden></p>
+        <p class="coop-fine">{{ t.koop.fine|safe }}</p>
+        <div class="coop-done" id="coopDone" hidden>
+          <span class="coop-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+          <div><strong>{{ t.koop.done_h|safe }}</strong><p>{{ t.koop.done_p|safe }}</p></div>
+        </div>
+        {% include 'datenschutzhinweis.html' %}
+      </form>
+    </div>
+  </div>
+</section>
+
+<script nonce="{{ request.csp_nonce }}">
+(function(){
+  var form=document.getElementById('coopForm'); if(!form) return;
+  var I=(window.I18N&&window.I18N.coop)||{};
+  var submit=document.getElementById('coopSubmit'), done=document.getElementById('coopDone'),
+      fehler=document.getElementById('coopErr');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    submit.disabled=true; submit.classList.add('is-busy'); submit.textContent=I.busy||'…';
+    fetch(form.action,{method:'POST',body:new FormData(form),headers:{'X-Requested-With':'fetch'}})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(!j.ok) throw new Error('fail');
+        form.querySelectorAll('.fld,.coop-f-row,.coop-submit,.coop-fine').forEach(function(el){ el.hidden=true; });
+        done.hidden=false; done.scrollIntoView({behavior:'smooth',block:'center'});
+      })
+      .catch(function(){ submit.disabled=false; submit.classList.remove('is-busy');
+        submit.textContent=I.submit||'…';
+        if(fehler){ fehler.textContent=I.error||'Error'; fehler.hidden=false; } });
+  });
+})();
+</script>
 {% endblock %}

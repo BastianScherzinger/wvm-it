@@ -82,6 +82,8 @@ LEISTUNGEN = [
 
     {"slug": "hosting-wartung", "bereich": "sicht", "icon": "domain", "quelle": "hosting", "preis": "hosting",
      "vor_ort": False, "prio": "0.7",
+     # Partnerlink (03.10.2026): nur diese Seite und der Startseiten-Block zeigen ihn.
+     "partner": "domaintechnik",
      "verwandt": ["webseite-erstellen", "server-datensicherung", "edv-it-betreuung"], "einstieg": "hosting",},
 
     {"slug": "ki-automatisierung", "bereich": "sicht", "icon": "ai", "quelle": "ki", "preis": "termin",

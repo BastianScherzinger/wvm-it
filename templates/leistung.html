@@ -81,6 +81,16 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
         <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
           <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
 
+        {% comment %} Partnerlink Domaintechnik (nur Leistungen mit Feld `partner` in
+             leistungen.py): gekennzeichnet als Anzeige, rel="sponsored noopener". {% endcomment %}
+        {% if partner_domaintechnik_url %}
+        <aside class="hb-kasten" aria-labelledby="hb-kasten-h">
+          <h2 class="hb-kasten-h" id="hb-kasten-h">{{ t.hosting_band.partner_h|safe }}</h2>
+          <p class="hb-partner"><span class="hb-anz">{{ t.hosting_band.partner_anz|safe }}</span> {{ t.hosting_band.partner_t|safe }} <a href="{{ partner_domaintechnik_url }}" target="_blank" rel="sponsored noopener">{{ t.hosting_band.partner_link|safe }}</a> <small>{{ t.hosting_band.partner_hinweis|safe }}</small></p>
+          <a class="btn btn-ghost btn-sm" href="#anfrage">{{ t.hosting_band.partner_cta|safe }}</a>
+        </aside>
+        {% endif %}
+
         {% comment %} ── Der kleine erste Schritt (06.09.2026) ────────────────────
           Der Katalog enthielt die passenden Positionen laengst — IT-Sicherheitscheck
           490 €, Fernwartung 95 €/Std., One-Pager 350 € —, angeboten wurden sie auf

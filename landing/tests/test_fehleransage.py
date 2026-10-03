@@ -100,14 +100,21 @@ class FehleransageTest(SimpleTestCase):
         html = client().get("/").content.decode("utf-8")
         self.assertNotIn(i18n.get_pack("de")["form"]["fehler_pruefen"], html)
 
-    def test_das_skript_legt_rberr_an_statt_ihn_zu_suchen(self):
-        """Der Konfigurator: Ohne das Anlegen bliebe `fehler` null und der Text ungesagt."""
-        with open("templates/index.html", encoding="utf-8") as datei:
-            vorlage = datei.read()
-        self.assertNotIn('id="rbErr"', vorlage)
-        self.assertIn("fehler.id='rbErr'", vorlage)
-        self.assertIn("fehler.setAttribute('role','alert')", vorlage)
-        self.assertIn('id="rbGate" aria-live="polite"', vorlage)
+    def test_startseite_traegt_den_einzel_konfigurator_nicht_mehr(self):
+        """Der Konfigurator (`#rbForm`, mit dem Skript, das `#rbErr` anlegte) ist am
+        03.10.2026 von der Startseite verschwunden; er wohnt auf /angebot/. Die
+        Startseite führt über die Startpakete und eine Textzeile dorthin."""
+        for pfad in ("/", "/en/", "/ro/"):
+            with self.subTest(pfad=pfad):
+                html = client().get(pfad).content.decode("utf-8")
+                for weg in ("rbForm", "rbEinzeln", "rbErr", "rbGate"):
+                    self.assertNotIn(weg, html)
+                self.assertIn("angebot/#preisliste", html)
+
+    def test_alte_paket_links_leiten_auf_angebot(self):
+        antwort = client().get("/?paket=web")
+        self.assertEqual(antwort.status_code, 302)
+        self.assertEqual(antwort["Location"], "/angebot/?paket=web")
 
 
 class KontaktGenauEineMeldungTest(SimpleTestCase):

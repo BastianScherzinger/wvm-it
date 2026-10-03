@@ -85,7 +85,7 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
   <div class="wrap foot-bottom">
     <span>© {{ c.jahr }} {{ c.site_name }}</span>
     {% include 'lang_switch.html' %}
-    <a class="foot-join" href="{% url 'index' %}#kooperationen">{{ t.koop.join_h|safe }}</a>
+    <a class="foot-join" href="{% url 'kontakt' %}#kooperationen">{{ t.koop.join_h|safe }}</a>
     <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
   </div>
 </footer>

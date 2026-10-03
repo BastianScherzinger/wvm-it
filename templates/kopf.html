@@ -39,6 +39,7 @@ und öffnet stattdessen den Dialog — ohne JS bleibt der einfache Link gültig.
       <nav class="nav-links" aria-label="{{ t.nav.main_nav|safe }}">
         <a href="{% url 'leistungen' %}">{{ t.nav.leistungen|safe }}</a>
         <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }}</a>
+        <a href="{% url 'leistung' slug='webseite-erstellen' %}">{{ t.nav.webseiten|safe }}</a>
         <a href="{% url 'einrichtungen' %}">{{ t.seite.einrichten|safe }}</a>
         <a href="{% url 'kosten' %}">{{ t.nav.kosten_betreuung|safe }}</a>
         <a href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}</a>

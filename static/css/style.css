@@ -2641,3 +2641,30 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
 @media (max-width:900px){.hb-liste{grid-template-columns:1fr}.hb-karte{padding:20px}}
 @media (prefers-reduced-motion: reduce){.hb-karte{transition:none}.hb-karte:hover{transform:none}}
 @media print{.hb{display:none!important}}
+
+/* ── Partnerlink Domaintechnik (03.10.2026) ───────────────────────────────────
+   Eine ruhige Zeile unter den Hosting-Karten und ein Kasten auf der Hosting-
+   Seite. Die Kennzeichnung „Anzeige“ steht vorn und gut lesbar (§ 6 ECG, UWG),
+   der Provisionshinweis darunter in normaler Lesegröße, nicht ausgegraut. */
+.hb .hb-partner,.hb-kasten .hb-partner{max-width:60em;width:100%}
+.hb-partner{margin:20px 0 0;max-width:60em;font-size:15px;line-height:1.6;color:var(--ink-dim)}
+.hb-anz{display:inline-block;margin-right:6px;padding:1px 8px;border:1px solid var(--line-2);
+  border-radius:var(--radius-sm);font:600 12px/1.6 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.hb-partner a{color:var(--accent-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.hb-partner small{display:block;margin-top:6px;font-size:13.5px;line-height:1.5;color:var(--ink-dim)}
+.hb-kasten{margin:var(--s7,48px) 0 0;padding:24px;background:var(--surface);border:1px solid var(--line-2);
+  border-radius:var(--radius)}
+.hb-kasten-h{margin:0 0 10px;font-family:var(--serif);font-weight:500;font-size:clamp(1.2rem,2.2vw,1.5rem);color:var(--ink)}
+.hb-kasten .hb-partner{margin:0 0 16px}
+
+/* ── Cookie-Hinweis unter 820 px über der Anruf-Leiste (03.10.2026) ──────────
+   Die Leiste (.mobilebar) ist 10 + 48 + 10 px hoch plus sichere Zone. Der Hinweis
+   saß darüber auf 12 px und deckte sie beim Erstbesuch ab: kein Anruf mit einem
+   Tap. Jetzt sitzt er oberhalb, kompakt und höchstens 40 % der Fensterhöhe. */
+@media (max-width:820px){
+  .cookie-banner{bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  .cookie-inner{padding:12px 14px;gap:10px;max-height:40vh;max-height:40dvh;overflow-y:auto}
+  .cookie-text strong{font-size:15px;margin-bottom:2px}
+  .cookie-text p{font-size:12.5px;line-height:1.45}
+  .cookie-actions .btn{min-height:40px}
+}
