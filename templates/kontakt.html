@@ -25,7 +25,7 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
     <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
       {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
       {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
-      <button class="way" type="button" data-rueckruf>{% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span></button>
+      <a class="way" href="#anfrage" data-rueckruf>{% include 'icons.html' with name='clock' %}<span>{{ t.ways.callback|safe }}</span></a>
       <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
     </div>
   </div>

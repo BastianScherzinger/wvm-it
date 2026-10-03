@@ -52,6 +52,33 @@
     if (ausgaben[name]) ausgaben[name].textContent = zahlFormat.format(zahl);
   }
 
+  // Anfragefeld unter dem Rechner (EIG395): Der Server setzt beim Laden einen Satz
+  // mit den damaligen Werten ein („5× Arbeitsplatz … — 283 €/Monat“). Änderte der
+  // Besucher danach die Zahlen, blieb der alte Satz stehen und ging so ab. Der
+  // Satz wird nur nachgezogen, solange das Feld noch den zuletzt eingesetzten Satz
+  // trägt — was der Besucher selbst getippt hat, bleibt unangetastet. Die Vorlage
+  // kommt vom Server (`data-kr-vorlage`, Sprachpaket), die Namen stehen in der Tabelle.
+  var anfrageFeld = document.getElementById("ak-text-it");
+  var vorlage = form.getAttribute("data-kr-vorlage") || "";
+  var letzterSatz = anfrageFeld ? anfrageFeld.value : "";
+
+  function namenVon(id) {
+    var th = posten ? posten.querySelector('th[data-kr-id="' + id + '"]') : null;
+    return th ? th.textContent.trim() : id;
+  }
+
+  function aktualisiereAnfrage(zeilen, mtl) {
+    if (!anfrageFeld || !vorlage) return;
+    if (anfrageFeld.value !== letzterSatz) return;          // vom Besucher geändert
+    var teile = zeilen.map(function (z) { return z.menge + "× " + namenVon(z.id); });
+    var neu = teile.length
+      ? vorlage.replace("{posten}", teile.join(", ")).replace("{mtl}", String(mtl))
+               .replace("{jahr}", String(mtl * 12))
+      : "";
+    anfrageFeld.value = neu;
+    letzterSatz = neu;
+  }
+
   function rechne() {
     var laufend = ["ap", "srv", "backup"];
     var einmal = ["neu", "m365"];
@@ -98,6 +125,7 @@
       });
     }
     if (leer) leer.hidden = zeilen.length > 0;
+    aktualisiereAnfrage(zeilen, mtl);
   }
 
   felder.forEach(function (el) {

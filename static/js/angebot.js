@@ -22,6 +22,7 @@
   var T_FROM = I.from || "ab";
   var T_PM = I.per_month || "€/Mt";
   var T_PY = I.per_year || "€/Jahr";
+  var T_PH = I.per_hour || "€/Std.";
   var T_ONE = I.leistung || "Leistung";
   var T_MANY = I.leistungen || "Leistungen";
   var T_REMOVE = I.remove || "Entfernen:";
@@ -31,7 +32,10 @@
   var panels = Array.prototype.slice.call(form.querySelectorAll(".wz-panel"));
   var steps = Array.prototype.slice.call(form.querySelectorAll(".wz-step"));
   var bar = document.getElementById("wzBar");
-  var head = document.getElementById("konfigurator");
+  // Ziel des Scrollens ist die Schrittleiste direkt über dem aktiven Schritt, nicht
+  // der äußere Abschnitt `#konfigurator` mit Einleitung und Paketauswahl (EIG397):
+  // Dorthin zurückzuscrollen ließ den nächsten Eingabeschritt außerhalb des Bildschirms.
+  var head = document.getElementById("wzSteps") || document.getElementById("konfigurator");
   var last = panels.length - 1;
   var current = 0;
 
@@ -98,7 +102,10 @@
     if (d.once) parts.push(eur(d.once) + " €");
     if (d.mtl) parts.push(d.mtl + " " + T_PM);
     if (d.yr) parts.push(eur(d.yr) + " " + T_PY);
-    return parts.join(" + ") || "-";
+    // Stundensatz (EIG396): wird nie aufsummiert, steht aber in der Position.
+    if (d.std) parts.push(d.std + " " + T_PH);
+    var text = parts.join(" + ") || "-";
+    return d.std && !d.once && !d.mtl && !d.yr ? T_FROM + " " + text : text;
   }
 
   // Stueckzahl einer Position. Positionen ohne Mengenfeld gibt es genau einmal.
@@ -124,25 +131,29 @@
       once: (parseInt(box.getAttribute("data-once"), 10) || 0) * n,
       mtl: (parseInt(box.getAttribute("data-mtl"), 10) || 0) * n,
       yr: (parseInt(box.getAttribute("data-yr"), 10) || 0) * n,
-      anfrage: box.getAttribute("data-anfrage") === "1"
+      std: parseInt(box.getAttribute("data-std"), 10) || 0,
+      // Stundensätze zählt auch der Server als „Preis auf Anfrage“ (views._angebot_summary).
+      anfrage: box.getAttribute("data-anfrage") === "1" || !!parseInt(box.getAttribute("data-std"), 10)
     };
   }
 
-  function runSummary(once, mtl, yr) {
+  function runSummary(once, mtl, yr, std) {
     var main = "";
     if (once) main = T_FROM + " " + eur(once) + " €";
     if (mtl) main += (main ? " + " : "") + eur(mtl) + " " + T_PM;
     if (!main && yr) main = eur(yr) + " " + T_PY;
+    if (!main && std) main = T_FROM + " " + std + " " + T_PH;
     return main || "0 €";
   }
 
   function render() {
     var chosen = boxes.filter(function (b) { return b.checked; }).map(read);
-    var once = 0, mtl = 0, yr = 0, anfrage = false;
+    var once = 0, mtl = 0, yr = 0, anfrage = false, std = 0;
 
     var frag = document.createDocumentFragment();
     chosen.forEach(function (d) {
       once += d.once; mtl += d.mtl; yr += d.yr;
+      if (d.std && (!std || d.std < std)) std = d.std;     // niedrigster Stundensatz der Auswahl
       if (d.anfrage) anfrage = true;
       var li = document.createElement("li");
       li.className = "ang-ci";
@@ -178,7 +189,7 @@
     if (totalsEl) totalsEl.hidden = chosen.length === 0;
 
     var label = chosen.length + " " + (chosen.length === 1 ? T_ONE : T_MANY);
-    var sum = runSummary(once, mtl, yr);
+    var sum = runSummary(once, mtl, yr, std);
     runCounts.forEach(function (el) { el.textContent = label; });
     runSums.forEach(function (el) { el.textContent = sum; });
     if (countEl) countEl.textContent = label;

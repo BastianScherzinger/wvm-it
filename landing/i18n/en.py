@@ -70,6 +70,7 @@ PACK = {
         "wieder_heute": "Back today from 9 am",
         "wieder_morgen": "Back tomorrow from 9 am",
         "wieder_montag": "Back on Monday from 9 am",
+        "wieder_werktag": "Back on the next working day from 9 am",
     },
     "cookie": {
         "aria": "Cookie notice",
@@ -169,7 +170,7 @@ PACK = {
     "rb": {
         "eyebrow": "Your ballpark quote",
         "title": "Put together a quote, get a ballpark price.",
-        "lead": "Tap what interests you – from websites, hosting and AI to smart home, network, IT and event technology. We unlock your personal ballpark price with your email and send it to you. No obligation, in under a minute.",
+        "lead": "Tap what interests you – from websites, hosting and AI to smart home, network, IT and event technology. You see your personal ballpark price right away; with your email you request the exact quote. No obligation, in under a minute.",
         "card_h": "Your ballpark quote",
         "count": "0 services",
         "sum_empty": "Nothing selected yet – tap services on the left.",
@@ -184,10 +185,10 @@ PACK = {
         "lock": "Unlock your ballpark price with email",
         "email_label": "Email for your estimate *",
         "consent": "Also send me relevant offers by email in future. Optional, unsubscribe any time.",
-        "submit": "Email me the estimate",
+        "submit": "Request the estimate",
         "fine": "Ballpark prices, net plus VAT. No obligation, no account needed. Reply within 24 hours on working days.",
-        "done_h": "On its way — your estimate will be in your inbox shortly.",
-        "done_t": "We've emailed you the overview and will follow up with the exact quote.",
+        "done_h": "Received — we will get back to you with your estimate.",
+        "done_t": "Your selection has reached us. We will get back to you within 24 hours on working days with the exact quote.",
         "all_link": "Rather see the full price list →",
         "js_leistung": "service",
         "js_leistungen": "services",
@@ -1307,6 +1308,8 @@ PACK = {
         "js_done_hint": "You'll also find the link in your email.",
         "js_fail_title": "Something just went wrong.",
         "js_fail_sub": "No problem — we'll take care of it personally and get in touch with you.",
+        "js_slow_title": "This is taking longer than usual.",
+        "js_slow_sub": "Your site is not ready yet. You can close this window and contact us directly by message or phone.",
     },
     # ── Rebuild 2026-08: contact ways, hero tool, promises, process, service blocks ──
     # Per-reference case texts (2026-09-06); empty means every entry falls back

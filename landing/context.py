@@ -5,7 +5,7 @@ Getrennt von `i18n.context_processor`, weil hier `views` gebraucht wird und
 `views` seinerseits `i18n` importiert: der Import passiert deshalb erst beim
 Aufruf, nicht beim Laden des Moduls.
 """
-from datetime import datetime
+from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
 from django.urls import reverse
@@ -20,6 +20,41 @@ FOOTER_REGIONEN = 5
 _WIEN = ZoneInfo("Europe/Vienna")
 
 
+def _ostersonntag(jahr):
+    """Ostersonntag nach der Gaußschen Osterformel (gregorianischer Kalender)."""
+    a = jahr % 19
+    b, c = divmod(jahr, 100)
+    d, e = divmod(b, 4)
+    f = (b + 8) // 25
+    g = (b - f + 1) // 3
+    h = (19 * a + b - d - g + 15) % 30
+    i, k = divmod(c, 4)
+    l = (32 + 2 * e + 2 * i - h - k) % 7
+    m = (a + 11 * h + 22 * l) // 451
+    monat, tag = divmod(h + l - 7 * m + 114, 31)
+    return date(jahr, monat, tag + 1)
+
+
+def feiertag(tag):
+    """True, wenn `tag` (ein `date`) ein gesetzlicher Feiertag in Österreich ist.
+
+    Feste Feiertage plus die vier beweglichen (Ostermontag, Christi Himmelfahrt,
+    Pfingstmontag, Fronleichnam). Der Karfreitag ist in Österreich nur für wenige
+    Gruppen ein Feiertag und zählt hier nicht. Anlass: EIG308/314 — die Statuszeile
+    zeigte an Feiertagen „Erreichbar“, während `/kontakt/` Anfragen außerhalb der
+    Zeiten am nächsten Werktag beantwortet."""
+    if (tag.month, tag.day) in {(1, 1), (1, 6), (5, 1), (8, 15), (10, 26), (11, 1),
+                                (12, 8), (12, 25), (12, 26)}:
+        return True
+    ostern = _ostersonntag(tag.year)
+    return tag in {ostern + timedelta(days=n) for n in (1, 39, 50, 60)}
+
+
+def _werktag(tag):
+    """Mo–Fr und kein Feiertag: ein Tag, an dem die Zeiten „Mo–Fr 9–18 Uhr“ gelten."""
+    return tag.weekday() <= 4 and not feiertag(tag)
+
+
 def _erreichbarkeit(jetzt):
     """Reine Funktion: aus einem `datetime` wird der Erreichbarkeits-Zustand.
 
@@ -29,20 +64,34 @@ def _erreichbarkeit(jetzt):
 
     Regeln: Mo–Fr 9:00–17:59 offen · Mo–Do ab 18 Uhr „heute Abend, Regel:
     wieder morgen" · Mo–Fr vor 9 Uhr „wieder heute" · Fr ab 18 Uhr, Sa, So
-    „wieder Montag". Feiertage kennt die Regel nicht (§4.5).
+    „wieder Montag". Gesetzliche Feiertage in Österreich zählen wie ein
+    Wochenende (EIG308/314): nie „erreichbar“, und ist der nächste Tag kein
+    Werktag oder ein Feiertag, steht „am nächsten Werktag“ statt „morgen“ oder
+    „Montag“.
     """
     lang = get_language() or "de"
     t = i18n.get_pack(lang).get("kopf", {})
+    heute = jetzt.date()
     tag = jetzt.weekday()  # Montag=0 … Sonntag=6
     stunde = jetzt.hour
-    if tag <= 4 and 9 <= stunde < 18:
-        return {"offen": True, "text": t.get("erreichbar", "")}
-    if tag <= 3 and stunde >= 18:
-        return {"offen": False, "text": t.get("wieder_morgen", "")}
-    if tag <= 4 and stunde < 9:
-        return {"offen": False, "text": t.get("wieder_heute", "")}
-    # Freitag ab 18 Uhr, Samstag, Sonntag.
-    return {"offen": False, "text": t.get("wieder_montag", "")}
+    if _werktag(heute):
+        if 9 <= stunde < 18:
+            return {"offen": True, "text": t.get("erreichbar", "")}
+        if stunde < 9:
+            return {"offen": False, "text": t.get("wieder_heute", "")}
+        # Ab 18 Uhr: Der nächste Öffnungstag bestimmt den Text.
+        morgen = heute + timedelta(days=1)
+        if _werktag(morgen):
+            return {"offen": False,
+                    "text": t.get("wieder_morgen" if tag <= 3 else "wieder_montag", "")}
+    # Wochenende, Feiertag, oder der nächste Tag ist keiner der Werktage.
+    naechster = heute + timedelta(days=1)
+    while not _werktag(naechster):
+        naechster += timedelta(days=1)
+    if naechster.weekday() == 0 and not feiertag(heute) and (naechster - heute).days <= 3:
+        # Klassisch: Freitagabend, Samstag, Sonntag → Montag.
+        return {"offen": False, "text": t.get("wieder_montag", "")}
+    return {"offen": False, "text": t.get("wieder_werktag", t.get("wieder_montag", ""))}
 
 
 def erreichbarkeit(request):
@@ -52,6 +101,33 @@ def erreichbarkeit(request):
     also bei jedem Aufruf. Zeitzone Europe/Vienna , Florins Sitz.
     """
     return {"erreichbarkeit": _erreichbarkeit(datetime.now(_WIEN))}
+
+
+def anfrage_fehler(request):
+    """Kontextprozessor: die Fehlermeldung, die eine Kurzanfrage ohne JavaScript
+    hinterlässt (EIG291/377).
+
+    `views.leistung_anfrage` leitet nach einem Fehler auf `<seite>?fehler=<code>#anfrage`
+    zurück. Ohne diese Meldung stand das Formular wieder leer da, und die Seite
+    verlor kein Wort darüber, was schiefging. Der Text kommt aus dem Sprachpaket
+    (`lb.err_kontakt`, `lb.err_allg`, `anfrage_done.limit_*`), nicht aus der URL —
+    der Parameter wählt nur aus, was ausgegeben wird. Nur bei GET und nur, wenn der
+    Code bekannt ist."""
+    code = (request.GET.get("fehler") or "").strip().lower()
+    if request.method != "GET" or not code:
+        return {"anfrage_fehler_text": ""}
+    from .views import _ANFRAGE_FEHLER
+    if code not in _ANFRAGE_FEHLER and code != "allg":
+        return {"anfrage_fehler_text": ""}
+    pack = i18n.get_pack(get_language() or "de")
+    if code == "limit":
+        fertig = pack.get("anfrage_done", {})
+        text = f"{fertig.get('limit_h', '')} {fertig.get('limit_p', '')}".strip()
+    elif code == "kontakt":
+        text = pack.get("lb", {}).get("err_kontakt", "")
+    else:
+        text = pack.get("lb", {}).get("err_allg", "")
+    return {"anfrage_fehler_text": text}
 
 
 def navigation(request):

@@ -64,6 +64,7 @@ PACK = {
         "wieder_heute": "Din nou disponibil azi de la ora 9",
         "wieder_morgen": "Din nou disponibil mâine de la ora 9",
         "wieder_montag": "Din nou disponibil luni de la ora 9",
+        "wieder_werktag": "Din nou disponibil în următoarea zi lucrătoare, de la ora 9",
     },
     "cookie": {
         "aria": "Notificare cookie",
@@ -163,7 +164,7 @@ PACK = {
     "rb": {
         "eyebrow": "Oferta dumneavoastră orientativă",
         "title": "Alcătuiți o ofertă, primiți un preț orientativ.",
-        "lead": "Atingeți ce vă interesează – de la site-uri web, găzduire și AI până la casă inteligentă, rețea, IT și tehnică pentru evenimente. Vă deblocăm prețul orientativ personal cu e-mailul dumneavoastră și vi-l trimitem. Fără obligații, în mai puțin de un minut.",
+        "lead": "Atingeți ce vă interesează – de la site-uri web, găzduire și AI până la casă inteligentă, rețea, IT și tehnică pentru evenimente. Vedeți imediat prețul orientativ personal; cu e-mailul dumneavoastră solicitați oferta exactă. Fără obligații, în mai puțin de un minut.",
         "card_h": "Oferta dumneavoastră orientativă",
         "count": "0 servicii",
         "sum_empty": "Nimic ales încă – atingeți servicii în stânga.",
@@ -178,10 +179,10 @@ PACK = {
         "lock": "Deblocați prețul orientativ cu e-mail",
         "email_label": "E-mail pentru oferta dumneavoastră *",
         "consent": "Trimiteți-mi pe viitor și oferte potrivite prin e-mail. Opțional, dezabonare oricând.",
-        "submit": "Trimiteți oferta pe e-mail",
+        "submit": "Solicitați oferta",
         "fine": "Prețuri orientative, net plus TVA. Fără obligații, fără cont necesar. Răspuns în 24 de ore în zilele lucrătoare.",
-        "done_h": "Pe drum — oferta ajunge imediat în căsuța dumneavoastră.",
-        "done_t": "V-am trimis prezentarea generală pe e-mail și revenim cu oferta exactă.",
+        "done_h": "Primit — revenim la dumneavoastră cu oferta.",
+        "done_t": "Selecția dumneavoastră a ajuns la noi. Revenim în 24 de ore în zilele lucrătoare cu oferta exactă.",
         "all_link": "Preferați să vedeți lista completă de prețuri →",
         "js_leistung": "serviciu",
         "js_leistungen": "servicii",
@@ -1299,6 +1300,8 @@ PACK = {
         "js_done_hint": "Găsiți linkul și în e-mailul dumneavoastră.",
         "js_fail_title": "Ceva tocmai nu a mers.",
         "js_fail_sub": "Nicio problemă — ne ocupăm personal și revenim la dumneavoastră.",
+        "js_slow_title": "Durează mai mult decât de obicei.",
+        "js_slow_sub": "Site-ul dumneavoastră nu este încă gata. Puteți închide această fereastră și ne puteți scrie sau suna direct.",
     },
     # ── Reconstrucție 2026-08: căi de contact, unealtă hero, promisiuni, pași, servicii ──
     # Texte de caz per referință (06.09.2026); gol înseamnă că toate

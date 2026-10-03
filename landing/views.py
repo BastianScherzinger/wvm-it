@@ -714,7 +714,9 @@ def _rechner_werte(quelle):
             continue
         try:
             zahl = int(float(roh.replace(",", ".")))
-        except ValueError:
+        except (ValueError, OverflowError):
+            # `float("1e999")` ist `inf`, und `int(inf)` wirft OverflowError (EIG322);
+            # `nan` wirft ValueError. Beides fällt auf die Vorbelegung zurück.
             zahl = feld["vor"]
         werte[feld["id"]] = max(0, min(zahl, feld["max"]))
     return werte
@@ -1137,7 +1139,10 @@ def _handle_angebot(request, c) -> bool:
     if _honigtopf(request):
         return True             # Bot: so tun, als wäre alles gut, aber nichts mailen
     if _limit_erreicht(request, "kontakt"):
-        return True
+        # Kein Erfolg vortäuschen (EIG239/251): Ein echter Besucher, der die
+        # Bremse trifft, muss erfahren, dass nichts angekommen ist.
+        request.limit_gesperrt = True
+        return False
     name = _feld(request, "name")
     email = _feld(request, "email")
     if not (name and _ist_email(email)):
@@ -1217,7 +1222,8 @@ def _handle_contact(request, c) -> bool:
     if _honigtopf(request):
         return True             # Bot: still verwerfen, aber wie Erfolg aussehen lassen
     if _limit_erreicht(request, "kontakt"):
-        return True
+        request.limit_gesperrt = True                     # EIG239/251: kein vorgetäuschter Erfolg
+        return False
     name = _feld(request, "name")
     email = _feld(request, "email")
     nachricht = _feld(request, "nachricht")
@@ -1307,6 +1313,10 @@ _LIMITS = {                     # (Anfragen, Sekunden) je Bereich und IP
     "kooperation": (3, 60 * 60),    # verschickt Mail an eine FREMDE Adresse
     "newsletter":  (5, 60 * 60),    # Double-Opt-in, verschickt an fremde Adresse
     "bauauftrag":  (5, 60 * 60),    # Detailbogen: je Absendung ein JARVIS-Bau-Auftrag
+    # Anfragen, deren Fallenfeld die eigene Adresse trägt (Ausfüllhilfe, EIG330/385):
+    # ein Mensch mit Passwortverwalter schickt ein, zwei Formulare; ein Skript, das
+    # die eigene Domain eintippt, schickt Dutzende. Eigener, enger Zähler.
+    "ausfuellhilfe": (3, 15 * 60),     # innerhalb der in der Datenschutzerklärung genannten Fristen
 }
 _FELD_MAX = {                   # Feldlängen. Alles Längere wird abgeschnitten.
     "name": 120, "email": 254, "telefon": 40, "firma": 160,
@@ -1383,7 +1393,15 @@ def _honigtopf(request) -> bool:
     pfad = request.path
     knapp = wert[:120]
     if _ist_eigene_adresse(request, wert):
-        # Ausfuellhilfe, kein Bot: durchlassen, aber zaehlen.
+        # Ausfuellhilfe, kein Bot: durchlassen, aber zaehlen. Wer die eigene Adresse
+        # dagegen mehr als dreimal in 15 Minuten einträgt, ist kein Passwortverwalter
+        # (EIG330/385): Ein Skript kann die Domain aus der Seite lesen und umginge
+        # sonst die Falle vollständig. Ab der vierten gilt es als Bot.
+        if _limit_erreicht(request, "ausfuellhilfe"):
+            messung.zaehle("honigtopf", "bot")
+            print(f"[HONIGTOPF] eigene Adresse zu oft eingetragen, verworfen | {pfad} | {knapp}",
+                  flush=True)
+            return True
         messung.zaehle("honigtopf", "ausfuellhilfe")
         print(f"[HONIGTOPF] Ausfuellhilfe erkannt, Anfrage geht durch | {pfad} | {knapp}", flush=True)
         return False
@@ -1531,15 +1549,19 @@ def _betreff(text: str) -> str:
     return " ".join(str(text).split())[:180]
 
 
-def _subscriber_confirm(email: str, wunsch: str, ip: str) -> None:
+def _subscriber_confirm(email: str, wunsch: str, ip: str, newsletter: bool = False) -> None:
     """Nach Opt-in-Klick den Abonnenten bestätigen — aber NOCH KEINEN Bau-Auftrag anlegen.
-    Der Job entsteht erst, wenn der Kunde den Detail-Bogen absendet (_handle_anfrage)."""
+    Der Job entsteht erst, wenn der Kunde den Detail-Bogen absendet (_handle_anfrage).
+
+    `newsletter`: das getrennte Kästchen war angehakt und der Link ist bestätigt; dann wird
+    der Abonnent für den Wochen-Newsletter aktiviert (`supa.upsert_subscriber`, EIG242/250)."""
     try:
         from . import supa
         if not supa.enabled():
             return
         unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
-        supa.upsert_subscriber(email, wunsch, consent_ip=ip, unsub_token=unsub)
+        supa.upsert_subscriber(email, wunsch, consent_ip=ip, unsub_token=unsub,
+                               newsletter=newsletter)
     except Exception as exc:
         print(f"[SUBSCRIBER-CONFIRM-FEHLER] {exc}", flush=True)
 
@@ -1723,7 +1745,8 @@ def _handle_newsletter(request, c) -> bool:
     if _honigtopf(request):
         return True
     if _limit_erreicht(request, "newsletter"):
-        return True
+        request.limit_gesperrt = True                     # wie EIG239/251: kein vorgetäuschter Erfolg
+        return False
     email = _feld(request, "email")
     if not _ist_email(email):
         return False
@@ -1804,9 +1827,11 @@ def newsletter_confirm(request):
             # würden sonst dieselbe Mail mehrfach auslösen. Ist der Abonnent schon
             # bestätigt/aktiv, zeigen wir nur den Detail-Bogen — ohne erneuten Versand.
             already = False
+            status = ""
             try:
                 from . import supa
-                already = supa.subscriber_status(email) in ("confirmed", "active")
+                status = supa.subscriber_status(email)
+                already = status in ("confirmed", "active")
             except Exception as fehler:
                 # Supabase nicht erreichbar: Im Zweifel gilt der Abonnent als
                 # noch nicht bestaetigt — lieber eine Mail zu viel als eine
@@ -1816,16 +1841,21 @@ def newsletter_confirm(request):
             if not already:
                 _newsletter_deliver(email, wunsch, c, name=name, lang=tlang,
                                     newsletter=newsletter)
-                _subscriber_confirm(email, wunsch, _client_ip(request))
-                if newsletter:
-                    # Nachweis der Werbeeinwilligung (Art. 7 Abs. 1 DSGVO, § 174 TKG
-                    # 2021): Zeitpunkt, Formular, Adresse, IP des Bestätigungsklicks.
-                    # Derselbe Weg wie bei den Kurzanfragen; `anfragen_loeschen`
-                    # lässt genau diesen Nachweis stehen.
-                    _anfrage_sichern(quelle="newsletter", thema="Referenz-Newsletter (bestätigt)",
-                                     kontakt=email, lang=tlang, werbung="ja",
-                                     werbung_ip=_client_ip(request))
-                    messung.zaehle("werbeeinwilligung", "newsletter")
+                _subscriber_confirm(email, wunsch, _client_ip(request), newsletter=newsletter)
+            elif newsletter and status != "active":
+                # Schon als Interessent bestätigt (z. B. über den Detailbogen), erteilt
+                # aber erst jetzt die Newsletter-Einwilligung: keine zweite Willkommens-
+                # Mail, nur die Aktivierung und der Nachweis unten.
+                _subscriber_confirm(email, wunsch, _client_ip(request), newsletter=True)
+            if newsletter and status != "active":
+                # Nachweis der Werbeeinwilligung (Art. 7 Abs. 1 DSGVO, § 174 TKG
+                # 2021): Zeitpunkt, Formular, Adresse, IP des Bestätigungsklicks.
+                # Derselbe Weg wie bei den Kurzanfragen; `anfragen_loeschen`
+                # lässt genau diesen Nachweis stehen.
+                _anfrage_sichern(quelle="newsletter", thema="Referenz-Newsletter (bestätigt)",
+                                 kontakt=email, lang=tlang, werbung="ja",
+                                 werbung_ip=_client_ip(request))
+                messung.zaehle("werbeeinwilligung", "newsletter")
             # signiertes Token trägt E-Mail/Name/erste Angaben/Sprache sicher zum Detail-Bogen
             anfrage_token = signing.dumps({"e": email, "n": name, "w": wunsch, "l": tlang},
                                           salt=_ANFRAGE_SALT, compress=True)
@@ -1901,13 +1931,21 @@ def anfrage_absenden(request):
     images = _parse_images(request)
     full = _compose_full_wunsch(request, hero_wunsch, name, images)
     site_lang = _norm_site_lang(request.POST.get("site_lang"))
+    # Ob ein Bau-Auftrag in der Warteschlange liegt (EIG137/138/324/391). Bisher
+    # wurde jeder Fehler nur geloggt und trotzdem auf die Warteseite geleitet; dort
+    # meldete `bau_status` ohne Auftrag „queued“, oder — schlimmer — den früheren
+    # Auftrag derselben Adresse als fertig. `enqueue_job` liefert True (neu angelegt)
+    # oder False (es gibt schon einen offenen oder frisch fertigen Auftrag: das ist
+    # in Ordnung) und None bei Fehler oder abgeschalteter Datenbank.
+    auftrag_ok = False
     try:
         from . import supa
         if supa.enabled():
             unsub = signing.dumps({"e": email}, salt=_NEWSLETTER_UNSUB_SALT)
             sid = supa.upsert_subscriber(email, full, consent_ip=_client_ip(request), unsub_token=unsub)
             if sid:
-                supa.enqueue_job(sid, email, full, images=images, site_lang=site_lang)
+                auftrag_ok = supa.enqueue_job(sid, email, full, images=images,
+                                              site_lang=site_lang) is not None
     except Exception as exc:
         print(f"[ANFRAGE-FEHLER] {exc}", flush=True)
     # Postfach-Notiz (best effort)
@@ -1940,7 +1978,10 @@ def anfrage_absenden(request):
                      antwort_an=email, kampagne=k or "")
     # Auf die Live-Status-Warteseite schicken (pollt bis die Seite gebaut + live ist),
     # in der Sprache des Kunden (präfixierte URL).
-    status_token = signing.dumps({"e": email, "n": name, "l": lang}, salt=_STATUS_SALT, compress=True)
+    # `q`: 1 = Auftrag liegt vor, 0 = nicht angelegt. `bau_status` meldet bei 0
+    # sofort „failed“, statt die Warteseite endlos „queued“ zeigen zu lassen.
+    status_token = signing.dumps({"e": email, "n": name, "l": lang, "q": 1 if auftrag_ok else 0},
+                                 salt=_STATUS_SALT, compress=True)
     with translation.override(lang):
         return redirect(reverse("warten") + "?t=" + status_token)
 
@@ -1973,6 +2014,11 @@ def bau_status(request):
         email = (data.get("e") or "").strip()
     except signing.BadSignature:
         return JsonResponse({"state": "unknown"}, status=400)
+    if data.get("q", 1) == 0:
+        # Beim Absenden ist kein Auftrag entstanden (Datenbank aus oder Fehler). Den
+        # neuesten Auftrag dieser Adresse abzufragen hieße, einen früheren, fremden
+        # Bau als „fertig“ zu zeigen (EIG138). Die Anfrage selbst ging ans Postfach.
+        return JsonResponse({"state": "failed", "url": ""})
     state, url = "queued", ""
     try:
         from . import supa
@@ -2023,8 +2069,10 @@ def _weekly_html(refs, c, unsub_url):
     for r in refs:
         img = (f'<img src="{r["image_url"]}" alt="" width="548" style="border-radius:10px;'
                f'display:block;margin-bottom:10px;max-width:100%">') if r.get("image_url") else ""
-        live = (f'<a href="{r["live_url"]}" style="color:{accent};font-weight:600;'
-                f'text-decoration:none">Ansehen &rarr;</a>') if r.get("live_url") else ""
+        # Textfarben auf Weiß aus dem Mailrahmen (EIG388): Das Gold `akzent` erreichte
+        # als Linkfarbe auf Weiß nur 2,02:1; `mails.FARBEN["akzent"]` (Blau) hält 6,09:1.
+        live = (f'<a href="{r["live_url"]}" style="color:{mails.FARBEN["akzent"]};font-weight:600;'
+                f'text-decoration:underline">Ansehen &rarr;</a>') if r.get("live_url") else ""
         cards += (
             '<tr><td style="padding:16px 0;border-top:1px solid #eee">' + img
             + f'<div style="font-weight:700;font-size:17px;color:#111">{r.get("title","")}</div>'
@@ -2044,7 +2092,7 @@ def _weekly_html(refs, c, unsub_url):
         f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">{cards}</table>'
         f'<div style="margin-top:22px"><a href="{url}/angebot/" style="background:{accent};color:#181206;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;display:inline-block">Eigenes Angebot berechnen</a></div>'
         '</td></tr>'
-        f'<tr><td style="padding:16px 26px;background:#faf9f7;color:#999;font-size:12px">Sie bekommen diese Mail, weil Sie den {site}-Newsletter bestätigt haben. <a href="{unsub_url}" style="color:#999">Abmelden</a></td></tr>'
+        f'<tr><td style="padding:16px 26px;background:#faf9f7;color:{mails.FARBEN["ink_dim"]};font-size:12px">Sie bekommen diese Mail, weil Sie den {site}-Newsletter bestätigt haben. <a href="{unsub_url}" style="color:{mails.FARBEN["ink_dim"]};text-decoration:underline">Abmelden</a></td></tr>'
         '</table></td></tr></table></body></html>'
     )
 
@@ -2088,9 +2136,25 @@ def _send_weekly(force=False):
     return {"ok": True, "sent": sent, "msg": f"{sent} gesendet", "run": run_key}
 
 
+def _trigger_schluessel(request) -> str:
+    """Der Schlüssel der beiden geschützten Endpunkte (Wochenversand, Mail-Diagnose).
+
+    Bevorzugt aus dem Kopf `X-Trigger-Key` oder `Authorization: Bearer …`: Dort landet er
+    in keinem Zugriffsprotokoll. `?key=` bleibt als Ausweichweg gültig, damit bestehende
+    Aufrufe weiterlaufen — `start.sh` schreibt die Abfrage aber nicht mehr ins Protokoll
+    (EIG300)."""
+    kopf = (request.headers.get("X-Trigger-Key") or "").strip()
+    if not kopf:
+        auth = (request.headers.get("Authorization") or "").strip()
+        if auth.lower().startswith("bearer "):
+            kopf = auth[7:].strip()
+    return kopf or (request.GET.get("key") or "").strip()
+
+
 def newsletter_weekly(request):
-    """Geschützter Trigger (per Cron/HTTP). ?key=WEEKLY_TRIGGER_KEY, optional &force=1."""
-    key = (request.GET.get("key") or "").strip()
+    """Geschützter Trigger (per Cron/HTTP). Schlüssel WEEKLY_TRIGGER_KEY im Kopf
+    `X-Trigger-Key` (oder `?key=`), optional ?force=1."""
+    key = _trigger_schluessel(request)
     expected = os.environ.get("WEEKLY_TRIGGER_KEY", "").strip()
     if not expected or not hmac.compare_digest(key, expected):
         return HttpResponse("forbidden", status=403)
@@ -2101,8 +2165,9 @@ def newsletter_weekly(request):
 def newsletter_diag(request):
     """Geschützte E-Mail-Diagnose: zeigt (ohne Passwort) die SMTP-Konfiguration und
     kann eine echte Testmail schicken, um den exakten SMTP-Fehler sichtbar zu machen.
-    Aufruf: /newsletter/diagnose/?key=WEEKLY_TRIGGER_KEY[&to=name@domain]"""
-    key = (request.GET.get("key") or "").strip()
+    Aufruf: /newsletter/diagnose/[?to=name@domain] mit Kopf `X-Trigger-Key: <WEEKLY_TRIGGER_KEY>`
+    (oder, wie bisher, `?key=…`)."""
+    key = _trigger_schluessel(request)
     expected = os.environ.get("WEEKLY_TRIGGER_KEY", "").strip()
     if not expected or not hmac.compare_digest(key, expected):
         return HttpResponse("forbidden", status=403)
@@ -2461,14 +2526,11 @@ def index(request):
                 kontakt_werte = {feld: _feld(request, feld) for feld in
                                  ("name", "email", "telefon", "budget", "nachricht")}
     lang = get_language()
-    # Ohne JavaScript abgesendete Kurzanfragen kommen mit ?ok=<quelle> zurück , der
-    # betroffene Block zeigt dann seine Erfolgsmeldung (siehe leistung_anfrage).
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "index.html", {
-        "c": c, "sent": sent, "news_sent": news_sent, "anfrage_ok": anfrage_ok,
+        "c": c, "sent": sent, "news_sent": news_sent,
         "news_fehler": news_fehler,
+        # Bremse getroffen (EIG239/251): eigene Meldung statt „bitte prüfen“.
+        "limit_gesperrt": bool(getattr(request, "limit_gesperrt", False)),
         "kontakt_werte": kontakt_werte,
         "startpreise": _startpreise(lang),
         "preise_item": _itempreise(lang),
@@ -2959,11 +3021,8 @@ def leistung_seite(request, slug):
                        {"@type": "Country", "name": "Deutschland"}],
         "offers": angebot,
     }
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "leistung.html", {
-        "c": c, "seite": seite, "anfrage_ok": anfrage_ok,
+        "c": c, "seite": seite,
         # Der kleine erste Schritt (06.09.2026). Name und Preis kommen aus dem
         # Katalog und aus dem Sprachpaket — nie aus dem Fließtext.
         "einstieg": _einstieg_daten(eintrag, lang),
@@ -3019,11 +3078,8 @@ def branchen_hub(request):
     bs = pack.get("branchen_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
     liste = _alle_branchen(lang)
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "branchen.html", {
-        "c": c, "bs": bs, "branchen": liste, "anfrage_ok": anfrage_ok,
+        "c": c, "bs": bs, "branchen": liste,
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (bs.get("branchen_titel", "Branchen"), reverse("branchen"))])),
@@ -3067,11 +3123,8 @@ def branche_seite(request, slug):
         "offers": angebot,
     }
     schwerpunkt = leistungen.NACH_SLUG.get(eintrag.get("schwerpunkt", ""))
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "branche.html", {
-        "c": c, "bs": bs, "seite": seite, "anfrage_ok": anfrage_ok,
+        "c": c, "bs": bs, "seite": seite,
         "schwerpunkt": _leistung_daten(schwerpunkt, lang) if schwerpunkt else None,
         "weitere": [_leistung_daten(leistungen.NACH_SLUG[s], lang)
                     for s in eintrag.get("leistungen", []) if s in leistungen.NACH_SLUG],
@@ -3321,7 +3374,7 @@ def wissen(request):
                   [(b.get("titel", b["slug"]), b["url"]) for b in liste])))
     graph["@graph"].append(_defined_term_set(base))
     return render(request, "wissen.html", {
-        "c": c, "begriffe": liste,
+        "c": c, "begriffe": liste, "anzahl": str(len(liste)),
         "structured_data": json.dumps(graph, ensure_ascii=False, separators=(",", ":")),
     })
 
@@ -3374,12 +3427,8 @@ def sicherheitstest(request):
 
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = reverse("sicherheitstest")
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "selbsttest.html", {
         "c": c, "st": st, "fragen": fragen, "offen": offen,
-        "anfrage_ok": anfrage_ok,
         "gezeigt": beantwortet > 0,
         "vollstaendig": beantwortet == len(selbsttest.FRAGEN),
         "punkte": punkte, "max_punkte": selbsttest.MAX_PUNKTE,
@@ -3430,11 +3479,8 @@ def notfall(request):
         breadcrumb=_breadcrumb(base, [(nf.get("h1", "Notfall"), pfad)])))
     graph["@graph"] += [_howto_schema(base, pfad, fall, sprache)
                         for fall in nf.get("faelle", [])]
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "notfall.html", {
-        "c": c, "nf": nf, "anfrage_ok": anfrage_ok,
+        "c": c, "nf": nf,
         "wa_text": nf.get("wa_text", ""),
         "preis_stand": _preis_stand(lang),
         "regionen_liste": [_region_daten(r, lang) for r in regionen.REGIONEN],
@@ -3522,9 +3568,6 @@ def it_hilfe(request):
                              "serviceUrl": f"{base}{pfad}"},
         "offers": [_stundenangebot(_HILFE_STUNDE), _stundenangebot(_HILFE_VOR_ORT)],
     }
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     # ?anliegen=klein (Kleinauftrag-Block): nur Werte aus _ANLIEGEN gelten,
     # alles andere faellt stillschweigend weg. Das Formular traegt den Wert als
     # verstecktes Feld, der Rueckruf-Dialog waehlt ihn in seiner Liste vor.
@@ -3532,7 +3575,7 @@ def it_hilfe(request):
     if anliegen not in _ANLIEGEN:
         anliegen = ""
     return render(request, "it_hilfe.html", {
-        "c": c, "hilfe": hilfe, "anfrage_ok": anfrage_ok,
+        "c": c, "hilfe": hilfe,
         "anliegen_vorwahl": anliegen,
         "faelle": _hilfe_faelle(hilfe, lang),
         "wa_text": hilfe.get("wa_text", ""),
@@ -3618,11 +3661,8 @@ def einrichtung_seite(request, slug):
                        {"@type": "Country", "name": "Deutschland"}],
         "offers": angebot,
     }
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "einrichtung.html", {
-        "c": c, "hub": hub, "seite": seite, "anfrage_ok": anfrage_ok,
+        "c": c, "hub": hub, "seite": seite,
         "kleinauftrag": _kleinauftrag(lang) if eintrag.get("kleinauftrag") else None,
         # Die Leistungsseite, zu der wechselseitig verlinkt wird — mit dem Satz,
         # der die Trennung ausspricht (Kannibalisierung, siehe Plan §2.2).
@@ -3691,11 +3731,8 @@ def vergleich_seite(request, slug):
     seite = _vergleich_daten(eintrag, lang)
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = seite["url"]
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "vergleich.html", {
-        "c": c, "vs": vs, "seite": seite, "anfrage_ok": anfrage_ok,
+        "c": c, "vs": vs, "seite": seite,
         "seiten_stand": _seiten_stand(pfad, lang),
         "einrichtung": _einrichtung_verweis(eintrag.get("einrichtung"), lang),
         "leistungen_liste": [_leistung_daten(leistungen.NACH_SLUG[s], lang)
@@ -3920,11 +3957,8 @@ def regionen_hub(request):
     pack = i18n.get_pack(lang)
     base = (c.get("wvm_url") or "").rstrip("/")
     liste = [_region_daten(r, lang) for r in sorted(regionen.REGIONEN, key=lambda r: r["km"])]
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "regionen.html", {
-        "c": c, "regionen": liste, "anfrage_ok": anfrage_ok,
+        "c": c, "regionen": liste,
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen"))])),
@@ -4034,11 +4068,8 @@ def kontakt(request):
     pack = i18n.get_pack(lang)
     ks = pack.get("kontakt_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
-    anfrage_ok = (request.GET.get("ok") or "").strip().lower()
-    if anfrage_ok not in _ANFRAGE_QUELLEN:
-        anfrage_ok = ""
     return render(request, "kontakt.html", {
-        "c": c, "ks": ks, "anfrage_ok": anfrage_ok,
+        "c": c, "ks": ks,
         "structured_data": _seiten_schema(
             c, lang,
             breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kontakt"), reverse("kontakt"))])),
@@ -4693,7 +4724,7 @@ def llms_txt(request):
         "sofort, ohne E-Mail-Abfrage und ohne Speicherung.",
         f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
         f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
-        f"- [Glossar]({base}/wissen/): vierzehn Begriffe mit Definition, Praxisbezug und dem "
+        f"- [Glossar]({base}/wissen/): {len(glossar.BEGRIFFE)} Begriffe mit Definition, Praxisbezug und dem "
         "jeweils verbreiteten Irrtum.",
         f"- [Checklisten]({base}/checkliste/): Dienstleister wechseln, Arbeitsplatz einrichten, "
         "IT-Jahrescheck — jeder Punkt mit Begründung.",
@@ -5225,7 +5256,10 @@ def kooperation_anfordern(request):
     if _honigtopf(request):
         return JsonResponse({"ok": True})
     if _limit_erreicht(request, "kooperation"):
-        return JsonResponse({"ok": True})
+        # EIG328: nach dem dritten Versuch je Stunde kam „ok“, obwohl weder Mail
+        # noch Sicherung entstanden. Die Seite zeigt bei `ok: False` ihre
+        # Fehlermeldung inline (index.html, `coopErr`).
+        return JsonResponse({"ok": False, "error": "limit"}, status=429)
     name = _feld(request, "name")
     email = _feld(request, "email")
     firma = _feld(request, "firma")
@@ -5345,9 +5379,17 @@ def _ist_telefon(wert: str) -> bool:
     return len(re.sub(r"\D", "", wert)) >= 7
 
 
+# Fehlercodes, die `leistung_anfrage` ohne JavaScript im Parameter `fehler` zurückgibt.
+_ANFRAGE_FEHLER = ("kontakt", "limit", "quelle", "methode")
+
+
 def leistung_anfrage(request):
     """Nimmt eine Kurzanfrage entgegen: Freitext + EIN Kontaktweg (E-Mail oder Telefon).
-    Antwortet als JSON; ohne JavaScript leitet sie zurück auf den Block mit ?ok=<quelle>."""
+    Antwortet als JSON. Ohne JavaScript leitet sie nach Erfolg auf die Danke-Seite
+    (`?q=<quelle>`) und nach einem Fehler zurück auf das Formular mit
+    `?fehler=<kontakt|limit|quelle|methode>`; die Meldung setzt der Kontextprozessor
+    `landing.context.anfrage_fehler` ein (EIG291/377). Den früheren Rücksprung
+    `?ok=<quelle>` gibt es nicht mehr (EIG333)."""
     c = _content()
     quelle = (request.POST.get("quelle") or "").strip().lower()
     # Ohne JavaScript wird umgeleitet. Kommt die Anfrage von einer Unterseite, soll
@@ -5357,8 +5399,6 @@ def leistung_anfrage(request):
     if not (zurueck.startswith("/") and url_has_allowed_host_and_scheme(
             zurueck, allowed_hosts=None)):
         zurueck = ""
-    anker = f"#leistung-{quelle}" if quelle in _ANFRAGE_QUELLEN else ""
-    ziel = (zurueck + "#anfrage") if zurueck else (reverse("index") + anker)
     will_json = request.headers.get("X-Requested-With") == "fetch"
 
     def antwort(ok: bool, fehler: str = "", status: int = 200):
@@ -5371,7 +5411,16 @@ def leistung_anfrage(request):
             # anfrage-blocks.js den Versand ab und zeigt die Meldung an Ort und
             # Stelle — dieser Zweig wird dann gar nicht erreicht.
             return redirect(reverse("anfrage_danke") + f"?q={quelle}")
-        return redirect(ziel + "?fehler=1" if "#" not in ziel else ziel)
+        # Fehler ohne JavaScript (EIG291/377): Bisher hängte dieser Zweig `?fehler=1`
+        # nur an, wenn kein `#` im Ziel stand — jedes Ziel hatte einen Anker, und
+        # keine Vorlage las den Parameter. Besucher landeten ohne ein Wort wieder vor
+        # dem leeren Formular. Jetzt steht der Parameter VOR dem Anker, und die
+        # Meldung kommt aus `landing.context.anfrage_fehler`.
+        code = fehler if fehler in _ANFRAGE_FEHLER else "allg"
+        # Rückruf (Hero-Karte der Startseite) hat ihren eigenen Anker; alle
+        # Anfragekarten der Unterseiten tragen `id="anfrage"`.
+        anker = "#rueckruf" if quelle == "rueckruf" else "#anfrage"
+        return redirect(f"{zurueck or reverse('index')}?fehler={code}{anker}")
 
     if request.method != "POST":
         return antwort(False, "methode", 405)
@@ -5621,6 +5670,14 @@ def _such_index(lang):
         eintraege.append((reverse("region", kwargs={"slug": eintrag["slug"]}),
                           daten.get("h1", ""), daten.get("kurz", ""),
                           pack["seite"]["regionen_titel"]))
+    # Das Einrichten-Silo und /it-hilfe/ (EIG323): Beide fehlten, obwohl der
+    # Docstring zusagt, jede ergänzte Seite sei auffindbar — `/suche/?q=firewall`
+    # nannte `/einrichten/firewall-vpn/` nicht.
+    einrichten_hub = pack.get("einrichten_hub", {})
+    for eintrag in einrichtungen.EINRICHTUNGEN:
+        daten = _einrichtung_daten(eintrag, lang)
+        eintraege.append((daten["url"], daten.get("h1", ""), daten.get("kurz", ""),
+                          einrichten_hub.get("h1", "")))
     # Fachbeiträge gibt es nur auf Deutsch (siehe Kopf von landing/beitraege.py);
     # auf EN/RO tauchen sie deshalb auch in der Suche nicht auf.
     if i18n.norm_lang(lang) == "de":
@@ -5662,6 +5719,10 @@ def _such_index(lang):
          pack["seite"]["regionen_kurz"], pack["seite"]["regionen_titel"]),
         (reverse("kontakt"), pack.get("kontakt_seite", {}).get("h1", ""),
          pack.get("kontakt_seite", {}).get("kurz", ""), pack["nav"]["kontakt"]),
+        (reverse("einrichtungen"), einrichten_hub.get("h1", ""), einrichten_hub.get("kurz", ""),
+         einrichten_hub.get("h1", "")),
+        (reverse("it_hilfe"), pack.get("hilfe", {}).get("h1", ""),
+         pack.get("hilfe", {}).get("kurz", ""), pack.get("hilfe", {}).get("nav", "")),
     ]
     return [e for e in eintraege if e[1]]
 

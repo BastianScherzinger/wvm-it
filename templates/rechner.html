@@ -41,7 +41,7 @@ Zwei Regeln halten diese Seite zusammen:
 
     {{ saetze|json_script:"rechner-saetze" }}
 
-    <form class="kr" method="get" action="{% url 'rechner' %}" id="krForm">
+    <form class="kr" method="get" action="{% url 'rechner' %}" id="krForm" data-kr-vorlage="{{ rs.anfrage_satz }}">
       <div class="kr-eingaben">
         <h2 class="kr-h">{{ rs.form_h|safe }}</h2>
 

@@ -99,7 +99,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
                 </div>
               </div>
             </details>
-            <p class="lb-err" role="alert" hidden></p>
+            <p class="lb-err" role="alert"{% if not anfrage_fehler_text %} hidden{% endif %}>{{ anfrage_fehler_text }}</p>
             {% include 'datenschutzhinweis.html' %}
           </form>
           <div class="lb-done" hidden>
@@ -136,7 +136,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
   {% comment %} ── Block 2: WEGWEISER `#finder` (Papier). §2.4. sechs Wege, ein Weg
        (Kostenrechner) getauscht gegen "Festpreise". Test zaehlt genau 6 × class="fd-karte
-       im Bereich id="finder" bis zum ersten </section>. {% endcomment %}
+       im Bereich #finder bis zum ersten </section>. {% endcomment %}
   <section class="section section-alt fd-sec" id="finder" aria-labelledby="fd-title">
     <div class="wrap">
       <header class="sec-head" data-reveal>
@@ -398,7 +398,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
               Nicht vorausgewählt; der Nachweis entsteht erst mit dem Bestätigungsklick. {% endcomment %}
             <label class="haken"><input type="checkbox" name="newsletter" value="1"><span>{{ t.offer.consent_nl|safe }}</span></label>
             <button class="btn btn-lg" type="submit">{{ t.offer.submit|safe }}</button>
-            <p class="klein" aria-live="polite">{% if news_fehler %}{{ t.form.fehler_pruefen|safe }} {% endif %}{{ t.hero.note|safe }}</p>
+            <p class="klein" aria-live="polite">{% if news_fehler %}{% if limit_gesperrt %}{{ t.anfrage_done.limit_h|safe }} {{ t.anfrage_done.limit_p|safe }}{% else %}{{ t.form.fehler_pruefen|safe }}{% endif %} {% endif %}{{ t.hero.note|safe }}</p>
             {% include 'datenschutzhinweis.html' %}
           </form>
           {% endif %}
@@ -594,7 +594,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         </div>
         <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required maxlength="4000" placeholder="{{ t.kontakt.f_project_ph|safe }}">{{ kontakt_werte.nachricht|default:'' }}</textarea></label>
         <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.kontakt.consent_pre|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</span></label>
-        {% if kontakt_werte %}<p class="lb-err" role="alert">{{ t.kontakt.err|safe }}</p>{% endif %}
+        {% if kontakt_werte %}<p class="lb-err" role="alert">{% if limit_gesperrt %}{{ t.anfrage_done.limit_h|safe }} {{ t.anfrage_done.limit_p|safe }}{% else %}{{ t.kontakt.err|safe }}{% endif %}</p>{% endif %}
         <button class="btn btn-lg" type="submit">{{ t.kontakt.submit|safe }}</button>
         <p class="form-fine" aria-live="polite">{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}

@@ -30,16 +30,25 @@ def _connect():
     return psycopg2.connect(_dsn(), connect_timeout=8)
 
 
-def upsert_subscriber(email, wunsch="", consent_ip="", unsub_token=""):
-    """Legt den Abonnenten an bzw. aktualisiert ihn (Konflikt auf email). Gibt die id zurück."""
+def upsert_subscriber(email, wunsch="", consent_ip="", unsub_token="", newsletter=False):
+    """Legt den Abonnenten an bzw. aktualisiert ihn (Konflikt auf email). Gibt die id zurück.
+
+    `newsletter=True`: Der Referenz-Newsletter wurde ausdrücklich angehakt UND über den
+    Bestätigungslink bestätigt (Double-Opt-in). Nur dann wird der Status `active` gesetzt —
+    der einzige Status, an den `active_subscribers()` den Wochen-Newsletter schickt. Bis
+    zum 03.10.2026 setzte nichts im Code je `active`; der Newsletter erreichte damit
+    niemanden (EIG242/250). Alle anderen Wege (Detailbogen, Kurzanfrage mit Werbehaken,
+    Richtangebot) bleiben `confirmed`; ein bereits aktiver Abonnent wird dabei nicht
+    zurückgestuft."""
     if not enabled():
         return None
     sql = """
         insert into wvm.subscribers (email, website_wunsch, status, consent_ip, unsub_token)
-        values (%s, %s, 'confirmed', %s, %s)
+        values (%s, %s, %s, %s, %s)
         on conflict (email) do update
            set website_wunsch = excluded.website_wunsch,
-               status         = 'confirmed',
+               status         = case when wvm.subscribers.status = 'active'
+                                     then 'active' else excluded.status end,
                consent_ip     = excluded.consent_ip,
                unsub_token    = excluded.unsub_token
         returning id;
@@ -47,7 +56,8 @@ def upsert_subscriber(email, wunsch="", consent_ip="", unsub_token=""):
     try:
         with closing(_connect()) as conn:
             with conn.cursor() as cur:
-                cur.execute(sql, (email, wunsch or "", consent_ip or "", unsub_token or ""))
+                cur.execute(sql, (email, wunsch or "", "active" if newsletter else "confirmed",
+                                  consent_ip or "", unsub_token or ""))
                 row = cur.fetchone()
             conn.commit()
             return row[0] if row else None
