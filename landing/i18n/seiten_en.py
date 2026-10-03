@@ -41,6 +41,7 @@ SEITEN = {
         ],
         "preis_h": "What it costs",
         "preis_t": "Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. If you only need occasional help, that is €95 per hour; on-site work costs €120 per hour plus travel. All figures are guide prices, net plus VAT. Support runs from quarter to quarter, with one month’s notice to the end of a quarter.",
+        "ort_satz": "On site we work in <a href=\"/en/it-service/salzburg/\">Salzburg</a> and <a href=\"/en/it-service/linz/\">Linz</a>, among other places, and by remote maintenance across Austria.",
         "faq": [
             {"q": "From how many workstations is ongoing IT support worth it?",
              "a": "From around five workstations the support usually pays for itself if it prevents a single day of downtime a year. Below that, hourly billing is often cheaper — we say so honestly in the first conversation, even though it earns us less."},
@@ -137,6 +138,7 @@ SEITEN = {
         ],
         "preis_h": "Prices",
         "preis_t": "Setting up network and Wi-Fi costs from €890, firewall and VPN from €690. The final price depends on the area, the building materials and the number of access points — which is precisely why we survey first rather than quote blind. Ongoing management of the network is available from €29 per workstation and month. On-site work is billed at €120 per hour plus travel. Guide prices, net plus VAT.",
+        "einrichtung_satz": "If only the firewall and VPN are missing: <a href=\"{url}\">firewall and VPN setup</a> at a fixed price of {preis} — secure access from outside, protected network inside.",
         "faq": [
             {"q": "Why does another repeater not help?",
              "a": "A repeater halves the available bandwidth and occupies the same radio channel a second time. In a small flat that hardly shows; in a business with many devices it measurably makes things worse. A few correctly placed access points on well-distributed channels are better."},

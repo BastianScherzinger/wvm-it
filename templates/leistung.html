@@ -77,7 +77,8 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
         </ol>
 
         <h2 class="sp-h2">{{ seite.preis_h|safe }}</h2>
-        <p class="sp-preis-text">{{ seite.preis_t|safe }}</p>
+        <p class="sp-preis-text">{{ seite.preis_t|safe }}{% if seite.ort_satz %} {{ seite.ort_satz|safe }}{% endif %}</p>
+        {% if seite.einrichtung_satz %}<p class="sp-preis-text">{{ seite.einrichtung_satz|safe }}</p>{% endif %}
         <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
           <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
 

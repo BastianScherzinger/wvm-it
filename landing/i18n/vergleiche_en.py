@@ -249,6 +249,7 @@ VERGLEICHE = {
         "cta_h": "We will take a look",
         "cta_t": "Tell us the age and number of the devices. On working days we will "
                  "tell you within 24 hours what we would do in your position — even if "
-                 "the answer is that neither is worth it yet.",
+                 "the answer is that neither is worth it yet. "
+                 "For a single device there is <a href=\"/en/it-hilfe/\">help without a contract</a>.",
     },
 }

@@ -48,7 +48,7 @@ BEITRAEGE = {
     },
 
     "was-kostet-it-betreuung": {
-        "titel": "Was kostet IT-Betreuung für eine kleine Firma?",
+        "titel": "Ab wann rechnet sich Monatsbetreuung für eine kleine Firma?",
         # Titel und Beschreibung zielen bewusst auf die **kleine Firma** und auf
         # die Frage „ab wann rechnet sich was", nicht auf „IT-Betreuung Kosten".
         # Grund: Am 10.09.2026 rankten fuer `it betreuung kosten` drei eigene
@@ -60,9 +60,14 @@ BEITRAEGE = {
         # den Hauptbegriff; dieser Beitrag nimmt die laengere Frage, bei der er
         # ohnehin schon besser stand (`it betreuung fuer kleine unternehmen
         # kosten`: hier Position 76,6, auf /kosten/ 98,3).
+        # 03.10.2026: Auch die H1 (`titel`) und der erste Absatz stellen jetzt die
+        # Teilfrage „ab wann rechnet sich Monatsbetreuung?"; `vorweg` verweist
+        # gleich darunter auf /kosten/ als die Seite mit allen Preisen. So bleibt
+        # /kosten/ Zielseite fuer „was kostet it betreuung". Slug und URL bleiben.
         "meta_titel": "IT-Betreuung für kleine Firmen: was rechnet sich? | WVM-IT",
         "desc": "Ab etwa fünf Arbeitsplätzen ist die Monatsbetreuung günstiger als Hilfe nach Stunden. Die Rechnung dazu — und was enthalten sein muss. Jetzt beraten lassen.",
-        "antwort": "Laufende IT-Betreuung wird in Österreich und Deutschland üblicherweise je Arbeitsplatz und Monat abgerechnet; bei uns beginnt sie bei 29 €. Wer keinen Vertrag will, zahlt Hilfe nach Aufwand — bei uns 95 € je Stunde aus der Ferne und 120 € je Stunde vor Ort zuzüglich Anfahrt. Ab etwa fünf Arbeitsplätzen ist die monatliche Betreuung meist günstiger, weil sie sich schon rechnet, wenn sie einen einzigen Ausfalltag im Jahr verhindert.",
+        "antwort": "Ab etwa fünf Arbeitsplätzen rechnet sich die monatliche IT-Betreuung meist: Sie ist dann günstiger als Hilfe nach Stunden, weil sie sich schon bezahlt macht, wenn sie einen einzigen Ausfalltag im Jahr verhindert. Darunter ist die Abrechnung nach Aufwand oft günstiger, bei uns 95 € je Stunde aus der Ferne und 120 € je Stunde vor Ort zuzüglich Anfahrt. Die laufende Betreuung beginnt bei uns bei 29 € je Arbeitsplatz und Monat.",
+        "vorweg": "Alle Preise im Überblick, vom Arbeitsplatz bis zum Server, stehen auf der Seite <a href=\"/kosten/\">Was kostet IT-Betreuung? Alle Preise auf einer Seite</a>. Dieser Beitrag beantwortet die Frage davor: welche Abrechnungsart zu Ihrer Größe passt.",
         "abschnitte": [
             {"h": "Die zwei Abrechnungsarten",
              "t": "Es gibt im Markt genau zwei Modelle, und sie unterscheiden sich weniger im Preis als im Verhalten. Bei der Abrechnung nach Stunden zahlen Sie nur, wenn etwas kaputt ist — mit der unangenehmen Folge, dass niemand vorbeugt. Updates, Überwachung und die Prüfung der Datensicherung sind unbezahlte Arbeit, also passieren sie nicht. Bei der monatlichen Betreuung zahlen Sie eine feste Summe je Arbeitsplatz, und der Anbieter hat ein Eigeninteresse daran, dass nichts ausfällt: Jede Störung kostet ihn Zeit, die nicht extra vergütet wird."},

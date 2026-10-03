@@ -18,6 +18,9 @@
 
 1. **Marke** (`wvm-it`, `wvm it`, `florin feier`) → Startseite `/`
 2. **Kostenfrage ohne Ort** („was kostet it betreuung") → `/kosten/`
+   Der Fachbeitrag `/aktuelles/was-kostet-it-betreuung/` nimmt nur die Teilfrage „ab wann rechnet sich
+   Monatsbetreuung für eine kleine Firma?“ (H1 und erster Absatz seit 03.10.2026, kein „kosten“ im Title)
+   und verlinkt gleich darunter auf `/kosten/`; „it betreuung kosten“ bleibt bei `/kosten/`
 3. **Leistung ohne Ort** → die zugehörige Leistungsseite
 4. **Leistung + Ort** → die Leistungsseite, **keine** eigene Ortsseite (SEO-PLAN A16)
 5. **Werkzeug-Suche** („website testen", „beispielseite") → `/` (Hero-Werkzeug)
@@ -273,3 +276,25 @@ Kaufabsicht, I = Information.
 
 13. **Einzelproblem ohne Vertrag** → `/it-hilfe/` (Runde 1); laufende Betreuung → `/leistungen/edv-it-betreuung/`.
 14. **Aufgabe einmalig** → `/einrichten/<slug>/`; **laufend** → `/leistungen/<slug>/`. Das ist die harte Grenze zwischen den beiden Silos.
+
+---
+
+## Runde 3 (03.10.2026) — Orte, Bundesland, Hosting
+
+**Datenbasis:** Search Console bis 03.10.2026 (Ortsseiten in Reichweite: Gmunden Pos. 9, Salzburg 18,
+Vöcklabruck 22; „it betreuung oberösterreich“ Pos. 45). Zielseite je Zeile, jede Zeile vom 03.10.2026.
+
+| Keyword | Absicht | Beleg | Zielseite | Datum |
+|---|---|---|---|---|
+| it betreuung oberösterreich | K | GSC Pos. 45 | `/it-service/` (Hub; Title seit 03.10. mit „IT-Betreuung“) | 03.10.2026 |
+| it dienstleister oberösterreich | K | Suchvorschlag | `/it-service/` | 03.10.2026 |
+| webseite erstellen lassen oberösterreich | K | Suchvorschlag | `/leistungen/webseite-erstellen/` | 03.10.2026 |
+| hosting österreich | K | Suchvorschlag | `/leistungen/hosting-wartung/` | 03.10.2026 |
+| domain hosting e-mail | K | Suchvorschlag | `/leistungen/hosting-wartung/` | 03.10.2026 |
+| edv betreuung salzburg / it dienste salzburg | K | GSC Pos. 12–18 | `/it-service/salzburg/` | 03.10.2026 |
+
+Hinweise: Das Bundesland ist die eine Ausnahme von Regel 4 — „it betreuung/dienstleister oberösterreich“
+meint keinen Ort, sondern die Region, und gehört dem Hub `/it-service/`. „it dienstleister österreich“
+(ohne Bundesland) bleibt bei `/leistungen/edv-it-betreuung/`. Die Startseite trägt seit 03.10.2026
+„IT-Betreuung & EDV-Hilfe in Oberösterreich“ im Title und konkurriert damit nicht mit dem Hub, weil sie
+Marke und Gesamtangebot bedient. Der Hub-Title nennt „IT-Betreuung“ ausdrücklich.

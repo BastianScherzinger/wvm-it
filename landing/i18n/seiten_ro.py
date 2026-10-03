@@ -43,6 +43,7 @@ SEITEN = {
         ],
         "preis_h": "Cât costă",
         "preis_t": "Administrarea curentă costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Cine are nevoie doar punctual de ajutor plătește 95 € pe oră; intervențiile la fața locului costă 120 € pe oră plus deplasarea. Toate sunt prețuri orientative, net plus TVA. Administrarea merge de la trimestru la trimestru, cu reziliere cu o lună înainte de sfârșitul trimestrului.",
+        "ort_satz": "La fața locului lucrăm, printre altele, la <a href=\"/ro/it-service/salzburg/\">Salzburg</a> și <a href=\"/ro/it-service/linz/\">Linz</a>, iar prin acces la distanță în toată Austria.",
         "faq": [
             {"q": "De la câte posturi de lucru merită administrarea IT curentă?",
              "a": "De la circa cinci posturi de lucru administrarea se justifică de obicei dacă previne o singură zi de nefuncționare pe an. Sub acest prag, facturarea la oră este adesea mai avantajoasă — o spunem cinstit în prima discuție, chiar dacă noi câștigăm mai puțin."},
@@ -139,6 +140,7 @@ SEITEN = {
         ],
         "preis_h": "Prețuri",
         "preis_t": "Configurarea rețelei și a Wi-Fi-ului costă de la 890 €, firewall și VPN de la 690 €. Prețul final depinde de suprafață, de materialele de construcție și de numărul punctelor de acces — tocmai de aceea la început stă măsurarea, nu o ofertă în orb. Administrarea curentă a rețelei este disponibilă de la 29 € per post de lucru și lună. Lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
+        "einrichtung_satz": "Dacă lipsesc doar firewall-ul și VPN-ul: <a href=\"{url}\">instalarea firewall-ului și a VPN-ului</a> la preț fix de {preis} — acces securizat din exterior, rețea protejată în interior.",
         "faq": [
             {"q": "De ce nu ajută încă un repetor?",
              "a": "Un repetor înjumătățește lățimea de bandă disponibilă și ocupă încă o dată același canal radio. Într-un apartament mic asta aproape nu se observă, într-o firmă cu multe dispozitive înrăutățește măsurabil situația. Mai bune sunt puține puncte de acces bine poziționate, cu canale distribuite curat."},

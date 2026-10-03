@@ -7,6 +7,45 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 03.10.2026 — SEO-Technik und Onpage (Paket seo-technik-onpage)
+
+Für die Vorher/nachher-Messung in der Search Console (Messpunkt ~31.10.2026) stehen hier die **alten Texte**:
+- **Startseite, Title alt:** „IT-Betreuung in Österreich und Deutschland ab 29 € | WVM-IT“ — **neu:**
+  „IT-Betreuung & EDV-Hilfe in Oberösterreich ab 29 € | WVM-IT“. **Description alt:** „IT-Betreuung per Fernwartung für
+  Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz. Einzelhilfe ohne Vertrag 95 €/Std. Jetzt
+  anfragen.“ — **neu** nennt Lenzing, Hilfe ohne Vertrag, Webseiten ab 350 €, Hosting, E-Mail und Florin Feier. Alle Zahlen
+  aus `ANGEBOT_GROUPS` (29 `it_betreuung`, 95 `it_support`, 350 `onepager`). EN/RO sinngemäß („Upper Austria“,
+  „Austria Superioară“). Längen nach `test_kopfsatz` (Title 30–65, Description 70–165).
+- **Hub /it-service/, Title alt:** „IT-Service in Oberösterreich und Salzburg | WVM-IT“ — **neu:** „IT-Betreuung &
+  IT-Service in Oberösterreich und Salzburg | WVM-IT“ (EN „IT support & services …“, RO „Administrare IT …“). H1 unverändert.
+- **Orte im Fuß:** `regionen.FOOTER_REGIONEN_SLUGS` = Salzburg, Linz, Wels, Vöcklabruck, Gmunden statt der ersten
+  fünf Einträge (`REGIONEN[:5]`: Vöcklabruck, Attersee, Gmunden, Bad Ischl, Wels). Eingehende interne Links je Ortsseite
+  (Testclient, alle 107 deutschen Basispfade, Seite verlinkt nicht auf sich selbst) **vorher → nachher:**
+  Salzburg 15 → 107, Linz 15 → 107, Wels 107 → 107, Vöcklabruck 107 → 107, Gmunden 107 → 107,
+  Attersee 107 → 15, Bad Ischl 107 → 15; übrige Orte 15 → 15. Die Mindestzahl von `pruefe_seite` (2) bleibt überall erfüllt.
+  Attersee und Bad Ischl (keine Impressionen) hängen weiter am Hub und an den Nachbarlinks der Ortsseiten.
+- **Kontextlinks:** je ein Satz mit Links auf Salzburg und Linz auf `/leistungen/edv-it-betreuung/` und `/kosten/`
+  (DE/EN/RO, Sprachpaket-Schlüssel `ort_satz`). `/leistungen/netzwerk-wlan/` verlinkt `/einrichten/firewall-vpn/` mit dem
+  Festpreis aus `_festpreis_label()` ohne „ab“ (Feld `einrichtung_link` in `leistungen.py`, Text `einrichtung_satz`).
+- **Linkspender:** `/vergleich/pc-aufruesten-oder-neu-kaufen/` (DE/EN/RO) und `/wissen/raid/` → `/it-hilfe/`;
+  `/wissen/managed-services/` und `/wissen/netzwerksegmentierung/` → `/leistungen/edv-it-betreuung/`.
+- **Kannibalisierung „it betreuung kosten“:** H1 des Beitrags `was-kostet-it-betreuung` alt „Was kostet IT-Betreuung für
+  eine kleine Firma?“ — neu „Ab wann rechnet sich Monatsbetreuung für eine kleine Firma?“; erster Absatz auf die Teilfrage
+  umgestellt, direkt darunter ein Absatz (`vorweg`) mit Link auf `/kosten/`. Slug, URL, vier Folgefragen unverändert,
+  „kosten“ nicht im Title. KEYWORD-MAP Regel 2 ergänzt, neue Runde 3 mit den Zeilen vom 03.10.2026.
+- **301 `/ratgeber/` → `/aktuelles/`** (war live 404), nur der deutsche Pfad, fester Zielpfad; Sitemap unverändert.
+- **llms.txt:** neuer Abschnitt „Webseiten, Hosting und E-Mail“ mit der kostenlosen Testseite (wie im Gratis-Block der
+  Sprachpakete) und dem Partner Domaintechnik als Partnerlink mit Provisionshinweis. Kein Partnerlink im JSON-LD (Test).
+- **Anruf-Klicks zählen: zurückgestellt, nicht gebaut.** Die Datenschutzerklärung (Abschnitt 5, „Reichweitenmessung ohne
+  Personenbezug“) zählt die gemessenen Ereignisse abschließend auf (ausgelieferte Seiten, abgeschickte Formulare, gewähltes
+  Anliegen beim Rückruf, Kampagnenangabe; „ausschließlich Summen je Tag und je Seitenpfad, Formular, Anliegen oder
+  Kampagne“). Ein vom Browser gesendeter Klick auf `tel:` ist dort nicht gedeckt, und Rechtstexte gehen nur über den
+  Generator. Vorschlag für Bastian: den Satz im Generator um „und wie oft ein Telefonlink angetippt wurde (Summe je
+  Seitenpfad, ohne Kennung)“ ergänzen; danach ist der Bau klein (`sendBeacon` auf einen CSRF-freien 204-Endpunkt,
+  Zähler `anruf` in `messung.py`, Pfad nur aus `_seiten_pfade()`, Disallow in `robots.txt`). Bis dahin misst die
+  Search Console Klicks, das Unternehmensprofil Anrufe.
+- Tests: `landing/tests/test_seo_onpage_2026_10_03.py`.
+
 ## 03.10.2026 — Startseite entrümpelt, Partnerlink Domaintechnik, Conversion
 
 Ziel: Besucher sehen sofort, was WVM-IT anbietet, und rufen an. **Element-Bilanz der Startseite

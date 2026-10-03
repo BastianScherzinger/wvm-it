@@ -175,6 +175,15 @@ REGIONEN = [
 
 NACH_SLUG = {r["slug"]: r for r in REGIONEN}
 
+# Orte im Fuß (03.10.2026, nach Messdaten statt nach Entfernung). Der Fuß ist die
+# einzige Seite-für-Seite-Verlinkung der Ortsseiten und damit ihr Gewicht:
+# Salzburg steht in der Search Console auf Position 12-18 mit Kaufabsicht
+# („it dienste salzburg“), Linz hatte bisher nur 15 eingehende Links, weil
+# beide in `REGIONEN[:5]` fehlten. Attersee und Bad Ischl haben keine
+# Impressionen; sie bleiben über den Hub /it-service/ und die Nachbarlinks der
+# Ortsseiten (`nachbarn()`) verlinkt.
+FOOTER_REGIONEN_SLUGS = ["salzburg", "linz", "wels", "voecklabruck", "gmunden"]
+
 
 def _entfernung_luftlinie(a, b):
     """Luftlinie in km zwischen zwei Einträgen (Haversine über lat/lon)."""

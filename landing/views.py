@@ -3103,6 +3103,17 @@ def leistung_seite(request, slug):
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = reverse("leistung", kwargs={"slug": slug})
 
+    # Satz mit Link auf eine Einrichtungsseite samt Festpreis (03.10.2026); die Zahl
+    # kommt aus ANGEBOT_GROUPS, nie aus dem Text.
+    ziel = einrichtungen.NACH_SLUG.get(eintrag.get("einrichtung_link", ""))
+    if ziel and seite.get("einrichtung_satz"):
+        seite = dict(seite, einrichtung_satz=seite["einrichtung_satz"]
+                     .replace("{url}", reverse("einrichtung", kwargs={"slug": ziel["slug"]}))
+                     .replace("{preis}", _festpreis_label(
+                         _ANGEBOT_INDEX.get(ziel["preis"], {}), pack.get("catalog_words", {}))))
+    else:
+        seite = dict(seite, einrichtung_satz="")
+
     # Service-Schema mit Angebot und Einsatzgebiet, verbunden mit #business.
     posten = _ANGEBOT_INDEX.get(eintrag["preis"], {})
     angebot = {"@type": "Offer", "priceCurrency": "EUR",
@@ -4920,6 +4931,12 @@ def llms_txt(request):
         *_llms_glossar(base),
         "\n## Fachbeiträge (Antwort jeweils im ersten Absatz)",
         *_llms_beitraege(base),
+        "\n## Webseiten, Hosting und E-Mail",
+        f"- [Kostenlose Testseite]({base}/leistungen/webseite-erstellen/): Sie sehen vorher, was Sie "
+        "bekommen; die kostenlose Testseite steht in etwa zehn Minuten, ohne Bedingung.",
+        f"- [Domain, Hosting und E-Mail]({base}/leistungen/hosting-wartung/): auch selbst buchbar beim "
+        f"Partner Domaintechnik ({PARTNER_DOMAINTECHNIK_URL}, Partnerlink: WVM-IT erhält dafür eine "
+        "Provision). Alternativ richtet WVM-IT alles ein und betreut es weiter.",
         "\n## Besonderheiten",
         f"- [Kostenlose Beispiel-Website]({base}/leistungen/webseite-erstellen/): in etwa zehn Minuten "
         "von der hauseigenen JARVIS-Automatik gebaut, ohne Verpflichtung.",

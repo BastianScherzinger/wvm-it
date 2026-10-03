@@ -48,6 +48,7 @@ SEITEN = {
         ],
         "preis_h": "Was das kostet",
         "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Wer nur punktuell Hilfe braucht, zahlt 95 € je Stunde; Einsätze vor Ort kosten 120 € je Stunde zuzüglich Anfahrt. Alle Angaben sind Richtpreise, netto zzgl. USt. Die Betreuung läuft von Quartal zu Quartal, Kündigung mit einem Monat Frist zum Quartalsende. Drei Rechenbeispiele, in denen ausschließlich die Sätze aus dieser Preisliste stecken: ein Betrieb mit fünf Arbeitsplätzen und einem Server samt überwachter Datensicherung zahlt 5 × 29 € + 89 € + 49 € = 283 € im Monat. Bei zehn Arbeitsplätzen mit Server und Datensicherung sind es 10 × 29 € + 89 € + 49 € = 428 € im Monat. Bei zwanzig Arbeitsplätzen mit zwei Servern und Datensicherung ergibt dieselbe Rechnung 20 × 29 € + 2 × 89 € + 49 € im Monat — den Endbetrag lassen wir bewusst offen, weil er als einzelne Zahl auf keiner unserer Preisseiten steht und sich am Kostenrechner mit denselben Werten selbst nachrechnen lässt. Kommen Microsoft-365-Lizenzen dazu, zahlen Sie diese direkt an Microsoft; wir richten sie ein und rechnen die Einrichtung getrennt ab. Punktuelle Zusatzarbeiten außerhalb der Betreuung — etwa der Umzug eines Arbeitsplatzes oder das Einrichten eines neuen Druckers — laufen wie oben zu 95 € je Stunde per Fernwartung oder 120 € vor Ort.",
+        "ort_satz": "Vor Ort sind wir u. a. in <a href=\"/it-service/salzburg/\">Salzburg</a> und <a href=\"/it-service/linz/\">Linz</a>, per Fernwartung in ganz Österreich.",
         "faq": [
             {"q": "Ab wie vielen Arbeitsplätzen lohnt sich eine laufende IT-Betreuung?",
              "a": "Ab etwa fünf Arbeitsplätzen rechnet sich die Betreuung meist schon dann, wenn sie einen einzigen Ausfalltag im Jahr verhindert. Darunter ist die Abrechnung nach Stunden oft günstiger — das sagen wir Ihnen im Erstgespräch ehrlich, auch wenn dabei weniger für uns herauskommt."},
@@ -144,6 +145,7 @@ SEITEN = {
         ],
         "preis_h": "Preise",
         "preis_t": "Netzwerk und WLAN einrichten kostet ab 890 €, Firewall und VPN ab 690 €. Der Endpreis hängt an Fläche, Baustoffen und Zahl der Zugangspunkte — genau deshalb steht am Anfang die Messung und nicht ein Angebot ins Blaue. Laufende Betreuung des Netzes gibt es ab 29 € je Arbeitsplatz und Monat. Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab. Richtpreise, netto zzgl. USt.",
+        "einrichtung_satz": "Wenn nur Firewall und VPN fehlen: <a href=\"{url}\">Firewall und VPN einrichten lassen</a> zum Festpreis von {preis} — sicherer Zugriff von außen, geschütztes Netz nach innen.",
         "faq": [
             {"q": "Warum hilft ein zusätzlicher Repeater nicht?",
              "a": "Ein Repeater halbiert die verfügbare Bandbreite und belegt denselben Funkkanal noch einmal. In kleinen Wohnungen fällt das kaum auf, in einem Betrieb mit vielen Geräten verschlechtert es die Lage messbar. Besser sind wenige, richtig platzierte Zugangspunkte mit sauber verteilten Kanälen."},

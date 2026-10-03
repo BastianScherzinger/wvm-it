@@ -14,8 +14,7 @@ from django.utils.translation import get_language
 
 from . import branchen, i18n, leistungen, regionen
 
-# Wie viele Orte der Footer nennt (die nach Entfernung nächsten, Reihenfolge wie in regionen.py).
-FOOTER_REGIONEN = 5
+# Welche Orte der Footer nennt: `regionen.FOOTER_REGIONEN_SLUGS` (nach Messdaten, Begründung dort).
 
 _WIEN = ZoneInfo("Europe/Vienna")
 
@@ -151,7 +150,7 @@ def navigation(request):
     # Wels (58 km, fuenfter Ort) steht seit 01.10.2026 dabei: Die Seite hing nur an
     # den Regionsseiten selbst und war Google unbekannt (TS46).
     orte = []
-    for eintrag in regionen.REGIONEN[:FOOTER_REGIONEN]:
+    for eintrag in [regionen.NACH_SLUG[s] for s in regionen.FOOTER_REGIONEN_SLUGS]:
         orte.append({"url": reverse("region", kwargs={"slug": eintrag["slug"]}),
                      "titel": eintrag["ort"]})
     # Die vier gefragtesten Branchen in den Footer: Sie sind die Grundverlinkung

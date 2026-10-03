@@ -44,6 +44,7 @@ Begruendung in Abschnitten.
   <div class="wrap sp-wrap">
     {% comment %}Der Absatz, den eine KI-Antwort zitiert. Deshalb steht er zuerst.{% endcomment %}
     <div data-reveal>{% include 'antwort.html' with text=beitrag.antwort stil='bt-antwort' %}</div>
+    {% if beitrag.vorweg %}<p class="bt-vorweg" data-reveal>{{ beitrag.vorweg|safe }}</p>{% endif %}
 
     {% for a in beitrag.abschnitte %}
     <section class="bt-abschnitt" data-reveal>

@@ -1,6 +1,7 @@
 """URL-Konfiguration — mehrsprachige Landing-Page (DE ohne Präfix, EN /en/, RO /ro/)."""
 from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, re_path
+from django.views.generic import RedirectView
 
 from landing import views
 
@@ -30,6 +31,10 @@ urlpatterns = [
     # BEWUSST ausserhalb von i18n_patterns: nur Deutsch, keine /en/- und
     # /ro/-Varianten. Begruendung im Kopf von landing/beitraege.py.
     path("aktuelles/", views.aktuelles, name="aktuelles"),
+    # /ratgeber/ antwortete live mit 404 (03.10.2026), obwohl die Sitemap-Gruppe so
+    # heisst und Verzeichnisse und Mail-Signaturen den Pfad raten koennen. Fester
+    # Zielpfad, kein Parameter: kein offener Weiterleiter. Nur der deutsche Pfad.
+    path("ratgeber/", RedirectView.as_view(pattern_name="aktuelles", permanent=True)),
     path("aktuelles/<slug:slug>/", views.beitrag_seite, name="beitrag"),
     # ── Glossar (docs/SEO-AUSBAU-3.md, W5) ──────────────────────────────────
     # Wie die Fachbeitraege bewusst ausserhalb von i18n_patterns: nur Deutsch.

@@ -252,6 +252,7 @@ VERGLEICHE = {
         "cta_h": "Ne uităm noi",
         "cta_t": "Spuneți-ne vârsta și numărul aparatelor. În zilele lucrătoare vă "
                  "spunem în 24 de ore ce am face noi în locul dumneavoastră — chiar "
-                 "dacă răspunsul este că încă nu merită niciuna dintre variante.",
+                 "dacă răspunsul este că încă nu merită niciuna dintre variante. "
+                 "Pentru un singur aparat există <a href=\"/ro/it-hilfe/\">ajutorul fără contract</a>.",
     },
 }

@@ -30,6 +30,11 @@ einstieg  ID einer Position aus views.ANGEBOT_GROUPS — der **kleine erste Schr
           Positionen standen längst im Katalog (IT-Sicherheitscheck 490 €,
           Arbeitsplatz einrichten 190 €, Fernwartung 95 €/Std.) und wurden auf den
           Seiten, auf denen jemand kaufen will, nie als erster Schritt angeboten.
+einrichtung_link
+          Slug einer Einrichtungsseite (/einrichten/<slug>/), auf die ein Satz im
+          Preisabschnitt verweist (03.10.2026). Der Satz steht im Sprachpaket unter
+          `einrichtung_satz` mit den Platzhaltern {url} und {preis}; den Festpreis
+          (ohne „ab“) setzt `views.leistung_seite` aus ANGEBOT_GROUPS ein.
 """
 
 LEISTUNGEN = [
@@ -58,7 +63,8 @@ LEISTUNGEN = [
 
     {"slug": "netzwerk-wlan", "bereich": "it", "icon": "net", "quelle": "it", "preis": "netzwerk_setup",
      "vor_ort": True, "prio": "0.8",
-     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"], "einstieg": "it_support",},
+     "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"], "einstieg": "it_support",
+     "einrichtung_link": "firewall-vpn",},
 
     {"slug": "it-sicherheit", "bereich": "it", "icon": "shield", "quelle": "it", "preis": "sicherheitscheck",
      "vor_ort": False, "prio": "0.8",

@@ -260,6 +260,7 @@ VERGLEICHE = {
         "cta_h": "Wir sehen es uns an",
         "cta_t": "Nennen Sie uns Alter und Anzahl der Geräte. Wir sagen Ihnen an "
                  "Werktagen innerhalb von 24 Stunden, was wir an Ihrer Stelle täten — "
-                 "auch wenn die Antwort lautet, dass sich beides noch nicht lohnt.",
+                 "auch wenn die Antwort lautet, dass sich beides noch nicht lohnt. "
+                 "Für das einzelne Gerät gibt es die <a href=\"/it-hilfe/\">IT-Hilfe ohne Vertrag</a>.",
     },
 }

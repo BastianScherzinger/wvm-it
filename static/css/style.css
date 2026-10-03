@@ -2668,3 +2668,7 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
   .cookie-text p{font-size:12.5px;line-height:1.45}
   .cookie-actions .btn{min-height:40px}
 }
+
+/* Beitrag: Verweis direkt unter dem Antwortabsatz (03.10.2026) */
+.bt-vorweg{max-width:68ch;margin:var(--s4,16px) 0 var(--s6,32px);font-size:17px;line-height:1.6;color:var(--ink)}
+.bt-vorweg a{font-weight:600}

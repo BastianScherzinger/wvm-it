@@ -25,7 +25,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
 
 <section class="section">
   <div class="wrap">
-    <p class="hb-intro" data-reveal>{{ ks.intro|safe }}</p>
+    <p class="hb-intro" data-reveal>{{ ks.intro|safe }}{% if ks.ort_satz %} {{ ks.ort_satz|safe }}{% endif %}</p>
 
     {% comment %}
     Der Rechner steht ueber der Tabelle: Wer hier landet, will meist nicht die
