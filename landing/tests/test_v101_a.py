@@ -78,11 +78,17 @@ class LimitTest(_MitOrdner):
 
     def test_kooperation_nach_dem_limit_ist_429(self):
         daten = {"name": "Dora", "email": "dora@example.org", "firma": "D", "nachricht": "Hallo"}
+        # Mit JavaScript fragt die Seite mit dem Kopf `X-Requested-With: fetch` (EIG325).
+        kopf = {"HTTP_X_REQUESTED_WITH": "fetch"}
         for _ in range(views._LIMITS["kooperation"][0]):
-            self.client_.post(reverse("kooperation_anfordern"), daten)
-        antwort = self.client_.post(reverse("kooperation_anfordern"), daten)
+            self.client_.post(reverse("kooperation_anfordern"), daten, **kopf)
+        antwort = self.client_.post(reverse("kooperation_anfordern"), daten, **kopf)
         self.assertEqual(antwort.status_code, 429)
         self.assertFalse(antwort.json()["ok"])
+        # Ohne JavaScript geht es zurück auf das Formular, nie auf die Danke-Seite.
+        ohne = self.client_.post(reverse("kooperation_anfordern"), daten)
+        self.assertEqual(ohne.status_code, 302)
+        self.assertNotIn("anfrage/danke", ohne["Location"])
 
     def test_die_ausfuellhilfe_hat_eine_enge_bremse(self):
         self.assertLessEqual(views._LIMITS["ausfuellhilfe"][0], 3)
