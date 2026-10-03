@@ -1786,9 +1786,16 @@ def _vorgangs_titel(schluessel, zweig, lang=None):
 def newsletter_confirm(request):
     """Double-Opt-in Schritt 2: Token prüfen, Code + Willkommens-Mail ausliefern und
     danach den Detail-Bogen für die Gratis-Website zeigen (der Bau-Auftrag entsteht erst
-    beim Absenden dieses Bogens)."""
+    beim Absenden dieses Bogens).
+
+    **Bestätigt wird erst per POST (EIG241/EIG249).** Der Link aus der Mail öffnet per
+    GET nur eine Seite mit dem Knopf „Jetzt bestätigen“ und ändert nichts. Mail-Scanner
+    und Link-Vorschauen rufen Links vorab per GET auf; würde schon dieser Aufruf die
+    Willkommensmail versenden und den Einwilligungsnachweis ablegen, wäre die doppelte
+    Bestätigung (Double-Opt-in) keine: Der Nachweis entstünde ohne Zutun des Menschen."""
     c = _content()
-    token = (request.GET.get("t") or "").strip()
+    absenden = request.method == "POST"
+    token = ((request.POST if absenden else request.GET).get("t") or "").strip()
     ok = False
     anfrage_token = name = ""
     try:
@@ -1798,6 +1805,14 @@ def newsletter_confirm(request):
         name = (data.get("n") or "").strip()
         tlang = i18n.norm_lang(data.get("l") or get_language())
         newsletter = data.get("nl") is True
+        if email and not absenden:
+            # Nur ansehen, nichts auslösen: gültiger Link, Knopf zum Bestätigen.
+            antwort = render(request, "newsletter_confirm.html", {
+                "c": c, "ok": False, "bestaetigen": True, "token": token,
+                "seiten_titel": _vorgangs_titel("confirm_page", "title_pre"),
+            })
+            antwort["Cache-Control"] = "no-store"
+            return antwort
         if email:
             # Einmaligkeit: Willkommens-/Info-Mail nur beim ERSTEN Bestätigen verschicken.
             # E-Mail-Scanner rufen Links vorab auf (Prefetch) und Reloads/erneute Klicks
@@ -2015,7 +2030,18 @@ def newsletter_unsubscribe(request):
 
 
 # ── Wöchentlicher Referenz-Newsletter ─────────────────────────────────────────
+def _anbieterzeile(c) -> str:
+    """Anbieter und Anschrift als eine Zeile für den Fuß der Wochen-Mail (EIG389):
+    Wer Werbung verschickt, nennt sich und verlinkt das Impressum. Nur Angaben aus
+    `content.json`; fehlt eine, entfällt sie."""
+    site = c.get("site_name", "WVM-IT")
+    inhaber = (c.get("inhaber_name") or "").strip()
+    teile = [site + (f", Inhaber {inhaber}" if inhaber else ""), _adresszeile(c)]
+    return ", ".join(t for t in teile if t)
+
+
 def _weekly_html(refs, c, unsub_url):
+    from django.utils.html import escape
     accent = c.get("akzent", "#d8a43d")
     site = c.get("site_name", "WVM-IT")
     url = (c.get("wvm_url") or "").rstrip("/")
@@ -2044,7 +2070,7 @@ def _weekly_html(refs, c, unsub_url):
         f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">{cards}</table>'
         f'<div style="margin-top:22px"><a href="{url}/angebot/" style="background:{accent};color:#181206;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;display:inline-block">Eigenes Angebot berechnen</a></div>'
         '</td></tr>'
-        f'<tr><td style="padding:16px 26px;background:#faf9f7;color:#999;font-size:12px">Sie bekommen diese Mail, weil Sie den {site}-Newsletter bestätigt haben. <a href="{unsub_url}" style="color:#999">Abmelden</a></td></tr>'
+        f'<tr><td style="padding:16px 26px;background:#faf9f7;color:#999;font-size:12px">Sie bekommen diese Mail, weil Sie den {site}-Newsletter bestätigt haben. <a href="{unsub_url}" style="color:#999">Abmelden</a><br>{escape(_anbieterzeile(c))} · <a href="{url}/impressum/" style="color:#999">Impressum</a></td></tr>'
         '</table></td></tr></table></body></html>'
     )
 
@@ -2081,7 +2107,8 @@ def _send_weekly(force=False):
         html = _weekly_html(refs, c, unsub)
         text = ("Unsere neuesten Arbeiten:\n\n"
                 + "\n".join(f"- {r.get('title')}: {r.get('live_url', '')}" for r in refs)
-                + f"\n\nAbmelden: {unsub}\n")
+                + f"\n\nAbmelden: {unsub}\n"
+                + f"\n{_anbieterzeile(c)}\nImpressum: {site_url}/impressum/\n")
         if _send_mail_logged(subject, text, from_email, [s["email"]], html=html, tag="WOCHEN-NL"):
             sent += 1
     supa.set_newsletter_run_count(run_key, sent)
@@ -4170,6 +4197,22 @@ def ueber_uns(request):
     })
 
 
+def _rechtstext(c, art, feld):
+    """Der Text einer Rechtsseite. Beim Impressum hängen die Felder `kammer` und
+    `uid` aus `content.json` an, sobald sie gefüllt sind (EIG02, § 5 Abs. 1 Z 6
+    und Z 8 ECG). Bis dahin sind sie leer und es erscheint nichts: Kammer,
+    Berufsbezeichnung und UID-Nummer kann nur Florin nennen, geraten wird nicht."""
+    text = c.get(feld, "")
+    if art != "impressum":
+        return text
+    zusatz = []
+    if (c.get("kammer") or "").strip():
+        zusatz.append("Kammer / Berufsbezeichnung: " + c["kammer"].strip())
+    if (c.get("uid") or "").strip():
+        zusatz.append("UID-Nummer: " + c["uid"].strip())
+    return text + ("\n\n" + "\n".join(zusatz) if zusatz else "")
+
+
 def _rechtsseite(request, art):
     """Eine Rechtsseite als eigene URL statt als Klapptext im Footer:
     Eine Anbieterkennzeichnung muss ohne Suchen erreichbar sein."""
@@ -4192,7 +4235,7 @@ def _rechtsseite(request, art):
         "h1": ueberschrift,
         "titel": recht.get(f"{art}_titel", ueberschrift),
         "beschreibung": recht.get(f"{art}_desc", ""),
-        "text": c.get(feld, ""),
+        "text": _rechtstext(c, art, feld),
         "platzhalter": fuss.get(ph_key, "") if ph_key else "",
         # Nur die deutsche Fassung gehoert in den Index.
         "nur_deutsch": lang != "de",
@@ -5213,9 +5256,24 @@ def feed_xml(request):
 
 
 def kooperation_anfordern(request):
-    """Kooperations-Anfrage (JSON): ein potenzieller Partner meldet sich. Mailt an den
-    Inhaber und schickt dem Absender eine kurze Bestätigung. Kein Konto/keine DB nötig."""
+    """Kooperations-Anfrage: ein potenzieller Partner meldet sich. Mailt an den
+    Inhaber und schickt dem Absender eine kurze Bestätigung. Kein Konto/keine DB nötig.
+
+    Antwortet als JSON, wenn das Skript der Seite fragt (Kopf `X-Requested-With:
+    fetch`); ohne JavaScript leitet sie auf die Danke-Seite bzw. zurück auf das
+    Formular um (EIG325) — die Barrierefreiheitserklärung sagt zu, dass alle
+    Anfrageformulare auch ohne JavaScript funktionieren."""
     c = _content()
+    will_json = request.headers.get("X-Requested-With") == "fetch"
+
+    def antwort(ok: bool, fehler: str = "", status: int = 200):
+        if will_json:
+            return JsonResponse({"ok": True} if ok else {"ok": False, "error": fehler},
+                                status=status)
+        if ok:
+            return redirect(reverse("anfrage_danke") + "?q=koop")
+        return redirect(reverse("index") + "#partner-werden")
+
     if request.method != "POST":
         return JsonResponse({"ok": False}, status=405)
     # Dieser Endpunkt schickt eine Mail an eine Adresse, die der Absender selbst
@@ -5223,15 +5281,15 @@ def kooperation_anfordern(request):
     # für Fremde — mit unserer Domain als Absender. Deshalb hier das engste Limit
     # der ganzen Seite: drei Versuche je IP und Stunde.
     if _honigtopf(request):
-        return JsonResponse({"ok": True})
+        return antwort(True)
     if _limit_erreicht(request, "kooperation"):
-        return JsonResponse({"ok": True})
+        return antwort(True)
     name = _feld(request, "name")
     email = _feld(request, "email")
     firma = _feld(request, "firma")
     nachricht = _feld(request, "nachricht")
     if not name or not _ist_email(email):
-        return JsonResponse({"ok": False, "error": "eingabe"}, status=400)
+        return antwort(False, "eingabe", 400)
     empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
     from_email = getattr(settings, "DEFAULT_FROM_EMAIL", empf)
     body = (
@@ -5266,7 +5324,7 @@ def kooperation_anfordern(request):
                      text=body, felder=felder, admin_empf=[empf], admin_ok=admin_ok,
                      kunde=_kunde_status(kunde_ok), antwort_an=email,
                      herkunft=_herkunft_aus_verweis(request), kampagne=k or "")
-    return JsonResponse({"ok": True})
+    return antwort(True)
 
 
 # ── Kurzanfragen aus den Leistungsblöcken (ein Endpunkt für alle) ─────────────

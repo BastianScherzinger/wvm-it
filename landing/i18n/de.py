@@ -1235,6 +1235,10 @@ PACK = {
     },
     "confirm_page": {
         "bild_alt": "Hochgeladenes Bild",
+        "title_pre": "Anmeldung bestätigen",
+        "pre_h": "Anmeldung bestätigen",
+        "pre_p": "Bitte bestätigen Sie mit einem Klick, dass Sie diese Anmeldung wünschen. Erst dann schicken wir Ihren 25%-Code und speichern, falls Sie den Referenz-Newsletter angehakt haben, Ihre Einwilligung dazu.",
+        "pre_btn": "Jetzt bestätigen",
         "title_ok": "Anmeldung bestätigt",
         "title_fail": "Bestätigung fehlgeschlagen",
         "meta_desc": "Bestätigung Ihrer Anmeldung.",

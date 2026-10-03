@@ -300,4 +300,5 @@ class LoeschfristTest(SimpleTestCase):
     def test_datenschutzerklaerung_nennt_die_frist(self):
         text = (Path(__file__).resolve().parent.parent.parent / "content.json").read_text(
             encoding="utf-8")
-        self.assertIn(f"spaetestens nach {FRIST_TAGE} Tagen", text)
+        # EIG302 (03.10.2026): echte Umlaute statt „spaetestens“.
+        self.assertIn(f"spätestens nach {FRIST_TAGE} Tagen", text)

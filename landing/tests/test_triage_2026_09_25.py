@@ -80,7 +80,7 @@ class NewsletterGetrenntTest(SimpleTestCase):
     def _bestaetigen(self, nl):
         token = signing.dumps({"e": "kunde@example.com", "w": "", "n": "", "l": "de", "nl": nl},
                               salt=views._NEWSLETTER_SALT, compress=True)
-        request = self.fabrik.get("/newsletter/bestaetigen/", {"t": token},
+        request = self.fabrik.post("/newsletter/bestaetigen/", {"t": token},
                                   REMOTE_ADDR="203.0.113.9")
         with mock.patch.object(views, "_anfrage_sichern") as sichern, \
                 translation.override("de"):

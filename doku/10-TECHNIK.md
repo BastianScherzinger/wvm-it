@@ -143,10 +143,10 @@ reiner Text raus (`mails.rendern` liefert `None`).
 | Kontaktformular (`_handle_contact`, Tag `KONTAKT`) | ja | `KONTAKT-ACK`, nur mit `KUNDENMAIL_AN_ABSENDER` | ja |
 | Angebots-Konfigurator (`_handle_angebot`, `ANGEBOT`) | ja | `ANGEBOT-ACK`, nur mit Schalter | ja |
 | Richtangebot Startseite (`angebot_anfordern`, `ANGEBOT-NOTIFY`) | ja | `ANGEBOT-KUNDE`, nur mit Schalter | ja, nur mit gültiger Adresse und leerem Fallenfeld (der Weg hat keine eigene Honigtopf-Prüfung) |
-| Kooperation (`kooperation_anfordern`, `KOOPERATION`) | ja | `KOOPERATION-ACK`, nur mit Schalter | ja |
+| Kooperation (`kooperation_anfordern`, `KOOPERATION`; mit Skript JSON, ohne Skript Weiterleitung auf `/anfrage/danke/?q=koop` bzw. zurück auf `#partner-werden`, seit 03.10.2026, `EIG325`) | ja | `KOOPERATION-ACK`, nur mit Schalter | ja |
 | Kurzanfrage/Rückruf/IT-Hilfe (`leistung_anfrage`, `LEISTUNG`) | ja | `LEISTUNG-ACK`, nur mit Schalter und nur bei E-Mail-Kontakt | ja |
 | Gratis-Website, Schritt 1 (`_handle_newsletter`) | nein | `NEWSLETTER-CONFIRM` (Double-Opt-in, immer) | nein — unbestätigt |
-| Gratis-Website, Bestätigungsklick (`_newsletter_deliver`, `NEWSLETTER-NOTIFY`) | ja | `NEWSLETTER-WELCOME` | ja |
+| Gratis-Website, Bestätigung per **POST** (`newsletter_confirm` → `_newsletter_deliver`, `NEWSLETTER-NOTIFY`) — der Link aus der Mail öffnet per GET nur die Seite mit dem Knopf „Jetzt bestätigen“ und löst nichts aus (seit 03.10.2026, `EIG241`/`EIG249`; Mail-Scanner rufen Links vorab auf) | ja | `NEWSLETTER-WELCOME` | ja |
 | Detailbogen (`anfrage_absenden`, `ANFRAGE-NOTIFY`) | ja | keine (Warteseite) | ja |
 
 **Betreiber-Kopie** (`views._betreiber_kopie`, Tag `BETREIBER-KOPIE`): eine eigene

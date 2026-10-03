@@ -1174,6 +1174,10 @@ PACK = {
     },
     "confirm_page": {
         "bild_alt": "Imagine încărcată",
+        "title_pre": "Confirmați înregistrarea",
+        "pre_h": "Confirmați înregistrarea",
+        "pre_p": "Vă rugăm să confirmați printr-un clic că doriți această înregistrare. Abia apoi vă trimitem codul de 25% și, dacă ați bifat newsletterul de referințe, înregistrăm consimțământul dumneavoastră.",
+        "pre_btn": "Confirmă acum",
         "title_ok": "Înregistrare confirmată",
         "title_fail": "Confirmare eșuată",
         "meta_desc": "Confirmarea înregistrării dumneavoastră la newsletter.",

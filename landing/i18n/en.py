@@ -1182,6 +1182,10 @@ PACK = {
     },
     "confirm_page": {
         "bild_alt": "Uploaded image",
+        "title_pre": "Confirm registration",
+        "pre_h": "Confirm your registration",
+        "pre_p": "Please confirm with one click that you want this registration. Only then do we send your 25% code and, if you ticked the reference newsletter, record your consent to it.",
+        "pre_btn": "Confirm now",
         "title_ok": "Registration confirmed",
         "title_fail": "Confirmation failed",
         "meta_desc": "Confirmation of your newsletter registration.",
