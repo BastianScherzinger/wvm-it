@@ -1,7 +1,7 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-10-02
+stand: 2026-10-03
 status: teilweise
 fortschritt: 50
 zusammenfassung: 02.10.2026 geprüft: 2 von 4 Punkten erfüllt (Rechnung nach der Formel unter der Überschrift: Profil vorhanden 25, Search Console verbunden 25, Bewertungen öffentlich 0, NAP überall gleich 0). Das Google-Unternehmensprofil ist angelegt (11.09.2026) und laut Diagnose vom 25.09.2026 bestätigt (blaues Häkchen) — die frühere Angabe „ausstehend“ war überholt; es steht als sameAs im Schema (35567eb), dazu der WKO-Eintrag (dd88be7). Öffentlich sichtbar sind keine Bewertungen (4 in der Verwaltungsansicht, Herkunft ungeklärt), und zwei fremde Maps-Einträge mit abweichender Anschrift existieren (Diagnose 25.09.2026). Offen sind nur noch Schritte, die Bastian im Browser oder Florin bei sich tun muss.

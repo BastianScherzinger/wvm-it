@@ -1,10 +1,10 @@
 ---
 bereich: inhalte
 titel: Inhalte
-stand: 2026-10-02
-status: teilweise
+stand: 2026-10-03
+status: vollständig
 fortschritt: 100
-zusammenfassung: 02.10.2026 gegen Live-Sitemap (234 URLs, alle 200) und origin/main geprüft: Bereichswert Substanz 100 im Lauf 1824; keine doppelten Titel, keine doppelten Beschreibungen, alle Titel 30–65 und Beschreibungen 70–175 Zeichen, keine Seite unter 300 Wörtern (eigene Abfrage 02.10.2026). Alle früheren Offen-Punkte sind mit Beleg erledigt oder als begründete Ausnahme geklärt; was noch fehlt (UID, Kammer, Gründungsjahr, Partnerstatus, Bewertungen, Referenzen mit Einverständnis), kann nur Florin liefern und steht einmal unter „Beim Kunden“ in 80-AUFGABEN.md. Seitenbestand auf 234 URLs nachgezogen.
+zusammenfassung: 02.10.2026 gegen Live-Sitemap (234 URLs, alle 200) und origin/main geprüft: Bereichswert Substanz 100 im Lauf 1824; keine doppelten Titel, keine doppelten Beschreibungen, alle Titel 30–65 und Beschreibungen 70–175 Zeichen, keine Seite unter 300 Wörtern (eigene Abfrage 02.10.2026). Alle früheren Offen-Punkte sind mit Beleg erledigt oder als begründete Ausnahme geklärt; was noch fehlt (UID, Kammer, Gründungsjahr, Partnerstatus, Bewertungen, Referenzen mit Einverständnis), kann nur Florin liefern und steht einmal unter „Beim Kunden“ in 80-AUFGABEN.md. Seitenbestand auf 234 URLs nachgezogen. V1.0.1 (03.10.2026): Widersprüche im Text (24 Stunden gegen Mo–Fr 9–18 Uhr, „rund um die Uhr“, „ab“ gegen Festpreis, Privatkunden, Stundensatz) auf die belegte, vorsichtigere Fassung gebracht; wo nur Florin entscheiden kann, welche Fassung stimmt (Netzwerk 890 €, Störungshilfe in den 29 €, Anfahrt, Feiertage, Rabattbedingungen), steht die Frage einmal in 80-AUFGABEN.md unter „Eigene Punkte“ und „Beim Kunden“.
 offen: 0
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/seo/URL-INVENTAR.md, docs/seo/KEYWORD-MAP.md, docs/RELAUNCH-START.md
 ---

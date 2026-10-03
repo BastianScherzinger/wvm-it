@@ -1,7 +1,7 @@
 ---
 bereich: ads
 titel: Google Ads
-stand: 2026-10-02
+stand: 2026-10-03
 status: nicht zutreffend
 zusammenfassung: Für WVM-IT laufen keine Google Ads und es ist keine Aufgabe offen (geprüft 02.10.2026: kein Google-Tag im Quelltext von templates, static/js und landing, Danke-Seite und serverseitige Zählung stehen auf main). Ads sind seit der SEO-Strategie vom 25.09.2026 Säule D mit offener Entscheidung durch Florin; Start frühestens nach geklärtem Profil und mindestens drei öffentlich sichtbaren Bewertungen. Die Voraussetzungen für einen späteren Start stehen unter „Verbesserungsmöglichkeiten“, nicht als Aufgabe — die Seite ist an Florin verkauft.
 offen: 0

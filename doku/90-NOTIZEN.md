@@ -1,7 +1,7 @@
 ---
 bereich: notizen
 titel: Notizen
-stand: 2026-10-02
+stand: 2026-10-03
 status: vollständig
 fortschritt: 100
 zusammenfassung: Pfad- und Namensfallen, Widersprüche zwischen Doku, Code und Messung, Verweise; am 02.10.2026 nachgeprüft und berichtigt: 234 statt 165 URLs, Produktion Django 5.2.17 (Prüfumgebung `.venv313` = Python 3.13.9 mit Django 5.2.17), Widerspruch Nr. 4 (BF19) und Nr. 8 (Antwortzeit) aufgelöst. Nr. 5 ist seit 12.09.2026 aufgelöst: Eigenmessung rechnete Token gegen Grund, Lighthouse sah die gerenderte Seite.

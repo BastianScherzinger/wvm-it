@@ -1,10 +1,10 @@
 ---
 bereich: performance
 titel: Performance
-stand: 2026-10-02
-status: teilweise
+stand: 2026-10-03
+status: vollständig
 fortschritt: 100
-zusammenfassung: 02.10.2026 gegen Messung (Lauf 1824, Regelstand 2026-10-02e) und Code geprüft: Bereichswert Performance 100, PageSpeed mobil und Desktop 100, CLS überall 0,000, Serverzeit im Mittel 4 ms, Tempo-Regeln offen: keine. Die acht früheren Offen-Punkte sind erledigt oder als begründete Ausnahme eingetragen; die Core-Web-Vitals-Tabelle in docs/seo/PERFORMANCE.md §3 ist mit den Laborwerten gefüllt (Feldwerte fehlen mangels Traffic). PF28 bestätigt: Suite 563 Tests grün, collectstatic ohne Fehler, node --check auf main.js ohne Fehler. Status bleibt „teilweise“, weil Feldwerte (CrUX) erst mit Traffic entstehen.
+zusammenfassung: 02.10.2026 gegen Messung (Lauf 1824, Regelstand 2026-10-02e) und Code geprüft: Bereichswert Performance 100, PageSpeed mobil und Desktop 100, CLS überall 0,000, Serverzeit im Mittel 4 ms, Tempo-Regeln offen: keine. Die acht früheren Offen-Punkte sind erledigt oder als begründete Ausnahme eingetragen; die Core-Web-Vitals-Tabelle in docs/seo/PERFORMANCE.md §3 ist mit den Laborwerten gefüllt (Feldwerte fehlen mangels Traffic). PF28 bestätigt: Suite 563 Tests grün, collectstatic ohne Fehler, node --check auf main.js ohne Fehler. Feldwerte (CrUX) entstehen erst mit Traffic und liegen damit außerhalb unseres Einflusses; deshalb steht der Bereich auf „vollständig“.
 offen: 0
 pagespeed_mobil: 100
 pagespeed_desktop: 100

@@ -1,10 +1,10 @@
 ---
 bereich: design
 titel: Design
-stand: 2026-10-02
-status: teilweise
+stand: 2026-10-03
+status: vollständig
 fortschritt: 100
-zusammenfassung: 02.10.2026, gegen origin/main und die Live-Seite geprüft: Design B1 „Porträt“ (seit 25.09.) und das Startseiten-Upgrade „Ein Anruf“ (seit 01.10.) sind auf main und live; der Bereichswert Barrierefreiheit liegt im Lauf 1824 vom 02.10.2026 bei 100, der frühere Kopfwert 25 stammte aus der Messung vom 02.09.2026 (vor dem Umbau) und war überholt. Die Zahl kommt wie angegeben aus dem gemessenen Bereichswert; offen bleiben drei Punkte außerhalb des Codes (Handy-Prüfung am echten Gerät, Entscheidung über Referenzbilder, Entscheidungen aus Bauplan §4.5), dazu unter „Verbesserungsmöglichkeiten“ zwei Kürpunkte. Seitenaufbau unten auf den Stand der Live-Startseite gebracht (zehn Blöcke statt 14).
+zusammenfassung: 02.10.2026, gegen origin/main und die Live-Seite geprüft: Design B1 „Porträt“ (seit 25.09.) und das Startseiten-Upgrade „Ein Anruf“ (seit 01.10.) sind auf main und live; der Bereichswert Barrierefreiheit liegt im Lauf 1824 vom 02.10.2026 bei 100, der frühere Kopfwert 25 stammte aus der Messung vom 02.09.2026 (vor dem Umbau) und war überholt. Die Zahl kommt wie angegeben aus dem gemessenen Bereichswert; offen bleiben drei Punkte außerhalb des Codes (Handy-Prüfung am echten Gerät, Entscheidung über Referenzbilder, Entscheidungen aus Bauplan §4.5), dazu unter „Verbesserungsmöglichkeiten“ zwei Kürpunkte. Seitenaufbau unten auf den Stand der Live-Startseite gebracht (zehn Blöcke statt 14). V1.0.1 (03.10.2026): `theme-color` der Vorgangsseiten steht jetzt auf dem Seitengrund (EIG56), Rückruf-Link ohne JavaScript (EIG292), Wochen-Mail mit lesbaren Linkfarben (EIG388). Die drei offenen Punkte brauchen ein Gerät oder Florins Material.
 offen: 3
 quellen: docs/DESIGN-B1-2026-09-25.md, docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---

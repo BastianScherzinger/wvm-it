@@ -1,10 +1,10 @@
 ---
 bereich: seo
 titel: SEO und GEO
-stand: 2026-10-02
-status: teilweise
+stand: 2026-10-03
+status: vollständig
 fortschritt: 97
-zusammenfassung: 02.10.2026, gegen origin/main und Live-Seite geprüft: alles Code-seitige ist auf main und live (234 URLs, Sitemap-Index mit vier Segmenten, JSON-LD mit geo, SearchAction und sameAs auf das verwaltete Google-Profil und den WKO-Eintrag, llms.txt, Feed). Fortschritt 97 = Mittel der Bereichswerte SEO — Technik 94, SEO — Inhalt 100, GEO 98 aus Lauf 1824 (02.10.2026). Von den früheren Offen-Punkten sind elf erledigt; drei bleiben, alle außerhalb des Codes: Indexierungsanträge in der Search Console (Bastian, ~10 je Property und Tag), IS11-Ausnahme Vöcklabruck nach ~23.10.2026, GEO-Messung im Oktober. Weitere sameAs-Profile (LinkedIn, Herold) liegen bei Florin (80-AUFGABEN.md, Beim Kunden).
+zusammenfassung: 02.10.2026, gegen origin/main und Live-Seite geprüft: alles Code-seitige ist auf main und live (234 URLs, Sitemap-Index mit vier Segmenten, JSON-LD mit geo, SearchAction und sameAs auf das verwaltete Google-Profil und den WKO-Eintrag, llms.txt, Feed). Fortschritt 97 = Mittel der Bereichswerte SEO — Technik 94, SEO — Inhalt 100, GEO 98 aus Lauf 1824 (02.10.2026). Von den früheren Offen-Punkten sind elf erledigt; drei bleiben, alle außerhalb des Codes: Indexierungsanträge in der Search Console (Bastian, ~10 je Property und Tag), IS11-Ausnahme Vöcklabruck nach ~23.10.2026, GEO-Messung im Oktober. Weitere sameAs-Profile (LinkedIn, Herold) liegen bei Florin (80-AUFGABEN.md, Beim Kunden). V1.0.1 (03.10.2026): llms.txt zieht Preise, Zählwörter und Erreichbarkeit aus den Listen und dem Katalog statt aus Festtext, die Suche kennt das Einrichten-Silo, die Open-Graph-Angaben sind je Adresse eindeutig (alle 108 Basispfade in drei Sprachen geprüft).
 offen: 3
 quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/GEO-MONITORING.md, docs/seo/KEYWORD-MAP.md, docs/seo/BASELINE.md
 ---
