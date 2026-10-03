@@ -6,9 +6,9 @@ status: vollständig
 fortschritt: 100
 zusammenfassung: 02.10.2026 gegen Messung (Lauf 1824, Regelstand 2026-10-02e) und Code geprüft: Bereichswert Performance 100, PageSpeed mobil und Desktop 100, CLS überall 0,000, Serverzeit im Mittel 4 ms, Tempo-Regeln offen: keine. Die acht früheren Offen-Punkte sind erledigt oder als begründete Ausnahme eingetragen; die Core-Web-Vitals-Tabelle in docs/seo/PERFORMANCE.md §3 ist mit den Laborwerten gefüllt (Feldwerte fehlen mangels Traffic). PF28 bestätigt: Suite 563 Tests grün, collectstatic ohne Fehler, node --check auf main.js ohne Fehler. Feldwerte (CrUX) entstehen erst mit Traffic und liegen damit außerhalb unseres Einflusses; deshalb steht der Bereich auf „vollständig“.
 offen: 0
-pagespeed_mobil: 99
+pagespeed_mobil: 100
 pagespeed_desktop: 100
-antwortzeit_ms: 4
+antwortzeit_ms: 5
 quellen: docs/AUSBAU-2026-09.md, docs/seo/PERFORMANCE.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 antwortzeit_quelle: PageSpeed server-response-time
 ---
@@ -26,22 +26,22 @@ antwortzeit_quelle: PageSpeed server-response-time
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **99** | 1,96 s | 0,000 | 0 ms | 7 ms |
+| `/` | mobile | **99** | 1,96 s | 0,000 | 0 ms | 10 ms |
 | `/` | desktop | **100** | 0,48 s | 0,000 | 0 ms | 7 ms |
-| `/datenschutz/` | mobile | **100** | 1,68 s | 0,000 | 0 ms | 3 ms |
-| `/datenschutz/` | desktop | **100** | 0,43 s | 0,000 | 0 ms | 4 ms |
-| `/impressum/` | mobile | **100** | 1,70 s | 0,000 | 0 ms | 3 ms |
-| `/impressum/` | desktop | **100** | 0,37 s | 0,000 | 0 ms | 3 ms |
-| `/kontakt/` | mobile | **98** | 2,26 s | 0,000 | 0 ms | 3 ms |
-| `/kontakt/` | desktop | **100** | 0,45 s | 0,000 | 0 ms | 3 ms |
-| `/kosten/rechner/` | mobile | **100** | 1,72 s | 0,000 | 0 ms | 4 ms |
-| `/kosten/rechner/` | desktop | **100** | 0,47 s | 0,000 | 0 ms | 3 ms |
-| `/leistungen/` | mobile | **99** | 2,00 s | 0,000 | 0 ms | 4 ms |
-| `/leistungen/` | desktop | **100** | 0,48 s | 0,000 | 0 ms | 4 ms |
+| `/datenschutz/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 4 ms |
+| `/datenschutz/` | desktop | **100** | 0,43 s | 0,000 | 0 ms | 3 ms |
+| `/impressum/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 4 ms |
+| `/impressum/` | desktop | **100** | 0,38 s | 0,000 | 0 ms | 3 ms |
+| `/kontakt/` | mobile | **100** | 1,69 s | 0,000 | 0 ms | 3 ms |
+| `/kontakt/` | desktop | **100** | 0,41 s | 0,000 | 0 ms | 4 ms |
+| `/kosten/rechner/` | mobile | **100** | 1,75 s | 0,000 | 25 ms | 5 ms |
+| `/kosten/rechner/` | desktop | **100** | 0,42 s | 0,000 | 0 ms | 7 ms |
+| `/leistungen/` | mobile | **99** | 2,02 s | 0,000 | 20 ms | 4 ms |
+| `/leistungen/` | desktop | **100** | 0,53 s | 0,000 | 0 ms | 8 ms |
 
 12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 4,0 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 5,2 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
