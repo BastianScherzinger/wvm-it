@@ -42,7 +42,7 @@ SEITEN = {
             {"h": "Funcționare curentă", "t": "Vă adresați într-un singur loc, noi ne ocupăm. Actualizările și salvările rulează în fundal, iar o dată pe trimestru discutăm ce urmează."},
         ],
         "preis_h": "Cât costă",
-        "preis_t": "Administrarea curentă costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Cine are nevoie doar punctual de ajutor plătește 95 € pe oră; intervențiile la fața locului costă 120 € pe oră plus deplasarea. Toate sunt prețuri orientative, net plus TVA. Nu există durată minimă peste un trimestru.",
+        "preis_t": "Administrarea curentă costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Cine are nevoie doar punctual de ajutor plătește 95 € pe oră; intervențiile la fața locului costă 120 € pe oră plus deplasarea. Toate sunt prețuri orientative, net plus TVA. Administrarea merge de la trimestru la trimestru, cu reziliere cu o lună înainte de sfârșitul trimestrului.",
         "faq": [
             {"q": "De la câte posturi de lucru merită administrarea IT curentă?",
              "a": "De la circa cinci posturi de lucru administrarea se justifică de obicei dacă previne o singură zi de nefuncționare pe an. Sub acest prag, facturarea la oră este adesea mai avantajoasă — o spunem cinstit în prima discuție, chiar dacă noi câștigăm mai puțin."},
@@ -68,7 +68,7 @@ SEITEN = {
         "titel": "Servere și copii de siguranță de la 49 €/lună | WVM-IT",
         "desc": "Monitorizare server de la 89 €/lună, copii de siguranță verificate de la 49 €/lună. Vedem defecțiunea înainte să se oprească activitatea. Cereți o ofertă.",
         "h1": "Administrare de server și copii de siguranță care rezistă la nevoie",
-        "kurz": "WVM-IT supraveghează serverele firmelor non-stop și operează copiile de siguranță astfel încât ele să funcționeze și la nevoie: salvate zilnic, fiecare salvare verificată, restaurarea testată periodic. Administrarea serverului costă de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Totul se administrează la distanță în toată Austria și Germania.",
+        "kurz": "WVM-IT supraveghează automat serverele firmelor și operează copiile de siguranță astfel încât ele să funcționeze și la nevoie: salvate zilnic, fiecare salvare verificată, restaurarea testată periodic. Administrarea serverului costă de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Totul se administrează la distanță în toată Austria și Germania.",
         "intro": "Aproape orice firmă are o copie de siguranță. Considerabil mai puține știu când a rulat ultima dată, iar cele mai puține au încercat vreodată să recupereze ceva din ea. Asta se observă exact o singură dată — în ziua în care contează. O salvare care nu a fost niciodată restaurată nu este o salvare, ci o speranță. De aceea o tratăm ca pe o parte a firmei care trebuie verificată, nu ca pe o setare bifată cândva. În acest sens, o copie de siguranță este o copie verificată a datelor de care firma are nevoie ca să lucreze mai departe, păstrată separat de server — verificată înseamnă: fiecare rulare este controlată, iar restaurarea este testată periodic. O copie care stă pe un disc în aceeași încăpere și nu a fost niciodată restaurată nu îndeplinește niciuna dintre cele două condiții și, prin urmare, nu este o copie de siguranță.",
         "problem_h": "Cele patru propoziții după care devine de obicei scump",
         "probleme": [
@@ -79,7 +79,7 @@ SEITEN = {
         ],
         "leistung_h": "Ce include administrarea",
         "leistungen": [
-            "Monitorizare non-stop: spațiu de stocare, încărcare, temperatură, discuri",
+            "Monitorizare automată: spațiu de stocare, încărcare, temperatură, discuri",
             "Actualizări și corecții de securitate, aplicate în afara programului dumneavoastră",
             "Salvare zilnică, păstrată separat de server",
             "Verificarea fiecărei salvări — și restaurări de test periodice",
@@ -204,7 +204,7 @@ SEITEN = {
         "titel": "Site web la comandă de la 350 € | WVM-IT",
         "desc": "Site-uri pentru firme din Austria și Germania: one-pager de la 350 €, site de firmă de la 1.490 €, magazin de la 3.500 €. Cereți o ofertă.",
         "h1": "Site web la comandă — și vedeți dinainte ce primiți",
-        "kurz": "WVM-IT construiește site-uri pentru firme din Austria și Germania: un one-pager de la 350 €, un site de firmă cu mai multe pagini de la 1.490 €, o pagină premium cu animații de la 2.900 €, un magazin online de la 3.500 €. În prealabil construim gratuit o pagină de probă reală, ca să vedeți cum lucrăm înainte să vă decideți. Găzduirea și întreținerea costă împreună 54 € pe lună.",
+        "kurz": "WVM-IT construiește site-uri pentru firme din Austria și Germania: un one-pager de la 350 €, un site de firmă cu mai multe pagini de la 1.490 €, o pagină premium cu animații de la 2.900 €, un magazin online de la 3.500 €. În prealabil construim gratuit o pagină de probă reală, ca să vedeți cum lucrăm înainte să vă decideți. Găzduirea și întreținerea costă împreună de la 54 € pe lună.",
         "intro": "Cea mai frecventă dezamăgire legată de un site nou nu este aspectul, ci liniștea de după. Arată bine, a costat, și nu se întâmplă nimic. Cauza nu e aproape niciodată designul, ci faptul că pagina nu a fost construită pentru ca cineva să ia legătura: numărul de telefon e jos de tot, prețuri nu există, formularul are nouă câmpuri. Noi construim în direcția inversă — pornind de la scop.",
         "problem_h": "De ce eșuează paginile",
         "probleme": [
@@ -229,7 +229,7 @@ SEITEN = {
             {"h": "Construim, verificăm, publicăm", "t": "Vedeți stadiul pe parcurs. La lansare configurăm găzduirea, domeniul și măsurarea, ca din prima zi să fie vizibil ce se întâmplă."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Un one-pager pornește de la 350 €, un site business cu mai multe pagini de la 1.490 €, o pagină premium cu animații de la 2.900 €, un magazin online de la 3.500 €. Curent se adaugă găzduirea cu SSL și copii de siguranță la 15 € pe lună și întreținerea la 39 € pe lună, împreună 54 € pe lună; domeniul costă 15 € pe an. Prețuri orientative, net plus TVA.",
+        "preis_t": "Un one-pager pornește de la 350 €, un site business cu mai multe pagini de la 1.490 €, o pagină premium cu animații de la 2.900 €, un magazin online de la 3.500 €. Curent se adaugă găzduirea cu SSL și copii de siguranță de la 15 € pe lună și întreținerea de la 39 € pe lună, împreună de la 54 € pe lună; domeniul costă de la 15 € pe an. Prețuri orientative, net plus TVA.",
         "faq": [
             {"q": "Cât durează până pagina este online?",
              "a": "Un one-pager este de obicei gata în una-două săptămâni, un site de firmă cu mai multe pagini în trei-cinci. Ritmul îl decide aproape întotdeauna cât de repede ajung la noi textele, imaginile și aprobările — nu programarea. Termenele strânse le confirmăm sau le refuzăm dinainte, nu după."},
@@ -283,7 +283,7 @@ SEITEN = {
             {"q": "Ce este GEO și de ce vorbiți despre el?",
              "a": "GEO înseamnă vizibilitatea în motoarele generative de răspuns — ChatGPT, Perplexity, Gemini, rezumatele AI din Google. Tot mai mulți oameni își pun întrebarea acolo în loc să citească zece linkuri albastre. Se citează ce răspunde clar, are dată și este construit citibil pentru mașini. Asta includem."},
             {"q": "Aveți o dovadă că funcționează?",
-             "a": "Rümpelwerk Mitteldeutschland: acolo administrăm site-ul, SEO/GEO și Google Ads, cu pagini proprii pentru fiecare serviciu și fiecare regiune. Prin acea pagină intră comenzi reale. Realizat împreună cu partenerul nostru PyStore."},
+             "a": "Rümpelwerk Mitteldeutschland: acolo administrăm site-ul, SEO/GEO și Google Ads, cu pagini proprii pentru fiecare serviciu și fiecare regiune. Realizat împreună cu partenerul nostru PyStore."},
         ],
         "cta_h": "După ce ar trebui să vă găsească clienții?",
         "cta_t": "Spuneți-ne două-trei cuvinte de căutare pentru care vreți să fiți găsit. Verificăm cât de realist este și răspundem în 24 de ore în zilele lucrătoare.",
@@ -339,7 +339,7 @@ SEITEN = {
         "titel": "Găzduire și întreținere de la 15 €/lună | WVM-IT",
         "desc": "Găzduire cu SSL și copii zilnice de la 15 €/lună, întreținere de la 39 €/lună, domeniu de la 15 €/an. Solicitați o ofertă.",
         "h1": "Găzduire și întreținere: ca pagina să meargă și când nu se uită nimeni",
-        "kurz": "WVM-IT operează și întreține site-uri de firmă: găzduire cu SSL și copii zilnice de siguranță de la 15 € pe lună, întreținere cu actualizări și modificări mici de la 39 € pe lună, domeniu de la 15 € pe an — împreună 54 € pe lună. Preluăm și site-uri construite de altcineva și le administrăm independent de loc, în Austria și Germania.",
+        "kurz": "WVM-IT operează și întreține site-uri de firmă: găzduire cu SSL și copii zilnice de siguranță de la 15 € pe lună, întreținere cu actualizări și modificări mici de la 39 € pe lună, domeniu de la 15 € pe an — împreună de la 54 € pe lună. Preluăm și site-uri construite de altcineva și le administrăm independent de loc, în Austria și Germania.",
         "intro": "Un site web nu este o achiziție, ci un mijloc de lucru. Certificatele expiră, sistemele au nevoie de actualizări de securitate, formularele de contact se opresc la un moment dat în tăcere. Asta se observă rar imediat — de obicei abia când n-a mai venit nicio solicitare de săptămâni și cineva verifică. Întreținerea este cea mai ieftină asigurare împotriva exact acestor săptămâni.",
         "problem_h": "Ce se întâmplă fără întreținere",
         "probleme": [
@@ -364,7 +364,7 @@ SEITEN = {
             {"h": "Operăm", "t": "De atunci rulează actualizările, salvările și monitorizarea. Dorințele de modificare le trimiteți simplu pe e-mail."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Găzduirea inclusiv SSL și copii de siguranță costă 15 € pe lună, întreținerea cu actualizări și modificări mici 39 € pe lună — împreună 54 € pe lună. Domeniul costă 15 € pe an. Cine vrea administrate și servere proprii în firmă găsește asta la administrarea de server, de la 89 € pe lună. Prețuri orientative, net plus TVA.",
+        "preis_t": "Găzduirea inclusiv SSL și copii de siguranță costă de la 15 € pe lună, întreținerea cu actualizări și modificări mici de la 39 € pe lună — împreună de la 54 € pe lună. Domeniul costă de la 15 € pe an. Cine vrea administrate și servere proprii în firmă găsește asta la administrarea de server, de la 89 € pe lună. Prețuri orientative, net plus TVA.",
         "faq": [
             {"q": "Preluați și site-uri pe care nu le-ați construit dumneavoastră?",
              "a": "Da. Verificăm întâi în ce stare este pagina și vă spunem onest dacă operarea curentă merită sau dacă o revizuire iese mai ieftin."},
@@ -634,7 +634,7 @@ SEITEN = {
         "leistungen": [
             "Evaluare și documentare a tuturor serverelor, stațiilor, aplicațiilor, conturilor și contractelor",
             "Persoană de contact fixă pentru firma dumneavoastră; regula de înlocuire o consemnăm în scris",
-            "Monitorizare 24/7 a serverelor, copiilor de siguranță, firewall-ului și rețelei, cu escaladare la o adresă fixă",
+            "Monitorizare automată a serverelor, copiilor de siguranță, firewall-ului și rețelei, cu escaladare la o adresă fixă",
             "Configurare standardizată a stațiilor — fiecare mașină construită, denumită și documentată la fel",
             "Mai multe sedii prin mentenanță securizată la distanță; lucrări la fața locului pe bază de programare",
             "Co-asistență alături de un IT intern existent: a doua opinie, cazuri excepționale, teme fără timp",
@@ -650,7 +650,7 @@ SEITEN = {
         "preis_t": "Asistența curentă costă de la 29 € pe stație și lună, un server administrat de la 89 € pe lună, copia de siguranță monitorizată de la 49 € pe lună. Pentru o firmă tipică mai mare, cu 30 de stații și 2 servere plus copie de siguranță, rezultă circa 1.097 € pe lună (30 × 29 € + 2 × 89 € + 49 €). Lucrările punctuale se facturează cu 95 € pe oră, la fața locului cu 120 € pe oră plus deplasare. Prețuri orientative, net, fără TVA. Activitatea curentă prin mentenanță la distanță este independentă de locație; sediile suplimentare se facturează pe stație și server ca mai sus, iar pentru montaje și intervenții la fața locului deplasarea se comunică în scris înainte.",
         "faq": [
             {"q": "Unde este linia dintre această pagină și administrarea pentru firme mici?",
-             "a": "La aproximativ 20 de stații. Sub această limită, o relație mai apropiată și personală este mai ieftină și mai rapidă; peste, efortul pentru documentare curată și standarde fixe începe să merite, altfel nimeni nu mai are o privire de ansamblu. Linia nu este strictă: unele firme cu 15 stații pe trei sedii încap aici, unele firme cu 25 de stații pe un singur sediu aparțin celeilalte pagini. Vă spunem în prima discuție."},
+             "a": "La aproximativ 20 de stații. Sub această limită, o relație mai apropiată și personală este mai rapidă și mai simplă; peste, efortul pentru documentare curată și standarde fixe începe să merite, altfel nimeni nu mai are o privire de ansamblu. Linia nu este strictă: unele firme cu 15 stații pe trei sedii încap aici, unele firme cu 25 de stații pe un singur sediu aparțin celeilalte pagini. Vă spunem în prima discuție."},
             {"q": "Puteți lucra alături de IT-ul nostru intern?",
              "a": "Da, aceasta este o parte a activității. Rolul intern cunoaște firma și ritmul zilnic; noi aducem timp pentru temele care cad între — monitorizarea serverelor în afara programului, verificări de securitate, acoperire în concediu, a doua opinie înainte de investiții. Împărțirea rămâne în scris."},
             {"q": "Avem mai multe sedii — funcționează prin mentenanță la distanță?",

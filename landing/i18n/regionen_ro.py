@@ -45,7 +45,7 @@ REGIONEN = {
         "titel": "Servicii IT Attersee — rețea, WLAN și smart home | WVM-IT",
         "desc": "IT și tehnică la Attersee: WLAN pentru hoteluri și case de vacanță, rețele, smart home, la 8 km de Lenzing. Solicitați o ofertă.",
         "h1": "IT, rețea și tehnică în jurul lacului Attersee",
-        "kurz": "WVM-IT se ocupă de firme și de gospodării private din regiunea Attersee — de la Seewalchen și Schörfling până la Nußdorf și Steinbach. Sediul nostru din Lenzing se află la 8 kilometri, adică circa 12 minute. Accentul aici: rețea și WLAN care rezistă și atunci când vara sunt de trei ori mai multe dispozitive conectate decât iarna.",
+        "kurz": "WVM-IT se ocupă de firme din regiunea Attersee — de la Seewalchen și Schörfling până la Nußdorf și Steinbach. Sediul nostru din Lenzing se află la 8 kilometri, adică circa 12 minute. Accentul aici: rețea și WLAN care rezistă și atunci când vara sunt de trei ori mai multe dispozitive conectate decât iarna.",
         "intro": "La Attersee, tehnica este solicitată sezonier. O firmă al cărei WLAN funcționează impecabil în februarie are în iulie o sută de oaspeți cu câte două dispozitive în aceeași rețea — plus casa de marcat, pontajul și camerele. Ce cedează atunci nu este de obicei conexiunea, ci acoperirea: prea puține puncte de acces, amplasate greșit, fără separare între oaspeți și firmă.",
         "wirtschaft": "A doua particularitate sunt clădirile. Ziduri vechi, anexe, hangare pentru bărci, terase — semnalul radio nu ajunge acolo de la sine, iar un repetor în plus înrăutățește de obicei situația. Noi măsurăm în loc să ghicim și separăm curat rețeaua oaspeților de cea a firmei. Nu este o chestiune de comoditate, ci condiția ca dispozitivul unui oaspete să nu se afle în aceeași rețea cu contabilitatea.",
         "vor_ort_h": "Pentru ce venim la Attersee",
@@ -61,7 +61,7 @@ REGIONEN = {
         "faq": [
             {"q": "WLAN-ul nostru cedează doar vara. De ce?",
              "a": "Aproape întotdeauna nu din cauza conexiunii la internet, ci din cauza numărului de dispozitive simultane pe prea puține puncte de acces. Un singur router gestionează bine câteva dispozitive și prost treizeci. Soluția este rareori o conexiune mai rapidă, ci o acoperire planificată cu mai multe puncte de acces și o rețea separată pentru oaspeți. Asta o măsurăm la fața locului."},
-            {"q": "Vă ocupați și de case de vacanță și locuințe private?",
+            {"q": "Vă ocupați și de case de vacanță și obiective de vacanță?",
              "a": "Da. La lac aceasta este o bună parte din activitate: WLAN, controlul încălzirii, umbrire, acces și camere pentru imobile care nu sunt locuite tot anul. Multe dintre acestea pot fi ulterior verificate și comandate de la distanță, fără ca cineva să se deplaseze."},
             {"q": "Puteți asigura tehnica pentru un eveniment la lac?",
              "a": "Tehnica de sunet, lumini și prezentare pentru evenimente face parte din oferta noastră, iar comunele din jurul lacului sunt toate în zona noastră. Ce anume este necesar depinde de mărime, locație și alimentarea electrică — clarificăm asta dinainte, printr-o vizită, nu la telefon."},

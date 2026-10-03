@@ -133,7 +133,7 @@ BRANCHEN = {
             {"q": "Are voie un furnizor extern să acceseze sistemele noastre?",
              "a": "Da, în baza unui contract de prelucrare conform articolului 28 GDPR. În el scrie la ce avem voie să accedem, cum se jurnalizează și ce se întâmplă la încetarea contractului cu accesele și datele. Îl încheiem înainte de primul acces, nu ulterior — și nu avem nevoie de acces la dosarele pacienților, ci la tehnologia de dedesubt."},
             {"q": "Puteți lucra fără să întrerupeți consultația?",
-             "a": "Pentru majoritatea lucrărilor, da: actualizările, supravegherea și backupul rulează în afara programului sau în fundal. Tot ce necesită o repornire sau o întrerupere programăm împreună dinainte. Defecțiunile din timpul consultației le preluăm imediat prin mentenanță la distanță — acolo fiecare minut contează altfel decât într-un birou."},
+             "a": "Pentru majoritatea lucrărilor, da: actualizările, supravegherea și backupul rulează în afara programului sau în fundal. Tot ce necesită o repornire sau o întrerupere programăm împreună dinainte. Defecțiunile din timpul consultației le preluăm prioritar prin mentenanță la distanță, în intervalul în care suntem disponibili (luni–vineri, 9–18) — acolo fiecare minut contează altfel decât într-un birou."},
             {"q": "Ce facem cu aparatura medicală care nu mai primește actualizări?",
              "a": "Nu se înlocuiește, ci se separă. Un sistem fără actualizări este controlabil atâta timp cât stă într-o rețea proprie și are voie să comunice doar cu ce trebuie. Exact acesta este scopul rețelelor separate — și calea obișnuită atunci când înlocuirea nu intră în discuție tehnic sau economic."},
             {"q": "Cât durează o restaurare dacă chiar cade ceva?",
@@ -233,8 +233,8 @@ BRANCHEN = {
 
     "vereine-gemeinden": {
         "nav": "Asociații & primării",
-        "titel": "IT pentru asociații în Austria, de la 95 € pe oră | WVM-IT",
-        "desc": "IT pentru asociații și primării: predarea la schimbarea conducerii, bugete mici, site, tehnică în sală, de la 95 € pe oră. Contactați-ne acum.",
+        "titel": "IT pentru asociații în Austria, 95 € pe oră | WVM-IT",
+        "desc": "IT pentru asociații și primării: predarea la schimbarea conducerii, bugete mici, site, tehnică în sală, facturat cu 95 € pe oră. Contactați-ne acum.",
         "h1": "IT pentru asociații, primării și organizații de voluntari",
         "kurz": "WVM-IT sprijină asociații, instituții comunale și organizații conduse de voluntari din Austria și Germania: accese și conturi care supraviețuiesc unei schimbări de conducere, site și e-mail, backup, precum și tehnică în sală și în camera de ședințe. Facturăm de regulă după timpul lucrat, cu 95 € pe oră, în locul unui contract curent — asta se potrivește mai bine unui buget aprobat o dată pe an.",
         "intro": "Într-o asociație nimeni nu se ocupă de tehnică cu normă întreagă. Există cineva care se pricepe și o face — până predă funcția. Exact aici se pierde mai mult decât prin orice defecțiune tehnică: parole, accesul la domeniu, listele de membri, contul la furnizorul de e-mail. Nu din rea intenție, ci pentru că nu a fost niciodată scris.",
@@ -260,7 +260,7 @@ BRANCHEN = {
         "risiko_h": "Schimbarea conducerii este adevărata urgență",
         "risiko_t": "Nu avaria, ci schimbarea. Dacă fostul secretar a ținut domeniul pe un cont privat, doar el știa parola de e-mail, iar lista de membri era pe calculatorul lui, noua conducere începe de la zero — iar în cel mai rău caz adresa asociației dispare după următoarea reînnoire. Asta se poate pune în ordine într-o după-amiază, cât timp ambele părți încă vorbesc. După aceea devine anevoios până la imposibil.",
         "preis_h": "Cât costă",
-        "preis_t": "Pentru asociații facturăm de obicei după timpul lucrat: 95 € pe oră, intervenții la fața locului 120 € pe oră plus deplasarea. Acolo unde asistența curentă are sens, ea costă de la 29 € per stație și lună, găzduirea cu SSL și backup 15 € pe lună, mentenanța și actualizările 39 € pe lună. Un site simplu pornește de la 350 €. Prețuri orientative, net plus TVA — înainte de fiecare lucrare există o estimare, ca cenzorii să nu aibă ce reproșa.",
+        "preis_t": "Pentru asociații facturăm de obicei după timpul lucrat: 95 € pe oră, intervenții la fața locului 120 € pe oră plus deplasarea. Acolo unde asistența curentă are sens, ea costă de la 29 € per stație și lună, găzduirea cu SSL și backup de la 15 € pe lună, mentenanța și actualizările de la 39 € pe lună. Un site simplu pornește de la 350 €. Prețuri orientative, net plus TVA — înainte de fiecare lucrare există o estimare, ca cenzorii să nu aibă ce reproșa.",
         "faq": [
             {"q": "Suntem voluntari și aproape fără buget. Merită o discuție?",
              "a": "Da, iar rezultatul este de obicei mai mic decât credeți. Cel mai mare folos nu vine din tehnică nouă, ci din ordine: accesele puse pe asociație, o predare documentată, backupul verificat. Sunt câteva ore, nu costuri curente — iar după aceea organizația supraviețuiește următoarei schimbări de conducere fără pierderi."},

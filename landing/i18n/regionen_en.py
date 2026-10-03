@@ -45,7 +45,7 @@ REGIONEN = {
         "titel": "IT services Lake Atter: networks & Wi-Fi | WVM-IT",
         "desc": "IT and technology around Lake Atter: Wi-Fi for hotels and holiday lets, networks, smart home, 8 km from Lenzing. Get in touch today.",
         "h1": "IT, networks and technology around Lake Atter",
-        "kurz": "WVM-IT looks after businesses and private households in the Lake Atter region — from Seewalchen and Schörfling to Nußdorf and Steinbach. Our base in Lenzing is 8 kilometres away, putting us on site in about 12 minutes. The focus here: networks and Wi-Fi that hold up when three times as many devices are on them in summer as in winter.",
+        "kurz": "WVM-IT looks after businesses in the Lake Atter region — from Seewalchen and Schörfling to Nußdorf and Steinbach. Our base in Lenzing is 8 kilometres away, putting us on site in about 12 minutes. The focus here: networks and Wi-Fi that hold up when three times as many devices are on them in summer as in winter.",
         "intro": "Around Lake Atter the technology carries a seasonal load. A business whose Wi-Fi works flawlessly in February has a hundred guests with two devices each on the same network in July — plus the till system, time recording and cameras. What breaks then is rarely the line, but the coverage: too few access points, badly placed, with no separation between guests and the business.",
         "wirtschaft": "The second peculiarity is the buildings. Old walls, outbuildings, boathouses, terraces — radio does not reach there by itself, and an extra repeater usually makes things worse rather than better. We measure instead of guessing, and separate the guest network cleanly from the business network. That is not convenience but the precondition for a guest device not sitting on the same network as your accounts.",
         "vor_ort_h": "What we come to Lake Atter for",
@@ -61,7 +61,7 @@ REGIONEN = {
         "faq": [
             {"q": "Our Wi-Fi only collapses in summer. Why?",
              "a": "Almost always not because of the internet line but because of the number of simultaneous devices on too few access points. A single router handles a handful of devices well and thirty badly. The answer is rarely a faster line but planned coverage with several access points and a separate guest network. We survey that on site."},
-            {"q": "Do you also look after holiday lets and private houses?",
+            {"q": "Do you also look after holiday lets and holiday properties?",
              "a": "Yes. By the lake that is a good part of the work: Wi-Fi, heating control, shading, access and cameras for properties that are not occupied year-round. Much of it can later be checked and controlled remotely without anyone driving out."},
             {"q": "Can you provide technology for an event by the lake?",
              "a": "Audio, lighting and presentation technology for events is part of what we do, and the Lake Atter municipalities are all in the catchment area. What exactly is needed depends on size, location and available power — we clarify that beforehand during a site visit, not over the phone."},

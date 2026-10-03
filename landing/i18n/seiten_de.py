@@ -47,7 +47,7 @@ SEITEN = {
             {"h": "Laufender Betrieb", "t": "Sie melden sich bei einer Stelle, wir kümmern uns. Updates und Sicherungen laufen im Hintergrund, einmal im Quartal sprechen wir darüber, was ansteht."},
         ],
         "preis_h": "Was das kostet",
-        "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Wer nur punktuell Hilfe braucht, zahlt 95 € je Stunde; Einsätze vor Ort kosten 120 € je Stunde zuzüglich Anfahrt. Alle Angaben sind Richtpreise, netto zzgl. USt. Es gibt keine Mindestlaufzeit über das Quartal hinaus. Drei Rechenbeispiele, in denen ausschließlich die Sätze aus dieser Preisliste stecken: ein Betrieb mit fünf Arbeitsplätzen und einem Server samt überwachter Datensicherung zahlt 5 × 29 € + 89 € + 49 € = 283 € im Monat. Bei zehn Arbeitsplätzen mit Server und Datensicherung sind es 10 × 29 € + 89 € + 49 € = 428 € im Monat. Bei zwanzig Arbeitsplätzen mit zwei Servern und Datensicherung ergibt dieselbe Rechnung 20 × 29 € + 2 × 89 € + 49 € im Monat — den Endbetrag lassen wir bewusst offen, weil er als einzelne Zahl auf keiner unserer Preisseiten steht und sich am Kostenrechner mit denselben Werten selbst nachrechnen lässt. Kommen Microsoft-365-Lizenzen dazu, zahlen Sie diese direkt an Microsoft; wir richten sie ein und rechnen die Einrichtung getrennt ab. Punktuelle Zusatzarbeiten außerhalb der Betreuung — etwa der Umzug eines Arbeitsplatzes oder das Einrichten eines neuen Druckers — laufen wie oben zu 95 € je Stunde per Fernwartung oder 120 € vor Ort.",
+        "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Wer nur punktuell Hilfe braucht, zahlt 95 € je Stunde; Einsätze vor Ort kosten 120 € je Stunde zuzüglich Anfahrt. Alle Angaben sind Richtpreise, netto zzgl. USt. Die Betreuung läuft von Quartal zu Quartal, Kündigung mit einem Monat Frist zum Quartalsende. Drei Rechenbeispiele, in denen ausschließlich die Sätze aus dieser Preisliste stecken: ein Betrieb mit fünf Arbeitsplätzen und einem Server samt überwachter Datensicherung zahlt 5 × 29 € + 89 € + 49 € = 283 € im Monat. Bei zehn Arbeitsplätzen mit Server und Datensicherung sind es 10 × 29 € + 89 € + 49 € = 428 € im Monat. Bei zwanzig Arbeitsplätzen mit zwei Servern und Datensicherung ergibt dieselbe Rechnung 20 × 29 € + 2 × 89 € + 49 € im Monat — den Endbetrag lassen wir bewusst offen, weil er als einzelne Zahl auf keiner unserer Preisseiten steht und sich am Kostenrechner mit denselben Werten selbst nachrechnen lässt. Kommen Microsoft-365-Lizenzen dazu, zahlen Sie diese direkt an Microsoft; wir richten sie ein und rechnen die Einrichtung getrennt ab. Punktuelle Zusatzarbeiten außerhalb der Betreuung — etwa der Umzug eines Arbeitsplatzes oder das Einrichten eines neuen Druckers — laufen wie oben zu 95 € je Stunde per Fernwartung oder 120 € vor Ort.",
         "faq": [
             {"q": "Ab wie vielen Arbeitsplätzen lohnt sich eine laufende IT-Betreuung?",
              "a": "Ab etwa fünf Arbeitsplätzen rechnet sich die Betreuung meist schon dann, wenn sie einen einzigen Ausfalltag im Jahr verhindert. Darunter ist die Abrechnung nach Stunden oft günstiger — das sagen wir Ihnen im Erstgespräch ehrlich, auch wenn dabei weniger für uns herauskommt."},
@@ -73,7 +73,7 @@ SEITEN = {
         "titel": "Server-Betreuung & Backup ab 49 €/Monat | WVM-IT",
         "desc": "Server-Überwachung ab 89 €/Monat, geprüfte Datensicherung ab 49 €/Monat. Wir sehen den Ausfall, bevor der Betrieb steht. Jetzt Angebot anfordern.",
         "h1": "Server-Betreuung und Datensicherung, die im Ernstfall hält",
-        "kurz": "WVM-IT überwacht Firmenserver rund um die Uhr und betreibt die Datensicherung so, dass sie im Ernstfall auch funktioniert: täglich gesichert, jede Sicherung geprüft, die Wiederherstellung regelmäßig getestet. Die Server-Betreuung kostet ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Betreut wird per Fernzugriff in ganz Österreich und Deutschland.",
+        "kurz": "WVM-IT überwacht Firmenserver automatisch und betreibt die Datensicherung so, dass sie im Ernstfall auch funktioniert: täglich gesichert, jede Sicherung geprüft, die Wiederherstellung regelmäßig getestet. Die Server-Betreuung kostet ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Betreut wird per Fernzugriff in ganz Österreich und Deutschland.",
         "intro": "Fast jeder Betrieb hat eine Datensicherung. Deutlich weniger Betriebe wissen, wann sie zuletzt gelaufen ist, und die wenigsten haben je versucht, etwas daraus zurückzuholen. Das fällt genau einmal auf — an dem Tag, an dem es darauf ankommt. Eine Sicherung, die noch nie zurückgespielt wurde, ist keine Sicherung, sondern eine Hoffnung. Wir behandeln sie deshalb wie einen Betriebsteil, der geprüft gehört, und nicht wie eine Einstellung, die irgendwann einmal gesetzt wurde. Eine Datensicherung ist in diesem Sinn eine geprüfte, vom Server getrennt aufbewahrte Kopie der Daten, die der Betrieb zum Weiterarbeiten braucht — geprüft heißt: Jeder Lauf wird kontrolliert, und die Wiederherstellung wird regelmäßig getestet. Eine Kopie, die auf einer Platte im selben Raum liegt und nie zurückgespielt wurde, erfüllt keine der beiden Bedingungen und ist deshalb keine Sicherung.",
         "problem_h": "Die vier Sätze, nach denen es meistens teuer wird",
         "probleme": [
@@ -84,7 +84,7 @@ SEITEN = {
         ],
         "leistung_h": "Was zur Betreuung gehört",
         "leistungen": [
-            "Überwachung rund um die Uhr: Speicherplatz, Auslastung, Temperatur, Festplatten",
+            "Automatische Überwachung: Speicherplatz, Auslastung, Temperatur, Festplatten",
             "Updates und Sicherheits-Patches, eingespielt außerhalb Ihrer Arbeitszeiten",
             "Tägliche Sicherung, getrennt vom Server aufbewahrt",
             "Prüfung jeder Sicherung — und regelmäßige Test-Wiederherstellung",
@@ -209,7 +209,7 @@ SEITEN = {
         "titel": "Webseite erstellen lassen ab 350 € | WVM-IT",
         "desc": "Webseiten für Betriebe in Österreich und Deutschland: One-Pager ab 350 €, Firmenseite ab 1.490 €, Shop ab 3.500 €. Jetzt Angebot anfordern.",
         "h1": "Webseite erstellen lassen — und vorher sehen, was Sie bekommen",
-        "kurz": "WVM-IT baut Webseiten für Betriebe in Österreich und Deutschland: ein One-Pager ab 350 €, eine mehrseitige Firmenseite ab 1.490 €, eine Premium-Seite mit Animationen ab 2.900 €, ein Online-Shop ab 3.500 €. Vorab bauen wir kostenlos eine echte Beispielseite, damit Sie sehen, wie wir arbeiten, bevor Sie sich entscheiden. Hosting und Wartung kosten zusammen 54 € im Monat.",
+        "kurz": "WVM-IT baut Webseiten für Betriebe in Österreich und Deutschland: ein One-Pager ab 350 €, eine mehrseitige Firmenseite ab 1.490 €, eine Premium-Seite mit Animationen ab 2.900 €, ein Online-Shop ab 3.500 €. Vorab bauen wir kostenlos eine echte Beispielseite, damit Sie sehen, wie wir arbeiten, bevor Sie sich entscheiden. Hosting und Wartung kosten zusammen ab 54 € im Monat.",
         "intro": "Die häufigste Enttäuschung mit einer neuen Webseite ist nicht das Aussehen, sondern die Stille danach. Sie sieht gut aus, sie ist teuer gewesen, und es passiert nichts. Das liegt fast nie am Design, sondern daran, dass die Seite nicht dafür gebaut wurde, dass jemand Kontakt aufnimmt: Die Telefonnummer steht ganz unten, es gibt keine Preise, das Formular hat neun Felder. Wir bauen in die andere Richtung — vom Ziel her.",
         "problem_h": "Woran Seiten scheitern",
         "probleme": [
@@ -234,7 +234,7 @@ SEITEN = {
             {"h": "Bauen, prüfen, online gehen", "t": "Sie sehen den Stand zwischendurch. Zum Start richten wir Hosting, Domain und Messung ein, damit vom ersten Tag an sichtbar ist, was passiert."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Ein One-Pager startet ab 350 €, eine mehrseitige Business-Website ab 1.490 €, eine Premium-Seite mit Animationen ab 2.900 €, ein Online-Shop ab 3.500 €. Laufend kommen Hosting mit SSL und Sicherungen für 15 € im Monat und Wartung für 39 € im Monat dazu, zusammen 54 € im Monat; die Domain kostet 15 € im Jahr. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Ein One-Pager startet ab 350 €, eine mehrseitige Business-Website ab 1.490 €, eine Premium-Seite mit Animationen ab 2.900 €, ein Online-Shop ab 3.500 €. Laufend kommen Hosting mit SSL und Sicherungen ab 15 € im Monat und Wartung ab 39 € im Monat dazu, zusammen ab 54 € im Monat; die Domain kostet ab 15 € im Jahr. Richtpreise, netto zzgl. USt.",
         "faq": [
             {"q": "Wie lange dauert es, bis die Seite online ist?",
              "a": "Ein One-Pager ist meist in ein bis zwei Wochen fertig, eine mehrseitige Firmenseite in drei bis fünf Wochen. Das Tempo entscheidet fast immer, wie schnell Texte, Bilder und Freigaben von Ihnen kommen — nicht die Programmierung. Enge Termine sagen wir vorher zu oder ab, nicht hinterher."},
@@ -288,7 +288,7 @@ SEITEN = {
             {"q": "Was ist GEO und warum reden Sie davon?",
              "a": "GEO steht für die Sichtbarkeit in generativen Antwortmaschinen — ChatGPT, Perplexity, Gemini, Google-KI-Übersichten. Immer mehr Leute stellen dort ihre Frage, statt zehn blaue Links zu lesen. Zitiert wird, was klar beantwortet, datiert und maschinenlesbar aufgebaut ist. Das bauen wir mit ein."},
             {"q": "Haben Sie einen Beleg, dass das funktioniert?",
-             "a": "Rümpelwerk Mitteldeutschland: Website, SEO/GEO und Google Ads betreuen wir dort laufend, mit eigenen Seiten je Leistung und je Region. Über diese Seite kommen echte Aufträge herein. Umgesetzt gemeinsam mit unserem Partner PyStore."},
+             "a": "Rümpelwerk Mitteldeutschland: Website, SEO/GEO und Google Ads betreuen wir dort laufend, mit eigenen Seiten je Leistung und je Region. Umgesetzt gemeinsam mit unserem Partner PyStore."},
         ],
         "cta_h": "Wonach sollen Kunden Sie finden?",
         "cta_t": "Nennen Sie uns zwei, drei Suchbegriffe, unter denen Sie gefunden werden wollen. Wir sehen nach, wie realistisch das ist, und antworten an Werktagen innerhalb von 24 Stunden.",
@@ -344,7 +344,7 @@ SEITEN = {
         "titel": "Hosting & Wartung ab 15 €/Monat | WVM-IT",
         "desc": "Hosting mit SSL und täglichen Sicherungen ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr. Jetzt unverbindlich anfragen.",
         "h1": "Hosting und Wartung: damit die Seite auch läuft, wenn niemand hinsieht",
-        "kurz": "WVM-IT betreibt und wartet Firmenseiten: Hosting mit SSL und täglichen Sicherungen ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat, Domain ab 15 € im Jahr — zusammen 54 € im Monat. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
+        "kurz": "WVM-IT betreibt und wartet Firmenseiten: Hosting mit SSL und täglichen Sicherungen ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat, Domain ab 15 € im Jahr — zusammen ab 54 € im Monat. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
         "intro": "Eine Webseite ist keine Anschaffung, sondern ein Betriebsmittel. Zertifikate laufen ab, Systeme brauchen Sicherheits-Updates, Kontaktformulare hören irgendwann still auf zu funktionieren. Das fällt selten sofort auf — meistens erst dann, wenn wochenlang keine Anfrage mehr kam und jemand nachsieht. Wartung ist die günstigste Versicherung gegen genau diese Wochen.",
         "problem_h": "Was ohne Wartung passiert",
         "probleme": [
@@ -369,7 +369,7 @@ SEITEN = {
             {"h": "Betreiben", "t": "Ab da laufen Updates, Sicherungen und Überwachung. Sie melden Änderungswünsche einfach per E-Mail."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Hosting inklusive SSL und Sicherungen kostet 15 € im Monat, Wartung mit Updates und kleinen Änderungen 39 € im Monat — zusammen 54 € im Monat. Die Domain kostet 15 € im Jahr. Wer zusätzlich Server im eigenen Haus betreiben lässt, findet das unter der Server-Betreuung ab 89 € im Monat. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Hosting inklusive SSL und Sicherungen kostet ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat — zusammen ab 54 € im Monat. Die Domain kostet ab 15 € im Jahr. Wer zusätzlich Server im eigenen Haus betreiben lässt, findet das unter der Server-Betreuung ab 89 € im Monat. Richtpreise, netto zzgl. USt.",
         "faq": [
             {"q": "Übernehmen Sie auch Seiten, die wir nicht bei Ihnen gebaut haben?",
              "a": "Ja. Wir prüfen zuerst, in welchem Zustand die Seite ist, und sagen Ihnen ehrlich, ob sich der laufende Betrieb lohnt oder ob eine Überarbeitung günstiger kommt."},
@@ -639,7 +639,7 @@ SEITEN = {
         "leistungen": [
             "Bestandsaufnahme und Dokumentation aller Server, Arbeitsplätze, Anwendungen, Zugänge und Verträge",
             "Fester Ansprechpartner für Ihren Betrieb; die Vertretungsregelung halten wir schriftlich fest",
-            "Überwachung von Servern, Datensicherung, Firewall und Netzwerk rund um die Uhr, Meldung an eine feste Adresse",
+            "Automatische Überwachung von Servern, Datensicherung, Firewall und Netzwerk, Meldung an eine feste Adresse",
             "Standardisierte Einrichtung neuer Arbeitsplätze — jede Maschine gleich aufgebaut, gleich benannt, gleich dokumentiert",
             "Umgang mit mehreren Standorten per gesicherter Fernwartung; Vor-Ort-Arbeiten nach Vereinbarung",
             "Co-Betreuung neben einer vorhandenen internen IT: Zweitmeinung, Ausnahmefälle, Themen ohne Zeit",
@@ -655,7 +655,7 @@ SEITEN = {
         "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Für einen typischen größeren Betrieb mit 30 Arbeitsplätzen und 2 Servern samt Datensicherung ergibt das rund 1.097 € im Monat (30 × 29 € + 2 × 89 € + 49 €). Punktuelle Arbeiten rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt. Der laufende Betrieb per Fernwartung ist ortsunabhängig; zusätzliche Standorte werden pro Arbeitsplatz und Server abgerechnet wie oben, für Aufbau und Vor-Ort-Arbeiten geben wir die Anfahrt vorher schriftlich an.",
         "faq": [
             {"q": "Wo liegt die Grenze zwischen dieser Seite und der EDV-Betreuung für kleinere Betriebe?",
-             "a": "Bei etwa 20 Arbeitsplätzen. Darunter ist eine engere, persönliche Betreuung günstiger und schneller; darüber lohnt sich der Aufwand für saubere Dokumentation und feste Standards, weil sonst niemand mehr durchsieht. Die Grenze ist nicht scharf: Manche 15er-Betriebe mit drei Standorten passen hierher, manche 25er mit einem Standort auf die andere Seite. Wir sagen es Ihnen im Erstgespräch."},
+             "a": "Bei etwa 20 Arbeitsplätzen. Darunter ist eine engere, persönliche Betreuung schneller und einfacher; darüber lohnt sich der Aufwand für saubere Dokumentation und feste Standards, weil sonst niemand mehr durchsieht. Die Grenze ist nicht scharf: Manche 15er-Betriebe mit drei Standorten passen hierher, manche 25er mit einem Standort auf die andere Seite. Wir sagen es Ihnen im Erstgespräch."},
             {"q": "Können Sie neben unserer internen IT arbeiten?",
              "a": "Ja, das ist ein Teil der Arbeit. Ihre interne Stelle kennt den Betrieb und den Alltag; wir bringen die Zeit für Themen mit, die dazwischen liegen — Serverüberwachung außerhalb der Bürozeit, Sicherheitsprüfungen, Übernahme im Urlaub, Zweitmeinung vor Investitionen. Die Aufteilung halten wir schriftlich fest."},
             {"q": "Wir haben mehrere Standorte — geht das per Fernwartung?",

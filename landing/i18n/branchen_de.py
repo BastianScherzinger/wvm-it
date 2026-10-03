@@ -144,7 +144,7 @@ BRANCHEN = {
             {"q": "Dürfen Sie als externer Dienstleister überhaupt an unsere Systeme?",
              "a": "Ja, auf Grundlage eines Auftragsverarbeitungsvertrags nach Artikel 28 DSGVO. Darin steht, worauf wir zugreifen dürfen, wie protokolliert wird und was bei Vertragsende mit Zugängen und Daten geschieht. Wir schließen ihn vor dem ersten Zugriff ab, nicht nachträglich — und wir brauchen dabei keinen Zugriff auf Patientenakten, sondern auf die Technik darunter."},
             {"q": "Können Sie ohne Unterbrechung der Sprechstunde arbeiten?",
-             "a": "Für die meisten Arbeiten ja: Updates, Überwachung und Sicherung laufen außerhalb der Sprechzeiten oder im Hintergrund. Alles, was einen Neustart oder eine Unterbrechung erfordert, terminieren wir vorher gemeinsam. Störungen während der Sprechstunde nehmen wir sofort per Fernwartung an — dort zählt jede Minute anders als in einem Büro."},
+             "a": "Für die meisten Arbeiten ja: Updates, Überwachung und Sicherung laufen außerhalb der Sprechzeiten oder im Hintergrund. Alles, was einen Neustart oder eine Unterbrechung erfordert, terminieren wir vorher gemeinsam. Störungen während der Sprechstunde nehmen wir innerhalb unserer Erreichbarkeit (Montag bis Freitag, 9 bis 18 Uhr) vorrangig per Fernwartung an — dort zählt jede Minute anders als in einem Büro."},
             {"q": "Was ist mit unseren medizinischen Geräten, die keine Updates mehr bekommen?",
              "a": "Die werden nicht ausgetauscht, sondern abgetrennt. Ein Gerät ohne Updates ist beherrschbar, solange es in einem eigenen Netz steht und nur mit dem sprechen darf, mit dem es sprechen muss. Genau das ist der Zweck getrennter Netze — und der übliche Weg, wenn ein Ersatz technisch oder wirtschaftlich nicht in Frage kommt."},
             {"q": "Wie lange dauert eine Wiederherstellung, wenn wirklich etwas ausfällt?",
@@ -247,8 +247,8 @@ BRANCHEN = {
     # ══ Vereine und Gemeinden ═════════════════════════════════════════════════
     "vereine-gemeinden": {
         "nav": "Vereine & Gemeinden",
-        "titel": "IT für Vereine in Österreich ab 95 € je Std | WVM-IT",
-        "desc": "IT für Vereine und Gemeinden: Übergabe bei Vorstandswechsel, kleine Budgets, Website, Technik im Saal, Abrechnung ab 95 € je Stunde. Jetzt anfragen.",
+        "titel": "IT für Vereine in Österreich, 95 € je Std | WVM-IT",
+        "desc": "IT für Vereine und Gemeinden: Übergabe bei Vorstandswechsel, kleine Budgets, Website, Technik im Saal, Abrechnung zu 95 € je Stunde. Jetzt anfragen.",
         "h1": "IT für Vereine, Gemeinden und ehrenamtliche Organisationen",
         "kurz": "WVM-IT unterstützt Vereine, Gemeindeeinrichtungen und ehrenamtlich geführte Organisationen in Österreich und Deutschland: Zugänge und Konten, die einen Vorstandswechsel überstehen, Website und E-Mail, Datensicherung sowie Technik in Saal und Sitzungszimmer. Abgerechnet wird meist nach Aufwand mit 95 € je Stunde statt über einen laufenden Vertrag — das passt besser zu einem Budget, das jährlich beschlossen wird.",
         "intro": "In einem Verein ist niemand hauptberuflich für die Technik zuständig. Es gibt jemanden, der es kann, und der macht es — bis er das Amt abgibt. Genau an dieser Stelle geht in Vereinen mehr verloren als durch jeden technischen Defekt: Passwörter, Domainzugänge, Mitgliederlisten, das Konto beim E-Mail-Anbieter. Nicht durch böse Absicht, sondern weil es nie aufgeschrieben wurde.",
@@ -274,7 +274,7 @@ BRANCHEN = {
         "risiko_h": "Der Vorstandswechsel ist der eigentliche Ernstfall",
         "risiko_t": "Nicht der Ausfall, sondern der Wechsel. Wenn der bisherige Schriftführer die Domain auf seinem privaten Konto hatte, das E-Mail-Passwort nur er kannte und die Mitgliederliste auf seinem Rechner lag, beginnt der neue Vorstand bei null — und im schlechtesten Fall ist die Vereinsadresse nach der nächsten Verlängerung weg. Das ist an einem Nachmittag zu ordnen, solange beide Seiten noch reden. Danach wird es aufwendig bis unmöglich.",
         "preis_h": "Was das kostet",
-        "preis_t": "Für Vereine rechnen wir meist nach Aufwand: 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Wo eine laufende Betreuung sinnvoll ist, kostet sie ab 29 € je Arbeitsplatz und Monat, Hosting mit SSL und Sicherungen 15 € im Monat, Wartung und Updates 39 € im Monat. Eine einfache Website beginnt bei 350 €. Richtpreise, netto zzgl. USt. — vor jeder Arbeit steht eine Schätzung, damit die Kassenprüfung nichts zu bemängeln hat.",
+        "preis_t": "Für Vereine rechnen wir meist nach Aufwand: 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Wo eine laufende Betreuung sinnvoll ist, kostet sie ab 29 € je Arbeitsplatz und Monat, Hosting mit SSL und Sicherungen ab 15 € im Monat, Wartung und Updates ab 39 € im Monat. Eine einfache Website beginnt bei 350 €. Richtpreise, netto zzgl. USt. — vor jeder Arbeit steht eine Schätzung, damit die Kassenprüfung nichts zu bemängeln hat.",
         "faq": [
             {"q": "Wir sind ehrenamtlich und haben fast kein Budget. Lohnt sich ein Gespräch?",
              "a": "Ja, und meistens ist das Ergebnis kleiner, als Sie denken. Der größte Nutzen entsteht nicht durch neue Technik, sondern durch Ordnung: Zugänge auf den Verein stellen, eine Übergabe dokumentieren, die Sicherung prüfen. Das sind wenige Stunden, keine laufenden Kosten — und danach übersteht die Organisation den nächsten Vorstandswechsel ohne Verluste."},
