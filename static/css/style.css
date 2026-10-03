@@ -2672,3 +2672,17 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
 /* Beitrag: Verweis direkt unter dem Antwortabsatz (03.10.2026) */
 .bt-vorweg{max-width:68ch;margin:var(--s4,16px) 0 var(--s6,32px);font-size:17px;line-height:1.6;color:var(--ink)}
 .bt-vorweg a{font-weight:600}
+
+/* ── Kopfzeile mit acht Menüpunkten (Abnahme 03.10.2026) ──────────────────────
+   Der Punkt „Webseiten“ schob den Rückruf-Knopf zwischen 1.181 und 1.600 px
+   aus der Zeile (gemessen: DE bis 62 px, RO bis 147 px über den Rand). Die
+   Rufnummer bleibt als Telefon-Symbol anrufbar (tel:-Link), ausgeschrieben steht
+   sie groß im Hero und in der Anruf-Leiste. */
+@media (min-width:1181px){
+  .nav-in{gap:12px}
+  .nav-menu{gap:12px}
+  .nav-links{gap:14px;font-size:14.5px}
+  .nav-phone span{display:none}
+  .nav-phone{padding:8px 11px}
+}
+@media (min-width:1181px) and (max-width:1279px){.nav-links{gap:12px;font-size:14px}}

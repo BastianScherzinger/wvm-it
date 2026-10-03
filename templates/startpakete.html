@@ -42,5 +42,7 @@ Parameter: `ziel` = Pfad, auf den die Kacheln ohne JavaScript verlinken.
     </a>
     {% endfor %}
   </div>
-  <p class="pk-reset"><a href="{{ ziel }}#konfigurator" data-paket-reset>{{ t.startpakete.leeren|safe }}</a></p>
+  {% comment %} Ohne Konfigurator auf derselben Seite (Startseite, `ohne_reset`) gibt es nichts
+    zurückzusetzen — die Kacheln führen dann nur nach /angebot/. {% endcomment %}
+  {% if not ohne_reset %}<p class="pk-reset"><a href="{{ ziel }}#konfigurator" data-paket-reset>{{ t.startpakete.leeren|safe }}</a></p>{% endif %}
 </div>

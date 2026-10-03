@@ -281,7 +281,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         <p class="section-lead">{{ t.start.angebot_lead|safe }}</p>
       </header>
 
-      {% include 'startpakete.html' with ziel=paket_ziel ohne_lead=True %}
+      {% include 'startpakete.html' with ziel=paket_ziel ohne_lead=True ohne_reset=True %}
 
       <p class="lk-alle"><a class="textlink" href="{% url 'angebot' %}#preisliste">{{ t.start.angebot_preisliste|safe }}</a></p>
     </div>
@@ -516,7 +516,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
 
 {% block extra_js %}
-{% comment %}Setzt die Haken der Schnellstart-Pakete. Der Kurzrechner ist am 01.10.2026
-von der Startseite auf /kosten/rechner/ gewandert, kostenrechner.js laedt nur noch dort.{% endcomment %}
-<script src="{% static 'js/startpakete.js' %}?v={{ asset_v }}" defer></script>
+{% comment %}startpakete.js lädt seit 03.10.2026 nicht mehr auf der Startseite: Der Konfigurator
+wohnt nur noch auf /angebot/, die Kacheln sind hier reine Links dorthin. Der Kurzrechner
+ist am 01.10.2026 auf /kosten/rechner/ gewandert.{% endcomment %}
 {% endblock %}

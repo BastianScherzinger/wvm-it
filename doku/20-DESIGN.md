@@ -4,7 +4,7 @@ titel: Design
 stand: 2026-10-03
 status: vollständig
 fortschritt: 100
-zusammenfassung: 02.10.2026, gegen origin/main und die Live-Seite geprüft: Design B1 „Porträt“ (seit 25.09.) und das Startseiten-Upgrade „Ein Anruf“ (seit 01.10.) sind auf main und live; der Bereichswert Barrierefreiheit liegt im Lauf 1824 vom 02.10.2026 bei 100, der frühere Kopfwert 25 stammte aus der Messung vom 02.09.2026 (vor dem Umbau) und war überholt. Die Zahl kommt wie angegeben aus dem gemessenen Bereichswert; offen bleiben drei Punkte außerhalb des Codes (Handy-Prüfung am echten Gerät, Entscheidung über Referenzbilder, Entscheidungen aus Bauplan §4.5), dazu unter „Verbesserungsmöglichkeiten“ zwei Kürpunkte. Seitenaufbau unten auf den Stand der Live-Startseite gebracht (zehn Blöcke statt 14). V1.0.1 (03.10.2026): `theme-color` der Vorgangsseiten steht jetzt auf dem Seitengrund (EIG56), Rückruf-Link ohne JavaScript (EIG292), Wochen-Mail mit lesbaren Linkfarben (EIG388). Die drei offenen Punkte brauchen ein Gerät oder Florins Material.
+zusammenfassung: 02.10.2026, gegen origin/main und die Live-Seite geprüft: Design B1 „Porträt“ (seit 25.09.) und das Startseiten-Upgrade „Ein Anruf“ (seit 01.10.) sind auf main und live; der Bereichswert Barrierefreiheit liegt im Lauf 1824 vom 02.10.2026 bei 100, der frühere Kopfwert 25 stammte aus der Messung vom 02.09.2026 (vor dem Umbau) und war überholt. Die Zahl kommt wie angegeben aus dem gemessenen Bereichswert; offen bleiben drei Punkte außerhalb des Codes (Handy-Prüfung am echten Gerät, Entscheidung über Referenzbilder, Entscheidungen aus Bauplan §4.5), dazu unter „Verbesserungsmöglichkeiten“ zwei Kürpunkte. Seitenaufbau unten auf den Stand der Live-Startseite gebracht (zehn Blöcke statt 14). V1.0.1 (03.10.2026): `theme-color` der Vorgangsseiten steht jetzt auf dem Seitengrund (EIG56), Rückruf-Link ohne JavaScript (EIG292), Wochen-Mail mit lesbaren Linkfarben (EIG388). Die drei offenen Punkte brauchen ein Gerät oder Florins Material. Conversion-Runde 03.10.2026 (Zweig `seo/2026-10-03-conversion`, nicht gemergt): Startseite neu geordnet (Hero, Wegweiser, Testseite, Startpakete …), Einzel-Konfigurator nur noch auf /angebot/, Kopfzeile mit acht Punkten (Webseiten neu) und in der Abnahme so verdichtet, dass der Rückruf-Knopf zwischen 1.181 und 1.920 px in DE/EN/RO in der Zeile bleibt; Partnerzeile und Kasten mit den vorhandenen Tokens.
 offen: 3
 quellen: docs/DESIGN-B1-2026-09-25.md, docs/UMBAU-PLAN.md, docs/UMBAU-START.md, docs/RELAUNCH-PLAN.md, CLAUDE.md
 ---
@@ -93,23 +93,25 @@ nie zwei gleiche Flächen hintereinander, damit jeder Block als eigener Block er
 
 | # | Block | Fläche | Zweck |
 |---|---|---|---|
-| – | Statusleiste (Erreichbarkeit, IT-Notfall, Ort, Sprache) + Kopf (6 Punkte, Telefon, „Rückruf anfordern“) | Papier / weiß | Kontakt nie weiter als ein Klick |
-| 1 | Hero `#top`: Überschrift in zwei Stufen, Anruf als einziger gefüllter Knopf, WhatsApp als Umriss, Rückruf als eine Zeile, drei Belege, Florins Porträt | weiß | Wer, was, sofort anrufen |
-| 2 | Wegweiser `#finder`: sechs Wege als Fotokarten, darunter „Was wir alles anbieten“ als Linkzeile je Bereich | Papier | jeder Besucher findet seinen Einstieg, jede Leistungsseite ist einen Klick entfernt |
-| 3 | Richtangebot `#angebot`: Startpakete, Einzelpositionen (aufklappbar), volle Preisliste | weiß | mehrere Leistungen zusammenstellen |
-| 4 | Gratis-Website `#gratis`: Preiszeilen, Referenz im Browserrahmen, Formular | Papier | zweites Standbein |
+| – | Statusleiste (Erreichbarkeit, IT-Notfall, Ort, Sprache) + Kopf (8 Punkte inkl. „Webseiten“, Telefon-Symbol, „Rückruf anfordern“) | Papier / weiß | Kontakt nie weiter als ein Klick |
+| 1 | Hero `#top`: Überschrift in zwei Stufen, Subline mit allen Leistungen (Betreuung, Hilfe ohne Vertrag, Webseiten mit kostenloser Testseite, Domain/Hosting/E-Mail, KI, vor Ort), Anruf als einziger gefüllter Knopf, WhatsApp als Umriss, Rückruf als eine Zeile, drei Belege (der zweite verlinkt `#gratis`), Florins Porträt | weiß | Wer, was, sofort anrufen |
+| 2 | Wegweiser `#finder`: sechs Wege als Fotokarten, Block Domain/Hosting/E-Mail `#hosting` mit gekennzeichneter Partnerzeile Domaintechnik, darunter „Was wir alles anbieten“ als Linkzeile je Bereich | Papier | jeder Besucher findet seinen Einstieg, jede Leistungsseite ist einen Klick entfernt |
+| 3 | Gratis-Website `#gratis`: Preiszeilen, Referenz im Browserrahmen, Formular | weiß | zweites Standbein |
+| 4 | Startpakete `#angebot`: sechs Kacheln als Links auf `/angebot/?paket=…`, darunter Link zur vollen Preisliste (seit 03.10.2026 kein Konfigurator mehr auf der Startseite) | Papier | mehrere Leistungen zusammenstellen |
 | 5 | Betreuungskosten `#preise`: drei Größen mit Rechenweg | weiß | Preis vor dem Gespräch |
 | 6 | Wer dahintersteht `#ueber`: Zusagen, Fakten, Signatur | Papier | Gesicht und Region |
 | 7 | Ablauf `#prozess`: vier Schritte, Fotos | dunkel | Ruhe durch Ordnung |
 | 8 | FAQ `#faq` | weiß | FAQPage-Schema |
 | 9 | Kontakt `#kontakt`: vier Wege + Formular | Papier | Anfrage |
-| 10 | Kooperationen `#kooperationen` (Streifen) | weiß | Partner |
+| 10 | Kooperationen `#kooperationen` (Streifen, nur Partnerkarte; das Formular steht seit 03.10.2026 auf `/kontakt/#kooperationen`) | weiß | Partner |
 | – | Fuß: Marke, NAP, Status, sechs Spalten Links, Sprache | dunkel | |
 
 Entfallen sind mit dem Upgrade (jede Seite bleibt über Kopfnavigation, Fuß und Hub erreichbar): Leistungsregister, Festpreisliste `#einrichten`,
 Branchen/Regionen, Wissen/Werkzeuge, Tabelle „Im Blick“, Kurzrechner (steht auf `/kosten/rechner/`), doppelte Preistabelle (steht auf `/angebot/#preisliste`).
 
 **Unterseiten** erben von `templates/base.html` (seit der Abnahme nutzt auch `/angebot/` `kopf.html`/`fuss.html`). Kopf `header.sp-top` hell auf Papier mit Kante, Brotkrume in Mono, H1 in der Antiqua, Datenblatt `.sp-fakten` als weiße Karte. Leistungsseite: Antwort-zuerst-Absatz (`antwort.html`), Befunde, Umfang, Ablauf (Serif-Nummern mit Trennlinien), Preis, FAQ als ruhige Zeilen, Anfrageformular (`anfrage_karte.html`), Querverweise über `thema`. Der 3D-Roboter und die Scroll-Videos stehen auf keiner Seite mehr; Cookie-Gate, Spline-Ladecode in `static/js/main.js` und der Hinweis im Cookie-Text sind geblieben (Entscheidung offen, siehe „Offen“ in [80-AUFGABEN.md](80-AUFGABEN.md), `EIG349`).
+
+**Kopfzeile ab 1.181 px** (Abnahme 03.10.2026): Mit dem achten Menüpunkt „Webseiten“ stand der Knopf „Rückruf anfordern“ zwischen 1.181 und 1.600 px über dem Inhaltsrand (gemessen DE bis 62 px, RO bis 147 px). Gegenregel am Ende von `style.css`: Abstände 14 px (bis 1.279 px 12 px), Schrift 14,5 px (14 px), Rufnummer in der Kopfzeile nur als Telefon-Symbol — der `tel:`-Link bleibt, ausgeschrieben steht die Nummer im Hero und in der Anruf-Leiste. Wer einen neunten Punkt ergänzt, misst bei 1.181, 1.280 und 1.440 px in RO nach (längste Beschriftungen). Test `test_abnahme_2026_10_03.py`.
 
 **Schmale Bildschirme** (`BF26`, 18.09.2026): Unter 820 px dürfen Knopfbeschriftungen umbrechen (`.btn` außer `.cookie-accept` und `.nf-call`), Formularspalten und -felder gehen unter ihre Inhaltsbreite; unter 400 px rücken Kopfzeile, feste Aktionsleiste und Schrittbalken des Konfigurators enger zusammen, der Burger behält seine 42 px. Überschriften brechen überlange Wörter um (`overflow-wrap:break-word`, ohne Media-Query). Ab 560 px ändert das nach dem Abdruckvergleich der Bausitzung nichts. Bewusst **nicht** gesetzt: `.brand{min-width:0}` — die Marke würde sonst den Sprachumschalter überlappen.
 

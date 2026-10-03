@@ -555,7 +555,7 @@ PACK = {
         "passt_dazu_t": "Beiträge, Vergleiche und Begriffe zu genau diesem Thema — geschrieben für Betriebe, die vor derselben Entscheidung stehen.",
         "regionen_titel": "Regionen",
         "regionen_h1": "IT-Betreuung in Oberösterreich und Salzburg — wo wir vor Ort sind",
-        "regionen_meta_titel": "IT-Betreuung & IT-Service in Oberösterreich und Salzburg | WVM-IT",
+        "regionen_meta_titel": "IT-Service & IT-Betreuung Oberösterreich, Salzburg | WVM-IT",
         "regionen_meta_desc": "IT-Service vor Ort zwischen Vöcklabruck, Mondsee, Wels und Salzburg, Fernwartung in ganz Österreich. Orte mit Entfernung ansehen, jetzt Termin vereinbaren.",
         "regionen_kurz": "IT-Betreuung in Oberösterreich und Salzburg: WVM-IT, ein IT-Dienstleister in Oberösterreich mit Sitz in Lenzing im Bezirk Vöcklabruck, betreut Betriebe per Fernwartung in ganz Österreich und Deutschland und kommt für Arbeiten vor Ort im Umkreis von rund 60 Minuten, von Salzburg bis Linz; für jeden dieser Orte steht die Anfahrt auf einer eigenen Seite. Ein Einsatz vor Ort kostet 120 € je Stunde zuzüglich Anfahrt, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat.",
         "regionen_intro": "Diese Seiten gibt es für die Orte, an die tatsächlich jemand von uns hinfährt — mit der echten Entfernung und dem, was dort vor Ort typischerweise ansteht. Für alles Übrige braucht es keine Ortsseite: Fernwartung, Überwachung, Datensicherung, Webseiten, SEO und Ads sind ortsunabhängig. Die genannten Preise sind Richtpreise, netto zzgl. USt.",

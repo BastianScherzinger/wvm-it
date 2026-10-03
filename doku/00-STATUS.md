@@ -4,7 +4,7 @@ titel: WVM-IT — Stand
 stand: 2026-10-03
 status: vollständig
 fortschritt: 98
-zusammenfassung: 03.10.2026 (V1.0.1), gegen den Leiterzweig auf origin/main und den Testlauf geprüft (685 Tests grün, pruefe_seite für 234 URLs und pruefe_sicherheit in Ordnung, check --deploy ohne Fehler, stand_schreiben --pruefen aktuell). Gesamtstand 97,7 von 100 aus Lauf 1873 (Regelstand 2026-10-02e, nach dem Deploy von d76335c gemessen; Lauf 1871 hatte durch ein Literal `ENTWICKLUNGS_SECRET_KEY` in settings.py die Sperre „Zugangsdaten im Quelltext“ ausgelöst, Gesamtstand 50, behoben in a738678). Fortschritt 98 = Gesamtstand gerundet. An diesem Tag sind die 193 offenen eigenen Doku-Punkte einzeln geprüft worden: 141 erledigt (davon 98 mit Code- oder Textänderung), 2 entfallen, 44 liegen bei Florin (je mit der Frage an ihn), 6 bei Bastian. Auf unserer Seite ist nichts Wesentliches mehr offen; was bleibt, steht mit Grund in 80-AUFGABEN.md (Beim Kunden, Bei Bastian).
+zusammenfassung: 03.10.2026 (V1.0.1), gegen den Leiterzweig auf origin/main und den Testlauf geprüft (685 Tests grün, pruefe_seite für 234 URLs und pruefe_sicherheit in Ordnung, check --deploy ohne Fehler, stand_schreiben --pruefen aktuell). Gesamtstand 97,7 von 100 aus Lauf 1873 (Regelstand 2026-10-02e, nach dem Deploy von d76335c gemessen; Lauf 1871 hatte durch ein Literal `ENTWICKLUNGS_SECRET_KEY` in settings.py die Sperre „Zugangsdaten im Quelltext“ ausgelöst, Gesamtstand 50, behoben in a738678). Fortschritt 98 = Gesamtstand gerundet. An diesem Tag sind die 193 offenen eigenen Doku-Punkte einzeln geprüft worden: 141 erledigt (davon 98 mit Code- oder Textänderung), 2 entfallen, 44 liegen bei Florin (je mit der Frage an ihn), 6 bei Bastian. Auf unserer Seite ist nichts Wesentliches mehr offen; was bleibt, steht mit Grund in 80-AUFGABEN.md (Beim Kunden, Bei Bastian). Conversion-Runde 03.10.2026 auf Zweig seo/2026-10-03-conversion (nicht gemergt, nicht gepusht), abgenommen: 726 Tests grün, Startseite 1.047 Elemente je Sprache, Partnerlink Domaintechnik gekennzeichnet; Gesamtbild in ../docs/SEO-CONVERSION-2026-10-03.md.
 offen: 0
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
@@ -101,7 +101,9 @@ Auftrag von Bastian: Kunden sollen sofort sehen, was WVM-IT anbietet, und anrufe
 
 **Tests:** 722 grün, seriell ohne `--parallel` (vorher 710; neue Datei `landing/tests/test_ortsseiten_geo_2026_10_03.py` mit 12 Tests). `manage.py check`, `pruefe_seite` und `stand_schreiben --pruefen` ohne Befund.
 
-**Was bei Bastian und Florin liegt:** [80-AUFGABEN.md](80-AUFGABEN.md) „Beim Kunden“, Nachtrag 03.10.2026 (Nr. 19 bis 33), jede Zeile mit Wer, Was und Anleitung.
+**Was bei Bastian und Florin liegt:** [80-AUFGABEN.md](80-AUFGABEN.md) „Beim Kunden“, Nachtrag 03.10.2026 (Nr. 19 bis 36), jede Zeile mit Wer, Was und Anleitung.
+
+**Abnahme (03.10.2026, strenge externe Prüfung):** Partnerlink, Wahrheit, Preise, Linkerhalt (gerenderte Startseiten `main` gegen Zweig verglichen: nur die Fuß-Links Attersee/Bad Ischl getauscht gegen Salzburg/Linz, keine URL weg) und Elementgrenze bestätigt. Behoben: Kopfzeile schob „Rückruf anfordern“ zwischen 1.181 und 1.600 px aus der Zeile; „Auswahl zurücksetzen“ und `startpakete.js` ohne Funktion auf der Startseite; Hub-Title DE 65 → 59 Zeichen; `llms.txt` „ohne Verpflichtung“. **Startseite jetzt 1.047 Elemente** (DE/EN/RO). Tests 726 grün seriell (neu `test_abnahme_2026_10_03.py`), `check`, `check --deploy` (nur W021 Preload, Absicht), `pruefe_seite` ohne Hinweis, `pruefe_sicherheit`, `stand_schreiben --pruefen` in Ordnung. Analyse intern/extern/Conversion, offene Punkte mit Wer und Messplan: [../docs/SEO-CONVERSION-2026-10-03.md](../docs/SEO-CONVERSION-2026-10-03.md).
 
 ## Die drei wichtigsten offenen Punkte
 

@@ -4,7 +4,7 @@ titel: Local SEO
 stand: 2026-10-03
 status: teilweise
 fortschritt: 50
-zusammenfassung: 02.10.2026 geprüft: 2 von 4 Punkten erfüllt (Rechnung nach der Formel unter der Überschrift: Profil vorhanden 25, Search Console verbunden 25, Bewertungen öffentlich 0, NAP überall gleich 0). Das Google-Unternehmensprofil ist angelegt (11.09.2026) und laut Diagnose vom 25.09.2026 bestätigt (blaues Häkchen) — die frühere Angabe „ausstehend“ war überholt; es steht als sameAs im Schema (35567eb), dazu der WKO-Eintrag (dd88be7). Öffentlich sichtbar sind keine Bewertungen (4 in der Verwaltungsansicht, Herkunft ungeklärt), und zwei fremde Maps-Einträge mit abweichender Anschrift existieren (Diagnose 25.09.2026). Offen sind nur noch Schritte, die Bastian im Browser oder Florin bei sich tun muss.
+zusammenfassung: 02.10.2026 geprüft: 2 von 4 Punkten erfüllt (Rechnung nach der Formel unter der Überschrift: Profil vorhanden 25, Search Console verbunden 25, Bewertungen öffentlich 0, NAP überall gleich 0). Das Google-Unternehmensprofil ist angelegt (11.09.2026) und laut Diagnose vom 25.09.2026 bestätigt (blaues Häkchen) — die frühere Angabe „ausstehend“ war überholt; es steht als sameAs im Schema (35567eb), dazu der WKO-Eintrag (dd88be7). Öffentlich sichtbar sind keine Bewertungen (4 in der Verwaltungsansicht, Herkunft ungeklärt), und zwei fremde Maps-Einträge mit abweichender Anschrift existieren (Diagnose 25.09.2026). Offen sind nur noch Schritte, die Bastian im Browser oder Florin bei sich tun muss. Conversion-Runde 03.10.2026: Fuß verlinkt Salzburg, Linz, Wels, Vöcklabruck, Gmunden (nach Messdaten), Ortsseiten mit Antwort im ersten Satz und Anrufweg darunter; externe Schritte in ../docs/SEO-CONVERSION-2026-10-03.md.
 offen: 2
 unternehmensprofil: ja
 profil_bestaetigt: ja
@@ -152,6 +152,8 @@ Der Loxone-Eintrag ist ein Rückschlag ohne Schuld: Google zeigt ihn noch, das Z
 **Mehr Ortsseiten seit dem 01.10.2026 — auf Bastians Entscheidung.** Bis dahin galt: „Sieben genügen für das echte Einzugsgebiet. Mehr wären Doorway-Pages (A16)“ (`../docs/SEO-AUSBAU-3.md`), gestützt auf die Schwesterseite mit 131 fast gleichen Stadtseiten (88 % textgleich, nicht indexiert). Die Begründung bleibt als Maßstab: nur Orte in rund einer Fahrstunde, keine erfundenen Referenzen, und kein Satz, der durch Tausch des Ortsnamens auf eine andere Seite passt — Letzteres prüft jetzt `landing/tests/test_ortsseiten_aehnlichkeit.py` (Grenze 0,20, Höchstwert 0,091). Nicht angelegt: Steyr, Braunau am Inn, Bad Aussee (je rund 75 Minuten) und Landeshauptstädte „nur per Fernwartung“.
 
 ## Conversion-Runde 03.10.2026: Fuß-Orte und Ortsseiten (Zweig `seo/2026-10-03-conversion`, nicht gemergt)
+
+**Abnahme 03.10.2026:** Ortsseite Gmunden bei 390 px im Browser angesehen — Antwortabsatz, darunter Anruf/WhatsApp/Anfrage, Cookie-Hinweis über der Anruf-Leiste. Extern bleibt alles bei Florin und Bastian (Profil-Duplikat, Bewertungen, Herold/WKO/Bing angleichen, Apex-Domain); Liste mit Wer und Messplan in `../docs/SEO-CONVERSION-2026-10-03.md` §3 und §4.
 
 **Fuß:** `regionen.FOOTER_REGIONEN_SLUGS` = Salzburg, Linz, Wels, Vöcklabruck, Gmunden (vorher `REGIONEN[:5]`: Vöcklabruck, Attersee, Gmunden, Bad Ischl, Wels). Grund: Salzburg und Linz haben Impressionen, bekamen aber nur 15 eingehende Links; jetzt 107 je Ortsseite. Attersee und Bad Ischl (keine Impressionen) bleiben über den Hub und die Nachbarlinks der Ortsseiten erreichbar.
 

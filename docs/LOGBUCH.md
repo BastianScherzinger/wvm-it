@@ -7,6 +7,17 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 03.10.2026 — Abnahme der Conversion-Runde (Zweig `seo/2026-10-03-conversion`)
+
+**Nicht gemergt, nicht gepusht.** Strenge Prüfung der drei Pakete gegen Bastians Auftrag und die harten Regeln; Gesamtbild, offene Punkte mit Wer und Messplan in `docs/SEO-CONVERSION-2026-10-03.md`.
+
+- **Bestätigt:** Partnerlink `?affiliate=24853` genau einmal je Seite und Sprache (Startseite `#hosting`, `/leistungen/hosting-wartung/`), „Anzeige“/„Ad“/„Publicitate“ und Provisionshinweis am Link, `rel="sponsored noopener"`, `target="_blank"`, nicht im Fuß, nicht auf Ortsseiten, nicht im JSON-LD; eigenes Angebot bleibt vorn („Oder wir richten alles für Sie ein“). Nichts erfunden, Preise nur aus `ANGEBOT_GROUPS`. **Linkerhalt:** gerenderte Startseiten `main` (Worktree) gegen den Zweig in DE/EN/RO verglichen — weg sind nur die Fuß-Links Attersee/Bad Ischl (bewusst, beide über Hub und Nachbarn je 15 eingehende Links), neu Salzburg, Linz und der Partnerlink. Keine URL entfällt.
+- **Behoben — Kopfzeile:** Der neue Menüpunkt „Webseiten“ schob „Rückruf anfordern“ zwischen 1.181 und 1.600 px über den Inhaltsrand (Playwright: DE bis 62 px, RO bis 147 px; bei 1.440 px DE außerhalb des Bildes). Gegenregel am Ende von `style.css` (Abstände, Schrift 14,5 px, Rufnummer in der Kopfzeile nur als Telefon-Symbol, `tel:` bleibt). Nachgemessen 1.181–1.920 px in DE/EN/RO: kein Überstand. Der Leiter hatte nur bei 1.366 px geprüft, dort passte DE gerade noch.
+- **Behoben — Startpakete:** „Auswahl zurücksetzen“ stand auf der Startseite ohne Konfigurator (führte nur nach `/angebot/`), `startpakete.js` lud dort ohne Wirkung. Beides nur noch auf `/angebot/` (`ohne_reset` in `startpakete.html`). Startseite **1.047** Elemente je Sprache (vorher 1.050, ursprünglich 1.498).
+- **Behoben — Kleinigkeiten:** Hub-Title DE 65 → 59 Zeichen („IT-Service & IT-Betreuung Oberösterreich, Salzburg | WVM-IT“), damit ist der letzte Hinweis von `pruefe_seite` weg; `llms.txt` „ohne Verpflichtung“ statt „ohne Bedingung“ (die Testseite braucht E-Mail und Zustimmung).
+- **Prüfungen:** 726 Tests seriell grün (neu `landing/tests/test_abnahme_2026_10_03.py`, 4 Tests), `check`, `check --deploy` (nur W021 Preload, Absicht), `pruefe_seite` „Alles in Ordnung“ ohne Hinweis, `pruefe_sicherheit` alle Bremsen greifen, `stand_schreiben --pruefen` aktuell. Screenshots 1.366/390 px: Startseite DE/EN/RO, Hosting, Gmunden, Kontakt — Anruf in einem Schritt (Hero-Knopf, mobil Anruf-Leiste frei).
+- **Offen (unverändert, nicht im Code lösbar):** Datenschutztext (Kästchen `angebote`, Partnerlink, Anruf-Zählung, Cookie-Banner) nur über den Generator; Apex-Domain, Profil, Bewertungen, Verzeichnisse, Rückruffrist bei Florin; Merge/Push, Baseline-Messung, Indexierung bei Bastian (`doku/80-AUFGABEN.md` Nr. 19–36).
+
 ## 03.10.2026 — Conversion-Runde: Zusammenfassung der drei Pakete (Zweig `seo/2026-10-03-conversion`)
 
 **Nicht gemergt, nicht gepusht.** Drei Pakete nacheinander: (1) Startseite und Conversion, (2) SEO Technik und Onpage, (3) Ortsseiten, Antwortabsätze und Doku. Die Einträge von (1) und (2) stehen darunter, hier steht Paket 3 und das Gesamtbild.

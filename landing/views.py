@@ -4953,7 +4953,7 @@ def llms_txt(request):
         *_llms_beitraege(base),
         "\n## Webseiten, Hosting und E-Mail",
         f"- [Kostenlose Testseite]({base}/leistungen/webseite-erstellen/): Sie sehen vorher, was Sie "
-        "bekommen; die kostenlose Testseite steht in etwa zehn Minuten, ohne Bedingung.",
+        "bekommen; die kostenlose Testseite steht in etwa zehn Minuten, ohne Verpflichtung.",
         f"- [Domain, Hosting und E-Mail]({base}/leistungen/hosting-wartung/): auch selbst buchbar beim "
         f"Partner Domaintechnik ({PARTNER_DOMAINTECHNIK_URL}, Partnerlink: WVM-IT erhält dafür eine "
         "Provision). Alternativ richtet WVM-IT alles ein und betreut es weiter.",
