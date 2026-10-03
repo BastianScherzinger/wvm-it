@@ -418,10 +418,12 @@ PACK = {
         "col_wissen": "Wissen",
         "col_unternehmen": "Unternehmen",
         "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner-Shop)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
-        "u_webagentur": "Website: Webagentur Scherzinger",
         "u_ueber": "Über uns", "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
         "agb": "AGB", "barrierefreiheit": "Barrierefreiheit",
+        # Credit-Link in der Copyright-Leiste (03.10.2026, mit Zustimmung von Florin):
+        # nur der Markenname ist verlinkt, normaler Link ohne nofollow.
+        "credit_vor": "Website: ", "credit_marke": "Webagentur Scherzinger",
         "impressum_ph": "<strong>Angaben gemäß Paragraf 5 TMG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt (E-Mail und Telefon), gegebenenfalls USt-IdNr. und Registereintrag.",
         "datenschutz_ph": "<strong>Platzhalter.</strong> Vor Veröffentlichung eine DSGVO-konforme Datenschutzerklärung einsetzen (Verantwortlicher, Hosting, Kontaktformular, Cookies und Tracking, Betroffenenrechte).",
     },

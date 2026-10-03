@@ -475,8 +475,8 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
 .foot-nav a:hover{color:var(--accent-ink)}
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:32px;padding-top:22px;padding-bottom:28px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-dim)}
 .foot-bottom .lang-switch{margin:0}
-.foot-join{color:var(--ink-dim)}
-.foot-join:hover{color:var(--ink)}
+.foot-join,.foot-credit-link{color:var(--ink-dim)}
+.foot-join:hover,.foot-credit-link:hover{color:var(--ink)}
 /* Abnahme 25.09.2026: Der dreispaltige Fußkopf hatte keine Handy-Regel, die
    Statusspalte lag bei 390 px ausserhalb des Bildschirms (Seite 494 px breit). */
 @media (max-width:900px){.foot-kopf{grid-template-columns:1fr;gap:28px}}

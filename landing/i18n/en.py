@@ -381,12 +381,14 @@ PACK = {
         "col_wissen": "Knowledge",
         "col_unternehmen": "Company",
         "u_partner": "Partners", "u_koop": "Partnerships", "u_preise": "Pricing", "u_alle": "All services", "u_shop": "PyStore (partner shop)", "u_referenzen": "Case studies", "u_faq": "FAQ",
-        "u_webagentur": "Website: Webagentur Scherzinger",
         "impressum_ph": "The legal notice will appear here as soon as the company details are on file.",
         "datenschutz_ph": "The privacy policy will appear here as soon as it has been finalised.",
         "u_ueber": "About us", "col_recht": "Legal",
         "impressum": "Imprint", "datenschutz": "Privacy", "datenschutz_full": "Privacy policy",
         "agb": "Terms", "barrierefreiheit": "Accessibility",
+        # Credit-Link in der Copyright-Leiste (03.10.2026, mit Zustimmung von Florin):
+        # nur der Markenname ist verlinkt, normaler Link ohne nofollow.
+        "credit_vor": "Website by ", "credit_marke": "Webagentur Scherzinger",
     },
     "mobilebar": {"call": "Call"},
     "fehler": {

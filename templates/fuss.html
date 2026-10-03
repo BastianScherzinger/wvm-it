@@ -48,7 +48,6 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
         <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
         <a href="{% url 'angebot' %}">{{ t.nav.angebot|safe }}</a>
         {% if c.wvm_shop %}<a href="{{ c.wvm_shop }}" target="_blank" rel="noopener">{{ t.footer.u_shop|safe }}</a>{% endif %}
-        {% if c.webagentur_url %}<a href="{{ c.webagentur_url }}">{{ t.footer.u_webagentur|safe }}</a>{% endif %}
       </div>
       <div>
         <h3>{{ t.footer.col_wissen|safe }}</h3>
@@ -83,7 +82,7 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
   </div>
 
   <div class="wrap foot-bottom">
-    <span>© {{ c.jahr }} {{ c.site_name }}</span>
+    <span>© {{ c.jahr }} {{ c.site_name }}{% if c.webagentur_url %} · {{ t.footer.credit_vor|safe }}<a class="foot-credit-link" href="{{ c.webagentur_url }}/">{{ t.footer.credit_marke|safe }}</a>{% endif %}</span>
     {% include 'lang_switch.html' %}
     <a class="foot-join" href="{% url 'kontakt' %}#kooperationen">{{ t.koop.join_h|safe }}</a>
     <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>

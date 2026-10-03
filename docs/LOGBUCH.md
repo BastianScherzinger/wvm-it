@@ -7,6 +7,23 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 03.10.2026 — Credit-Link „Webagentur Scherzinger“ in der Copyright-Leiste
+
+Auftrag von Bastian, Florin hat zugestimmt. Der Link steht jetzt seitenweit ganz unten in der
+Copyright-Leiste (`templates/fuss.html`, `.foot-bottom`) hinter „© 2026 WVM-IT ·“: DE „Website:
+Webagentur Scherzinger“, EN „Website by …“, RO „Website realizat de …“ (Schlüssel `footer.credit_vor`
+und `footer.credit_marke` am Ende des `footer`-Blocks in `landing/i18n/{de,en,ro}.py`). Verlinkt ist nur
+der Markenname, Ziel `https://webagentur-scherzinger.com/`, normaler Link ohne `rel` und ohne
+`target`, Farbe wie „Kooperationen“ (`--ink-dim`, `.foot-credit-link`). Der bisherige Link
+„Website: Webagentur Scherzinger“ in der Spalte „Unternehmen“ (Schlüssel `u_webagentur`) ist dafür
+entfallen — sonst stünde derselbe Link zweimal in jeder Fußzeile. Damit bleibt die Startseite bei
+**1.498 von 1.500 Elementen** (PF30, `test_hosting_band`): ein `<a>` weg, ein `<a>` dazu, kein neuer
+Wrapper. Gebaut in eigenem Worktree von `main`. 691 Tests, `pruefe_seite` (234 URLs),
+`pruefe_sicherheit`, `stand_schreiben --pruefen` grün.
+**Achtung:** Der Zweig `seo/2026-10-03-conversion` (Commits `8ca13a9`, `a206c31`) ist noch nicht auf
+`main` und muss auf den neuen `main` rebasen. Er ändert in `fuss.html` die Zeile `foot-join` zwei Zeilen
+unter dieser Änderung und in den Sprachpaketen nicht den `footer`-Block — der Rebase sollte ohne Konflikt
+durchgehen; danach die Elementzahl der Startseite neu prüfen.
 ## 03.10.2026 — Abnahme der Conversion-Runde (Zweig `seo/2026-10-03-conversion`)
 
 **Nicht gemergt, nicht gepusht.** Strenge Prüfung der drei Pakete gegen Bastians Auftrag und die harten Regeln; Gesamtbild, offene Punkte mit Wer und Messplan in `docs/SEO-CONVERSION-2026-10-03.md`.

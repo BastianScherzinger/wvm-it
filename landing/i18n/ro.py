@@ -375,12 +375,14 @@ PACK = {
         "col_wissen": "Cunoștințe",
         "col_unternehmen": "Companie",
         "u_partner": "Parteneri", "u_koop": "Parteneriate", "u_preise": "Prețuri", "u_alle": "Toate serviciile", "u_shop": "PyStore (magazin partener)", "u_referenzen": "Referințe", "u_faq": "Întrebări frecvente",
-        "u_webagentur": "Site web: Webagentur Scherzinger",
         "impressum_ph": "Datele de identificare apar aici de îndată ce datele firmei sunt înregistrate.",
         "datenschutz_ph": "Politica de confidențialitate apare aici de îndată ce este finalizată.",
         "u_ueber": "Despre noi", "col_recht": "Legal",
         "impressum": "Date legale", "datenschutz": "Confidențialitate", "datenschutz_full": "Politica de confidențialitate",
         "agb": "Condiții", "barrierefreiheit": "Accesibilitate",
+        # Credit-Link in der Copyright-Leiste (03.10.2026, mit Zustimmung von Florin):
+        # nur der Markenname ist verlinkt, normaler Link ohne nofollow.
+        "credit_vor": "Website realizat de ", "credit_marke": "Webagentur Scherzinger",
     },
     "mobilebar": {"call": "Sunați"},
     "fehler": {
