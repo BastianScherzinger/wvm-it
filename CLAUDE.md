@@ -33,185 +33,53 @@
 Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreisprachig
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
-## Stand: 213 URLs (24.09.2026, Runde 2)
 
-Seit dem 24.09.2026 (Zweig `seo/2026-09-24-kunden-offensive`) gibt es **`/it-hilfe/`** —
-die Zielseite für ein einzelnes Problem ohne Vertrag (95 €/Std. per Fernwartung), dazu
-drei Problem-Ratgeber. Stand und Begründung: `docs/LOGBUCH.md`, 24.09.2026.
+## Stand: 213 URLs (Runde 2, 24.09.2026)
 
-**Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend
-per Fernwartung in ganz Österreich und Deutschland. Webseiten, SEO, Google Ads und KI
-sind das zweite Standbein, Technik vor Ort das dritte.
+**Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend per
+Fernwartung in Österreich und Deutschland; Webseiten, SEO, Google Ads und KI sind das zweite
+Standbein, Technik vor Ort das dritte. Sitz **Waldstraße 19/1, 4860 Lenzing**.
+Silos: `/leistungen/` (14), `/branchen/` (6), `/vergleich/` (4), `/it-service/` (14),
+`/aktuelles/` (21, nur DE), `/wissen/` (14, nur DE), `/checkliste/` (3, nur DE),
+`/einrichten/` (10), dazu Werkzeuge (`/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/`,
+`/it-hilfe/`), Einzelseiten und Rechtstexte (nur DE). Die genaue Aufstellung erzeugt
+`python manage.py seo_bericht --inventar --markdown`.
 
-Seit dem 05.09.2026 haben **alle** Geschäftsfelder eine eigene Seite: dazugekommen sind
-`/leistungen/veranstaltungstechnik/` (Video-, Ton- und Bühnentechnik) und
-`/leistungen/it-beratung/`. Beide standen vorher nur als Position im Preiskatalog —
-man konnte sie kaufen, aber nicht finden. `/leistungen/konferenztechnik/` wurde
-gleichzeitig auf **Besprechungsräume** geschärft, damit sich die beiden Seiten nicht
-um dieselbe Suchanfrage streiten.
+**Einstieg, Stand-Erzählung, nummerierte Startliste und alle Dokumente:**
+[`docs/CLAUDE-AUSGELAGERT.md`](docs/CLAUDE-AUSGELAGERT.md) (Index: [`docs/00-INDEX.md`](docs/00-INDEX.md)).
+Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/STAND-2026-09-10.md`.
 
-Aus 2 rankbaren Seiten wurden **213 URLs** (Runde 2, 24.09.2026):
+**Im Code ist aus den Plänen nichts mehr offen.** Was fehlt, hängt an Zuarbeit: Google-Unternehmensprofil
+(Florin), SPF/DMARC (Bastian, DNS), Core Web Vitals messen (`docs/seo/PERFORMANCE.md` §3).
 
-| Silo | Pfad | Seiten | Sprachen |
-|---|---|---|---|
-| Leistungen | `/leistungen/<slug>/` | **14** + Hub | DE/EN/RO |
-| **Branchen** | `/branchen/<slug>/` | 6 + Hub | DE/EN/RO |
-| **Vergleiche** | `/vergleich/<slug>/` | 4 + Hub | DE/EN/RO |
-| Regionen | `/it-service/<slug>/` | **14** + Hub (seit 01.10.2026, Ähnlichkeitstest) | DE/EN/RO |
-| Fachbeiträge | `/aktuelles/<slug>/` | 21 + Hub | nur DE |
-| **Glossar** | `/wissen/<slug>/` | 14 + Hub | nur DE |
-| **Checklisten** | `/checkliste/<slug>/` | 3 + Hub | nur DE |
-| **Werkzeuge** | `/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/`, `/it-hilfe/` | 4 | DE/EN/RO |
-| **Einrichten** | `/einrichten/<slug>/` | **10** + Hub | DE/EN/RO |
-| Einzelseiten | Start, Kosten, Referenzen, Kontakt, Angebot, Recht | 8 | DE/EN/RO |
+## Prüfen und ausliefern
 
-Seit dem 05.09.2026 dazu: **Über uns** (`/ueber-uns/`), **AGB** (`/agb/`),
-**Barrierefreiheitserklärung** (`/barrierefreiheit/`) und die **Danke-Seite**
-(`/anfrage/danke/`, `noindex`). Die vier Rechtstexte gibt es **nur auf Deutsch**;
-`/en/impressum/` und `/ro/agb/` existieren, tragen aber `noindex` und ein
-`canonical` auf die deutsche Fassung (Begründung in `views._RECHTSSEITEN`).
-
-Dazu ohne Index: eigene **404-/500-Seite** und die interne **Suche** (`/suche/`),
-sowie der Atom-Feed unter `/feed/`.
-Alles live, per IndexNow gemeldet, Sitz **Waldstraße 19/1, 4860 Lenzing**.
-
-**Die drei Silos in Fettdruck sind am 29.08.2026 dazugekommen**, zusammen mit
-Kostenrechner, Sicherheits-Selbsttest, Notfallseite und Glossar. Die vollständige
-Aufstellung steht in `docs/SEO-AUSBAU-3.md`.
-
-### Wenn du hier neu anfängst
-
-1. **`python manage.py seo_bericht`** — der Stand in dreißig Sekunden: URLs,
-   Wortzahlen, Auffälligkeiten, Schema-Verteilung. Vor jeder Planung.
-2. **`docs/STAND-2026-09-10.md`** — **hier anfangen.** Was in vier Tagen entstand
-   (165 → 198 URLs, 130 → 292 Tests), was offen ist, und §4 die **drei Fallen**,
-   die dabei zugeschlagen haben: Automode und Chat-Sitzung teilen ein
-   Arbeitsverzeichnis (zweimal Arbeit verloren), typografische
-   Anführungszeichen sprengen Python-Strings, und ein Skript, das den ersten
-   statt des richtigen Treffers erwischt. §5 der Satz, der über allem steht.
-3. **`docs/PLAN-HARDWARE-2026-09-08.md`** — das Silo `/einrichten/`: warum es
-   ein eigenes ist, wie die Abgrenzung zu `/leistungen/` gesichert wird, und
-   was von Florin kommen muss.
-4. **`docs/LOOPS-2026-09-07.md`** — **der jüngste Durchgang.** §2 die vier Funde,
-   die zählen (der Empfehlungsfall stand nirgends; der Einstieg kostete das
-   Zweieinhalbfache), §3 die Kollision zwischen Automode und Chat-Loops im selben
-   Arbeitsverzeichnis, §6 was offen bleibt — vor allem der **Gerätelebenszyklus**:
-   sechs echte Suchanfragen ohne Seite, §7 die drei Merkregeln.
-5. **`docs/BEFUNDE-281-2026-09-06.md`** — der Durchgang davor (06.09.): zehn Punkte aus
-   dem Werkzeug-Lauf #281. §0 sagt, warum jeder Befund zuerst nachgemessen wurde
-   (vier waren erledigt, drei sind Messfehler der Regel), §10 den Merksatz:
-   **ein Befund sagt, wo die Regel angeschlagen hat — nicht, wo der Fehler ist.**
-6. **`docs/UMBAU-2026-09-06.md`** — der Umbau vom 06.09.2026. §1 nennt den
-   roten Faden: **sechs Fehler, die zusammen „null Anfragen" erklären, haben zusammen
-   keine einzige Fehlermeldung erzeugt.** §7 sagt, was offen bleibt und warum.
-7. **`docs/STRATEGIE-2026-09.md`** — Markt, Rechtsrahmen, Kanäle, und die vier Dinge,
-   die nur Florin tun kann. Wichtigster Satz für jede Akquise-Idee: **Kaltakquise ist
-   in Österreich verboten, auch B2B, auch die einzelne Mail** (§ 174 TKG 2021,
-   verfolgt von Amts wegen).
-8. **`docs/HERO-KONZEPT-2026-09-06.md`** — warum im Hero steht, was dort steht.
-   Wer die Überschrift anfasst, liest vorher §1: Die Vorgängerin war gut formuliert
-   und hat trotzdem **ausgeschlossen**.
-9. **`docs/AUSBAU-2026-09.md`** — der Durchgang davor. §3 nennt die zwei Funde,
-   die in keinem Plan standen.
-7. `docs/SEO-AUSBAU-3.md` — **abgeschlossen** (56/56). §11 nennt drei Funde, die
-   nicht im Plan standen; §12 sagt, was jetzt ansteht.
-8. `docs/seo/GEO-MONITORING.md` — die zehn Fragen, das Protokollformat, der Termin
-9. `docs/seo/PERFORMANCE.md` — was gemessen und geändert wurde, was offen ist
-10. `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Messgrößen
-
-**Im Code ist aus den Plänen nichts mehr offen.** Was noch fehlt, hängt an
-Zuarbeit und lässt sich hier nicht lösen:
-- **Google-Unternehmensprofil** (Florin; Angaben fertig in `SEO-KONZEPT-DACH.md` §7).
-  Für lokale Suche der entscheidende Hebel — 165 URLs gleichen sein Fehlen nicht aus.
-- **SPF/DMARC** (Bastian, DNS-Zone; fertige Einträge in §8.1)
-- **Core Web Vitals messen** (`docs/seo/PERFORMANCE.md` §3 — braucht die Live-Adresse)
-
-### Alle Dokumente
-
-- `docs/STAND-2026-09-10.md` — **Sitzungsabschluss 10.09.2026.** Zahlen,
-  offene Punkte, die drei Fallen, und die zwei Arbeitsregeln, die aus
-  sechs falsch gelesenen Befunden folgen
-- `docs/LOOPS-2026-09-07.md` — **Bilanz der beiden Loops (07.09.2026).**
-  Sechs Commits, Suite 176 → 252 Tests. §3 der Fund, der nicht die Website
-  betraf: Automode und Chat-Loops bauten gleichzeitig im selben
-  Arbeitsverzeichnis. §4 das Paket, das an einer Formsache scheiterte und
-  mit gefahrenem Prüfprotokoll übernommen wurde
-- `docs/BEFUNDE-281-2026-09-06.md` — **zehn Punkte aus Werkzeug-Lauf #281
-  (06.09.2026).** §1 der grösste Fund (397 HTML-Entities in den Sprachpaketen,
-  208 davon rumänische Diakritika), §3 der Kontrastfehler, den man nur im
-  Hellmodus sieht, §8 die zwei Befunde, die **zu Recht** offen bleiben
-- `docs/AUSBAU-2026-09.md` — der Durchgang vom 05.09.2026. §2 was gebaut
-  wurde, §3 die zwei Funde außerhalb jedes Plans, §5 wie geprüft wurde, §6 was offen
-  bleibt, §7 die Zahlen davor und danach
-- `docs/SEO-AUSBAU-3.md` — **abgeschlossen 29.08.2026**, 56/56. §11: drei Funde
-  außerhalb des Plans, §12: was jetzt ansteht
-- `docs/seo/PERFORMANCE.md` — Messung, Änderungen, offene CWV-Messung (T2–T5, T8)
-- `docs/seo/GEO-MONITORING.md` — zehn feste Fragen, Protokoll, Quartalstermin (M1/M2)
-- `docs/seo/URL-INVENTAR.md` — erzeugte Übersicht aller URLs (M3)
-- `docs/DEPLOY.md` — **wo die Seite läuft und wie sie dorthin kommt.** Railway-Projekt
-  heißt `webseiten`, nicht `wvm-it`; Push auf `main` deployt automatisch
-- `docs/SEO-KONZEPT-DACH.md` — Markt, vier Nischen, Keyword-Ebenen, NAP, Messgrößen
-- `docs/AKQUISE-SOFORT.md` — was kurzfristig Anfragen bringt (und warum SEO das nicht ist)
-- `docs/RELAUNCH-START.md` — der Relaunch vom 28.08.
-- `docs/RELAUNCH-PLAN.md` — Befund, die sieben Entscheidungen, Phasenstand
-- `docs/SEO-PLAN.md` — der Plan bis 29.08.: **37 von 48 erledigt**, 1 begonnen, 10 offen
-  (die offenen brauchen fast alle Zuarbeit — deshalb gibt es `SEO-AUSBAU-3.md`)
-- `docs/seo/KEYWORD-MAP.md` — ein Keyword, eine Zielseite (EDV zuerst)
-- `docs/seo/BASELINE.md` — Nullmessung, nächste Messung Ende September
-- `docs/UMBAU-PLAN.md` / `docs/UMBAU-START.md` — der vorige Umbau (Design, Conversion)
-
-**Vor jedem Deploy:** `python manage.py pruefe_seite` — prüft alle 213 URLs auf `<h1>`,
-Titel-/Description-Länge, JSON-LD, Alt-Texte, hreflang, jeden internen Link, jeden Preis
-auf jeder Seite (seit 25.09.2026 auch in `/llms.txt` und `/llms-full.txt`) und die
-Formulare (CSRF, Honigtopf, Datenschutzhinweis, Quelle).
-Rückgabewert 1 bei Fehlern.
-
-Am 29.08.2026 sind **vier Prüfungen dazugekommen**, und jede davon hat beim ersten
-Lauf etwas gefunden:
-
-| Prüfung | Was sie findet |
-|---|---|
-| `_pruefe_listen` | Ungleiche Listenlängen je Sprache bei Branchen, Vergleichen, Regionen |
-| `_pruefe_glossar` | Glossareinträge unter 250 Wörtern — die Bedingung, unter der es das Glossar gibt |
-| `_pruefe_verwaist` | Seiten mit weniger als zwei eingehenden internen Links (Warnung) |
-| `_pruefe_schema` | Mehr als ein `@graph`, `@id`-Verweise ins Leere, fehlendes `inLanguage` |
-
-**Zum Ansehen statt Prüfen:** `python manage.py seo_bericht` (Stand, Wortzahlen,
-Auffälligkeiten) und `--inventar --markdown` für die URL-Liste.
-**Ebenfalls vor jedem Deploy:** `python manage.py pruefe_sicherheit` — löst alle fünf
-Formulare wirklich aus und zählt die entstehenden Mails: Spam-Bremse je Bereich,
-Honeypot, Feldlängen, Betreff-Säuberung, Upload-Signatur. Zehn Prüfungen.
-**Nach jedem Deploy mit neuen URLs:** `python manage.py indexnow` (Bing/Yandex/Seznam;
-Google braucht die Search Console, siehe `docs/INDEXIERUNG.md`).
-
-**Nach jeder Inhaltsänderung:** `python manage.py stand_schreiben` — schreibt die
-echten Änderungsdaten je Seite aus der Versionsgeschichte nach `landing/stand.py`.
-Sitemap (`lastmod`) und Schema (`dateModified`) lesen von dort. Wer es vergisst,
-liefert ein Datum aus, das nicht mehr stimmt; `stand_schreiben --pruefen` meldet das
-im CI-Lauf mit Rückgabewert 1.
-
-**Die Testsuite:** `python -X utf8 manage.py test landing.tests` — 612 Tests (Stand 03.10.2026)
-in `landing/tests/`, rund eine Minute. Sie sind **strukturell** geschrieben: Die
-URL-Liste kommt aus `_seiten_pfade()`, die Preise aus `ANGEBOT_GROUPS`, die Icons aus
-dem Symbolsatz. Wer eine Seite ergänzt, muss keinen Test anfassen.
-
-**Alles zusammen läuft bei jedem Push** über `.github/workflows/pruefen.yml`.
-
-Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
+- **Vor jedem Deploy:** `python manage.py pruefe_seite` (alle 213 URLs: `<h1>`, Titel/Description,
+  JSON-LD, Alt-Texte, hreflang, interne Links, Preise auch in `/llms.txt`, Formulare; Rückgabewert 1
+  bei Fehlern) und `python manage.py pruefe_sicherheit` (löst alle Formulare wirklich aus).
+  Die Einzelprüfungen stehen in `docs/CLAUDE-AUSGELAGERT.md`.
+- **Nach jedem Deploy mit neuen URLs:** `python manage.py indexnow` (Google nur über die Search
+  Console, `docs/INDEXIERUNG.md`).
+- **Nach jeder Inhaltsänderung:** `python manage.py stand_schreiben` (Änderungsdaten nach
+  `landing/stand.py`; `--pruefen` meldet Abweichung im CI mit Rückgabewert 1).
+- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 656 Tests (Stand 03.10.2026) in
+  `landing/tests/`, strukturell geschrieben (URL-Liste aus `_seiten_pfade()`, Preise aus
+  `ANGEBOT_GROUPS`). Läuft bei jedem Push über `.github/workflows/pruefen.yml`.
+- Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
 
 ## Was beim Arbeiten heil bleiben muss
 
 | Bereich | Regel |
 |---|---|
-| Mails an Fremde | **Seit 17.09.2026 keine Bestätigung an eingetippte Adressen** (`*-ACK`, `ANGEBOT-KUNDE`), Schalter `KUNDENMAIL_AN_ABSENDER`, Standard aus, durchgesetzt in `_send_mail_logged`. Die Newsletter-Bestätigung bleibt, ohne eingetippten Namen und höchstens eine je Adresse am Tag. Anlass: Bots haben die Agenturseite so als Versandhilfe für Betrugstexte benutzt. `test_kundenmail_aus.py` hält das fest |
-| Betreiber-Kopie | Jede echte Anfrage geht seit 26.09.2026 zusätzlich als **eigene** Mail an die Webagentur (`BETREIBER_KOPIE_AN`, leer/`aus` = ab) — immer **nach** Inhaber-Mail und Bestätigung, mit eigenem `try/except`, nie als Cc und nie vor dem Honigtopf. Alle Mails haben einen HTML-Teil aus `templates/emails/`; der Textteil bleibt. Doku `doku/10-TECHNIK.md` → „E-Mail-Versand“, Tests `test_betreiber_kopie.py` |
+| Mails an Fremde | **Seit 17.09.2026 keine Bestätigung an eingetippte Adressen** (`*-ACK`, `ANGEBOT-KUNDE`), Schalter `KUNDENMAIL_AN_ABSENDER`, Standard aus, durchgesetzt in `_send_mail_logged`. Newsletter-Bestätigung bleibt, höchstens eine je Adresse am Tag. `test_kundenmail_aus.py` |
+| Betreiber-Kopie | Jede echte Anfrage geht zusätzlich als **eigene** Mail an die Webagentur (`BETREIBER_KOPIE_AN`, leer/`aus` = ab) — immer **nach** Inhaber-Mail und Bestätigung, mit eigenem `try/except`, nie als Cc, nie vor dem Honigtopf. Doku `doku/10-TECHNIK.md` → „E-Mail-Versand“, `test_betreiber_kopie.py` |
 | Mengen | Positionen, die je Stück gelten, brauchen `menge_max` **und** `menge_label` in `ANGEBOT_GROUPS`. Ohne sie addiert der Konfigurator einmal, was „je Arbeitsplatz" heißt — genau der Fehler, der bis zum 06.09.2026 aus 370 € ein Angebot über 167 € machte |
 | Summen | Zahlen, die die Seite aus Katalogpositionen **bildet**, gehören der Preisprüfung gemeldet: `_rechner_zahlen_fuer_pruefung()` und `_it_stufen_zahlen_fuer_pruefung()`. Sonst bricht `pruefe_seite` über die eigene Startseite ab |
 | Telefonlinks | `tel:`-Ziele immer über `c.telefon_tel`, nie über `c.telefon` — Leerzeichen sind im URI nach RFC 3966 unzulässig. Ein Test prüft alle Vorlagen |
-| Einwilligungen | Nie an eine Leistung koppeln. Getrennt, nicht vorausgewählt, mit Zeitstempel und IP protokolliert (§ 174 TKG 2021, Art. 7 DSGVO). Bis zum 25.09.2026 steckte der Referenz-Newsletter im Pflichtkästchen der Gratis-Website (EIG151) — jetzt eigenes Kästchen `newsletter`, Nachweis erst beim Bestätigungsklick. Eine Kurzanfrage legt ohne `werbung` keinen Abonnenten in Supabase an (EIG80). `test_triage_2026_09_25.py` |
+| Einwilligungen | Nie an eine Leistung koppeln. Getrennt, nicht vorausgewählt, mit Zeitstempel und IP protokolliert (§ 174 TKG 2021, Art. 7 DSGVO). Newsletter hat ein eigenes Kästchen `newsletter`; eine Kurzanfrage legt ohne `werbung` keinen Abonnenten an. `test_triage_2026_09_25.py` |
 | Fehlermeldungen | Kein `alert()`. Fehler inline, wie es `doku/20-DESIGN.md` verlangt |
 | Referenzen | Neue Einträge brauchen ein Feld `texte` und einen eigenen Block unter `referenz_faelle` im Sprachpaket — sonst zeigen zwei Referenzen denselben Fallbericht |
-| Zwischenspeicher | **HTML wird nicht gecacht.** Django maskiert das CSRF-Token je Anfrage neu; ein zwischengespeichertes Token laesst die Anfrage des naechsten Besuchers grundlos scheitern. Cache-Koepfe nur ueber `_maschinenantwort()` und nur auf Endpunkten ohne Formular. Begruendung und Messung in `docs/CACHE-2026-09-06.md`, gesichert durch `landing/tests/test_cache.py` |
+| Zwischenspeicher | **HTML wird nicht gecacht** (CSRF-Token je Anfrage). Cache-Köpfe nur über `_maschinenantwort()` und nur auf Endpunkten ohne Formular. Begründung `docs/CACHE-2026-09-06.md`, Test `landing/tests/test_cache.py` |
 | Entities | In den Sprachpaketen stehen **echte Zeichen**, keine HTML-Entities. `&amp;` und `&#259;` sehen im HTML richtig aus (die Vorlagen nutzen `|safe`), landen aber wörtlich im JSON-LD — dort kennt niemand HTML. Geprüft von `test_entities.py`, das die **Quelle** liest |
 | Farben | Jede Textfarbe hält 4,5:1 gegen jeden Grund, **in beiden Fassungen**. `--ink-dim` lag hell bei 3,40:1 und dunkel bei 6,04:1 — wer nur dunkel arbeitet, sieht es nie. `test_kontrast.py` rechnet es nach |
 | Bildgrößen | Ein `<img>` über 32 px braucht ein `srcset`. Ein 640-px-Bild in einer 44-px-Fläche sieht richtig aus und kostet trotzdem 46 KB. Varianten werden über `_mit_bildvarianten()` **abgeleitet**, nicht gepflegt |
@@ -221,53 +89,36 @@ Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` f�
 | URLs | Sitemap und IndexNow ziehen beide aus `views._seiten_pfade()`. Wegfallende URLs nur mit 301 |
 | JARVIS-Pipeline | `anfrage_absenden` → `supa.enqueue_job` → `warten` → `bau_status` nicht verändern |
 | Sprachen | Keine Texte direkt ins Template. Alles über `t.*`; **alle drei Pakete vollständig** — aktuell erbt kein einziger Schlüssel. Ausnahme: die drei nur-deutschen Silos (Beiträge, Glossar, Checklisten); dort steht der Text im Template, und die Einsprachigkeit ist über das vierte Feld in `_seiten_pfade()` modelliert |
-| Antwortabsatz | Immer über `templates/antwort.html`. Die Klasse `.antwort` darin ist das Ziel von `speakable` im Schema — wer sie entfernt, macht die Schema-Angabe zur Lüge |
+| Antwortabsatz | Auf **allen** Seitentypen (auch Hubs, Einzelseiten) über `templates/antwort.html`, nicht von Hand. Die Klasse `.antwort` ist das Ziel von `speakable` im Schema — wer sie entfernt, macht die Schema-Angabe zur Lüge |
 | Preisrechner | `/kosten/rechner/` rechnet serverseitig aus `ANGEBOT_GROUPS`; das Skript bekommt dieselben Sätze als JSON-Block und besitzt **keine eigene Zahl** |
 | Startpakete | `views.STARTPAKETE` enthält nur IDs aus `ANGEBOT_GROUPS`, nie eigene Positionen oder Preise |
 | Verlinkung | Neue Seitentypen bekommen ihr `thema` (Leistungs-Slug) — dann übernimmt `_thema_index()` die Querverlinkung. Kein Block wird von Hand gepflegt |
 | Cookies | Spline/3D lädt erst nach Einwilligung. Keine Tracking-Skripte ohne neue Einwilligung |
 | Recht | Jede neue Datenverarbeitung muss in `content.json` → Datenschutz stehen |
-| Hero | Die Überschrift trägt **zwei** Stufen (`hero.headline` + `hero.headline_2`) und das Vertrauensband **drei** Texte (`person_h`, `person_t`, `person_ort`) — je Sprache. Das Band steht **vor** der Subline; dahinter beginnt es unterhalb des ersten Bildschirms. Begründung in `docs/HERO-KONZEPT-2026-09-06.md`, gesichert durch `HeroKonzeptTest`. Design B1 (25.09.2026): die hohe Ladepriorität trägt die viewport-gebundene Vorladung des großen Porträts (`<link rel="preload" media="(min-width:701px)">`); das kleine Rundbild im Hero hat kein `fetchpriority` mehr |
-| Zwei Silos | `/leistungen/` beantwortet „wer betreut uns?“, `/einrichten/` „wer macht mir das jetzt?“. Kein Slug und kein Titel darf in beiden vorkommen, und jede Einrichtungsseite muss die Abgrenzung **aussprechen** (Block `id="laufend"` mit Gegenlink). Sonst konkurrieren beide um dieselbe Anfrage — der Fehler, den Konferenz- gegen Veranstaltungstechnik am 05.09. schon hatte. Geprüft von `test_einrichtungen.py` |
+| Hero | Die Überschrift trägt **zwei** Stufen (`hero.headline` + `hero.headline_2`) und das Vertrauensband **drei** Texte (`person_h`, `person_t`, `person_ort`) — je Sprache. Das Band steht **vor** der Subline. Begründung `docs/HERO-KONZEPT-2026-09-06.md`, Test `HeroKonzeptTest` |
+| Zwei Silos | `/leistungen/` beantwortet „wer betreut uns?“, `/einrichten/` „wer macht mir das jetzt?“. Kein Slug und kein Titel darf in beiden vorkommen, und jede Einrichtungsseite muss die Abgrenzung **aussprechen** (Block `id="laufend"` mit Gegenlink). Geprüft von `test_einrichtungen.py` |
 | Festpreise | Im Einrichtungs-Silo steht der Preis **ohne** „ab“ (`_festpreis_label()`), auf Leistungsseiten **mit** (`_make_price_label()`). Ein „ab“ auf einer Festpreisseite nimmt das Versprechen zurück |
-| Anfrage-Preise | Hat eine Einrichtungsseite keinen Festpreis (Server, Loxone), muss sie unter eigener Überschrift **sagen warum** — und im Schema darf dann auch keine Zahl stehen. Ein erfundener Preis ist dort schlimmer als gar keiner, weil eine Antwortmaschine ihn als verbindlich liest. Geprüft von `test_wo_kein_festpreis_steht_wird_gesagt_warum` |
-| Rechtstexte | Impressum, Datenschutz- und Barrierefreiheitserklärung sind **Zusagen**, keine Textbausteine. Jede Aussage muss dem Code standhalten und umgekehrt: Die Barrierefreiheitserklärung behauptete am 07.09.2026 in Abschnitt 2 „mindestens 4,5 zu 1“ und räumte in Abschnitt 3 Werte darunter ein. Wer eine Verarbeitung ergänzt oder eine Farbe ändert, zieht den Rechtstext nach |
+| Anfrage-Preise | Hat eine Einrichtungsseite keinen Festpreis (Server, Loxone), muss sie unter eigener Überschrift **sagen warum** — im Schema darf dann keine Zahl stehen. Geprüft von `test_wo_kein_festpreis_steht_wird_gesagt_warum` |
+| Rechtstexte | Impressum, Datenschutz- und Barrierefreiheitserklärung sind **Zusagen**, keine Textbausteine. Jede Aussage muss dem Code standhalten und umgekehrt. Wer eine Verarbeitung ergänzt oder eine Farbe ändert, zieht den Rechtstext nach |
 | Wahrheit | Keine erfundenen Bewertungen, Zertifikate, Partnerlevel oder Kundenzahlen. `seit_jahr`, `partner_status` und `profile` in `content.json` rendern nur, wenn sie gefüllt sind |
 | Skripte | Jeder inline-`<script>`-Block braucht `nonce="{{ request.csp_nonce }}"`. Die Content-Security-Policy wird **durchgesetzt**; ein Block ohne Nonce wird vom Browser nicht ausgeführt — man merkt es sofort, aber nur, wenn man hinsieht |
-| Symbole | Keine zwei Symbole duerfen zeichengleich sein, und die Strichstaerke bleibt ueber alle dieselbe — beides pruefen Tests. `dns` und `domain` waren bis zum 06.09.2026 dasselbe Bild |
+| Symbole | Keine zwei Symbole zeichengleich, Strichstärke überall dieselbe — beides prüfen Tests |
 | Folgefragen | Jeder Fachbeitrag traegt mindestens drei; sie erzeugen das FAQPage-Schema und tragen den Umfang. Antwort im ersten Satz, Zahlen nur aus ANGEBOT_GROUPS |
 | Icons | Die Formen stehen **einmal** in `templates/icons_sprite.html` als `<symbol>`; `templates/icons.html` ist nur der Verweis. Aufruf unverändert `{% include 'icons.html' with name='web' %}`. Ein neues Icon kommt in den Symbolsatz |
 | Formulare | Jedes Anfrageformular braucht `{% include 'honigtopf.html' %}` und `{% include 'datenschutzhinweis.html' %}` **innerhalb** des `<form>`. `pruefe_seite` bricht sonst ab. Das Honigtopf-Feld heißt `website` (nicht `hp`) — ein Feld namens „hp" ist als Falle erkennbar |
 | Änderungsdaten | `landing/stand.py` wird **erzeugt**, nicht gepflegt: `manage.py stand_schreiben`. `views.py` und `base.html` zählen bewusst nicht mit, sonst trügen wieder alle Seiten dasselbe Datum |
-| Sprachen (2) | Der Sprachumschalter verlinkt **direkt** auf die Zieladresse, nie über `/sprache/<lang>/` — dieser Umweg ist in `robots.txt` gesperrt und machte 82 Seiten unerreichbar. `i18n.hat_sprachfassung()` entscheidet, ob es die Seite in der Sprache gibt; nur dann gibt es hreflang |
-| Antwortabsatz (2) | Auch Hubs und Einzelseiten nutzen `templates/antwort.html` — nicht `<p class="sp-kurz">` von Hand |
+| Sprachen (2) | Der Sprachumschalter verlinkt **direkt** auf die Zieladresse, nie über `/sprache/<lang>/` (in `robots.txt` gesperrt). `i18n.hat_sprachfassung()` entscheidet, ob es die Seite in der Sprache gibt; nur dann hreflang |
 
 ## Aufbau
 
 - `content.json` — Marke, Kontakt, Rechtstexte, Anschrift-Slots (mit Fallback in `views.py`)
 - `landing/views.py` — alle Views, Preiskatalog, Problemband, Schema, robots/llms/sitemap
-- `landing/leistungen.py` — Struktur des Leistungs-Silos
-- `landing/regionen.py` — Struktur der Regionsseiten (`/it-service/<slug>/`)
-- `landing/beitraege.py` — Struktur der Fachbeiträge (`/aktuelles/<slug>/`, **nur DE**)
-- `landing/branchen.py` — Struktur des Branchen-Silos (`/branchen/<slug>/`)
-- `landing/vergleiche.py` — Struktur der Vergleichsseiten (`/vergleich/<slug>/`)
-- `landing/glossar.py` — Struktur des Glossars (`/wissen/<slug>/`, **nur DE**)
-- `landing/checklisten.py` — Struktur der Checklisten (`/checkliste/<slug>/`, **nur DE**)
+- `landing/leistungen.py` · `regionen.py` · `beitraege.py` (nur DE) · `branchen.py` · `vergleiche.py` · `glossar.py` (nur DE) · `checklisten.py` (nur DE) — je die Strukturquelle ihres Silos
 - `landing/selbsttest.py` — Fragen und Gewichte des Sicherheits-Selbsttests
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 612 Tests in 55 Dateien (Stand 03.10.2026)
+- `landing/tests/` — 656 Tests in 57 Dateien (Stand 03.10.2026)
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
-- `templates/base.html` — gemeinsames Gerüst (Kopf, Navigation, Footer); alle Seiten erben davon
-- `templates/leistung.html` · `leistungen.html` · `kosten.html` · `referenzen.html` ·
-  `kontakt.html` · `recht.html` — die Unterseiten
-- `templates/anfrage_karte.html` — Anfrageformular der Unterseiten (ein Endpunkt, Honeypot)
-- `templates/antwort.html` — der Antwort-zuerst-Absatz, auf allen Seitentypen dieselbe Form
-- `templates/icons_sprite.html` — der Symbolsatz (29 Icons, einmal je Seite)
-- `templates/honigtopf.html` · `datenschutzhinweis.html` — die zwei Pflichtteile jedes Formulars
-- `templates/kopf_klein.html` — der Kopfbereich der vier Vorgangsseiten (Danke, Warten, Bestätigung, Abmeldung)
-- `templates/ueber_uns.html` · `danke.html` — die beiden neuen Seiten
-- `templates/startpakete.html` — Schnellstart über beiden Konfiguratoren
-- `static/js/kostenrechner.js` · `startpakete.js` — beide rechnen nichts selbst
-- `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang
+- `templates/` — `base.html` (Gerüst), `antwort.html`, `anfrage_karte.html`, `icons_sprite.html`, `honigtopf.html`, `datenschutzhinweis.html` u. a.; Liste in `docs/CLAUDE-AUSGELAGERT.md`
+- `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang; `static/js/kostenrechner.js` · `startpakete.js` rechnen nichts selbst

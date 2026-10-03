@@ -4559,6 +4559,11 @@ def _llms_kopf(c, base):
     p = _ANGEBOT_INDEX
     orte = [r["ort"] for r in sorted(regionen.REGIONEN, key=lambda r: r["km"])]
     einzugsgebiet = ", ".join(orte[:-1]) + " und " + orte[-1]
+    # Erreichbarkeit (EIG343/384): derselbe Satz wie in der Statuszeile jeder Seite
+    # (`kopf.erreichbar`, Mo–Fr 9–18 Uhr), nicht abgetippt. Ohne ihn zitiert eine
+    # KI nur die 24-Stunden-Zusage und nicht, wann jemand zu erreichen ist.
+    zeiten = (i18n.get_pack("de").get("kopf", {}).get("erreichbar", "") or "").strip()
+    zeiten = f"{zeiten}. " if zeiten else ""
     return (
         f"# WVM-IT , EDV und IT-Betreuung für Betriebe\n\n"
         f"> WVM-IT (Inhaber {inhaber}) betreut die EDV kleiner und mittlerer Betriebe in "
@@ -4571,7 +4576,8 @@ def _llms_kopf(c, base):
         f"KI-Automatisierung ab {p['termin']['once']} €. "
         f"Gebäudeautomation (Loxone, KNX) sowie Konferenz- und Veranstaltungstechnik "
         f"werden projektbezogen vor Ort umgesetzt. Ein fester Ansprechpartner, Antwort "
-        f"an Werktagen innerhalb von 24 Stunden. Alle Preise sind Richtpreise netto zzgl. USt. "
+        f"an Werktagen innerhalb von 24 Stunden. {zeiten}"
+        f"Alle Preise sind Richtpreise netto zzgl. USt. "
         f"{standort}"
         f"Vor Ort im Einzugsgebiet {einzugsgebiet}; alles Übrige per Fernwartung in ganz "
         f"Österreich und Deutschland.\n"
@@ -4731,6 +4737,43 @@ def _llms_einmalig_zeile():
             f"IT-Sicherheitscheck {check}.")
 
 
+def _llms_preise_zeilen():
+    """Der Abschnitt „Preise" in llms.txt, Zahlen aus `ANGEBOT_GROUPS` (EIG353).
+
+    Er stand bis zum 03.10.2026 als Festtext in `llms_txt()`: Wer einen Preis im
+    Katalog ändert, hätte hier eine zweite, ältere Zahl stehen lassen — genau die
+    Fehlerklasse, die `_llms_kopf()` und `_llms_einmalig_zeile()` schon nicht mehr
+    haben. Der Wortlaut ist unverändert; nur die Zahlen werden eingesetzt. Die
+    Einrichtungen („Einmalig") bleiben in `_llms_einmalig_zeile()`."""
+    p = _ANGEBOT_INDEX
+    sep = i18n.get_pack("de").get("catalog_words", {}).get("thousands", ".")
+
+    def n(pid, feld):
+        return _thousands(p[pid][feld], sep)
+
+    return [
+        f"- IT-Betreuung: ab {n('it_betreuung', 'mtl')} €/Monat je Arbeitsplatz, "
+        f"Server ab {n('server_care', 'mtl')} €/Monat, "
+        f"Datensicherung ab {n('backup', 'mtl')} €/Monat.",
+        f"- Support: {n('it_support', 'std')} €/Stunde per Fernwartung, "
+        f"{n('vor_ort', 'std')} €/Stunde vor Ort zzgl. Anfahrt.",
+        _llms_einmalig_zeile(),
+        f"- Webseiten: One-Pager ab {n('onepager', 'once')} €, "
+        f"Business-Website ab {n('business', 'once')} €, "
+        f"Premium ab {n('premium', 'once')} €, Shop ab {n('shop', 'once')} €.",
+        f"- Betrieb: Hosting {n('hosting', 'mtl')} €/Monat, "
+        f"Wartung {n('wartung', 'mtl')} €/Monat, Domain {n('domain', 'yr')} €/Jahr.",
+        f"- Sichtbarkeit: SEO einmalig ab {n('seo', 'once')} €, "
+        f"SEO-Betreuung ab {n('seo_care', 'mtl')} €/Monat, "
+        f"Google Ads Einrichtung ab {n('ads_setup', 'once')} €, "
+        f"Ads-Betreuung ab {n('ads_care', 'mtl')} €/Monat.",
+        f"- KI: Terminautomatisierung ab {n('termin', 'once')} €, "
+        f"WhatsApp-/E-Mail-Automatisierung ab {n('wa_auto', 'once')} €, "
+        f"Chatbot ab {n('chatbot', 'once')} €, "
+        f"CRM-/ERP-Anbindung ab {n('custom_ki', 'once')} €.",
+    ]
+
+
 @_maschinenantwort(180)
 def llms_txt(request):
     """/llms.txt , kompakte Klartext-Fassung für KI-Antwortmaschinen (GEO).
@@ -4756,21 +4799,21 @@ def llms_txt(request):
         f"- [Referenzen]({base}/referenzen/): belegte Projekte mit Einverständnis der Kunden.",
         f"- [Kontakt]({base}/kontakt/): WhatsApp, Telefon, Rückruf, E-Mail.",
         f"- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen, Richtpreis sofort.",
-        f"- [Branchen]({base}/branchen/): was in Kanzleien, Handwerk, Praxen, Hotellerie, "
-        "Produktion und Vereinen technisch anders ist.",
-        f"- [Vergleiche]({base}/vergleich/): Betreuung oder Stunden, Server oder Cloud, "
-        "Microsoft 365 oder Google Workspace, PC aufrüsten oder neu kaufen — mit Rechenweg.",
+        f"- [Branchen]({base}/branchen/): {len(branchen.BRANCHEN)} Branchen und was bei ihnen "
+        "technisch anders ist (Liste unten).",
+        f"- [Vergleiche]({base}/vergleich/): {len(vergleiche.VERGLEICHE)} Entscheidungen im "
+        "Vergleich, jeweils mit Rechenweg (Liste unten).",
         f"- [IT-Notfall]({base}/it-notfall/): was in den ersten 30 Minuten zu tun ist — "
         "Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Gerät.",
         f"- [IT-Hilfe ohne Vertrag]({base}/it-hilfe/): {_llms_einzelhilfe_satz()}",
-        f"- [IT-Sicherheits-Selbsttest]({base}/it-sicherheit-test/): zehn Fragen, Ergebnis "
-        "sofort, ohne E-Mail-Abfrage und ohne Speicherung.",
+        f"- [IT-Sicherheits-Selbsttest]({base}/it-sicherheit-test/): {len(selbsttest.FRAGEN)} Fragen, "
+        "Ergebnis sofort, ohne E-Mail-Abfrage und ohne Speicherung.",
         f"- [Regionen]({base}/it-service/): wo wir vor Ort kommen und wo per Fernwartung.",
         f"- [Fachbeiträge]({base}/aktuelles/): Antworten auf die Fragen vor einer IT-Entscheidung.",
         f"- [Glossar]({base}/wissen/): {len(glossar.BEGRIFFE)} Begriffe mit Definition, Praxisbezug und dem "
         "jeweils verbreiteten Irrtum.",
-        f"- [Checklisten]({base}/checkliste/): Dienstleister wechseln, Arbeitsplatz einrichten, "
-        "IT-Jahrescheck — jeder Punkt mit Begründung.",
+        f"- [Checklisten]({base}/checkliste/): {len(checklisten.CHECKLISTEN)} Checklisten, "
+        "jeder Punkt mit Begründung (Liste unten).",
         "\n## Leistungen",
     ]
     zeilen += _llms_seiten(base, "de")
@@ -4779,13 +4822,7 @@ def llms_txt(request):
         f"- {_llms_einzelhilfe_satz()} Seite: {base}/it-hilfe/",
         *_llms_festpreise(base),
         "\n## Preise (Richtpreise, netto zzgl. USt.)",
-        "- IT-Betreuung: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, Datensicherung ab 49 €/Monat.",
-        "- Support: 95 €/Stunde per Fernwartung, 120 €/Stunde vor Ort zzgl. Anfahrt.",
-        _llms_einmalig_zeile(),
-        "- Webseiten: One-Pager ab 350 €, Business-Website ab 1.490 €, Premium ab 2.900 €, Shop ab 3.500 €.",
-        "- Betrieb: Hosting 15 €/Monat, Wartung 39 €/Monat, Domain 15 €/Jahr.",
-        "- Sichtbarkeit: SEO einmalig ab 390 €, SEO-Betreuung ab 149 €/Monat, Google Ads Einrichtung ab 490 €, Ads-Betreuung ab 199 €/Monat.",
-        "- KI: Terminautomatisierung ab 390 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Chatbot ab 690 €, CRM-/ERP-Anbindung ab 1.200 €.",
+        *_llms_preise_zeilen(),
         "- Gebäudeautomation, Konferenz- und Veranstaltungstechnik: projektbezogen nach Bestandsaufnahme.",
         "\n## Branchen (gleiche Leistung, anderer Zuschnitt)",
         *_llms_branchen(base, "de"),
