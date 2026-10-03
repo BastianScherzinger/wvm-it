@@ -178,3 +178,19 @@ Nachtrag 03.10.2026 (Nr. 19 bis 33) und Nr. 34 bis 36.
 | monatlich | Provisionen im Domaintechnik-Partnerkonto (zeigt, ob der Partnerlink überhaupt genutzt wird) | Partnerkonto (Florin) |
 
 Nicht vor dem 31.10. auswerten; zwischendurch geänderte Titel verfälschen den Vergleich.
+
+## Nachtrag 03.10.2026 spät: Credit-Link und Linkattribute geprüft
+
+Credit-Link „Website: Webagentur Scherzinger“ in der Copyright-Leiste ist live (`386d5fe`, DE/EN/RO, alle Seiten),
+danach IndexNow erneut (234 URLs). Ausgehende Links der Startseite, live geprüft:
+
+| Link | `rel` | Wirkung | richtig? |
+|---|---|---|---|
+| Webagentur Scherzinger (Fuß) | keins | follow, gibt Linkkraft weiter | ja, Agentur-Credit |
+| Domaintechnik `?affiliate=24853` | `sponsored noopener` | bezahlter Link, keine Linkkraft | ja, Pflicht bei Provision (Google-Richtlinie) |
+| LinkedIn Florin (`/ueber-uns/`) | `noopener me` | follow; `me` = „das ist dieselbe Person“ | ja |
+| pystore.de, ruempelwerk-mitteldeutschland.de (Kooperation) | `noopener` | follow (`noopener` ist nur Sicherheit, kein nofollow) | ja, echte Partner |
+
+Eingehende Links aus Verzeichnissen (Clutch, Trustpilot, Cylex-Gratis, LinkedIn, Google-Profil) sind dort `nofollow` gesetzt —
+das entscheidet die Plattform, nicht wir. Ihr Wert ist die Nennung (Name, Adresse, Telefon) und Besucher, nicht Linkkraft.
+Florins zusätzliche Einträge vom 03.10. werden in den nächsten Tagen besprochen und in BACKLINK-PLAN.md §4.2 nachgetragen.
