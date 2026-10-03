@@ -169,10 +169,10 @@ ANGEBOT_GROUPS = [
             # Arbeitsplätzen (06.09.2026). Die Grenzen sind dieselben wie im
             # Kostenrechner (_RECHNER_FELDER), damit beide Werkzeuge nicht
             # auseinanderlaufen.
-            {"id": "it_betreuung", "name": "Laufende IT-Betreuung je Arbeitsplatz", "desc": "Updates, Überwachung, Hilfe bei Störungen — pro PC und Monat.", "mtl": 29, "popular": True, "icon": "care", "menge_max": 250, "menge_label": "Arbeitsplätze"},
+            {"id": "it_betreuung", "name": "Laufende IT-Betreuung je Arbeitsplatz", "desc": "Updates und Überwachung — pro PC und Monat.", "mtl": 29, "popular": True, "icon": "care", "menge_max": 250, "menge_label": "Arbeitsplätze"},
             {"id": "it_support", "name": "IT-Support & Fernwartung", "desc": "Hilfe, wenn etwas nicht geht. Meist per Fernwartung, meist am selben Tag.", "std": 95, "icon": "consulting"},
             {"id": "backup", "name": "Datensicherung, täglich geprüft", "desc": "Automatische Sicherung, überwacht, Wiederherstellung getestet.", "mtl": 49, "icon": "shield"},
-            {"id": "server_care", "name": "Server-Betreuung & Überwachung", "desc": "Ein Server, rund um die Uhr im Blick. Wir sehen den Ausfall vor Ihnen.", "mtl": 89, "icon": "server", "menge_max": 20, "menge_label": "Server"},
+            {"id": "server_care", "name": "Server-Betreuung & Überwachung", "desc": "Ein Server, automatisch überwacht. Meldungen bearbeiten wir Montag bis Freitag, 9 bis 18 Uhr.", "mtl": 89, "icon": "server", "menge_max": 20, "menge_label": "Server"},
             {"id": "m365", "name": "Microsoft 365 einrichten", "desc": "E-Mail, Teams, OneDrive: sauber aufgesetzt und übergeben.", "once": 290, "icon": "mail"},
             {"id": "arbeitsplatz", "name": "Neuen Arbeitsplatz einrichten", "desc": "PC, Programme, Konten, Drucker — einsatzbereit übergeben.", "once": 190, "icon": "web", "menge_max": 50, "menge_label": "Arbeitsplätze"},
             {"id": "netzwerk_setup", "name": "Netzwerk & WLAN einrichten", "desc": "Ausgemessen, geplant, aufgebaut. Auch für Hallen und mehrere Etagen.", "once": 890, "icon": "net"},
@@ -229,8 +229,8 @@ ANGEBOT_GROUPS = [
             {"id": "smarthome", "name": "Gebäude- & Smarthome-Automation", "desc": "Loxone, KNX, Licht, Heizung, Beschattung, Sicherheit.", "anfrage": True, "icon": "home"},
             {"id": "konferenz", "name": "Konferenzraum-Technik", "desc": "Displays, Kameras, Mikrofone und Steuerung, einsatzbereit.", "anfrage": True, "icon": "conf"},
             {"id": "buehne", "name": "Video-, Ton- & Bühnentechnik", "desc": "Veranstaltungs- und Bühnentechnik, geplant und betreut.", "anfrage": True, "icon": "av"},
-            {"id": "edv", "name": "EDV & IT-Solutions", "desc": "Hardware, Server, Arbeitsplätze und Software, komplett betreut.", "anfrage": True, "icon": "host"},
-            {"id": "netzwerk", "name": "Netzwerk & Sicherheit", "desc": "Stabiles Netzwerk, Zutritt und Videoüberwachung.", "anfrage": True, "icon": "net"},
+            {"id": "edv", "name": "EDV & IT-Solutions", "desc": "Größere Vorhaben mit Hardware, Servern und Software — Preis nach Aufnahme, Einzelpositionen siehe oben.", "anfrage": True, "icon": "host"},
+            {"id": "netzwerk", "name": "Netzwerk & Sicherheit", "desc": "Größere Netzwerk- und Sicherheitsprojekte, Zutritt und Videoüberwachung — Preis nach Aufnahme.", "anfrage": True, "icon": "net"},
             {"id": "beratung", "name": "Beratung aus einer Hand", "desc": "Ein fester Ansprechpartner für Technik und Digitales.", "anfrage": True, "icon": "consulting"},
         ],
     },
@@ -407,7 +407,12 @@ def _make_price_label(it, words) -> str:
     # nirgends aufsummiert (man weiss vorher nicht, wie viele Stunden es werden).
     if it.get("std"):
         parts.append(f"{it['std']} {words.get('per_hour', '€/Std.')}")
-    return (words.get("from", "ab") + " " + " + ".join(parts)) if parts else "-"
+    if not parts:
+        return "-"
+    # Ein reiner Stundensatz (95 und 120 EUR je Stunde) ist ein fester Satz, kein ab-Preis.
+    if it.get("std") and not (it.get("once") or it.get("mtl") or it.get("yr")):
+        return " + ".join(parts)
+    return words.get("from", "ab") + " " + " + ".join(parts)
 
 
 def _festpreis_label(it, words) -> str:
@@ -571,6 +576,15 @@ _IT_STUFEN = [
 ]
 
 
+def _server_zeile(ks, n, preis):
+    """Rechenwegteil fuer die Server-Betreuung. Bei mehr als einem Server steht
+    die Anzahl mit im Rechenweg (EIG394: die 30er-Stufe rechnet zwei Server, die
+    Zeile nannte einen)."""
+    if n > 1 and ks.get("bsp_server_n"):
+        return ks["bsp_server_n"].format(n=n, srv=preis)
+    return ks.get("bsp_server", "").format(srv=preis)
+
+
 def _it_stufen(lang=None):
     """Monatspreis je Betreuungsstufe, gerechnet aus ANGEBOT_GROUPS.
 
@@ -594,7 +608,7 @@ def _it_stufen(lang=None):
         if lang:
             zeile = ks.get("bsp_zeile", "").format(ap=s["ap"], preis=ap, backup=backup)
             if s["srv"]:
-                zeile += ks.get("bsp_server", "").format(srv=srv)
+                zeile += _server_zeile(ks, s["srv"], srv)
             eintrag["zeile"] = zeile
         out.append(eintrag)
     return out
@@ -623,7 +637,7 @@ def _kosten_beispiele(lang):
         mtl = b["ap"] * ap + b["srv"] * srv + backup
         zeile = ks.get("bsp_zeile", "").format(ap=b["ap"], preis=ap, backup=backup)
         if b["srv"]:
-            zeile += ks.get("bsp_server", "").format(srv=srv)
+            zeile += _server_zeile(ks, b["srv"], srv)
         raus.append({"ap": b["ap"], "srv": b["srv"], "mtl": mtl,
                      "name": ks.get("bsp_name_server" if b["srv"] else "bsp_name", "")
                      .format(ap=b["ap"]),
@@ -4752,7 +4766,7 @@ def llms_txt(request):
         "- Support: 95 €/Stunde per Fernwartung, 120 €/Stunde vor Ort zzgl. Anfahrt.",
         _llms_einmalig_zeile(),
         "- Webseiten: One-Pager ab 350 €, Business-Website ab 1.490 €, Premium ab 2.900 €, Shop ab 3.500 €.",
-        "- Betrieb: Hosting 15 €/Monat, Wartung 39 €/Monat, Domain 15 €/Jahr.",
+        "- Betrieb: Hosting ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr.",
         "- Sichtbarkeit: SEO einmalig ab 390 €, SEO-Betreuung ab 149 €/Monat, Google Ads Einrichtung ab 490 €, Ads-Betreuung ab 199 €/Monat.",
         "- KI: Terminautomatisierung ab 390 €, WhatsApp-/E-Mail-Automatisierung ab 490 €, Chatbot ab 690 €, CRM-/ERP-Anbindung ab 1.200 €.",
         "- Gebäudeautomation, Konferenz- und Veranstaltungstechnik: projektbezogen nach Bestandsaufnahme.",
