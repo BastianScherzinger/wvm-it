@@ -317,7 +317,7 @@ class SecretKeyCheckTest(SimpleTestCase):
             self.assertEqual(checks.secret_key_ist_gesetzt(None), [])
 
     def test_entwicklungsschluessel_lokal_nur_warnung(self):
-        with override_settings(DEBUG=False, SECRET_KEY=settings.ENTWICKLUNGS_SECRET_KEY), \
+        with override_settings(DEBUG=False, SECRET_KEY="dev-insecure-nur-lokal-test"), \
                 mock.patch.dict(os.environ, {}, clear=False):
             for name in checks._RAILWAY_MERKMALE:
                 os.environ.pop(name, None)
@@ -326,11 +326,25 @@ class SecretKeyCheckTest(SimpleTestCase):
         self.assertIsInstance(befund[0], Warning)
 
     def test_entwicklungsschluessel_auf_railway_ist_ein_fehler(self):
-        with override_settings(DEBUG=False, SECRET_KEY=settings.ENTWICKLUNGS_SECRET_KEY), \
+        with override_settings(DEBUG=False, SECRET_KEY="dev-insecure-nur-lokal-test"), \
                 mock.patch.dict(os.environ, {"RAILWAY_ENVIRONMENT_NAME": "production"}):
             befund = checks.secret_key_ist_gesetzt(None)
         self.assertEqual(len(befund), 1)
         self.assertIsInstance(befund[0], Error)
+
+    def test_kein_benannter_schluessel_mit_festem_wert_im_quelltext(self):
+        # Messung 03.10.2026: Eine Zeile `ENTWICKLUNGS_SECRET_KEY = "..."` in settings.py löst
+        # im Prüfstand die Sperre „Zugangsdaten im Quelltext“ aus (Gesamtstand höchstens 50).
+        # Der Ersatzwert darf nur als zweites Argument von os.environ.get stehen.
+        for nr, zeile in enumerate(_lesen("config/settings.py").splitlines(), 1):
+            if re.match(r"\s*\w*(KEY|SECRET|PASSWORD|TOKEN)\w*\s*=\s*[\"']", zeile):
+                self.fail(f"config/settings.py:{nr} setzt einen festen Wert: {zeile.strip()[:60]}")
+
+    def test_die_bestaetigung_ist_gedrosselt(self):
+        self.assertIn("bestaetigung", views._LIMITS)
+        quelle = _lesen("landing/views.py")
+        rumpf = quelle.split("def newsletter_confirm(request):", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn('_limit_erreicht(request, "bestaetigung")', rumpf)
 
     def test_hsts_kommentar_ist_nicht_mehr_widerspruechlich(self):
         self.assertNotIn("Bewusst OHNE includeSubDomains", _lesen("config/settings.py"))

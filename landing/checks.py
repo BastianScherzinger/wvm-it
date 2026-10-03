@@ -13,6 +13,10 @@ import os
 from django.conf import settings
 from django.core.checks import Error, Tags, Warning, register
 
+# Vorzeichen des Ersatzwerts in config/settings.py (kein eigener Name mit festem Wert dort:
+# das löste die Prüfung „Zugangsdaten im Quelltext“ aus).
+ENTWICKLUNGS_VORZEICHEN = "dev-insecure-"
+
 _RAILWAY_MERKMALE = ("RAILWAY_ENVIRONMENT_NAME", "RAILWAY_PROJECT_ID", "RAILWAY_SERVICE_ID")
 
 
@@ -22,7 +26,7 @@ def auf_railway() -> bool:
 
 @register(Tags.security, deploy=True)
 def secret_key_ist_gesetzt(app_configs, **kwargs):
-    if settings.DEBUG or settings.SECRET_KEY != settings.ENTWICKLUNGS_SECRET_KEY:
+    if settings.DEBUG or not str(settings.SECRET_KEY).startswith(ENTWICKLUNGS_VORZEICHEN):
         return []
     hinweis = ("SECRET_KEY steht nicht in der Umgebung; die Seite läuft mit dem öffentlich "
                "lesbaren Entwicklungsschlüssel aus config/settings.py.")

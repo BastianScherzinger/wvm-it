@@ -1327,6 +1327,7 @@ _LIMITS = {                     # (Anfragen, Sekunden) je Bereich und IP
     "kooperation": (3, 60 * 60),    # verschickt Mail an eine FREMDE Adresse
     "newsletter":  (5, 60 * 60),    # Double-Opt-in, verschickt an fremde Adresse
     "bauauftrag":  (5, 60 * 60),    # Detailbogen: je Absendung ein JARVIS-Bau-Auftrag
+    "bestaetigung": (20, 60 * 60),  # Klick auf „Jetzt bestätigen“ (Double-Opt-in, EIG241)
     # Anfragen, deren Fallenfeld die eigene Adresse trägt (Ausfüllhilfe, EIG330/385):
     # ein Mensch mit Passwortverwalter schickt ein, zwei Formulare; ein Skript, das
     # die eigene Domain eintippt, schickt Dutzende. Eigener, enger Zähler.
@@ -1833,6 +1834,10 @@ def newsletter_confirm(request):
     c = _content()
     absenden = request.method == "POST"
     token = ((request.POST if absenden else request.GET).get("t") or "").strip()
+    if absenden and _limit_erreicht(request, "bestaetigung"):
+        # Ein Mensch klickt einmal; mehr als zwanzig Bestätigungen je IP und Stunde sind
+        # ein Skript, das Tokens durchprobiert. Die Seite zeigt dann „ungültig“.
+        token = ""
     ok = False
     anfrage_token = name = ""
     try:

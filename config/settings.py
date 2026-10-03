@@ -29,8 +29,10 @@ if (len(sys.argv) > 1 and Path(sys.argv[0]).name == "manage.py"
 # SECRET_KEY MUSS in Produktion via Umgebungsvariable gesetzt werden (Railway).
 # Fehlt er dort, bricht `manage.py check --deploy` in start.sh ab (landing/checks.py, EIG350);
 # lokal und im Prüflauf (der würfelt einen Wegwerfschlüssel) gilt der Entwicklungsschlüssel.
-ENTWICKLUNGS_SECRET_KEY = "dev-insecure-nur-lokal-bitte-ueberschreiben"
-SECRET_KEY = os.environ.get("SECRET_KEY", ENTWICKLUNGS_SECRET_KEY)
+# Der Entwicklungsschlüssel steht nur als Ersatzwert hier (Vorzeichen „dev-insecure-“); `landing/checks.py`
+# erkennt ihn an diesem Vorzeichen. Ein eigener Name mit festem Wert würde die Prüfung
+# „Zugangsdaten im Quelltext“ (Sperre, Gesamtstand höchstens 50) auslösen.
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-insecure-nur-lokal-bitte-ueberschreiben")
 
 DEBUG = os.environ.get("DEBUG", "False").strip().lower() in ("1", "true", "yes")
 

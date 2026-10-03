@@ -4,7 +4,7 @@ titel: WVM-IT — Stand
 stand: 2026-10-03
 status: vollständig
 fortschritt: 98
-zusammenfassung: 03.10.2026 (V1.0.1), gegen den Leiterzweig auf origin/main und den Testlauf geprüft (683 Tests grün, pruefe_seite für 234 URLs und pruefe_sicherheit in Ordnung, check --deploy ohne Fehler, stand_schreiben --pruefen aktuell). Gesamtstand 97,7 von 100 aus Lauf 1858 (Regelstand 2026-10-02e); die Nachmessung nach dem Deploy trägt der Messblock unten nach. Fortschritt 98 = Gesamtstand gerundet. An diesem Tag sind die 193 offenen eigenen Doku-Punkte einzeln geprüft worden: 141 erledigt (davon 98 mit Code- oder Textänderung), 2 entfallen, 44 liegen bei Florin (je mit der Frage an ihn), 6 bei Bastian. Auf unserer Seite ist nichts Wesentliches mehr offen; was bleibt, steht mit Grund in 80-AUFGABEN.md (Beim Kunden, Bei Bastian).
+zusammenfassung: 03.10.2026 (V1.0.1), gegen den Leiterzweig auf origin/main und den Testlauf geprüft (685 Tests grün, pruefe_seite für 234 URLs und pruefe_sicherheit in Ordnung, check --deploy ohne Fehler, stand_schreiben --pruefen aktuell). Gesamtstand 97,7 von 100 aus Lauf 1858 (Regelstand 2026-10-02e); die Nachmessung nach dem Deploy trägt der Messblock unten nach. Fortschritt 98 = Gesamtstand gerundet. An diesem Tag sind die 193 offenen eigenen Doku-Punkte einzeln geprüft worden: 141 erledigt (davon 98 mit Code- oder Textänderung), 2 entfallen, 44 liegen bei Florin (je mit der Frage an ihn), 6 bei Bastian. Auf unserer Seite ist nichts Wesentliches mehr offen; was bleibt, steht mit Grund in 80-AUFGABEN.md (Beim Kunden, Bei Bastian).
 offen: 0
 quellen: CLAUDE.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/DEPLOY.md
 ---
