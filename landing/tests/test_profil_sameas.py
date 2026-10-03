@@ -57,6 +57,20 @@ class ProfilSameAsTest(SimpleTestCase):
             graph = self._graph("/")
             self.assertEqual(self._knoten(graph, "/#inhaber")["sameAs"], [li])
 
+    def test_persoenliches_profil_nicht_beim_betrieb(self):
+        """03.10.2026: linkedin.com/in/… ist Florin, nicht WVM-IT."""
+        li = "https://www.linkedin.com/in/beispiel"
+        with _mit_profilen([_MAPS, li]):
+            graph = self._graph("/")
+            self.assertEqual(self._knoten(graph, "/#business")["sameAs"], [_MAPS])
+            html = self.c.get("/ueber-uns/").content.decode("utf-8")
+            self.assertIn(f'href="{li}"', html)
+
+    def test_ohne_linkedin_kein_link_auf_ueber_uns(self):
+        with _mit_profilen([_MAPS]):
+            html = self.c.get("/ueber-uns/").content.decode("utf-8")
+            self.assertNotIn("linkedin.com", html)
+
     def test_http_wird_verworfen(self):
         with _mit_profilen(["http://www.google.com/maps?cid=1", "ftp://x", 5, None]):
             graph = self._graph("/")

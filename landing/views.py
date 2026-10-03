@@ -2496,12 +2496,16 @@ def _structured_data(c, lang, *, mit_katalog=True):
     #   4. Facebook- oder Instagram-Seite, falls gepflegt
     # Eintragen heißt: URL in content.json → "profile" ergänzen, sonst nichts.
     # Der Rest passiert hier automatisch, inklusive Ausgabe im @graph.
+    # Ein persönliches Profil (linkedin.com/in/…) gehört zur Person, nicht zum
+    # Betrieb — sonst behauptete der Graph, Florin und WVM-IT seien dieselbe
+    # Entität (03.10.2026, Florins Profil eingetragen).
     profile = _profil_urls(c)
-    if profile:
-        business["sameAs"] = profile
-        linkedin = [u for u in profile if "linkedin." in u.lower()]
-        if linkedin:
-            inhaber["sameAs"] = linkedin
+    person = _person_profil_urls(c)
+    betrieb = [u for u in profile if u not in person]
+    if betrieb:
+        business["sameAs"] = betrieb
+    if person:
+        inhaber["sameAs"] = person
 
     graph = [business, inhaber, website]
 
@@ -4272,6 +4276,8 @@ def ueber_uns(request):
     return render(request, "ueber_uns.html", {
         "c": c,
         "adresse": adresse,
+        # Persönliches Profil des Inhabers, sichtbar neben Anschrift und Telefon.
+        "linkedin": next(iter(_person_profil_urls(c)), ""),
         "kurz": ub.get("kurz", "").format(inhaber=c.get("inhaber_name", "Florin Feier"),
                                           adresse=adresse),
         "sitz_t": ub.get("sitz_t", "").format(adresse=adresse),
@@ -4585,6 +4591,11 @@ def _profil_urls(c):
         gesehen.add(u)
         ergebnis.append(u)
     return ergebnis
+
+
+def _person_profil_urls(c):
+    """Persönliche Profile des Inhabers (LinkedIn `/in/`) aus derselben Liste."""
+    return [u for u in _profil_urls(c) if "linkedin.com/in/" in u.lower()]
 
 
 def _google_profil_urls(c):

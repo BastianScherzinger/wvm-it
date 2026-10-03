@@ -7,6 +7,17 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 03.10.2026 — Florins LinkedIn-Profil, Parkseite per Chrome geprüft
+
+Florins Profil `linkedin.com/in/florin-feier-186bb0425/` (WVM-IT-Banner, dasselbe Foto, Beiträge
+mit Links auf wvm-it.tech; über Bastians angemeldetes Chrome bestätigt) steht in `content.json` →
+`profile`. Persönliche Profile (`/in/`) landen jetzt nur noch im `sameAs` der Person, nicht mehr
+beim Betrieb (`_person_profil_urls()`); sichtbar als Zeile auf `/ueber-uns/` in allen drei Sprachen.
+Eine LinkedIn-Unternehmensseite für WVM-IT gibt es nicht. Die Parkseite unter `wvm-it.tech` ist noch
+online; ihre sechs Links führen ohne Partnerkennung auf domaintechnik.at (keine Provision für
+Florin). Domaintechnik zählt Provisionen nur über `?affiliate=<ID>`. Anleitung zum Umleiten:
+`docs/ANLEITUNG-FLORIN-PARKSEITE.md`.
+
 ## 03.10.2026 — Block „Domain, Hosting, E-Mail“ auf der Startseite
 
 Unter `wvm-it.tech` (ohne www) steht seit 2020 die Parkseite des Registrars domaintechnik.at:

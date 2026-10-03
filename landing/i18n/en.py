@@ -1123,6 +1123,7 @@ PACK = {
         "sitz_h": "Location and area covered",
         "sitz_t": "The registered office is {adresse}, in the district of Vöcklabruck. We are regularly on site in the Salzkammergut region and around Vöcklabruck, Gmunden, Bad Ischl, Wels, Linz and Salzburg. Everything that can be done remotely we handle across Austria and Germany — distance makes no difference there.",
         "sprachen_h": "Languages",
+        "linkedin_t": "Florin Feier on LinkedIn",
         "sprachen_t": "German, English and Romanian. This website exists in all three; the articles, glossary and checklists are German only, because those questions are only searched for in German.",
         "cta_h": "Want to know where your IT stands?",
         "cta_t": "Describe in two sentences what is not running smoothly. You will get an honest assessment within 24 hours on working days — including if it says you need to change nothing.",

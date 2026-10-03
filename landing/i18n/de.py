@@ -1177,6 +1177,7 @@ PACK = {
         "sitz_h": "Sitz und Einzugsgebiet",
         "sitz_t": "Der Firmensitz ist {adresse}, im Bezirk Vöcklabruck. Vor Ort sind wir regelmäßig im Salzkammergut und im Raum Vöcklabruck, Gmunden, Bad Ischl, Wels, Linz und Salzburg unterwegs. Alles, was aus der Ferne geht, betreuen wir in ganz Österreich und Deutschland — die Entfernung spielt dabei keine Rolle.",
         "sprachen_h": "Sprachen",
+        "linkedin_t": "Florin Feier auf LinkedIn",
         "sprachen_t": "Deutsch, Englisch und Rumänisch. Diese Website gibt es in allen drei Sprachen; Fachbeiträge, Glossar und Checklisten stehen nur auf Deutsch, weil danach nur auf Deutsch gesucht wird.",
         "cta_h": "Wollen Sie wissen, wie Ihre IT dasteht?",
         "cta_t": "Beschreiben Sie in zwei Sätzen, was gerade nicht rundläuft. Sie bekommen an Werktagen innerhalb von 24 Stunden eine ehrliche Einschätzung — auch dann, wenn sie lautet, dass Sie nichts ändern müssen.",

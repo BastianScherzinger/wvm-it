@@ -1115,6 +1115,7 @@ PACK = {
         "sitz_h": "Sediu și zonă acoperită",
         "sitz_t": "Sediul firmei este {adresse}, în districtul Vöcklabruck. La fața locului suntem în mod regulat în Salzkammergut și în zona Vöcklabruck, Gmunden, Bad Ischl, Wels, Linz și Salzburg. Tot ce se poate face de la distanță acoperim în toată Austria și Germania — distanța nu joacă niciun rol.",
         "sprachen_h": "Limbi",
+        "linkedin_t": "Florin Feier pe LinkedIn",
         "sprachen_t": "Germană, engleză și română. Acest site există în toate trei; articolele, glosarul și listele de verificare sunt doar în germană, pentru că doar în germană se caută aceste întrebări.",
         "cta_h": "Vreți să știți cum stă IT-ul dumneavoastră?",
         "cta_t": "Descrieți în două propoziții ce nu merge bine. Primiți în 24 de ore în zilele lucrătoare o evaluare onestă — inclusiv dacă aceasta spune că nu trebuie să schimbați nimic.",
