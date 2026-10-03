@@ -26,22 +26,22 @@ antwortzeit_quelle: PageSpeed server-response-time
 
 | Seite | Gerät | Leistung | LCP | CLS | TBT | Serverzeit |
 |---|---|---:|---:|---:|---:|---:|
-| `/` | mobile | **99** | 2,03 s | 0,000 | 0 ms | 7 ms |
-| `/` | desktop | **100** | 0,54 s | 0,000 | 0 ms | 5 ms |
-| `/datenschutz/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 4 ms |
-| `/datenschutz/` | desktop | **100** | 0,43 s | 0,000 | 0 ms | 4 ms |
-| `/impressum/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 4 ms |
-| `/impressum/` | desktop | **100** | 0,42 s | 0,000 | 4 ms | 2 ms |
-| `/kontakt/` | mobile | **100** | 1,69 s | 0,000 | 0 ms | 4 ms |
-| `/kontakt/` | desktop | **100** | 0,44 s | 0,000 | 0 ms | 2 ms |
-| `/kosten/rechner/` | mobile | **100** | 1,72 s | 0,000 | 0 ms | 4 ms |
-| `/kosten/rechner/` | desktop | **100** | 0,47 s | 0,000 | 0 ms | 4 ms |
-| `/leistungen/` | mobile | **99** | 1,95 s | 0,000 | 0 ms | 5 ms |
+| `/` | mobile | **99** | 1,95 s | 0,000 | 0 ms | 8 ms |
+| `/` | desktop | **100** | 0,55 s | 0,000 | 0 ms | 5 ms |
+| `/datenschutz/` | mobile | **100** | 1,67 s | 0,000 | 0 ms | 3 ms |
+| `/datenschutz/` | desktop | **100** | 0,48 s | 0,000 | 23 ms | 3 ms |
+| `/impressum/` | mobile | **100** | 1,69 s | 0,000 | 0 ms | 4 ms |
+| `/impressum/` | desktop | **100** | 0,38 s | 0,000 | 0 ms | 2 ms |
+| `/kontakt/` | mobile | **100** | 1,66 s | 0,000 | 0 ms | 2 ms |
+| `/kontakt/` | desktop | **100** | 0,39 s | 0,000 | 0 ms | 1 ms |
+| `/kosten/rechner/` | mobile | **100** | 1,73 s | 0,000 | 6 ms | 3 ms |
+| `/kosten/rechner/` | desktop | **100** | 0,46 s | 0,000 | 0 ms | 3 ms |
+| `/leistungen/` | mobile | **99** | 2,03 s | 0,000 | 28 ms | 7 ms |
 | `/leistungen/` | desktop | **100** | 0,49 s | 0,000 | 0 ms | 3 ms |
 
 12 Abrufe, davon 0 wiederholt und **0 endgültig ohne Ergebnis**. Ein Abruf ohne Ergebnis steht oben als „nicht gemessen“ — bei CLS und TBT wäre eine Null der Bestwert und damit ein Lob für etwas, das niemand gemessen hat.
 
-**Serverzeit (`server-response-time` aus PageSpeed): 4,0 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
+**Serverzeit (`server-response-time` aus PageSpeed): 3,7 ms** im Mittel. Das ist die Zahl, an der `PF09` und `PF10` hängen. Die Sekundenwerte, die der eigene Prüfstand je Seite notiert, sind Wanduhrzeiten bei sechs gleichzeitigen Abrufen samt Kaltstart — sie messen den Prüfstand, nicht den Server.
 
 ### Tempo-Regeln, die offen sind
 
