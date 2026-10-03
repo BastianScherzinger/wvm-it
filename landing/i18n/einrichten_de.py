@@ -442,7 +442,7 @@ EINRICHTEN = {
                    "nennen den Preis schriftlich nach der Bestandsaufnahme — vor dem "
                    "ersten Handgriff, und dann gilt er. Die Bestandsaufnahme selbst "
                    "rechnen wir nach Stunde ab (95 € per Fernwartung, 120 € vor Ort "
-                   "zuzüglich Anfahrt); wird daraus ein Auftrag, wird sie angerechnet.",
+                   "zuzüglich Anfahrt).",
 
         "ablauf_h": "Wie es abläuft",
         "ablauf": [
@@ -563,7 +563,7 @@ EINRICHTEN = {
                   "werden sollte. Bei Geräten aus dem Elektromarkt ist der Ersatz meist "
                   "sinnvoll, weil sie getrennte Netze gar nicht können."},
             {"q": "Wie unterscheidet sich das von der Netzwerk-Leistungsseite?",
-             "a": "Hier geht es um die Einrichtung eines üblichen Büros zum Festpreis. "
+             "a": "Hier geht es um die Einrichtung eines üblichen Büros ab dem Startpreis. "
                   "Sobald Verkabelung, Hallen, Außenbereiche oder mehrere Stockwerke "
                   "dazukommen, ist es ein Projekt mit Planung und Ausmessung — das "
                   "steht auf der Leistungsseite und wird nach Aufnahme gerechnet."},
@@ -705,7 +705,7 @@ EINRICHTEN = {
                    "gewachsene KNX-Installation über drei Stockwerke ohne Unterlagen. "
                    "Die Aufnahme rechnen wir nach Stunde ab (120 € vor Ort zuzüglich "
                    "Anfahrt); danach nennen wir den Preis schriftlich, und dann gilt er. "
-                   "Wird daraus ein Auftrag, wird die Aufnahme angerechnet.",
+                   "",
 
         "ablauf_h": "Wie es abläuft",
         "ablauf": [
@@ -804,7 +804,7 @@ EINRICHTEN = {
                    "Preis schriftlich nach der Bestandsaufnahme — vor dem ersten "
                    "Handgriff, und dann gilt er. Die Bestandsaufnahme selbst rechnen "
                    "wir nach Stunde ab (95 € per Fernwartung, 120 € vor Ort zuzüglich "
-                   "Anfahrt); wird daraus ein Auftrag, wird sie angerechnet. Die "
+                   "Anfahrt). Die "
                    "laufende Überwachung der eingerichteten Sicherung beginnt bei "
                    "49 € im Monat und ist der Preis, den es im Katalog dafür gibt.",
 
@@ -885,7 +885,7 @@ EINRICHTEN = {
                  "in der Planung, und im neuen Haus ist die Internetleitung eine "
                  "Woche zu spät. Der IT-Teil ist der, an dem am ersten Arbeitstag "
                  "auffällt, ob geplant oder improvisiert wurde. Zwei bis vier Wochen "
-                 "Vorlauf reichen aus, damit am Umzugstag niemand mit einem HDMI-"
+                 "Vorlauf reichen für die IT selbst aus (nur die Leitungen am neuen Standort brauchen sechs bis acht), damit am Umzugstag niemand mit einem HDMI-"
                  "Kabel in der Hand sucht, wo die Steckdose ist.",
 
         "leistungen_h": "IT-Umzug Checkliste: was gehört dazu",
@@ -913,7 +913,7 @@ EINRICHTEN = {
                    "Standorts — mit den Bausteinen des Katalogs (Arbeitsplatz "
                    "einrichten 190 € je Platz, Netzwerk ab 890 €, Vor-Ort-Einsatz "
                    "120 € je Stunde zuzüglich Anfahrt). Die Aufnahme selbst rechnen "
-                   "wir nach Stunde ab; wird daraus ein Auftrag, wird sie angerechnet.",
+                   "wir nach Stunde ab.",
 
         "ablauf_h": "Wie es abläuft",
         "ablauf": [

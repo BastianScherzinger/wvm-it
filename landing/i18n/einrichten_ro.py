@@ -433,8 +433,8 @@ EINRICHTEN = {
                    "specialitate pentru douăzeci de oameni, diferența este de zile. "
                    "Numim prețul în scris după inventar — înainte de prima intervenție, "
                    "și apoi rămâne valabil. Inventarul în sine se facturează pe oră "
-                   "(95 € la distanță, 120 € la fața locului plus deplasare); dacă "
-                   "rezultă o comandă, se scade.",
+                   "(95 € la distanță, 120 € la fața locului plus deplasare)."
+                   "",
 
         "ablauf_h": "Cum decurge",
         "ablauf": [
@@ -553,7 +553,7 @@ EINRICHTEN = {
                   "înlocuit. La aparatele de la raft, înlocuirea are de obicei sens, "
                   "pentru că nici nu pot face rețele separate."},
             {"q": "Prin ce diferă asta de pagina de servicii despre rețea?",
-             "a": "Aici este vorba de configurarea unui birou obișnuit la preț fix. De "
+             "a": "Aici este vorba de configurarea unui birou obișnuit de la prețul de pornire. De "
                   "îndată ce apar cablare, hale, spații exterioare sau mai multe etaje, "
                   "devine un proiect cu planificare și măsurare — asta stă pe pagina de "
                   "servicii și se calculează după inventar."},
@@ -688,8 +688,8 @@ EINRICHTEN = {
                    "documentată cu douăzeci de actoare este altceva decât o instalație KNX "
                    "crescută pe trei etaje, fără documente. Inventarul se facturează pe oră "
                    "(120 € la fața locului plus deplasare); după aceea numim prețul în "
-                   "scris, și atunci rămâne valabil. Dacă rezultă o comandă, inventarul se "
-                   "scade.",
+                   "scris, și atunci rămâne valabil."
+                   "",
 
         "ablauf_h": "Cum decurge",
         "ablauf": [
@@ -782,8 +782,8 @@ EINRICHTEN = {
                    "o diferență de zile și o diferență de echipamente. Vă comunicăm "
                    "prețul în scris după evaluare — înainte de orice intervenție, "
                    "iar apoi rămâne valabil. Evaluarea în sine se facturează la oră "
-                   "(95 € la distanță, 120 € la fața locului plus deplasare); dacă "
-                   "se ajunge la comandă, evaluarea se scade. Monitorizarea "
+                   "(95 € la distanță, 120 € la fața locului plus deplasare)."
+                   "Monitorizarea "
                    "continuă a copiei configurate începe de la 49 € pe lună.",
 
         "ablauf_h": "Cum se desfășoară",
@@ -860,7 +860,7 @@ EINRICHTEN = {
                  "camion decât în plan, iar la noul sediu linia de internet vine cu "
                  "o săptămână întârziere. Partea IT este cea în care în prima zi de "
                  "lucru se vede dacă s-a planificat sau s-a improvizat. Două până "
-                 "la patru săptămâni de pregătire sunt suficiente pentru ca nimeni "
+                 "la patru săptămâni de pregătire sunt suficiente pentru IT-ul propriu-zis (doar liniile de la noul sediu cer șase până la opt), pentru ca nimeni "
                  "să nu caute în ziua mutării unde este priza cu un cablu HDMI în "
                  "mână.",
 
@@ -888,8 +888,8 @@ EINRICHTEN = {
                    "vechi și inspecția celui nou — cu componentele catalogului "
                    "(configurare stație 190 € pe post, rețea de la 890 €, "
                    "intervenție la fața locului 120 € pe oră plus deplasare). "
-                   "Evaluarea în sine se facturează la oră; dacă se ajunge la "
-                   "comandă, se scade.",
+                   "Evaluarea în sine se facturează la oră."
+                   "",
 
         "ablauf_h": "Cum se desfășoară",
         "ablauf": [
