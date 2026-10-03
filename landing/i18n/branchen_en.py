@@ -133,7 +133,7 @@ BRANCHEN = {
             {"q": "May an external provider access our systems at all?",
              "a": "Yes, on the basis of a data processing agreement under Article 28 GDPR. It sets out what we may access, how it is logged and what happens to credentials and data when the contract ends. We conclude it before the first access, not afterwards — and we do not need access to patient records, only to the technology underneath."},
             {"q": "Can you work without interrupting the consulting hour?",
-             "a": "For most work, yes: updates, monitoring and backups run outside consulting hours or in the background. Anything requiring a restart or an interruption is scheduled with you beforehand. Faults during consulting hours we take on immediately by remote maintenance — there, every minute counts differently than in an office."},
+             "a": "For most work, yes: updates, monitoring and backups run outside consulting hours or in the background. Anything requiring a restart or an interruption is scheduled with you beforehand. Faults during consulting hours we take on as a priority by remote maintenance within our availability (Monday to Friday, 9 am to 6 pm) — there, every minute counts differently than in an office."},
             {"q": "What about our medical devices that no longer receive updates?",
              "a": "They are not replaced but segregated. A device without updates is manageable as long as it sits in its own network and may only talk to what it needs to talk to. That is exactly what separate networks are for — and the usual route when replacement is not technically or economically viable."},
             {"q": "How long does a restore take if something really fails?",
@@ -233,8 +233,8 @@ BRANCHEN = {
 
     "vereine-gemeinden": {
         "nav": "Associations & municipalities",
-        "titel": "IT for associations in Austria, from €95 per hour | WVM-IT",
-        "desc": "IT for associations and municipalities: handovers at committee change, small budgets, website, hall technology, from €95 per hour. Get in touch now.",
+        "titel": "IT for associations in Austria, €95 per hour | WVM-IT",
+        "desc": "IT for associations and municipalities: handovers at committee change, small budgets, website, hall technology, billed at €95 per hour. Get in touch now.",
         "h1": "IT for associations, municipalities and volunteer organisations",
         "kurz": "WVM-IT supports associations, municipal bodies and volunteer-run organisations in Austria and Germany: accounts and credentials that survive a change of committee, website and email, backups, plus technology in halls and meeting rooms. We usually bill by the hour at €95 rather than through an ongoing contract — that fits a budget decided once a year.",
         "intro": "In an association nobody looks after the technology full time. There is someone who can do it, and they do — until they hand over the office. More is lost at that point than through any technical defect: passwords, domain access, membership lists, the account with the email provider. Not through ill will, but because it was never written down.",
@@ -260,7 +260,7 @@ BRANCHEN = {
         "risiko_h": "The change of committee is the real emergency",
         "risiko_t": "Not the outage but the handover. If the outgoing secretary held the domain on a private account, was the only one who knew the email password and kept the membership list on his own computer, the new committee starts from zero — and in the worst case the association's address is gone after the next renewal. That can be sorted out in an afternoon while both sides are still talking. Afterwards it becomes laborious to impossible.",
         "preis_h": "What it costs",
-        "preis_t": "For associations we usually bill by effort: €95 per hour, on-site work €120 per hour plus travel. Where ongoing support makes sense it costs from €29 per workstation and month, hosting with SSL and backups €15 per month, maintenance and updates €39 per month. A simple website starts at €350. Guide prices, net plus VAT — every piece of work is preceded by an estimate, so the audit has nothing to query.",
+        "preis_t": "For associations we usually bill by effort: €95 per hour, on-site work €120 per hour plus travel. Where ongoing support makes sense it costs from €29 per workstation and month, hosting with SSL and backups from €15 per month, maintenance and updates from €39 per month. A simple website starts at €350. Guide prices, net plus VAT — every piece of work is preceded by an estimate, so the audit has nothing to query.",
         "faq": [
             {"q": "We are volunteers with almost no budget. Is a conversation worth it?",
              "a": "Yes, and the outcome is usually smaller than you expect. The greatest benefit does not come from new technology but from order: putting credentials in the organisation's name, documenting a handover, verifying the backup. That is a few hours, not an ongoing cost — and afterwards the organisation survives the next change of committee without losses."},

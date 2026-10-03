@@ -421,8 +421,8 @@ EINRICHTEN = {
                    "server or a machine running the industry software for twenty people "
                    "makes a difference of days. We quote in writing after taking stock — "
                    "before the first move, and then it holds. The survey itself is "
-                   "billed by the hour (€95 remote, €120 on site plus travel); if it "
-                   "becomes an order, it is credited.",
+                   "billed by the hour (€95 remote, €120 on site plus travel)."
+                   "",
 
         "ablauf_h": "How it works",
         "ablauf": [
@@ -539,7 +539,7 @@ EINRICHTEN = {
                   "replaced. For consumer-grade equipment replacement usually makes "
                   "sense, because it cannot do separate networks at all."},
             {"q": "How does this differ from the network services page?",
-             "a": "This is the setup of a usual office at a fixed price. As soon as "
+             "a": "This is the setup of a usual office from the starting price. As soon as "
                   "cabling, halls, outdoor areas or multiple floors are involved it "
                   "becomes a project with planning and surveying — that is on the "
                   "services page and quoted after a survey."},
@@ -670,7 +670,7 @@ EINRICHTEN = {
                    "twenty actuators is something other than a grown KNX installation "
                    "across three floors without any papers. The survey is billed by the "
                    "hour (€120 on site plus travel); after it we quote in writing, and "
-                   "then it holds. If it becomes an order, the survey is credited.",
+                   "then it holds.",
 
         "ablauf_h": "How it works",
         "ablauf": [
@@ -762,8 +762,8 @@ EINRICHTEN = {
                    "difference of days and a difference in the hardware required. "
                    "We give you the price in writing after the audit — before any "
                    "work starts, and then it stands. The audit itself we bill by the "
-                   "hour (€95 remote, €120 on site plus travel); if it becomes an "
-                   "order, the audit is credited. Ongoing monitoring of the "
+                   "hour (€95 remote, €120 on site plus travel). "
+                   "Ongoing monitoring of the "
                    "resulting backup starts at €49 per month.",
 
         "ablauf_h": "How it runs",
@@ -838,7 +838,7 @@ EINRICHTEN = {
                  "in the van than in the plan, and at the new site the internet "
                  "line is a week late. The IT part is where day one shows whether "
                  "there was a plan or an improvisation. Two to four weeks of lead "
-                 "time is enough so that nobody stands with an HDMI cable in hand "
+                 "time is enough for the IT itself (only the lines at the new site need six to eight), so that nobody stands with an HDMI cable in hand "
                  "looking for the socket.",
 
         "leistungen_h": "IT move checklist: what belongs to it",
@@ -865,7 +865,7 @@ EINRICHTEN = {
                    "old site and inspecting the new one — using the catalogue "
                    "building blocks (workstation setup €190 per seat, network from "
                    "€890, on-site €120 per hour plus travel). The audit itself we "
-                   "bill by the hour; if it becomes an order, it is credited.",
+                   "bill by the hour.",
 
         "ablauf_h": "How it runs",
         "ablauf": [

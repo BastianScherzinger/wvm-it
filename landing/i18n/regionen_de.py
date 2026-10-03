@@ -57,7 +57,7 @@ REGIONEN = {
         "titel": "IT-Service Attersee — Netzwerk, WLAN und Smarthome | WVM-IT",
         "desc": "IT und Technik rund um den Attersee: WLAN für Hotels und Ferienwohnungen, Netzwerk, Smarthome. Sitz in Lenzing, 8 km entfernt. Jetzt anfragen.",
         "h1": "IT, Netzwerk und Technik rund um den Attersee",
-        "kurz": "WVM-IT betreut Betriebe und Privathaushalte in der Attersee-Region — von Seewalchen und Schörfling bis Nußdorf und Steinbach. Unser Sitz in Lenzing liegt 8 Kilometer entfernt, wir sind in rund 12 Minuten vor Ort. Schwerpunkt hier: Netzwerk und WLAN, das auch dann trägt, wenn im Sommer dreimal so viele Geräte darin hängen wie im Winter.",
+        "kurz": "WVM-IT betreut Betriebe in der Attersee-Region — von Seewalchen und Schörfling bis Nußdorf und Steinbach. Unser Sitz in Lenzing liegt 8 Kilometer entfernt, wir sind in rund 12 Minuten vor Ort. Schwerpunkt hier: Netzwerk und WLAN, das auch dann trägt, wenn im Sommer dreimal so viele Geräte darin hängen wie im Winter.",
         "intro": "Am Attersee ist die Technik saisonal belastet. Ein Betrieb, dessen WLAN im Februar tadellos läuft, hat im Juli hundert Gäste mit je zwei Geräten im selben Netz — dazu Kassensystem, Zeiterfassung und Kameras. Was dann zusammenbricht, ist selten die Leitung, sondern die Ausleuchtung: zu wenige Zugangspunkte, falsch gesetzt, ohne Trennung zwischen Gästen und Betrieb.",
         "wirtschaft": "Die zweite Besonderheit sind die Gebäude. Alte Mauern, Nebengebäude, Bootshäuser, Terrassen — Funk kommt hier nicht von selbst hin, und ein zusätzlicher Repeater macht es meist schlimmer statt besser. Wir messen aus, statt zu raten, und trennen das Gästenetz sauber vom Betriebsnetz. Das ist keine Bequemlichkeit, sondern Voraussetzung dafür, dass ein Gastgerät nicht im selben Netz wie die Buchhaltung hängt.",
         "vor_ort_h": "Wofür wir an den Attersee kommen",
@@ -73,7 +73,7 @@ REGIONEN = {
         "faq": [
             {"q": "Unser WLAN bricht nur im Sommer zusammen. Woran liegt das?",
              "a": "Fast immer nicht an der Internetleitung, sondern an der Zahl gleichzeitiger Geräte auf zu wenigen Zugangspunkten. Ein einzelner Router schafft eine Handvoll Geräte gut und dreißig schlecht. Die Lösung ist selten eine schnellere Leitung, sondern eine geplante Ausleuchtung mit mehreren Zugangspunkten und ein getrenntes Gästenetz. Das messen wir vor Ort aus."},
-            {"q": "Betreuen Sie auch Ferienwohnungen und Privathäuser?",
+            {"q": "Betreuen Sie auch Ferienwohnungen und Ferienobjekte?",
              "a": "Ja. Am See ist das ein guter Teil der Arbeit: WLAN, Heizungssteuerung, Beschattung, Zutritt und Kameras für Objekte, die nicht ganzjährig bewohnt sind. Vieles davon lässt sich später aus der Ferne prüfen und steuern, ohne dass jemand hinfahren muss."},
             {"q": "Können Sie Technik für ein Fest am See stellen?",
              "a": "Ton-, Licht- und Präsentationstechnik für Veranstaltungen gehört zu unserem Angebot, und die Attersee-Gemeinden liegen alle im Einzugsgebiet. Was genau nötig ist, hängt von Größe, Ort und Strom vor Ort ab — das klären wir vorher bei einer Besichtigung, nicht am Telefon."},

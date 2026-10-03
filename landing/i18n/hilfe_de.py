@@ -28,7 +28,7 @@ HILFE = {
     "h1": "IT-Hilfe ohne Vertrag — per Fernwartung, meist am selben Tag",
     # Kurzlabel für Navigation, Fußzeile und Brotkrume.
     "nav": "IT-Hilfe",
-    "kurz": "Einzelne IT-Probleme lösen wir ohne Vertrag per Fernwartung für 95 € je Stunde, meist am selben Tag. Muss jemand vor Ort sein, kostet das 120 € je Stunde zuzüglich Anfahrt. Ganze Aufgaben haben einen Festpreis: ein neuer Arbeitsplatz 190 €, Microsoft 365 eingerichtet 290 €. Das gilt in ganz Österreich und Deutschland, für Betriebe jeder Größe — auch, wenn Sie bei uns sonst nichts gebucht haben.",
+    "kurz": "Einzelne IT-Probleme lösen wir ohne Vertrag per Fernwartung für 95 € je Stunde, meist am selben Tag. Muss jemand vor Ort sein, kostet das 120 € je Stunde zuzüglich Anfahrt. Ganze Aufgaben haben einen Festpreis: ein neuer Arbeitsplatz 190 €, Microsoft 365 eingerichtet 290 €. Das gilt in ganz Österreich und Deutschland — bei Microsoft 365 für einen üblichen Betrieb bis etwa fünfzehn Postfächer — auch, wenn Sie bei uns sonst nichts gebucht haben.",
     "eilt_h": "Am schnellsten geht es so",
     "eilt_t": "Rufen Sie an oder schreiben Sie per WhatsApp, was nicht geht. Ein Satz genügt, ein Foto der Fehlermeldung hilft.",
     "intro": "Nicht jeder Betrieb braucht eine laufende IT-Betreuung. Oft geht es um ein einzelnes Problem: Der Drucker druckt nicht mehr, Outlook fragt ständig nach dem Passwort, das WLAN im Besprechungsraum reißt ab, oder der Rechner braucht morgens zehn Minuten bis zum ersten Programm. Dafür muss niemand einen Vertrag unterschreiben. Sie melden sich, wir sehen uns das an und sagen Ihnen vorher, ob wir helfen können. Abgerechnet wird nach Aufwand zum Stundensatz.",
@@ -70,7 +70,7 @@ HILFE = {
     "erreichbar_t": "Montag bis Freitag, 9 bis 18 Uhr. Außerhalb dieser Zeiten hinterlassen Sie eine Nachricht per WhatsApp oder auf der Mailbox; wir melden uns am nächsten Werktag. Wenn gerade Daten verschlüsselt werden oder der Server steht, gehen Sie zuerst auf die Notfallseite.",
     "notfall_link": "Zur Notfallseite: die ersten 30 Minuten",
     "laufend_h": "Wenn es öfter vorkommt",
-    "laufend_t": "Wer mehrmals im Jahr Hilfe braucht, fährt mit einer laufenden Betreuung oft günstiger: Sie kostet ab 29 € je Arbeitsplatz und Monat und enthält Updates, Überwachung und Hilfe bei Störungen. Bei fünf Arbeitsplätzen sind das ab 145 € im Monat (ohne Datensicherung) — ungefähr so viel wie eineinhalb Stunden Einzelhilfe. Wann sich was rechnet, steht im Vergleich von Betreuung und Stundenabrechnung.",
+    "laufend_t": "Wer jeden Monat Hilfe braucht, fährt mit einer laufenden Betreuung oft günstiger: Sie kostet ab 29 € je Arbeitsplatz und Monat und enthält Updates und Überwachung; wie Hilfe bei Störungen darin geregelt ist, halten wir im Angebot fest. Bei fünf Arbeitsplätzen sind das ab 145 € im Monat (ohne Datensicherung) — ungefähr so viel wie eineinhalb Stunden Einzelhilfe. Wann sich was rechnet, steht im Vergleich von Betreuung und Stundenabrechnung.",
     "laufend_link": "Laufende EDV-Betreuung ansehen",
     "vergleich_link": "Betreuung oder Stundenabrechnung? Der Vergleich",
     "faq": [
@@ -83,7 +83,7 @@ HILFE = {
         {"q": "Mein PC ist kaputt — kommen Sie, und was kostet das?",
          "a": "Ja, die Fehlersuche übernehmen wir: per Fernwartung für 95 € je Stunde, solange der Rechner noch startet und online ist, sonst vor Ort für 120 € je Stunde zuzüglich Anfahrt (im Umkreis von rund einer Fahrstunde um Lenzing). Danach sagen wir ehrlich, ob sich eine Reparatur lohnt oder ein neues Gerät besser ist; Werkstattreparaturen führen wir nicht durch. Das Ersatzgerät richten wir zum Festpreis von 190 € ein, samt Datenübernahme — Näheres zur <a href=\"/einrichten/pc-tausch/\">Datenübernahme beim Gerätewechsel</a> steht auf einer eigenen Seite."},
         {"q": "Was kostet ein neuer Arbeitsplatz oder Microsoft 365?",
-         "a": "Einen neuen Arbeitsplatz richten wir zum Festpreis von 190 € ein — Rechner, Programme, Konten und Drucker. Microsoft 365 mit E-Mail, Teams und OneDrive kostet eingerichtet 290 €. Beides ohne laufenden Vertrag."},
+         "a": "Einen neuen Arbeitsplatz richten wir zum Festpreis von 190 € ein — Rechner, Programme, Konten und Drucker. Microsoft 365 mit E-Mail, Teams und OneDrive kostet eingerichtet 290 € für einen üblichen Betrieb bis etwa fünfzehn Postfächer. Beides ohne laufenden Vertrag."},
         {"q": "Helfen Sie auch Betrieben in Deutschland?",
          "a": "Ja. Alles, was per Fernwartung geht, erledigen wir in ganz Österreich und Deutschland zu denselben Preisen. Vor Ort kommen wir im Umkreis von rund einer Fahrstunde um Lenzing in Oberösterreich."},
     ],

@@ -40,7 +40,7 @@ SEITEN = {
             {"h": "Run it", "t": "You get in touch in one place, we handle it. Updates and backups run in the background; once a quarter we talk about what is coming up."},
         ],
         "preis_h": "What it costs",
-        "preis_t": "Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. If you only need occasional help, that is €95 per hour; on-site work costs €120 per hour plus travel. All figures are guide prices, net plus VAT. There is no minimum term beyond a quarter.",
+        "preis_t": "Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. If you only need occasional help, that is €95 per hour; on-site work costs €120 per hour plus travel. All figures are guide prices, net plus VAT. Support runs from quarter to quarter, with one month’s notice to the end of a quarter.",
         "faq": [
             {"q": "From how many workstations is ongoing IT support worth it?",
              "a": "From around five workstations the support usually pays for itself if it prevents a single day of downtime a year. Below that, hourly billing is often cheaper — we say so honestly in the first conversation, even though it earns us less."},
@@ -66,7 +66,7 @@ SEITEN = {
         "titel": "Server management & backup from €49/mo | WVM-IT",
         "desc": "Server monitoring from €89/month, verified backups from €49/month. We spot the failure before the business stops. Request a quote today.",
         "h1": "Server management and backups that hold when it matters",
-        "kurz": "WVM-IT monitors business servers around the clock and runs backups so that they also work when it counts: backed up daily, every backup checked, the restore tested regularly. Server management costs from €89 per month, monitored backups from €49 per month. Everything is handled remotely across Austria and Germany.",
+        "kurz": "WVM-IT monitors business servers automatically and runs backups so that they also work when it counts: backed up daily, every backup checked, the restore tested regularly. Server management costs from €89 per month, monitored backups from €49 per month. Everything is handled remotely across Austria and Germany.",
         "intro": "Almost every business has a backup. Considerably fewer know when it last ran, and hardly any have ever tried to get something back out of it. That becomes apparent exactly once — on the day it matters. A backup that has never been restored is not a backup, it is a hope. So we treat it as a part of the business that needs checking, not as a setting that was switched on at some point. In that sense a backup is a verified copy of the data the business needs in order to keep working, kept separately from the server — verified meaning: every run is checked, and the restore is tested at regular intervals. A copy that sits on a disk in the same room and has never been restored meets neither condition, and is therefore not a backup.",
         "problem_h": "The four sentences that usually get expensive",
         "probleme": [
@@ -77,7 +77,7 @@ SEITEN = {
         ],
         "leistung_h": "What management includes",
         "leistungen": [
-            "Round-the-clock monitoring: disk space, load, temperature, drives",
+            "Automatic monitoring: disk space, load, temperature, drives",
             "Updates and security patches, applied outside your working hours",
             "Daily backup, kept separately from the server",
             "Verification of every backup — and regular test restores",
@@ -202,7 +202,7 @@ SEITEN = {
         "titel": "Have a website built from €350 | WVM-IT",
         "desc": "Websites for businesses in Austria and Germany: one-pager from €350, company site from €1,490, shop from €3,500. Request a quote today.",
         "h1": "Have a website built — and see what you get first",
-        "kurz": "WVM-IT builds websites for businesses in Austria and Germany: a one-pager from €350, a multi-page company site from €1,490, a premium site with animations from €2,900, an online shop from €3,500. Beforehand we build a real sample page free of charge so you can see how we work before you decide. Hosting and maintenance together cost €54 per month.",
+        "kurz": "WVM-IT builds websites for businesses in Austria and Germany: a one-pager from €350, a multi-page company site from €1,490, a premium site with animations from €2,900, an online shop from €3,500. Beforehand we build a real sample page free of charge so you can see how we work before you decide. Hosting and maintenance together cost from €54 per month.",
         "intro": "The most common disappointment with a new website is not the way it looks but the silence afterwards. It looks good, it was expensive, and nothing happens. That is almost never the design; it is that the site was not built for somebody to get in touch: the phone number is at the very bottom, there are no prices, the form has nine fields. We build in the other direction — starting from the goal.",
         "problem_h": "Where sites fail",
         "probleme": [
@@ -227,7 +227,7 @@ SEITEN = {
             {"h": "Build, review, launch", "t": "You see progress along the way. At launch we set up hosting, domain and measurement so that from day one it is visible what happens."},
         ],
         "preis_h": "Prices",
-        "preis_t": "A one-pager starts at €350, a multi-page business website at €1,490, a premium site with animations at €2,900, an online shop at €3,500. Running costs add hosting with SSL and backups at €15 per month and maintenance at €39 per month, together €54 per month; the domain costs €15 per year. Guide prices, net plus VAT.",
+        "preis_t": "A one-pager starts at €350, a multi-page business website at €1,490, a premium site with animations at €2,900, an online shop at €3,500. Running costs add hosting with SSL and backups from €15 per month and maintenance from €39 per month, together from €54 per month; the domain costs from €15 per year. Guide prices, net plus VAT.",
         "faq": [
             {"q": "How long until the site is online?",
              "a": "A one-pager is usually ready in one to two weeks, a multi-page company site in three to five. What decides the pace is almost always how quickly copy, images and approvals reach us — not the programming. We confirm or decline tight deadlines up front, not afterwards."},
@@ -281,7 +281,7 @@ SEITEN = {
             {"q": "What is GEO and why do you talk about it?",
              "a": "GEO stands for visibility in generative answer engines — ChatGPT, Perplexity, Gemini, Google AI overviews. More and more people ask their question there instead of reading ten blue links. What gets cited is what answers clearly, carries a date and is machine-readable. We build that in."},
             {"q": "Do you have proof that this works?",
-             "a": "Rümpelwerk Mitteldeutschland: we run the website, SEO/GEO and Google Ads there, with a dedicated page per service and per region. Real jobs come in through that site. Delivered together with our partner PyStore."},
+             "a": "Rümpelwerk Mitteldeutschland: we run the website, SEO/GEO and Google Ads there, with a dedicated page per service and per region. Delivered together with our partner PyStore."},
         ],
         "cta_h": "What should customers find you for?",
         "cta_t": "Give us two or three search terms you want to be found under. We check how realistic that is and reply within 24 hours on working days.",
@@ -337,7 +337,7 @@ SEITEN = {
         "titel": "Hosting & maintenance from €15/mo | WVM-IT",
         "desc": "Hosting with SSL and daily backups from €15/month, maintenance from €39/month, domain from €15/year. Request a free quote now.",
         "h1": "Hosting and maintenance: so the site runs when nobody is looking",
-        "kurz": "WVM-IT runs and maintains company websites: hosting with SSL and daily backups from €15 per month, maintenance with updates and small changes from €39 per month, domain from €15 per year — together €54 per month. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
+        "kurz": "WVM-IT runs and maintains company websites: hosting with SSL and daily backups from €15 per month, maintenance with updates and small changes from €39 per month, domain from €15 per year — together from €54 per month. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
         "intro": "A website is not a purchase, it is a piece of operating equipment. Certificates expire, systems need security updates, contact forms eventually stop working quietly. That rarely shows immediately — usually only when no enquiry has arrived for weeks and somebody goes looking. Maintenance is the cheapest insurance against exactly those weeks.",
         "problem_h": "What happens without maintenance",
         "probleme": [
@@ -362,7 +362,7 @@ SEITEN = {
             {"h": "Operate", "t": "From then on updates, backups and monitoring run. You simply send change requests by email."},
         ],
         "preis_h": "Prices",
-        "preis_t": "Hosting including SSL and backups costs €15 per month, maintenance with updates and small changes €39 per month — together €54 per month. The domain costs €15 per year. If you also want servers on your own premises looked after, that is covered by server management from €89 per month. Guide prices, net plus VAT.",
+        "preis_t": "Hosting including SSL and backups costs from €15 per month, maintenance with updates and small changes from €39 per month — together from €54 per month. The domain costs from €15 per year. If you also want servers on your own premises looked after, that is covered by server management from €89 per month. Guide prices, net plus VAT.",
         "faq": [
             {"q": "Do you take over sites you did not build?",
              "a": "Yes. We first check the state the site is in and tell you honestly whether running it is worth it or a revision comes out cheaper."},
@@ -632,7 +632,7 @@ SEITEN = {
         "leistungen": [
             "Audit and documentation of all servers, workstations, applications, accounts and contracts",
             "Named contact for your business; the cover arrangement is put in writing",
-            "24/7 monitoring of servers, backups, firewall and network, escalated to a fixed address",
+            "Automatic monitoring of servers, backups, firewall and network, escalated to a fixed address",
             "Standardised workstation setup — every machine built, named and documented the same way",
             "Multiple sites via secured remote maintenance; on-site work by arrangement",
             "Co-support alongside an existing internal IT: second opinion, exceptions, topics without time",
@@ -648,7 +648,7 @@ SEITEN = {
         "preis_t": "Day-to-day support costs from €29 per workstation and month, a managed server from €89 per month, monitored backup from €49 per month. For a typical larger business with 30 workstations and 2 servers plus backup that comes to about €1,097 per month (30 × €29 + 2 × €89 + €49). Ad-hoc work is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT. Day-to-day remote support is location-independent; extra sites are billed per workstation and server as above, and any build-out or on-site travel is stated in writing before it starts.",
         "faq": [
             {"q": "Where is the line between this page and small-business support?",
-             "a": "At about 20 workstations. Below that a closer, more personal relationship is cheaper and quicker; above it the effort for clean documentation and fixed standards starts to pay, because otherwise nobody has an overview. The line is not sharp: some 15-seat businesses with three sites belong here, some 25-seat businesses with one site belong on the other page. We tell you in the first conversation."},
+             "a": "At about 20 workstations. Below that a closer, more personal relationship is quicker and simpler; above it the effort for clean documentation and fixed standards starts to pay, because otherwise nobody has an overview. The line is not sharp: some 15-seat businesses with three sites belong here, some 25-seat businesses with one site belong on the other page. We tell you in the first conversation."},
             {"q": "Can you work alongside our internal IT?",
              "a": "Yes, that is part of the job. Your internal role knows the business and the daily rhythm; we bring the time for topics that fall between — after-hours server monitoring, security checks, cover during holidays, second opinion before investments. The split is put in writing."},
             {"q": "We have multiple sites — does remote maintenance work?",
