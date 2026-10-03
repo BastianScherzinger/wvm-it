@@ -7,6 +7,7 @@ fortschritt: 80
 zusammenfassung: 03.10.2026 (V1.0.1), gegen den Leiterzweig auf origin/main, den Testlauf (685 Tests grün) und die Live-Seite geprüft: Alle 193 offenen eigenen Punkte (EIG) sind einzeln gegen Code und gerenderte Seite entschieden — 141 erledigt (98 davon mit Code- oder Textänderung, Commit `b080ad4`), 2 entfallen, 44 beim Kunden (je mit der Frage an Florin in der Ausnahmetabelle), 6 bei Bastian (EIG207, EIG247, EIG293, EIG294, EIG320, EIG372). Sechs erledigte Messpunkte sind aus der Ausnahmetabelle nach „Erledigt“ verschoben. Offen (2): Rechtstexte über den Generator nachziehen (Bastian) und die Entscheidung über 22 nicht gemergte Zweige. Beim Kunden (22): Angaben und Zugänge, die nur Florin liefern kann. Fortschritt 80 nach der Formel unter der Überschrift (Erledigt gegen Erledigt + Offen + Beim Kunden, auf Zehner gerundet); der Rest liegt bei Florin oder Bastian, nicht bei uns.
 offen: 24
 quellen: docs/BEFUNDE-281-2026-09-06.md, docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/AUSBAU-2026-08.md, docs/SEO-KONZEPT-DACH.md, docs/DEPLOY.md
+rest_bei: bastian, kunde
 ---
 
 # Aufgaben

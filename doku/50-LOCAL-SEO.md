@@ -15,6 +15,7 @@ gsc_konto: bastian.scherzinger05@gmail.com
 bewertung: nicht öffentlich sichtbar
 bewertungen_anzahl: 0
 quellen: docs/SEO-KONZEPT-DACH.md, docs/INDEXIERUNG.md, docs/seo/BASELINE.md, docs/AUSBAU-2026-08.md, docs/AKQUISE-SOFORT.md
+rest_bei: bastian, kunde
 ---
 
 # Local SEO
