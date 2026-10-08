@@ -117,6 +117,14 @@ dem Telefon seitlich wackelt.
       </a>
       {% endif %}
 
+      {% if seite.at_h %}
+      <section class="bt-abschnitt gl-at" id="oesterreich" data-reveal>
+        <h2>{{ seite.at_h|safe }}</h2>
+        <p>{{ seite.at_t|safe }}</p>
+        {% if seite.at_t2 %}<p>{{ seite.at_t2|safe }}</p>{% endif %}
+      </section>
+      {% endif %}
+
       <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
       <div class="faq">
         {% for f in seite.faq %}

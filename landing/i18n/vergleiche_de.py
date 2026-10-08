@@ -61,6 +61,9 @@ VERGLEICHE = {
             {"q": "Wie kommen wir vom einen Modell ins andere?",
              "a": "In beide Richtungen ohne Aufwand. Vom Stundenmodell in die Betreuung beginnt mit einer Bestandsaufnahme, damit wir wissen, was wir übernehmen. Umgekehrt beenden wir die Überwachung und übergeben die Dokumentation. Beides ist eine Frage von Tagen, nicht von Monaten."},
         ],
+        "at_h": "In Österreich: Wer haftet, wenn der Dienstleister die Technik betreut?",
+        "at_t": "Für Betriebe in Oberösterreich kommt ein Punkt hinzu, der im Preisvergleich selten auftaucht: Nach DSGVO und Datenschutzgesetz (DSG) bleibt die Verantwortung für Ihre Daten beim Betrieb, auch wenn ein Dienstleister die Technik betreut. Eine Datenpanne muss binnen 72 Stunden der Datenschutzbehörde gemeldet werden (Art. 33 DSGVO). Diese Frist hält nur ein, wer schon vor dem Vorfall weiß, wo welche Daten liegen und wer Zugriff hat. In der laufenden Betreuung wird das nebenbei gepflegt, bei reiner Stundenabrechnung erst im Ernstfall erarbeitet. Wer die Kosten einordnen will, kann bei der Wirtschaftskammer Oberösterreich nach aktuellen Beratungsförderungen fragen.",
+        "at_t2": "Florin Feier aus Lenzing übernimmt die <a href='/leistungen/edv-it-betreuung/'>laufende EDV- und IT-Betreuung</a> meist per Fernwartung, bei Bedarf auch vor Ort in Vöcklabruck, Gmunden, Salzburg, Linz, Wels und im Salzkammergut. Für Betriebe im Raum Wels gibt es die Seite <a href='/it-service/wels/'>IT-Service in Wels</a>; einzelne Probleme ohne Vertrag löst die <a href='/it-hilfe/'>IT-Hilfe nach Stunden</a>. Wer unsicher ist, ob sich ein Vertrag rechnet, nutzt den <a href='/kosten/rechner/'>Kostenrechner</a> als erste Orientierung.",
         "cta_h": "Sollen wir es mit Ihren Zahlen durchrechnen?",
         "cta_t": "Schreiben Sie kurz, wie viele Arbeitsplätze und Server Sie haben. Wir rechnen beide Modelle gegen Ihre Zahlen und sagen Ihnen, welches passt — auch wenn das für uns das kleinere ist.",
     },
@@ -84,6 +87,10 @@ VERGLEICHE = {
             {"k": "Ausfall der Hardware", "a": "Ihr Problem — deshalb Überwachung und Ersatzteile", "b": "Problem des Anbieters, meist unbemerkt gelöst"},
             {"k": "Zugriff von außen", "a": "Braucht VPN oder Terminalserver", "b": "Von überall, mit zweitem Faktor"},
             {"k": "Datensicherung", "a": "Muss eingerichtet und geprüft werden", "b": "Muss ebenfalls eingerichtet werden — die Cloud ist keine Sicherung"},
+            {"k": "Datenstandort", "a": "Im eigenen Haus, Sie wissen genau, wo die Daten liegen", "b": "Beim Anbieter; Standort der Rechenzentren und Auftragsverarbeitungsvertrag müssen Sie klären"},
+            {"k": "Stromausfall", "a": "Der Server braucht eine unterbrechungsfreie Stromversorgung, sonst steht er mit", "b": "Das Rechenzentrum läuft weiter, Ihre Arbeitsplätze brauchen aber Strom und Leitung"},
+            {"k": "Wachstum und neue Benutzer", "a": "Kapazität muss geplant und angeschafft werden", "b": "Lässt sich im laufenden Betrieb anpassen"},
+            {"k": "Gemieteter Server im Rechenzentrum („Cloud Server“)", "a": "Entfällt, die Hardware steht nicht bei Ihnen", "b": "Fachsoftware läuft zentral, Hardware und Betrieb liegen beim Anbieter"},
         ],
         "fuer_a_h": "Wann ein eigener Server richtig ist",
         "fuer_a": [
@@ -110,7 +117,16 @@ VERGLEICHE = {
              "a": "Das hängt an der Datenmenge und daran, was mitgenommen werden muss. Der Aufwand liegt selten im Kopieren, sondern im Aufräumen davor: Welche Bestände braucht der Betrieb noch, welche unterliegen einer Aufbewahrungsfrist, welche können weg. Wir rechnen solche Umstiege nach Aufwand mit 95 € je Stunde ab und nennen vorher eine Schätzung."},
             {"q": "Kann man beides kombinieren?",
              "a": "Das ist sogar der Normalfall. Mail, Dateien und Zusammenarbeit laufen in der Cloud, die Fachanwendung auf einem Server. Wichtig ist nur, dass nicht dieselben Daten an zwei Orten gepflegt werden — die doppelte Ablage ist der teuerste Posten in jeder gemischten Umgebung, und sie entsteht immer dann, wenn niemand festlegt, was wohin gehört."},
+            {"q": "Was ist ein Cloud Server und wie unterscheidet er sich von der Cloud?",
+             "a": "Ein Cloud Server ist ein gemieteter Server im Rechenzentrum: Sie bekommen eine eigene Serverumgebung, auf der Ihre Fachsoftware läuft, ohne Hardware im Haus. Eine Cloud-Anwendung wie ein Mail- oder Dateidienst ist dagegen ein fertiger Dienst, den Sie nur benutzen. Für Betriebe mit zentraler Fachanwendung ist der Cloud Server die Mitte zwischen beidem. Die Betreuung eines Servers kostet bei uns 89 € im Monat je Server."},
+            {"q": "Was passiert, wenn bei einem Cloud-Betrieb die Internetleitung ausfällt?",
+             "a": "Dann stehen alle Arbeiten still, die ohne Leitung nicht gehen, bei reiner Cloud also meist alle. Die Antwort darauf ist keine andere Technik, sondern eine Reserve: eine zweite Verbindung, etwa über Mobilfunk, und eine klare Absprache, welche Arbeiten dann offline weiterlaufen können. Prüfen Sie die Leitung deshalb vor dem Umstieg, nicht danach."},
+            {"q": "Wie finde ich heraus, ob unsere Fachsoftware in die Cloud kann?",
+             "a": "Fragen Sie den Hersteller schriftlich, ob es eine Cloud-Fassung gibt oder ob die Software auf einem gemieteten Server betrieben werden darf. Manche Hersteller erlauben nur eines von beidem. Erst danach lohnt sich ein Kostenvergleich, weil sonst Zahlen für eine Lösung entstehen, die gar nicht möglich ist."},
         ],
+        "at_h": "In Österreich: Datenstandort und Internetleitung im ländlichen Oberösterreich",
+        "at_t": "Zum Datenstandort: Die DSGVO verlangt nicht, dass Daten in Österreich liegen, sie gilt in der gesamten EU. Entscheidend ist, wo ein Cloud-Anbieter Ihre Daten tatsächlich verarbeitet und ob er dazu einen Auftragsverarbeitungsvertrag (Art. 28 DSGVO) anbietet. Fragen Sie nach dem Standort der Rechenzentren, bevor Sie unterschreiben, und halten Sie die Antwort schriftlich fest. Zur Leitung: Wie schnell das Internet ist, hängt im ländlichen Oberösterreich von der einzelnen Adresse ab, nicht vom Ort. Wer in die Cloud will, sollte die Leitung vorher zur Bürozeit messen, vor allem im Upload, und überlegen, was bei einem Ausfall passiert. Eine zweite Verbindung, etwa über Mobilfunk, ist dafür die gängige Lösung.",
+        "at_t2": "Lieferanten größerer Einrichtungen bekommen seit dem NISG 2026 öfter Fragen zum Speicherort ihrer Daten, wie im Beitrag <a href='/aktuelles/nis2-lieferkette-zulieferer/'>NIS2 und Lieferkette</a> erklärt. Florin Feier aus Lenzing richtet <a href='/einrichten/server/'>Server</a> und Cloud-Anbindungen per Fernwartung oder vor Ort ein, etwa im Raum <a href='/it-service/gmunden/'>Gmunden</a>, Vöcklabruck, Salzburg, Linz und Wels.",
         "cta_h": "Welche Anwendungen haben Sie im Einsatz?",
         "cta_t": "Nennen Sie uns die Programme, mit denen täglich gearbeitet wird, und die ungefähre Datenmenge. Daraus ergibt sich die Antwort meist in einem Gespräch — an Werktagen antworten wir innerhalb von 24 Stunden.",
     },
@@ -161,6 +177,9 @@ VERGLEICHE = {
             {"q": "Richten Sie beides ein?",
              "a": "Wir richten Microsoft 365 ein; die Einrichtung kostet einmalig 290 €. Die laufende Betreuung ist davon getrennt und wird gesondert vereinbart. Google Workspace richten wir ebenfalls ein, wenn es für Ihren Betrieb die passende Wahl ist — dann rechnen wir nach Aufwand mit 95 € je Stunde ab. Wir empfehlen nicht das, was uns besser passt, sondern das, was zu Ihrer Software passt."},
         ],
+        "at_h": "Für Betriebe in Oberösterreich: Steuerberatung, Aufbewahrung und Kassa",
+        "at_t": "In österreichischen Betrieben entscheidet oft die Steuerberatung mit: Buchhaltungsdaten und Belege laufen häufig in Office-Formaten hin und her, und die Unterlagen müssen 7 Jahre aufbewahrt werden (BAO § 132). Beide Pakete ersetzen keine Archivierung, denn ein Cloud-Postfach ist kein Aufbewahrungskonzept. Legen Sie fest, wo Belege, Rechnungen und Kassa-Unterlagen liegen, bevor Sie das Paket wählen, und lassen Sie die Datensicherung gleich mitplanen. Für die Kassa selbst gelten die Vorgaben zu Registrierkasse und Belegerteilung unabhängig vom E-Mail-Paket.",
+        "at_t2": "Florin Feier aus Lenzing richtet <a href='/einrichten/microsoft-365/'>Microsoft 365</a> per Fernwartung ein, bei Bedarf auch vor Ort, etwa in <a href='/it-service/linz/'>Linz</a>, Wels, Salzburg, Gmunden, Vöcklabruck und im Salzkammergut. Welche Lizenz zu wie vielen Postfächern passt, steht im Beitrag <a href='/aktuelles/microsoft-365-lizenz-kleine-firma/'>Microsoft-365-Lizenz für kleine Firmen</a>, die Fristen im Beitrag <a href='/aktuelles/aufbewahrungsfristen-oesterreich/'>Aufbewahrungsfristen in Österreich</a>. Wer von einem bestehenden Postfach umzieht, bekommt vorher eine Liste aller Adressen, Verteiler und Weiterleitungen, damit beim Wechsel nichts verloren geht. Das gilt auch für Mails mit Rechnungen: Sie sollten dort liegen, wo sie in sieben Jahren noch auffindbar sind.",
         "cta_h": "Welche Programme müssen weiterlaufen?",
         "cta_t": "Nennen Sie uns Ihre Fachsoftware und wie viele Postfächer Sie brauchen. Wir sagen Ihnen an Werktagen innerhalb von 24 Stunden, welches Paket passt — und was der Umstieg konkret bedeutet.",
     },
@@ -170,8 +189,8 @@ VERGLEICHE = {
         "desc": "Wann eine SSD im alten PC noch lohnt und wann Windows 11 den Neukauf "
                 "erzwingt: Alter, Zustand, Anschlussfähigkeit. Mit Rechenweg. Jetzt vergleichen.",
         "nav": "Aufrüsten oder neu kaufen",
-        "h1": "Aufrüsten oder neu kaufen — woran es wirklich hängt",
-        "kurz": "Die Entscheidung hängt an drei Dingen: am Alter des Geräts, an der Art "
+        "h1": "Computer aufrüsten oder neu kaufen — woran es wirklich hängt",
+        "kurz": "Ob Sie einen Computer aufrüsten oder neu kaufen sollten, hängt an drei Dingen: am Alter des Geräts, an der Art "
                 "des Engpasses und daran, ob das Gerät die nächste Windows-Fassung noch "
                 "mitmacht. Als grobe Linie: Bis etwa vier Jahre lohnt sich Aufrüsten "
                 "fast immer, ab etwa sechs Jahren fast nie. Dazwischen entscheidet, "
@@ -211,6 +230,18 @@ VERGLEICHE = {
             {"k": "Was es kostet",
              "a": "Arbeit vor Ort 120 € je Stunde plus Bauteil und Anfahrt",
              "b": "Gerät plus 190 € Einrichtung mit Datenübernahme"},
+            {"k": "Windows 10 läuft noch",
+             "a": "Aufrüsten verlängert die Lebenszeit nicht, wenn das Gerät Windows 11 nicht unterstützt",
+             "b": "Ein neues Gerät kommt mit Windows 11 und läuft wieder mit regulären Sicherheitsupdates"},
+            {"k": "Notebook statt Standgerät",
+             "a": "SSD meist tauschbar; bei dünnen Geräten ist der Arbeitsspeicher oft aufgelötet",
+             "b": "Häufiger der Weg, wenn Speicher und Akku nicht mehr nachrüstbar sind"},
+            {"k": "Gerät erfüllt nur einen einfachen Zweck, etwa Kassa-Rechner oder Schreibplatz",
+             "a": "Reicht meist, solange es gesund läuft und Windows 11 mitmacht",
+             "b": "Erst nötig, wenn Alter oder Windows-Fassung es verlangen"},
+            {"k": "Reparaturkosten gegen Neupreis",
+             "a": "Faustregel: bis etwa ein Drittel eines gleichwertigen neuen Geräts sinnvoll",
+             "b": "Darüber, vor allem bei einem älteren Gerät, lohnt sich der Neukauf"},
         ],
 
         "fuer_a_h": "Aufrüsten lohnt sich, wenn …",
@@ -255,8 +286,17 @@ VERGLEICHE = {
                   "ersetzen, die jüngeren aufrüsten, den Rest laufen lassen und in "
                   "einem Jahr wieder ansehen. Alles auf einmal zu tauschen bedeutet, "
                   "in fünf Jahren wieder alles auf einmal tauschen zu müssen."},
+            {"q": "Welche Faustregel hilft beim Computer aufrüsten oder neu kaufen?",
+             "a": "Fünf Fragen der Reihe nach. 1. Datenträger: Steckt eine klassische Festplatte drin, kommt zuerst eine SSD. 2. Arbeitsspeicher: Windows 11 verlangt mindestens 4 GB, für Büroarbeit mit mehreren offenen Programmen ist mehr sinnvoll; sind Steckplätze frei, ist Nachrüsten günstig. 3. Prozessor und Windows 11: Das Gerät braucht einen unterstützten Prozessor und TPM 2.0; die Microsoft-App PC-Integritätsprüfung zeigt es an. 4. Alter: unter etwa vier Jahren aufrüsten, über etwa sechs Jahren neu kaufen. 5. Reparaturkosten gegen Neupreis: Kostet das Aufrüsten samt Arbeit mehr als ein Drittel eines gleichwertigen neuen Geräts, lohnt es nur noch bei einem jungen Rechner."},
+            {"q": "Kann ich den Computer aufrüsten, wenn Windows 11 nicht unterstützt wird?",
+             "a": "Meist nicht durch Bauteile. Fehlt nur TPM 2.0 oder ist es im BIOS abgeschaltet, lässt sich das manchmal lösen. Ist der Prozessor nicht auf der Liste der unterstützten Prozessoren, hilft weder mehr Arbeitsspeicher noch eine SSD, dann ist der Neukauf der saubere Weg. Was dabei zu bedenken ist, steht im Beitrag <a href='/aktuelles/windows-10-ende-was-jetzt/'>Windows 10 Ende: was jetzt?</a>."},
+            {"q": "Was kostet es, einen Computer aufzurüsten oder durch einen neuen zu ersetzen?",
+             "a": "Der Einbau einer SSD samt Systemübernahme dauert ein bis zwei Stunden und wird vor Ort mit 120 € je Stunde zuzüglich Anfahrt abgerechnet. Die Einrichtung eines neuen Geräts mit Datenübernahme kostet 190 €. Den Preis des Bauteils oder des Geräts nennen wir tagesaktuell, weil er sich ändert."},
         ],
 
+        "at_h": "Für Betriebe in Oberösterreich: Altgeräte, Daten und Windows 11",
+        "at_t": "Windows 10 bekommt keine regulären Sicherheitsupdates mehr, deshalb stellt sich die Frage nach Aufrüsten oder Neukauf in vielen Betrieben gerade jetzt. Wichtig für den Datenschutz: Auf ausgemusterten Computern liegen meist noch Kundendaten, Rechnungen und Zugangsdaten. Nach DSGVO und Datenschutzgesetz (DSG) sind Sie dafür verantwortlich, bis die Daten sicher gelöscht sind, auch wenn das Gerät nur im Keller steht oder weitergegeben wird. Lassen Sie den Datenträger vor jeder Weitergabe oder Entsorgung löschen. Unterlagen, die der Aufbewahrungspflicht unterliegen (7 Jahre, BAO § 132), gehören vorher auf das neue Gerät oder in die Sicherung.",
+        "at_t2": "Florin Feier aus Lenzing baut SSD und Arbeitsspeicher vor Ort ein, etwa in <a href='/it-service/voecklabruck/'>Vöcklabruck</a>, Gmunden, Salzburg, Linz, Wels und im Salzkammergut, und richtet die Umstellung auf <a href='/einrichten/windows-11/'>Windows 11</a> oder den <a href='/einrichten/pc-tausch/'>Tausch eines Geräts</a> auch per Fernwartung ein, sobald das Gerät beim Betrieb steht. Die Einrichtung eines Geräts kostet 190 €, die Arbeit vor Ort 120 € je Stunde zuzüglich Anfahrt.",
         "cta_h": "Wir sehen es uns an",
         "cta_t": "Nennen Sie uns Alter und Anzahl der Geräte. Wir sagen Ihnen an "
                  "Werktagen innerhalb von 24 Stunden, was wir an Ihrer Stelle täten — "

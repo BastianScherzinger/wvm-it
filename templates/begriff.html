@@ -57,6 +57,26 @@ demselben `kurz`-Feld, das oben steht.
         <p>{{ begriff.irrtum|safe }}</p>
       </section>
 
+      {% if begriff.at_h %}
+      <section class="bt-abschnitt gl-at" id="oesterreich" data-reveal>
+        <h2>{{ begriff.at_h|safe }}</h2>
+        <p>{{ begriff.at_t|safe }}</p>
+        {% if begriff.at_t2 %}<p>{{ begriff.at_t2|safe }}</p>{% endif %}
+      </section>
+      {% endif %}
+
+      {% if begriff.faq %}
+      <section class="bt-faq" data-reveal>
+        <h2>{{ t.seite.faq_folge_h|safe }}</h2>
+        <dl class="bt-faq-liste">
+          {% for f in begriff.faq %}
+          <dt>{{ f.q|safe }}</dt>
+          <dd>{{ f.a|safe }}</dd>
+          {% endfor %}
+        </dl>
+      </section>
+      {% endif %}
+
       {% if leistung %}
       <aside class="rg-schwerpunkt" data-reveal>
         <p class="rg-sw-label">Passende Leistung</p>

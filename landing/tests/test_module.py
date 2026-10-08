@@ -92,6 +92,10 @@ from landing.i18n import regionen_de
 from landing.i18n import regionen_en
 from landing.i18n import regionen_ro
 from landing.i18n import ro
+from landing.i18n import beitraege_neu_a_de
+from landing.i18n import beitraege_neu_b_de
+from landing.i18n import glossar_teil_a_de
+from landing.i18n import glossar_teil_b_de
 from landing.i18n import seiten_de
 from landing.i18n import seiten_en
 from landing.i18n import seiten_ro
@@ -114,7 +118,8 @@ SPRACHMODULE = (beitraege_de, branchen_de, branchen_en, branchen_ro,
                 checklisten_de, de, einrichten_de, einrichten_en, einrichten_ro,
                 en, glossar_de, hilfe_de, hilfe_en, hilfe_ro, regionen_de, regionen_en,
                 regionen_ro, ro, seiten_de, seiten_en, seiten_ro, vergleiche_de,
-                vergleiche_en, vergleiche_ro)
+                vergleiche_en, vergleiche_ro, beitraege_neu_a_de, beitraege_neu_b_de,
+                glossar_teil_a_de, glossar_teil_b_de)
 BEFEHLE = (anfragen_loeschen, indexnow, befehl_messung, pruefe_mail, pruefe_seite,
            pruefe_sicherheit, seo_bericht, stand_schreiben)
 KONFIGURATION = (config_settings, config_urls)

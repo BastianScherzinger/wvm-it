@@ -71,6 +71,14 @@ wie am Bildschirm.
           <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
       </section>
 
+      {% if liste.at_h %}
+      <section class="bt-abschnitt gl-at" id="oesterreich" data-reveal>
+        <h2>{{ liste.at_h|safe }}</h2>
+        <p>{{ liste.at_t|safe }}</p>
+        {% if liste.at_t2 %}<p>{{ liste.at_t2|safe }}</p>{% endif %}
+      </section>
+      {% endif %}
+
       <h2 class="sp-h2" id="faq">{{ t.seite.faq_h|safe }}</h2>
       <div class="faq">
         {% for f in liste.faq %}

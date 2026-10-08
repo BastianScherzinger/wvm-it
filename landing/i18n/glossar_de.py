@@ -242,3 +242,10 @@ BEGRIFFE = {
         "irrtum": "„Wir merken schon, wenn etwas kaputt ist.“ Sicher — nur eben dann, wenn es kaputt ist. Der Unterschied zwischen einem Termin und einem Notfall liegt in den drei Wochen davor, in denen es sich angekündigt hat.",
     },
 }
+
+# Ausbau 08.10.2026 (Österreich-Ausbau): die ausgebauten Einträge liegen in
+# eigenen Dateien und ersetzen die Kurzfassungen oben schlüsselweise.
+from . import glossar_teil_a_de as _teil_a, glossar_teil_b_de as _teil_b  # noqa: E402
+
+BEGRIFFE.update(_teil_a.BEGRIFFE)
+BEGRIFFE.update(_teil_b.BEGRIFFE)
