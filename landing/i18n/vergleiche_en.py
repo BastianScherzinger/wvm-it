@@ -79,6 +79,10 @@ VERGLEICHE = {
             {"k": "Hardware failure", "a": "Your problem — hence monitoring and spares", "b": "The provider's problem, usually solved unnoticed"},
             {"k": "Access from outside", "a": "Needs VPN or a terminal server", "b": "From anywhere, with a second factor"},
             {"k": "Backups", "a": "Must be set up and verified", "b": "Must be set up too — the cloud is not a backup"},
+            {"k": "Data location", "a": "In your own building, you know exactly where the data is", "b": "With the provider; you must clarify the location of the data centres and the data processing agreement"},
+            {"k": "Power failure", "a": "The server needs an uninterruptible power supply, otherwise it goes down with the power", "b": "The data centre keeps running, but your workstations still need power and a connection"},
+            {"k": "Growth and new users", "a": "Capacity has to be planned and purchased", "b": "Can be adjusted during operation"},
+            {"k": "Rented server in a data centre (“cloud server”)", "a": "Not applicable, the hardware is not at your premises", "b": "Business software runs centrally, hardware and operation lie with the provider"},
         ],
         "fuer_a_h": "When an own server is right",
         "fuer_a": [
@@ -105,6 +109,12 @@ VERGLEICHE = {
              "a": "That depends on the data volume and on what has to come along. The effort rarely lies in the copying but in the tidying beforehand: which archives the business still needs, which are subject to retention, which can go. We bill such migrations by effort at €95 per hour and give an estimate in advance."},
             {"q": "Can the two be combined?",
              "a": "That is in fact the normal case. Mail, files and collaboration in the cloud, the business application on a server. The only requirement is that the same data is not maintained in two places — duplicate filing is the most expensive item in any mixed environment, and it appears whenever nobody decides what belongs where."},
+            {"q": "What is a cloud server and how does it differ from the cloud?",
+             "a": "A cloud server is a rented server in a data centre: you get your own server environment on which your business software runs, without hardware on site. A cloud application such as a mail or file service, by contrast, is a ready-made service that you simply use. For businesses with a central business application, the cloud server is the middle ground between the two. Managing a server costs €89 per month per server with us."},
+            {"q": "What happens if the internet connection fails in a cloud setup?",
+             "a": "Then all work that cannot be done without a connection stops — with a pure cloud setup, usually all of it. The answer is not different technology but a reserve: a second connection, for example via mobile network, and a clear agreement on which work can continue offline. So check the connection before the move, not after."},
+            {"q": "How do I find out whether our business software can go to the cloud?",
+             "a": "Ask the vendor in writing whether a cloud edition exists or whether the software may be run on a rented server. Some vendors allow only one of the two. Only then is a cost comparison worthwhile, because otherwise you end up with figures for a solution that is not possible at all."},
         ],
         "at_h": "In Austria: data location and internet connection in rural Upper Austria",
         "at_t": "On data location: the GDPR does not require data to be stored in Austria; it applies across the whole EU. What matters is where a cloud provider actually processes your data and whether it offers a data processing agreement (Art. 28 GDPR). Ask where the data centres are located before you sign, and keep the answer in writing. On the connection: in rural Upper Austria, how fast the internet is depends on the individual address, not on the town. Anyone moving to the cloud should measure the connection during office hours beforehand, especially the upload, and think about what happens in an outage. A second connection, for example via mobile network, is the usual solution.",
@@ -170,8 +180,8 @@ VERGLEICHE = {
         "desc": "When an SSD is still worth it and when Windows 11 forces a new "
                 "computer: age, condition and compatibility decide. With the arithmetic. Compare now.",
         "nav": "Upgrade or replace",
-        "h1": "Upgrade or buy new — what it actually depends on",
-        "kurz": "The decision rests on three things: the age of the device, the kind of "
+        "h1": "Upgrade or replace a computer — what it actually depends on",
+        "kurz": "Whether to upgrade or replace a computer rests on three things: the age of the device, the kind of "
                 "bottleneck, and whether the machine will still take the next version "
                 "of Windows. As a rough line: up to about four years an upgrade almost "
                 "always pays off, beyond about six years it almost never does. In "
@@ -211,6 +221,10 @@ VERGLEICHE = {
             {"k": "What it costs",
              "a": "On-site work at €120 per hour plus the part and travel",
              "b": "The device plus €190 setup with data transfer"},
+            {"k": "Windows 10 still running", "a": "An upgrade does not extend the lifespan if the device does not support Windows 11", "b": "A new device comes with Windows 11 and runs on regular security updates again"},
+            {"k": "Laptop instead of desktop", "a": "SSD usually replaceable; on thin devices the memory is often soldered on", "b": "More often the way to go when memory and battery can no longer be upgraded"},
+            {"k": "Device serves only a simple purpose, such as a till computer or a writing station", "a": "Usually enough as long as it runs healthily and Windows 11 works", "b": "Only necessary once age or Windows version demands it"},
+            {"k": "Repair costs against new price", "a": "Rule of thumb: sensible up to about a third of an equivalent new device", "b": "Above that, especially with an older device, buying new pays off"},
         ],
 
         "fuer_a_h": "An upgrade pays off when …",
@@ -253,6 +267,12 @@ VERGLEICHE = {
                   "upgrade the younger ones, leave the rest running and look again in a "
                   "year. Replacing everything at once means having to replace everything "
                   "at once again in five years."},
+            {"q": "Which rule of thumb helps when deciding to upgrade or replace a computer?",
+             "a": "Five questions in order. 1. Drive: if a classic hard disk is fitted, an SSD comes first. 2. Memory: Windows 11 requires at least 4 GB, and for office work with several programs open more makes sense; if slots are free, adding memory is cheap. 3. Processor and Windows 11: the device needs a supported processor and TPM 2.0; Microsoft’s PC Health Check app shows it. 4. Age: under about four years upgrade, over about six years buy new. 5. Repair costs against new price: if the upgrade including labour costs more than a third of an equivalent new device, it only pays off on a young computer."},
+            {"q": "Can I upgrade the computer if Windows 11 is not supported?",
+             "a": "Mostly not through components. If only TPM 2.0 is missing or switched off in the BIOS, that can sometimes be fixed. If the processor is not on the list of supported processors, neither more memory nor an SSD helps, and buying new is the clean way. What to consider here is covered in the article <a href='/aktuelles/windows-10-ende-was-jetzt/'>End of Windows 10: what now?</a>."},
+            {"q": "What does it cost to upgrade a computer or replace it with a new one?",
+             "a": "Fitting an SSD including moving the system takes one to two hours and is charged on site at €120 per hour plus travel. Setting up a new device with data transfer costs €190. We give you the price of the part or device at current prices, because it changes."},
         ],
 
         "at_h": "For businesses in Upper Austria: old devices, data and Windows 11",

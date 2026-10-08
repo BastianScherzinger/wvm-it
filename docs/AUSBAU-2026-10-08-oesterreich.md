@@ -21,7 +21,7 @@ Templates: `begriff.html` (at_*, faq), `vergleich.html`, `checkliste.html` (at_*
 
 ## Für den Hauptleiter (nicht in meinem Besitz)
 - `views.begriff_seite`: `faq=begriff.get("faq") or [], faq_id=pfad` an `_seiten_schema(...)` geben, damit die Glossar-Folgefragen als FAQPage im Schema stehen (sichtbar sind sie bereits). Dasselbe für `at_*` in `llms.txt`/`llms-full` (Beiträge geben die Abschnitte schon aus, Glossar/Vergleich/Checklisten noch nicht).
-- Die neuen Beiträge nennen als gebildete Summe 232 €, 281 €, 370 € (8 Arbeitsplätze aus 29 + 49 + 89); falls `pruefe_seite` das meldet, in `_rechner_zahlen_fuer_pruefung()` aufnehmen.
+- `stand_schreiben.py` kennt jetzt `beitraege_neu_*` und `glossar_teil_*` (sonst fiel das Änderungsdatum der neuen Seiten auf den Standardwert).
 - `landing/stand.py` nach dem Zusammenführen neu erzeugen; Testzahlen in CLAUDE.md hochzählen.
 - Ortsseiten (`regionen*`) könnten auf die neuen Beiträge verlinken (Leiter „lokal“).
 
