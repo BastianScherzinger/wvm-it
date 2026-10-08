@@ -1,7 +1,7 @@
 ---
 bereich: wegweiser
 titel: WVM-IT — Wegweiser durch die Dokumentation
-stand: 2026-10-03
+stand: 2026-10-09
 status: vollständig
 fortschritt: 100
 zusammenfassung: Elf Dateien nach Doku-Standard; die Original-Doku (20 Dateien, rund 26.500 Wörter) bleibt in ../docs/ und wird von hier verlinkt.
@@ -16,6 +16,57 @@ quellen: CLAUDE.md, README.md, docs/DEPLOY.md, docs/SEO-AUSBAU-3.md, docs/SEO-KO
 >
 > Dieser Ordner `doku/` folgt dem Doku-Standard vom 02.09.2026 (`pystore-overview/docs/DOKU-STANDARD.md`).
 > Er **fasst zusammen und verweist** — die Wahrheit im Detail steht in `../docs/` und `../CLAUDE.md`.
+
+## Alles zu WVM-IT — wo es liegt
+
+Dieses Repo ist **öffentlich**: Verträge, Angebote, Rechnungen, AVV, Zugangsdaten, Mailverläufe und Verhandlungen stehen nur im privaten Kundenordner (Abschnitt d). `R` = dieses Repo (lokal `…\2026-07-02\web_wvm-it`), `D` = `C:\Users\basti\Desktop`.
+
+### a) Im Repo — `doku/` (elf Dateien, siehe unten)
+Status, Technik, Design, Inhalte, SEO, Local SEO, Ads, Performance, Aufgaben, Notizen — Tabelle „Welche Datei wofür“.
+
+### b) Im Repo — `docs/` (Auswahl, gruppiert)
+
+| Gruppe | Dateien |
+|---|---|
+| Stand und Verlauf | `docs/00-INDEX.md` · `LOGBUCH.md` · `STAND-2026-09-10.md` · `STRATEGIE-2026-09.md` · `TRIAGE-2026-09-25.md` · `CLAUDE-AUSGELAGERT.md` |
+| SEO | `SEO-PLAN.md` · `SEO-AUSBAU-3.md` · `SEO-KONZEPT-DACH.md` · `SEO-ABSCHLUSS-2026-10-02.md` · `SEO-CONVERSION-2026-10-03.md` · `SEO-VERTEILER-B1.md` · `seo/` (BASELINE, KEYWORD-MAP, URL-INVENTAR, GEO-MONITORING, PERFORMANCE, NULL-IMPRESSIONEN, `strategie-2026-09-25/`) |
+| Ausbau 08.10. | `AUSBAU-2026-10-08-lokal.md` · `-oesterreich.md` · `-technik.md` (früher: `AUSBAU-2026-08.md`, `-09.md`) |
+| Abnahme und Befunde | `BEFUNDE-281-2026-09-06.md` · `POLITUR-2026-09-06.md` · `CACHE-2026-09-06.md` · `LOOPS-2026-09-07.md` |
+| Indexierung | `INDEXIERUNG.md` (IndexNow, Search Console) |
+| Design | `DESIGN-2026-10-01.md` · `DESIGN-B1-2026-09-25.md` · `HERO-KONZEPT-2026-09-06.md` · `UMBAU-PLAN.md` · `UMBAU-START.md` |
+| Relaunch, Betrieb | `RELAUNCH-PLAN.md` · `RELAUNCH-START.md` · `DEPLOY.md` · `mehrsprachigkeit.md` · `recht-und-cookies.md` · `PLAN-HARDWARE-2026-09-08.md` · `AKQUISE-SOFORT.md` · `ANLEITUNG-FLORIN-PARKSEITE.md` |
+
+### c) Im Repo — `doku/extern/` (hierher kopiert, hier weiterpflegen)
+
+| Datei | Inhalt |
+|---|---|
+| [extern/ANALYSE-SICHTBARKEIT-2026-10-08.md](extern/ANALYSE-SICHTBARKEIT-2026-10-08.md) | Search-Console-Zahlen, Google-Stichprobe, Verbesserungsliste (Kunde/Technik/Inhalt), zehn Backlink-Quellen, Prognose erster Auftrag |
+| [extern/EINTRAEGE-2026-10-09.md](extern/EINTRAEGE-2026-10-09.md) | Stammdaten für Verzeichnisse, Stand je Eintrag (Google, firmenabc, herold, ProvenExpert …), Maps-Einbettung, Apex-301 |
+| [extern/GOOGLE-BEITRAEGE-2026-10.md](extern/GOOGLE-BEITRAEGE-2026-10.md) | Vier Google-Profil-Beiträge 13.10.–03.11. (Entwurf, Florin gibt frei) |
+| [extern/MEINBEZIRK-BEITRAG.md](extern/MEINBEZIRK-BEITRAG.md) | Fachbeitrag IT-Sicherheit für Kleinbetriebe (Entwurf) |
+| [extern/BACKLINK-PLAN-WVM-IT.md](extern/BACKLINK-PLAN-WVM-IT.md) | Auszug §4.2 des Backlink-Plans: 14 Quellen mit Stand und Zuständigem (Stand 02.10.; Fortschritt danach in `EINTRAEGE`) |
+
+Straßenadresse und fremde Kundennummern sind in diesen Kopien entfernt.
+
+### d) Außerhalb — vertraulich / geschäftlich (nicht ins Repo)
+
+| Pfad | Was drinsteht |
+|---|---|
+| `D\Webagentur Scherzinger\Kunden\Kunde-02_2026-09_WVM-IT\00_STAND_UND_ANALYSE.md` | **intern**: Kundenprofil, Entscheidungen, Gesamtstand (nicht an Kunden) |
+| ` … \00_SITZUNGSPROTOKOLL_2026-09-03-04.md` | Sitzungsprotokoll Angebotsphase |
+| ` … \01_Angebot_AG-2026-0002.md` · `02_Vertrag.md` · `03_AVV_Auftragsverarbeitung.md` · `05_Anlage5_Zugangsdaten.md` | Angebot, Vertrag, AVV, Zugangsdaten-Anlage (Preise, Pflichten, Logins — **vertraulich**) |
+| ` … \VERKAUF_2026-09-29\` · `VERSENDET_*` · `VERSAND_*` · `PDF\` | Verkauf der Seite an Florin: Rechnung RE-2026-0005, Vertrag/AVV, versendete PDFs, Mail- und WhatsApp-Texte |
+| ` … \Kundendaten_Beispielrechnung_Florin_2026-04-30.pdf` | Beispielrechnung von Florin (Kundendaten) |
+| `D\Webagentur Scherzinger\Protokolle\` (`2026-09-11_Google-Unternehmensprofile`, `2026-09-20_Florin-Anfrage-PST-Archivsuche`, `2026-09-24_GBP-Paket-WVM-IT`, `2026-09-29_WVM-IT-Websiteverkauf`) | Arbeitsprotokolle zu Profil, PST-Anfrage, Verkauf |
+| `D\Webagentur Scherzinger\KUNDEN.md` · `BUCHHALTUNG.md` · `Ausgaben\2026\` · `Betrieb-Railway\` (RAILWAY-INVENTAR, MAIL-UND-DOMAINS, TRENNUNGSPLAN) | Kundenliste, Buchhaltung/Ausgaben, Hosting- und Mail-Inventar (Umzug bis 30.11.) |
+| `D\Webagentur Scherzinger\Marketing\2026-10_Beitragsplan\` | Beitragspläne GBP/LinkedIn (u. a. WVM-IT) |
+| `D\Webagentur Scherzinger\Design\wvm-it\` (`entwuerfe-runde-1`, `entwuerfe-runde-2`, `upgrade-2026-10-01`) | Design-Entwürfe, Briefs, Bild- und Prüfdateien; Geschmack/Regeln in `Design\GESCHMACK.md` |
+| `D\pystore-overview\docs\wvm-it.md` | Overview-Überblick und Florin-Liste |
+| `D\pystore-overview\docs\BACKLINK-PLAN.md` | Gesamt-Backlink-Plan aller Kundenseiten; WVM-IT-Teil = §4.2 (Kopie in `doku/extern/`) |
+| `D\DOKU-INDEX.md` | Projektübergreifender Wegweiser (Zeile WVM-IT zeigt auf diese Datei) |
+| Claude-Gedächtnis `~\.claude\projects\C--Users-basti-Desktop\memory\` (`project_wvm_umbau`, `project_wvm_it_landing`, `reference_gsc_wvm_messung`, `project_suchzahlen_prognose`) | Kurznotizen zu Verkauf, Landingpage, Suchzahlen (nur lesen) |
+
+**Regel:** Neue nicht vertrauliche WVM-IT-Dokumente gehören nach `doku/` oder `doku/extern/`; Vertrauliches in den Kundenordner und hier nur eine Pfadzeile.
 
 ## Welche Datei wofür
 
