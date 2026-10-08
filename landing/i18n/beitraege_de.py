@@ -374,7 +374,7 @@ BEITRAEGE = {
     "wie-viele-arbeitsplaetze-eigener-server": {
         "titel": "Brauche ich einen eigenen Server? Ab wie vielen Arbeitsplätzen lohnt er sich?",
         "meta_titel": "Brauche ich einen Server? 3 Fragen vor dem Kauf | WVM-IT",
-        "desc": "Brauche ich einen eigenen Server? Die Antwort hängt an der Software, nicht an der Mitarbeiterzahl. Drei Fragen, die die Entscheidung klären. Beratung anfragen.",
+        "desc": "Brauche ich einen eigenen Server? Die Antwort hängt an der Software, nicht an der Mitarbeiterzahl. Drei Fragen klären die Entscheidung. Beratung anfragen.",
         "antwort": "Brauche ich einen eigenen Server? Das hängt nicht an der Zahl der Arbeitsplätze: Es gibt Betriebe mit dreißig Leuten ohne Server und Betriebe mit fünf, die einen brauchen. Entscheidend ist die Software: Sobald eine Warenwirtschaft, eine Branchenlösung oder eine Datenbank eine zentrale Installation verlangt, brauchen Sie einen Server, und zwar unabhängig von der Betriebsgröße. Wird ausschließlich mit Office, Mail und Dateien gearbeitet, ist die Cloud in aller Regel günstiger und wartungsärmer. Ein betreuter Server kostet bei uns ab 89 € im Monat, dazu kommt die Hardware.",
         "abschnitte": [
             {"h": "Die drei Fragen, die die Antwort geben",
@@ -448,7 +448,7 @@ BEITRAEGE = {
     "aufbewahrungsfristen-oesterreich": {
         "titel": "Welche Daten muss ein Betrieb in Österreich wie lange aufbewahren?",
         "meta_titel": "Aufbewahrungsfristen Österreich: 7 Jahre, § 132 BAO | WVM-IT",
-        "desc": "7 Jahre für Bücher und Belege nach § 132 BAO, länger bei Grundstücken und offenen Verfahren. Was das für Server, Sicherung und Archiv heißt. Kontakt aufnehmen.",
+        "desc": "7 Jahre für Bücher und Belege nach § 132 BAO, länger bei Grundstücken und offenen Verfahren. Folgen für Server, Sicherung und Archiv. Kontakt aufnehmen.",
         "antwort": "Der Grundsatz in Österreich: Bücher, Aufzeichnungen und Belege sind sieben Jahre aufzubewahren, gerechnet ab dem Ende des Kalenderjahres, für das die letzte Eintragung erfolgt ist (§ 132 BAO). Länger gilt es unter anderem bei Unterlagen zu Grundstücken und solange ein Verfahren anhängig ist. Für die IT ist dabei entscheidend, dass die Frist für die **Lesbarkeit** gilt, nicht für das Gerät: Wer nach fünf Jahren den Server wechselt, muss die alten Bestände weiterhin öffnen können — auch dann, wenn es das Programm dazu nicht mehr gibt.",
         "abschnitte": [
             {"h": "Was das für einen Serverwechsel bedeutet",
@@ -458,7 +458,7 @@ BEITRAEGE = {
             {"h": "Und die DSGVO? Die zieht in die andere Richtung",
              "t": "Steuerrecht sagt „aufbewahren“, Datenschutz sagt „löschen, sobald der Zweck erfüllt ist“. Das ist kein Widerspruch, sondern eine Zuordnung: Aufbewahrungspflichtige Unterlagen bleiben, alles andere wird gelöscht. In der Praxis heißt das, dass ein Betrieb wissen muss, welche Daten in welche Kategorie fallen — Bewerbungsunterlagen, Bewerberdaten, alte Kundenanfragen und Videoaufzeichnungen gehören fast nie zu den aufbewahrungspflichtigen und liegen trotzdem oft jahrelang herum."},
             {"h": "Der Unterschied zu Deutschland in einem Satz",
-             "t": "In Deutschland gelten nach HGB und AO überwiegend zehn Jahre für Bücher und Buchungsbelege und sechs Jahre für Handels- und Geschäftsbriefe; in Österreich sind es nach § 132 BAO grundsätzlich sieben Jahre. Wer in beiden Ländern tätig ist, richtet sich sinnvollerweise nach der längeren Frist — und lässt die genaue Zuordnung von der Steuerberatung bestätigen, denn das ist deren Fach und nicht unseres."},
+             "t": "In Deutschland gelten nach HGB und AO zehn Jahre für Bücher und Jahresabschlüsse, seit 2025 acht Jahre für Buchungsbelege und sechs Jahre für Handels- und Geschäftsbriefe; in Österreich sind es nach § 132 BAO grundsätzlich sieben Jahre. Wer in beiden Ländern tätig ist, richtet sich sinnvollerweise nach der längeren Frist — und lässt die genaue Zuordnung von der Steuerberatung bestätigen, denn das ist deren Fach und nicht unseres."},
             {"h": "Was wir dabei technisch übernehmen",
              "t": "Wir sorgen dafür, dass die Bestände vorhanden, lesbar und gesichert sind: überwachte Datensicherung ab 49 € im Monat, getestete Wiederherstellung, dokumentierte Ablage und ein geordneter Weg bei jedem Serverwechsel. Welche Unterlage rechtlich wie lange aufzubewahren ist, sagt Ihnen Ihre Steuerberatung — diese Grenze halten wir bewusst ein, statt Rechtsauskünfte zu geben, für die wir nicht ausgebildet sind."},
             {"h": "In Österreich: Was der Steuerberater von Ihnen braucht",
@@ -780,8 +780,8 @@ BEITRAEGE = {
     "drucker-druckt-nicht": {
         "titel": "Der Drucker im Büro druckt nicht — die fünf häufigsten Ursachen",
         "meta_titel": "Drucker druckt nicht: 5 Ursachen im Büro | WVM-IT",
-        "desc": "Warteschlange hängt, neue IP-Adresse, Treiber nach dem Update, falscher "
-                "Standarddrucker, Scannen geht nicht: fünf Ursachen und was hilft. Jetzt Hilfe anfragen.",
+        "desc": "Warteschlange hängt, neue IP-Adresse, Treiber nach Update, falscher "
+                "Standarddrucker, Scannen geht nicht: fünf Ursachen und was hilft. Hilfe anfragen.",
         "antwort": "Wenn ein Bürodrucker nicht mehr druckt, liegt es fast immer an einer "
                    "von fünf Ursachen: Die Druckwarteschlange hängt, der Drucker hat im "
                    "Netz eine neue Adresse bekommen, ein Windows-Update hat den Treiber "
@@ -837,7 +837,7 @@ BEITRAEGE = {
                   "Fehlkauf — einen neuen Drucker für ein Problem, das eine Einstellung "
                   "war."},
             {"h": "In Österreich: Drucker, Kassabons und Rechnungen in Gmundner Betrieben",
-             "t": "In Betrieben am Traunsee hängt am Drucker oft mehr als ein Ausdruck: Lieferscheine, Rechnungen mit Pflichtangaben und Kassabelege. Wenn der Drucker streikt, steht dann die Abwicklung. Für Betriebe mit Registrierkasse gilt die Belegerteilungspflicht; was dabei bei einem Druckerausfall genügt, klären Sie mit dem Hersteller der Kasse oder dem Steuerberater. Technisch lohnt es sich, Kassa- und Büro-Drucker getrennt zu behandeln: Der Bondrucker an der Kassa ist ein anderes Gerät mit anderem Treiber als der Netzwerkdrucker im Büro, und die Ursachen aus diesem Beitrag gelten nur für Letzteren. Halten Sie außerdem für den Notfall einen zweiten Drucker mit USB-Anschluss bereit, der unabhängig vom Netzwerk läuft. Die Einrichtung und Absicherung von Netzen beschreibt <a href='/leistungen/netzwerk-wlan/'>Netzwerk und WLAN</a>; die Ortsseite für die Region ist <a href='/it-service/gmunden/'>Gmunden</a>. Florin Feier aus Lenzing löst Druckerprobleme meist per Fernwartung und kommt bei Hardwaredefekten vor Ort."},
+             "t": "In Betrieben am Traunsee hängt am Drucker oft mehr als ein Ausdruck: Lieferscheine, Rechnungen mit Pflichtangaben und Kassabelege. Wenn der Drucker streikt, steht dann die Abwicklung. Bei Barzahlungen gilt in Österreich die Belegerteilungspflicht; was dabei bei einem Druckerausfall genügt, klären Sie mit dem Hersteller der Kasse oder dem Steuerberater. Technisch lohnt es sich, Kassa- und Büro-Drucker getrennt zu behandeln: Der Bondrucker an der Kassa ist ein anderes Gerät mit anderem Treiber als der Netzwerkdrucker im Büro, und die Ursachen aus diesem Beitrag gelten nur für Letzteren. Halten Sie außerdem für den Notfall einen zweiten Drucker mit USB-Anschluss bereit, der unabhängig vom Netzwerk läuft. Die Einrichtung und Absicherung von Netzen beschreibt <a href='/leistungen/netzwerk-wlan/'>Netzwerk und WLAN</a>; die Ortsseite für die Region ist <a href='/it-service/gmunden/'>Gmunden</a>. Florin Feier aus Lenzing löst Druckerprobleme meist per Fernwartung und kommt bei Hardwaredefekten vor Ort."},
         ],
         "faq": [
             {"q": "Muss für ein Druckerproblem jemand vorbeikommen?",
@@ -866,7 +866,7 @@ BEITRAEGE = {
         "titel": "Outlook oder E-Mail geht nicht — was Sie zuerst selbst prüfen können",
         "meta_titel": "Outlook geht nicht: was Sie selbst prüfen können | WVM-IT",
         "desc": "Kennwortabfrage in Schleife, Mails im Postausgang, volles Postfach, "
-                "Outlook offline: die häufigsten Ursachen und was Sie selbst prüfen. Sonst Kontakt aufnehmen.",
+                "Outlook offline: häufige Ursachen und was Sie selbst prüfen. Sonst Kontakt aufnehmen.",
         "antwort": "Wenn Outlook keine Mails mehr sendet oder empfängt, sind es meistens "
                    "vier Dinge: ein geändertes oder abgelaufenes Kennwort, ein Anhang, "
                    "der zu groß ist und im Postausgang hängt, ein volles Postfach oder "

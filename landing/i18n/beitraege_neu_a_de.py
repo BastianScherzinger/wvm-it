@@ -15,14 +15,13 @@ META = [
     {"slug": "ransomware-befall-was-tun", "datum": "2026-10-09", "thema": "it-sicherheit", "hilfe": True, "lesezeit": 5, "prio": "0.8"},
 ]
 
-TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'EDV-Betreuung für Kleinbetriebe in '
-                                                          'Oberösterreich: Was sie kostet und was drin ist',
-                                                 'meta_titel': 'EDV-Betreuung Kleinbetrieb Oberösterreich: '
-                                                               'Kosten | WVM-IT',
-                                                 'desc': 'EDV-Betreuung für Kleinbetriebe in Oberösterreich: '
-                                                         '29 € je Arbeitsplatz, was enthalten ist, '
-                                                         'Rechenbeispiel für 8 Arbeitsplätze. Jetzt '
-                                                         'unverbindlich anfragen.',
+TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet EDV-Betreuung im Kleinbetrieb? Rechenbeispiel '
+                                                          'für 8 Arbeitsplätze',
+                                                 'meta_titel': 'Was kostet EDV-Betreuung? Beispiel für 8 Plätze | '
+                                                               'WVM-IT',
+                                                 'desc': 'Preis für einen Kleinbetrieb in Oberösterreich: 29 € je '
+                                                         'Arbeitsplatz, was enthalten ist, Rechenbeispiel für 8 '
+                                                         'Plätze. Jetzt unverbindlich anfragen.',
                                                  'antwort': 'Die EDV-Betreuung eines Kleinbetriebs in '
                                                             'Oberösterreich kostet bei WVM-IT 29 € je '
                                                             'Arbeitsplatz und Monat; die tägliche geprüfte '
@@ -256,9 +255,8 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'EDV-Betreuung
                                                           'Arbeitsplatz, 49 € für die Datensicherung und 89 '
                                                           '€ je betreuten Server. Wer sie kennt, kann jedes '
                                                           'Angebot nachrechnen, auch das von WVM-IT.'},
- 'it-betreuung-handwerksbetriebe': {'titel': 'IT-Betreuung für Handwerksbetriebe: Büro, Baustelle, Handy',
-                                    'meta_titel': 'IT-Betreuung für Handwerksbetriebe: Büro und Baustelle | '
-                                                  'WVM-IT',
+ 'it-betreuung-handwerksbetriebe': {'titel': 'Welche IT braucht ein Handwerksbetrieb? Büro, Baustelle, Handy',
+                                    'meta_titel': 'Welche IT braucht ein Handwerksbetrieb? | WVM-IT',
                                     'desc': 'Handwerksbetrieb ohne IT-Abteilung: Was im Büro, am Firmenhandy '
                                             'und auf der Baustelle abgesichert sein muss und was es kostet. '
                                             'Jetzt Betreuung anfragen.',
@@ -391,7 +389,9 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'EDV-Betreuung
                                                          'Vöcklabruck, Wels, Linz, Salzburg und ins übrige '
                                                          'Salzkammergut. Die Leistung steht unter <a '
                                                          "href='/leistungen/edv-it-betreuung/'>EDV- und "
-                                                         'IT-Betreuung</a>. Zu aktuellen '
+                                                         'IT-Betreuung</a>, den Zuschnitt für die Branche '
+                                                         "beschreibt <a href='/branchen/handwerk-baugewerbe/'>IT für "
+                                                         'Handwerksbetriebe</a>. Zu aktuellen '
                                                          'Beratungsförderungen gibt die WKO Oberösterreich '
                                                          'Auskunft.'}],
                                     'faq': [{'q': 'Lohnt sich eine Betreuung bei nur zwei Rechnern im Büro?',
@@ -431,11 +431,11 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'EDV-Betreuung
                                              'Hosentasche, und beide brauchen Updates, Sicherung und eine '
                                              'Ansprechperson. Für vier Büroarbeitsplätze sind das 4 mal 29 € '
                                              'plus 49 € im Monat, netto.'},
- 'microsoft-365-einrichten-lassen': {'titel': 'Microsoft 365 einrichten lassen: Ablauf und Festpreis',
-                                     'meta_titel': 'Microsoft 365 einrichten lassen: Ablauf, 290 € | WVM-IT',
-                                     'desc': 'Microsoft 365 einrichten lassen: Ablauf in drei Schritten, was '
-                                             'Sie bereithalten, Mailumzug ohne Ausfall, 290 € Festpreis ohne '
-                                             'Lizenzen. Jetzt Termin anfragen.',
+ 'microsoft-365-einrichten-lassen': {'titel': 'Wie läuft die Einrichtung von Microsoft 365 ab? Drei Schritte',
+                                     'meta_titel': 'Microsoft 365: So läuft die Einrichtung ab | WVM-IT',
+                                     'desc': 'Wie läuft die Einrichtung von Microsoft 365 ab? Drei Schritte, '
+                                             'was Sie bereithalten und wie der Mailumzug ohne Ausfall '
+                                             'gelingt. Jetzt Termin anfragen.',
                                      'antwort': 'Microsoft 365 einzurichten kostet bei WVM-IT 290 € als '
                                                 'Festpreis und läuft in drei Schritten: Struktur klären, '
                                                 'einrichten und E-Mails umziehen, am Abend umschalten und am '

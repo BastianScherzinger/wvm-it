@@ -136,6 +136,16 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
     {% endcomment %}
     {% include 'anfrage_karte.html' with bid='it' titel=region.anfrage_h sub=region.kurz ph=t.lb.text_ph %}
 
+    {% comment %}Fachbeitraege (nur Deutsch, die Beitraege gibt es nur dort), aus dem Schwerpunkt abgeleitet: views._ratgeber_fuer_region.{% endcomment %}
+    {% if ratgeber %}
+    <nav class="rg-weitere" aria-label="Fachbeiträge">
+      <h2>Fachbeiträge zum Thema</h2>
+      <ul>
+        {% for b in ratgeber %}<li><a href="{{ b.url }}">{{ b.titel|truncatechars:60 }}</a></li>{% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+
     {% comment %}Die drei geografisch naechsten Regionsseiten (regionen.nachbarn, Luftlinie).{% endcomment %}
     {% if nachbarn %}
     <nav class="rg-weitere" aria-label="{{ t.seite.rg_nachbarn|safe }}">

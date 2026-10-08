@@ -205,7 +205,7 @@ AUSBAU = {
     "ro": {
 
         "salzburg": {
-            "titel": "Administrare IT Salzburg: la distanță de la 29 €/lună | WVM-IT",
+            "titel": "Administrare IT Salzburg: la distanță de la 29 € | WVM-IT",
             "auftraege_h": "Lucrări tipice în Salzburg",
             "auftraege": [
                 "Un birou de avocatură din orașul Salzburg, a cărui copie de siguranță rulează în fiecare noapte, dar nu a fost niciodată restaurată. Facem o restaurare de probă și notăm în scris cât ar dura o urgență reală.",
@@ -269,7 +269,7 @@ AUSBAU = {
         },
 
         "wels": {
-            "titel": "Administrare IT Wels: depozit, hală, birou de la 29 € | WVM-IT",
+            "titel": "Administrare IT Wels: depozit, birou de la 29 € | WVM-IT",
             "auftraege_h": "Lucrări tipice în Wels",
             "auftraege": [
                 "O firmă de meșteșuguri ai cărei e-mailuri cu comenzi nu ajung la client, deoarece expeditorul este considerat suspect. Verificăm datele expeditorului și configurăm corect livrarea.",

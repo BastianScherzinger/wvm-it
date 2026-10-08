@@ -815,3 +815,10 @@ Erledigt: sechs neue Ortsseiten (Lenzing, Seewalchen, Schörfling, Timelkam, Reg
 ## Nachtrag 09.10.2026: Österreich-Ausbau (Zweig seo/2026-10-08-oesterreich)
 
 Erledigt: AT-Abschnitt in allen Ratgebern, Glossar ausgebaut, 14 neue Fachbeiträge, Vertiefung der Suchbegriff-Seiten (Details `docs/AUSBAU-2026-10-08-oesterreich.md`). Offen: Glossar-FAQ ins Schema (`views.begriff_seite`), Faktenprüfung rechtsnaher Aussagen, Messung nach 4 Wochen.
+
+## Nachtrag 09.10.2026: Abnahme des Ausbaus
+
+Einzelheiten: `docs/ABNAHME-2026-10-09.md`.
+
+- **Erledigt:** Glossar-Folgefragen im FAQPage-Schema, Österreich-Abschnitte in `llms-full.txt`; mindestens drei eingehende Links für alle Beiträge und Ortsseiten (Mechanismen, Test `EingehendeLinksTest`); Titel bis 60, Beschreibungen bis 155 Zeichen; Faktenprüfung (Belegerteilung, Aufbewahrung DE, DSG § 6, Frankenmarkt); Kannibalisierung der Beiträge Kleinbetriebe, Handwerk, Microsoft 365, Kanzlei gegen ihre Geldseiten aufgelöst.
+- **Offen:** Deploy, `indexnow`, GSC-Anträge für 20 neue URLs; Messung 28.10./02.11.; Vöcklabruck-Titel nach 23.10. bewerten; Freigabe der Datenschutzsätze durch Florin; Apex-Weiterleitung.

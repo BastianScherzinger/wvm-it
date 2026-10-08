@@ -950,7 +950,7 @@ EINRICHTEN = {
 HUB = {
     "titel": "Configurare PC și IT: prețuri fixe, fără contract | WVM-IT",
     "desc": "Post de lucru, înlocuire PC, Microsoft 365, server, rețea: sarcini "
-            "la preț fix, fără contract, ex. post de lucru 190 €, "
+            "la preț fix, fără contract, post de lucru 190 €, "
             "de regulă la distanță. Cereți o ofertă.",
     "h1": "Sarcini individuale — preț fix, fără contract",
     "kurz": "WVM-IT rezolvă sarcini IT individuale la preț fix, fără să fie nevoie de o "

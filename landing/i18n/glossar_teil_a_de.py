@@ -124,7 +124,7 @@ BEGRIFFE = {
     "managed-services": {
         "titel": "Managed Services",
         "meta_titel": "Managed Services: fester Preis, volle Leistung | WVM-IT",
-        "desc": "Managed Services heißt: fester Monatspreis, feste Leistung, Vorbeugung inklusive. Woran Sie ein leeres Angebot erkennen, für Betriebe in Österreich. Jetzt nachlesen.",
+        "desc": "Managed Services heißt: fester Monatspreis, feste Leistung, Vorbeugung inklusive. Woran Sie ein leeres Angebot erkennen, in Österreich. Jetzt nachlesen.",
         "kurz": "Managed Services bezeichnet die laufende Betreuung von IT zu einem festen Preis je Zeitraum, statt Abrechnung nach Aufwand im Störungsfall. Der entscheidende Unterschied ist nicht der Preis, sondern die Interessenlage: Wer monatlich betreut, verdient daran, dass wenig ausfällt. Enthalten sein müssen Updates, Überwachung, Benutzerverwaltung und die geprüfte Datensicherung. Bei WVM-IT beginnt die laufende Betreuung bei 29 € je Arbeitsplatz und Monat.",
         "abschnitte": [
             {"h": "Der Unterschied zwischen Betreuung und Störungsbeseitigung",
@@ -197,7 +197,7 @@ BEGRIFFE = {
         "titel": "RAID",
         "h1": "RAID: Festplatten im Verbund und warum das kein Backup ist",
         "meta_titel": "RAID erklärt: Ausfallschutz, kein Backup | WVM-IT",
-        "desc": "Ein RAID verteilt Daten auf mehrere Festplatten, damit eine defekte Platte den Betrieb nicht stoppt. Warum das keine Sicherung ist, auch in Österreich. Jetzt lesen.",
+        "desc": "Ein RAID verteilt Daten auf mehrere Platten, damit eine defekte den Betrieb nicht stoppt. Warum es keine Sicherung ist, auch in Österreich. Jetzt lesen.",
         "kurz": "RAID bezeichnet einen Verbund mehrerer Festplatten, der den Ausfall einzelner Platten überstehen kann, ohne dass der Betrieb stehen bleibt. Es erhöht die Verfügbarkeit, nicht die Sicherheit der Daten: Gelöschtes, Überschriebenes und Verschlüsseltes wird sofort auf allen Platten gelöscht, überschrieben und verschlüsselt. Ein RAID ersetzt deshalb keine Datensicherung, es verhindert nur eine bestimmte Art von Ausfall. Damit der Ausfall der ersten Platte überhaupt auffällt, gehört der Verbund überwacht; in der Server-Betreuung ab 89 € im Monat ist das enthalten.",
         "abschnitte": [
             {"h": "Wie ein RAID Daten verteilt",
@@ -233,7 +233,7 @@ BEGRIFFE = {
     "backup": {
         "titel": "Backup",
         "meta_titel": "Backup erklärt: die drei Fragen, die zählen | WVM-IT",
-        "desc": "Eine Sicherung ist erst dann eine, wenn schon einmal etwas daraus zurückgeholt wurde. Die drei Fragen, die den Unterschied machen, mit Österreich-Bezug. Jetzt lesen.",
+        "desc": "Eine Sicherung zählt erst, wenn schon einmal etwas daraus zurückgeholt wurde. Die drei Fragen, die den Unterschied machen, auch in Österreich. Jetzt lesen.",
         "kurz": "Ein Backup ist eine Kopie der Daten, aus der sich im Schadensfall der Betrieb wiederherstellen lässt. Entscheidend ist nicht, dass die Sicherung läuft, sondern dass sie sich zurückspielen lässt: Eine Sicherung, aus der noch nie etwas zurückgeholt wurde, ist keine Sicherung, sondern eine Hoffnung. Mindestens eine Kopie gehört getrennt vom Netzwerk aufbewahrt, und wer nur 7 Tage vorhält, bemerkt eine schleichende Verschlüsselung oft zu spät. Die überwachte Datensicherung kostet bei uns ab 49 € im Monat.",
         "abschnitte": [
             {"h": "Die drei Fragen, die zählen",

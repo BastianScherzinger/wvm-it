@@ -3346,14 +3346,20 @@ def _passt_dazu(thema, lang, ohne=None):
                       ("einrichtungen", "Festpreis"),
                       ("branchen", "Branche"), ("checklisten", "Checkliste"),
                       ("begriffe", "Begriff")):
-        for e in eintraege.get(typ, []):
+        liste = eintraege.get(typ, [])
+        if typ == "beitraege":
+            # Die neuesten zuerst (stabil: bei gleichem Datum die zuletzt
+            # angelegten), sonst verdraengen die ersten sechs alten Beitraege
+            # jeden neuen aus dem Block (Abnahme 09.10.2026).
+            liste = sorted(liste[::-1], key=lambda e: e.get("datum", ""), reverse=True)[:4]
+        for e in liste:
             if e.get("url") == ohne:
                 continue
             raus.append({"url": e.get("url"),
                          "titel": e.get("titel") or e.get("nav") or e.get("h1", ""),
                          "text": (e.get("antwort") or e.get("kurz") or e.get("desc") or ""),
                          "typ": wort})
-    return raus[:6]
+    return raus[:8]
 
 
 # ══ Checklisten (docs/SEO-AUSBAU-3.md, W4 + S2) ═══════════════════════════════
@@ -3499,7 +3505,8 @@ def begriff_seite(request, slug):
         c, "de", service=term,
         breadcrumb=_breadcrumb(base, [
             ("Wissen", reverse("wissen")),
-            (begriff.get("titel", slug), pfad)])))
+            (begriff.get("titel", slug), pfad)]),
+        faq=begriff.get("faq") or [], faq_id=pfad))
     graph["@graph"].append(_defined_term_set(base))
     graph["@graph"].append(_ratgeber_artikel(
         base, pfad, titel=begriff.get("h1", begriff.get("titel", slug)),
@@ -3934,14 +3941,15 @@ def _weitere_beitraege(slug, thema, anzahl=4):
     Die vorherige Fassung nahm schlicht die ersten drei der Liste — mit dem
     Ergebnis, dass Beitrag Nummer sechs bis fünfzehn nie von einem anderen
     Beitrag verlinkt wurde. Genau das hat die V3-Prüfung sichtbar gemacht."""
-    gleiche = [b for b in beitraege.BEITRAEGE
-               if b["slug"] != slug and b.get("thema") == thema]
-    rest = [b for b in beitraege.BEITRAEGE
-            if b["slug"] != slug and b.get("thema") != thema]
-    # Auffüllen ab der Position des aktuellen Beitrags, damit über den ganzen
-    # Bestand hinweg jeder einmal drankommt statt immer die ersten drei.
-    versatz = next((i for i, b in enumerate(rest) if b["slug"] > slug), 0)
-    rest = rest[versatz:] + rest[:versatz]
+    # Auch die gleichen Themas laufen im Kreis (ab dem Platz des aktuellen
+    # Beitrags): Bei vierzehn Beitraegen zur EDV-Betreuung bekaeme sonst jeder
+    # dieselben ersten vier, und die neuesten blieben ohne eingehenden Link
+    # (Abnahme 09.10.2026).
+    liste = beitraege.BEITRAEGE
+    pos = next((i for i, b in enumerate(liste) if b["slug"] == slug), 0)
+    kreis = liste[pos + 1:] + liste[:pos]
+    gleiche = [b for b in kreis if b.get("thema") == thema]
+    rest = [b for b in kreis if b.get("thema") != thema]
     return [_beitrag_daten(b) for b in (gleiche + rest)[:anzahl]]
 
 
@@ -4048,6 +4056,33 @@ def _region_daten(eintrag, lang):
     return {**eintrag, **texte}
 
 
+def _ratgeber_fuer_region(eintrag, anzahl=3):
+    """Fachbeitraege fuer eine Ortsseite (nur Deutsch, die Beitraege gibt es nur dort).
+
+    Die Beitraege zum Schwerpunkt der Region, neueste zuerst. Regionen mit
+    gleichem Schwerpunkt bekommen verschiedene Ausschnitte (Versatz nach ihrer
+    Stelle in `REGIONEN`), damit nicht dieselben drei Beitraege sechsmal
+    verlinkt werden und die uebrigen nie. Hat der Schwerpunkt weniger als drei
+    Beitraege, fuellen die EDV-Betreuungs-Beitraege auf. Nichts davon wird von
+    Hand gepflegt (Abnahme 09.10.2026)."""
+    def nach_datum(thema):
+        liste = [b for b in beitraege.BEITRAEGE if b.get("thema") == thema]
+        return sorted(liste[::-1], key=lambda b: b["datum"], reverse=True)
+
+    thema = eintrag.get("schwerpunkt", "")
+    gleiche = [r["slug"] for r in regionen.REGIONEN if r.get("schwerpunkt") == thema]
+    versatz = gleiche.index(eintrag["slug"]) * anzahl if eintrag["slug"] in gleiche else 0
+    pool = nach_datum(thema)
+    if pool:
+        pool = pool[versatz % len(pool):] + pool[:versatz % len(pool)]
+    gewaehlt = pool[:anzahl]
+    if len(gewaehlt) < anzahl:
+        rest = [b for b in nach_datum("edv-it-betreuung") if b not in gewaehlt]
+        v = (regionen.REGIONEN.index(eintrag) * anzahl) % len(rest)
+        gewaehlt += (rest[v:] + rest[:v])[:anzahl - len(gewaehlt)]
+    return [_beitrag_daten(b) for b in gewaehlt]
+
+
 def region_seite(request, slug):
     """/it-service/<slug>/ — eine Region, eine URL.
 
@@ -4088,6 +4123,7 @@ def region_seite(request, slug):
         "alle_regionen": [_region_daten(r, lang) for r in sorted(
             regionen.REGIONEN, key=lambda r: r["km"]) if r["slug"] != slug],
         "nachbarn": [_region_daten(r, lang) for r in regionen.nachbarn(slug, 3)],
+        "ratgeber": _ratgeber_fuer_region(eintrag) if lang == "de" else [],
         "leist_h": pack.get("lokal", {}).get("leist_h", "").replace("{ort}", region.get("ort", "")),
         "leistungen_liste": [_leistung_daten(l, lang) for l in leistungen.LEISTUNGEN
                              if not l.get("vor_ort")][:6],
@@ -5142,6 +5178,10 @@ def llms_full_txt(request):
         aus.append(f"\n**{sauber(v.get('fuer_b_h'))}**")
         aus += [f"- {sauber(z)}" for z in v.get("fuer_b", [])]
         aus.append(f"\n**{sauber(v.get('rechnung_h'))}**\n{sauber(v.get('rechnung_t'))}")
+        if v.get("at_h"):
+            aus.append(f"\n**{sauber(v.get('at_h'))}**\n{sauber(v.get('at_t'))}")
+            if v.get("at_t2"):
+                aus.append(sauber(v.get("at_t2")))
         for f in v.get("faq", []):
             aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
 
@@ -5197,6 +5237,10 @@ def llms_full_txt(request):
             aus.append(f"\n**{sauber(gruppe.get('h'))}**")
             aus += [f"- {sauber(p.get('t'))} — {sauber(p.get('warum'))}"
                     for p in gruppe.get("punkte", [])]
+        if k.get("at_h"):
+            aus.append(f"\n**{sauber(k.get('at_h'))}**\n{sauber(k.get('at_t'))}")
+            if k.get("at_t2"):
+                aus.append(sauber(k.get("at_t2")))
 
     # Glossar: Definition, Praxis und Irrtum. Der Irrtums-Absatz ist der Teil, den
     # ein Sprachmodell sonst nirgends findet — er korrigiert eine verbreitete
@@ -5211,6 +5255,12 @@ def llms_full_txt(request):
             aus.append(f"\n**{sauber(a.get('h'))}**\n{sauber(a.get('t'))}")
         aus.append(f"\n**In der Praxis**\n{sauber(g.get('praxis'))}")
         aus.append(f"\n**Verbreiteter Irrtum**\n{sauber(g.get('irrtum'))}")
+        if g.get("at_h"):
+            aus.append(f"\n**{sauber(g.get('at_h'))}**\n{sauber(g.get('at_t'))}")
+            if g.get("at_t2"):
+                aus.append(sauber(g.get("at_t2")))
+        for f in g.get("faq", []):
+            aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
 
     aus.append("\n\n## Häufige Fragen zum Unternehmen")
     for f in pack.get("faq", {}).get("items", []):

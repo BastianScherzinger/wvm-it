@@ -34,13 +34,13 @@ Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreis
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
 
-## Stand: 213 URLs (Runde 2, 24.09.2026)
+## Stand: 266 URLs (Ausbau 09.10.2026)
 
 **Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend per
 Fernwartung in Österreich und Deutschland; Webseiten, SEO, Google Ads und KI sind das zweite
 Standbein, Technik vor Ort das dritte. Sitz **Waldstraße 19/1, 4860 Lenzing**.
-Silos: `/leistungen/` (14), `/branchen/` (6), `/vergleich/` (4), `/it-service/` (14),
-`/aktuelles/` (21, nur DE), `/wissen/` (14, nur DE), `/checkliste/` (3, nur DE),
+Silos: `/leistungen/` (14), `/branchen/` (6), `/vergleich/` (4), `/it-service/` (20),
+`/aktuelles/` (35, nur DE), `/wissen/` (14, nur DE), `/checkliste/` (3, nur DE),
 `/einrichten/` (10), dazu Werkzeuge (`/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/`,
 `/it-hilfe/`), Einzelseiten und Rechtstexte (nur DE). Die genaue Aufstellung erzeugt
 `python manage.py seo_bericht --inventar --markdown`.
@@ -54,7 +54,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 
 ## Prüfen und ausliefern
 
-- **Vor jedem Deploy:** `python manage.py pruefe_seite` (alle 213 URLs: `<h1>`, Titel/Description,
+- **Vor jedem Deploy:** `python manage.py pruefe_seite` (alle 266 URLs: `<h1>`, Titel/Description,
   JSON-LD, Alt-Texte, hreflang, interne Links, Preise auch in `/llms.txt`, Formulare; Rückgabewert 1
   bei Fehlern) und `python manage.py pruefe_sicherheit` (löst alle Formulare wirklich aus).
   Die Einzelprüfungen stehen in `docs/CLAUDE-AUSGELAGERT.md`.
@@ -62,7 +62,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
   Console, `docs/INDEXIERUNG.md`).
 - **Nach jeder Inhaltsänderung:** `python manage.py stand_schreiben` (Änderungsdaten nach
   `landing/stand.py`; `--pruefen` meldet Abweichung im CI mit Rückgabewert 1).
-- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 726 Tests (Stand 03.10.2026) in
+- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 751 Tests (Stand 09.10.2026) in
   `landing/tests/`, strukturell geschrieben (URL-Liste aus `_seiten_pfade()`, Preise aus
   `ANGEBOT_GROUPS`). Läuft bei jedem Push über `.github/workflows/pruefen.yml`.
 - Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
@@ -118,7 +118,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 726 Tests in 62 Dateien (Stand 03.10.2026)
+- `landing/tests/` — 751 Tests in 63 Dateien (Stand 09.10.2026)
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/` — `base.html` (Gerüst), `antwort.html`, `anfrage_karte.html`, `icons_sprite.html`, `honigtopf.html`, `datenschutzhinweis.html` u. a.; Liste in `docs/CLAUDE-AUSGELAGERT.md`
 - `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang; `static/js/kostenrechner.js` · `startpakete.js` rechnen nichts selbst

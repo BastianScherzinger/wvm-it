@@ -977,7 +977,7 @@ EINRICHTEN = {
 HUB = {
     "titel": "PC & IT einrichten lassen: Festpreise ohne Vertrag | WVM-IT",
     "desc": "Arbeitsplatz, PC-Tausch, Microsoft 365, Server, Netzwerk: "
-            "Aufgaben zum Festpreis ohne Vertrag, z. B. Arbeitsplatz 190 €, meist per Fernwartung. "
+            "Aufgaben zum Festpreis ohne Vertrag, Arbeitsplatz 190 €, meist per Fernwartung. "
             "Jetzt anfragen.",
     "h1": "Einzelne Aufgaben — Festpreis, ohne Vertrag",
     "kurz": "WVM-IT erledigt einzelne IT-Aufgaben zum Festpreis, ohne dass eine "

@@ -397,7 +397,7 @@ REGIONEN = {
         "anfrage_h": "Request IT consulting in Grieskirchen",
         "nav": "Grieskirchen",
         "titel": "IT consulting Grieskirchen: support from €29/month | WVM-IT",
-        "desc": "IT consulting and handover documentation for family businesses in Grieskirchen, 45 km from Lenzing: support from €29 per workstation a month. Get in touch now.",
+        "desc": "IT consulting and handover documentation for family businesses in Grieskirchen, 45 km from Lenzing: support from €29 per workstation a month. Get in touch.",
         "h1": "IT consulting and handover documentation in Grieskirchen",
         "kurz": "WVM-IT looks after businesses in Grieskirchen and the Trattnach valley: day-to-day IT, backups and above all the documentation of the IT, so that its knowledge does not sit in a single head. Our base in Lenzing is 45 kilometres away, about 55 minutes by car. We plan on-site visits in advance; day-to-day support runs by remote maintenance.",
         "intro": "Grieskirchen lies in the Trattnach valley in the Hausruckviertel, has a little over 5,000 inhabitants (as of 1 January 2026) and is the seat of the district authorities for the districts of Grieskirchen and Eferding. There is no motorway; the town is served by the Wels–Passau railway line and the Innviertler federal road. For a town of this size the industry is remarkable: a manufacturer of agricultural machinery, founded in 1871, with around 2,100 employees and a 90 percent export share; a manufacturer of wood-fired boilers with around 1,000 employees; a private brewery documented since 1708; a mill that has belonged to the same family since 1892.",
