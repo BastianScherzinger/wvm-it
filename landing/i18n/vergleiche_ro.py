@@ -54,6 +54,9 @@ VERGLEICHE = {
             {"q": "Cum trecem de la un model la celălalt?",
              "a": "În ambele direcții, fără efort. Trecerea de la ore la contract începe cu o analiză, ca să știm ce preluăm. Invers, oprim supravegherea și predăm documentația. Ambele sunt o chestiune de zile, nu de luni."},
         ],
+        "at_h": "În Austria: cine răspunde când un furnizor de servicii administrează tehnica?",
+        "at_t": "Pentru firmele din Austria Superioară mai apare un punct care rareori apare în comparația de prețuri: conform GDPR și Legii austriece privind protecția datelor (DSG), răspunderea pentru datele dumneavoastră rămâne la firmă, chiar dacă tehnica este administrată de un furnizor de servicii. O încălcare a securității datelor trebuie notificată autorității pentru protecția datelor în termen de 72 de ore (art. 33 GDPR). Acest termen poate fi respectat doar de cine știe încă dinainte de incident unde se află ce date și cine are acces la ele. În cadrul asistenței continue, acest lucru se actualizează pe parcurs; la facturarea strict pe oră se clarifică abia în caz de urgență. Cine vrea să pună costurile în context poate întreba la Wirtschaftskammer Oberösterreich despre subvențiile actuale pentru consultanță.",
+        "at_t2": "Florin Feier din Lenzing preia <a href='/ro/leistungen/edv-it-betreuung/'>asistența IT continuă</a> de obicei prin acces la distanță, iar la nevoie și la fața locului, în Vöcklabruck, Gmunden, Salzburg, Linz, Wels și în Salzkammergut. Pentru firmele din zona Wels există pagina <a href='/ro/it-service/wels/'>Service IT în Wels</a>; problemele izolate, fără contract, le rezolvă <a href='/ro/it-hilfe/'>ajutorul IT cu plata pe oră</a>. Cine nu este sigur că un contract se justifică poate folosi <a href='/ro/kosten/rechner/'>calculatorul de costuri</a> ca primă orientare.",
         "cta_h": "Să calculăm cu cifrele dumneavoastră?",
         "cta_t": "Scrieți pe scurt câte stații de lucru și servere aveți. Calculăm ambele modele pe cifrele dumneavoastră și vă spunem care se potrivește — chiar dacă pentru noi este cel mai mic.",
     },
@@ -76,6 +79,10 @@ VERGLEICHE = {
             {"k": "Defectarea hardware-ului", "a": "Problema dumneavoastră — de aceea supraveghere și piese de schimb", "b": "Problema furnizorului, de obicei rezolvată neobservat"},
             {"k": "Acces din exterior", "a": "Necesită VPN sau server terminal", "b": "De oriunde, cu al doilea factor"},
             {"k": "Backup", "a": "Trebuie configurat și verificat", "b": "Trebuie configurat la fel — cloudul nu este backup"},
+            {"k": "Locația datelor", "a": "În propria clădire, știți exact unde se află datele", "b": "La furnizor; trebuie să clarificați locația centrelor de date și contractul de prelucrare a datelor"},
+            {"k": "Pană de curent", "a": "Serverul are nevoie de o sursă de alimentare neîntreruptibilă, altfel se oprește odată cu curentul", "b": "Centrul de date rulează mai departe, dar posturile dumneavoastră de lucru au totuși nevoie de curent și conexiune"},
+            {"k": "Creștere și utilizatori noi", "a": "Capacitatea trebuie planificată și achiziționată", "b": "Se poate adapta în timpul funcționării"},
+            {"k": "Server închiriat într-un centru de date („cloud server”)", "a": "Nu se aplică, hardware-ul nu se află la dumneavoastră", "b": "Software-ul de business rulează central, hardware-ul și operarea sunt la furnizor"},
         ],
         "fuer_a_h": "Când serverul propriu este alegerea corectă",
         "fuer_a": [
@@ -102,7 +109,16 @@ VERGLEICHE = {
              "a": "Depinde de volumul de date și de ce trebuie mutat. Efortul stă rareori în copiere, ci în curățenia dinainte: de ce arhive mai are nevoie firma, care sunt supuse arhivării obligatorii, care pot dispărea. Facturăm astfel de migrări după timp, cu 95 € pe oră, și dăm o estimare în avans."},
             {"q": "Se pot combina cele două?",
              "a": "Acesta este chiar cazul obișnuit. E-mail, fișiere și colaborare în cloud, aplicația de business pe un server. Singura condiție este ca aceleași date să nu fie întreținute în două locuri — arhivarea dublă este cel mai scump post din orice mediu mixt și apare de fiecare dată când nimeni nu stabilește ce unde aparține."},
+            {"q": "Ce este un cloud server și cum se deosebește de cloud?",
+             "a": "Un cloud server este un server închiriat într-un centru de date: primiți un mediu de server propriu, pe care rulează software-ul dumneavoastră de business, fără hardware în firmă. O aplicație cloud, precum un serviciu de e-mail sau de fișiere, este în schimb un serviciu gata făcut, pe care doar îl folosiți. Pentru firmele cu o aplicație de business centrală, cloud server-ul este calea de mijloc dintre cele două. Administrarea unui server costă la noi 89 € pe lună pentru fiecare server."},
+            {"q": "Ce se întâmplă dacă într-o configurație cloud cade conexiunea la internet?",
+             "a": "Atunci se oprește toată munca ce nu merge fără conexiune, la un cloud pur de obicei toată. Răspunsul nu este o altă tehnologie, ci o rezervă: o a doua conexiune, de exemplu prin rețea mobilă, și o înțelegere clară despre ce lucrări pot continua offline. Verificați deci conexiunea înainte de trecere, nu după."},
+            {"q": "Cum aflu dacă software-ul nostru de business poate merge în cloud?",
+             "a": "Întrebați producătorul în scris dacă există o variantă în cloud sau dacă software-ul are voie să ruleze pe un server închiriat. Unii producători permit doar una dintre cele două. Abia după aceea merită o comparație de costuri, altfel rezultă cifre pentru o soluție care nici nu este posibilă."},
         ],
+        "at_h": "În Austria: locul datelor și conexiunea la internet în Austria Superioară rurală",
+        "at_t": "Despre locul datelor: GDPR nu cere ca datele să fie stocate în Austria, ci se aplică în întreaga UE. Contează unde prelucrează efectiv furnizorul de cloud datele dumneavoastră și dacă oferă în acest scop un contract de prelucrare a datelor (art. 28 GDPR). Întrebați unde se află centrele de date înainte de a semna și păstrați răspunsul în scris. Despre conexiune: în Austria Superioară rurală, viteza internetului depinde de adresa concretă, nu de localitate. Cine vrea să treacă în cloud ar trebui să măsoare conexiunea în prealabil, în orele de program, mai ales viteza de încărcare (upload), și să se gândească la ce se întâmplă în caz de întrerupere. O a doua conexiune, de exemplu prin rețea mobilă, este soluția obișnuită.",
+        "at_t2": "Furnizorii instituțiilor mai mari primesc, de la NISG 2026, mai des întrebări despre locul de stocare a datelor, așa cum se explică în articolul <a href='/aktuelles/nis2-lieferkette-zulieferer/'>NIS2 și lanțul de aprovizionare</a>. Florin Feier din Lenzing configurează <a href='/ro/einrichten/server/'>servere</a> și conexiuni cloud prin acces la distanță sau la fața locului, de exemplu în zona <a href='/ro/it-service/gmunden/'>Gmunden</a>, Vöcklabruck, Salzburg, Linz și Wels.",
         "cta_h": "Ce aplicații folosiți?",
         "cta_t": "Spuneți-ne programele cu care se lucrează zilnic și aproximativ ce volum de date există. Răspunsul rezultă de obicei dintr-o discuție — în zilele lucrătoare răspundem în 24 de ore.",
     },
@@ -152,6 +168,9 @@ VERGLEICHE = {
             {"q": "Configurați ambele?",
              "a": "Configurăm Microsoft 365; configurarea costă o singură dată 290 €. Întreținerea curentă este separată și se convine distinct. Configurăm și Google Workspace atunci când este alegerea potrivită pentru firma dumneavoastră — în acest caz facturăm după timp, cu 95 € pe oră. Nu recomandăm ce ni se potrivește nouă, ci ce se potrivește software-ului dumneavoastră."},
         ],
+        "at_h": "Pentru firmele din Austria Superioară: consultanță fiscală, păstrarea documentelor și casa de marcat",
+        "at_t": "În firmele austriece, consultantul fiscal are adesea un cuvânt de spus: datele contabile și documentele justificative circulă frecvent în formate Office, iar actele trebuie păstrate 7 ani (BAO § 132). Niciunul dintre pachete nu înlocuiește arhivarea, pentru că o căsuță de e-mail în cloud nu este un concept de păstrare a documentelor. Stabiliți unde se păstrează documentele justificative, facturile și actele casei de marcat înainte de a alege pachetul și planificați odată cu ele și copia de siguranță. Pentru casa de marcat în sine se aplică regulile privind casa de marcat înregistrată și eliberarea bonului, indiferent de pachetul de e-mail.",
+        "at_t2": "Florin Feier din Lenzing configurează <a href='/ro/einrichten/microsoft-365/'>Microsoft 365</a> prin acces la distanță, iar la nevoie și la fața locului, de exemplu în <a href='/ro/it-service/linz/'>Linz</a>, Wels, Salzburg, Gmunden, Vöcklabruck și în Salzkammergut. Ce licență se potrivește pentru câte căsuțe de e-mail este explicat în articolul <a href='/aktuelles/microsoft-365-lizenz-kleine-firma/'>Licența Microsoft 365 pentru firme mici</a>, iar termenele în articolul <a href='/aktuelles/aufbewahrungsfristen-oesterreich/'>Termene de păstrare în Austria</a>. Cine se mută de la o căsuță de e-mail existentă primește mai întâi o listă cu toate adresele, listele de distribuție și redirecționările, ca la schimbare să nu se piardă nimic. Același lucru este valabil pentru e-mailurile cu facturi: ele ar trebui să fie păstrate acolo unde pot fi găsite și peste șapte ani.",
         "cta_h": "Ce programe trebuie să funcționeze în continuare?",
         "cta_t": "Spuneți-ne software-ul de branșă și de câte căsuțe poștale aveți nevoie. În zilele lucrătoare vă spunem în 24 de ore ce pachet se potrivește — și ce înseamnă concret trecerea.",
     },
@@ -161,8 +180,8 @@ VERGLEICHE = {
         "desc": "Când mai merită un SSD la un PC vechi și când Windows 11 forțează "
                 "cumpărarea nouă: vârsta, starea și compatibilitatea decid. Cu calcul. Comparați acum.",
         "nav": "Upgrade sau cumpărare",
-        "h1": "Upgrade sau cumpărare nouă — de ce depinde de fapt",
-        "kurz": "Decizia depinde de trei lucruri: de vârsta aparatului, de tipul "
+        "h1": "Upgrade sau înlocuire a unui computer — de ce depinde de fapt",
+        "kurz": "Dacă faceți upgrade unui computer sau cumpărați unul nou depinde de trei lucruri: de vârsta aparatului, de tipul "
                 "blocajului și de faptul dacă aparatul mai suportă următoarea versiune "
                 "de Windows. Ca linie orientativă: până la aproximativ patru ani "
                 "upgrade-ul merită aproape întotdeauna, peste aproximativ șase ani "
@@ -204,6 +223,10 @@ VERGLEICHE = {
             {"k": "Cât costă",
              "a": "Manoperă la fața locului 120 € pe oră plus componenta și deplasarea",
              "b": "Aparatul plus 190 € configurare cu transferul datelor"},
+            {"k": "Windows 10 încă rulează", "a": "Upgrade-ul nu prelungește durata de viață dacă aparatul nu suportă Windows 11", "b": "Un aparat nou vine cu Windows 11 și rulează din nou cu actualizări regulate de securitate"},
+            {"k": "Laptop în loc de desktop", "a": "SSD-ul de obicei se poate schimba; la aparatele subțiri memoria este adesea lipită pe placă", "b": "Mai des calea de urmat, când memoria și bateria nu mai pot fi modernizate"},
+            {"k": "Aparatul servește doar un scop simplu, de exemplu un calculator de casă de marcat sau un loc de scris", "a": "De obicei ajunge, cât timp funcționează sănătos și Windows 11 merge", "b": "Necesar abia când vârsta sau versiunea de Windows o cere"},
+            {"k": "Costurile de reparație față de prețul nou", "a": "Regulă practică: are sens până la aproximativ o treime dintr-un aparat nou echivalent", "b": "Peste aceasta, mai ales la un aparat mai vechi, merită cumpărarea unuia nou"},
         ],
 
         "fuer_a_h": "Upgrade-ul merită când …",
@@ -247,8 +270,17 @@ VERGLEICHE = {
                   "înlocuiți, celor mai tinere le faceți upgrade, restul le lăsați să "
                   "meargă și le revedeți peste un an. Schimbarea tuturor deodată "
                   "înseamnă că peste cinci ani trebuie schimbate din nou toate deodată."},
+            {"q": "Ce regulă practică ajută când decid între upgrade și cumpărarea unui computer nou?",
+             "a": "Cinci întrebări, pe rând. 1. Unitatea de stocare: dacă este montat un hard disk clasic, primul pas este un SSD. 2. Memoria: Windows 11 cere cel puțin 4 GB, iar pentru munca de birou cu mai multe programe deschise e rezonabil mai mult; dacă există sloturi libere, adăugarea este ieftină. 3. Procesorul și Windows 11: aparatul are nevoie de un procesor suportat și de TPM 2.0; aplicația Microsoft PC Health Check o arată. 4. Vârsta: sub aproximativ patru ani upgrade, peste aproximativ șase ani cumpărare nouă. 5. Costurile de reparație față de prețul nou: dacă upgrade-ul cu tot cu manoperă costă mai mult de o treime dintr-un aparat nou echivalent, merită doar la un calculator tânăr."},
+            {"q": "Pot face upgrade computerului dacă Windows 11 nu este suportat?",
+             "a": "De regulă nu prin componente. Dacă lipsește doar TPM 2.0 sau este oprit în BIOS, uneori se poate rezolva. Dacă procesorul nu se află pe lista celor suportate, nici mai multă memorie, nici un SSD nu ajută, iar cumpărarea unui aparat nou este calea curată. Ce trebuie luat în calcul aici se află în articolul <a href='/aktuelles/windows-10-ende-was-jetzt/'>Sfârșitul Windows 10: ce urmează?</a>."},
+            {"q": "Cât costă să modernizez un computer sau să-l înlocuiesc cu unul nou?",
+             "a": "Montarea unui SSD împreună cu mutarea sistemului durează una-două ore și se facturează la fața locului cu 120 € pe oră plus deplasarea. Configurarea unui aparat nou cu transferul datelor costă 190 €. Prețul piesei sau al aparatului îl comunicăm la zi, pentru că se schimbă."},
         ],
 
+        "at_h": "Pentru firmele din Austria Superioară: aparate vechi, date și Windows 11",
+        "at_t": "Windows 10 nu mai primește actualizări regulate de securitate, de aceea întrebarea dacă să modernizați sau să cumpărați nou se pune acum în multe firme. Important pentru protecția datelor: pe computerele scoase din uz se află de obicei încă date ale clienților, facturi și date de acces. Conform GDPR și Legii austriece privind protecția datelor (DSG) sunteți responsabil pentru ele până când datele sunt șterse în siguranță, chiar dacă aparatul stă doar în pivniță sau este dat mai departe. Dispuneți ștergerea unității de stocare înainte de orice predare sau casare. Documentele supuse obligației de păstrare (7 ani, BAO § 132) trebuie mutate în prealabil pe aparatul nou sau în copia de siguranță.",
+        "at_t2": "Florin Feier din Lenzing montează SSD și memorie la fața locului, de exemplu în <a href='/ro/it-service/voecklabruck/'>Vöcklabruck</a>, Gmunden, Salzburg, Linz, Wels și în Salzkammergut, și efectuează trecerea la <a href='/ro/einrichten/windows-11/'>Windows 11</a> sau <a href='/ro/einrichten/pc-tausch/'>schimbul unui aparat</a> și prin acces la distanță, de îndată ce aparatul se află la firmă. Configurarea unui aparat costă 190 €, munca la fața locului 120 € pe oră, plus deplasarea.",
         "cta_h": "Ne uităm noi",
         "cta_t": "Spuneți-ne vârsta și numărul aparatelor. În zilele lucrătoare vă "
                  "spunem în 24 de ore ce am face noi în locul dumneavoastră — chiar "

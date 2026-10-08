@@ -811,3 +811,7 @@ Einzelheiten: `docs/AUSBAU-2026-10-08-technik.md`.
 
 ## Nachtrag 09.10.2026 (Ausbau Lokal)
 Erledigt: sechs neue Ortsseiten (Lenzing, Seewalchen, Schörfling, Timelkam, Regau, Frankenmarkt), sechs bestehende Ortsseiten ausgebaut, EDV-Betreuung als Hauptthema (rund 3.400 Wörter), Ortslinks auf allen Leistungsseiten, Österreich-first in Titeln und Schema. Einzelheiten: `docs/AUSBAU-2026-10-08-lokal.md`. Offen: Faktenprüfung Regau/Frankenmarkt, GSC-Anträge, Messung 28.10./02.11.
+
+## Nachtrag 09.10.2026: Österreich-Ausbau (Zweig seo/2026-10-08-oesterreich)
+
+Erledigt: AT-Abschnitt in allen Ratgebern, Glossar ausgebaut, 14 neue Fachbeiträge, Vertiefung der Suchbegriff-Seiten (Details `docs/AUSBAU-2026-10-08-oesterreich.md`). Offen: Glossar-FAQ ins Schema (`views.begriff_seite`), Faktenprüfung rechtsnaher Aussagen, Messung nach 4 Wochen.

@@ -142,4 +142,11 @@ BEITRAEGE = [
      "thema": "it-sicherheit", "lesezeit": 5, "prio": "0.7", "hilfe": True},
 ]
 
+# ── Fünfte Staffel (08.10.2026): Österreich-Ausbau ───────────────────────────
+# Stammdaten und Texte der neuen Beiträge liegen gemeinsam in
+# i18n/beitraege_neu_{a,b}_de.py (META = diese Liste, TEXTE = Sprachpaket).
+from .i18n import beitraege_neu_a_de as _neu_a, beitraege_neu_b_de as _neu_b  # noqa: E402
+
+BEITRAEGE += _neu_a.META + _neu_b.META
+
 NACH_SLUG = {b["slug"]: b for b in BEITRAEGE}
