@@ -1,0 +1,24 @@
+{% comment %}
+Karte mit Zwei-Klick-Loesung (08.10.2026). Vorher: nur Adresse und Link, KEINE
+Verbindung zu Google. Erst der Klick auf „Karte laden“ setzt per static/js/karte.js
+das iframe (data-src -> src). CSP: frame-src nur https://www.google.com
+(middleware._CSP_QUELLEN). URLs aus content.json: maps_embed_url, maps_profil_url.
+Der Embed wird nur ausgegeben, wenn er mit https://www.google.com/maps beginnt.
+{% endcomment %}{% if c.maps_profil_url or c.maps_embed_url %}
+<section class="section karte-sec" id="karte">
+  <div class="wrap">
+    <h2 class="sp-h2">{{ t.karte.h|safe }}</h2>
+    <div class="karte-box" data-karte>
+      <div class="karte-platzhalter" data-karte-platzhalter>
+        {% if c.adresse %}<p class="karte-adr"><strong>{{ c.site_name }}</strong><br>{{ c.adresse }}{% if c.plz or c.stadt %}<br>{{ c.plz }} {{ c.stadt }}{% endif %}</p>{% endif %}
+        <p class="karte-hinweis">{{ t.karte.platzhalter|safe }}</p>
+        <div class="karte-knoepfe">
+          {% if c.maps_embed_url %}<button class="btn btn-sm" type="button" data-karte-laden data-src="{{ c.maps_embed_url }}" data-titel="{{ t.karte.iframe_titel }}">{{ t.karte.laden|safe }}</button>{% endif %}
+          {% if c.maps_profil_url %}<a class="btn btn-sm btn-ghost" href="{{ c.maps_profil_url }}" target="_blank" rel="noopener noreferrer">{{ t.karte.oeffnen|safe }}</a>{% endif %}
+        </div>
+        {% if c.maps_embed_url %}<p class="karte-fine">{{ t.karte.hinweis|safe }}</p>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

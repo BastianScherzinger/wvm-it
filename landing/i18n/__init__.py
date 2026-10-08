@@ -79,9 +79,10 @@ WUNSCH_PARAM = "lang"
 def _mit_wunsch(url, lang):
     """Hängt ``?lang=<code>`` an eine Umschalter-Adresse.
 
-    Nur für die Standardsprache nötig (siehe die ausführliche Begründung beim
-    Aufruf in ``kontext``), aber für alle drei gesetzt: Eine Regel, die für einen
-    Sonderfall gilt, ist der Sonderfall, den später jemand übersieht.
+    Seit dem 08.10.2026 nur noch für **Deutsch außerhalb von Deutsch** gerufen
+    (siehe ``kontext``): EN und RO haben ein Präfix, die Middleware merkt sich die
+    Sprache beim Ankommen; die aktive Sprache braucht gar nichts. Die Search Console
+    zählte vorher ``/it-service/wels/?lang=de`` und ``/?lang=en`` als eigene Adressen.
     """
     trenner = "&" if "?" in url else "?"
     return f"{url}{trenner}{WUNSCH_PARAM}={lang}"
@@ -191,6 +192,10 @@ def context_processor(request):
         # Gibt es die Seite in der Sprache nicht, fuehrt der Umschalter auf die
         # Startseite dieser Sprache statt in einen 404.
         target = add_prefix(l, base if vorhanden else "/")
+        url_ = target + (suffix if vorhanden else "")
+        braucht_wunsch = (l == "de" and lang != "de")
+        if braucht_wunsch:
+            url_ = _mit_wunsch(url_, l)
         switch.append({
             "code": l, "label": LANG_LABELS[l], "name": LANG_NAMES[l],
             "active": (l == lang), "gleiche_seite": vorhanden,
@@ -212,7 +217,16 @@ def context_processor(request):
             # Absicht sichtbar; die Middleware setzt das Cookie und leitet auf die
             # saubere Adresse ohne Parameter weiter, damit nichts Parametriertes
             # indexiert wird.
-            "url": _mit_wunsch(target + (suffix if vorhanden else ""), l),
+            #
+            # **Seit 08.10.2026 nur noch am DE-Link ausserhalb von Deutsch.** Vorher
+            # trugen alle neun Links jeder Seite den Parameter (auch die aktive
+            # Sprache); Google folgte, bekam 302 und kannte die Adressen mit
+            # Parameter als eigene URLs (52 Impressionen auf ?lang=de). EN/RO
+            # verlinken jetzt auf die saubere Zieladresse, die Middleware merkt die
+            # Sprache beim Ankommen. Der Parameter bleibt nur dort, wo er das
+            # Problem von oben loest, und der Link bekommt rel="nofollow".
+            "url": url_,
+            "nofollow": braucht_wunsch,
         })
         if vorhanden:
             alts.append({"code": l, "hreflang": PACKS[l]["meta"]["html_lang"], "path": target})

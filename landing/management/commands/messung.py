@@ -86,6 +86,7 @@ class Command(BaseCommand):
         self._tabelle("Anfragen je Quelle", z["quellen"])
         self._tabelle("Kampagnen", z["kampagnen"])
         self._tabelle("Anfragen je Kampagne", z["anfrage_kampagnen"])
+        self._klicks(messung.stand())
 
     # ── Die gespeicherten Tage ───────────────────────────────────────────────
     def _aus_dateien(self, tage):
@@ -105,12 +106,33 @@ class Command(BaseCommand):
             anfragen = sum(werte.get("anfrage", {}).values())
             automaten = sum(werte.get("automat", {}).values())
             kampagne = sum(werte.get("kampagne", {}).values())
+            klicks = {a: sum(werte.get(f"klick_{a}", {}).values()) for a in sorted(messung.KLICK_ARTEN)}
             falle = werte.get("honigtopf", {})
             quote = f"{anfragen / aufrufe * 100:.1f} %" if aufrufe else "—"
             self.stdout.write(
                 f"  {tag}  Aufrufe {aufrufe:>5}  Anfragen {anfragen:>4}  "
                 f"Anteil {quote:>7}  Automaten {automaten:>5}  Kampagnen {kampagne:>4}"
+                f"  Klicks Anruf {klicks['tel']:>3} WhatsApp {klicks['wa']:>3} Mail {klicks['mail']:>3}"
                 + (f"  Falle {falle}" if falle else ""))
+        # Klicks je Seite, ueber die angezeigten Tage addiert
+        summe = {}
+        for tag in sorted(je_tag)[-tage:]:
+            for art in messung.KLICK_ARTEN:
+                for pfad, n in je_tag[tag].get(f"klick_{art}", {}).items():
+                    ziel = summe.setdefault(f"klick_{art}", {})
+                    ziel[pfad] = ziel.get(pfad, 0) + n
+        self._klicks(summe, titel_zusatz=f", letzte {tage} Tage")
+
+    def _klicks(self, stand, titel_zusatz=""):
+        """Klicks auf Anruf-, WhatsApp- und E-Mail-Links, je Art und Seite."""
+        namen = {"tel": "Anruf (tel:)", "wa": "WhatsApp", "mail": "E-Mail (mailto:)"}
+        for art in sorted(messung.KLICK_ARTEN):
+            werte = stand.get(f"klick_{art}", {})
+            if not werte:
+                continue
+            summe = sum(werte.values())
+            rang = dict(sorted(werte.items(), key=lambda kv: -kv[1]))
+            self._tabelle(f"Klicks {namen[art]}{titel_zusatz} (gesamt {summe})", rang)
 
     def _tabelle(self, titel, werte):
         if not werte:

@@ -224,3 +224,28 @@ def _zuruecksetzen_fuer_tests() -> None:
     with _sperre:
         _stand.clear()
         _seit_schreiben = 0
+
+
+# ── Klicks auf Anruf-, WhatsApp- und E-Mail-Links (08.10.2026) ───────────────
+# Gezaehlt als Summe je Art (`klick_tel`, `klick_wa`, `klick_mail`) und Seitenpfad.
+# Annahme: `landing/klicks.py`. Dieselbe Regel wie oben: keine IP, kein Cookie,
+# keine Kennung. Wie bei den Kampagnen gibt es eine Obergrenze verschiedener
+# Schluessel je Art und Tag, damit niemand die Tageszeile aufblaehen kann.
+KLICK_ARTEN = frozenset({"tel", "wa", "mail"})
+KLICK_SCHLUESSEL_HOECHSTENS = 300
+
+
+def klick(art: str, pfad: str | None) -> None:
+    """Zaehlt einen Klick der `art` auf der Seite `pfad` (None = unbekannt -> '-')."""
+    try:
+        if art not in KLICK_ARTEN:
+            return
+        name = f"klick_{art}"
+        schluessel = (pfad or "-")[:120]
+        with _sperre:
+            vorhanden = _stand.get(name, {})
+            if schluessel not in vorhanden and len(vorhanden) >= KLICK_SCHLUESSEL_HOECHSTENS:
+                schluessel = "-"
+        zaehle(name, schluessel)
+    except Exception:           # pragma: no cover - Schutznetz
+        pass

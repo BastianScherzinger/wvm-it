@@ -196,3 +196,8 @@ Gemeinsamer Plan für alle sechs Seiten: `C:\Users\basti\Desktop\pystore-overvie
 - **Ohne Adresse.** Grundpaket G1–G10.
 - Stand: Google-Profil angelegt (Bestätigung offen), Bing Places ✔ Import, Bing Webmaster Tools ✔.
 - Als Nächstes (Florin): **WKO Firmen A–Z** pflegen (Website, Leistungen), herold.at (Kartenhinweis per Mail an kundenservice@herold.at entfernen lassen), firmenABC.at, meinbezirk.at-Beiträge, Clutch/GoodFirms.
+
+## Technik 08.10.2026: Karte, hasMap, Apex-Domain
+
+- `/kontakt/` zeigt eine Zwei-Klick-Karte (Einstellungen `maps_embed_url`, `maps_profil_url` in `content.json`); `hasMap` im Schema zeigt auf das Google-Profil.
+- **Offen für Florin:** echte 301 von `wvm-it.tech/<pfad>` auf `www.wvm-it.tech/<pfad>` per `.htaccess` beim IONOS-Webspace (heute 200 + Meta-Refresh). Siehe `doku/80-AUFGABEN.md`.

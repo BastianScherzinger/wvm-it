@@ -1781,4 +1781,13 @@ PACK = {
             {"b": "Hilfe bei Störungen", "t": "Per Fernwartung, ohne dass jemand anreisen muss.", "takt": "meist am selben Tag"},
         ],
     },
+    # ── Karte auf /kontakt/ (Zwei-Klick-Loesung, 08.10.2026) ────────────────
+    "karte": {
+        "h": "So finden Sie uns",
+        "platzhalter": "Die Karte lädt erst nach Ihrem Klick. Vorher wird keine Verbindung zu Google aufgebaut.",
+        "laden": "Karte laden (Google Maps)",
+        "hinweis": "Mit dem Klick laden Sie eine Karte von Google. Dabei wird Ihre IP-Adresse an Google übermittelt; Näheres steht in der Datenschutzerklärung.",
+        "oeffnen": "In Google Maps öffnen",
+        "iframe_titel": "Karte: Standort von WVM-IT in Lenzing",
+    },
 }

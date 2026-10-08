@@ -57,7 +57,7 @@ class VerlinkungTS46Test(SimpleTestCase):
                     i = self.sitemap.find(f"<loc>https://www.wvm-it.tech{pfad}</loc>")
                     self.assertGreaterEqual(i, 0)
                     block = self.sitemap[i:self.sitemap.find("</url>", i)]
-                    for sprache in ("de", "en", "ro", "x-default"):
+                    for sprache in ("de-AT", "en", "ro", "x-default"):
                         self.assertIn(f'hreflang="{sprache}"', block)
 
     def test_ki_automatisierung_hat_genug_eingehende_links(self):

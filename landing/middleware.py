@@ -182,7 +182,14 @@ class LocalePrefsMiddleware:
             rest.pop(i18n.WUNSCH_PARAM, None)
             if rest:
                 ziel += "?" + rest.urlencode()
-            antwort = HttpResponseRedirect(ziel)
+            # 301 statt 302 (08.10.2026): Die Search Console fuehrte
+            # `...?lang=de` als eigene Adressen; eine dauerhafte Weiterleitung
+            # lässt sie auf die saubere Adresse fallen. `no-store` verhindert,
+            # dass der Browser die 301 merkt und beim naechsten Klick auf „DE"
+            # die Anfrage gar nicht erst beim Server ankommt — dann wuerde das
+            # Cookie nicht gesetzt und die Sprachwahl ginge wieder verloren.
+            antwort = HttpResponsePermanentRedirect(ziel)
+            antwort.headers["Cache-Control"] = "no-store"
             _setze_sprachcookie(antwort, wunsch)
             return antwort
 
@@ -280,6 +287,9 @@ _CSP_QUELLEN = {
                 "https://api.cloudinary.com"),
     "img": ("data:", "blob:", "https://res.cloudinary.com", "https://prod.spline.design"),
     "media": ("blob:",),
+    # Google-Karte auf /kontakt/: das iframe entsteht erst nach Klick (Zwei-Klick-
+    # Loesung, templates/karte.html). Nur diese eine Quelle, nichts Allgemeines.
+    "frame": "https://www.google.com",
 }
 
 _PERMISSIONS_POLICY = (
@@ -305,7 +315,7 @@ def _csp(nonce: str) -> str:
         f"connect-src 'self' {c}",
         f"media-src 'self' {m}",
         "worker-src 'self' blob:",
-        "frame-src 'none'",
+        f"frame-src {_CSP_QUELLEN['frame']}",
         "object-src 'none'",
         "base-uri 'self'",
         "form-action 'self'",

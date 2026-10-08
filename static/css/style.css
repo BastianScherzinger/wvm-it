@@ -2686,3 +2686,13 @@ h1,h2,h3,h4,.sp-h2{overflow-wrap:break-word}
   .nav-phone{padding:8px 11px}
 }
 @media (min-width:1181px) and (max-width:1279px){.nav-links{gap:12px;font-size:14px}}
+
+/* ── Karte (Zwei-Klick-Loesung, /kontakt/, 08.10.2026) ─────────────────────── */
+.karte-box{border:1px solid var(--line-2);border-radius:var(--radius);background:var(--surface-2);overflow:hidden}
+.karte-platzhalter{padding:28px;display:grid;gap:14px;min-height:260px;align-content:center}
+.karte-platzhalter[hidden]{display:none}
+.karte-adr{margin:0;color:var(--ink);line-height:1.5}
+.karte-hinweis,.karte-fine{margin:0;color:var(--ink-soft);max-width:60ch}
+.karte-fine{font-size:.875rem;color:var(--ink-dim)}
+.karte-knoepfe{display:flex;flex-wrap:wrap;gap:12px}
+.karte-frame{display:block;width:100%;height:min(60vh,420px);border:0}

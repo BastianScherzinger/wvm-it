@@ -799,3 +799,12 @@ Alles, was die drei Pakete **nicht** im Code lösen konnten oder durften. Diese 
 | EIG397 | Der Schrittwechsel scrollt vom nächsten Eingabeschritt weg | design | erledigt | geprüft 03.10.2026 (V1.0.1): umgesetzt — Der Konfigurator sprang nicht zum nächsten Schritt. static/js/angebot.js scrollt zu #wzSteps, static/css/style.css setzt scroll-margin-top 88px. Test AngebotOberflaecheTest.test_versteckte_summen_bleiben_versteckt. `b080ad4` | 2026-09-29 |
 | EIG398 | Ausgeblendete Preiszeilen und Anfragehinweise bleiben sichtbar | technik | erledigt | geprüft 03.10.2026 (V1.0.1): umgesetzt — Versteckte Summenzeilen blieben sichtbar. static/css/style.css:661 blendet .ang-totals, .ang-total-row und .ang-total-note mit hidden aus. Test AngebotOberflaecheTest. `b080ad4` | 2026-09-29 |
 <!-- eigenepunkte:ende -->
+
+## Technik-Runde 08.10.2026 (Zweig seo/2026-10-08-technik)
+
+Einzelheiten: `docs/AUSBAU-2026-10-08-technik.md`.
+
+- **Erledigt:** `?lang=`-Duplikate (Umschalter ohne Parameter außer DE-Link außerhalb von Deutsch, dort `rel="nofollow"`; Parameter-URL antwortet 301); hreflang vereinheitlicht (`de-AT`/`en`/`ro`/`x-default` in Kopf **und** Sitemap); Klickzählung Anruf/WhatsApp/E-Mail (`/m/klick/`, Bericht `manage.py messung`); Zwei-Klick-Karte auf `/kontakt/`; `hasMap` auf das Google-Profil.
+- **Von Florin freizugeben:** zwei neue Sätze in der Datenschutzerklärung (Klickzählung ohne Personenbezug; Google Maps erst nach Klick). Rechtstext, nicht ohne seine Durchsicht live stellen.
+- **Offen für Florin (Hoster IONOS):** Apex `https://wvm-it.tech/<pfad>` antwortet 200 mit Meta-Refresh statt 301. Lösung: `.htaccess` im Webspace der Apex-Domain mit `RewriteCond %{HTTP_HOST} ^wvm-it\.tech$ [NC]` und `RewriteRule ^(.*)$ https://www.wvm-it.tech/$1 [R=301,L]`, ersatzweise IONOS-Domainweiterleitung (301, mit Pfad). Vorbild: pystore.de. Zertifikat der Apex-Domain läuft am 01.01.2027 ab (liegt beim Webspace).
+- **Nur dokumentiert:** Kein Brotli (Railway-Edge liefert gzip). Kein Cache-Control auf HTML — bewusst (CSRF-Token je Anfrage, `docs/CACHE-2026-09-06.md`).

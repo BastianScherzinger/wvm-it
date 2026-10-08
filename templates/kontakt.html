@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load absaetze %}
+{% load absaetze static %}
 {% comment %}
 /kontakt/ — eigene URL mit allen Kontaktwegen und den Firmendaten (NAP).
 Sobald `adresse`/`plz`/`stadt` in content.json gepflegt sind, erscheinen sie hier,
@@ -59,6 +59,8 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
   </div>
 </section>
 
+{% include 'karte.html' %}
+
 {% comment %} Kooperationsformular (03.10.2026 von der Startseite hierher, damit der
      Kundenfluss dort nicht von einem Partner-Formular unterbrochen wird). Endpunkt
      kooperation_anfordern unverändert; Fuß-Link „Kooperationspartner werden“ zeigt hierher. {% endcomment %}
@@ -92,6 +94,7 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
   </div>
 </section>
 
+<script src="{% static 'js/karte.js' %}?v={{ asset_v }}" defer></script>
 <script nonce="{{ request.csp_nonce }}">
 (function(){
   var form=document.getElementById('coopForm'); if(!form) return;

@@ -1637,4 +1637,13 @@ PACK = {
             {"b": "Ajutor la defecțiuni", "t": "Prin acces la distanță, fără ca cineva să se deplaseze.", "takt": "de obicei în aceeași zi"},
         ],
     },
+    # ── Harta pe /kontakt/ (soluție în două clicuri, 08.10.2026) ────────────
+    "karte": {
+        "h": "Cum ne găsiți",
+        "platzhalter": "Harta se încarcă abia după clic. Până atunci nu se stabilește nicio conexiune cu Google.",
+        "laden": "Încărcați harta (Google Maps)",
+        "hinweis": "Prin clic încărcați o hartă de la Google. Adresa dvs. IP este transmisă către Google; detalii în politica de confidențialitate.",
+        "oeffnen": "Deschideți în Google Maps",
+        "iframe_titel": "Hartă: locația WVM-IT în Lenzing",
+    },
 }

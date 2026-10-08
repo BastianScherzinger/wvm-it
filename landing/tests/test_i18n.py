@@ -242,9 +242,14 @@ class ContextProcessorTest(SimpleTestCase):
         wieder nach /ro/ geworfen. Deutsch hat keinen eigenen Pfad, also braucht
         die Wahl einen anderen Traeger."""
         from . import _util
+        # Seit 08.10.2026 nur noch der DE-Link ausserhalb von Deutsch (EN/RO
+        # haben ein Praefix, die aktive Sprache braucht nichts).
+        antwort = _util.client().get("/ro/")
+        self.assertEqual(self._switch_wunsch(antwort),
+                         {"de": "de", "en": "", "ro": ""})
         antwort = _util.client().get("/")
         self.assertEqual(self._switch_wunsch(antwort),
-                         {"de": "de", "en": "en", "ro": "ro"})
+                         {"de": "", "en": "", "ro": ""})
 
     def test_lang_switch_zeigt_auf_die_gleiche_seite(self):
         """Bei einer dreisprachigen Unterseite bleibt der Umschalter auf der Seite."""
@@ -354,7 +359,7 @@ class SprachwechselTest(SimpleTestCase):
 
         # … mit ihm gewinnt die ausdrückliche Wahl, und sie wird gemerkt.
         mit = klient.get("/", {i18n.WUNSCH_PARAM: "de"})
-        self.assertEqual(mit.status_code, 302)
+        self.assertEqual(mit.status_code, 301)
         self.assertTrue(mit["Location"].endswith("/"), mit["Location"])
         self.assertNotIn(i18n.WUNSCH_PARAM, mit["Location"],
                          "Der Parameter darf nicht in der Zieladresse landen")
@@ -367,7 +372,7 @@ class SprachwechselTest(SimpleTestCase):
             with self.subTest(wunsch=wunsch):
                 klient = _util.client()
                 antwort = klient.get("/", {i18n.WUNSCH_PARAM: wunsch})
-                self.assertEqual(antwort.status_code, 302)
+                self.assertEqual(antwort.status_code, 301)
                 self.assertTrue(antwort["Location"].endswith(ziel), antwort["Location"])
                 self.assertEqual(antwort.cookies[settings.LANGUAGE_COOKIE_NAME].value, wunsch)
 
@@ -472,3 +477,198 @@ class HeroKonzeptTest(SimpleTestCase):
         html = _util.client().get("/").content.decode("utf-8")
         self.assertIn(c["inhaber_name"], html)
         self.assertIn(c["founder_image"], html)
+
+
+# ══ Technik-Runde 08.10.2026 (docs/AUSBAU-2026-10-08-technik.md) ═════════════
+# ?lang=-Duplikate, hreflang, Klickzaehlung, Karte. In dieser Datei statt in einer
+# eigenen, damit die Dateizahl in CLAUDE.md (test_v101_a) stimmt.
+import re
+from html.parser import HTMLParser
+
+from django.conf import settings
+
+from landing import messung
+
+from . import _util
+
+_TECHNIK_BASIS = settings.BASE_DIR
+
+
+class _Links(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.links = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            a = dict(attrs)
+            if a.get("href"):
+                self.links.append(a)
+
+
+def _links(pfad):
+    antwort = _util.client().get(pfad)
+    assert antwort.status_code == 200, pfad
+    p = _Links()
+    p.feed(antwort.content.decode("utf-8"))
+    return p.links
+
+
+class LangParameterTest(SimpleTestCase):
+    SEITEN = ("/", "/en/", "/ro/", "/it-service/wels/", "/en/it-service/wels/",
+              "/wissen/raid/", "/kontakt/", "/ro/kosten/")
+
+    def test_kein_follow_link_mit_lang_parameter(self):
+        for pfad in self.SEITEN:
+            with self.subTest(pfad=pfad):
+                for a in _links(pfad):
+                    if "?lang=" in a["href"] or "&lang=" in a["href"]:
+                        self.assertIn("nofollow", a.get("rel", ""),
+                                      f"{pfad}: {a['href']} ohne nofollow")
+
+    def test_aktive_sprache_und_en_ro_ohne_parameter(self):
+        for pfad in self.SEITEN:
+            with self.subTest(pfad=pfad):
+                antwort = _util.client().get(pfad)
+                for e in antwort.context["lang_switch"]:
+                    if e["active"] or e["code"] != "de":
+                        self.assertNotIn("lang=", e["url"], f"{pfad}: {e}")
+
+    def test_deutsch_auf_deutscher_seite_ohne_parameter(self):
+        for pfad in ("/", "/it-service/wels/", "/wissen/raid/"):
+            with self.subTest(pfad=pfad):
+                for a in _links(pfad):
+                    self.assertNotIn("?lang=", a["href"])
+
+    def test_de_link_ausserhalb_von_deutsch_traegt_parameter_und_nofollow(self):
+        antwort = _util.client().get("/en/it-service/wels/")
+        de = [e for e in antwort.context["lang_switch"] if e["code"] == "de"][0]
+        self.assertEqual(de["url"], "/it-service/wels/?lang=de")
+        self.assertTrue(de["nofollow"])
+        self.assertIn('rel="nofollow"', antwort.content.decode("utf-8"))
+
+    def test_parameter_url_antwortet_301_auf_saubere_adresse(self):
+        for pfad, ziel in (("/it-service/wels/", "/it-service/wels/"),
+                           ("/wissen/raid/", "/wissen/raid/"), ("/", "/")):
+            with self.subTest(pfad=pfad):
+                antwort = _util.client().get(pfad, {"lang": "de"})
+                self.assertEqual(antwort.status_code, 301)
+                self.assertEqual(antwort["Location"], ziel)
+                self.assertEqual(antwort.cookies[settings.LANGUAGE_COOKIE_NAME].value, "de")
+                self.assertIn("no-store", antwort["Cache-Control"])
+        antwort = _util.client().get("/", {"lang": "en"})
+        self.assertEqual((antwort.status_code, antwort["Location"]), (301, "/en/"))
+
+    def test_canonical_ohne_parameter(self):
+        for pfad in ("/it-service/wels/?utm_source=x", "/?lang=fr", "/en/?x=1"):
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad).content.decode("utf-8")
+                kanon = re.search(r'<link rel="canonical" href="([^"]+)"', html).group(1)
+                self.assertNotIn("?", kanon)
+
+
+class HreflangEinheitlichTest(SimpleTestCase):
+    def test_sitemap_und_kopf_nutzen_dieselben_codes(self):
+        client = _util.client()
+        kopf = client.get("/it-service/wels/").content.decode("utf-8")
+        codes_kopf = set(re.findall(r'<link rel="alternate" hreflang="([^"]+)"', kopf))
+        sitemap = client.get("/sitemap-leistungen.xml").content.decode("utf-8")
+        codes_sitemap = set(re.findall(r'<xhtml:link rel="alternate" hreflang="([^"]+)"', sitemap))
+        # Der Kopf nennt je Sprache einen Code; die Sitemap muss dieselben haben.
+        self.assertEqual(codes_kopf, {"de-AT", "en", "ro", "x-default"})
+        self.assertEqual(codes_sitemap, codes_kopf)
+
+
+class KlickZaehlungTest(SimpleTestCase):
+    def setUp(self):
+        messung._zuruecksetzen_fuer_tests()
+
+    def _post(self, art, pfad, **extra):
+        return _util.client().post("/m/klick/", {"art": art, "pfad": pfad},
+                                   HTTP_USER_AGENT="Mozilla/5.0 (Windows NT 10.0) Chrome/120", **extra)
+
+    def test_klick_wird_je_art_und_seite_gezaehlt(self):
+        self.assertEqual(self._post("tel", "/kontakt/").status_code, 204)
+        self._post("tel", "/kontakt/")
+        self._post("wa", "/it-service/wels/")
+        self._post("mail", "/kontakt/")
+        st = messung.stand()
+        self.assertEqual(st["klick_tel"], {"/kontakt/": 2})
+        self.assertEqual(st["klick_wa"], {"/it-service/wels/": 1})
+        self.assertEqual(st["klick_mail"], {"/kontakt/": 1})
+
+    def test_unbekannte_art_und_fremde_pfade_zaehlen_nicht_oder_nur_als_strich(self):
+        self._post("sms", "/kontakt/")
+        self.assertEqual(messung.stand(), {})
+        self._post("tel", "https://evil.example/")
+        self._post("tel", "//evil.example/")
+        self._post("tel", "/gibt/es/nicht/")
+        self.assertEqual(messung.stand()["klick_tel"], {"-": 3})
+
+    def test_automaten_und_get_zaehlen_nicht(self):
+        antwort = _util.client().post("/m/klick/", {"art": "tel", "pfad": "/kontakt/"},
+                                      HTTP_USER_AGENT="Googlebot/2.1")
+        self.assertEqual(antwort.status_code, 204)
+        self.assertEqual(_util.client().get("/m/klick/").status_code, 405)
+        self.assertEqual(messung.stand(), {})
+
+    def test_obergrenze_verschiedener_pfade(self):
+        for i in range(messung.KLICK_SCHLUESSEL_HOECHSTENS + 5):
+            messung.klick("tel", f"/seite-{i}/")
+        werte = messung.stand()["klick_tel"]
+        self.assertLessEqual(len(werte), messung.KLICK_SCHLUESSEL_HOECHSTENS + 1)
+        self.assertEqual(werte["-"], 5)
+
+    def test_skript_ist_geladen_und_zaehlt_keine_personendaten(self):
+        html = _util.client().get("/").content.decode("utf-8")
+        self.assertIn("js/klick.js", html)
+        skript = (_TECHNIK_BASIS / "static" / "js" / "klick.js").read_text(encoding="utf-8")
+        for verboten in ("document.cookie", "localstorage", "useragent"):
+            self.assertNotIn(verboten, skript.lower())
+
+    def test_bericht_zeigt_klicks(self):
+        from io import StringIO
+
+        from django.core.management import call_command
+        messung.klick("tel", "/kontakt/")
+        aus = StringIO()
+        call_command("messung", stdout=aus)
+        self.assertIn("Klicks Anruf", aus.getvalue())
+
+    def test_datenschutz_nennt_klickzaehlung_und_karte(self):
+        import json
+        text = json.loads((_TECHNIK_BASIS / "content.json").read_text(encoding="utf-8"))["datenschutz"]
+        self.assertIn("Link zum Anrufen", text)
+        self.assertIn("Google Maps:", text)
+        self.assertIn("erst nach Ihrem Klick", text)
+
+
+class KarteTest(SimpleTestCase):
+    def test_kontakt_zeigt_platzhalter_und_noch_kein_iframe(self):
+        for pfad in ("/kontakt/", "/en/kontakt/", "/ro/kontakt/"):
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad).content.decode("utf-8")
+                self.assertNotIn("<iframe", html)
+                self.assertIn("data-karte-laden", html)
+                self.assertIn("https://www.google.com/maps?cid=4953433262951163842", html)
+                self.assertIn("js/karte.js", html)
+
+    def test_csp_erlaubt_nur_google_als_frame(self):
+        csp = _util.client().get("/kontakt/").headers["Content-Security-Policy"]
+        self.assertIn("frame-src https://www.google.com;", csp + ";")
+        self.assertNotIn("frame-src 'none'", csp)
+
+    def test_skript_laedt_nur_google_maps_adressen(self):
+        skript = (_TECHNIK_BASIS / "static" / "js" / "karte.js").read_text(encoding="utf-8")
+        self.assertIn("https://www.google.com/maps", skript)
+
+    def test_schema_hasmap_zeigt_auf_google_profil(self):
+        html = _util.client().get("/").content.decode("utf-8")
+        self.assertIn('"hasMap": "https://www.google.com/maps?cid=4953433262951163842"', html.replace('":"', '": "'))
+        self.assertNotIn("openstreetmap", html)
+
+    def test_sprachpakete_haben_karte_vollstaendig(self):
+        for l in i18n.LANGS:
+            k = i18n.get_pack(l)["karte"]
+            for schluessel in ("h", "platzhalter", "laden", "hinweis", "oeffnen", "iframe_titel"):
+                self.assertTrue(k.get(schluessel), (l, schluessel))

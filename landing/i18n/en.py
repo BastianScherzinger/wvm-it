@@ -1645,4 +1645,13 @@ PACK = {
             {"b": "Help with faults", "t": "By remote access, without anyone needing to travel.", "takt": "usually the same day"},
         ],
     },
+    # ── Map on /kontakt/ (two-click solution, 08.10.2026) ───────────────────
+    "karte": {
+        "h": "How to find us",
+        "platzhalter": "The map only loads after you click. Until then, no connection to Google is made.",
+        "laden": "Load map (Google Maps)",
+        "hinweis": "Clicking loads a map from Google. Your IP address is sent to Google in the process; see the privacy policy for details.",
+        "oeffnen": "Open in Google Maps",
+        "iframe_titel": "Map: location of WVM-IT in Lenzing",
+    },
 }

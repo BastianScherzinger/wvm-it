@@ -2431,7 +2431,8 @@ def _structured_data(c, lang, *, mit_katalog=True):
         # waere dieselbe Sorte Behauptung wie eine erfundene Bewertung.
         "geo": {"@type": "GeoCoordinates", "latitude": 47.9714, "longitude": 13.6206,
                 "addressCountry": "AT"},
-        "hasMap": "https://www.openstreetmap.org/search?query=Lenzing%20Ober%C3%B6sterreich",
+        "hasMap": (c.get("maps_profil_url") or "").strip()
+        or "https://www.openstreetmap.org/search?query=Lenzing%20Ober%C3%B6sterreich",
         # Reihenfolge nach Gewicht: Das Kerngeschäft steht vorne, damit die
         # Entität nicht als Webagentur mit IT-Nebengeschäft gelesen wird.
         "knowsAbout": ["EDV-Betreuung", "IT-Betreuung", "Managed IT", "Fernwartung",
@@ -5320,8 +5321,12 @@ def _sitemap_eintraege(base, pfade):
         alts = "".join(
             f'<xhtml:link rel="alternate" hreflang="{a["hreflang"]}" '
             f'href="{base}{i18n.add_prefix(a["code"], path)}"/>'
-            for a in ({"code": "de", "hreflang": "de"}, {"code": "en", "hreflang": "en"},
-                      {"code": "ro", "hreflang": "ro"}, {"code": "de", "hreflang": "x-default"})
+            # Gleiche Codes wie im Seitenkopf (`html_lang` der Sprachpakete: de-AT, en,
+            # ro) -- Kopf und Sitemap muessen sich decken (08.10.2026, vorher `de`).
+            for a in tuple(
+                {"code": l, "hreflang": i18n.get_pack(l)["meta"]["html_lang"]}
+                for l in ("de", "en", "ro")
+            ) + ({"code": "de", "hreflang": "x-default"},)
         )
         for lang in ("de", "en", "ro"):
             loc = base + i18n.add_prefix(lang, path)

@@ -3,7 +3,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, re_path
 from django.views.generic import RedirectView
 
-from landing import views
+from landing import klicks, views
 
 # ── Technische / sprachneutrale Endpunkte (IMMER ohne Sprachpräfix) ──────────────
 urlpatterns = [
@@ -23,6 +23,8 @@ urlpatterns = [
     # gültig, auch wenn sich der Google-Bewertungslink später ändert. Ohne
     # Sprachpräfix-Variante, weil sie nur auf Karte/QR-Code gedruckt wird.
     path("bewerten/", views.bewerten, name="bewerten"),
+    # Klickzaehlung (Anruf/WhatsApp/E-Mail), ohne IP/Cookie/Kennung: landing/klicks.py
+    path("m/klick/", klicks.klick, name="klick_zaehlen"),
     path("bau/status/", views.bau_status, name="bau_status"),
     path("cloudinary/signatur/", views.cloudinary_sign, name="cloudinary_sign"),
     path("newsletter/wochenversand/", views.newsletter_weekly, name="newsletter_weekly"),

@@ -70,8 +70,11 @@ class AnkertexteTest(SimpleTestCase):
     def test_sprachumschalter_name_beginnt_mit_sichtbarem_text(self):
         parser = _Anker()
         parser.feed(_html("/en/kosten/"))
-        namen = {t for z, t in parser.links if "?lang=" in z}
-        self.assertEqual(namen, {"DE – Deutsch", "EN – English", "RO – Română"})
+        # Seit 08.10.2026 tragen nur DE-Links ausserhalb von Deutsch `?lang=`; die
+        # Umschalter-Namen erkennt man deshalb an ihrem Text.
+        erwartet = {"DE – Deutsch", "EN – English", "RO – Română"}
+        namen = {t for z, t in parser.links if t in erwartet}
+        self.assertEqual(namen, erwartet)
 
 
 _STOPP = {"und", "oder", "für", "fuer", "der", "die", "das", "den", "dem", "des", "ein",
