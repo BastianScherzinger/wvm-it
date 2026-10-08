@@ -43,7 +43,7 @@ SEITEN = {
         ],
         "preis_h": "Cât costă",
         "preis_t": "Administrarea curentă costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Cine are nevoie doar punctual de ajutor plătește 95 € pe oră; intervențiile la fața locului costă 120 € pe oră plus deplasarea. Toate sunt prețuri orientative, net plus TVA. Administrarea merge de la trimestru la trimestru, cu reziliere cu o lună înainte de sfârșitul trimestrului.",
-        "ort_satz": "La fața locului lucrăm, printre altele, la <a href=\"/ro/it-service/salzburg/\">Salzburg</a> și <a href=\"/ro/it-service/linz/\">Linz</a>, iar prin acces la distanță în toată Austria.",
+        "ort_satz": "La fața locului lucrăm, printre altele, la <a href=\"/ro/it-service/lenzing/\">Lenzing</a>, <a href=\"/ro/it-service/voecklabruck/\">Vöcklabruck</a>, <a href=\"/ro/it-service/gmunden/\">Gmunden</a>, <a href=\"/ro/it-service/salzburg/\">Salzburg</a> și <a href=\"/ro/it-service/linz/\">Linz</a>, iar prin acces la distanță în toată Austria.",
         "faq": [
             {"q": "De la câte posturi de lucru merită administrarea IT curentă?",
              "a": "De la circa cinci posturi de lucru administrarea se justifică de obicei dacă previne o singură zi de nefuncționare pe an. Sub acest prag, facturarea la oră este adesea mai avantajoasă — o spunem cinstit în prima discuție, chiar dacă noi câștigăm mai puțin."},
@@ -677,3 +677,23 @@ SEITEN = {
         "cta_t": "Scrieți pe scurt câte stații și câte sedii aveți și ce nu merge bine astăzi. Vă răspundem în 24 de ore în zilele lucrătoare cu o propunere de evaluare și un cadru de costuri.",
     },
 }
+
+
+# ── Ausbau Lokal (08.10.2026): EDV-Betreuung als Hauptthema ──────────────────
+# seiten_ausbau_edv.py liefert neue Schlüssel (abschnitte) und ersetzt titel,
+# desc, h1 und kurz; faq_plus wird an faq angehängt.
+def _ausbau_einspielen():
+    try:
+        from .seiten_ausbau_edv import AUSBAU
+    except ImportError:
+        return
+    for slug, neu in AUSBAU.get("ro", {}).items():
+        neu = dict(neu)
+        plus = neu.pop("faq_plus", [])
+        eintrag = SEITEN[slug]
+        eintrag.update(neu)
+        if plus:
+            eintrag["faq"] = list(eintrag.get("faq", [])) + list(plus)
+
+
+_ausbau_einspielen()

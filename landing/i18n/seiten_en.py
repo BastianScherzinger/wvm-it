@@ -41,7 +41,7 @@ SEITEN = {
         ],
         "preis_h": "What it costs",
         "preis_t": "Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. If you only need occasional help, that is €95 per hour; on-site work costs €120 per hour plus travel. All figures are guide prices, net plus VAT. Support runs from quarter to quarter, with one month’s notice to the end of a quarter.",
-        "ort_satz": "On site we work in <a href=\"/en/it-service/salzburg/\">Salzburg</a> and <a href=\"/en/it-service/linz/\">Linz</a>, among other places, and by remote maintenance across Austria.",
+        "ort_satz": "On site we work in <a href=\"/en/it-service/lenzing/\">Lenzing</a>, <a href=\"/en/it-service/voecklabruck/\">Vöcklabruck</a>, <a href=\"/en/it-service/gmunden/\">Gmunden</a>, <a href=\"/en/it-service/salzburg/\">Salzburg</a> and <a href=\"/en/it-service/linz/\">Linz</a>, among other places, and by remote maintenance across Austria.",
         "faq": [
             {"q": "From how many workstations is ongoing IT support worth it?",
              "a": "From around five workstations the support usually pays for itself if it prevents a single day of downtime a year. Below that, hourly billing is often cheaper — we say so honestly in the first conversation, even though it earns us less."},
@@ -675,3 +675,23 @@ SEITEN = {
         "cta_t": "Tell us briefly how many workstations and sites you have and what is not running smoothly today. We reply within 24 hours on working days with a proposal for the audit and a cost frame.",
     },
 }
+
+
+# ── Ausbau Lokal (08.10.2026): EDV-Betreuung als Hauptthema ──────────────────
+# seiten_ausbau_edv.py liefert neue Schlüssel (abschnitte) und ersetzt titel,
+# desc, h1 und kurz; faq_plus wird an faq angehängt.
+def _ausbau_einspielen():
+    try:
+        from .seiten_ausbau_edv import AUSBAU
+    except ImportError:
+        return
+    for slug, neu in AUSBAU.get("en", {}).items():
+        neu = dict(neu)
+        plus = neu.pop("faq_plus", [])
+        eintrag = SEITEN[slug]
+        eintrag.update(neu)
+        if plus:
+            eintrag["faq"] = list(eintrag.get("faq", [])) + list(plus)
+
+
+_ausbau_einspielen()

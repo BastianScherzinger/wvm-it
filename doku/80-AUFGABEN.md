@@ -799,3 +799,6 @@ Alles, was die drei Pakete **nicht** im Code lösen konnten oder durften. Diese 
 | EIG397 | Der Schrittwechsel scrollt vom nächsten Eingabeschritt weg | design | erledigt | geprüft 03.10.2026 (V1.0.1): umgesetzt — Der Konfigurator sprang nicht zum nächsten Schritt. static/js/angebot.js scrollt zu #wzSteps, static/css/style.css setzt scroll-margin-top 88px. Test AngebotOberflaecheTest.test_versteckte_summen_bleiben_versteckt. `b080ad4` | 2026-09-29 |
 | EIG398 | Ausgeblendete Preiszeilen und Anfragehinweise bleiben sichtbar | technik | erledigt | geprüft 03.10.2026 (V1.0.1): umgesetzt — Versteckte Summenzeilen blieben sichtbar. static/css/style.css:661 blendet .ang-totals, .ang-total-row und .ang-total-note mit hidden aus. Test AngebotOberflaecheTest. `b080ad4` | 2026-09-29 |
 <!-- eigenepunkte:ende -->
+
+## Nachtrag 09.10.2026 (Ausbau Lokal)
+Erledigt: sechs neue Ortsseiten (Lenzing, Seewalchen, Schörfling, Timelkam, Regau, Frankenmarkt), sechs bestehende Ortsseiten ausgebaut, EDV-Betreuung als Hauptthema (rund 3.400 Wörter), Ortslinks auf allen Leistungsseiten, Österreich-first in Titeln und Schema. Einzelheiten: `docs/AUSBAU-2026-10-08-lokal.md`. Offen: Faktenprüfung Regau/Frankenmarkt, GSC-Anträge, Messung 28.10./02.11.

@@ -164,6 +164,9 @@ class RegionenStrukturTest(SimpleTestCase):
     def test_entfernung_und_fahrzeit_sind_positiv(self):
         for eintrag in regionen.REGIONEN:
             with self.subTest(slug=eintrag["slug"]):
+                if eintrag["slug"] == "lenzing":  # Firmensitz: keine Anfahrt
+                    self.assertEqual((eintrag["km"], eintrag["fahrzeit"]), (0, 0))
+                    continue
                 self.assertGreater(eintrag["km"], 0)
                 self.assertGreater(eintrag["fahrzeit"], 0)
 

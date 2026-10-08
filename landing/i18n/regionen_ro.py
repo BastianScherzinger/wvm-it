@@ -459,3 +459,26 @@ REGIONEN = {
         ],
     },
 }
+
+
+# ── Ausbau Lokal (08.10.2026): neue Ortsseiten und Ergänzungen bestehender ────
+# Die Entwürfe liegen je Gruppe in regionen_ausbau_<gruppe>.py. Ein Eintrag mit
+# neuem Slug ist eine neue Seite; bei bestehenden Slugs werden die Schlüssel
+# ergänzt bzw. (titel/desc) ersetzt; faq_plus wird an faq angehängt.
+def _ausbau_einspielen():
+    import importlib
+    for gruppe in ("a", "b", "c", "d"):
+        try:
+            modul = importlib.import_module(f"{__package__}.regionen_ausbau_{gruppe}")
+        except ModuleNotFoundError:
+            continue
+        for slug, neu in modul.AUSBAU.get("ro", {}).items():
+            neu = dict(neu)
+            plus = neu.pop("faq_plus", [])
+            eintrag = REGIONEN.setdefault(slug, {})
+            eintrag.update(neu)
+            if plus:
+                eintrag["faq"] = list(eintrag.get("faq", [])) + list(plus)
+
+
+_ausbau_einspielen()

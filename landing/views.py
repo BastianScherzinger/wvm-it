@@ -2309,8 +2309,9 @@ _VOR_ORT_ORTE = list(dict.fromkeys(
 # Linz steht seit dem 25.09.2026 oben (EIG86): /it-service/linz/ bietet Arbeiten vor Ort
 # an (regionen.py, 82 km), llms.txt nannte Linz vor Ort — nur das Schema nicht.
 # `EinzugsgebietTest` hält jede Regionsseite in dieser Liste.
-_AREA_CITIES = ["Wien", "Graz", "Innsbruck", "Klagenfurt",
-                "München", "Stuttgart", "Nürnberg", "Frankfurt am Main", "Berlin"]
+_AREA_CITIES_AT = ["Wien", "Graz", "Innsbruck", "Klagenfurt"]
+_AREA_CITIES_DE = ["München", "Stuttgart", "Nürnberg", "Frankfurt am Main", "Berlin"]
+_AREA_CITIES = _AREA_CITIES_AT + _AREA_CITIES_DE
 
 
 def _structured_data(c, lang, *, mit_katalog=True):
@@ -2361,13 +2362,19 @@ def _structured_data(c, lang, *, mit_katalog=True):
                 offer["priceSpecification"] = spez
             offers.append(offer)
 
-    # Reihenfolge ist Aussage: erst die beiden Länder (Fernwartung), dann das
-    # Einzugsgebiet vor Ort, dann die per Fernwartung bedienten Ballungsräume.
+    # Reihenfolge ist Aussage (Ausbau Lokal, 08.10.2026): Österreich zuerst und
+    # konkret – Land, Bundesländer, Bezirke, Orte mit eigener Seite –, danach die
+    # per Fernwartung bedienten Städte, zuletzt Deutschland als zweites Gebiet.
+    bezirke = list(dict.fromkeys(r["bezirk"] for r in regionen.REGIONEN
+                                 if r["bezirk"].startswith("Bezirk ")))
     area_served = ([{"@type": "Country", "name": "Österreich"},
-                    {"@type": "Country", "name": "Deutschland"},
-                    {"@type": "State", "name": "Oberösterreich"}]
+                    {"@type": "State", "name": "Oberösterreich"},
+                    {"@type": "State", "name": "Salzburg"}]
+                   + [{"@type": "AdministrativeArea", "name": b} for b in bezirke]
                    + [{"@type": "City", "name": ort} for ort in _VOR_ORT_ORTE]
-                   + [{"@type": "City", "name": city} for city in _AREA_CITIES])
+                   + [{"@type": "City", "name": city} for city in _AREA_CITIES_AT]
+                   + [{"@type": "Country", "name": "Deutschland"}]
+                   + [{"@type": "City", "name": city} for city in _AREA_CITIES_DE])
 
     business = {
         "@type": "ProfessionalService",
@@ -2424,12 +2431,11 @@ def _structured_data(c, lang, *, mit_katalog=True):
         }.items() if v},
         "areaServed": area_served,
         "availableLanguage": ["de", "en", "ro"],
-        # Koordinaten des Firmensitzes (Messung GE22/GE09). Bewusst der
-        # Ortsmittelpunkt von Lenzing, nicht eine auf sechs Nachkommastellen
-        # eingemessene Hausnummer: Der Wert ist eine oeffentliche Ortsangabe und
-        # auf rund einen Kilometer genau — eine vorgetaeuschte Punktgenauigkeit
-        # waere dieselbe Sorte Behauptung wie eine erfundene Bewertung.
-        "geo": {"@type": "GeoCoordinates", "latitude": 47.9714, "longitude": 13.6206,
+        # Koordinaten des Firmensitzes. Seit 09.10.2026 der OSM-Adresspunkt
+        # Waldstraße 19, 4860 Lenzing (Nominatim: 47.9702, 13.6040), auf vier
+        # Nachkommastellen gerundet (rund 10 m). Davor stand ein Wert, der etwa
+        # 1,2 km östlich des Sitzes lag (47.9714, 13.6206).
+        "geo": {"@type": "GeoCoordinates", "latitude": 47.9702, "longitude": 13.604,
                 "addressCountry": "AT"},
         "hasMap": "https://www.openstreetmap.org/search?query=Lenzing%20Ober%C3%B6sterreich",
         # Reihenfolge nach Gewicht: Das Kerngeschäft steht vorne, damit die
@@ -3091,6 +3097,17 @@ def _einstieg_daten(eintrag, lang):
     }
 
 
+def _orte_fuer_leistung(slug, lang, n=8):
+    """Die Ortsseiten, die eine Leistungsseite verlinkt (Schwerpunkt zuerst, dann km).
+
+    Die Attersee-Region ist ein Gebiet und steht nur im Hub; Lenzing (Sitz) kommt
+    immer mit, weil dort nach „<Leistung> Lenzing“ gesucht wird."""
+    kandidaten = [r for r in regionen.REGIONEN if r["slug"] != "attersee"]
+    kandidaten.sort(key=lambda r: (r["slug"] != "lenzing",
+                                   r.get("schwerpunkt") != slug, r["km"]))
+    return [_region_daten(r, lang) for r in kandidaten[:n]]
+
+
 def leistung_seite(request, slug):
     """/leistungen/<slug>/ — eine Leistung, eine URL, ein Hauptkeyword."""
     eintrag = leistungen.NACH_SLUG.get(slug)
@@ -3141,6 +3158,8 @@ def leistung_seite(request, slug):
         "name": seite.get("h1", ""), "description": seite.get("kurz", ""),
         "provider": {"@id": f"{base}/#business"},
         "areaServed": [{"@type": "Country", "name": "Österreich"},
+                       {"@type": "State", "name": "Oberösterreich"},
+                       {"@type": "State", "name": "Salzburg"},
                        {"@type": "Country", "name": "Deutschland"}],
         "offers": angebot,
     }
@@ -3158,6 +3177,9 @@ def leistung_seite(request, slug):
         "passt_dazu": _passt_dazu(slug, lang),
         "verwandte": [_leistung_daten(leistungen.NACH_SLUG[v], lang)
                       for v in eintrag.get("verwandt", []) if v in leistungen.NACH_SLUG],
+        # Ausbau Lokal (08.10.2026): jede Leistungsseite verlinkt acht Ortsseiten,
+        # solche mit dieser Leistung als Schwerpunkt zuerst, dann nach Entfernung.
+        "orte_liste": _orte_fuer_leistung(slug, lang),
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
             # "ohne_schema": sichtbare Frage, die nicht ins FAQPage-Schema soll (der
@@ -4065,6 +4087,7 @@ def region_seite(request, slug):
         "alle_regionen": [_region_daten(r, lang) for r in sorted(
             regionen.REGIONEN, key=lambda r: r["km"]) if r["slug"] != slug],
         "nachbarn": [_region_daten(r, lang) for r in regionen.nachbarn(slug, 3)],
+        "leist_h": pack.get("lokal", {}).get("leist_h", "").replace("{ort}", region.get("ort", "")),
         "leistungen_liste": [_leistung_daten(l, lang) for l in leistungen.LEISTUNGEN
                              if not l.get("vor_ort")][:6],
         # Einzelne Aufgaben mit Festpreis, verlinkt aus der Vor-Ort-Karte: Damit
