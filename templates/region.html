@@ -37,8 +37,8 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
 
     {% comment %}Die Zahlen stehen ganz oben, weil sie die erste Frage beantworten.{% endcomment %}
     <dl class="rg-fakten">
-      <div><dt>{{ t.seite.rg_entfernung|safe }}</dt><dd>{{ region.km }} km</dd></div>
-      <div><dt>{{ t.seite.rg_fahrzeit|safe }}</dt><dd>{{ region.fahrzeit }} min</dd></div>
+      <div><dt>{{ t.seite.rg_entfernung|safe }}</dt><dd>{% if region.km %}{{ region.km }} km{% else %}{{ t.lokal.sitz|safe }}{% endif %}</dd></div>
+      <div><dt>{{ t.seite.rg_fahrzeit|safe }}</dt><dd>{% if region.fahrzeit %}{{ region.fahrzeit }} min{% else %}{{ t.lokal.sitz_t|safe }}{% endif %}</dd></div>
       <div><dt>{{ t.seite.rg_bezirk|safe }}</dt><dd>{{ region.bezirk }}</dd></div>
     </dl>
   </div>
@@ -53,6 +53,29 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
       {% for q in region.quellen %}<a href="{{ q.url }}" rel="noopener" target="_blank">{{ q.titel }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
     </p>
     {% endif %}
+
+    {% comment %}Ausbau Lokal (08.10.2026): eigener Inhalt je Ort. Typische Aufträge sind
+    allgemein gehalten, keine Kundenreferenzen; die Anfahrt nennt die gemessenen Werte.{% endcomment %}
+    {% if region.auftraege %}
+    <div class="rg-auftraege" data-reveal>
+      <h2>{{ region.auftraege_h|safe }}</h2>
+      <ul class="sp-liste">
+        {% for a in region.auftraege %}<li>{{ a|safe }}</li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if region.anfahrt %}
+    <div class="rg-anfahrt" data-reveal>
+      <h2>{{ region.anfahrt_h|safe }}</h2>
+      <p>{{ region.anfahrt|safe }}</p>
+    </div>
+    {% endif %}
+    {% for m in region.mehr %}
+    <div class="rg-mehr" data-reveal>
+      <h2>{{ m.h|safe }}</h2>
+      <p>{{ m.t|safe }}</p>
+    </div>
+    {% endfor %}
 
     <div class="rg-zwei">
       <div class="rg-karte rg-karte-ort" data-reveal>
@@ -77,6 +100,7 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
       <div class="rg-karte rg-karte-fern" data-reveal>
         <h2>{{ region.remote_h|safe }}</h2>
         <p>{{ region.remote|safe }}</p>
+        <p class="rg-mini-h">{{ leist_h }}</p>
         <ul class="lk-mini">
           {% for l in leistungen_liste %}<li><a href="{{ l.url }}">{{ l.nav|safe }}</a></li>{% endfor %}
         </ul>

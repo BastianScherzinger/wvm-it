@@ -171,6 +171,57 @@ REGIONEN = [
          {"titel": "Wikipedia: Kirchdorfer Gruppe", "url": "https://de.wikipedia.org/wiki/Kirchdorfer_Gruppe"},
          {"titel": "Wikipedia: Pyhrn-Eisenwurzen Klinikum Kirchdorf", "url": "https://de.wikipedia.org/wiki/Pyhrn-Eisenwurzen_Klinikum_Kirchdorf"},
      ]},
+
+    # Seit 08.10.2026 (Ausbau Lokal): Lenzing ist der Firmensitz, die übrigen
+    # fünf liegen im Umkreis von 20 km. km/fahrzeit: OSRM-Strecke ab Waldstraße 19
+    # (OSM-Adresspunkt 47.9702, 13.6040), gemessen 09.10.2026, auf 5 Minuten gerundet.
+    {"slug": "lenzing", "ort": "Lenzing", "plz": "4860",
+     "bezirk": "Bezirk Vöcklabruck", "lat": 47.9731, "lon": 13.605,
+     "km": 0, "fahrzeit": 0,
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.9",
+     "quellen": [
+         {"titel": "Wikipedia: Lenzing", "url": "https://de.wikipedia.org/wiki/Lenzing"},
+     ]},
+
+    {"slug": "seewalchen-am-attersee", "ort": "Seewalchen am Attersee", "plz": "4863",
+     "bezirk": "Bezirk Vöcklabruck", "lat": 47.9548, "lon": 13.5675,
+     "km": 5, "fahrzeit": 10,
+     "schwerpunkt": "smarthome-knx-loxone", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Seewalchen am Attersee", "url": "https://de.wikipedia.org/wiki/Seewalchen_am_Attersee"},
+     ]},
+
+    {"slug": "schoerfling-am-attersee", "ort": "Schörfling am Attersee", "plz": "4861",
+     "bezirk": "Bezirk Vöcklabruck", "lat": 47.9464, "lon": 13.6036,
+     "km": 6, "fahrzeit": 10,
+     "schwerpunkt": "webseite-erstellen", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Schörfling am Attersee", "url": "https://de.wikipedia.org/wiki/Sch%C3%B6rfling_am_Attersee"},
+     ]},
+
+    {"slug": "timelkam", "ort": "Timelkam", "plz": "4850",
+     "bezirk": "Bezirk Vöcklabruck", "lat": 48.0015, "lon": 13.6125,
+     "km": 5, "fahrzeit": 10,
+     "schwerpunkt": "server-datensicherung", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Timelkam", "url": "https://de.wikipedia.org/wiki/Timelkam"},
+     ]},
+
+    {"slug": "regau", "ort": "Regau", "plz": "4844",
+     "bezirk": "Bezirk Vöcklabruck", "lat": 47.9919, "lon": 13.6881,
+     "km": 11, "fahrzeit": 15,
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Regau", "url": "https://de.wikipedia.org/wiki/Regau"},
+     ]},
+
+    {"slug": "frankenmarkt", "ort": "Frankenmarkt", "plz": "4890",
+     "bezirk": "Bezirk Vöcklabruck", "lat": 47.9855, "lon": 13.4192,
+     "km": 20, "fahrzeit": 25,
+     "schwerpunkt": "it-sicherheit", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Frankenmarkt", "url": "https://de.wikipedia.org/wiki/Frankenmarkt"},
+     ]},
 ]
 
 NACH_SLUG = {r["slug"]: r for r in REGIONEN}
@@ -182,7 +233,7 @@ NACH_SLUG = {r["slug"]: r for r in REGIONEN}
 # beide in `REGIONEN[:5]` fehlten. Attersee und Bad Ischl haben keine
 # Impressionen; sie bleiben über den Hub /it-service/ und die Nachbarlinks der
 # Ortsseiten (`nachbarn()`) verlinkt.
-FOOTER_REGIONEN_SLUGS = ["salzburg", "linz", "wels", "voecklabruck", "gmunden"]
+FOOTER_REGIONEN_SLUGS = ["lenzing", "voecklabruck", "gmunden", "salzburg", "linz", "wels"]
 
 
 def _entfernung_luftlinie(a, b):

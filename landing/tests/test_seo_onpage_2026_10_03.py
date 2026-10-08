@@ -48,7 +48,7 @@ class StartseitenMetaTest(SimpleTestCase):
 class FussOrteTest(SimpleTestCase):
     def test_fuss_verlinkt_die_gemessenen_orte(self):
         self.assertEqual(regionen.FOOTER_REGIONEN_SLUGS,
-                         ["salzburg", "linz", "wels", "voecklabruck", "gmunden"])
+                         ["lenzing", "voecklabruck", "gmunden", "salzburg", "linz", "wels"])
         for pfad in ("/", "/kosten/", "/it-service/attersee/"):
             seite = _seite(pfad)
             for slug in regionen.FOOTER_REGIONEN_SLUGS:

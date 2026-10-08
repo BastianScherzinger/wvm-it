@@ -48,7 +48,7 @@ SEITEN = {
         ],
         "preis_h": "Was das kostet",
         "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Wer nur punktuell Hilfe braucht, zahlt 95 € je Stunde; Einsätze vor Ort kosten 120 € je Stunde zuzüglich Anfahrt. Alle Angaben sind Richtpreise, netto zzgl. USt. Die Betreuung läuft von Quartal zu Quartal, Kündigung mit einem Monat Frist zum Quartalsende. Drei Rechenbeispiele, in denen ausschließlich die Sätze aus dieser Preisliste stecken: ein Betrieb mit fünf Arbeitsplätzen und einem Server samt überwachter Datensicherung zahlt 5 × 29 € + 89 € + 49 € = 283 € im Monat. Bei zehn Arbeitsplätzen mit Server und Datensicherung sind es 10 × 29 € + 89 € + 49 € = 428 € im Monat. Bei zwanzig Arbeitsplätzen mit zwei Servern und Datensicherung ergibt dieselbe Rechnung 20 × 29 € + 2 × 89 € + 49 € im Monat — den Endbetrag lassen wir bewusst offen, weil er als einzelne Zahl auf keiner unserer Preisseiten steht und sich am Kostenrechner mit denselben Werten selbst nachrechnen lässt. Kommen Microsoft-365-Lizenzen dazu, zahlen Sie diese direkt an Microsoft; wir richten sie ein und rechnen die Einrichtung getrennt ab. Punktuelle Zusatzarbeiten außerhalb der Betreuung — etwa der Umzug eines Arbeitsplatzes oder das Einrichten eines neuen Druckers — laufen wie oben zu 95 € je Stunde per Fernwartung oder 120 € vor Ort.",
-        "ort_satz": "Vor Ort sind wir u. a. in <a href=\"/it-service/salzburg/\">Salzburg</a> und <a href=\"/it-service/linz/\">Linz</a>, per Fernwartung in ganz Österreich.",
+        "ort_satz": "Vor Ort sind wir u. a. in <a href=\"/it-service/lenzing/\">Lenzing</a>, <a href=\"/it-service/voecklabruck/\">Vöcklabruck</a>, <a href=\"/it-service/gmunden/\">Gmunden</a>, <a href=\"/it-service/salzburg/\">Salzburg</a> und <a href=\"/it-service/linz/\">Linz</a>, per Fernwartung in ganz Österreich.",
         "faq": [
             {"q": "Ab wie vielen Arbeitsplätzen lohnt sich eine laufende IT-Betreuung?",
              "a": "Ab etwa fünf Arbeitsplätzen rechnet sich die Betreuung meist schon dann, wenn sie einen einzigen Ausfalltag im Jahr verhindert. Darunter ist die Abrechnung nach Stunden oft günstiger — das sagen wir Ihnen im Erstgespräch ehrlich, auch wenn dabei weniger für uns herauskommt."},
@@ -682,3 +682,23 @@ SEITEN = {
         "cta_t": "Beschreiben Sie kurz, wie viele Arbeitsplätze und Standorte Sie haben und was heute nicht rundläuft. Wir melden uns an Werktagen innerhalb von 24 Stunden mit Vorschlag zur Bestandsaufnahme und einem Rahmen zu den Kosten.",
     },
 }
+
+
+# ── Ausbau Lokal (08.10.2026): EDV-Betreuung als Hauptthema ──────────────────
+# seiten_ausbau_edv.py liefert neue Schlüssel (abschnitte) und ersetzt titel,
+# desc, h1 und kurz; faq_plus wird an faq angehängt.
+def _ausbau_einspielen():
+    try:
+        from .seiten_ausbau_edv import AUSBAU
+    except ImportError:
+        return
+    for slug, neu in AUSBAU.get("de", {}).items():
+        neu = dict(neu)
+        plus = neu.pop("faq_plus", [])
+        eintrag = SEITEN[slug]
+        eintrag.update(neu)
+        if plus:
+            eintrag["faq"] = list(eintrag.get("faq", [])) + list(plus)
+
+
+_ausbau_einspielen()

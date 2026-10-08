@@ -3,6 +3,7 @@
 
 from .seiten_ro import SEITEN
 from .regionen_ro import REGIONEN
+from .lokal_ro import LOKAL
 from .branchen_ro import BRANCHEN
 from .vergleiche_ro import VERGLEICHE
 from .einrichten_ro import EINRICHTEN, HUB as EINRICHTEN_HUB
@@ -11,6 +12,7 @@ from .hilfe_ro import HILFE
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
+    "lokal": LOKAL,
     "branchen": BRANCHEN,
     "vergleiche": VERGLEICHE,
     "einrichten": EINRICHTEN,
@@ -20,8 +22,8 @@ PACK = {
         "html_lang": "ro",
         "locale": "ro_RO",
         "num_locale": "ro-RO",
-        "seo_title": "Suport IT în Austria Superioară de la 29 € | WVM-IT",
-        "seo_desc": "Ajutor IT din Lenzing: administrare de la 29 €/lună pe stație, fără contract 95 €/oră, site-uri de la 350 €, hosting, e-mail. Scrieți: Florin Feier sună înapoi.",
+        "seo_title": "Suport IT Austria Superioară, Salzburg de la 29 € | WVM-IT",
+        "seo_desc": "Suport IT din Lenzing pentru Austria Superioară și Salzburg: de la 29 €/lună pe stație, 95 €/oră, site-uri de la 350 €, hosting. Scrieți: Florin Feier sună înapoi.",
         "slogan": "Conectăm oamenii cu tehnologia informației.",
         "firmen_desc": "WVM-IT conectează oamenii cu tehnologia informației. De la sediul nostru din Lenzing, Austria Superioară, ne ocupăm de firme cu soluții IT și digitale dintr-o singură sursă: stații de lucru, rețele și securitate IT, site-uri web profesionale, găzduire și SEO, automatizare cu inteligență artificială, smart home și automatizarea clădirilor, precum și tehnică de conferință, video, sunet și evenimente. Activitatea curentă se desfășoară în mare parte prin mentenanță la distanță, în toată Austria și Germania; lucrările la fața locului acoperă zona din jurul orașelor Vöcklabruck, Attersee, Gmunden, Bad Ischl, Wels, Linz și Salzburg. Tehnologia trebuie să fie ușor de înțeles, să funcționeze fiabil și să aducă un beneficiu real — de aceea oferim consiliere personală, comunicare clară și o persoană de contact fixă.",
         "og_image_alt_suffix": "IT, tehnică și digital pentru firme",
@@ -541,8 +543,8 @@ PACK = {
         "passt_dazu_t": "Articole, comparații și termeni exact pe această temă — scrise pentru firme aflate în fața aceleiași decizii.",
         "regionen_titel": "Regiuni",
         "regionen_h1": "Asistență IT în Austria Superioară și Salzburg — unde venim la fața locului",
-        "regionen_meta_titel": "Administrare IT în Austria Superioară și Salzburg | WVM-IT",
-        "regionen_meta_desc": "Servicii IT la fața locului între Vöcklabruck, Mondsee, Wels și Salzburg, la distanță în toată Austria. Vedeți distanțele, stabiliți o întâlnire acum.",
+        "regionen_meta_titel": "Administrare IT Lenzing, Austria Superioară, Salzburg | WVM-IT",
+        "regionen_meta_desc": "Servicii IT la fața locului din Lenzing: Vöcklabruck, Attersee, Gmunden, Wels, Salzburg, Linz. La distanță în toată Austria. Programați acum o întâlnire.",
         "regionen_kurz": "Asistență IT în Austria Superioară și Salzburg: WVM-IT, furnizor IT din Austria Superioară cu sediul în Lenzing, districtul Vöcklabruck, se ocupă de firme prin mentenanță la distanță în toată Austria și Germania și vine la fața locului pe o rază de aproximativ 60 de minute, de la Salzburg la Linz; pentru fiecare dintre aceste localități deplasarea este descrisă pe o pagină proprie. O intervenție la fața locului costă 120 € pe oră plus deplasarea, iar asistența curentă de la 29 € pe stație și lună.",
         "regionen_intro": "Aceste pagini există pentru localitățile în care chiar ne deplasăm — cu distanța reală și cu ceea ce apare de obicei acolo. Pentru restul nu este nevoie de o pagină locală: mentenanța la distanță, monitorizarea, copiile de siguranță, site-urile, SEO și reclamele sunt independente de loc. Prețurile menționate sunt orientative, net plus TVA.",
         'regionen_warum_h': 'De ce liste de localități, dacă aproape totul se face la distanță',

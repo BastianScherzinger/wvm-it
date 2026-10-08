@@ -46,6 +46,11 @@ def _text(eintrag, texte):
     teile = [texte.get(k, "") for k in
              ("titel", "desc", "h1", "kurz", "intro", "wirtschaft", "remote")]
     teile += list(texte.get("vor_ort", []))
+    # Ausbau Lokal (08.10.2026): die neuen Abschnitte zählen als Seiteninhalt.
+    teile += list(texte.get("auftraege", []))
+    teile.append(texte.get("anfahrt", ""))
+    for m in texte.get("mehr", []):
+        teile += [m.get("h", ""), m.get("t", "")]
     for f in texte.get("faq", []):
         teile += [f.get("q", ""), f.get("a", "")]
     return " \n ".join(teile)
@@ -102,3 +107,25 @@ class OrtsseitenAehnlichkeitTest(SimpleTestCase):
                     self.assertGreaterEqual(
                         n, MIN_WOERTER[sprache],
                         f"[{sprache}] {slug} hat nur {n} Wörter (Minimum {MIN_WOERTER[sprache]}).")
+
+
+# Ausbau Lokal (08.10.2026): die Seiten, die für Suchbegriffe antreten sollen,
+# brauchen deutlich mehr Inhalt als die Mindestschwelle.
+STARKE_ORTE = ("lenzing", "voecklabruck", "gmunden", "salzburg", "linz", "wels",
+               "attnang-puchheim", "seewalchen-am-attersee", "schoerfling-am-attersee",
+               "timelkam", "regau", "frankenmarkt")
+
+
+class StarkeOrtsseitenTest(SimpleTestCase):
+    def test_mindestens_900_woerter_je_sprache(self):
+        for sprache in SPRACHEN:
+            _, zahlen = messen(sprache)
+            for slug in STARKE_ORTE:
+                self.assertGreaterEqual(zahlen[slug], 900, (sprache, slug, zahlen[slug]))
+
+    def test_typische_auftraege_und_anfahrt_vorhanden(self):
+        for sprache in SPRACHEN:
+            texte = i18n.get_pack(sprache)["regionen"]
+            for slug in STARKE_ORTE:
+                self.assertGreaterEqual(len(texte[slug].get("auftraege", [])), 6, (sprache, slug))
+                self.assertTrue(texte[slug].get("anfahrt"), (sprache, slug))

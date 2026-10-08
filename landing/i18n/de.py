@@ -7,6 +7,7 @@ Die Texte der Leistungsseiten stehen wegen ihres Umfangs in einer eigenen Datei
 
 from .seiten_de import SEITEN
 from .regionen_de import REGIONEN
+from .lokal_de import LOKAL
 from .branchen_de import BRANCHEN
 from .vergleiche_de import VERGLEICHE
 from .einrichten_de import EINRICHTEN, HUB as EINRICHTEN_HUB
@@ -15,6 +16,7 @@ from .hilfe_de import HILFE
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
+    "lokal": LOKAL,
     "branchen": BRANCHEN,
     "vergleiche": VERGLEICHE,
     "einrichten": EINRICHTEN,
@@ -24,8 +26,8 @@ PACK = {
         "html_lang": "de-AT",
         "locale": "de_AT",
         "num_locale": "de-DE",
-        "seo_title": "IT-Betreuung & EDV-Hilfe in Oberösterreich ab 29 € | WVM-IT",
-        "seo_desc": "IT-Hilfe aus Lenzing: Betreuung ab 29 €/Monat je Arbeitsplatz, ohne Vertrag 95 €/Std., Webseiten ab 350 €, Hosting, E-Mail. Anfragen: Florin Feier ruft zurück.",
+        "seo_title": "EDV- & IT-Betreuung Oberösterreich, Salzburg ab 29 € | WVM-IT",
+        "seo_desc": "EDV-Betreuung aus Lenzing für Oberösterreich und Salzburg: ab 29 €/Monat, 95 €/Std., Webseiten ab 350 €, Hosting, E-Mail. Anfragen: Florin Feier ruft zurück.",
         "slogan": "Wir verbinden Menschen mit Informationstechnologie.",
         "firmen_desc": "WVM-IT verbindet Menschen mit Informationstechnologie. Von unserem Standort in Lenzing in Oberösterreich betreuen wir Unternehmen mit IT- und Digitallösungen aus einer Hand: EDV, Netzwerk und IT-Sicherheit, professionelle Webseiten, Hosting und SEO, KI-Automatisierung, Smarthome und Gebäudeautomation sowie Konferenz-, Video-, Ton- und Veranstaltungstechnik. Der laufende Betrieb läuft überwiegend per Fernwartung in ganz Österreich und Deutschland; Arbeiten vor Ort übernehmen wir im Einzugsgebiet rund um Vöcklabruck, den Attersee, Gmunden, Bad Ischl, Wels, Linz und Salzburg. Technik soll verständlich sein, zuverlässig funktionieren und einen echten Mehrwert schaffen — dafür gibt es persönliche Beratung, klare Kommunikation und einen festen Ansprechpartner.",
         "og_image_alt_suffix": "EDV, IT und Digitales für Betriebe",
@@ -557,8 +559,8 @@ PACK = {
         "passt_dazu_t": "Beiträge, Vergleiche und Begriffe zu genau diesem Thema — geschrieben für Betriebe, die vor derselben Entscheidung stehen.",
         "regionen_titel": "Regionen",
         "regionen_h1": "IT-Betreuung in Oberösterreich und Salzburg — wo wir vor Ort sind",
-        "regionen_meta_titel": "IT-Service & IT-Betreuung Oberösterreich, Salzburg | WVM-IT",
-        "regionen_meta_desc": "IT-Service vor Ort zwischen Vöcklabruck, Mondsee, Wels und Salzburg, Fernwartung in ganz Österreich. Orte mit Entfernung ansehen, jetzt Termin vereinbaren.",
+        "regionen_meta_titel": "IT-Betreuung Lenzing, Oberösterreich & Salzburg | WVM-IT",
+        "regionen_meta_desc": "IT-Service vor Ort ab Lenzing: Vöcklabruck, Attersee, Gmunden, Wels, Salzburg, Linz. Fernwartung in ganz Österreich. Jetzt Termin vereinbaren.",
         "regionen_kurz": "IT-Betreuung in Oberösterreich und Salzburg: WVM-IT, ein IT-Dienstleister in Oberösterreich mit Sitz in Lenzing im Bezirk Vöcklabruck, betreut Betriebe per Fernwartung in ganz Österreich und Deutschland und kommt für Arbeiten vor Ort im Umkreis von rund 60 Minuten, von Salzburg bis Linz; für jeden dieser Orte steht die Anfahrt auf einer eigenen Seite. Ein Einsatz vor Ort kostet 120 € je Stunde zuzüglich Anfahrt, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat.",
         "regionen_intro": "Diese Seiten gibt es für die Orte, an die tatsächlich jemand von uns hinfährt — mit der echten Entfernung und dem, was dort vor Ort typischerweise ansteht. Für alles Übrige braucht es keine Ortsseite: Fernwartung, Überwachung, Datensicherung, Webseiten, SEO und Ads sind ortsunabhängig. Die genannten Preise sind Richtpreise, netto zzgl. USt.",
         'regionen_warum_h': 'Warum überhaupt Orte, wenn fast alles aus der Ferne läuft',

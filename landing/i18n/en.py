@@ -7,6 +7,7 @@ here under the key "seiten".
 
 from .seiten_en import SEITEN
 from .regionen_en import REGIONEN
+from .lokal_en import LOKAL
 from .branchen_en import BRANCHEN
 from .vergleiche_en import VERGLEICHE
 from .einrichten_en import EINRICHTEN, HUB as EINRICHTEN_HUB
@@ -15,6 +16,7 @@ from .hilfe_en import HILFE
 PACK = {
     "seiten": SEITEN,
     "regionen": REGIONEN,
+    "lokal": LOKAL,
     "branchen": BRANCHEN,
     "vergleiche": VERGLEICHE,
     "einrichten": EINRICHTEN,
@@ -24,8 +26,8 @@ PACK = {
         "html_lang": "en",
         "locale": "en_US",
         "num_locale": "en-US",
-        "seo_title": "IT support & help in Upper Austria from €29/month | WVM-IT",
-        "seo_desc": "IT help from Lenzing: support from €29/month per workstation, no contract €95/hr, websites from €350, hosting, email. Get in touch: Florin Feier calls back.",
+        "seo_title": "IT support in Upper Austria & Salzburg from €29 | WVM-IT",
+        "seo_desc": "IT support from Lenzing for Upper Austria and Salzburg: from €29/month per workstation, €95/hr, websites from €350, hosting. Get in touch: Florin Feier calls back.",
         "slogan": "We connect people with information technology.",
         "firmen_desc": "WVM-IT connects people with information technology. From our base in Lenzing, Upper Austria, we look after companies with IT and digital services from a single source: workstations, networks and IT security, professional websites, hosting and SEO, AI automation, smart home and building automation, plus conference, video, audio and event technology. Day-to-day support runs mostly by remote maintenance across Austria and Germany; on-site work covers the area around Vöcklabruck, Lake Atter, Gmunden, Bad Ischl, Wels, Linz and Salzburg. Technology should be understandable, reliable and genuinely useful — which is why you get personal advice, clear communication and one named contact.",
         "og_image_alt_suffix": "IT, technology and digital for small businesses",
@@ -549,8 +551,8 @@ PACK = {
         "passt_dazu_t": "Articles, comparisons and terms on exactly this topic — written for businesses facing the same decision.",
         "regionen_titel": "Regions",
         "regionen_h1": "IT support in Upper Austria and Salzburg — where we come in person",
-        "regionen_meta_titel": "IT support & services in Upper Austria and Salzburg | WVM-IT",
-        "regionen_meta_desc": "IT service on site between Vöcklabruck, Mondsee, Wels and Salzburg, remote support across Austria. See the places with distances, book an appointment now.",
+        "regionen_meta_titel": "IT support Lenzing, Upper Austria & Salzburg | WVM-IT",
+        "regionen_meta_desc": "IT service on site from Lenzing: Vöcklabruck, Attersee, Gmunden, Wels, Salzburg, Linz. Remote support across Austria. Book an appointment now.",
         "regionen_kurz": "IT support in Upper Austria and Salzburg: WVM-IT, an IT service provider in Upper Austria based in Lenzing in the Vöcklabruck district, looks after businesses by remote maintenance across Austria and Germany and comes on site within roughly 60 minutes, from Salzburg to Linz; for each of these places the journey is set out on a page of its own. On-site work costs €120 per hour plus travel; ongoing support from €29 per workstation and month.",
         "regionen_intro": "These pages exist for the places we genuinely drive to — with the real distance and what typically comes up there on site. Everything else needs no local page: remote maintenance, monitoring, backups, websites, SEO and ads are independent of location. The prices stated are guide prices, net plus VAT.",
         'regionen_warum_h': 'Why list places at all when most of it is remote',

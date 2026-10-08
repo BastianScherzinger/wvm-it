@@ -88,6 +88,14 @@ from landing.i18n import glossar_de
 from landing.i18n import hilfe_de
 from landing.i18n import hilfe_en
 from landing.i18n import hilfe_ro
+from landing.i18n import lokal_de
+from landing.i18n import lokal_en
+from landing.i18n import lokal_ro
+from landing.i18n import regionen_ausbau_a
+from landing.i18n import regionen_ausbau_b
+from landing.i18n import regionen_ausbau_c
+from landing.i18n import regionen_ausbau_d
+from landing.i18n import seiten_ausbau_edv
 from landing.i18n import regionen_de
 from landing.i18n import regionen_en
 from landing.i18n import regionen_ro
@@ -113,7 +121,8 @@ from landing.management.commands import stand_schreiben
 SPRACHMODULE = (beitraege_de, branchen_de, branchen_en, branchen_ro,
                 checklisten_de, de, einrichten_de, einrichten_en, einrichten_ro,
                 en, glossar_de, hilfe_de, hilfe_en, hilfe_ro, regionen_de, regionen_en,
-                regionen_ro, ro, seiten_de, seiten_en, seiten_ro, vergleiche_de,
+                regionen_ro, ro, seiten_de, lokal_de, lokal_en, lokal_ro, regionen_ausbau_a, regionen_ausbau_b, regionen_ausbau_c, regionen_ausbau_d, seiten_ausbau_edv,
+                seiten_en, seiten_ro, vergleiche_de,
                 vergleiche_en, vergleiche_ro)
 BEFEHLE = (anfragen_loeschen, indexnow, befehl_messung, pruefe_mail, pruefe_seite,
            pruefe_sicherheit, seo_bericht, stand_schreiben)

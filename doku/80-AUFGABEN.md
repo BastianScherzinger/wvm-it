@@ -808,3 +808,6 @@ Einzelheiten: `docs/AUSBAU-2026-10-08-technik.md`.
 - **Von Florin freizugeben:** zwei neue Sätze in der Datenschutzerklärung (Klickzählung ohne Personenbezug; Google Maps erst nach Klick). Rechtstext, nicht ohne seine Durchsicht live stellen.
 - **Offen für Florin (Hoster IONOS):** Apex `https://wvm-it.tech/<pfad>` antwortet 200 mit Meta-Refresh statt 301. Lösung: `.htaccess` im Webspace der Apex-Domain mit `RewriteCond %{HTTP_HOST} ^wvm-it\.tech$ [NC]` und `RewriteRule ^(.*)$ https://www.wvm-it.tech/$1 [R=301,L]`, ersatzweise IONOS-Domainweiterleitung (301, mit Pfad). Vorbild: pystore.de. Zertifikat der Apex-Domain läuft am 01.01.2027 ab (liegt beim Webspace).
 - **Nur dokumentiert:** Kein Brotli (Railway-Edge liefert gzip). Kein Cache-Control auf HTML — bewusst (CSRF-Token je Anfrage, `docs/CACHE-2026-09-06.md`).
+
+## Nachtrag 09.10.2026 (Ausbau Lokal)
+Erledigt: sechs neue Ortsseiten (Lenzing, Seewalchen, Schörfling, Timelkam, Regau, Frankenmarkt), sechs bestehende Ortsseiten ausgebaut, EDV-Betreuung als Hauptthema (rund 3.400 Wörter), Ortslinks auf allen Leistungsseiten, Österreich-first in Titeln und Schema. Einzelheiten: `docs/AUSBAU-2026-10-08-lokal.md`. Offen: Faktenprüfung Regau/Frankenmarkt, GSC-Anträge, Messung 28.10./02.11.

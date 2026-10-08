@@ -76,6 +76,12 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
           {% endfor %}
         </ol>
 
+        {% comment %}Ausbau Lokal: optionale Langabschnitte (derzeit EDV-Betreuung).{% endcomment %}
+        {% for a in seite.abschnitte %}
+        <h2 class="sp-h2">{{ a.h|safe }}</h2>
+        <p class="sp-intro">{{ a.t|safe }}</p>
+        {% endfor %}
+
         <h2 class="sp-h2">{{ seite.preis_h|safe }}</h2>
         <p class="sp-preis-text">{{ seite.preis_t|safe }}{% if seite.ort_satz %} {{ seite.ort_satz|safe }}{% endif %}</p>
         {% if seite.einrichtung_satz %}<p class="sp-preis-text">{{ seite.einrichtung_satz|safe }}</p>{% endif %}
@@ -193,6 +199,26 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
         </li>
         {% endfor %}
       </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  {% comment %} ── Ortsseiten (Ausbau Lokal, 08.10.2026): jede Leistung verlinkt Orte ─── {% endcomment %}
+  {% if orte_liste %}
+  <section class="section">
+    <div class="wrap sp-wrap">
+      <header class="sec-head sec-head-links" data-reveal>
+        <h2 class="section-t">{{ t.lokal.orte_h|safe }}</h2>
+        <p class="section-lead">{{ t.lokal.orte_t|safe }}</p>
+      </header>
+      <nav class="rg-weitere" aria-label="{{ t.lokal.orte_h|safe }}">
+        <ul>
+          {% for r in orte_liste %}
+          <li><a href="{% url 'region' slug=r.slug %}">{{ r.ort }}<span>{% if r.km %}{{ r.km }} km{% else %}{{ t.lokal.sitz|safe }}{% endif %}</span></a></li>
+          {% endfor %}
+        </ul>
+        <p class="lk-alle"><a href="{% url 'regionen' %}">{{ t.lokal.orte_alle|safe }}</a></p>
+      </nav>
     </div>
   </section>
   {% endif %}
