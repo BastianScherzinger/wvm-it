@@ -8,6 +8,8 @@ Status: Entwurf, Florin gibt frei. Typ je Beitrag: Neuigkeit, Button „Mehr erf
 
 ## Beitrag 1 · Dienstag, 13.10.2026 · EDV-Betreuung am Attersee
 
+**Veröffentlicht 09.10.2026** (vorgezogen auf Bastians Wunsch) im Profil WVM-IT, Typ „Beitrag“, Button „Weitere Informationen“ (= „Mehr erfahren“ gibt es im neuen Dialog nicht) mit obiger URL, ohne Bild, nicht in andere Profile kopiert. Wirkung in GSC über `utm_content=q1` prüfen.
+
 Button „Mehr erfahren“: `https://www.wvm-it.tech/it-service/attersee/?utm_source=google&utm_medium=organic&utm_campaign=gbp-post&utm_content=q1`
 Bildidee: Eigenes Foto vom Attersee mit einem Betrieb im Vordergrund (Pension, Werkstatt, Büro), ohne erkennbare Personen. Alternativ Florin mit Laptop unterwegs.
 
