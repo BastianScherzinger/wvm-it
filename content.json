@@ -34,6 +34,7 @@
   "land": "AT",
   "profile": ["https://www.google.com/maps?cid=4953433262951163842", "https://firmen.wko.at/florin-feier/ober%C3%B6sterreich/?firmaid=671d0876-e03a-4704-8110-0044c664ccfc", "https://www.linkedin.com/in/florin-feier-186bb0425/"],
   "bewertungslink": "https://g.page/r/CcLnzuhOIb5EEBM/review",
+  "bewertungsportale": [{"name": "Herold", "url": "https://www.herold.at/bewertungen/newCompanyReview.do?provider=HEROLD&sid=1628291", "hinweis": "Österreichs großes Firmenverzeichnis"}],
   "maps_profil_url": "https://www.google.com/maps?cid=4953433262951163842",
   "maps_embed_url": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d193417!2d13.6974196!3d47.9197877!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x628aa3429a5fbdd3%3A0x44be214ee8cee7c2!2sWVM-IT!5e0!3m2!1sde!2sat!4v1760000000000",
   "region": "Oberösterreich",

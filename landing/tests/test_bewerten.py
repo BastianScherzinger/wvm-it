@@ -62,3 +62,57 @@ class BewertenTest(SimpleTestCase):
     def test_nicht_in_sitemap(self):
         antwort = self.c.get(reverse("sitemap_xml"))
         self.assertNotIn(b"/bewerten/", antwort.content)
+
+
+def _mit_portalen(link, portale):
+    from landing.views import _FALLBACK
+    daten = dict(_FALLBACK)
+    daten["bewertungslink"] = link
+    daten["bewertungsportale"] = portale
+    return mock.patch("landing.views._content", return_value=daten)
+
+
+class BewertenAlleTest(SimpleTestCase):
+    """`/bewerten/alle/` (09.10.2026) — Ziel des QR-Codes auf der Bewertungsbitte."""
+
+    HEROLD = {"name": "Herold", "hinweis": "Verzeichnis",
+              "url": "https://www.herold.at/bewertungen/newCompanyReview.do?provider=HEROLD&sid=1"}
+
+    def setUp(self):
+        self.c = _util.client()
+
+    def test_echte_daten_google_zuerst_dann_herold(self):
+        from landing.views import _content, bewertungsportale
+        namen = [n for n, _, _ in bewertungsportale(_content())]
+        self.assertEqual(namen[0], "Google")
+        self.assertIn("Herold", namen)
+
+    def test_seite_zeigt_knoepfe_noindex(self):
+        with _mit_portalen("https://g.page/r/abc/review", [self.HEROLD]):
+            antwort = self.c.get("/bewerten/alle/")
+        self.assertEqual(antwort.status_code, 200)
+        html = antwort.content.decode()
+        self.assertIn('content="noindex,follow"', html)
+        self.assertEqual(antwort.headers["X-Robots-Tag"], "noindex")
+        self.assertEqual(html.count('class="bw-knopf'), 2)
+        self.assertLess(html.index("g.page/r/abc/review"), html.index("herold.at"))
+        self.assertNotIn('<link rel="alternate" hreflang', html)
+
+    def test_fremder_host_wird_ausgelassen(self):
+        fremd = {"name": "Fremd", "url": "https://example.com/bewerten"}
+        with _mit_portalen("https://g.page/r/abc/review", [fremd]):
+            html = self.c.get("/bewerten/alle/").content.decode()
+        self.assertNotIn("example.com", html)
+
+    def test_ohne_portale_404(self):
+        with _mit_portalen("", []):
+            self.assertEqual(self.c.get("/bewerten/alle/").status_code, 404)
+
+    def test_englischer_browser_bleibt_deutsch(self):
+        with _mit_portalen("https://g.page/r/abc/review", []):
+            antwort = self.c.get("/bewerten/alle/", HTTP_ACCEPT_LANGUAGE="en")
+        self.assertEqual(antwort.status_code, 200)
+
+    def test_nicht_in_sitemap(self):
+        antwort = self.c.get(reverse("sitemap_segment", kwargs={"klasse": "kern"}))
+        self.assertNotIn(b"/bewerten/alle/", antwort.content)

@@ -23,6 +23,9 @@ urlpatterns = [
     # gültig, auch wenn sich der Google-Bewertungslink später ändert. Ohne
     # Sprachpräfix-Variante, weil sie nur auf Karte/QR-Code gedruckt wird.
     path("bewerten/", views.bewerten, name="bewerten"),
+    # Alle Bewertungsportale auf einer Seite (09.10.2026) — Ziel des QR-Codes auf
+    # der Bewertungsbitte. Nur Deutsch, noindex, nicht in der Sitemap.
+    path("bewerten/alle/", views.bewerten_alle, name="bewerten_alle"),
     # Klickzaehlung (Anruf/WhatsApp/E-Mail), ohne IP/Cookie/Kennung: landing/klicks.py
     path("m/klick/", klicks.klick, name="klick_zaehlen"),
     path("bau/status/", views.bau_status, name="bau_status"),

@@ -1,7 +1,7 @@
 ---
 bereich: local-seo
 titel: Local SEO
-stand: 2026-10-03
+stand: 2026-10-09
 status: teilweise
 fortschritt: 50
 zusammenfassung: 02.10.2026 geprüft: 2 von 4 Punkten erfüllt (Rechnung nach der Formel unter der Überschrift: Profil vorhanden 25, Search Console verbunden 25, Bewertungen öffentlich 0, NAP überall gleich 0). Das Google-Unternehmensprofil ist angelegt (11.09.2026) und laut Diagnose vom 25.09.2026 bestätigt (blaues Häkchen) — die frühere Angabe „ausstehend“ war überholt; es steht als sameAs im Schema (35567eb), dazu der WKO-Eintrag (dd88be7). Öffentlich sichtbar sind keine Bewertungen (4 in der Verwaltungsansicht, Herkunft ungeklärt), und zwei fremde Maps-Einträge mit abweichender Anschrift existieren (Diagnose 25.09.2026). Offen sind nur noch Schritte, die Bastian im Browser oder Florin bei sich tun muss. Conversion-Runde 03.10.2026: Fuß verlinkt Salzburg, Linz, Wels, Vöcklabruck, Gmunden (nach Messdaten), Ortsseiten mit Antwort im ersten Satz und Anrufweg darunter; externe Schritte in ../docs/SEO-CONVERSION-2026-10-03.md.
@@ -115,6 +115,15 @@ Während der Wartezeit: Fotos, Leistungen mit Preisen, Beschreibung. Nach Freisc
 | Anfragen über die Website | unbekannt | 2+ | 8+ |
 
 ## Bewertungen
+
+**Bewertungsbitte seit 09.10.2026 (Zweig `bewerten/2026-10-09-alle`):** `/bewerten/` leitet zu
+Google (`content.json` → `bewertungslink`), `/bewerten/alle/` zeigt alle Portale als Knöpfe —
+Google zuerst, dann `bewertungsportale` (zurzeit **Herold**, Formular „Sie bewerten: WVM-IT, 4860
+Lenzing“, `sid=1628291`). Nur Deutsch, `noindex`, nicht in der Sitemap; Hosts per Whitelist
+(`views._BEWERTUNGSPORTAL_HOSTS`), Tests `landing/tests/test_bewerten.py`. Nicht aufgenommen:
+Trustpilot (unbeanspruchtes Profil „Wvm It · Vereinigte Staaten“), firmenabc (noch „Florin
+Feier“, keine Bewertungsfunktion), ProvenExpert (Konto noch nicht bestätigt). Bild mit QR-Code
+und WhatsApp-Text: `Webagentur Scherzinger\Kunden\Kunde-02_2026-09_WVM-IT\Bewertungsbitte\`.
 
 **Öffentlich keine** — die Verwaltungsansicht zeigte am 25.09.2026 4 Rezensionen, öffentlich erscheinen keine Sterne (Duplikat und offene Bestätigung, siehe oben), und auf der Seite steht kein Bewertungsblock. Regel T5: erst echte Bewertungen einsammeln, dann darf ein Block auf die Seite; **nichts erfinden** — drei erfundene Kundenstimmen standen bis zum 28.08.2026 live und sind nach UWG angreifbar. Messung `KV09`: 2 von 6 Vertrauenssignalen auf der Startseite (Zertifikate/Meister, Referenzen), es fehlen Bewertungen mit Zahl, Erfahrung mit Jahreszahl, Absicherung, `AggregateRating`.
 

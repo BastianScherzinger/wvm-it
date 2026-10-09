@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %}
+/bewerten/alle/ (09.10.2026) — ein Knopf je Bewertungsportal, Ziel des QR-Codes auf
+der Bewertungsbitte (Kundenordner Kunde-02 → Bewertungsbitte). Daten: `bewertungslink`
+und `bewertungsportale` in content.json, gefiltert von views.bewertungsportale().
+
+Nur Deutsch wie Beiträge, Glossar und Checklisten, deshalb der Text im Template.
+`noindex`, keine hreflang-Alternativen, nicht in `_seiten_pfade()`. Google ist der
+einzige gefüllte Knopf. Keine Bewertungszahl, keine Gegenleistung, keine Vorauswahl
+nach Zufriedenheit.
+{% endcomment %}
+{% block titel %}Bewertung schreiben | WVM-IT{% endblock %}
+{% block beschreibung %}Die Bewertungsportale von WVM-IT auf einer Seite. Sie wählen, wo Sie schreiben — eines reicht.{% endblock %}
+{% block og_titel %}Bewertung schreiben — WVM-IT{% endblock %}
+{% block og_beschreibung %}Die Bewertungsportale von WVM-IT auf einer Seite.{% endblock %}
+{% block tw_titel %}Bewertung schreiben — WVM-IT{% endblock %}
+{% block tw_beschreibung %}Die Bewertungsportale von WVM-IT auf einer Seite.{% endblock %}
+{% block robots %}noindex,follow{% endblock %}
+{% block alternates %}{% endblock %}
+
+{% block inhalt %}
+<header class="sp-top">
+  <div class="wrap">
+    <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
+      <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Bewertung schreiben</span>
+    </nav>
+    <h1>Danke, dass Sie uns weiterempfehlen</h1>
+    {% include 'antwort.html' with text="Wer einen IT-Dienstleister sucht, liest zuerst, was andere Betriebe geschrieben haben. Zwei, drei ehrliche Sätze zu Ihrer Erfahrung helfen anderen bei der Wahl — und uns mehr als jede Anzeige. Jedes Portal dauert etwa eine Minute; eines reicht." %}
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap"><div class="bw">
+    <ol class="bw-liste">
+      {% for name, url, hinweis in portale %}
+      <li>
+        <a class="bw-knopf{% if forloop.first %} bw-knopf--erste{% endif %}" href="{{ url }}" rel="noopener" target="_blank">
+          <span class="bw-text">
+            <span class="bw-name">{{ name }}</span>
+            {% if hinweis %}<span class="bw-hinweis">{{ hinweis }}</span>{% endif %}
+          </span>
+          {% include 'icons.html' with name='arrow' %}
+        </a>
+      </li>
+      {% endfor %}
+    </ol>
+
+    {% if c.inhaber_name %}
+    <div class="ak-person bw-person">
+      {% if c.founder_image %}<img class="ak-person-bild" src="{% static 'img/florin_320.webp' %}"
+           srcset="{% static 'img/florin_320.webp' %} 320w, {{ c.founder_image }} 640w"
+           sizes="44px" alt="{{ c.inhaber_name }}, {{ c.inhaber_rolle|default:'Inhaber' }} von WVM-IT" width="44" height="44" loading="lazy">{% endif %}
+      <span class="ak-person-text">Danke für Ihr Vertrauen — <strong>{{ c.inhaber_name }}</strong>, {{ c.inhaber_rolle|default:'Inhaber' }}</span>
+    </div>
+    {% endif %}
+
+    <p class="bw-fuss">Die Links öffnen die Formulare der Anbieter in einem neuen Fenster.
+      Nichts davon ist an eine Gegenleistung geknüpft. Wenn etwas nicht gepasst hat, sagen Sie
+      es uns bitte zuerst direkt{% if c.telefon %}: <a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a>{% endif %}.</p>
+  </div></div>
+</section>
+{% endblock %}

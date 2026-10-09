@@ -4302,6 +4302,58 @@ def bewerten(request):
     return antwort
 
 
+# Weitere Portale neben Google (09.10.2026). Dieselbe Regel wie oben: nur
+# Formularadressen, die im Browser geöffnet und dem Betrieb zugeordnet wurden
+# (Herold: „Sie bewerten: WVM-IT, 4860 Lenzing“). Trustpilot fehlt bewusst —
+# dort steht ein unbeanspruchtes Profil „Wvm It · Vereinigte Staaten“.
+_BEWERTUNGSPORTAL_HOSTS = frozenset({"www.herold.at"})
+
+
+def _link_ok(url, hosts):
+    url = (url or "").strip()
+    if not url.startswith("https://"):
+        return False
+    try:
+        return urlparse(url).hostname in hosts
+    except ValueError:
+        return False
+
+
+def bewertungsportale(c):
+    """Google zuerst (aus `bewertungslink`), dann `bewertungsportale` aus
+    content.json — nur geprüfte Hosts. Liste aus (name, url, hinweis)."""
+    liste = []
+    if _link_ok(c.get("bewertungslink"), _BEWERTUNGSLINK_HOSTS):
+        liste.append(("Google", c["bewertungslink"].strip(),
+                      "Erscheint bei WVM-IT in der Google-Suche und in Maps"))
+    for p in c.get("bewertungsportale") or []:
+        if p.get("name") and _link_ok(p.get("url"), _BEWERTUNGSPORTAL_HOSTS):
+            liste.append((p["name"], p["url"].strip(), p.get("hinweis", "")))
+    return liste
+
+
+def bewerten_alle(request):
+    """`/bewerten/alle/` — Ziel des QR-Codes auf der Bewertungsbitte (09.10.2026).
+
+    Ein Knopf je Portal, Google als einziger gefüllter. Nur Deutsch, `noindex`
+    und nicht in `_seiten_pfade()` (also weder Sitemap noch IndexNow): Die Seite
+    hat keinen eigenen Suchwert, sie ist ein Wegweiser. Keine Bewertungszahl,
+    keine Gegenleistung, keine Vorauswahl nach Zufriedenheit (UWG,
+    Richtlinien von Google und Herold).
+    """
+    c = _content()
+    portale = bewertungsportale(c)
+    if not portale:
+        raise Http404("Kein Bewertungsportal hinterlegt.")
+    messung.zaehle("kurzlink", "bewerten-alle")
+    antwort = render(request, "bewerten_alle.html", {
+        "c": c, "portale": portale,
+        "structured_data": _seiten_schema(c, "de"),
+    })
+    antwort.headers["X-Robots-Tag"] = "noindex"
+    return antwort
+
+
 # ── Rechtstexte ──────────────────────────────────────────────────────────────
 # Vier Seiten aus einer Vorlage. Die Ueberschrift kommt aus der Fussleiste des
 # Sprachpakets, der Text aus content.json — dort wird er gepflegt.
