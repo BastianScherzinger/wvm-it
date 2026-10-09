@@ -95,3 +95,35 @@ Preis netto zzgl. USt.
 - Die Zahl „190 €" und „49 €" gelten laut Preisliste im Code, bei Preisänderung anpassen.
 - Der Button „Mehr erfahren" wird im Beitragseditor als Schaltfläche gesetzt, die URL nicht in den Text kopieren.
 - Reihenfolge einhalten, ein Beitrag pro Woche, jeweils Dienstag. Reichweite nach Beitrag 4 mit den Aufrufen der Zielseiten vergleichen (Kennung `utm_content` q1 bis q4).
+
+---
+
+## Zusatzbeiträge 09.10.2026 (veröffentlicht, Bastian: „richtig hochpushen“)
+
+Beide sofort veröffentlicht, Typ „Beitrag“, Button „Weitere Informationen“, ohne Bild, nicht in andere Profile kopiert. Preise aus `ANGEBOT_GROUPS` (it_betreuung 29 €, it_support 95 €/Std.), Entfernungen wie auf den Ortsseiten.
+
+### V1 · Vöcklabruck · `utm_content=voecklabruck`
+Link: `https://www.wvm-it.tech/it-service/voecklabruck/?utm_source=google&utm_medium=organic&utm_campaign=gbp-post&utm_content=voecklabruck`
+
+IT-Betreuung für Betriebe in Vöcklabruck
+
+Ob Steuerkanzlei am Stadtplatz, Handwerksbetrieb im Gewerbegebiet oder Ordination: Viele Betriebe im Bezirk Vöcklabruck haben keine eigene IT-Abteilung. Genau dafür gibt es uns. WVM-IT sitzt in Lenzing, rund 10 Minuten von Vöcklabruck entfernt.
+
+Wir kümmern uns um Arbeitsplätze, Server, Netzwerk und WLAN, Microsoft 365, E-Mail und Datensicherung. Die laufende Betreuung gibt es ab 29 € je Arbeitsplatz und Monat. Das meiste erledigen wir per Fernwartung, meist am selben Tag. Muss jemand vorbeikommen, sind wir schnell vor Ort.
+
+Nur ein einzelnes Problem? Dann helfen wir auch ohne Vertrag, zu 95 € je Stunde.
+
+Preise netto zzgl. USt.
+
+### G1 · Gmunden · `utm_content=gmunden`
+Link: `https://www.wvm-it.tech/it-service/gmunden/?utm_source=google&utm_medium=organic&utm_campaign=gbp-post&utm_content=gmunden`
+
+EDV-Betreuung für Betriebe in Gmunden
+
+Hotel, Gastronomie, Handel oder Büro am Traunsee: Wenn Kasse, WLAN oder E-Mail nicht laufen, steht der Betrieb. WVM-IT aus Lenzing betreut Betriebe in Gmunden und im Salzkammergut, rund 30 Minuten entfernt.
+
+Die laufende EDV-Betreuung beginnt ab 29 € je Arbeitsplatz und Monat: Updates, Überwachung, Datensicherung und Hilfe, wenn etwas nicht geht. Der Großteil läuft per Fernwartung, meist am selben Tag. Ist ein Einsatz vor Ort nötig, kommen wir nach Gmunden.
+
+Sie haben einen festen Ansprechpartner statt einer Hotline. Einzelne Hilfe gibt es auch ohne Vertrag, zu 95 € je Stunde.
+
+Preise netto zzgl. USt.
