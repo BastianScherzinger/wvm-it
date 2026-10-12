@@ -146,15 +146,15 @@ class FromDichteTest(SimpleTestCase):
 
 
 class ShopLinkTest(SimpleTestCase):
-    """EIG196: Der Fußlink zu pystore.de sagt in jeder Sprache, dass es ein fremder Shop ist."""
+    """EIG196: Der Fußlink zur Webagentur sagt in jeder Sprache, dass es ein fremder Shop ist."""
 
     def test_fusslink_nennt_partner_shop_und_oeffnet_sicher(self):
-        erwartet = {"/": "PyStore (Partner-Shop)", "/en/": "PyStore (partner shop)",
-                    "/ro/": "PyStore (magazin partener)"}
+        erwartet = {"/": "Webdesign: Webagentur Scherzinger", "/en/": "Web design: Webagentur Scherzinger",
+                    "/ro/": "Web design: Webagentur Scherzinger"}
         for pfad, text in erwartet.items():
             with self.subTest(pfad=pfad):
                 html = _html(pfad)
-                m = re.search(r'<a href="https://www\.pystore\.de"([^>]*)>([^<]*)</a>', html)
+                m = re.search(r'<a href="https://webagentur-scherzinger\.com"([^>]*)>([^<]*)</a>', html)
                 self.assertIsNotNone(m)
                 self.assertEqual(m.group(2), text)
                 self.assertIn('rel="noopener"', m.group(1))

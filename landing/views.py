@@ -69,7 +69,7 @@ _FALLBACK = {
     "seo_desc": "Performante Webseiten, Hosting, KI-Automatisierungen und SEO für Unternehmen.",
     "jahr": 2026,
     "wvm_url": "https://www.wvm-it.tech",
-    "wvm_shop": "https://www.pystore.de",
+    "wvm_shop": "https://webagentur-scherzinger.com",
     "webagentur_url": "https://webagentur-scherzinger.com",
     "datenschutz": "",
     "impressum": "",
@@ -458,11 +458,11 @@ def _probleme(lang):
 # static/img, rolle = kurze Rollenbezeichnung, url = externe Seite).
 KOOPERATIONEN = [
     {
-        "name": "PyStore",
+        "name": "Webagentur Scherzinger",
         "rolle": "Webentwicklung",
-        "url": "https://www.pystore.de",
-        "domain": "pystore.de",
-        "logo": "img/coop_pystore.webp",
+        "url": "https://webagentur-scherzinger.com",
+        "domain": "webagentur-scherzinger.com",
+        "logo": "img/coop_webagentur.webp",
         "text": "Unser Partner für Webentwicklung und digitale Produkte.",
     },
 ]

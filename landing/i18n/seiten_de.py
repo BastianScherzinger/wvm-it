@@ -297,7 +297,7 @@ SEITEN = {
             {"q": "Was ist GEO und warum reden Sie davon?",
              "a": "GEO steht für die Sichtbarkeit in generativen Antwortmaschinen — ChatGPT, Perplexity, Gemini, Google-KI-Übersichten. Immer mehr Leute stellen dort ihre Frage, statt zehn blaue Links zu lesen. Zitiert wird, was klar beantwortet, datiert und maschinenlesbar aufgebaut ist. Das bauen wir mit ein."},
             {"q": "Haben Sie einen Beleg, dass das funktioniert?",
-             "a": "Rümpelwerk Mitteldeutschland: Website, SEO/GEO und Google Ads betreuen wir dort laufend, mit eigenen Seiten je Leistung und je Region. Umgesetzt gemeinsam mit unserem Partner PyStore."},
+             "a": "Rümpelwerk Mitteldeutschland: Website, SEO/GEO und Google Ads betreuen wir dort laufend, mit eigenen Seiten je Leistung und je Region. Umgesetzt gemeinsam mit unserem Partner Webagentur Scherzinger (Lübeck)."},
         ],
         "cta_h": "Wonach sollen Kunden Sie finden?",
         "cta_t": "Nennen Sie uns zwei, drei Suchbegriffe, unter denen Sie gefunden werden wollen. Wir sehen nach, wie realistisch das ist, und antworten an Werktagen innerhalb von 24 Stunden.",

@@ -292,7 +292,7 @@ SEITEN = {
             {"q": "Ce este GEO și de ce vorbiți despre el?",
              "a": "GEO înseamnă vizibilitatea în motoarele generative de răspuns — ChatGPT, Perplexity, Gemini, rezumatele AI din Google. Tot mai mulți oameni își pun întrebarea acolo în loc să citească zece linkuri albastre. Se citează ce răspunde clar, are dată și este construit citibil pentru mașini. Asta includem."},
             {"q": "Aveți o dovadă că funcționează?",
-             "a": "Rümpelwerk Mitteldeutschland: acolo administrăm site-ul, SEO/GEO și Google Ads, cu pagini proprii pentru fiecare serviciu și fiecare regiune. Realizat împreună cu partenerul nostru PyStore."},
+             "a": "Rümpelwerk Mitteldeutschland: acolo administrăm site-ul, SEO/GEO și Google Ads, cu pagini proprii pentru fiecare serviciu și fiecare regiune. Realizat împreună cu partenerul nostru Webagentur Scherzinger (Lübeck)."},
         ],
         "cta_h": "După ce ar trebui să vă găsească clienții?",
         "cta_t": "Spuneți-ne două-trei cuvinte de căutare pentru care vreți să fiți găsit. Verificăm cât de realist este și răspundem în 24 de ore în zilele lucrătoare.",

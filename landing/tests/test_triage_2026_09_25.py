@@ -264,7 +264,7 @@ class KleineWahrheitenTest(SimpleTestCase):
     def test_partnerlink_heisst_nicht_shop(self):
         for lang in ("de", "en", "ro"):
             with self.subTest(lang=lang):
-                self.assertIn("PyStore", i18n.get_pack(lang)["footer"]["u_shop"])
+                self.assertIn("Webagentur Scherzinger", i18n.get_pack(lang)["footer"]["u_shop"])
 
     def test_leistungszahl_gezaehlt(self):
         from landing import leistungen

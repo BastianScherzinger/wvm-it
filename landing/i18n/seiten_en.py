@@ -290,7 +290,7 @@ SEITEN = {
             {"q": "What is GEO and why do you talk about it?",
              "a": "GEO stands for visibility in generative answer engines — ChatGPT, Perplexity, Gemini, Google AI overviews. More and more people ask their question there instead of reading ten blue links. What gets cited is what answers clearly, carries a date and is machine-readable. We build that in."},
             {"q": "Do you have proof that this works?",
-             "a": "Rümpelwerk Mitteldeutschland: we run the website, SEO/GEO and Google Ads there, with a dedicated page per service and per region. Delivered together with our partner PyStore."},
+             "a": "Rümpelwerk Mitteldeutschland: we run the website, SEO/GEO and Google Ads there, with a dedicated page per service and per region. Delivered together with our partner Webagentur Scherzinger (Lübeck)."},
         ],
         "cta_h": "What should customers find you for?",
         "cta_t": "Give us two or three search terms you want to be found under. We check how realistic that is and reply within 24 hours on working days.",

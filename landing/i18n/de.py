@@ -424,7 +424,7 @@ PACK = {
         # verstreut in „Unternehmen".
         "col_wissen": "Wissen",
         "col_unternehmen": "Unternehmen",
-        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "PyStore (Partner-Shop)", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
+        "u_partner": "Partner", "u_koop": "Kooperationen", "u_preise": "Preise", "u_alle": "Alle Leistungen", "u_shop": "Webdesign: Webagentur Scherzinger", "u_referenzen": "Referenzen", "u_faq": "Fragen & Antworten",
         "u_ueber": "Über uns", "col_recht": "Rechtliches",
         "impressum": "Impressum", "datenschutz": "Datenschutz", "datenschutz_full": "Datenschutzerklärung",
         "agb": "AGB", "barrierefreiheit": "Barrierefreiheit",
@@ -1620,12 +1620,12 @@ PACK = {
         "eyebrow": "Referenz",
         "h": "Rümpelwerk Mitteldeutschland",
         "rolle": "Website, SEO/GEO und Google Ads",
-        "text": "Entrümpelungsbetrieb mit Teams in Halle, Leipzig, Magdeburg, Dresden und Hannover. Umgesetzt gemeinsam mit unserem Partner PyStore: Preisrechner statt Formular, WhatsApp als schnellster Weg, eigene Seiten für jede Leistung und jede Region.",
+        "text": "Entrümpelungsbetrieb mit Teams in Halle, Leipzig, Magdeburg, Dresden und Hannover. Umgesetzt gemeinsam mit unserem Partner Webagentur Scherzinger (Lübeck): Preisrechner statt Formular, WhatsApp als schnellster Weg, eigene Seiten für jede Leistung und jede Region.",
         "p1": "Website mit Preisrechner und WhatsApp-Anbindung",
         "p2": "SEO und GEO: eigene Seiten je Leistung und Stadt",
         "p3": "Laufende Betreuung inklusive Google Ads",
         "link": "Seite ansehen",
-        "partner": "Umsetzung gemeinsam mit unserem Partner PyStore, der bei WVM-IT die Website-Kunden betreut.",
+        "partner": "Umsetzung gemeinsam mit unserem Partner <a href='https://webagentur-scherzinger.com/referenzen/'>Webagentur Scherzinger</a> (Lübeck), der bei WVM-IT die Website-Kunden betreut.",
         "alt": "Startseite von Rümpelwerk Mitteldeutschland mit Preisrechner im Hero",
     },
     "schluss": {
