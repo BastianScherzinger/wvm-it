@@ -410,4 +410,24 @@ class SicherheitskoepfeMiddleware:
         if typ in ("text/html", "application/xhtml+xml"):
             response.headers.setdefault("Content-Security-Policy", _csp(request.csp_nonce))
             response.headers.setdefault("Permissions-Policy", _PERMISSIONS_POLICY)
+            self._oeffentlich_zwischenspeichern(request, response)
         return response
+
+    @staticmethod
+    def _oeffentlich_zwischenspeichern(request, response):
+        """`Cache-Control: public, max-age=300` fuer HTML, das nachweislich fuer
+        alle Besucher gleich ist (W3/K8, 12.10.2026).
+
+        Konservativ, mit allen Bedingungen zugleich: nur GET, nur 200, kein
+        Cookie in der Antwort (ein CSRF-Token setzt immer `csrftoken`, ein
+        Sprachwechsel `wvm_lang`), kein eigener `Cache-Control`, kein Admin.
+        Heute erfuellt **keine** Seite das: jede traegt das Rueckruf-Formular
+        samt CSRF-Token (`docs/UMSETZUNG-2026-10-12-technik.md`). Die Regel
+        greift erst, wenn eine Seite wirklich ohne Formular ausgeliefert wird,
+        und kann dann keine fremden Tokens verteilen. Die CSP-Nonce haengt am
+        selben Antwortpaar (Kopf + Rumpf) und bleibt darin stimmig."""
+        if (request.method == "GET" and response.status_code == 200
+                and not response.cookies and not response.streaming
+                and "Cache-Control" not in response.headers
+                and not request.path.startswith("/admin")):
+            response.headers["Cache-Control"] = "public, max-age=300"
