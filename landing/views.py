@@ -1224,12 +1224,14 @@ def _handle_angebot(request, c) -> bool:
         summen.append("Einzelne Positionen: Preis auf Anfrage")
 
     empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
+    utm = _herkunft_utm(request)
     body = (
         "Neue Angebots-Anfrage über wvm-it.tech (Konfigurator)\n\n"
         f"Name:    {name}\nE-Mail:  {email}\nTelefon: {telefon}\n\n"
         "Gewählte Leistungen:\n" + "\n".join(zeilen) + "\n\n"
         + "\n".join(summen) + "\n\n"
         + (f"Nachricht:\n{nachricht}\n" if nachricht else "")
+        + (f"Herkunft: {utm}\n" if utm else "")
         + "\nHinweis: Richtpreise, unverbindlich. Endpreis nach Gespräch.\n"
     )
     # Erst sichern, dann senden (07.09.2026, MW18). Bis hierher lebte die
@@ -1239,7 +1241,7 @@ def _handle_angebot(request, c) -> bool:
                      herkunft=_herkunft_aus_verweis(request), name=name,
                      kontakt=email, telefon=telefon,
                      lang=i18n.norm_lang(get_language()), text=nachricht,
-                     positionen="; ".join(zeilen), summen="; ".join(summen))
+                     positionen="; ".join(zeilen), summen="; ".join(summen), utm=utm)
     # Jeder Anfrageweg endet gezählt (FO08) — über dieselbe cookielose Summe wie
     # die Kurzanfragen, nicht über ein Fremdskript (Begründung in messung.py).
     messung.zaehle("anfrage", "angebot")
@@ -1251,6 +1253,7 @@ def _handle_angebot(request, c) -> bool:
               mails.feld("Telefon", telefon, "tel"),
               mails.feld("Leistungen", "\n".join(zeilen), "lang"),
               mails.feld("Summen", "\n".join(summen), "lang"),
+              mails.feld("Herkunft (UTM)", utm),
               mails.feld("Nachricht", nachricht, "lang")]
     admin_ok = _send_mail_logged(
         betreff, body,
@@ -1288,10 +1291,13 @@ def _handle_contact(request, c) -> bool:
     budget = _feld(request, "budget")
     empfaenger = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
     k = _kampagne_aus_verweis(request)
+    utm = _herkunft_utm(request)
     body = (
         f"Neue Anfrage über wvm-it.tech\n\n"
         f"Name:    {name}\nE-Mail:  {email}\nTelefon: {telefon}\nBudget:  {budget}\n\n"
-        + (f"Kampagne: {k}\n\n" if k else "")
+        + (f"Kampagne: {k}\n" if k else "")
+        + (f"Herkunft: {utm}\n" if utm else "")
+        + ("\n" if (k or utm) else "")
         + f"Nachricht:\n{nachricht}\n"
     )
     # Erst sichern, dann senden (07.09.2026, MW18). Das Kontaktformular ist der
@@ -1300,14 +1306,15 @@ def _handle_contact(request, c) -> bool:
     _anfrage_sichern(quelle="kontakt", thema="Projektanfrage (Kontaktformular)",
                      herkunft=_herkunft_aus_verweis(request), name=name,
                      kontakt=email, telefon=telefon, budget=budget,
-                     lang=i18n.norm_lang(get_language()), text=nachricht)
+                     lang=i18n.norm_lang(get_language()), text=nachricht, utm=utm)
     messung.zaehle("anfrage", "kontakt")                  # FO08
     if k:
         messung.zaehle("anfrage_kampagne", k)
     betreff = _betreff(f"Neue Projektanfrage von {name}")
     felder = [mails.feld("Name", name), mails.feld("E-Mail", email, "email"),
               mails.feld("Telefon", telefon, "tel"), mails.feld("Budget", budget),
-              mails.feld("Kampagne", k or ""), mails.feld("Nachricht", nachricht, "lang")]
+              mails.feld("Kampagne", k or ""), mails.feld("Herkunft (UTM)", utm),
+              mails.feld("Nachricht", nachricht, "lang")]
     admin_ok = _send_mail_logged(
         betreff, body,
         getattr(settings, "DEFAULT_FROM_EMAIL", empfaenger), [empfaenger], tag="KONTAKT",
@@ -1532,6 +1539,48 @@ def _kampagne_aus_verweis(request) -> str | None:
         return messung.kampagne(einfach, art="anfrage_kampagne")
     except Exception:
         return None
+
+
+_UTM_WERT = re.compile(r"^[a-z0-9][a-z0-9_.\-/ ]{0,39}$")
+_UTM_HOST = re.compile(r"^[a-z0-9][a-z0-9.\-]{2,59}$")
+_UTM_FELDER = ("utm_source", "utm_medium", "utm_campaign", "utm_content")
+
+
+def _herkunft_utm(request) -> str:
+    """Woher kam der Besucher? Eine Zeile fuer Inhaber-Mail, Betreiber-Kopie und
+    Sicherung, oder ``""`` (Punkt 28, 12.10.2026).
+
+    Quellen, in dieser Reihenfolge: die versteckten Felder, die
+    ``static/js/herkunft.js`` beim Absenden anhaengt (``utm_*``, ``ref_host``),
+    sonst die Abfrage des eigenen ``Referer``. **Nichts wird gespeichert, kein
+    Cookie, keine Sitzung** -- die Angaben stammen aus der Anfrage, die der Besucher
+    selbst abschickt, und wandern nur in die Mail und die Sicherungszeile.
+    Jeder Wert wird auf ein enges Muster geprueft (Kleinbuchstaben, Ziffern,
+    ``-_./``, hoechstens 40 Zeichen); alles andere faellt weg -- damit steht kein
+    frei erfundener Text in einer Mail. Der Verweis-Host ist nur der Hostname
+    (``google.com``), nie ein Pfad oder eine Abfrage."""
+    try:
+        roh = {k: (request.POST.get(k) or "") for k in _UTM_FELDER}
+        ref = (request.POST.get("ref_host") or "")
+        if not any(roh.values()):
+            verweis = (request.META.get("HTTP_REFERER") or "").strip()
+            if verweis and _herkunft_aus_verweis(request):
+                qs = verweis.partition("?")[2].partition("#")[0]
+                einfach = {k: v[0] for k, v in parse_qs(qs).items() if v}
+                roh = {k: einfach.get(k, "") for k in _UTM_FELDER}
+        teile = []
+        for k in _UTM_FELDER:
+            wert = roh[k].strip().lower()
+            if _UTM_WERT.match(wert):
+                teile.append(f"{k}={wert}")
+        host = ref.strip().lower()
+        eigene = {request.get_host().lower().split(":", 1)[0],
+                  request.get_host().lower().split(":", 1)[0].removeprefix("www.")}
+        if _UTM_HOST.match(host) and host not in eigene:
+            teile.append(f"Verweis={host}")
+        return ", ".join(teile)
+    except Exception:
+        return ""
 
 
 def _anfragen_ordner() -> Path:
@@ -2024,9 +2073,11 @@ def anfrage_absenden(request):
     # Postfach-Notiz (best effort)
     empfaenger = ""
     admin_ok = None
-    text = f"Name: {name or '-'}\nE-Mail: {email}\nBilder: {len(images)}\n\n{full}\n"
+    utm = _herkunft_utm(request)
+    text = (f"Name: {name or '-'}\nE-Mail: {email}\nBilder: {len(images)}\n"
+            + (f"Herkunft: {utm}\n" if utm else "") + f"\n{full}\n")
     felder = [mails.feld("Name", name), mails.feld("E-Mail", email, "email"),
-              mails.feld("Bilder", str(len(images))),
+              mails.feld("Bilder", str(len(images))), mails.feld("Herkunft (UTM)", utm),
               mails.feld("Sprache der Seite", _SITE_LANG_LABELS.get(site_lang, site_lang)),
               mails.feld("Angaben", full, "lang")]
     try:
@@ -4599,8 +4650,9 @@ def angebot_anfordern(request):
         # Erst sichern, dann senden (07.09.2026, MW18). Hier steht kein Name im
         # Formular — die E-Mail-Adresse und die gewählten Positionen sind alles,
         # was von der Anfrage bleibt, wenn der Versand scheitert.
+        utm = _herkunft_utm(request)
         _anfrage_sichern(quelle="angebot_start", thema="Richtangebot (Startseite)",
-                         herkunft=_herkunft_aus_verweis(request), kontakt=email,
+                         herkunft=_herkunft_aus_verweis(request), kontakt=email, utm=utm,
                          lang=lang, positionen="; ".join(lines), summen=summe_txt,
                          werbung="ja" if consent else "nein")
         messung.zaehle("anfrage", "angebot_start")        # FO08
@@ -4619,12 +4671,13 @@ def angebot_anfordern(request):
             "Neue Angebots-Anfrage (Startseite) über wvm-it.tech\n\n"
             f"E-Mail: {email}\nSprache: {lang}\nWeitere Angebote erwünscht: {'ja' if consent else 'nein'}\n\n"
             + "\n".join(lines) + f"\n\nRichtpreis: {summe_txt}\n"
+            + (f"Herkunft: {utm}\n" if utm else "")
         )
         felder = [mails.feld("E-Mail", email, "email" if _ist_email(email) else "text"),
                   mails.feld("Sprache", lang),
                   mails.feld("Weitere Angebote", "ja" if consent else "nein"),
                   mails.feld("Positionen", "\n".join(lines), "lang"),
-                  mails.feld("Richtpreis", summe_txt)]
+                  mails.feld("Richtpreis", summe_txt), mails.feld("Herkunft (UTM)", utm)]
         admin_ok = None
         if empf:
             # MW21: Reply-To nur mit geprüfter Adresse — dieser Endpunkt prüft
@@ -5615,9 +5668,12 @@ def kooperation_anfordern(request):
         f"Name:    {name}\nFirma:   {firma or '-'}\nE-Mail:  {email}\n\n"
         f"Nachricht:\n{nachricht or '-'}\n"
     )
+    utm = _herkunft_utm(request)
+    if utm:
+        body += f"\nHerkunft: {utm}\n"
     # Erst sichern, dann senden (07.09.2026, MW18).
     _anfrage_sichern(quelle="kooperation", thema=_ANFRAGE_QUELLEN["koop"],
-                     herkunft=_herkunft_aus_verweis(request), name=name,
+                     herkunft=_herkunft_aus_verweis(request), name=name, utm=utm,
                      kontakt=email, firma=firma,
                      lang=i18n.norm_lang(get_language()), text=nachricht)
     messung.zaehle("anfrage", "kooperation")              # FO08
@@ -5626,7 +5682,8 @@ def kooperation_anfordern(request):
         messung.zaehle("anfrage_kampagne", k)
     betreff = _betreff(f"Kooperations-Anfrage von {name}")
     felder = [mails.feld("Name", name), mails.feld("Firma", firma),
-              mails.feld("E-Mail", email, "email"), mails.feld("Nachricht", nachricht, "lang")]
+              mails.feld("E-Mail", email, "email"), mails.feld("Herkunft (UTM)", utm),
+              mails.feld("Nachricht", nachricht, "lang")]
     admin_ok = _send_mail_logged(
         betreff, body, from_email, [empf], tag="KOOPERATION",
         antwort_an=email,                                   # MW21
@@ -5794,6 +5851,7 @@ def leistung_anfrage(request):
     # unterscheiden, und es blieb unbekannt, welche Seite je etwas eingebracht hat.
     herkunft = zurueck or _herkunft_aus_verweis(request)
     k = _kampagne_aus_verweis(request)
+    utm = _herkunft_utm(request)
     betreff = _betreff(f"[WVM] Anfrage: {thema}" + (f" — {herkunft}" if herkunft else ""))
     body = (
         f"Neue Kurzanfrage über wvm-it.tech\n\n"
@@ -5803,6 +5861,7 @@ def leistung_anfrage(request):
         f"{'Anliegen: ' + _ANLIEGEN[anliegen] + chr(10) if anliegen else ''}"
         f"Sprache: {lang}\n"
         f"{'Kampagne: ' + k + chr(10) if k else ''}"
+        f"{'Herkunft: ' + utm + chr(10) if utm else ''}"
         f"\nNachricht:\n{text or '-'}\n"
     )
     # Freiwillige Werbeeinwilligung (§ 174 TKG 2021). Nur wo das Formular sie
@@ -5816,7 +5875,7 @@ def leistung_anfrage(request):
     # — sie lebte ausschließlich in der E-Mail.
     _anfrage_sichern(quelle=quelle, thema=thema, herkunft=herkunft, name=name,
                      kontakt=kontakt, rueckruf=zeit, lang=lang, text=text,
-                     anliegen=anliegen,
+                     anliegen=anliegen, utm=utm,
                      werbung="ja" if werbung else "nein",
                      werbung_ip=_client_ip(request) if werbung else "")
     if werbung:
@@ -5834,6 +5893,7 @@ def leistung_anfrage(request):
               mails.feld("Rückruf-Zeit", zeit),
               mails.feld("Anliegen", _ANLIEGEN.get(anliegen, "") if anliegen else ""),
               mails.feld("Sprache", lang), mails.feld("Kampagne", k or ""),
+              mails.feld("Herkunft (UTM)", utm),
               mails.feld("Werbeeinwilligung", "ja" if werbung else ""),
               mails.feld("Nachricht", text, "lang")]
     art_titel = "Rückrufwunsch" if quelle == "rueckruf" else f"Kurzanfrage: {thema}"

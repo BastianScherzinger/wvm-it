@@ -62,7 +62,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
   Console, `docs/INDEXIERUNG.md`).
 - **Nach jeder Inhaltsänderung:** `python manage.py stand_schreiben` (Änderungsdaten nach
   `landing/stand.py`; `--pruefen` meldet Abweichung im CI mit Rückgabewert 1).
-- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 751 Tests (Stand 09.10.2026) in
+- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 773 Tests (Stand 12.10.2026) in
   `landing/tests/`, strukturell geschrieben (URL-Liste aus `_seiten_pfade()`, Preise aus
   `ANGEBOT_GROUPS`). Läuft bei jedem Push über `.github/workflows/pruefen.yml`.
 - Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
@@ -79,11 +79,12 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 | Einwilligungen | Nie an eine Leistung koppeln. Getrennt, nicht vorausgewählt, mit Zeitstempel und IP protokolliert (§ 174 TKG 2021, Art. 7 DSGVO). Newsletter hat ein eigenes Kästchen `newsletter`; eine Kurzanfrage legt ohne `werbung` keinen Abonnenten an. `test_triage_2026_09_25.py` |
 | Fehlermeldungen | Kein `alert()`. Fehler inline, wie es `doku/20-DESIGN.md` verlangt |
 | Referenzen | Neue Einträge brauchen ein Feld `texte` und einen eigenen Block unter `referenz_faelle` im Sprachpaket — sonst zeigen zwei Referenzen denselben Fallbericht |
-| Zwischenspeicher | **HTML wird nicht gecacht** (CSRF-Token je Anfrage). Cache-Köpfe nur über `_maschinenantwort()` und nur auf Endpunkten ohne Formular. Begründung `docs/CACHE-2026-09-06.md`, Test `landing/tests/test_cache.py` |
+| Zwischenspeicher | **HTML wird nicht gecacht** (CSRF-Token je Anfrage). Cache-Köpfe nur über `_maschinenantwort()` und nur auf Endpunkten ohne Formular. Begründung `docs/CACHE-2026-09-06.md`, Test `landing/tests/test_cache.py`; `public` auf HTML nur, wenn die Antwort kein Cookie setzt (`SicherheitskoepfeMiddleware`) — heute trifft das keine Seite, weil jede das Rückruf-Formular trägt. Anwärmen nach dem Start: `manage.py anwaermen` (aus `start.sh`, `WARMUP=aus` schaltet ab) |
 | Entities | In den Sprachpaketen stehen **echte Zeichen**, keine HTML-Entities. `&amp;` und `&#259;` sehen im HTML richtig aus (die Vorlagen nutzen `|safe`), landen aber wörtlich im JSON-LD — dort kennt niemand HTML. Geprüft von `test_entities.py`, das die **Quelle** liest |
 | Farben | Jede Textfarbe hält 4,5:1 gegen jeden Grund, **in beiden Fassungen**. `--ink-dim` lag hell bei 3,40:1 und dunkel bei 6,04:1 — wer nur dunkel arbeitet, sieht es nie. `test_kontrast.py` rechnet es nach |
 | Bildgrößen | Ein `<img>` über 32 px braucht ein `srcset`. Ein 640-px-Bild in einer 44-px-Fläche sieht richtig aus und kostet trotzdem 46 KB. Varianten werden über `_mit_bildvarianten()` **abgeleitet**, nicht gepflegt |
 | Messung | `landing/messung.py` zählt **ohne IP, ohne Cookie, ohne Kennung**. Wer das ändert, macht daraus eine Verarbeitung personenbezogener Daten und braucht Einwilligung, Banner-Eintrag und einen Absatz in der Datenschutzerklärung |
+| Herkunft je Anfrage | `utm_*` und Verweis-Host kommen aus versteckten Feldern (`static/js/herkunft.js`, ohne Speicherung) in Inhaber-Mail, Betreiber-Kopie und Sicherungszeile (`views._herkunft_utm`). Speichern im Browser (Cookie, Web-Speicher) wäre einwilligungspflichtig und gehört dann in Banner und Datenschutz. `docs/UMSETZUNG-2026-10-12-technik.md` |
 | Preise | `landing/views.py::ANGEBOT_GROUPS` ist die **einzige** Preisquelle — auch für Schema, Preistabelle, `llms.txt` und jeden Fließtext. Felder: `once`, `mtl`, `yr`, `std` (Stundensatz), `anfrage` |
 | Leistungen | `landing/leistungen.py` ist die einzige Strukturquelle: Slug, Bereich, Icon, Anfrage-Quelle, Preis-ID, Vor-Ort-Kennzeichen, Querverweise, Sitemap-Priorität. Texte in `landing/i18n/seiten_{de,en,ro}.py` |
 | URLs | Sitemap und IndexNow ziehen beide aus `views._seiten_pfade()`. Wegfallende URLs nur mit 301 |
@@ -118,7 +119,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 751 Tests in 63 Dateien (Stand 09.10.2026)
+- `landing/tests/` — 773 Tests in 64 Dateien (Stand 12.10.2026)
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/` — `base.html` (Gerüst), `antwort.html`, `anfrage_karte.html`, `icons_sprite.html`, `honigtopf.html`, `datenschutzhinweis.html` u. a.; Liste in `docs/CLAUDE-AUSGELAGERT.md`
 - `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang; `static/js/kostenrechner.js` · `startpakete.js` rechnen nichts selbst

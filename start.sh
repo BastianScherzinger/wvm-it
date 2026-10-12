@@ -26,6 +26,14 @@ python manage.py check --deploy --fail-level ERROR
 # Bestätigungslinks (E-Mail, Name und Wunsch, nur signiert, nicht verschlüsselt) und
 # `?key=<WEEKLY_TRIGGER_KEY>` der Schlüssel-Endpunkte in das Railway-Protokoll (Format unten, `--access-logformat`).
 
+# Kaltstart anwaermen (12.10.2026): Im Hintergrund jede Sitemap-Adresse einmal
+# abrufen, hoechstens zwei gleichzeitig, sobald der Server antwortet. Der Befehl
+# wartet selbst auf den Port, scheitert nie (Rueckgabewert immer 0) und haengt
+# weder Start noch Healthcheck auf. Abschalten: WARMUP=aus. Doku: anwaermen.py.
+if [ "${WARMUP:-an}" != "aus" ]; then
+  ( python manage.py anwaermen || true ) &
+fi
+
 # EIN Arbeitsprozess, dafuer mehrere Faeden — und das mit Absicht:
 # Die Spam-Bremse der Formulare zaehlt im Arbeitsspeicher des Prozesses
 # (settings.CACHES, LocMemCache). Bei zwei Prozessen zaehlt jeder fuer sich, und
