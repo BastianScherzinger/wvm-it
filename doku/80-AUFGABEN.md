@@ -12,6 +12,16 @@ rest_bei: bastian, kunde
 
 # Aufgaben
 
+## Neu 13.10.2026 (Komplettanalyse, Details in [extern/UMSETZUNG-2026-10-12-KOMPLETT.md](extern/UMSETZUNG-2026-10-12-KOMPLETT.md))
+
+- [ ] **Indexierung** der 17 nicht indexierten DE-Seiten, Lenzing zuerst (Bastian/Claude per Search Console, ab 13.10.)
+- [ ] **Beim Kunden:** 5–10 Google-Bewertungen · Doppeleintrag „WVM-IT Softwareentwickler“ melden · WKO auf WVM-IT · 301 `wvm-it.tech` · Referenzen/Partnerstatus · Gemeinden gewollt?
+- [ ] **Beim Kunden:** Datenschutz-Satz zur Herkunft je Anfrage freigeben → dann `HERKUNFT_UTM=1` auf Railway
+- [ ] **Beim Kunden:** „meist am selben Tag“ (M365-Ratgeber) und Handwerker-FAQ gegenlesen
+- [ ] Google-Profil: Festpreis-Leistungen als Produkte, Beiträge 20.10./27.10./03.11. (Chrome-Freigabe für business.google.com fehlte am 12.10.)
+- [ ] Messung 28.10. und 02.11. (`Werkzeuge\wvm_wochenmessung.py`, KI-Fragen wiederholen)
+- [ ] Umzug bis 30.11. mit gleichen URLs planen
+
 *Woran sich der Fortschritt bemisst: am Anteil der erledigten an allen in dieser Datei geführten Aufgaben — „Erledigt“ gegen „Erledigt + Offen + Fehlt + Beim Kunden“, auf Zehner gerundet. „Verbesserungsmöglichkeiten“ zählen nicht mit, sie sind Kür, keine Zusage. Bei allen sechs betreuten Seiten dieselbe Rechnung.*
 
 > **Ausgangspunkt:** Aus den Plänen im Projekt ist im Code nichts mehr offen —

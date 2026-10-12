@@ -40,6 +40,7 @@ Status, Technik, Design, Inhalte, SEO, Local SEO, Ads, Performance, Aufgaben, No
 
 | Datei | Inhalt |
 |---|---|
+| [extern/UMSETZUNG-2026-10-12-KOMPLETT.md](extern/UMSETZUNG-2026-10-12-KOMPLETT.md) | **Komplettanalyse + Umsetzung 12./13.10.**: Befunde, was gebaut ist, Grundlinie, Messtermine, was nur Florin kann, Lehren für die nächste Analyse |
 | [extern/ANALYSE-SICHTBARKEIT-2026-10-08.md](extern/ANALYSE-SICHTBARKEIT-2026-10-08.md) | Search-Console-Zahlen, Google-Stichprobe, Verbesserungsliste (Kunde/Technik/Inhalt), zehn Backlink-Quellen, Prognose erster Auftrag |
 | [extern/EINTRAEGE-2026-10-09.md](extern/EINTRAEGE-2026-10-09.md) | Stammdaten für Verzeichnisse, Stand je Eintrag (Google, firmenabc, herold, ProvenExpert …), Maps-Einbettung, Apex-301 |
 | [extern/GOOGLE-BEITRAEGE-2026-10.md](extern/GOOGLE-BEITRAEGE-2026-10.md) | Vier Google-Profil-Beiträge 13.10.–03.11. (Entwurf, Florin gibt frei) |

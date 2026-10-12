@@ -15,6 +15,8 @@ quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SE
 
 ## Stand
 
+**13.10.2026 — Komplettanalyse + Umsetzung:** Pillar „EDV-Betreuung“ als Zielseite, Kernraum-Verlinkung (Lenzing 2 → 16 Inhaltslinks), Anruf-Kästen und Kontaktlinks in allen Ratgebern, Schema-Ergänzungen. Grundlinie und Messtermine (28.10./02.11.) in [extern/UMSETZUNG-2026-10-12-KOMPLETT.md](extern/UMSETZUNG-2026-10-12-KOMPLETT.md).
+
 **Abschluss am 02.10.2026:** Die Offen-Liste ist gegen Code und Live-Seite geprüft, was im Code lösbar war, ist gelöst. Was jetzt Anfragen bringt und wer es zieht, steht in [`../docs/SEO-ABSCHLUSS-2026-10-02.md`](../docs/SEO-ABSCHLUSS-2026-10-02.md).
 
 **Der Ausbau ist fertig — im Code ist aus den Plänen nichts mehr offen.** Was fehlt, hängt an Zuarbeit (Unternehmensprofil, Bewertungen, Verzeichnisse, Fallstudien, SPF/DMARC) oder an der Messung, die erst mit Abstand sinnvoll ist.
