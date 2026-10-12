@@ -167,7 +167,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           {% for k in hosting_band %}<a class="hb-karte" href="{{ k.url }}"><strong class="hb-h">{{ k.h|safe }}</strong>{{ k.t|safe }}<span class="hb-preis">{{ k.preis_label }}{% if k.route == 'einrichtung' %} {{ t.hosting_band.einmalig|safe }}{% endif %}</span></a>
           {% endfor %}
         </div>
-        <p class="hb-partner"><span class="hb-anz">{{ t.hosting_band.partner_anz|safe }}</span> {{ t.hosting_band.partner_t|safe }} <a href="{{ partner_domaintechnik_url }}" target="_blank" rel="sponsored noopener">{{ t.hosting_band.partner_link|safe }}</a> <small>{{ t.hosting_band.partner_hinweis|safe }}</small></p>
+        <p class="hb-partner">{{ t.hosting_band.partner_t|safe }} <a href="{{ partner_domaintechnik_url }}" target="_blank" rel="sponsored noopener">{{ t.hosting_band.partner_link|safe }}</a> <small><span class="hb-anz">{{ t.hosting_band.partner_anz|safe }}</span> {{ t.hosting_band.partner_hinweis|safe }}</small></p>
       </div>
 
       {% comment %} Upgrade 01.10.2026: „Was wir alles anbieten“ als eine ruhige

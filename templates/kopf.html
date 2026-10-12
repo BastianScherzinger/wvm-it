@@ -17,9 +17,10 @@ und öffnet stattdessen den Dialog — ohne JS bleibt der einfache Link gültig.
 <div class="statusleiste">
   <div class="wrap statusleiste-innen">
     <p class="sl-status{% if erreichbarkeit.offen %} ist-offen{% endif %}">
-      <span class="sl-dot" aria-hidden="true"></span>{{ erreichbarkeit.text|safe }}
+      <span class="sl-dot" aria-hidden="true"></span>{{ erreichbarkeit.text|safe }}{% if not erreichbarkeit.offen %}<span class="sl-rueck-trenn" aria-hidden="true"> · </span>{% if request.resolver_match.url_name == "index" %}<a class="sl-rueck" href="#rueckruf">{{ t.kopf.rueckruf|safe }}</a>{% else %}<a class="sl-rueck" href="{% url 'kontakt' %}" data-rueckruf>{{ t.kopf.rueckruf|safe }}</a>{% endif %}{% endif %}
     </p>
     <div class="sl-rechts">
+      {% if c.telefon %}<a class="sl-tel" href="tel:{{ c.telefon_tel }}" aria-label="{{ t.nav.call|safe }}">{% include 'icons.html' with name='phone' %}{{ c.telefon }}</a>{% endif %}
       <a class="sl-notfall" href="{% url 'notfall' %}">{% include 'icons.html' with name='alert' %}{{ t.notfall.nav|safe }}</a>
       <span class="sl-ort">{% include 'icons.html' with name='pin' %}{{ c.stadt }}, {{ c.region }}</span>
       {% include 'lang_switch.html' %}

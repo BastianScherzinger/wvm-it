@@ -75,6 +75,7 @@ PACK = {
         "wieder_morgen": "Back tomorrow from 9 am",
         "wieder_montag": "Back on Monday from 9 am",
         "wieder_werktag": "Back on the next working day from 9 am",
+        "rueckruf": "Leave a callback request",
     },
     "cookie": {
         "aria": "Cookie notice",
@@ -109,7 +110,7 @@ PACK = {
         # Design B1 (25.09.2026): H1 as a plain sentence saying what Florin does.
         "headline": "IT support for your business, personal and from a single source.",
         "headline_2": "From a two-person office to a plant with 200 workstations.",
-        "subline": "IT help for businesses in and around Lenzing: ongoing support from €29 per workstation and month, help without a contract, websites with a free sample site, domain, hosting and email, AI and on-site technology. One fixed contact: Florin calls you back.",
+        "subline": "For businesses in and around Lenzing: ongoing support from €29 per workstation and month, help without a contract, websites with a free sample site, plus domain, email, AI and on-site technology.",
         "alt_frage": "Rather talk right away?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
         "anrufen": "Call now",

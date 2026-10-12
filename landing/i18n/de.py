@@ -46,6 +46,7 @@ PACK = {
         "wieder_morgen": "Wieder erreichbar morgen ab 9 Uhr",
         "wieder_montag": "Wieder erreichbar Montag ab 9 Uhr",
         "wieder_werktag": "Wieder erreichbar am nächsten Werktag ab 9 Uhr",
+        "rueckruf": "Rückruf hinterlassen",
     },
     "cookie": {
         "aria": "Cookie-Hinweis",
@@ -90,7 +91,7 @@ PACK = {
         # Zahlen statt Adjektiven — "vom Zwei-Mann-Buero" ist pruefbar,
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
-        "subline": "IT-Hilfe für Betriebe aus Lenzing und Umgebung: laufende Betreuung ab 29 € je Arbeitsplatz im Monat, Hilfe ohne Vertrag, Webseiten mit kostenloser Testseite, Domain, Hosting und E-Mail, KI und Technik vor Ort. Ein fester Ansprechpartner: Florin ruft zurück.",
+        "subline": "Für Betriebe in Lenzing und Umgebung: laufende Betreuung ab 29 € je Arbeitsplatz im Monat, Hilfe ohne Vertrag, Webseiten mit kostenloser Testseite, dazu Domain, E-Mail, KI und Technik vor Ort.",
         # Design B1: Frage neben dem Rückruf im Hero, führt zu Telefon/WhatsApp.
         "alt_frage": "Lieber gleich sprechen?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.

@@ -69,6 +69,7 @@ PACK = {
         "wieder_morgen": "Din nou disponibil mâine de la ora 9",
         "wieder_montag": "Din nou disponibil luni de la ora 9",
         "wieder_werktag": "Din nou disponibil în următoarea zi lucrătoare, de la ora 9",
+        "rueckruf": "Lăsați o cerere de apel",
     },
     "cookie": {
         "aria": "Notificare cookie",
@@ -103,7 +104,7 @@ PACK = {
         # Design B1 (25.09.2026): H1 ca propoziție simplă, ce face Florin.
         "headline": "Mentenanță IT pentru firma dumneavoastră, personal și dintr-o singură sursă.",
         "headline_2": "De la biroul cu doi oameni până la firma cu 200 de posturi de lucru.",
-        "subline": "Ajutor IT pentru firme din Lenzing și împrejurimi: administrare continuă de la 29 € per post de lucru și lună, ajutor fără contract, site-uri web cu pagină de probă gratuită, domeniu, hosting și e-mail, IA și tehnică la fața locului. O singură persoană de contact: Florin vă sună înapoi.",
+        "subline": "Pentru firme din Lenzing și împrejurimi: administrare continuă de la 29 € per post de lucru și lună, ajutor fără contract, site-uri web cu pagină de probă gratuită, plus domeniu, e-mail, IA și tehnică la fața locului.",
         "alt_frage": "Preferați să vorbim direct?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
         "anrufen": "Sunați acum",

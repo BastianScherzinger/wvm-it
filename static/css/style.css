@@ -2822,3 +2822,57 @@ article.section{padding-top:clamp(28px,4vw,48px)}
   .rg-foto{order:-1;aspect-ratio:16/9}
   .rg-band .btn{width:100%;justify-content:center}
 }
+
+/* ══ Design-Rest Runde 1 (13.10.2026) — Kl2, Kl3, Kl4, Kl6, Kl7, SOLLTE 4 ══ */
+
+/* Kl3: Telefonnummer als Text oben rechts in der Statusleiste (PC). Die Kopfzeile
+   darunter hat keinen Platz mehr; hier ist sie ruhig, mono, und ein echter tel:-Link. */
+.sl-tel{display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:600;white-space:nowrap}
+.sl-tel:hover{text-decoration:underline;text-underline-offset:3px}
+.sl-tel svg{width:14px;height:14px;color:var(--accent2)}
+@media (max-width:1023px){ .sl-tel{display:none} }
+
+/* Kl4: außerhalb der Zeiten bleibt der Rückruf sichtbar */
+.sl-rueck{color:var(--accent-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:700px){ .sl-rueck,.sl-rueck-trenn{display:none} }
+
+/* Kl2: Fakten unter dem Hero-Formular als ruhige Zeile; Links erkennbar erst bei Hover/Fokus */
+.hero-trust{gap:6px 24px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
+.hero-trust li{font-size:13.5px;color:var(--ink-dim)}
+.hero-trust svg{color:var(--ink-dim)}
+.hero-trust-link{text-decoration:none}
+.hero-trust-link:hover,.hero-trust-link:focus-visible{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:currentColor}
+@media (max-width:700px){
+  .hero-trust{flex-direction:column;align-items:flex-start;gap:4px;padding-top:12px;margin-top:20px}
+  .hero-trust li{padding:4px 0}
+}
+
+/* Kl6: Anzeige-Kennzeichnung am Ende des Blocks, Zeile leiser, Kennzeichnung bleibt gut lesbar */
+.hb .hb-partner{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:14.5px}
+.hb .hb-partner small{margin-top:8px}
+.hb .hb-partner .hb-anz{margin-right:8px}
+
+/* Kl7: Partner-Streifen eine Zeile (Logo, Name, Rolle, Domain), Text nur eine Zeile lang */
+#kooperationen.section-streifen{padding:36px 0}
+#kooperationen .sec-head{margin-bottom:6px}
+#kooperationen .coop-card{padding:12px 0;gap:18px}
+#kooperationen .coop-logo{flex-basis:72px;width:72px}
+#kooperationen .coop-meta{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:2px 16px}
+#kooperationen .coop-text{flex:1 1 18em;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+#kooperationen .coop-link{margin-top:0}
+@media (max-width:560px){
+  #kooperationen .coop-card{flex-direction:row;align-items:center}
+  #kooperationen .coop-logo{width:72px}
+  #kooperationen .coop-text{display:none}
+}
+
+/* SOLLTE 4: Handy-Erstbesuch. Solange der Cookie-Hinweis steht, weicht die Anruf-Leiste
+   (der Hinweis hat selbst Anrufen-frei-Platz: Hero und Kopf tragen den Anrufknopf).
+   Der Hinweis rückt dafür an den Rand, bleibt höchstens 22 % hoch. Consent-Logik unverändert. */
+@media (max-width:820px){
+  body:has(.cookie-banner.show) .mobilebar{display:none}
+  body:has(.cookie-banner.show) .cookie-banner{bottom:0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .cookie-inner{max-height:18vh;max-height:18dvh}
+  .cookie-text p{font-size:12px;line-height:1.35}
+  .cookie-actions .btn{min-height:36px;font-size:13.5px}
+}
