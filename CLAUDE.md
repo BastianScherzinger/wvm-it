@@ -118,7 +118,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 751 Tests in 63 Dateien (Stand 09.10.2026)
+- `landing/tests/` — 751 Tests in 64 Dateien (Stand 09.10.2026)
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/` — `base.html` (Gerüst), `antwort.html`, `anfrage_karte.html`, `icons_sprite.html`, `honigtopf.html`, `datenschutzhinweis.html` u. a.; Liste in `docs/CLAUDE-AUSGELAGERT.md`
 - `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang; `static/js/kostenrechner.js` · `startpakete.js` rechnen nichts selbst

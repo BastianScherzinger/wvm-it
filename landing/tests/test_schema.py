@@ -163,7 +163,7 @@ class SchemaTest(SimpleTestCase):
         Urheber, damit auch Hubs und Einzelseiten einen Autor tragen."""
         for name, pfad in self.seiten:
             with self.subTest(seite=name, pfad=pfad):
-                seiten = [k for k in self._graph(pfad) if k.get("@type") == "WebPage"]
+                seiten = [k for k in self._graph(pfad) if k.get("@type") in ("WebPage", "ContactPage")]
                 self.assertEqual(len(seiten), 1)
                 self.assertTrue(seiten[0]["author"]["@id"].endswith("/#business"))
 

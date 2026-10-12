@@ -86,6 +86,12 @@ BRANCHEN = {
         "preis_h": "What it costs",
         "preis_t": "Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. Setting up network and Wi-Fi for a workshop or hall starts at €890; a newly configured workstation costs €190. Ad-hoc help is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT.",
         "faq": [
+            {"q": "Our order emails end up in spam. What can we do?",
+             "a": "Usually the sender details of the domain are wrong: if the entries for SPF, DKIM and DMARC are missing, recipients rate your emails as suspicious. We check this, add the entries and test sending. This works by remote support, without anyone at the business having to wait."},
+            {"q": "What does ongoing support look like in a trades business?",
+             "a": "Updates of the office PCs run outside working hours, the backup is checked daily and a restore is tried out at intervals. New employees get their account, departing ones lose it the same day. For faults you send a photo of the error message by WhatsApp or call; we solve most of it by remote support and replace hardware on site within our service area."},
+            {"q": "What does IT support cost for a trades business with four office PCs?",
+             "a": "Ongoing support costs €29 per workstation and month, so four times €29 for four office PCs. On request the monitored backup adds €49 per month. Many small businesses need no server of their own; if you do, €89 per month is added. Help outside the support costs €95 per hour by remote support. All prices are guide prices, net plus VAT."},
             {"q": "Our Wi-Fi does not reach the workshop. Is a repeater enough?",
              "a": "Usually not. A repeater halves the available bandwidth and transmits on the same channel as the device it is meant to extend, so the two interfere. In a workshop with metal racking and machines the answer is nearly always a survey, a second access point on its own cable and clean channel planning. That costs once and then holds."},
             {"q": "Can our fitters work without a signal?",
@@ -130,6 +136,8 @@ BRANCHEN = {
         "preis_h": "What it costs",
         "preis_t": "The one-off IT security check costs from €490 and ends with a written report. Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. Setting up a firewall and separate networks starts at €690. Ad-hoc help is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT.",
         "faq": [
+            {"q": "What about the card reader for the e-card in the practice network?",
+             "a": "The connection to the e-card system runs through the health information network of the social insurance and an access-network provider, not through us; reader and router come from there. We replace neither connection nor device. We look after the practice network around it: administration, guest Wi-Fi and reception devices cleanly separated, a network port and power at the reader, remote support only with your approval. For device type and terms ask the social insurance or your provider."},
             {"q": "May an external provider access our systems at all?",
              "a": "Yes, on the basis of a data processing agreement under Article 28 GDPR. It sets out what we may access, how it is logged and what happens to credentials and data when the contract ends. We conclude it before the first access, not afterwards — and we do not need access to patient records, only to the technology underneath."},
             {"q": "Can you work without interrupting the consulting hour?",

@@ -562,7 +562,7 @@ PACK = {
         "regionen_meta_titel": "IT-Betreuung Lenzing, Oberösterreich & Salzburg | WVM-IT",
         "regionen_meta_desc": "IT-Service vor Ort ab Lenzing: Vöcklabruck, Attersee, Gmunden, Wels, Salzburg, Linz. Fernwartung in ganz Österreich. Jetzt Termin vereinbaren.",
         "regionen_kurz": "IT-Betreuung in Oberösterreich und Salzburg: WVM-IT, ein IT-Dienstleister in Oberösterreich mit Sitz in Lenzing im Bezirk Vöcklabruck, betreut Betriebe per Fernwartung in ganz Österreich und Deutschland und kommt für Arbeiten vor Ort im Umkreis von rund 60 Minuten, von Salzburg bis Linz; für jeden dieser Orte steht die Anfahrt auf einer eigenen Seite. Ein Einsatz vor Ort kostet 120 € je Stunde zuzüglich Anfahrt, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat.",
-        "regionen_intro": "Diese Seiten gibt es für die Orte, an die tatsächlich jemand von uns hinfährt — mit der echten Entfernung und dem, was dort vor Ort typischerweise ansteht. Für alles Übrige braucht es keine Ortsseite: Fernwartung, Überwachung, Datensicherung, Webseiten, SEO und Ads sind ortsunabhängig. Die genannten Preise sind Richtpreise, netto zzgl. USt.",
+        "regionen_intro": "Diese Seiten gibt es für die Orte, an die tatsächlich jemand von uns hinfährt — mit der echten Entfernung und dem, was dort vor Ort typischerweise ansteht. Für alles Übrige braucht es keine Ortsseite: Fernwartung, Überwachung, Datensicherung, Webseiten, SEO und Ads sind ortsunabhängig. Die laufende <a href='/leistungen/edv-it-betreuung/'>EDV-Betreuung</a> gilt für alle diese Orte und läuft überwiegend per Fernwartung. Die genannten Preise sind Richtpreise, netto zzgl. USt.",
         'regionen_warum_h': 'Warum überhaupt Orte, wenn fast alles aus der Ferne läuft',
         'regionen_warum_t': 'Weil zwei verschiedene Dinge zusammenkommen. Die laufende Betreuung — Updates, Überwachung, Datensicherung, Hilfe bei Störungen — läuft tatsächlich zu über neunzig Prozent per Fernwartung, und dafür spielt die Entfernung keine Rolle: Ein Betrieb in Deutschland wird genauso betreut wie einer im Nachbarort. Sobald aber jemand mit den Händen an ein Gerät muss, zählt jede Minute Fahrzeit. Netzwerk verlegen, Server tauschen, WLAN ausmessen, Besprechungstechnik aufbauen: Das geht nicht aus der Ferne. Deshalb gibt es hier Orte — nicht um überall Präsenz zu behaupten, sondern um ehrlich zu sagen, wo wir in vertretbarer Zeit stehen können.',
         'regionen_umkreis_h': 'Was der Umkreis praktisch bedeutet',
@@ -578,6 +578,12 @@ PACK = {
         "rg_schwerpunkt": "Am häufigsten gefragt in dieser Region",
         "rg_weitere": "Weitere Orte im Einzugsgebiet",
         "rg_nachbarn": "Die nächsten Nachbarorte",
+        # Verlinkung (Analyse 12.10.2026, Nr. 10/13): Platzhalter {edv} {ueber} {ref} {ort}
+        # werden in views._weiter_satz() durch Links ersetzt.
+        "rg_weiter_satz": "Die laufende {edv} für Betriebe in {ort} und Umgebung übernimmt Florin Feier selbst; mehr {ueber}, Arbeitsbeispiele unter {ref}.",
+        "rg_weiter_anker": {"edv": "EDV-Betreuung", "ueber": "über ihn", "ref": "Referenzen"},
+        "lz_weiter_satz": "Wer hinter dieser Leistung steht, lesen Sie {ueber}; Arbeitsbeispiele finden Sie unter {ref}.",
+        "lz_weiter_anker": {"ueber": "auf der Seite Über uns", "ref": "Referenzen"},
         "rg_quellen": "Quellen zu den Angaben über den Ort",
         "brotkrume": "Sie befinden sich hier",
         "start": "Start",
@@ -649,23 +655,77 @@ PACK = {
     # Handlungsschritte als kurze Sätze, kein Absatz über uns. Die Reihenfolge
     # der vier Fälle folgt der Häufigkeit, mit der danach gesucht wird.
     "notfall": {
-        "titel": "IT-Notfall: die ersten 30 Minuten | WVM-IT",
-        "desc": "Verschlüsselung, Serverausfall, gehacktes Postfach: was in den ersten 30 Minuten zu tun ist — und was nicht. Im Ernstfall sofort anrufen.",
+        "titel": "IT-Notfall: Konto gesperrt, Mail down, PC defekt | WVM-IT",
+        "desc": "Microsoft-365-Konto gesperrt, Mail geht nicht, PC startet nicht, Verschlüsselung: erste Schritte, Hilfe per Fernwartung, 95 €/Std. ohne Vertrag. Jetzt anrufen.",
         "h1": "IT-Notfall: was in den ersten 30 Minuten zu tun ist",
         # Kurzlabel fuer Navigation und Footer (06.09.2026). Vorher stand dort
         # `h1|truncatewords:2` — also woertlich „IT-Notfall: was …", ein
         # abgeschnittener Seitentitel, der im Kopf dreizeilig umbrach.
         "nav": "IT-Notfall",
         "wa_text": "IT-Notfall: ",
-        "kurz": "Bei einem IT-Notfall entscheiden die ersten Minuten über den Schaden. Die wichtigste Regel gilt in allen vier Fällen: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden. Danach Hilfe holen. Wir sind Montag bis Freitag von 9 bis 18 Uhr unter der unten stehenden Nummer erreichbar und beginnen per Fernwartung meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind.",
+        "kurz": "WVM-IT aus Lenzing hilft Betrieben in Oberösterreich und Salzburg bei gesperrtem Microsoft-365-Konto, ausgefallener E-Mail, nicht startendem PC, Verschlüsselung und Serverausfall per Fernwartung: Wir sind Montag bis Freitag von 9 bis 18 Uhr unter der unten stehenden Nummer erreichbar und beginnen meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind. Abgerechnet wird als Einzelhilfe ohne Vertrag zu 95 € je Stunde. Bei Verdacht auf einen Angriff gilt vorab eine Regel: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden.",
         "eilt_h": "Es eilt — hier entlang",
         "eilt_t": "Rufen Sie an, statt zu schreiben. Ein Anruf spart bei einer laufenden Störung mehr Zeit als jede Beschreibung per E-Mail.",
         "intro": "Diese Seite ist zum Handeln da, nicht zum Lesen. Suchen Sie unten Ihren Fall und arbeiten Sie die Schritte der Reihe nach ab. Alles Weitere — Ursachensuche, Wiederherstellung, Meldepflichten — kommt danach. Wir sind ausdrücklich auch dann erreichbar, wenn Sie kein Kunde von uns sind; ein akuter Notfall ist der falsche Zeitpunkt für eine Vertragsfrage.",
-        "regel_h": "Die eine Regel, die in allen Fällen gilt",
+        "regel_h": "Die eine Regel bei Angriff oder Datenverlust",
         "regel_t": "Netzwerkkabel ziehen oder WLAN abschalten — aber das Gerät NICHT ausschalten, nichts löschen, nichts „aufräumen“ und keine Software neu installieren. Ein ausgeschaltetes Gerät verliert Spuren, die für die Wiederherstellung und für eine eventuelle Meldung an die Datenschutzbehörde gebraucht werden. Trennen ja, abschalten nein.",
         "schritte_h": "Die ersten Schritte",
         "nicht_h": "Was Sie jetzt nicht tun sollten",
         "faelle": [
+            {
+                "id": "konto",
+                "icon": "user",
+                "h": "Das Microsoft-365-Konto ist gesperrt",
+                "kurz": "Die Anmeldung wird verweigert, Mitarbeiter kommen nicht mehr an Mail, Teams oder OneDrive, oder Microsoft meldet eine verdächtige Anmeldung.",
+                "schritte": [
+                    "Die Fehlermeldung genau lesen oder fotografieren: Sie verrät, ob es Fehlversuche, eine Sperre durch den Administrator, ein abgelaufenes Abonnement oder eine verdächtige Anmeldung sind.",
+                    "Prüfen, ob nur ein Konto betroffen ist oder alle gleichzeitig. Wenn alle gleichzeitig betroffen sind, liegt es meist am Abonnement oder an der Lizenz, nicht am einzelnen Konto.",
+                    "Jemanden mit Verwaltungsrechten im Microsoft-365-Verwaltungsportal nachsehen lassen: Ist die Anmeldung blockiert, ist eine Lizenz zugewiesen, ist das Abonnement bezahlt?",
+                    "Bei Verdacht auf fremden Zugriff: Kennwort von einem sauberen Gerät aus ändern, alle Sitzungen beenden, Zwei-Faktor-Anmeldung einrichten und die Postfachregeln auf heimliche Weiterleitungen prüfen.",
+                    "Ist niemand mehr mit Verwaltungsrechten erreichbar, Hilfe holen: Dann geht es darum, die Verwaltung des Mandanten nachzuweisen, und das braucht Unterlagen und Zeit.",
+                ],
+                "nicht": [
+                    "Nicht mehrfach hintereinander Kennwörter probieren: Jeder Fehlversuch kann die Sperre verlängern.",
+                    "Das Konto nicht löschen und neu anlegen, denn Postfach und Daten hängen daran.",
+                    "Kein neues Abonnement abschließen, bevor geklärt ist, ob das alte nur nicht bezahlt wurde.",
+                ],
+            },
+            {
+                "id": "mail",
+                "icon": "alert",
+                "h": "Die E-Mail geht nicht (Senden oder Empfangen)",
+                "kurz": "Outlook meldet einen Fehler, Mails bleiben im Postausgang hängen oder es kommt nichts mehr an.",
+                "schritte": [
+                    "Prüfen, ob die Internetverbindung steht und ob nur ein Postfach oder alle betroffen sind.",
+                    "Die Meldung von Outlook fotografieren und das Postfach im Browser öffnen. Geht es dort, liegt es am Programm oder am Profil, nicht am Konto.",
+                    "Prüfen, ob das Postfach voll ist oder das Kennwort kürzlich geändert wurde: Handy und andere Geräte brauchen das neue Kennwort.",
+                    "Mails im Postausgang nicht löschen. Bei dringenden Kundenmails den Betreff notieren, damit nichts verloren geht.",
+                    "Hilfe holen, wenn mehrere Postfächer betroffen sind oder an der Domain oder am Tarif etwas geändert wurde.",
+                ],
+                "nicht": [
+                    "Outlook nicht deinstallieren und neu einrichten, bevor sicher ist, dass die Mails auf dem Server liegen.",
+                    "Keine Postfachdateien löschen oder verschieben.",
+                    "Dieselbe Mail nicht mehrfach senden: Empfänger bekommen sie sonst doppelt.",
+                ],
+            },
+            {
+                "id": "pc",
+                "icon": "monitor",
+                "h": "Ein Arbeitsplatz-PC startet nicht",
+                "kurz": "Der Bildschirm bleibt schwarz, Windows kommt nicht bis zur Anmeldung oder der Rechner startet immer wieder neu.",
+                "schritte": [
+                    "Stromversorgung, Steckerleiste und Bildschirmkabel prüfen; Monitor eingeschaltet und die richtige Eingangsquelle gewählt?",
+                    "USB-Sticks und externe Platten abstecken und noch einmal neu starten.",
+                    "Die Meldung am Bildschirm fotografieren, auch Signaltöne oder Leuchten am Gerät notieren.",
+                    "Klären, ob wichtige Dateien auf dem Server oder in der Cloud liegen oder nur auf diesem Rechner: Davon hängt ab, wie dringend der Rechner selbst ist.",
+                    "Einen Ausweich-Arbeitsplatz festlegen, damit die Arbeit weitergeht, und Hilfe holen.",
+                ],
+                "nicht": [
+                    "Nicht wiederholt aus- und einschalten, wenn Windows gerade Updates oder eine Reparatur anzeigt.",
+                    "Keine Festplatte ausbauen und Windows nicht neu installieren, bevor die Daten gesichert sind.",
+                    "Keine Reparaturprogramme aus dem Internet ausführen.",
+                ],
+            },
             {
                 "id": "ransomware",
                 "icon": "shield",
@@ -1018,7 +1078,7 @@ PACK = {
     "kosten_seite": {
         "titel": "Was kostet IT-Betreuung? Alle Preise ab 29 €/Monat | WVM-IT",
         "desc": "Was IT-Betreuung kostet: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE. Angebot anfordern.",
-        "h1": "Was kostet das? Alle Preise auf einer Seite",
+        "h1": "Was kostet IT-Betreuung? Alle Preise auf einer Seite",
         "kurz": "Die laufende IT-Betreuung bei WVM-IT kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
         "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt – und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",
         "ort_satz": "Vor Ort sind wir u. a. in <a href=\"/it-service/salzburg/\">Salzburg</a> und <a href=\"/it-service/linz/\">Linz</a>, per Fernwartung in ganz Österreich.",
@@ -1107,7 +1167,7 @@ PACK = {
         "kurz": "WVM-IT zeigt hier ausschließlich Projekte, die wirklich existieren und deren Kunden der Nennung zugestimmt haben. Aktuell ist das Rümpelwerk Mitteldeutschland, für das wir Website, SEO/GEO und Google Ads gebaut haben und laufend betreuen. Wer sich vor einer Anfrage ein Bild machen will, findet auf dieser Website mehr Belastbares als eine Referenzliste: über 30 offen ausgewiesene Positionen mit Preis oder Preishinweis, einen Kostenrechner und einen Sicherheits-Selbsttest mit 10 Fragen.",
         "intro": "Diese Seite ist kurz, und das hat einen Grund: Wir führen hier nur auf, was wir belegen können. Eine Wand aus fremden Firmenlogos wäre in einer Minute gebaut – nur eben ohne die Zustimmung der Kunden, und genau die fehlt uns in den meisten Fällen. Erfundene Kundenstimmen und ausgedachte Zahlen finden Sie bei uns nicht, auch nicht in kleiner Schrift, und ebenso wenig Bewertungen oder Zertifikate, die sich nicht mit einer echten Quelle belegen lassen.",
         "mehr_h": "Warum hier nicht mehr steht",
-        "mehr_t": "Ein Teil unserer Arbeit sind Betriebe, deren EDV wir laufend betreuen. Wer seine IT in fremde Hände gibt, will das selten öffentlich sehen, und Stillschweigen ist in diesem Geschäft eher die Regel als die Ausnahme. Wir fragen deshalb jeden Kunden einzeln und nennen niemanden ohne Zustimmung; auf Wunsch stellen wir im Gespräch gerne einen Kontakt her. Wer eine Referenz aus seiner Branche sehen möchte, fragt im ersten Gespräch danach; wir sagen dann offen, ob es dazu einen Fall mit Einverständnis des Kunden gibt, und versprechen nichts, was wir nicht belegen können. Was Sie stattdessen prüfen können, steht bereits offen auf dieser Website: Die Preise stehen auf jeder Leistungsseite und in der vollständigen Preisliste, nicht erst nach einem Gespräch. Im Kostenrechner sehen Sie die Monats- und Jahressumme für Ihren eigenen Betrieb, gerechnet mit denselben Sätzen wie in jedem Angebot. Der IT-Sicherheits-Selbsttest zeigt in zehn Fragen, wo Ihre IT heute steht, ohne E-Mail-Abfrage und ohne Speicherung. Und das erste Gespräch selbst kostet nichts – darin sagen wir auch, wenn sich für Sie weniger lohnt, als ursprünglich angefragt.",
+        "mehr_t": "Ein Teil unserer Arbeit sind Betriebe, deren EDV wir laufend betreuen. Wer seine IT in fremde Hände gibt, will das selten öffentlich sehen, und Stillschweigen ist in diesem Geschäft eher die Regel als die Ausnahme. Wir fragen deshalb jeden Kunden einzeln und nennen niemanden ohne Zustimmung; auf Wunsch stellen wir im Gespräch gerne einen Kontakt her. Wer eine Referenz aus seiner Branche sehen möchte, fragt im ersten Gespräch danach; wir sagen dann offen, ob es dazu einen Fall mit Einverständnis des Kunden gibt, und versprechen nichts, was wir nicht belegen können. Was Sie stattdessen prüfen können, steht bereits offen auf dieser Website: Die Preise stehen auf jeder Leistungsseite und in der vollständigen Preisliste, nicht erst nach einem Gespräch. Im Kostenrechner sehen Sie die Monats- und Jahressumme für Ihren eigenen Betrieb, gerechnet mit denselben Sätzen wie in jedem Angebot. Der IT-Sicherheits-Selbsttest zeigt in zehn Fragen, wo Ihre IT heute steht, ohne E-Mail-Abfrage und ohne Speicherung. Und das erste Gespräch selbst kostet nichts – darin sagen wir auch, wenn sich für Sie weniger lohnt, als ursprünglich angefragt. Wenn Sie ein Projekt besprechen wollen: <a href='/kontakt/'>Ihr Projekt besprechen</a>.",
         "ansehen": "Seite ansehen",
     },
     "kontakt_seite": {
@@ -1186,6 +1246,7 @@ PACK = {
             "Keine verschwiegene Provision. Ist eine Empfehlung für uns finanziell interessant, steht das im Angebot dabei.",
             "Keine erfundenen Kundenstimmen. Auf dieser Seite standen einmal drei — sie sind entfernt worden, und es stehen erst wieder welche da, wenn sie von echten Kunden kommen.",
         ],
+        "link_satz": "Fragen an den Inhaber? <a href='/kontakt/'>Kontakt zu Florin Feier</a>. Der Sitz hat eine eigene Seite: <a href='/it-service/lenzing/'>IT-Service in Lenzing</a>.",
         "sitz_h": "Sitz und Einzugsgebiet",
         "sitz_t": "Der Firmensitz ist {adresse}, im Bezirk Vöcklabruck. Vor Ort sind wir regelmäßig im Salzkammergut und im Raum Vöcklabruck, Gmunden, Bad Ischl, Wels, Linz und Salzburg unterwegs. Alles, was aus der Ferne geht, betreuen wir in ganz Österreich und Deutschland — die Entfernung spielt dabei keine Rolle.",
         "sprachen_h": "Sprachen",

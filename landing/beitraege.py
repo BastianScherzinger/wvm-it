@@ -150,3 +150,79 @@ from .i18n import beitraege_neu_a_de as _neu_a, beitraege_neu_b_de as _neu_b  # 
 BEITRAEGE += _neu_a.META + _neu_b.META
 
 NACH_SLUG = {b["slug"]: b for b in BEITRAEGE}
+
+
+# ── Ortslinks je Beitrag (Analyse 12.10.2026, W2) ────────────────────────────
+# Bis dahin verlinkte jeder Beitrag genau einen Ort, rotierend und ohne
+# Themenbezug; Lenzing (Sitz) und der Kernraum bekamen 0 bis 2 Links aus dem
+# Inhalt, Wels/Linz/Salzburg dagegen 8 bis 10. Jetzt zeigt jeder Beitrag zwei Orte:
+# einen aus dem Kernraum (Lenzing bewusst am häufigsten, der Rest nach
+# Schwerpunkt des Ortes und gleichmäßig verteilt) und einen Themenort (Ort, dessen
+# `schwerpunkt` in regionen.py das Thema des Beitrags ist). Anker: „<Dienst> in <Ort>“.
+from . import regionen as _regionen  # noqa: E402
+
+KERNRAUM = ["lenzing", "seewalchen-am-attersee", "voecklabruck", "timelkam",
+            "schoerfling-am-attersee", "regau", "frankenmarkt",
+            "attnang-puchheim", "voecklamarkt"]
+
+DIENST_NACH_THEMA = {
+    "edv-it-betreuung": "IT-Betreuung",
+    "server-datensicherung": "Datensicherung",
+    "netzwerk-wlan": "WLAN und Netzwerk",
+    "it-sicherheit": "IT-Sicherheit",
+    "smarthome-knx-loxone": "Smarthome",
+}
+
+# Feste Zuordnung für die Beiträge, bei denen die Analyse (Liste „30 fehlende
+# Links“, Nr. 8–12, 14–16) einen bestimmten Ort samt Anker vorgibt.
+# slug -> (Kernorte, Dienst)
+ORTE_FEST = {
+    "edv-betreuung-kleinbetriebe-oberoesterreich": (["lenzing", "seewalchen-am-attersee"], "IT-Betreuung"),
+    "wlan-im-buero-zu-langsam": (["timelkam"], "WLAN-Hilfe"),
+    "phishing-mails-erkennen": (["lenzing"], "IT-Sicherheit"),
+    "loxone-oder-knx": (["regau"], "Loxone"),
+    "microsoft-365-lizenz-kleine-firma": (["schoerfling-am-attersee"], "Microsoft 365"),
+    "it-betreuung-handwerksbetriebe": (["frankenmarkt"], "IT-Betreuung"),
+    "backup-3-2-1-kleine-firma": (["lenzing"], "Datensicherung"),
+}
+
+
+def _orte_verteilen():
+    """Kernort(e) und Themenort je Beitrag, deterministisch nach Reihenfolge der Liste.
+
+    Jeder dritte Beitrag bekommt Lenzing (Sitz, Hauptkeyword „… Lenzing“); die
+    übrigen den bisher am wenigsten bedachten Kernort; bei Gleichstand gewinnt
+    der, dessen Schwerpunkt zum Thema passt."""
+    genutzt = {s: 0 for s in KERNRAUM}
+    themen_genutzt = {}
+    ergebnis = {}
+    for i, b in enumerate(BEITRAEGE):
+        slug, thema = b["slug"], b.get("thema", "")
+        if slug in ORTE_FEST:
+            kern, dienst = ORTE_FEST[slug]
+            kern = list(kern)
+        else:
+            dienst = DIENST_NACH_THEMA.get(thema, "IT-Betreuung")
+            if i % 3 == 0:
+                kern = ["lenzing"]
+            else:
+                rest = [s for s in KERNRAUM if s != "lenzing"]
+                kern = [min(rest, key=lambda s: (
+                    genutzt[s],
+                    _regionen.NACH_SLUG[s].get("schwerpunkt") != thema,
+                    KERNRAUM.index(s)))]
+        for s in kern:
+            genutzt[s] += 1
+        kandidaten = [r["slug"] for r in _regionen.REGIONEN
+                      if r["slug"] not in KERNRAUM and r["slug"] != "attersee"
+                      and r.get("schwerpunkt") == thema]
+        if not kandidaten:
+            kandidaten = [r["slug"] for r in _regionen.REGIONEN
+                          if r["slug"] not in KERNRAUM and r["slug"] != "attersee"]
+        thema_ort = min(kandidaten, key=lambda s: (themen_genutzt.get(s, 0), s))
+        themen_genutzt[thema_ort] = themen_genutzt.get(thema_ort, 0) + 1
+        ergebnis[slug] = {"kern": kern, "thema": thema_ort, "dienst": dienst}
+    return ergebnis
+
+
+ORTE_JE_BEITRAG = _orte_verteilen()

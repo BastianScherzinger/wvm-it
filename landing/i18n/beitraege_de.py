@@ -943,17 +943,18 @@ BEITRAEGE = {
 
     "microsoft-365-konto-gesperrt": {
         "titel": "Microsoft-365-Konto gesperrt — was jetzt zu tun ist",
-        "meta_titel": "Microsoft 365 Konto gesperrt: was jetzt tun? | WVM-IT",
-        "desc": "Zu viele Fehlversuche, vom Admin gesperrt, Abo abgelaufen oder "
-                "verdächtige Anmeldung: woran Sie die Ursache erkennen und was hilft. Jetzt Hilfe anfragen.",
+        "meta_titel": "Microsoft-365-Konto gesperrt: Ursache & Entsperren | WVM-IT",
+        "desc": "Konto gesperrt wegen Fehlversuchen, Admin, Abo oder verdächtiger Anmeldung? Ursache finden und entsperren. Jetzt Hilfe für Betriebe in OÖ anfragen.",
         "antwort": "Ein gesperrtes Microsoft-365-Konto hat fast immer einen von vier "
                    "Gründen: zu viele falsche Anmeldeversuche, eine Sperre durch den "
                    "Administrator, ein abgelaufenes oder unbezahltes Abonnement oder eine "
                    "Sperre, weil Microsoft eine verdächtige Anmeldung erkannt hat. Die "
                    "Fehlermeldung beim Anmelden verrät meist, welcher es ist. Im "
                    "letzten Fall gehört zuerst geklärt, ob jemand Fremdes im Konto war — "
-                   "entsperren allein reicht dann nicht. Helfen können wir per "
-                   "Fernwartung ohne Vertrag für 95 € je Stunde.",
+                   "entsperren allein reicht dann nicht. WVM-IT aus Lenzing hilft "
+                   "Betrieben in Oberösterreich und Salzburg bei einem gesperrten "
+                   "Microsoft-365-Konto meist am selben Tag per Fernwartung, abgerechnet "
+                   "als Einzelhilfe ohne Vertrag zu 95 € je Stunde.",
         "abschnitte": [
             {"h": "Zu viele Fehlversuche",
              "t": "Microsoft sperrt ein Konto nach wiederholten falschen Kennwörtern "

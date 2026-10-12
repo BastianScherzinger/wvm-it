@@ -69,8 +69,13 @@ EINRICHTEN = {
                   "locului costă 120 € pe oră plus deplasare; spunem dinainte dacă este "
                   "necesară și de ce.",
 
+        "anlass_h": "Windows 10 a expirat: e timpul pentru posturi de lucru noi?",
+        "anlass_t": "Microsoft a încheiat suportul pentru Windows 10 la 14 octombrie 2025; de atunci nu mai există actualizări de securitate regulate pentru el. Pentru dispozitivele personale, Microsoft oferă actualizări de securitate extinse (ESU) până la 12 octombrie 2027. Calculatoarele dintr-o firmă care nu acceptă Windows 11 nu ar trebui, de aceea, folosite mai departe pe termen lung. Verificăm dacă un aparat existent poate trece la <a href=\"/ro/einrichten/windows-11/\">Windows 11</a> sau configurăm postul de lucru de înlocuire cu 190 €.",
+
         "faq_h": "Întrebări frecvente",
         "faq": [
+            {"q": "Cât costă configurarea unui PC?",
+             "a": "Configurarea unui post de lucru costă un preț fix de 190 € per aparat, fără contract. Prețul se aplică atunci când se poate face prin acces la distanță, de obicei în două–trei ore. Dacă cineva trebuie să fie la fața locului, se adaugă 120 € pe oră plus deplasarea. Hardware-ul și licențele nu sunt incluse."},
             {"q": "Prețul este per aparat sau pentru toate împreună?",
              "a": "Per post de lucru. Cinci calculatoare noi costă deci de cinci ori "
                   "190 €. Cu mai multe aparate deodată merge mai repede, pentru că "
@@ -314,9 +319,9 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "microsoft-365": {
-        "titel": "Configurare Microsoft 365 — 290 € preț fix | WVM-IT",
-        "desc": "Căsuțe poștale, Teams, OneDrive și SharePoint configurate corect: "
-                "290 € preț fix, cu mutarea e-mailurilor vechi. Cereți o ofertă.",
+        "titel": "Configurare Microsoft 365 (Office 365): 290 € fix | WVM-IT",
+        "desc": "Microsoft 365 / Office 365 configurat: 290 € preț fix, cu mutarea "
+                "e-mailurilor, Teams și OneDrive. De obicei la distanță. Cereți o ofertă.",
         "h1": "Microsoft 365 configurat — o dată bine, nu de trei ori pe jumătate",
         "nav": "Microsoft 365",
         "kurz": "WVM-IT configurează Microsoft 365 pentru 290 €: căsuțe poștale și "
@@ -331,7 +336,7 @@ EINRICHTEN = {
                  "serverul vechi. Cine pleacă își ia accesul cu el. Și nimeni nu știe "
                  "unde este versiunea actuală a ofertei.",
 
-        "leistungen_h": "Ce include prețul de 290 €",
+        "leistungen_h": "Office 365 configurat: ce include prețul de 290 €",
         "leistungen": [
             "Căsuțe poștale, aliasuri, liste de distribuție și căsuțe comune",
             "Autentificare în doi pași pentru toate conturile — pasul individual cel mai "
@@ -372,6 +377,11 @@ EINRICHTEN = {
 
         "faq_h": "Întrebări frecvente",
         "faq": [
+            {"q": "Este Office 365 același lucru cu Microsoft 365?",
+             "a": "În uz obișnuit, da: Microsoft a redenumit abonamentele Office 365 în "
+                  "Microsoft 365. Cine caută Office 365 se referă de obicei la abonamentul "
+                  "cu căsuțe poștale, Word, Excel, Teams și OneDrive. Îl configurăm pentru "
+                  "un preț fix de 290 €; licențele le plătiți direct la Microsoft."},
             {"q": "Pierdem e-mailuri vechi la mutare?",
              "a": "Nu. Căsuțele sunt preluate cu structura de foldere, calendarele și "
                   "contactele, iar cele vechi funcționează pe tot parcursul mutării. "
@@ -714,6 +724,8 @@ EINRICHTEN = {
 
         "faq_h": "Întrebări frecvente",
         "faq": [
+            {"q": "Se poate prelua o instalație Loxone existentă de la un alt programator?",
+             "a": "Da. Preluăm instalații Loxone și KNX existente, chiar dacă fostul programator sau instalator nu mai poate fi contactat. Mai întâi consemnăm ce este montat și cum este programat; evaluarea se facturează pe oră (120 € pe oră la fața locului plus deplasarea). Apoi comunicăm prețul în scris, iar atunci el este valabil."},
             {"q": "Nu avem documente și nici parolă pentru instalație.",
              "a": "Este cazul obișnuit la o preluare. În cele mai multe situații ajungem la "
                   "configurație prin aparatele înseși. Dacă într-adevăr nu se poate, o "
@@ -917,6 +929,8 @@ EINRICHTEN = {
 
         "faq_h": "Întrebări frecvente",
         "faq": [
+            {"q": "Cum se poate muta rețeaua?",
+             "a": "La mutarea rețelei desenăm mai întâi planul rețelei: unde stă dulapul serverului, pe unde trec cablurile și unde sunt punctele de acces, imprimantele și terminalele. Liniile de la noul sediu trebuie comandate din timp (șase până la opt săptămâni). În ziua mutării montăm mai întâi serverul și echipamentele de rețea, apoi posturile de lucru, fiecare calculator la aceeași priză ca în plan. În prima zi de lucru testăm fiecare post. Pentru o rețea cu WLAN care trebuie construită de la zero calculăm de la 890 €."},
             {"q": "Cât timp de pregătire cere o mutare IT?",
              "a": "Pentru IT-ul propriu-zis sunt suficiente două-patru săptămâni; "
                   "termenul critic este comanda de internet și telefon la noul "

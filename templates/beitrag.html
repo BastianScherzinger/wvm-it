@@ -131,6 +131,12 @@ Begruendung in Abschnitten.
 
     {% include 'anfrage_karte.html' with bid='it' titel='Frage zum Thema? Kurz schildern, wir antworten.' sub='Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.' ph=t.lb.text_ph %}
 
+    {% if orte_block %}
+    <p class="rg-hinweis bt-orte" data-reveal><strong>In Ihrer Nähe:</strong>
+      {% for o in orte_block %}<a href="{{ o.url }}">{{ o.anker }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}
+    </p>
+    {% endif %}
+
     <nav class="rg-weitere" aria-label="Weitere Beiträge">
       <h2>Weitere Beiträge</h2>
       <ul>

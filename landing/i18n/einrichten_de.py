@@ -74,8 +74,15 @@ EINRICHTEN = {
                   "kostet 120 € je Stunde zuzüglich Anfahrt; wir sagen vorher, ob und "
                   "warum er nötig ist.",
 
+        # Windows-10-Ende: Microsoft Support, „Windows 10 support ends on October 14, 2025“,
+        # abgerufen 13.10.2026 (Supportende 14.10.2025; ESU für Privatanwender bis 12.10.2027).
+        "anlass_h": "Windows 10 ist ausgelaufen: Zeit für neue Arbeitsplätze?",
+        "anlass_t": "Microsoft hat den Support für Windows 10 am 14. Oktober 2025 beendet; seitdem gibt es dafür keine regulären Sicherheitsupdates mehr. Für Privatgeräte bietet Microsoft erweiterte Sicherheitsupdates (ESU) bis zum 12. Oktober 2027 an. Rechner im Betrieb, die Windows 11 nicht unterstützen, sollten Sie deshalb nicht dauerhaft weiterbetreiben. Wir prüfen, ob sich ein vorhandenes Gerät auf <a href=\"/einrichten/windows-11/\">Windows 11</a> umstellen lässt, oder richten den Ersatz-Arbeitsplatz für 190 € ein.",
+
         "faq_h": "Häufige Fragen",
         "faq": [
+            {"q": "Was kostet es, einen PC einrichten zu lassen?",
+             "a": "Einen Arbeitsplatz einzurichten kostet 190 € Festpreis je Gerät, ohne Vertrag. Der Preis gilt, wenn es per Fernwartung geht, und das dauert in der Regel zwei bis drei Stunden. Muss jemand vor Ort sein, kommen 120 € je Stunde zuzüglich Anfahrt dazu. Hardware und Lizenzen sind nicht enthalten."},
             {"q": "Gilt der Preis je Gerät oder für alle zusammen?",
              "a": "Je Arbeitsplatz. Fünf neue Rechner kosten also fünfmal 190 €. Bei "
                   "mehreren Geräten gleichzeitig geht es schneller, weil die Einrichtung "
@@ -320,9 +327,9 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "microsoft-365": {
-        "titel": "Microsoft 365 einrichten lassen — 290 € Festpreis | WVM-IT",
-        "desc": "Postfächer, Teams, OneDrive und SharePoint sauber eingerichtet: 290 € "
-                "Festpreis, inklusive Umzug der alten E-Mails. Jetzt anfragen.",
+        "titel": "Microsoft 365 (Office 365) einrichten lassen: 290 € | WVM-IT",
+        "desc": "Microsoft 365 / Office 365 einrichten lassen: 290 € Festpreis inkl. "
+                "Mailumzug, Teams, OneDrive. Meist per Fernwartung. Jetzt anfragen.",
         "h1": "Microsoft 365 einrichten — einmal richtig statt dreimal halb",
         "nav": "Microsoft 365",
         "kurz": "WVM-IT richtet Microsoft 365 für 290 € ein: Postfächer und Aliasse, "
@@ -337,7 +344,7 @@ EINRICHTEN = {
                  "Mail und auf dem alten Server. Wer geht, nimmt seinen Zugriff mit. "
                  "Und niemand weiß, wo die aktuelle Fassung des Angebots liegt.",
 
-        "leistungen_h": "Was für 290 € enthalten ist",
+        "leistungen_h": "Office 365 einrichten lassen: Was für 290 € enthalten ist",
         "leistungen": [
             "Postfächer, Aliasse, Verteiler und gemeinsame Postfächer",
             "Zwei-Faktor-Anmeldung für alle Konten — der wirksamste einzelne Schritt "
@@ -378,6 +385,11 @@ EINRICHTEN = {
 
         "faq_h": "Häufige Fragen",
         "faq": [
+            {"q": "Ist Office 365 dasselbe wie Microsoft 365?",
+             "a": "Im Alltag ja: Microsoft hat die Abos von Office 365 in Microsoft 365 "
+                  "umbenannt. Wer nach Office 365 sucht, meint in der Regel das Abo mit "
+                  "Postfächern, Word, Excel, Teams und OneDrive. Wir richten es für "
+                  "290 € Festpreis ein; die Lizenzen zahlen Sie direkt an Microsoft."},
             {"q": "Verlieren wir alte E-Mails beim Umzug?",
              "a": "Nein. Die Postfächer werden mit Ordnerstruktur, Kalendern und "
                   "Kontakten übernommen, und die alten laufen während des Umzugs "
@@ -732,6 +744,8 @@ EINRICHTEN = {
 
         "faq_h": "Häufige Fragen",
         "faq": [
+            {"q": "Kann man eine bestehende Loxone-Anlage von einem anderen Programmierer übernehmen lassen?",
+             "a": "Ja. Wir übernehmen bestehende Loxone- und KNX-Anlagen, auch wenn der bisherige Programmierer oder Errichter nicht mehr erreichbar ist. Zuerst nehmen wir auf, was verbaut und wie es programmiert ist; die Aufnahme rechnen wir nach Stunde ab (120 € je Stunde vor Ort zuzüglich Anfahrt). Danach nennen wir den Preis schriftlich, und dann gilt er."},
             {"q": "Wir haben keine Unterlagen und kein Passwort zur Anlage.",
              "a": "Das ist der Normalfall bei einer Übernahme. In den meisten Fällen "
                   "kommen wir über die Geräte selbst an die Konfiguration. Geht es "
@@ -941,6 +955,8 @@ EINRICHTEN = {
 
         "faq_h": "Häufige Fragen",
         "faq": [
+            {"q": "Wie lässt sich das Netzwerk umziehen?",
+             "a": "Beim Netzwerk-Umzug zeichnen wir vorher den Netzplan: wo der Serverschrank steht, wo Kabel verlaufen und wo Zugangspunkte, Drucker und Terminals hängen. Die Leitungen am neuen Standort müssen früh bestellt werden (sechs bis acht Wochen). Am Umzugstag bauen wir Server und Netzwerktechnik zuerst auf, die Arbeitsplätze danach, jeden Rechner an derselben Buchse wie im Netzplan. Am ersten Arbeitstag testen wir jeden Platz. Für ein neu aufzubauendes Netzwerk samt WLAN rechnen wir mit ab 890 €."},
             {"q": "Wie viel Vorlauf braucht ein IT-Umzug?",
              "a": "Für die IT selbst reichen zwei bis vier Wochen; die kritische "
                   "Frist ist die Bestellung von Internet und Telefon am neuen "

@@ -86,6 +86,12 @@ BRANCHEN = {
         "preis_h": "Cât costă",
         "preis_t": "Asistența curentă costă de la 29 € per stație și lună, un server administrat de la 89 € pe lună, backupul supravegheat de la 49 € pe lună. Instalarea rețelei și a WLAN-ului pentru atelier sau hală costă de la 890 €, o stație nou configurată 190 €. Ajutorul punctual se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
         "faq": [
+            {"q": "E-mailurile noastre de comandă ajung în spam. Ce putem face?",
+             "a": "De obicei datele expeditorului domeniului nu sunt corecte: dacă lipsesc înregistrările pentru SPF, DKIM și DMARC, destinatarii consideră e-mailurile suspecte. Verificăm, adăugăm înregistrările și testăm trimiterea. Se poate face prin acces la distanță, fără ca cineva din firmă să trebuiască să aștepte."},
+            {"q": "Cum arată concret administrarea curentă într-o firmă de meșteșuguri?",
+             "a": "Actualizările PC-urilor de birou rulează în afara programului, copia de siguranță este verificată zilnic, iar restaurarea este încercată la intervale. Angajații noi primesc contul, cei plecați îl pierd în aceeași zi. La defecțiuni trimiteți o poză cu mesajul de eroare pe WhatsApp sau sunați; rezolvăm cea mai mare parte prin acces la distanță, iar hardware-ul îl schimbăm la fața locului în zona noastră de deservire."},
+            {"q": "Cât costă administrarea IT pentru o firmă de meșteșuguri cu patru PC-uri de birou?",
+             "a": "Administrarea curentă costă 29 € per post de lucru și lună, deci de patru ori 29 € pentru patru PC-uri de birou. La cerere se adaugă copia de siguranță monitorizată cu 49 € pe lună. Multe firme mici nu au nevoie de server propriu; dacă totuși aveți unul, se adaugă 89 € pe lună. Ajutorul în afara administrării costă 95 € pe oră prin acces la distanță. Toate prețurile sunt orientative, net plus TVA."},
             {"q": "WLAN-ul nostru nu ajunge în atelier. Este suficient un repetor?",
              "a": "De obicei nu. Un repetor înjumătățește lățimea de bandă disponibilă și emite pe același canal cu aparatul pe care ar trebui să îl extindă, așa că cele două se perturbă reciproc. Într-un atelier cu rafturi metalice și mașini, soluția este aproape întotdeauna o măsurătoare, un al doilea punct de acces pe cablu propriu și o repartizare curată a canalelor. Costă o dată și apoi ține."},
             {"q": "Pot lucra montatorii noștri și fără semnal?",
@@ -130,6 +136,8 @@ BRANCHEN = {
         "preis_h": "Cât costă",
         "preis_t": "Verificarea unică de securitate IT costă de la 490 € și se încheie cu un raport scris. Asistența curentă costă de la 29 € per stație și lună, un server administrat de la 89 € pe lună, backupul supravegheat de la 49 € pe lună. Instalarea unui firewall și a rețelelor separate costă de la 690 €. Ajutorul punctual se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
         "faq": [
+            {"q": "Ce se întâmplă cu cititorul de carduri pentru e-card în rețeaua cabinetului?",
+             "a": "Conectarea la sistemul e-card se face prin rețeaua de informații pentru sănătate a asigurărilor sociale și un furnizor de rețea de acces, nu prin noi; de acolo primiți și cititorul, și routerul. Nu înlocuim nici conexiunea, nici aparatul. Ne ocupăm de rețeaua cabinetului din jur: administrație, WLAN pentru oaspeți și aparate de la recepție separate curat, port de rețea și alimentare la cititor, acces la distanță doar cu aprobarea dumneavoastră. Pentru tipul de aparat și condiții întrebați asigurările sociale sau furnizorul."},
             {"q": "Are voie un furnizor extern să acceseze sistemele noastre?",
              "a": "Da, în baza unui contract de prelucrare conform articolului 28 GDPR. În el scrie la ce avem voie să accedem, cum se jurnalizează și ce se întâmplă la încetarea contractului cu accesele și datele. Îl încheiem înainte de primul acces, nu ulterior — și nu avem nevoie de acces la dosarele pacienților, ci la tehnologia de dedesubt."},
             {"q": "Puteți lucra fără să întrerupeți consultația?",

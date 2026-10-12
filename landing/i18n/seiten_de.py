@@ -18,7 +18,7 @@ SEITEN = {
 
     # ══ EDV & IT ══════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
-        "nav": "EDV & IT-Betreuung",
+        "nav": "EDV-Betreuung",
         "titel": "EDV-Betreuung Österreich & Deutschland ab 29 €/Mt | WVM-IT",
         "desc": "Externe IT-Abteilung für kleine Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std. per Fernwartung. Jetzt anfragen.",
         "h1": "EDV- und IT-Betreuung für Betriebe ohne eigene IT-Abteilung",
@@ -429,6 +429,8 @@ SEITEN = {
         "preis_h": "Preise",
         "preis_t": "Termin- und Buchungsautomatisierung kostet ab 390 €, WhatsApp- und E-Mail-Automatisierung ab 490 €, ein KI-Chatbot ab 690 € zuzüglich 39 € im Monat für Betrieb und Pflege, eine maßgeschneiderte Anbindung an CRM oder ERP ab 1.200 €. Richtpreise, netto zzgl. USt.",
         "faq": [
+            {"q": "Wie lässt sich die Terminvereinbarung automatisieren?",
+             "a": "Kunden buchen ihren Termin selbst online in einen Kalender, statt per Telefon hin und her zu schieben. Der Abgleich mit Ihrem Kalender verhindert Doppelbuchungen, die Bestätigung geht automatisch per E-Mail oder WhatsApp hinaus. Was ein Mensch entscheiden muss, etwa Sonderfälle, legen wir vorher fest. Die Terminautomatisierung kostet ab 390 €."},
             {"q": "Ersetzt ein Chatbot einen Mitarbeiter?",
              "a": "Nein, und wir verkaufen ihn auch nicht so. Er nimmt die immer gleichen Fragen ab und sammelt Anfragen außerhalb der Arbeitszeit. Alles, was eine Entscheidung braucht, geht an einen Menschen — das legen wir vorher fest."},
             {"q": "Wo landen die Daten unserer Kunden?",
@@ -639,7 +641,7 @@ SEITEN = {
         "desc": "IT-Betreuung ab 20 Arbeitsplätzen: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, mehrere Standorte per Fernwartung. Jetzt anfragen.",
         "h1": "IT-Betreuung für größere Betriebe ab 20 Arbeitsplätzen",
         "kurz": "WVM-IT betreut auch größere Betriebe ab etwa 20 Arbeitsplätzen: Bestandsaufnahme und laufende Dokumentation, ein fester Ansprechpartner, Überwachung von Servern und Netzwerk, Umgang mit mehreren Standorten per Fernwartung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat. Für einen Betrieb mit 30 Arbeitsplätzen und 2 Servern kommt so ein Rahmen von rund 1.097 € im Monat zustande (30 × 29 € + 2 × 89 € + 49 € Datensicherung). Wo eine interne IT existiert, arbeiten wir daneben — als zweite Stufe für die Themen, für die intern die Zeit fehlt.",
-        "intro": "Ab etwa zwanzig Arbeitsplätzen ändert sich die Frage: nicht mehr „gibt es überhaupt eine Betreuung“, sondern „wie halten wir zwanzig Konten, zehn Freigaben, zwei Server und drei Standorte über die nächsten Jahre in einem Zustand, in dem noch jemand nachvollziehen kann, wie das aufgebaut ist“. Größere Betriebe haben Verträge mit Kunden, die eine IT voraussetzen, die läuft, und sie haben eine Dokumentationspflicht, die kein Zettel im Serverraum erfüllt. Genau dort setzt eine Betreuung an, die nicht am Ticket denkt, sondern am Bestand. Unter 20 Arbeitsplätzen sind Sie auf unserer <a href=\"/leistungen/edv-it-betreuung/\">EDV- und IT-Betreuung für kleinere Betriebe</a> richtig — dort ist die Beziehung enger und der Preis pro Kopf günstiger.",
+        "intro": "Unter etwa 20 Arbeitsplätzen passt die <a href=\"/leistungen/edv-it-betreuung/\">EDV-Betreuung</a> für kleinere Betriebe besser; diese Seite beschreibt, was sich darüber ändert. Ab etwa zwanzig Arbeitsplätzen ändert sich die Frage: nicht mehr „gibt es überhaupt eine Betreuung“, sondern „wie halten wir zwanzig Konten, zehn Freigaben, zwei Server und drei Standorte über die nächsten Jahre in einem Zustand, in dem noch jemand nachvollziehen kann, wie das aufgebaut ist“. Größere Betriebe haben Verträge mit Kunden, die eine IT voraussetzen, die läuft, und sie haben eine Dokumentationspflicht, die kein Zettel im Serverraum erfüllt. Genau dort setzt eine Betreuung an, die nicht am Ticket denkt, sondern am Bestand. Unter 20 Arbeitsplätzen sind Sie auf unserer <a href=\"/leistungen/edv-it-betreuung/\">EDV- und IT-Betreuung für kleinere Betriebe</a> richtig — dort ist die Beziehung enger und der Preis pro Kopf günstiger.",
         "problem_h": "Was in größeren Betrieben schiefgeht",
         "probleme": [
             "Die Dokumentation lebt in vier Köpfen und in keinem Dokument.",

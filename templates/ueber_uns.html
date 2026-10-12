@@ -84,6 +84,7 @@ man in einem Angebotsvergleich wirklich wissen will.
       <div>
         <h2 class="sp-h2">{{ t.ueber.sitz_h|safe }}</h2>
         <p>{{ sitz_t|safe }}</p>
+        {% if t.ueber.link_satz %}<p>{{ t.ueber.link_satz|safe }}</p>{% endif %}
         <p><a class="btn btn-ghost" href="{% url 'regionen' %}">{{ t.seite.regionen_h1|default:t.ueber.sitz_h|safe }}</a></p>
       </div>
       <div>

@@ -2470,15 +2470,10 @@ def _structured_data(c, lang, *, mit_katalog=True):
         "name": c.get("site_name", "WVM-IT"),
         "inLanguage": ["de", "en", "ro"],
         "publisher": {"@id": f"{base}/#business"},
-        # Die interne Suche gibt es seit dem 29.08.2026 unter /suche/?q= — im
-        # Graphen stand sie bisher nicht (Messung GE14). Der Knoten sagt einer
-        # Suchmaschine, dass die Seite durchsuchbar ist und wie.
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": {"@type": "EntryPoint",
-                       "urlTemplate": f"{base}/suche/?q={{search_term_string}}"},
-            "query-input": "required name=search_term_string",
-        },
+        # Die SearchAction (interne Suche /suche/?q=) ist seit dem 12.10.2026 raus:
+        # /suche/ ist per robots.txt gesperrt und noindex, der Knoten zeigte auf ein
+        # Ziel, das kein Crawler betreten darf; Google hat die Sitelinks-Suchbox 2024
+        # abgeschafft (Analyse 12.10.2026, K6).
     }
 
     # Eigene Person-Entität statt eines eingebetteten Objekts: Nur so lässt sich
@@ -2887,7 +2882,7 @@ def _seiten_url(base, breadcrumb):
     return f"{base}/"
 
 
-def _webpage_knoten(base, lang, url, breadcrumb, speakable=True):
+def _webpage_knoten(base, lang, url, breadcrumb, speakable=True, seitentyp="WebPage"):
     """Der WebPage-Knoten, den bis zum 05.09.2026 keine Seite hatte (VL10).
 
     Er ist der Anker, an dem alles andere haengt: Er nennt die Adresse der Seite,
@@ -2901,7 +2896,7 @@ def _webpage_knoten(base, lang, url, breadcrumb, speakable=True):
     # strip_prefix gibt ein Paar (Sprache, Pfad) zurueck — hier zaehlt der Pfad.
     basis_pfad = i18n.strip_prefix(pfad)[1]
     knoten = {
-        "@type": "WebPage", "@id": f"{url}#webpage", "url": url,
+        "@type": seitentyp, "@id": f"{url}#webpage", "url": url,
         "isPartOf": {"@id": f"{base}/#website"},
         "about": {"@id": f"{base}/#business"},
         # Urheber jeder Seite ist der Betrieb (Messung GE16, 24.09.2026: 6 von 53
@@ -2919,7 +2914,18 @@ def _webpage_knoten(base, lang, url, breadcrumb, speakable=True):
         knoten["speakable"] = {"@type": "SpeakableSpecification", "cssSelector": [".antwort"]}
     if breadcrumb:
         knoten["breadcrumb"] = {"@id": f"{url}#breadcrumb"}
+    if seitentyp == "ContactPage":
+        # Die Kontaktseite handelt vom Betrieb: Er ist ihre Hauptentität.
+        knoten["mainEntity"] = {"@id": f"{base}/#business"}
     return knoten
+
+
+def _artikel_bild(base):
+    """Das Bild der `Article`-Knoten: das vorhandene Titelbild der Seite (`hero_bg`).
+
+    Google verlangt für Artikel-Rich-Results ein Bild (Analyse 12.10.2026, K3); eigene
+    Bilder je Artikel gibt es nicht, und eines zu erfinden wäre mehr als die Lücke wert."""
+    return f"{base}{_content().get('hero_bg', '')}"
 
 
 def _ratgeber_artikel(base, pfad, *, titel, beschreibung, worte=0, sprache="de-AT"):
@@ -2946,6 +2952,7 @@ def _ratgeber_artikel(base, pfad, *, titel, beschreibung, worte=0, sprache="de-A
         "publisher": {"@id": f"{base}/#business"},
         "mainEntityOfPage": {"@id": f"{base}{pfad}#webpage"},
         "about": {"@id": f"{base}/#business"},
+        "image": _artikel_bild(base),
         "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".antwort"]},
     }
     if worte:
@@ -2982,7 +2989,7 @@ def _seiten_stand(pfad, lang="de"):
 
 
 def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id="",
-                   katalog=False, speakable=True):
+                   katalog=False, speakable=True, seitentyp="WebPage"):
     """@graph einer Unterseite: immer der Betrieb, die Website und die Seite selbst,
     dazu optional Breadcrumb, Service und FAQPage. So haengt jede Seite an derselben
     Entitaet (#business) statt lose Schema-Bloecke zu streuen (SEO-PLAN.md, G6/G8).
@@ -2994,7 +3001,8 @@ def _seiten_schema(c, lang, *, breadcrumb=None, service=None, faq=None, faq_id="
     # Die FAQPage der Startseite gehoert nicht auf eine Unterseite.
     graph = [k for k in graph if k.get("@type") != "FAQPage"]
     url = _seiten_url(base, breadcrumb)
-    graph.append(_webpage_knoten(base, lang, url, breadcrumb, speakable=speakable))
+    graph.append(_webpage_knoten(base, lang, url, breadcrumb, speakable=speakable,
+                                 seitentyp=seitentyp))
     if breadcrumb:
         # Eine @id, damit der WebPage-Knoten sie referenzieren kann statt sie zu
         # wiederholen — sonst zeigt der Verweis ins Leere (Messung GE07/VL10).
@@ -3166,6 +3174,7 @@ def leistung_seite(request, slug):
     }
     return render(request, "leistung.html", {
         "c": c, "seite": seite,
+        "weiter_satz": _weiter_satz(pack, "lz_weiter"),
         # Der kleine erste Schritt (06.09.2026). Name und Preis kommen aus dem
         # Katalog und aus dem Sprachpaket — nie aus dem Fließtext.
         "einstieg": _einstieg_daten(eintrag, lang),
@@ -3201,18 +3210,40 @@ def leistung_seite(request, slug):
 # Genau dafür gibt es diese Seiten. Die Grenze steht im Kopf von landing/branchen.py:
 # Fachwissen darstellen ja, Erfahrung behaupten nein.
 
+def _mit_zusatz(daten, art, lang="de"):
+    """Hängt den Verlinkungs-Satz aus `i18n/verlinkung_zusatz.py` an (Analyse 12.10.2026, Nr. 13).
+
+    Beitrag: letzter Abschnitt · Branche: `risiko_t` · Glossar, Vergleich, Checkliste:
+    Österreich-Absatz (`at_t2`, sonst `at_t`). Ohne Eintrag bleibt `daten` unverändert."""
+    from .i18n.verlinkung_zusatz import ZUSATZ
+    satz = ZUSATZ.get(art, {}).get(lang, {}).get(daten.get("slug"))
+    if not satz:
+        return daten
+    daten = dict(daten)
+    if art == "beitrag":
+        abschnitte = [dict(a) for a in daten.get("abschnitte", [])]
+        if abschnitte:
+            abschnitte[-1]["t"] = abschnitte[-1]["t"].rstrip() + " " + satz
+            daten["abschnitte"] = abschnitte
+    else:
+        feld = "risiko_t" if art == "branche" else ("at_t2" if daten.get("at_t2") else "at_t")
+        if daten.get(feld):
+            daten[feld] = daten[feld].rstrip() + " " + satz
+    return daten
+
+
 def _branche_daten(eintrag, lang):
     """Struktur + Texte + Preis-Label einer Branche, fertig fuers Template."""
     texte = i18n.get_pack(lang).get("branchen", {}).get(eintrag["slug"], {})
     preise = _itempreise(lang)
-    return dict(
+    return _mit_zusatz(dict(
         eintrag,
         url=reverse("branche", kwargs={"slug": eintrag["slug"]}),
         preis_label=preise.get(eintrag["preis"], ""),
         preis_liste=_preis_liste(preise.get(eintrag["preis"], ""),
                                  i18n.get_pack(lang).get("catalog_words", {})),
         **texte,
-    )
+    ), "branche", lang)
 
 
 def _alle_branchen(lang):
@@ -3372,7 +3403,7 @@ def _checkliste_daten(eintrag):
     daten = {**eintrag, **TEXTE.get(eintrag["slug"], {})}
     daten["url"] = reverse("checkliste", kwargs={"slug": eintrag["slug"]})
     daten["anzahl"] = sum(len(g.get("punkte", [])) for g in daten.get("gruppen", []))
-    return daten
+    return _mit_zusatz(daten, "checkliste")
 
 
 def checkliste_seite(request, slug):
@@ -3451,7 +3482,7 @@ def _begriff_daten(eintrag):
     from .i18n.glossar_de import BEGRIFFE as TEXTE
     daten = {**eintrag, **TEXTE.get(eintrag["slug"], {})}
     daten["url"] = reverse("begriff", kwargs={"slug": eintrag["slug"]})
-    return daten
+    return _mit_zusatz(daten, "begriff")
 
 
 def _defined_term_set(base):
@@ -3850,11 +3881,11 @@ def einrichtung_seite(request, slug):
 
 def _vergleich_daten(eintrag, lang):
     texte = i18n.get_pack(lang).get("vergleiche", {}).get(eintrag["slug"], {})
-    return dict(
+    return _mit_zusatz(dict(
         eintrag,
         url=reverse("vergleich", kwargs={"slug": eintrag["slug"]}),
         **texte,
-    )
+    ), "vergleich", lang)
 
 
 def vergleiche_hub(request):
@@ -3932,7 +3963,7 @@ def _beitrag_daten(eintrag):
     from .i18n.beitraege_de import BEITRAEGE as TEXTE
     daten = {**eintrag, **TEXTE.get(eintrag["slug"], {})}
     daten["url"] = reverse("beitrag", kwargs={"slug": eintrag["slug"]})
-    return daten
+    return _mit_zusatz(daten, "beitrag")
 
 
 def _weitere_beitraege(slug, thema, anzahl=4):
@@ -3951,6 +3982,22 @@ def _weitere_beitraege(slug, thema, anzahl=4):
     gleiche = [b for b in kreis if b.get("thema") == thema]
     rest = [b for b in kreis if b.get("thema") != thema]
     return [_beitrag_daten(b) for b in (gleiche + rest)[:anzahl]]
+
+
+def _orte_fuer_beitrag(eintrag):
+    """Die zwei Ortslinks unter einem Beitrag: Kernraum (oder Sitz) plus Themenort.
+
+    Zuordnung und Begründung: `beitraege.ORTE_JE_BEITRAG` (Analyse 12.10.2026, W2).
+    Anker „<Dienst> in <Ort>“ statt des nackten Ortsnamens."""
+    zuordnung = beitraege.ORTE_JE_BEITRAG.get(eintrag["slug"])
+    if not zuordnung:
+        return []
+    thema_dienst = beitraege.DIENST_NACH_THEMA.get(eintrag.get("thema", ""), "IT-Betreuung")
+    orte = [(s, zuordnung["dienst"]) for s in zuordnung["kern"]]
+    orte.append((zuordnung["thema"], thema_dienst))
+    return [{"url": reverse("region", kwargs={"slug": s}),
+             "anker": f"{dienst} in {regionen.NACH_SLUG[s]['ort']}"}
+            for s, dienst in orte]
 
 
 def beitrag_seite(request, slug):
@@ -4000,6 +4047,7 @@ def beitrag_seite(request, slug):
         # @id war ein zweiter WebPage-Eintrag für dieselbe URL (EIG181).
         "mainEntityOfPage": {"@id": f"{base}{pfad}#webpage"},
         "about": {"@id": f"{base}/#business"},
+        "image": _artikel_bild(base),
         "wordCount": worte,
         # ISO-8601-Dauer. Die Lesezeit steht auch sichtbar auf der Seite; beide
         # kommen aus demselben Feld in landing/beitraege.py.
@@ -4016,6 +4064,7 @@ def beitrag_seite(request, slug):
         "seiten_stand": _seiten_stand(pfad, "de"),
         "einrichtung": _einrichtung_verweis(eintrag.get("einrichtung"), "de"),
         "hilfe_karte": _hilfe_karte("de") if eintrag.get("hilfe") else None,
+        "orte_block": _orte_fuer_beitrag(eintrag),
         "thema": _leistung_daten(thema, "de") if thema else None,
         # V2: zuerst die Beiträge zum selben Thema, danach mit den neuesten
         # aufgefüllt. Vorher standen hier immer dieselben drei — die Beiträge
@@ -4083,6 +4132,20 @@ def _ratgeber_fuer_region(eintrag, anzahl=3):
     return [_beitrag_daten(b) for b in gewaehlt]
 
 
+def _weiter_satz(pack, schluessel, ort=""):
+    """Satz mit Links auf Leistungsseite EDV-Betreuung, Über uns und Referenzen.
+
+    Text und Ankerwörter stehen je Sprache im Paket (`seite.<schluessel>_satz` und
+    `_anker`), die Adressen kommen aus `reverse()` und tragen damit den Sprachpräfix."""
+    satz = pack["seite"].get(f"{schluessel}_satz", "")
+    anker = pack["seite"].get(f"{schluessel}_anker", {})
+    ziele = {"edv": reverse("leistung", kwargs={"slug": "edv-it-betreuung"}),
+             "ueber": reverse("ueber_uns"), "ref": reverse("referenzen")}
+    for k, text in anker.items():
+        satz = satz.replace("{" + k + "}", f'<a href="{ziele[k]}">{text}</a>')
+    return satz.replace("{ort}", ort)
+
+
 def region_seite(request, slug):
     """/it-service/<slug>/ — eine Region, eine URL.
 
@@ -4116,9 +4179,23 @@ def region_seite(request, slug):
                                    "addressLocality": region.get("ort", ""),
                                    "addressCountry": "AT"}},
     }
+    # Preisbezug (Analyse 12.10.2026, K4): die laufende Betreuung ab dem Katalogpreis je
+    # Arbeitsplatz und Monat, dieselbe Position und dieselbe Auszeichnung wie auf den
+    # Leistungsseiten — keine eigene Zahl.
+    betreuung = _ANGEBOT_INDEX["it_betreuung"]
+    service["offers"] = {
+        "@type": "Offer", "priceCurrency": "EUR", "price": str(betreuung["mtl"]),
+        "availability": "https://schema.org/InStock", "url": f"{base}{pfad}",
+        "priceSpecification": {
+            "@type": "UnitPriceSpecification", "price": str(betreuung["mtl"]),
+            "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
+            "unitCode": "MON", "unitText": "Monat", "billingIncrement": 1,
+            "billingDuration": 1},
+    }
     schwerpunkt = leistungen.NACH_SLUG.get(eintrag.get("schwerpunkt", ""))
     return render(request, "region.html", {
         "c": c, "region": region,
+        "weiter_satz": _weiter_satz(pack, "rg_weiter", region.get("ort", "")),
         "schwerpunkt": _leistung_daten(schwerpunkt, lang) if schwerpunkt else None,
         "alle_regionen": [_region_daten(r, lang) for r in sorted(
             regionen.REGIONEN, key=lambda r: r["km"]) if r["slug"] != slug],
@@ -4261,7 +4338,7 @@ def kontakt(request):
     return render(request, "kontakt.html", {
         "c": c, "ks": ks,
         "structured_data": _seiten_schema(
-            c, lang,
+            c, lang, seitentyp="ContactPage",
             breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kontakt"), reverse("kontakt"))])),
     })
 

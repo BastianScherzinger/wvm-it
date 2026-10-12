@@ -68,8 +68,13 @@ EINRICHTEN = {
                   "An on-site visit costs €120 per hour plus travel; we say beforehand "
                   "whether it is needed and why.",
 
+        "anlass_h": "Windows 10 has expired: time for new workstations?",
+        "anlass_t": "Microsoft ended support for Windows 10 on 14 October 2025; since then there are no regular security updates for it. For consumer devices Microsoft offers Extended Security Updates (ESU) until 12 October 2027. Computers in a business that do not support Windows 11 should therefore not be run on for good. We check whether an existing device can be moved to <a href=\"/en/einrichten/windows-11/\">Windows 11</a>, or set up the replacement workstation for €190.",
+
         "faq_h": "Common questions",
         "faq": [
+            {"q": "What does it cost to have a PC set up?",
+             "a": "Setting up a workstation costs a €190 fixed price per device, without a contract. The price applies when it can be done by remote support, which usually takes two to three hours. If someone has to be on site, €120 per hour plus travel is added. Hardware and licences are not included."},
             {"q": "Is the price per device or for all of them together?",
              "a": "Per workstation. Five new computers therefore cost five times €190. "
                   "With several devices at once it goes faster, because the setup only "
@@ -306,9 +311,9 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "microsoft-365": {
-        "titel": "Microsoft 365 setup — €290 fixed price | WVM-IT",
-        "desc": "Mailboxes, Teams, OneDrive and SharePoint set up properly: €290 fixed, "
-                "including migration of your existing email. Get in touch.",
+        "titel": "Microsoft 365 (Office 365) setup — €290 fixed price | WVM-IT",
+        "desc": "Microsoft 365 / Office 365 set up: €290 fixed price including email "
+                "migration, Teams and OneDrive. Mostly by remote support. Get in touch.",
         "h1": "Microsoft 365 setup — once properly instead of three times halfway",
         "nav": "Microsoft 365",
         "kurz": "WVM-IT sets up Microsoft 365 for €290: mailboxes and aliases, "
@@ -323,7 +328,7 @@ EINRICHTEN = {
                  "the old server. Whoever leaves takes their access with them. And "
                  "nobody knows where the current version of the quote is.",
 
-        "leistungen_h": "What €290 includes",
+        "leistungen_h": "Office 365 setup: what €290 includes",
         "leistungen": [
             "Mailboxes, aliases, distribution lists and shared mailboxes",
             "Two-factor sign-in for every account — the single most effective step "
@@ -363,6 +368,11 @@ EINRICHTEN = {
 
         "faq_h": "Common questions",
         "faq": [
+            {"q": "Is Office 365 the same as Microsoft 365?",
+             "a": "In everyday use, yes: Microsoft renamed the Office 365 subscriptions "
+                  "to Microsoft 365. Whoever searches for Office 365 usually means the "
+                  "subscription with mailboxes, Word, Excel, Teams and OneDrive. We set "
+                  "it up for a €290 fixed price; you pay the licences directly to Microsoft."},
             {"q": "Will we lose old email in the migration?",
              "a": "No. The mailboxes are taken over with their folder structure, "
                   "calendars and contacts, and the old ones keep running throughout. "
@@ -695,6 +705,8 @@ EINRICHTEN = {
 
         "faq_h": "Common questions",
         "faq": [
+            {"q": "Can an existing Loxone system be taken over from another programmer?",
+             "a": "Yes. We take over existing Loxone and KNX systems, even if the previous programmer or installer can no longer be reached. First we record what is installed and how it is programmed; the survey is billed by the hour (€120 per hour on site plus travel). After that we state the price in writing, and then it holds."},
             {"q": "We have no documentation and no password for the system.",
              "a": "That is the normal case with a takeover. In most cases we reach the "
                   "configuration through the devices themselves. If it really cannot be "
@@ -890,6 +902,8 @@ EINRICHTEN = {
 
         "faq_h": "Common questions",
         "faq": [
+            {"q": "How can the network be moved?",
+             "a": "For a network move we first draw the network plan: where the server cabinet stands, where cables run and where access points, printers and terminals go. The lines at the new site must be ordered early (six to eight weeks). On moving day we set up servers and network equipment first, the workstations afterwards, each computer at the same socket as in the plan. On the first working day we test every workstation. For a network with Wi-Fi that has to be built from scratch we calculate from €890."},
             {"q": "How much lead time does an IT move need?",
              "a": "The IT itself needs two to four weeks; the critical deadline is "
                   "ordering internet and phone at the new site — six to eight "

@@ -96,6 +96,12 @@ BRANCHEN = {
         "preis_h": "Was das kostet",
         "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Netzwerk und WLAN für Werkstatt oder Halle einrichten kostet ab 890 €, ein neu eingerichteter Arbeitsplatz 190 €. Punktuelle Hilfe rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt.",
         "faq": [
+            {"q": "Was kostet die IT-Betreuung für einen Handwerksbetrieb mit vier Büro-PCs?",
+             "a": "Die laufende Betreuung kostet 29 € je Arbeitsplatz und Monat, bei vier Büro-PCs also viermal 29 €. Dazu kommt auf Wunsch die überwachte Datensicherung für 49 € im Monat. Einen eigenen Server brauchen viele kleine Betriebe nicht; wenn doch, kommen 89 € im Monat dazu. Hilfe außerhalb der Betreuung kostet 95 € je Stunde per Fernwartung. Alle Preise sind Richtpreise, netto zzgl. USt."},
+            {"q": "Unsere Auftragsmails landen im Spam. Was tun?",
+             "a": "Meist stimmen die Absenderangaben der Domain nicht: Fehlen die Einträge für SPF, DKIM und DMARC, stufen Empfänger Ihre Mails als verdächtig ein. Wir prüfen das, tragen die Einträge nach und testen den Versand. Das geht per Fernwartung, ohne dass jemand im Betrieb warten muss."},
+            {"q": "Wie sieht die laufende Betreuung im Handwerksbetrieb konkret aus?",
+             "a": "Updates der Büro-PCs laufen außerhalb der Arbeitszeit, die Datensicherung wird täglich kontrolliert und die Wiederherstellung in Abständen ausprobiert. Für neue Mitarbeiter richten wir das Konto ein, für ausscheidende schalten wir es ab. Bei Störungen schicken Sie ein Foto der Fehlermeldung per WhatsApp oder rufen an; das meiste lösen wir per Fernwartung, Hardware tauschen wir im Einsatzgebiet vor Ort."},
             {"q": "Unser WLAN reicht nicht bis in die Werkstatt. Reicht ein Verstärker?",
              "a": "Meistens nicht. Ein Verstärker halbiert die verfügbare Bandbreite und sendet auf demselben Kanal wie das Gerät, das er verstärken soll — dadurch stören sich beide. In einer Werkstatt mit Metallregalen und Maschinen ist die Lösung fast immer eine Messung, ein zweiter Zugangspunkt mit eigener Leitung und eine saubere Kanalvergabe. Das kostet einmal etwas und hält dann."},
             {"q": "Können unsere Monteure auch ohne Netz arbeiten?",
@@ -141,6 +147,8 @@ BRANCHEN = {
         "preis_h": "Was das kostet",
         "preis_t": "Der einmalige IT-Sicherheitscheck kostet ab 490 € und endet mit einem schriftlichen Bericht. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Firewall und getrennte Netze einzurichten kostet ab 690 €. Punktuelle Hilfe rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt.",
         "faq": [
+            {"q": "Was ist mit dem Kartenlesegerät für die e-card im Praxisnetz?",
+             "a": "Der Anschluss an das e-card-System läuft über das Gesundheitsinformationsnetz der Sozialversicherung und einen Zugangsnetz-Provider, nicht über uns; dort bekommen Sie auch Lesegerät und Router. Wir ersetzen weder Anschluss noch Gerät. Wir kümmern uns um das Praxisnetz drumherum: Verwaltung, Gäste-WLAN und Geräte am Empfang sauber getrennt, Netzwerkanschluss und Stromversorgung am Platz des Lesegeräts, Fernwartung nur nach Ihrer Freigabe. Zu Gerätetyp und Konditionen fragen Sie die Sozialversicherung oder Ihren Provider."},
             {"q": "Dürfen Sie als externer Dienstleister überhaupt an unsere Systeme?",
              "a": "Ja, auf Grundlage eines Auftragsverarbeitungsvertrags nach Artikel 28 DSGVO. Darin steht, worauf wir zugreifen dürfen, wie protokolliert wird und was bei Vertragsende mit Zugängen und Daten geschieht. Wir schließen ihn vor dem ersten Zugriff ab, nicht nachträglich — und wir brauchen dabei keinen Zugriff auf Patientenakten, sondern auf die Technik darunter."},
             {"q": "Können Sie ohne Unterbrechung der Sprechstunde arbeiten?",
