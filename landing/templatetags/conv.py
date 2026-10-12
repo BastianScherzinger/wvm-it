@@ -104,7 +104,7 @@ CTA_TEXTE = {
     "microsoft-365-konto-gesperrt": {
         "kopf": "Microsoft-365-Konto gesperrt? Dann kommt gerade niemand an Mail und Dateien.",
         "text": ("Florin Feier prüft per Fernwartung, warum das Konto gesperrt ist, und gibt den "
-                 "Zugang wieder frei, in der Regel noch am selben Tag. Rufen Sie an, bevor Sie "
+                 "Zugang wieder frei, meist am selben Tag. Rufen Sie an, bevor Sie "
                  "weitere Anmeldeversuche machen."),
     },
     "drucker-druckt-nicht": {"kopf": "Der Drucker druckt nicht und die Ursache bleibt unklar?"},

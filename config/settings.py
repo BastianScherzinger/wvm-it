@@ -260,6 +260,10 @@ DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER or "ko
 # im Namen eingetragen, und die Seite hat sie angeschrieben. Die Newsletter-
 # Bestaetigung (Double-Opt-in) bleibt - ohne eingetippten Namen und hoechstens
 # eine je Adresse am Tag. Durchgesetzt in landing.views._send_mail_logged.
+# Herkunft je Anfrage (utm_*, Verweis-Host) in Mail und Sicherung (12.10.2026). Standard AUS,
+# bis der Satz dazu in der Datenschutzerklärung steht und Florin ihn freigegeben hat
+# (Entwurf: docs/UMSETZUNG-2026-10-12-technik.md). Einschalten: HERKUNFT_UTM=1.
+HERKUNFT_UTM = os.environ.get("HERKUNFT_UTM", "").strip().lower() in ("1", "true", "yes", "on")
 KUNDENMAIL_AN_ABSENDER = os.environ.get("KUNDENMAIL_AN_ABSENDER", "").strip().lower() in ("1", "true", "yes", "on")
 
 # Betreiber-Kopie (26.09.2026): Jede echte Anfrage geht zusaetzlich als eigene

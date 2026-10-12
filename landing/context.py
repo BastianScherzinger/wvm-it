@@ -8,6 +8,7 @@ Aufruf, nicht beim Laden des Moduls.
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
+from django.conf import settings
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import get_language
@@ -99,7 +100,9 @@ def erreichbarkeit(request):
     HTML wird nicht gecacht (CLAUDE.md „Zwischenspeicher"), der Zustand stimmt
     also bei jedem Aufruf. Zeitzone Europe/Vienna , Florins Sitz.
     """
-    return {"erreichbarkeit": _erreichbarkeit(datetime.now(_WIEN))}
+    return {"erreichbarkeit": _erreichbarkeit(datetime.now(_WIEN)),
+            # Herkunfts-Skript nur, wenn die Erfassung eingeschaltet ist (settings.HERKUNFT_UTM).
+            "herkunft_utm_an": getattr(settings, "HERKUNFT_UTM", False)}
 
 
 def anfrage_fehler(request):

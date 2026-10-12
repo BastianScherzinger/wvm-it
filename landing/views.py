@@ -1559,6 +1559,8 @@ def _herkunft_utm(request) -> str:
     ``-_./``, hoechstens 40 Zeichen); alles andere faellt weg -- damit steht kein
     frei erfundener Text in einer Mail. Der Verweis-Host ist nur der Hostname
     (``google.com``), nie ein Pfad oder eine Abfrage."""
+    if not getattr(settings, "HERKUNFT_UTM", False):
+        return ""
     try:
         roh = {k: (request.POST.get(k) or "") for k in _UTM_FELDER}
         ref = (request.POST.get("ref_host") or "")

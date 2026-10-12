@@ -39,7 +39,7 @@ def _html(m):
 
 
 @override_settings(EMAIL_HOST="smtp.test.invalid", BETREIBER_KOPIE_AN=BASTIAN,
-                   KUNDENMAIL_AN_ABSENDER=False)
+                   KUNDENMAIL_AN_ABSENDER=False, HERKUNFT_UTM=True)
 class HerkunftTest(SimpleTestCase):
 
     def setUp(self):
@@ -127,6 +127,18 @@ class HerkunftTest(SimpleTestCase):
                   / "herkunft.js").read_text(encoding="utf-8")
         for verboten in ("localStorage", "sessionStorage", "document.cookie", "indexedDB"):
             self.assertNotIn(verboten, quelle)
+
+
+@override_settings(EMAIL_HOST="smtp.test.invalid", BETREIBER_KOPIE_AN=BASTIAN,
+                   KUNDENMAIL_AN_ABSENDER=False, HERKUNFT_UTM=False)
+class HerkunftStandardAusTest(SimpleTestCase):
+    """Ohne Freigabe der Datenschutzerklärung bleibt die Erfassung aus (13.10.2026)."""
+
+    def test_ohne_schalter_kein_skript_und_keine_zeile(self):
+        self.assertNotIn("js/herkunft.js", _util.client().get("/").content.decode("utf-8"))
+        anfrage = RequestFactory().post("/", {"utm_source": "google"})
+        from landing import views
+        self.assertEqual(views._herkunft_utm(anfrage), "")
 
 
 class CacheKopfTest(SimpleTestCase):
