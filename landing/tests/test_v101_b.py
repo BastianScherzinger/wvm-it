@@ -107,7 +107,7 @@ class DatenschutzNenntDieDatenwegeTest(SimpleTestCase):
         # Datenschutztext beschreibt ihn deshalb zu Recht.
         views_quelle = (_BASIS / "landing" / "views.py").read_text(encoding="utf-8")
         self.assertIn('request.POST.get("angebote")', views_quelle)
-        self.assertIn("wa.me", (_BASIS / "templates" / "kontakt.html").read_text(encoding="utf-8"))
+        self.assertIn("wa.me", (_BASIS / "templates" / "hero_ways.html").read_text(encoding="utf-8"))
 
 
 class BarrierefreiheitStandTest(SimpleTestCase):

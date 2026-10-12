@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 Eine Checkliste (docs/SEO-AUSBAU-3.md, W4).
 
@@ -39,8 +40,10 @@ wie am Bildschirm.
     </div>
   </header>
 
+  {% ratgeber_cta_daten titel=liste.titel slug=liste.slug thema=leistung problem=liste.cta_problem as cta %}
   <section class="section">
     <div class="wrap sp-wrap">
+      {% include 'ratgeber_cta.html' with cta=cta %}
       <p class="sp-intro" data-reveal>{{ liste.intro|safe }}</p>
 
       <div class="ck" id="liste">
@@ -61,6 +64,7 @@ wie am Bildschirm.
             {% endfor %}
           </ul>
         </section>
+        {% if forloop.counter == 3 or forloop.last and forloop.counter < 3 %}{% include 'ratgeber_cta.html' with cta=cta zweit=True %}{% endif %}
         {% endfor %}
       </div>
 
@@ -112,6 +116,8 @@ wie am Bildschirm.
       </aside>
       {% endif %}
 
+      {% ratgeber_schluss thema=leistung.nav as schluss %}
+      {% include 'ratgeber_schluss.html' with schluss=schluss %}
       {% include 'anfrage_karte.html' with bid='it' titel='Punkt offen geblieben? Kurz schildern.' sub='Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.' ph=t.lb.text_ph %}
 
       <nav class="rg-weitere" aria-label="Weitere Checklisten">

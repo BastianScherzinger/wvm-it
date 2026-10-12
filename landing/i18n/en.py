@@ -12,6 +12,7 @@ from .branchen_en import BRANCHEN
 from .vergleiche_en import VERGLEICHE
 from .einrichten_en import EINRICHTEN, HUB as EINRICHTEN_HUB
 from .hilfe_en import HILFE
+from .conv_en import CONV
 
 PACK = {
     "seiten": SEITEN,
@@ -22,6 +23,7 @@ PACK = {
     "einrichten": EINRICHTEN,
     "einrichten_hub": EINRICHTEN_HUB,
     "hilfe": HILFE,
+    "conv": CONV,
     "meta": {
         "html_lang": "en",
         "locale": "en_US",
@@ -77,7 +79,7 @@ PACK = {
     "cookie": {
         "aria": "Cookie notice",
         "title": "We respect your privacy",
-        "body": "We only use technically necessary cookies to make the site work. For the interactive 3D assistant we also embed external content — we only load it with your consent. Details in the",
+        "body": "Only technically necessary cookies. External content for the 3D assistant loads only with your consent. Details in the",
         "link": "privacy policy",
         "accept": "Accept all",
         "decline": "Only necessary",

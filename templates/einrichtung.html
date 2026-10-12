@@ -35,12 +35,8 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
       <div class="sp-top-grid">
         <div>
           <h1>{{ seite.h1|safe }}</h1>
-          {% include 'antwort.html' with text=seite.kurz %}
-          <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
-            {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-            {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
-            <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
-          </div>
+          {% include 'antwort.html' with text=seite.kurz teilen=True %}
+          {% include 'hero_ways.html' with kurz=seite.kurz %}
         </div>
 
         {% comment %}Der Preis steht hier oben und gross — auf dem Handy ohne Scrollen
@@ -136,12 +132,12 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
         <h2 class="sp-h2" id="weitere">{{ hub.h1|safe }}</h2>
         <div class="lk-grid">
           {% for e in verwandte %}
-          <a class="lk spot" href="{{ e.url }}" data-spot>
+          <div class="lk spot" data-spot>
             <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=e.icon %}</span>
-            <h3 class="lk-h">{{ e.nav|safe }}</h3>
+            <h3 class="lk-h"><a class="lk-link" href="{{ e.url }}">{{ e.nav|safe }}</a></h3>
             <p class="lk-t">{{ e.desc|safe }}</p>
             <span class="lk-p">{{ e.preis_label }}</span>
-          </a>
+          </div>
           {% endfor %}
         </div>
         {% endif %}
@@ -167,10 +163,10 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
       <h2 class="sp-h2">{{ t.seite.passt_dazu_h|safe }}</h2>
       <div class="lk-grid">
         {% for p in passt_dazu %}
-        <a class="lk spot" href="{{ p.url }}" data-spot>
-          <h3 class="lk-h">{{ p.titel|safe }}</h3>
+        <div class="lk spot" data-spot>
+          <h3 class="lk-h"><a class="lk-link" href="{{ p.url }}">{{ p.titel|safe }}</a></h3>
           <p class="lk-t">{{ p.kurz|safe }}</p>
-        </a>
+        </div>
         {% endfor %}
       </div>
     </div>

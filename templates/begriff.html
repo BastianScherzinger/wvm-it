@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 Ein Glossareintrag (docs/SEO-AUSBAU-3.md, W5).
 
@@ -36,13 +37,16 @@ demselben `kurz`-Feld, das oben steht.
     </div>
   </header>
 
+  {% ratgeber_cta_daten titel=begriff.titel slug=begriff.slug thema=leistung problem=begriff.cta_problem as cta %}
   <section class="section">
     <div class="wrap sp-wrap">
+      {% include 'ratgeber_cta.html' with cta=cta %}
       {% for a in begriff.abschnitte %}
       <section class="bt-abschnitt" data-reveal>
         <h2>{{ a.h|safe }}</h2>
         <p>{{ a.t|safe }}</p>
       </section>
+      {% if forloop.counter == 3 or forloop.last and forloop.counter < 3 %}{% include 'ratgeber_cta.html' with cta=cta zweit=True %}{% endif %}
       {% endfor %}
 
       <section class="gl-praxis" data-reveal>
@@ -90,6 +94,8 @@ demselben `kurz`-Feld, das oben steht.
       </aside>
       {% endif %}
 
+      {% ratgeber_schluss thema=leistung.nav as schluss %}
+      {% include 'ratgeber_schluss.html' with schluss=schluss %}
       {% include 'anfrage_karte.html' with bid='it' titel='Frage dazu? Kurz schildern, wir antworten.' sub='Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.' ph=t.lb.text_ph %}
 
       <nav class="rg-weitere" aria-label="Verwandte Begriffe">

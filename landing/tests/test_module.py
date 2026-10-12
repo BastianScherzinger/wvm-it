@@ -80,6 +80,9 @@ from landing.i18n import branchen_en
 from landing.i18n import branchen_ro
 from landing.i18n import checklisten_de
 from landing.i18n import de
+from landing.i18n import conv_de
+from landing.i18n import conv_en
+from landing.i18n import conv_ro
 from landing.i18n import einrichten_de
 from landing.i18n import einrichten_en
 from landing.i18n import einrichten_ro
@@ -123,7 +126,7 @@ from landing.management.commands import stand_schreiben
 # Gegenproben unten laufen über diese Tupel und melden jede Datei, die dazukommt
 # und hier fehlt.
 SPRACHMODULE = (beitraege_de, branchen_de, branchen_en, branchen_ro,
-                checklisten_de, de, einrichten_de, einrichten_en, einrichten_ro,
+                checklisten_de, conv_de, conv_en, conv_ro, de, einrichten_de, einrichten_en, einrichten_ro,
                 en, glossar_de, hilfe_de, hilfe_en, hilfe_ro, regionen_de, regionen_en,
                 regionen_ro, ro, seiten_de, lokal_de, lokal_en, lokal_ro, regionen_ausbau_a, regionen_ausbau_b, regionen_ausbau_c, regionen_ausbau_d, seiten_ausbau_edv,
                 seiten_en, seiten_ro, vergleiche_de,
@@ -513,11 +516,11 @@ class SchedulerTest(SimpleTestCase):
         self.assertTrue(scheduler._started)
 
     def test_loeschfrist_hat_einen_eigenen_schalter(self):
-        self.assertEqual(self._jobs({"ANFRAGEN_FRIST_SCHEDULER": "0"}), ["weekly_nl"])
+        self.assertEqual(self._jobs({"ANFRAGEN_FRIST_SCHEDULER": "0"}), ["weekly_nl", "weekly_nl_nachholen"])
 
     def test_standard_legt_beide_jobs_an(self):
         self.assertEqual(sorted(self._jobs({"WEEKLY_SCHEDULER": "1", "ANFRAGEN_FRIST_SCHEDULER": "1"})),
-                         ["anfragen_frist", "weekly_nl"])
+                         ["anfragen_frist", "weekly_nl", "weekly_nl_nachholen"])
 
     def test_ein_zweiter_aufruf_startet_keinen_zweiten_planer(self):
         """Zwei Planer im selben Prozess wären zwei Newsletter je Woche."""

@@ -51,21 +51,29 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     </div>
     {% endif %}
 
+    {% comment %} ── Ein Pflichtfeld (12.10.2026, Punkt 6) ──────────────────────
+      Telefon oder E-Mail ist das einzige Pflichtfeld und steht zuerst; „Worum geht es?“
+      ist freiwillig und klappt auf (wie im Hero der Startseite) — das Label stand bis
+      dahin doppelt da, einmal als Beschriftung und einmal als Platzhalter. Der Server
+      verlangt seit jeher nur `kontakt` (E-Mail oder Telefon), `text` bleibt optional.
+
+      `vorbelegung` (06.09.2026): Wer den Kostenrechner benutzt hat, hat seinen Betrieb
+      bereits beschrieben — Arbeitsplaetze, Server, Summe. Mit Vorbelegung oder
+      Anliegen-Vorwahl steht das Feld offen und gefuellt, aenderbar wie jeder andere Text.
+    {% endcomment %}
     <div class="field">
-      <label class="fld-l" for="ak-text-{{ bid }}">{{ t.lb.text_ph|safe }}</label>
-      {% comment %} `vorbelegung` (06.09.2026): Wer den Kostenrechner benutzt hat, hat
-        seinen Betrieb bereits beschrieben — Arbeitsplaetze, Server, Summe. Diese
-        Angaben gingen beim Sprung zur Anfrage restlos verloren, und der Besucher
-        sollte danach „Worum geht es?" in ein leeres Feld tippen. Jetzt steht sein
-        eigenes Ergebnis drin, aenderbar wie jeder andere Text. {% endcomment %}
-      <input class="fld" id="ak-text-{{ bid }}" type="text" name="text" maxlength="300"
-             placeholder="{{ ph|safe }}"{% if vorbelegung %} value="{{ vorbelegung }}"{% endif %}>
-    </div>
-    <div class="field">
-      <label class="fld-l" for="ak-kontakt-{{ bid }}">{{ t.lb.kontakt_ph|safe }}</label>
+      <label class="fld-l" for="ak-kontakt-{{ bid }}">{{ t.conv.ak_kontakt|safe }} *</label>
       <input class="fld" id="ak-kontakt-{{ bid }}" type="text" name="kontakt" required
              maxlength="254" autocomplete="email" placeholder="{{ t.lb.kontakt_bsp|safe }}">
     </div>
+    <details class="rr-mehr ak-mehr"{% if vorbelegung %} open{% endif %}>
+      <summary>{{ t.conv.ak_mehr|safe }}</summary>
+      <div class="rr-mehr-inhalt">
+        <input class="fld" id="ak-text-{{ bid }}" type="text" name="text" maxlength="300"
+               aria-label="{{ t.conv.ak_mehr|safe }}"
+               placeholder="{{ t.conv.ak_text_ph|safe }}"{% if vorbelegung %} value="{{ vorbelegung }}"{% endif %}>
+      </div>
+    </details>
     {% comment %} ── Werbeeinwilligung (06.09.2026), nur wo ausdrücklich gewünscht ──
       § 174 TKG 2021 verbietet in Österreich unaufgeforderte Werbe-E-Mails
       ausnahmslos — auch an Unternehmen, auch die einzelne. Verfolgt wird von Amts
@@ -84,7 +92,7 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     </label>
     {% endif %}
 
-    <button class="btn lb-submit" type="submit">{{ t.lb.submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="btn lb-submit" type="submit">{{ t.conv.ak_submit|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     {% comment %}Ohne JavaScript steht hier die Meldung aus `?fehler=…` (EIG291/377);
     mit JavaScript setzt anfrage-blocks.js den Text und blendet den Absatz ein.{% endcomment %}
     <p class="lb-err" role="alert"{% if not anfrage_fehler_text %} hidden{% endif %}>{{ anfrage_fehler_text }}</p>
@@ -101,7 +109,7 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
       Ziel (die Anfragekarte dieser Seite), mit JavaScript öffnet anfrage-blocks.js den Dialog.{% endcomment %}
       <a class="ak-rueckruf" href="#anfrage" data-rueckruf>{{ t.ways.callback|safe }}</a>
     </p>
-  {% include 'datenschutzhinweis.html' %}
+  {% include 'datenschutzhinweis.html' with kurz=True %}
   </form>
 
   <div class="lb-done ak-done" hidden>

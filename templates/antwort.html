@@ -14,6 +14,8 @@ gebraucht werden:
   Klasse hier entfernt, macht die Angabe im Schema zu einer Lüge.
 * die Ankermarke `#antwort` — damit lässt sich der Absatz direkt verlinken.
 
-Parameter: `text` (Pflicht), `stil` (optional, zusätzliche CSS-Klasse).
+Parameter: `text` (Pflicht), `stil` (optional, zusätzliche CSS-Klasse), `teilen` (optional: nur die
+ersten zwei Sätze; den Rest setzt hero_ways.html als eigenen Absatz unter die Knöpfe — nur
+zusammen mit diesem Include verwenden, sonst fehlt Text).
 {% endcomment %}
-<p class="antwort {{ stil|default:'sp-kurz' }}" id="antwort">{{ text|safe }}</p>
+{% load conv %}<p class="antwort {{ stil|default:'sp-kurz' }}" id="antwort">{% if teilen %}{{ text|antwort_lede|safe }}{% else %}{{ text|safe }}{% endif %}</p>

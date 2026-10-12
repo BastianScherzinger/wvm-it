@@ -7,6 +7,9 @@ weiter — und zugleich eine Conversion-Massnahme. Wer nicht weiss, was mit sein
 E-Mail-Adresse passiert, gibt sie seltener her; der Satz nimmt genau diese
 Hemmung.
 
+Mit `kurz=True` (Anfragekarte der Unterseiten, 12.10.2026): ein Satz mit Zweck und Verweis;
+Pflichtinhalt (Zweck, keine Werbung ohne Zustimmung, Link zur Erklärung) bleibt.
+
 Steht INNERHALB des <form>, nicht daneben: Nur so gehört er sichtbar zu dem
 Vorgang, für den er gilt.
-{% endcomment %}<p class="fld-recht">{{ t.form.dsgvo_1|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.form.dsgvo_link|safe }}</a>{{ t.form.dsgvo_2|safe }}</p>
+{% endcomment %}{% if kurz %}<p class="fld-recht">{{ t.conv.ds_kurz|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.form.dsgvo_link|safe }}</a>.</p>{% else %}<p class="fld-recht">{{ t.form.dsgvo_1|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.form.dsgvo_link|safe }}</a>{{ t.form.dsgvo_2|safe }}</p>{% endif %}
