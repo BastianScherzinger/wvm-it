@@ -215,7 +215,8 @@ class ContextProcessorTest(SimpleTestCase):
         from urllib.parse import parse_qs, urlparse
         out = {}
         for e in response.context["lang_switch"]:
-            frage = parse_qs(urlparse(e["url"]).query)
+            # Seit 12.10.2026 steht die Wahl nicht mehr im Link, sondern in `wunsch_url` (data-wunsch).
+            frage = parse_qs(urlparse(e.get("wunsch_url") or e["url"]).query)
             out[e["code"]] = (frage.get(i18n.WUNSCH_PARAM) or [""])[0]
         return out
 
@@ -518,13 +519,14 @@ class LangParameterTest(SimpleTestCase):
     SEITEN = ("/", "/en/", "/ro/", "/it-service/wels/", "/en/it-service/wels/",
               "/wissen/raid/", "/kontakt/", "/ro/kosten/")
 
-    def test_kein_follow_link_mit_lang_parameter(self):
+    def test_kein_link_traegt_lang_parameter(self):
+        # Seit 12.10.2026 zeigt auch der DE-Link auf die saubere Adresse; der Parameter steht nur
+        # noch im Attribut data-wunsch (main.js ruft ihn beim Klick, damit das Cookie gesetzt wird).
         for pfad in self.SEITEN:
             with self.subTest(pfad=pfad):
                 for a in _links(pfad):
-                    if "?lang=" in a["href"] or "&lang=" in a["href"]:
-                        self.assertIn("nofollow", a.get("rel", ""),
-                                      f"{pfad}: {a['href']} ohne nofollow")
+                    self.assertNotIn("?lang=", a["href"], f"{pfad}: {a['href']}")
+                    self.assertNotIn("&lang=", a["href"], f"{pfad}: {a['href']}")
 
     def test_aktive_sprache_und_en_ro_ohne_parameter(self):
         for pfad in self.SEITEN:
@@ -540,12 +542,25 @@ class LangParameterTest(SimpleTestCase):
                 for a in _links(pfad):
                     self.assertNotIn("?lang=", a["href"])
 
-    def test_de_link_ausserhalb_von_deutsch_traegt_parameter_und_nofollow(self):
+    def test_de_link_ausserhalb_von_deutsch_ist_sauber_und_meldet_die_wahl_per_data_wunsch(self):
         antwort = _util.client().get("/en/it-service/wels/")
         de = [e for e in antwort.context["lang_switch"] if e["code"] == "de"][0]
-        self.assertEqual(de["url"], "/it-service/wels/?lang=de")
-        self.assertTrue(de["nofollow"])
-        self.assertIn('rel="nofollow"', antwort.content.decode("utf-8"))
+        self.assertEqual(de["url"], "/it-service/wels/")
+        self.assertEqual(de["wunsch_url"], "/it-service/wels/?lang=de")
+        html = antwort.content.decode("utf-8")
+        self.assertIn('data-wunsch="/it-service/wels/?lang=de"', html)
+        self.assertNotIn('rel="nofollow" hreflang="de"', html)
+
+    def test_wunsch_adresse_setzt_cookie_und_leitet_sauber_weiter(self):
+        antwort = _util.client().get("/it-service/wels/", {"lang": "de"})
+        self.assertEqual(antwort.status_code, 301)
+        self.assertEqual(antwort.cookies[settings.LANGUAGE_COOKIE_NAME].value, "de")
+
+    def test_nur_der_de_link_ausserhalb_von_deutsch_hat_data_wunsch(self):
+        for pfad, erwartet in (("/", 0), ("/it-service/wels/", 0), ("/en/it-service/wels/", 3), ("/ro/", 3)):
+            with self.subTest(pfad=pfad):
+                html = _util.client().get(pfad).content.decode("utf-8")
+                self.assertEqual(html.count("data-wunsch="), erwartet)
 
     def test_parameter_url_antwortet_301_auf_saubere_adresse(self):
         for pfad, ziel in (("/it-service/wels/", "/it-service/wels/"),

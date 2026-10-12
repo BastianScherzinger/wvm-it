@@ -31,12 +31,8 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
           <h1>{{ seite.h1|safe }}</h1>
           {% comment %} Antwort zuerst: Dieser Absatz beantwortet die Suchfrage vollständig
                und ist das, was KI-Antwortmaschinen zitieren (SEO-PLAN.md, G1). {% endcomment %}
-          {% include 'antwort.html' with text=seite.kurz %}
-          <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
-            {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-            {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
-            <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
-          </div>
+          {% include 'antwort.html' with text=seite.kurz teilen=True %}
+          {% include 'hero_ways.html' with kurz=seite.kurz %}
         </div>
         <aside class="sp-fakten">
           <div class="sp-fakt">
@@ -232,12 +228,12 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
       </header>
       <div class="lk-grid">
         {% for v in verwandte %}
-        <a class="lk spot" href="{{ v.url }}" data-reveal data-spot>
+        <div class="lk spot" data-reveal data-spot>
           <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=v.icon %}</span>
-          <h3 class="lk-h">{{ v.nav|safe }}</h3>
+          <h3 class="lk-h"><a class="lk-link" href="{{ v.url }}">{{ v.nav|safe }}</a></h3>
           <p class="lk-t">{{ v.desc|safe }}</p>
           <span class="lk-p">{{ v.preis_label }}</span>
-        </a>
+        </div>
         {% endfor %}
       </div>
       <p class="lk-alle"><a href="{% url 'leistungen' %}">{{ t.seite.zurueck|safe }}</a></p>

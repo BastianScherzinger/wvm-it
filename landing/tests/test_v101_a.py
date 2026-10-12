@@ -136,7 +136,8 @@ class FehlerRueckwegTest(_MitOrdner):
             self.assertNotIn("anfrage_ok", _lesen(rel))
 
     def test_der_rueckruf_ist_ein_link_und_kein_knopf(self):
-        for rel in ("templates/anfrage_karte.html", "templates/kontakt.html"):
+        # Die Kontaktwege des Seitenkopfs liegen seit 12.10.2026 in hero_ways.html.
+        for rel in ("templates/anfrage_karte.html", "templates/hero_ways.html"):
             with self.subTest(rel=rel):
                 text = _lesen(rel)
                 self.assertNotRegex(text, r"<button[^>]*data-rueckruf")

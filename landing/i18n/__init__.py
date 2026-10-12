@@ -194,8 +194,10 @@ def context_processor(request):
         target = add_prefix(l, base if vorhanden else "/")
         url_ = target + (suffix if vorhanden else "")
         braucht_wunsch = (l == "de" and lang != "de")
-        if braucht_wunsch:
-            url_ = _mit_wunsch(url_, l)
+        # Seit 12.10.2026 zeigt der Link selbst auf die saubere Adresse (kein `?lang=de`, kein 301-Umweg,
+        # kein nofollow). Die bewusste Deutsch-Wahl meldet main.js beim Klick über `wunsch_url`
+        # (data-wunsch): Dort setzt die Middleware das Sprachcookie, danach geht es auf `url`.
+        wunsch_url = _mit_wunsch(url_, l) if braucht_wunsch else ""
         switch.append({
             "code": l, "label": LANG_LABELS[l], "name": LANG_NAMES[l],
             "active": (l == lang), "gleiche_seite": vorhanden,
@@ -226,7 +228,7 @@ def context_processor(request):
             # Sprache beim Ankommen. Der Parameter bleibt nur dort, wo er das
             # Problem von oben loest, und der Link bekommt rel="nofollow".
             "url": url_,
-            "nofollow": braucht_wunsch,
+            "wunsch_url": wunsch_url,
         })
         if vorhanden:
             alts.append({"code": l, "hreflang": PACKS[l]["meta"]["html_lang"], "path": target})

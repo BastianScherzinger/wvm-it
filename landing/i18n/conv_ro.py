@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+"""Texte în limba română ale rundei de conversie din 12.10.2026 (vezi conv_de.py)."""
+
+CONV = {
+    "fz_rolle": "Proprietar · vă sună personal înapoi",
+    "vz_preise": "Toate prețurile sunt publice",
+    "vz_seit": "Din {jahr}",
+    "mb_hilfe": "Problemă? Sunați",
+    "cta_aria": "Sunați direct",
+    "cta_kopf_allg": "Preferați să vorbiți scurt decât să citiți mult?",
+    "cta_text_allg": "Sunați-l pe Florin Feier. Vă spune sincer ce are nevoie firma dumneavoastră și ce nu.",
+    "cta_kopf_hilfe": "Aveți o problemă acum? Florin ajută prin acces la distanță.",
+    "cta_text_hilfe": "Sunați și descrieți pe scurt ce se întâmplă. Florin Feier vă spune imediat dacă se rezolvă la distanță și cât costă.",
+    "cta_preis_hilfe": "Ajutor punctual prin acces la distanță",
+    "cta_zweit": "Mai aveți întrebări? Un apel lămurește mai repede.",
+    "cta_alle_preise": "Toate prețurile",
+    "cta_wa_vor": "Bună ziua, Florin, am o întrebare despre acest ghid: ",
+    "schluss_vor": "Vreți să lămuriți asta pentru firma dumneavoastră? Puteți",
+    "schluss_k": "discuta cazul dumneavoastră despre {thema}",
+    "schluss_oder": "sau",
+    "schluss_a": "alcătui o ofertă pentru {thema}",
+    "schluss_thema_fallback": "IT-ul dumneavoastră",
+    "ak_kontakt": "Telefon sau e-mail",
+    "ak_mehr": "Despre ce este vorba? (opțional)",
+    "ak_text_ph": "O propoziție este de ajuns",
+    "ak_submit": "Solicitați un apel înapoi",
+    "ds_kurz": "Folosim datele dumneavoastră doar pentru a răspunde la această solicitare, fără publicitate fără acordul dumneavoastră. Mai multe în",
+    "kosten_mehr": "Cum se ajunge la aceste prețuri",
+    "angebot_mehr": "Ce înseamnă preț orientativ",
+    "rg_band_h": "Preferați să vorbiți imediat?",
+    "rg_band_t": "Lăsați numărul dumneavoastră, iar Florin Feier vă sună înapoi.",
+    "rg_band_cta": "Solicitați un apel înapoi",
+}

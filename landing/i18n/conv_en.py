@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+"""English texts of the 12 Oct 2026 conversion round (see conv_de.py)."""
+
+CONV = {
+    "fz_rolle": "Owner · calls you back personally",
+    "vz_preise": "All prices public",
+    "vz_seit": "Since {jahr}",
+    "mb_hilfe": "Problem? Call",
+    "cta_aria": "Call directly",
+    "cta_kopf_allg": "Rather talk briefly than read for long?",
+    "cta_text_allg": "Call Florin Feier. He will tell you honestly what your business needs and what it does not.",
+    "cta_kopf_hilfe": "A problem right now? Florin helps by remote access.",
+    "cta_text_hilfe": "Call and describe briefly what is happening. Florin Feier will tell you straight away whether remote access can fix it and what it costs.",
+    "cta_preis_hilfe": "Single help by remote access",
+    "cta_zweit": "Still have questions? A call settles it faster.",
+    "cta_alle_preise": "All prices",
+    "cta_wa_vor": "Hello Florin, I have a question about this guide: ",
+    "schluss_vor": "Want to sort this out for your business? You can",
+    "schluss_k": "discuss your case on {thema}",
+    "schluss_oder": "or",
+    "schluss_a": "put together an offer for {thema}",
+    "schluss_thema_fallback": "your IT",
+    "ak_kontakt": "Phone or email",
+    "ak_mehr": "What is it about? (optional)",
+    "ak_text_ph": "One sentence is enough",
+    "ak_submit": "Request a call back",
+    "ds_kurz": "We use your details only to answer this request, no advertising without your consent. More in the",
+    "kosten_mehr": "How these prices come about",
+    "angebot_mehr": "What indicative price means",
+    "rg_band_h": "Rather talk right away?",
+    "rg_band_t": "Leave your number and Florin Feier will call you back.",
+    "rg_band_cta": "Request a call back",
+}

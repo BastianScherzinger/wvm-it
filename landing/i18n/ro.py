@@ -8,6 +8,7 @@ from .branchen_ro import BRANCHEN
 from .vergleiche_ro import VERGLEICHE
 from .einrichten_ro import EINRICHTEN, HUB as EINRICHTEN_HUB
 from .hilfe_ro import HILFE
+from .conv_ro import CONV
 
 PACK = {
     "seiten": SEITEN,
@@ -18,6 +19,7 @@ PACK = {
     "einrichten": EINRICHTEN,
     "einrichten_hub": EINRICHTEN_HUB,
     "hilfe": HILFE,
+    "conv": CONV,
     "meta": {
         "html_lang": "ro",
         "locale": "ro_RO",
@@ -71,7 +73,7 @@ PACK = {
     "cookie": {
         "aria": "Notificare cookie",
         "title": "Vă respectăm confidențialitatea",
-        "body": "Folosim doar cookie-uri necesare din punct de vedere tehnic, ca site-ul să funcționeze. Pentru asistentul 3D interactiv integrăm și conținut extern — îl încărcăm doar cu acordul dumneavoastră. Detalii în",
+        "body": "Doar cookie-uri necesare tehnic. Conținutul extern pentru asistentul 3D se încarcă numai cu acordul dumneavoastră. Detalii în",
         "link": "politica de confidențialitate",
         "accept": "Acceptați tot",
         "decline": "Doar necesare",

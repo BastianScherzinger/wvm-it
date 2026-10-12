@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 Eine Vergleichsseite (docs/SEO-AUSBAU-3.md, N3).
 
@@ -41,8 +42,10 @@ dem Telefon seitlich wackelt.
     </div>
   </header>
 
+  {% ratgeber_cta_daten titel=seite.h1 slug=seite.slug einrichtung=einrichtung as cta %}
   <section class="section">
     <div class="wrap sp-wrap">
+      {% include 'ratgeber_cta.html' with cta=cta %}
       <p class="sp-intro" data-reveal>{{ seite.intro|safe }}</p>
 
       <h2 class="sp-h2">{{ seite.tabelle_h|safe }}</h2>
@@ -83,6 +86,8 @@ dem Telefon seitlich wackelt.
           </ul>
         </div>
       </div>
+
+      {% include 'ratgeber_cta.html' with cta=cta zweit=True %}
 
       <h2 class="sp-h2">{{ seite.rechnung_h|safe }}</h2>
       <p class="sp-preis-text">{{ seite.rechnung_t|safe }}</p>
@@ -138,6 +143,8 @@ dem Telefon seitlich wackelt.
         {% endfor %}
       </div>
 
+      {% ratgeber_schluss thema=seite.nav as schluss %}
+      {% include 'ratgeber_schluss.html' with schluss=schluss %}
       {% include 'anfrage_karte.html' with bid=seite.quelle titel=seite.cta_h sub=seite.cta_t ph=vs.kriterium %}
 
       <nav class="rg-weitere" aria-label="{{ vs.andere_h|safe }}">

@@ -42,12 +42,12 @@ Leistungen, die Orte im Einzugsgebiet, der direkte Draht.
     </header>
     <div class="lk-grid">
       {% for l in leistungen_liste %}
-      <a class="lk spot" href="{{ l.url }}" data-spot>
+      <div class="lk spot" data-spot>
         <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=l.icon %}</span>
-        <h3 class="lk-h">{{ l.nav|safe }}</h3>
+        <h3 class="lk-h"><a class="lk-link" href="{{ l.url }}">{{ l.nav|safe }}</a></h3>
         <p class="lk-t">{{ l.desc|safe }}</p>
         <span class="lk-p">{{ l.preis_label }}</span>
-      </a>
+      </div>
       {% endfor %}
     </div>
     <p class="lk-alle">

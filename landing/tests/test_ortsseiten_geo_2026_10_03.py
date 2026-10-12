@@ -32,7 +32,11 @@ def _preis(iid, feld):
 
 
 def _antwort(seite):
-    return re.search(r'<p class="antwort[^"]*" id="antwort">(.*?)</p>', seite, re.S).group(1)
+    """Die ganze Antwort: Seit 12.10.2026 steht der Absatz im Seitenkopf in zwei Teilen, die ersten zwei
+    Sätze (id="antwort") und der Rest als eigener Absatz unter den Knöpfen (class="antwort antwort-rest")."""
+    erster = re.search(r'<p class="antwort[^"]*" id="antwort">(.*?)</p>', seite, re.S).group(1)
+    rest = re.search(r'<p class="antwort antwort-rest">(.*?)</p>', seite, re.S)
+    return erster + (" " + rest.group(1) if rest else "")
 
 
 def _erster_satz(text):

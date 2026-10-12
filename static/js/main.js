@@ -286,4 +286,23 @@
     });
   }
 
+  /* ── 6) SPRACHUMSCHALTER: bewusste Deutsch-Wahl melden (12.10.2026) ──────────
+     Der DE-Link zeigt auf die saubere Adresse (kein ?lang=de im Link). Damit ein en/ro-Cookie den
+     Besucher nicht von "/" zurückschickt, ruft der Klick vorher die Wunsch-Adresse auf: Die
+     Middleware setzt das Sprachcookie und antwortet mit 301. Danach geht es auf den Link.
+     Ohne JavaScript bleibt es beim sauberen Link; Strg-/Cmd-Klick und Mittelklick bleiben unberührt. */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest("a[data-wunsch]");
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    const ziel = a.href;
+    let weiter = false;
+    const los = () => { if (!weiter) { weiter = true; location.href = ziel; } };
+    setTimeout(los, 1500);
+    try {
+      fetch(a.getAttribute("data-wunsch"), { credentials: "same-origin", redirect: "manual", cache: "no-store" })
+        .then(los, los);
+    } catch (err) { los(); }
+  });
+
 })();

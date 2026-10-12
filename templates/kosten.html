@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 /kosten/ — die Antwort auf „Was kostet …?" (SEO-PLAN.md A10).
 Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
@@ -19,14 +20,14 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       <span aria-current="page">{{ t.nav.preise|safe }}</span>
     </nav>
     <h1>{{ ks.h1|safe }}</h1>
-    {% include 'antwort.html' with text=ks.kurz %}
+    {% include 'antwort.html' with text=ks.kurz teilen=True %}
   </div>
 </header>
 
 <section class="section">
   <div class="wrap">
-    <p class="hb-intro" data-reveal>{{ ks.intro|safe }}{% if ks.ort_satz %} {{ ks.ort_satz|safe }}{% endif %}</p>
-
+    {% comment %}Werkzeug vor Text (12.10.2026, Punkt 8): erst Rechner und Preistabelle, die Erklärung
+    steht aufklappbar darunter. Der Text bleibt vollständig im HTML (SEO und GEO).{% endcomment %}
     {% comment %}
     Der Rechner steht ueber der Tabelle: Wer hier landet, will meist nicht die
     ganze Liste lesen, sondern eine Zahl fuer den eigenen Betrieb (W1).
@@ -62,6 +63,14 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       </div>
     </div>
     <p class="pt-foot">{{ t.seite.preis_fuss|safe }}</p>
+
+    <details class="rr-mehr kosten-mehr" data-reveal>
+      <summary>{{ t.conv.kosten_mehr|safe }}</summary>
+      <div class="kosten-mehr-text">
+        {% with rest=ks.kurz|antwort_rest %}{% if rest %}<p class="hb-intro">{{ rest|safe }}</p>{% endif %}{% endwith %}
+        <p class="hb-intro">{{ ks.intro|safe }}{% if ks.ort_satz %} {{ ks.ort_satz|safe }}{% endif %}</p>
+      </div>
+    </details>
 
     {% comment %} ── Rechenbeispiele und Einordnung (24.09.2026) ────────────────
       Die Antwort auf „was zahlt ein Betrieb wie meiner?" — jede Zahl aus
@@ -117,12 +126,12 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
     <h2 class="sp-h2 ks-liste-h">{{ t.seite.leistungen|safe }}</h2>
     <div class="lk-grid">
       {% for l in leistungen %}
-      <a class="lk spot" href="{{ l.url }}" data-spot>
+      <div class="lk spot" data-spot>
         <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=l.icon %}</span>
-        <h3 class="lk-h">{{ l.nav|safe }}</h3>
+        <h3 class="lk-h"><a class="lk-link" href="{{ l.url }}">{{ l.nav|safe }}</a></h3>
         <p class="lk-t">{{ l.desc|safe }}</p>
         <span class="lk-p">{{ l.preis_liste }}</span>
-      </a>
+      </div>
       {% endfor %}
     </div>
 

@@ -1,0 +1,25 @@
+{% comment %}
+Anruf-Kasten im Ratgeber (Conversion-Runde 12.10.2026, Punkt 1).
+
+Wer einen Ratgeber über ein akutes Problem liest, will es lösen, nicht weiterlesen: Das Problem
+steht im Wortlaut, darunter (nur im ersten Kasten) ein Preis-Hinweis aus dem Katalog, dann zwei
+Knöpfe — Anrufen gefüllt mit sichtbarer Nummer, WhatsApp als Umriss. `tel:` nur über
+`c.telefon_tel`. Der Inhalt kommt aus dem Tag `ratgeber_cta_daten` (landing/templatetags/conv.py).
+
+Aufruf: {% include 'ratgeber_cta.html' with cta=cta [zweit=True] %}
+{% endcomment %}
+<aside class="rg-cta{% if zweit %} rg-cta-zweit{% endif %}" aria-label="{{ t.conv.cta_aria|safe }}">
+  <div class="rg-cta-text">
+    <p class="rg-cta-kopf">{{ cta.kopf|safe }}</p>
+    {% if zweit %}
+    <p class="rg-cta-t">{{ t.conv.cta_zweit|safe }}</p>
+    {% else %}
+    <p class="rg-cta-t">{{ cta.text|safe }}</p>
+    {% if cta.preis %}<p class="rg-cta-preis">{{ cta.preis|safe }} · <a href="{{ cta.preis_url }}">{{ t.conv.cta_alle_preise|safe }}</a></p>{% endif %}
+    {% endif %}
+  </div>
+  <div class="rg-cta-knoepfe">
+    {% if c.telefon %}<a class="btn way-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span class="way-call-t"><small>{{ t.hero.anrufen|safe }}</small><b>{{ c.telefon }}</b></span></a>{% endif %}
+    {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ cta.wa_text }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+  </div>
+</aside>

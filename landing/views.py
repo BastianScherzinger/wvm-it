@@ -4116,6 +4116,8 @@ def beitrag_seite(request, slug):
         "einrichtung": _einrichtung_verweis(eintrag.get("einrichtung"), "de"),
         "hilfe_karte": _hilfe_karte("de") if eintrag.get("hilfe") else None,
         "orte_block": _orte_fuer_beitrag(eintrag),
+        # Handy-Leiste: im Problem-Ratgeber heißt der Anrufknopf „Problem? Anrufen“ (12.10.2026).
+        "mobilebar_call": i18n.get_pack("de")["conv"]["mb_hilfe"] if eintrag.get("hilfe") else "",
         "thema": _leistung_daten(thema, "de") if thema else None,
         # V2: zuerst die Beiträge zum selben Thema, danach mit den neuesten
         # aufgefüllt. Vorher standen hier immer dieselben drei — die Beiträge

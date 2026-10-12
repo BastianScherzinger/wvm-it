@@ -1,0 +1,6 @@
+{% comment %}
+Schlussabsatz jedes Ratgebers (Conversion-Runde 12.10.2026, Punkt 11): zwei Textlinks auf
+/kontakt/ und /angebot/ mit dem Thema im Anker, nie „hier klicken“. Daten aus dem Tag
+`ratgeber_schluss` (landing/templatetags/conv.py).
+{% endcomment %}
+<p class="rg-schluss" data-reveal>{{ schluss.vor|safe }} <a href="{{ schluss.k_url }}">{{ schluss.k_text|safe }}</a> {{ schluss.oder|safe }} <a href="{{ schluss.a_url }}">{{ schluss.a_text|safe }}</a>.</p>

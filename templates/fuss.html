@@ -90,9 +90,10 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
 </footer>
 
 <div class="mobilebar">
-  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}{{ t.mobilebar.call|safe }}</a>{% endif %}
+  {% comment %}Handy-Leiste (12.10.2026): Anrufen breit und gefüllt mit Nummer, WhatsApp schmal als Umriss.
+  Der Text des Anrufknopfs kann je Seitentyp wechseln (`mobilebar_call`, z. B. im Problem-Ratgeber).
+  Der Rückruf-Link entfällt: Der Kopf trägt den Rückruf-Knopf, und die Startseite hat ihr Rückruf-Feld.{% endcomment %}
+  {% if c.telefon %}<a class="mobilebar-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ mobilebar_call|default:t.mobilebar.call|safe }}</span>{% if not mobilebar_call %}<span class="mobilebar-nr">{{ c.telefon }}</span>{% endif %}</a>{% endif %}
   {% if c.whatsapp %}<a class="mobilebar-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}{{ t.ways.wa|safe }}</a>{% endif %}
-  {% if mobilebar_ziel %}<a class="mobilebar-cta" href="{{ mobilebar_ziel }}">{{ mobilebar_text|safe }}</a>
-  {% elif request.resolver_match.url_name == "index" %}<a class="mobilebar-cta" href="#rueckruf">{{ t.ways.callback|safe }}</a>
-  {% else %}<a class="mobilebar-cta" href="{% url 'kontakt' %}" data-rueckruf>{{ t.ways.callback|safe }}</a>{% endif %}
+  {% if mobilebar_ziel %}<a class="mobilebar-cta" href="{{ mobilebar_ziel }}">{{ mobilebar_text|safe }}</a>{% endif %}
 </div>

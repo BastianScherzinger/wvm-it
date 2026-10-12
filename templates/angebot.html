@@ -1,4 +1,4 @@
-{% load static %}<!DOCTYPE html>
+{% load static conv %}<!DOCTYPE html>
 <html lang="{{ t.meta.html_lang }}">
 <head>
   <meta charset="utf-8">
@@ -66,8 +66,16 @@
         grosse Seite ohne diesen Absatz -- ausgerechnet die, auf der jemand mit
         einer Preisfrage landet. Immer ueber antwort.html, nie von Hand
         (siehe CLAUDE.md, "Antwortabsatz").{% endcomment %}
-        {% include 'antwort.html' with text=t.angebot_page.antwort stil='lead' %}
-        <p class="lead">{{ t.angebot_page.lead|safe }}</p>
+        {% include 'antwort.html' with text=t.angebot_page.antwort stil='lead' teilen=True %}
+        {% comment %}Konfigurator vor Text (12.10.2026, Punkt 8): oben nur die ersten zwei Sätze der Antwort;
+        der Rest („Richtpreis heißt …“) und die Einleitung stehen aufklappbar darunter. Der Text bleibt im HTML.{% endcomment %}
+        <details class="rr-mehr ang-mehr">
+          <summary>{{ t.conv.angebot_mehr|safe }}</summary>
+          <div class="kosten-mehr-text">
+            {% with rest=t.angebot_page.antwort|antwort_rest %}{% if rest %}<p>{{ rest|safe }}</p>{% endif %}{% endwith %}
+            <p class="lead">{{ t.angebot_page.lead|safe }}</p>
+          </div>
+        </details>
         <ul class="ang-promise">
           <li>{% include 'icons.html' with name='bolt' %}{{ t.angebot_page.promise1|safe }}</li>
           <li>{% include 'icons.html' with name='shield' %}{{ t.angebot_page.promise2|safe }}</li>

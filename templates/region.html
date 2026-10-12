@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% comment %}
 Eine Regionsseite (docs/AUSBAU-2026-08.md, P6).
 
@@ -25,15 +26,11 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
       <span aria-current="page">{{ region.ort }}</span>
     </nav>
     <h1>{{ region.h1|safe }}</h1>
-    {% include 'antwort.html' with text=region.kurz %}
+    {% include 'antwort.html' with text=region.kurz teilen=True %}
 
     {% comment %}Der Anrufweg steht direkt unter dem Antwortabsatz, damit er auf dem Handy im
     ersten Bildschirm liegt (03.10.2026); die Fakten folgen darunter.{% endcomment %}
-    <div class="hero-ways" role="group" aria-label="{{ t.ways.aria|safe }}">
-      {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
-      {% if c.telefon %}<a class="way" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.ways.call|safe }}</span></a>{% endif %}
-      <a class="way" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
-    </div>
+    {% include 'hero_ways.html' with kurz=region.kurz %}
 
     {% comment %}Die Zahlen stehen ganz oben, weil sie die erste Frage beantworten.{% endcomment %}
     <dl class="rg-fakten">
@@ -46,13 +43,29 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
 
 <section class="section">
   <div class="wrap sp-wrap">
-    <p class="sp-intro" data-reveal>{{ region.intro|safe }}</p>
-    <p class="sp-intro" data-reveal>{{ region.wirtschaft|safe }}</p>
-    {% if region.quellen %}
-    <p class="rg-hinweis rg-quellen" data-reveal>{{ t.seite.rg_quellen|safe }}:
-      {% for q in region.quellen %}<a href="{{ q.url }}" rel="noopener" target="_blank">{{ q.titel }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
-    </p>
-    {% endif %}
+    {% comment %}Optik der Ortsseite (12.10.2026, Punkt 22): Einleitung und Wirtschaft links, ein vorhandenes
+    Foto (static/img, kein neues Bild) rechts; direkt danach ein Zwischen-Rückruf. Die Texte sind
+    unverändert (Inhalt gehört Strang 2).{% endcomment %}
+    <div class="rg-eroeffnung">
+      <div class="rg-eroeffnung-text">
+        <p class="sp-intro" data-reveal>{{ region.intro|safe }}</p>
+        <p class="sp-intro" data-reveal>{{ region.wirtschaft|safe }}</p>
+        {% if region.quellen %}
+        <p class="rg-hinweis rg-quellen" data-reveal>{{ t.seite.rg_quellen|safe }}:
+          {% for q in region.quellen %}<a href="{{ q.url }}" rel="noopener" target="_blank">{{ q.titel }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+        </p>
+        {% endif %}
+      </div>
+      <img class="rg-foto" src="{% static 'img/foto_vorort_480.webp' %}" srcset="{% static 'img/foto_vorort_480.webp' %} 480w, {% static 'img/foto_vorort_800.webp' %} 800w" sizes="(max-width:900px) 100vw, 360px" width="480" height="320" alt="" loading="lazy" decoding="async">
+    </div>
+
+    <div class="rg-band" data-reveal>
+      <div>
+        <p class="rg-band-h">{{ t.conv.rg_band_h|safe }}</p>
+        <p class="rg-band-t">{{ t.conv.rg_band_t|safe }}</p>
+      </div>
+      <a class="btn" href="#anfrage" data-rueckruf>{{ t.conv.rg_band_cta|safe }}</a>
+    </div>
 
     {% comment %}Ausbau Lokal (08.10.2026): eigener Inhalt je Ort. Typische Aufträge sind
     allgemein gehalten, keine Kundenreferenzen; die Anfahrt nennt die gemessenen Werte.{% endcomment %}
