@@ -1,0 +1,13 @@
+{% comment %}
+Google-Bewertungsband (Runde 2, 13.10.2026). Rendert NUR, wenn content.json unter
+`google_bewertungen` echte Werte trägt ({anzahl, schnitt, stand}); `views._google_bewertungen`
+prüft sie und liefert sonst None. Ohne Werte entsteht kein Element und im Schema kein
+aggregateRating. Keine Platzhalter, keine Beispielzahlen.
+{% endcomment %}{% if c.bewertung %}
+<aside class="bew-band" aria-label="{{ t.bewertung.kicker|safe }}">
+  <div class="wrap">
+    <span class="bew-wert">{{ c.bewertung.schnitt|floatformat:1 }} / 5</span>
+    <p class="bew-text">{{ t.bewertung.kicker|safe }}: {{ t.bewertung.von|safe }}, {{ c.bewertung.anzahl }} {{ t.bewertung.anzahl|safe }} ({{ t.bewertung.stand|safe }} {{ c.bewertung.stand }}){% if c.bewertung.link %} · <a href="{{ c.bewertung.link }}" target="_blank" rel="noopener">{{ t.bewertung.link|safe }}</a>{% endif %}</p>
+  </div>
+</aside>
+{% endif %}

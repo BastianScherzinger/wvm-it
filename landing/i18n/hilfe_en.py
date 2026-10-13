@@ -47,6 +47,13 @@ HILFE = {
     "fernwartung_h": "What remote support means",
     "fernwartung_t": "Remote support means that a technician reaches your computer or server over a secured connection instead of driving out — in a session you have approved, they see exactly what is on your screen, you watch every move and can stop at any time, and without a new approval nobody gets back onto the device. What a provider can and cannot see is explained in detail in our article on remote support (in German).",
     "fernwartung_link": "What does the provider see during remote support? (in German)",
+    "fernwartung_ablauf_h": "How a remote support session works at WVM-IT",
+    "fernwartung_ablauf": [
+            "You get in touch by phone, WhatsApp or the form, and we tell you beforehand whether we can help by remote support.",
+            "The session only starts with your approval: you confirm the connection or pass on a code.",
+            "You watch every step on your screen and can stop the session at any time.",
+            "When the session is closed, the access ends. Without a new approval nobody gets back onto the device."
+    ],
     "preise_h": "What a single job costs",
     "preise_t": "Remote €95 per hour, on site €120 per hour plus travel. Completed tasks have fixed prices: setting up a workstation €190, Microsoft 365 set up €290, firewall and VPN €690. All prices net plus VAT.",
     "erreichbar_h": "When you can reach us",

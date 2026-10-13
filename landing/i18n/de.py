@@ -674,6 +674,66 @@ PACK = {
         "regel_t": "Netzwerkkabel ziehen oder WLAN abschalten — aber das Gerät NICHT ausschalten, nichts löschen, nichts „aufräumen“ und keine Software neu installieren. Ein ausgeschaltetes Gerät verliert Spuren, die für die Wiederherstellung und für eine eventuelle Meldung an die Datenschutzbehörde gebraucht werden. Trennen ja, abschalten nein.",
         "schritte_h": "Die ersten Schritte",
         "nicht_h": "Was Sie jetzt nicht tun sollten",
+        "anrufen_h": "Wann Sie anrufen sollten",
+        "ratgeber_h": "Mehr dazu im Ratgeber",
+        # Je Fall: „wann anrufen“ und Ratgeber-Slugs (13.10.2026, Runde 2). Die View
+        # mischt sie in `faelle`; die Ratgeber gibt es nur auf Deutsch.
+        "zusatz": {
+            "konto": {
+                "anrufen": "Rufen Sie an, wenn sich niemand mit Verwaltungsrechten mehr anmelden kann, mehrere Konten gleichzeitig gesperrt sind oder Sie fremden Zugriff vermuten.",
+                "ratgeber": [
+                    "microsoft-365-konto-gesperrt"
+                ]
+            },
+            "mail": {
+                "anrufen": "Rufen Sie an, wenn mehrere Postfächer betroffen sind, auch im Browser nichts geht oder Mails verloren scheinen.",
+                "ratgeber": [
+                    "outlook-email-geht-nicht"
+                ]
+            },
+            "pc": {
+                "anrufen": "Rufen Sie an, wenn der Rechner nach diesen Schritten nicht startet oder wichtige Dateien nur auf ihm liegen.",
+                "ratgeber": [
+                    "pc-langsam-woran-liegt-es"
+                ]
+            },
+            "ransomware": {
+                "anrufen": "Rufen Sie sofort an, sobald Sie den Verdacht haben. Die Schritte oben können Sie währenddessen weiter abarbeiten.",
+                "ratgeber": [
+                    "it-sicherheit-kleine-firma",
+                    "datensicherung-richtig-pruefen"
+                ]
+            },
+            "serverausfall": {
+                "anrufen": "Rufen Sie an, sobald klar ist, dass der Server nicht von selbst wieder anläuft, und bevor jemand ihn neu startet oder Platten tauscht.",
+                "ratgeber": [
+                    "was-kostet-ein-serverausfall"
+                ]
+            },
+            "postfach": {
+                "anrufen": "Rufen Sie an, wenn nach dem Kennwortwechsel weiter Mails verschickt werden oder eine Zahlung im Spiel ist.",
+                "ratgeber": [
+                    "phishing-mails-erkennen"
+                ]
+            },
+            "geraet": {
+                "anrufen": "Rufen Sie an, wenn das Gerät nicht verwaltet war oder Zugänge zu Kunden- oder Personaldaten darauf lagen.",
+                "ratgeber": []
+            },
+            "netzwerk": {
+                "anrufen": "Rufen Sie an, wenn der Neustart des Routers nichts ändert, mehrere Arbeitsplätze betroffen sind oder Kasse, Telefon oder Server am Netz hängen.",
+                "ratgeber": [
+                    "drucker-druckt-nicht",
+                    "wlan-im-betrieb-planen"
+                ]
+            },
+            "phishing": {
+                "anrufen": "Rufen Sie an, sobald ein Kennwort eingegeben oder ein Anhang geöffnet wurde und Sie nicht sicher sind, was passiert ist, oder wenn Geld überwiesen wurde.",
+                "ratgeber": [
+                    "phishing-mails-erkennen"
+                ]
+            }
+        },
         "faelle": [
             {
                 "id": "konto",
@@ -800,6 +860,42 @@ PACK = {
                     "Nicht davon ausgehen, dass ein Anmeldekennwort genügt: Ohne Festplattenverschlüsselung ist es in Minuten umgangen.",
                     "Den Vorfall nicht ungemeldet lassen, wenn personenbezogene Daten betroffen sind.",
                 ],
+            },
+            {
+                "id": "netzwerk",
+                "icon": "net",
+                "h": "Internet, WLAN oder Drucker sind weg",
+                "kurz": "Niemand kommt ins Internet, das WLAN ist verschwunden, oder der Drucker druckt nicht mehr und ist im Netz nicht zu finden.",
+                "schritte": [
+                    "Prüfen, wie weit es reicht: Sind alle Geräte betroffen oder nur eines, und geht es per Netzwerkkabel, wenn das WLAN nicht geht?",
+                    "Router und Switch ansehen: Sind sie eingeschaltet, brennen die Leuchten, stecken die Kabel? Erst dann den Router einmal vom Strom nehmen, eine Minute warten und wieder einstecken.",
+                    "Beim Drucker: Ist er eingeschaltet und zeigt das Display eine Meldung? Meldung fotografieren und am PC die Druckwarteschlange öffnen, ohne etwas zu löschen.",
+                    "Notieren, was zuletzt geändert wurde: ein Update, ein neues Gerät, ein Umbau, ein Anbieterwechsel. Das ist meist der kürzeste Weg zur Ursache.",
+                    "Ist das Internet bei allen weg, die Störungsmeldung des Internetanbieters prüfen: Manchmal liegt es nicht im Haus."
+                ],
+                "nicht": [
+                    "Den Router nicht auf Werkseinstellungen zurücksetzen: Zugangsdaten und Einstellungen sind danach weg.",
+                    "Nicht wahllos Kabel umstecken, ohne zu notieren, was wo steckte.",
+                    "Den Druckertreiber nicht mehrfach löschen und neu installieren, bevor die Warteschlange und die Meldung am Gerät geprüft sind."
+                ]
+            },
+            {
+                "id": "phishing",
+                "icon": "alert",
+                "h": "Verdacht auf Phishing: jemand hat geklickt",
+                "kurz": "Eine Mail sah echt aus, und ein Mitarbeiter hat auf einen Link geklickt, einen Anhang geöffnet oder ein Kennwort eingegeben.",
+                "schritte": [
+                    "Nichts weiter anklicken. Die Mail nicht löschen, sondern Absender, Betreff und Uhrzeit festhalten, am besten als Foto vom Bildschirm.",
+                    "Wurde ein Kennwort eingegeben: sofort von einem anderen, sauberen Gerät aus ändern, ebenso überall, wo dasselbe Kennwort benutzt wird.",
+                    "Wurde ein Anhang geöffnet oder etwas installiert: das Gerät vom Netzwerk trennen (Kabel ziehen, WLAN aus), aber nicht ausschalten.",
+                    "Die Kolleginnen und Kollegen warnen, die dieselbe Mail bekommen haben, damit niemand nachklickt.",
+                    "Ist Geld überwiesen oder eine Bankverbindung geändert worden: sofort die Bank anrufen. Je früher, desto eher lässt sich eine Zahlung noch aufhalten."
+                ],
+                "nicht": [
+                    "Nicht auf die Mail antworten und keine „Abmelden“-Links darin benutzen.",
+                    "Nicht weiterarbeiten, als wäre nichts gewesen, wenn ein Kennwort eingegeben wurde.",
+                    "Niemanden bloßstellen: Je schneller ein Fehler gemeldet wird, desto kleiner bleibt der Schaden."
+                ]
             },
         ],
         # Erreichbarkeit und Vertretung (06.09.2026) — die K.-o.-Frage, die ein
@@ -1182,6 +1278,38 @@ PACK = {
         "wege_h": "Vier Wege, uns zu erreichen",
         "zeiten_h": "Erreichbarkeit",
         "zeiten_t": "Montag bis Freitag, 9 bis 18 Uhr. Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag.\n\nBei einem akuten Ausfall rufen Sie an, statt zu schreiben: Ein Anruf erreicht uns auch dann, wenn gerade niemand ins Postfach sieht. Was in den ersten dreißig Minuten eines Notfalls zu tun ist, steht auf der Notfallseite — und gilt auch, bevor Sie uns erreicht haben.",
+        "zeiten_tab": {
+            "cap": "Reaktionszeiten im Überblick",
+            "k1": "Anliegen",
+            "k2": "Wann Sie von uns hören",
+            "rows": [
+                [
+                    "Anfrage per Formular, WhatsApp oder E-Mail",
+                    "An Werktagen innerhalb von 24 Stunden."
+                ],
+                [
+                    "Anruf bei laufender Störung",
+                    None
+                ],
+                [
+                    "Akuter Ausfall, Hilfe per Fernwartung",
+                    "Wir beginnen meist innerhalb von Minuten nach dem Anruf."
+                ],
+                [
+                    "Einzelnes Problem per Fernwartung",
+                    "Meist am selben Tag erledigt."
+                ],
+                [
+                    "Anfrage außerhalb der Erreichbarkeitszeiten",
+                    "Am nächsten Werktag."
+                ],
+                [
+                    "Einsatz vor Ort",
+                    "Nur nach Terminabsprache."
+                ]
+            ],
+            "fuss": "Keine Rufbereitschaft rund um die Uhr: Außerhalb der Zeiten hinterlassen Sie eine Nachricht, wir melden uns am nächsten Werktag."
+        },
         "daten_h": "Firmendaten",
         "anschrift": "Anschrift",
         "daten_fehlt": "Die vollständige Anschrift ergänzen wir hier, sobald der Firmensitz eingetragen ist. Bis dahin erreichen Sie uns über Telefon und E-Mail.",
@@ -1500,6 +1628,8 @@ PACK = {
         "mail": "Schreiben",
         "aria": "Kontaktmöglichkeiten",
     },
+    # Bewertungsband (Runde 2): erscheint nur mit echten Werten in content.json -> google_bewertungen.
+    "bewertung": {"kicker": "Google-Bewertungen", "von": "von 5 Sternen", "anzahl": "Bewertungen", "stand": "Stand", "link": "Zum Google-Profil"},
     "trust": {
         "t1": "Antwort an Werktagen in 24 Stunden",
         "t2": "Fernwartung in ganz AT und DE",

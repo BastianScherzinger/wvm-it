@@ -649,6 +649,66 @@ PACK = {
         "regel_t": "Pull the network cable or switch off Wi-Fi — but do NOT switch the device off, do not delete anything, do not „tidy up“ and do not reinstall software. A device that has been switched off loses traces needed for recovery and for a possible report to the data protection authority. Disconnect yes, power off no.",
         "schritte_h": "The first steps",
         "nicht_h": "What not to do now",
+        "anrufen_h": "When to call",
+        "ratgeber_h": "More in our guides (in German)",
+        # Je Fall: „wann anrufen“ und Ratgeber-Slugs (13.10.2026, Runde 2). Die View
+        # mischt sie in `faelle`; die Ratgeber gibt es nur auf Deutsch.
+        "zusatz": {
+            "konto": {
+                "anrufen": "Call if nobody with admin rights can sign in any more, several accounts are locked at once, or you suspect unauthorised access.",
+                "ratgeber": [
+                    "microsoft-365-konto-gesperrt"
+                ]
+            },
+            "mail": {
+                "anrufen": "Call if several mailboxes are affected, nothing works in the browser either, or emails seem to be lost.",
+                "ratgeber": [
+                    "outlook-email-geht-nicht"
+                ]
+            },
+            "pc": {
+                "anrufen": "Call if the computer still does not start after these steps or important files are only on it.",
+                "ratgeber": [
+                    "pc-langsam-woran-liegt-es"
+                ]
+            },
+            "ransomware": {
+                "anrufen": "Call straight away as soon as you suspect it. You can keep working through the steps above in the meantime.",
+                "ratgeber": [
+                    "it-sicherheit-kleine-firma",
+                    "datensicherung-richtig-pruefen"
+                ]
+            },
+            "serverausfall": {
+                "anrufen": "Call as soon as it is clear the server will not come back by itself, and before anyone restarts it or swaps drives.",
+                "ratgeber": [
+                    "was-kostet-ein-serverausfall"
+                ]
+            },
+            "postfach": {
+                "anrufen": "Call if emails are still being sent after the password change or a payment is involved.",
+                "ratgeber": [
+                    "phishing-mails-erkennen"
+                ]
+            },
+            "geraet": {
+                "anrufen": "Call if the device was not managed or access to client or personnel data was on it.",
+                "ratgeber": []
+            },
+            "netzwerk": {
+                "anrufen": "Call if restarting the router changes nothing, several workstations are affected, or the till, phone or server depend on the network.",
+                "ratgeber": [
+                    "drucker-druckt-nicht",
+                    "wlan-im-betrieb-planen"
+                ]
+            },
+            "phishing": {
+                "anrufen": "Call as soon as a password was entered or an attachment opened and you are unsure what happened, or if money was transferred.",
+                "ratgeber": [
+                    "phishing-mails-erkennen"
+                ]
+            }
+        },
         "faelle": [
             {
                 "id": "konto",
@@ -775,6 +835,42 @@ PACK = {
                     "Do not assume a login password is enough: without disk encryption it is bypassed in minutes.",
                     "Do not leave the incident unreported where personal data is involved.",
                 ],
+            },
+            {
+                "id": "netzwerk",
+                "icon": "net",
+                "h": "Internet, Wi-Fi or printer are down",
+                "kurz": "Nobody can get online, the Wi-Fi has disappeared, or the printer no longer prints and cannot be found on the network.",
+                "schritte": [
+                    "Check how far it reaches: are all devices affected or just one, and does it work over a network cable when the Wi-Fi does not?",
+                    "Look at the router and switch: are they on, are the lights lit, are the cables plugged in? Only then unplug the router from power once, wait a minute and plug it back in.",
+                    "For the printer: is it switched on and is there a message on its display? Photograph the message and open the print queue on the PC without deleting anything.",
+                    "Write down what was changed last: an update, a new device, a refit, a change of provider. That is usually the shortest route to the cause.",
+                    "If the internet is down for everyone, check the internet provider's outage notice: sometimes the fault is not in the building."
+                ],
+                "nicht": [
+                    "Do not reset the router to factory settings: the access data and settings are gone afterwards.",
+                    "Do not move cables around at random without noting what was plugged in where.",
+                    "Do not delete and reinstall the printer driver repeatedly before the queue and the message on the device have been checked."
+                ]
+            },
+            {
+                "id": "phishing",
+                "icon": "alert",
+                "h": "Suspected phishing: someone clicked",
+                "kurz": "An email looked genuine, and an employee clicked a link, opened an attachment or entered a password.",
+                "schritte": [
+                    "Do not click anything else. Do not delete the email; note sender, subject and time, ideally as a photo of the screen.",
+                    "If a password was entered: change it right away from another, clean device, and everywhere else the same password is used.",
+                    "If an attachment was opened or something was installed: disconnect the device from the network (pull the cable, switch Wi-Fi off) but do not switch it off.",
+                    "Warn the colleagues who received the same email so nobody follows the link.",
+                    "If money was transferred or bank details were changed: call the bank immediately. The sooner, the more likely a payment can still be stopped."
+                ],
+                "nicht": [
+                    "Do not reply to the email and do not use any “unsubscribe” links in it.",
+                    "Do not carry on as if nothing had happened if a password was entered.",
+                    "Do not blame anyone: the faster a mistake is reported, the smaller the damage stays."
+                ]
             },
         ],
         "erreichbar_h": "If I am unavailable",
@@ -1132,6 +1228,38 @@ PACK = {
         "wege_h": "Four ways to reach us",
         "zeiten_h": "Availability",
         "zeiten_t": "Monday to Friday, 9am to 6pm. Enquiries outside those hours are answered on the next working day.\n\nIn an acute outage, call rather than write: a phone call reaches us even when nobody is looking at the inbox. What to do in the first thirty minutes of an emergency is set out on the emergency page — and it applies before you have reached us.",
+        "zeiten_tab": {
+            "cap": "Response times at a glance",
+            "k1": "What it is about",
+            "k2": "When you hear from us",
+            "rows": [
+                [
+                    "Enquiry by form, WhatsApp or email",
+                    "On working days within 24 hours."
+                ],
+                [
+                    "Phone call during an ongoing fault",
+                    None
+                ],
+                [
+                    "Acute outage, help by remote support",
+                    "We usually start within minutes of the call."
+                ],
+                [
+                    "A single problem by remote support",
+                    "Usually solved the same day."
+                ],
+                [
+                    "Enquiry outside our availability hours",
+                    "On the next working day."
+                ],
+                [
+                    "On-site visit",
+                    "By appointment only."
+                ]
+            ],
+            "fuss": "No round-the-clock standby: outside those hours leave a message and we get back to you on the next working day."
+        },
         "daten_h": "Company details",
         "anschrift": "Address",
         "daten_fehlt": "The full postal address will be added here once the registered office is on file. Until then you can reach us by phone and email.",
@@ -1435,6 +1563,8 @@ PACK = {
         "mail": "Write",
         "aria": "Ways to reach us",
     },
+    # Bewertungsband (Runde 2): erscheint nur mit echten Werten in content.json -> google_bewertungen.
+    "bewertung": {"kicker": "Google reviews", "von": "out of 5 stars", "anzahl": "reviews", "stand": "as of", "link": "To the Google profile"},
     "trust": {
         "t1": "Answer within 24 hours on working days",
         "t2": "Remote support across AT and DE",
