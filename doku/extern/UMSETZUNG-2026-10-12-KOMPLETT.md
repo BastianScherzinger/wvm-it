@@ -42,6 +42,23 @@ Nach dem Livegang von Runde 1 (27ef75a) wurde die Seite erneut geprüft: Technik
 
 **Live seit 13.10.2026** (`e12bb6f` auf main, nach ~1 min ausgeliefert), IndexNow 264 URLs gemeldet. **TTFB unter parallelem Crawl (264 URLs, 8 gleichzeitig): Median 0,18 s, 90 % unter 0,21 s — vorher 1,25 s.** Einzelne Abrufe (≈ 3–5 %) scheitern schon beim TCP-Verbindungsaufbau; dasselbe zeigt die Webagentur-Seite auf einer anderen Railway-Adresse, es liegt also an der Strecke PC ↔ Railway-Edge, nicht an der App. Die Abnahme (`runde2\R2-08-ABNAHME.md`, keine Blocker) fand drei SOLLTE-Punkte, alle vor dem Push behoben: Sprungziel `/#faq` landete wegen `content-visibility` bis zu 854 px daneben (jetzt 88 px = Kopfleiste), Fahrzeit-Methode missverständlich formuliert, Strang-Doku nannte noch `aggregateRating`.
 
+## 2c. Runde 3 (13.10.2026, abends) — ganz Österreich, Anfrageweg, Google-Signale
+
+Auftrag: österreichweit die Stelle sein, die bei einem akuten IT-Problem sofort hilft; prüfen, ob Anfragen verloren gingen. Berichte `ANALYSE-2026-10-12\runde3\R3-00-PLAN.md` … `R3-08-ABNAHME.md` (Kundenordner).
+
+**Befund:** Keine verlorenen Anfragen — seit 06.10. kein Formular-POST und kein Klick auf Anrufen/WhatsApp, seit 26.09. 0 echte Anfragen; alle Formulare funktionieren lokal und live. Der Engpass ist Reichweite (echte Besucher AT/DE grob 0–5 am Tag; GSC 28 T. 1.001 Impr./13 Klicks). Österreichweit wird das **Symptom** gesucht („Outlook funktioniert nicht mehr“, „Konto gesperrt“), nicht „Notdienst + Stadt“ — Stadtseiten wären Doorways.
+
+| Strang | Was | Doku |
+|---|---|---|
+| Österreich/Akut | `/it-hilfe/` als Fernwartungsseite für ganz Österreich (Title, H1, Antwortsatz, „Wo wir helfen“, FAQ Wien/Graz/Innsbruck/Klagenfurt), Sofort-Block (Anrufen, WhatsApp mit Text, echte Zeitzeile), 8 Problem-Kacheln auf vorhandene Ratgeber, Einsatzgebiet überall gleich (Fernwartung ganz AT/DE, vor Ort nach Terminabsprache ~1 Fahrstunde um Lenzing), Antwortsatz auf 8 Akut-Ratgebern, Notfall-Formular mit eigener Quelle und „[NOTFALL]“ im Betreff, Erfolgstexte mit `aria-live` und Telefon, Handy-Leiste auf `/angebot/` | [`docs/UMSETZUNG-2026-10-13-r3-oesterreich.md`](../../docs/UMSETZUNG-2026-10-13-r3-oesterreich.md) |
+| Google-Signale | Startseite verlinkt Lenzing + 16 Orte, M365-Ratgeber mit Meldungstext als Überschrift (Quelle Microsoft), Wels-Title mit „EDV“, `/kosten/` mit „IT-Betreuung Kosten“ + FAQ, Person-Schema (url, description, knowsAbout), `areaServed` Fernwartung vs. Vor-Ort getrennt, IT-Umzug-H2, Ankerlinks; `[MESSUNG]`-Logzeile mit Klicksummen und Top-Pfaden (überlebt Deploys), Bot-Liste ergänzt | [`docs/UMSETZUNG-2026-10-13-r3-signale.md`](../../docs/UMSETZUNG-2026-10-13-r3-signale.md) |
+
+Prüfstand: 893 Tests grün, `pruefe_seite` 264 URLs ohne Befund, `pruefe_sicherheit` grün, Abnahme ohne Blocker (M365-Zitat und Bot-Liste danach korrigiert). Größentest von CLAUDE.md misst jetzt ohne CRLF (war in jeder Windows-Arbeitskopie rot).
+
+**Außerhalb des Codes am 13.10.:** leerer Doppeleintrag bei Google Maps (cid 15279…) als Duplikat gemeldet; WKO-Mail (Webadresse https, Zusatz „WVM-IT“) als Entwurf für Bastian; Anleitung für Florin zum Zusammenführen der Einträge 4953… (4 Bewertungen, behalten) und 6202… („Wallstraße“). Die Website verweist weiter auf 4953… — erst nach dem Zusammenführen ändern.
+
+**Bewusst nicht:** keine Stadtseiten, kein „24/7“, kein M365-Title-Wechsel vor dem 27.10., Regionsbezug „Oberösterreich und Salzburg“ in H1/Meta der Orts- und Leistungsseiten bleibt (Ortssuche), Bewertungsband leer.
+
 ## 3. Erfolg messen — Grundlinie und Termine
 
 Grundlinie (28 Tage bis 12.10.2026): **967 Impressionen / 12 Klicks / Pos. 28,4**, davon Österreich 221 / 5 / 18,1. Kaufabsicht ohne Marke: 378 Impr. / 0 Klicks.

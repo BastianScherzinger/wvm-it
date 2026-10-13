@@ -336,7 +336,7 @@ _BOT_KENNUNGEN = (
     # Runde 3 (13.10.2026, R3-02 Nr. 2): Prüfwerkzeuge und Scanner, die im Log als
     # „Browser“ erschienen. Weiterhin nur Kennungen von Programmen, nie von Menschen.
     "inspectiontool", "companydiscovery", "claude-user", "bun/", "l9scan", "leakix",
-    "overview", "pruefwerkzeug", "nexus 5x build", "moto g power", "chrome-lighthouse",
+    "overview", "pruefwerkzeug", "chrome-lighthouse",
 )
 
 

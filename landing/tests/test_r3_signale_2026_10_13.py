@@ -128,7 +128,7 @@ class KostenUndRatgeberTest(SimpleTestCase):
         html = _html("/aktuelles/microsoft-365-konto-gesperrt/")
         self.assertIn("Ihr Konto ist vorübergehend gesperrt, um eine nicht autorisierte "
                       "Verwendung zu verhindern“</h2>", html)
-        self.assertIn("Konto wegen Kontenbeschränkung gesperrt", html)
+        self.assertIn("Kontenbeschränkung“ genannt", html)
         self.assertIn("support.microsoft.com/de-de/account-billing/microsoft-konto-wurde-gesperrt", html)
 
     def test_m365_ratgeber_title_bleibt(self):

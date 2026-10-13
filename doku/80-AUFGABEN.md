@@ -22,6 +22,8 @@ rest_bei: bastian, kunde
 - [ ] Messung 28.10. und 02.11. (`Werkzeuge\wvm_wochenmessung.py`, KI-Fragen wiederholen)
 - [ ] Umzug bis 30.11. mit gleichen URLs planen
 - [ ] **Runde 2, beim Kunden:** Reaktionszeiten-Tabelle und Notfall-Selbsthilfe gegenlesen · Fernwartungstool nennen (dann auf `/it-hilfe/` ergänzen) · Wartungspakete ja/nein · Google-Bewertungen: Werte in `content.json` → `google_bewertungen` {anzahl, schnitt, stand} eintragen, dann erscheint das Band
+- [ ] **Runde 3, beim Kunden (dringend):** Erreichen ihn die Anfrage-Mails an support@wvm-it.tech? (Testanfrage anbieten, Weiterleitung aufs Handy) · Öffnungszeiten Profil (bis 21 Uhr, Sa) vs. Website (Mo–Fr 9–18) angleichen · Google-Einträge zusammenführen (Anleitung im Kundenordner `10-ANLEITUNG-FLORIN-GOOGLE-EINTRAG.md`), danach `content.json` `profile`/`maps_profil_url` prüfen · „Fernwartung meist innerhalb von Minuten“ bestätigen · Fernwartungstool + Download-Link · typische Fälle mit Dauer
+- [ ] **Runde 3, bei Bastian:** WKO-Mail abschicken (Entwurf `09-WKO-MAIL.md` im Kundenordner)
 - [ ] **Runde 2, offen im Code:** EN/RO-Antwortsätze nachziehen · Bad Ischl, Attersee, Konferenztechnik ausbauen (TTFB unter Crawl am 13.10. nachgemessen: 1,25 s → 0,18 s, erledigt)
 
 *Woran sich der Fortschritt bemisst: am Anteil der erledigten an allen in dieser Datei geführten Aufgaben — „Erledigt“ gegen „Erledigt + Offen + Fehlt + Beim Kunden“, auf Zehner gerundet. „Verbesserungsmöglichkeiten“ zählen nicht mit, sie sind Kür, keine Zusage. Bei allen sechs betreuten Seiten dieselbe Rechnung.*
