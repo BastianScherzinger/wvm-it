@@ -98,6 +98,10 @@ a,button,.btn,.nav-burger,.pick,.ang-item,.langpick,.wz-step,input[type="checkbo
    Regel ganz - die Seite sieht dann aus wie vorher. */
 .section ~ .section:not(:has(.sp-aside,.rb-side,.ang-top-copy,.anfrage-form,.lk-alle)):not(.confirm-sec):not(.ang-top-sec){
   content-visibility:auto;contain-intrinsic-size:auto 700px}
+/* Sprungziel (#faq usw.): Solange die Adresse ein Ziel hat, rendert die Seite alle Abschnitte
+   sofort, sonst landet der Sprung neben dem Ziel, weil die Platzhalterhoehen der Abschnitte
+   darueber nicht stimmen (Abnahme Runde 2: /#faq 175 px bzw. 854 px daneben). */
+html:has(:target) .section ~ .section{content-visibility:visible!important}
 .sec-head{display:grid;grid-template-columns:7fr 5fr;column-gap:64px;align-items:end;margin-bottom:56px}
 .sec-kick,.eyebrow{grid-column:1/-1;display:block;border-top:1px solid var(--line-2);padding-top:16px;margin-bottom:20px;
   font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);

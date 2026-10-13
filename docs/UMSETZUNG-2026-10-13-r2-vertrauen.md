@@ -12,17 +12,17 @@ Grundsatz: nur Angaben, die schon auf der Seite oder im Katalog stehen. Preise n
 | 3 | **Wechsel des IT-Dienstleisters:** `/aktuelles/it-dienstleister-wechseln/` (plus Checkliste `/checkliste/it-dienstleister-wechseln/`) deckte die Absicht schon ab → **keine neue URL**. Ergänzt um „Der Wechsel in fünf Schritten“ und „Was der Wechsel kostet“ (95 €/h, 120 €/h, Sicherheitscheck 490 €, ab 29 € je Arbeitsplatz; feste Summe erst nach Bestandsaufnahme). Zugänge/Übergabeliste standen schon im Beitrag und in der Checkliste. | `landing/i18n/beitraege_de.py` |
 | 4 | **Fernwartung:** Abschnitt „So läuft eine Fernwartungssitzung bei WVM-IT“ (4 Schritte) auf `/it-hilfe/#fernwartung-ablauf`. Inhalt nur aus bereits veröffentlichten Aussagen (Freigabe durch den Kunden, Mitsehen, Abbruch jederzeit, Ende mit Schließen, ohne neue Freigabe kein Zugriff). **Kein Toolname, kein Download.** | `landing/i18n/hilfe_{de,en,ro}.py`, `templates/it_hilfe.html` |
 | 5 | **Wartungspakete benennen: bewusst nicht umgesetzt.** `ANGEBOT_GROUPS` kennt keine Pakete; die „Stufen“ (`_IT_STUFEN`) sind Größenbeispiele (5/15/30 Arbeitsplätze), keine Leistungsumfänge. Namen wie „Basis / Betrieb / Rundum“ würden einen Umfang behaupten, den nur Florin festlegen kann. → Frage 5. | — |
-| 6 | **Bewertungsband**, rendert nur mit echten Werten: `content.json` → `google_bewertungen: {"anzahl": 7, "schnitt": 4.9, "stand": "10.2026"}`. Prüfung in `views._google_bewertungen()` (Anzahl ≥ 1, Schnitt 1–5, Stand nicht leer; sonst `None`). Erst dann erscheint das Band (`templates/bewertung_band.html`, eingebunden auf Start, `/kontakt/`, `/ueber-uns/`) **und** `aggregateRating` im Business-Knoten. Heute steht kein Wert in `content.json` → nichts sichtbar, kein Schema. | `landing/views.py`, `landing/i18n/*` (`bewertung`), Templates |
+| 6 | **Bewertungsband**, rendert nur mit echten Werten: `content.json` → `google_bewertungen: {"anzahl": <Zahl>, "schnitt": <Zahl>, "stand": "MM.JJJJ"}` (Werte nur aus dem echten Google-Profil). Prüfung in `views._google_bewertungen()` (Anzahl ≥ 1, Schnitt 1–5, Stand nicht leer; sonst `None`). Erst dann erscheint das Band (`templates/bewertung_band.html`, eingebunden auf Start, `/kontakt/`, `/ueber-uns/`). **Kein `aggregateRating` im Schema** — beim Merge am 13.10.2026 entfernt (Google-Richtlinie gegen Bewertungsmarkup eines Betriebs über sich selbst). Heute steht kein Wert in `content.json` → nichts sichtbar. | `landing/views.py`, `landing/i18n/*` (`bewertung`), Templates |
 
 ## So schaltet man die Bewertungen ein
 In `content.json` ergänzen (Zahlen aus Florins Google-Profil, Stand = Monat der Ablesung):
 ```json
 "google_bewertungen": {"anzahl": 12, "schnitt": 4.8, "stand": "10.2026"}
 ```
-Link „Zum Google-Profil“ kommt aus `maps_profil_url`. Hinweis: Google zeigt Sterne für `aggregateRating` am eigenen Betrieb meist nicht als Rich Result; der Wert liegt trotzdem für KI-Antworten im Schema.
+Link „Zum Google-Profil“ kommt aus `maps_profil_url`. Hinweis: Der Strang gab ursprünglich auch `aggregateRating` aus; das wurde beim Merge entfernt, ein Test prüft jetzt, dass es auch mit Werten fehlt.
 
 ## Prüfung
-- `manage.py test landing.tests`: 815 Tests grün (13 neu in `test_r2_vertrauen_2026_10_13.py`: Notfallseite mit Selbsthilfe und Anruf, Bewertungsband unsichtbar ohne Werte / sichtbar mit Werten, kein `aggregateRating` ohne Werte, Tabelle nicht doppelt, kein Toolname im Fernwartungsablauf).
+- `manage.py test landing.tests`: 815 Tests grün (13 neu in `test_r2_vertrauen_2026_10_13.py`: Notfallseite mit Selbsthilfe und Anruf, Bewertungsband unsichtbar ohne Werte / sichtbar mit Werten, kein `aggregateRating` (weder ohne noch mit Werten), Tabelle nicht doppelt, kein Toolname im Fernwartungsablauf).
 - `pruefe_seite` (266 URLs) und `pruefe_sicherheit`: in Ordnung. `stand_schreiben` gelaufen.
 - Screenshots lokal (Port 8767, danach beendet): `/it-notfall/`, `/kontakt/`, `/it-hilfe/` in PC und Handy angesehen.
 
