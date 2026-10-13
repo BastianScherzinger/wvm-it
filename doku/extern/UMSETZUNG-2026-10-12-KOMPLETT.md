@@ -40,7 +40,7 @@ Nach dem Livegang von Runde 1 (27ef75a) wurde die Seite erneut geprüft: Technik
 
 **Bewusst nicht:** kein `aggregateRating` im Schema, auch wenn das Band echte Google-Werte zeigt (Google-Richtlinie gegen *self-serving reviews*) · Wartungspakete nicht benannt und kein Fernwartungstool genannt (Florin) · keine erfundenen Reaktionszeiten über das hinaus, was schon auf der Seite stand · CSRF-Cookie bleibt (jede Seite trägt das Rückruf-Formular).
 
-**Nachmessen nach dem Deploy:** TTFB unter parallelem Crawl (vorher Median 1,25 s) — Ziel deutlich darunter.
+**Live seit 13.10.2026** (`e12bb6f` auf main, nach ~1 min ausgeliefert), IndexNow 264 URLs gemeldet. **TTFB unter parallelem Crawl (264 URLs, 8 gleichzeitig): Median 0,18 s, 90 % unter 0,21 s — vorher 1,25 s.** Einzelne Abrufe (≈ 3–5 %) scheitern schon beim TCP-Verbindungsaufbau; dasselbe zeigt die Webagentur-Seite auf einer anderen Railway-Adresse, es liegt also an der Strecke PC ↔ Railway-Edge, nicht an der App. Die Abnahme (`runde2\R2-08-ABNAHME.md`, keine Blocker) fand drei SOLLTE-Punkte, alle vor dem Push behoben: Sprungziel `/#faq` landete wegen `content-visibility` bis zu 854 px daneben (jetzt 88 px = Kopfleiste), Fahrzeit-Methode missverständlich formuliert, Strang-Doku nannte noch `aggregateRating`.
 
 ## 3. Erfolg messen — Grundlinie und Termine
 
