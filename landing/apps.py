@@ -7,3 +7,5 @@ class LandingConfig(AppConfig):
 
     def ready(self):
         from . import checks  # noqa: F401  (registriert die Deploy-Prüfungen)
+        from . import urlcache
+        urlcache.installieren()

@@ -116,7 +116,28 @@ def _google_bewertungen(data):
     return {"anzahl": anzahl, "schnitt": round(schnitt, 1), "stand": stand, "link": link}
 
 
+_CONTENT_GEMERKT = {}
+
+
 def _content() -> dict:
+    """content.json + Rueckfallwerte. Die Datei wird nur neu gelesen, wenn sie sich
+    aendert (Aenderungszeit und Groesse, Runde 2 Technik 13.10.2026): Vorher parste jede
+    Anfrage sie zweimal. Zurueck geht eine flache Kopie, damit ein Aufrufer, der ein
+    Feld ueberschreibt, den gemerkten Stand nicht veraendert."""
+    try:
+        st = _CONTENT.stat()
+        schluessel = (str(_CONTENT), st.st_mtime_ns, st.st_size)
+    except OSError:
+        schluessel = None
+    if schluessel is not None and _CONTENT_GEMERKT.get("k") == schluessel:
+        return dict(_CONTENT_GEMERKT["v"])
+    data = _content_lesen()
+    if schluessel is not None:
+        _CONTENT_GEMERKT["k"], _CONTENT_GEMERKT["v"] = schluessel, data
+    return dict(data)
+
+
+def _content_lesen() -> dict:
     data = dict(_FALLBACK)
     try:
         loaded = json.loads(_CONTENT.read_text(encoding="utf-8"))
@@ -457,6 +478,38 @@ def _thousands(n, sep=".") -> str:
     return f"{int(n):,}".replace(",", sep)
 
 
+def _gemerkt(schluessel, kopie=None):
+    """Merkt das Ergebnis einer **reinen** Aufbau-Funktion (Runde 2, Technik, 13.10.2026).
+
+    Gemessen: Die Leistungs-, Branchen- und Preisdaten werden je Anfrage dutzendfach
+    neu aus denselben Modulen gebaut (`_itempreise` allein 11-mal, `_thema_index`
+    durchlaeuft jedes Mal alle Beitraege, Begriffe und Checklisten). Sie haengen nur an
+    den Strukturmodulen, am Sprachpaket und an der **aktiven Sprache** (die `reverse()`
+    in den URLs) - nicht an der Anfrage. Deshalb steht die aktive Sprache immer im
+    Schluessel: `_leistung_daten(x, "de")` innerhalb einer englischen Anfrage liefert
+    eine andere Adresse als innerhalb einer deutschen.
+
+    `kopie`: wird auf jedes Ergebnis angewandt (flache Kopie), damit ein Aufrufer, der
+    ein Feld ueberschreibt, nie den gemerkten Eintrag veraendert. Nie fuer Funktionen
+    verwenden, die etwas aus der Anfrage, der Uhrzeit oder einem Token lesen."""
+    def deko(fn):
+        speicher = {}
+
+        @wraps(fn)
+        def innen(*args):
+            try:
+                k = (get_language(), schluessel(*args))
+                wert = speicher[k]
+            except KeyError:
+                wert = speicher[k] = fn(*args)
+            except TypeError:  # unhashbarer Schluessel: ohne Merken bauen
+                return fn(*args)
+            return kopie(wert) if kopie else wert
+        innen.leeren = speicher.clear
+        return innen
+    return deko
+
+
 def _make_price_label(it, words) -> str:
     """Baut das Anzeige-Label einer Position in der gewünschten Sprache (aus catalog_words)."""
     if it.get("anfrage"):
@@ -577,6 +630,7 @@ def _startpreise(lang):
     return out
 
 
+@_gemerkt(lambda lang: lang, dict)
 def _itempreise(lang):
     """Preis-Label je Position, z. B. {'ads_setup': 'ab 490 €'}.
 
@@ -2764,6 +2818,7 @@ def index(request):
 # llms.txt: landing/leistungen.py fuer die Struktur, das Sprachpaket fuer die
 # Texte, ANGEBOT_GROUPS fuer jede Zahl.
 
+@_gemerkt(lambda eintrag, lang: (eintrag["slug"], lang), dict)
 def _leistung_daten(eintrag, lang):
     """Struktur + Texte + Preis-Label einer Leistung, fertig fuers Template."""
     pack = i18n.get_pack(lang)
@@ -3319,6 +3374,7 @@ def _mit_zusatz(daten, art, lang="de"):
     return daten
 
 
+@_gemerkt(lambda eintrag, lang: (eintrag["slug"], lang), dict)
 def _branche_daten(eintrag, lang):
     """Struktur + Texte + Preis-Label einer Branche, fertig fuers Template."""
     texte = i18n.get_pack(lang).get("branchen", {}).get(eintrag["slug"], {})
@@ -3422,6 +3478,7 @@ def branche_seite(request, slug):
 # neuer Beitrag ist ab dem Anlegen von seiner Leistungsseite verlinkt, ohne
 # dass jemand daran denken muss.
 
+@_gemerkt(lambda lang: lang)
 def _thema_index(lang):
     """thema-Slug → {typ: [Einträge]}. Der Slug ist immer eine Leistung."""
     index = {}
@@ -4069,6 +4126,7 @@ def _einrichtung_verweis(slug, lang):
     return _einrichtung_daten(eintrag, lang) if eintrag else None
 
 
+@_gemerkt(lambda eintrag: eintrag["slug"], dict)
 def _beitrag_daten(eintrag):
     """Stammdaten aus beitraege.py plus Texte. Nur Deutsch — siehe Kopf von
     `landing/beitraege.py`, Abschnitt „Warum diese Seiten NUR auf Deutsch erscheinen"."""

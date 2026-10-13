@@ -12,7 +12,7 @@ BEGRIFFE = {
     "fernwartung": {
         "titel": "Fernwartung",
         "meta_titel": "Fernwartung erklärt: Hilfe in Minuten | WVM-IT",
-        "desc": "Fernwartung heißt: Der Techniker arbeitet über eine gesicherte Verbindung auf Ihrem Gerät, statt anzufahren. Ablauf, Sicherheit, Österreich. Jetzt nachlesen.",
+        "desc": "Fernwartung heißt: Der Techniker arbeitet über eine gesicherte Verbindung auf Ihrem Gerät, statt anzufahren. Ablauf, Sicherheit, Österreich. Jetzt lesen.",
         "kurz": "Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt vor Ort zu erscheinen. Bei einer Sitzung mit Ihrer Zustimmung sieht er, was auf Ihrem Bildschirm steht, Sie sehen jeden Schritt mit und können jederzeit abbrechen. Der weit überwiegende Teil der Störungen an Arbeitsplätzen lässt sich so beheben, ohne dass jemand anreisen muss; für Server gibt es zusätzlich dauerhafte Wartungszugänge, weil Updates außerhalb der Arbeitszeit laufen müssen.",
         "abschnitte": [
             {"h": "Wie eine Sitzung abläuft",
@@ -160,7 +160,7 @@ BEGRIFFE = {
     "zwei-faktor-authentifizierung": {
         "titel": "Zwei-Faktor-Authentifizierung",
         "meta_titel": "Zwei-Faktor-Anmeldung: bester Schutz | WVM-IT",
-        "desc": "Zwei-Faktor verlangt neben dem Passwort einen zweiten Nachweis. Die Maßnahme mit dem besten Verhältnis von Aufwand zu Wirkung, in Österreich. Jetzt nachlesen.",
+        "desc": "Zwei-Faktor verlangt neben dem Passwort einen zweiten Nachweis: das beste Verhältnis von Aufwand zu Wirkung, in Österreich. Jetzt nachlesen.",
         "kurz": "Zwei-Faktor-Authentifizierung verlangt neben dem Passwort einen zweiten Nachweis, meist eine Bestätigung in einer App auf dem Telefon oder einen zeitlich begrenzten Code. Wer das Passwort abfängt, kommt damit trotzdem nicht hinein. Es ist die einzelne Maßnahme mit dem besten Verhältnis von Aufwand zu Wirkung, die es in der IT-Sicherheit gibt, und sie kostet in den meisten Umgebungen nichts außer der Einrichtung. Zuerst gehört sie auf 4 Zugänge: E-Mail, Fernzugänge von außen, Cloud-Verwaltung und Onlinebanking.",
         "abschnitte": [
             {"h": "Das Prinzip: Wissen, Besitz, Merkmal",

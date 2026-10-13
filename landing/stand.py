@@ -144,7 +144,7 @@ STAND = {
     "/vergleich/server-vs-cloud/": "2026-10-09",
     "/wissen/": "2026-10-03",
     "/wissen/backup/": "2026-10-13",
-    "/wissen/fernwartung/": "2026-10-09",
+    "/wissen/fernwartung/": "2026-10-13",
     "/wissen/firewall/": "2026-10-09",
     "/wissen/managed-services/": "2026-10-09",
     "/wissen/monitoring/": "2026-10-09",
@@ -156,7 +156,7 @@ STAND = {
     "/wissen/sla/": "2026-10-09",
     "/wissen/terminalserver/": "2026-10-09",
     "/wissen/vpn/": "2026-10-09",
-    "/wissen/zwei-faktor-authentifizierung/": "2026-10-09",
+    "/wissen/zwei-faktor-authentifizierung/": "2026-10-13",
 }
 # <stand:ende>
 

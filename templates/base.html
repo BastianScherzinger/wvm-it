@@ -62,11 +62,13 @@
   {% endcomment %}
   {% comment %}
   Vorladung der zwei latin-Schriftdateien (§1.2): Newsreader für die H1, Public
-  Sans für den Fließtext. Mono wird nicht vorgeladen. font-display:swap in
+  Sans für den Fließtext, JetBrains Mono (seit 13.10.2026) für die Statusleiste, die auf jeder Seite im
+  ersten Bildschirm steht. font-display:swap in
   fonts.css fängt den Rest ab.
   {% endcomment %}
   <link rel="preload" href="{% static 'fonts/public-sans-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{% static 'fonts/newsreader-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{% static 'fonts/jetbrains-mono-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
   {% block preload %}{% endblock %}
   {% comment %} Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">

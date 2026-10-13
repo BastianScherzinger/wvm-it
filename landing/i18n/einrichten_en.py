@@ -938,8 +938,8 @@ EINRICHTEN = {
 
 HUB = {
     "titel": "Have a PC or IT set up: fixed prices, no contract | WVM-IT",
-    "desc": "Workstation, PC replacement, Microsoft 365, server, network: single tasks "
-            "at a fixed price, no contract, e.g. a workstation €190, mostly remote. Get in touch.",
+    "desc": "Workstation, PC replacement, Microsoft 365, server, network: single tasks, "
+            "fixed price, no contract, e.g. a workstation €190, mostly remote. Get a quote.",
     "h1": "Single tasks — fixed price, no contract",
     "kurz": "WVM-IT handles single IT tasks at a fixed price, without any running "
             "support being necessary: setting up a workstation for €190, replacing a "

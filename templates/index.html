@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static cache %}
 {% block preload %}
 {% comment %}
 Design B1 (25.09.2026, §2.3, §6 K2-3): Die drei alten hero_bg-Vorladungen
@@ -138,7 +138,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
   {% comment %} ── Block 2: WEGWEISER `#finder` (Papier). §2.4. sechs Wege, ein Weg
        (Kostenrechner) getauscht gegen "Festpreise". Test zaehlt genau 6 × class="fd-karte
        im Bereich #finder bis zum ersten </section>. {% endcomment %}
-  <section class="section section-alt fd-sec" id="finder" aria-labelledby="fd-title">
+{% cache frag_ttl|default:0 "index_finder" lang using="fragmente" %}  <section class="section section-alt fd-sec" id="finder" aria-labelledby="fd-title">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.wege|safe }}</p>
@@ -148,7 +148,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         {% for w in finder %}
         <li>
           <a class="fd-karte{% if w.dringend %} fd-karte-eilig{% endif %}" href="{{ w.url }}">
-            {% if w.bild %}<img class="fd-bild" src="{% static w.bild %}"{% if w.bild_480 %} srcset="{% static w.bild_480 %} 480w{% if w.bild_800 %}, {% static w.bild_800 %} 800w{% endif %}, {% static w.bild %} 1200w" sizes="(max-width:700px) 100vw, (max-width:1100px) 46vw, 368px"{% endif %} width="1200" height="800" alt="" loading="lazy" decoding="async">{% endif %}
+            {% if w.bild %}<img class="fd-bild" src="{% static w.bild %}"{% if w.bild_480 %} srcset="{% static w.bild_480 %} 480w{% if w.bild_800 %}, {% static w.bild_800 %} 800w{% endif %}, {% static w.bild %} 1200w" sizes="(max-width:700px) 112px, (max-width:1100px) 46vw, 368px"{% endif %} width="1200" height="800" alt="" loading="lazy" decoding="async">{% endif %}
             <span class="fd-h">{% if w.dringend %}<span class="fd-alert" aria-hidden="true">{% include 'icons.html' with name='alert' %}</span>{% endif %}{{ w.h|safe }}</span>
             <span class="fd-t">{{ w.t|safe }}</span>
           </a>
@@ -181,7 +181,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         {% endfor %}
       </div>
     </div>
-  </section>
+  </section>{% endcache %}
 
 
   {% comment %} ══════════════════════════════════════════════════════════════════════
@@ -274,7 +274,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
   {% comment %} ── `#angebot`: die sechs Startpakete (startpakete.html), jede Kachel führt auf
        /angebot/?paket=…#konfigurator. Keine Summenkarte, kein Konfigurator hier. {% endcomment %}
-  <section class="section section-alt rb-sec" id="angebot" aria-labelledby="rb-title">
+{% cache frag_ttl|default:0 "index_mitte" lang using="fragmente" %}  <section class="section section-alt rb-sec" id="angebot" aria-labelledby="rb-title">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.angebot|safe }}</p>
@@ -421,7 +421,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         </div>
       </div>
     </div>
-  </section>
+  </section>{% endcache %}
 
 
   {% comment %} ── Block 13: KONTAKT `#kontakt` (Papier). §2.15. Rückruf-Zeile
@@ -486,7 +486,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
   {% comment %} ── `#kooperationen`: schmaler Streifen mit der bestehenden Partnerkarte.
        Das Formular „Kooperationspartner werden“ steht auf /kontakt/#kooperationen. {% endcomment %}
-  <section class="section section-streifen" id="kooperationen">
+{% cache frag_ttl|default:0 "index_koop" lang using="fragmente" %}  <section class="section section-streifen" id="kooperationen">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.koop|safe }}</p>
@@ -495,7 +495,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
       <div class="coop-grid" data-reveal>
         {% for k in kooperationen %}
-        <a class="coop-card" href="{{ k.url }}" target="_blank" rel="noopener" aria-label="{{ k.name }} ({{ k.rolle }})">
+        <a class="coop-card" href="{{ k.url }}" target="_blank" rel="noopener">
           <div class="coop-logo"><img src="{% static k.logo %}"
                {% if k.logo_480 %}srcset="{% static k.logo_480 %} 480w, {% static k.logo %} 1100w"
                sizes="(max-width:760px) 90vw, 220px"{% endif %}
@@ -512,7 +512,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         {% endfor %}
       </div>
     </div>
-  </section>
+  </section>{% endcache %}
 {% endblock %}
 
 

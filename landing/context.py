@@ -19,6 +19,10 @@ from . import branchen, i18n, leistungen, regionen
 
 _WIEN = ZoneInfo("Europe/Vienna")
 
+# Lebensdauer der Vorlagen-Fragmente (Sekunden). Der Zwischenspeicher lebt im Prozess und
+# ist nach jedem Deploy leer; eine Stunde faengt zusaetzlich eine geaenderte content.json ab.
+FRAGMENT_TTL = 3600
+
 
 def _ostersonntag(jahr):
     """Ostersonntag nach der Gaußschen Osterformel (gregorianischer Kalender)."""
@@ -138,9 +142,25 @@ def navigation(request):
     Damit steht im Footer jeder Seite ein sprechender interner Link auf das Silo —
     das ist zugleich Navigation und die Grundverlinkung, ohne die neue Seiten von
     Google nur zufällig gefunden werden (docs/RELAUNCH-PLAN.md, R2.5)."""
+    lang = get_language()
+    # Die Listen haengen nur an der Sprache und aendern sich zur Laufzeit nicht
+    # (Runde 2, Technik): je Sprache einmal bauen. Ein flacher Kopf genuegt, die
+    # Vorlagen lesen nur.
+    try:
+        return dict(_NAV_SPEICHER[lang])
+    except KeyError:
+        pass
+    ergebnis = _navigation_bauen(lang)
+    _NAV_SPEICHER[lang] = ergebnis
+    return dict(ergebnis)
+
+
+_NAV_SPEICHER = {}
+
+
+def _navigation_bauen(lang):
     from .views import _leistung_daten  # verzögert: sonst zirkulärer Import
 
-    lang = get_language()
     posten = []
     for slug in leistungen.FOOTER_SLUGS:
         eintrag = leistungen.NACH_SLUG.get(slug)
@@ -176,4 +196,7 @@ def navigation(request):
         recht = {name: reverse(name) for name in
                  ("impressum", "datenschutz", "agb", "barrierefreiheit")}
     return {"footer_leistungen": posten, "footer_regionen": orte,
-            "footer_branchen": fach, "recht_url": recht}
+            "footer_branchen": fach, "recht_url": recht,
+            # Lebensdauer der Vorlagen-Fragmente (Runde 2, Technik): lokal (DEBUG) aus,
+            # damit eine geaenderte Vorlage sofort sichtbar wird.
+            "frag_ttl": 0 if settings.DEBUG else FRAGMENT_TTL}

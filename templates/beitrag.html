@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static conv %}
+{% load static conv cache %}
 {% comment %}
 Ein Fachbeitrag (docs/AUSBAU-2026-08.md, P7).
 
@@ -17,7 +17,7 @@ Begruendung in Abschnitten.
 {% block tw_beschreibung %}{{ beitrag.desc|safe }}{% endblock %}
 
 {% block inhalt %}
-<header class="sp-top">
+{% cache frag_ttl|default:0 "beitrag_a" lang beitrag.slug using="fragmente" %}<header class="sp-top">
   <div class="wrap">
     <nav class="krume" aria-label="{{ t.seite.brotkrume|safe }}">
       <a href="{% url 'index' %}">{{ t.seite.start|safe }}</a>
@@ -98,14 +98,14 @@ gefüllt + WhatsApp. Zwei Mal: direkt unter der Antwort und nach dem dritten Abs
     {% if einrichtung %}
     <aside class="rg-schwerpunkt bt-festpreis" data-reveal>
       <p class="rg-sw-label">{{ t.einrichten_hub.h1|safe }}</p>
-      <a class="rg-sw-link" href="{{ einrichtung.url }}">
+      <div class="rg-sw-link">
         <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=einrichtung.icon %}</span>
         <span>
-          <strong>{{ einrichtung.nav|safe }}</strong>
+          <strong><a class="rg-sw-a" href="{{ einrichtung.url }}">{{ einrichtung.nav|safe }}</a></strong>
           <em>{{ einrichtung.desc|safe }}</em>
         </span>
         <span class="ein-preis">{{ einrichtung.preis_label }}</span>
-      </a>
+      </div>
     </aside>
     {% endif %}
 
@@ -116,31 +116,32 @@ gefüllt + WhatsApp. Zwei Mal: direkt unter der Antwort und nach dem dritten Abs
     {% if hilfe_karte %}
     <aside class="rg-schwerpunkt bt-festpreis" data-reveal>
       <p class="rg-sw-label">{{ hilfe_karte.label|safe }}</p>
-      <a class="rg-sw-link" href="{{ hilfe_karte.url }}">
+      <div class="rg-sw-link">
         <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name='phone' %}</span>
         <span>
-          <strong>{{ hilfe_karte.nav|safe }}</strong>
+          <strong><a class="rg-sw-a" href="{{ hilfe_karte.url }}">{{ hilfe_karte.nav|safe }}</a></strong>
           <em>{{ hilfe_karte.desc|safe }}</em>
         </span>
         <span class="ein-preis">{{ hilfe_karte.preis }}</span>
-      </a>
+      </div>
     </aside>
     {% endif %}
 
     {% if thema %}
     <aside class="rg-schwerpunkt" data-reveal>
       <p class="rg-sw-label">Passende Leistung</p>
-      <a class="rg-sw-link" href="{{ thema.url }}">
+      <div class="rg-sw-link">
         <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=thema.icon %}</span>
         <span>
-          <strong>{{ thema.nav|safe }}</strong>
+          <strong><a class="rg-sw-a" href="{{ thema.url }}">{{ thema.nav|safe }}</a></strong>
           <span class="rg-sw-t">{{ thema.desc|safe }}</span>
         </span>
-      </a>
+      </div>
     </aside>
     {% endif %}
 
-    {% include 'anfrage_karte.html' with bid='it' titel='Frage zum Thema? Kurz schildern, wir antworten.' sub='Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.' ph=t.lb.text_ph %}
+{% endcache %}    {% include 'anfrage_karte.html' with bid='it' titel='Frage zum Thema? Kurz schildern, wir antworten.' sub='Wir melden uns an Werktagen innerhalb von 24 Stunden — mit einer Einschätzung, nicht mit einem Verkaufsgespräch.' ph=t.lb.text_ph %}
+{% cache frag_ttl|default:0 "beitrag_b" lang beitrag.slug using="fragmente" %}
 
     {% if orte_block %}
     <p class="rg-hinweis bt-orte" data-reveal><strong>In Ihrer Nähe:</strong>
@@ -156,4 +157,5 @@ gefüllt + WhatsApp. Zwei Mal: direkt unter der Antwort und nach dem dritten Abs
     </nav>
   </div>
 </article>
+{% endcache %}
 {% endblock %}

@@ -100,14 +100,14 @@ dem Telefon seitlich wackelt.
       {% if einrichtung %}
       <aside class="rg-schwerpunkt bt-festpreis" data-reveal>
         <p class="rg-sw-label">{{ t.einrichten_hub.h1|safe }}</p>
-        <a class="rg-sw-link" href="{{ einrichtung.url }}">
+        <div class="rg-sw-link">
           <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=einrichtung.icon %}</span>
           <span>
-            <strong>{{ einrichtung.nav|safe }}</strong>
+            <strong><a class="rg-sw-a" href="{{ einrichtung.url }}">{{ einrichtung.nav|safe }}</a></strong>
             <em>{{ einrichtung.desc|safe }}</em>
           </span>
           <span class="ein-preis">{{ einrichtung.preis_label }}</span>
-        </a>
+        </div>
       </aside>
       {% endif %}
 

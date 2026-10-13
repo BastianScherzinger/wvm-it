@@ -1,4 +1,4 @@
-{% comment %}
+{% load schnell cache %}{% comment %}
 Fuß + Handy-Leiste (Design B1, docs/DESIGN-B1-2026-09-25.md §3.1).
 
 Eingebunden von base.html und angebot.html. angebot.html übergibt
@@ -10,7 +10,7 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
 {% endcomment %}
 <footer class="foot on-dark">
   <div class="wrap foot-kopf">
-    <div class="foot-brand">
+{% cache frag_ttl|default:0 "fuss_marke" lang using="fragmente" %}    <div class="foot-brand">
       <a class="brand" href="{% url 'index' %}">
         <svg class="brand-mark" viewBox="0 0 330 330" aria-hidden="true"><use href="#i-wvm_orbit"/></svg>
         <span class="brand-text"><b>{{ c.site_name }}</b><small>{{ c.tagline|default:t.meta.slogan|safe }}</small></span>
@@ -25,14 +25,14 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
       {% if c.telefon %}<a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a><br>{% endif %}
       {% if c.email %}<a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}
     </address>
-    {% endif %}
+    {% endif %}{% endcache %}
     <div class="foot-status">
       <p class="sl-status{% if erreichbarkeit.offen %} ist-offen{% endif %}"><span class="sl-dot" aria-hidden="true"></span>{{ erreichbarkeit.text|safe }}</p>
       <p class="foot-status-notfall"><a class="sl-notfall" href="{% url 'notfall' %}">{% include 'icons.html' with name='alert' %}{{ t.notfall.nav|safe }}</a></p>
     </div>
   </div>
 
-  <div class="wrap">
+  {% cache frag_ttl|default:0 "fuss_nav" lang using="fragmente" %}<div class="wrap">
     <nav class="foot-nav" aria-label="Footer">
       <div>
         <h3>{{ t.footer.col_leistungen|safe }}</h3>
@@ -79,11 +79,11 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
         <a href="{{ recht_url.barrierefreiheit }}">{{ t.footer.barrierefreiheit|safe }}</a>
       </div>
     </nav>
-  </div>
+  </div>{% endcache %}
 
   <div class="wrap foot-bottom">
     <span>© {{ c.jahr }} {{ c.site_name }}{% if c.webagentur_url %} · {{ t.footer.credit_vor|safe }}<a class="foot-credit-link" href="{{ c.webagentur_url }}/">{{ t.footer.credit_marke|safe }}</a>{% endif %}</span>
-    {% include 'lang_switch.html' %}
+    {% sprachumschalter %}
     <a class="foot-join" href="{% url 'kontakt' %}#kooperationen">{{ t.koop.join_h|safe }}</a>
     <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>
   </div>
