@@ -35,6 +35,7 @@ und die Schritte im Schema kommen aus derselben Liste.
         {% if c.whatsapp %}<a class="btn-wa nf-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
         <a class="btn btn-ghost" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
       </div>
+      {% include 'sofort_zeit.html' %}
       <p class="nf-sofort-t">{{ nf.eilt_t|safe }}</p>
     </div>
 
@@ -48,6 +49,10 @@ und die Schritte im Schema kommen aus derselben Liste.
       <h2>{{ nf.regel_h|safe }}</h2>
       <p>{{ nf.regel_t|safe }}</p>
     </aside>
+
+    {% comment %}R3-01 Nr. 5 und 12: Symptome -> Ratgeber, und der Weg zur IT-Hilfe für alles, was kein Notfall ist.{% endcomment %}
+    {% include 'akut_kacheln.html' %}
+    <p class="lk-alle">{{ t.akut.hilfe_link_lead|safe }} <a href="{% url 'it_hilfe' %}">{{ t.akut.hilfe_link|safe }} →</a></p>
 
     <p class="sp-intro" data-reveal>{{ nf.intro|safe }}</p>
 
@@ -127,7 +132,7 @@ und die Schritte im Schema kommen aus derselben Liste.
       {% endfor %}
     </div>
 
-    {% include 'anfrage_karte.html' with bid='it' titel=nf.cta_h sub=nf.cta_t ph=nf.schritte_h %}
+    {% include 'anfrage_karte.html' with bid='notfall' titel=nf.cta_h sub=nf.cta_t ph=nf.schritte_h %}
 
     <nav class="rg-weitere" aria-label="{{ t.seite.regionen_titel|safe }}">
       <h2>{{ t.seite.rg_weitere|safe }}</h2>

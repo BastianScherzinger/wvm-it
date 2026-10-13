@@ -9,6 +9,7 @@ from .vergleiche_ro import VERGLEICHE
 from .einrichten_ro import EINRICHTEN, HUB as EINRICHTEN_HUB
 from .hilfe_ro import HILFE
 from .conv_ro import CONV
+from .akut_ro import AKUT
 
 PACK = {
     "seiten": SEITEN,
@@ -20,6 +21,7 @@ PACK = {
     "einrichten_hub": EINRICHTEN_HUB,
     "hilfe": HILFE,
     "conv": CONV,
+    "akut": AKUT,
     "meta": {
         "html_lang": "ro",
         "locale": "ro_RO",
@@ -635,7 +637,7 @@ PACK = {
         "titel": "Urgență IT: cont blocat, e-mail, PC defect | WVM-IT",
         "desc": "Cont Microsoft 365 blocat, e-mail nefuncțional, PC care nu pornește, criptare: primii pași și ajutor la distanță, 95 €/oră, fără contract. Sunați acum.",
         "h1": "Urgență IT: ce trebuie făcut în primele 30 de minute",
-        "kurz": "Într-o urgență IT, primele minute decid paguba. WVM-IT din Lenzing ajută firme din Austria Superioară și Salzburg prin mentenanță la distanță la cont Microsoft 365 blocat, e-mail căzut, PC care nu pornește, criptare și cădere de server: suntem disponibili de luni până vineri între orele 9 și 18 la numărul de mai jos și începem, de obicei, în câteva minute — inclusiv dacă nu sunteți clientul nostru. Se facturează ca ajutor punctual, fără contract, cu 95 € pe oră. La bănuiala unui atac se aplică mai întâi o regulă: deconectați aparatele afectate de la rețea, dar nu le opriți și nu ștergeți nimic — memoria și jurnalele conțin urmele necesare pentru recuperare și pentru o eventuală notificare.",
+        "kurz": "Într-o urgență IT, primele minute decid paguba. WVM-IT din Lenzing ajută în toată Austria (și Germania), prin mentenanță la distanță, la cont Microsoft 365 blocat, e-mail căzut, PC care nu pornește, criptare și cădere de server, de luni până vineri între 9 și 18, cu 95 € pe oră: suntem disponibili la numărul de mai jos și începem, de obicei, în câteva minute — inclusiv dacă nu sunteți clientul nostru. Se facturează ca ajutor punctual, fără contract. La fața locului venim cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing. La bănuiala unui atac se aplică mai întâi o regulă: deconectați aparatele afectate de la rețea, dar nu le opriți și nu ștergeți nimic — memoria și jurnalele conțin urmele necesare pentru recuperare și pentru o eventuală notificare.",
         "eilt_h": "Este urgent — pe aici",
         "eilt_t": "Sunați, nu scrieți. În timpul unei defecțiuni în desfășurare, un telefon economisește mai mult timp decât orice descriere prin e-mail.",
         "intro": "Această pagină este pentru acțiune, nu pentru lectură. Găsiți mai jos cazul dumneavoastră și parcurgeți pașii în ordine. Restul — cauza, recuperarea, obligațiile de notificare — vine după. Suntem disponibili în mod explicit și dacă nu sunteți clientul nostru; o urgență acută este momentul nepotrivit pentru o discuție despre contract.",
@@ -1126,7 +1128,7 @@ PACK = {
         "titel": "Cât costă administrarea IT? Prețuri de la 29 €/lună | WVM-IT",
         "desc": "Cât costă administrarea IT: de la 29 €/lună pe stație, suport 95 €/oră, cu exemple de calcul pentru 3, 5 și 10 stații. Austria și Germania. Cereți ofertă.",
         "h1": "Cât costă administrarea IT? Toate prețurile pe o singură pagină",
-        "kurz": "WVM-IT din Lenzing deservește firme la fața locului în Austria Superioară și Salzburg și prin acces la distanță în Austria și Germania; administrarea IT curentă costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Ajutorul punctual costă 95 € pe oră, intervențiile la fața locului 120 € pe oră plus deplasarea. Un site pornește de la 350 €, administrarea SEO de la 149 € pe lună, Google Ads de la 199 € pe lună. Toate sunt prețuri orientative, net plus TVA.",
+        "kurz": "WVM-IT din Lenzing deservește firme prin acces la distanță în toată Austria (și Germania) și la fața locului, cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing; administrarea IT curentă costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Ajutorul punctual costă 95 € pe oră, intervențiile la fața locului 120 € pe oră plus deplasarea. Un site pornește de la 350 €, administrarea SEO de la 149 € pe lună, Google Ads de la 199 € pe lună. Toate sunt prețuri orientative, net plus TVA.",
         "intro": "\u201ePreț la cerere\u201d este comod pentru furnizor și enervant pentru client. De aceea aici scrie tot ce se poate cuantifica rezonabil – iar acolo unde nu se poate, scrie de ce. Cifrele de mai jos vin din aceeași sursă ca și configuratorul și ofertele noastre; nu există o a doua listă de prețuri.",
         "ort_satz": "La fața locului lucrăm, printre altele, la <a href=\"/ro/it-service/salzburg/\">Salzburg</a> și <a href=\"/ro/it-service/linz/\">Linz</a>, iar prin acces la distanță în toată Austria.",
         "warum_h": "De ce la unele nu apare un preț",
@@ -1647,6 +1649,7 @@ PACK = {
             "koop": "un parteneriat",
             "rueckruf": "apelul dumneavoastră",
             "einzelhilfe": "ajutor IT fără contract",
+            "notfall": "urgență IT",
         },
         "h": "Ce preluăm",
         "sub": "Fiecare serviciu cu un preț de pornire clar. Întrebați direct în câmpul potrivit – o propoziție ajunge, răspundem în 24 de ore în zilele lucrătoare.",

@@ -96,9 +96,11 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
         <button class="btn btn-lg coop-submit" type="submit" id="coopSubmit">{{ t.koop.submit|safe }}</button>
         <p class="lb-err" id="coopErr" role="alert" hidden></p>
         <p class="coop-fine">{{ t.koop.fine|safe }}</p>
+        <div aria-live="polite" aria-atomic="true">
         <div class="coop-done" id="coopDone" hidden>
           <span class="coop-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
           <div><strong>{{ t.koop.done_h|safe }}</strong><p>{{ t.koop.done_p|safe }}</p></div>
+        </div>
         </div>
         {% include 'datenschutzhinweis.html' %}
       </form>

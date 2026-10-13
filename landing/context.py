@@ -128,7 +128,10 @@ def anfrage_fehler(request):
     pack = i18n.get_pack(get_language() or "de")
     if code == "limit":
         fertig = pack.get("anfrage_done", {})
-        text = f"{fertig.get('limit_h', '')} {fertig.get('limit_p', '')}".strip()
+        # Das Fenster der Kurzformulare ist 15 Minuten (`views._LIMITS["anfrage"]`), nicht eine
+        # Stunde wie beim Newsletter (R3-02 Nr. 11): eigener Satz, dazu der Hinweis auf den Anruf.
+        kurz = pack.get("akut", {}).get("limit_p_kurz", "") or fertig.get("limit_p", "")
+        text = f"{fertig.get('limit_h', '')} {kurz}".strip()
     elif code == "kontakt":
         text = pack.get("lb", {}).get("err_kontakt", "")
     else:

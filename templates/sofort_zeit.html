@@ -1,0 +1,6 @@
+{% comment %}
+Zeitzeile des Sofort-Blocks (R3-01 Nr. 3, 13.10.2026): der Live-Status der Kopfzeile
+(`erreichbarkeit`, landing/context.py — dieselbe Logik, Feiertage inklusive) plus der Satz,
+was außerhalb der Zeiten gilt. Keine eigene Uhrzeit, kein „24/7“.
+{% endcomment %}
+<p class="nf-zeit{% if erreichbarkeit.offen %} ist-offen{% endif %}"><span class="nf-zeit-dot" aria-hidden="true"></span><span><strong>{{ erreichbarkeit.text|safe }}</strong> · {% if erreichbarkeit.offen %}{{ t.akut.zeit_auf|safe }}{% else %}{{ t.akut.zeit_zu|safe }}{% endif %}</span></p>

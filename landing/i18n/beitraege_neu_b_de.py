@@ -141,7 +141,7 @@ TEXTE = {
         "titel": "WLAN im Büro zu langsam: Ursachen finden und beheben",
         "meta_titel": "WLAN im Büro zu langsam: Ursachen und Lösungen | WVM-IT",
         "desc": "Langsames WLAN im Büro hat meist Funkstörung, Router-Standort oder zu viele Geräte als Ursache. So finden Sie sie in Stufen. Jetzt Fehlersuche anfragen.",
-        "antwort": "Ein langsames WLAN im Büro liegt meist an einem von fünf Dingen: ungünstiger Standort oder zu wenige Zugangspunkte, Funkstörung durch Nachbarnetze, veraltete Geräte, ein überlasteter Router oder eine zu langsame Internetleitung. Zuerst wird gemessen, ob nur das WLAN langsam ist oder auch die Leitung dahinter. Ein neu geplantes Betriebsnetz kostet bei WVM-IT 890 €.",
+        "antwort": "Ein langsames WLAN im Büro liegt meist an einem von fünf Dingen: ungünstiger Standort oder zu wenige Zugangspunkte, Funkstörung durch Nachbarnetze, veraltete Geräte, ein überlasteter Router oder eine zu langsame Internetleitung. Zuerst wird gemessen, ob nur das WLAN langsam ist oder auch die Leitung dahinter. Ein neu geplantes Betriebsnetz kostet bei WVM-IT 890 €. Die Messung und Fehlersuche übernimmt WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Fr 9–18 Uhr, 95 € je Stunde.",
         "vorweg": "Dieser Beitrag ist die Fehlersuche für ein WLAN, das schon steht und nicht mehr trägt. Wer ein Netz neu aufbaut, findet die Planung unter <a href='/aktuelles/wlan-im-betrieb-planen/'>WLAN im Betrieb planen</a>.",
         "abschnitte": [
             {"h": "Zuerst messen, dann raten",

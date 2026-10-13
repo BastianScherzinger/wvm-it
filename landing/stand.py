@@ -150,7 +150,7 @@ STAND = {
     "/wissen/monitoring/": "2026-10-09",
     "/wissen/nas/": "2026-10-09",
     "/wissen/netzwerksegmentierung/": "2026-10-09",
-    "/wissen/phishing/": "2026-10-09",
+    "/wissen/phishing/": "2026-10-13",
     "/wissen/raid/": "2026-10-09",
     "/wissen/ransomware/": "2026-10-13",
     "/wissen/sla/": "2026-10-09",

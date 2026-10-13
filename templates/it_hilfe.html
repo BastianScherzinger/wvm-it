@@ -32,10 +32,11 @@ Leistungsseiten). Jede Zahl kommt aus ANGEBOT_GROUPS über das Sprachpaket bzw.
     <div class="nf-sofort">
       <p class="nf-sofort-h">{{ hilfe.eilt_h|safe }}</p>
       <div class="nf-wege">
-        {% if c.telefon %}<a class="btn btn-lg" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+        {% if c.telefon %}<a class="btn btn-lg nf-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
         {% if c.whatsapp %}<a class="btn-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
         <a class="btn btn-ghost" href="#anfrage">{% include 'icons.html' with name='mail' %}<span>{{ t.ways.mail|safe }}</span></a>
       </div>
+      {% include 'sofort_zeit.html' %}
       <p class="nf-sofort-t">{{ hilfe.eilt_t|safe }}</p>
     </div>
 
@@ -45,7 +46,14 @@ Leistungsseiten). Jede Zahl kommt aus ANGEBOT_GROUPS über das Sprachpaket bzw.
 
 <section class="section">
   <div class="wrap sp-wrap">
+    {% comment %}R3-01 Nr. 5: „Was ist kaputt?“ gleich unter dem Sofort-Block, dann Einsatzgebiet (Nr. 2).{% endcomment %}
+    {% include 'akut_kacheln.html' %}
+    <p class="lk-alle">{{ t.akut.notfall_link_lead|safe }} <a href="{% url 'notfall' %}">{{ t.akut.notfall_link|safe }} →</a></p>
+
     <p class="sp-intro" data-reveal>{{ hilfe.intro|safe }}</p>
+
+    <h2 class="sp-h2" id="wo-wir-helfen">{{ t.akut.wo_h|safe }}</h2>
+    <p class="sp-preis-text">{{ t.akut.wo_t|safe }}</p>
 
     <h2 class="sp-h2" id="faelle">{{ hilfe.faelle_h|safe }}</h2>
     <p class="sp-preis-text">{{ hilfe.faelle_t|safe }}</p>

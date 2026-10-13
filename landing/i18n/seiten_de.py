@@ -119,7 +119,7 @@ SEITEN = {
         "titel": "Netzwerk & WLAN einrichten ab 890 € | WVM-IT",
         "desc": "Netzwerk und WLAN ausgemessen, geplant und aufgebaut — ab 890 €, auch für Hallen und mehrere Etagen. Jetzt unverbindlich anfragen.",
         "h1": "Netzwerk und WLAN, das auch in der Halle trägt",
-        "kurz": "WVM-IT aus Lenzing plant und misst Firmennetzwerke aus der Ferne und baut sie vor Ort in Oberösterreich und Salzburg auf, Netzwerk und WLAN einrichten ab 890 €, Firewall und VPN ab 690 €. Dazu gehören strukturierte Verkabelung, WLAN mit lückenloser Abdeckung, getrennte Netze für Gäste und Betrieb sowie Firewall und VPN für den Zugriff von außen.",
+        "kurz": "WVM-IT aus Lenzing plant und misst Firmennetzwerke aus der Ferne in ganz Österreich und baut sie vor Ort nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing auf, Netzwerk und WLAN einrichten ab 890 €, Firewall und VPN ab 690 €. Dazu gehören strukturierte Verkabelung, WLAN mit lückenloser Abdeckung, getrennte Netze für Gäste und Betrieb sowie Firewall und VPN für den Zugriff von außen.",
         "intro": "WLAN-Probleme werden fast immer mit einem weiteren Zugangspunkt beantwortet. Meistens wird es davon schlechter: Zwei Geräte auf demselben Kanal stören sich gegenseitig, und das Endgerät hängt sich an das falsche. Ein Netz, das trägt, entsteht nicht durch mehr Hardware, sondern durch eine Messung, einen Plan und saubere Kanalvergabe. Bei Hallen, Altbau und mehreren Etagen ist das der Unterschied zwischen „läuft“ und „läuft, außer hinten links“.",
         "problem_h": "Wann ein Netz neu geplant gehört",
         "probleme": [

@@ -123,6 +123,23 @@ CTA_TEXTE = {
 }
 
 
+# R3-01 Nr. 12 (13.10.2026): Akut-Ratgeber -> /it-hilfe/. Der Ankertext nennt, worum es geht, und
+# wechselt von Beitrag zu Beitrag (nie zehnmal derselbe Anker, nie „hier klicken“). Nur Beiträge,
+# die ein akutes Problem beschreiben; die Ratgeber gibt es nur auf Deutsch.
+HILFE_ANKER = {
+    "microsoft-365-konto-gesperrt": "IT-Hilfe per Fernwartung in ganz Österreich",
+    "email-postfach-gehackt": "Hilfe bei gehacktem Postfach, per Fernwartung in Österreich",
+    "outlook-email-geht-nicht": "Outlook-Hilfe per Fernwartung für Betriebe in Österreich",
+    "drucker-druckt-nicht": "Drucker-Hilfe per Fernwartung, ohne Vertrag",
+    "pc-langsam-woran-liegt-es": "IT-Hilfe bei langsamem PC, österreichweit per Fernwartung",
+    "ransomware-befall-was-tun": "Computer-Notdienst per Fernwartung in Österreich",
+    "wlan-im-buero-zu-langsam": "WLAN-Hilfe per Fernwartung für Betriebe in Österreich",
+    "was-kostet-ein-serverausfall": "Hilfe bei Serverausfall per Fernwartung",
+    "phishing-mail-geklickt-was-jetzt": "IT-Hilfe nach einem Phishing-Klick, österreichweit",
+    "it-notfall-am-wochenende": "Einzelhilfe per Fernwartung in ganz Österreich",
+}
+
+
 @register.simple_tag(takes_context=True)
 def ratgeber_cta_daten(context, titel="", slug="", thema=None, einrichtung=None, hilfe=None,
                        problem=""):
@@ -150,6 +167,8 @@ def ratgeber_cta_daten(context, titel="", slug="", thema=None, einrichtung=None,
         "kopf": kopf, "text": text, "preis": preis, "preis_url": reverse("kosten"),
         "wa_text": quote(f"{wa_vor}{titel}"[:200]),
         "ist_hilfe": ist_hilfe,
+        "hilfe_anker": HILFE_ANKER.get(slug, ""),
+        "hilfe_url": reverse("it_hilfe") if slug in HILFE_ANKER else "",
     }
 
 

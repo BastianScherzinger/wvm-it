@@ -63,8 +63,12 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
     {% endcomment %}
     <div class="field">
       <label class="fld-l" for="ak-kontakt-{{ bid }}">{{ t.conv.ak_kontakt|safe }} *</label>
+      {% comment %}R3-02 Nr. 9: bewusst `type="text"` (E-Mail ODER Telefon; `type=email` lehnt Nummern ab,
+      `inputmode=email` nähme dem Handy die Zifferntaste). Dafür kein Großbuchstabe am Anfang und keine
+      Autokorrektur: iOS machte aus „name@firma.at“ sonst „Name@firma.at“.{% endcomment %}
       <input class="fld" id="ak-kontakt-{{ bid }}" type="text" name="kontakt" required
-             maxlength="254" autocomplete="email" placeholder="{{ t.lb.kontakt_bsp|safe }}">
+             maxlength="254" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false"
+             placeholder="{{ t.lb.kontakt_bsp|safe }}">
     </div>
     <details class="rr-mehr ak-mehr"{% if vorbelegung %} open{% endif %}>
       <summary>{{ t.conv.ak_mehr|safe }}</summary>
@@ -112,9 +116,12 @@ er kam — sonst landet jede Anfrage von einer Unterseite auf der Startseite.
   {% include 'datenschutzhinweis.html' with kurz=True %}
   </form>
 
-  <div class="lb-done ak-done" hidden>
-    <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-    <strong>{{ t.lb.done_h|safe }}</strong>
-    <p>{{ t.lb.done_t|safe }}</p>
+  {% comment %}Der Container ist immer sichtbar und trägt `aria-live`: Eine Region, die erst beim Einblenden
+  entsteht, wird von Screenreadern nicht vorgelesen (R3-02 Nr. 4).{% endcomment %}
+  <div class="ak-live" aria-live="polite" aria-atomic="true">
+    <div class="lb-done ak-done" hidden>
+      {% if bid == 'notfall' %}{% include 'anfrage_erfolg.html' with h=t.akut.notfall_done_h text=t.akut.notfall_done_t notfall=True %}
+      {% else %}{% include 'anfrage_erfolg.html' with h=t.lb.done_h text=t.lb.done_t schritte=True %}{% endif %}
+    </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ from .vergleiche_en import VERGLEICHE
 from .einrichten_en import EINRICHTEN, HUB as EINRICHTEN_HUB
 from .hilfe_en import HILFE
 from .conv_en import CONV
+from .akut_en import AKUT
 
 PACK = {
     "seiten": SEITEN,
@@ -24,6 +25,7 @@ PACK = {
     "einrichten_hub": EINRICHTEN_HUB,
     "hilfe": HILFE,
     "conv": CONV,
+    "akut": AKUT,
     "meta": {
         "html_lang": "en",
         "locale": "en_US",
@@ -643,7 +645,7 @@ PACK = {
         "h1": "IT emergency: what to do in the first 30 minutes",
         "nav": "IT emergency",
         "wa_text": "IT emergency: ",
-        "kurz": "In an IT emergency the first minutes decide the damage. WVM-IT in Lenzing helps businesses in Upper Austria and Salzburg by remote maintenance with a locked Microsoft 365 account, failed email, a PC that will not start, encryption and server failure: we are reachable Monday to Friday from 9am to 6pm on the number below and usually begin within minutes — including if you are not a client of ours. Billing is as single help without a contract at €95 per hour. If you suspect an attack, one rule comes first: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report.",
+        "kurz": "In an IT emergency the first minutes decide the damage. WVM-IT in Lenzing helps across Austria (and Germany) by remote maintenance with a locked Microsoft 365 account, failed email, a PC that will not start, encryption and server failure, Mon–Fri 9am–6pm at €95 per hour: we are reachable on the number below and usually begin within minutes — including if you are not a client of ours. Billing is as single help without a contract. On site we come by appointment within roughly an hour's drive of Lenzing. If you suspect an attack, one rule comes first: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report.",
         "eilt_h": "It is urgent — this way",
         "eilt_t": "Call rather than write. During an ongoing incident a phone call saves more time than any description by email.",
         "intro": "This page is for acting, not for reading. Find your case below and work through the steps in order. Everything else — cause analysis, recovery, notification duties — comes afterwards. We are explicitly reachable even if you are not a client of ours; an acute emergency is the wrong moment for a contract question.",
@@ -1134,7 +1136,7 @@ PACK = {
         "titel": "IT support cost: all prices from €29/month | WVM-IT",
         "desc": "What IT support costs: from €29 per workstation a month, support €95/hr, with worked examples for 3, 5 and 10 workstations. AT and DE. Get a quote.",
         "h1": "What does IT support cost? All prices on one page",
-        "kurz": "WVM-IT from Lenzing looks after businesses on site in Upper Austria and Salzburg and by remote maintenance across Austria and Germany; ongoing IT support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. Individual help costs €95 per hour, on-site work €120 per hour plus travel. A website starts at €350, SEO support at €149 per month, Google Ads at €199 per month. All figures are guide prices, net plus VAT.",
+        "kurz": "WVM-IT from Lenzing looks after businesses by remote maintenance across Austria (and Germany) and on site by appointment within roughly an hour's drive of Lenzing; ongoing IT support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. Individual help costs €95 per hour, on-site work €120 per hour plus travel. A website starts at €350, SEO support at €149 per month, Google Ads at €199 per month. All figures are guide prices, net plus VAT.",
         "intro": "\u201cPrice on request\u201d is convenient for the supplier and annoying for the customer. So everything that can sensibly be quantified is listed here – and where it cannot, the reason is given. The figures below come from the same source as our configurator and our quotes; there is no second price list.",
         "ort_satz": "On site we work in <a href=\"/en/it-service/salzburg/\">Salzburg</a> and <a href=\"/en/it-service/linz/\">Linz</a>, among other places, and by remote maintenance across Austria.",
         "warum_h": "Why some items carry no price",
@@ -1655,6 +1657,7 @@ PACK = {
             "koop": "a partnership",
             "rueckruf": "your call-back",
             "einzelhilfe": "IT help without a contract",
+            "notfall": "IT emergency",
         },
         "h": "What we take on",
         "sub": "Every service with a clear starting price. Ask directly in the matching field – one sentence is enough, we reply within 24 hours on working days.",

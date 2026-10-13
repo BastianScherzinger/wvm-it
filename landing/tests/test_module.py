@@ -80,6 +80,9 @@ from landing.i18n import branchen_en
 from landing.i18n import branchen_ro
 from landing.i18n import checklisten_de
 from landing.i18n import de
+from landing.i18n import akut_de
+from landing.i18n import akut_en
+from landing.i18n import akut_ro
 from landing.i18n import conv_de
 from landing.i18n import conv_en
 from landing.i18n import conv_ro
@@ -128,7 +131,7 @@ from landing.management.commands import stand_schreiben
 # Gegenproben unten laufen über diese Tupel und melden jede Datei, die dazukommt
 # und hier fehlt.
 SPRACHMODULE = (beitraege_de, branchen_de, branchen_en, branchen_ro,
-                checklisten_de, conv_de, conv_en, conv_ro, de, einrichten_de, einrichten_en, einrichten_ro,
+                akut_de, akut_en, akut_ro, checklisten_de, conv_de, conv_en, conv_ro, de, einrichten_de, einrichten_en, einrichten_ro,
                 en, glossar_de, hilfe_de, hilfe_en, hilfe_ro, regionen_de, regionen_en,
                 regionen_ro, ro, seiten_de, lokal_de, lokal_en, lokal_ro, regionen_ausbau_a, regionen_ausbau_b, regionen_ausbau_c, regionen_ausbau_d, seiten_ausbau_edv,
                 seiten_en, seiten_ro, vergleiche_de,

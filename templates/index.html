@@ -102,10 +102,10 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
             <p class="lb-err" role="alert"{% if not anfrage_fehler_text %} hidden{% endif %}>{{ anfrage_fehler_text }}</p>
             {% include 'datenschutzhinweis.html' %}
           </form>
-          <div class="lb-done" hidden>
-            <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-            <strong>{{ t.rueckruf.done_h|safe }}</strong>
-            <p>{{ t.rueckruf.done_t|safe }}</p>
+          <div class="rr-live" aria-live="polite" aria-atomic="true">
+            <div class="lb-done" hidden>
+              {% include 'anfrage_erfolg.html' with h=t.rueckruf.done_h text=t.rueckruf.done_t %}
+            </div>
           </div>
         </div>
 
@@ -447,10 +447,11 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       </div>
 
       {% if sent %}
-      <div class="contact-form form-sent" data-reveal>
+      <div class="contact-form form-sent" role="status" data-reveal>
         <div class="sent-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</div>
         <h3>{{ t.kontakt.sent_h|safe }}</h3>
         <p>{{ t.kontakt.sent_p|safe }}</p>
+        {% if c.telefon %}<p class="done-tel">{{ t.akut.done_eilt|safe }} <a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a></p>{% endif %}
       </div>
       {% else %}
       <form class="contact-form" id="kontakt-form" method="post" action="#kontakt" data-reveal>
@@ -474,7 +475,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         </div>
         <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required maxlength="4000" placeholder="{{ t.kontakt.f_project_ph|safe }}">{{ kontakt_werte.nachricht|default:'' }}</textarea></label>
         <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.kontakt.consent_pre|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</span></label>
-        {% if kontakt_werte %}<p class="lb-err" role="alert">{% if limit_gesperrt %}{{ t.anfrage_done.limit_h|safe }} {{ t.anfrage_done.limit_p|safe }}{% else %}{{ t.kontakt.err|safe }}{% endif %}</p>{% endif %}
+        {% if kontakt_werte %}<p class="lb-err" role="alert">{% if limit_gesperrt %}{{ t.anfrage_done.limit_h|safe }} {{ t.akut.limit_p_kurz|safe }}{% else %}{{ t.kontakt.err|safe }}{% endif %}</p>{% endif %}
         <button class="btn btn-lg" type="submit">{{ t.kontakt.submit|safe }}</button>
         <p class="form-fine" aria-live="polite">{{ t.kontakt.fine|safe }}</p>
       {% include 'datenschutzhinweis.html' %}

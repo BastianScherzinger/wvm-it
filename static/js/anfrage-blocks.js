@@ -102,9 +102,12 @@
           if (fertig) fertig.hidden = false;
         })
         .catch(function (err) {
-          var meldung = String(err && err.message) === "kontakt"
+          var code = String(err && err.message);
+          var meldung = code === "kontakt"
             ? (T.err_kontakt || "Bitte E-Mail oder Telefonnummer eintragen.")
-            : (T.err_allg || "Das hat nicht geklappt. Bitte per WhatsApp oder Telefon melden.");
+            : code === "limit"
+              ? (T.err_limit || T.err_allg || "Das hat nicht geklappt. Bitte per WhatsApp oder Telefon melden.")
+              : (T.err_allg || "Das hat nicht geklappt. Bitte per WhatsApp oder Telefon melden.");
           zeigeFehler(meldung);
         })
         .then(knopfZurueck);

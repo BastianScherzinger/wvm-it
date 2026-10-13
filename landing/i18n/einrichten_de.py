@@ -15,7 +15,7 @@ EINRICHTEN = {
                 "Jetzt anfragen.",
         "h1": "Einen Arbeitsplatz einrichten lassen — Festpreis, ohne Vertrag",
         "nav": "Arbeitsplatz einrichten",
-        "kurz": "WVM-IT aus Lenzing richtet für Betriebe in Oberösterreich und Salzburg einen neuen Arbeitsplatz zum Festpreis von 190 € ein, meist per Fernwartung in zwei bis drei Stunden und ohne Vertrag. Dazu gehören Windows, Treiber, die Programme des Betriebs, Benutzerkonto, E-Mail-Postfach, Drucker, Zugriff auf die gemeinsamen Dateien und die Übernahme der Daten vom alten Gerät. Der Preis gilt je Arbeitsplatz; es ist kein Vertrag nötig.",
+        "kurz": "WVM-IT aus Lenzing richtet für Betriebe in ganz Österreich einen neuen Arbeitsplatz zum Festpreis von 190 € ein, meist per Fernwartung in zwei bis drei Stunden und ohne Vertrag. Dazu gehören Windows, Treiber, die Programme des Betriebs, Benutzerkonto, E-Mail-Postfach, Drucker, Zugriff auf die gemeinsamen Dateien und die Übernahme der Daten vom alten Gerät. Der Preis gilt je Arbeitsplatz; es ist kein Vertrag nötig.",
         "intro": "Ein neuer Rechner steht auf dem Tisch, und ab da wird es mühsam: "
                  "Windows will eingerichtet werden, die Branchensoftware braucht ihre "
                  "Lizenz, das Postfach soll die alten Mails behalten, der Drucker wird "
@@ -112,7 +112,7 @@ EINRICHTEN = {
                 "Fernwartung. Jetzt anfragen.",
         "h1": "Rechner tauschen, ohne dass etwas verlorengeht",
         "nav": "PC tauschen",
-        "kurz": "WVM-IT aus Lenzing überträgt beim Gerätewechsel Dateien, E-Mails und Programme für Betriebe in Oberösterreich und Salzburg, 190 € je Arbeitsplatz, meist per Fernwartung in zwei bis drei Stunden. Mitgenommen wird alles, was gebraucht wird: Dateien, E-Mails samt Ordnerstruktur, Browser-Lesezeichen, gespeicherte Zugänge und die eingerichteten Programme. Der alte Rechner wird auf Wunsch sicher gelöscht; die Person, die daran arbeitet, kann in dieser Zeit weiterarbeiten.",
+        "kurz": "WVM-IT aus Lenzing überträgt beim Gerätewechsel Dateien, E-Mails und Programme für Betriebe in ganz Österreich, 190 € je Arbeitsplatz, meist per Fernwartung in zwei bis drei Stunden. Mitgenommen wird alles, was gebraucht wird: Dateien, E-Mails samt Ordnerstruktur, Browser-Lesezeichen, gespeicherte Zugänge und die eingerichteten Programme. Der alte Rechner wird auf Wunsch sicher gelöscht; die Person, die daran arbeitet, kann in dieser Zeit weiterarbeiten.",
         "intro": "Der Gerätewechsel ist der Moment, in dem Daten verlorengehen — nicht "
                  "durch einen Defekt, sondern durch Unauffälligkeit. Die Dateien auf "
                  "dem Schreibtisch fallen sofort auf. Was Monate später fehlt, sind die "
@@ -233,7 +233,7 @@ EINRICHTEN = {
                 "Jetzt anfragen.",
         "h1": "Windows 11 im Betrieb: umstellen oder Gerät tauschen?",
         "nav": "Windows 11",
-        "kurz": "WVM-IT aus Lenzing prüft Geräte und Programme und stellt Betriebe in Oberösterreich und Salzburg von Windows 10 auf Windows 11 um, 190 € je Arbeitsplatz. Windows 10 erhält seit Oktober 2025 keine Sicherheitsupdates mehr. Wir prüfen je Arbeitsplatz, ob das Gerät Windows 11 unterstützt und ob die eingesetzten Programme darauf laufen; wo die Hardware nicht mitkommt, sagen wir es vorher, statt es beim Umstieg herauszufinden.",
+        "kurz": "WVM-IT aus Lenzing prüft Geräte und Programme und stellt Betriebe in ganz Österreich von Windows 10 auf Windows 11 um, 190 € je Arbeitsplatz. Windows 10 erhält seit Oktober 2025 keine Sicherheitsupdates mehr. Wir prüfen je Arbeitsplatz, ob das Gerät Windows 11 unterstützt und ob die eingesetzten Programme darauf laufen; wo die Hardware nicht mitkommt, sagen wir es vorher, statt es beim Umstieg herauszufinden.",
         "intro": "Der Übergang wird gern verschoben, weil nichts weh tut: Windows 10 "
                  "startet weiter, die Programme laufen, es sieht aus wie immer. "
                  "Fehlende Sicherheitsupdates merkt man nicht — bis der Tag kommt, an "
@@ -318,7 +318,7 @@ EINRICHTEN = {
                 "Mailumzug, Teams, OneDrive. Meist per Fernwartung. Jetzt anfragen.",
         "h1": "Microsoft 365 einrichten — einmal richtig statt dreimal halb",
         "nav": "Microsoft 365",
-        "kurz": "WVM-IT aus Lenzing richtet Microsoft 365 (Office 365) für Betriebe in Oberösterreich und Salzburg zum Festpreis von 290 € ein, mit Postfächern, Zwei-Faktor-Anmeldung, Teams, OneDrive und Mailumzug; die Lizenzen zahlen Sie direkt an Microsoft. Dazu kommen Aliasse, die gemeinsamen Ablagen in SharePoint und der Umzug der bestehenden E-Mails samt Ordnern und Kalendern. Der Preis gilt für die Einrichtung.",
+        "kurz": "WVM-IT aus Lenzing richtet Microsoft 365 (Office 365) für Betriebe in ganz Österreich zum Festpreis von 290 € ein, mit Postfächern, Zwei-Faktor-Anmeldung, Teams, OneDrive und Mailumzug; die Lizenzen zahlen Sie direkt an Microsoft. Dazu kommen Aliasse, die gemeinsamen Ablagen in SharePoint und der Umzug der bestehenden E-Mails samt Ordnern und Kalendern. Der Preis gilt für die Einrichtung.",
         "intro": "Microsoft 365 ist in zehn Minuten gekauft und in zehn Monaten immer "
                  "noch nicht richtig eingerichtet. Das ist der Normalfall: Die "
                  "Postfächer laufen, alles andere wird nach und nach danebengestellt. "

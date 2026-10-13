@@ -23,12 +23,12 @@ Regeln für diese Texte:
 """
 
 HILFE = {
-    "titel": "IT-Hilfe ohne Vertrag: Fernwartung 95 €/Std. | WVM-IT",
-    "desc": "Drucker, E-Mail, WLAN, langsamer PC: einzelne IT-Probleme lösen wir ohne Vertrag per Fernwartung für 95 €/Std., meist am selben Tag. Jetzt melden.",
-    "h1": "IT-Hilfe ohne Vertrag — per Fernwartung, meist am selben Tag",
+    "titel": "IT-Hilfe in ganz Österreich: Fernwartung 95 €/Std. | WVM-IT",
+    "desc": "Konto gesperrt, E-Mail, Drucker, WLAN: WVM-IT aus Lenzing hilft in ganz Österreich per Fernwartung, 95 €/Std. ohne Vertrag, Mo–Fr 9–18 Uhr. Jetzt anrufen.",
+    "h1": "IT-Hilfe per Fernwartung in ganz Österreich — ohne Vertrag, meist am selben Tag",
     # Kurzlabel für Navigation, Fußzeile und Brotkrume.
     "nav": "IT-Hilfe",
-    "kurz": "Einzelne IT-Probleme lösen wir ohne Vertrag per Fernwartung für 95 € je Stunde, meist am selben Tag. Muss jemand vor Ort sein, kostet das 120 € je Stunde zuzüglich Anfahrt. Ganze Aufgaben haben einen Festpreis: ein neuer Arbeitsplatz 190 €, Microsoft 365 eingerichtet 290 €. Das gilt in ganz Österreich und Deutschland — bei Microsoft 365 für einen üblichen Betrieb bis etwa fünfzehn Postfächer — auch, wenn Sie bei uns sonst nichts gebucht haben.",
+    "kurz": "Bei gesperrtem Konto, ausgefallener E-Mail, Drucker- oder PC-Problemen hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Fr 9–18 Uhr, 95 € je Stunde, meist am selben Tag und ohne Vertrag. Muss jemand vor Ort sein, kostet das 120 € je Stunde zuzüglich Anfahrt, nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Ganze Aufgaben haben einen Festpreis: ein neuer Arbeitsplatz 190 €, Microsoft 365 eingerichtet 290 € — bei Microsoft 365 für einen üblichen Betrieb bis etwa fünfzehn Postfächer. Die Fernwartung gilt in ganz Österreich und Deutschland, auch wenn Sie bei uns sonst nichts gebucht haben.",
     "eilt_h": "Am schnellsten geht es so",
     "eilt_t": "Rufen Sie an oder schreiben Sie per WhatsApp, was nicht geht. Ein Satz genügt, ein Foto der Fehlermeldung hilft.",
     "intro": "Nicht jeder Betrieb braucht eine laufende IT-Betreuung. Oft geht es um ein einzelnes Problem: Der Drucker druckt nicht mehr, Outlook fragt ständig nach dem Passwort, das WLAN im Besprechungsraum reißt ab, oder der Rechner braucht morgens zehn Minuten bis zum ersten Programm. Dafür muss niemand einen Vertrag unterschreiben. Sie melden sich, wir sehen uns das an und sagen Ihnen vorher, ob wir helfen können. Abgerechnet wird nach Aufwand zum Stundensatz.",
@@ -85,6 +85,8 @@ HILFE = {
          "a": "Nein. Einzelne Hilfe rechnen wir nach Aufwand ab: per Fernwartung 95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt."},
         {"q": "Wie schnell bekomme ich Hilfe?",
          "a": "Per Fernwartung meist am selben Tag. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr; Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag."},
+        {"q": "Helfen Sie auch in Wien, Graz, Innsbruck oder Klagenfurt?",
+         "a": "Per Fernwartung ja: Wir helfen in ganz Österreich, auch in Wien, Graz, Innsbruck und Klagenfurt, zu denselben Preisen (95 € je Stunde, Mo–Fr 9–18 Uhr). Vor Ort kommen wir dort nicht, sondern nur nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Muss etwas vor Ort gemacht werden, sagen wir Ihnen das vorher offen."},
         {"q": "Was passiert, wenn Sie das Problem nicht lösen können?",
          "a": "Wir sagen Ihnen vorher, ob wir helfen können. Stellt sich unterwegs heraus, dass ein Hersteller oder ein Spezialist die bessere Adresse ist, sagen wir das offen und nennen Ihnen den nächsten Schritt."},
         {"q": "Mein PC ist kaputt — kommen Sie, und was kostet das?",

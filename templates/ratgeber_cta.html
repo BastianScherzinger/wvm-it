@@ -16,6 +16,7 @@ Aufruf: {% include 'ratgeber_cta.html' with cta=cta [zweit=True] %}
     {% else %}
     <p class="rg-cta-t">{{ cta.text|safe }}</p>
     {% if cta.preis %}<p class="rg-cta-preis">{{ cta.preis|safe }} · <a href="{{ cta.preis_url }}">{{ t.conv.cta_alle_preise|safe }}</a></p>{% endif %}
+    {% if cta.hilfe_anker %}<p class="rg-cta-preis rg-cta-hilfe"><a href="{{ cta.hilfe_url }}">{{ cta.hilfe_anker }}</a></p>{% endif %}
     {% endif %}
   </div>
   <div class="rg-cta-knoepfe">

@@ -93,7 +93,7 @@
     robot: [{% for m in t.hero.robot_msgs %}"{{ m|escapejs }}"{% if not forloop.last %},{% endif %}{% endfor %}],
     rb: { leistung: "{{ t.rb.js_leistung|escapejs }}", leistungen: "{{ t.rb.js_leistungen|escapejs }}", busy: "{{ t.rb.js_busy|escapejs }}", submit: "{{ t.rb.submit|escapejs }}", error: "{{ t.rb.js_error|escapejs }}" },
     coop: { busy: "{{ t.koop.js_busy|escapejs }}", submit: "{{ t.koop.submit|escapejs }}", error: "{{ t.koop.js_error|escapejs }}" },
-    lb: { sending: "{{ t.lb.sending|escapejs }}", err_kontakt: "{{ t.lb.err_kontakt|escapejs }}", err_allg: "{{ t.lb.err_allg|escapejs }}" }
+    lb: { sending: "{{ t.lb.sending|escapejs }}", err_kontakt: "{{ t.lb.err_kontakt|escapejs }}", err_allg: "{{ t.lb.err_allg|escapejs }}", err_limit: "{{ t.akut.limit_p_kurz|escapejs }}" }
   };
 </script>
 <a class="skip" href="#main">{{ t.nav.skip|safe }}</a>
@@ -148,11 +148,11 @@ Bleibt in base.html (auch auf der Startseite): Die Tests zählen auf `/` genau
     <p class="lb-err" role="alert" hidden></p>
   {% include 'datenschutzhinweis.html' %}
   </form>
-  <div class="lb-done rr-done" hidden>
-    <span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
-    <strong>{{ t.rueckruf.done_h|safe }}</strong>
-    <p>{{ t.rueckruf.done_t|safe }}</p>
-    <button class="btn btn-sm" type="button" data-rr-close>{{ t.rueckruf.close|safe }}</button>
+  <div class="rr-live" aria-live="polite" aria-atomic="true">
+    <div class="lb-done rr-done" hidden>
+      {% include 'anfrage_erfolg.html' with h=t.rueckruf.done_h text=t.rueckruf.done_t %}
+      <button class="btn btn-sm" type="button" data-rr-close>{{ t.rueckruf.close|safe }}</button>
+    </div>
   </div>
 </dialog>
 

@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+"""Texte românești ale rundei 3, linia A (13.10.2026): asistență la distanță în toată Austria,
+urgențe, calea solicitării. Regulile sunt în akut_de.py."""
+
+AKUT = {
+    "zeit_auf": "În afara acestor ore: trimiteți un mesaj, răspundem în următoarea zi lucrătoare.",
+    "zeit_zu": "L–V 9–18. Puteți trimite un mesaj acum; răspunsul vine în următoarea zi lucrătoare.",
+    "kacheln_h": "Ce s-a stricat?",
+    "kacheln_t": "Atingeți problema dumneavoastră. Ghidul (în germană) spune ce puteți verifica singur imediat; dacă nu ajunge, sunați.",
+    "kacheln": [
+        {"id": "outlook", "icon": "mail", "h": "Outlook nu mai funcționează", "slug": "outlook-email-geht-nicht"},
+        {"id": "m365", "icon": "user", "h": "Cont Microsoft 365 blocat", "slug": "microsoft-365-konto-gesperrt"},
+        {"id": "gehackt", "icon": "shield", "h": "Cont de e-mail spart", "slug": "email-postfach-gehackt"},
+        {"id": "verschluesselt", "icon": "alert", "h": "Fișiere criptate", "slug": "ransomware-befall-was-tun"},
+        {"id": "drucker", "icon": "desk", "h": "Imprimanta nu tipărește", "slug": "drucker-druckt-nicht"},
+        {"id": "langsam", "icon": "gauge", "h": "PC-ul este lent", "slug": "pc-langsam-woran-liegt-es"},
+        {"id": "wlan", "icon": "net", "h": "WiFi lent sau cu întreruperi", "slug": "wlan-im-buero-zu-langsam"},
+        {"id": "phishing", "icon": "bolt", "h": "Am dat clic pe un link de phishing", "slug": "phishing-mail-geklickt-was-jetzt"},
+    ],
+    "wo_h": "Unde ajutăm",
+    "wo_t": "Prin asistență la distanță ajutăm în toată Austria, în toate cele nouă landuri, și în Germania: un apel din Viena, Graz sau Innsbruck este la fel de binevenit ca unul din Vöcklabruck. La fața locului venim cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing; drumul este descris pe paginile fiecărei localități.",
+    "hilfe_link_lead": "Nu e o urgență, dar ceva nu merge?",
+    "hilfe_link": "Ajutor IT la distanță în toată Austria",
+    "notfall_link_lead": "Are loc chiar acum un atac sau serverul s-a oprit?",
+    "notfall_link": "Urgență IT: primele 30 de minute",
+    "done_weiter_h": "Cum continuăm",
+    "done_eilt": "Dacă e urgent, sunați:",
+    "notfall_done_h": "Solicitarea dumneavoastră de urgență a ajuns.",
+    "notfall_done_t": "Dacă ceva nu funcționează chiar acum, nu așteptați răspunsul nostru: sunați acum. Preluăm apeluri de luni până vineri, între 9 și 18; mesajele lăsate în afara acestor ore le citim în următoarea zi lucrătoare.",
+    "notfall_done_call": "Sunați acum",
+    "danke_notfall": "Solicitarea dumneavoastră de urgență a ajuns la noi. Dacă firma stă pe loc, nu așteptați răspunsul nostru: sunați la {telefon}. Ne găsiți de luni până vineri, între 9 și 18; mesajele lăsate în afara acestor ore le citim în următoarea zi lucrătoare.",
+    "danke_notfall_s1": "Sunați dacă e urgent. De luni până vineri, între 9 și 18, preluăm apeluri și, în caz de defecțiune, începem de obicei în câteva minute, prin asistență la distanță.",
+    "danke_notfall_s2": "Dacă ați lăsat un mesaj, îl citim cel târziu în următoarea zi lucrătoare și revenim telefonic sau prin e-mail, după ce ne-ați indicat.",
+    "limit_p_kurz": "Pentru a ne proteja de trimiterea automată în masă, nu mai acceptăm altele deocamdată. Vă rugăm să încercați din nou peste aproximativ 15 minute sau sunați — solicitările dumneavoastră anterioare au ajuns.",
+}

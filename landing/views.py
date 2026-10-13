@@ -3824,6 +3824,15 @@ def _notfall_mit_zusatz(nf):
     return dict(nf, faelle=faelle)
 
 
+def _akut_kacheln(lang):
+    """„Was ist kaputt?“ (R3-01 Nr. 5): Kacheln im Wortlaut der Suchenden, jede mit dem
+    Ziel eines VORHANDENEN Ratgebers. Ein Slug, den es nicht gibt, fällt still weg, statt
+    einen toten Link zu bauen. Die Ratgeber gibt es nur auf Deutsch, ohne Sprachpräfix."""
+    kacheln = i18n.get_pack(lang).get("akut", {}).get("kacheln", [])
+    return [dict(k, url=f"/aktuelles/{k['slug']}/")
+            for k in kacheln if k.get("slug") in beitraege.NACH_SLUG]
+
+
 def notfall(request):
     """/it-notfall/ — die ersten dreißig Minuten, vier Fälle, kein Werbetext."""
     c = _content()
@@ -3841,6 +3850,7 @@ def notfall(request):
                         for fall in nf.get("faelle", [])]
     return render(request, "notfall.html", {
         "c": c, "nf": nf,
+        "kacheln": _akut_kacheln(lang),
         "wa_text": nf.get("wa_text", ""),
         "preis_stand": _preis_stand(lang),
         "regionen_liste": [_region_daten(r, lang) for r in regionen.REGIONEN],
@@ -3938,6 +3948,7 @@ def it_hilfe(request):
         "c": c, "hilfe": hilfe,
         "anliegen_vorwahl": anliegen,
         "faelle": _hilfe_faelle(hilfe, lang),
+        "kacheln": _akut_kacheln(lang),
         "wa_text": hilfe.get("wa_text", ""),
         "preis_stand": _preis_stand(lang),
         "structured_data": _seiten_schema(
@@ -4662,9 +4673,13 @@ def anfrage_danke(request):
     dk = pack.get("danke", {})
     base = (c.get("wvm_url") or "").rstrip("/")
     quelle = (request.GET.get("q") or "").strip().lower()
+    ist_notfall = quelle == "notfall"
+    akut = pack.get("akut", {})
     antwort = render(request, "danke.html", {
         "c": c,
-        "kurz": dk.get("kurz", "").format(telefon=c.get("telefon", "")),
+        "notfall": ist_notfall,
+        "kurz": (akut.get("danke_notfall", "") if ist_notfall else dk.get("kurz", "")).format(
+            telefon=c.get("telefon", "")),
         "quelle_name": _ANFRAGE_QUELLEN.get(quelle, ""),
         "structured_data": _seiten_schema(
             c, lang, breadcrumb=_breadcrumb(
@@ -5071,8 +5086,8 @@ def _llms_kopf(c, base):
         f"an Werktagen innerhalb von 24 Stunden. {zeiten}"
         f"Alle Preise sind Richtpreise netto zzgl. USt. "
         f"{standort}"
-        f"Vor Ort im Einzugsgebiet {einzugsgebiet}; alles Übrige per Fernwartung in ganz "
-        f"Österreich und Deutschland.\n"
+        f"Per Fernwartung in ganz Österreich und Deutschland. Vor Ort im Einzugsgebiet "
+        f"{einzugsgebiet}, nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing.\n"
         + "".join(f"Google-Unternehmensprofil: {u}\n" for u in _google_profil_urls(c))
     )
 
@@ -5296,7 +5311,8 @@ def llms_txt(request):
         f"- [Vergleiche]({base}/vergleich/): {len(vergleiche.VERGLEICHE)} Entscheidungen im "
         "Vergleich, jeweils mit Rechenweg (Liste unten).",
         f"- [IT-Notfall]({base}/it-notfall/): was in den ersten 30 Minuten zu tun ist — "
-        "Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Gerät.",
+        "Verschlüsselung, Serverausfall, gehacktes Postfach, verlorenes Gerät. Hilfe per "
+        f"Fernwartung in ganz Österreich. {(i18n.get_pack('de').get('kopf', {}).get('erreichbar', '') or '').strip()}.",
         f"- [IT-Hilfe ohne Vertrag]({base}/it-hilfe/): {_llms_einzelhilfe_satz()}",
         f"- [IT-Sicherheits-Selbsttest]({base}/it-sicherheit-test/): {len(selbsttest.FRAGEN)} Fragen, "
         "Ergebnis sofort, ohne E-Mail-Abfrage und ohne Speicherung.",
@@ -5321,7 +5337,8 @@ def llms_txt(request):
         "\n## Entscheidungen im Vergleich",
         *_llms_vergleiche(base, "de"),
         "\n## Regionen",
-        f"- Sitz: {_adresszeile(c)}, Österreich. Vor Ort im Umkreis von rund einer Fahrstunde.",
+        f"- Sitz: {_adresszeile(c)}, Österreich. Vor Ort nach Terminabsprache im Umkreis von rund "
+        "einer Fahrstunde um Lenzing; Fernwartung in ganz Österreich und Deutschland.",
         f"- [Österreich und Deutschland]({base}/leistungen/edv-it-betreuung/): Fernwartung, Überwachung, "
         "Datensicherung, Webseiten, SEO und Ads laufen ortsunabhängig im gesamten DACH-Raum. "
         "Einsätze vor Ort werden projektbezogen vereinbart.",
@@ -5515,7 +5532,7 @@ def llms_full_txt(request):
     rtexte = pack.get("regionen", {})
     aus.append("\n\n## Einsatzgebiet")
     aus.append(f"Sitz: {_adresszeile(c)}, Österreich. Arbeiten, die jemanden vor Ort "
-               "erfordern, decken wir im Umkreis von rund einer Fahrstunde ab; alles "
+               "erfordern, decken wir nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing ab; alles "
                "Übrige läuft per gesicherter Fernwartung in ganz Österreich und Deutschland.")
     for eintrag in regionen.REGIONEN:
         r = rtexte.get(eintrag["slug"], {})
@@ -5934,6 +5951,9 @@ _ANFRAGE_QUELLEN = {
     "koop": "Kooperation",
     "rueckruf": "Rückruf",
     "einzelhilfe": "IT-Hilfe ohne Vertrag",
+    # R3-02 Nr. 3 (13.10.2026): eigene Quelle für das Formular auf /it-notfall/. Vorher
+    # trug es `it` und war im Postfach von einer Glossarfrage nicht zu unterscheiden.
+    "notfall": "IT-Notfall",
 }
 
 # Quellen, deren Formular nicht auf der Startseite steht, sondern nur auf der
@@ -5946,6 +5966,7 @@ _ANFRAGE_QUELLEN = {
 # mehr zusätzlich als Kurzanfrage auf `/`.
 _QUELLE_AUF_EIGENER_SEITE = {
     "einzelhilfe": "/it-hilfe/",
+    "notfall": "/it-notfall/",
     "it": "/leistungen/edv-it-betreuung/",
     "web": "/leistungen/webseite-erstellen/",
     "seo": "/leistungen/seo-betreuung/",
@@ -6057,6 +6078,8 @@ def leistung_anfrage(request):
     zeit = (request.POST.get("zeit") or "").strip()[:80]   # nur beim Rückruf gesetzt
     anliegen = (request.POST.get("anliegen") or "").strip().lower()
     anliegen = _ANLIEGEN.get(anliegen, "") and anliegen
+    if quelle == "notfall" and not anliegen:
+        anliegen = "notfall"                      # R3-02 Nr. 3: Notfall-Formular = Anliegen „Notfall“
     lang = i18n.norm_lang(get_language())
 
     empf = os.environ.get("KONTAKT_EMPFAENGER", "").strip() or c.get("email", "")
@@ -6069,7 +6092,9 @@ def leistung_anfrage(request):
     herkunft = zurueck or _herkunft_aus_verweis(request)
     k = _kampagne_aus_verweis(request)
     utm = _herkunft_utm(request)
-    betreff = _betreff(f"[WVM] Anfrage: {thema}" + (f" — {herkunft}" if herkunft else ""))
+    # „[NOTFALL]“ im Betreff, damit die Inhaber-Mail im Postfach auffällt (R3-02 Nr. 3).
+    marke = "[NOTFALL]" if quelle == "notfall" else "[WVM]"
+    betreff = _betreff(f"{marke} Anfrage: {thema}" + (f" — {herkunft}" if herkunft else ""))
     body = (
         f"Neue Kurzanfrage über wvm-it.tech\n\n"
         f"Thema:   {thema}\nSeite:   {herkunft or '-'}\n"
@@ -6113,7 +6138,8 @@ def leistung_anfrage(request):
               mails.feld("Herkunft (UTM)", utm),
               mails.feld("Werbeeinwilligung", "ja" if werbung else ""),
               mails.feld("Nachricht", text, "lang")]
-    art_titel = "Rückrufwunsch" if quelle == "rueckruf" else f"Kurzanfrage: {thema}"
+    art_titel = ("Rückrufwunsch" if quelle == "rueckruf" else
+                 "NOTFALL-Anfrage" if quelle == "notfall" else f"Kurzanfrage: {thema}")
     admin_ok = _send_mail_logged(
         betreff, body, from_email, [empf], tag="LEISTUNG",
         antwort_an=kontakt if ist_mail else None,

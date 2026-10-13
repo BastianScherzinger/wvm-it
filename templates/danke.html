@@ -38,11 +38,18 @@ Fluss (`follow`), damit die Verweise von hier zaehlen.
 <section class="section">
   <div class="wrap">
     <h2 class="sp-h2">{{ t.danke.schritte_h|safe }}</h2>
+    {% if notfall %}
+    <ol class="sp-ablauf" data-reveal>
+      <li><p>{{ t.akut.danke_notfall_s1|safe }}</p></li>
+      <li><p>{{ t.akut.danke_notfall_s2|safe }}</p></li>
+    </ol>
+    {% else %}
     <ol class="sp-ablauf" data-reveal>
       <li><h3>{{ t.danke.s1_h|safe }}</h3><p>{{ t.danke.s1_t|safe }}</p></li>
       <li><h3>{{ t.danke.s2_h|safe }}</h3><p>{{ t.danke.s2_t|safe }}</p></li>
       <li><h3>{{ t.danke.s3_h|safe }}</h3><p>{{ t.danke.s3_t|safe }}</p></li>
     </ol>
+    {% endif %}
   </div>
 </section>
 

@@ -1,0 +1,19 @@
+{% comment %}
+„Was ist kaputt?“ (R3-01 Nr. 5, 13.10.2026): Problemkacheln im Wortlaut der Suchenden auf
+/it-hilfe/ und /it-notfall/. Jede Kachel führt auf einen vorhandenen Ratgeber; die Liste baut
+views._akut_kacheln() und lässt Slugs ohne Beitrag still weg. Gestaltet mit der vorhandenen
+Komponente `.nf-sprung` (Notfall-Sprungmarken), keine neue Klasse für die Kacheln selbst.
+
+Aufruf: {% include 'akut_kacheln.html' with kacheln=kacheln %}
+{% endcomment %}
+{% if kacheln %}
+<h2 class="sp-h2" id="was-ist-kaputt">{{ t.akut.kacheln_h|safe }}</h2>
+<p class="sp-preis-text">{{ t.akut.kacheln_t|safe }}</p>
+<nav class="nf-sprung nf-kacheln" aria-label="{{ t.akut.kacheln_h|safe }}">
+  <ul>
+    {% for k in kacheln %}
+    <li><a href="{{ k.url }}">{% include 'icons.html' with name=k.icon %}<span>{{ k.h|safe }}</span></a></li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}

@@ -1,0 +1,27 @@
+{% comment %}
+Erfolgstext der Anfrage-Formulare (R3-02 Nr. 3 bis 5, 13.10.2026). Steht im Container mit
+`aria-live="polite"`, damit ein Screenreader die Bestätigung vorliest, wenn anfrage-blocks.js
+sie einblendet. Er trägt immer die Telefonnummer; beim Notfall-Formular ersetzt ein großer
+Anruf-Knopf die „24 Stunden“-Zusage, sonst folgen die drei Schritte der Danke-Seite.
+
+Aufruf: {% include 'anfrage_erfolg.html' with h=… text=… [schritte=True] [notfall=True] %}
+`tel:` nur über `c.telefon_tel`.
+{% endcomment %}
+<span class="lb-done-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
+<strong>{{ h|safe }}</strong>
+<p>{{ text|safe }}</p>
+{% if schritte %}
+<p class="done-weiter-h">{{ t.akut.done_weiter_h|safe }}</p>
+<ol class="done-schritte">
+  <li>{{ t.danke.s1_h|safe }}</li>
+  <li>{{ t.danke.s2_h|safe }}</li>
+  <li>{{ t.danke.s3_h|safe }}</li>
+</ol>
+{% endif %}
+{% if c.telefon %}
+{% if notfall %}
+<p class="done-tel"><a class="btn btn-lg nf-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ t.akut.notfall_done_call|safe }}: {{ c.telefon }}</span></a></p>
+{% else %}
+<p class="done-tel">{{ t.akut.done_eilt|safe }} <a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a></p>
+{% endif %}
+{% endif %}

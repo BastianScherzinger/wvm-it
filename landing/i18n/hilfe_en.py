@@ -7,11 +7,11 @@ private customers) appears here.
 """
 
 HILFE = {
-    "titel": "IT help without a contract: remote €95/hr | WVM-IT",
-    "desc": "Printer, e-mail, Wi-Fi, slow PC: we fix single IT problems without a contract by remote access for €95/hr, usually the same day. Get in touch.",
-    "h1": "IT help without a contract — remote, usually the same day",
+    "titel": "IT help across Austria: remote €95/hr | WVM-IT",
+    "desc": "Locked account, e-mail, printer, Wi-Fi: WVM-IT from Lenzing helps across Austria by remote access, €95/hr without a contract, Mon–Fri 9am–6pm. Call now.",
+    "h1": "IT help by remote access across Austria — no contract, usually the same day",
     "nav": "IT help",
-    "kurz": "We fix single IT problems without a contract by remote access for €95 per hour, usually the same day. If someone has to come on site, that costs €120 per hour plus travel. Complete tasks have a fixed price: a new workstation €190, Microsoft 365 set up €290. This applies across Austria and Germany — for Microsoft 365 for a usual business of up to about fifteen mailboxes — even if you have not booked anything else with us.",
+    "kurz": "For a locked account, failed e-mail, or printer and PC problems, WVM-IT from Lenzing helps across Austria by remote access, Mon–Fri 9am–6pm, at €95 per hour, usually the same day and without a contract. If someone has to come on site, that costs €120 per hour plus travel, by appointment within roughly an hour's drive of Lenzing. Complete tasks have a fixed price: a new workstation €190, Microsoft 365 set up €290 — for Microsoft 365 for a usual business of up to about fifteen mailboxes. Remote support applies across Austria and Germany, even if you have not booked anything else with us.",
     "eilt_h": "The fastest way",
     "eilt_t": "Call or send a WhatsApp message saying what is not working. One sentence is enough, a photo of the error message helps.",
     "intro": "Not every business needs ongoing IT support. Often it is a single problem: the printer has stopped printing, Outlook keeps asking for the password, the Wi-Fi in the meeting room drops out, or the computer takes ten minutes in the morning before the first program opens. Nobody has to sign a contract for that. You get in touch, we take a look and tell you beforehand whether we can help. It is billed by time at the hourly rate.",
@@ -68,6 +68,8 @@ HILFE = {
          "a": "No. One-off help is billed by time: remote €95 per hour, on site €120 per hour plus travel."},
         {"q": "How quickly do I get help?",
          "a": "By remote access usually the same day. We can be reached Monday to Friday from 9am to 6pm; enquiries outside those hours are answered on the next working day."},
+        {"q": "Do you also help in Vienna, Graz, Innsbruck or Klagenfurt?",
+         "a": "By remote access, yes: we help across all of Austria, including Vienna, Graz, Innsbruck and Klagenfurt, at the same prices (€95 per hour, Mon–Fri 9am–6pm). We do not come on site there, only by appointment within roughly an hour's drive of Lenzing. If something has to be done on site, we tell you openly beforehand."},
         {"q": "What happens if you cannot solve the problem?",
          "a": "We tell you beforehand whether we can help. If it turns out along the way that a manufacturer or a specialist is the better address, we say so openly and tell you the next step."},
         {"q": "My PC is broken — will you come, and what does it cost?",

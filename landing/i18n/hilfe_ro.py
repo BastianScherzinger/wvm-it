@@ -7,11 +7,11 @@ acces la distanță, clienții privați) nu apare aici.
 """
 
 HILFE = {
-    "titel": "Ajutor IT fără contract: la distanță 95 €/oră | WVM-IT",
-    "desc": "Imprimantă, e-mail, WiFi, PC lent: rezolvăm probleme IT punctuale fără contract, la distanță, cu 95 €/oră, de obicei în aceeași zi. Scrieți-ne.",
-    "h1": "Ajutor IT fără contract — la distanță, de obicei în aceeași zi",
+    "titel": "Ajutor IT în toată Austria: la distanță 95 €/oră | WVM-IT",
+    "desc": "Cont blocat, e-mail, imprimantă, WiFi: WVM-IT din Lenzing ajută în toată Austria prin acces la distanță, 95 €/oră fără contract, L–V 9–18. Sunați acum.",
+    "h1": "Ajutor IT la distanță în toată Austria — fără contract, de obicei în aceeași zi",
     "nav": "Ajutor IT",
-    "kurz": "Rezolvăm probleme IT punctuale fără contract, prin asistență la distanță, cu 95 € pe oră, de obicei în aceeași zi. Dacă trebuie să vină cineva la fața locului, costă 120 € pe oră plus deplasarea. Sarcinile complete au preț fix: un post de lucru nou 190 €, Microsoft 365 configurat 290 €. Valabil în toată Austria și Germania, la Microsoft 365 pentru o firmă obișnuită de până la circa cincisprezece căsuțe de e-mail — chiar dacă nu ați comandat altceva de la noi.",
+    "kurz": "La un cont blocat, e-mail nefuncțional sau probleme cu imprimanta și PC-ul, WVM-IT din Lenzing ajută în toată Austria prin asistență la distanță, de luni până vineri între 9 și 18, cu 95 € pe oră, de obicei în aceeași zi și fără contract. Dacă trebuie să vină cineva la fața locului, costă 120 € pe oră plus deplasarea, cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing. Sarcinile complete au preț fix: un post de lucru nou 190 €, Microsoft 365 configurat 290 € — la Microsoft 365 pentru o firmă obișnuită de până la circa cincisprezece căsuțe de e-mail. Asistența la distanță este valabilă în toată Austria și Germania, chiar dacă nu ați comandat altceva de la noi.",
     "eilt_h": "Cel mai rapid",
     "eilt_t": "Sunați sau scrieți pe WhatsApp ce nu funcționează. O propoziție ajunge, o fotografie a mesajului de eroare ajută.",
     "intro": "Nu orice firmă are nevoie de administrare IT continuă. Adesea e vorba de o singură problemă: imprimanta nu mai tipărește, Outlook cere mereu parola, WiFi-ul din sala de ședințe se întrerupe sau calculatorul are nevoie dimineața de zece minute până la primul program. Pentru asta nu trebuie semnat niciun contract. Ne scrieți, ne uităm și vă spunem dinainte dacă vă putem ajuta. Se facturează după timp, la tariful orar.",
@@ -68,6 +68,8 @@ HILFE = {
          "a": "Nu. Ajutorul punctual se facturează după timp: la distanță 95 € pe oră, la fața locului 120 € pe oră plus deplasarea."},
         {"q": "Cât de repede primesc ajutor?",
          "a": "La distanță, de obicei în aceeași zi. Ne găsiți de luni până vineri între 9 și 18; solicitările din afara acestor ore primesc răspuns în următoarea zi lucrătoare."},
+        {"q": "Ajutați și la Viena, Graz, Innsbruck sau Klagenfurt?",
+         "a": "La distanță, da: ajutăm în toată Austria, inclusiv la Viena, Graz, Innsbruck și Klagenfurt, la aceleași prețuri (95 € pe oră, L–V 9–18). La fața locului nu venim acolo, ci doar cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing. Dacă ceva trebuie făcut la fața locului, vă spunem deschis dinainte."},
         {"q": "Ce se întâmplă dacă nu puteți rezolva problema?",
          "a": "Vă spunem dinainte dacă vă putem ajuta. Dacă pe parcurs se vede că un producător sau un specialist este adresa mai bună, spunem deschis și vă indicăm pasul următor."},
         {"q": "Calculatorul meu este defect — veniți și cât costă?",

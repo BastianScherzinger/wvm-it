@@ -13,6 +13,7 @@ from .vergleiche_de import VERGLEICHE
 from .einrichten_de import EINRICHTEN, HUB as EINRICHTEN_HUB
 from .hilfe_de import HILFE
 from .conv_de import CONV
+from .akut_de import AKUT
 
 PACK = {
     "seiten": SEITEN,
@@ -24,6 +25,7 @@ PACK = {
     "einrichten_hub": EINRICHTEN_HUB,
     "hilfe": HILFE,
     "conv": CONV,
+    "akut": AKUT,
     "meta": {
         "html_lang": "de-AT",
         "locale": "de_AT",
@@ -668,7 +670,7 @@ PACK = {
         # abgeschnittener Seitentitel, der im Kopf dreizeilig umbrach.
         "nav": "IT-Notfall",
         "wa_text": "IT-Notfall: ",
-        "kurz": "WVM-IT aus Lenzing hilft Betrieben in Oberösterreich und Salzburg bei gesperrtem Microsoft-365-Konto, ausgefallener E-Mail, nicht startendem PC, Verschlüsselung und Serverausfall per Fernwartung: Wir sind Montag bis Freitag von 9 bis 18 Uhr unter der unten stehenden Nummer erreichbar und beginnen meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind. Abgerechnet wird als Einzelhilfe ohne Vertrag zu 95 € je Stunde. Bei Verdacht auf einen Angriff gilt vorab eine Regel: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden.",
+        "kurz": "Bei gesperrtem Microsoft-365-Konto, ausgefallener E-Mail, nicht startendem PC, Verschlüsselung und Serverausfall hilft WVM-IT aus Lenzing in ganz Österreich (und Deutschland) per Fernwartung, Mo–Fr 9–18 Uhr, 95 € je Stunde: Wir sind unter der unten stehenden Nummer erreichbar und beginnen meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind. Abgerechnet wird als Einzelhilfe ohne Vertrag. Vor Ort kommen wir nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Bei Verdacht auf einen Angriff gilt vorab eine Regel: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden.",
         "eilt_h": "Es eilt — hier entlang",
         "eilt_t": "Rufen Sie an, statt zu schreiben. Ein Anruf spart bei einer laufenden Störung mehr Zeit als jede Beschreibung per E-Mail.",
         "intro": "Diese Seite ist zum Handeln da, nicht zum Lesen. Suchen Sie unten Ihren Fall und arbeiten Sie die Schritte der Reihe nach ab. Alles Weitere — Ursachensuche, Wiederherstellung, Meldepflichten — kommt danach. Wir sind ausdrücklich auch dann erreichbar, wenn Sie kein Kunde von uns sind; ein akuter Notfall ist der falsche Zeitpunkt für eine Vertragsfrage.",
@@ -1180,7 +1182,7 @@ PACK = {
         "titel": "Was kostet IT-Betreuung? Alle Preise ab 29 €/Monat | WVM-IT",
         "desc": "Was IT-Betreuung kostet: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE. Angebot holen.",
         "h1": "Was kostet IT-Betreuung? Alle Preise auf einer Seite",
-        "kurz": "WVM-IT aus Lenzing betreut Betriebe in Oberösterreich und Salzburg vor Ort und in Österreich und Deutschland per Fernwartung, die laufende IT-Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
+        "kurz": "WVM-IT aus Lenzing betreut Betriebe per Fernwartung in ganz Österreich (und Deutschland) und vor Ort nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing, die laufende IT-Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
         "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt – und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",
         "ort_satz": "Vor Ort sind wir u. a. in <a href=\"/it-service/salzburg/\">Salzburg</a> und <a href=\"/it-service/linz/\">Linz</a>, per Fernwartung in ganz Österreich.",
         "warum_h": "Warum bei manchem kein Preis steht",
@@ -1782,6 +1784,7 @@ PACK = {
             "koop": "Kooperation",
             "rueckruf": "Ihren Rückruf",
             "einzelhilfe": "IT-Hilfe ohne Vertrag",
+            "notfall": "IT-Notfall",
         },
         "h": "Was wir übernehmen",
         "sub": "Jede Leistung mit klarem Startpreis. Fragen Sie direkt im passenden Feld an – ein Satz genügt, wir melden uns an Werktagen innerhalb von 24 Stunden.",
