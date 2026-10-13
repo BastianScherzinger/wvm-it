@@ -64,6 +64,13 @@ HILFE = {
     "fernwartung_h": "Was Fernwartung heißt",
     "fernwartung_t": "Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Was ein Dienstleister dabei sieht und was nicht, steht ausführlich im Beitrag zur Fernwartung.",
     "fernwartung_link": "Was sieht der Dienstleister bei der Fernwartung?",
+    "fernwartung_ablauf_h": "So läuft eine Fernwartungssitzung bei WVM-IT",
+    "fernwartung_ablauf": [
+            "Sie melden sich per Telefon, WhatsApp oder Formular, und wir sagen Ihnen vorher, ob wir per Fernwartung helfen können.",
+            "Die Sitzung beginnt erst mit Ihrer Freigabe: Sie bestätigen die Verbindung oder geben einen Code weiter.",
+            "Sie sehen jeden Schritt auf Ihrem Bildschirm mit und können die Sitzung jederzeit abbrechen.",
+            "Mit dem Schließen der Sitzung endet der Zugang. Ohne eine neue Freigabe kommt niemand zurück auf das Gerät."
+    ],
     "preise_h": "Was eine einzelne Hilfe kostet",
     "preise_t": "Per Fernwartung 95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt. Für abgeschlossene Aufgaben gibt es Festpreise: einen Arbeitsplatz einrichten 190 €, Microsoft 365 einrichten 290 €, Firewall und VPN 690 €. Alle Preise netto zuzüglich Umsatzsteuer.",
     "erreichbar_h": "Wann Sie uns erreichen",

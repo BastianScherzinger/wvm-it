@@ -67,6 +67,12 @@ Leistungsseiten). Jede Zahl kommt aus ANGEBOT_GROUPS über das Sprachpaket bzw.
 
     <h2 class="sp-h2" id="fernwartung">{{ hilfe.fernwartung_h|safe }}</h2>
     <p class="sp-preis-text">{{ hilfe.fernwartung_t|safe }}</p>
+    {% if hilfe.fernwartung_ablauf %}
+    <h3 class="nf-h3" id="fernwartung-ablauf">{{ hilfe.fernwartung_ablauf_h|safe }}</h3>
+    <ol class="nf-schritte fw-schritte">
+      {% for s in hilfe.fernwartung_ablauf %}<li>{{ s|safe }}</li>{% endfor %}
+    </ol>
+    {% endif %}
     <p class="lk-alle"><a href="/aktuelles/fernwartung-was-sieht-der-dienstleister/">{{ hilfe.fernwartung_link|safe }} →</a></p>
 
     <h2 class="sp-h2" id="preise">{{ hilfe.preise_h|safe }}</h2>

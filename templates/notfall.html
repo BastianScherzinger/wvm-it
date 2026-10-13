@@ -77,6 +77,17 @@ und die Schritte im Schema kommen aus derselben Liste.
       <ul class="nf-nicht">
         {% for s in fall.nicht %}<li>{{ s|safe }}</li>{% endfor %}
       </ul>
+
+      {% if fall.anrufen %}
+      <div class="nf-anrufen">
+        <h3 class="nf-h3">{{ nf.anrufen_h|safe }}</h3>
+        <p>{{ fall.anrufen|safe }}{% if c.telefon %} <a class="nf-anrufen-tel" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}</p>
+      </div>
+      {% endif %}
+      {% if fall.ratgeber %}
+      <p class="nf-ratgeber"><strong>{{ nf.ratgeber_h|safe }}:</strong>
+        {% for r in fall.ratgeber %}<a href="{{ r.url }}">{{ r.titel|safe }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+      {% endif %}
     </section>
     {% endfor %}
 

@@ -91,6 +91,31 @@ def _whatsapp(tel: str) -> str:
     return digits if len(digits) >= 8 else ""
 
 
+def _google_bewertungen(data):
+    """Echte Google-Bewertungen aus content.json -> `google_bewertungen`.
+
+    Erwartet {"anzahl": int, "schnitt": float, "stand": "MM.JJJJ" o. ä.}. Sind die
+    Werte unvollständig, nicht plausibel (Anzahl < 1, Schnitt außerhalb 1 bis 5)
+    oder leer, gibt die Funktion None zurück: Dann rendert das sichtbare Band
+    nicht. Ins Schema geht nie ein `aggregateRating` (self-serving reviews). Nichts wird ergänzt oder geschätzt
+    (CLAUDE.md „Wahrheit“; Runde 2, 13.10.2026)."""
+    roh = data.get("google_bewertungen")
+    if not isinstance(roh, dict):
+        return None
+    try:
+        anzahl = int(str(roh.get("anzahl", "")).strip())
+        schnitt = float(str(roh.get("schnitt", "")).strip().replace(",", "."))
+    except (TypeError, ValueError):
+        return None
+    stand = str(roh.get("stand") or "").strip()
+    if anzahl < 1 or not 1.0 <= schnitt <= 5.0 or not stand:
+        return None
+    link = str(data.get("maps_profil_url") or "").strip()
+    if not link.startswith("https://"):
+        link = ""
+    return {"anzahl": anzahl, "schnitt": round(schnitt, 1), "stand": stand, "link": link}
+
+
 def _content() -> dict:
     data = dict(_FALLBACK)
     try:
@@ -106,6 +131,7 @@ def _content() -> dict:
               flush=True)
     data["whatsapp"] = _whatsapp(data.get("telefon", ""))
     data["telefon_tel"] = _tel_uri(data.get("telefon", ""))
+    data["bewertung"] = _google_bewertungen(data)
     return data
 
 
@@ -2561,6 +2587,10 @@ def _structured_data(c, lang, *, mit_katalog=True):
     # Ein persönliches Profil (linkedin.com/in/…) gehört zur Person, nicht zum
     # Betrieb — sonst behauptete der Graph, Florin und WVM-IT seien dieselbe
     # Entität (03.10.2026, Florins Profil eingetragen).
+    # Bewusst KEIN aggregateRating, auch wenn das Bewertungsband echte Google-Werte
+    # zeigt: Google wertet Sternemarkup eines Betriebs über sich selbst bzw. fremd
+    # gesammelte Bewertungen als „self-serving reviews“ und zeigt es nicht an
+    # (Richtlinie seit 2019; Runde 2, 13.10.2026). Das Band bleibt sichtbar.
     profile = _profil_urls(c)
     person = _person_profil_urls(c)
     betrieb = [u for u in profile if u not in person]
@@ -3719,12 +3749,30 @@ def _howto_schema(base, pfad, fall, sprache):
     }
 
 
+def _notfall_mit_zusatz(nf):
+    """Mischt je Fall „wann anrufen“ und die Ratgeber-Links in `faelle`.
+
+    `zusatz` im Sprachpaket: Fall-ID -> {anrufen, ratgeber: [Slug, ...]}. Die
+    Ratgeber gibt es nur auf Deutsch (ohne Sprachpräfix); Slugs, die es nicht
+    gibt, fallen still weg, statt einen toten Link zu bauen."""
+    from .i18n.beitraege_de import BEITRAEGE as TEXTE
+    zusatz = nf.get("zusatz") or {}
+    faelle = []
+    for fall in nf.get("faelle", []):
+        extra = zusatz.get(fall.get("id"), {})
+        links = [{"url": f"/aktuelles/{slug}/", "titel": TEXTE[slug]["titel"]}
+                 for slug in extra.get("ratgeber", [])
+                 if slug in beitraege.NACH_SLUG and slug in TEXTE]
+        faelle.append(dict(fall, anrufen=extra.get("anrufen", ""), ratgeber=links))
+    return dict(nf, faelle=faelle)
+
+
 def notfall(request):
     """/it-notfall/ — die ersten dreißig Minuten, vier Fälle, kein Werbetext."""
     c = _content()
     lang = get_language()
     pack = i18n.get_pack(lang)
-    nf = pack.get("notfall", {})
+    nf = _notfall_mit_zusatz(pack.get("notfall", {}))
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = reverse("notfall")
     sprache = pack["meta"]["html_lang"]

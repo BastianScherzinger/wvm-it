@@ -1846,6 +1846,28 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
   font-size:15px}
 .nf-nicht li::before{content:"×";position:absolute;left:12px;top:8px;font-size:18px;
   line-height:1.4;color:#b4442e;font-weight:700}
+/* Runde 2 (13.10.2026): „Wann anrufen“, Ratgeber-Links, Zeitentabelle, Bewertungsband. */
+.nf-anrufen{margin-top:4px}
+.nf-anrufen p{margin:0;padding:14px 18px;border-left:3px solid var(--accent);background:var(--accent-soft);
+  border-radius:0 var(--radius) var(--radius) 0;line-height:1.7;color:var(--ink)}
+.nf-anrufen-tel{display:inline-flex;align-items:center;gap:6px;margin-left:6px;font-weight:600;
+  color:var(--accent-ink);white-space:nowrap}
+.nf-anrufen-tel svg{width:16px;height:16px}
+.nf-ratgeber{margin:16px 0 0;font-size:15px;line-height:1.8;color:var(--ink-soft)}
+.nf-ratgeber a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+.zt-wrap{overflow-x:auto;margin:6px 0 10px}
+.zt{width:100%;border-collapse:collapse;font-size:15.5px;line-height:1.6}
+.zt caption{text-align:left;font-weight:600;padding:0 0 10px;color:var(--ink)}
+.zt th,.zt td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+.zt thead th{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-dim);font-weight:600}
+.zt tbody th{font-weight:600;color:var(--ink);width:38%}
+.zt td{color:var(--ink-soft)}
+.fw-schritte{margin:14px 0 6px}
+.bew-band{padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.bew-band .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
+.bew-wert{font-family:var(--mono);font-weight:600;color:var(--ink);font-size:20px}
+.bew-text{color:var(--ink-soft);margin:0}
+.bew-text a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
 /* Notfall-Link in der Hauptnavigation: sichtbar, aber nicht laut. */
 .nav-notfall{position:relative;padding-left:16px!important}
 .nav-notfall::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);

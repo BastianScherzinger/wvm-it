@@ -25,6 +25,7 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
     {% include 'hero_ways.html' with kurz=ks.kurz callback=True %}
   </div>
 </header>
+{% include 'bewertung_band.html' %}
 
 <section class="section">
   <div class="wrap sp-grid">
@@ -33,6 +34,22 @@ im Impressum und im Schema gleichzeitig — an einer Stelle gepflegt (RELAUNCH E
 
       <h2 class="sp-h2">{{ ks.zeiten_h|safe }}</h2>
       {% for a in ks.zeiten_t|absaetze %}<p{% if not forloop.first %} class="sp-intro"{% endif %}>{{ a|safe }}</p>{% endfor %}
+
+      {% comment %}Reaktionszeiten (Runde 2, 13.10.2026): nur Zusagen, die schon im Text und im
+      Katalog stehen. Die Telefonzeile liest die Zeiten aus dem Kopf-Paket (t.kopf.erreichbar),
+      damit es keine zweite Quelle für Mo–Fr 9–18 gibt. Nicht auf /it-hilfe/ wiederholt.{% endcomment %}
+      {% with zt=ks.zeiten_tab %}{% if zt %}
+      <div class="zt-wrap">
+        <table class="zt" id="reaktionszeiten">
+          <caption>{{ zt.cap|safe }}</caption>
+          <thead><tr><th scope="col">{{ zt.k1|safe }}</th><th scope="col">{{ zt.k2|safe }}</th></tr></thead>
+          <tbody>
+            {% for r in zt.rows %}<tr><th scope="row">{{ r.0|safe }}</th><td>{% if r.1 %}{{ r.1|safe }}{% else %}{{ t.kopf.erreichbar|safe }}{% endif %}</td></tr>{% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="sp-fuss">{{ zt.fuss|safe }}</p>
+      {% endif %}{% endwith %}
 
       <h2 class="sp-h2">{{ ks.daten_h|safe }}</h2>
       <dl class="kd">

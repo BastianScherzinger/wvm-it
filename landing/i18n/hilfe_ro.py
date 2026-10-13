@@ -47,6 +47,13 @@ HILFE = {
     "fernwartung_h": "Ce înseamnă asistența la distanță",
     "fernwartung_t": "Asistența la distanță înseamnă că un tehnician accesează un calculator sau un server printr-o conexiune securizată, în loc să se deplaseze — într-o sesiune aprobată de dumneavoastră vede exact ce este pe ecranul dumneavoastră, urmăriți fiecare mișcare și puteți întrerupe oricând, iar fără o nouă aprobare nimeni nu revine pe aparat. Ce vede un furnizor și ce nu, explicăm pe larg în articolul despre asistența la distanță (în germană).",
     "fernwartung_link": "Ce vede furnizorul în timpul asistenței la distanță? (în germană)",
+    "fernwartung_ablauf_h": "Cum decurge o sesiune de asistență la distanță la WVM-IT",
+    "fernwartung_ablauf": [
+            "Ne contactați telefonic, pe WhatsApp sau prin formular, iar noi vă spunem dinainte dacă vă putem ajuta prin asistență la distanță.",
+            "Sesiunea începe abia cu aprobarea dumneavoastră: confirmați conexiunea sau transmiteți un cod.",
+            "Urmăriți fiecare pas pe ecran și puteți întrerupe sesiunea oricând.",
+            "La închiderea sesiunii, accesul se încheie. Fără o nouă aprobare nimeni nu revine pe aparat."
+    ],
     "preise_h": "Cât costă un ajutor punctual",
     "preise_t": "La distanță 95 € pe oră, la fața locului 120 € pe oră plus deplasarea. Sarcinile încheiate au prețuri fixe: configurarea unui post de lucru 190 €, configurarea Microsoft 365 290 €, firewall și VPN 690 €. Toate prețurile sunt nete, fără TVA.",
     "erreichbar_h": "Când ne găsiți",

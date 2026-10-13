@@ -643,6 +643,66 @@ PACK = {
         "regel_t": "Scoateți cablul de rețea sau opriți WLAN-ul — dar NU opriți aparatul, nu ștergeți nimic, nu „faceți curat” și nu reinstalați software. Un aparat oprit pierde urme necesare pentru recuperare și pentru o eventuală notificare către autoritatea de protecție a datelor. Deconectare da, oprire nu.",
         "schritte_h": "Primii pași",
         "nicht_h": "Ce nu trebuie să faceți acum",
+        "anrufen_h": "Când să sunați",
+        "ratgeber_h": "Mai multe în ghiduri (în germană)",
+        # Je Fall: „wann anrufen“ und Ratgeber-Slugs (13.10.2026, Runde 2). Die View
+        # mischt sie in `faelle`; die Ratgeber gibt es nur auf Deutsch.
+        "zusatz": {
+            "konto": {
+                "anrufen": "Sunați dacă nimeni cu drepturi de administrator nu se mai poate autentifica, mai multe conturi sunt blocate simultan sau bănuiți un acces străin.",
+                "ratgeber": [
+                    "microsoft-365-konto-gesperrt"
+                ]
+            },
+            "mail": {
+                "anrufen": "Sunați dacă sunt afectate mai multe căsuțe, nici în browser nu merge nimic sau e-mailurile par pierdute.",
+                "ratgeber": [
+                    "outlook-email-geht-nicht"
+                ]
+            },
+            "pc": {
+                "anrufen": "Sunați dacă PC-ul tot nu pornește după acești pași sau fișiere importante se află numai pe el.",
+                "ratgeber": [
+                    "pc-langsam-woran-liegt-es"
+                ]
+            },
+            "ransomware": {
+                "anrufen": "Sunați imediat, de îndată ce aveți bănuiala. Între timp puteți continua pașii de mai sus.",
+                "ratgeber": [
+                    "it-sicherheit-kleine-firma",
+                    "datensicherung-richtig-pruefen"
+                ]
+            },
+            "serverausfall": {
+                "anrufen": "Sunați de îndată ce este clar că serverul nu repornește de la sine și înainte ca cineva să îl repornească sau să schimbe discuri.",
+                "ratgeber": [
+                    "was-kostet-ein-serverausfall"
+                ]
+            },
+            "postfach": {
+                "anrufen": "Sunați dacă după schimbarea parolei se mai trimit e-mailuri sau este implicată o plată.",
+                "ratgeber": [
+                    "phishing-mails-erkennen"
+                ]
+            },
+            "geraet": {
+                "anrufen": "Sunați dacă dispozitivul nu era administrat sau pe el se aflau accesuri la date de clienți sau de personal.",
+                "ratgeber": []
+            },
+            "netzwerk": {
+                "anrufen": "Sunați dacă repornirea routerului nu schimbă nimic, sunt afectate mai multe posturi sau casa, telefonul ori serverul depind de rețea.",
+                "ratgeber": [
+                    "drucker-druckt-nicht",
+                    "wlan-im-betrieb-planen"
+                ]
+            },
+            "phishing": {
+                "anrufen": "Sunați de îndată ce s-a introdus o parolă sau s-a deschis un atașament și nu sunteți sigur ce s-a întâmplat, sau dacă s-au transferat bani.",
+                "ratgeber": [
+                    "phishing-mails-erkennen"
+                ]
+            }
+        },
         "faelle": [
             {
                 "id": "konto",
@@ -769,6 +829,42 @@ PACK = {
                     "Nu presupuneți că o parolă de conectare este suficientă: fără criptarea discului, ea este ocolită în câteva minute.",
                     "Nu lăsați incidentul neraportat dacă sunt implicate date personale.",
                 ],
+            },
+            {
+                "id": "netzwerk",
+                "icon": "net",
+                "h": "Internetul, Wi-Fi-ul sau imprimanta nu mai merg",
+                "kurz": "Nimeni nu mai are internet, Wi-Fi-ul a dispărut sau imprimanta nu mai tipărește și nu mai apare în rețea.",
+                "schritte": [
+                    "Verificați cât de departe ajunge problema: sunt afectate toate aparatele sau doar unul, și merge cu cablu de rețea când Wi-Fi-ul nu merge?",
+                    "Priviți routerul și switch-ul: sunt pornite, luminează ledurile, sunt cablurile conectate? Abia apoi scoateți routerul o dată din priză, așteptați un minut și puneți-l la loc.",
+                    "La imprimantă: este pornită și afișează un mesaj pe ecran? Fotografiați mesajul și deschideți coada de tipărire de pe PC, fără să ștergeți nimic.",
+                    "Notați ce s-a schimbat ultima dată: o actualizare, un aparat nou, o renovare, o schimbare de furnizor. De obicei este cea mai scurtă cale spre cauză.",
+                    "Dacă internetul lipsește pentru toți, verificați anunțul de avarie al furnizorului de internet: uneori defecțiunea nu este în clădire."
+                ],
+                "nicht": [
+                    "Nu resetați routerul la setările din fabrică: datele de acces și setările se pierd.",
+                    "Nu mutați cablurile la întâmplare, fără să notați ce era conectat unde.",
+                    "Nu ștergeți și nu reinstalați driverul imprimantei de mai multe ori înainte de a verifica coada și mesajul de pe aparat."
+                ]
+            },
+            {
+                "id": "phishing",
+                "icon": "alert",
+                "h": "Suspiciune de phishing: cineva a dat clic",
+                "kurz": "Un e-mail părea autentic, iar un angajat a dat clic pe un link, a deschis un atașament sau a introdus o parolă.",
+                "schritte": [
+                    "Nu mai dați clic pe nimic. Nu ștergeți e-mailul; notați expeditorul, subiectul și ora, ideal printr-o fotografie a ecranului.",
+                    "Dacă s-a introdus o parolă: schimbați-o imediat de pe alt dispozitiv, curat, și peste tot unde se folosește aceeași parolă.",
+                    "Dacă s-a deschis un atașament sau s-a instalat ceva: deconectați dispozitivul de la rețea (scoateți cablul, opriți Wi-Fi-ul), dar nu îl opriți.",
+                    "Avertizați colegii care au primit același e-mail, ca să nu dea clic nimeni.",
+                    "Dacă s-au transferat bani sau s-au schimbat datele bancare: sunați imediat banca. Cu cât mai repede, cu atât mai probabil se mai poate opri o plată."
+                ],
+                "nicht": [
+                    "Nu răspundeți la e-mail și nu folosiți linkurile de „dezabonare” din el.",
+                    "Nu continuați să lucrați ca și cum nu s-ar fi întâmplat nimic, dacă s-a introdus o parolă.",
+                    "Nu dați vina pe nimeni: cu cât o greșeală este raportată mai repede, cu atât paguba rămâne mai mică."
+                ]
             },
         ],
         "erreichbar_h": "Când nu sunt disponibil",
@@ -1134,6 +1230,38 @@ PACK = {
         "wege_h": "Patru moduri de a ne contacta",
         "zeiten_h": "Disponibilitate",
         "zeiten_t": "De luni până vineri, între 9 și 18. Cererile din afara acestor ore primesc răspuns în următoarea zi lucrătoare.\n\nÎn cazul unei defecțiuni acute sunați, nu scrieți: un apel ne ajunge și atunci când nimeni nu se uită în căsuța poștală. Ce trebuie făcut în primele treizeci de minute ale unei urgențe este descris pe pagina de urgență — și este valabil și înainte să ne fi contactat.",
+        "zeiten_tab": {
+            "cap": "Timpii de răspuns pe scurt",
+            "k1": "Solicitarea",
+            "k2": "Când primiți răspuns",
+            "rows": [
+                [
+                    "Cerere prin formular, WhatsApp sau e-mail",
+                    "În zilele lucrătoare, în 24 de ore."
+                ],
+                [
+                    "Apel în timpul unei defecțiuni în curs",
+                    None
+                ],
+                [
+                    "Pană acută, ajutor prin asistență la distanță",
+                    "De obicei începem în câteva minute după apel."
+                ],
+                [
+                    "O problemă punctuală prin asistență la distanță",
+                    "De obicei rezolvată în aceeași zi."
+                ],
+                [
+                    "Cerere în afara orelor de disponibilitate",
+                    "În următoarea zi lucrătoare."
+                ],
+                [
+                    "Intervenție la fața locului",
+                    "Numai cu programare."
+                ]
+            ],
+            "fuss": "Fără permanență non-stop: în afara orelor lăsați un mesaj, iar noi revenim în următoarea zi lucrătoare."
+        },
         "daten_h": "Date de firmă",
         "anschrift": "Adresă",
         "daten_fehlt": "Adresa completă o adăugăm aici de îndată ce sediul firmei este înregistrat. Până atunci ne găsiți la telefon și pe e-mail.",
@@ -1437,6 +1565,8 @@ PACK = {
         "mail": "Scrieți-ne",
         "aria": "Moduri de contact",
     },
+    # Bewertungsband (Runde 2): erscheint nur mit echten Werten in content.json -> google_bewertungen.
+    "bewertung": {"kicker": "Recenzii Google", "von": "din 5 stele", "anzahl": "recenzii", "stand": "stare la", "link": "La profilul Google"},
     "trust": {
         "t1": "Răspuns în 24 de ore, în zilele lucrătoare",
         "t2": "Asistență la distanță în AT și DE",
