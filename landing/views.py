@@ -2448,6 +2448,12 @@ _AREA_CITIES_DE = ["München", "Stuttgart", "Nürnberg", "Frankfurt am Main", "B
 _AREA_CITIES = _AREA_CITIES_AT + _AREA_CITIES_DE
 
 
+def _ueber_uns_pfad(lang):
+    """Pfad der Über-uns-Seite in der Sprache `lang` (mit /en/- bzw. /ro/-Präfix)."""
+    with translation.override(i18n.norm_lang(lang)):
+        return reverse("ueber_uns")
+
+
 def _structured_data(c, lang, *, mit_katalog=True):
     """Baut das JSON-LD-@graph server-seitig (robust gegen Template-Escaping): ein
     ProfessionalService (Local-SEO AT+DE, Preise als OfferCatalog), die WebSite und
@@ -2462,6 +2468,17 @@ def _structured_data(c, lang, *, mit_katalog=True):
     words = pack.get("catalog_words", {})
     citems = pack.get("catalog_items", {})
 
+    # Gebiete getrennt nach Art der Leistung (Runde 3, Nr. 11, 13.10.2026): Fernwartung
+    # gilt in Österreich und Deutschland, der Einsatz vor Ort nur im Kernraum (Orte mit
+    # Ortsseite, Bezirke). Der Betriebsknoten behält unten die Vereinigung beider Listen
+    # als `areaServed`; die Trennung steht an den beiden Angeboten im Katalog.
+    gebiet_fern = [{"@type": "Country", "name": "Österreich"},
+                   {"@type": "Country", "name": "Deutschland"}]
+    bezirke = list(dict.fromkeys(r["bezirk"] for r in regionen.REGIONEN
+                                 if r["bezirk"].startswith("Bezirk ")))
+    gebiet_vor_ort = ([{"@type": "AdministrativeArea", "name": b} for b in bezirke]
+                      + [{"@type": "City", "name": ort} for ort in _VOR_ORT_ORTE])
+
     # Maschinenlesbarer Preis-Katalog aus der einzigen Preisquelle (ANGEBOT_GROUPS).
     offers = []
     for g in ANGEBOT_GROUPS:
@@ -2469,6 +2486,10 @@ def _structured_data(c, lang, *, mit_katalog=True):
             name = citems.get(it["id"], {}).get("name", it["name"])
             svc = {"@type": "Service", "name": name,
                    "serviceType": g["title"], "provider": {"@id": f"{base}/#business"}}
+            if it["id"] == "it_support":
+                svc["areaServed"] = gebiet_fern
+            elif it["id"] == "vor_ort":
+                svc["areaServed"] = gebiet_vor_ort
             offer = {"@type": "Offer", "itemOffered": svc,
                      "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}
             price = it.get("once") or it.get("mtl") or it.get("yr") or it.get("std")
@@ -2499,8 +2520,6 @@ def _structured_data(c, lang, *, mit_katalog=True):
     # Reihenfolge ist Aussage (Ausbau Lokal, 08.10.2026): Österreich zuerst und
     # konkret – Land, Bundesländer, Bezirke, Orte mit eigener Seite –, danach die
     # per Fernwartung bedienten Städte, zuletzt Deutschland als zweites Gebiet.
-    bezirke = list(dict.fromkeys(r["bezirk"] for r in regionen.REGIONEN
-                                 if r["bezirk"].startswith("Bezirk ")))
     area_served = ([{"@type": "Country", "name": "Österreich"},
                     {"@type": "State", "name": "Oberösterreich"},
                     {"@type": "State", "name": "Salzburg"}]
@@ -2620,7 +2639,17 @@ def _structured_data(c, lang, *, mit_katalog=True):
         "jobTitle": "Inhaber",
         "worksFor": {"@id": f"{base}/#business"},
         "knowsLanguage": ["de", "en", "ro"],
+        # Runde 3, Nr. 9 (13.10.2026): Person-Knoten mit Adresse, Kurzbeschreibung und
+        # Themen. Die Themen sind eine Teilmenge der Betriebsbegriffe (`knowsAbout`
+        # des Betriebs), die Beschreibung stammt aus dem sichtbaren Vertrauensband.
+        "url": base + _ueber_uns_pfad(lang),
+        "description": (pack.get("hero", {}).get("person_ort", "")
+                        .replace(" · ", ", ")),
+        "knowsAbout": ["EDV-Betreuung", "IT-Betreuung", "Fernwartung", "Datensicherung",
+                       "Netzwerk", "IT-Sicherheit", "Microsoft 365", "Webentwicklung"],
     }
+    if not inhaber["description"]:
+        del inhaber["description"]
     if c.get("founder_image"):
         inhaber["image"] = f"{base}{c['founder_image']}"
     # ── `sameAs` (docs/SEO-AUSBAU-3.md, S7) ──────────────────────────────────

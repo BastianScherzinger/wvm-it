@@ -515,6 +515,13 @@ PACK = {
         "sitz_zusatz": "From there we travel for on-site work across the Vöcklabruck district, Lake Atter, Gmunden, Bad Ischl, Wels, Linz and Salzburg.",
         "region_h": "Where we work",
         "region_t": "Vöcklabruck district, Lake Atter, Gmunden, Bad Ischl, Wels, Linz and Salzburg.",
+        # Runde 3 Nr. 4 (13.10.2026): Sitz-Zeile und Ortsliste der Startseite verlinken
+        # die Ortsseiten (Kernraum hatte vorher null Links von der Startseite).
+        "sitz_link": "IT support in Lenzing",
+        "orte_kern_label": "Core area:",
+        "orte_weit_label": "Also:",
+        "orte_kern": [{"slug": "lenzing", "ort": "Lenzing"}, {"slug": "schoerfling-am-attersee", "ort": "Schörfling"}, {"slug": "timelkam", "ort": "Timelkam"}, {"slug": "regau", "ort": "Regau"}, {"slug": "frankenmarkt", "ort": "Frankenmarkt"}, {"slug": "voecklamarkt", "ort": "Vöcklamarkt"}, {"slug": "attnang-puchheim", "ort": "Attnang-Puchheim"}, {"slug": "schwanenstadt", "ort": "Schwanenstadt"}, {"slug": "mondsee", "ort": "Mondsee"}],
+        "orte_weit": [{"slug": "voecklabruck", "ort": "Vöcklabruck"}, {"slug": "attersee", "ort": "Attersee"}, {"slug": "gmunden", "ort": "Gmunden"}, {"slug": "bad-ischl", "ort": "Bad Ischl"}, {"slug": "wels", "ort": "Wels"}, {"slug": "linz", "ort": "Linz"}, {"slug": "salzburg", "ort": "Salzburg"}],
         "at": "Austria",
         "de": "Germany",
         "seit_label": "In business since",
@@ -1144,7 +1151,7 @@ PACK = {
         "fair_2": "No systems you cannot leave – accounts and data are yours.",
         "fair_3": "No recommendation that earns us more than it saves you. If something is not worth it, we say so.",
         # Rechenbeispiele und Einordnung (W07, 24.09.2026)
-        "bsp_h": "What a business like yours pays per month",
+        "bsp_h": "IT support costs per month: three examples",
         "bsp_t": "Three examples, calculated with the same rates as the list above: ongoing support per workstation and monitored backups, plus a managed server for the larger business. One-off help outside the contract only comes on top if you need it.",
         "bsp_cap": "Worked examples as guide values, net plus VAT",
         "bsp_ab": "from",
@@ -1167,6 +1174,8 @@ PACK = {
              "a": "A managed server costs from €89 per month; monitored backups are added from €49 per month. Ongoing support can be cancelled with one month's notice to the end of a quarter."},
             {"q": "What does one-off help without a contract cost?",
              "a": "Individual help by remote maintenance costs €95 per hour, on-site work €120 per hour plus travel. No contract is needed for it."},
+            {"q": "What does IT support cost per month in Austria?",
+             "a": "Ongoing IT support at WVM-IT costs from €29 per workstation and month, by remote maintenance anywhere in Austria; a managed server adds from €89 per month and monitored backups from €49 per month. For 5 workstations without a server of their own that comes to from €{bsp5} per month. Individual help without a contract costs €95 per hour. All figures are guide prices, net plus VAT."},
         ],
     },
     "rechner": {

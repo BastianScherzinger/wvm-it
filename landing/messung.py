@@ -163,6 +163,25 @@ def zusammenfassung() -> dict:
     }
 
 
+LOG_TOP_PFADE = 5
+
+
+def _logzeile(aufrufe: int, anfragen: int, grund: str) -> str:
+    """Die Zeile, die Deploys überlebt (Runde 3, 13.10.2026, R3-02 Nr. 1).
+
+    Zusätzlich zu Aufrufen und Anfragen: die Summen der Klicks auf Anruf-,
+    WhatsApp- und E-Mail-Links sowie höchstens die `LOG_TOP_PFADE` meistaufgerufenen
+    Seitenpfade des Tages. Nur Summen und Seitenpfade — keine IP, kein Cookie, keine
+    Kennung; die Pfade sind Adressen dieser Website, nie Besucherangaben.
+    Wird mit gehaltener Sperre aufgerufen."""
+    klick = {art: sum(_stand.get(f"klick_{art}", {}).values()) for art in ("tel", "wa", "mail")}
+    top = sorted(_stand.get("seite", {}).items(), key=lambda p: (-p[1], p[0]))[:LOG_TOP_PFADE]
+    pfade = ",".join(f"{pfad}:{n}" for pfad, n in top) or "-"
+    return (f"[MESSUNG] {_tag} Aufrufe={aufrufe} Anfragen={anfragen} "
+            f"Klick_tel={klick['tel']} Klick_wa={klick['wa']} Klick_mail={klick['mail']} "
+            f"Top={pfade} ({grund})")
+
+
 def _schreibe_ohne_sperre(grund: str = "") -> None:
     """Schreibt den Tagesstand als eine Zeile JSON und druckt ihn ins Log.
     Wird nur mit gehaltener Sperre aufgerufen."""
@@ -183,7 +202,7 @@ def _schreibe_ohne_sperre(grund: str = "") -> None:
     zeile = json.dumps(satz, ensure_ascii=False, sort_keys=True)
     aufrufe = sum(_stand.get("seite", {}).values())
     anfragen = sum(_stand.get("anfrage", {}).values())
-    print(f"[MESSUNG] {_tag} Aufrufe={aufrufe} Anfragen={anfragen} ({grund})", flush=True)
+    print(_logzeile(aufrufe, anfragen, grund), flush=True)
     try:
         ordner = _ziel()
         ordner.mkdir(parents=True, exist_ok=True)

@@ -602,7 +602,8 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                    'registriert werden soll.'}],
                                      'fazit': 'Der Festpreis von 290 € deckt die Einrichtung samt Mailumzug, '
                                               'nicht die Lizenzen. Die Struktur vorab zu klären, ist der '
-                                              'Teil, der später Ärger spart.'},
+                                              'Teil, der später Ärger spart. Wer die Einrichtung abgeben möchte: '
+                                              '<a href="/einrichten/microsoft-365/">Office 365 einrichten lassen: 290 € Festpreis</a>.'},
  'backup-3-2-1-kleine-firma': {'titel': 'Backup für kleine Firmen: die 3-2-1-Regel in der Praxis',
                                'meta_titel': 'Backup für kleine Firmen: 3-2-1-Regel einfach | WVM-IT',
                                'desc': 'Die 3-2-1-Regel für kleine Firmen praktisch umgesetzt: drei Kopien, '

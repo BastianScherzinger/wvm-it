@@ -1190,7 +1190,7 @@ PACK = {
         "fair_2": "Keine Systeme, aus denen Sie nicht wieder herauskommen – Zugänge und Daten gehören Ihnen.",
         "fair_3": "Keine Empfehlung, an der wir mehr verdienen als Sie sparen. Wenn sich etwas nicht lohnt, sagen wir es.",
         # Rechenbeispiele und Einordnung (W07, 24.09.2026)
-        "bsp_h": "Was ein Betrieb wie Ihrer im Monat zahlt",
+        "bsp_h": "IT-Betreuung Kosten im Monat: drei Beispiele",
         "bsp_t": "Drei Beispiele, gerechnet mit denselben Sätzen wie die Liste oben: laufende Betreuung je Arbeitsplatz und überwachte Datensicherung, beim größeren Betrieb dazu ein betreuter Server. Einzelne Hilfe außerhalb der Betreuung kommt nur dazu, wenn Sie sie brauchen.",
         "bsp_cap": "Rechenbeispiele als Richtwerte, netto zzgl. USt.",
         "bsp_ab": "ab",
@@ -1205,7 +1205,7 @@ PACK = {
         "markt_h": "Wie sich das einordnet",
         "markt_t": "Die Beispiele sind Richtwerte für den kleinsten Umfang, darum stehen sie mit „ab“. Wie viel Betreuung Ihr Betrieb wirklich braucht, zeigt sich erst nach einer kurzen Bestandsaufnahme; danach bekommen Sie ein schriftliches Angebot. Einzelne Hilfe ohne Vertrag kostet 95 € je Stunde, der Einstiegspreis von 29 € je Arbeitsplatz und Monat gilt in Österreich und Deutschland gleich.",
         "ratgeber_t": "Diese Seite ist die Preisliste. Warum kleine Firmen für IT-Betreuung so unterschiedliche Angebote bekommen und worauf man beim Vergleich achten sollte, steht im Ratgeber.",
-        "ratgeber_link": "Ratgeber: Was kostet IT-Betreuung für kleine Firmen?",
+        "ratgeber_link": "Ratgeber: IT-Betreuung Kosten für kleine Firmen",
         "faq": [
             {"q": "Was kostet IT-Betreuung für kleine Unternehmen?",
              "a": "Die laufende IT-Betreuung kostet bei WVM-IT ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat und die überwachte Datensicherung ab 49 € im Monat. Für 5 Arbeitsplätze ohne eigenen Server sind das ab {bsp5} € im Monat (5 × 29 € Betreuung + 49 € Datensicherung). Alle Angaben sind Richtpreise netto zzgl. USt., Stand {stand}; ein schriftliches Angebot folgt nach einer kurzen Bestandsaufnahme."},
@@ -1213,6 +1213,8 @@ PACK = {
              "a": "Ein betreuter Server kostet ab 89 € im Monat, die überwachte Datensicherung kommt mit ab 49 € im Monat dazu. Die laufende Betreuung ist mit einem Monat Frist zum Quartalsende kündbar."},
             {"q": "Was kostet einzelne Hilfe ohne Vertrag?",
              "a": "Einzelne Hilfe per Fernwartung kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Einen Vertrag braucht es dafür nicht."},
+            {"q": "Was kostet IT-Betreuung pro Monat in Österreich?",
+             "a": "Die laufende IT-Betreuung kostet bei WVM-IT ab 29 € je Arbeitsplatz und Monat, überall in Österreich per Fernwartung; ein betreuter Server kommt ab 89 € im Monat dazu und die überwachte Datensicherung ab 49 € im Monat. Für 5 Arbeitsplätze ohne eigenen Server sind das ab {bsp5} € im Monat. Einzelne Hilfe ohne Vertrag kostet 95 € je Stunde. Alle Angaben sind Richtpreise, netto zzgl. USt."},
         ],
     },
     # ── Kostenrechner (docs/SEO-AUSBAU-3.md, W1) ─────────────────────────────
@@ -1691,6 +1693,13 @@ PACK = {
         # Design B1 (§2.6): Wert der Tatsache "Vor Ort" in dl.fakten — kurze
         # Ortsliste statt Fliesstext, passend zur neuen Tabellen-Darstellung.
         "region_t": "Bezirk Vöcklabruck, Attersee, Gmunden, Bad Ischl, Wels, Linz und Salzburg.",
+        # Runde 3 Nr. 4 (13.10.2026): Sitz-Zeile und Ortsliste der Startseite verlinken
+        # die Ortsseiten (Kernraum hatte vorher null Links von der Startseite).
+        "sitz_link": "IT-Betreuung in Lenzing",
+        "orte_kern_label": "Kernraum:",
+        "orte_weit_label": "Außerdem:",
+        "orte_kern": [{"slug": "lenzing", "ort": "Lenzing"}, {"slug": "schoerfling-am-attersee", "ort": "Schörfling"}, {"slug": "timelkam", "ort": "Timelkam"}, {"slug": "regau", "ort": "Regau"}, {"slug": "frankenmarkt", "ort": "Frankenmarkt"}, {"slug": "voecklamarkt", "ort": "Vöcklamarkt"}, {"slug": "attnang-puchheim", "ort": "Attnang-Puchheim"}, {"slug": "schwanenstadt", "ort": "Schwanenstadt"}, {"slug": "mondsee", "ort": "Mondsee"}],
+        "orte_weit": [{"slug": "voecklabruck", "ort": "Vöcklabruck"}, {"slug": "attersee", "ort": "Attersee"}, {"slug": "gmunden", "ort": "Gmunden"}, {"slug": "bad-ischl", "ort": "Bad Ischl"}, {"slug": "wels", "ort": "Wels"}, {"slug": "linz", "ort": "Linz"}, {"slug": "salzburg", "ort": "Salzburg"}],
         "at": "Österreich",
         "de": "Deutschland",
         "seit_label": "Im Geschäft seit",

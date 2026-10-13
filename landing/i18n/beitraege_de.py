@@ -881,6 +881,8 @@ BEITRAEGE = {
                   "Gerät mit altem Kennwort — ein Handy oder ein Drucker, der sich im "
                   "Hintergrund immer wieder anmeldet. Solange dieses Gerät nicht das "
                   "neue Kennwort hat, kommt die Sperre wieder."},
+            {"h": "Meldung: „Ihr Konto ist vorübergehend gesperrt, um eine nicht autorisierte Verwendung zu verhindern“",
+             "t": "Das ist die Meldung der automatischen Schutzfunktion von Microsoft (Smart Lockout) nach mehreren fehlgeschlagenen Anmeldeversuchen. Laut Microsoft Learn dauert die erste Sperre eine Minute und wird bei weiteren Fehlversuchen länger. Warten Sie ab, ohne weiter zu probieren; bleibt die Meldung, kann ein Administrator die Sperre aufheben."},
             {"h": "Vom Administrator gesperrt",
              "t": "Im Microsoft-365-Verwaltungsportal lässt sich die Anmeldung eines "
                   "Benutzers blockieren — etwa beim Austritt eines Mitarbeiters oder "
@@ -904,6 +906,8 @@ BEITRAEGE = {
                   "sauberen Gerät aus ändern, alle Sitzungen beenden, Zwei-Faktor "
                   "einrichten und die Postfachregeln auf heimliche Weiterleitungen "
                   "prüfen. Die Schritte stehen ausführlich auf unserer Notfallseite."},
+            {"h": "Konto wegen Kontenbeschränkung gesperrt",
+             "t": "Wird ein privates Microsoft-Konto gesperrt, nennt Microsoft auf seiner Support-Seite „Microsoft-Konto wurde gesperrt“ als üblichen Grund einen Verstoß gegen den Microsoft-Servicevertrag, etwa durch Schadsoftware, Phishing, Störung von Microsoft-Diensten oder Spam. Zum Entsperren meldet man sich bei account.microsoft.com an; bei Anmeldeproblemen hilft das Anmeldehilfsgerät für Microsoft-Konten. Das Formular „Lassen Sie uns beweisen, dass Sie ein Mensch sind“ wird anschließend von einem Mitarbeiter im Bereich Onlinesicherheit geprüft, der sich per E-Mail meldet; weitere Anfragen verzögern die Bearbeitung laut Microsoft nur. Das Wort „Kontenbeschränkung“ verwendet Microsoft auf dieser Seite nicht, gemeint ist die Sperre des Kontos. Für ein Konto, das einem Betrieb gehört (Microsoft 365 Business), entscheidet dagegen der Administrator des Mandanten, siehe oben."},
             {"h": "Was Sie selbst tun können",
              "t": "Die Fehlermeldung genau lesen oder fotografieren — sie unterscheidet "
                   "die vier Fälle. Bei Fehlversuchen eine Weile warten und dann mit dem "

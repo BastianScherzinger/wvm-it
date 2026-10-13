@@ -878,7 +878,7 @@ EINRICHTEN = {
                  "să nu caute în ziua mutării unde este priza cu un cablu HDMI în "
                  "mână.",
 
-        "leistungen_h": "Listă mutare IT: ce include",
+        "leistungen_h": "Mutarea rețelei și mutarea IT: listă de verificare",
         "leistungen": [
             "Înainte de mutare: o copie completă a fiecărui server și fiecărei "
             "stații — plus un test de restaurare, ca să ajute la nevoie",

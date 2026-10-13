@@ -507,6 +507,13 @@ PACK = {
         "sitz_zusatz": "De acolo ne deplasăm pentru lucrări la fața locului în districtul Vöcklabruck, la Attersee, în Gmunden, Wels, Linz și Salzburg.",
         "region_h": "Unde lucrăm",
         "region_t": "Districtul Vöcklabruck, Attersee, Gmunden, Bad Ischl, Wels, Linz și Salzburg.",
+        # Runde 3 Nr. 4 (13.10.2026): Sitz-Zeile und Ortsliste der Startseite verlinken
+        # die Ortsseiten (Kernraum hatte vorher null Links von der Startseite).
+        "sitz_link": "Asistență IT în Lenzing",
+        "orte_kern_label": "Zona de bază:",
+        "orte_weit_label": "De asemenea:",
+        "orte_kern": [{"slug": "lenzing", "ort": "Lenzing"}, {"slug": "schoerfling-am-attersee", "ort": "Schörfling"}, {"slug": "timelkam", "ort": "Timelkam"}, {"slug": "regau", "ort": "Regau"}, {"slug": "frankenmarkt", "ort": "Frankenmarkt"}, {"slug": "voecklamarkt", "ort": "Vöcklamarkt"}, {"slug": "attnang-puchheim", "ort": "Attnang-Puchheim"}, {"slug": "schwanenstadt", "ort": "Schwanenstadt"}, {"slug": "mondsee", "ort": "Mondsee"}],
+        "orte_weit": [{"slug": "voecklabruck", "ort": "Vöcklabruck"}, {"slug": "attersee", "ort": "Attersee"}, {"slug": "gmunden", "ort": "Gmunden"}, {"slug": "bad-ischl", "ort": "Bad Ischl"}, {"slug": "wels", "ort": "Wels"}, {"slug": "linz", "ort": "Linz"}, {"slug": "salzburg", "ort": "Salzburg"}],
         "at": "Austria",
         "de": "Germania",
         "seit_label": "În activitate din",
@@ -1136,7 +1143,7 @@ PACK = {
         "fair_2": "Fără sisteme din care nu mai puteți ieși – conturile și datele vă aparțin.",
         "fair_3": "Fără recomandări din care câștigăm noi mai mult decât economisiți dumneavoastră. Dacă ceva nu merită, o spunem.",
         # Rechenbeispiele und Einordnung (W07, 24.09.2026)
-        "bsp_h": "Cât plătește pe lună o firmă ca a dumneavoastră",
+        "bsp_h": "Costuri de administrare IT pe lună: trei exemple",
         "bsp_t": "Trei exemple, calculate cu aceleași tarife ca lista de mai sus: administrare continuă pe post de lucru și copii de siguranță monitorizate, iar la firma mai mare și un server administrat. Ajutorul punctual în afara contractului se adaugă doar dacă aveți nevoie de el.",
         "bsp_cap": "Exemple de calcul, valori orientative, net, fără TVA",
         "bsp_ab": "de la",
@@ -1159,6 +1166,8 @@ PACK = {
              "a": "Un server administrat costă de la 89 € pe lună, copiile de siguranță monitorizate se adaugă de la 49 € pe lună. Administrarea curentă poate fi reziliată cu o lună preaviz, la sfârșitul trimestrului."},
             {"q": "Cât costă ajutorul punctual, fără contract?",
              "a": "Ajutorul punctual prin acces la distanță costă 95 € pe oră, intervențiile la fața locului 120 € pe oră plus deplasarea. Nu este nevoie de contract."},
+            {"q": "Cât costă administrarea IT pe lună în Austria?",
+             "a": "Administrarea IT curentă la WVM-IT costă de la 29 € per post de lucru și lună, prin acces la distanță în toată Austria; un server administrat se adaugă de la 89 € pe lună, iar copiile de siguranță monitorizate de la 49 € pe lună. Pentru 5 posturi de lucru fără server propriu înseamnă de la {bsp5} € pe lună. Ajutorul punctual fără contract costă 95 € pe oră. Toate sunt prețuri orientative, net plus TVA."},
         ],
     },
     "rechner": {
