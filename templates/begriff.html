@@ -84,13 +84,13 @@ demselben `kurz`-Feld, das oben steht.
       {% if leistung %}
       <aside class="rg-schwerpunkt" data-reveal>
         <p class="rg-sw-label">Passende Leistung</p>
-        <a class="rg-sw-link" href="{{ leistung.url }}">
+        <div class="rg-sw-link">
           <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=leistung.icon %}</span>
           <span>
-            <strong>{{ leistung.nav|safe }}</strong>
+            <strong><a class="rg-sw-a" href="{{ leistung.url }}">{{ leistung.nav|safe }}</a></strong>
             <span class="rg-sw-t">{{ leistung.desc|safe }}</span>
           </span>
-        </a>
+        </div>
       </aside>
       {% endif %}
 

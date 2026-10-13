@@ -31,9 +31,11 @@ Parameter: `ziel` = Pfad, auf den die Kacheln ohne JavaScript verlinken.
     {% for p in startpakete %}
     <a class="pk-karte{% if p.id == paket_aktiv %} is-aktiv{% endif %}"
        href="{{ ziel }}?paket={{ p.id }}#konfigurator"
-       data-paket="{{ p.ids }}" data-paket-id="{{ p.id }}"
-       aria-label="{{ t.startpakete.aria|safe }}: {{ p.name }}">
-      <strong class="pk-name">{{ p.name }}</strong>
+       data-paket="{{ p.ids }}" data-paket-id="{{ p.id }}">
+      {% comment %}Label in Name (WCAG 2.5.3, 13.10.2026): Der zugaengliche Name beginnt mit der Handlung
+        und enthaelt danach den sichtbaren Text unveraendert - ein aria-label ohne diesen Text
+        machte die Kachel fuer Sprachsteuerung („Klick Basis“) unauffindbar.{% endcomment %}
+      <span class="sr-only">{{ t.startpakete.aria|safe }}: </span><strong class="pk-name">{{ p.name }}</strong>
       <span class="pk-sub">{{ p.sub }}</span>
       <span class="pk-inhalt">
         <span class="pk-inhalt-l">{{ t.startpakete.enthalten|safe }}:</span>

@@ -100,18 +100,18 @@ wie am Bildschirm.
       <aside class="rg-schwerpunkt" data-reveal>
         <p class="rg-sw-label">Passt dazu</p>
         {% if leistung %}
-        <a class="rg-sw-link" href="{{ leistung.url }}">
+        <div class="rg-sw-link">
           <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name=leistung.icon %}</span>
-          <span><strong>{{ leistung.nav|safe }}</strong>
+          <span><strong><a class="rg-sw-a" href="{{ leistung.url }}">{{ leistung.nav|safe }}</a></strong>
             <span class="rg-sw-t">{{ leistung.desc|safe }}</span></span>
-        </a>
+        </div>
         {% endif %}
         {% if beitrag %}
-        <a class="rg-sw-link ck-beitrag" href="{{ beitrag.url }}">
+        <div class="rg-sw-link ck-beitrag">
           <span class="lk-ic" aria-hidden="true">{% include 'icons.html' with name='consulting' %}</span>
-          <span><strong>{{ beitrag.titel|safe }}</strong>
+          <span><strong><a class="rg-sw-a" href="{{ beitrag.url }}">{{ beitrag.titel|safe }}</a></strong>
             <span class="rg-sw-t">{{ beitrag.desc|safe }}</span></span>
-        </a>
+        </div>
         {% endif %}
       </aside>
       {% endif %}

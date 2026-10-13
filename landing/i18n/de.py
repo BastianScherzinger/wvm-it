@@ -659,7 +659,7 @@ PACK = {
     # der vier Fälle folgt der Häufigkeit, mit der danach gesucht wird.
     "notfall": {
         "titel": "IT-Notfall: Konto gesperrt, Mail down, PC defekt | WVM-IT",
-        "desc": "Microsoft-365-Konto gesperrt, Mail geht nicht, PC startet nicht, Verschlüsselung: erste Schritte, Hilfe per Fernwartung, 95 €/Std. ohne Vertrag. Jetzt anrufen.",
+        "desc": "Microsoft-365-Konto gesperrt, Mail geht nicht, PC startet nicht, Verschlüsselung: erste Schritte, Fernwartung, 95 €/Std. ohne Vertrag. Jetzt anrufen.",
         "h1": "IT-Notfall: was in den ersten 30 Minuten zu tun ist",
         # Kurzlabel fuer Navigation und Footer (06.09.2026). Vorher stand dort
         # `h1|truncatewords:2` — also woertlich „IT-Notfall: was …", ein
@@ -1080,7 +1080,7 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "Was kostet IT-Betreuung? Alle Preise ab 29 €/Monat | WVM-IT",
-        "desc": "Was IT-Betreuung kostet: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE. Angebot anfordern.",
+        "desc": "Was IT-Betreuung kostet: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE. Angebot holen.",
         "h1": "Was kostet IT-Betreuung? Alle Preise auf einer Seite",
         "kurz": "Die laufende IT-Betreuung bei WVM-IT kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
         "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt – und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",

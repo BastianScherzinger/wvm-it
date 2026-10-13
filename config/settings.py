@@ -238,7 +238,16 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
         "LOCATION": "wvm-it",
         "OPTIONS": {"MAX_ENTRIES": 20000, "CULL_FREQUENCY": 4},
-    }
+    },
+    # Vorlagen-Fragmente ({% cache ... using="fragmente" %}, Runde 2 Technik 13.10.2026):
+    # eigener Speicher, damit die Zaehler der Spam-Bremse im Standardspeicher nie von
+    # Fragmenten verdraengt werden (und umgekehrt). Gespeichert wird nur, was an Sprache
+    # oder Seite haengt - nie ein CSRF-Token, keine Uhrzeit, keine Nonce, kein Formularfehler.
+    "fragmente": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "wvm-it-fragmente",
+        "OPTIONS": {"MAX_ENTRIES": 2000, "CULL_FREQUENCY": 4},
+    },
 }
 
 # Hinter Railways HTTPS-Proxy korrektes Schema erkennen.

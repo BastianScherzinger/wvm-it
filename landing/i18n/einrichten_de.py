@@ -112,7 +112,7 @@ EINRICHTEN = {
     # ════════════════════════════════════════════════════════════════════════
     "pc-tausch": {
         "titel": "PC tauschen und einrichten lassen: 190 € je Gerät | WVM-IT",
-        "desc": "PC kaufen und einrichten lassen, alter Rechner mit allen Daten: "
+        "desc": "PC kaufen und einrichten, alter Rechner mit allen Daten: "
                 "Dateien, E-Mails, Zugänge, Programme. 190 € je Gerät, meist per "
                 "Fernwartung. Jetzt anfragen.",
         "h1": "Rechner tauschen, ohne dass etwas verlorengeht",
@@ -683,7 +683,7 @@ EINRICHTEN = {
     "loxone": {
         "titel": "Loxone einrichten und übernehmen lassen | WVM-IT",
         "desc": "Bestehende Loxone- oder KNX-Anlage übernehmen, erweitern oder neu "
-                "programmieren — auch wenn niemand mehr erreichbar ist, der sie gebaut "
+                "programmieren, auch wenn niemand mehr erreichbar ist, der sie gebaut "
                 "hat. Jetzt anfragen.",
         "h1": "Loxone einrichten — auch wenn sie schon steht",
         "nav": "Loxone übernehmen",
@@ -882,7 +882,7 @@ EINRICHTEN = {
 
     "it-umzug": {
         "titel": "IT-Umzug im Büro: Server, Netzwerk, Arbeitsplätze | WVM-IT",
-        "desc": "IT-Umzug ins neue Büro: Server, Netzwerk und Arbeitsplätze geplant, "
+        "desc": "IT-Umzug ins neue Büro: Server, Netzwerk, Arbeitsplätze geplant, "
                 "abgebaut, aufgebaut, am ersten Arbeitstag getestet. Preis nach "
                 "Aufnahme. Jetzt anfragen.",
         "h1": "IT-Umzug ins neue Büro — geplant statt improvisiert",

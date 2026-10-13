@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load cache %}
 {% comment %}
 Eine Leistung, eine URL, ein Hauptkeyword (docs/RELAUNCH-PLAN.md, R2.2).
 Struktur und Preis kommen aus landing/leistungen.py bzw. ANGEBOT_GROUPS, alle Texte
@@ -13,7 +14,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
 {% block tw_beschreibung %}{{ seite.desc|safe }}{% endblock %}
 
 {% block inhalt %}
-<article class="sp">
+{% cache frag_ttl|default:0 "leistung_a" lang seite.slug using="fragmente" %}<article class="sp">
 
   {% comment %} ── Kopf: Brotkrume, Antwort-zuerst-Absatz, Preis, Kontaktwege ────────── {% endcomment %}
   <header class="sp-top">
@@ -168,7 +169,8 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
       </div>
 
       <div class="sp-aside">
-        {% include 'anfrage_karte.html' with bid=seite.quelle titel=seite.cta_h sub=seite.cta_t ph=seite.problem_h %}
+{% endcache %}        {% include 'anfrage_karte.html' with bid=seite.quelle titel=seite.cta_h sub=seite.cta_t ph=seite.problem_h %}
+{% cache frag_ttl|default:0 "leistung_b" lang seite.slug using="fragmente" %}
       </div>
     </div>
   </section>
@@ -187,11 +189,9 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
       <ul class="pd-liste">
         {% for p in passt_dazu %}
         <li class="pd-item">
-          <a href="{{ p.url }}">
-            <span class="pd-typ">{{ p.typ }}</span>
-            <span class="pd-h">{{ p.titel|safe }}</span>
-            <span class="pd-t">{{ p.text|safe|truncatewords:26 }}</span>
-          </a>
+          <span class="pd-typ">{{ p.typ }}</span>
+          <a class="pd-a" href="{{ p.url }}"><span class="pd-h">{{ p.titel|safe }}</span></a>
+          <span class="pd-t">{{ p.text|safe|truncatewords:26 }}</span>
         </li>
         {% endfor %}
       </ul>
@@ -241,4 +241,5 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
   </section>
   {% endif %}
 </article>
+{% endcache %}
 {% endblock %}

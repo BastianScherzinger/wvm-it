@@ -67,7 +67,7 @@ BEITRAEGE = {
         # gleich darunter auf /kosten/ als die Seite mit allen Preisen. So bleibt
         # /kosten/ Zielseite fuer „was kostet it betreuung". Slug und URL bleiben.
         "meta_titel": "IT-Betreuung für kleine Firmen: was rechnet sich? | WVM-IT",
-        "desc": "Ab etwa fünf Arbeitsplätzen ist die Monatsbetreuung günstiger als Hilfe nach Stunden. Die Rechnung dazu — und was enthalten sein muss. Jetzt beraten lassen.",
+        "desc": "Ab etwa fünf Arbeitsplätzen ist die Monatsbetreuung günstiger als Hilfe nach Stunden. Die Rechnung dazu und was enthalten sein muss. Jetzt beraten lassen.",
         "antwort": "Ab etwa fünf Arbeitsplätzen rechnet sich die monatliche IT-Betreuung meist: Sie ist dann günstiger als Hilfe nach Stunden, weil sie sich schon bezahlt macht, wenn sie einen einzigen Ausfalltag im Jahr verhindert. Darunter ist die Abrechnung nach Aufwand oft günstiger, bei uns 95 € je Stunde aus der Ferne und 120 € je Stunde vor Ort zuzüglich Anfahrt. Die laufende Betreuung beginnt bei uns bei 29 € je Arbeitsplatz und Monat.",
         "vorweg": "Alle Preise im Überblick, vom Arbeitsplatz bis zum Server, stehen auf der Seite <a href=\"/kosten/\">Was kostet IT-Betreuung? Alle Preise auf einer Seite</a>. Dieser Beitrag beantwortet die Frage davor: welche Abrechnungsart zu Ihrer Größe passt.",
         "abschnitte": [
@@ -685,7 +685,7 @@ BEITRAEGE = {
         "meta_titel": "PC langsam im Betrieb: die vier häufigsten Ursachen | WVM-IT",
         "desc": "Vier Ursachen erklären fast alle langsamen Bürorechner. Woran man sie "
                 "erkennt, was sich beheben lässt und wann ein Neukauf "
-                "günstiger ist. Termin vereinbaren.",
+                "günstiger ist. Termin buchen.",
         "antwort": "In den allermeisten Fällen liegt es an der Festplatte: Ein Gerät "
                    "mit klassischer Festplatte statt SSD ist bei jedem Start und bei "
                    "jedem Programmaufruf langsam, egal wie stark der Prozessor ist. "

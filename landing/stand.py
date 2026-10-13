@@ -31,7 +31,7 @@ damit die letzte belastbare Aussage über den Bestand.
 STAND_FALLBACK = "2026-10-13"
 
 STAND = {
-    "/": "2026-10-12",
+    "/": "2026-10-13",
     "/agb/": "2026-10-09",
     "/aktuelles/": "2026-10-13",
     "/aktuelles/alte-windows-version-im-betrieb/": "2026-10-13",
@@ -96,8 +96,8 @@ STAND = {
     "/einrichten/windows-11/": "2026-10-13",
     "/impressum/": "2026-10-09",
     "/it-hilfe/": "2026-10-03",
-    "/it-notfall/": "2026-10-12",
-    "/it-service/": "2026-10-09",
+    "/it-notfall/": "2026-10-13",
+    "/it-service/": "2026-10-13",
     "/it-service/attersee/": "2026-10-13",
     "/it-service/attnang-puchheim/": "2026-10-13",
     "/it-service/bad-ischl/": "2026-10-13",
@@ -137,7 +137,7 @@ STAND = {
     "/leistungen/smarthome-knx-loxone/": "2026-10-13",
     "/leistungen/veranstaltungstechnik/": "2026-10-13",
     "/leistungen/webseite-erstellen/": "2026-10-13",
-    "/referenzen/": "2026-10-12",
+    "/referenzen/": "2026-10-13",
     "/ueber-uns/": "2026-10-13",
     "/vergleich/": "2026-10-01",
     "/vergleich/it-betreuung-vs-stundenabrechnung/": "2026-10-13",

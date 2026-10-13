@@ -121,7 +121,6 @@ REGIONEN = [
      "quellen": [
          {"titel": "Wikipedia: Schwanenstadt", "url": "https://de.wikipedia.org/wiki/Schwanenstadt"},
          {"titel": "Austria-Forum: Schwanenstadt", "url": "https://austria-forum.org/af/AustriaWiki/Schwanenstadt"},
-         {"titel": "WKO Firmen A–Z: Schwanenstadt (Gemeinde)", "url": "https://firmen.wko.at/-/schwanenstadt_gemeinde/"},
          {"titel": "WKO Firmen A–Z: Händler in Schwanenstadt", "url": "https://firmen.wko.at/h%C3%A4ndler/schwanenstadt_gemeinde"},
      ]},
 
