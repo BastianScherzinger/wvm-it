@@ -27,6 +27,21 @@ Strang-Dokus: [`../../docs/UMSETZUNG-2026-10-12-conversion.md`](../../docs/UMSET
 - **Technik:** `manage.py anwaermen` nach jedem Start (Kaltstart), Herkunft je Anfrage (UTM/Verweis) **gebaut, aber per `HERKUNFT_UTM` aus**, bis der Datenschutz-Satz freigegeben ist; Wochenmessung `Werkzeuge\wvm_wochenmessung.py`.
 - **Bewusst nicht:** keine neuen Ortsseiten, kein Ausbau Cloud-Server/PC-Aufrüsten/Glossar, Ortstexte nicht gekürzt (Mindestwort-/Ähnlichkeitstests, keine erfundenen Ortsfakten), kein Rechtstext geändert, Gemeinden-Title nur vorbereitet.
 
+## 2b. Runde 2 (13.10.2026) — zweite Analyse und Umsetzung
+
+Nach dem Livegang von Runde 1 (27ef75a) wurde die Seite erneut geprüft: Technik/Leistung, Inhalte/E-E-A-T/GEO, Mitbewerber (Berichte `ANALYSE-2026-10-12\runde2\R2-01…03`, Kundenordner). Umgesetzt in vier Strängen, zusammengeführt auf `seo/2026-10-12-komplett`: 840 Tests grün, `pruefe_seite` 264 URLs ohne Befund, `pruefe_sicherheit` grün, `stand_schreiben --pruefen` aktuell. Abnahme: `runde2\R2-08-ABNAHME.md`.
+
+| Strang | Was | Doku |
+|---|---|---|
+| Design/Conversion | Feinschliff Kopf, Kästen, Handy-Leiste versteckt, solange der Cookie-Hinweis sichtbar ist | [`docs/UMSETZUNG-2026-10-13-design-rest.md`](../../docs/UMSETZUNG-2026-10-13-design-rest.md) |
+| Vertrauen | `/it-notfall/` mit 9 Selbsthilfe-Fällen (DE/EN/RO), Reaktionszeiten-Tabelle auf `/kontakt/`, Ratgeber „IT-Dienstleister wechseln“ ausgebaut, Fernwartungs-Abschnitt auf `/it-hilfe/`, Bewertungsband (rendert erst mit echten Werten in `content.json` → `google_bewertungen`) | [`docs/UMSETZUNG-2026-10-13-r2-vertrauen.md`](../../docs/UMSETZUNG-2026-10-13-r2-vertrauen.md) |
+| Inhalte/GEO | Quellenblöcke mit geprüften Fachlinks in 18 Beiträgen + 2 Glossarseiten, „Aktualisiert:“ statt „Stand:“, zitierbare Antwortsätze auf Leistungs-/Einrichtungsseiten und 9 Orten, Kosten-FAQ (3 Sprachen), 2 kannibalisierende Beiträge per 301 zusammengelegt (jetzt 33), Anfahrt-Methodik (OSRM), Ankervarianten, Links auf `/vergleich/` und `/checkliste/` | [`docs/UMSETZUNG-2026-10-13-r2-inhalte.md`](../../docs/UMSETZUNG-2026-10-13-r2-inhalte.md) |
+| Technik | Render-Cache für reine Berechnungen und Vorlagen-Fragmente (nie CSRF, Nonce, Uhrzeit, Formularfehler): lokale Renderzeit −52 bis −64 %; `content-visibility`, Schrift-Preload, korrigierte `sizes`; toter WKO-Link entfernt; Label/Name-Abgleich; 17 Descriptions ≤ 155 Zeichen; Kartenanker nur Titel | [`docs/UMSETZUNG-2026-10-13-r2-technik.md`](../../docs/UMSETZUNG-2026-10-13-r2-technik.md) |
+
+**Bewusst nicht:** kein `aggregateRating` im Schema, auch wenn das Band echte Google-Werte zeigt (Google-Richtlinie gegen *self-serving reviews*) · Wartungspakete nicht benannt und kein Fernwartungstool genannt (Florin) · keine erfundenen Reaktionszeiten über das hinaus, was schon auf der Seite stand · CSRF-Cookie bleibt (jede Seite trägt das Rückruf-Formular).
+
+**Nachmessen nach dem Deploy:** TTFB unter parallelem Crawl (vorher Median 1,25 s) — Ziel deutlich darunter.
+
 ## 3. Erfolg messen — Grundlinie und Termine
 
 Grundlinie (28 Tage bis 12.10.2026): **967 Impressionen / 12 Klicks / Pos. 28,4**, davon Österreich 221 / 5 / 18,1. Kaufabsicht ohne Marke: 378 Impr. / 0 Klicks.
@@ -53,3 +68,6 @@ Grundlinie (28 Tage bis 12.10.2026): **967 Impressionen / 12 Klicks / Pos. 28,4*
 - **Linkgraph aus dem Live-Crawl mit Inhalts- vs. Template-Links trennen** — erst das zeigte, dass der Sitz Lenzing fast keine echten Links hatte.
 - **KI-Nullmessung mit Google AI Mode** (`udm=50`, `gl=at`) geht ohne Login; Perplexity verlangt Anmeldung.
 - **Zeitabhängige Tests:** Der Planer-Test war montags 09:00 bis dienstags 09:00 rot (Nachhol-Job) — jetzt mit festem Datum.
+- **Anwärmen löst nur den Kaltstart:** Unter parallelem Abruf blieb der TTFB bei 1,25 s, weil jede Seite neu gerendert wurde — erst der Render-Cache griff an der Ursache.
+- **Strang-Ergebnisse vor dem Merge gegen die Grundsätze lesen:** Der Vertrauens-Strang gab `aggregateRating` aus; das fiel nur beim Lesen auf, kein Test hätte es verboten. Jetzt verbietet es ein Test.
+- **Merge-Konflikte sind vorhersehbar:** Test-/Dateizahl in CLAUDE.md (ein Test prüft sie) und `stand.py` (neu erzeugen) — nach dem letzten Merge einmal neu zählen.

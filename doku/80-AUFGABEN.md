@@ -21,6 +21,8 @@ rest_bei: bastian, kunde
 - [ ] Google-Profil: Festpreis-Leistungen als Produkte, Beiträge 20.10./27.10./03.11. (Chrome-Freigabe für business.google.com fehlte am 12.10.)
 - [ ] Messung 28.10. und 02.11. (`Werkzeuge\wvm_wochenmessung.py`, KI-Fragen wiederholen)
 - [ ] Umzug bis 30.11. mit gleichen URLs planen
+- [ ] **Runde 2, beim Kunden:** Reaktionszeiten-Tabelle und Notfall-Selbsthilfe gegenlesen · Fernwartungstool nennen (dann auf `/it-hilfe/` ergänzen) · Wartungspakete ja/nein · Google-Bewertungen: Werte in `content.json` → `google_bewertungen` {anzahl, schnitt, stand} eintragen, dann erscheint das Band
+- [ ] **Runde 2, offen im Code:** EN/RO-Antwortsätze nachziehen · Bad Ischl, Attersee, Konferenztechnik ausbauen · nach dem Deploy TTFB unter Crawl nachmessen (vorher 1,25 s)
 
 *Woran sich der Fortschritt bemisst: am Anteil der erledigten an allen in dieser Datei geführten Aufgaben — „Erledigt“ gegen „Erledigt + Offen + Fehlt + Beim Kunden“, auf Zehner gerundet. „Verbesserungsmöglichkeiten“ zählen nicht mit, sie sind Kür, keine Zusage. Bei allen sechs betreuten Seiten dieselbe Rechnung.*
 
