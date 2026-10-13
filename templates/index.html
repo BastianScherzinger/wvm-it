@@ -349,8 +349,8 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       </ol>
 
       <dl class="fakten" data-reveal>
-        {% if c.adresse %}<div><dt>{{ t.vertrauen.sitz_label|safe }}</dt><dd>{{ c.adresse }}, {{ c.plz }} {{ c.stadt }}</dd></div>{% endif %}
-        <div><dt>{{ t.vertrauen.fakt_vorort|safe }}</dt><dd>{{ t.vertrauen.region_t|safe }}</dd></div>
+        {% if c.adresse %}<div><dt>{{ t.vertrauen.sitz_label|safe }}</dt><dd>{{ c.adresse }}, {{ c.plz }} {{ c.stadt }}<br><a class="ortlink" href="{% url 'region' slug='lenzing' %}">{{ t.vertrauen.sitz_link|safe }}</a></dd></div>{% endif %}
+        <div><dt>{{ t.vertrauen.fakt_vorort|safe }}</dt><dd>{{ t.vertrauen.orte_kern_label|safe }} {% for o in t.vertrauen.orte_kern %}<a class="ortlink" href="{% url 'region' slug=o.slug %}">{{ o.ort }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}. {{ t.vertrauen.orte_weit_label|safe }} {% for o in t.vertrauen.orte_weit %}<a class="ortlink" href="{% url 'region' slug=o.slug %}">{{ o.ort }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}.</dd></div>
         <div><dt>{{ t.vertrauen.fakt_fern|safe }}</dt><dd>{{ t.vertrauen.fakt_fern_t|safe }}</dd></div>
         <div><dt>{{ t.vertrauen.fakt_sprachen|safe }}</dt><dd>{{ t.vertrauen.sprachen|safe }}</dd></div>
       </dl>

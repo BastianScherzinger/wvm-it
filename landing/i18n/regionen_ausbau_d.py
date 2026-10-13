@@ -71,7 +71,8 @@ AUSBAU = {
         },
 
         "wels": {
-            "titel": "IT-Betreuung Wels: Lager, Halle, Büro ab 29 € | WVM-IT",
+            "titel": "EDV-Betreuung Wels: Büro, Lager, Halle ab 29 € | WVM-IT",
+            "desc": "EDV-Betreuer für Betriebe in Wels: ab 29 €/Monat je Arbeitsplatz, Hilfe ohne Vertrag 95 €/Std. Florin Feier aus Lenzing: Rückruf anfordern.",
             "auftraege_h": "Beispiele, wie Anfragen aus Wels aussehen können",
             "auftraege": [
                 "Ein Handwerksbetrieb, dessen Auftragsmail beim Kunden nicht ankommt, weil der Absender als verdächtig eingestuft wird. Wir prüfen die Absenderangaben und stellen die Zustellung richtig ein.",
@@ -175,7 +176,8 @@ AUSBAU = {
         },
 
         "wels": {
-            "titel": "IT support Wels: warehouse, hall, office from €29 | WVM-IT",
+            "titel": "IT support Wels: office, warehouse, hall from €29 | WVM-IT",
+            "desc": "IT support for businesses in Wels from €29/month per workstation, help without a contract €95/hr. Florin Feier from Lenzing: get in touch for a callback.",
             "auftraege_h": "Examples of what enquiries from Wels can look like",
             "auftraege": [
                 "A trade business whose order emails do not reach the customer because the sender is classed as suspicious. We check the sender details and set up delivery correctly.",
@@ -280,6 +282,7 @@ AUSBAU = {
 
         "wels": {
             "titel": "Administrare IT Wels: depozit, birou de la 29 € | WVM-IT",
+            "desc": "Administrare IT pentru firme din Wels de la 29 €/lună pe stație, ajutor fără contract 95 €/oră. Florin Feier din Lenzing: solicitați un apel înapoi.",
             "auftraege_h": "Exemple de cum pot arăta cererile din Wels",
             "auftraege": [
                 "O firmă de meșteșuguri ai cărei e-mailuri cu comenzi nu ajung la client, deoarece expeditorul este considerat suspect. Verificăm datele expeditorului și configurăm corect livrarea.",

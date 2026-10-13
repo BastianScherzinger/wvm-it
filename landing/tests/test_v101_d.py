@@ -146,7 +146,9 @@ class WegweiserTest(SimpleTestCase):
     """EIG334: Die Projekt-CLAUDE.md bleibt Regeln und Wegweiser (Ziel unter 15 KB)."""
 
     def test_claude_md_ist_klein_genug(self):
-        groesse = len((_BASIS / "CLAUDE.md").read_bytes())
+        # Zeilenenden normalisieren: Unter Windows checkt Git mit CRLF aus, dann war
+        # derselbe Inhalt rund 120 Bytes größer und der Test nur dort rot (13.10.2026).
+        groesse = len((_BASIS / "CLAUDE.md").read_bytes().replace(b"\r\n", b"\n"))
         self.assertLess(groesse, 14 * 1024, f"CLAUDE.md hat {groesse} Bytes")
 
     def test_regeltabelle_und_testzahl_bleiben(self):

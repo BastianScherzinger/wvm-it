@@ -333,6 +333,10 @@ _BOT_KENNUNGEN = (
     "python-requests", "python-urllib", "go-http-client", "postman", "monitor",
     "uptime", "pingdom", "semrush", "ahrefs", "mj12", "dotbot", "petalbot",
     "gptbot", "claudebot", "perplexity", "ccbot", "bytespider", "applebot",
+    # Runde 3 (13.10.2026, R3-02 Nr. 2): Prüfwerkzeuge und Scanner, die im Log als
+    # „Browser“ erschienen. Weiterhin nur Kennungen von Programmen, nie von Menschen.
+    "inspectiontool", "companydiscovery", "claude-user", "bun/", "l9scan", "leakix",
+    "overview", "pruefwerkzeug", "nexus 5x build", "moto g power", "chrome-lighthouse",
 )
 
 

@@ -855,7 +855,7 @@ EINRICHTEN = {
                  "time is enough for the IT itself (only the lines at the new site need six to eight), so that nobody stands with an HDMI cable in hand "
                  "looking for the socket.",
 
-        "leistungen_h": "IT move checklist: what belongs to it",
+        "leistungen_h": "Network move and IT move: checklist",
         "leistungen": [
             "Before the move: a full backup of every server and workstation — and "
             "a restore test so the backup actually helps if needed",

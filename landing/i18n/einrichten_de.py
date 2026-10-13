@@ -856,7 +856,7 @@ EINRICHTEN = {
                  "Vorlauf reichen für die IT selbst aus (nur die Leitungen am neuen Standort brauchen sechs bis acht), damit am Umzugstag niemand mit einem HDMI-"
                  "Kabel in der Hand sucht, wo die Steckdose ist.",
 
-        "leistungen_h": "IT-Umzug Checkliste: was gehört dazu",
+        "leistungen_h": "Netzwerk-Umzug und IT-Umzug: Checkliste",
         "leistungen": [
             "Vor dem Umzug: Vollsicherung aller Server und Arbeitsplätze — und ein "
             "Test-Rückspielen, damit die Sicherung im Zweifel wirklich hilft",

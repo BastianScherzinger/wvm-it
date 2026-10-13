@@ -27,6 +27,10 @@ QUELLEN = {
         "titel": "Microsoft Learn: Intelligente Sperrung (Smart Lockout) in Microsoft Entra ID",
         "url": "https://learn.microsoft.com/de-de/entra/identity/authentication/howto-password-smart-lockout",
         "art": "hersteller"},
+    "msa_gesperrt": {
+        "titel": "Microsoft Support: Microsoft-Konto wurde gesperrt",
+        "url": "https://support.microsoft.com/de-de/account-billing/microsoft-konto-wurde-gesperrt-805e8b0d-4141-29b2-7b65-df6ff6c9ce27",
+        "art": "hersteller"},
     "abo_ablauf": {
         "titel": "Microsoft Learn: Was geschieht mit Daten und Zugriff, wenn ein Microsoft-365-Business-Abonnement endet",
         "url": "https://learn.microsoft.com/de-de/microsoft-365/commerce/subscriptions/what-if-my-subscription-expires",
@@ -86,7 +90,7 @@ ZUORDNUNG = {
     "backup-3-2-1-kleine-firma": {
         "quellen": ["bsi_con3", "dsb_breach"]},
     "microsoft-365-konto-gesperrt": {
-        "quellen": ["smart_lockout", "abo_ablauf", "dsb_breach"]},
+        "quellen": ["smart_lockout", "msa_gesperrt", "abo_ablauf", "dsb_breach"]},
     "alte-windows-version-im-betrieb": {
         "quellen": ["win10_ende", "win11_anforderungen"]},
     "ransomware-befall-was-tun": {
