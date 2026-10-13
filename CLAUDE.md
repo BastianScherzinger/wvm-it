@@ -40,7 +40,7 @@ DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 Fernwartung in Österreich und Deutschland; Webseiten, SEO, Google Ads und KI sind das zweite
 Standbein, Technik vor Ort das dritte. Sitz **Waldstraße 19/1, 4860 Lenzing**.
 Silos: `/leistungen/` (14), `/branchen/` (6), `/vergleich/` (4), `/it-service/` (20),
-`/aktuelles/` (35, nur DE), `/wissen/` (14, nur DE), `/checkliste/` (3, nur DE),
+`/aktuelles/` (33, nur DE), `/wissen/` (14, nur DE), `/checkliste/` (3, nur DE),
 `/einrichten/` (10), dazu Werkzeuge (`/kosten/rechner/`, `/it-sicherheit-test/`, `/it-notfall/`,
 `/it-hilfe/`), Einzelseiten und Rechtstexte (nur DE). Die genaue Aufstellung erzeugt
 `python manage.py seo_bericht --inventar --markdown`.
@@ -62,7 +62,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
   Console, `docs/INDEXIERUNG.md`).
 - **Nach jeder Inhaltsänderung:** `python manage.py stand_schreiben` (Änderungsdaten nach
   `landing/stand.py`; `--pruefen` meldet Abweichung im CI mit Rückgabewert 1).
-- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 802 Tests (Stand 13.10.2026) in
+- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 816 Tests (Stand 13.10.2026) in
   `landing/tests/`, strukturell geschrieben (URL-Liste aus `_seiten_pfade()`, Preise aus
   `ANGEBOT_GROUPS`). Läuft bei jedem Push über `.github/workflows/pruefen.yml`.
 - Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
@@ -119,7 +119,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 - `landing/context.py` — Footer-Navigation ins Silo
 - `landing/stand.py` — **erzeugt**: echtes Änderungsdatum je Basis-Pfad
 - `landing/middleware.py` — kanonischer Host, Sprach-Auto-Erkennung, **Schutzköpfe (CSP)**
-- `landing/tests/` — 802 Tests in 66 Dateien (Stand 13.10.2026)
+- `landing/tests/` — 816 Tests in 67 Dateien (Stand 13.10.2026)
 - `landing/i18n/` — Sprachpakete (`de.py` ist Master) + `seiten_*.py` für die Leistungsseiten
 - `templates/` — `base.html` (Gerüst), `antwort.html`, `anfrage_karte.html`, `icons_sprite.html`, `honigtopf.html`, `datenschutzhinweis.html` u. a.; Liste in `docs/CLAUDE-AUSGELAGERT.md`
 - `static/css/style.css` — Hauptstil, alles hängt an den Tokens am Dateianfang; `static/js/kostenrechner.js` · `startpakete.js` rechnen nichts selbst

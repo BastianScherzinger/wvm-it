@@ -377,6 +377,8 @@ EINRICHTEN = {
 
         "faq_h": "Întrebări frecvente",
         "faq": [
+            {"q": "Cât costă configurarea Office 365?",
+             "a": "Configurarea Office 365 (acum Microsoft 365) costă la WVM-IT 290 € preț fix. Licențele le plătiți direct către Microsoft."},
             {"q": "Este Office 365 același lucru cu Microsoft 365?",
              "a": "În uz obișnuit, da: Microsoft a redenumit abonamentele Office 365 în "
                   "Microsoft 365. Cine caută Office 365 se referă de obicei la abonamentul "
@@ -469,7 +471,7 @@ EINRICHTEN = {
 
         "faq_h": "Întrebări frecvente",
         "faq": [
-            {"q": "Avem nevoie de un server propriu?",
+            {"q": "Are nevoie o firmă mică de un server propriu?",
              "a": "Decide software-ul, nu numărul de posturi de lucru. De îndată ce un program de gestiune, o soluție de ramură sau o bază de date cere o instalare centrală, aveți nevoie de un server, chiar și cu cinci oameni. Dacă lucrați doar cu Office, e-mail și fișiere, cloudul este de regulă mai ieftin și cere mai puțină întreținere. Comparația server sau cloud explică pe larg."},
             {"q": "Cât durează configurarea?",
              "a": "Un server de fișiere pentru o firmă mică este gata într-o zi. Cu soft "

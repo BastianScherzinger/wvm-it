@@ -38,6 +38,8 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
       <div><dt>{{ t.seite.rg_fahrzeit|safe }}</dt><dd>{% if region.fahrzeit %}{{ region.fahrzeit }} min{% else %}{{ t.lokal.sitz_t|safe }}{% endif %}</dd></div>
       <div><dt>{{ t.seite.rg_bezirk|safe }}</dt><dd>{{ region.bezirk }}</dd></div>
     </dl>
+    {% comment %}Methodik-Satz (R2-07): woher Kilometer und Minuten kommen, nachrechenbar. Nur wo das Feld `messung` gesetzt ist.{% endcomment %}
+    {% if region.km and region.messung == 'osrm' %}<p class="rg-hinweis rg-methode">{{ t.seite.rg_methode_osrm|safe }}</p>{% elif region.km and region.messung == 'osrm_valhalla' %}<p class="rg-hinweis rg-methode">{{ t.seite.rg_methode_osrm_valhalla|safe }}</p>{% endif %}
   </div>
 </header>
 

@@ -1,0 +1,14 @@
+{% comment %}
+Block „Quellen“ (Runde 2, 13.10.2026): externe Belege für Rechts-, Behörden- und Herstellerangaben.
+Daten: landing/quellen.py. Normale Links (follow), Abrufdatum sichtbar, bei Rechtsquellen der Hinweis
+„Keine Rechtsberatung“. Nur Deutsch (Beiträge und Glossar gibt es nur dort).
+{% endcomment %}{% if quellen %}
+<aside class="bt-quellen" aria-labelledby="quellen-h" data-reveal>
+  <h2 id="quellen-h">Quellen</h2>
+  <ul>
+    {% for q in quellen %}<li><a href="{{ q.url }}" rel="noopener" target="_blank">{{ q.titel }}</a></li>
+    {% endfor %}
+  </ul>
+  <p class="bt-quellen-fuss">Abgerufen am <time datetime="{{ quellen_abruf_iso }}">{{ quellen_abruf }}</time>. Die Quellen belegen die Fachangaben auf dieser Seite; sie ersetzen keine Rechtsberatung und keine Prüfung des Einzelfalls.</p>
+</aside>
+{% endif %}

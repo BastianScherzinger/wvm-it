@@ -324,7 +324,7 @@ class RatgeberFuehrenZumPreisTest(SimpleTestCase):
 
     # Ratgeber-Pfad → die Einrichtungsseite, auf die er führen muss
     WEGE = {
-        "/aktuelles/windows-10-ende-was-jetzt/": "/einrichten/windows-11/",
+        "/aktuelles/alte-windows-version-im-betrieb/": "/einrichten/windows-11/",
         "/aktuelles/pc-langsam-woran-liegt-es/": "/einrichten/pc-tausch/",
         "/vergleich/pc-aufruesten-oder-neu-kaufen/": "/einrichten/windows-11/",
     }

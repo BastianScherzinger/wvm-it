@@ -33,7 +33,7 @@ BEITRAEGE = {
              "t": "Die Bestandsaufnahme aus Punkt zwei und drei ist bei uns der IT-Sicherheitscheck: eine einmalige Prüfung mit schriftlichem Bericht und Maßnahmenliste für 490 Euro. Sie schulden uns danach nichts weiter — der Bericht gehört Ihnen, auch wenn Sie die Maßnahmen selbst umsetzen oder jemand anderen damit beauftragen. Fragen Sie vorher bei der Wirtschaftskammer nach Beratungsförderungen für Oberösterreich: Für Beratungsleistungen zu Informations- und Cybersicherheit gibt es Förderungen, die einen erheblichen Teil des Honorars abdecken. Die Bedingungen ändern sich jährlich, deshalb steht hier keine Zahl — aber es lohnt den Anruf, bevor Sie beauftragen."},
             {"h": "Der Zeitplan, an dem Sie sich orientieren können",
              "t": "Das Gesetz gilt ab 1. Oktober 2026. Die Registrierungsfrist für direkt Betroffene endet am 31. Dezember 2026 — das ist der Zeitraum, in dem die meisten Einrichtungen ihre Lieferketten durchgehen, weil sie dafür eine Bestandsaufnahme brauchen. Rechnen Sie also mit Fragebögen zwischen Oktober 2026 und Frühjahr 2027. Wer die eigene Bestandsaufnahme vorher gemacht hat, beantwortet sie aus der Schublade. Wer wartet, macht sie unter Termindruck neben dem Tagesgeschäft."},
-            {"h": "In Österreich: Was Zulieferer im Zentralraum Wels und Linz jetzt vorbereiten",
+            {"h": "Zulieferer im Zentralraum Wels und Linz: was jetzt vorzubereiten ist",
              "t": "Das NISG 2026 gilt für ganz Österreich, aber der Fragebogen kommt dort an, wo viele Zulieferer sitzen: bei Maschinenbauern, Installationsbetrieben, Softwarepartnern und Dienstleistern rund um die großen Betriebe im Zentralraum. Legen Sie deshalb heute einen Ordner an, aus dem sich jede Anfrage in einer halben Stunde beantworten lässt. Hinein gehören: der Name der Person, die für Informationssicherheit zuständig ist, eine Liste der Systeme und Zugänge, der Nachweis der letzten getesteten Wiederherstellung, die Übersicht der Konten mit Zwei-Faktor-Anmeldung und eine Seite, die beschreibt, wer bei einem Vorfall wen anruft. Mehr verlangen die meisten Fragebögen am Anfang nicht. Die Prüfung der eigenen Lage übernehmen wir im Rahmen von <a href='/leistungen/it-sicherheit/'>IT-Sicherheit für Betriebe</a>, für Kunden aus der Region mit Sitz in <a href='/it-service/wels/'>Wels</a> oder Umgebung. Florin Feier aus Lenzing erledigt das per Fernwartung oder kommt nach Wels, Linz oder ins Salzkammergut vorbei."},
         ],
         "faq": [
@@ -85,7 +85,7 @@ BEITRAEGE = {
              "t": "Die laufende Betreuung beginnt bei 29 € je Arbeitsplatz und Monat. Die Frage, ab wann das günstiger ist als Hilfe nach Stunden, lässt sich mit dem Stundensatz von 95 € für Fernwartung umrechnen. Bei 5 Arbeitsplätzen entspricht die Monatsbetreuung etwa anderthalb Stunden Fernwartung. Bei 10 Arbeitsplätzen sind es knapp über drei Stunden. Bei 15 Arbeitsplätzen etwa viereinhalb. Wenn in einem Monat mehr Stunden anfallen würden, rechnet sich die Betreuung. Wenn es regelmäßig weniger sind, bezahlen Sie vor allem für die Vorsorge: Updates, Überwachung, geprüfte Sicherung. Zählen Sie dafür ein Quartal lang mit: Wie oft hat jemand im Betrieb wegen IT Zeit verloren, und wie lange? Diese Stunden bewerten Sie mit dem, was Ihre Mitarbeiter kosten. Erst dann ist die Rechnung vollständig. Ihre genauen Zahlen können Sie im <a href='/kosten/rechner/'>Kostenrechner</a> durchspielen."},
             {"h": "IT-Betreuung für kleine Unternehmen: Was die Kosten nach oben oder unten bewegt",
              "t": "Vier Punkte entscheiden darüber, ob die Betreuung eines kleinen Unternehmens ruhig oder aufwendig läuft. Erstens der Zustand der Geräte: Alte Rechner mit klassischer Festplatte erzeugen Störungen, die neue nicht erzeugen. Zweitens die Ordnung bei Zugängen und Lizenzen: Wer Konten, Passwörter und Abonnements dokumentiert hat, spart die Zeit, die sonst beim ersten Problem mit Suchen vergeht. Drittens die Zahl der Standorte und Sonderfälle: Ein Server, ein Standort und ein Drucker sind einfacher als drei Standorte mit eigener Hardware. Viertens die Qualität der Datensicherung: Wo sie nie getestet wurde, steckt in der ersten Betreuungsphase Aufräumarbeit. Gute Betriebe fragen deshalb nicht nach dem niedrigsten Preis, sondern nach dem, was am Anfang aufgeräumt wird und was danach im Monatspreis enthalten ist. Die Preise für die einzelnen Leistungen stehen gesammelt auf der Seite <a href='/kosten/'>Was kostet IT-Betreuung</a>."},
-            {"h": "In Österreich: Wie Betriebe rund um Vöcklabruck die Entscheidung treffen",
+            {"h": "Wie Betriebe rund um Vöcklabruck die Entscheidung treffen",
              "t": "In den Betrieben des Attergaus und des Hausruckviertels ist die Rechnung meist einfacher, als sie klingt: Wer ein Büro mit fünf bis fünfzehn Arbeitsplätzen führt, hat selten einen festen IT-Verantwortlichen, aber fast immer jemanden, der es nebenbei macht, häufig den Chef selbst oder die Mitarbeiterin im Büro. Was diese Nebenbei-Lösung kostet, steht in keiner Rechnung, es ist Arbeitszeit, die für das Eigentliche fehlt. Rechnen Sie deshalb beide Seiten: die monatliche Betreuung auf der einen und die Stunden, die intern für Updates, Passwörter und Druckerprobleme draufgehen, auf der anderen. Wer mit der Kammer oder dem Steuerberater über Beratungskosten spricht, sollte nach aktuellen Beratungsförderungen der WKO Oberösterreich fragen, bevor er beauftragt. Wie die laufende Betreuung aussieht, steht unter <a href='/leistungen/edv-it-betreuung/'>EDV- und IT-Betreuung</a>, die Ortsseite für die Region ist <a href='/it-service/voecklabruck/'>Vöcklabruck</a>. Florin Feier aus Lenzing betreut die meisten Betriebe per Fernwartung und kommt bei Bedarf vor Ort."},
         ],
         "faq": [
@@ -155,7 +155,7 @@ BEITRAEGE = {
              "t": "Gastgeräte gehören nicht ins Betriebsnetz. Nicht, weil Gäste böse Absichten hätten, sondern weil ein fremdes Gerät mit veralteter Software oder Schadsoftware sonst direkten Zugriff auf Server, Kassen und Buchhaltung hat. Die Trennung ist technisch keine große Sache, wenn sie von Anfang an mitgeplant wird — und ein erheblicher Aufwand, wenn sie später in ein gewachsenes Netz eingezogen werden muss."},
             {"h": "Wie eine Planung abläuft",
              "t": "Zuerst wird gemessen: Wo ist welches Signal, wo stört was, wie viele Geräte sind zu Spitzenzeiten gleichzeitig da. Daraus ergibt sich die Zahl und Position der Zugangspunkte, die dann verkabelt werden — Funk zwischen den Zugangspunkten ist die zweitbeste Lösung und nur dort sinnvoll, wo Kabel wirklich nicht möglich sind. Am Ende steht eine Konfiguration mit getrennten Netzen und eine kurze Dokumentation, damit ein späterer Umbau nicht wieder bei null anfängt. Die Einrichtung von Netzwerk und WLAN beginnt bei uns bei 890 €, je nach Fläche und Zahl der Zugangspunkte."},
-            {"h": "In Österreich: WLAN in Pensionen, Hotels und Werkstätten im Salzkammergut",
+            {"h": "WLAN in Pensionen, Hotels und Werkstätten im Salzkammergut",
              "t": "Im Salzkammergut liegt die Schwierigkeit oft im Gebäude selbst: dicke Mauern in alten Gasthäusern und Pensionen, Holzdecken, mehrere Stockwerke und dazu Gäste, die im Urlaub über das WLAN streamen. Ein einzelner Router im Eck der Rezeption reicht dort nicht, und ein Repeater im Flur macht, wie im Beitrag beschrieben, die Lage eher schlechter. Sinnvoll ist ein Zugangspunkt je Gebäudeteil mit Kabelanbindung, dazu ein eigenes Gästenetz, das vom Büro- und Kassennetz getrennt ist. Das hat einen Sicherheitsgrund: Wer Gästen Zugang gibt, soll nicht riskieren, dass deren Geräte im selben Netz wie Kassa und Buchhaltung sitzen. Die Einrichtung eines Betriebsnetzes mit Funkausleuchtung beschreibt die Seite <a href='/leistungen/netzwerk-wlan/'>Netzwerk und WLAN</a>; für Betriebe der Region ist <a href='/it-service/bad-ischl/'>Bad Ischl</a> die passende Ortsseite. Florin Feier aus Lenzing kommt für die Ausleuchtung vor Ort und betreut das Netz danach per Fernwartung."},
         ],
         "faq": [
@@ -209,7 +209,7 @@ BEITRAEGE = {
         "titel": "Loxone oder KNX — was passt für welches Gebäude?",
         "meta_titel": "Loxone oder KNX: das passende System finden | WVM-IT",
         "desc": "Beide Systeme steuern Licht, Heizung und Beschattung. Wo die Unterschiede wirklich liegen und welches System zu Ihrem Gebäude passt. Jetzt nachlesen.",
-        "antwort": "KNX ist ein herstellerübergreifender Standard, an den sich über 400 Hersteller halten: Geräte verschiedener Hersteller arbeiten zusammen, die Anlage ist langlebig und unabhängig von einer einzelnen Firma, dafür ist Planung und Programmierung aufwendiger. Loxone ist ein System aus einer Hand: schneller eingerichtet, günstiger im Einstieg, dafür an einen Hersteller gebunden. Für ein Wohnhaus mit klarem Umfang ist Loxone meist der wirtschaftlichere Weg, für größere Gebäude, gemischte Gewerke und lange Nutzungsdauer spricht mehr für KNX.",
+        "antwort": "KNX ist ein herstellerübergreifender Standard, an den sich über 500 Hersteller halten: Geräte verschiedener Hersteller arbeiten zusammen, die Anlage ist langlebig und unabhängig von einer einzelnen Firma, dafür ist Planung und Programmierung aufwendiger. Loxone ist ein System aus einer Hand: schneller eingerichtet, günstiger im Einstieg, dafür an einen Hersteller gebunden. Für ein Wohnhaus mit klarem Umfang ist Loxone meist der wirtschaftlichere Weg, für größere Gebäude, gemischte Gewerke und lange Nutzungsdauer spricht mehr für KNX.",
         "abschnitte": [
             {"h": "Der eigentliche Unterschied ist nicht die Technik",
              "t": "Beide Systeme schalten Licht, steuern Beschattung und regeln Heizung, und in einem fertigen Haus merkt der Bewohner keinen Unterschied. Der Unterschied liegt in der Bindung. KNX ist eine Norm, an die sich über vierhundert Hersteller halten — ein Taster von Firma A arbeitet mit einem Aktor von Firma B. Loxone ist ein geschlossenes System eines Herstellers, in dem alles aufeinander abgestimmt ist. Das ist ein echter Vorteil bei der Einrichtung und ein echtes Risiko über zwanzig Jahre."},
@@ -221,7 +221,7 @@ BEITRAEGE = {
              "t": "Wichtiger als Loxone oder KNX ist die Frage, was überhaupt automatisiert werden soll — und zwar vor der ersten Leitung. Nachträglich Kabel zu ziehen ist die teuerste Art, ein Gebäude zu automatisieren. Wer im Rohbau die richtigen Leitungen legt, hält sich beide Wege offen und kann später entscheiden. Wer erst nach dem Verputzen fragt, hat die Wahl bereits getroffen, ohne es zu merken."},
             {"h": "Was das kostet",
              "t": "Die Kosten hängen fast vollständig davon ab, wie viele Punkte gesteuert werden — jede Leuchtgruppe, jeder Rollladen, jeder Heizkreis ist ein Posten. Deshalb ist jede Zahl ohne Grundriss geraten. Sinnvoll ist eine Planung anhand der tatsächlichen Räume, aus der eine belastbare Aufstellung entsteht. Gebäudeautomation setzen wir projektbezogen vor Ort um, im Einzugsgebiet rund um Vöcklabruck, den Attersee, Gmunden, Wels, Linz und Salzburg."},
-            {"h": "In Österreich: Gebäudetechnik in der Region Mondsee und Attersee",
+            {"h": "Gebäudetechnik in der Region Mondsee und Attersee",
              "t": "Loxone kommt aus Oberösterreich und ist deshalb bei heimischen Elektrikern gut bekannt, auch rund um Mondsee und Attersee. Das ist ein echtes Argument: Der Betrieb einer Anlage hängt am Elektriker, der sie programmiert hat, und an einem Netzwerk, das stabil läuft. Gerade Letzteres wird übersehen. Jede Steuerung braucht ein verlässliches Netz, feste Adressen, getrennte Bereiche für Gebäudetechnik und Büro und einen geschützten Fernzugriff. Ein offen aus dem Internet erreichbarer Server der Gebäudesteuerung ist ein Einfallstor, auch wenn niemand daran gedacht hat, dass er eines ist. Wir programmieren keine Anlagen, wir sorgen für das Netz darunter und den sicheren Zugang. Das beschreibt die Seite <a href='/leistungen/netzwerk-wlan/'>Netzwerk und WLAN</a>; die Ortsseite für die Region ist <a href='/it-service/mondsee/'>Mondsee</a>. Florin Feier aus Lenzing arbeitet mit dem Elektriker zusammen und erledigt seinen Teil per Fernwartung oder vor Ort."},
         ],
         "faq": [
@@ -259,7 +259,7 @@ BEITRAEGE = {
              "t": "Microsoft 365 ist keine Datensicherung. Gelöschte Postfächer und Dateien liegen je nach Einstellung nur eine begrenzte Zeit im Papierkorb, und danach sind sie weg — auch für Microsoft. Wer aufbewahrungspflichtige Unterlagen per Mail bekommt, braucht deshalb entweder eine passende Aufbewahrungsrichtlinie oder eine eigene Sicherung des Mandanten. Wir richten die überwachte Datensicherung ab 49 € im Monat ein; wichtiger als der Preis ist, dass diese Lücke überhaupt jemandem auffällt, bevor sie zählt."},
             {"h": "Umstieg von einem alten Exchange oder POP-Postfach",
              "t": "Der Umzug ist Routine und lässt sich so planen, dass niemand eine Mail verliert: Postfächer werden im Hintergrund kopiert, die Umstellung passiert an einem Abend, alte Adressen bleiben eine Zeit lang erreichbar. Was Aufwand macht, ist selten die Technik, sondern die Sammlung: Wer hat noch ein privates Postfach für Firmenpost, welche Verteiler gibt es, welche Geräte holen die Mail sonst noch ab. Diese Liste entsteht vor dem Umzug, nicht danach."},
-            {"h": "In Österreich: Microsoft 365 in Salzburger und oberösterreichischen Betrieben",
+            {"h": "Microsoft 365 in Salzburger und oberösterreichischen Betrieben",
              "t": "In österreichischen Betrieben ist die Lizenzfrage selten die schwierigste. Häufiger fehlt die Zuordnung: Wer ist eigentlich Inhaber des Microsoft-Kontos, auf welche E-Mail-Adresse läuft das Abonnement, und wer bekommt die Rechnung? In vielen Kleinbetrieben im Raum Salzburg liegt das Konto auf dem privaten Postfach eines Gründers, das längst nicht mehr benutzt wird. Dazu kommt, dass Rechnungen für Lizenzen als Betriebsausgabe sauber belegt und beim Steuerberater abgelegt sein müssen. Prüfen Sie deshalb vor jeder Lizenzänderung: Wer ist Globaler Administrator, gibt es mindestens zwei, und läuft die Zahlung über ein Betriebskonto. Die Einrichtung samt Postfachumzug und Zwei-Faktor-Anmeldung beschreibt <a href='/einrichten/microsoft-365/'>Microsoft 365 einrichten</a>. Für Betriebe im Salzburger Raum ist <a href='/it-service/salzburg/'>Salzburg</a> die Ortsseite. Florin Feier aus Lenzing richtet das per Fernwartung ein und kommt für Arbeitsplätze und Geräte auch vor Ort."},
         ],
         "faq": [
@@ -291,7 +291,7 @@ BEITRAEGE = {
              "t": "Aus den drei Posten ergibt sich die einzige Anforderung, die für die Technik wirklich zählt: Wie lange darf es maximal dauern, bis wieder gearbeitet werden kann, und wie viel Datenverlust ist verkraftbar? Diese beiden Zahlen bestimmen alles Weitere — wie oft gesichert wird, ob es Ersatzhardware braucht, ob eine Überwachung nötig ist. Ohne sie kauft man Technik nach Gefühl. Mit ihnen wird jedes Angebot vergleichbar."},
             {"h": "Was Vorsorge dagegen kostet",
              "t": "Ein betreuter Server mit Überwachung kostet bei uns ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Zusammen sind das im Jahr weniger, als in vielen Betrieben ein einziger Ausfalltag kostet. Das ist kein Verkaufsargument, sondern eine Rechnung, die Sie mit Ihren eigenen Zahlen selbst nachvollziehen können — und wenn dabei herauskommt, dass sich die Betreuung für Ihren Betrieb nicht rechnet, ist das ein ebenso gültiges Ergebnis."},
-            {"h": "In Österreich: Wenn der Ausfall Rechnungen und Kassa betrifft",
+            {"h": "Wenn der Ausfall Rechnungen und Kassa betrifft",
              "t": "Für österreichische Betriebe kommt zu den drei Posten ein vierter dazu, den die Rechnung oft vergisst: die Pflicht, Belege und Aufzeichnungen vollständig und zugänglich zu halten. Fällt ein Server aus, auf dem Buchhaltung, Rechnungsprogramm oder Warenwirtschaft liegen, steht nicht nur die Arbeit, es sind auch Unterlagen nicht erreichbar, die das Finanzamt bei einer Prüfung sehen darf. Wer eine Registrierkasse einsetzt, klärt mit dem Hersteller oder dem Steuerberater, wie die Kasse bei einem Netzausfall weiterläuft. Für die Planung hilft eine einfache Frage: Welche Systeme dürfen höchstens einen halben Tag stehen? Genau für diese gehört eine schnelle Wiederherstellung vorbereitet, für alle anderen reicht die nächste Sicherung. Wir betreuen Server nach <a href='/leistungen/server-datensicherung/'>Server und Datensicherung</a>; für den Bezirk Vöcklabruck und das Hausruckviertel steht <a href='/it-service/attnang-puchheim/'>Attnang-Puchheim</a> bereit. Florin Feier aus Lenzing ist per Fernwartung oder vor Ort erreichbar."},
         ],
         "faq": [
@@ -323,7 +323,7 @@ BEITRAEGE = {
              "t": "Zuerst eine Bestandsaufnahme: Was ist da, was läuft, was ist ungesichert. Dann werden Zugänge übernommen und neue Administratorkonten angelegt, während die alten noch bestehen — abgeschaltet wird erst, wenn der neue Weg nachweislich funktioniert. Danach kommen Überwachung und Datensicherung, und erst zum Schluss werden Dinge verändert. Eine Übernahme, die am ersten Tag umbaut, ist keine Übernahme, sondern ein Risiko ohne Not."},
             {"h": "Was Sie beim neuen Dienstleister vereinbaren sollten",
              "t": "Genau dasselbe, was Sie beim alten vermisst haben: dass alle Zugänge auf Ihren Betrieb laufen, dass die Dokumentation Ihnen gehört und jederzeit herausgegeben wird, und dass es keine Systeme gibt, aus denen Sie ohne Mitwirkung des Anbieters nicht wieder herauskommen. Wer das nicht zusagen will, sagt damit etwas über die eigene Bindungsstrategie — und zwar mehr, als jede Referenzliste aussagt."},
-            {"h": "In Österreich: Der Wechsel im Innviertel und anderswo, ohne Streit",
+            {"h": "Der Wechsel im Innviertel und anderswo, ohne Streit",
              "t": "In kleineren Orten wie Ried im Innkreis kennt man den bisherigen IT-Betreuer oft persönlich, und genau das erschwert den Wechsel: Niemand will unhöflich wirken, also bleibt die Übergabe vage. Hilfreich ist, den Wechsel sachlich und schriftlich anzustoßen. Schicken Sie dem bisherigen Dienstleister ein kurzes Schreiben mit Kündigungsfrist laut Vertrag, der Bitte um die Zugangsdaten und Dokumentation und einem Übergabetermin. Dass Zugangsdaten zu Ihren eigenen Systemen Ihnen gehören, ist keine Gefälligkeit, sondern Teil der Verantwortung, die Sie nach der DSGVO für Ihre Daten tragen. Wenn personenbezogene Daten im Spiel sind, was bei Kundenlisten, Personalakten oder E-Mails immer der Fall ist, gehört außerdem eine Auftragsverarbeitungsvereinbarung mit dem neuen Dienstleister dazu. Den Ablauf beschreibt <a href='/checkliste/it-dienstleister-wechseln/'>die Checkliste zum Dienstleisterwechsel</a>; die Ortsseite für das Innviertel ist <a href='/it-service/ried-im-innkreis/'>Ried im Innkreis</a>. Florin Feier aus Lenzing übernimmt die Betreuung per Fernwartung oder kommt für den Übergabetermin vorbei."},
         ],
         "faq": [
@@ -355,7 +355,7 @@ BEITRAEGE = {
              "t": "Erstens: benannte Zugänge, kein gemeinsames Passwort für „die IT-Firma“. Zweitens: Zwei-Faktor-Anmeldung für jeden Zugang von außen. Drittens: ein Protokoll, das zeigt, wer wann angemeldet war — und die Zusage, es auf Nachfrage herauszugeben. Viertens: eine klare Regel, was passiert, wenn ein Mitarbeiter des Dienstleisters geht. Alle vier kosten nichts außer Sorgfalt, und alle vier fehlen erstaunlich oft."},
             {"h": "Warum Fernwartung trotzdem der bessere Weg ist",
              "t": "Die Alternative zur Fernwartung ist nicht mehr Sicherheit, sondern längere Wartezeit. Wer erst anfahren muss, beginnt eine Stunde später — und schaut sich dann dieselben Daten an, nur eben vor Ort. Der Unterschied liegt nicht im Zugriff, sondern in der Nachvollziehbarkeit: Ein Fernzugang lässt sich protokollieren, ein Besuch am Arbeitsplatz nicht."},
-            {"h": "In Österreich: Fernwartung für Betriebe im Kremstal und im Almtal",
+            {"h": "Fernwartung für Betriebe im Kremstal und im Almtal",
              "t": "Fernwartung ist in Österreich vor allem dort ein Segen, wo die Wege lang sind: Von Kirchdorf an der Krems nach Linz ist es eine Stunde, und mancher Betrieb im Almtal oder Steyrtal wartet sonst einen halben Tag auf einen Techniker. Rechtlich gilt der Zugriff auf einen Rechner mit personenbezogenen Daten als Auftragsverarbeitung nach Art. 28 DSGVO, also braucht es einen schriftlichen Vertrag, den der Dienstleister bereitstellen muss. Bitten Sie ausdrücklich darum, wenn er nicht von selbst kommt. In der Praxis wichtiger als das Papier ist die Technik: Zugriff nur mit Ihrer Freigabe, ein Protokoll über jede Sitzung und eine Zwei-Faktor-Anmeldung beim Dienstleister selbst. Was wir per Fernwartung betreuen, steht unter <a href='/leistungen/edv-it-betreuung/'>EDV- und IT-Betreuung</a>, die Ortsseite für die Region ist <a href='/it-service/kirchdorf-an-der-krems/'>Kirchdorf an der Krems</a>. Florin Feier aus Lenzing arbeitet überwiegend per Fernwartung und kommt vor Ort, wenn Hardware angefasst werden muss."},
         ],
         "faq": [
@@ -391,7 +391,7 @@ BEITRAEGE = {
              "t": "Lesen Sie die Zeilen wie eine Tabelle mit zwei Spalten, links die Lage im Betrieb, rechts die Empfehlung. Nur Office, E-Mail und Dateiablage, alles in Microsoft 365: kein eigener Server, die Cloud genügt. Eine Branchensoftware, die eine zentrale Installation oder Datenbank verlangt: Server im Haus oder gemieteter Serverplatz. Konstruktionsdaten, Videos oder große Bilddateien, an denen mehrere gleichzeitig arbeiten: Server oder leistungsfähiges NAS im Haus, weil jede Leitung zum Flaschenhals wird. Maschinen oder Messgeräte, die Daten auf eine Freigabe schreiben: Server oder NAS im Haus, die Cloud ist hier unnötig kompliziert. Ein Betrieb mit vielen Außendienstlern ohne feste Fachsoftware: Cloud. Zwei Standorte, die dieselbe Anwendung nutzen: gemieteter Serverplatz, weil beide ihn gleich gut erreichen. Aus diesen Zeilen ergibt sich meist schon nach zwei Minuten, in welche Richtung die Antwort geht."},
             {"h": "Checkliste vor der Anschaffung: was Sie klären, bevor Sie kaufen",
              "t": "Gehen Sie diese Punkte der Reihe nach durch, und kaufen Sie erst, wenn jeder eine Antwort hat. Erstens: Welche Programme brauchen den Server wirklich, und was sagt der Hersteller zur Cloud-Variante? Zweitens: Wie viele Personen arbeiten gleichzeitig, auch im Homeoffice? Drittens: Wie viel Speicher wird in fünf Jahren gebraucht, nicht heute? Planen Sie mit Wachstum, aber nicht mit dem Doppelten auf Verdacht. Viertens: Wer betreut den Server, und wer ist erreichbar, wenn er am Freitagnachmittag ausfällt? Fünftens: Wo steht er, und was passiert bei Stromausfall oder Hitze? Sechstens: Wie wird gesichert, und wann wurde zuletzt eine Wiederherstellung getestet? Siebtens: Was kostet das Ganze über fünf Jahre inklusive Lizenzen, Strom und Betreuung? Wenn Sie bei Punkt eins keine klare Antwort haben, ist die Beratung vor dem Kauf das Günstigste an der ganzen Rechnung. Wie wir einen Server einrichten, steht unter <a href='/einrichten/server/'>Server einrichten</a>, der Vergleich mit der Cloud unter <a href='/vergleich/server-vs-cloud/'>Server oder Cloud</a>."},
-            {"h": "In Österreich: Der eigene Server im Betrieb rund um Schwanenstadt",
+            {"h": "Der eigene Server im Betrieb rund um Schwanenstadt",
              "t": "Viele Betriebe im Hausruckviertel führen eine Branchensoftware für Auftragsabwicklung oder Lagerverwaltung, die auf einem Server im Haus läuft, und das ist oft völlig in Ordnung. Zwei österreichische Besonderheiten verdienen Aufmerksamkeit. Erstens die Stromversorgung: In ländlichen Lagen gibt es bei Gewittern kurze Netzunterbrechungen, und ein Server ohne unterbrechungsfreie Stromversorgung zahlt dafür mit beschädigten Daten. Zweitens die Leitung: Wer den Serverplatz auslagern will, sollte vorher prüfen, welche Bandbreite am Standort tatsächlich ankommt, nicht, was der Vertrag verspricht. Beides lässt sich vor der Anschaffung klären. Die Betreuung eines Servers beschreibt <a href='/einrichten/server/'>Server einrichten</a>; die Ortsseite für die Region ist <a href='/it-service/schwanenstadt/'>Schwanenstadt</a>. Florin Feier aus Lenzing prüft die Voraussetzungen im Betrieb vor Ort oder zunächst per Fernwartung und sagt Ihnen ehrlich, wenn Sie keinen Server brauchen."},
         ],
         "faq": [
@@ -429,7 +429,7 @@ BEITRAEGE = {
              "t": "Eine Bewerbung, die niemand ausgeschrieben hat. Eine Mahnung zu einer Bestellung, die es nicht gab. Ein Lieferschein von einem unbekannten Absender. Öffnen Sie nichts, was Sie nicht erwarten — und wenn doch, dann niemals mit aktivierten Makros. Wer unsicher ist, leitet die Mail intern an eine Stelle weiter, die prüft. Dafür muss es diese Stelle geben, und alle müssen wissen, wer das ist."},
             {"h": "Was zusätzlich hilft, wenn doch jemand klickt",
              "t": "Menschen klicken, auch geschulte, auch aufmerksame. Deshalb zählt die zweite Verteidigungslinie: Zwei-Faktor-Anmeldung, damit ein abgefangenes Passwort allein nichts nützt. Getrennte Rechte, damit ein Klick nicht das ganze Netz erreicht. Und eine getrennt aufbewahrte Datensicherung, damit eine Verschlüsselung nicht auch die Sicherung erwischt. Ein IT-Sicherheitscheck mit schriftlichem Bericht kostet bei uns ab 490 € und prüft genau diese Punkte."},
-            {"h": "In Österreich: Gefälschte Absender, die hier jeder kennt",
+            {"h": "Gefälschte Absender, die im österreichischen Büroalltag jeder kennt",
              "t": "In österreichischen Postfächern tauchen immer wieder Absender auf, denen man sofort glaubt: die Post mit angeblicher Zustellgebühr, die Hausbank mit einer Sicherheitsprüfung, ein Energieversorger mit offener Rechnung oder eine Behörde mit einer Zahlungsaufforderung. Alle diese Mails verwenden den Zeitdruck aus Merkmal 1. Für Betriebe gilt eine einfache Regel: Banken und Behörden fordern in der Regel nicht per Link zur Eingabe von Zugangsdaten auf, und Rechnungen, die Sie nicht erwartet haben, werden vor der Zahlung beim Absender telefonisch nachgefragt, mit einer Nummer aus Ihren Unterlagen, nicht aus der Mail. Wer im Betrieb auf Link geklickt hat und Daten eingegeben hat, meldet das sofort; eine Datenpanne mit Personenbezug ist binnen 72 Stunden der Datenschutzbehörde zu melden, wenn ein Risiko besteht. Die Maßnahmen im Überblick stehen unter <a href='/leistungen/it-sicherheit/'>IT-Sicherheit</a>; für Betriebe im Hausruckviertel ist <a href='/it-service/grieskirchen/'>Grieskirchen</a> die Ortsseite. Florin Feier aus Lenzing schult und prüft per Fernwartung oder vor Ort."},
         ],
         "faq": [
@@ -479,21 +479,27 @@ BEITRAEGE = {
 
     "alte-windows-version-im-betrieb": {
         "titel": "Alte Windows-Version im Betrieb: wann wird es wirklich gefährlich?",
-        "meta_titel": "Altes Windows: Windows 10 Ende, 3 Fragen | WVM-IT",
+        "meta_titel": "Windows 10 Ende im Betrieb: ablösen oder abtrennen | WVM-IT",
         "desc": "Windows 10 bekommt seit Oktober 2025 keine Updates mehr. Alte Windows-Version ablösen oder abtrennen — drei Fragen entscheiden. Jetzt nachlesen.",
-        "antwort": "Der Punkt ist nicht das Alter, sondern das Ende der Sicherheitsupdates. Ab dem Tag, an dem keine Updates mehr erscheinen, wird jede neu entdeckte Lücke dauerhaft offen bleiben — und öffentlich bekannte Lücken werden binnen Tagen automatisiert ausgenutzt. Ein solches System gehört entweder abgelöst oder in ein eigenes, abgetrenntes Netz, in dem es nur noch mit dem sprechen darf, mit dem es sprechen muss. Für Maschinensteuerungen ist die zweite Variante der Normalfall, nicht der Notbehelf.",
+        "antwort": "Windows 10 erhält seit dem 14. Oktober 2025 keine Sicherheitsupdates mehr; der Punkt ist bei jeder alten Windows-Version nicht das Alter, sondern das Ende der Sicherheitsupdates. Ab dem Tag, an dem keine Updates mehr erscheinen, wird jede neu entdeckte Lücke dauerhaft offen bleiben — und öffentlich bekannte Lücken werden binnen Tagen automatisiert ausgenutzt. Ein solches System gehört entweder abgelöst oder in ein eigenes, abgetrenntes Netz, in dem es nur noch mit dem sprechen darf, mit dem es sprechen muss. Für Maschinensteuerungen ist die zweite Variante der Normalfall, nicht der Notbehelf.",
         "abschnitte": [
             {"h": "Warum „läuft doch“ kein Argument ist",
              "t": "Ein System ohne Updates funktioniert genauso gut wie am ersten Tag — das ist gerade das Problem. Der Unterschied ist unsichtbar: Jede Woche werden Schwachstellen veröffentlicht, für unterstützte Systeme kommt ein Update, für nicht mehr unterstützte nicht. Der Abstand zwischen „sicher“ und „unsicher“ wächst also still weiter, ohne dass am Bildschirm etwas passiert. Bemerkt wird er genau einmal."},
             {"h": "Die drei Fragen vor der Entscheidung",
              "t": "Erstens: Hängt an dem System eine Anwendung, die auf neueren Windows-Versionen nicht läuft? Zweitens: Muss es überhaupt ins Internet oder ins allgemeine Firmennetz? Drittens: Liegen darauf oder darüber erreichbar personenbezogene Daten? Ist die erste Antwort ja und die zweite nein, ist Abtrennen die richtige Lösung. Ist die dritte ja, wird aus einer technischen Frage eine mit Meldepflicht im Hintergrund."},
+            {"h": "Welche Geräte schaffen Windows 11?",
+             "t": "Microsoft nennt als Mindestanforderungen unter anderem einen Prozessor ab einer bestimmten Generation, vier Gigabyte Arbeitsspeicher, 64 Gigabyte Speicher und ein TPM-Modul der Version 2.0. Viele Geräte melden trotzdem, dass sie ungeeignet sind, weil TPM oder Secure Boot im BIOS abgeschaltet ist. Das ist eine Einstellung und kein Mangel. Prüfen Sie erst, bevor Sie ein Gerät abschreiben; Windows zeigt die Eignung in den Einstellungen unter Windows Update an. Geräte, die Windows 11 wirklich nicht können, sind meist schon einige Jahre alt, hier lohnt der Ersatz ohnehin."},
+            {"h": "Erweiterte Sicherheitsupdates sind keine Dauerlösung",
+             "t": "Microsoft bietet für Windows 10 erweiterte Sicherheitsupdates (ESU) nur befristet an. Die Bedingungen für Unternehmen klären Sie direkt bei Microsoft oder Ihrem Lizenzpartner. Für einen einzelnen Rechner, an dem eine unverzichtbare Software hängt, kann das ein Übergang sein; für einen ganzen Betrieb verschiebt es das Problem nur."},
+            {"h": "Die Reihenfolge der Umstellung",
+             "t": "Nicht alle Geräte an einem Tag. Erst eine Bestandsaufnahme, die die Arbeitsplätze nach Risiko sortiert, dann ein einzelnes Gerät mit der kritischsten Software umstellen. Fällt dort eine Woche lang nichts auf, folgt der Rest in Gruppen. Fragen Sie vorher beim Hersteller Ihrer Fachanwendungen nach der Freigabe für Windows 11, das kostet eine E-Mail und verhindert ein umgestelltes Gerät, auf dem die Software nicht mehr startet. Wie ein umgestellter Arbeitsplatz aussieht, zeigt <a href='/einrichten/windows-11/'>Windows 11 einrichten</a>."},
             {"h": "Abtrennen statt austauschen — wie das aussieht",
              "t": "Das System bekommt ein eigenes Netzsegment. Darin darf es genau die Verbindungen aufbauen, die es für seine Aufgabe braucht — zur Maschine, zu einem bestimmten Server, zu sonst nichts. Kein Internetzugang, kein Zugriff aus dem allgemeinen Netz, keine Freigaben. Dazu ein dokumentierter Weg, wie Daten hinein- und herauskommen. In den meisten Betrieben können die vorhandenen Switches das bereits; es wurde nur nie eingerichtet. Firewall und getrennte Netze richten wir ab 690 € ein."},
             {"h": "Was bei Arbeitsplätzen anders ist",
              "t": "Ein Arbeitsplatz, an dem gemailt und im Internet gearbeitet wird, lässt sich nicht sinnvoll abtrennen — dort ist der Austausch die einzige ehrliche Antwort. Ein neu eingerichteter Arbeitsplatz kostet bei uns 190 €, die Hardware kommt dazu. Wer viele Geräte auf einmal ablösen muss, plant das über zwei bis drei Quartale statt in einem Rutsch; das verteilt die Kosten und die Umgewöhnung."},
             {"h": "Der versteckte Fall: das Gerät, an das niemand denkt",
              "t": "Der Kassenrechner. Das Bediengerät an der Maschine. Der Rechner, der nur die Zeiterfassung anzeigt. Das Steuergerät der Alarmanlage. Diese Geräte tauchen in keiner Inventarliste auf, weil sie niemandem gehören — und sie laufen oft am längsten. Der erste Schritt ist deshalb keine Entscheidung, sondern eine Bestandsaufnahme: Was steht überhaupt im Haus, mit welchem System, und was hängt daran? Genau das ist der Inhalt des IT-Sicherheitschecks für 490 €."},
-            {"h": "In Österreich: Alte Rechner am Attersee, in Werkstätten und Ferienbetrieben",
+            {"h": "Alte Rechner am Attersee, in Werkstätten und Ferienbetrieben",
              "t": "Am Attersee und in vielen Tourismusbetrieben steht ein Rechner, den man nur im Sommer braucht: das Kassensystem im Strandbad, der Büro-PC der Saisonvermietung, die Steuerung der Sauna. Er läuft das ganze Jahr kaum, wird nie aktualisiert und hängt trotzdem im selben Netz wie alles andere. Genau solche Geräte sind die Fälle, die im Beitrag als versteckte Gefahr beschrieben sind. Gehen Sie einmal im Frühjahr durch den Betrieb und notieren Sie jedes Gerät mit Betriebssystem und Standort. Alles, was kein Update mehr bekommt, kommt in ein eigenes Netz ohne Zugriff auf Büro und Kassa oder wird ersetzt. Wer eine Registrierkasse betreibt, sollte beim Hersteller nachfragen, welche Betriebssysteme unterstützt werden. Die Trennung der Netze beschreibt <a href='/einrichten/netzwerk/'>Netzwerk einrichten</a>; die Ortsseite für die Region ist <a href='/it-service/attersee/'>Attersee</a>. Florin Feier aus Lenzing prüft den Bestand per Fernwartung oder vor Ort."},
         ],
         "faq": [
@@ -503,6 +509,10 @@ BEITRAEGE = {
              "a": 'Das ist der häufigste echte Grund für ein altes System, und dafür gibt es einen anerkannten Weg: das Gerät isolieren, den Zugriff auf das Nötigste beschränken, den Zustand dokumentieren und den Ersatz planen, statt ihn zu verdrängen. Wichtig ist, dass es eine bewusste Entscheidung ist und nicht ein vergessener Rechner.'},
             {"q": 'Woran merkt man, dass es dringend wird?',
              "a": 'Wenn der Hersteller keine Sicherheitsaktualisierungen mehr liefert, wenn eine Versicherung oder ein Großkunde nach dem Stand fragt, oder wenn ein Programm nicht mehr startet. Die ersten beiden sind Vorwarnungen, das dritte ist der Ausfall.'},
+            {"q": 'Wie erkenne ich, ob unsere Rechner Windows 11 unterstützen?',
+             "a": 'Windows zeigt es in den Einstellungen unter Windows Update an. Meldet es, das Gerät sei nicht geeignet, lohnt ein Blick ins BIOS: Sehr oft sind nur TPM oder Secure Boot abgeschaltet. Wir prüfen das je Arbeitsplatz mit.'},
+            {"q": 'Was kostet die Umstellung auf Windows 11 je Arbeitsplatz?',
+             "a": 'Bei uns 190 € je Arbeitsplatz, einschließlich der Prüfung von Hardware und Programmen. Muss ein Gerät getauscht werden, gilt derselbe Preis für die Einrichtung des neuen Geräts, nicht beides zusammen. Die Hardware kommt dazu.'},
             {"q": 'Was kostet ein Umstieg wirklich?',
              "a": 'Selten nur die Lizenz. Rechnen Sie mit drei Posten: neue Geräte für alles, was die Anforderungen nicht erfüllt, Prüfung Ihrer Branchensoftware auf dem neuen System, und Arbeitszeit für die Umstellung. Der zweite Posten wird am häufigsten vergessen und verursacht die meisten Verzögerungen — klären Sie beim Softwarehersteller die Freigabe, bevor Sie Hardware bestellen.'},
         ],
@@ -557,7 +567,7 @@ BEITRAEGE = {
              "t": "Zwei-Faktor-Anmeldung für jeden Zugang von außen. Verschlüsselte Festplatten auf allen Geräten, die das Haus verlassen. Eine klare Regel, ob private Geräte benutzt werden dürfen und unter welchen Bedingungen. Und ein Weg, ein verlorenes Gerät aus der Ferne zu sperren. Diese vier Punkte entscheiden mehr über die Sicherheit als die Wahl zwischen VPN und Terminalserver."},
             {"h": "Der Fehler, der am häufigsten vorkommt",
              "t": "Der Fernzugriff wird schnell eingerichtet, weil es eilt — und bleibt dann so. Ein direkt aus dem Internet erreichbarer Fernwartungszugang ohne zweiten Faktor ist eine der meistgenutzten Eintrittstüren überhaupt, und er entsteht fast immer aus einer Übergangslösung, die niemand zurückgebaut hat. Wenn Sie nur eine Sache prüfen: Fragen Sie, welche Dienste Ihres Netzes derzeit direkt aus dem Internet erreichbar sind. Die Antwort überrascht öfter, als sie sollte."},
-            {"h": "In Österreich: Homeoffice für Pendler im Salzburger Raum",
+            {"h": "Homeoffice für Pendler im Salzburger Raum",
              "t": "Rund um Salzburg arbeiten viele Beschäftigte teilweise von zu Hause, weil der Arbeitsweg lang ist, und manche wohnen im Flachgau oder Salzkammergut, der Betrieb sitzt aber in Oberösterreich. Für die Anbindung heißt das: Die Leitungen zu Hause sind sehr verschieden, von Glasfaser bis zu einer wackeligen Funkverbindung am Berg. Ein VPN, das bei jedem Verbindungsabbruch neu aufgebaut werden muss, nervt dann so sehr, dass Leute Umwege suchen, etwa die private E-Mail oder einen USB-Stick. Planen Sie die Lösung deshalb für die schlechteste Verbindung, nicht für die beste. Mit Geräten, die der Betrieb stellt und verwaltet, ist Homeoffice einfacher abzusichern als mit privaten Rechnern. Die technische Umsetzung beschreibt <a href='/einrichten/firewall-vpn/'>Firewall und VPN einrichten</a>; die Ortsseite für die Region ist <a href='/it-service/salzburg/'>Salzburg</a>. Florin Feier aus Lenzing richtet Heimarbeitsplätze per Fernwartung ein und kommt für Netzwerk und Geräte vor Ort."},
         ],
         "faq": [
@@ -574,111 +584,6 @@ BEITRAEGE = {
     },
 
     # ══ Windows 10 ist ausgelaufen ════════════════════════════════════════════
-    "windows-10-ende-was-jetzt": {
-        "titel": "Windows 10 ist ausgelaufen — was ein Betrieb jetzt tun sollte",
-        "meta_titel": "Windows 10 Support-Ende: was Betriebe jetzt tun | WVM-IT",
-        "desc": "Seit Oktober 2025 keine Sicherheitsupdates mehr. Was das "
-                "bedeutet, welche Geräte Windows 11 schaffen und was mit den anderen "
-                "passiert. Termin vereinbaren.",
-        "antwort": "Windows 10 erhält seit dem 14. Oktober 2025 keine "
-                   "Sicherheitsupdates mehr. Jede seither gefundene Lücke bleibt offen "
-                   "— dauerhaft. Für einen Betrieb heißt das nicht, dass am Montag "
-                   "etwas passiert, sondern dass das Risiko jeden Monat steigt und "
-                   "nicht mehr sinkt. Der Weg heraus führt über drei Fragen: Welche "
-                   "Geräte schaffen Windows 11, welche Programme laufen darauf, und "
-                   "was geschieht mit dem Rest.",
-
-        "abschnitte": [
-            {"h": "Was ein Ende der Updates praktisch bedeutet",
-             "t": "Solange ein System Updates bekommt, wird jede gefundene Lücke "
-                  "irgendwann geschlossen. Fällt das weg, kehrt sich die Richtung um: "
-                  "Jede neue Lücke, die irgendwo auf der Welt entdeckt wird, bleibt auf "
-                  "Ihrem Gerät für immer offen — und sie wird veröffentlicht, weil "
-                  "Sicherheitsforscher ihre Funde publizieren. Angreifer müssen also "
-                  "nichts selbst finden; sie lesen mit. Genau deshalb ist ein "
-                  "ausgelaufenes System nicht am ersten Tag gefährlich und nach einem "
-                  "Jahr sehr wohl."},
-            {"h": "Die erste Frage: Welche Geräte schaffen Windows 11?",
-             "t": "Windows 11 verlangt einen Prozessor ab einer bestimmten Generation, "
-                  "vier Gigabyte Arbeitsspeicher, Secure Boot und ein TPM-Modul der "
-                  "Version 2.0. Die meisten Geräte ab Baujahr 2018 erfüllen das — viele "
-                  "davon melden trotzdem, dass es nicht geht, weil TPM im BIOS "
-                  "abgeschaltet ist. Das ist eine Einstellung und kein Mangel; sie "
-                  "lässt sich in wenigen Minuten ändern. Prüfen Sie also erst, bevor "
-                  "Sie ein Gerät abschreiben."},
-            {"h": "Die zweite Frage: Läuft Ihre Software?",
-             "t": "Bei Office, Browsern, PDF-Programmen und den üblichen Werkzeugen ist "
-                  "der Umstieg unproblematisch. Aufpassen muss man bei Fachanwendungen: "
-                  "Warenwirtschaft, Buchhaltung, Zeiterfassung, CAD, Praxis- oder "
-                  "Kanzleisoftware. Fragen Sie beim Hersteller nach, bevor Sie "
-                  "umstellen, nicht danach. Diese Frage kostet eine E-Mail und "
-                  "verhindert den unangenehmsten Fall überhaupt: ein umgestelltes "
-                  "Gerät, auf dem die Software nicht mehr startet, an einem "
-                  "Montagmorgen."},
-            {"h": "Die dritte Frage: Was passiert mit dem Rest?",
-             "t": "Geräte, die Windows 11 wirklich nicht können, haben in der Regel "
-                  "sechs Jahre oder mehr auf dem Buckel. Bei denen lohnt der Ersatz "
-                  "ohnehin: Netzteil, Lüfter und Festplatte sind im selben Alter, und "
-                  "die nächste Reparatur kommt bestimmt. Rechnen Sie nicht nur den "
-                  "Kaufpreis, sondern die Zeit, die ein langsames Gerät jeden Tag "
-                  "kostet — bei einer Person, die acht Stunden davor sitzt, ist eine "
-                  "Minute Wartezeit am Tag im Jahr ein halber Arbeitstag."},
-            {"h": "Der Sonderfall: Maschinensteuerungen",
-             "t": "In Werkstätten und Produktionsbetrieben steht fast immer ein "
-                  "Rechner, der eine Maschine steuert und deshalb nicht angefasst "
-                  "werden darf — die Steuerungssoftware ist für ein altes Windows "
-                  "geschrieben, und den Maschinenhersteller gibt es nicht mehr. Diesen "
-                  "Rechner umzustellen ist das größere Risiko. Der richtige Weg ist, "
-                  "ihn vom übrigen Netz zu trennen: eigenes Netzsegment, kein Internet, "
-                  "kein E-Mail, Datenaustausch nur über einen kontrollierten Weg. Dann "
-                  "darf er alt bleiben."},
-            {"h": "Die Übergangslösung, die keine ist",
-             "t": "Microsoft bietet Unternehmen erweiterte Sicherheitsupdates gegen "
-                  "Gebühr an. Der Preis steigt jedes Jahr, und zwar deutlich — das ist "
-                  "Absicht, es soll zum Umstieg drängen. Für einen einzelnen Rechner, "
-                  "an dem eine unverzichtbare Software hängt, kann das ein Jahr lang "
-                  "sinnvoll sein. Für einen ganzen Betrieb rechnet es sich fast nie "
-                  "gegen die Umstellung, und es verschiebt das Problem nur."},
-            {"h": "In welcher Reihenfolge man vorgeht",
-             "t": "Nicht alle Geräte an einem Tag. Sinnvoll ist: erst eine "
-                  "Bestandsaufnahme, die die Arbeitsplätze in drei Gruppen sortiert. "
-                  "Dann ein einzelnes Gerät umstellen — und zwar das mit der "
-                  "kritischsten Software, nicht das unwichtigste. Wenn dort eine Woche "
-                  "lang nichts auffällt, folgt der Rest in Gruppen. So bleibt der "
-                  "Betrieb arbeitsfähig, auch wenn etwas nachgezogen werden muss."},
-            {"h": "In Österreich: Die Umstellung in Linzer und Welser Betrieben planen",
-             "t": "Das Support-Ende ist ein Datum, aber die Umstellung ist ein Projekt, und in Betrieben mit einer Handvoll Rechner scheitert sie selten an der Technik, sondern am Termin. Wer in Linz oder Wels ein Büro mit Kundenverkehr hat, kann nicht einfach einen Tag zusperren. Bewährt hat sich, die Rechner nacheinander umzustellen, jeweils außerhalb der Hauptzeit, und die Reihenfolge nach Risiko zu wählen: Zuerst die Geräte mit Internetzugang und E-Mail, zuletzt die, die nur eine Fachsoftware bedienen. Prüfen Sie vorher, ob Ihre Branchenlösung und Ihr Steuerberaterprogramm unter Windows 11 freigegeben sind, und fragen Sie bei der WKO Oberösterreich nach aktuellen Beratungsförderungen, bevor Sie größere Beschaffungen beauftragen. Wie ein umgestellter Arbeitsplatz aussieht, zeigt <a href='/einrichten/windows-11/'>Windows 11 einrichten</a>; für Betriebe im Großraum ist <a href='/it-service/linz/'>Linz</a> die Ortsseite. Florin Feier aus Lenzing stellt per Fernwartung um oder kommt für die Geräte vor Ort."},
-        ],
-
-        "faq": [
-            {"q": "Wie erkenne ich, ob unsere Rechner Windows 11 unterstützen?",
-             "a": "Windows selbst zeigt es unter Einstellungen im Bereich Windows "
-                  "Update an. Meldet es, das Gerät sei nicht geeignet, lohnt ein "
-                  "zweiter Blick ins BIOS: Sehr oft liegt es nur an abgeschaltetem TPM "
-                  "oder Secure Boot. Wir prüfen das je Arbeitsplatz mit."},
-            {"q": "Können wir einfach so weitermachen?",
-             "a": "Technisch ja, die Geräte laufen weiter. Nur wächst das Risiko "
-                  "monatlich, und im Schadensfall wird es zur Frage der Fahrlässigkeit "
-                  "— gegenüber Kunden, deren Daten Sie verarbeiten, und gegenüber einer "
-                  "Versicherung, die wissen will, ob das System unterstützt war."},
-            {"q": "Was kostet die Umstellung je Arbeitsplatz?",
-             "a": "Bei uns 190 € je Arbeitsplatz, einschließlich der Prüfung von "
-                  "Hardware und Programmen und der Nacharbeit danach. Muss ein Gerät "
-                  "getauscht werden, gilt derselbe Preis für die Einrichtung des neuen "
-                  "— nicht beides zusammen."},
-            {"q": "Wir haben nur zwei Rechner. Lohnt sich das überhaupt?",
-             "a": "Gerade dann ist es überschaubar. Zwei Arbeitsplätze sind an einem "
-                  "Vormittag umgestellt, meist per Fernwartung. Der Aufwand steigt mit "
-                  "der Zahl der Geräte, nicht mit der Dringlichkeit."},
-        ],
-
-        "fazit": "Die Frist ist abgelaufen, nicht die Zeit: Wer jetzt eine "
-                 "Bestandsaufnahme macht, hat den Umstieg in diesem Quartal erledigt "
-                 "und muss ihn nicht unter Druck machen. Die drei Fragen — welche "
-                 "Geräte, welche Software, was mit dem Rest — beantwortet man einmal, "
-                 "und danach ist es Arbeit statt Entscheidung.",
-    },
-
     # ══ Der Rechner ist langsam ═══════════════════════════════════════════════
     "pc-langsam-woran-liegt-es": {
         "titel": "Der Rechner ist langsam — woran es meistens wirklich liegt",
@@ -740,7 +645,7 @@ BEITRAEGE = {
                   "Gerät nachzudenken. Diese Reihenfolge kostet eine halbe Stunde und "
                   "verhindert die häufigste Fehlentscheidung: ein neues Gerät für ein "
                   "Problem, das dreißig Euro gekostet hätte."},
-            {"h": "In Österreich: Austauschen oder aufrüsten, was in Vöcklabrucker Büros üblich ist",
+            {"h": "Austauschen oder aufrüsten: was in Vöcklabrucker Büros üblich ist",
              "t": "In kleinen Büros der Region steht oft ein Rechner, den vor Jahren jemand günstig im Handel mitgenommen hat, mit klassischer Festplatte und knappem Arbeitsspeicher. Die Frage, ob man aufrüstet oder ersetzt, lässt sich mit einer einfachen Faustregel beantworten: Ist das Gerät jünger als sechs Jahre und unterstützt es Windows 11, lohnt der Einbau einer SSD fast immer. Ist es älter oder unterstützt es Windows 11 nicht, wird das Aufrüsten zum Aufschub und der Tausch rechnet sich. Ein Wort zur Buchhaltung: Geräte, die vor dem Austausch noch Daten für die Aufbewahrung enthalten, müssen vorher gesichert werden; Aufbewahrungspflichten laufen unabhängig vom Alter des Rechners weiter. Die Entscheidungshilfe dazu steht unter <a href='/vergleich/pc-aufruesten-oder-neu-kaufen/'>PC aufrüsten oder neu kaufen</a>; die Ortsseite für die Region ist <a href='/it-service/voecklabruck/'>Vöcklabruck</a>. Florin Feier aus Lenzing beurteilt das zunächst per Fernwartung und kommt für den Einbau vor Ort."},
         ],
 
@@ -828,6 +733,10 @@ BEITRAEGE = {
                   "Anmeldung beherrschen, die Microsoft 365 schrittweise abschaltet — "
                   "dann braucht es einen anderen Weg, etwa einen eigenen Versanddienst "
                   "oder den Scan in einen Ordner statt in ein Postfach."},
+            {"h": "Erreichbar oder nicht: Ping und Weboberfläche",
+             "t": "Öffnen Sie auf einem Rechner die Eingabeaufforderung und senden Sie einen Ping an die Adresse des Druckers. Kommt keine Antwort, ist der Drucker nicht im Netz: Kabel, WLAN-Verbindung oder Gerät prüfen. Kommt eine Antwort, aber das Drucken scheitert, liegt es am Anschluss oder am Treiber am Rechner. Viele Drucker haben außerdem eine eigene Weboberfläche, die man über die Adresse im Browser aufruft; öffnet sie sich, ist die Verbindung in Ordnung. Der Test trennt in einer Minute zwischen Netz und Rechner. Die Adresse zeigt das Display im Netzwerkmenü oder ein Statusausdruck; sie muss mit dem Eintrag im Windows-Anschluss übereinstimmen."},
+            {"h": "Nach einem WLAN-Wechsel: zwei Netze, kein Kontakt",
+             "t": "Typisch nach dem Austausch eines Routers oder wenn ein Büro ein Gäste-WLAN dazubekommt: Der Drucker hängt noch im alten Netz, die Rechner sind im neuen. Beide sind verbunden, sehen sich aber nicht, weil sie in getrennten Bereichen liegen. Das ist gewollt, wenn Gäste den Drucker nicht erreichen sollen, und ein Fehler, wenn die Mitarbeiter plötzlich draußen sind. Lösung: Drucker und Arbeitsplätze in dasselbe Betriebsnetz, Gäste getrennt. Wie man das aufteilt, steht in <a href='/wissen/netzwerksegmentierung/'>Netzwerksegmentierung</a>. Wenn möglich, hängt der Drucker per Kabel am Netz, das vermeidet Abbrüche und Netzwechsel."},
             {"h": "In welcher Reihenfolge man prüft",
              "t": "Zuerst am Drucker selbst eine Testseite drucken: Klappt das, ist "
                   "das Gerät in Ordnung und das Problem liegt im Netz oder am Rechner. "
@@ -836,7 +745,7 @@ BEITRAEGE = {
                   "sondern am ersten Rechner. Diese Reihenfolge spart den häufigsten "
                   "Fehlkauf — einen neuen Drucker für ein Problem, das eine Einstellung "
                   "war."},
-            {"h": "In Österreich: Drucker, Kassabons und Rechnungen in Gmundner Betrieben",
+            {"h": "Drucker, Kassabons und Rechnungen in Gmundner Betrieben",
              "t": "In Betrieben am Traunsee hängt am Drucker oft mehr als ein Ausdruck: Lieferscheine, Rechnungen mit Pflichtangaben und Kassabelege. Wenn der Drucker streikt, steht dann die Abwicklung. Bei Barzahlungen gilt in Österreich die Belegerteilungspflicht; was dabei bei einem Druckerausfall genügt, klären Sie mit dem Hersteller der Kasse oder dem Steuerberater. Technisch lohnt es sich, Kassa- und Büro-Drucker getrennt zu behandeln: Der Bondrucker an der Kassa ist ein anderes Gerät mit anderem Treiber als der Netzwerkdrucker im Büro, und die Ursachen aus diesem Beitrag gelten nur für Letzteren. Halten Sie außerdem für den Notfall einen zweiten Drucker mit USB-Anschluss bereit, der unabhängig vom Netzwerk läuft. Die Einrichtung und Absicherung von Netzen beschreibt <a href='/leistungen/netzwerk-wlan/'>Netzwerk und WLAN</a>; die Ortsseite für die Region ist <a href='/it-service/gmunden/'>Gmunden</a>. Florin Feier aus Lenzing löst Druckerprobleme meist per Fernwartung und kommt bei Hardwaredefekten vor Ort."},
         ],
         "faq": [
@@ -846,6 +755,10 @@ BEITRAEGE = {
                   "Scan-Einstellungen per Fernwartung prüfen und reparieren. Vor Ort "
                   "braucht es jemanden erst bei Papierstau im Inneren, defekter "
                   "Mechanik oder einem Drucker, der gar nicht mehr startet."},
+            {"q": "Warum druckt der Drucker nach dem Neustart des Routers nicht mehr?",
+             "a": "Weil er beim Neustart eine andere IP-Adresse bekommen haben kann und die Rechner ihn unter der alten suchen. Mit einer festen Adresse oder einer Reservierung im Router tritt das nicht mehr auf."},
+            {"q": "Reicht es, den Drucker neu zu installieren?",
+             "a": "Nur wenn der Anschluss oder der Treiber am Rechner das Problem war. Ist die Adresse die Ursache, steht nach der Neuinstallation wieder die falsche Adresse im Anschluss, wenn Sie sie nicht prüfen."},
             {"q": "Lohnt sich die Reparatur eines alten Druckers?",
              "a": "Bei einer Einstellung oder einem Treiber immer, das ist in der "
                   "Regel schnell behoben. Bei einem mechanischen Defekt an einem "
@@ -998,6 +911,8 @@ BEITRAEGE = {
              "t": "Besonders häufig ist der Fall in Betrieben, in denen die Einrichtung vor Jahren ein externer Helfer oder der Sohn des Chefs gemacht hat und das Administratorkonto auf eine Adresse läuft, die niemand mehr liest. Dann ist das gesperrte Konto nur das Symptom. Der eigentliche Befund ist, dass die Verantwortung für den Mandanten ungeklärt ist. Klären Sie, auf wen das Abonnement läuft und wer die Rechnung bekommt, und legen Sie einen zweiten Verwaltungszugang an. Ist durch die Sperre ein Vorfall mit personenbezogenen Daten entstanden, etwa durch fremden Zugriff auf Kundenmails, gilt die Meldefrist von 72 Stunden an die Datenschutzbehörde, wenn ein Risiko besteht. Die Einrichtung eines sauberen Mandanten beschreibt <a href='/einrichten/microsoft-365/'>Microsoft 365 einrichten</a>; die Ortsseite für die Region ist <a href='/it-service/attnang-puchheim/'>Attnang-Puchheim</a>. Florin Feier aus Lenzing hilft per Fernwartung oder vor Ort, auch ohne Vertrag nach Stunden."},
         ],
         "faq": [
+            {"q": "Was bedeutet „Ihr Konto ist vorübergehend gesperrt, um eine nicht autorisierte Verwendung zu verhindern“?",
+             "a": "Die Meldung erscheint, wenn die automatische Schutzfunktion von Microsoft (Smart Lockout) ein Konto nach mehreren fehlgeschlagenen Anmeldeversuchen sperrt. Laut Microsoft Learn dauert die erste Sperre eine Minute und wird bei weiteren Fehlversuchen länger. Warten Sie ab, ohne weiter zu probieren, und rufen Sie an, wenn die Meldung bleibt; ein Administrator kann die Sperre aufheben."},
             {"q": "Wir haben keinen Administratorzugang mehr. Was nun?",
              "a": "Das ist häufiger, als man denkt: Der Zugang lag bei einem früheren "
                   "Mitarbeiter oder Dienstleister. Microsoft bietet dafür einen Weg, "

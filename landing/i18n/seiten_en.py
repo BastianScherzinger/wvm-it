@@ -140,6 +140,8 @@ SEITEN = {
         "preis_t": "Setting up network and Wi-Fi costs from €890, firewall and VPN from €690. The final price depends on the area, the building materials and the number of access points — which is precisely why we survey first rather than quote blind. Ongoing management of the network is available from €29 per workstation and month. On-site work is billed at €120 per hour plus travel. Guide prices, net plus VAT.",
         "einrichtung_satz": "If only the firewall and VPN are missing: <a href=\"{url}\">firewall and VPN setup</a> at a fixed price of {preis} — secure access from outside, protected network inside.",
         "faq": [
+            {"q": "What does network support cost?",
+             "a": "Setting up a network and Wi-Fi costs from €890 at WVM-IT, firewall and VPN from €690. Individual help with an existing network costs €95 per hour by remote maintenance, without a contract."},
             {"q": "Why does another repeater not help?",
              "a": "A repeater halves the available bandwidth and occupies the same radio channel a second time. In a small flat that hardly shows; in a business with many devices it measurably makes things worse. A few correctly placed access points on well-distributed channels are better."},
             {"q": "Do we need a separate guest network?",
@@ -443,7 +445,7 @@ SEITEN = {
         "titel": "Smart home with Loxone & KNX in Austria | WVM-IT",
         "desc": "Building automation with Loxone and KNX: lighting, heating, shading, access and security in one system. Request a free quote now.",
         "h1": "Building automation with Loxone and KNX",
-        "kurz": "WVM-IT plans, programmes and maintains building automation with Loxone and KNX: lighting, heating, shading, access, security and media technology in one system — KNX as a cross-vendor standard with more than 400 manufacturers, Loxone as a closed system from a single source. Installations of this kind are calculated per project and built on site — we quote after a short conversation and a survey, not before.",
+        "kurz": "WVM-IT plans, programmes and maintains building automation with Loxone and KNX: lighting, heating, shading, access, security and media technology in one system — KNX as a cross-vendor standard with more than 500 manufacturers, Loxone as a closed system from a single source. Installations of this kind are calculated per project and built on site — we quote after a short conversation and a survey, not before.",
         "intro": "In building automation the result is not decided by the hardware but by the programming. The same devices can produce a system nobody understands, which gets operated by hand again after the first summer — or one that simply does what you expect. So we plan the behaviour first and the parts list second.",
         "problem_h": "Where this pays off",
         "probleme": [

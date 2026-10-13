@@ -6,7 +6,7 @@ AUSBAU = {
 
         "salzburg": {
             "titel": "IT-Betreuung Salzburg: Fernwartung ab 29 €/Monat | WVM-IT",
-            "auftraege_h": "Typische Aufträge in Salzburg",
+            "auftraege_h": "Beispiele, wie Anfragen aus Salzburg aussehen können",
             "auftraege": [
                 "Eine Kanzlei in der Stadt Salzburg, deren Sicherung jede Nacht läuft, aber noch nie zurückgespielt wurde. Wir stellen eine Testwiederherstellung nach und halten schriftlich fest, wie lange der Ernstfall dauern würde.",
                 "Ein Beherbergungsbetrieb im Salzkammergut-Vorland, dessen Gäste-WLAN am Abend einbricht, sobald alle Zimmer gleichzeitig streamen. Wir trennen Gäste- und Betriebsnetz und prüfen die Zugangspunkte.",
@@ -27,6 +27,8 @@ AUSBAU = {
                  "t": "Laufende Betreuung ist in Salzburg dasselbe wie in Lenzing: Sie melden eine Störung, wir verbinden uns über die gesicherte Fernwartung und arbeiten am Gerät, ohne dass jemand fährt. Überwachung, Updates, Benutzerkonten und Datensicherung laufen im Hintergrund. Hardware ist die Grenze. Ein defekter Switch oder Server braucht Hände. Dann vereinbaren wir einen Termin, bereiten per Fernwartung vor, was sich vorbereiten lässt, und kommen mit passendem Material. Wer garantiert binnen einer Stunde jemanden im Haus braucht, ist mit einem Anbieter in der Stadt besser bedient. Manche Betriebe kombinieren beides: einen Techniker vor Ort für Hardware, uns für die laufende Betreuung, Sicherheit und Microsoft 365. Welche Aufteilung passt, klären wir im Erstgespräch ohne Verpflichtung."},
             ],
             "faq_plus": [
+            {"q": "Was kostet EDV-Betreuung in Salzburg?",
+             "a": "Die laufende EDV-Betreuung kostet in Salzburg ab 29 € je Arbeitsplatz und Monat und läuft überwiegend per Fernwartung; einzelne Hilfe ohne Vertrag kostet 95 € je Stunde. Einsätze vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab Lenzing (67 Kilometer, rund 60 Minuten)."},
                 {"q": "Betreuen Sie auch Betriebe im Flachgau oder im Salzkammergut?",
                  "a": "Ja, für die laufende Betreuung spielt der Standort keine Rolle. Für Termine vor Ort liegen die Gemeinden im östlichen Flachgau und im Salzkammergut-Vorland auf unserem Weg und sind gut planbar. Je weiter Richtung Pongau, Pinzgau oder Lungau, desto eher erledigen wir alles per Fernwartung. Richtpreise, netto zzgl. USt."},
                 {"q": "Wir haben schon einen Techniker vor Ort in Salzburg. Ergibt zusätzlich Fernbetreuung Sinn?",
@@ -38,7 +40,7 @@ AUSBAU = {
 
         "linz": {
             "titel": "IT-Service Linz: feste Betreuung ab 29 €/Monat | WVM-IT",
-            "auftraege_h": "Typische Aufträge in Linz",
+            "auftraege_h": "Beispiele, wie Anfragen aus Linz aussehen können",
             "auftraege": [
                 "Ein Zulieferbetrieb, dem ein Kunde einen Fragebogen zur Informationssicherheit schickt und der Nachweise zu Datensicherung, Updates und Zugriffsrechten braucht.",
                 "Eine Bürofläche in einem Altbau, in der das WLAN nur im Gang funktioniert. Wir messen aus und setzen Zugangspunkte gezielt, statt eine neue Anlage zu verkaufen.",
@@ -70,7 +72,7 @@ AUSBAU = {
 
         "wels": {
             "titel": "IT-Betreuung Wels: Lager, Halle, Büro ab 29 € | WVM-IT",
-            "auftraege_h": "Typische Aufträge in Wels",
+            "auftraege_h": "Beispiele, wie Anfragen aus Wels aussehen können",
             "auftraege": [
                 "Ein Handwerksbetrieb, dessen Auftragsmail beim Kunden nicht ankommt, weil der Absender als verdächtig eingestuft wird. Wir prüfen die Absenderangaben und stellen die Zustellung richtig ein.",
                 "Ein Großhändler, dessen Handscanner nach einem Routerwechsel keine Verbindung mehr zur Warenwirtschaft haben.",
@@ -91,6 +93,8 @@ AUSBAU = {
                  "t": "Praktisch wenig. Fast alles, was in einem Betrieb mit IT schiefgeht, lässt sich über die gesicherte Fernwartung erledigen: Konten, Software, E-Mail, Updates, Drucker-Einrichtung, Sicherung. Die Anfahrt betrifft nur das Handfeste, etwa Kabel, Switches, Geräte und Netzwerkmessung im Gebäude. Damit sich die Fahrt lohnt, sammeln wir Aufgaben und erledigen sie in einem Termin. Sie sehen vorab, was wir vorhaben und was die Anfahrt kostet. Bei dringenden Störungen ohne Hardware-Ursache sind wir meist schneller auf dem Gerät als ein Techniker, der erst anreisen müsste. Bei einem defekten Server ist das anders, dort entscheidet die vorbereitete Datensicherung darüber, wie schnell Sie weiterarbeiten. Deshalb prüfen wir bei einer Übernahme zuerst die Sicherung und erst danach die Details."},
             ],
             "faq_plus": [
+            {"q": "Was kostet IT-Betreuung in Wels?",
+             "a": "Die laufende IT-Betreuung kostet auch in Wels ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag 95 € je Stunde per Fernwartung. Einsätze vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab Lenzing (58 Kilometer, rund 50 Minuten)."},
                 {"q": "Kommt die Auftragsmail unseres Betriebs beim Kunden an, und wie prüfen Sie das?",
                  "a": "Das lässt sich prüfen. Wir kontrollieren die Absenderangaben der Domain (SPF, DKIM und DMARC) und senden Testmails an verschiedene Anbieter. Landen Ihre Mails im Spamordner, liegt es meist an fehlenden oder falschen Einträgen und lässt sich beheben. Die Prüfung läuft per Fernwartung, Sie brauchen dafür keinen Termin."},
                 {"q": "Lohnt sich IT-Betreuung für einen Betrieb mit zwei oder drei Arbeitsplätzen?",
@@ -106,7 +110,7 @@ AUSBAU = {
 
         "salzburg": {
             "titel": "IT support Salzburg: remote from €29/month | WVM-IT",
-            "auftraege_h": "Typical jobs in Salzburg",
+            "auftraege_h": "Examples of what enquiries from Salzburg can look like",
             "auftraege": [
                 "A law firm in the city of Salzburg whose backup runs every night but has never been restored. We run a test restore and put in writing how long a real emergency would take.",
                 "An accommodation business near the Salzkammergut whose guest Wi-Fi collapses in the evening once every room streams at once. We separate the guest network from the business network and check the access points.",
@@ -127,6 +131,8 @@ AUSBAU = {
                  "t": "Ongoing support in Salzburg is the same as in Lenzing: you report a fault, we connect through the secured remote maintenance and work on the device without anyone driving. Monitoring, updates, user accounts and backups run in the background. Hardware is the limit. A faulty switch or server needs hands. Then we agree an appointment, prepare by remote maintenance whatever can be prepared, and arrive with the right material. Whoever needs someone in the building within an hour guaranteed is better served by a provider in the city. Some businesses combine both: a technician on site for hardware, us for ongoing support, security and Microsoft 365. Which split suits you we clarify in a first conversation, without obligation."},
             ],
             "faq_plus": [
+            {"q": "What does IT support in Salzburg cost?",
+             "a": "Ongoing IT support in Salzburg costs from €29 per workstation and month and is mostly done by remote maintenance; individual help without a contract is €95 per hour. On-site work is €120 per hour plus travel from Lenzing (67 kilometres, about 60 minutes)."},
                 {"q": "Do you also look after businesses in the Flachgau or the Salzkammergut?",
                  "a": "Yes, for ongoing support the location plays no role. For on-site appointments, the municipalities in the eastern Flachgau and at the edge of the Salzkammergut lie on our way and are easy to plan. The further towards the Pongau, Pinzgau or Lungau, the more we do everything by remote maintenance. Indicative prices, net plus VAT."},
                 {"q": "We already have a technician on site in Salzburg. Does additional remote support make sense?",
@@ -138,7 +144,7 @@ AUSBAU = {
 
         "linz": {
             "titel": "IT service Linz: fixed contact from €29/month | WVM-IT",
-            "auftraege_h": "Typical jobs in Linz",
+            "auftraege_h": "Examples of what enquiries from Linz can look like",
             "auftraege": [
                 "A supplier whose customer sends a questionnaire on information security and who needs evidence on backups, updates and access rights.",
                 "An office floor in an old building where the Wi-Fi only works in the corridor. We measure and place access points deliberately instead of selling a new system.",
@@ -170,7 +176,7 @@ AUSBAU = {
 
         "wels": {
             "titel": "IT support Wels: warehouse, hall, office from €29 | WVM-IT",
-            "auftraege_h": "Typical jobs in Wels",
+            "auftraege_h": "Examples of what enquiries from Wels can look like",
             "auftraege": [
                 "A trade business whose order emails do not reach the customer because the sender is classed as suspicious. We check the sender details and set up delivery correctly.",
                 "A wholesaler whose handheld scanners lost their connection to the inventory system after a router change.",
@@ -191,6 +197,8 @@ AUSBAU = {
                  "t": "In practice little. Nearly everything that goes wrong in a business with IT can be dealt with through secured remote maintenance: accounts, software, email, updates, printer setup, backups. Travel only concerns the physical side, such as cables, switches, devices and network measurement in the building. So that the trip is worthwhile, we collect tasks and deal with them in one appointment. You see in advance what we plan and what the travel costs. For urgent faults without a hardware cause we are usually on the device faster than a technician who would first have to travel. With a failed server it is different: there the prepared backup decides how quickly you can keep working."},
             ],
             "faq_plus": [
+            {"q": "What does IT support in Wels cost?",
+             "a": "Ongoing IT support in Wels also costs from €29 per workstation and month, individual help without a contract €95 per hour by remote maintenance. On-site work is €120 per hour plus travel from Lenzing (58 kilometres, about 50 minutes)."},
                 {"q": "Do our business's order emails reach customers, and how do you check?",
                  "a": "That can be checked. We examine the sender records of the domain (SPF, DKIM and DMARC) and send test emails to several providers. If your emails land in the spam folder it is usually down to missing or wrong entries and can be fixed. The check runs by remote maintenance; you do not need an appointment."},
                 {"q": "Is IT support worthwhile for a business with two or three workstations?",
@@ -206,7 +214,7 @@ AUSBAU = {
 
         "salzburg": {
             "titel": "Administrare IT Salzburg: la distanță de la 29 € | WVM-IT",
-            "auftraege_h": "Lucrări tipice în Salzburg",
+            "auftraege_h": "Exemple de cum pot arăta cererile din Salzburg",
             "auftraege": [
                 "Un birou de avocatură din orașul Salzburg, a cărui copie de siguranță rulează în fiecare noapte, dar nu a fost niciodată restaurată. Facem o restaurare de probă și notăm în scris cât ar dura o urgență reală.",
                 "O pensiune sau un hotel din apropierea regiunii Salzkammergut, al cărui Wi-Fi pentru oaspeți cedează seara, când toate camerele fac streaming simultan. Separăm rețeaua oaspeților de rețeaua firmei și verificăm punctele de acces.",
@@ -227,6 +235,8 @@ AUSBAU = {
                  "t": "Asistența curentă în Salzburg este aceeași ca la Lenzing: raportați o defecțiune, ne conectăm prin accesul securizat la distanță și lucrăm pe dispozitiv fără ca cineva să plece la drum. Monitorizarea, actualizările, conturile de utilizator și copiile de siguranță rulează în fundal. Hardware-ul este limita. Un switch sau un server defect cere mâini la fața locului. Atunci stabilim o întâlnire, pregătim la distanță ce se poate pregăti și venim cu materialul potrivit. Cine are nevoie garantat de cineva în clădire în decurs de o oră este mai bine servit de un furnizor din oraș. Unele firme le combină pe amândouă: un tehnician local pentru hardware, noi pentru asistența curentă, securitate și Microsoft 365. Ce împărțire se potrivește stabilim la prima discuție, fără obligații."},
             ],
             "faq_plus": [
+            {"q": "Cât costă administrarea IT în Salzburg?",
+             "a": "Administrarea IT curentă costă în Salzburg de la 29 € per post de lucru și lună și se face în mare parte prin acces la distanță; ajutorul punctual fără contract costă 95 € pe oră. Intervențiile la fața locului sunt 120 € pe oră plus deplasarea din Lenzing (67 de kilometri, circa 60 de minute)."},
                 {"q": "Asistați și firme din Flachgau sau din Salzkammergut?",
                  "a": "Da, pentru asistența curentă locația nu contează. Pentru întâlniri la fața locului, comunele din estul regiunii Flachgau și de la marginea regiunii Salzkammergut se află pe drumul nostru și se programează ușor. Cu cât mergem mai spre Pongau, Pinzgau sau Lungau, cu atât mai mult rezolvăm totul la distanță. Prețuri orientative, nete, plus TVA."},
                 {"q": "Avem deja un tehnician local în Salzburg. Are sens asistența suplimentară la distanță?",
@@ -238,7 +248,7 @@ AUSBAU = {
 
         "linz": {
             "titel": "Servicii IT Linz: contact fix de la 29 €/lună | WVM-IT",
-            "auftraege_h": "Lucrări tipice în Linz",
+            "auftraege_h": "Exemple de cum pot arăta cererile din Linz",
             "auftraege": [
                 "O firmă furnizoare căreia un client îi trimite un chestionar despre securitatea informațiilor și care are nevoie de dovezi privind copiile de siguranță, actualizările și drepturile de acces.",
                 "Un etaj de birouri într-o clădire veche, unde Wi-Fi-ul funcționează doar pe hol. Măsurăm și plasăm punctele de acces țintit, în loc să vindem un sistem nou.",
@@ -270,7 +280,7 @@ AUSBAU = {
 
         "wels": {
             "titel": "Administrare IT Wels: depozit, birou de la 29 € | WVM-IT",
-            "auftraege_h": "Lucrări tipice în Wels",
+            "auftraege_h": "Exemple de cum pot arăta cererile din Wels",
             "auftraege": [
                 "O firmă de meșteșuguri ai cărei e-mailuri cu comenzi nu ajung la client, deoarece expeditorul este considerat suspect. Verificăm datele expeditorului și configurăm corect livrarea.",
                 "Un angrosist ale cărui scannere de mână și-au pierdut conexiunea la programul de gestiune după schimbarea routerului.",
@@ -291,6 +301,8 @@ AUSBAU = {
                  "t": "Practic puțin. Aproape tot ce merge prost într-o firmă cu IT se poate rezolva prin accesul securizat la distanță: conturi, software, e-mail, actualizări, configurarea imprimantelor, copii de siguranță. Deplasarea privește doar partea fizică, adică cabluri, switchuri, dispozitive și măsurători de rețea în clădire. Ca drumul să merite, adunăm sarcinile și le rezolvăm într-o singură întâlnire. Vedeți dinainte ce planificăm și cât costă transportul. La defecțiuni urgente fără cauză hardware suntem de obicei mai repede pe dispozitiv decât un tehnician care ar trebui să călătorească. La un server defect lucrurile stau altfel: acolo copia de siguranță pregătită hotărăște cât de repede puteți continua munca. De aceea, la o preluare verificăm mai întâi copia de siguranță și abia apoi detaliile."},
             ],
             "faq_plus": [
+            {"q": "Cât costă administrarea IT în Wels?",
+             "a": "Administrarea IT curentă costă și în Wels de la 29 € per post de lucru și lună, ajutorul punctual fără contract 95 € pe oră prin acces la distanță. Intervențiile la fața locului sunt 120 € pe oră plus deplasarea din Lenzing (58 de kilometri, circa 50 de minute)."},
                 {"q": "Ajung e-mailurile cu comenzi ale firmei noastre la clienți și cum verificați?",
                  "a": "Se poate verifica. Controlăm înregistrările expeditorului pentru domeniu (SPF, DKIM și DMARC) și trimitem e-mailuri de probă către mai mulți furnizori. Dacă mesajele ajung în spam, de obicei vina este a unor înregistrări lipsă sau greșite, iar problema se poate remedia. Verificarea se face la distanță, nu aveți nevoie de o întâlnire."},
                 {"q": "Merită asistența IT pentru o firmă cu două sau trei stații de lucru?",

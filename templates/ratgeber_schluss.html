@@ -4,3 +4,4 @@ Schlussabsatz jedes Ratgebers (Conversion-Runde 12.10.2026, Punkt 11): zwei Text
 `ratgeber_schluss` (landing/templatetags/conv.py).
 {% endcomment %}
 <p class="rg-schluss" data-reveal>{{ schluss.vor|safe }} <a href="{{ schluss.k_url }}">{{ schluss.k_text|safe }}</a> {{ schluss.oder|safe }} <a href="{{ schluss.a_url }}">{{ schluss.a_text|safe }}</a>.</p>
+{% if schluss.weiter %}<p class="rg-hinweis rg-entscheiden" data-reveal>Zum Weiterlesen: Die <a href="{{ schluss.vergleich_url }}">Vergleiche zwischen IT-Lösungen</a> helfen bei der Entscheidung, die <a href="{{ schluss.checklisten_url }}">Checklisten für den Betrieb</a> beim Abarbeiten.</p>{% endif %}

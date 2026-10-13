@@ -2876,3 +2876,10 @@ article.section{padding-top:clamp(28px,4vw,48px)}
   .cookie-text p{font-size:12px;line-height:1.35}
   .cookie-actions .btn{min-height:36px;font-size:13.5px}
 }
+
+/* R2-01 (13.10.2026): Block „Quellen“ am Ende von Beitrag und Glossar, dezent und gut lesbar */
+.bt-quellen{margin:36px 0 0;padding:16px 0 0;border-top:1px solid var(--line);max-width:68ch}
+.bt-quellen h2{font-size:15px;margin:0 0 8px;color:var(--ink-soft);font-weight:600;letter-spacing:.02em}
+.bt-quellen ul{margin:0 0 8px;padding-left:18px;font-size:14.5px;line-height:1.5}
+.bt-quellen li{margin:0 0 4px}
+.bt-quellen-fuss{margin:0;font-size:13.5px;color:var(--ink-soft)}

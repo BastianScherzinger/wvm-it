@@ -8,7 +8,7 @@ _DE = {
         "titel": "IT-Betreuung Timelkam: Server und Backup | WVM-IT",
         "desc": "IT-Betreuung in Timelkam, 5 km von Lenzing: Server und Datensicherung, laufend ab 29 €/Monat je Arbeitsplatz. Jetzt unverbindlich anfragen.",
         "h1": "IT-Betreuung in Timelkam: Server und Datensicherung für Betriebe",
-        "kurz": "Timelkam liegt 5 Kilometer und rund 10 Minuten von unserem Sitz in Lenzing entfernt. WVM-IT betreut dort Betriebe, bei denen ein Server oder die Datensicherung im Mittelpunkt steht: Wir überwachen, aktualisieren und testen per Fernwartung. Laufende IT-Betreuung kostet ab 29 € je Arbeitsplatz im Monat, die Server-Betreuung 89 €, die Datensicherung 49 € im Monat. Vor Ort sind wir, wenn Hardware angefasst werden muss.",
+        "kurz": "WVM-IT aus Lenzing betreut Betriebe in Timelkam, 5 Kilometer und rund 10 Minuten entfernt, mit Schwerpunkt Server und Datensicherung: laufende IT-Betreuung ab 29 € je Arbeitsplatz und Monat, Server-Betreuung 89 €, Datensicherung 49 € im Monat. Wir überwachen, aktualisieren und testen per Fernwartung; vor Ort sind wir, wenn Hardware angefasst werden muss.",
         "intro": "Wer in einem Industrie- oder Gewerbegebiet arbeitet, hat oft einen Server im Haus, der älter ist als die meisten Mitarbeiter am Empfang. Er läuft, solange nichts passiert. Gefragt wird nach ihm erst, wenn eine Platte ausfällt, ein Update die Warenwirtschaft lahmlegt oder jemand wissen will, ob es vom gestrigen Abend noch eine brauchbare Sicherung gibt. Dann zeigt sich, ob die Datensicherung je getestet wurde.",
         "wirtschaft": "Timelkam hat Industrie- und Energiegeschichte, einen Bahnhof an der Westbahn und Gewerbeflächen nur wenige Minuten von Vöcklabruck. Die einzelnen Betriebe kennen wir nicht persönlich und behaupten es nicht. Aber wo produziert, geplant und geliefert wird, hängen meist Steuerungs-PCs, Zeichenprogramme und ein Server mit Auftragsdaten zusammen. Dort zählt nicht, ob irgendeine Sicherung existiert, sondern wie lange der Betrieb nach einem Ausfall stillsteht.",
         "vor_ort_h": "Wofür wir nach Timelkam kommen",
@@ -35,7 +35,7 @@ _DE = {
             {"q": "Brauchen wir einen eigenen Server, oder reicht die Cloud?",
              "a": "Das hängt von Ihrer Software ab. Läuft die Warenwirtschaft oder Branchensoftware nur lokal, bleibt der Server. Für Dateiablage, E-Mail und Zusammenarbeit ist Microsoft 365 oft die einfachere Lösung, die Einrichtung kostet 290 €. Wir rechnen beides durch, bevor wir etwas empfehlen."},
         ],
-        "auftraege_h": "Typische Aufträge in Timelkam",
+        "auftraege_h": "Beispiele, wie Anfragen aus Timelkam aussehen können",
         "auftraege": [
             "Ein Betrieb mit einem Server aus der Zeit vor Windows 10, für den es keine Updates mehr gibt.",
             "Eine Sicherung, die seit Monaten mit einer Warnung endet, die niemand liest.",
@@ -63,7 +63,7 @@ _DE = {
         "titel": "EDV-Betreuung Regau: Betriebe ab 29 €/Monat | WVM-IT",
         "desc": "EDV-Betreuung für Betriebe in Regau, 11 km von Lenzing: Arbeitsplätze, E-Mail und Updates ab 29 €/Monat je Arbeitsplatz. Jetzt Termin anfragen.",
         "h1": "EDV-Betreuung in Regau: laufende IT für Betriebe und Höfe",
-        "kurz": "Regau liegt 11 Kilometer und etwa 15 Minuten von Lenzing entfernt. WVM-IT übernimmt dort die EDV-Betreuung für kleine Betriebe ohne eigenen IT-Mitarbeiter: Arbeitsplätze, E-Mail, Updates, Drucker und Benutzerkonten, laufend ab 29 € je Arbeitsplatz im Monat. Das meiste erledigen wir per Fernwartung, für Geräte und Netzwerk kommen wir vorbei.",
+        "kurz": "WVM-IT aus Lenzing, 11 Kilometer und etwa 15 Minuten entfernt, übernimmt die EDV-Betreuung für kleine Betriebe in Regau ohne eigenen IT-Mitarbeiter, laufend ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag 95 € je Stunde. Betreut werden Arbeitsplätze, E-Mail, Updates, Drucker und Benutzerkonten; das meiste erledigen wir per Fernwartung, für Geräte und Netzwerk kommen wir vorbei.",
         "intro": "In einem Betrieb mit fünf bis fünfzehn Computern gibt es meist eine Person, die sich auskennt, weil sie es irgendwann ausprobiert hat. Sie wird gerufen, wenn der Drucker streikt, und nebenbei soll sie Rechnungen schreiben. Das geht lange gut. Schwierig wird es, wenn sie Urlaub hat, den Betrieb verlässt oder das Problem größer ist als ein Neustart.",
         "wirtschaft": "In Regau liegen Betriebsgebiete, Handwerk und Handel nahe beieinander, dazu landwirtschaftliche Betriebe, von denen manche ihre Erzeugnisse selbst vermarkten. Technisch ergibt das sehr verschiedene Bilder: eine Werkstatt mit Büro im Obergeschoss, ein Hofladen mit Kasse und Bestell-E-Mail, ein Planungsbüro mit zwei Bildschirmen pro Platz. Gemeinsam ist ihnen, dass die EDV nebenher laufen muss, ohne dass dafür jemand einen Vormittag opfert. Die Westautobahn A1 ist nah, wir sind also auch kurzfristig erreichbar.",
         "vor_ort_h": "Wofür wir nach Regau kommen",
@@ -90,7 +90,7 @@ _DE = {
             {"q": "Was passiert, wenn der Mitarbeiter, der sich bei uns auskennt, ausfällt?",
              "a": "Dafür gibt es die Dokumentation: Wir halten fest, welche Geräte und Zugänge es gibt und wo die Passwörter sicher hinterlegt sind. Wer immer bei Ihnen anruft, bekommt dieselbe Auskunft. Das Wissen steckt dann nicht mehr in einem Kopf, sondern in einer Liste, die Sie jederzeit anfordern können."},
         ],
-        "auftraege_h": "Typische Aufträge in Regau",
+        "auftraege_h": "Beispiele, wie Anfragen aus Regau aussehen können",
         "auftraege": [
             "Ein Handwerksbetrieb, dessen Auftragsmail nicht mehr ankommt, weil das Postfach voll ist.",
             "Ein Hofladen, in dem die Kasse und der Büro-PC nicht mehr miteinander sprechen.",
@@ -119,7 +119,7 @@ _DE = {
         "titel": "IT-Service Frankenmarkt: IT-Sicherheit | WVM-IT",
         "desc": "IT-Service in Frankenmarkt, 20 km von Lenzing: IT-Sicherheit, Firewall und Backup, laufend ab 29 €/Monat je Arbeitsplatz. Jetzt anfragen.",
         "h1": "IT-Service in Frankenmarkt: IT-Sicherheit für Handel und Gewerbe",
-        "kurz": "Frankenmarkt liegt 20 Kilometer und etwa 25 Minuten von Lenzing entfernt. WVM-IT sichert dort Betriebe gegen die Fehler, die tatsächlich passieren: gefälschte Rechnungsmails, schwache Passwörter, nicht aktualisierte Geräte und ein offenes Gästenetz. Die laufende Betreuung beginnt bei 29 € je Arbeitsplatz im Monat, der IT-Sicherheitscheck kostet ab 490 €. Fast alles läuft per Fernwartung.",
+        "kurz": "WVM-IT aus Lenzing, 20 Kilometer und etwa 25 Minuten entfernt, sichert Betriebe in Frankenmarkt gegen die Fehler, die tatsächlich passieren: gefälschte Rechnungsmails, schwache Passwörter, nicht aktualisierte Geräte und ein offenes Gästenetz. Die laufende Betreuung beginnt bei 29 € je Arbeitsplatz im Monat, der IT-Sicherheitscheck kostet ab 490 €. Fast alles läuft per Fernwartung.",
         "intro": "Kleine Betriebe sind kein uninteressantes Ziel, nur ein leichteres. Wer Rechnungen per E-Mail verschickt und Überweisungen freigibt, bekommt irgendwann eine Mail, die täuschend echt vom Lieferanten zu stammen scheint und eine neue Kontonummer nennt. Ob jemand darauf hereinfällt, entscheidet keine Software allein, sondern ein paar feste Regeln im Betrieb.",
         "wirtschaft": "Frankenmarkt liegt an einem Verkehrsweg mit Bundesstraße und Westbahn, die Westautobahn A1 ist in der Nähe. Für Betriebe heißt das viel Laufkundschaft, Lieferverkehr und oft Handel mit Kassensystem, Kartenzahlung und Lieferantenportalen. Mehr Berührungspunkte nach außen bedeuten mehr Stellen, an denen etwas schiefgehen kann. Wir beginnen deshalb mit einer Bestandsaufnahme: Wer hat Zugang wozu, welche Geräte hängen im Netz, wo liegt die Sicherung?",
         "vor_ort_h": "Wofür wir nach Frankenmarkt kommen",
@@ -146,7 +146,7 @@ _DE = {
             {"q": "Kommen Sie für Sicherheitsfragen nach Frankenmarkt?",
              "a": "Die meisten Fragen klären wir per Fernwartung. Vor Ort sind wir für Firewall, Netzwerktrennung und Geräte, die man sehen muss. Die Strecke von Lenzing beträgt rund 20 Kilometer. Ein Einsatz kostet 120 € je Stunde zuzüglich Anfahrt, Fernwartung 95 € je Stunde ohne Anfahrt."},
         ],
-        "auftraege_h": "Typische Aufträge in Frankenmarkt",
+        "auftraege_h": "Beispiele, wie Anfragen aus Frankenmarkt aussehen können",
         "auftraege": [
             "Ein Handelsbetrieb, der eine Mail mit geänderter Bankverbindung eines Lieferanten erhalten hat und nicht sicher ist, ob sie echt ist.",
             "Ein Geschäft, in dem Kasse, Büro-PC und Gäste-WLAN im selben Netz hängen.",
@@ -203,7 +203,7 @@ _EN = {
             {"q": "Do we need our own server, or is the cloud enough?",
              "a": "That depends on your software. If your inventory or industry software only runs locally, the server stays. For file storage, email and collaboration, Microsoft 365 is often the simpler option, and setting it up costs €290. We work out both before we recommend anything."},
         ],
-        "auftraege_h": "Typical jobs in Timelkam",
+        "auftraege_h": "Examples of what enquiries from Timelkam can look like",
         "auftraege": [
             "A business with a server from before Windows 10 that no longer receives updates.",
             "A backup that has ended with a warning for months that nobody reads.",
@@ -258,7 +258,7 @@ _EN = {
             {"q": "What happens if the person who knows the setup is away?",
              "a": "That is what the documentation is for: we record which devices and accounts exist and where the passwords are kept safely. Whoever calls from your side gets the same information. The knowledge then no longer sits in one head but in a list you can request at any time."},
         ],
-        "auftraege_h": "Typical jobs in Regau",
+        "auftraege_h": "Examples of what enquiries from Regau can look like",
         "auftraege": [
             "A trade business whose order emails no longer arrive because the mailbox is full.",
             "A farm shop where the till and the office PC no longer talk to each other.",
@@ -314,7 +314,7 @@ _EN = {
             {"q": "Do you come to Frankenmarkt for security questions?",
              "a": "Most questions we settle by remote maintenance. We come on site for firewalls, network separation and devices that have to be seen. The distance from Lenzing is about 20 kilometres. A visit costs €120 per hour plus travel, remote maintenance €95 per hour without travel."},
         ],
-        "auftraege_h": "Typical jobs in Frankenmarkt",
+        "auftraege_h": "Examples of what enquiries from Frankenmarkt can look like",
         "auftraege": [
             "A retailer who has received an email with a supplier's changed bank details and is not sure it is genuine.",
             "A shop where the till, the office PC and the guest Wi-Fi share one network.",
@@ -371,7 +371,7 @@ _RO = {
             {"q": "Avem nevoie de un server propriu sau ajunge cloud-ul?",
              "a": "Depinde de programele dumneavoastră. Dacă programul de gestiune sau software-ul de specialitate rulează doar local, serverul rămâne. Pentru stocarea fișierelor, e-mail și colaborare, Microsoft 365 este adesea soluția mai simplă, iar configurarea costă 290 €. Calculăm ambele variante înainte de a recomanda ceva."},
         ],
-        "auftraege_h": "Lucrări tipice în Timelkam",
+        "auftraege_h": "Exemple de cum pot arăta cererile din Timelkam",
         "auftraege": [
             "O firmă cu un server de dinainte de Windows 10, pentru care nu mai există actualizări.",
             "O copie de siguranță care de luni de zile se termină cu un avertisment pe care nu-l citește nimeni.",
@@ -426,7 +426,7 @@ _RO = {
             {"q": "Ce se întâmplă dacă lipsește persoana care se pricepe la noi?",
              "a": "Pentru asta există documentația: consemnăm ce echipamente și conturi există și unde sunt păstrate parolele în siguranță. Oricine sună din partea dumneavoastră primește aceeași informație. Cunoștințele nu mai stau într-un singur cap, ci într-o listă pe care o puteți cere oricând."},
         ],
-        "auftraege_h": "Lucrări tipice în Regau",
+        "auftraege_h": "Exemple de cum pot arăta cererile din Regau",
         "auftraege": [
             "O firmă de meșteșug ale cărei e-mailuri cu comenzi nu mai ajung pentru că căsuța este plină.",
             "Un magazin de fermă în care casa de marcat și PC-ul din birou nu mai comunică.",
@@ -482,7 +482,7 @@ _RO = {
             {"q": "Veniți la Frankenmarkt pentru chestiuni de securitate?",
              "a": "Majoritatea chestiunilor le rezolvăm prin mentenanță la distanță. Venim la fața locului pentru firewall, separarea rețelei și aparate care trebuie văzute. Distanța din Lenzing este de circa 20 de kilometri. O intervenție costă 120 € pe oră plus deplasarea, mentenanța la distanță 95 € pe oră fără deplasare."},
         ],
-        "auftraege_h": "Lucrări tipice în Frankenmarkt",
+        "auftraege_h": "Exemple de cum pot arăta cererile din Frankenmarkt",
         "auftraege": [
             "Un comerciant care a primit un e-mail cu datele bancare schimbate ale unui furnizor și nu este sigur că e autentic.",
             "Un magazin în care casa de marcat, PC-ul din birou și WLAN-ul pentru oaspeți sunt în aceeași rețea.",

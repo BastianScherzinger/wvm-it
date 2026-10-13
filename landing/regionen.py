@@ -50,6 +50,10 @@ km          Straßenkilometer ab Lenzing, gerundet (Mittel aus OSRM und Valhalla
 fahrzeit    Fahrzeit in Minuten ab Lenzing: Mittel beider Router, auf 5 Minuten gerundet
 schwerpunkt Slug der Leistung, die dort am ehesten gefragt ist (Querverweis)
 prio        Priorität in der Sitemap
+messung     „osrm“ (OSRM allein, Kernraum, 09.10.2026) oder „osrm_valhalla“ (Mittel beider Router,
+            01.10.2026); beides am 13.10.2026 mit OSRM nachgerechnet (Abweichung höchstens 2 km).
+            Fehlt das Feld (Attersee-Region), zeigt die Seite keinen Methodik-Satz: Der Bezugspunkt
+            der Region ist nicht festgelegt (OSRM zum eingetragenen Mittelpunkt: 3,6 km).
 quellen     optional: Liste {"titel", "url"} mit den Belegen für die Wirtschafts-
             angaben; die Seite zeigt sie unter dem Wirtschaftsabsatz
 
@@ -71,43 +75,71 @@ from math import asin, cos, radians, sin, sqrt
 REGIONEN = [
     {"slug": "voecklabruck", "ort": "Vöcklabruck", "plz": "4840",
      "bezirk": "Bezirk Vöcklabruck", "lat": 48.0079, "lon": 13.646,
-     "km": 6, "fahrzeit": 10,
-     "schwerpunkt": "edv-it-betreuung", "prio": "0.8"},
+     "km": 6, "fahrzeit": 10, "messung": "osrm_valhalla",
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.8",
+     "quellen": [
+         {"titel": "Wikipedia: Vöcklabruck", "url": "https://de.wikipedia.org/wiki/V%C3%B6cklabruck"},
+         {"titel": "Stadtgemeinde Vöcklabruck", "url": "https://www.voecklabruck.at/"},
+     ]},
 
     {"slug": "attersee", "ort": "Attersee-Region", "plz": "4863",
      "bezirk": "Bezirk Vöcklabruck", "lat": 47.953, "lon": 13.585,
      "km": 8, "fahrzeit": 12,
-     "schwerpunkt": "netzwerk-wlan", "prio": "0.7"},
+     "schwerpunkt": "netzwerk-wlan", "prio": "0.7",
+     "quellen": [
+         {"titel": "Wikipedia: Attersee", "url": "https://de.wikipedia.org/wiki/Attersee"},
+         {"titel": "Tourismusverband Attersee-Attergau", "url": "https://attersee-attergau.salzkammergut.at/"},
+     ]},
 
     {"slug": "gmunden", "ort": "Gmunden", "plz": "4810",
      "bezirk": "Bezirk Gmunden", "lat": 47.9186, "lon": 13.8003,
-     "km": 25, "fahrzeit": 30,
-     "schwerpunkt": "edv-it-betreuung", "prio": "0.7"},
+     "km": 25, "fahrzeit": 30, "messung": "osrm_valhalla",
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.7",
+     "quellen": [
+         {"titel": "Wikipedia: Gmunden", "url": "https://de.wikipedia.org/wiki/Gmunden"},
+         {"titel": "Stadtgemeinde Gmunden", "url": "https://www.gmunden.at/"},
+     ]},
 
     {"slug": "bad-ischl", "ort": "Bad Ischl", "plz": "4820",
      "bezirk": "Salzkammergut", "lat": 47.7115, "lon": 13.6239,
-     "km": 43, "fahrzeit": 50,
-     "schwerpunkt": "konferenztechnik", "prio": "0.6"},
+     "km": 43, "fahrzeit": 50, "messung": "osrm_valhalla",
+     "schwerpunkt": "konferenztechnik", "prio": "0.6",
+     "quellen": [
+         {"titel": "Wikipedia: Bad Ischl", "url": "https://de.wikipedia.org/wiki/Bad_Ischl"},
+         {"titel": "Tourismusverband Bad Ischl", "url": "https://badischl.salzkammergut.at/"},
+     ]},
 
     {"slug": "wels", "ort": "Wels", "plz": "4600",
      "bezirk": "Oberösterreich", "lat": 48.1565, "lon": 14.0244,
-     "km": 58, "fahrzeit": 50,
-     "schwerpunkt": "edv-it-betreuung", "prio": "0.7"},
+     "km": 58, "fahrzeit": 50, "messung": "osrm_valhalla",
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.7",
+     "quellen": [
+         {"titel": "Wikipedia: Wels", "url": "https://de.wikipedia.org/wiki/Wels"},
+         {"titel": "Stadt Wels", "url": "https://www.wels.gv.at/"},
+     ]},
 
     {"slug": "salzburg", "ort": "Salzburg", "plz": "5020",
      "bezirk": "Land Salzburg", "lat": 47.7981, "lon": 13.0465,
-     "km": 67, "fahrzeit": 60,
-     "schwerpunkt": "it-sicherheit", "prio": "0.7"},
+     "km": 67, "fahrzeit": 60, "messung": "osrm_valhalla",
+     "schwerpunkt": "it-sicherheit", "prio": "0.7",
+     "quellen": [
+         {"titel": "Wikipedia: Salzburg", "url": "https://de.wikipedia.org/wiki/Salzburg"},
+         {"titel": "Stadt Salzburg", "url": "https://www.salzburg.gv.at/"},
+     ]},
 
     {"slug": "linz", "ort": "Linz", "plz": "4020",
      "bezirk": "Oberösterreich", "lat": 48.3059, "lon": 14.2862,
-     "km": 82, "fahrzeit": 60,
-     "schwerpunkt": "edv-it-betreuung", "prio": "0.7"},
+     "km": 82, "fahrzeit": 60, "messung": "osrm_valhalla",
+     "schwerpunkt": "edv-it-betreuung", "prio": "0.7",
+     "quellen": [
+         {"titel": "Wikipedia: Linz", "url": "https://de.wikipedia.org/wiki/Linz"},
+         {"titel": "Stadt Linz", "url": "https://www.linz.at/"},
+     ]},
 
     # Seit 01.10.2026 (Musterorte für weitere Ortsseiten in Österreich)
     {"slug": "attnang-puchheim", "ort": "Attnang-Puchheim", "plz": "4800",
      "bezirk": "Bezirk Vöcklabruck", "lat": 48.0115, "lon": 13.7211,
-     "km": 12, "fahrzeit": 20,
+     "km": 12, "fahrzeit": 20, "messung": "osrm_valhalla",
      "schwerpunkt": "server-datensicherung", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Attnang-Puchheim", "url": "https://de.wikipedia.org/wiki/Attnang-Puchheim"},
@@ -116,7 +148,7 @@ REGIONEN = [
 
     {"slug": "schwanenstadt", "ort": "Schwanenstadt", "plz": "4690",
      "bezirk": "Bezirk Vöcklabruck", "lat": 48.0545, "lon": 13.7749,
-     "km": 19, "fahrzeit": 25,
+     "km": 19, "fahrzeit": 25, "messung": "osrm_valhalla",
      "schwerpunkt": "webseite-erstellen", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Schwanenstadt", "url": "https://de.wikipedia.org/wiki/Schwanenstadt"},
@@ -127,7 +159,7 @@ REGIONEN = [
 
     {"slug": "voecklamarkt", "ort": "Vöcklamarkt", "plz": "4870",
      "bezirk": "Bezirk Vöcklabruck", "lat": 48.0022, "lon": 13.4851,
-     "km": 16, "fahrzeit": 20,
+     "km": 16, "fahrzeit": 20, "messung": "osrm_valhalla",
      "schwerpunkt": "it-beratung", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Vöcklamarkt", "url": "https://de.wikipedia.org/wiki/V%C3%B6cklamarkt"},
@@ -137,7 +169,7 @@ REGIONEN = [
 
     {"slug": "mondsee", "ort": "Mondsee", "plz": "5310",
      "bezirk": "Bezirk Vöcklabruck", "lat": 47.8560, "lon": 13.3501,
-     "km": 39, "fahrzeit": 35,
+     "km": 39, "fahrzeit": 35, "messung": "osrm_valhalla",
      "schwerpunkt": "it-sicherheit", "prio": "0.6",
      "quellen": [
          {"titel": "Austria-Forum: Mondsee", "url": "https://austria-forum.org/af/AustriaWiki/Mondsee"},
@@ -146,7 +178,7 @@ REGIONEN = [
 
     {"slug": "ried-im-innkreis", "ort": "Ried im Innkreis", "plz": "4910",
      "bezirk": "Bezirk Ried im Innkreis", "lat": 48.2086, "lon": 13.4884,
-     "km": 38, "fahrzeit": 45,
+     "km": 38, "fahrzeit": 45, "messung": "osrm_valhalla",
      "schwerpunkt": "seo-betreuung", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Ried im Innkreis", "url": "https://de.wikipedia.org/wiki/Ried_im_Innkreis"},
@@ -154,7 +186,7 @@ REGIONEN = [
 
     {"slug": "grieskirchen", "ort": "Grieskirchen", "plz": "4710",
      "bezirk": "Bezirk Grieskirchen", "lat": 48.235, "lon": 13.8262,
-     "km": 45, "fahrzeit": 55,
+     "km": 45, "fahrzeit": 55, "messung": "osrm_valhalla",
      "schwerpunkt": "it-beratung", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Grieskirchen", "url": "https://de.wikipedia.org/wiki/Grieskirchen"},
@@ -164,7 +196,7 @@ REGIONEN = [
 
     {"slug": "kirchdorf-an-der-krems", "ort": "Kirchdorf an der Krems", "plz": "4560",
      "bezirk": "Bezirk Kirchdorf an der Krems", "lat": 47.9052, "lon": 14.1244,
-     "km": 65, "fahrzeit": 50,
+     "km": 65, "fahrzeit": 50, "messung": "osrm_valhalla",
      "schwerpunkt": "it-sicherheit", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Kirchdorf an der Krems", "url": "https://de.wikipedia.org/wiki/Kirchdorf_an_der_Krems"},
@@ -181,11 +213,12 @@ REGIONEN = [
      "schwerpunkt": "edv-it-betreuung", "prio": "0.9",
      "quellen": [
          {"titel": "Wikipedia: Lenzing", "url": "https://de.wikipedia.org/wiki/Lenzing"},
+         {"titel": "Lenzing AG (Unternehmensseite)", "url": "https://www.lenzing.com/de/"},
      ]},
 
     {"slug": "seewalchen-am-attersee", "ort": "Seewalchen am Attersee", "plz": "4863",
      "bezirk": "Bezirk Vöcklabruck", "lat": 47.9548, "lon": 13.5675,
-     "km": 5, "fahrzeit": 10,
+     "km": 5, "fahrzeit": 10, "messung": "osrm",
      "schwerpunkt": "smarthome-knx-loxone", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Seewalchen am Attersee", "url": "https://de.wikipedia.org/wiki/Seewalchen_am_Attersee"},
@@ -193,7 +226,7 @@ REGIONEN = [
 
     {"slug": "schoerfling-am-attersee", "ort": "Schörfling am Attersee", "plz": "4861",
      "bezirk": "Bezirk Vöcklabruck", "lat": 47.9464, "lon": 13.6036,
-     "km": 6, "fahrzeit": 10,
+     "km": 6, "fahrzeit": 10, "messung": "osrm",
      "schwerpunkt": "webseite-erstellen", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Schörfling am Attersee", "url": "https://de.wikipedia.org/wiki/Sch%C3%B6rfling_am_Attersee"},
@@ -201,7 +234,7 @@ REGIONEN = [
 
     {"slug": "timelkam", "ort": "Timelkam", "plz": "4850",
      "bezirk": "Bezirk Vöcklabruck", "lat": 48.0015, "lon": 13.6125,
-     "km": 5, "fahrzeit": 10,
+     "km": 5, "fahrzeit": 10, "messung": "osrm",
      "schwerpunkt": "server-datensicherung", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Timelkam", "url": "https://de.wikipedia.org/wiki/Timelkam"},
@@ -209,7 +242,7 @@ REGIONEN = [
 
     {"slug": "regau", "ort": "Regau", "plz": "4844",
      "bezirk": "Bezirk Vöcklabruck", "lat": 47.9919, "lon": 13.6881,
-     "km": 11, "fahrzeit": 15,
+     "km": 11, "fahrzeit": 15, "messung": "osrm",
      "schwerpunkt": "edv-it-betreuung", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Regau", "url": "https://de.wikipedia.org/wiki/Regau"},
@@ -217,7 +250,7 @@ REGIONEN = [
 
     {"slug": "frankenmarkt", "ort": "Frankenmarkt", "plz": "4890",
      "bezirk": "Bezirk Vöcklabruck", "lat": 47.9855, "lon": 13.4192,
-     "km": 20, "fahrzeit": 25,
+     "km": 20, "fahrzeit": 25, "messung": "osrm",
      "schwerpunkt": "it-sicherheit", "prio": "0.6",
      "quellen": [
          {"titel": "Wikipedia: Frankenmarkt", "url": "https://de.wikipedia.org/wiki/Frankenmarkt"},

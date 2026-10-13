@@ -62,7 +62,7 @@ class OrtslinksTest(SimpleTestCase):
             z = beitraege.ORTE_JE_BEITRAG[b["slug"]]
             self.assertTrue(z["kern"] and z["thema"], b["slug"])
             self.assertTrue(set(z["kern"]) <= set(beitraege.KERNRAUM), b["slug"])
-            self.assertNotIn(z["thema"], beitraege.KERNRAUM, b["slug"])
+            self.assertNotIn(z["thema"], z["kern"], b["slug"])  # Runde 2: Themenort darf auch ein weiterer Kernraum-Ort sein, nur nicht doppelt
             html = _inhalt(_html(f"/aktuelles/{b['slug']}/"))
             for s in z["kern"] + [z["thema"]]:
                 ort = regionen.NACH_SLUG[s]["ort"]
@@ -74,9 +74,11 @@ class OrtslinksTest(SimpleTestCase):
         self.assertGreaterEqual(n, 8)
 
     def test_jeder_kernort_bekommt_mehrere_links(self):
-        for s in beitraege.KERNRAUM:
+        """Runde 2 (R2-01 W2): Die fünf Kernraum-Orte der Rotation bekommen je mindestens fünf
+        Links aus den Ratgebern (vorher drei); die übrigen Orte kommen als Themenort vor."""
+        for s in beitraege.ROTATION:
             n = sum(1 for z in beitraege.ORTE_JE_BEITRAG.values() if s in z["kern"])
-            self.assertGreaterEqual(n, 2, s)
+            self.assertGreaterEqual(n, 5, s)
 
 
 class SchemaTest(SimpleTestCase):

@@ -8,7 +8,7 @@ AUSBAU = {"de": {}, "en": {}, "ro": {}}
 
 # ---------------------------------------------------------------- DEUTSCH
 AUSBAU["de"]["voecklabruck"] = {
-    "auftraege_h": "Typische Aufträge in Vöcklabruck",
+    "auftraege_h": "Beispiele, wie Anfragen aus Vöcklabruck aussehen können",
     "auftraege": [
         "Eine Kanzlei, in der Mandantenakten auf einem Server liegen und niemand weiß, ob die nächtliche Sicherung wirklich durchläuft.",
         "Eine Ordination, deren Praxissoftware nach einem Windows-Update nicht mehr startet und die der Hersteller nur telefonisch betreut.",
@@ -49,7 +49,7 @@ AUSBAU["de"]["voecklabruck"] = {
 
 AUSBAU["de"]["gmunden"] = {
     "titel": "EDV-Betreuung Gmunden: IT-Service ab 29 €/Monat | WVM-IT",
-    "auftraege_h": "Typische Aufträge in Gmunden",
+    "auftraege_h": "Beispiele, wie Anfragen aus Gmunden aussehen können",
     "auftraege": [
         "Ein Hotel, dessen Gäste-WLAN in der Hochsaison zusammenbricht, weil es nie für so viele Geräte ausgelegt wurde.",
         "Ein Gastbetrieb am See, dessen Kassensystem und Buchungsprogramm vor Saisonstart geprüft und aktualisiert werden sollen.",
@@ -88,7 +88,7 @@ AUSBAU["de"]["gmunden"] = {
 AUSBAU["de"]["attnang-puchheim"] = {
     "titel": "IT-Service Attnang-Puchheim: EDV ab 29 €/Monat | WVM-IT",
     "desc": "IT-Service und EDV-Betreuung in Attnang-Puchheim, 12 km ab Lenzing: ab 29 €/Monat je Arbeitsplatz, Einzelhilfe 95 €/Std. Jetzt anfragen.",
-    "auftraege_h": "Typische Aufträge in Attnang-Puchheim",
+    "auftraege_h": "Beispiele, wie Anfragen aus Attnang-Puchheim aussehen können",
     "auftraege": [
         "Ein Zulieferbetrieb, dessen Prüfrechner an der Linie seit Jahren ohne Updates und ohne Sicherung laufen.",
         "Ein Gastronomiebetrieb in Bahnhofsnähe, dessen Kassensystem nach einem Stromausfall nicht mehr hochfährt.",
@@ -126,7 +126,7 @@ AUSBAU["de"]["attnang-puchheim"] = {
 
 # ---------------------------------------------------------------- ENGLISH
 AUSBAU["en"]["voecklabruck"] = {
-    "auftraege_h": "Typical jobs in Vöcklabruck",
+    "auftraege_h": "Examples of what enquiries from Vöcklabruck can look like",
     "auftraege": [
         "A law or tax office where client files sit on a server and nobody knows whether the nightly backup really completes.",
         "A medical practice whose practice software stops starting after a Windows update, and whose vendor only offers phone support.",
@@ -167,7 +167,7 @@ AUSBAU["en"]["voecklabruck"] = {
 
 AUSBAU["en"]["gmunden"] = {
     "titel": "IT support Gmunden: EDV service from €29/month | WVM-IT",
-    "auftraege_h": "Typical jobs in Gmunden",
+    "auftraege_h": "Examples of what enquiries from Gmunden can look like",
     "auftraege": [
         "A hotel whose guest Wi-Fi collapses in high season because it was never designed for so many devices.",
         "A lakeside restaurant whose till and booking system should be checked and updated before the season starts.",
@@ -206,7 +206,7 @@ AUSBAU["en"]["gmunden"] = {
 AUSBAU["en"]["attnang-puchheim"] = {
     "titel": "IT support Attnang-Puchheim: EDV from €29/month | WVM-IT",
     "desc": "IT support and EDV service in Attnang-Puchheim, 12 km from Lenzing: from €29 per workstation a month, one-off help €95/hr. Get in touch now.",
-    "auftraege_h": "Typical jobs in Attnang-Puchheim",
+    "auftraege_h": "Examples of what enquiries from Attnang-Puchheim can look like",
     "auftraege": [
         "A supplier whose test computers at the line have run for years without updates and without a backup.",
         "A café near the station whose till system no longer boots after a power cut.",
@@ -244,7 +244,7 @@ AUSBAU["en"]["attnang-puchheim"] = {
 
 # ---------------------------------------------------------------- RUMÄNISCH
 AUSBAU["ro"]["voecklabruck"] = {
-    "auftraege_h": "Lucrări tipice în Vöcklabruck",
+    "auftraege_h": "Exemple de cum pot arăta cererile din Vöcklabruck",
     "auftraege": [
         "Un birou de avocatură sau contabilitate, unde dosarele clienților stau pe un server și nimeni nu știe dacă copia de siguranță de noapte rulează cu adevărat.",
         "Un cabinet medical al cărui program nu mai pornește după o actualizare Windows și pe care producătorul îl asistă doar telefonic.",
@@ -285,7 +285,7 @@ AUSBAU["ro"]["voecklabruck"] = {
 
 AUSBAU["ro"]["gmunden"] = {
     "titel": "Administrare IT Gmunden: EDV de la 29 €/lună | WVM-IT",
-    "auftraege_h": "Lucrări tipice în Gmunden",
+    "auftraege_h": "Exemple de cum pot arăta cererile din Gmunden",
     "auftraege": [
         "Un hotel al cărui Wi-Fi pentru oaspeți cedează în plin sezon, pentru că nu a fost gândit pentru atâtea dispozitive.",
         "Un restaurant de pe malul lacului, al cărui sistem de casă și rezervări trebuie verificat și actualizat înainte de sezon.",
@@ -324,7 +324,7 @@ AUSBAU["ro"]["gmunden"] = {
 AUSBAU["ro"]["attnang-puchheim"] = {
     "titel": "Administrare IT Attnang-Puchheim: EDV de la 29 € | WVM-IT",
     "desc": "Administrare IT și EDV în Attnang-Puchheim, la 12 km de Lenzing: de la 29 €/lună pe stație, ajutor punctual 95 €/oră. Cereți ofertă acum.",
-    "auftraege_h": "Lucrări tipice în Attnang-Puchheim",
+    "auftraege_h": "Exemple de cum pot arăta cererile din Attnang-Puchheim",
     "auftraege": [
         "Un furnizor ale cărui calculatoare de testare de la linie rulează de ani fără actualizări și fără copie de siguranță.",
         "O cafenea din apropierea gării, a cărei casă de marcat nu mai pornește după o pană de curent.",

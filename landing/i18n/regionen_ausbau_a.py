@@ -8,7 +8,7 @@ DE = {
         "titel": "IT-Betreuung Lenzing: EDV-Service vor Ort | WVM-IT",
         "desc": "IT-Betreuung & EDV-Service in Lenzing: Büro vor Ort, keine Anfahrt, ab 29 €/Monat je Arbeitsplatz. Termin vereinbaren, wir melden uns binnen 24 Stunden.",
         "h1": "IT-Betreuung und EDV-Service in Lenzing",
-        "kurz": "Wer in Lenzing einen IT-Dienstleister oder eine laufende EDV-Betreuung sucht, findet WVM-IT in der Waldstraße 19/1, im Ort selbst. Für Betriebe in der Gemeinde fällt keine Anfahrt an. Den Alltag erledigen wir per Fernwartung, wenn etwas vor Ort gebraucht wird, sind wir in wenigen Minuten da. Besuche im Büro machen wir nach Terminvereinbarung.",
+        "kurz": "WVM-IT sitzt in der Waldstraße 19/1 in Lenzing und betreut Betriebe im Ort ohne Anfahrt: laufende EDV-Betreuung ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag 95 € je Stunde per Fernwartung, 120 € je Stunde vor Ort. Den Alltag erledigen wir per Fernwartung, wenn etwas vor Ort gebraucht wird, sind wir in wenigen Minuten da. Besuche im Büro machen wir nach Terminvereinbarung.",
         "intro": "Lenzing liegt an der Ager im Bezirk Vöcklabruck, am Südende des Hausruckviertels, wo das Salzkammergut beginnt. Der Name des Ortes ist über die Landesgrenzen hinaus durch den Faserhersteller Lenzing AG bekannt. Rund um einen solchen Industriestandort entsteht ein Geflecht aus Zulieferern, Dienstleistern, Handwerk, Handel und einer Gemeinde mit ihren Vereinen. Genau dort, bei den kleinen Betrieben, setzt unsere Arbeit an: Sie haben Arbeitsplätze, Drucker, ein Netzwerk und Cloud-Konten, aber keine eigene IT-Abteilung.",
         "wirtschaft": "Ein Industriestandort in der Gemeinde zieht Anforderungen nach sich, die kleine Betriebe spüren. Lieferanten und Auftraggeber verlangen Nachweise zur IT-Sicherheit, Portale und Schnittstellen ändern sich, und Aufträge kommen oft per Mail mit knappen Fristen. Wenn dann ein Postfach nicht mehr ankommt, ein Zertifikat abläuft oder die Sicherung seit Wochen nicht gelaufen ist, kostet das Zeit, die ein Zwei-Mann-Betrieb nicht hat. Dazu kommt die Alltagstechnik von Gemeinde, Vereinen und Praxen: Kassen, Zeiterfassung, Telefonanlage, Buchhaltung. Wir kümmern uns darum, dass das läuft, und erklären es so, dass es auch ohne IT-Wissen verständlich bleibt.",
         "vor_ort_h": "Was wir in Lenzing vor Ort erledigen",
@@ -37,7 +37,7 @@ DE = {
             {"q": "Können wir bei Ihnen im Büro vorbeikommen?",
              "a": "Ja, nach Terminvereinbarung. So sind wir sicher da und haben Zeit für Sie. Ein spontanes Vorbeikommen ohne Anmeldung klappt nur, wenn wir gerade im Büro sind."},
         ],
-        "auftraege_h": "Typische Aufträge in Lenzing",
+        "auftraege_h": "Beispiele, wie Anfragen aus Lenzing aussehen können",
         "auftraege": [
             "Ein Handwerksbetrieb, dessen Auftragsmails nur noch teilweise ankommen, weil das Postfach voll ist oder der Spamfilter zu streng eingestellt ist.",
             "Eine Kanzlei oder Praxis, die ihre Datensicherung auf einer externen Platte hat, deren letzter Lauf niemand mehr kennt.",
@@ -51,7 +51,7 @@ DE = {
         "anfahrt": "Unser Büro liegt in der Waldstraße 19/1 in Lenzing, die Entfernung zu Betrieben im Ort beträgt null Kilometer. Für Einsätze in der Gemeinde berechnen wir deshalb keine Anfahrt, nur die Arbeitszeit: 120 € je Stunde vor Ort, 95 € je Stunde per Fernwartung. Termine legen wir meist innerhalb weniger Tage, und kleine Dinge klären wir oft noch am selben Werktag am Telefon. Wer das Büro besuchen möchte, meldet sich vorher kurz an.",
         "mehr": [
             {"h": "Betriebe im Schatten eines Großbetriebs",
-             "t": "Neben einem Industriestandort wirken kleine Betriebe leicht unsichtbar, dabei hängen sie fest in dessen Abläufen. Wer Zulieferer, Dienstleister oder Handwerker für einen Großbetrieb ist, bekommt Fragebögen zur Datensicherheit, Vorgaben für Mailverschlüsselung oder Zugänge zu fremden Portalen, die auf dem eigenen Rechner laufen müssen. Das ist für Betriebe ohne IT-Abteilung mühsam. Wir helfen, solche Anforderungen in konkrete Schritte zu übersetzen: Welche Konten brauchen eine zweite Anmeldung, wer darf auf welche Ordner zugreifen, wie wird gesichert und wo steht das schriftlich. Mit einer sauberen Dokumentation beantwortet man den nächsten Fragebogen in einer halben Stunde statt an einem ganzen Nachmittag. Genau diese Vorarbeit lohnt sich für Betriebe in Lenzing und Umgebung, auch für jene, die nur gelegentlich Aufträge aus dem Umfeld des Werks bekommen und trotzdem dieselben Nachweise liefern sollen."},
+             "t": "Neben einem Industriestandort wirken kleine Betriebe leicht unsichtbar, dabei hängen sie fest in dessen Abläufen. Wer Zulieferer, Dienstleister oder Handwerker für einen Großbetrieb ist, bekommt Fragebögen zur Datensicherheit, Vorgaben für Mailverschlüsselung oder Zugänge zu fremden Portalen, die auf dem eigenen Rechner laufen müssen. Das ist für Betriebe ohne IT-Abteilung mühsam. Wir helfen, solche Anforderungen in konkrete Schritte zu übersetzen: Welche Konten brauchen eine zweite Anmeldung, wer darf auf welche Ordner zugreifen, wie wird gesichert und wo steht das schriftlich. Mit einer sauberen Dokumentation beantwortet man den nächsten Fragebogen in einer halben Stunde statt an einem ganzen Nachmittag. Genau diese Vorarbeit lohnt sich für Betriebe in Lenzing und Umgebung, auch für jene, die nur gelegentlich Aufträge aus dem Umfeld des Werks bekommen und trotzdem dieselben Nachweise liefern sollen. Hintergrund ist unter anderem das NISG 2026: Es verpflichtet betroffene Unternehmen, auch die Sicherheit ihrer Lieferkette zu gewährleisten. Was das für Zulieferer bedeutet, beschreibt der Beitrag <a href='/aktuelles/nis2-lieferkette-zulieferer/'>NIS2 und Lieferkette</a>, die Rechtsgrundlage steht im <a href='https://www.ris.bka.gv.at/eli/bgbl/I/2025/94' rel='noopener' target='_blank'>NISG 2026 im Rechtsinformationssystem</a>. Ob ein bestimmter Auftraggeber unter das Gesetz fällt, hängt von Sektor und Größe ab und lässt sich hier nicht allgemein beantworten."},
             {"h": "Fernwartung als Normalfall, der Besuch als Ausnahme",
              "t": "Die meisten Störungen in kleinen Büros sind Softwarefragen: ein Konto gesperrt, ein Programm startet nicht, eine Freigabe fehlt. Dafür muss niemand fahren. Wir verbinden uns mit Ihrem Einverständnis auf den Rechner, lösen das Problem und schreiben auf, was wir getan haben. Vor Ort sind wir dann, wenn Hardware im Spiel ist: ein defekter Switch, ein Drucker, der sich nicht anmeldet, ein Serverschrank, der zu warm wird. Weil unser Büro in Lenzing ist, entfällt dabei die Wartezeit auf eine Anreise. Der Betrieb weiß vorher, ob wir mit Werkzeug kommen oder erst telefonisch prüfen, und kann den Termin so legen, dass der Betrieb nicht unterbrochen wird. Wo es geht, arbeiten wir vor oder nach den Geschäftszeiten oder in einer ruhigen Stunde, damit Kasse, Telefon und Auftragsannahme weiterlaufen."},
             {"h": "Was an Lenzing selbst praktisch ist",
@@ -64,7 +64,7 @@ DE = {
         "titel": "IT-Service Seewalchen: Smarthome KNX & Loxone | WVM-IT",
         "desc": "Smarthome mit KNX und Loxone sowie IT-Betreuung ab 29 €/Monat in Seewalchen am Attersee, 5 km von Lenzing. Jetzt unverbindlich anfragen.",
         "h1": "Smarthome und IT-Service in Seewalchen am Attersee",
-        "kurz": "In Seewalchen am Attersee planen und richten wir Smarthome-Anlagen mit KNX oder Loxone ein und betreuen die IT von Betrieben und Haushalten. Von Lenzing sind es fünf Kilometer, rund zehn Minuten Fahrt. Wohnungen am See, Zweitwohnsitze und Ferienunterkünfte haben dabei andere Anforderungen als ein Einfamilienhaus mit ganzjähriger Bewohnung.",
+        "kurz": "WVM-IT aus Lenzing, fünf Kilometer und rund zehn Minuten entfernt, plant in Seewalchen am Attersee Smarthome-Anlagen mit KNX oder Loxone und betreut die IT von Betrieben, laufend ab 29 € je Arbeitsplatz und Monat, Einsatz vor Ort 120 € je Stunde. Wohnungen am See, Zweitwohnsitze und Ferienunterkünfte haben dabei andere Anforderungen als ein Einfamilienhaus mit ganzjähriger Bewohnung.",
         "intro": "Seewalchen liegt am Nordende des Attersees, dort, wo der See über die Ager abfließt. Der Ort ist ein Wohn- und Gewerbestandort mit Gemeindeamt, Seeufer, Seebädern und Segelbetrieb. Viele Häuser gehören Menschen, die nur zeitweise da sind: als Zweitwohnsitz, als Ferienwohnung oder als Unterkunft, die tageweise vermietet wird. Genau für solche Häuser lohnt sich Haustechnik, die man aus der Ferne sehen und steuern kann.",
         "wirtschaft": "Ein Haus, das drei Wochen im Jahr bewohnt wird, verlangt anderes als ein Haus mit Familie. Heizung und Lüftung sollen sparsam laufen, solange niemand da ist, und vor der Ankunft die Wohlfühltemperatur erreichen. Wasserleck, offene Fenster und Frost sollen als Meldung auf dem Handy erscheinen, nicht als Schaden im Herbst. Bei vermieteten Wohnungen kommt der Zutritt dazu: Schlüsselübergabe ohne persönliche Anwesenheit, ein eigener Zugangscode je Gast. Daneben gibt es in Seewalchen Handwerksbetriebe, Praxen und Büros, die eine zuverlässige EDV brauchen. Wir trennen beides sauber: Haustechnik und Büro-IT laufen in getrennten Netzen, damit eine Störung in der einen die andere nicht berührt.",
         "vor_ort_h": "Wofür wir nach Seewalchen kommen",
@@ -93,7 +93,7 @@ DE = {
             {"q": "Betreuen Sie auch das Netzwerk einer Ferienunterkunft?",
              "a": "Ja, das ist ein häufiger Fall. Gäste-WLAN, das vom Netz des Vermieters getrennt ist, Router, die nach einem Stromausfall wieder hochkommen, und eine Fernsicht auf den Zustand. Für größere Anlagen mit Hotelbetrieb gibt es die Seite zur Attersee-Region."},
         ],
-        "auftraege_h": "Typische Aufträge in Seewalchen am Attersee",
+        "auftraege_h": "Beispiele, wie Anfragen aus Seewalchen am Attersee aussehen können",
         "auftraege": [
             "Ein Zweitwohnsitz, in dem die Heizung im Winter nur laufen soll, wenn jemand kommt, und der sich vorher per Handy aufwärmen lässt.",
             "Eine Ferienwohnung mit Schlüsselkasten, die auf ein Zugangssystem mit eigenem Code je Gast umgestellt werden soll.",
@@ -120,7 +120,7 @@ DE = {
         "titel": "IT-Service Schörfling: Webseite erstellen | WVM-IT",
         "desc": "Webseite und Google-Sichtbarkeit für Betriebe in Schörfling am Attersee, 6 km von Lenzing: Business-Website ab 1.490 €, IT ab 29 €/Monat. Jetzt anfragen.",
         "h1": "Webseite erstellen und IT-Service in Schörfling am Attersee",
-        "kurz": "Für Betriebe in Schörfling am Attersee bauen wir Webseiten, die bei Google gefunden werden, und betreuen die IT dahinter. Von Lenzing sind es sechs Kilometer, rund zehn Minuten Fahrt. Tourismus, Gastronomie, Camping und Gewerbe am Nordwestufer des Sees haben eines gemeinsam: Gäste und Kundschaft suchen zuerst im Netz.",
+        "kurz": "WVM-IT aus Lenzing, sechs Kilometer und rund zehn Minuten entfernt, baut für Betriebe in Schörfling am Attersee Webseiten, die bei Google gefunden werden, und betreut die IT dahinter, One-Pager ab 350 €, laufende IT-Betreuung ab 29 € je Arbeitsplatz und Monat. Tourismus, Gastronomie, Camping und Gewerbe am Nordwestufer des Sees haben nach unserer Einschätzung eines gemeinsam: Gäste und Kundschaft suchen zuerst im Netz.",
         "intro": "Schörfling liegt am nordwestlichen Ufer des Attersees und gehört zum Bezirk Vöcklabruck. Der Ort lebt vom Mix aus Seetourismus, Gastronomie, Campingplätzen, Ferienunterkünften und Gewerbe. Im Sommer bringt der See Badegäste, Segler und Radfahrer, außerhalb der Saison bleiben Handwerk, Handel und Dienstleister. Viele dieser Betriebe haben eine Webseite, die irgendwann gebaut wurde und seither unverändert steht.",
         "wirtschaft": "Für einen Betrieb am See entscheidet oft die erste Suche. Wer ein Quartier, einen Stellplatz, einen Tisch zum Abendessen oder einen Handwerker sucht, tippt eine Frage ins Handy und nimmt, was oben steht und glaubwürdig wirkt. Das heißt: Die Webseite muss auf dem Handy laden, Öffnungszeiten und Preise sollen stimmen, und das Google-Profil muss zu den Angaben auf der Seite passen. Saisonbetriebe haben das Problem, dass sich Informationen zweimal im Jahr ändern und niemand es nachträgt. Veraltete Öffnungszeiten kosten Gäste. Eine Webseite, die sich leicht pflegen lässt, und ein Profil, das mitzieht, sind wichtiger als Effekte.",
         "vor_ort_h": "Wofür wir nach Schörfling kommen",
@@ -149,7 +149,7 @@ DE = {
             {"q": "Wie weit ist es von Lenzing nach Schörfling?",
              "a": "Es sind sechs Kilometer, etwa zehn Minuten Fahrt. Ein Termin vor Ort kostet 120 € je Stunde zuzüglich Anfahrt, Fernwartung 95 € je Stunde. Für Webseiten ist ein Besuch meist nur beim ersten Gespräch und für Fotos nötig."},
         ],
-        "auftraege_h": "Typische Aufträge in Schörfling am Attersee",
+        "auftraege_h": "Beispiele, wie Anfragen aus Schörfling am Attersee aussehen können",
         "auftraege": [
             "Ein Campingplatz, dessen Webseite auf dem Handy kaum lesbar ist und dessen Preise nur als PDF vorliegen.",
             "Ein Gasthaus, bei dem bei Google noch die Öffnungszeiten vom letzten Jahr stehen.",
@@ -208,7 +208,7 @@ EN = {
             {"q": "Can we come by your office?",
              "a": "Yes, by appointment. That way we are sure to be there and have time for you. A spontaneous visit without notice only works if we happen to be in the office."},
         ],
-        "auftraege_h": "Typical jobs in Lenzing",
+        "auftraege_h": "Examples of what enquiries from Lenzing can look like",
         "auftraege": [
             "A trade business whose job emails only partly arrive because the mailbox is full or the spam filter is set too strictly.",
             "A practice or firm whose backup sits on an external drive that nobody remembers the last run of.",
@@ -264,7 +264,7 @@ EN = {
             {"q": "Do you also look after the network of a holiday let?",
              "a": "Yes, that is a common case. Guest Wi-Fi separated from the landlord's network, routers that come back after a power cut, and a remote view of their state. For larger sites with hotel operation there is the page on the Attersee region."},
         ],
-        "auftraege_h": "Typical jobs in Seewalchen am Attersee",
+        "auftraege_h": "Examples of what enquiries from Seewalchen am Attersee can look like",
         "auftraege": [
             "A second home where the heating should only run in winter when someone is coming, and can be warmed up by phone beforehand.",
             "A holiday flat with a key box that is to be switched to an access system with its own code per guest.",
@@ -320,7 +320,7 @@ EN = {
             {"q": "How far is it from Lenzing to Schörfling?",
              "a": "It is six kilometres, about ten minutes by car. An on-site appointment costs €120 per hour plus travel, remote support €95 per hour. For websites a visit is usually only needed for the first conversation and for photos."},
         ],
-        "auftraege_h": "Typical jobs in Schörfling am Attersee",
+        "auftraege_h": "Examples of what enquiries from Schörfling am Attersee can look like",
         "auftraege": [
             "A campsite whose website is hardly readable on a phone and whose prices exist only as a PDF.",
             "An inn where Google still shows last year's opening hours.",
@@ -379,7 +379,7 @@ RO = {
             {"q": "Putem veni pe la biroul dumneavoastră?",
              "a": "Da, pe bază de programare. Așa suntem siguri că suntem acolo și avem timp pentru dumneavoastră. O vizită spontană, fără anunț, reușește doar dacă suntem întâmplător în birou."},
         ],
-        "auftraege_h": "Lucrări tipice în Lenzing",
+        "auftraege_h": "Exemple de cum pot arăta cererile din Lenzing",
         "auftraege": [
             "O firmă de meșteșugari ale cărei e-mailuri cu comenzi ajung doar parțial, fiindcă căsuța e plină sau filtrul de spam e prea strict.",
             "Un cabinet sau o firmă a cărei copie de siguranță e pe un disc extern, iar ultima rulare nu o mai știe nimeni.",
@@ -435,7 +435,7 @@ RO = {
             {"q": "Administrați și rețeaua unei locuințe de vacanță?",
              "a": "Da, este un caz frecvent. Wi-Fi pentru oaspeți separat de rețeaua proprietarului, routere care revin după o pană de curent și o vedere de la distanță asupra stării lor. Pentru unități mari cu activitate hotelieră există pagina despre regiunea Attersee."},
         ],
-        "auftraege_h": "Lucrări tipice în Seewalchen am Attersee",
+        "auftraege_h": "Exemple de cum pot arăta cererile din Seewalchen am Attersee",
         "auftraege": [
             "O a doua locuință în care încălzirea iarna trebuie să meargă doar când vine cineva și care poate fi încălzită dinainte de pe telefon.",
             "Un apartament de vacanță cu cutie de chei, care urmează să treacă la un sistem de acces cu cod propriu pentru fiecare oaspete.",
@@ -491,7 +491,7 @@ RO = {
             {"q": "Cât de departe e de la Lenzing la Schörfling?",
              "a": "Sunt șase kilometri, cam zece minute cu mașina. O programare la fața locului costă 120 € pe oră plus deplasare, asistența la distanță 95 € pe oră. Pentru site-uri, o vizită e de obicei necesară doar la prima discuție și pentru fotografii."},
         ],
-        "auftraege_h": "Lucrări tipice în Schörfling am Attersee",
+        "auftraege_h": "Exemple de cum pot arăta cererile din Schörfling am Attersee",
         "auftraege": [
             "Un camping al cărui site se citește greu pe telefon și ale cărui prețuri există doar ca PDF.",
             "Un han la care Google arată încă programul de anul trecut.",

@@ -15,12 +15,7 @@ EINRICHTEN = {
                 "Jetzt anfragen.",
         "h1": "Einen Arbeitsplatz einrichten lassen — Festpreis, ohne Vertrag",
         "nav": "Arbeitsplatz einrichten",
-        "kurz": "WVM-IT richtet einen neuen Arbeitsplatz für 190 € ein: Windows, "
-                "Treiber, die Programme des Betriebs, Benutzerkonto, E-Mail-Postfach, "
-                "Drucker, Zugriff auf die gemeinsamen Dateien und die Übernahme der "
-                "Daten vom alten Gerät. Das dauert in der Regel zwei bis drei Stunden "
-                "und läuft meist per Fernwartung, ohne dass jemand anreisen muss. Es "
-                "ist kein Vertrag nötig; der Preis gilt je Arbeitsplatz.",
+        "kurz": "WVM-IT aus Lenzing richtet für Betriebe in Oberösterreich und Salzburg einen neuen Arbeitsplatz zum Festpreis von 190 € ein, meist per Fernwartung in zwei bis drei Stunden und ohne Vertrag. Dazu gehören Windows, Treiber, die Programme des Betriebs, Benutzerkonto, E-Mail-Postfach, Drucker, Zugriff auf die gemeinsamen Dateien und die Übernahme der Daten vom alten Gerät. Der Preis gilt je Arbeitsplatz; es ist kein Vertrag nötig.",
         "intro": "Ein neuer Rechner steht auf dem Tisch, und ab da wird es mühsam: "
                  "Windows will eingerichtet werden, die Branchensoftware braucht ihre "
                  "Lizenz, das Postfach soll die alten Mails behalten, der Drucker wird "
@@ -117,12 +112,7 @@ EINRICHTEN = {
                 "Fernwartung. Jetzt anfragen.",
         "h1": "Rechner tauschen, ohne dass etwas verlorengeht",
         "nav": "PC tauschen",
-        "kurz": "WVM-IT überträgt beim Gerätewechsel alles, was gebraucht wird — "
-                "Dateien, E-Mails samt Ordnerstruktur, Browser-Lesezeichen, "
-                "gespeicherte Zugänge und die eingerichteten Programme — für 190 € je "
-                "Arbeitsplatz. Der alte Rechner wird auf Wunsch sicher gelöscht. Das "
-                "läuft meist per Fernwartung und dauert zwei bis drei Stunden; die "
-                "Person, die daran arbeitet, kann in dieser Zeit weiterarbeiten.",
+        "kurz": "WVM-IT aus Lenzing überträgt beim Gerätewechsel Dateien, E-Mails und Programme für Betriebe in Oberösterreich und Salzburg, 190 € je Arbeitsplatz, meist per Fernwartung in zwei bis drei Stunden. Mitgenommen wird alles, was gebraucht wird: Dateien, E-Mails samt Ordnerstruktur, Browser-Lesezeichen, gespeicherte Zugänge und die eingerichteten Programme. Der alte Rechner wird auf Wunsch sicher gelöscht; die Person, die daran arbeitet, kann in dieser Zeit weiterarbeiten.",
         "intro": "Der Gerätewechsel ist der Moment, in dem Daten verlorengehen — nicht "
                  "durch einen Defekt, sondern durch Unauffälligkeit. Die Dateien auf "
                  "dem Schreibtisch fallen sofort auf. Was Monate später fehlt, sind die "
@@ -243,11 +233,7 @@ EINRICHTEN = {
                 "Jetzt anfragen.",
         "h1": "Windows 11 im Betrieb: umstellen oder Gerät tauschen?",
         "nav": "Windows 11",
-        "kurz": "Windows 10 erhält seit Oktober 2025 keine Sicherheitsupdates mehr. "
-                "WVM-IT prüft je Arbeitsplatz, ob das Gerät Windows 11 überhaupt "
-                "unterstützt und ob die eingesetzten Programme darauf laufen, und "
-                "stellt dann um — für 190 € je Arbeitsplatz. Wo die Hardware nicht "
-                "mitkommt, sagen wir es vorher, statt es beim Umstieg herauszufinden.",
+        "kurz": "WVM-IT aus Lenzing prüft Geräte und Programme und stellt Betriebe in Oberösterreich und Salzburg von Windows 10 auf Windows 11 um, 190 € je Arbeitsplatz. Windows 10 erhält seit Oktober 2025 keine Sicherheitsupdates mehr. Wir prüfen je Arbeitsplatz, ob das Gerät Windows 11 unterstützt und ob die eingesetzten Programme darauf laufen; wo die Hardware nicht mitkommt, sagen wir es vorher, statt es beim Umstieg herauszufinden.",
         "intro": "Der Übergang wird gern verschoben, weil nichts weh tut: Windows 10 "
                  "startet weiter, die Programme laufen, es sieht aus wie immer. "
                  "Fehlende Sicherheitsupdates merkt man nicht — bis der Tag kommt, an "
@@ -332,11 +318,7 @@ EINRICHTEN = {
                 "Mailumzug, Teams, OneDrive. Meist per Fernwartung. Jetzt anfragen.",
         "h1": "Microsoft 365 einrichten — einmal richtig statt dreimal halb",
         "nav": "Microsoft 365",
-        "kurz": "WVM-IT richtet Microsoft 365 für 290 € ein: Postfächer und Aliasse, "
-                "Zwei-Faktor-Anmeldung, Teams, OneDrive und die gemeinsamen Ablagen in "
-                "SharePoint, dazu den Umzug der bestehenden E-Mails samt Ordnern und "
-                "Kalendern. Der Preis gilt für die Einrichtung; die Lizenzen zahlen Sie "
-                "direkt an Microsoft.",
+        "kurz": "WVM-IT aus Lenzing richtet Microsoft 365 (Office 365) für Betriebe in Oberösterreich und Salzburg zum Festpreis von 290 € ein, mit Postfächern, Zwei-Faktor-Anmeldung, Teams, OneDrive und Mailumzug; die Lizenzen zahlen Sie direkt an Microsoft. Dazu kommen Aliasse, die gemeinsamen Ablagen in SharePoint und der Umzug der bestehenden E-Mails samt Ordnern und Kalendern. Der Preis gilt für die Einrichtung.",
         "intro": "Microsoft 365 ist in zehn Minuten gekauft und in zehn Monaten immer "
                  "noch nicht richtig eingerichtet. Das ist der Normalfall: Die "
                  "Postfächer laufen, alles andere wird nach und nach danebengestellt. "
@@ -385,6 +367,8 @@ EINRICHTEN = {
 
         "faq_h": "Häufige Fragen",
         "faq": [
+            {"q": "Was kostet es, Office 365 einrichten zu lassen?",
+             "a": "Die Einrichtung von Office 365 (heute Microsoft 365) kostet bei WVM-IT 290 € Festpreis. Die Lizenzen zahlen Sie direkt an Microsoft."},
             {"q": "Ist Office 365 dasselbe wie Microsoft 365?",
              "a": "Im Alltag ja: Microsoft hat die Abos von Office 365 in Microsoft 365 "
                   "umbenannt. Wer nach Office 365 sucht, meint in der Regel das Abo mit "
@@ -420,12 +404,7 @@ EINRICHTEN = {
                 "Jetzt anfragen.",
         "h1": "Einen Server einrichten, der auch in fünf Jahren noch trägt",
         "nav": "Server einrichten",
-        "kurz": "WVM-IT setzt Server für kleine und mittlere Betriebe auf: "
-                "Betriebssystem, Benutzer und Rechte, gemeinsame Freigaben, "
-                "Datensicherung und Fernzugriff — im Haus oder virtuell. Was das "
-                "kostet, sagen wir nach einer Bestandsaufnahme, weil es an Größe, "
-                "vorhandener Technik und Anforderungen hängt. Die laufende Überwachung "
-                "danach beginnt bei 89 € im Monat.",
+        "kurz": "WVM-IT aus Lenzing richtet Server für kleine und mittlere Betriebe in Österreich ein, der Preis steht nach einer Bestandsaufnahme schriftlich fest, die laufende Überwachung danach beginnt bei 89 € im Monat. Aufgesetzt werden Betriebssystem, Benutzer und Rechte, gemeinsame Freigaben, Datensicherung und Fernzugriff — im Haus oder virtuell. Was die Einrichtung kostet, hängt an Größe, vorhandener Technik und Anforderungen.",
         "intro": "Ein Server ist keine Anschaffung, sondern eine Entscheidung für die "
                  "nächsten fünf Jahre. Die meisten Fehler dabei passieren nicht bei der "
                  "Hardware, sondern bei der Struktur: Freigaben, die historisch "
@@ -481,7 +460,7 @@ EINRICHTEN = {
 
         "faq_h": "Häufige Fragen",
         "faq": [
-            {"q": "Brauchen wir überhaupt einen eigenen Server?",
+            {"q": "Braucht ein Kleinunternehmen einen eigenen Server?",
              "a": "Das entscheidet die Software, nicht die Zahl der Arbeitsplätze. Sobald eine Warenwirtschaft, eine Branchenlösung oder eine Datenbank eine zentrale Installation verlangt, brauchen Sie einen Server, auch mit fünf Leuten. Wird nur mit Office, Mail und Dateien gearbeitet, ist die Cloud in aller Regel günstiger und wartungsärmer. Ausführlich steht das im Beitrag „Wie viele Arbeitsplätze braucht ein eigener Server?“ und im Vergleich Server oder Cloud."},
             {"q": "Wie lange dauert die Einrichtung?",
              "a": "Ein Dateiserver für einen kleinen Betrieb steht an einem Tag. Kommen "
@@ -513,11 +492,7 @@ EINRICHTEN = {
                 "eingerichtet und ausgemessen ab 890 €. Jetzt anfragen.",
         "h1": "Netzwerk einrichten, das im ganzen Haus trägt",
         "nav": "Netzwerk einrichten",
-        "kurz": "WVM-IT richtet Firmennetzwerke ab 890 € ein: Router und Switch "
-                "konfigurieren, WLAN so aufstellen und ausmessen, dass es überall "
-                "trägt, Drucker und Netzlaufwerke einbinden, ein getrenntes Gastnetz "
-                "aufsetzen. Für Verkabelung, Hallen und mehrere Stockwerke rechnen wir "
-                "nach Aufnahme — der Startpreis gilt für ein Büro üblicher Größe.",
+        "kurz": "WVM-IT aus Lenzing richtet Firmennetzwerke für Betriebe in Österreich ab 890 € ein, inklusive WLAN-Ausmessung und getrenntem Gastnetz; Verkabelung, Hallen und mehrere Stockwerke rechnen wir nach Aufnahme. Router und Switch werden konfiguriert, das WLAN so aufgestellt und ausgemessen, dass es überall trägt, Drucker und Netzlaufwerke eingebunden. Der Startpreis gilt für ein Büro üblicher Größe.",
         "intro": "Netzwerkprobleme sind selten laut. Sie zeigen sich als Video, das im "
                  "hinteren Besprechungsraum hakt, als Drucker, der zweimal die Woche "
                  "verschwindet, und als Kasse, die neben dem WLAN der Gäste hängt, weil "
@@ -594,11 +569,7 @@ EINRICHTEN = {
                 "Festpreis, mit Regeln, die man später noch versteht. Jetzt anfragen.",
         "h1": "Firewall und VPN einrichten — Zugriff von außen, ohne offene Tür",
         "nav": "Firewall und VPN",
-        "kurz": "WVM-IT richtet Firewall und VPN für 690 € ein: Regeln nach dem "
-                "Grundsatz, dass zu ist was nicht gebraucht wird, VPN-Zugänge für alle, "
-                "die von unterwegs arbeiten, und eine schriftliche Übersicht, welche "
-                "Regel wofür da ist. Läuft per Fernwartung, sobald das Gerät erreichbar "
-                "ist.",
+        "kurz": "WVM-IT aus Lenzing richtet Firewall und VPN für Betriebe in Österreich für 690 € ein, per Fernwartung, sobald das Gerät erreichbar ist. Die Regeln folgen dem Grundsatz, dass zu ist, was nicht gebraucht wird; dazu kommen VPN-Zugänge für alle, die von unterwegs arbeiten, und eine schriftliche Übersicht, welche Regel wofür da ist.",
         "intro": "Die meisten Firewalls in kleinen Betrieben sind nicht falsch "
                  "eingestellt, sondern gar nicht: Der Router vom Anbieter macht, was er "
                  "beim Auspacken gemacht hat, und irgendwann hat jemand eine "
@@ -687,12 +658,7 @@ EINRICHTEN = {
                 "hat. Jetzt anfragen.",
         "h1": "Loxone einrichten — auch wenn sie schon steht",
         "nav": "Loxone übernehmen",
-        "kurz": "WVM-IT übernimmt bestehende Loxone- und KNX-Anlagen, erweitert sie und "
-                "programmiert sie um: Licht, Heizung, Beschattung, Zutritt und Alarm. "
-                "Das gilt ausdrücklich auch für Anlagen, deren Errichter nicht mehr "
-                "erreichbar ist oder deren Programmierung niemand mehr kennt. Der Preis "
-                "hängt an Größe und Zustand und steht nach einer Aufnahme schriftlich "
-                "fest.",
+        "kurz": "WVM-IT aus Lenzing übernimmt bestehende Loxone- und KNX-Anlagen in Oberösterreich und Salzburg, die Aufnahme rechnen wir mit 120 € je Stunde vor Ort zuzüglich Anfahrt ab, danach nennen wir den Preis schriftlich. Wir erweitern und programmieren um: Licht, Heizung, Beschattung, Zutritt und Alarm. Das gilt ausdrücklich auch für Anlagen, deren Errichter nicht mehr erreichbar ist oder deren Programmierung niemand mehr kennt.",
         "intro": "Eine Gebäudeautomation hat eine unangenehme Eigenschaft: Sie "
                  "funktioniert, bis sie es nicht mehr tut — und dann fehlt derjenige, "
                  "der weiß, warum das Licht im Flur um 22 Uhr ausgeht. Häuser werden "
@@ -780,13 +746,7 @@ EINRICHTEN = {
                 "49 €/Monat. Jetzt anfragen.",
         "h1": "Datensicherung einrichten, die im Ernstfall auch funktioniert",
         "nav": "Datensicherung einrichten",
-        "kurz": "WVM-IT richtet die Datensicherung für Betriebe so ein, dass sie im "
-                "Ernstfall auch etwas taugt: geklärt wird zuerst, was gesichert wird, "
-                "wohin und wie oft; danach die 3-2-1-Regel (drei Kopien, zwei Medien, "
-                "eine außer Haus) und ein echter Wiederherstellungstest. Was die "
-                "Einrichtung kostet, sagen wir nach einer Bestandsaufnahme, weil es "
-                "an Datenmenge, Bestand und Anforderungen hängt. Die laufende "
-                "Überwachung danach beginnt bei 49 € im Monat.",
+        "kurz": "WVM-IT aus Lenzing richtet die Datensicherung für Betriebe in Österreich ein (3-2-1-Regel, echter Wiederherstellungstest), die Einrichtung nennen wir nach einer Bestandsaufnahme, die laufende Überwachung beginnt bei 49 € im Monat. Geklärt wird zuerst, was gesichert wird, wohin und wie oft; die 3-2-1-Regel heißt drei Kopien, zwei Medien, eine außer Haus.",
         "intro": "Fast jeder Betrieb hat eine Datensicherung. Deutlich weniger "
                  "Betriebe wissen, wann sie zuletzt gelaufen ist, und die wenigsten "
                  "haben je versucht, etwas daraus zurückzuholen. Genau diese Lücke "
@@ -887,13 +847,7 @@ EINRICHTEN = {
                 "Aufnahme. Jetzt anfragen.",
         "h1": "IT-Umzug ins neue Büro — geplant statt improvisiert",
         "nav": "IT-Umzug",
-        "kurz": "WVM-IT begleitet den IT-Umzug ins neue Büro: Server, Netzwerk und "
-                "Arbeitsplätze werden vorher aufgenommen, mit einer Checkliste "
-                "geplant, am Umzugstag abgebaut und aufgebaut und am ersten "
-                "Arbeitstag getestet. Bausteine aus dem Katalog: Arbeitsplatz "
-                "einrichten 190 € je Platz, Netzwerk und WLAN einrichten ab 890 €, "
-                "Einsatz vor Ort 120 € je Stunde zuzüglich Anfahrt. Der Gesamtpreis "
-                "hängt am Umfang und steht nach einer Aufnahme schriftlich fest.",
+        "kurz": "WVM-IT aus Lenzing begleitet den IT-Umzug ins neue Büro in Oberösterreich und Salzburg, Bausteine: Arbeitsplatz einrichten 190 € je Platz, Netzwerk und WLAN ab 890 €, Einsatz vor Ort 120 € je Stunde zuzüglich Anfahrt. Server, Netzwerk und Arbeitsplätze werden vorher aufgenommen, mit einer Checkliste geplant, am Umzugstag abgebaut und aufgebaut und am ersten Arbeitstag getestet. Der Gesamtpreis hängt am Umfang und steht nach einer Aufnahme schriftlich fest.",
         "intro": "Ein Büroumzug fällt meist auf denselben Tag wie ein Feiertag — nicht "
                  "wörtlich, aber vom Gefühl her: Das Regal war schneller im Auto als "
                  "in der Planung, und im neuen Haus ist die Internetleitung eine "

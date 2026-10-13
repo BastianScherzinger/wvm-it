@@ -88,7 +88,7 @@ BRANCHEN = {
         "faq": [
             {"q": "E-mailurile noastre de comandă ajung în spam. Ce putem face?",
              "a": "De obicei datele expeditorului domeniului nu sunt corecte: dacă lipsesc înregistrările pentru SPF, DKIM și DMARC, destinatarii consideră e-mailurile suspecte. Verificăm, adăugăm înregistrările și testăm trimiterea. Se poate face prin acces la distanță, fără ca cineva din firmă să trebuiască să aștepte."},
-            {"q": "Cum arată concret administrarea curentă într-o firmă de meșteșuguri?",
+            {"q": "Ce include administrarea IT pentru meșteșugari?",
              "a": "Actualizările PC-urilor de birou rulează în afara programului, copia de siguranță este verificată zilnic, iar restaurarea este încercată la intervale. Angajații noi primesc contul, cei plecați îl pierd în aceeași zi. La defecțiuni trimiteți o poză cu mesajul de eroare pe WhatsApp sau sunați; rezolvăm cea mai mare parte prin acces la distanță, iar hardware-ul îl schimbăm la fața locului în zona noastră de deservire."},
             {"q": "Cât costă administrarea IT pentru o firmă de meșteșuguri cu patru PC-uri de birou?",
              "a": "Administrarea curentă costă 29 € per post de lucru și lună, deci de patru ori 29 € pentru patru PC-uri de birou. La cerere se adaugă copia de siguranță monitorizată cu 49 € pe lună. Multe firme mici nu au nevoie de server propriu; dacă totuși aveți unul, se adaugă 89 € pe lună. Ajutorul în afara administrării costă 95 € pe oră prin acces la distanță. Toate prețurile sunt orientative, net plus TVA."},

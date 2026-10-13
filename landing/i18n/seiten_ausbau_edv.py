@@ -7,7 +7,7 @@ AUSBAU = {
             "titel": "EDV-Betreuung Oberösterreich/Salzburg für Betriebe | WVM-IT",
             "desc": "EDV-Betreuung in Oberösterreich und Salzburg: ab 29 €/Monat je Arbeitsplatz, Fernwartung 95 €/Std. Jetzt anfragen.",
             "h1": "EDV-Betreuung für Betriebe in Oberösterreich und Salzburg",
-            "kurz": "WVM-IT aus Lenzing betreut die EDV kleiner Betriebe in Oberösterreich und Salzburg und per Fernwartung in ganz Österreich, mit Deutschland als zweitem Gebiet. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag 95 € je Stunde. Wir melden uns an Werktagen innerhalb von 24 Stunden, die meisten Aufgaben erledigen wir ohne Anfahrt über eine gesicherte Verbindung.",
+            "kurz": "WVM-IT aus Lenzing betreut die EDV kleiner Betriebe in Oberösterreich und Salzburg, laufend ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag 95 € je Stunde, die meisten Aufgaben per Fernwartung. Betreut wird in ganz Österreich, mit Deutschland als zweitem Gebiet. Wir melden uns an Werktagen innerhalb von 24 Stunden; die meisten Aufgaben erledigen wir ohne Anfahrt über eine gesicherte Verbindung.",
             "abschnitte": [
                 {"h": "Was EDV-Betreuung konkret umfasst",
                  "t": "EDV-Betreuung heißt: Jemand ist dafür zuständig, dass Ihre Computer, Ihr Netz, Ihre Programme und Ihre Daten im Alltag funktionieren, und zwar bevor es brennt. Bei uns gehören dazu die Arbeitsplätze mit Updates, Benutzerkonten und Programmen, der Server samt Überwachung, die E-Mail-Postfächer, Drucker und Scanner, die Zugänge für Mitarbeiter im Homeoffice und die Datensicherung. Dazu kommt, was gern vergessen wird: eine aktuelle Liste aller Geräte, Lizenzen und Zugangsdaten, damit die Technik nicht am Wissen einer einzelnen Person hängt. Nicht dazu gehören Dinge, die kein Betrieb braucht, nur weil sie sich gut anhören. Wir rüsten nichts auf, was Ihre Größe nicht verlangt, und wir verkaufen keine Pakete, deren Inhalt Sie nie nutzen würden."},
@@ -35,6 +35,8 @@ AUSBAU = {
                  "t": "Unser Schwerpunkt ist Oberösterreich, vor allem das Salzkammergut, der Attergau und der Raum Vöcklabruck, ab Lenzing in rund einer Fahrstunde erreichbar. Auch in Salzburg sind wir bei Bedarf vor Ort, zu Terminen, die wir vorher vereinbaren. Per Fernwartung betreuen wir Betriebe in ganz Österreich, ob Wien, Tirol oder Kärnten, denn für die Verbindung spielt der Standort keine Rolle. Deutschland betreuen wir ebenfalls aus der Ferne, ohne Einsätze vor Ort außerhalb der Absprache. Wie die Anfahrt im Einzelfall geplant wird, steht auf den Seiten der jeweiligen Orte. Lenzing selbst liegt ohne Anfahrt, dort rechnen wir nur die Stunden."},
             ],
             "faq_plus": [
+            {"q": "Was gehört zur EDV-Betreuung für ein Unternehmen?",
+             "a": "Zur EDV-Betreuung gehören Updates, Überwachung, Datensicherung und Support für Arbeitsplätze, Server, E-Mail und Drucker. Sie kostet bei WVM-IT ab 29 € je Arbeitsplatz und Monat, die meisten Aufgaben erledigen wir per Fernwartung."},
                 {"q": "Was kostet EDV-Betreuung pro Monat?",
                  "a": "Die laufende EDV-Betreuung beginnt bei 29 € je Arbeitsplatz und Monat. Dazu kommen bei Bedarf 89 € im Monat für einen betreuten Server und 49 € im Monat für die überwachte Datensicherung. Wer nur gelegentlich Hilfe braucht, zahlt 95 € je Stunde per Fernwartung oder 120 € je Stunde vor Ort zuzüglich Anfahrt. Alle Preise sind Richtpreise, netto zuzüglich Umsatzsteuer."},
                 {"q": "Was ist der Unterschied zwischen EDV-Betreuung und IT-Betreuung?",
@@ -85,6 +87,8 @@ AUSBAU = {
                  "t": "Our focus is Upper Austria, above all the Salzkammergut, the Attergau and the Vöcklabruck area, reachable from Lenzing in about an hour’s drive. In Salzburg we are also on site when needed, at dates we agree beforehand. By remote support we look after businesses across Austria, whether Vienna, Tyrol or Carinthia, because the location does not matter for the connection. We support Germany from a distance as well, with no on-site visits except by arrangement. How the journey is planned in each case is on the pages for the individual towns. Lenzing itself involves no travel, so there we bill only the hours."},
             ],
             "faq_plus": [
+            {"q": "What does IT support for a company include?",
+             "a": "IT support includes updates, monitoring, backups and support for workstations, servers, email and printers. At WVM-IT it costs from €29 per workstation and month, and we do most of the work by remote maintenance."},
                 {"q": "What does IT support cost per month?",
                  "a": "Ongoing IT support starts at €29 per workstation and month. If needed there is €89 per month for a managed server and €49 per month for monitored backup. If you only need occasional help, it is €95 per hour by remote support or €120 per hour on site plus travel. All prices are guide prices, net plus VAT."},
                 {"q": "What is the difference between EDV support and IT support?",
@@ -135,6 +139,8 @@ AUSBAU = {
                  "t": "Accentul nostru este Austria Superioară, mai ales Salzkammergut, Attergau și zona Vöcklabruck, accesibile din Lenzing în cam o oră de mers. Și la Salzburg venim la fața locului când este nevoie, la termene stabilite dinainte. Prin acces la distanță administrăm firme din toată Austria, fie Viena, Tirol sau Carintia, deoarece locul nu contează pentru conexiune. Și Germania o administrăm de la distanță, fără deplasări la fața locului în afara înțelegerii. Cum se planifică drumul în fiecare caz găsiți pe paginile localităților. Lenzing în sine nu implică deplasare, deci acolo facturăm doar orele."},
             ],
             "faq_plus": [
+            {"q": "Ce include administrarea IT pentru o firmă?",
+             "a": "Administrarea IT include actualizări, monitorizare, copii de siguranță și suport pentru posturi de lucru, servere, e-mail și imprimante. La WVM-IT costă de la 29 € per post de lucru și lună, iar majoritatea lucrărilor le facem prin acces la distanță."},
                 {"q": "Cât costă administrarea IT pe lună?",
                  "a": "Administrarea IT curentă începe de la 29 € per post de lucru și lună. La nevoie se adaugă 89 € pe lună pentru un server administrat și 49 € pe lună pentru copia de siguranță monitorizată. Cine are nevoie doar ocazional de ajutor plătește 95 € pe oră prin acces la distanță sau 120 € pe oră la fața locului plus deplasarea. Toate prețurile sunt orientative, net plus TVA."},
                 {"q": "Care este diferența dintre EDV și administrarea IT?",

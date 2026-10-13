@@ -103,16 +103,24 @@ EINTRAEGE = [
     ("/it-service/", [("landing/regionen.py", "liste"), ("landing/i18n/regionen_de.py", "text")]),
     ("/aktuelles/", [("landing/beitraege.py", "liste"), ("landing/i18n/beitraege_de.py", "text"),
                       ("landing/i18n/beitraege_neu_a_de.py", "liste"),
-                      ("landing/i18n/beitraege_neu_b_de.py", "liste")]),
+                      ("landing/i18n/beitraege_neu_b_de.py", "liste"),
+                      ("landing/quellen.py", "text")]),
     ("/checkliste/", [("landing/checklisten.py", "liste"), ("landing/i18n/checklisten_de.py", "text")]),
     ("/wissen/", [("landing/glossar.py", "liste"), ("landing/i18n/glossar_de.py", "text"),
                   ("landing/i18n/glossar_teil_a_de.py", "text"),
-                  ("landing/i18n/glossar_teil_b_de.py", "text")]),
+                  ("landing/i18n/glossar_teil_b_de.py", "text"),
+                  ("landing/quellen.py", "text")]),
     ("/einrichten/", [("landing/einrichtungen.py", "liste"),
                       ("landing/i18n/einrichten_de.py", "text")]),
 ]
 
 _SPRACHEN = ("de", "en", "ro")
+
+# Ratgeber-Silos, deren sichtbares Datum („Aktualisiert“) nur den Inhalt der Seite meint
+# (R2-02, 13.10.2026). Die gemeinsame Vorlage zählt dort nicht mit: Eine Änderung an
+# `beitrag.html` (Anruf-Kasten, Quellenblock, Kartenlayout) hob sonst das Datum aller 35
+# Artikel auf denselben Tag — „Aktualisiert 13. Oktober“ auf einem Text vom 29. August.
+OHNE_VORLAGE = ("/aktuelles/", "/wissen/", "/vergleich/", "/checkliste/")
 
 
 def _mit_sprachen(rel):
@@ -337,7 +345,10 @@ class Command(BaseCommand):
 
         stand = {}
         for pfad, *_ in views._seiten_pfade():
-            tage = [d for d in (datei_datum(q) for q in _quellen(pfad)) if d]
+            dateien = _quellen(pfad)
+            if pfad.startswith(OHNE_VORLAGE) and _eintrags_quellen(pfad):
+                dateien = [q for q in dateien if not q.startswith("templates/")]
+            tage = [d for d in (datei_datum(q) for q in dateien) if d]
             tage += [d for d in (eintrag_datum(r, a, s) for r, a, s in _eintrags_quellen(pfad)) if d]
             if tage:
                 stand[pfad] = max(tage)

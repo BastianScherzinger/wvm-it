@@ -120,7 +120,6 @@ CTA_TEXTE = {
         "kopf": "IT-Notfall und nichts geht mehr?",
         "text": "Rufen Sie an. Florin Feier sagt Ihnen, was sofort zu tun ist und was warten kann.",
     },
-    "netzwerkdrucker-nicht-erreichbar": {"kopf": "Netzwerkdrucker nicht erreichbar?"},
 }
 
 
@@ -169,4 +168,9 @@ def ratgeber_schluss(context, thema=""):
         "k_url": reverse("kontakt"),
         "a_url": reverse("angebot"),
         "lang": lang,
+        # K7 (R2-01): /vergleich/ und /checkliste/ hatten keinen Inhaltslink, nur das Menü.
+        # Die Checklisten gibt es nur auf Deutsch, deshalb steht der Satz nur dort.
+        "weiter": lang == "de",
+        "vergleich_url": reverse("vergleiche") if lang == "de" else "",
+        "checklisten_url": reverse("checklisten") if lang == "de" else "",
     }

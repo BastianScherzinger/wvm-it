@@ -100,7 +100,8 @@ BEITRAEGE = [
      "thema": "server-datensicherung", "lesezeit": 6, "prio": "0.7"},
 
     {"slug": "alte-windows-version-im-betrieb", "datum": "2026-08-29",
-     "thema": "it-sicherheit", "lesezeit": 5, "prio": "0.7"},
+     "thema": "it-sicherheit", "lesezeit": 6, "prio": "0.9",
+     "einrichtung": "windows-11"},
 
     {"slug": "zugaenge-fuer-it-dienstleister", "datum": "2026-08-29",
      "thema": "it-sicherheit", "lesezeit": 5, "prio": "0.7"},
@@ -123,10 +124,6 @@ BEITRAEGE = [
     # Einrichtungsseiten, wo die Preise stehen. Windows 10 ist dabei kein
     # Redaktionsthema, sondern eine abgelaufene Frist: seit Oktober 2025 keine
     # Sicherheitsupdates mehr.
-    {"slug": "windows-10-ende-was-jetzt", "datum": "2026-09-08",
-     "thema": "edv-it-betreuung", "lesezeit": 6, "prio": "0.9",
-     "einrichtung": "windows-11"},
-
     {"slug": "pc-langsam-woran-liegt-es", "datum": "2026-09-08",
      "thema": "edv-it-betreuung", "lesezeit": 5, "prio": "0.8",
      "einrichtung": "pc-tausch"},
@@ -151,6 +148,16 @@ BEITRAEGE += _neu_a.META + _neu_b.META
 
 NACH_SLUG = {b["slug"]: b for b in BEITRAEGE}
 
+# ── Zusammengelegte Beiträge (Analyse 13.10.2026, R2-02, Maßnahme R2-10) ─────
+# Alte Adresse -> Zieladresse. `views.beitrag_seite` antwortet mit 301. Die alten Seiten
+# sind aus Sitemap, IndexNow und `_seiten_pfade()` entfernt, interne Links zeigen auf das
+# Ziel. Der Inhalt, den die alte Seite zusätzlich trug (Windows-11-Eignung, Reihenfolge der
+# Umstellung; Ping, Weboberfläche und WLAN-Wechsel beim Drucker), steht jetzt im Ziel.
+UMGELEITET = {
+    "windows-10-ende-was-jetzt": "alte-windows-version-im-betrieb",
+    "netzwerkdrucker-nicht-erreichbar": "drucker-druckt-nicht",
+}
+
 
 # ── Ortslinks je Beitrag (Analyse 12.10.2026, W2) ────────────────────────────
 # Bis dahin verlinkte jeder Beitrag genau einen Ort, rotierend und ohne
@@ -164,6 +171,11 @@ from . import regionen as _regionen  # noqa: E402
 KERNRAUM = ["lenzing", "seewalchen-am-attersee", "voecklabruck", "timelkam",
             "schoerfling-am-attersee", "regau", "frankenmarkt",
             "attnang-puchheim", "voecklamarkt"]
+
+# R2-01 W2 (13.10.2026): Die fünf Ortsseiten im Kernraum bekamen je drei Inhaltslinks, weil sich
+# neun Kernorte die Rotation teilten. Jetzt rotieren nur diese fünf, jeder Beitrag verlinkt einen
+# davon; Lenzing (Sitz) kommt bei jedem dritten Beitrag dazu, dazu der Themenort.
+ROTATION = ["timelkam", "seewalchen-am-attersee", "regau", "schoerfling-am-attersee", "frankenmarkt"]
 
 DIENST_NACH_THEMA = {
     "edv-it-betreuung": "IT-Betreuung",
@@ -203,22 +215,20 @@ def _orte_verteilen():
             kern = list(kern)
         else:
             dienst = DIENST_NACH_THEMA.get(thema, "IT-Betreuung")
-            if i % 3 == 0:
-                kern = ["lenzing"]
-            else:
-                rest = [s for s in KERNRAUM if s != "lenzing"]
-                kern = [min(rest, key=lambda s: (
-                    genutzt[s],
-                    _regionen.NACH_SLUG[s].get("schwerpunkt") != thema,
-                    KERNRAUM.index(s)))]
+            rot = min(ROTATION, key=lambda s: (
+                genutzt[s],
+                _regionen.NACH_SLUG[s].get("schwerpunkt") != thema,
+                ROTATION.index(s)))
+            kern = ["lenzing", rot] if i % 3 == 0 else [rot]
         for s in kern:
             genutzt[s] += 1
+        # Themenort: jeder Ort außer Sitz und Rotation (Vöcklabruck, Attnang-Puchheim und
+        # Vöcklamarkt können es also werden, wenn ihr Schwerpunkt das Thema ist).
+        belegt = set(ROTATION) | {"lenzing", "attersee"}
         kandidaten = [r["slug"] for r in _regionen.REGIONEN
-                      if r["slug"] not in KERNRAUM and r["slug"] != "attersee"
-                      and r.get("schwerpunkt") == thema]
+                      if r["slug"] not in belegt and r.get("schwerpunkt") == thema]
         if not kandidaten:
-            kandidaten = [r["slug"] for r in _regionen.REGIONEN
-                          if r["slug"] not in KERNRAUM and r["slug"] != "attersee"]
+            kandidaten = [r["slug"] for r in _regionen.REGIONEN if r["slug"] not in belegt]
         thema_ort = min(kandidaten, key=lambda s: (themen_genutzt.get(s, 0), s))
         themen_genutzt[thema_ort] = themen_genutzt.get(thema_ort, 0) + 1
         ergebnis[slug] = {"kern": kern, "thema": thema_ort, "dienst": dienst}
@@ -226,3 +236,20 @@ def _orte_verteilen():
 
 
 ORTE_JE_BEITRAG = _orte_verteilen()
+
+
+# ── Anker-Varianten (R2-01 K5, 13.10.2026) ───────────────────────────────────
+# 58 von 114 Ankern auf /leistungen/edv-it-betreuung/ lauteten gleich „EDV-Betreuung“. Die Karte
+# „Passende Leistung“ unter jedem Beitrag zum Thema EDV-Betreuung wechselt deshalb zwischen vier
+# Bezeichnungen, die alle dasselbe meinen und im Satz des Schlussabsatzes lesbar bleiben.
+EDV_ANKER = ["EDV-Betreuung", "laufende IT-Betreuung", "Wartung der Büro-IT",
+             "EDV-Betreuung für kleine Betriebe"]
+
+
+def thema_anker(slug):
+    """Bezeichnung der Leistungskarte für diesen Beitrag, oder None (dann gilt der Standardname)."""
+    eintrag = NACH_SLUG.get(slug)
+    if not eintrag or eintrag.get("thema") != "edv-it-betreuung":
+        return None
+    gleiche = [b["slug"] for b in BEITRAEGE if b.get("thema") == "edv-it-betreuung"]
+    return EDV_ANKER[gleiche.index(slug) % len(EDV_ANKER)]

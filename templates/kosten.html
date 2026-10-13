@@ -123,6 +123,18 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       </div>
     </div>
 
+    {% if faq %}
+    <div class="sp-faq" id="faq" data-reveal>
+      <h2>{{ t.seite.faq_h|safe }}</h2>
+      {% for f in faq %}
+      <details class="fq">
+        <summary>{{ f.q|safe }}</summary>
+        <div class="fq-a"><p>{{ f.a|safe }}</p></div>
+      </details>
+      {% endfor %}
+    </div>
+    {% endif %}
+
     <h2 class="sp-h2 ks-liste-h">{{ t.seite.leistungen|safe }}</h2>
     <div class="lk-grid">
       {% for l in leistungen %}

@@ -72,3 +72,22 @@ ZUSATZ = {
         },
     },
 }
+
+
+# ── Leitbeitrag EDV-Betreuung (Analyse 13.10.2026, R2-01 W2) ──────────────────
+# `/aktuelles/edv-betreuung-kleinbetriebe-oberoesterreich/` trug 21 ausgehende Links, bekam aber nur
+# einen eingehenden aus dem Inhalt. Neun Beiträge, die thematisch daneben liegen, verweisen jetzt im
+# Fließtext darauf — jeder mit eigenem Anker, damit nicht neunmal „EDV-Betreuung“ dasteht (K5).
+# Keine neue Aussage über das Angebot: Der Satz verweist nur auf den Beitrag.
+PILLAR_URL = "/aktuelles/edv-betreuung-kleinbetriebe-oberoesterreich/"
+PILLAR_SAETZE = {
+    "it-dienstleister-wechseln": "Was ein <a href='%(u)s'>EDV-Betreuer</a> für einen kleinen Betrieb in Oberösterreich im Alltag übernimmt, beschreibt der Leitbeitrag.",
+    "fernwartung-was-sieht-der-dienstleister": "Wie die Fernwartung in die <a href='%(u)s'>laufende EDV-Betreuung für kleine Betriebe</a> passt, steht im Leitbeitrag dazu.",
+    "zugaenge-fuer-it-dienstleister": "Wer die Zugänge einem EDV-Betreuer übergibt, findet im Leitbeitrag zur <a href='%(u)s'>EDV-Betreuung in Oberösterreich</a> den Überblick, was dazugehört.",
+    "it-betreuung-handwerksbetriebe": "Die allgemeine Fassung für alle Branchen ist der Beitrag <a href='%(u)s'>Betreuung für kleine Betriebe in Oberösterreich</a>.",
+    "it-betreuung-buero-kanzlei-praxis": "Den Überblick über alle Posten einer laufenden Betreuung gibt der Beitrag <a href='%(u)s'>EDV-Wartung oder EDV-Betreuung</a>.",
+    "it-sicherheit-kleine-firma": "Sicherheit ist ein Teil dessen, was bei der <a href='%(u)s'>Wartung der Büro-IT</a> laufend erledigt wird; der Überblick steht im Leitbeitrag.",
+    "pc-langsam-woran-liegt-es": "Wer solche Fälle nicht einzeln lösen, sondern abgeben will, liest im Beitrag <a href='%(u)s'>laufende IT-Betreuung für kleine Betriebe</a>, was dabei geregelt wird.",
+    "wie-viele-arbeitsplaetze-eigener-server": "Was danach im laufenden Betrieb zu tun ist, beschreibt der Beitrag zur <a href='%(u)s'>EDV-Betreuung für Kleinbetriebe</a>.",
+    "was-kostet-it-betreuung": "Wie sich die Betreuung im Alltag eines kleinen Betriebs gestaltet, steht im Leitbeitrag <a href='%(u)s'>EDV-Betreuung für Kleinbetriebe in Oberösterreich</a>.",
+}

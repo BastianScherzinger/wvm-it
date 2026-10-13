@@ -588,6 +588,8 @@ PACK = {
         "lz_weiter_satz": "Wer hinter dieser Leistung steht, lesen Sie {ueber}; Arbeitsbeispiele finden Sie unter {ref}.",
         "lz_weiter_anker": {"ueber": "auf der Seite Über uns", "ref": "Referenzen"},
         "rg_quellen": "Quellen zu den Angaben über den Ort",
+        "rg_methode_osrm": "So gemessen: Straßenroute ab Waldstraße 19/1 in Lenzing zum Ortsmittelpunkt, Routenplaner OSRM auf Basis von OpenStreetMap, gemessen am 09.10.2026 und am 13.10.2026 nachgerechnet (Abweichung höchstens 2 km); Fahrzeit auf 5 Minuten gerundet.",
+        "rg_methode_osrm_valhalla": "So gemessen: Straßenroute ab Waldstraße 19/1 in Lenzing zum Ortsmittelpunkt, Mittel aus den Routenplanern OSRM und Valhalla auf Basis von OpenStreetMap, gemessen am 01.10.2026 und am 13.10.2026 mit OSRM nachgerechnet (Abweichung höchstens 2 km); Fahrzeit auf 5 Minuten gerundet.",
         "brotkrume": "Sie befinden sich hier",
         "start": "Start",
         "leistungen": "Leistungen",
@@ -610,7 +612,7 @@ PACK = {
         "preis_fuss_neutral": "Alle Preise netto zzgl. USt.",
         "stand": "Stand:",
         # Sichtbares Änderungsdatum der Ratgeberseiten (GE47, 02.10.2026)
-        "seiten_stand": "Stand:",
+        "seiten_stand": "Aktualisiert:",
         "alle_preise": "Alle Preise auf einen Blick",
         "kontakt_alt": "Lieber direkt sprechen?",
     },
@@ -1082,7 +1084,7 @@ PACK = {
         "titel": "Was kostet IT-Betreuung? Alle Preise ab 29 €/Monat | WVM-IT",
         "desc": "Was IT-Betreuung kostet: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std., mit Rechenbeispielen für 3, 5 und 10 Arbeitsplätze. AT und DE. Angebot anfordern.",
         "h1": "Was kostet IT-Betreuung? Alle Preise auf einer Seite",
-        "kurz": "Die laufende IT-Betreuung bei WVM-IT kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
+        "kurz": "WVM-IT aus Lenzing betreut Betriebe in Oberösterreich und Salzburg vor Ort und in Österreich und Deutschland per Fernwartung, die laufende IT-Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Einzelne Hilfe kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Eine Webseite startet ab 350 €, SEO-Betreuung ab 149 € im Monat, Google Ads ab 199 € im Monat. Alle Angaben sind Richtpreise netto zzgl. USt.",
         "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt – und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",
         "ort_satz": "Vor Ort sind wir u. a. in <a href=\"/it-service/salzburg/\">Salzburg</a> und <a href=\"/it-service/linz/\">Linz</a>, per Fernwartung in ganz Österreich.",
         "warum_h": "Warum bei manchem kein Preis steht",
@@ -1108,6 +1110,14 @@ PACK = {
         "markt_t": "Die Beispiele sind Richtwerte für den kleinsten Umfang, darum stehen sie mit „ab“. Wie viel Betreuung Ihr Betrieb wirklich braucht, zeigt sich erst nach einer kurzen Bestandsaufnahme; danach bekommen Sie ein schriftliches Angebot. Einzelne Hilfe ohne Vertrag kostet 95 € je Stunde, der Einstiegspreis von 29 € je Arbeitsplatz und Monat gilt in Österreich und Deutschland gleich.",
         "ratgeber_t": "Diese Seite ist die Preisliste. Warum kleine Firmen für IT-Betreuung so unterschiedliche Angebote bekommen und worauf man beim Vergleich achten sollte, steht im Ratgeber.",
         "ratgeber_link": "Ratgeber: Was kostet IT-Betreuung für kleine Firmen?",
+        "faq": [
+            {"q": "Was kostet IT-Betreuung für kleine Unternehmen?",
+             "a": "Die laufende IT-Betreuung kostet bei WVM-IT ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat und die überwachte Datensicherung ab 49 € im Monat. Für 5 Arbeitsplätze ohne eigenen Server sind das ab {bsp5} € im Monat (5 × 29 € Betreuung + 49 € Datensicherung). Alle Angaben sind Richtpreise netto zzgl. USt., Stand {stand}; ein schriftliches Angebot folgt nach einer kurzen Bestandsaufnahme."},
+            {"q": "Was kostet die Betreuung und Überwachung eines Servers?",
+             "a": "Ein betreuter Server kostet ab 89 € im Monat, die überwachte Datensicherung kommt mit ab 49 € im Monat dazu. Die laufende Betreuung ist mit einem Monat Frist zum Quartalsende kündbar."},
+            {"q": "Was kostet einzelne Hilfe ohne Vertrag?",
+             "a": "Einzelne Hilfe per Fernwartung kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Einen Vertrag braucht es dafür nicht."},
+        ],
     },
     # ── Kostenrechner (docs/SEO-AUSBAU-3.md, W1) ─────────────────────────────
     # Rechnet serverseitig aus ANGEBOT_GROUPS. Hier stehen nur Beschriftungen —

@@ -368,6 +368,8 @@ EINRICHTEN = {
 
         "faq_h": "Common questions",
         "faq": [
+            {"q": "What does it cost to have Office 365 set up?",
+             "a": "Setting up Office 365 (now Microsoft 365) costs a fixed €290 at WVM-IT. You pay the licences directly to Microsoft."},
             {"q": "Is Office 365 the same as Microsoft 365?",
              "a": "In everyday use, yes: Microsoft renamed the Office 365 subscriptions "
                   "to Microsoft 365. Whoever searches for Office 365 usually means the "
@@ -457,7 +459,7 @@ EINRICHTEN = {
 
         "faq_h": "Common questions",
         "faq": [
-            {"q": "Do we need a server of our own at all?",
+            {"q": "Does a small business need a server of its own?",
              "a": "The software decides, not the number of workstations. As soon as merchandise management, an industry solution or a database requires a central installation, you need a server, even with five people. If you only work with Office, mail and files, the cloud is usually cheaper and needs less maintenance. The comparison server or cloud sets this out in detail."},
             {"q": "How long does the setup take?",
              "a": "A file server for a small business is ready in a day. With industry "

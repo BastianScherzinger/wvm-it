@@ -88,7 +88,7 @@ BRANCHEN = {
         "faq": [
             {"q": "Our order emails end up in spam. What can we do?",
              "a": "Usually the sender details of the domain are wrong: if the entries for SPF, DKIM and DMARC are missing, recipients rate your emails as suspicious. We check this, add the entries and test sending. This works by remote support, without anyone at the business having to wait."},
-            {"q": "What does ongoing support look like in a trades business?",
+            {"q": "What does IT support for tradespeople include?",
              "a": "Updates of the office PCs run outside working hours, the backup is checked daily and a restore is tried out at intervals. New employees get their account, departing ones lose it the same day. For faults you send a photo of the error message by WhatsApp or call; we solve most of it by remote support and replace hardware on site within our service area."},
             {"q": "What does IT support cost for a trades business with four office PCs?",
              "a": "Ongoing support costs €29 per workstation and month, so four times €29 for four office PCs. On request the monitored backup adds €49 per month. Many small businesses need no server of their own; if you do, €89 per month is added. Help outside the support costs €95 per hour by remote support. All prices are guide prices, net plus VAT."},

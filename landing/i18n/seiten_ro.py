@@ -142,6 +142,8 @@ SEITEN = {
         "preis_t": "Configurarea rețelei și a Wi-Fi-ului costă de la 890 €, firewall și VPN de la 690 €. Prețul final depinde de suprafață, de materialele de construcție și de numărul punctelor de acces — tocmai de aceea la început stă măsurarea, nu o ofertă în orb. Administrarea curentă a rețelei este disponibilă de la 29 € per post de lucru și lună. Lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
         "einrichtung_satz": "Dacă lipsesc doar firewall-ul și VPN-ul: <a href=\"{url}\">instalarea firewall-ului și a VPN-ului</a> la preț fix de {preis} — acces securizat din exterior, rețea protejată în interior.",
         "faq": [
+            {"q": "Cât costă administrarea rețelei?",
+             "a": "Configurarea rețelei și a WLAN-ului costă la WVM-IT de la 890 €, firewall și VPN de la 690 €. Ajutorul punctual pentru o rețea existentă costă 95 € pe oră prin acces la distanță, fără contract."},
             {"q": "De ce nu ajută încă un repetor?",
              "a": "Un repetor înjumătățește lățimea de bandă disponibilă și ocupă încă o dată același canal radio. Într-un apartament mic asta aproape nu se observă, într-o firmă cu multe dispozitive înrăutățește măsurabil situația. Mai bune sunt puține puncte de acces bine poziționate, cu canale distribuite curat."},
             {"q": "Avem nevoie de o rețea separată pentru oaspeți?",
@@ -445,7 +447,7 @@ SEITEN = {
         "titel": "Casă inteligentă cu Loxone și KNX în Austria | WVM-IT",
         "desc": "Automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces și securitate într-un singur sistem. Solicitați o ofertă.",
         "h1": "Automatizarea clădirilor cu Loxone și KNX",
-        "kurz": "WVM-IT planifică, programează și întreține automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces, securitate și tehnică media într-un singur sistem — KNX ca normă independentă de producător, cu peste 400 de producători, Loxone ca sistem închis dintr-o singură mână. Astfel de instalații se calculează pe proiect și se montează la fața locului — prețul îl comunicăm după o scurtă discuție și o evaluare, nu înainte.",
+        "kurz": "WVM-IT planifică, programează și întreține automatizarea clădirilor cu Loxone și KNX: lumină, încălzire, umbrire, acces, securitate și tehnică media într-un singur sistem — KNX ca normă independentă de producător, cu peste 500 de producători, Loxone ca sistem închis dintr-o singură mână. Astfel de instalații se calculează pe proiect și se montează la fața locului — prețul îl comunicăm după o scurtă discuție și o evaluare, nu înainte.",
         "intro": "La automatizarea clădirilor rezultatul nu îl decide hardware-ul, ci programarea. Aceleași echipamente pot da o instalație pe care nimeni nu o înțelege și care după prima vară se operează iar manual — sau una care pur și simplu face ce vă așteptați. De aceea planificăm întâi comportamentul și abia apoi lista de componente.",
         "problem_h": "Pentru cine merită",
         "probleme": [

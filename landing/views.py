@@ -35,6 +35,7 @@ from . import (beitraege, branchen, checklisten, einrichtungen,
                glossar, i18n, leistungen, messung,
                regionen, selbsttest, stand, vergleiche)
 from . import mails
+from . import quellen as quellen_modul
 
 _log = logging.getLogger(__name__)
 
@@ -3268,8 +3269,11 @@ def _mit_zusatz(daten, art, lang="de"):
 
     Beitrag: letzter Abschnitt · Branche: `risiko_t` · Glossar, Vergleich, Checkliste:
     Österreich-Absatz (`at_t2`, sonst `at_t`). Ohne Eintrag bleibt `daten` unverändert."""
-    from .i18n.verlinkung_zusatz import ZUSATZ
+    from .i18n.verlinkung_zusatz import PILLAR_SAETZE, PILLAR_URL, ZUSATZ
     satz = ZUSATZ.get(art, {}).get(lang, {}).get(daten.get("slug"))
+    if art == "beitrag" and lang == "de" and daten.get("slug") in PILLAR_SAETZE:
+        # W2 (R2-01): zweiter Satz mit eigenem Anker, der auf den Leitbeitrag verweist.
+        satz = ((satz + " ") if satz else "") + PILLAR_SAETZE[daten["slug"]] % {"u": PILLAR_URL}
     if not satz:
         return daten
     daten = dict(daten)
@@ -3592,11 +3596,18 @@ def begriff_seite(request, slug):
             (begriff.get("titel", slug), pfad)]),
         faq=begriff.get("faq") or [], faq_id=pfad))
     graph["@graph"].append(_defined_term_set(base))
-    graph["@graph"].append(_ratgeber_artikel(
+    artikel = _ratgeber_artikel(
         base, pfad, titel=begriff.get("h1", begriff.get("titel", slug)),
-        beschreibung=begriff.get("kurz", begriff.get("definition", ""))))
+        beschreibung=begriff.get("kurz", begriff.get("definition", "")))
+    quellen_liste = quellen_modul.fuer("glossar", slug)
+    if quellen_liste:
+        artikel["citation"] = [{"@type": "CreativeWork", "name": q["titel"], "url": q["url"]}
+                               for q in quellen_liste]
+    graph["@graph"].append(artikel)
     return render(request, "begriff.html", {
         "c": c, "begriff": begriff,
+        "quellen": quellen_liste, "quellen_abruf": quellen_modul.abruf_text(),
+        "quellen_abruf_iso": quellen_modul.ABRUF,
         "seiten_stand": _seiten_stand(pfad, "de"),
         "leistung": _leistung_daten(leistung, "de") if leistung else None,
         "verwandt": [_begriff_daten(glossar.NACH_SLUG[v])
@@ -4060,6 +4071,10 @@ def beitrag_seite(request, slug):
     Hebel pro investierter Stunde (docs/SEO-PLAN.md, T1). Eine Sammelseite kann
     für ein Thema ranken, zehn Beiträge auf zehn URLs für zehn Fragen.
     """
+    ziel = beitraege.UMGELEITET.get(slug)
+    if ziel:
+        # Zusammengelegt (R2-10): dauerhaft auf den Beitrag, der den Inhalt jetzt trägt.
+        return HttpResponsePermanentRedirect(reverse("beitrag", kwargs={"slug": ziel}))
     eintrag = beitraege.NACH_SLUG.get(slug)
     if not eintrag:
         raise Http404(slug)
@@ -4080,8 +4095,10 @@ def beitrag_seite(request, slug):
     worte = len(" ".join(
         [beitrag.get("antwort", ""), beitrag.get("fazit", "")]
         + [a.get("h", "") + " " + a.get("t", "") for a in beitrag.get("abschnitte", [])]
+        + [f.get("q", "") + " " + f.get("a", "") for f in beitrag.get("faq", [])]
     ).split())
     thema = leistungen.NACH_SLUG.get(eintrag.get("thema", ""))
+    quellen_liste = quellen_modul.fuer("beitrag", slug)
     artikel = {
         "@type": "Article", "@id": f"{base}{pfad}#article",
         "headline": beitrag.get("titel", ""),
@@ -4110,8 +4127,13 @@ def beitrag_seite(request, slug):
         "speakable": {"@type": "SpeakableSpecification",
                       "cssSelector": [".antwort", "h1"]},
     }
+    if quellen_liste:
+        artikel["citation"] = [{"@type": "CreativeWork", "name": q["titel"], "url": q["url"]}
+                               for q in quellen_liste]
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag,
+        "quellen": quellen_liste, "quellen_abruf": quellen_modul.abruf_text(),
+        "quellen_abruf_iso": quellen_modul.ABRUF,
         # Sichtbar nur, wenn es vom Veröffentlichungstag abweicht — sonst
         # stünde dasselbe Datum zweimal in der Meta-Zeile (GE47).
         "seiten_stand": _seiten_stand(pfad, "de"),
@@ -4120,7 +4142,9 @@ def beitrag_seite(request, slug):
         "orte_block": _orte_fuer_beitrag(eintrag),
         # Handy-Leiste: im Problem-Ratgeber heißt der Anrufknopf „Problem? Anrufen“ (12.10.2026).
         "mobilebar_call": i18n.get_pack("de")["conv"]["mb_hilfe"] if eintrag.get("hilfe") else "",
-        "thema": _leistung_daten(thema, "de") if thema else None,
+        "thema": (dict(_leistung_daten(thema, "de"),
+                       nav=beitraege.thema_anker(slug) or _leistung_daten(thema, "de")["nav"])
+                  if thema else None),
         # V2: zuerst die Beiträge zum selben Thema, danach mit den neuesten
         # aufgefüllt. Vorher standen hier immer dieselben drei — die Beiträge
         # weiter hinten in der Liste bekamen dadurch nie einen eingehenden Link.
@@ -4300,14 +4324,20 @@ def kosten(request):
     pack = i18n.get_pack(lang)
     ks = pack.get("kosten_seite", {})
     base = (c.get("wvm_url") or "").rstrip("/")
+    beispiele = _kosten_beispiele(lang)
+    stand_text = _preis_stand(lang)
+    # FAQ (R2-04): die Rechenzahl kommt aus dem Katalog (5 Arbeitsplätze ohne Server), nicht aus dem Text.
+    bsp5 = next((b["summe"] for b in beispiele if b["ap"] == 5 and not b["srv"]), "")
+    faq = [{"q": f["q"], "a": f["a"].replace("{bsp5}", str(bsp5)).replace("{stand}", str(stand_text))}
+           for f in ks.get("faq", [])]
     return render(request, "kosten.html", {
-        "c": c, "ks": ks,
-        "beispiele": _kosten_beispiele(lang),
+        "c": c, "ks": ks, "faq": faq,
+        "beispiele": beispiele,
         "angebot_groups": _localized_groups(lang),
-        "preis_stand": _preis_stand(lang),
+        "preis_stand": stand_text,
         "leistungen": _alle_leistungen(lang),
         "structured_data": _seiten_schema(
-            c, lang, katalog=True,
+            c, lang, katalog=True, faq=faq, faq_id=request.path,
             breadcrumb=_breadcrumb(base, [(ks.get("h1", "Kosten"), reverse("kosten"))])),
     })
 
