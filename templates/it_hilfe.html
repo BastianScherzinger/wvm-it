@@ -81,6 +81,8 @@ Leistungsseiten). Jede Zahl kommt aus ANGEBOT_GROUPS über das Sprachpaket bzw.
       {% for s in hilfe.fernwartung_ablauf %}<li>{{ s|safe }}</li>{% endfor %}
     </ol>
     {% endif %}
+    {% comment %}Erklärfilm „Fernwartung in 4 Schritten“ (R4, 14.10.2026): stumm, Poster zuerst, Start erst im Viewport.{% endcomment %}
+    {% if video %}{% include 'video_block.html' %}{% endif %}
     <p class="lk-alle"><a href="/aktuelles/fernwartung-was-sieht-der-dienstleister/">{{ hilfe.fernwartung_link|safe }} →</a></p>
 
     <h2 class="sp-h2" id="preise">{{ hilfe.preise_h|safe }}</h2>

@@ -49,6 +49,8 @@ gefüllt + WhatsApp. Zwei Mal: direkt unter der Antwort und nach dem dritten Abs
       <p>{{ a.t|safe }}</p>
     </section>
     {% if forloop.counter == 3 or forloop.last and forloop.counter < 3 %}{% include 'ratgeber_cta.html' with cta=cta zweit=True %}{% endif %}
+    {% comment %}Erklärfilm (R4, 14.10.2026): bewusst erst hinter dem dritten Abschnitt, nie im LCP-Bereich.{% endcomment %}
+    {% if video and forloop.counter == 3 %}{% include 'video_block.html' %}{% endif %}
     {% endfor %}
 
     {% comment %} ── Folgefragen (06.09.2026) ───────────────────────────────────

@@ -1,0 +1,17 @@
+{% load static %}{% comment %}Erklärfilm (landing/videos.py). Poster = sichtbarer Zustand ohne JS und bei prefers-reduced-motion;
+js/video.js startet den stummen Loop erst im Viewport und bietet Pause/Abspielen (WCAG 2.2.2).
+Kein Film im LCP-Bereich: der Block steht weit unter dem Seitenkopf.{% endcomment %}
+<figure class="vid {{ video.klasse }}">
+  <div class="vid-rahmen">
+    <video class="vid-el" playsinline muted loop preload="none" width="{{ video.breite }}" height="{{ video.hoehe }}"
+           poster="{% static video.poster %}" aria-label="{{ video.aria }}" data-vid>
+      <source src="{% static video.datei %}" type="video/mp4">
+    </video>
+    <button type="button" class="vid-knopf" data-vid-knopf aria-pressed="false" hidden>
+      <span class="vid-knopf-t">Pausieren</span>
+    </button>
+  </div>
+  <figcaption class="vid-unter">{{ video.unterschrift }}</figcaption>
+</figure>
+<link rel="stylesheet" href="{% static 'css/video.css' %}?v={{ asset_v }}">
+<script src="{% static 'js/video.js' %}?v={{ asset_v }}" defer></script>

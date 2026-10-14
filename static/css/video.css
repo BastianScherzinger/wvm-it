@@ -1,0 +1,20 @@
+/* Erklärfilme (Runde 4, 14.10.2026). Nur vorhandene Tokens; Seitenverhältnis fest, damit kein Layoutsprung entsteht. */
+.vid{margin:28px 0;max-width:100%}
+.vid-rahmen{position:relative;border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;background:#0b1116;line-height:0}
+.vid-quer{max-width:880px}
+.vid-quer .vid-rahmen{aspect-ratio:16/9}
+.vid-hoch{max-width:300px}
+.vid-hoch .vid-rahmen{aspect-ratio:9/16}
+.vid-el{display:block;width:100%;height:100%;object-fit:cover;background:#0b1116}
+.vid-unter{margin:10px 0 0;font-size:14px;line-height:1.45;color:var(--ink-soft)}
+.vid-knopf{position:absolute;right:10px;bottom:10px;font:600 13px/1 var(--sans);color:#f2f6f9;
+  background:rgba(11,17,22,.82);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:9px 14px;min-height:40px;cursor:pointer}
+.vid-knopf:hover{background:rgba(11,17,22,.95)}
+.vid-knopf:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
+/* Ratgeber: Film klein rechts neben dem Text, auf dem Handy mittig darunter */
+@media (min-width:900px){
+  .vid-hoch.vid-seite{float:right;margin:4px 0 20px 32px}
+}
+@media (max-width:899px){
+  .vid-hoch{margin-left:auto;margin-right:auto}
+}
