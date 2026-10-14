@@ -34,7 +34,7 @@ Website für WVM-IT (Inhaber Florin Feier, Österreich), Django + Railway, dreis
 DE/EN/RO. Live: https://www.wvm-it.tech · Repo: BastianScherzinger/wvm-it
 
 
-## Stand: 264 URLs (Runde 2, 13.10.2026)
+## Stand: 265 URLs (Runde 4, 14.10.2026)
 
 **Kern ist die EDV-/IT-Betreuung für Betriebe ohne eigene IT-Abteilung**, überwiegend per
 Fernwartung in Österreich und Deutschland; Webseiten, SEO, Google Ads und KI sind das zweite
@@ -54,7 +54,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 
 ## Prüfen und ausliefern
 
-- **Vor jedem Deploy:** `python manage.py pruefe_seite` (alle 264 URLs: `<h1>`, Titel/Description,
+- **Vor jedem Deploy:** `python manage.py pruefe_seite` (alle 265 URLs: `<h1>`, Titel/Description,
   JSON-LD, Alt-Texte, hreflang, interne Links, Preise auch in `/llms.txt`, Formulare; Rückgabewert 1
   bei Fehlern) und `python manage.py pruefe_sicherheit` (löst alle Formulare wirklich aus).
   Die Einzelprüfungen stehen in `docs/CLAUDE-AUSGELAGERT.md`.
