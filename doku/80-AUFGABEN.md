@@ -836,3 +836,12 @@ Einzelheiten: `docs/ABNAHME-2026-10-09.md`.
 
 - **Erledigt:** Glossar-Folgefragen im FAQPage-Schema, Österreich-Abschnitte in `llms-full.txt`; mindestens drei eingehende Links für alle Beiträge und Ortsseiten (Mechanismen, Test `EingehendeLinksTest`); Titel bis 60, Beschreibungen bis 155 Zeichen; Faktenprüfung (Belegerteilung, Aufbewahrung DE, DSG § 6, Frankenmarkt); Kannibalisierung der Beiträge Kleinbetriebe, Handwerk, Microsoft 365, Kanzlei gegen ihre Geldseiten aufgelöst.
 - **Offen:** Deploy, `indexnow`, GSC-Anträge für 20 neue URLs; Messung 28.10./02.11.; Vöcklabruck-Titel nach 23.10. bewerten; Freigabe der Datenschutzsätze durch Florin; Apex-Weiterleitung.
+
+## Nachtrag 15.10.2026: Runde 4 (Zweig seo/2026-10-12-komplett)
+
+Einzelheiten: `doku/extern/UMSETZUNG-2026-10-12-KOMPLETT.md` Abschnitt 2d. Live: `4076124`, `fc3aa19`.
+
+- **Offen (Claude/Bastian):** Google-Beiträge laut Kalender `GBP-BEITRAEGE-BIS-15-12.md` an den Terminen veröffentlichen (Beitrag 1 ist raus); Videos aus `ausgabe\hochwertig\` nach Bastians Abnahme bei Google-Profil, LinkedIn und YouTube hochladen; Indexierung von `/aktuelles/registrierkasse-jahresbeleg-it/` beantragen (…05, …69, Luisa); Push des Rücklink-Zweigs `wvm-partner` (`b2d845b`) nach Bastians Freigabe.
+- **Offen (Florin):** Öffnungszeiten im Google-Profil (Mo–Do 7:30–21, Fr bis 20:30, Sa bis 20) gegen die Website (Mo–Fr 9–18) klären, bis dahin nichts ändern; Ja zu den WhatsApp-Fragen (Wallstraße-Eintrag, Name unter Presse-Text, YouTube-Markenkanal, Fernwartungs-Tool); Bewertungsbild an fünf Bestandskunden weiterleiten; LinkedIn-Beiträge aus `B3-LINKEDIN-FLORIN.md` zweimal pro Woche einfügen; Nach-Einsatz-Nachricht (B5) verschicken; Testmail an support@ bestätigen.
+- **Messpunkte:** 19.10. Wochenmessung und Indexstand · 28.10. Messung A · 02.11. Messung B und KI-Fragen · 16.11. Jahresbeleg-Seite und `/kosten/` · 30.11. Messung C · 15.12. Schlussmessung.
+- **Nicht tun:** ERFOLG.PLUS 26 bewerben (Budget ausgeschöpft).

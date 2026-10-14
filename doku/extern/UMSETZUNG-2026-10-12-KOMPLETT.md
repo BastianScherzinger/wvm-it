@@ -59,6 +59,28 @@ Prüfstand: 893 Tests grün, `pruefe_seite` 264 URLs ohne Befund, `pruefe_sicher
 
 **Bewusst nicht:** keine Stadtseiten, kein „24/7“, kein M365-Title-Wechsel vor dem 27.10., Regionsbezug „Oberösterreich und Salzburg“ in H1/Meta der Orts- und Leistungsseiten bleibt (Ortssuche), Bewertungsband leer.
 
+## 2d. Runde 4 (14./15.10.2026) — Nachfrage und neue Kanäle
+
+Auftrag: bis Dezember mehr Anfragen, nicht mehr Text. Berichte `ANALYSE-2026-10-12\runde4\R4-00-BAUAUFTRAG.md`, `R4-A-NACHFRAGE.md`, `R4-B-NEUE-KANAELE.md`, `R4-99-ERGEBNIS.md`, Bausteine in `runde4\bausteine\` (Kundenordner).
+
+**Befund:** Der Engpass ist Sichtbarkeit im Moment des Bedarfs (Google-Profil, Bewertungen, Indexstand) und Vertrauen außerhalb der Seite, nicht Technik oder Text. Akut-Suchende tippen das Symptom, dort rankt die Seite schon.
+
+| Strang | Was | Stand |
+|---|---|---|
+| W1 | Ratgeber `/aktuelles/registrierkasse-jahresbeleg-it/` (Technik-Hilfe, keine Steuerberatung), Saison-Pflege von 5 Ratgebern, Preis-Antwort für Österreich auf `/kosten/` und `/it-hilfe/` | live, `4076124` |
+| W2 | Anrufleiste auf dem Handy auch bei offenem Cookie-Banner sichtbar; Partnerhinweis „Umsetzung gemeinsam mit unserer Partner-Webagentur (Webagentur Scherzinger)“ bei Florins Web-Leistung (Florins Web-Preise bleiben, keine Provision) | live, `4076124` |
+| W3 | Zwei Remotion-Videos: „Fernwartung in 4 Schritten“ auf `/it-hilfe/`, „Konto gesperrt?“ im M365-Ratgeber; Poster, Start erst im Sichtfeld, bei reduzierter Bewegung nur Poster, `VideoObject`-Schema | live, `fc3aa19` |
+| Google-Profil | 9 Leistungen mit Preis und Beschreibung, Beitrag 1 (Outlook) veröffentlicht 14.10.; Q&A gibt es im Profil nicht mehr; Öffnungszeiten im Profil weichen von der Website ab, **nichts geändert** (Florin fragen) | Kalender mit weiteren Beiträgen vorbereitet, an den Terminen zu veröffentlichen |
+| Bausteine | Förderprüfung ERFOLG.PLUS 26, Presse, LinkedIn für Florin, Nach-Einsatz-Nachricht, Bestandskunden | vorbereitet, nichts live |
+
+Prüfstand: 902 Tests grün, 265 URLs, IndexNow 265 URLs gemeldet. Videos: Quelle `Webagentur Scherzinger\Werbevideos\2026-10-14_wvm-it\`, hochwertige Fassungen für Google-Profil und LinkedIn in `ausgabe\hochwertig\`. Falle beim Neubau: das `ffmpeg` im PATH ist von 2013 und Remotions ffmpeg stürzt ab; ein aktuelles 7.1 liegt im Werkzeugordner von MEDIAPIPEWVM.
+
+**Außerhalb des Codes:** WKO-Mail und Mail an Florin (Google-Eintrag) hat Bastian am 14.10. selbst verschickt. Rücklink der Webagentur auf Zweig `wvm-partner` (`b2d845b`), wartet auf Bastians Push-Freigabe.
+
+**Bewusst nicht:** ERFOLG.PLUS 26 nirgends bewerben (WKO-Budget seit 28.09. ausgeschöpft); zu Windows 10 nur Microsoft-belegte Fakten (Support-Ende 14.10.2025, Verbraucher-ESU bis 12.10.2027); keine Kaltakquise per Anruf, Mail oder WhatsApp (Österreich: § 174 TKG 2021); keine Stadtseiten; keine Preisänderung bei Florins Web-Leistungen.
+
+**Offen:** Indexierung der neuen Jahresbeleg-Seite beantragen (10 andere WVM-URLs am 14.10. abends beantragt, siehe INDEXIERUNG.md); weitere Google-Beiträge laut Kalender; Videos für Google-Profil/LinkedIn/YouTube nach Bastians Abnahme; Öffnungszeiten klären.
+
 ## 3. Erfolg messen — Grundlinie und Termine
 
 Grundlinie (28 Tage bis 12.10.2026): **967 Impressionen / 12 Klicks / Pos. 28,4**, davon Österreich 221 / 5 / 18,1. Kaufabsicht ohne Marke: 378 Impr. / 0 Klicks.
