@@ -143,8 +143,10 @@ BEITRAEGE = [
 # Stammdaten und Texte der neuen Beiträge liegen gemeinsam in
 # i18n/beitraege_neu_{a,b}_de.py (META = diese Liste, TEXTE = Sprachpaket).
 from .i18n import beitraege_neu_a_de as _neu_a, beitraege_neu_b_de as _neu_b  # noqa: E402
+# Saison-Beiträge (Runde 4, 14.10.2026): i18n/beitraege_saison_de.py
+from .i18n import beitraege_saison_de as _saison  # noqa: E402
 
-BEITRAEGE += _neu_a.META + _neu_b.META
+BEITRAEGE += _neu_a.META + _neu_b.META + _saison.META
 
 NACH_SLUG = {b["slug"]: b for b in BEITRAEGE}
 

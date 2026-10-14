@@ -71,6 +71,18 @@ QUELLEN = {
         "titel": "BSI: IT-Grundschutz-Kompendium, Baustein CON.3 Datensicherungskonzept",
         "url": "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/IT-Grundschutz/IT-Grundschutz-Kompendium/IT-Grundschutz-Bausteine/Bausteine_Download_Edition_node.html",
         "art": "behoerde"},
+    "wko_jahresbeleg": {
+        "titel": "WKO: Registrierkassen-Jahresbeleg, Erstellung und Prüfung",
+        "url": "https://www.wko.at/steuern/pruefung-jahresbeleg-registrierkasse",
+        "art": "behoerde"},
+    "bmf_handbuch_rk": {
+        "titel": "BMF: Handbuch Registrierkassen in FinanzOnline (Abschnitt BMF Belegcheck-App)",
+        "url": "https://www.bmf.gv.at/dam/jcr:0af97a40-da60-4c81-8e1e-22c3ecca52a4/BMF_Handbuch_Registrierkassen.pdf",
+        "art": "behoerde"},
+    "win10_esu": {
+        "titel": "Microsoft Learn: Extended Security Updates (ESU) für Windows 10",
+        "url": "https://learn.microsoft.com/de-de/windows/whats-new/extended-security-updates",
+        "art": "hersteller"},
     "knx": {
         "titel": "KNX Association: der offene Standard für Gebäudeautomation",
         "url": "https://www.knx.org/",
@@ -92,7 +104,9 @@ ZUORDNUNG = {
     "microsoft-365-konto-gesperrt": {
         "quellen": ["smart_lockout", "msa_gesperrt", "abo_ablauf", "dsb_breach"]},
     "alte-windows-version-im-betrieb": {
-        "quellen": ["win10_ende", "win11_anforderungen"]},
+        "quellen": ["win10_ende", "win10_esu", "win11_anforderungen"]},
+    "registrierkasse-jahresbeleg-it": {
+        "quellen": ["wko_jahresbeleg", "bmf_handbuch_rk"]},
     "ransomware-befall-was-tun": {
         "quellen": ["cert_at", "dsb_breach", "nisg_2026"]},
     "email-postfach-gehackt": {

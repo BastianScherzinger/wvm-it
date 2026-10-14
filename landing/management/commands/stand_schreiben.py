@@ -104,6 +104,7 @@ EINTRAEGE = [
     ("/aktuelles/", [("landing/beitraege.py", "liste"), ("landing/i18n/beitraege_de.py", "text"),
                       ("landing/i18n/beitraege_neu_a_de.py", "liste"),
                       ("landing/i18n/beitraege_neu_b_de.py", "liste"),
+                      ("landing/i18n/beitraege_saison_de.py", "liste"),
                       ("landing/quellen.py", "text")]),
     ("/checkliste/", [("landing/checklisten.py", "liste"), ("landing/i18n/checklisten_de.py", "text")]),
     ("/wissen/", [("landing/glossar.py", "liste"), ("landing/i18n/glossar_de.py", "text"),

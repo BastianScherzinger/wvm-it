@@ -109,6 +109,7 @@ from landing.i18n import verlinkung_zusatz
 from landing.i18n import ro
 from landing.i18n import beitraege_neu_a_de
 from landing.i18n import beitraege_neu_b_de
+from landing.i18n import beitraege_saison_de
 from landing.i18n import glossar_teil_a_de
 from landing.i18n import glossar_teil_b_de
 from landing.i18n import seiten_de
@@ -135,7 +136,7 @@ SPRACHMODULE = (beitraege_de, branchen_de, branchen_en, branchen_ro,
                 en, glossar_de, hilfe_de, hilfe_en, hilfe_ro, regionen_de, regionen_en,
                 regionen_ro, ro, seiten_de, lokal_de, lokal_en, lokal_ro, regionen_ausbau_a, regionen_ausbau_b, regionen_ausbau_c, regionen_ausbau_d, seiten_ausbau_edv,
                 seiten_en, seiten_ro, vergleiche_de,
-                vergleiche_en, vergleiche_ro, beitraege_neu_a_de, beitraege_neu_b_de,
+                vergleiche_en, vergleiche_ro, beitraege_neu_a_de, beitraege_neu_b_de, beitraege_saison_de,
                 glossar_teil_a_de, glossar_teil_b_de, verlinkung_zusatz)
 BEFEHLE = (anfragen_loeschen, anwaermen, indexnow, befehl_messung, pruefe_mail, pruefe_seite,
            pruefe_sicherheit, seo_bericht, stand_schreiben)

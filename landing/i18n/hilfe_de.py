@@ -81,6 +81,8 @@ HILFE = {
     "laufend_link": "Laufende EDV-Betreuung ansehen",
     "vergleich_link": "Betreuung oder Stundenabrechnung? Der Vergleich",
     "faq": [
+        {"q": "Was kostet eine Stunde Fernwartung?",
+         "a": "95 € netto zzgl. USt., in ganz Österreich gleich. Abgerechnet wird nach Aufwand, einen Vertrag braucht es nicht; vor Ort kostet eine Stunde 120 € zuzüglich Anfahrt."},
         {"q": "Brauche ich einen Vertrag, damit Sie mir helfen?",
          "a": "Nein. Einzelne Hilfe rechnen wir nach Aufwand ab: per Fernwartung 95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt."},
         {"q": "Wie schnell bekomme ich Hilfe?",
