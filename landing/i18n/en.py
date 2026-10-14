@@ -1008,6 +1008,8 @@ PACK = {
                         "t": "Practice, trades, surgery, hotel, manufacturing."},
         },
     },
+    # R4-W2 (14.10.2026): Partnerhinweis bei der Web-Leistung. Keine Zahl, kein Preis.
+    "web_partner": "Delivered together with our partner web agency (<a href='https://webagentur-scherzinger.com'>Webagentur Scherzinger</a>).",
     "hosting_band": {
         "h": "We do this too: domain, hosting and email",
         "lead": "Domain, web hosting and mailboxes on your own address from one source. One contact instead of three providers, and we know where everything is.",

@@ -1000,6 +1000,8 @@ PACK = {
                         "t": "Cabinet, meserii, cabinet medical, hotel, producție."},
         },
     },
+    # R4-W2 (14.10.2026): Partnerhinweis bei der Web-Leistung. Keine Zahl, kein Preis.
+    "web_partner": "Realizat împreună cu agenția noastră parteneră de web (<a href='https://webagentur-scherzinger.com'>Webagentur Scherzinger</a>).",
     "hosting_band": {
         "h": "Ne ocupăm și de acestea: domeniu, hosting și e-mail",
         "lead": "Domeniu, găzduire și căsuțe de e-mail pe adresa proprie, dintr-o singură sursă. O singură persoană de contact în loc de trei furnizori, iar noi știm unde se află totul.",

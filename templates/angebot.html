@@ -134,6 +134,7 @@
                   <span class="wz-panel-kick">{{ t.angebot_page.step_word|safe }} {{ forloop.counter }} {{ t.angebot_page.of_word|safe }} {{ groups|length|add:1 }}</span>
                   <h3>{{ g.title }}</h3>
                   <span class="wz-panel-sub">{{ g.sub }} {{ t.angebot_page.sub_suffix|safe }}{% if t.catalog_words.ab_im_kopf %} {{ t.catalog_words.start_hint }}{% endif %}</span>
+                  {% if g.id == 'web' %}<span class="wz-panel-sub web-partner">{{ t.web_partner|safe }}</span>{% endif %}
                 </div>
               </div>
 
@@ -269,7 +270,7 @@
         <article class="pl-card spot" data-reveal data-spot>
           <div class="pl-card-head">
             <span class="pl-ic">{% include 'icons.html' with name=g.icon %}</span>
-            <div><h3>{{ g.title }}</h3><span class="pl-sub">{{ g.sub }}{% if t.catalog_words.ab_im_kopf %} {{ t.catalog_words.start_hint }}{% endif %}</span></div>
+            <div><h3>{{ g.title }}</h3><span class="pl-sub">{{ g.sub }}{% if t.catalog_words.ab_im_kopf %} {{ t.catalog_words.start_hint }}{% endif %}{% if g.id == 'web' %}<span class="web-partner">{{ t.web_partner|safe }}</span>{% endif %}</span></div>
           </div>
           <ul class="pl-list">
             {% for it in g.items %}

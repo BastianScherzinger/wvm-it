@@ -1041,6 +1041,8 @@ PACK = {
     },
     # ── Band „Domain, Hosting, E-Mail“ unter dem Wegweiser (03.10.2026) ─────
     # Ersetzt die Kacheln der Registrar-Parkseite; Zahlen aus ANGEBOT_GROUPS.
+    # R4-W2 (14.10.2026): Partnerhinweis bei der Web-Leistung. Keine Zahl, kein Preis.
+    "web_partner": "Umsetzung gemeinsam mit unserer Partner-Webagentur (<a href='https://webagentur-scherzinger.com'>Webagentur Scherzinger</a>).",
     "hosting_band": {
         "h": "Auch das machen wir: Domain, Hosting und E-Mail",
         "lead": "Domain, Webspace und Postfächer mit eigener Adresse aus einer Hand. Ein Ansprechpartner statt drei Anbietern, und wir wissen, wo alles liegt.",

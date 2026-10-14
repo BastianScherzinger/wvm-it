@@ -2915,13 +2915,12 @@ article.section{padding-top:clamp(28px,4vw,48px)}
   #kooperationen .coop-text{display:none}
 }
 
-/* SOLLTE 4: Handy-Erstbesuch. Solange der Cookie-Hinweis steht, weicht die Anruf-Leiste
-   (der Hinweis hat selbst Anrufen-frei-Platz: Hero und Kopf tragen den Anrufknopf).
-   Der Hinweis rückt dafür an den Rand, bleibt höchstens 22 % hoch. Consent-Logik unverändert. */
+/* R4-W2 (14.10.2026): Handy-Erstbesuch. Die Anruf-Leiste bleibt auch bei offenem Cookie-Hinweis
+   sichtbar (vorher wich sie ihm). Der Hinweis sitzt kompakt direkt über der Leiste: Text und beide
+   Knöpfe, höchstens 20 % der Fensterhöhe. Consent-Logik unverändert. */
 @media (max-width:820px){
-  body:has(.cookie-banner.show) .mobilebar{display:none}
-  body:has(.cookie-banner.show) .cookie-banner{bottom:0;padding-bottom:env(safe-area-inset-bottom,0px)}
-  .cookie-inner{max-height:18vh;max-height:18dvh}
+  .cookie-banner{bottom:calc(69px + env(safe-area-inset-bottom,0px))}
+  .cookie-inner{max-height:20vh;max-height:20dvh;padding:8px 14px;gap:6px}
   .cookie-text p{font-size:12px;line-height:1.35}
   .cookie-actions .btn{min-height:36px;font-size:13.5px}
 }
@@ -2949,3 +2948,8 @@ article.section{padding-top:clamp(28px,4vw,48px)}
 .done-tel a:not(.btn){color:var(--accent-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .lb-done .nf-call{font-size:16px}
 .form-sent .done-tel{margin-top:14px}
+
+/* R4-W2 (14.10.2026): Partnerhinweis bei der Web-Leistung, dezent und gut lesbar */
+.web-partner{display:block;margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--ink-dim)}
+td.web-partner{padding:8px 14px;margin:0}
+.web-partner a{color:var(--accent-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
