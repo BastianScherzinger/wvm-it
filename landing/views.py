@@ -3348,6 +3348,7 @@ def leistung_seite(request, slug):
         "einstieg": _einstieg_daten(eintrag, lang),
         "partner_domaintechnik_url": (PARTNER_DOMAINTECHNIK_URL
                                       if eintrag.get("partner") == "domaintechnik" else None),
+        "web_partner": eintrag.get("quelle") == "web",
         "kleinauftrag": _kleinauftrag(lang) if eintrag.get("kleinauftrag") else None,
         # V1/V2: alles, was zum selben Thema gehört — Beiträge, Vergleiche,
         # Branchen, Checklisten, Begriffe. Ohne diesen Block hängen die

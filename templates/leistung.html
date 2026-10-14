@@ -85,6 +85,8 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
         <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
           <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
 
+        {% if web_partner %}<p class="web-partner">{{ t.web_partner|safe }}</p>{% endif %}
+
         {% comment %} Partnerlink Domaintechnik (nur Leistungen mit Feld `partner` in
              leistungen.py): gekennzeichnet als Anzeige, rel="sponsored noopener". {% endcomment %}
         {% if partner_domaintechnik_url %}

@@ -51,6 +51,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
         <tbody>
           {% for g in angebot_groups %}
           <tr class="pt-group"><th scope="rowgroup" colspan="2">{{ g.title }}</th></tr>
+          {% if g.id == 'web' %}<tr><td colspan="2" class="web-partner">{{ t.web_partner|safe }}</td></tr>{% endif %}
             {% for it in g.items %}
             <tr>
               <th scope="row"><strong>{{ it.name }}</strong><span>{{ it.desc }}</span></th>
