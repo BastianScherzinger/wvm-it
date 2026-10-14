@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import get_language
 
-from . import branchen, i18n, leistungen, regionen
+from . import branchen, i18n, leistungen, regionen, zeiten
 
 # Welche Orte der Footer nennt: `regionen.FOOTER_REGIONEN_SLUGS` (nach Messdaten, Begründung dort).
 
@@ -54,9 +54,9 @@ def feiertag(tag):
     return tag in {ostern + timedelta(days=n) for n in (1, 39, 50, 60)}
 
 
-def _werktag(tag):
-    """Mo–Fr und kein Feiertag: ein Tag, an dem die Zeiten „Mo–Fr 9–18 Uhr“ gelten."""
-    return tag.weekday() <= 4 and not feiertag(tag)
+def _oeffnungstag(tag):
+    """Ein Tag mit Öffnungszeiten (`zeiten.OEFFNUNG`: Mo–Sa) und kein Feiertag."""
+    return zeiten.oeffnung(tag.weekday()) is not None and not feiertag(tag)
 
 
 def _erreichbarkeit(jetzt):
@@ -66,34 +66,33 @@ def _erreichbarkeit(jetzt):
     `landing/tests/test_erreichbarkeit.py` feste Zeitpunkte prüfen kann, ohne
     die Systemuhr zu stellen (docs/DESIGN-B1-2026-09-25.md §3.1).
 
-    Regeln: Mo–Fr 9:00–17:59 offen · Mo–Do ab 18 Uhr „heute Abend, Regel:
-    wieder morgen" · Mo–Fr vor 9 Uhr „wieder heute" · Fr ab 18 Uhr, Sa, So
-    „wieder Montag". Gesetzliche Feiertage in Österreich zählen wie ein
-    Wochenende (EIG308/314): nie „erreichbar“, und ist der nächste Tag kein
-    Werktag oder ein Feiertag, steht „am nächsten Werktag“ statt „morgen“ oder
-    „Montag“.
+    Die Zeiten stehen in `landing/zeiten.py` (Mo–Do 7:30–21, Fr bis 20:30, Sa bis 20 Uhr,
+    So zu). Regeln: im Zeitfenster eines Öffnungstags „erreichbar“ · davor „wieder heute“ ·
+    danach „wieder morgen“, wenn morgen ein Öffnungstag ist · sonst (Samstagabend, Sonntag)
+    „wieder Montag“. Gesetzliche Feiertage in Österreich zählen wie ein Sonntag
+    (EIG308/314): nie „erreichbar“, und ist der nächste Öffnungstag nicht der nächste
+    Kalendertag oder ein Montag, steht „am nächsten Werktag“.
     """
     lang = get_language() or "de"
     t = i18n.get_pack(lang).get("kopf", {})
     heute = jetzt.date()
-    tag = jetzt.weekday()  # Montag=0 … Sonntag=6
-    stunde = jetzt.hour
-    if _werktag(heute):
-        if 9 <= stunde < 18:
-            return {"offen": True, "text": t.get("erreichbar", "")}
-        if stunde < 9:
+    if _oeffnungstag(heute):
+        von, bis = zeiten.oeffnung(heute.weekday())
+        uhr = jetzt.time().replace(tzinfo=None)
+        if uhr < von:
             return {"offen": False, "text": t.get("wieder_heute", "")}
-        # Ab 18 Uhr: Der nächste Öffnungstag bestimmt den Text.
+        if uhr < bis:
+            return {"offen": True, "text": t.get("erreichbar", "")}
+        # Nach Schluss: Der nächste Öffnungstag bestimmt den Text.
         morgen = heute + timedelta(days=1)
-        if _werktag(morgen):
-            return {"offen": False,
-                    "text": t.get("wieder_morgen" if tag <= 3 else "wieder_montag", "")}
-    # Wochenende, Feiertag, oder der nächste Tag ist keiner der Werktage.
+        if _oeffnungstag(morgen):
+            return {"offen": False, "text": t.get("wieder_morgen", "")}
+    # Sonntag, Feiertag, Samstagabend oder der nächste Tag ist keiner der Öffnungstage.
     naechster = heute + timedelta(days=1)
-    while not _werktag(naechster):
+    while not _oeffnungstag(naechster):
         naechster += timedelta(days=1)
-    if naechster.weekday() == 0 and not feiertag(heute) and (naechster - heute).days <= 3:
-        # Klassisch: Freitagabend, Samstag, Sonntag → Montag.
+    if naechster.weekday() == 0 and not feiertag(heute) and (naechster - heute).days <= 2:
+        # Klassisch: Samstagabend, Sonntag → Montag.
         return {"offen": False, "text": t.get("wieder_montag", "")}
     return {"offen": False, "text": t.get("wieder_werktag", t.get("wieder_montag", ""))}
 

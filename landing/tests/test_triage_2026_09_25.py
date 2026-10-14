@@ -19,7 +19,7 @@ from django.core.cache import cache
 from django.test import RequestFactory, SimpleTestCase, override_settings
 from django.utils import translation
 
-from landing import i18n, messung, regionen, views
+from landing import i18n, messung, regionen, views, zeiten
 from landing.tests._util import client
 
 _MAILWEG = dict(EMAIL_HOST="smtp.test.invalid",
@@ -151,7 +151,7 @@ def _paketquellen():
 
 class ZusagenTest(SimpleTestCase):
     """Die AGB sind der Maßstab: Antwort an Werktagen innerhalb von 24 Stunden,
-    Kündigung mit einem Monat Frist zum Quartalsende, erreichbar Mo–Fr 9–18 Uhr."""
+    Kündigung mit einem Monat Frist zum Quartalsende, erreichbar Mo–Do 7:30–21 Uhr, Fr bis 20:30, Sa bis 20 Uhr."""
 
     VERBOTEN = [
         # „am nächsten Werktag, in jedem Fall innerhalb von 24 Stunden“ hält
@@ -161,10 +161,10 @@ class ZusagenTest(SimpleTestCase):
         # „jederzeit kündbar“ gegen AGB Abschnitt 6.
         "jederzeit kündbar", "jederzeit aufhören", "cancelled at any time",
         "quarter — you can stop at any time", "anulate oricând", "renunța oricând",
-        # „werktags“ schließt in Österreich den Samstag ein; gemeint ist Mo–Fr.
+        # „werktags“ schließt in Österreich den Samstag ein; die Zeiten stehen in landing/zeiten.py.
         "werktags", "an Werktagen von 9", "on working days from 9",
         "în zilele lucrătoare între orele 9", "în zilele lucrătoare, de la 9",
-        # Rückruf „ab 17 Uhr“, erreichbar ist der Betrieb bis 18 Uhr.
+        # Rückruf „ab 17 Uhr“: Abendfenster gibt es nicht (Rückruffenster enden um 18 Uhr).
         "ab 17 Uhr", "after 5 pm", "după 17",
     ]
 
@@ -182,13 +182,14 @@ class ZusagenTest(SimpleTestCase):
     def test_oeffnungszeiten_im_text_wie_im_schema(self):
         """EIG145: Schema und Kontaktseite nennen dieselben Zeiten."""
         html = _html("/kontakt/")
-        self.assertIn('"opens":"09:00"', html.replace(" ", ""))
-        self.assertIn('"closes":"18:00"', html.replace(" ", ""))
-        for lang, satz in (("de", "Montag bis Freitag, 9 bis 18 Uhr"),
-                           ("en", "Monday to Friday, 9am to 6pm"),
-                           ("ro", "De luni până vineri, între 9 și 18")):
+        kompakt = html.replace(" ", "")
+        for opens, closes in (("07:30", "21:00"), ("07:30", "20:30"), ("07:30", "20:00")):
+            self.assertIn(f'"opens":"{opens}"', kompakt)
+            self.assertIn(f'"closes":"{closes}"', kompakt)
+        for lang in ("de", "en", "ro"):
             with self.subTest(lang=lang):
-                self.assertIn(satz, i18n.get_pack(lang)["kontakt_seite"]["zeiten_t"])
+                self.assertIn(zeiten.LANG[lang][:1].upper() + zeiten.LANG[lang][1:],
+                              i18n.get_pack(lang)["kontakt_seite"]["zeiten_t"])
 
     def test_keine_rufnummer_im_sprachpaket(self):
         """EIG144: Die Nummer kommt aus content.json, nie getippt ins Paket."""

@@ -35,6 +35,7 @@ from . import (beitraege, branchen, checklisten, einrichtungen,
                glossar, i18n, leistungen, messung,
                regionen, selbsttest, stand, vergleiche)
 from . import mails
+from . import zeiten
 from . import videos as videos_modul
 from . import quellen as quellen_modul
 
@@ -221,7 +222,7 @@ ANGEBOT_GROUPS = [
             {"id": "it_betreuung", "name": "Laufende IT-Betreuung je Arbeitsplatz", "desc": "Updates und Überwachung — pro PC und Monat.", "mtl": 29, "popular": True, "icon": "care", "menge_max": 250, "menge_label": "Arbeitsplätze"},
             {"id": "it_support", "name": "IT-Support & Fernwartung", "desc": "Hilfe, wenn etwas nicht geht. Meist per Fernwartung, meist am selben Tag.", "std": 95, "icon": "consulting"},
             {"id": "backup", "name": "Datensicherung, täglich geprüft", "desc": "Automatische Sicherung, überwacht, Wiederherstellung getestet.", "mtl": 49, "icon": "shield"},
-            {"id": "server_care", "name": "Server-Betreuung & Überwachung", "desc": "Ein Server, automatisch überwacht. Meldungen bearbeiten wir Montag bis Freitag, 9 bis 18 Uhr.", "mtl": 89, "icon": "server", "menge_max": 20, "menge_label": "Server"},
+            {"id": "server_care", "name": "Server-Betreuung & Überwachung", "desc": "Ein Server, automatisch überwacht. Meldungen bearbeiten wir Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr.", "mtl": 89, "icon": "server", "menge_max": 20, "menge_label": "Server"},
             {"id": "m365", "name": "Microsoft 365 einrichten", "desc": "E-Mail, Teams, OneDrive: sauber aufgesetzt und übergeben.", "once": 290, "icon": "mail"},
             {"id": "arbeitsplatz", "name": "Neuen Arbeitsplatz einrichten", "desc": "PC, Programme, Konten, Drucker — einsatzbereit übergeben.", "once": 190, "icon": "web", "menge_max": 50, "menge_label": "Arbeitsplätze"},
             {"id": "netzwerk_setup", "name": "Netzwerk & WLAN einrichten", "desc": "Ausgemessen, geplant, aufgebaut. Auch für Hallen und mehrere Etagen.", "once": 890, "icon": "net"},
@@ -2606,11 +2607,8 @@ def _structured_data(c, lang, *, mit_katalog=True):
             "telephone": c.get("telefon", ""), "email": c.get("email", ""),
             "areaServed": ["AT", "DE"], "availableLanguage": ["de", "en", "ro"],
         },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "09:00", "closes": "18:00",
-        },
+        # Mo–Do, Fr und Sa getrennt; Sonntag fehlt (= geschlossen). Quelle: landing/zeiten.py
+        "openingHoursSpecification": zeiten.schema_spezifikation(),
     }
     if mit_katalog:
         business["hasOfferCatalog"] = {
@@ -5111,10 +5109,10 @@ def _llms_kopf(c, base):
     orte = [r["ort"] for r in sorted(regionen.REGIONEN, key=lambda r: r["km"])]
     einzugsgebiet = ", ".join(orte[:-1]) + " und " + orte[-1]
     # Erreichbarkeit (EIG343/384): derselbe Satz wie in der Statuszeile jeder Seite
-    # (`kopf.erreichbar`, Mo–Fr 9–18 Uhr), nicht abgetippt. Ohne ihn zitiert eine
+    # (`kopf.erreichbar`, Mo–Sa ab 7:30 Uhr), nicht abgetippt. Ohne ihn zitiert eine
     # KI nur die 24-Stunden-Zusage und nicht, wann jemand zu erreichen ist.
-    zeiten = (i18n.get_pack("de").get("kopf", {}).get("erreichbar", "") or "").strip()
-    zeiten = f"{zeiten}. " if zeiten else ""
+    erreichbar_satz = (i18n.get_pack("de").get("kopf", {}).get("erreichbar", "") or "").strip()
+    erreichbar_satz = f"{erreichbar_satz}. " if erreichbar_satz else ""
     return (
         f"# WVM-IT , EDV und IT-Betreuung für Betriebe\n\n"
         f"> WVM-IT (Inhaber {inhaber}) betreut die EDV kleiner und mittlerer Betriebe in "
@@ -5127,7 +5125,7 @@ def _llms_kopf(c, base):
         f"KI-Automatisierung ab {p['termin']['once']} €. "
         f"Gebäudeautomation (Loxone, KNX) sowie Konferenz- und Veranstaltungstechnik "
         f"werden projektbezogen vor Ort umgesetzt. Ein fester Ansprechpartner, Antwort "
-        f"an Werktagen innerhalb von 24 Stunden. {zeiten}"
+        f"an Werktagen innerhalb von 24 Stunden. {erreichbar_satz}"
         f"Alle Preise sind Richtpreise netto zzgl. USt. "
         f"{standort}"
         f"Per Fernwartung in ganz Österreich und Deutschland. Vor Ort im Einzugsgebiet "

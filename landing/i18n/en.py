@@ -5,6 +5,7 @@ Service page copy lives in `seiten_en.py` because of its size and is attached
 here under the key "seiten".
 """
 
+from .. import zeiten as _zeiten
 from .seiten_en import SEITEN
 from .regionen_en import REGIONEN
 from .lokal_en import LOKAL
@@ -57,7 +58,7 @@ PACK = {
             {"q": "How quickly do we get help when something fails?",
              "a": "We respond within 24 hours on business days. Because access runs remotely, work usually begins within minutes of that response rather than after a drive. Anything that cannot be solved remotely is scheduled on site — with the price quoted beforehand."},
             {"q": "What happens if the server fails or data is lost?",
-             "a": "Managed servers are monitored automatically, at night and at weekends too; we see disk space, load and errors before the business stops — we act on alerts Monday to Friday, 9 am to 6 pm. Backups run daily, are verified, and the restore is tested — a backup that has never been restored is not a backup. In a server or data-loss case the rule is: restore first, look for the cause afterwards."},
+             "a": "Managed servers are monitored automatically, at night and at weekends too; we see disk space, load and errors before the business stops — we act on alerts Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm. Backups run daily, are verified, and the restore is tested — a backup that has never been restored is not a backup. In a server or data-loss case the rule is: restore first, look for the cause afterwards."},
             {"q": "Can you take over IT that somebody else has been looking after?",
              "a": "Yes, that is the normal case. We start by taking stock: what is there, what still runs, what is unprotected. The IT security check costs from €490 as a one-off and ends with a written report and a list of actions. You then decide what gets implemented — including nothing."},
             {"q": "What does a website cost at WVM-IT?",
@@ -72,11 +73,11 @@ PACK = {
     },
     "lang": {"switch_aria": "Choose language"},
     "kopf": {
-        "erreichbar": "Available Mon–Fri 9 am–6 pm",
-        "wieder_heute": "Back today from 9 am",
-        "wieder_morgen": "Back tomorrow from 9 am",
-        "wieder_montag": "Back on Monday from 9 am",
-        "wieder_werktag": "Back on the next working day from 9 am",
+        "erreichbar": f"Available {_zeiten.KURZ['en']}",
+        "wieder_heute": f"Back today from {_zeiten.OEFFNET}am",
+        "wieder_morgen": f"Back tomorrow from {_zeiten.OEFFNET}am",
+        "wieder_montag": f"Back on Monday from {_zeiten.OEFFNET}am",
+        "wieder_werktag": f"Back on the next working day from {_zeiten.OEFFNET}am",
         "rueckruf": "Leave a callback request",
     },
     "cookie": {
@@ -364,7 +365,7 @@ PACK = {
         "m_wa": "WhatsApp", "m_wa_sub": "Message us quickly",
         "m_mail": "Email",
         "m_form": "Form", "m_form_sub": "Filled in within a minute",
-        "avail": "Reachable Mon to Fri. Reply within 24 hours on working days.",
+        "avail": "Reachable Mon to Sat. Reply within 24 hours on working days.",
         "sent_h": "Thank you.",
         "sent_p": "Your enquiry has arrived. We'll be in touch shortly.",
         "f_name": "Name *", "f_name_ph": "Your name",
@@ -412,7 +413,7 @@ PACK = {
         "hilfe_t": "If something is down right now, a phone call is faster than any page. On working days we reply within 24 hours — for an outage we usually begin remotely within minutes.",
         "titel_500": "Technical error | WVM-IT",
         "h1_500": "Something went wrong on our side",
-        "kurz_500": "This page could not be delivered. The fault is ours, not yours. Please try again in a few minutes — or contact us directly and we will look into it as soon as we are available (Monday to Friday, 9 am to 6 pm).",
+        "kurz_500": "This page could not be delivered. The fault is ours, not yours. Please try again in a few minutes — or contact us directly and we will look into it as soon as we are available (Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm).",
         "zur_start": "Back to the home page",
     },
     "suche": {
@@ -452,7 +453,7 @@ PACK = {
         "it_betreuung": {"name": "Ongoing IT support per workstation", "desc": "Updates and monitoring — per PC and month."},
         "it_support": {"name": "IT support & remote assistance", "desc": "Help when something stops working. Usually remote, usually the same day."},
         "backup": {"name": "Backups, checked every day", "desc": "Automatic backup, monitored, restore tested."},
-        "server_care": {"name": "Server management & monitoring", "desc": "One server, monitored automatically. We act on alerts Monday to Friday, 9 am to 6 pm."},
+        "server_care": {"name": "Server management & monitoring", "desc": "One server, monitored automatically. We act on alerts Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm."},
         "m365": {"name": "Microsoft 365 setup", "desc": "Mail, Teams, OneDrive: set up properly and handed over."},
         "arbeitsplatz": {"name": "Set up a new workstation", "desc": "PC, software, accounts, printer — handed over ready to use."},
         "netzwerk_setup": {"name": "Network & Wi-Fi setup", "desc": "Surveyed, planned, installed. Including halls and multiple floors."},
@@ -488,7 +489,7 @@ PACK = {
         "h": "Six sentences we hear every week.",
         "sub": "If one of them applies to your business, you are in the right place. Each one leads straight to what we do about it.",
         "server_q": "\u201cThe server is slow and nobody knows why.\u201d",
-        "server_a": "It is monitored automatically, at night too; we see the fault before it turns into downtime and act on alerts Monday to Friday, 9 am to 6 pm.",
+        "server_a": "It is monitored automatically, at night too; we see the fault before it turns into downtime and act on alerts Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm.",
         "server_l": "Servers and monitoring",
         "backup_q": "\u201cNobody really knows whether the backup is running.\u201d",
         "backup_a": "We back up daily, check every backup and test the restore – not only when it matters.",
@@ -553,7 +554,7 @@ PACK = {
             "Runs from quarter to quarter — cancellable with one month’s notice to the end of a quarter.",
             "No systems you cannot leave: accounts and data belong to you.",
             "No hardware you don't need. We recommend what is necessary and say so when something isn't worth it.",
-            "No round-the-clock on-call. Monitoring alerts at night and at weekends too, but alerts are handled Monday to Friday from 9am to 6pm; the emergency page explains what that means.",
+            "No round-the-clock on-call. Monitoring alerts at night and at weekends too, but alerts are handled Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm; the emergency page explains what that means.",
         ],
         "ausgang_h": "Rather work it out yourself first?",
         "ausgang_rechner": "Calculate the monthly price for your business",
@@ -652,7 +653,7 @@ PACK = {
         "h1": "IT emergency: what to do in the first 30 minutes",
         "nav": "IT emergency",
         "wa_text": "IT emergency: ",
-        "kurz": "In an IT emergency the first minutes decide the damage. WVM-IT in Lenzing helps across Austria (and Germany) by remote maintenance with a locked Microsoft 365 account, failed email, a PC that will not start, encryption and server failure, Mon–Fri 9am–6pm at €95 per hour: we are reachable on the number below and usually begin within minutes — including if you are not a client of ours. Billing is as single help without a contract. On site we come by appointment within roughly an hour's drive of Lenzing. If you suspect an attack, one rule comes first: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report.",
+        "kurz": "In an IT emergency the first minutes decide the damage. WVM-IT in Lenzing helps across Austria (and Germany) by remote maintenance with a locked Microsoft 365 account, failed email, a PC that will not start, encryption and server failure, Mon–Sat from 7:30am at €95 per hour: we are reachable on the number below and usually begin within minutes — including if you are not a client of ours. Billing is as single help without a contract. On site we come by appointment within roughly an hour's drive of Lenzing. If you suspect an attack, one rule comes first: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report.",
         "eilt_h": "It is urgent — this way",
         "eilt_t": "Call rather than write. During an ongoing incident a phone call saves more time than any description by email.",
         "intro": "This page is for acting, not for reading. Find your case below and work through the steps in order. Everything else — cause analysis, recovery, notification duties — comes afterwards. We are explicitly reachable even if you are not a client of ours; an acute emergency is the wrong moment for a contract question.",
@@ -885,7 +886,7 @@ PACK = {
             },
         ],
         "erreichbar_h": "If I am unavailable",
-        "erreichbar_t": "Honestly: we are a small operation, and that is exactly why there is no hold queue and no ticket system here. It also means we do not promise round-the-clock standby. We are reachable Monday to Friday from 9am to 6pm, and during those hours ongoing faults at support customers come first — before everything else. Outside those hours, leave a message on voicemail or via WhatsApp; we listen to them.",
+        "erreichbar_t": "Honestly: we are a small operation, and that is exactly why there is no hold queue and no ticket system here. It also means we do not promise round-the-clock standby. We are reachable Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm, and during those hours ongoing faults at support customers come first — before everything else. Outside those hours, leave a message on voicemail or via WhatsApp; we listen to them.",
         "erreichbar_fuss": "If you need guaranteed round-the-clock standby, we will tell you so plainly — and recommend someone who can provide it.",
         "danach_h": "What comes afterwards",
         "danach_t": "Once the business is running again, the second part begins: establish the cause, close the gap, document the incident. Exactly this part is skipped most often — with the result that the same incident recurs months later. An IT security check with a written report costs from €490 and ends with a list sorted by urgency. If you want ongoing support afterwards: from €29 per workstation and month, monitored backups from €49 per month.",
@@ -1250,7 +1251,7 @@ PACK = {
         "intro": "WhatsApp or the phone is the fastest way: one sentence about what is going on is enough. During an ongoing fault, two minutes on the phone save more time than any written description. If you cannot talk right now, leave your number and a keyword through the callback form.\n\nThe more precise the enquiry, the more concrete the first answer. Tell us briefly what this is about — an acute outage, ongoing support, a new website or a project on site — how many workstations or servers are affected and by when it has to run. Then our answer within 24 hours on working days already carries an order of magnitude instead of another question. Remote support is the normal case here, not a stopgap: remote support means that a technician reaches your computer or server over a secured connection instead of driving out — in a session you have approved, they see exactly what is on your screen, you watch every move and can stop at any time, and without a new approval nobody gets back onto the device. We come on site where hands are needed: cabling, installation, hardware replacement.",
         "wege_h": "Four ways to reach us",
         "zeiten_h": "Availability",
-        "zeiten_t": "Monday to Friday, 9am to 6pm. Enquiries outside those hours are answered on the next working day.\n\nIn an acute outage, call rather than write: a phone call reaches us even when nobody is looking at the inbox. What to do in the first thirty minutes of an emergency is set out on the emergency page — and it applies before you have reached us.",
+        "zeiten_t": "Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm. Enquiries outside those hours are answered on the next working day.\n\nIn an acute outage, call rather than write: a phone call reaches us even when nobody is looking at the inbox. What to do in the first thirty minutes of an emergency is set out on the emergency page — and it applies before you have reached us.",
         "zeiten_tab": {
             "cap": "Response times at a glance",
             "k1": "What it is about",

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Pachet de limbă română. Cheile lipsă revin automat la germană (de.py)."""
 
+from .. import zeiten as _zeiten
 from .seiten_ro import SEITEN
 from .regionen_ro import REGIONEN
 from .lokal_ro import LOKAL
@@ -51,7 +52,7 @@ PACK = {
             {"q": "Cât de repede primim ajutor când ceva se oprește?",
              "a": "Răspundem în zilele lucrătoare în 24 de ore. Pentru că accesul se face la distanță, lucrul începe de obicei la câteva minute după răspuns, nu abia după o deplasare. Ce nu se poate rezolva de la distanță programăm la fața locului — cu prețul comunicat dinainte."},
             {"q": "Ce se întâmplă dacă cade serverul sau se pierd date?",
-             "a": "Serverele administrate sunt supravegheate automat, inclusiv noaptea și în weekend; vedem spațiul de stocare, încărcarea și erorile înainte ca activitatea să se oprească — alertele le tratăm de luni până vineri, între 9 și 18. Copiile de siguranță rulează zilnic, sunt verificate, iar restaurarea este testată — o salvare care nu a fost niciodată restaurată nu este o salvare. În caz de defecțiune sau pierdere de date regula este: mai întâi restaurăm, apoi căutăm cauza."},
+             "a": "Serverele administrate sunt supravegheate automat, inclusiv noaptea și în weekend; vedem spațiul de stocare, încărcarea și erorile înainte ca activitatea să se oprească — alertele le tratăm de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20. Copiile de siguranță rulează zilnic, sunt verificate, iar restaurarea este testată — o salvare care nu a fost niciodată restaurată nu este o salvare. În caz de defecțiune sau pierdere de date regula este: mai întâi restaurăm, apoi căutăm cauza."},
             {"q": "Puteți prelua un IT administrat până acum de altcineva?",
              "a": "Da, este cazul obișnuit. Începem cu o inventariere: ce există, ce mai funcționează, ce este nesecurizat. Verificarea de securitate IT costă o singură dată de la 490 € și se încheie cu un raport scris și o listă de măsuri. Dumneavoastră decideți apoi ce se implementează — inclusiv nimic."},
             {"q": "Cât costă un site web la WVM-IT?",
@@ -66,11 +67,11 @@ PACK = {
     },
     "lang": {"switch_aria": "Alegeți limba"},
     "kopf": {
-        "erreichbar": "Disponibil L–V 9–18",
-        "wieder_heute": "Din nou disponibil azi de la ora 9",
-        "wieder_morgen": "Din nou disponibil mâine de la ora 9",
-        "wieder_montag": "Din nou disponibil luni de la ora 9",
-        "wieder_werktag": "Din nou disponibil în următoarea zi lucrătoare, de la ora 9",
+        "erreichbar": f"Disponibil {_zeiten.KURZ['ro']}",
+        "wieder_heute": f"Din nou disponibil azi de la {_zeiten.OEFFNET}",
+        "wieder_morgen": f"Din nou disponibil mâine de la {_zeiten.OEFFNET}",
+        "wieder_montag": f"Din nou disponibil luni de la {_zeiten.OEFFNET}",
+        "wieder_werktag": f"Din nou disponibil în următoarea zi lucrătoare, de la {_zeiten.OEFFNET}",
         "rueckruf": "Lăsați o cerere de apel",
     },
     "cookie": {
@@ -358,7 +359,7 @@ PACK = {
         "m_wa": "WhatsApp", "m_wa_sub": "Scrieți-ne rapid",
         "m_mail": "E-mail",
         "m_form": "Formular", "m_form_sub": "Completat într-un minut",
-        "avail": "Disponibili luni–vineri. Răspuns în 24 de ore, în zilele lucrătoare.",
+        "avail": "Disponibili de luni până sâmbătă. Răspuns în 24 de ore, în zilele lucrătoare.",
         "sent_h": "Mulțumim.",
         "sent_p": "Solicitarea dumneavoastră a ajuns. Revenim la dumneavoastră în scurt timp.",
         "f_name": "Nume *", "f_name_ph": "Numele dumneavoastră",
@@ -406,7 +407,7 @@ PACK = {
         "hilfe_t": "Dacă ceva nu funcționează chiar acum, un telefon este mai rapid decât orice pagină. În zilele lucrătoare răspundem în 24 de ore — la o defecțiune începem de obicei la distanță în câteva minute.",
         "titel_500": "Eroare tehnică | WVM-IT",
         "h1_500": "Ceva a mers prost la noi",
-        "kurz_500": "Această pagină nu a putut fi livrată. Vina este a noastră, nu a dumneavoastră. Încercați din nou în câteva minute — sau contactați-ne direct și ne ocupăm de îndată ce suntem disponibili (luni–vineri, 9–18).",
+        "kurz_500": "Această pagină nu a putut fi livrată. Vina este a noastră, nu a dumneavoastră. Încercați din nou în câteva minute — sau contactați-ne direct și ne ocupăm de îndată ce suntem disponibili (de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20).",
         "zur_start": "Înapoi la pagina principală",
     },
     "suche": {
@@ -444,7 +445,7 @@ PACK = {
         "it_betreuung": {"name": "Administrare IT continuă per post de lucru", "desc": "Actualizări și monitorizare — per PC și lună."},
         "it_support": {"name": "Suport IT & asistență la distanță", "desc": "Ajutor când ceva nu merge. De obicei la distanță, de obicei în aceeași zi."},
         "backup": {"name": "Copii de siguranță, verificate zilnic", "desc": "Salvare automată, monitorizată, restaurare testată."},
-        "server_care": {"name": "Administrare & monitorizare server", "desc": "Un server, monitorizat automat. Alertele le tratăm de luni până vineri, 9–18."},
+        "server_care": {"name": "Administrare & monitorizare server", "desc": "Un server, monitorizat automat. Alertele le tratăm de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20."},
         "m365": {"name": "Microsoft 365: configurare", "desc": "E-mail, Teams, OneDrive: configurate curat și predate."},
         "arbeitsplatz": {"name": "Configurarea unui post de lucru nou", "desc": "PC, programe, conturi, imprimantă — predat gata de lucru."},
         "netzwerk_setup": {"name": "Configurare rețea & Wi-Fi", "desc": "Măsurat, planificat, montat. Inclusiv hale și mai multe etaje."},
@@ -480,7 +481,7 @@ PACK = {
         "h": "Șase propoziții pe care le auzim în fiecare săptămână.",
         "sub": "Dacă una dintre ele se potrivește firmei dumneavoastră, sunteți în locul potrivit. Fiecare duce direct la ce facem în privința ei.",
         "server_q": "\u201eServerul e lent și nimeni nu știe de ce.\u201d",
-        "server_a": "Este supravegheat automat, inclusiv noaptea; vedem defecțiunea înainte să devină oprire de activitate și tratăm alertele de luni până vineri, între 9 și 18.",
+        "server_a": "Este supravegheat automat, inclusiv noaptea; vedem defecțiunea înainte să devină oprire de activitate și tratăm alertele de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20.",
         "server_l": "Servere și monitorizare",
         "backup_q": "\u201eNimeni nu știe sigur dacă backupul chiar rulează.\u201d",
         "backup_a": "Salvăm zilnic, verificăm fiecare salvare și testăm restaurarea – nu abia când contează.",
@@ -545,7 +546,7 @@ PACK = {
             "De la trimestru la trimestru — reziliere cu o lună înainte de sfârșitul trimestrului.",
             "Fără sisteme din care nu mai puteți ieși: conturile și datele vă aparțin.",
             "Fără echipamente de care nu aveți nevoie. Recomandăm ce e necesar și spunem și când ceva nu merită.",
-            "Fără disponibilitate non-stop. Monitorizarea semnalează și noaptea și în weekend, dar alertele se tratează de luni până vineri, între 9 și 18; pagina de urgență explică ce înseamnă asta.",
+            "Fără disponibilitate non-stop. Monitorizarea semnalează și noaptea și în weekend, dar alertele se tratează de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20; pagina de urgență explică ce înseamnă asta.",
         ],
         "ausgang_h": "Preferați să calculați mai întâi singur?",
         "ausgang_rechner": "Calculați prețul lunar pentru firma dumneavoastră",
@@ -644,7 +645,7 @@ PACK = {
         "titel": "Urgență IT: cont blocat, e-mail, PC defect | WVM-IT",
         "desc": "Cont Microsoft 365 blocat, e-mail nefuncțional, PC care nu pornește, criptare: primii pași și ajutor la distanță, 95 €/oră, fără contract. Sunați acum.",
         "h1": "Urgență IT: ce trebuie făcut în primele 30 de minute",
-        "kurz": "Într-o urgență IT, primele minute decid paguba. WVM-IT din Lenzing ajută în toată Austria (și Germania), prin mentenanță la distanță, la cont Microsoft 365 blocat, e-mail căzut, PC care nu pornește, criptare și cădere de server, de luni până vineri între 9 și 18, cu 95 € pe oră: suntem disponibili la numărul de mai jos și începem, de obicei, în câteva minute — inclusiv dacă nu sunteți clientul nostru. Se facturează ca ajutor punctual, fără contract. La fața locului venim cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing. La bănuiala unui atac se aplică mai întâi o regulă: deconectați aparatele afectate de la rețea, dar nu le opriți și nu ștergeți nimic — memoria și jurnalele conțin urmele necesare pentru recuperare și pentru o eventuală notificare.",
+        "kurz": "Într-o urgență IT, primele minute decid paguba. WVM-IT din Lenzing ajută în toată Austria (și Germania), prin mentenanță la distanță, la cont Microsoft 365 blocat, e-mail căzut, PC care nu pornește, criptare și cădere de server, de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20, cu 95 € pe oră: suntem disponibili la numărul de mai jos și începem, de obicei, în câteva minute — inclusiv dacă nu sunteți clientul nostru. Se facturează ca ajutor punctual, fără contract. La fața locului venim cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing. La bănuiala unui atac se aplică mai întâi o regulă: deconectați aparatele afectate de la rețea, dar nu le opriți și nu ștergeți nimic — memoria și jurnalele conțin urmele necesare pentru recuperare și pentru o eventuală notificare.",
         "eilt_h": "Este urgent — pe aici",
         "eilt_t": "Sunați, nu scrieți. În timpul unei defecțiuni în desfășurare, un telefon economisește mai mult timp decât orice descriere prin e-mail.",
         "intro": "Această pagină este pentru acțiune, nu pentru lectură. Găsiți mai jos cazul dumneavoastră și parcurgeți pașii în ordine. Restul — cauza, recuperarea, obligațiile de notificare — vine după. Suntem disponibili în mod explicit și dacă nu sunteți clientul nostru; o urgență acută este momentul nepotrivit pentru o discuție despre contract.",
@@ -877,7 +878,7 @@ PACK = {
             },
         ],
         "erreichbar_h": "Când nu sunt disponibil",
-        "erreichbar_t": "Sincer: suntem o firmă mică, și tocmai de aceea nu aveți aici nici listă de așteptare, nici sistem de tichete. Înseamnă însă și că nu promitem disponibilitate non-stop. Suntem disponibili de luni până vineri, de la 9 la 18, iar în acest interval defecțiunile clienților cu contract au prioritate — înaintea tuturor. În afara programului lăsați un mesaj pe robot sau prin WhatsApp; le ascultăm.",
+        "erreichbar_t": "Sincer: suntem o firmă mică, și tocmai de aceea nu aveți aici nici listă de așteptare, nici sistem de tichete. Înseamnă însă și că nu promitem disponibilitate non-stop. Suntem disponibili de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20, iar în acest interval defecțiunile clienților cu contract au prioritate — înaintea tuturor. În afara programului lăsați un mesaj pe robot sau prin WhatsApp; le ascultăm.",
         "erreichbar_fuss": "Dacă aveți nevoie de disponibilitate garantată non-stop, vă spunem deschis — și vă recomandăm pe cineva care o poate oferi.",
         "danach_h": "Ce urmează după",
         "danach_t": "Când firma funcționează din nou, începe partea a doua: stabilirea cauzei, închiderea breșei, documentarea incidentului. Tocmai această parte este sărită cel mai des — iar rezultatul este că același incident revine peste câteva luni. O verificare de securitate IT cu raport scris costă de la 490 € și se încheie cu o listă ordonată după urgență. Dacă doriți apoi asistență curentă: de la 29 € per stație și lună, backup supravegheat de la 49 € pe lună.",
@@ -1242,7 +1243,7 @@ PACK = {
         "intro": "Cel mai rapid este prin WhatsApp sau telefon: o propoziție despre ce se întâmplă este suficientă. În timpul unei defecțiuni, două minute la telefon economisesc mai mult timp decât orice descriere scrisă. Dacă nu puteți vorbi acum, lăsați numărul și un cuvânt-cheie prin formularul de apel invers.\n\nCu cât cererea este mai precisă, cu atât primul răspuns este mai concret. Spuneți pe scurt despre ce este vorba — o defecțiune acută, o întreținere curentă, un site nou sau un proiect la fața locului —, câte stații sau servere sunt afectate și până când trebuie să funcționeze. Atunci răspunsul nostru în 24 de ore în zilele lucrătoare conține deja un ordin de mărime, nu o altă întrebare. Asistența la distanță este aici cazul obișnuit, nu o soluție de avarie: asistența la distanță înseamnă că un tehnician accesează un calculator sau un server printr-o conexiune securizată, în loc să se deplaseze — într-o sesiune aprobată de dumneavoastră vede exact ce este pe ecranul dumneavoastră, urmăriți fiecare mișcare și puteți întrerupe oricând, iar fără o nouă aprobare nimeni nu revine pe aparat. La fața locului venim acolo unde este nevoie de mâini: cabluri, montaj, schimb de aparate.",
         "wege_h": "Patru moduri de a ne contacta",
         "zeiten_h": "Disponibilitate",
-        "zeiten_t": "De luni până vineri, între 9 și 18. Cererile din afara acestor ore primesc răspuns în următoarea zi lucrătoare.\n\nÎn cazul unei defecțiuni acute sunați, nu scrieți: un apel ne ajunge și atunci când nimeni nu se uită în căsuța poștală. Ce trebuie făcut în primele treizeci de minute ale unei urgențe este descris pe pagina de urgență — și este valabil și înainte să ne fi contactat.",
+        "zeiten_t": "De luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20. Cererile din afara acestor ore primesc răspuns în următoarea zi lucrătoare.\n\nÎn cazul unei defecțiuni acute sunați, nu scrieți: un apel ne ajunge și atunci când nimeni nu se uită în căsuța poștală. Ce trebuie făcut în primele treizeci de minute ale unei urgențe este descris pe pagina de urgență — și este valabil și înainte să ne fi contactat.",
         "zeiten_tab": {
             "cap": "Timpii de răspuns pe scurt",
             "k1": "Solicitarea",

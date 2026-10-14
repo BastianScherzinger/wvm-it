@@ -7,7 +7,7 @@ nicht kollidieren (wie conv_de.py). Hängt unter dem Schlüssel "akut" im Paket.
 Regeln für diese Texte:
 - Keine Preise hier. Der Stundensatz steht in `hilfe_*.py` bzw. den Beiträgen und wird von
   `pruefe_seite` gegen ANGEBOT_GROUPS gehalten.
-- Die Zeiten (Mo–Fr 9–18 Uhr) sind dieselben wie `kopf.erreichbar`; ein Test hält beide gleich.
+- Die Zeiten (Mo–Do 7:30–21 Uhr, Fr bis 20:30 Uhr, Sa bis 20 Uhr) sind dieselben wie `kopf.erreichbar`; ein Test hält beide gleich.
 - Kein „24/7“, keine „24 Stunden“-Zusage für den Notfall (R3-02 Nr. 3).
 - Fernwartung = ganz Österreich (und Deutschland); vor Ort nur nach Terminabsprache im Umkreis
   von rund einer Fahrstunde um Lenzing (R3-01 Nr. 1).
@@ -16,7 +16,7 @@ Regeln für diese Texte:
 AKUT = {
     # ── Sofort-Block: Zeitzeile unter den Kontaktwegen (neben dem Live-Status) ───────────
     "zeit_auf": "Außerhalb dieser Zeiten: Nachricht schicken, Antwort am nächsten Werktag.",
-    "zeit_zu": "Mo–Fr 9–18 Uhr. Eine Nachricht können Sie jetzt schicken, die Antwort kommt am nächsten Werktag.",
+    "zeit_zu": "Mo–Do 7:30–21 Uhr, Fr bis 20:30 Uhr, Sa bis 20 Uhr. Eine Nachricht können Sie jetzt schicken, die Antwort kommt am nächsten Werktag.",
     # ── „Was ist kaputt?“ (nur Symptome, zu denen es einen Ratgeber gibt) ─────────────
     "kacheln_h": "Was ist kaputt?",
     "kacheln_t": "Tippen Sie auf Ihr Problem. Der Ratgeber sagt, was Sie sofort selbst prüfen können; reicht das nicht, rufen Sie an.",
@@ -42,10 +42,10 @@ AKUT = {
     "done_weiter_h": "So geht es weiter",
     "done_eilt": "Wenn es eilt, rufen Sie an:",
     "notfall_done_h": "Ihre Notfall-Anfrage ist angekommen.",
-    "notfall_done_t": "Bei einer laufenden Störung warten Sie nicht auf unsere Antwort, sondern rufen Sie jetzt an. Anrufe nehmen wir Mo–Fr 9–18 Uhr entgegen; Nachrichten außerhalb dieser Zeiten lesen wir am nächsten Werktag.",
+    "notfall_done_t": "Bei einer laufenden Störung warten Sie nicht auf unsere Antwort, sondern rufen Sie jetzt an. Anrufe nehmen wir Mo–Do 7:30–21 Uhr, Fr bis 20:30 Uhr, Sa bis 20 Uhr entgegen; Nachrichten außerhalb dieser Zeiten lesen wir am nächsten Werktag.",
     "notfall_done_call": "Jetzt anrufen",
-    "danke_notfall": "Ihre Notfall-Anfrage ist bei uns eingegangen. Steht der Betrieb gerade still, warten Sie nicht auf unsere Antwort: Rufen Sie an, {telefon}. Wir sind Mo–Fr 9–18 Uhr erreichbar; Nachrichten außerhalb dieser Zeiten lesen wir am nächsten Werktag.",
-    "danke_notfall_s1": "Rufen Sie an, wenn es eilt. Mo–Fr 9–18 Uhr nehmen wir Anrufe entgegen und beginnen bei einer Störung meist innerhalb von Minuten per Fernwartung.",
+    "danke_notfall": "Ihre Notfall-Anfrage ist bei uns eingegangen. Steht der Betrieb gerade still, warten Sie nicht auf unsere Antwort: Rufen Sie an, {telefon}. Wir sind Mo–Do 7:30–21 Uhr, Fr bis 20:30 Uhr, Sa bis 20 Uhr erreichbar; Nachrichten außerhalb dieser Zeiten lesen wir am nächsten Werktag.",
+    "danke_notfall_s1": "Rufen Sie an, wenn es eilt. Mo–Do 7:30–21 Uhr, Fr bis 20:30 Uhr, Sa bis 20 Uhr nehmen wir Anrufe entgegen und beginnen bei einer Störung meist innerhalb von Minuten per Fernwartung.",
     "danke_notfall_s2": "Haben Sie eine Nachricht hinterlassen, lesen wir sie spätestens am nächsten Werktag und melden uns per Telefon oder E-Mail, je nachdem, was Sie angegeben haben.",
     # ── Meldung bei zu vielen Versuchen (Fenster der Formulare: 15 Minuten) ─────────
     "limit_p_kurz": "Zum Schutz vor automatischem Massenversand nehmen wir vorübergehend keine weiteren an. Bitte versuchen Sie es in etwa 15 Minuten noch einmal oder rufen Sie an — Ihre bisherigen Anfragen sind angekommen.",

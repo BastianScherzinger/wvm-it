@@ -26,7 +26,7 @@ from django.core.cache import cache
 from django.test import SimpleTestCase, override_settings
 from django.urls import reverse
 
-from landing import beitraege, einrichtungen, i18n
+from landing import beitraege, einrichtungen, i18n, zeiten
 from landing.views import _ANGEBOT_INDEX
 from landing.views import _HILFE_STUNDE
 from landing.views import _HILFE_VOR_ORT
@@ -228,7 +228,7 @@ class AnliegenTest(SimpleTestCase):
 class OeffnungszeitenStimmenTest(SimpleTestCase):
     """Die Zeiten im Schema sind die, die /kontakt/ sichtbar nennt (24.09.2026).
 
-    Die Analyse vom 24.09. hielt die Zeiten Mo–Fr 09:00–18:00 im Schema für
+    Die Analyse vom 24.09. hielt die Zeiten Mo–Fr 09:00–18:00 (heute: landing/zeiten.py) im Schema für
     unbelegt; sie stehen aber seit dem Relaunch wörtlich auf /kontakt/ und
     /it-notfall/, in allen drei Sprachen. Nicht das Schema war falsch, sondern
     die Notiz in doku/50-LOCAL-SEO.md. Dieser Test hält beide Stellen zusammen:
@@ -236,12 +236,15 @@ class OeffnungszeitenStimmenTest(SimpleTestCase):
 
     def test_schema_und_kontaktseite_sagen_dasselbe(self):
         _, html = _html("/kontakt/")
-        zeiten = [k.get("openingHoursSpecification") for k in _graph(html)
-                  if k.get("@type") == "ProfessionalService"][0]
-        self.assertEqual(zeiten["opens"], "09:00")
-        self.assertEqual(zeiten["closes"], "18:00")
-        self.assertEqual(len(zeiten["dayOfWeek"]), 5)
-        self.assertIn("Montag bis Freitag, 9 bis 18 Uhr", html)
+        spez = [k.get("openingHoursSpecification") for k in _graph(html)
+                if k.get("@type") == "ProfessionalService"][0]
+        # Mo–Do, Fr und Sa getrennt, Sonntag fehlt; Quelle landing/zeiten.py.
+        self.assertEqual(spez, zeiten.schema_spezifikation())
+        self.assertEqual([(s["dayOfWeek"], s["opens"], s["closes"]) for s in spez],
+                         [(["Monday", "Tuesday", "Wednesday", "Thursday"], "07:30", "21:00"),
+                          (["Friday"], "07:30", "20:30"),
+                          (["Saturday"], "07:30", "20:00")])
+        self.assertIn(zeiten.LANG["de"], html)
 
 
 class LlmsEinzelhilfeTest(SimpleTestCase):

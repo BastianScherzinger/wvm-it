@@ -4,7 +4,7 @@ urgențe, calea solicitării. Regulile sunt în akut_de.py."""
 
 AKUT = {
     "zeit_auf": "În afara acestor ore: trimiteți un mesaj, răspundem în următoarea zi lucrătoare.",
-    "zeit_zu": "L–V 9–18. Puteți trimite un mesaj acum; răspunsul vine în următoarea zi lucrătoare.",
+    "zeit_zu": "L–J 7:30–21, V până la 20:30, S până la 20. Puteți trimite un mesaj acum; răspunsul vine în următoarea zi lucrătoare.",
     "kacheln_h": "Ce s-a stricat?",
     "kacheln_t": "Atingeți problema dumneavoastră. Ghidul (în germană) spune ce puteți verifica singur imediat; dacă nu ajunge, sunați.",
     "kacheln": [
@@ -26,10 +26,10 @@ AKUT = {
     "done_weiter_h": "Cum continuăm",
     "done_eilt": "Dacă e urgent, sunați:",
     "notfall_done_h": "Solicitarea dumneavoastră de urgență a ajuns.",
-    "notfall_done_t": "Dacă ceva nu funcționează chiar acum, nu așteptați răspunsul nostru: sunați acum. Preluăm apeluri de luni până vineri, între 9 și 18; mesajele lăsate în afara acestor ore le citim în următoarea zi lucrătoare.",
+    "notfall_done_t": "Dacă ceva nu funcționează chiar acum, nu așteptați răspunsul nostru: sunați acum. Preluăm apeluri de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20; mesajele lăsate în afara acestor ore le citim în următoarea zi lucrătoare.",
     "notfall_done_call": "Sunați acum",
-    "danke_notfall": "Solicitarea dumneavoastră de urgență a ajuns la noi. Dacă firma stă pe loc, nu așteptați răspunsul nostru: sunați la {telefon}. Ne găsiți de luni până vineri, între 9 și 18; mesajele lăsate în afara acestor ore le citim în următoarea zi lucrătoare.",
-    "danke_notfall_s1": "Sunați dacă e urgent. De luni până vineri, între 9 și 18, preluăm apeluri și, în caz de defecțiune, începem de obicei în câteva minute, prin asistență la distanță.",
+    "danke_notfall": "Solicitarea dumneavoastră de urgență a ajuns la noi. Dacă firma stă pe loc, nu așteptați răspunsul nostru: sunați la {telefon}. Ne găsiți de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20; mesajele lăsate în afara acestor ore le citim în următoarea zi lucrătoare.",
+    "danke_notfall_s1": "Sunați dacă e urgent. De luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20, preluăm apeluri și, în caz de defecțiune, începem de obicei în câteva minute, prin asistență la distanță.",
     "danke_notfall_s2": "Dacă ați lăsat un mesaj, îl citim cel târziu în următoarea zi lucrătoare și revenim telefonic sau prin e-mail, după ce ne-ați indicat.",
     "limit_p_kurz": "Pentru a ne proteja de trimiterea automată în masă, nu mai acceptăm altele deocamdată. Vă rugăm să încercați din nou peste aproximativ 15 minute sau sunați — solicitările dumneavoastră anterioare au ajuns.",
 }

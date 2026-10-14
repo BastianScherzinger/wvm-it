@@ -281,7 +281,7 @@ BEITRAEGE = {
         "titel": "Was kostet ein Serverausfall — und wie rechnet man das aus?",
         "meta_titel": "Serverausfall: so rechnen Sie die Kosten aus | WVM-IT",
         "desc": "Der Rechenweg für die Kosten eines IT-Ausfalls: verlorene Arbeitsstunden, Nacharbeit, verpasste Aufträge. Mit eigenen Zahlen — jetzt nachlesen.",
-        "antwort": "Die Kosten eines Ausfalls berechnen sich aus 3 Posten: den bezahlten, aber nicht nutzbaren Arbeitsstunden, der Nacharbeit danach und den Aufträgen, die in dieser Zeit nicht angenommen werden konnten. Der erste Posten ist der einzige, den man exakt kennt — Zahl der betroffenen Mitarbeiter mal Ausfallstunden mal Ihren durchschnittlichen Stundensatz. Bei 10 Mitarbeitern und einem halben Tag Stillstand sind das rund 40 verlorene Arbeitsstunden, und diese Zahl ist in fast jedem Betrieb höher als die Jahreskosten der Vorsorge, die den Ausfall verhindert hätte. Steht ein Server still, hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Fr 9–18 Uhr, 95 € je Stunde; Arbeiten an der Hardware vor Ort gibt es nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing.",
+        "antwort": "Die Kosten eines Ausfalls berechnen sich aus 3 Posten: den bezahlten, aber nicht nutzbaren Arbeitsstunden, der Nacharbeit danach und den Aufträgen, die in dieser Zeit nicht angenommen werden konnten. Der erste Posten ist der einzige, den man exakt kennt — Zahl der betroffenen Mitarbeiter mal Ausfallstunden mal Ihren durchschnittlichen Stundensatz. Bei 10 Mitarbeitern und einem halben Tag Stillstand sind das rund 40 verlorene Arbeitsstunden, und diese Zahl ist in fast jedem Betrieb höher als die Jahreskosten der Vorsorge, die den Ausfall verhindert hätte. Steht ein Server still, hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, 95 € je Stunde; Arbeiten an der Hardware vor Ort gibt es nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing.",
         "abschnitte": [
             {"h": "Posten 1: die bezahlte, aber unproduktive Zeit",
              "t": "Das ist der einzige Posten, den Sie ohne Schätzung kennen: Zahl der betroffenen Mitarbeiter × Ausfallstunden × durchschnittlicher Stundensatz inklusive Nebenkosten. Wichtig ist die Ehrlichkeit bei der Mitarbeiterzahl — betroffen ist nicht nur, wer direkt am ausgefallenen System arbeitet, sondern auch, wer auf dessen Ergebnisse wartet. Wenn die Warenwirtschaft steht, steht meist auch der Versand."},
@@ -576,7 +576,7 @@ BEITRAEGE = {
             {"h": "Der Fehler, der am häufigsten vorkommt",
              "t": "Der Fernzugriff wird schnell eingerichtet, weil es eilt — und bleibt dann so. Ein direkt aus dem Internet erreichbarer Fernwartungszugang ohne zweiten Faktor ist eine der meistgenutzten Eintrittstüren überhaupt, und er entsteht fast immer aus einer Übergangslösung, die niemand zurückgebaut hat. Wenn Sie nur eine Sache prüfen: Fragen Sie, welche Dienste Ihres Netzes derzeit direkt aus dem Internet erreichbar sind. Die Antwort überrascht öfter, als sie sollte."},
             {"h": "Zwischen den Feiertagen",
-             "t": "Rund um Weihnachten und Neujahr arbeitet oft nur eine Notbesetzung, mehrere Personen ausnahmsweise von zu Hause und mit Geräten, die sonst selten außer Haus sind. Prüfen Sie vorher, ob die Zwei-Faktor-Anmeldung auf allen Geräten funktioniert, wer das Passwort-Zurücksetzen auslösen darf und wer in dieser Zeit erreichbar ist. Bedenken Sie, dass unsere Erreichbarkeit Montag bis Freitag von 9 bis 18 Uhr gilt; an Feiertagen sagen wir nichts zu, was wir nicht halten können. Ein Zugang, der erst am 27. Dezember hakt, sollte im Dezember davor getestet sein."},
+             "t": "Rund um Weihnachten und Neujahr arbeitet oft nur eine Notbesetzung, mehrere Personen ausnahmsweise von zu Hause und mit Geräten, die sonst selten außer Haus sind. Prüfen Sie vorher, ob die Zwei-Faktor-Anmeldung auf allen Geräten funktioniert, wer das Passwort-Zurücksetzen auslösen darf und wer in dieser Zeit erreichbar ist. Bedenken Sie, dass unsere Erreichbarkeit Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr gilt; an Feiertagen sagen wir nichts zu, was wir nicht halten können. Ein Zugang, der erst am 27. Dezember hakt, sollte im Dezember davor getestet sein."},
             {"h": "Homeoffice für Pendler im Salzburger Raum",
              "t": "Rund um Salzburg arbeiten viele Beschäftigte teilweise von zu Hause, weil der Arbeitsweg lang ist, und manche wohnen im Flachgau oder Salzkammergut, der Betrieb sitzt aber in Oberösterreich. Für die Anbindung heißt das: Die Leitungen zu Hause sind sehr verschieden, von Glasfaser bis zu einer wackeligen Funkverbindung am Berg. Ein VPN, das bei jedem Verbindungsabbruch neu aufgebaut werden muss, nervt dann so sehr, dass Leute Umwege suchen, etwa die private E-Mail oder einen USB-Stick. Planen Sie die Lösung deshalb für die schlechteste Verbindung, nicht für die beste. Mit Geräten, die der Betrieb stellt und verwaltet, ist Homeoffice einfacher abzusichern als mit privaten Rechnern. Die technische Umsetzung beschreibt <a href='/einrichten/firewall-vpn/'>Firewall und VPN einrichten</a>; die Ortsseite für die Region ist <a href='/it-service/salzburg/'>Salzburg</a>. Florin Feier aus Lenzing richtet Heimarbeitsplätze per Fernwartung ein und kommt für Netzwerk und Geräte vor Ort."},
         ],
@@ -601,7 +601,7 @@ BEITRAEGE = {
         "desc": "Vier Ursachen erklären fast alle langsamen Bürorechner. Woran man sie "
                 "erkennt, was sich beheben lässt und wann ein Neukauf "
                 "günstiger ist. Termin buchen.",
-        "antwort": "In den allermeisten Fällen liegt es an der Festplatte: Ein Gerät mit klassischer Festplatte statt SSD ist bei jedem Start und bei jedem Programmaufruf langsam, egal wie stark der Prozessor ist. Danach folgen zu wenig Arbeitsspeicher, ein zugestelltes Autostart-Verzeichnis und — seltener, aber unterschätzt — Überhitzung durch verstaubte Lüfter. Alle vier lassen sich unterscheiden, ohne das Gerät zu öffnen. Bei einem langsamen PC hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Fr 9–18 Uhr, 95 € je Stunde, solange der Rechner noch startet.",
+        "antwort": "In den allermeisten Fällen liegt es an der Festplatte: Ein Gerät mit klassischer Festplatte statt SSD ist bei jedem Start und bei jedem Programmaufruf langsam, egal wie stark der Prozessor ist. Danach folgen zu wenig Arbeitsspeicher, ein zugestelltes Autostart-Verzeichnis und — seltener, aber unterschätzt — Überhitzung durch verstaubte Lüfter. Alle vier lassen sich unterscheiden, ohne das Gerät zu öffnen. Bei einem langsamen PC hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, 95 € je Stunde, solange der Rechner noch startet.",
 
         "abschnitte": [
             {"h": "Ursache 1: eine klassische Festplatte",
@@ -691,7 +691,7 @@ BEITRAEGE = {
         "meta_titel": "Drucker druckt nicht: 5 Ursachen im Büro | WVM-IT",
         "desc": "Warteschlange hängt, neue IP-Adresse, Treiber nach Update, falscher "
                 "Standarddrucker, Scannen geht nicht: fünf Ursachen und was hilft. Hilfe anfragen.",
-        "antwort": "Wenn ein Bürodrucker nicht mehr druckt, liegt es fast immer an einer von fünf Ursachen: Die Druckwarteschlange hängt, der Drucker hat im Netz eine neue Adresse bekommen, ein Windows-Update hat den Treiber ersetzt, Windows druckt auf den falschen Standarddrucker, oder — beim Scannen — die hinterlegte Anmeldung stimmt nicht mehr. Die ersten vier lassen sich meist in wenigen Minuten selbst prüfen; WVM-IT aus Lenzing löst alle fünf in ganz Österreich per Fernwartung, Mo–Fr 9–18 Uhr, solange der Drucker im Netz erreichbar ist, für 95 € je Stunde ohne Vertrag.",
+        "antwort": "Wenn ein Bürodrucker nicht mehr druckt, liegt es fast immer an einer von fünf Ursachen: Die Druckwarteschlange hängt, der Drucker hat im Netz eine neue Adresse bekommen, ein Windows-Update hat den Treiber ersetzt, Windows druckt auf den falschen Standarddrucker, oder — beim Scannen — die hinterlegte Anmeldung stimmt nicht mehr. Die ersten vier lassen sich meist in wenigen Minuten selbst prüfen; WVM-IT aus Lenzing löst alle fünf in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, solange der Drucker im Netz erreichbar ist, für 95 € je Stunde ohne Vertrag.",
         "abschnitte": [
             {"h": "Ursache 1: Die Druckwarteschlange hängt",
              "t": "Ein einzelner fehlerhafter Auftrag — oft ein großes PDF oder ein "
@@ -777,7 +777,7 @@ BEITRAEGE = {
         "meta_titel": "Outlook geht nicht: was Sie selbst prüfen können | WVM-IT",
         "desc": "Kennwortabfrage in Schleife, Mails im Postausgang, volles Postfach, "
                 "Outlook offline: häufige Ursachen und was Sie selbst prüfen. Sonst Kontakt aufnehmen.",
-        "antwort": "Wenn Outlook keine Mails mehr sendet oder empfängt, sind es meistens vier Dinge: ein geändertes oder abgelaufenes Kennwort, ein Anhang, der zu groß ist und im Postausgang hängt, ein volles Postfach oder ein Outlook, das versehentlich auf offline steht. Ob das Konto selbst funktioniert, zeigt der schnellste Test: im Browser anmelden. Klappt dort alles, liegt das Problem im Outlook auf diesem Rechner — und das löst WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Fr 9–18 Uhr, ohne Vertrag für 95 € je Stunde.",
+        "antwort": "Wenn Outlook keine Mails mehr sendet oder empfängt, sind es meistens vier Dinge: ein geändertes oder abgelaufenes Kennwort, ein Anhang, der zu groß ist und im Postausgang hängt, ein volles Postfach oder ein Outlook, das versehentlich auf offline steht. Ob das Konto selbst funktioniert, zeigt der schnellste Test: im Browser anmelden. Klappt dort alles, liegt das Problem im Outlook auf diesem Rechner — und das löst WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, ohne Vertrag für 95 € je Stunde.",
         "abschnitte": [
             {"h": "Der schnellste Test: im Browser anmelden",
              "t": "Bei Microsoft 365 unter outlook.office.com, bei anderen Anbietern "
@@ -857,7 +857,7 @@ BEITRAEGE = {
                    "letzten Fall gehört zuerst geklärt, ob jemand Fremdes im Konto war — "
                    "entsperren allein reicht dann nicht. Bei einem gesperrten "
                    "Microsoft-365-Konto hilft WVM-IT aus Lenzing in ganz Österreich per "
-                   "Fernwartung, Mo–Fr 9–18 Uhr, meist am selben Tag, abgerechnet als "
+                   "Fernwartung, Mo–Sa ab 7:30 Uhr, meist am selben Tag, abgerechnet als "
                    "Einzelhilfe ohne Vertrag zu 95 € je Stunde.",
         "abschnitte": [
             {"h": "Zu viele Fehlversuche",

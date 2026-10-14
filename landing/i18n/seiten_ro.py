@@ -562,7 +562,7 @@ SEITEN = {
             {"h": "Întâlnire în încăpere, nu la telefon", "t": "Ascultăm încăperea și vedem ce există deja. Reverberația, planul locurilor, înălțimea scenei și cablarea existentă decid rezultatul mai mult decât marca difuzoarelor."},
             {"h": "Concept cu listă de echipamente și preț", "t": "Primiți o soluție potrivită evenimentelor care chiar au loc la dumneavoastră. Ce există și funcționează rămâne — nu înlocuim nimic doar ca să vindem ceva."},
             {"h": "Montaj, calibrare, instruire", "t": "Instalare, calibrarea sunetului în încăperea goală și ocupată, preseturi fixe pentru ocaziile obișnuite. La final urmează o scurtă instruire și un ghid care rămâne clar și peste doi ani."},
-            {"h": "Rămânem la dispoziție și după aceea", "t": "Înainte de un eveniment mai mare, la cerere, mai verificăm o dată. Dacă totuși apare o problemă, ne găsiți de luni până vineri între 9 și 18 la numărul de pe această pagină."},
+            {"h": "Rămânem la dispoziție și după aceea", "t": "Înainte de un eveniment mai mare, la cerere, mai verificăm o dată. Dacă totuși apare o problemă, ne găsiți de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20 la numărul de pe această pagină."},
         ],
         "preis_h": "De ce aici nu apare un preț de pornire",
         "preis_t": "Între o sonorizare pentru sala unei asociații și o scenă cu lumină, video și streaming sunt ordine de mărime distanță; un preț de pornire aici ar fi o cifră fără sens. Ne uităm la încăpere și calculăm pe proiect, cu listă de echipamente. Lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea, dacă nu s-a convenit un preț fix; planificarea și coordonarea de la distanță cu 95 € pe oră. Prețuri orientative, nete plus TVA.",

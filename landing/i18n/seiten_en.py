@@ -560,7 +560,7 @@ SEITEN = {
             {"h": "A visit to the room, not a call", "t": "We listen to the room and see what's there. Reverberation, seating plan, stage height and existing cabling decide the result more than the speaker brand."},
             {"h": "Concept with equipment list and price", "t": "You get a solution matched to the events that actually happen at your venue. What exists and still works stays — we don't replace things just to sell something."},
             {"h": "Setup, calibration, briefing", "t": "Installation, sound calibration in the empty and the occupied room, fixed presets for the typical occasions. At the end there's a short briefing and a guide that still makes sense in two years."},
-            {"h": "Staying reachable afterwards", "t": "Before a bigger event we're happy to check in again on request. If something still comes up, you can reach us Monday to Friday from 9am to 6pm on the number on this page."},
+            {"h": "Staying reachable afterwards", "t": "Before a bigger event we're happy to check in again on request. If something still comes up, you can reach us Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm on the number on this page."},
         ],
         "preis_h": "Why there is no starting price here",
         "preis_t": "Between sound for a club hall and a stage with light, video and streaming lie orders of magnitude; a starting price here would be a number that says nothing. We look at the room and calculate per project with an equipment list. On-site work is billed at €120 per hour plus travel unless a fixed price is agreed; remote planning and coordination at €95 per hour. Estimated prices, net plus VAT.",

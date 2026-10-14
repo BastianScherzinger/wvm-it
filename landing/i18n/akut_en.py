@@ -4,7 +4,7 @@ problems, enquiry path. See akut_de.py for the rules."""
 
 AKUT = {
     "zeit_auf": "Outside these hours: send a message, and we reply on the next working day.",
-    "zeit_zu": "Mon–Fri 9am–6pm. You can send a message now; the reply comes on the next working day.",
+    "zeit_zu": "Mon–Thu 7:30am–9pm, Fri until 8:30pm, Sat until 8pm. You can send a message now; the reply comes on the next working day.",
     "kacheln_h": "What is broken?",
     "kacheln_t": "Tap your problem. The guide (in German) tells you what you can check yourself right away; if that is not enough, call us.",
     "kacheln": [
@@ -26,10 +26,10 @@ AKUT = {
     "done_weiter_h": "What happens next",
     "done_eilt": "If it is urgent, call:",
     "notfall_done_h": "Your emergency request has arrived.",
-    "notfall_done_t": "If something is down right now, do not wait for our reply: call now. We take calls Mon–Fri 9am–6pm; we read messages left outside these hours on the next working day.",
+    "notfall_done_t": "If something is down right now, do not wait for our reply: call now. We take calls Mon–Thu 7:30am–9pm, Fri until 8:30pm, Sat until 8pm; we read messages left outside these hours on the next working day.",
     "notfall_done_call": "Call now",
-    "danke_notfall": "Your emergency request has reached us. If your business is at a standstill, do not wait for our reply: call {telefon}. We can be reached Mon–Fri 9am–6pm; we read messages left outside these hours on the next working day.",
-    "danke_notfall_s1": "Call if it is urgent. Mon–Fri 9am–6pm we take calls and, for a fault, usually begin within minutes by remote access.",
+    "danke_notfall": "Your emergency request has reached us. If your business is at a standstill, do not wait for our reply: call {telefon}. We can be reached Mon–Thu 7:30am–9pm, Fri until 8:30pm, Sat until 8pm; we read messages left outside these hours on the next working day.",
+    "danke_notfall_s1": "Call if it is urgent. Mon–Thu 7:30am–9pm, Fri until 8:30pm, Sat until 8pm we take calls and, for a fault, usually begin within minutes by remote access.",
     "danke_notfall_s2": "If you left a message, we read it on the next working day at the latest and get back to you by phone or e-mail, depending on what you gave us.",
     "limit_p_kurz": "To protect against automated mass sending, we are not accepting any more for the moment. Please try again in about 15 minutes or call us — your earlier requests have arrived.",
 }

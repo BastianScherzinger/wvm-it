@@ -17,18 +17,18 @@ Regeln für diese Texte:
 - Deshalb auch keine Zusage, wann Kosten entstehen oder wie genau abgerechnet
   wird („keine Kosten vor Zustimmung", „Rechnung über die tatsächliche Zeit").
   Es heißt nur „nach Aufwand zum Stundensatz" (Abnahme 24.09.2026, Offen Nr. 24).
-- Die Erreichbarkeit (Montag bis Freitag, 9 bis 18 Uhr) steht wortgleich auf
+- Die Erreichbarkeit (Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr) steht wortgleich auf
   /kontakt/ und im Schema; „meist am selben Tag" ist die Katalogbeschreibung
   von `it_support`.
 """
 
 HILFE = {
     "titel": "IT-Hilfe in ganz Österreich: Fernwartung 95 €/Std. | WVM-IT",
-    "desc": "Konto gesperrt, E-Mail, Drucker, WLAN: WVM-IT aus Lenzing hilft in ganz Österreich per Fernwartung, 95 €/Std. ohne Vertrag, Mo–Fr 9–18 Uhr. Jetzt anrufen.",
+    "desc": "Konto gesperrt, E-Mail, Drucker, WLAN: WVM-IT aus Lenzing hilft in ganz Österreich per Fernwartung, 95 €/Std. ohne Vertrag, Mo–Sa ab 7:30 Uhr. Jetzt anrufen.",
     "h1": "IT-Hilfe per Fernwartung in ganz Österreich — ohne Vertrag, meist am selben Tag",
     # Kurzlabel für Navigation, Fußzeile und Brotkrume.
     "nav": "IT-Hilfe",
-    "kurz": "Bei gesperrtem Konto, ausgefallener E-Mail, Drucker- oder PC-Problemen hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Fr 9–18 Uhr, 95 € je Stunde, meist am selben Tag und ohne Vertrag. Muss jemand vor Ort sein, kostet das 120 € je Stunde zuzüglich Anfahrt, nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Ganze Aufgaben haben einen Festpreis: ein neuer Arbeitsplatz 190 €, Microsoft 365 eingerichtet 290 € — bei Microsoft 365 für einen üblichen Betrieb bis etwa fünfzehn Postfächer. Die Fernwartung gilt in ganz Österreich und Deutschland, auch wenn Sie bei uns sonst nichts gebucht haben.",
+    "kurz": "Bei gesperrtem Konto, ausgefallener E-Mail, Drucker- oder PC-Problemen hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, 95 € je Stunde, meist am selben Tag und ohne Vertrag. Muss jemand vor Ort sein, kostet das 120 € je Stunde zuzüglich Anfahrt, nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Ganze Aufgaben haben einen Festpreis: ein neuer Arbeitsplatz 190 €, Microsoft 365 eingerichtet 290 € — bei Microsoft 365 für einen üblichen Betrieb bis etwa fünfzehn Postfächer. Die Fernwartung gilt in ganz Österreich und Deutschland, auch wenn Sie bei uns sonst nichts gebucht haben.",
     "eilt_h": "Am schnellsten geht es so",
     "eilt_t": "Rufen Sie an oder schreiben Sie per WhatsApp, was nicht geht. Ein Satz genügt, ein Foto der Fehlermeldung hilft.",
     "intro": "Nicht jeder Betrieb braucht eine laufende IT-Betreuung. Oft geht es um ein einzelnes Problem: Der Drucker druckt nicht mehr, Outlook fragt ständig nach dem Passwort, das WLAN im Besprechungsraum reißt ab, oder der Rechner braucht morgens zehn Minuten bis zum ersten Programm. Dafür muss niemand einen Vertrag unterschreiben. Sie melden sich, wir sehen uns das an und sagen Ihnen vorher, ob wir helfen können. Abgerechnet wird nach Aufwand zum Stundensatz.",
@@ -74,7 +74,7 @@ HILFE = {
     "preise_h": "Was eine einzelne Hilfe kostet",
     "preise_t": "Per Fernwartung 95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt. Für abgeschlossene Aufgaben gibt es Festpreise: einen Arbeitsplatz einrichten 190 €, Microsoft 365 einrichten 290 €, Firewall und VPN 690 €. Alle Preise netto zuzüglich Umsatzsteuer.",
     "erreichbar_h": "Wann Sie uns erreichen",
-    "erreichbar_t": "Montag bis Freitag, 9 bis 18 Uhr. Außerhalb dieser Zeiten hinterlassen Sie eine Nachricht per WhatsApp oder auf der Mailbox; wir melden uns am nächsten Werktag. Wenn gerade Daten verschlüsselt werden oder der Server steht, gehen Sie zuerst auf die Notfallseite.",
+    "erreichbar_t": "Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr. Außerhalb dieser Zeiten hinterlassen Sie eine Nachricht per WhatsApp oder auf der Mailbox; wir melden uns am nächsten Werktag. Wenn gerade Daten verschlüsselt werden oder der Server steht, gehen Sie zuerst auf die Notfallseite.",
     "notfall_link": "Zur Notfallseite: die ersten 30 Minuten",
     "laufend_h": "Wenn es öfter vorkommt",
     "laufend_t": "Wer jeden Monat Hilfe braucht, fährt mit einer laufenden Betreuung oft günstiger: Sie kostet ab 29 € je Arbeitsplatz und Monat und enthält Updates und Überwachung; wie Hilfe bei Störungen darin geregelt ist, halten wir im Angebot fest. Bei fünf Arbeitsplätzen sind das ab 145 € im Monat (ohne Datensicherung) — ungefähr so viel wie eineinhalb Stunden Einzelhilfe. Wann sich was rechnet, steht im Vergleich von Betreuung und Stundenabrechnung.",
@@ -86,9 +86,9 @@ HILFE = {
         {"q": "Brauche ich einen Vertrag, damit Sie mir helfen?",
          "a": "Nein. Einzelne Hilfe rechnen wir nach Aufwand ab: per Fernwartung 95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt."},
         {"q": "Wie schnell bekomme ich Hilfe?",
-         "a": "Per Fernwartung meist am selben Tag. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr; Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag."},
+         "a": "Per Fernwartung meist am selben Tag. Erreichbar sind wir Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr; Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag."},
         {"q": "Helfen Sie auch in Wien, Graz, Innsbruck oder Klagenfurt?",
-         "a": "Per Fernwartung ja: Wir helfen in ganz Österreich, auch in Wien, Graz, Innsbruck und Klagenfurt, zu denselben Preisen (95 € je Stunde, Mo–Fr 9–18 Uhr). Vor Ort kommen wir dort nicht, sondern nur nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Muss etwas vor Ort gemacht werden, sagen wir Ihnen das vorher offen."},
+         "a": "Per Fernwartung ja: Wir helfen in ganz Österreich, auch in Wien, Graz, Innsbruck und Klagenfurt, zu denselben Preisen (95 € je Stunde, Mo–Sa ab 7:30 Uhr). Vor Ort kommen wir dort nicht, sondern nur nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Muss etwas vor Ort gemacht werden, sagen wir Ihnen das vorher offen."},
         {"q": "Was passiert, wenn Sie das Problem nicht lösen können?",
          "a": "Wir sagen Ihnen vorher, ob wir helfen können. Stellt sich unterwegs heraus, dass ein Hersteller oder ein Spezialist die bessere Adresse ist, sagen wir das offen und nennen Ihnen den nächsten Schritt."},
         {"q": "Mein PC ist kaputt — kommen Sie, und was kostet das?",

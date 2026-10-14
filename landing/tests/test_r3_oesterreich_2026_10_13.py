@@ -28,6 +28,7 @@ from django.test import SimpleTestCase, override_settings
 from django.urls import reverse
 
 from landing import beitraege, i18n, regionen
+from landing import zeiten as zeiten_quelle
 from landing.templatetags.conv import HILFE_ANKER
 from landing.views import _ANGEBOT_INDEX, _HILFE_STUNDE, _LIMITS, _seiten_pfade
 from . import _util
@@ -93,7 +94,7 @@ class EinsatzgebietTest(SimpleTestCase):
         self.assertNotIn("Oberösterreich und Salzburg", llms.split("## Seiten", 1)[0])
         zeile = next(z for z in llms.splitlines() if z.startswith("- [IT-Notfall]"))
         self.assertIn("ganz Österreich", zeile)
-        self.assertIn("Mo–Fr 9–18 Uhr", zeile)
+        self.assertIn(zeiten_quelle.KURZ["de"], zeile)
 
     def test_leistungsseiten_antwortabsatz_meint_mit_fernwartung_ganz_oesterreich(self):
         for pfad in ("/leistungen/edv-it-betreuung/", "/leistungen/netzwerk-wlan/", "/kosten/"):
@@ -129,8 +130,9 @@ class HilfeSeiteOesterreichTest(SimpleTestCase):
                 self.assertIn(wort, h1)
 
     def test_antwortsatz_hat_zeiten_der_kopfzeile_und_stundensatz_aus_dem_katalog(self):
-        zeiten = i18n.get_pack("de")["kopf"]["erreichbar"].replace("Erreichbar ", "")
-        self.assertEqual(zeiten, "Mo–Fr 9–18 Uhr")
+        kopf = i18n.get_pack("de")["kopf"]["erreichbar"].replace("Erreichbar ", "")
+        self.assertEqual(kopf, zeiten_quelle.KURZ["de"])
+        zeiten = zeiten_quelle.INLINE["de"]
         antwort = _antwort(_html("/it-hilfe/"))
         self.assertIn(zeiten, antwort)
         self.assertIn(f"{STUNDE} € je Stunde", antwort)
@@ -224,7 +226,7 @@ class SofortBlockTest(SimpleTestCase):
                     self.assertIn('class="nf-zeit', block)
 
     def test_zeitzeile_nutzt_die_logik_der_kopfzeile(self):
-        for offen, text in ((True, "Erreichbar Mo–Fr 9–18 Uhr"), (False, "Wieder erreichbar heute ab 9 Uhr")):
+        for offen, text in ((True, "Erreichbar " + zeiten_quelle.KURZ["de"]), (False, f"Wieder erreichbar heute ab {zeiten_quelle.OEFFNET} Uhr")):
             with self.subTest(offen=offen), \
                     mock.patch("landing.context._erreichbarkeit", return_value={"offen": offen, "text": text}):
                 for seite in ("/it-hilfe/", "/it-notfall/"):
@@ -232,14 +234,13 @@ class SofortBlockTest(SimpleTestCase):
                     zeile = re.search(r'<p class="nf-zeit[^"]*">(.*?)</p>', html, re.S)
                     self.assertIn(text, zeile.group(1))
                     self.assertEqual("ist-offen" in zeile.group(0), offen)
-                    self.assertIn("Antwort" if offen else "Mo–Fr 9–18 Uhr", _text(zeile.group(1)))
+                    self.assertIn("Antwort" if offen else zeiten_quelle.KURZ["de"], _text(zeile.group(1)))
 
     def test_zeiten_im_sofort_block_sind_die_der_kopfzeile(self):
         kopf = i18n.get_pack("de")["kopf"]["erreichbar"].replace("Erreichbar ", "")
         self.assertIn(kopf, i18n.get_pack("de")["akut"]["zeit_zu"])
         for lang in ("en", "ro"):
-            self.assertIn("9", i18n.get_pack(lang)["akut"]["zeit_zu"])
-            self.assertRegex(i18n.get_pack(lang)["akut"]["zeit_zu"], "18|6pm")
+            self.assertIn(zeiten_quelle.KURZ[lang], i18n.get_pack(lang)["akut"]["zeit_zu"])
 
     def test_kein_24_7_und_keine_24_stunden_zusage_auf_dem_notfall(self):
         for lang, praefix in SPRACHEN:
@@ -389,7 +390,7 @@ class AkutRatgeberTest(SimpleTestCase):
             with self.subTest(slug=slug):
                 antwort = _antwort(_html(f"/aktuelles/{slug}/"))
                 self.assertIn("in ganz Österreich per Fernwartung", antwort)
-                self.assertIn("Mo–Fr 9–18 Uhr", antwort)
+                self.assertIn(zeiten_quelle.INLINE["de"], antwort)
                 self.assertIn(f"{STUNDE} € je Stunde", antwort)
                 self.assertNotIn("Oberösterreich und Salzburg", antwort)
 
@@ -402,7 +403,10 @@ class AkutRatgeberTest(SimpleTestCase):
 
     def test_zeiten_im_antwortsatz_sind_die_der_kopfzeile(self):
         zeiten = i18n.get_pack("de")["kopf"]["erreichbar"].replace("Erreichbar ", "")
-        self.assertEqual(zeiten, "Mo–Fr 9–18 Uhr")
+        self.assertEqual(zeiten, zeiten_quelle.KURZ["de"])
+        # Im Antwortsatz steht die Kurzform derselben Zeiten (Mo–Sa ab 7:30 Uhr).
+        self.assertTrue(zeiten.startswith("Mo–Do 7:30"))
+        self.assertIn("ab 7:30", zeiten_quelle.INLINE["de"])
 
     def test_akut_ratgeber_verlinken_auf_it_hilfe_mit_wechselndem_anker(self):
         anker = []

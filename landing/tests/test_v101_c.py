@@ -38,7 +38,7 @@ def _alle_texte(lang):
 
 class KeineRufbereitschaftsZusageTest(SimpleTestCase):
     """EIG280, EIG329, EIG338, EIG371, EIG382: Überwachung läuft automatisch;
-    bearbeitet wird Montag bis Freitag, 9 bis 18 Uhr."""
+    bearbeitet wird zu den Zeiten aus landing/zeiten.py."""
 
     def test_server_betreuung_verspricht_kein_rund_um_die_uhr(self):
         eintrag = views._ANGEBOT_INDEX["server_care"]

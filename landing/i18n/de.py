@@ -5,6 +5,7 @@ Die Texte der Leistungsseiten stehen wegen ihres Umfangs in einer eigenen Datei
 (`seiten_de.py`) und hängen hier unter dem Schlüssel "seiten".
 """
 
+from .. import zeiten as _zeiten
 from .seiten_de import SEITEN
 from .regionen_de import REGIONEN
 from .lokal_de import LOKAL
@@ -43,11 +44,11 @@ PACK = {
     # Statusleiste (Design B1, §3.1): Erreichbarkeit serverseitig nach
     # Europe/Vienna, siehe landing/context.py::_erreichbarkeit.
     "kopf": {
-        "erreichbar": "Erreichbar Mo–Fr 9–18 Uhr",
-        "wieder_heute": "Wieder erreichbar heute ab 9 Uhr",
-        "wieder_morgen": "Wieder erreichbar morgen ab 9 Uhr",
-        "wieder_montag": "Wieder erreichbar Montag ab 9 Uhr",
-        "wieder_werktag": "Wieder erreichbar am nächsten Werktag ab 9 Uhr",
+        "erreichbar": f"Erreichbar {_zeiten.KURZ['de']}",
+        "wieder_heute": f"Wieder erreichbar heute ab {_zeiten.OEFFNET} Uhr",
+        "wieder_morgen": f"Wieder erreichbar morgen ab {_zeiten.OEFFNET} Uhr",
+        "wieder_montag": f"Wieder erreichbar Montag ab {_zeiten.OEFFNET} Uhr",
+        "wieder_werktag": f"Wieder erreichbar am nächsten Werktag ab {_zeiten.OEFFNET} Uhr",
         "rueckruf": "Rückruf hinterlassen",
     },
     "cookie": {
@@ -356,7 +357,7 @@ PACK = {
             {"q": "Wie schnell bekommen wir Hilfe, wenn etwas ausfällt?",
              "a": "Wir melden uns an Werktagen innerhalb von 24 Stunden. Weil der Zugriff per Fernwartung erfolgt, beginnt die Arbeit meist innerhalb von Minuten nach der Rückmeldung und nicht erst nach einer Anfahrt. Was sich aus der Ferne nicht lösen lässt, terminieren wir vor Ort — mit vorher genanntem Preis."},
             {"q": "Was passiert, wenn der Server ausfällt oder Daten verloren gehen?",
-             "a": "Betreute Server werden automatisch überwacht, auch nachts und am Wochenende; wir sehen Speicherplatz, Auslastung und Fehler, bevor der Betrieb steht — Meldungen bearbeiten wir Montag bis Freitag von 9 bis 18 Uhr. Die Datensicherung läuft täglich, wird geprüft und die Wiederherstellung wird getestet — eine Sicherung, die noch nie zurückgespielt wurde, ist keine Sicherung. Für Server- und Datenverlust-Fälle gilt: erst wiederherstellen, dann Ursache suchen."},
+             "a": "Betreute Server werden automatisch überwacht, auch nachts und am Wochenende; wir sehen Speicherplatz, Auslastung und Fehler, bevor der Betrieb steht — Meldungen bearbeiten wir Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr. Die Datensicherung läuft täglich, wird geprüft und die Wiederherstellung wird getestet — eine Sicherung, die noch nie zurückgespielt wurde, ist keine Sicherung. Für Server- und Datenverlust-Fälle gilt: erst wiederherstellen, dann Ursache suchen."},
             {"q": "Können Sie eine IT übernehmen, die bisher jemand anderes betreut hat?",
              "a": "Ja, das ist der Normalfall. Wir beginnen mit einer Bestandsaufnahme: was steht da, was läuft noch, was ist ungesichert. Der IT-Sicherheitscheck kostet einmalig ab 490 € und endet mit einem schriftlichen Bericht samt Maßnahmenliste. Sie entscheiden danach, was davon umgesetzt wird — auch wenn es nichts ist."},
             {"q": "Was kostet eine Website bei WVM-IT?",
@@ -396,7 +397,7 @@ PACK = {
         "m_wa": "WhatsApp", "m_wa_sub": "Schnell schreiben",
         "m_mail": "E-Mail",
         "m_form": "Formular", "m_form_sub": "In einer Minute ausgefüllt",
-        "avail": "Mo bis Fr erreichbar. Antwort an Werktagen in 24 Stunden.",
+        "avail": "Mo bis Sa erreichbar. Antwort an Werktagen in 24 Stunden.",
         "sent_h": "Vielen Dank.",
         "sent_p": "Ihre Anfrage ist eingegangen. Wir melden uns kurzfristig bei Ihnen.",
         "f_name": "Name *", "f_name_ph": "Ihr Name",
@@ -453,7 +454,7 @@ PACK = {
         "hilfe_t": "Wenn gerade etwas steht, ist ein Anruf schneller als jede Seite. Wir melden uns an Werktagen innerhalb von 24 Stunden — bei einer Störung beginnen wir per Fernwartung meist innerhalb von Minuten.",
         "titel_500": "Technischer Fehler | WVM-IT",
         "h1_500": "Da ist bei uns etwas schiefgelaufen",
-        "kurz_500": "Diese Seite konnte gerade nicht ausgeliefert werden. Der Fehler liegt bei uns, nicht bei Ihnen. Versuchen Sie es in einigen Minuten noch einmal — oder melden Sie sich direkt, dann kümmern wir uns darum, sobald wir erreichbar sind (Montag bis Freitag, 9 bis 18 Uhr).",
+        "kurz_500": "Diese Seite konnte gerade nicht ausgeliefert werden. Der Fehler liegt bei uns, nicht bei Ihnen. Versuchen Sie es in einigen Minuten noch einmal — oder melden Sie sich direkt, dann kümmern wir uns darum, sobald wir erreichbar sind (Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr).",
         "zur_start": "Zur Startseite",
     },
     # ── Interne Suche (docs/SEO-AUSBAU-3.md, T6) ─────────────────────────────
@@ -494,7 +495,7 @@ PACK = {
         "it_betreuung": {"name": "Laufende IT-Betreuung je Arbeitsplatz", "desc": "Updates und Überwachung — pro PC und Monat."},
         "it_support": {"name": "IT-Support & Fernwartung", "desc": "Hilfe, wenn etwas nicht geht. Meist per Fernwartung, meist am selben Tag."},
         "backup": {"name": "Datensicherung, täglich geprüft", "desc": "Automatische Sicherung, überwacht, Wiederherstellung getestet."},
-        "server_care": {"name": "Server-Betreuung & Überwachung", "desc": "Ein Server, automatisch überwacht. Meldungen bearbeiten wir Montag bis Freitag, 9 bis 18 Uhr."},
+        "server_care": {"name": "Server-Betreuung & Überwachung", "desc": "Ein Server, automatisch überwacht. Meldungen bearbeiten wir Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr."},
         "m365": {"name": "Microsoft 365 einrichten", "desc": "E-Mail, Teams, OneDrive: sauber aufgesetzt und übergeben."},
         "arbeitsplatz": {"name": "Neuen Arbeitsplatz einrichten", "desc": "PC, Programme, Konten, Drucker — einsatzbereit übergeben."},
         "netzwerk_setup": {"name": "Netzwerk & WLAN einrichten", "desc": "Ausgemessen, geplant, aufgebaut. Auch für Hallen und mehrere Etagen."},
@@ -553,7 +554,7 @@ PACK = {
             "Laufzeit von Quartal zu Quartal — kündbar mit einem Monat Frist zum Quartalsende.",
             "Keine Systeme, aus denen Sie nicht wieder herauskommen: Zugänge und Daten gehören Ihnen.",
             "Keine Hardware auf Vorrat. Wir empfehlen, was nötig ist, und sagen es auch, wenn sich etwas nicht lohnt.",
-            "Keine Rufbereitschaft rund um die Uhr. Die Überwachung meldet auch nachts und am Wochenende, bearbeitet wird Montag bis Freitag von 9 bis 18 Uhr; was das im Notfall bedeutet, steht auf der Notfallseite.",
+            "Keine Rufbereitschaft rund um die Uhr. Die Überwachung meldet auch nachts und am Wochenende, bearbeitet wird Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr; was das im Notfall bedeutet, steht auf der Notfallseite.",
         ],
         # ── Zwei weitere Wege, ohne Kontaktdaten ─────────────────────────────
         "ausgang_h": "Lieber erst selbst rechnen?",
@@ -670,7 +671,7 @@ PACK = {
         # abgeschnittener Seitentitel, der im Kopf dreizeilig umbrach.
         "nav": "IT-Notfall",
         "wa_text": "IT-Notfall: ",
-        "kurz": "Bei gesperrtem Microsoft-365-Konto, ausgefallener E-Mail, nicht startendem PC, Verschlüsselung und Serverausfall hilft WVM-IT aus Lenzing in ganz Österreich (und Deutschland) per Fernwartung, Mo–Fr 9–18 Uhr, 95 € je Stunde: Wir sind unter der unten stehenden Nummer erreichbar und beginnen meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind. Abgerechnet wird als Einzelhilfe ohne Vertrag. Vor Ort kommen wir nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Bei Verdacht auf einen Angriff gilt vorab eine Regel: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden.",
+        "kurz": "Bei gesperrtem Microsoft-365-Konto, ausgefallener E-Mail, nicht startendem PC, Verschlüsselung und Serverausfall hilft WVM-IT aus Lenzing in ganz Österreich (und Deutschland) per Fernwartung, Mo–Sa ab 7:30 Uhr, 95 € je Stunde: Wir sind unter der unten stehenden Nummer erreichbar und beginnen meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind. Abgerechnet wird als Einzelhilfe ohne Vertrag. Vor Ort kommen wir nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Bei Verdacht auf einen Angriff gilt vorab eine Regel: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden.",
         "eilt_h": "Es eilt — hier entlang",
         "eilt_t": "Rufen Sie an, statt zu schreiben. Ein Anruf spart bei einer laufenden Störung mehr Zeit als jede Beschreibung per E-Mail.",
         "intro": "Diese Seite ist zum Handeln da, nicht zum Lesen. Suchen Sie unten Ihren Fall und arbeiten Sie die Schritte der Reihe nach ab. Alles Weitere — Ursachensuche, Wiederherstellung, Meldepflichten — kommt danach. Wir sind ausdrücklich auch dann erreichbar, wenn Sie kein Kunde von uns sind; ein akuter Notfall ist der falsche Zeitpunkt für eine Vertragsfrage.",
@@ -905,7 +906,7 @@ PACK = {
         # Erreichbarkeit und Vertretung (06.09.2026) — die K.-o.-Frage, die ein
         # sichtbarer Ein-Personen-Betrieb aufwirft und die bisher unbeantwortet blieb.
         "erreichbar_h": "Wenn ich einmal nicht kann",
-        "erreichbar_t": "Ehrlich gesagt: Wir sind ein kleiner Betrieb, und das ist der Grund, warum Sie hier keine Warteschleife und kein Ticket-System haben. Es heißt aber auch, dass wir keine Rufbereitschaft rund um die Uhr versprechen. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr, und in dieser Zeit melden wir uns bei laufenden Störungen von Betreuungskunden vorrangig — vor allem anderen. Außerhalb dieser Zeiten hinterlassen Sie eine Nachricht auf der Mailbox oder per WhatsApp; wir hören sie ab.",
+        "erreichbar_t": "Ehrlich gesagt: Wir sind ein kleiner Betrieb, und das ist der Grund, warum Sie hier keine Warteschleife und kein Ticket-System haben. Es heißt aber auch, dass wir keine Rufbereitschaft rund um die Uhr versprechen. Erreichbar sind wir Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr, und in dieser Zeit melden wir uns bei laufenden Störungen von Betreuungskunden vorrangig — vor allem anderen. Außerhalb dieser Zeiten hinterlassen Sie eine Nachricht auf der Mailbox oder per WhatsApp; wir hören sie ab.",
         "erreichbar_fuss": "Wenn Sie eine zugesagte Rufbereitschaft rund um die Uhr brauchen, sagen wir Ihnen das offen — und empfehlen jemanden, der sie leisten kann.",
         "danach_h": "Was danach zu tun ist",
         "danach_t": "Wenn der Betrieb wieder läuft, beginnt der zweite Teil: Ursache feststellen, Lücke schließen, Vorfall dokumentieren. Genau dieser Teil wird am häufigsten übersprungen — mit dem Ergebnis, dass derselbe Vorfall Monate später erneut auftritt. Ein IT-Sicherheitscheck mit schriftlichem Bericht kostet ab 490 € und endet mit einer nach Dringlichkeit sortierten Liste. Wer danach eine laufende Betreuung möchte: ab 29 € je Arbeitsplatz und Monat, überwachte Datensicherung ab 49 € im Monat.",
@@ -1218,7 +1219,7 @@ PACK = {
             {"q": "Was kostet einzelne Hilfe ohne Vertrag?",
              "a": "Einzelne Hilfe per Fernwartung kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Einen Vertrag braucht es dafür nicht."},
             {"q": "Was kostet IT-Hilfe per Fernwartung in Österreich?",
-             "a": "Eine Stunde Fernwartung kostet bei WVM-IT 95 € netto zzgl. USt., in ganz Österreich gleich und ohne Vertrag. Wo eine feste Aufgabe dahintersteht, gibt es Festpreise, etwa 190 € für einen eingerichteten Arbeitsplatz oder 290 € für Microsoft 365. Erreichbar sind wir Montag bis Freitag von 9 bis 18 Uhr."},
+             "a": "Eine Stunde Fernwartung kostet bei WVM-IT 95 € netto zzgl. USt., in ganz Österreich gleich und ohne Vertrag. Wo eine feste Aufgabe dahintersteht, gibt es Festpreise, etwa 190 € für einen eingerichteten Arbeitsplatz oder 290 € für Microsoft 365. Erreichbar sind wir Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr."},
             {"q": "Was verlangt ein EDV-Techniker pro Stunde?",
              "a": "Bei WVM-IT aus Lenzing sind es 95 € je Stunde per Fernwartung und 120 € je Stunde bei einem Einsatz vor Ort zuzüglich Anfahrt, jeweils netto zzgl. USt. Wer regelmäßig Hilfe braucht, fährt mit der laufenden Betreuung ab 29 € je Arbeitsplatz und Monat oft günstiger; die Rechnung dazu zeigt der Kostenrechner."},
             {"q": "Was kostet IT-Betreuung pro Monat in Österreich?",
@@ -1297,7 +1298,7 @@ PACK = {
         "intro": "Am schnellsten geht es per WhatsApp oder Telefon: Ein Satz genügt, worum es geht. Bei einer laufenden Störung sparen zwei Minuten am Telefon mehr Zeit als jede Beschreibung per E-Mail. Können Sie gerade nicht sprechen, hinterlassen Sie über den Rückruf Ihre Nummer und ein Stichwort.\n\nJe genauer die Anfrage, desto konkreter die erste Antwort. Nennen Sie kurz, worum es geht — ein akuter Ausfall, eine laufende Betreuung, eine neue Webseite oder ein Projekt vor Ort —, wie viele Arbeitsplätze oder Server betroffen sind und bis wann es laufen muss. Dann steht in unserer Antwort an Werktagen innerhalb von 24 Stunden bereits eine Größenordnung statt einer Rückfrage. Fernwartung ist dabei der Normalfall und kein Notbehelf: Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Vor Ort kommen wir dort, wo Hände gebraucht werden: Kabel, Aufbau, Gerätetausch.",
         "wege_h": "Vier Wege, uns zu erreichen",
         "zeiten_h": "Erreichbarkeit",
-        "zeiten_t": "Montag bis Freitag, 9 bis 18 Uhr. Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag.\n\nBei einem akuten Ausfall rufen Sie an, statt zu schreiben: Ein Anruf erreicht uns auch dann, wenn gerade niemand ins Postfach sieht. Was in den ersten dreißig Minuten eines Notfalls zu tun ist, steht auf der Notfallseite — und gilt auch, bevor Sie uns erreicht haben.",
+        "zeiten_t": "Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr. Anfragen außerhalb dieser Zeiten beantworten wir am nächsten Werktag.\n\nBei einem akuten Ausfall rufen Sie an, statt zu schreiben: Ein Anruf erreicht uns auch dann, wenn gerade niemand ins Postfach sieht. Was in den ersten dreißig Minuten eines Notfalls zu tun ist, steht auf der Notfallseite — und gilt auch, bevor Sie uns erreicht haben.",
         "zeiten_tab": {
             "cap": "Reaktionszeiten im Überblick",
             "k1": "Anliegen",
@@ -1664,7 +1665,7 @@ PACK = {
         "h": "Sechs Sätze, die wir jede Woche hören.",
         "sub": "Wenn einer davon auf Ihren Betrieb zutrifft, sind Sie hier richtig. Jeder führt direkt zu dem, was wir dagegen tun.",
         "server_q": "„Der Server ist langsam und keiner weiß, warum.“",
-        "server_a": "Er wird automatisch überwacht, auch nachts; wir sehen die Störung, bevor daraus ein Stillstand wird, und bearbeiten Meldungen Montag bis Freitag von 9 bis 18 Uhr.",
+        "server_a": "Er wird automatisch überwacht, auch nachts; wir sehen die Störung, bevor daraus ein Stillstand wird, und bearbeiten Meldungen Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr.",
         "server_l": "Server und Überwachung",
         "backup_q": "„Ob die Datensicherung wirklich läuft, weiß eigentlich niemand.“",
         "backup_a": "Wir sichern täglich, prüfen jede Sicherung und testen die Wiederherstellung – nicht erst im Ernstfall.",

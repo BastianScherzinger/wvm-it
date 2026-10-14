@@ -85,7 +85,7 @@ Das ist die Konkurrenz in genau der Nische 2 („der schnellste Kunde", `../docs
 | Hauptkategorie | IT-Berater bzw. IT-Service |
 | Weitere Kategorien | Webdesigner, Computerservice, Computersicherheitsdienst, Automatisierungsunternehmen, Veranstaltungstechnik |
 | Einzugsgebiet | Bezirk Vöcklabruck, Bezirk Gmunden, Wels, Linz, Salzburg |
-| Öffnungszeiten | **Mo–Fr 9–18 Uhr** — so steht es seit dem Relaunch sichtbar auf `/kontakt/` und `/it-notfall/` (DE/EN/RO) und identisch im Schema (`openingHoursSpecification`); ins Unternehmensprofil genau so übernehmen. Die frühere Notiz „nicht dokumentiert“ war überholt (EIG21). Ändert Florin die Zeiten, fällt `OeffnungszeitenStimmenTest` auf |
+| Öffnungszeiten | **Mo–Do 7:30–21, Fr bis 20:30, Sa bis 20 Uhr (seit 15.10.2026, vorher Mo–Fr 9–18; Quelle `landing/zeiten.py`)** — so steht es seit dem Relaunch sichtbar auf `/kontakt/` und `/it-notfall/` (DE/EN/RO) und identisch im Schema (`openingHoursSpecification`); ins Unternehmensprofil genau so übernehmen. Die frühere Notiz „nicht dokumentiert“ war überholt (EIG21). Ändert Florin die Zeiten, fällt `OeffnungszeitenStimmenTest` auf |
 | Beschreibung | `content.json` → `beschreibung` |
 | Website | `https://www.wvm-it.tech` |
 | Leistungen | aus `ANGEBOT_GROUPS`, dieselben Preise wie auf der Seite |
