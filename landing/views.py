@@ -35,6 +35,7 @@ from . import (beitraege, branchen, checklisten, einrichtungen,
                glossar, i18n, leistungen, messung,
                regionen, selbsttest, stand, vergleiche)
 from . import mails
+from . import videos as videos_modul
 from . import quellen as quellen_modul
 
 _log = logging.getLogger(__name__)
@@ -3973,16 +3974,23 @@ def it_hilfe(request):
     anliegen = (request.GET.get("anliegen") or "").strip().lower()
     if anliegen not in _ANLIEGEN:
         anliegen = ""
+    # Erklärfilm „Fernwartung in 4 Schritten“ (R4, 14.10.2026): nur in der deutschen Fassung,
+    # weil die Texte im Film eingebrannt und deutsch sind. VideoObject nur, wo er eingebettet ist.
+    film = videos_modul.video("fernwartung") if lang == "de" else None
+    schema = _seiten_schema(
+        c, lang, service=service, faq=hilfe.get("faq") or [], faq_id=pfad,
+        breadcrumb=_breadcrumb(base, [(hilfe.get("nav", "IT-Hilfe"), pfad)]))
+    if film:
+        schema = _mit_knoten(schema, videos_modul.schema_knoten(
+            base, "fernwartung", pfad, settings.STATIC_URL))
     return render(request, "it_hilfe.html", {
-        "c": c, "hilfe": hilfe,
+        "c": c, "hilfe": hilfe, "video": film,
         "anliegen_vorwahl": anliegen,
         "faelle": _hilfe_faelle(hilfe, lang),
         "kacheln": _akut_kacheln(lang),
         "wa_text": hilfe.get("wa_text", ""),
         "preis_stand": _preis_stand(lang),
-        "structured_data": _seiten_schema(
-            c, lang, service=service, faq=hilfe.get("faq") or [], faq_id=pfad,
-            breadcrumb=_breadcrumb(base, [(hilfe.get("nav", "IT-Hilfe"), pfad)])),
+        "structured_data": schema,
     })
 
 # ── Einrichtungen (docs/PLAN-HARDWARE-2026-09-08.md) ─────────────────────────
@@ -4276,8 +4284,19 @@ def beitrag_seite(request, slug):
     if quellen_liste:
         artikel["citation"] = [{"@type": "CreativeWork", "name": q["titel"], "url": q["url"]}
                                for q in quellen_liste]
+    schema = _seiten_schema(
+        c, "de", service=artikel,
+        faq=beitrag.get("faq") or [], faq_id=pfad,
+        breadcrumb=_breadcrumb(base, [
+            ("Aktuelles", reverse("aktuelles")),
+            (beitrag.get("titel", slug), pfad)]))
+    # Erklärfilm nur im Ratgeber „Konto gesperrt“ (R4, 14.10.2026); VideoObject dort, wo er eingebettet ist.
+    film = videos_modul.video("konto-gesperrt") if slug == "microsoft-365-konto-gesperrt" else None
+    if film:
+        schema = _mit_knoten(schema, videos_modul.schema_knoten(
+            base, "konto-gesperrt", pfad, settings.STATIC_URL))
     return render(request, "beitrag.html", {
-        "c": c, "beitrag": beitrag,
+        "c": c, "beitrag": beitrag, "video": film,
         "quellen": quellen_liste, "quellen_abruf": quellen_modul.abruf_text(),
         "quellen_abruf_iso": quellen_modul.ABRUF,
         # Sichtbar nur, wenn es vom Veröffentlichungstag abweicht — sonst
@@ -4299,12 +4318,7 @@ def beitrag_seite(request, slug):
         # KI-Antwortmaschinen am häufigsten wörtlich übernehmen — und der Grund,
         # warum der fehlende Umfang mit Fragen aufgefüllt wurde und nicht mit
         # längeren Absätzen.
-        "structured_data": _seiten_schema(
-            c, "de", service=artikel,
-            faq=beitrag.get("faq") or [], faq_id=pfad,
-            breadcrumb=_breadcrumb(base, [
-                ("Aktuelles", reverse("aktuelles")),
-                (beitrag.get("titel", slug), pfad)])),
+        "structured_data": schema,
     })
 
 
