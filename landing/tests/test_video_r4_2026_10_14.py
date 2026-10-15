@@ -136,9 +136,12 @@ class StartVerhaltenTest(SimpleTestCase):
         self.assertIn("v.pause()", js)
         self.assertIn("prefers-reduced-motion", js)
 
-    def test_filme_sind_14_sekunden_und_ohne_alte_zeit(self):
+    def test_filmlaengen_und_ohne_alte_zeit(self):
+        # Fassung 3 (15.10. abends): Fernwartung 15 s, Microsoft 365 27 s
+        self.assertEqual(videos.VIDEOS["fernwartung"]["sekunden"], 15)
+        self.assertEqual(videos.VIDEOS["konto-gesperrt"]["sekunden"], 27)
         for v in videos.VIDEOS.values():
-            self.assertEqual(v["sekunden"], 14)
+            self.assertIn(f"{v['sekunden']} Sekunden", v["unterschrift"])
             for feld in ("beschreibung", "aria"):
                 self.assertNotIn("9–18", v[feld])
                 self.assertNotIn("24/7", v[feld])
