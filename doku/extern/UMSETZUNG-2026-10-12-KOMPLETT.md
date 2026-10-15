@@ -70,6 +70,7 @@ Auftrag: bis Dezember mehr Anfragen, nicht mehr Text. Berichte `ANALYSE-2026-10-
 | W1 | Ratgeber `/aktuelles/registrierkasse-jahresbeleg-it/` (Technik-Hilfe, keine Steuerberatung), Saison-Pflege von 5 Ratgebern, Preis-Antwort für Österreich auf `/kosten/` und `/it-hilfe/` | live, `4076124` |
 | W2 | Anrufleiste auf dem Handy auch bei offenem Cookie-Banner sichtbar; Partnerhinweis „Umsetzung gemeinsam mit unserer Partner-Webagentur (Webagentur Scherzinger)“ bei Florins Web-Leistung (Florins Web-Preise bleiben, keine Provision) | live, `4076124` |
 | W3 | Zwei Remotion-Videos: „Fernwartung in 4 Schritten“ auf `/it-hilfe/`, „Konto gesperrt?“ im M365-Ratgeber; Poster, Start erst im Sichtfeld, bei reduzierter Bewegung nur Poster, `VideoObject`-Schema | live, `fc3aa19` |
+| W7 (15.10.) | Beide Filme neu geschnitten: 14 s, Hook im ersten Bild, Schnitt alle 1,2–1,8 s, Wort-für-Wort-Typografie, neue Zeiten aus `landing/zeiten.py`; Autostart stumm ab 40 % Sichtbarkeit (`static/js/video.js`), Pause außerhalb, reduzierte Bewegung = Poster + Play-Knopf; live geprüft (Handy 390 und Desktop 1440, beide Seiten: läuft nach Scroll, pausiert nach Wegscrollen) | live, `b878c62` |
 | Google-Profil | 9 Leistungen mit Preis und Beschreibung, Beitrag 1 (Outlook) veröffentlicht 14.10.; Q&A gibt es im Profil nicht mehr; Öffnungszeiten im Profil weichen von der Website ab, **nichts geändert** (Florin fragen) | Kalender mit weiteren Beiträgen vorbereitet, an den Terminen zu veröffentlichen |
 | Bausteine | Förderprüfung ERFOLG.PLUS 26, Presse, LinkedIn für Florin, Nach-Einsatz-Nachricht, Bestandskunden | vorbereitet, nichts live |
 
@@ -79,7 +80,7 @@ Prüfstand: 902 Tests grün, 265 URLs, IndexNow 265 URLs gemeldet. Videos: Quell
 
 **Bewusst nicht:** ERFOLG.PLUS 26 nirgends bewerben (WKO-Budget seit 28.09. ausgeschöpft); zu Windows 10 nur Microsoft-belegte Fakten (Support-Ende 14.10.2025, Verbraucher-ESU bis 12.10.2027); keine Kaltakquise per Anruf, Mail oder WhatsApp (Österreich: § 174 TKG 2021); keine Stadtseiten; keine Preisänderung bei Florins Web-Leistungen.
 
-**Offen:** Indexierung der neuen Jahresbeleg-Seite beantragen (10 andere WVM-URLs am 14.10. abends beantragt, siehe INDEXIERUNG.md); weitere Google-Beiträge laut Kalender; Videos für Google-Profil/LinkedIn/YouTube nach Bastians Abnahme; Öffnungszeiten klären.
+**Offen:** Indexierung der neuen Jahresbeleg-Seite beantragen (10 andere WVM-URLs am 14.10. abends beantragt, siehe INDEXIERUNG.md); weitere Google-Beiträge laut Kalender; Videos für Google-Profil/LinkedIn/YouTube nach Bastians Abnahme (neue Fassungen in `ausgabe\hochwertig\`; Hochkant-Szenen teils obenlastig, 16:9-Fassung „Konto“ nicht eingebunden). Öffnungszeiten sind seit `d75e7e6` geklärt (die längeren aus dem Google-Profil).
 
 ## 3. Erfolg messen — Grundlinie und Termine
 
