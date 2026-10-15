@@ -11,40 +11,42 @@ die Startseite bleibt videofrei (Ladezeit, Funktion vor Design).
 ``VideoObject`` steht nur auf den Seiten, auf denen der Film wirklich eingebettet ist.
 """
 
-UPLOAD_DATUM = "2026-10-14"
+from landing import zeiten
+
+UPLOAD_DATUM = "2026-10-15"   # Fassung 2 (neu geschnitten, 14 s); Fassung 1 vom 14.10. ist ersetzt
 
 VIDEOS = {
     "fernwartung": {
         "datei": "video/fernwartung-4-schritte.mp4",
         "poster": "video/fernwartung-4-schritte-poster.jpg",
-        "breite": 1920, "hoehe": 1080, "sekunden": 24,
-        "name": "Fernwartung in 4 Schritten",
-        "beschreibung": ("Wie eine Fernwartungssitzung bei WVM-IT abläuft: Anruf oder WhatsApp, "
-                         "kurzer Freigabe-Code, Sie sehen alles mit und können jederzeit beenden, "
-                         "danach endet der Zugang. Fernwartung in ganz Österreich, 95 € je Stunde netto, "
-                         "Mo–Fr 9–18 Uhr."),
-        "aria": ("Stummer Kurzfilm mit eingeblendeten Texten: Fernwartung in 4 Schritten. "
-                 "1. Anruf oder WhatsApp. 2. Freigabe-Code. 3. Sie sehen alles mit und beenden jederzeit. "
-                 "4. Erledigt, danach endet der Zugang."),
-        "unterschrift": "Fernwartung in 4 Schritten · 24 Sekunden, ohne Ton",
+        "breite": 1280, "hoehe": 720, "sekunden": 14,
+        "name": "Fernwartung in ganz Österreich",
+        "beschreibung": ("PC streikt? WVM-IT schaltet sich per Fernwartung auf Ihren Rechner, in ganz Österreich. "
+                         "Sie sehen alles mit und können den Zugriff jederzeit beenden. "
+                         "95 € je Stunde netto. Erreichbar " + zeiten.LANG["de"] + "."),
+        "aria": ("Stummer Kurzfilm mit eingeblendeten Texten: PC streikt? Fernwartung, ganz Österreich. "
+                 "Sie sehen alles mit und beenden jederzeit. Läuft wieder. 95 € je Stunde, netto. "
+                 + zeiten.KURZ["de"] + ". www.wvm-it.tech."),
+        "unterschrift": "Fernwartung in ganz Österreich · 14 Sekunden, ohne Ton",
         "klasse": "vid-quer",
     },
     "konto-gesperrt": {
         "datei": "video/microsoft-365-konto-gesperrt.mp4",
         "poster": "video/microsoft-365-konto-gesperrt-poster.jpg",
-        "breite": 1080, "hoehe": 1920, "sekunden": 28,
+        "breite": 720, "hoehe": 1280, "sekunden": 14,
         "name": "Microsoft-365-Konto gesperrt? Das können Sie selbst tun",
         "beschreibung": ("Die Meldung „Ihr Konto ist vorübergehend gesperrt, um eine nicht autorisierte "
-                         "Verwendung zu verhindern“ und drei Schritte, die Sie selbst tun können; "
-                         "wenn das nicht reicht, hilft WVM-IT per Fernwartung in ganz Österreich."),
-        "aria": ("Stummer Kurzfilm mit eingeblendeten Texten: Microsoft-365-Konto gesperrt. Nicht weiter "
-                 "probieren, die Meldung lesen, den Administrator fragen. Wenn das nicht reicht: "
-                 "Fernwartung in ganz Österreich, Mo–Fr 9–18 Uhr, 95 € je Stunde netto."),
-        "unterschrift": "28 Sekunden, ohne Ton",
+                         "Verwendung zu verhindern“ und was Sie selbst tun können: nicht weiter probieren, "
+                         "die Meldung lesen, den Administrator fragen. Wenn das nicht reicht, hilft WVM-IT "
+                         "per Fernwartung in ganz Österreich, 95 € je Stunde netto, " + zeiten.INLINE["de"] + "."),
+        "aria": ("Stummer Kurzfilm mit eingeblendeten Texten: Konto gesperrt. Mails, Termine, Dateien nicht erreichbar. "
+                 "Nicht weiter probieren, die Meldung lesen, den Administrator fragen. Reicht das nicht? "
+                 "Wir helfen per Fernwartung, ganz Österreich, 95 € je Stunde netto, "
+                 + zeiten.INLINE["de"] + ". www.wvm-it.tech."),
+        "unterschrift": "Konto gesperrt? Drei Schritte · 14 Sekunden, ohne Ton",
         "klasse": "vid-hoch vid-seite",
     },
 }
-
 
 def video(schluessel):
     """Das Video-Dict oder None."""

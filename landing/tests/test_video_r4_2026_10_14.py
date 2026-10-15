@@ -101,7 +101,7 @@ class SchemaTest(SimpleTestCase):
             k = knoten[0]
             for feld in self.PFLICHT:
                 self.assertTrue(k.get(feld), f"{pfad}: {feld} fehlt")
-            self.assertEqual(k["uploadDate"], "2026-10-14")
+            self.assertEqual(k["uploadDate"], videos.UPLOAD_DATUM)
             self.assertRegex(k["duration"], r"^PT\d+S$")
             self.assertTrue(k["contentUrl"].startswith("https://www.wvm-it.tech/static/video/"))
             self.assertTrue(k["thumbnailUrl"][0].startswith("https://www.wvm-it.tech/static/video/"))
@@ -126,3 +126,19 @@ class MeldungTest(SimpleTestCase):
         self.assertIn(self.MELDUNG, quelle)
         # und im Film-Quelltext (Remotion-Projekt liegt außerhalb des Repos; hier nur die Beschreibung)
         self.assertIn(self.MELDUNG, videos.VIDEOS["konto-gesperrt"]["beschreibung"])
+
+class StartVerhaltenTest(SimpleTestCase):
+    """Fassung 2 (15.10.2026): Start per Skript, nicht per Attribut."""
+
+    def test_skript_startet_ab_40_prozent_und_pausiert_ausserhalb(self):
+        js = (STATIC / "js" / "video.js").read_text(encoding="utf-8")
+        self.assertIn("threshold: 0.4", js)
+        self.assertIn("v.pause()", js)
+        self.assertIn("prefers-reduced-motion", js)
+
+    def test_filme_sind_14_sekunden_und_ohne_alte_zeit(self):
+        for v in videos.VIDEOS.values():
+            self.assertEqual(v["sekunden"], 14)
+            for feld in ("beschreibung", "aria"):
+                self.assertNotIn("9–18", v[feld])
+                self.assertNotIn("24/7", v[feld])

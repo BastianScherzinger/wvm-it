@@ -1,20 +1,36 @@
-/* Erklärfilme (Runde 4, 14.10.2026). Nur vorhandene Tokens; Seitenverhältnis fest, damit kein Layoutsprung entsteht. */
-.vid{margin:28px 0;max-width:100%}
-.vid-rahmen{position:relative;border:1px solid var(--line-2);border-radius:var(--radius);overflow:hidden;background:#0b1116;line-height:0}
+/* Erklärfilme (Runde 4, 14./15.10.2026). Nur vorhandene Tokens; Seitenverhältnis fest, damit kein Layoutsprung entsteht.
+   Karte: abgerundet, Schatten im Seitenstil (--shadow-lg), Beschriftung darunter. Am Handy volle Spaltenbreite. */
+.vid{margin:32px 0;max-width:100%}
+.vid-rahmen{position:relative;border:1px solid var(--line-2);border-radius:20px;overflow:hidden;background:#0b1116;line-height:0;
+  box-shadow:var(--shadow-lg);isolation:isolate}
 .vid-quer{max-width:880px}
 .vid-quer .vid-rahmen{aspect-ratio:16/9}
-.vid-hoch{max-width:300px}
+.vid-hoch{max-width:320px}
 .vid-hoch .vid-rahmen{aspect-ratio:9/16}
 .vid-el{display:block;width:100%;height:100%;object-fit:cover;background:#0b1116}
-.vid-unter{margin:10px 0 0;font-size:14px;line-height:1.45;color:var(--ink-soft)}
-.vid-knopf{position:absolute;right:10px;bottom:10px;font:600 13px/1 var(--sans);color:#f2f6f9;
-  background:rgba(11,17,22,.82);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:9px 14px;min-height:40px;cursor:pointer}
+.vid-unter{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:14px 2px 0;font-size:14px;line-height:1.45;color:var(--ink-soft)}
+.vid-unter::before{content:"";flex:none;width:22px;height:2px;border-radius:1px;background:var(--accent2)}
+.vid-knopf{position:absolute;right:12px;bottom:12px;font:600 13px/1 var(--sans);color:#f2f6f9;
+  background:rgba(11,17,22,.78);border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:9px 14px;min-height:40px;cursor:pointer;
+  opacity:.9;transition:opacity .2s,background .2s}
+.vid-rahmen:hover .vid-knopf,.vid-knopf:focus-visible{opacity:1}
 .vid-knopf:hover{background:rgba(11,17,22,.95)}
 .vid-knopf:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
-/* Ratgeber: Film klein rechts neben dem Text, auf dem Handy mittig darunter */
+/* Ohne Bewegung (prefers-reduced-motion): Poster bleibt stehen, großer Abspielen-Knopf in der Mitte */
+.vid-ruhig .vid-knopf{left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);margin:0;width:84px;height:84px;min-height:0;padding:0;border-radius:50%;
+  background:var(--accent2);border:0;color:#0b1116;font-size:0;opacity:1;box-shadow:0 14px 40px -10px rgba(0,0,0,.6)}
+.vid-ruhig .vid-knopf::before{content:"";display:block;margin:0 auto 0 33px;width:0;height:0;border-left:24px solid #0b1116;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.vid-ruhig.vid-spielt .vid-knopf{left:auto;top:auto;right:12px;bottom:12px;transform:none;margin:0;width:auto;height:auto;min-height:40px;padding:9px 14px;border-radius:999px;
+  background:rgba(11,17,22,.78);color:#f2f6f9;font-size:13px;border:1px solid rgba(255,255,255,.32)}
+.vid-ruhig.vid-spielt .vid-knopf::before{display:none}
+/* Ratgeber: Film klein rechts neben dem Text, auf dem Handy volle Breite darunter */
 @media (min-width:900px){
   .vid-hoch.vid-seite{float:right;margin:4px 0 20px 32px}
 }
 @media (max-width:899px){
-  .vid-hoch{margin-left:auto;margin-right:auto}
+  .vid-hoch{margin-left:auto;margin-right:auto;max-width:440px}
+  .vid-rahmen{border-radius:16px}
+}
+@media (max-width:480px){
+  .vid-hoch{max-width:none}
 }

@@ -116,7 +116,7 @@ class AlteZeitTest(SimpleTestCase):
 
     def test_keine_alte_zeit_im_quelltext(self):
         dateien = [p for p in _LANDING.rglob("*.py")
-                   if "tests" not in p.parts and p.name not in ("zeiten.py", "videos.py")]
+                   if "tests" not in p.parts and p.name not in ("zeiten.py",)]
         # videos.py (Filmbeschreibungen) baut der Video-Strang neu und zieht die Zeiten dort nach.
         dateien += list((_BASIS / "templates").rglob("*.html"))
         dateien.append(_BASIS / "content.json")
