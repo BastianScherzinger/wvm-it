@@ -2953,3 +2953,8 @@ article.section{padding-top:clamp(28px,4vw,48px)}
 .web-partner{display:block;margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--ink-dim)}
 td.web-partner{padding:8px 14px;margin:0}
 .web-partner a{color:var(--accent-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* Schub 2 (A1/T7): Antwortsatz unter dem Hero der Startseite */
+.start-antwort{padding:var(--s5,24px) 0 0}
+.start-antwort .antwort{margin:0 auto;max-width:68ch;font-size:1.08rem;line-height:1.6;color:var(--ink)}
+.pt.pt-klein{margin-top:var(--s4,16px)}

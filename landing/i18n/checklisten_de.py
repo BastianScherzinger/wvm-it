@@ -80,7 +80,7 @@ CHECKLISTEN = {
         "meta_titel": "Checkliste: neuer Arbeitsplatz in 1–2 Stunden | WVM-IT",
         "desc": "Vom Gerät bis zum Konto: was ein einsatzbereiter Arbeitsplatz braucht — und was am ersten Arbeitstag fertig sein muss. Checkliste jetzt ansehen.",
         "kurz": "Diese 15 Punkte sorgen dafür, dass ein neuer Mitarbeiter am ersten Tag arbeiten kann, statt auf die IT zu warten. Die Liste ist bewusst zweigeteilt: Was vor dem ersten Tag erledigt sein muss, und was am ersten Tag gemeinsam passiert. Der zweite Teil wird meistens vergessen — und ist der Grund, warum Einarbeitung an der Technik hängen bleibt.",
-        "intro": "In Betrieben ohne eigene IT-Abteilung dauert die Einrichtung eines Arbeitsplatzes typischerweise deshalb Tage, weil niemand vorher weiß, was gebraucht wird. Der Ablauf lässt sich einmal aufschreiben und danach in einer Stunde abarbeiten. Genau das ist diese Liste.",
+        "intro": "In Betrieben ohne eigene IT-Abteilung dauert die Einrichtung eines Arbeitsplatzes typischerweise deshalb Tage, weil niemand vorher weiß, was gebraucht wird. Der Ablauf lässt sich einmal aufschreiben und danach in einer Stunde abarbeiten. Genau das ist diese Liste. Warum das Ganze so lange dauert und was es kostet, steht im Ratgeber <a href='/aktuelles/neuer-mitarbeiter-pc-einrichten/'>Neuen Mitarbeiter-PC einrichten: Ablauf, Dauer und Kosten</a>.",
         "gruppen": [
             {"h": "Vor dem ersten Arbeitstag",
              "punkte": [

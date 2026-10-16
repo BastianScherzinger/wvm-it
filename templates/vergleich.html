@@ -92,7 +92,7 @@ dem Telefon seitlich wackelt.
       <h2 class="sp-h2">{{ seite.rechnung_h|safe }}</h2>
       <p class="sp-preis-text">{{ seite.rechnung_t|safe }}</p>
       <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
-        <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+        <a href="{% url 'kosten' %}">{% preis_anker %}</a></p>
 
     {% comment %}Der eine gezielte Verweis: Der Ratgeber hat die Frage
       beantwortet, hier steht, was die Antwort kostet (Plan §2.3). Bewusst EIN

@@ -94,6 +94,8 @@ PACK = {
         # Zahlen statt Adjektiven — "vom Zwei-Mann-Buero" ist pruefbar,
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
+        # Schub 2 (A1, T7): zitierfähiger Antwortsatz unter dem Hero (≤ 45 Wörter, Ort + Leistung + Preis).
+        "antwort": "WVM-IT ist ein IT-Dienstleister mit Sitz in Lenzing, Oberösterreich. Florin Feier betreut die EDV kleiner Betriebe per Fernwartung in ganz Österreich: laufende IT-Betreuung ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag 95 € je Stunde.",
         "subline": "Für Betriebe in Lenzing und Umgebung: laufende Betreuung ab 29 € je Arbeitsplatz im Monat, Hilfe ohne Vertrag, Webseiten mit kostenloser Testseite, dazu Domain, E-Mail, KI und Technik vor Ort.",
         # Design B1: Frage neben dem Rückruf im Hero, führt zu Telefon/WhatsApp.
         "alt_frage": "Lieber gleich sprechen?",
@@ -617,6 +619,8 @@ PACK = {
         # Sichtbares Änderungsdatum der Ratgeberseiten (GE47, 02.10.2026)
         "seiten_stand": "Aktualisiert:",
         "alle_preise": "Alle Preise auf einen Blick",
+        # Schub 2 (B2): Varianten für die Links auf /kosten/; templatetag `preis_anker` wählt je Seite eine.
+        "alle_preise_var": ["Alle Preise auf einen Blick", "IT-Betreuung Kosten", "Was kostet IT-Betreuung?", "Die Preisliste"],
         "kontakt_alt": "Lieber direkt sprechen?",
     },
     # ── Branchen-Silo (docs/SEO-AUSBAU-3.md, N1) ─────────────────────────────
@@ -671,7 +675,8 @@ PACK = {
         # abgeschnittener Seitentitel, der im Kopf dreizeilig umbrach.
         "nav": "IT-Notfall",
         "wa_text": "IT-Notfall: ",
-        "kurz": "Bei gesperrtem Microsoft-365-Konto, ausgefallener E-Mail, nicht startendem PC, Verschlüsselung und Serverausfall hilft WVM-IT aus Lenzing in ganz Österreich (und Deutschland) per Fernwartung, Mo–Sa ab 7:30 Uhr, 95 € je Stunde: Wir sind unter der unten stehenden Nummer erreichbar und beginnen meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind. Abgerechnet wird als Einzelhilfe ohne Vertrag. Vor Ort kommen wir nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing. Bei Verdacht auf einen Angriff gilt vorab eine Regel: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden.",
+        "kurz": "Bei gesperrtem Microsoft-365-Konto, ausgefallener E-Mail, nicht startendem PC, Verschlüsselung und Serverausfall hilft WVM-IT aus Lenzing in ganz Österreich (und Deutschland) per Fernwartung, Mo–Sa ab 7:30 Uhr, 95 € je Stunde, ohne Vertrag. Vor Ort kommen wir nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing.",
+        "kurz_mehr": "Wir sind unter der unten stehenden Nummer erreichbar und beginnen meist innerhalb von Minuten — auch dann, wenn Sie kein Kunde von uns sind. Bei Verdacht auf einen Angriff gilt vorab eine Regel: Betroffene Geräte vom Netzwerk trennen, aber nicht ausschalten und nichts löschen — der Arbeitsspeicher und die Protokolle enthalten die Spuren, die für die Wiederherstellung und für eine Meldung gebraucht werden.",
         "eilt_h": "Es eilt — hier entlang",
         "eilt_t": "Rufen Sie an, statt zu schreiben. Ein Anruf spart bei einer laufenden Störung mehr Zeit als jede Beschreibung per E-Mail.",
         "intro": "Diese Seite ist zum Handeln da, nicht zum Lesen. Suchen Sie unten Ihren Fall und arbeiten Sie die Schritte der Reihe nach ab. Alles Weitere — Ursachensuche, Wiederherstellung, Meldepflichten — kommt danach. Wir sind ausdrücklich auch dann erreichbar, wenn Sie kein Kunde von uns sind; ein akuter Notfall ist der falsche Zeitpunkt für eine Vertragsfrage.",
@@ -815,8 +820,8 @@ PACK = {
             {
                 "id": "serverausfall",
                 "icon": "server",
-                "h": "Der Server ist ausgefallen",
-                "kurz": "Niemand kommt mehr an die Daten, das Warenwirtschaftssystem startet nicht, Netzlaufwerke sind verschwunden.",
+                "h": "Server-Notfall: Server ausgefallen, was zuerst?",
+                "kurz": "Bei einem Server-Notfall zuerst prüfen, ob alle Arbeitsplätze betroffen sind oder nur einer, dann Stromversorgung und Netzwerkverbindung kontrollieren und nichts neu starten, bevor jemand den Zustand gesehen hat. Keine Festplatten tauschen oder herausziehen. Läuft der Server nicht von selbst wieder an, rufen Sie an, bevor jemand ihn neu startet: Hilfe per Fernwartung kostet 95 € je Stunde, ohne Vertrag. Typisch ist: Niemand kommt mehr an die Daten, das Warenwirtschaftssystem startet nicht, Netzlaufwerke sind verschwunden.",
                 "schritte": [
                     "Prüfen, wie weit es reicht: Betrifft es alle Arbeitsplätze oder nur einen? Ist das Netzwerk insgesamt betroffen?",
                     "Am Server nachsehen, ohne etwas zu verändern: Läuft er? Blinken Fehler-Leuchten? Steht eine Meldung auf dem Bildschirm?",
@@ -913,6 +918,8 @@ PACK = {
         "kunde_h": "Auch ohne Vertrag",
         "kunde_t": "Sie müssen kein Kunde von uns sein. Hilfe im Notfall rechnen wir mit 95 € je Stunde per Fernwartung ab, vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Wir sagen Ihnen vorher, ob wir helfen können — und wenn ein Spezialist die bessere Adresse ist, sagen wir auch das.",
         "faq": [
+            {"q": "Was tun, wenn der Server im Betrieb ausfällt?",
+             "a": "Bei einem Server-Notfall zuerst prüfen, ob alle Arbeitsplätze betroffen sind oder nur einer, dann Stromversorgung und Netzwerkverbindung kontrollieren und nichts neu starten, bevor jemand den Zustand gesehen hat. Keine Festplatten tauschen oder herausziehen. Läuft der Server nicht von selbst wieder an, rufen Sie an, bevor jemand ihn neu startet: Hilfe per Fernwartung kostet 95 € je Stunde, ohne Vertrag."},
             {"q": "Sollen wir bei einer Verschlüsselung zahlen?",
              "a": "Nicht, bevor jemand die Datensicherung geprüft hat. In den meisten Fällen, in denen eine getrennt aufbewahrte Sicherung vorhanden ist, führt die Wiederherstellung schneller und sicherer zum Ziel als eine Zahlung. Eine Zahlung garantiert weder die Entschlüsselung noch, dass die Daten nicht trotzdem veröffentlicht werden — und sie finanziert die nächste Welle. Die Entscheidung liegt bei Ihnen; wir liefern die Grundlage dafür."},
             {"q": "Müssen wir einen Vorfall melden?",
@@ -1211,11 +1218,15 @@ PACK = {
         "markt_t": "Die Beispiele sind Richtwerte für den kleinsten Umfang, darum stehen sie mit „ab“. Wie viel Betreuung Ihr Betrieb wirklich braucht, zeigt sich erst nach einer kurzen Bestandsaufnahme; danach bekommen Sie ein schriftliches Angebot. Einzelne Hilfe ohne Vertrag kostet 95 € je Stunde, der Einstiegspreis von 29 € je Arbeitsplatz und Monat gilt in Österreich und Deutschland gleich.",
         "ratgeber_t": "Diese Seite ist die Preisliste. Warum kleine Firmen für IT-Betreuung so unterschiedliche Angebote bekommen und worauf man beim Vergleich achten sollte, steht im Ratgeber.",
         "ratgeber_link": "Ratgeber: IT-Betreuung Kosten für kleine Firmen",
+        # Schub 2 (B1): Festpreise im Text verlinkt. {p_…} = Katalogpreis, {u_…} = Adresse der Einrichtungsseite.
+        "einrichten_t": "Für einzelne Aufgaben ohne Vertrag gibt es Festpreise: einen <a href=\"{u_arbeitsplatz}\">PC einrichten lassen</a> kostet {p_arbeitsplatz} €, <a href=\"{u_m365}\">Microsoft 365 (Office 365) einrichten lassen</a> {p_m365} €.",
         "faq": [
             {"q": "Was kostet IT-Betreuung für kleine Unternehmen?",
              "a": "Die laufende IT-Betreuung kostet bei WVM-IT ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat und die überwachte Datensicherung ab 49 € im Monat. Für 5 Arbeitsplätze ohne eigenen Server sind das ab {bsp5} € im Monat (5 × 29 € Betreuung + 49 € Datensicherung). Alle Angaben sind Richtpreise netto zzgl. USt., Stand {stand}; ein schriftliches Angebot folgt nach einer kurzen Bestandsaufnahme."},
             {"q": "Was kostet die Betreuung und Überwachung eines Servers?",
              "a": "Ein betreuter Server kostet ab 89 € im Monat, die überwachte Datensicherung kommt mit ab 49 € im Monat dazu. Die laufende Betreuung ist mit einem Monat Frist zum Quartalsende kündbar."},
+            {"q": "Was kostet ein IT-Wartungsvertrag?",
+             "a": "Einen reinen „Wartungsvertrag“ gibt es bei WVM-IT als laufende Betreuung: 29 € je Arbeitsplatz und Monat, ein betreuter Server 89 € im Monat, die überwachte Datensicherung 49 € im Monat. Die Betreuung läuft von Quartal zu Quartal und ist mit einer Frist von einem Monat zum Quartalsende kündbar. Wer nur gelegentlich Hilfe braucht, zahlt ohne Vertrag 95 € je Stunde per Fernwartung. Alle Angaben sind Richtpreise, netto zzgl. USt."},
             {"q": "Was kostet einzelne Hilfe ohne Vertrag?",
              "a": "Einzelne Hilfe per Fernwartung kostet 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Einen Vertrag braucht es dafür nicht."},
             {"q": "Was kostet IT-Hilfe per Fernwartung in Österreich?",

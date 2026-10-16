@@ -37,6 +37,7 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
           <h1>{{ seite.h1|safe }}</h1>
           {% include 'antwort.html' with text=seite.kurz teilen=True %}
           {% include 'hero_ways.html' with kurz=seite.kurz %}
+          {% include 'seiten_stand.html' %}
         </div>
 
         {% comment %}Der Preis steht hier oben und gross — auf dem Handy ohne Scrollen
@@ -130,7 +131,7 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
               <h3 class="faq-q-h">{{ f.q|safe }}</h3>
               <span class="faq-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </summary>
-            <div class="faq-a"><p>{{ f.a|safe }}</p></div>
+            <div class="faq-a"><p>{{ f.a|safe }}</p>{% if f.link_url %}<p><a href="{{ f.link_url }}">{{ f.link_text|safe }}</a></p>{% endif %}</div>
           </details>
           {% endfor %}
         </div>
@@ -157,6 +158,8 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
         it-umzug stehen "auf Anfrage" (seite.anfrage, siehe
         landing/views.py::_einrichtung_daten).{% endcomment %}
         <p class="sp-fuss">{% if seite.anfrage %}{{ t.seite.preis_fuss|safe }}{% else %}{{ t.seite.festpreis_fuss|safe }}{% endif %} {{ preis_stand }}</p>
+
+        {% include 'quellen_block.html' %}
       </div>
 
       <div class="sp-aside">

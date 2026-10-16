@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 Glossar-Übersicht (docs/SEO-AUSBAU-3.md, W5).
 
@@ -45,7 +46,7 @@ das ist die freundlichere Variante und kostet uns nichts.
     <p class="lk-alle">
       <a href="{% url 'aktuelles' %}">Fachbeiträge</a> ·
       <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
-      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a>
+      <a href="{% url 'kosten' %}">{% preis_anker %}</a>
     </p>
 
     {% include 'ansprechpartner.html' %}

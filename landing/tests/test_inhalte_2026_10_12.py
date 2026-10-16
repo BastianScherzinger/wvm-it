@@ -117,7 +117,8 @@ class SeitenInhaltTest(SimpleTestCase):
 
     def test_m365_gesperrt_title(self):
         html = _html("/aktuelles/microsoft-365-konto-gesperrt/")
-        self.assertIn("<title>Microsoft-365-Konto gesperrt: Ursache & Entsperren | WVM-IT</title>", html)
+        # Schub 2 (16.10.2026, C1): Variante B aus ANALYSE-2026-10-16/01 (Klickrate 0,6 % bei Pos. 7).
+        self.assertIn("<title>Konto vorübergehend gesperrt (Microsoft 365): Hilfe | WVM-IT</title>", html)
 
     def test_einrichten_seiten(self):
         self.assertIn("Office 365", _html("/einrichten/microsoft-365/"))

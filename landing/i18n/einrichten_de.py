@@ -22,7 +22,8 @@ EINRICHTEN = {
                  "nicht gefunden, und die Dateien vom alten Gerät liegen noch dort. "
                  "Erfahrungsgemäß gehen darüber ein halber bis ein ganzer Arbeitstag "
                  "verloren — und zwar der Arbeitstag von jemandem, der eigentlich "
-                 "etwas anderes zu tun hat. Genau dafür gibt es diesen Festpreis.",
+                 "etwas anderes zu tun hat. Genau dafür gibt es diesen Festpreis. Wie der Ablauf beim neuen Mitarbeiter aussieht, steht im Ratgeber "
+                 "<a href='/aktuelles/neuer-mitarbeiter-pc-einrichten/'>Neuen Mitarbeiter-PC einrichten: Ablauf, Dauer und Kosten</a>.",
 
         "leistungen_h": "Was für 190 € enthalten ist",
         "leistungen": [
@@ -324,7 +325,8 @@ EINRICHTEN = {
                  "Postfächer laufen, alles andere wird nach und nach danebengestellt. "
                  "Dateien liegen dreifach — im OneDrive einer Person, im Anhang einer "
                  "Mail und auf dem alten Server. Wer geht, nimmt seinen Zugriff mit. "
-                 "Und niemand weiß, wo die aktuelle Fassung des Angebots liegt.",
+                 "Und niemand weiß, wo die aktuelle Fassung des Angebots liegt. Wie die Einrichtung abläuft, beschreibt der Ratgeber "
+                 "<a href='/aktuelles/microsoft-365-einrichten-lassen/'>Wie läuft die Einrichtung von Microsoft 365 ab?</a>",
 
         "leistungen_h": "Office 365 einrichten lassen: Was für 290 € enthalten ist",
         "leistungen": [
@@ -461,7 +463,9 @@ EINRICHTEN = {
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Braucht ein Kleinunternehmen einen eigenen Server?",
-             "a": "Das entscheidet die Software, nicht die Zahl der Arbeitsplätze. Sobald eine Warenwirtschaft, eine Branchenlösung oder eine Datenbank eine zentrale Installation verlangt, brauchen Sie einen Server, auch mit fünf Leuten. Wird nur mit Office, Mail und Dateien gearbeitet, ist die Cloud in aller Regel günstiger und wartungsärmer. Ausführlich steht das im Beitrag „Wie viele Arbeitsplätze braucht ein eigener Server?“ und im Vergleich Server oder Cloud."},
+             "a": "Das entscheidet die Software, nicht die Zahl der Arbeitsplätze: Sobald eine Warenwirtschaft, eine Branchenlösung oder eine Datenbank eine zentrale Installation verlangt, brauchen Sie einen Server, auch mit fünf Leuten. Wird nur mit Office, Mail und Dateien gearbeitet, ist die Cloud in aller Regel günstiger und wartungsärmer.",
+             "link_url": "/aktuelles/wie-viele-arbeitsplaetze-eigener-server/",
+             "link_text": "Ausführlich: Brauche ich einen eigenen Server?"},
             {"q": "Wie lange dauert die Einrichtung?",
              "a": "Ein Dateiserver für einen kleinen Betrieb steht an einem Tag. Kommen "
                   "Branchensoftware, Terminaldienste oder ein Umzug bestehender Daten "

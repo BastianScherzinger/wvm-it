@@ -84,6 +84,7 @@ REGIONEN = {
             "Tidying server cabinets, renewing cabling, replacing hardware",
             "Setting up workstations, supporting relocations and refits",
             "Meeting and training rooms with conference technology",
+            "Access control, cameras and alarm in the same system as the building technology: <a href='/en/leistungen/smarthome-knx-loxone/'>building automation with Loxone and KNX</a>",
         ],
         "remote_h": "What runs without a site visit",
         "remote": "Ongoing support, fault resolution, updates, user accounts, Microsoft 365, server monitoring, backups with tested restores, plus website, SEO and Google Ads. Because there is no travel involved, a fault in Gmunden costs the same as one in Lenzing.",

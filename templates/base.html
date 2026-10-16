@@ -47,14 +47,14 @@
   {% if lang != 'en' %}<meta property="og:locale:alternate" content="en_US">{% endif %}
   {% if lang != 'ro' %}<meta property="og:locale:alternate" content="ro_RO">{% endif %}
   <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
-  <meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="{{ c.wvm_url }}{% firstof og_bild c.hero_bg %}">
+  <meta property="og:image:width" content="{{ og_breite|default:1200 }}">
+  <meta property="og:image:height" content="{{ og_hoehe|default:630 }}">
   <meta property="og:image:alt" content="{{ c.site_name }} — {{ t.meta.og_image_alt_suffix|safe }}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{% block tw_titel %}{{ t.meta.seo_title|safe }}{% endblock %}">
   <meta name="twitter:description" content="{% block tw_beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
-  <meta name="twitter:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">
+  <meta name="twitter:image" content="{{ c.wvm_url }}{% firstof og_bild c.hero_bg %}">
   {% comment %}
   Vorladen NUR dort, wo das Bild auch vorkommt. Bis hierher stand dieser Preload
   auf jeder Seite - die Unterseiten haben aber gar kein Hero-Bild und luden 70 KB,

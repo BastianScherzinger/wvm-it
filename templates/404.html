@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 Eigene 404-Seite (docs/SEO-AUSBAU-3.md, T1).
 
@@ -52,7 +53,7 @@ Leistungen, die Orte im Einzugsgebiet, der direkte Draht.
     </div>
     <p class="lk-alle">
       <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
-      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a>
+      <a href="{% url 'kosten' %}">{% preis_anker %}</a>
     </p>
   </div>
 </section>

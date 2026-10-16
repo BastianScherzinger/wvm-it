@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 Hub der Branchenseiten (docs/SEO-AUSBAU-3.md, N1.8).
 
@@ -48,7 +49,7 @@ nur im Quelltext.
       <p class="lk-alle">
         <a href="{% url 'referenzen' %}">{{ t.footer.u_referenzen|safe }}</a> ·
         <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
-        <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a>
+        <a href="{% url 'kosten' %}">{% preis_anker %}</a>
       </p>
     </aside>
 

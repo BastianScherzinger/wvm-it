@@ -74,6 +74,22 @@ def antwort_rest(text):
     return _teilen(text)[1]
 
 
+# ── Anker auf /kosten/ (Schub 2, B2) ─────────────────────────────────────────
+@register.simple_tag(takes_context=True)
+def preis_anker(context):
+    """Linktext zur Preisliste: je Seite einer von drei bis vier Texten (`seite.alle_preise_var`),
+    deterministisch aus dem Pfad (ohne Sprachpräfix) gewählt. Vorher stand „Alle Preise auf einen
+    Blick“ in 48 von 56 Links — ein Anker, kein Suchwort. Dieselbe Seite zeigt immer denselben Text."""
+    import zlib
+    t = context.get("t") or {}
+    seite = t.get("seite", {}) if hasattr(t, "get") else {}
+    varianten = seite.get("alle_preise_var") or [seite.get("alle_preise", "")]
+    request = context.get("request")
+    pfad = getattr(request, "path", "") or ""
+    pfad = re.sub(r"^/(en|ro)(?=/)", "", pfad)
+    return varianten[zlib.crc32(pfad.encode("utf-8")) % len(varianten)]
+
+
 # ── Datum ────────────────────────────────────────────────────────────────────
 _MONATE = {
     "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August",

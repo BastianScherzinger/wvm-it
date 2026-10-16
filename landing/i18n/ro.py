@@ -107,6 +107,7 @@ PACK = {
         # Design B1 (25.09.2026): H1 ca propoziție simplă, ce face Florin.
         "headline": "Mentenanță IT pentru firma dumneavoastră, personal și dintr-o singură sursă.",
         "headline_2": "De la biroul cu doi oameni până la firma cu 200 de posturi de lucru.",
+        "antwort": "WVM-IT este un furnizor de servicii IT cu sediul în Lenzing, Austria Superioară. Florin Feier administrează IT-ul firmelor mici la distanță, în toată Austria: administrare curentă de la 29 € pe post și lună, ajutor punctual fără contract 95 € pe oră.",
         "subline": "Pentru firme din Lenzing și împrejurimi: administrare continuă de la 29 € per post de lucru și lună, ajutor fără contract, site-uri web cu pagină de probă gratuită, plus domeniu, e-mail, IA și tehnică la fața locului.",
         "alt_frage": "Preferați să vorbim direct?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
@@ -603,6 +604,8 @@ PACK = {
         # Sichtbares Änderungsdatum der Ratgeberseiten (GE47, 02.10.2026)
         "seiten_stand": "Actualizat:",
         "alle_preise": "Toate prețurile dintr-o privire",
+        # Schub 2 (B2): Varianten für die Links auf /kosten/; templatetag `preis_anker` wählt je Seite eine.
+        "alle_preise_var": ["Toate prețurile dintr-o privire", "Costurile administrării IT", "Cât costă administrarea IT?", "Lista de prețuri"],
         "kontakt_alt": "Preferați să vorbiți direct?",
     },
     "branchen_seite": {
@@ -645,7 +648,8 @@ PACK = {
         "titel": "Urgență IT: cont blocat, e-mail, PC defect | WVM-IT",
         "desc": "Cont Microsoft 365 blocat, e-mail nefuncțional, PC care nu pornește, criptare: primii pași și ajutor la distanță, 95 €/oră, fără contract. Sunați acum.",
         "h1": "Urgență IT: ce trebuie făcut în primele 30 de minute",
-        "kurz": "Într-o urgență IT, primele minute decid paguba. WVM-IT din Lenzing ajută în toată Austria (și Germania), prin mentenanță la distanță, la cont Microsoft 365 blocat, e-mail căzut, PC care nu pornește, criptare și cădere de server, de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20, cu 95 € pe oră: suntem disponibili la numărul de mai jos și începem, de obicei, în câteva minute — inclusiv dacă nu sunteți clientul nostru. Se facturează ca ajutor punctual, fără contract. La fața locului venim cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing. La bănuiala unui atac se aplică mai întâi o regulă: deconectați aparatele afectate de la rețea, dar nu le opriți și nu ștergeți nimic — memoria și jurnalele conțin urmele necesare pentru recuperare și pentru o eventuală notificare.",
+        "kurz": "WVM-IT din Lenzing ajută în toată Austria (și Germania), prin mentenanță la distanță, la cont Microsoft 365 blocat, e-mail căzut, PC care nu pornește, criptare și cădere de server, de luni până sâmbătă de la 7:30, cu 95 € pe oră, fără contract. La fața locului venim cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing.",
+        "kurz_mehr": "Într-o urgență IT, primele minute decid paguba. Suntem disponibili la numărul de mai jos și începem, de obicei, în câteva minute — inclusiv dacă nu sunteți clientul nostru. La bănuiala unui atac se aplică mai întâi o regulă: deconectați aparatele afectate de la rețea, dar nu le opriți și nu ștergeți nimic — memoria și jurnalele conțin urmele necesare pentru recuperare și pentru o eventuală notificare.",
         "eilt_h": "Este urgent — pe aici",
         "eilt_t": "Sunați, nu scrieți. În timpul unei defecțiuni în desfășurare, un telefon economisește mai mult timp decât orice descriere prin e-mail.",
         "intro": "Această pagină este pentru acțiune, nu pentru lectură. Găsiți mai jos cazul dumneavoastră și parcurgeți pașii în ordine. Restul — cauza, recuperarea, obligațiile de notificare — vine după. Suntem disponibili în mod explicit și dacă nu sunteți clientul nostru; o urgență acută este momentul nepotrivit pentru o discuție despre contract.",
@@ -789,8 +793,8 @@ PACK = {
             {
                 "id": "serverausfall",
                 "icon": "server",
-                "h": "Serverul a căzut",
-                "kurz": "Nimeni nu mai ajunge la date, sistemul de gestiune nu pornește, unitățile de rețea au dispărut.",
+                "h": "Urgență de server: serverul a căzut, ce facem mai întâi?",
+                "kurz": "La o urgență de server, verificați mai întâi dacă sunt afectate toate stațiile sau doar una, apoi alimentarea și conexiunea de rețea, și nu reporniți nimic înainte ca cineva să fi văzut starea. Nu schimbați și nu scoateți discurile. Dacă serverul nu repornește singur, sunați înainte ca cineva să-l repornească: ajutorul prin mentenanță la distanță costă 95 € pe oră, fără contract. Semne tipice: nimeni nu mai ajunge la date, sistemul de gestiune nu pornește, unitățile de rețea au dispărut.",
                 "schritte": [
                     "Stabiliți amploarea: sunt afectate toate stațiile sau doar una? Este afectată rețeaua în ansamblu?",
                     "Priviți serverul fără să modificați nimic: funcționează? Sunt aprinse leduri de eroare? Este un mesaj pe ecran?",
@@ -885,6 +889,8 @@ PACK = {
         "kunde_h": "Și fără contract",
         "kunde_t": "Nu trebuie să fiți clientul nostru. Ajutorul în caz de urgență se facturează cu 95 € pe oră prin mentenanță la distanță, la fața locului cu 120 € pe oră plus deplasarea. Vă spunem dinainte dacă putem ajuta — iar dacă un specialist este adresa mai potrivită, spunem și asta.",
         "faq": [
+            {"q": "Ce facem dacă serverul cade în timpul programului?",
+             "a": "La o urgență de server, verificați mai întâi dacă sunt afectate toate stațiile sau doar una, apoi alimentarea și conexiunea de rețea, și nu reporniți nimic înainte ca cineva să fi văzut starea. Nu schimbați și nu scoateți discurile. Dacă serverul nu repornește singur, sunați înainte ca cineva să-l repornească: ajutorul prin mentenanță la distanță costă 95 € pe oră, fără contract."},
             {"q": "Ar trebui să plătim în cazul unei criptări?",
              "a": "Nu înainte ca cineva să fi verificat backupul. În majoritatea cazurilor în care există un backup păstrat separat, restaurarea ajunge la rezultat mai repede și mai sigur decât o plată. O plată nu garantează nici decriptarea, nici că datele nu vor fi totuși publicate — și finanțează valul următor. Decizia vă aparține; noi oferim baza pentru ea."},
             {"q": "Trebuie să raportăm un incident?",
@@ -1164,11 +1170,14 @@ PACK = {
         "markt_t": "Exemplele sunt valori orientative pentru volumul cel mai mic, de aceea apar cu „de la”. De câtă administrare are nevoie firma dumneavoastră se vede abia după o scurtă evaluare a situației existente; după aceea primiți o ofertă scrisă. Ajutorul punctual fără contract costă 95 € pe oră, iar prețul de pornire de 29 € pe post de lucru și lună se aplică la fel în Austria și Germania.",
         "ratgeber_t": "Această pagină este lista de prețuri. De ce firmele mici primesc oferte atât de diferite pentru administrarea IT și la ce să fiți atenți la comparație explicăm în ghid (în germană).",
         "ratgeber_link": "Ghid: cât costă administrarea IT pentru firme mici? (în germană)",
+        "einrichten_t": "Sarcinile punctuale, fără contract, au prețuri fixe: <a href=\"{u_arbeitsplatz}\">configurarea unui post de lucru nou</a> costă {p_arbeitsplatz} €, <a href=\"{u_m365}\">configurarea Microsoft 365 (Office 365)</a> {p_m365} €.",
         "faq": [
             {"q": "Cât costă administrarea IT pentru firme mici?",
              "a": "Administrarea IT curentă la WVM-IT costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună și copiile de siguranță monitorizate de la 49 € pe lună. Pentru 5 posturi de lucru fără server propriu înseamnă de la {bsp5} € pe lună (5 × 29 € administrare + 49 € copii de siguranță). Toate sunt prețuri orientative, net plus TVA, la data de {stand}; o ofertă scrisă urmează după o scurtă evaluare."},
             {"q": "Cât costă administrarea și monitorizarea unui server?",
              "a": "Un server administrat costă de la 89 € pe lună, copiile de siguranță monitorizate se adaugă de la 49 € pe lună. Administrarea curentă poate fi reziliată cu o lună preaviz, la sfârșitul trimestrului."},
+            {"q": "Cât costă un contract de mentenanță IT?",
+             "a": "Un simplu „contract de mentenanță” există la WVM-IT sub forma administrării curente: 29 € pe post de lucru și lună, un server administrat 89 € pe lună, backup monitorizat 49 € pe lună. Administrarea merge de la trimestru la trimestru și poate fi reziliată cu un preaviz de o lună până la sfârșitul trimestrului. Cine are nevoie doar ocazional de ajutor plătește 95 € pe oră prin acces la distanță, fără contract. Toate sumele sunt prețuri orientative, nete, plus TVA."},
             {"q": "Cât costă ajutorul punctual, fără contract?",
              "a": "Ajutorul punctual prin acces la distanță costă 95 € pe oră, intervențiile la fața locului 120 € pe oră plus deplasarea. Nu este nevoie de contract."},
             {"q": "Cât costă administrarea IT pe lună în Austria?",

@@ -113,6 +113,7 @@ PACK = {
         # Design B1 (25.09.2026): H1 as a plain sentence saying what Florin does.
         "headline": "IT support for your business, personal and from a single source.",
         "headline_2": "From a two-person office to a plant with 200 workstations.",
+        "antwort": "WVM-IT is an IT service provider based in Lenzing, Upper Austria. Florin Feier looks after the IT of small businesses by remote access across Austria: ongoing IT support from €29 per workstation and month, single help without a contract €95 per hour.",
         "subline": "For businesses in and around Lenzing: ongoing support from €29 per workstation and month, help without a contract, websites with a free sample site, plus domain, email, AI and on-site technology.",
         "alt_frage": "Rather talk right away?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
@@ -611,6 +612,8 @@ PACK = {
         # Sichtbares Änderungsdatum der Ratgeberseiten (GE47, 02.10.2026)
         "seiten_stand": "Updated:",
         "alle_preise": "All prices at a glance",
+        # Schub 2 (B2): Varianten für die Links auf /kosten/; templatetag `preis_anker` wählt je Seite eine.
+        "alle_preise_var": ["All prices at a glance", "IT support costs", "What does IT support cost?", "The price list"],
         "kontakt_alt": "Prefer to talk?",
     },
     "branchen_seite": {
@@ -653,7 +656,8 @@ PACK = {
         "h1": "IT emergency: what to do in the first 30 minutes",
         "nav": "IT emergency",
         "wa_text": "IT emergency: ",
-        "kurz": "In an IT emergency the first minutes decide the damage. WVM-IT in Lenzing helps across Austria (and Germany) by remote maintenance with a locked Microsoft 365 account, failed email, a PC that will not start, encryption and server failure, Mon–Sat from 7:30am at €95 per hour: we are reachable on the number below and usually begin within minutes — including if you are not a client of ours. Billing is as single help without a contract. On site we come by appointment within roughly an hour's drive of Lenzing. If you suspect an attack, one rule comes first: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report.",
+        "kurz": "WVM-IT in Lenzing helps across Austria (and Germany) by remote maintenance with a locked Microsoft 365 account, failed email, a PC that will not start, encryption and server failure, Mon–Sat from 7:30am at €95 per hour, without a contract. On site we come by appointment within roughly an hour's drive of Lenzing.",
+        "kurz_mehr": "In an IT emergency the first minutes decide the damage. We are reachable on the number below and usually begin within minutes — including if you are not a client of ours. If you suspect an attack, one rule comes first: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report.",
         "eilt_h": "It is urgent — this way",
         "eilt_t": "Call rather than write. During an ongoing incident a phone call saves more time than any description by email.",
         "intro": "This page is for acting, not for reading. Find your case below and work through the steps in order. Everything else — cause analysis, recovery, notification duties — comes afterwards. We are explicitly reachable even if you are not a client of ours; an acute emergency is the wrong moment for a contract question.",
@@ -797,8 +801,8 @@ PACK = {
             {
                 "id": "serverausfall",
                 "icon": "server",
-                "h": "The server has failed",
-                "kurz": "Nobody can reach the data, the ERP system will not start, network drives have disappeared.",
+                "h": "Server emergency: server down, what first?",
+                "kurz": "In a server emergency, first check whether all workstations are affected or only one, then check power and the network connection, and do not restart anything before somebody has seen the state. Do not swap or pull out drives. If the server does not come back by itself, call before anyone restarts it: help by remote maintenance costs €95 per hour, without a contract. Typical signs: nobody can reach the data, the ERP system will not start, network drives have disappeared.",
                 "schritte": [
                     "Establish the scope: does it affect all workstations or only one? Is the network as a whole affected?",
                     "Look at the server without changing anything: is it running? Are fault lights on? Is there a message on the screen?",
@@ -893,6 +897,8 @@ PACK = {
         "kunde_h": "No contract needed",
         "kunde_t": "You do not have to be a client of ours. Emergency help is billed at €95 per hour by remote maintenance, €120 per hour on site plus travel. We tell you beforehand whether we can help — and if a specialist is the better address, we say that too.",
         "faq": [
+            {"q": "What should we do when the server fails during working hours?",
+             "a": "In a server emergency, first check whether all workstations are affected or only one, then check power and the network connection, and do not restart anything before somebody has seen the state. Do not swap or pull out drives. If the server does not come back by itself, call before anyone restarts it: help by remote maintenance costs €95 per hour, without a contract."},
             {"q": "Should we pay in a ransomware case?",
              "a": "Not before somebody has checked the backup. In most cases where a separately kept backup exists, recovery gets you there faster and more safely than a payment. A payment guarantees neither decryption nor that the data will not be published anyway — and it funds the next wave. The decision is yours; we provide the basis for it."},
             {"q": "Do we have to report an incident?",
@@ -1172,11 +1178,14 @@ PACK = {
         "markt_t": "The examples are guide values for the smallest scope, which is why they read “from”. How much support your business really needs only becomes clear after a short review of what is already in place; after that you receive a written quote. One-off help without a contract costs €95 per hour, and the starting price of €29 per workstation and month applies equally in Austria and Germany.",
         "ratgeber_t": "This page is the price list. Why small businesses get such different quotes for IT support, and what to watch for when comparing, is explained in our guide (in German).",
         "ratgeber_link": "Guide: what does IT support cost for small businesses? (in German)",
+        "einrichten_t": "Single jobs without a contract have fixed prices: <a href=\"{u_arbeitsplatz}\">setting up a new workstation</a> costs €{p_arbeitsplatz}, <a href=\"{u_m365}\">setting up Microsoft 365 (Office 365)</a> €{p_m365}.",
         "faq": [
             {"q": "What does IT support cost for small businesses?",
              "a": "Ongoing IT support at WVM-IT costs from €29 per workstation and month, a managed server from €89 per month and monitored backups from €49 per month. For 5 workstations without a server of their own that comes to from €{bsp5} per month (5 × €29 support + €49 backup). All figures are guide prices, net plus VAT, as of {stand}; a written quote follows after a short survey."},
             {"q": "What does it cost to manage and monitor a server?",
              "a": "A managed server costs from €89 per month; monitored backups are added from €49 per month. Ongoing support can be cancelled with one month's notice to the end of a quarter."},
+            {"q": "What does an IT maintenance contract cost?",
+             "a": "A pure “maintenance contract” is what we offer as ongoing support: €29 per workstation and month, a managed server €89 per month, monitored backup €49 per month. The support runs from quarter to quarter and can be cancelled with one month’s notice to the end of the quarter. If you only need occasional help, remote support costs €95 per hour without a contract. All figures are guide prices, net plus VAT."},
             {"q": "What does one-off help without a contract cost?",
              "a": "Individual help by remote maintenance costs €95 per hour, on-site work €120 per hour plus travel. No contract is needed for it."},
             {"q": "What does IT support cost per month in Austria?",

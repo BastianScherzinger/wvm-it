@@ -421,6 +421,10 @@ SEITEN = {
             {"h": "Start small", "t": "We automate the single step with the biggest return first and let it run for two weeks before adding more."},
             {"h": "Extend or drop it", "t": "If it saves time, we extend. If not, we say so. We do not sell automation nobody would miss."},
         ],
+        "abschnitte": [
+            {"h": "Automating appointment scheduling: from €390",
+             "t": "Customers book their appointment online into a calendar themselves instead of going back and forth by phone. Matching with your calendar prevents double bookings, and the confirmation goes out automatically by email or WhatsApp. Appointment automation costs from €390."},
+        ],
         "preis_h": "Prices",
         "preis_t": "Appointment and booking automation costs from €390, WhatsApp and email automation from €490, an AI chatbot from €690 plus €39 per month for operation and upkeep, a tailored integration with CRM or ERP from €1,200. Guide prices, net plus VAT.",
         "faq": [

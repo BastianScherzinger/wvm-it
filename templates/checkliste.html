@@ -72,7 +72,7 @@ wie am Bildschirm.
         <h2>Und dann?</h2>
         <p>{{ liste.danach|safe }}</p>
         <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
-          <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+          <a href="{% url 'kosten' %}">{% preis_anker %}</a></p>
       </section>
 
       {% if liste.at_h %}

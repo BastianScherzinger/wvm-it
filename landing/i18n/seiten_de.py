@@ -428,6 +428,10 @@ SEITEN = {
             {"h": "Klein anfangen", "t": "Wir automatisieren zuerst den einen Schritt mit dem größten Ertrag und lassen ihn zwei Wochen laufen, bevor mehr dazukommt."},
             {"h": "Erweitern oder bleiben lassen", "t": "Wenn es Zeit spart, bauen wir aus. Wenn nicht, sagen wir es. Wir verkaufen keine Automatisierung, die niemand vermissen würde."},
         ],
+        "abschnitte": [
+            {"h": "Terminvereinbarung automatisieren: ab 390 €",
+             "t": "Kunden buchen ihren Termin selbst online in einem Kalender, statt per Telefon hin und her zu schieben. Der Abgleich mit Ihrem Kalender verhindert Doppelbuchungen, die Bestätigung geht automatisch per E-Mail oder WhatsApp hinaus. Die Terminautomatisierung kostet ab 390 €."},
+        ],
         "preis_h": "Preise",
         "preis_t": "Termin- und Buchungsautomatisierung kostet ab 390 €, WhatsApp- und E-Mail-Automatisierung ab 490 €, ein KI-Chatbot ab 690 € zuzüglich 39 € im Monat für Betrieb und Pflege, eine maßgeschneiderte Anbindung an CRM oder ERP ab 1.200 €. Richtpreise, netto zzgl. USt.",
         "faq": [

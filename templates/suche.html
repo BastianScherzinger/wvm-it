@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 Interne Suche (docs/SEO-AUSBAU-3.md, T6).
 
@@ -59,7 +60,7 @@ und Antwortabsatz jeder Seite (views._such_index). Die Seite selbst steht auf
           <p>{{ t.suche.keine_t|safe }}</p>
           <p class="lk-alle">
             <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
-            <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
+            <a href="{% url 'kosten' %}">{% preis_anker %}</a> ·
             <a href="{% url 'kontakt' %}">{{ t.nav.kontakt|safe }}</a>
           </p>
         </div>
@@ -69,7 +70,7 @@ und Antwortabsatz jeder Seite (views._such_index). Die Seite selbst steht auf
         <h2>{{ t.suche.leer_h|safe }}</h2>
         <p class="lk-alle">
           <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a> ·
-          <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
+          <a href="{% url 'kosten' %}">{% preis_anker %}</a> ·
           <a href="{% url 'regionen' %}">{{ t.seite.regionen_titel|safe }}</a>
         </p>
       </div>

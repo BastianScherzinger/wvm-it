@@ -90,9 +90,11 @@ class VideoSchemaTest(SimpleTestCase):
         # Wortlaut = eingeblendeter Text aus videos.py, nichts Zusätzliches
         for satz in ersatz:
             self.assertIn(satz, videos.VIDEOS["fernwartung"]["aria"])
+        # Seit Schub 2 (16.10.2026, C1) trägt auch der Microsoft-365-Film seinen „Text zum Film“.
         m365 = self.c.get("/aktuelles/microsoft-365-konto-gesperrt/").content.decode()
-        self.assertNotIn("Text zum Film", m365)
-        self.assertEqual(videos.transkript_saetze(videos.video("konto-gesperrt")), [])
+        self.assertIn("Text zum Film", m365)
+        for satz in videos.transkript_saetze(videos.video("konto-gesperrt")):
+            self.assertIn(satz, videos.VIDEOS["konto-gesperrt"]["aria"])
 
 
 class RueckwegeTest(SimpleTestCase):
@@ -123,8 +125,8 @@ class RueckwegeTest(SimpleTestCase):
             self.assertNotIn(f'href="{nach}"', html)
             self.assertNotIn(f"href='{nach}'", html)
 
-    def test_kernseiten_ohne_neuerung(self):
-        for pfad in ("/", "/leistungen/edv-it-betreuung/", "/kosten/", "/it-service/wels/",
-                     "/aktuelles/microsoft-365-konto-gesperrt/"):
+    def test_kein_filmtext_auf_kernseiten(self):
+        # Der Film steht nur auf /it-hilfe/ und im M365-Ratgeber (Schub 2: dort mit Text zum Film).
+        for pfad in ("/", "/leistungen/edv-it-betreuung/", "/kosten/", "/it-service/wels/"):
             html = self.c.get(pfad).content.decode()
             self.assertNotIn("Text zum Film", html, pfad)

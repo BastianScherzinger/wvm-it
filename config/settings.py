@@ -154,6 +154,8 @@ TEMPLATES = [
             "landing.context.erreichbarkeit",
             # Meldung nach einer Kurzanfrage ohne JavaScript, ?fehler=… (EIG291/377).
             "landing.context.anfrage_fehler",
+            # Vorschaubild je Seitentyp (nur vorhandene Fotos, D3/T9).
+            "landing.context.vorschaubild",
         ]},
     },
 ]

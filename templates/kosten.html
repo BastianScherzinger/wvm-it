@@ -21,6 +21,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
     </nav>
     <h1>{{ ks.h1|safe }}</h1>
     {% include 'antwort.html' with text=ks.kurz teilen=True %}
+    {% include 'seiten_stand.html' %}
   </div>
 </header>
 
@@ -54,7 +55,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
           {% if g.id == 'web' %}<tr><td colspan="2" class="web-partner">{{ t.web_partner|safe }}</td></tr>{% endif %}
             {% for it in g.items %}
             <tr>
-              <th scope="row"><strong>{{ it.name }}</strong><span>{{ it.desc }}</span></th>
+              <th scope="row"><strong>{% if it.url %}<a href="{{ it.url }}">{{ it.name }}</a>{% else %}{{ it.name }}{% endif %}</strong><span>{{ it.desc }}</span></th>
               <td>{{ it.price_zahl }}</td>
             </tr>
             {% endfor %}
@@ -105,6 +106,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       <h2 class="sp-h2" id="einordnung">{{ ks.markt_h|safe }}</h2>
       <p>{{ ks.markt_t|safe }}</p>
       <p>{{ ks.ratgeber_t|safe }}</p>
+      {% if einrichten_satz %}<p>{{ einrichten_satz|safe }}</p>{% endif %}
       <p class="lk-alle"><a href="/aktuelles/was-kostet-it-betreuung/">{{ ks.ratgeber_link|safe }} →</a>
         · <a href="{% url 'it_hilfe' %}">{{ t.hilfe.nav|safe }} →</a></p>
     </div>

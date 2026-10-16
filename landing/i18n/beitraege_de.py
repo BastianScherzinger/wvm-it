@@ -76,7 +76,7 @@ BEITRAEGE = {
             {"h": "Was in einer laufenden Betreuung enthalten sein muss",
              "t": "Ein Preis je Arbeitsplatz sagt für sich genommen nichts. Vergleichbar wird er erst, wenn dieselben Leistungen dahinterstehen. Fragen Sie ausdrücklich nach: Updates für Betriebssystem und Programme, Überwachung von Speicherplatz und Ausfällen, Benutzerkonten anlegen und sperren, E-Mail und Microsoft 365, Datensicherung samt regelmäßiger Testwiederherstellung, und eine gepflegte Dokumentation aller Geräte und Zugänge. Fehlt einer dieser Punkte, ist der Preis nicht niedriger, sondern die Leistung kleiner."},
             {"h": "Was zusätzlich anfällt",
-             "t": "Ein betreuter Server kostet bei uns ab 89 € im Monat, die täglich geprüfte Datensicherung ab 49 €. Einmalige Posten sind ein neu eingerichteter Arbeitsplatz mit 190 € und die Einrichtung von Microsoft 365 mit 290 €. Ein IT-Sicherheitscheck mit schriftlichem Bericht liegt ab 490 €. Nicht enthalten sind in aller Regel die Lizenzen selbst und die Hardware — das ist bei allen Anbietern so, gehört aber vor Vertragsschluss ausgesprochen."},
+             "t": "Ein betreuter Server kostet bei uns ab 89 € im Monat, die täglich geprüfte Datensicherung ab 49 €. Einmalige Posten sind ein neu eingerichteter Arbeitsplatz mit 190 € und die Einrichtung von Microsoft 365 mit 290 €. Ein IT-Sicherheitscheck mit schriftlichem Bericht liegt ab 490 €. Nicht enthalten sind in aller Regel die Lizenzen selbst und die Hardware — das ist bei allen Anbietern so, gehört aber vor Vertragsschluss ausgesprochen. Alle Posten mit Preis stehen in der <a href='/kosten/'>Preisliste der IT-Betreuung</a>."},
             {"h": "Ab wann rechnet sich welche Variante?",
              "t": "Die Faustregel: Unter fünf Arbeitsplätzen ist die Abrechnung nach Stunden meist günstiger, darüber die monatliche Betreuung. Der eigentliche Rechenweg ist aber ein anderer. Überlegen Sie, was ein Tag kostet, an dem niemand arbeiten kann — Löhne, liegengebliebene Aufträge, Termine, die platzen. Bei zehn Mitarbeitern sind das schnell mehrere tausend Euro. Gegen diese Zahl ist die Frage, ob ein Anbieter ein paar Euro je Arbeitsplatz teurer ist, zweitrangig."},
             {"h": "Woran Sie ein unseriöses Angebot erkennen",
@@ -250,6 +250,7 @@ BEITRAEGE = {
         "meta_titel": "Microsoft 365: welche Lizenz? Einrichtung 290 € | WVM-IT",
         "desc": "Business Basic, Standard oder Premium? Woran Sie festmachen, welche Microsoft-365-Lizenz Ihr Betrieb wirklich braucht. Jetzt nachlesen.",
         "antwort": "Für die meisten kleinen Betriebe reicht Business Standard: E-Mail mit eigener Domain, Teams, OneDrive und die installierten Office-Programme auf dem Rechner. Business Basic genügt, wenn ausschließlich im Browser gearbeitet wird — was in der Praxis selten stimmt, sobald jemand Excel ernsthaft benutzt. Business Premium lohnt sich, sobald Geräte verwaltet, Zugriffe erzwungen und Notebooks verschlüsselt werden sollen; das ist weniger eine Frage der Betriebsgröße als der Datenart. Die Einrichtung kostet bei uns einmalig 290 €, die Lizenzen selbst kommen von Microsoft und werden monatlich je Benutzer abgerechnet.",
+        "vorweg": "Steht die Lizenz fest, folgt die Einrichtung: <a href='/einrichten/microsoft-365/'>Microsoft 365 / Office 365 einrichten lassen (290 €)</a>.",
         "abschnitte": [
             {"h": "Die eine Frage, die die Lizenz entscheidet",
              "t": "Nicht die Mitarbeiterzahl entscheidet, sondern: Wird auf dem Gerät gearbeitet oder nur im Browser? Wer Word und Excel installiert braucht — und das trifft auf fast jeden Betrieb zu, sobald Vorlagen, Serienbriefe oder größere Tabellen im Spiel sind —, braucht Standard. Basic ist ehrlich gemeint für Rollen, die nur Mail und Teams nutzen: Lager, Produktion, Aushilfen. Die Mischung aus beidem ist erlaubt und meistens die günstigste Lösung: Wer im Büro sitzt, bekommt Standard, wer nur Mail liest, Basic."},
@@ -847,8 +848,8 @@ BEITRAEGE = {
 
     "microsoft-365-konto-gesperrt": {
         "titel": "Microsoft-365-Konto gesperrt — was jetzt zu tun ist",
-        "meta_titel": "Microsoft-365-Konto gesperrt: Ursache & Entsperren | WVM-IT",
-        "desc": "Konto gesperrt wegen Fehlversuchen, Admin, Abo oder verdächtiger Anmeldung? Ursache finden und entsperren. Jetzt Hilfe in ganz Österreich anfragen.",
+        "meta_titel": "Konto vorübergehend gesperrt (Microsoft 365): Hilfe | WVM-IT",
+        "desc": "Konto vorübergehend gesperrt (Microsoft 365)? Meldung lesen, Ursache finden. Hilfe per Fernwartung in ganz Österreich, 95 € je Stunde. Jetzt anrufen.",
         "antwort": "Ein gesperrtes Microsoft-365-Konto hat fast immer einen von vier "
                    "Gründen: zu viele falsche Anmeldeversuche, eine Sperre durch den "
                    "Administrator, ein abgelaufenes oder unbezahltes Abonnement oder eine "
@@ -869,7 +870,7 @@ BEITRAEGE = {
                   "Hintergrund immer wieder anmeldet. Solange dieses Gerät nicht das "
                   "neue Kennwort hat, kommt die Sperre wieder."},
             {"h": "Meldung: „Ihr Konto ist vorübergehend gesperrt, um eine nicht autorisierte Verwendung zu verhindern“",
-             "t": "Das ist die Meldung der automatischen Schutzfunktion von Microsoft (Smart Lockout) nach mehreren fehlgeschlagenen Anmeldeversuchen. Je nach Oberfläche ist sie etwas anders formuliert; Microsoft Learn gibt sie als „Ihr Konto wurde vorübergehend gesperrt, um eine unbefugte Nutzung zu verhindern“ wieder. Laut Microsoft Learn dauert die erste Sperre eine Minute und wird bei weiteren Fehlversuchen länger. Warten Sie ab, ohne weiter zu probieren; bleibt die Meldung, kann ein Administrator die Sperre aufheben."},
+             "t": "Das ist die Meldung der automatischen Schutzfunktion von Microsoft (Smart Lockout) nach mehreren fehlgeschlagenen Anmeldeversuchen. Je nach Oberfläche ist sie etwas anders formuliert. Die vollständige Meldung lautet laut Microsoft Learn: „Ihr Konto wurde vorübergehend gesperrt, um eine unbefugte Nutzung zu verhindern. Versuchen Sie es später noch mal. Wenden Sie sich an Ihren Administrator, wenn das Problem weiterhin besteht.“ Laut Microsoft Learn dauert die erste Sperre eine Minute und wird bei weiteren Fehlversuchen länger. Warten Sie ab, ohne weiter zu probieren; bleibt die Meldung, kann ein Administrator die Sperre aufheben, ohne dass die Sperrdauer abläuft. Ist niemand mehr Administrator, hilft WVM-IT per Fernwartung, meist am selben Tag, zu 95 € je Stunde ohne Vertrag."},
             {"h": "Vom Administrator gesperrt",
              "t": "Im Microsoft-365-Verwaltungsportal lässt sich die Anmeldung eines "
                   "Benutzers blockieren — etwa beim Austritt eines Mitarbeiters oder "

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}Hub der Vergleichsseiten (docs/SEO-AUSBAU-3.md, N3.4).{% endcomment %}
 {% block titel %}{{ vs.titel|safe }}{% endblock %}
 {% block beschreibung %}{{ vs.desc|safe }}{% endblock %}
@@ -44,7 +45,7 @@
 
     <p class="lk-alle">
       <a href="{% url 'rechner' %}">{{ t.rechner.h1|safe }}</a> ·
-      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a> ·
+      <a href="{% url 'kosten' %}">{% preis_anker %}</a> ·
       <a href="{% url 'leistungen' %}">{{ t.seite.alle_leistungen|safe }}</a>
     </p>
 

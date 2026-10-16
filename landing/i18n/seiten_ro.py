@@ -423,6 +423,10 @@ SEITEN = {
             {"h": "Începem mic", "t": "Automatizăm întâi pasul cu cel mai mare câștig și îl lăsăm să ruleze două săptămâni înainte să adăugăm altele."},
             {"h": "Extindem sau renunțăm", "t": "Dacă economisește timp, extindem. Dacă nu, o spunem. Nu vindem automatizări de care nu i-ar fi dor nimănui."},
         ],
+        "abschnitte": [
+            {"h": "Automatizarea programărilor: de la 390 €",
+             "t": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e-mail sau WhatsApp. Automatizarea programărilor costă de la 390 €."},
+        ],
         "preis_h": "Prețuri",
         "preis_t": "Automatizarea programărilor costă de la 390 €, automatizarea WhatsApp și e-mail de la 490 €, un chatbot AI de la 690 € plus 39 € pe lună pentru funcționare și întreținere, o integrare la comandă cu CRM sau ERP de la 1.200 €. Prețuri orientative, net plus TVA.",
         "faq": [

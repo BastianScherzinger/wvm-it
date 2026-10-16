@@ -133,9 +133,8 @@ class KostenUndRatgeberTest(SimpleTestCase):
 
     def test_m365_ratgeber_title_bleibt(self):
         html = _html("/aktuelles/microsoft-365-konto-gesperrt/")
-        self.assertIn("<title>Microsoft-365-Konto gesperrt: Ursache &amp; Entsperren | WVM-IT</title>"
-                      if "&amp;" in html else
-                      "<title>Microsoft-365-Konto gesperrt: Ursache & Entsperren | WVM-IT</title>", html)
+        # Seit Schub 2 (16.10.2026) steht dort Variante B; der Test heißt aus Verlaufsgründen noch so.
+        self.assertIn("<title>Konto vorübergehend gesperrt (Microsoft 365): Hilfe | WVM-IT</title>", html)
 
     def test_einrichten_lassen_verlinkt_die_festpreisseite(self):
         html = _html("/aktuelles/microsoft-365-einrichten-lassen/")

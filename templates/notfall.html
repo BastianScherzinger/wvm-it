@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}
 Notfall-Seite (docs/SEO-AUSBAU-3.md, W3).
 
@@ -40,6 +41,8 @@ und die Schritte im Schema kommen aus derselben Liste.
     </div>
 
     {% include 'antwort.html' with text=nf.kurz %}
+    {% if nf.kurz_mehr %}<p class="antwort antwort-rest">{{ nf.kurz_mehr|safe }}</p>{% endif %}
+    {% include 'seiten_stand.html' %}
   </div>
 </header>
 
@@ -112,7 +115,7 @@ und die Schritte im Schema kommen aus derselben Liste.
     <h2 class="sp-h2">{{ nf.danach_h|safe }}</h2>
     <p class="sp-preis-text">{{ nf.danach_t|safe }}</p>
     <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
-      <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+      <a href="{% url 'kosten' %}">{% preis_anker %}</a></p>
 
     <aside class="nf-regel nf-regel-kunde" data-reveal>
       <h2>{{ nf.kunde_h|safe }}</h2>

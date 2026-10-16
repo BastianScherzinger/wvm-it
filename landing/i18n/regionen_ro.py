@@ -84,6 +84,7 @@ REGIONEN = {
             "Ordonarea rack-ului de servere, înnoirea cablării, înlocuirea echipamentelor",
             "Montarea stațiilor de lucru, asistență la mutări și reamenajări",
             "Săli de ședințe și de instruire cu tehnică de conferință",
+            "Control acces, camere și alarmă în același sistem cu tehnica clădirii: <a href='/ro/leistungen/smarthome-knx-loxone/'>automatizare clădiri cu Loxone și KNX</a>",
         ],
         "remote_h": "Ce se rezolvă fără deplasare",
         "remote": "Asistența curentă, remedierea defecțiunilor, actualizările, conturile de utilizator, Microsoft 365, monitorizarea serverelor, copiile de siguranță cu restaurare testată, precum și site-ul web, SEO și Google Ads. Pentru că deplasarea dispare, o defecțiune la Gmunden costă la fel ca una la Lenzing.",

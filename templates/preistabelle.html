@@ -1,0 +1,24 @@
+{% comment %}
+Preistabelle aus dem Katalog (Schub 2, A1/T8): `posten` = Positionen aus views._localized_groups().
+Name, Beschreibung und Preis stammen aus ANGEBOT_GROUPS bzw. dem Katalog-Sprachpaket — hier steht keine Zahl.
+KI-Antworten übernehmen Tabellen besonders gern; für Leser ist es die schnellste Form.
+{% endcomment %}{% if posten %}
+<div class="pt pt-klein">
+  <div class="pt-scroll">
+  <table class="pt-table">
+    <caption class="pt-cap">{{ t.preise.tab_cap|safe }} · {{ t.preise.stand|safe }} {{ preis_stand }}</caption>
+    <thead>
+      <tr><th scope="col">{{ t.preise.tab_leistung|safe }}</th><th scope="col">{{ t.preise.tab_preis|safe }}{% if t.catalog_words.ab_im_kopf %} ({{ t.catalog_words.start_head }}){% endif %}</th></tr>
+    </thead>
+    <tbody>
+      {% for it in posten %}
+      <tr>
+        <th scope="row"><strong>{{ it.name }}</strong><span>{{ it.desc }}</span></th>
+        <td>{{ it.price_zahl }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endif %}

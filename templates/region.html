@@ -31,6 +31,7 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
     {% comment %}Der Anrufweg steht direkt unter dem Antwortabsatz, damit er auf dem Handy im
     ersten Bildschirm liegt (03.10.2026); die Fakten folgen darunter.{% endcomment %}
     {% include 'hero_ways.html' with kurz=region.kurz %}
+    {% include 'seiten_stand.html' %}
 
     {% comment %}Die Zahlen stehen ganz oben, weil sie die erste Frage beantworten.{% endcomment %}
     <dl class="rg-fakten">
@@ -68,6 +69,14 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
       </div>
       <a class="btn" href="#anfrage" data-rueckruf>{{ t.conv.rg_band_cta|safe }}</a>
     </div>
+
+    {% comment %}Schub 2 (A1/T8): Frage-H2 mit Direktantwort im ersten Satz, vier Fassungen (views._ortfrage).{% endcomment %}
+    {% if ortfrage %}
+    <div class="rg-anfahrt rg-ortfrage" data-reveal>
+      <h2>{{ ortfrage.h }}</h2>
+      <p>{{ ortfrage.a }}</p>
+    </div>
+    {% endif %}
 
     {% comment %}Ausbau Lokal (08.10.2026): eigener Inhalt je Ort. Typische Aufträge sind
     allgemein gehalten, keine Kundenreferenzen; die Anfahrt nennt die gemessenen Werte.{% endcomment %}

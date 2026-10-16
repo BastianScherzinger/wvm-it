@@ -138,6 +138,32 @@ def anfrage_fehler(request):
     return {"anfrage_fehler_text": text}
 
 
+# Vorschaubild (og:image, twitter:image) je Seitentyp — nur vorhandene Fotos aus static/img
+# (je 1200 × 800 px), nichts Neues. Seitentypen ohne passendes Foto behalten das Titelbild
+# aus content.json (`hero_bg`). Schub 2 (D3/T9, 16.10.2026).
+_OG_FOTOS = {"einrichtung": "foto_einrichten", "region": "foto_vorort", "branche": "foto_branche",
+             "it_hilfe": "foto_hilfe", "notfall": "foto_notfall"}
+_OG_LEISTUNG = {"it": "foto_betreuung", "sicht": "foto_web", "vorort": "foto_vorort"}
+_OG_LEISTUNG_AUSNAHMEN = {"server-datensicherung": "foto_server"}
+
+
+def vorschaubild(request):
+    """`og_bild` (Pfad) samt Maßen für Seiten, deren Typ ein passendes Foto hat; sonst nichts."""
+    treffer = getattr(request, "resolver_match", None)
+    if not treffer:
+        return {}
+    name = treffer.url_name
+    foto = _OG_FOTOS.get(name)
+    if name == "leistung":
+        slug = (treffer.kwargs or {}).get("slug", "")
+        eintrag = leistungen.NACH_SLUG.get(slug)
+        if eintrag:
+            foto = _OG_LEISTUNG_AUSNAHMEN.get(slug) or _OG_LEISTUNG.get(eintrag.get("bereich"))
+    if not foto:
+        return {}
+    return {"og_bild": f"/static/img/{foto}.webp", "og_breite": 1200, "og_hoehe": 800}
+
+
 def navigation(request):
     """`footer_leistungen`: die fünf meistgesuchten Leistungen mit Titel und URL.
 

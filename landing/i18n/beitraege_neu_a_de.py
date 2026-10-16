@@ -268,6 +268,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                'etwas nicht geht. Das lässt sich mit der IT-Betreuung für 29 '
                                                '€ je Arbeitsplatz und Monat plus 49 € für die Datensicherung '
                                                'abdecken, meist per Fernwartung.',
+                                    'vorweg': "Wer als Handwerker die IT nicht nebenbei selbst machen will, findet den Zuschnitt für die Branche unter <a href='/branchen/handwerk-baugewerbe/'>IT-Betreuung für Handwerker in Österreich</a>.",
                                     'abschnitte': [{'h': 'Wo die IT im Handwerksbetrieb wirklich steckt',
                                                     't': 'Im typischen Betrieb mit 5 bis 15 Beschäftigten '
                                                          'gibt es zwei Orte, an denen Daten liegen: das Büro '

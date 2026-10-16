@@ -140,9 +140,18 @@ ZUORDNUNG_GLOSSAR = {
 }
 
 
+# Einrichtungsseite -> Quellen (Schub 2, 16.10.2026, A1/T10): nur dort, wo die Seite Herstellerangaben
+# macht (Windows-10-Supportende). Die Quellen sind dieselben, die am `ABRUF`-Tag geprüft wurden.
+ZUORDNUNG_EINRICHTEN = {
+    "arbeitsplatz": {"quellen": ["win10_ende", "win10_esu"]},
+    "windows-11": {"quellen": ["win10_ende", "win10_esu", "win11_anforderungen"]},
+}
+
+
 def fuer(art, slug):
     """Liste der Quellen-Dicts (titel, url, art) für eine Seite, leer wenn keine."""
-    tabelle = ZUORDNUNG if art == "beitrag" else ZUORDNUNG_GLOSSAR
+    tabelle = (ZUORDNUNG if art == "beitrag"
+               else ZUORDNUNG_EINRICHTEN if art == "einrichtung" else ZUORDNUNG_GLOSSAR)
     schluessel = tabelle.get(slug, {}).get("quellen", [])
     return [dict(QUELLEN[s], schluessel=s) for s in schluessel]
 

@@ -53,7 +53,7 @@ demselben `kurz`-Feld, das oben steht.
         <h2>In der Praxis</h2>
         <p>{{ begriff.praxis|safe }}</p>
         <p class="sp-fuss">{{ t.seite.preis_fuss|safe }} {{ t.seite.stand|safe }} {{ preis_stand }} ·
-          <a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+          <a href="{% url 'kosten' %}">{% preis_anker %}</a></p>
       </section>
 
       <section class="gl-irrtum" data-reveal>

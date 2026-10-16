@@ -135,6 +135,14 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
   </section>
   {% include 'bewertung_band.html' %}
 
+  {% comment %} ── Antwortsatz (Schub 2, A1/T7): die Kurzantwort „Wer ist WVM-IT, was kostet es?“ zum Zitieren.
+       Über antwort.html, damit `speakable` im Schema (Klasse .antwort) stimmt. Nicht die Unterzeile. {% endcomment %}
+  <section class="start-antwort">
+    <div class="wrap">
+      {% include 'antwort.html' with text=t.hero.antwort stil='start-antwort-p' %}
+    </div>
+  </section>
+
   {% comment %} ── Block 2: WEGWEISER `#finder` (Papier). §2.4. sechs Wege, ein Weg
        (Kostenrechner) getauscht gegen "Festpreise". Test zaehlt genau 6 × class="fd-karte
        im Bereich #finder bis zum ersten </section>. {% endcomment %}

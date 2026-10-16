@@ -2710,7 +2710,7 @@ def _startseiten_schema(c, lang):
     base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
     url = base + i18n.add_prefix(i18n.norm_lang(lang), "/")
     graph = json.loads(_structured_data(c, lang))
-    graph["@graph"].append(_webpage_knoten(base, lang, url.rstrip("/") + "/", None, speakable=False))
+    graph["@graph"].append(_webpage_knoten(base, lang, url.rstrip("/") + "/", None, speakable=True))
     return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
 
 
@@ -3297,6 +3297,32 @@ def _orte_fuer_leistung(slug, lang, n=8):
     return [_region_daten(r, lang) for r in kandidaten[:n]]
 
 
+# Schub 2 (A1/T8): Preistabelle auf den Leistungsseiten. Nur IDs aus ANGEBOT_GROUPS; Name, Beschreibung
+# und Preis kommen aus dem Katalog (`_localized_groups`). Leistungen ohne Festpreis (Smarthome,
+# Konferenz-, Veranstaltungstechnik: „auf Anfrage“) bekommen keine Tabelle.
+_LEISTUNG_TABELLE = {
+    "edv-it-betreuung": ["it_betreuung", "it_support", "backup", "server_care", "vor_ort", "arbeitsplatz", "m365"],
+    "it-betreuung-groessere-betriebe": ["it_betreuung", "server_care", "backup", "it_support", "vor_ort"],
+    "server-datensicherung": ["server_care", "backup", "it_support", "vor_ort"],
+    "netzwerk-wlan": ["netzwerk_setup", "firewall", "it_support", "vor_ort"],
+    "it-sicherheit": ["sicherheitscheck", "firewall", "it_support"],
+    "it-beratung": ["it_support", "vor_ort", "sicherheitscheck"],
+    "webseite-erstellen": ["onepager", "business", "premium", "shop"],
+    "seo-betreuung": ["seo", "seo_care"],
+    "google-ads": ["ads_setup", "ads_care"],
+    "hosting-wartung": ["domain", "hosting", "wartung"],
+    "ki-automatisierung": ["chatbot", "wa_auto", "termin", "custom_ki"],
+}
+
+
+def _leistung_preistabelle(slug, lang):
+    ids = _LEISTUNG_TABELLE.get(slug)
+    if not ids:
+        return []
+    nach_id = {it["id"]: it for g in _localized_groups(lang) for it in g["items"]}
+    return [nach_id[i] for i in ids if i in nach_id]
+
+
 def leistung_seite(request, slug):
     """/leistungen/<slug>/ — eine Leistung, eine URL, ein Hauptkeyword."""
     eintrag = leistungen.NACH_SLUG.get(slug)
@@ -3353,7 +3379,9 @@ def leistung_seite(request, slug):
         "offers": angebot,
     }
     return render(request, "leistung.html", {
+        "seiten_stand": _seiten_stand(request.path, lang),
         "c": c, "seite": seite,
+        "preistabelle": _leistung_preistabelle(slug, lang),
         "weiter_satz": _weiter_satz(pack, "lz_weiter"),
         # Der kleine erste Schritt (06.09.2026). Name und Preis kommen aus dem
         # Katalog und aus dem Sprachpaket — nie aus dem Fließtext.
@@ -3891,6 +3919,7 @@ def notfall(request):
     graph["@graph"] += [_howto_schema(base, pfad, fall, sprache)
                         for fall in nf.get("faelle", [])]
     return render(request, "notfall.html", {
+        "seiten_stand": _seiten_stand(request.path, lang),
         "c": c, "nf": nf,
         "kacheln": _akut_kacheln(lang),
         "wa_text": nf.get("wa_text", ""),
@@ -3996,6 +4025,7 @@ def it_hilfe(request):
         schema = _mit_video(schema, videos_modul.schema_knoten(
             base, "fernwartung", pfad, settings.STATIC_URL))
     return render(request, "it_hilfe.html", {
+        "seiten_stand": _seiten_stand(request.path, lang),
         "c": c, "hilfe": hilfe, "video": film,
         "video_transkript": videos_modul.transkript_saetze(film),
         "anliegen_vorwahl": anliegen,
@@ -4083,6 +4113,7 @@ def einrichtung_seite(request, slug):
         "offers": angebot,
     }
     return render(request, "einrichtung.html", {
+        "seiten_stand": _seiten_stand(request.path, lang),
         "c": c, "hub": hub, "seite": seite,
         "kleinauftrag": _kleinauftrag(lang) if eintrag.get("kleinauftrag") else None,
         # Die Leistungsseite, zu der wechselseitig verlinkt wird — mit dem Satz,
@@ -4094,6 +4125,10 @@ def einrichtung_seite(request, slug):
                       if v in einrichtungen.NACH_SLUG],
         "passt_dazu": _passt_dazu(eintrag.get("thema", ""), lang),
         "preis_stand": _preis_stand(lang),
+        # Quellenblock (Schub 2): nur deutsch (der Block ist deutsch) und nur, wo die Seite Herstellerangaben macht.
+        "quellen": quellen_modul.fuer("einrichtung", slug) if lang == "de" else [],
+        "quellen_abruf": quellen_modul.abruf_text(),
+        "quellen_abruf_iso": quellen_modul.ABRUF,
         "structured_data": _seiten_schema(
             c, lang, service=service, faq=seite.get("faq") or [], faq_id=pfad,
             breadcrumb=_breadcrumb(base, [
@@ -4310,6 +4345,7 @@ def beitrag_seite(request, slug):
             base, "konto-gesperrt", pfad, settings.STATIC_URL))
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag, "video": film,
+        "video_transkript": videos_modul.transkript_saetze(film),
         "quellen": quellen_liste, "quellen_abruf": quellen_modul.abruf_text(),
         "quellen_abruf_iso": quellen_modul.ABRUF,
         # Sichtbar nur, wenn es vom Veröffentlichungstag abweicht — sonst
@@ -4398,6 +4434,46 @@ def _weiter_satz(pack, schluessel, ort=""):
     return satz.replace("{ort}", ort)
 
 
+def _ortfrage(eintrag, region, pack):
+    """Frage-Überschrift mit Direktantwort für eine Ortsseite (Schub 2, A1/T8).
+
+    Es gibt vier Fassungen (`lokal.ortfragen`); welche ein Ort bekommt, ergibt sich aus seiner Stelle in
+    `regionen.REGIONEN`, damit sie gleichmäßig verteilt und nicht auf allen 20 Seiten dieselbe steht.
+    Sitz (Lenzing) und die Attersee-Region haben je eine eigene Fassung. Es kommen nur Werte vor, die
+    die Seite ohnehin zeigt (Kilometer, Fahrzeit, Ort); Preise stammen aus ANGEBOT_GROUPS."""
+    lokal = pack.get("lokal", {})
+    if not lokal.get("ortfragen"):
+        return None
+    if eintrag["slug"] == "lenzing":
+        vorlage = lokal["ortfrage_sitz"]
+    elif eintrag["slug"] == "attersee":
+        vorlage = lokal["ortfrage_see"]
+    else:
+        fassungen = lokal["ortfragen"]
+        start = regionen.REGIONEN.index(eintrag) % len(fassungen)
+        fragen = [f.get("q", "").lower() for f in region.get("faq") or []]
+        # Keine Fassung wählen, die der Seite schon als FAQ-Frage steht (gleiche Frage, gleiche Antwort
+        # zweimal wäre Füllstoff); `meide` nennt die Wortlaute der betreffenden Fragen.
+        vorlage = fassungen[-1]
+        for schritt in range(len(fassungen)):
+            kandidat = fassungen[(start + schritt) % len(fassungen)]
+            if not any(m in q for m in kandidat.get("meide", []) for q in fragen):
+                vorlage = kandidat
+                break
+    werte = {"ort": region.get("ort", ""), "km": str(eintrag.get("km", "")),
+             "fahrzeit": str(eintrag.get("fahrzeit", "")),
+             "mtl": str(_ANGEBOT_INDEX["it_betreuung"]["mtl"]),
+             "std": str(_ANGEBOT_INDEX[_HILFE_STUNDE]["std"]),
+             "vor_ort": str(_ANGEBOT_INDEX["vor_ort"]["std"])}
+    aus = {}
+    for feld in ("h", "a"):
+        text = vorlage[feld]
+        for k, v in werte.items():
+            text = text.replace("{" + k + "}", v)
+        aus[feld] = text
+    return aus
+
+
 def region_seite(request, slug):
     """/it-service/<slug>/ — eine Region, eine URL.
 
@@ -4446,7 +4522,8 @@ def region_seite(request, slug):
     }
     schwerpunkt = leistungen.NACH_SLUG.get(eintrag.get("schwerpunkt", ""))
     return render(request, "region.html", {
-        "c": c, "region": region,
+        "seiten_stand": _seiten_stand(request.path, lang),
+        "c": c, "region": region, "ortfrage": _ortfrage(eintrag, region, pack),
         "weiter_satz": _weiter_satz(pack, "rg_weiter", region.get("ort", "")),
         "schwerpunkt": _leistung_daten(schwerpunkt, lang) if schwerpunkt else None,
         "alle_regionen": [_region_daten(r, lang) for r in sorted(
@@ -4489,6 +4566,10 @@ def regionen_hub(request):
     })
 
 
+# Katalogpositionen, die genau eine eigene Einrichtungsseite haben (Preis = Festpreis dieser Seite).
+_EINRICHTEN_DIREKT = ("arbeitsplatz", "m365", "netzwerk_setup", "firewall")
+
+
 def kosten(request):
     """/kosten/ — beantwortet „Was kostet …?" mit der vollstaendigen Liste.
     Die staerkste Einzelseite fuer Suche und KI-Antworten (SEO-PLAN.md, A10)."""
@@ -4503,10 +4584,25 @@ def kosten(request):
     bsp5 = next((b["summe"] for b in beispiele if b["ap"] == 5 and not b["srv"]), "")
     faq = [{"q": f["q"], "a": f["a"].replace("{bsp5}", str(bsp5)).replace("{stand}", str(stand_text))}
            for f in ks.get("faq", [])]
+    # Schub 2 (B1): Festpreis-Positionen verlinken ihre Einrichtungsseite (Tabelle und Satz im Text);
+    # Preise kommen aus dem Katalog, die Adressen aus einrichtungen.py.
+    einr_url = {}
+    for e in einrichtungen.EINRICHTUNGEN:
+        if e["preis"] in _EINRICHTEN_DIREKT:
+            einr_url.setdefault(e["preis"], reverse("einrichtung", kwargs={"slug": e["slug"]}))
+    gruppen = _localized_groups(lang)
+    for g in gruppen:
+        g["items"] = [dict(it, url=einr_url[it["id"]]) if it["id"] in einr_url else it
+                      for it in g["items"]]
+    einrichten_satz = ks.get("einrichten_t", "")
+    for k in ("arbeitsplatz", "m365"):
+        einrichten_satz = (einrichten_satz.replace("{u_" + k + "}", einr_url.get(k, ""))
+                           .replace("{p_" + k + "}", str(_ANGEBOT_INDEX[k]["once"])))
     return render(request, "kosten.html", {
+        "seiten_stand": _seiten_stand(request.path, lang),
         "c": c, "ks": ks, "faq": faq,
-        "beispiele": beispiele,
-        "angebot_groups": _localized_groups(lang),
+        "beispiele": beispiele, "einrichten_satz": einrichten_satz,
+        "angebot_groups": gruppen,
         "preis_stand": stand_text,
         "leistungen": _alle_leistungen(lang),
         "structured_data": _seiten_schema(

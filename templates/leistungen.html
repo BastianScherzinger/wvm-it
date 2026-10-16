@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load conv %}
 {% comment %}Hub: Einstieg in alle Leistungsseiten, nach Bereich gegliedert (R2.3).{% endcomment %}
 {% block titel %}{{ hub.titel|safe }}{% endblock %}
 {% block beschreibung %}{{ hub.desc|safe }}{% endblock %}
@@ -83,7 +84,7 @@
     </div>
     {% endfor %}
 
-    <p class="lk-alle"><a href="{% url 'kosten' %}">{{ t.seite.alle_preise|safe }}</a></p>
+    <p class="lk-alle"><a href="{% url 'kosten' %}">{% preis_anker %}</a></p>
 
     {% include 'kleinauftrag.html' %}
 

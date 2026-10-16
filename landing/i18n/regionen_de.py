@@ -96,6 +96,7 @@ REGIONEN = {
             "Serverschrank aufräumen, Verkabelung erneuern, Hardware tauschen",
             "Arbeitsplätze aufbauen, Standortwechsel und Umbauten begleiten",
             "Besprechungs- und Schulungsräume mit Konferenztechnik",
+            "Zutritt, Kameras und Alarm im selben System wie die Gebäudetechnik: <a href='/leistungen/smarthome-knx-loxone/'>Gebäudeautomation mit Loxone und KNX</a>",
         ],
         "remote_h": "Was ohne Anfahrt läuft",
         "remote": "Laufende Betreuung, Störungsbehebung, Updates, Benutzerkonten, Microsoft 365, Serverüberwachung, Datensicherung mit geprüfter Wiederherstellung sowie Webseite, SEO und Google Ads. Weil die Anfahrt entfällt, kostet eine Störung in Gmunden dasselbe wie eine in Lenzing.",

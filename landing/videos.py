@@ -35,7 +35,6 @@ VIDEOS = {
         "unterschrift": "Fernwartung in ganz Österreich · 15 Sekunden, ohne Ton",
         "klasse": "vid-quer",
         # Sichtbarer „Text zum Film“ (WCAG 1.2.1, GEO): Wortlaut = der eingeblendete Text aus `aria`.
-        # Nur dieser Film; der Microsoft-365-Film bekommt bewusst keinen (Messung läuft bis 02.11.).
         "transkript": True,
     },
     "konto-gesperrt": {
@@ -54,6 +53,11 @@ VIDEOS = {
                  + zeiten.KURZ["de"] + "."),
         "unterschrift": "Konto gesperrt? Drei Schritte · 27 Sekunden, ohne Ton",
         "klasse": "vid-hoch vid-seite",
+        # Schub 2 (16.10.2026, C1): Film aus der Mitte der Ursachenliste gelöst. Er steht jetzt
+        # hinter dem 7. Abschnitt („Was Sie selbst tun können“) — der Film zeigt genau diese drei
+        # Schritte — und trägt wie der Fernwartungsfilm einen sichtbaren „Text zum Film“.
+        "nach_abschnitt": 7,
+        "transkript": True,
     },
 }
 
