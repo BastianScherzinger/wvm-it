@@ -422,7 +422,7 @@ EINRICHTEN = {
             "erklären kann",
             "Gemeinsame Freigaben, sauber getrennt nach Abteilung und Zweck",
             "Datensicherung, getrennt vom Server aufbewahrt — und eine "
-            "Test-Wiederherstellung, bevor wir fertig sind",
+            "Test-Wiederherstellung, bevor wir fertig sind (<a href='/wissen/raid/'>RAID ist kein Backup</a>)",
             "Fernzugriff über VPN, wo er gebraucht wird",
             "Dokumentation, mit der auch ein anderer Dienstleister weiterarbeiten kann",
         ],
@@ -763,7 +763,7 @@ EINRICHTEN = {
             "Zeitplan: täglich, außerhalb der Arbeitszeit; bei laufend genutzten "
             "Systemen mehrmals am Tag",
             "Trennung vom Server: eine Kopie, die neben dem Server steht, überlebt "
-            "keinen Serverraumbrand",
+            "keinen Serverraumbrand — und <a href='/wissen/raid/'>RAID ist kein Backup</a>",
             "Wiederherstellungstest: eine echte Datei, ein echter Ordner, eine echte "
             "Datenbank zurückspielen und die Dauer messen",
             "Meldeweg: Wer erfährt wie, wenn eine Sicherung fehlschlägt",

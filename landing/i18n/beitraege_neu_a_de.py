@@ -855,7 +855,9 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                            'eine gründliche Prüfung der IT-Sicherheitscheck '
                                                            'für 490 €, siehe <a '
                                                            "href='/aktuelles/it-sicherheit-kleine-firma/'>IT-Sicherheit "
-                                                           'in der kleinen Firma</a>.'},
+                                                           'in der kleinen Firma</a>. Wie solche Mails aufgebaut '
+                                                           'sind, erklärt der Glossareintrag <a '
+                                                           "href='/wissen/phishing/'>Phishing</a>."},
                                                      {'h': 'Fehler, die den Schaden vergrößern',
                                                       't': 'Drei Reaktionen verschlimmern die Lage häufig. '
                                                            'Erstens: aus Scham schweigen. Je länger niemand '

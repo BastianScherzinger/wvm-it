@@ -62,7 +62,7 @@ HILFE = {
         "Sie geben die Fernwartung frei, wir beheben den Fehler, und Sie sehen dabei jeden Schritt auf Ihrem Bildschirm. Abgerechnet wird nach Aufwand zum Stundensatz.",
     ],
     "fernwartung_h": "Was Fernwartung heißt",
-    "fernwartung_t": "Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Was ein Dienstleister dabei sieht und was nicht, steht ausführlich im Beitrag zur Fernwartung.",
+    "fernwartung_t": "Fernwartung bedeutet, dass ein Techniker über eine gesicherte Verbindung auf einen Rechner oder Server zugreift, statt anzureisen — bei einer Sitzung mit Ihrer Zustimmung sieht er genau das, was auf Ihrem Bildschirm steht, Sie sehen jede Bewegung mit und können jederzeit abbrechen, und ohne eine neue Freigabe kommt niemand zurück auf das Gerät. Was ein Dienstleister dabei sieht und was nicht, steht ausführlich im Beitrag zur Fernwartung; den Begriff erklärt das <a href='/wissen/fernwartung/'>Glossar</a>.",
     "fernwartung_link": "Was sieht der Dienstleister bei der Fernwartung?",
     "fernwartung_ablauf_h": "So läuft eine Fernwartungssitzung bei WVM-IT",
     "fernwartung_ablauf": [

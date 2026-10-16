@@ -87,7 +87,7 @@ SEITEN = {
         "leistungen": [
             "Automatische Überwachung: Speicherplatz, Auslastung, Temperatur, Festplatten",
             "Updates und Sicherheits-Patches, eingespielt außerhalb Ihrer Arbeitszeiten",
-            "Tägliche Sicherung, getrennt vom Server aufbewahrt",
+            "Tägliche Sicherung, getrennt vom Server aufbewahrt — denn <a href='/wissen/raid/'>RAID ist kein Backup</a>",
             "Prüfung jeder Sicherung — und regelmäßige Test-Wiederherstellung",
             "Schriftlicher Ablauf für den Ernstfall: wer macht was, in welcher Reihenfolge",
             "Quartalsbericht: was lief, was fiel auf, was steht an",
@@ -133,7 +133,7 @@ SEITEN = {
             "Ausmessung der Funkabdeckung vor Ort, inklusive Störquellen",
             "Planung von Zugangspunkten, Kanälen und Sendeleistung statt „mehr davon“",
             "Strukturierte Verkabelung, Verteiler und Switche sauber beschriftet",
-            "Getrennte Netze für Betrieb, Gäste, Kasse und Technik",
+            "Getrennte Netze für Betrieb, Gäste, Kasse und Technik (<a href='/wissen/netzwerksegmentierung/'>Netzwerksegmentierung erklärt</a>)",
             "Firewall und VPN für sicheren Zugriff von unterwegs",
             "Dokumentation, mit der auch ein anderer Dienstleister weiterarbeiten könnte",
         ],
@@ -179,7 +179,7 @@ SEITEN = {
         "leistung_h": "Was der Sicherheitscheck umfasst",
         "leistungen": [
             "Benutzer und Rechte: wer kann was, und warum eigentlich",
-            "Passwörter und Zugänge, inklusive der Konten ausgeschiedener Mitarbeiter",
+            "Passwörter und Zugänge, inklusive der Konten ausgeschiedener Mitarbeiter — und wie man <a href='/wissen/phishing/'>Phishing</a> erkennt",
             "Updates auf Servern, Arbeitsplätzen und Netzwerkgeräten",
             "Firewall, VPN und Zugriff von außen",
             "Datensicherung: Umfang, Trennung, Prüfung, Wiederherstellbarkeit",
