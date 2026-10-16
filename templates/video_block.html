@@ -12,6 +12,10 @@ Kein Film im LCP-Bereich: der Block steht weit unter dem Seitenkopf.{% endcommen
     </button>
   </div>
   <figcaption class="vid-unter">{{ video.unterschrift }}</figcaption>
+  {% if video_transkript %}<details class="vid-text">
+    <summary>Text zum Film</summary>
+    <p>{% for satz in video_transkript %}{{ satz }}{% if not forloop.last %} {% endif %}{% endfor %}</p>
+  </details>{% endif %}
 </figure>
 <link rel="stylesheet" href="{% static 'css/video.css' %}?v={{ asset_v }}">
 <script src="{% static 'js/video.js' %}?v={{ asset_v }}" defer></script>

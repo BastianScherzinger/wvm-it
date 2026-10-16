@@ -3006,6 +3006,19 @@ def _mit_knoten(schema_json, knoten):
     return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
 
 
+def _mit_video(schema_json, knoten):
+    """Haengt einen VideoObject-Knoten an und verankert ihn am WebPage-Knoten
+    (`video: {"@id": …}`, Schub 0 D2, 16.10.2026). Vorher hing der Film lose im
+    Graphen; jetzt sagt die Seite selbst, dass sie ihn zeigt."""
+    graph = json.loads(schema_json)
+    graph["@graph"].append(knoten)
+    for k in graph["@graph"]:
+        if k.get("@type") == "WebPage" and str(k.get("@id", "")).endswith("#webpage"):
+            k["video"] = {"@id": knoten["@id"]}
+            break
+    return json.dumps(graph, ensure_ascii=False, separators=(",", ":"))
+
+
 def _mit_itemlist(schema_json, itemlist):
     """Hängt eine ItemList in ein bereits gebautes @graph. Getrennte Funktion,
     weil `_seiten_schema` einen JSON-String zurückgibt und die Hub-Views sonst
@@ -3980,10 +3993,11 @@ def it_hilfe(request):
         c, lang, service=service, faq=hilfe.get("faq") or [], faq_id=pfad,
         breadcrumb=_breadcrumb(base, [(hilfe.get("nav", "IT-Hilfe"), pfad)]))
     if film:
-        schema = _mit_knoten(schema, videos_modul.schema_knoten(
+        schema = _mit_video(schema, videos_modul.schema_knoten(
             base, "fernwartung", pfad, settings.STATIC_URL))
     return render(request, "it_hilfe.html", {
         "c": c, "hilfe": hilfe, "video": film,
+        "video_transkript": videos_modul.transkript_saetze(film),
         "anliegen_vorwahl": anliegen,
         "faelle": _hilfe_faelle(hilfe, lang),
         "kacheln": _akut_kacheln(lang),
@@ -4292,7 +4306,7 @@ def beitrag_seite(request, slug):
     # Erklärfilm nur im Ratgeber „Konto gesperrt“ (R4, 14.10.2026); VideoObject dort, wo er eingebettet ist.
     film = videos_modul.video("konto-gesperrt") if slug == "microsoft-365-konto-gesperrt" else None
     if film:
-        schema = _mit_knoten(schema, videos_modul.schema_knoten(
+        schema = _mit_video(schema, videos_modul.schema_knoten(
             base, "konto-gesperrt", pfad, settings.STATIC_URL))
     return render(request, "beitrag.html", {
         "c": c, "beitrag": beitrag, "video": film,
@@ -5149,6 +5163,40 @@ def _llms_seiten(base, lang):
     return zeilen
 
 
+def _llms_uebersichten(c, base):
+    """Die Übersichtsseiten (Hubs) als (URL, Titel, Kurztext) für llms.txt/llms-full.txt.
+
+    Schub 0 (16.10.2026, D1): `/ueber-uns/` und `/einrichten/` fehlten in llms.txt,
+    die Hubs insgesamt in llms-full.txt. Die Texte kommen aus denselben Sprachpaket-
+    Blöcken wie die Seiten selbst (`h1`/`kurz`), nichts ist abgetippt; Hubs ohne
+    Kurztext im Paket (Aktuelles, Glossar, Checklisten) stehen ohnehin mit Zähler
+    und Liste in llms.txt und bleiben hier draußen."""
+    pack = i18n.get_pack("de")
+    ub = pack.get("ueber", {})
+    kurz_ueber = (ub.get("kurz", "") or "").format(
+        inhaber=c.get("inhaber_name", "Florin Feier"), adresse=_adresszeile(c))
+    zeilen = [
+        ("/leistungen/", pack.get("hub", {})),
+        ("/kosten/", pack.get("kosten_seite", {})),
+        ("/kosten/rechner/", pack.get("rechner", {})),
+        ("/ueber-uns/", {"h1": ub.get("h1", ""), "kurz": kurz_ueber}),
+        ("/kontakt/", pack.get("kontakt_seite", {})),
+        ("/branchen/", pack.get("branchen_seite", {})),
+        ("/vergleich/", pack.get("vergleiche_seite", {})),
+        ("/it-service/", {"h1": pack.get("seite", {}).get("regionen_h1", ""),
+                          "kurz": pack.get("seite", {}).get("regionen_kurz", "")}),
+        ("/einrichten/", pack.get("einrichten_hub", {})),
+        ("/it-sicherheit-test/", pack.get("selbsttest", {})),
+    ]
+    ergebnis = []
+    for pfad, t in zeilen:
+        h1 = " ".join(re.sub(r"<[^>]+>", "", t.get("h1", "") or "").split())
+        kurz = " ".join(re.sub(r"<[^>]+>", "", t.get("kurz", "") or "").split())
+        if h1:
+            ergebnis.append((f"{base}{pfad}", h1, kurz))
+    return ergebnis
+
+
 def _llms_regionen(base, lang):
     """Zeile je Regionsseite: Ort, Entfernung, Fahrzeit.
 
@@ -5364,6 +5412,9 @@ def llms_txt(request):
         "jeweils verbreiteten Irrtum.",
         f"- [Checklisten]({base}/checkliste/): {len(checklisten.CHECKLISTEN)} Checklisten, "
         "jeder Punkt mit Begründung (Liste unten).",
+        *[f"- [{h1}]({url}): {(kurz.split('. ')[0]).rstrip('.')}."
+          for url, h1, kurz in _llms_uebersichten(c, base)
+          if url.endswith(("/ueber-uns/", "/einrichten/")) and kurz],
         "\n## Leistungen",
     ]
     zeilen += _llms_seiten(base, "de")
@@ -5458,6 +5509,15 @@ def llms_full_txt(request):
         aus.append("\n### Häufige Fragen")
         for f in s.get("faq", []):
             aus.append(f"\n**{sauber(f.get('q'))}**\n{sauber(f.get('a'))}")
+
+    # Übersichtsseiten (Schub 0, 16.10.2026): Titel, Adresse und Kurztext der Hubs,
+    # damit die Langfassung auch die Einstiegsseiten kennt (T11).
+    aus.append("\n\n## Übersichtsseiten")
+    for url, h1, kurz in _llms_uebersichten(c, base):
+        aus.append(f"\n### {h1}")
+        aus.append(f"URL: {url}")
+        if kurz:
+            aus.append(f"\n{kurz}")
 
     # Branchen: dieselbe Leistung, anderer Zuschnitt. Für eine KI-Antwort ist der
     # `anders`-Block der zitierfähige Teil — er ist der einzige, den es nur hier gibt.
@@ -5811,6 +5871,9 @@ def sitemap_xml(request):
         lastmod = max(stand.datum(p[0]) for p in eigene)
         items.append(f"<sitemap><loc>{base}/sitemap-{name}.xml</loc>"
                      f"<lastmod>{lastmod}</lastmod></sitemap>")
+    # Video-Sitemap (Schub 0 D2): die beiden Erklärfilme, nur DE-Seiten.
+    items.append(f"<sitemap><loc>{base}/sitemap-video.xml</loc>"
+                 f"<lastmod>{videos_modul.UPLOAD_DATUM[:10]}</lastmod></sitemap>")
     xml = ('<?xml version="1.0" encoding="UTF-8"?>'
            '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
            + "".join(items) + "</sitemapindex>")
@@ -5829,6 +5892,41 @@ def sitemap_segment(request, klasse):
            'xmlns:xhtml="http://www.w3.org/1999/xhtml" '
            'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">'
            + "".join(_sitemap_eintraege(base, pfade)) + "</urlset>")
+    return HttpResponse(xml, content_type="application/xml; charset=utf-8")
+
+
+# Video-Sitemap: welcher Film auf welcher Seite eingebettet ist (nur Deutsch, siehe videos.py).
+VIDEO_SEITEN = (("fernwartung", "/it-hilfe/"),
+                ("konto-gesperrt", "/aktuelles/microsoft-365-konto-gesperrt/"))
+
+
+@_maschinenantwort(120)
+def sitemap_video(request):
+    """/sitemap-video.xml — die beiden Erklärfilme (Schub 0, D2, 16.10.2026).
+
+    Pflichtfelder nach Google: Seite, Poster, Titel, Beschreibung, Dateiadresse.
+    Dazu Dauer, Datum und `family_friendly`. Alle Werte stammen aus landing/videos.py,
+    also aus derselben Quelle wie Seite und VideoObject."""
+    from xml.sax.saxutils import escape
+    base = _sitemap_basis(request)
+    statisch = settings.STATIC_URL
+    eintraege = []
+    for schluessel, pfad in VIDEO_SEITEN:
+        v = videos_modul.video(schluessel)
+        eintraege.append(
+            f"<url><loc>{base}{pfad}</loc><video:video>"
+            f"<video:thumbnail_loc>{base}{statisch}{v['poster']}</video:thumbnail_loc>"
+            f"<video:title>{escape(v['name'])}</video:title>"
+            f"<video:description>{escape(v['beschreibung'])}</video:description>"
+            f"<video:content_loc>{base}{statisch}{v['datei']}</video:content_loc>"
+            f"<video:duration>{v['sekunden']}</video:duration>"
+            f"<video:publication_date>{videos_modul.UPLOAD_DATUM}</video:publication_date>"
+            "<video:family_friendly>yes</video:family_friendly>"
+            "</video:video></url>")
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+           'xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">'
+           + "".join(eintraege) + "</urlset>")
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 

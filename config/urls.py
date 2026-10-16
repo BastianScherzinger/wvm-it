@@ -68,6 +68,7 @@ urlpatterns = [
     path("sitemap.xml", views.sitemap_xml, name="sitemap_xml"),
     # Die vier Segmente hinter dem Index. Das Muster ist eng gefasst, damit es
     # keine kuenftige .xml-Route verschluckt.
+    path("sitemap-video.xml", views.sitemap_video, name="sitemap_video"),
     re_path(r"^sitemap-(?P<klasse>kern|leistungen|silos|ratgeber)\.xml$",
             views.sitemap_segment, name="sitemap_segment"),
     path("health", views.health, name="health"),

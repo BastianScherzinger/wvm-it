@@ -34,3 +34,8 @@
 @media (max-width:480px){
   .vid-hoch{max-width:none}
 }
+/* „Text zum Film“ (Schub 0, 16.10.2026): einklappbares Transkript unter dem Film, nur wo videos.py es verlangt */
+.vid-text{margin:10px 2px 0;font-size:14px;line-height:1.55;color:var(--ink-soft)}
+.vid-text summary{cursor:pointer;font-weight:600;color:var(--ink);min-height:44px;display:flex;align-items:center}
+.vid-text summary:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
+.vid-text p{margin:4px 0 0;max-width:62ch}

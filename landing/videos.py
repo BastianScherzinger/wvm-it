@@ -11,9 +11,13 @@ die Startseite bleibt videofrei (Ladezeit, Funktion vor Design).
 ``VideoObject`` steht nur auf den Seiten, auf denen der Film wirklich eingebettet ist.
 """
 
+import re
+
 from landing import zeiten
 
-UPLOAD_DATUM = "2026-10-15"   # Fassung 3 (abends: ruhiger, Fernwartung 15 s, Microsoft 365 27 s)
+# ISO 8601 mit Zeitzone (Wien, MESZ). Die Uhrzeit der Veröffentlichung ist nicht festgehalten
+# (Fassung 3, 15.10.2026 abends); 00:00 steht für „dieser Kalendertag“ — keine erfundene Uhrzeit.
+UPLOAD_DATUM = "2026-10-15T00:00:00+02:00"
 
 VIDEOS = {
     "fernwartung": {
@@ -30,6 +34,9 @@ VIDEOS = {
                  + zeiten.KURZ["de"] + ". www.wvm-it.tech."),
         "unterschrift": "Fernwartung in ganz Österreich · 15 Sekunden, ohne Ton",
         "klasse": "vid-quer",
+        # Sichtbarer „Text zum Film“ (WCAG 1.2.1, GEO): Wortlaut = der eingeblendete Text aus `aria`.
+        # Nur dieser Film; der Microsoft-365-Film bekommt bewusst keinen (Messung läuft bis 02.11.).
+        "transkript": True,
     },
     "konto-gesperrt": {
         "datei": "video/microsoft-365-konto-gesperrt.mp4",
@@ -49,6 +56,17 @@ VIDEOS = {
         "klasse": "vid-hoch vid-seite",
     },
 }
+
+def transkript_saetze(v):
+    """Der eingeblendete Filmtext als Sätze, nur wenn der Film ein Transkript tragen soll.
+
+    Quelle ist ausschließlich `aria` (Wortlaut der eingebrannten Texte); der Vorspann
+    „Stummer Kurzfilm mit eingeblendeten Texten:“ entfällt."""
+    if not v or not v.get("transkript"):
+        return []
+    text = v["aria"].split(": ", 1)[-1]
+    return [x for x in re.split(r"(?<=[.?!])\s+", text.strip()) if x]
+
 
 def video(schluessel):
     """Das Video-Dict oder None."""
