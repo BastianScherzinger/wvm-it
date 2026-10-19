@@ -19,7 +19,7 @@ ZUSATZ = {
             "alte-windows-version-im-betrieb": "Wie ein umgestellter Arbeitsplatz aussieht und was die Einrichtung kostet, zeigt die Seite <a href='/einrichten/windows-11/'>Windows 11 einrichten lassen</a>.",
             "pc-langsam-woran-liegt-es": "Wenn es um ein einzelnes Gerät geht und Sie keinen Vertrag wollen, hilft die <a href='/it-hilfe/'>IT-Hilfe ohne Vertrag</a> per Fernwartung zu 95 € je Stunde.",
             "aufbewahrungsfristen-oesterreich": "Was Sicherung und Archiv im Betrieb kosten, steht auf der Seite mit den <a href='/kosten/'>Preisen für Datensicherung</a>.",
-            "zugaenge-fuer-it-dienstleister": "Wie eine <a href='/leistungen/edv-it-betreuung/'>laufende IT-Betreuung</a> mit sauber vergebenen Zugängen aussieht, beschreibt die Leistungsseite.",
+            "zugaenge-fuer-it-dienstleister": "Wie eine <a href='/leistungen/edv-it-betreuung/'>laufende IT-Betreuung</a> mit sauber vergebenen Zugängen aussieht, beschreibt die Leistungsseite. Wo die Zugänge ehrenamtlich verwaltet werden und mit dem Vorstand wechseln, ist das Thema auf der Seite <a href='/branchen/vereine-gemeinden/'>IT für Vereine und Gemeinden</a> ausgeführt.",
             "was-kostet-it-betreuung": "Die vollständige Liste aller Preise steht unter <a href='/kosten/'>IT-Betreuung Kosten</a>.",
             "edv-betreuung-kleinbetriebe-oberoesterreich": "Alle Posten im Überblick, auch für andere Betriebsgrößen: <a href='/kosten/'>IT-Betreuung Kosten</a>.",
             "kassa-kartenterminal-netzwerk": "Wie wir Kassa und Netz absichern, beschreibt die Leistung <a href='/leistungen/it-sicherheit/'>IT-Sicherheit für Kassa und Netz</a>.",
