@@ -7,6 +7,44 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 22.10.2026 — Design-Studio Runde 1: Filme statt KI-Bilder (Zweig `design/2026-10-22-videos`)
+
+**Nicht gemergt, nicht gepusht nach `main`.** Auftrag Bastian 22.10.: die ChatGPT-Fotos (seit 02.10.) raus, die Erklärfilme
+„sauber eingebaut, automatisch, stumm, als ein Element an der Stelle der KI-Bilder“. Bauauftrag:
+`Webagentur Scherzinger\Buero\teams\design-studio\wvm-it\BAUAUFTRAG-RUNDE-1.md`, Ergebnis daneben in `ERGEBNIS-RUNDE-1.md`.
+
+- **Neue Referenz „Film unter dem Hero“ (bewusst, A 51):** Die Regel „Startseite bleibt videofrei“ (R4-A §4b, `videos.py`)
+  ist aufgehoben, weil Bastian den Film ausdrücklich an der Stelle der KI-Fotos will. Grenze bleibt: nie im Hero, nie als
+  Hintergrund, nie mit Ton, Start erst ab 40 % Sichtbarkeit, `preload="none"`, reduced-motion = nur Poster. Nur Deutsch
+  (Texte im Film eingebrannt, wie bisher auf `/it-hilfe/`); EN/RO zeigen das Verzeichnis ohne Film.
+- **Filme Fassung 4 web** (Render `fw-169-web`/`konto-916-web` ohne Endkarten-Hinweis „Sprecherstimme KI-generiert“, weil
+  keine Stimme zu hören ist; ffmpeg 7.1, ohne Tonspur). ffprobe: Fernwartung 25,334 s, MP4 1.389.496 B, WebM 1.403.824 B;
+  Microsoft 365 31,267 s, MP4 874.476 B, WebM 878.350 B; Poster 33.743 / 32.859 B. `videos.py`: `sekunden` 25/31, Feld `webm`,
+  `aria`/Transkript = Bildtext der Fassung 4 (Einzelbilder gelesen), `UPLOAD_DATUM` 22.10. (beim Deploy auf den Tag setzen).
+- **Startseite:** Wegweiser `#finder` = Film links + Verzeichnis rechts (Titel, ein Satz, Preisanker in Mono aus
+  `ANGEBOT_GROUPS`), keine Fotokarten, kein Warnsymbol, kein Pfeil; umschaltbar über `views.WEGWEISER_FORM`
+  („verzeichnis“ = Option a, „karten“ = Option b, Umgebungsvariable `WEGWEISER_FORM`). Drei Wegweiser-Sätze ohne Preis, weil
+  der Preis jetzt rechts steht (DE/EN/RO). Fotos bei `#preise` und `#prozess` entfernt. `VideoObject` + Video-Sitemap für `/`.
+- **Ortsseiten:** Film statt `foto_vorort`, Unterschrift „… · auch in <Ort> · 25 Sekunden, ohne Ton“ (`seite.vid_ort` in drei
+  Sprachen), `VideoObject` + Video-Sitemap für alle 20 deutschen Ortsseiten. **`/it-hilfe/`:** Film nach oben (nach Antwort und
+  Nummernleiste, vor „Was ist kaputt?“). **M365-Ratgeber:** Platz unverändert, Fassung 4.
+- **og:image ohne KI:** Filmposter 1200 × 630 für Ortsseiten, `/it-hilfe/`, `/it-notfall/`, M365-Ratgeber; sonst neues
+  `static/img/og_standard.jpg` (Florins Porträt auf Papier mit Wortmarke, `tools/og_bilder.py`, keine KI). Auch `/angebot/`,
+  `kopf_klein.html`, Schema-`image` und Artikelbild zeigen nicht mehr `hero_bg.jpg`.
+- **Geänderte Tests (mit Grund):** `test_video_r4_2026_10_14.py` (`test_hero_der_startseite_bleibt_videofrei` →
+  `test_startseite_film_steht_unter_dem_hero`; Startseite/Ortsseiten aus „ohne Film“ raus; Längen 25/31; neu WebM-vor-MP4,
+  Film oben auf `/it-hilfe/`, genau ein Film je Ortsseite, Video-Sitemap), `test_schub2_2026_10_16.py` (og:image je Seitentyp neu,
+  kein KI-Foto als Vorschaubild, 1200 × 630), `test_schub0_2026_10_16.py` (Video-Sitemap aus `_video_seiten()`, Filmtext nur nicht
+  auf Leistungs-/Kostenseiten), `test_rechtstexte.py` (`og_standard.jpg` als erlaubtes JPEG).
+- **Prüfungen:** Tests vorher 963 grün, nachher **968 grün**; `pruefe_seite` „Alles in Ordnung“ (265 URLs), `pruefe_sicherheit`
+  alle Bremsen greifen, `check --deploy` nur Umgebungswarnungen (lokaler SECRET_KEY, HSTS-Preload), `stand_schreiben --pruefen`
+  aktuell. Gezählt (Piet): 0 Seiten mit `foto_`/`hero_bg`, 23 Seiten mit Film = 23 `VideoObject` = 23 Einträge Video-Sitemap,
+  Start ab 40 % / Pause außerhalb / reduced-motion im Chromium bestätigt, Startseite 1.097 Elemente (EN/RO 1.081), Konsole leer.
+- **Nicht gemacht (Absicht):** Altlasten (`foto_*`, `hero_bg*`, `robot*`, `ref_*`, `pc.mp4`, `server.mp4`, Spline) bleiben bis
+  Karte `ds-altlasten-raus`; Schulfilm bis Florins Freigabe.
+- **Aufnahmen:** `Buero\teams\design-studio\wvm-it\bilder\runde1\` (vorher = live, nachher, variante-b, Kontaktbogen
+  `00-kontaktbogen-runde1-vorher-nachher.jpg`).
+
 ## 03.10.2026 — Credit-Link „Webagentur Scherzinger“ in der Copyright-Leiste
 
 Auftrag von Bastian, Florin hat zugestimmt. Der Link steht jetzt seitenweit ganz unten in der
