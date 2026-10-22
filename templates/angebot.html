@@ -21,7 +21,7 @@
   <meta property="og:site_name" content="{{ c.site_name }}">
   <meta property="og:locale" content="{{ t.meta.locale }}">
   <meta property="og:url" content="{{ c.wvm_url }}{{ canonical_path }}">
-  {% if c.hero_bg %}<meta property="og:image" content="{{ c.wvm_url }}{{ c.hero_bg }}">{% endif %}
+  {% if c.og_standard %}<meta property="og:image" content="{{ c.wvm_url }}{{ c.og_standard }}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
   {% comment %} Selbst gehostete Schriften (kein Google-Fonts-Request, keine IP an Google) {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/fonts.css' %}?v={{ asset_v }}">

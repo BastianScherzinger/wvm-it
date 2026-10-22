@@ -87,9 +87,12 @@ class BilderImInhaltTest(SimpleTestCase):
     ERLAUBTES_ALTFORMAT = {
         # Apple-Touch-Icons können kein WebP.
         "wvm_mark_128.png",
-        # Der Rückfall der image-set-Deklaration für Browser ohne Unterstützung,
-        # und zugleich das og:image — viele Social-Crawler lesen kein WebP.
+        # Der Rückfall der image-set-Deklaration für Browser ohne Unterstützung
+        # (Altlast, Karte ds-altlasten-raus).
         "hero_bg.jpg",
+        # Vorschaubild (og:image) seit Design-Studio Runde 1 (22.10.2026) — viele
+        # Social-Crawler lesen kein WebP.
+        "og_standard.jpg",
     }
 
     def test_kein_unerwartetes_jpeg_oder_png(self):

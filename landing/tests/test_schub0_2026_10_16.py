@@ -74,8 +74,12 @@ class VideoSchemaTest(SimpleTestCase):
         ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9",
               "v": "http://www.google.com/schemas/sitemap-video/1.1"}
         eintraege = wurzel.findall("s:url", ns)
-        self.assertEqual([e.find("s:loc", ns).text for e in eintraege],
-                         [BASIS + p for p in self.PFADE])
+        # Design-Studio Runde 1 (22.10.2026): dazu Startseite und deutsche Ortsseiten (views._video_seiten)
+        from landing.views import _video_seiten
+        locs = [e.find("s:loc", ns).text for e in eintraege]
+        self.assertEqual(locs, [BASIS + p for _, p in _video_seiten()])
+        for p in self.PFADE:
+            self.assertIn(BASIS + p, locs)
         for e in eintraege:
             v = e.find("v:video", ns)
             for feld in ("thumbnail_loc", "title", "description", "content_loc", "duration"):
@@ -126,7 +130,8 @@ class RueckwegeTest(SimpleTestCase):
             self.assertNotIn(f"href='{nach}'", html)
 
     def test_kein_filmtext_auf_kernseiten(self):
-        # Der Film steht nur auf /it-hilfe/ und im M365-Ratgeber (Schub 2: dort mit Text zum Film).
-        for pfad in ("/", "/leistungen/edv-it-betreuung/", "/kosten/", "/it-service/wels/"):
+        # Der Film steht auf /it-hilfe/, im M365-Ratgeber und seit Design-Studio Runde 1 (22.10.2026)
+        # auch auf Startseite und deutschen Ortsseiten — nicht auf Leistungs- und Kostenseiten.
+        for pfad in ("/leistungen/edv-it-betreuung/", "/kosten/", "/en/it-service/wels/"):
             html = self.c.get(pfad).content.decode()
             self.assertNotIn("Text zum Film", html, pfad)

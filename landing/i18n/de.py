@@ -593,6 +593,8 @@ PACK = {
         "lz_weiter_satz": "Wer hinter dieser Leistung steht, lesen Sie {ueber}; Arbeitsbeispiele finden Sie unter {ref}.",
         "lz_weiter_anker": {"ueber": "auf der Seite Über uns", "ref": "Referenzen"},
         "rg_quellen": "Quellen zu den Angaben über den Ort",
+        # Design-Studio Runde 1 (22.10.2026): Ortsbezug unter dem Fernwartungsfilm der Ortsseite.
+        "vid_ort": "auch in {ort}",
         "rg_methode_osrm": "So gemessen: Straßenroute ab Waldstraße 19/1 in Lenzing zum Ortsmittelpunkt, Routenplaner OSRM auf Basis von OpenStreetMap, gemessen am 09.10.2026 und am 13.10.2026 nachgerechnet (Abweichung höchstens 2 km); Fahrzeit auf 5 Minuten gerundet.",
         "rg_methode_osrm_valhalla": "So gemessen: Straßenroute ab Waldstraße 19/1 in Lenzing zum Ortsmittelpunkt, Mittel aus den Routenplanern OSRM und Valhalla auf Basis von OpenStreetMap, gemessen am 01.10.2026; die Strecke am 13.10.2026 mit OSRM nachgerechnet (Abweichung höchstens 2 km). Fahrzeit als Mittel beider Routenplaner, auf 5 Minuten gerundet.",
         "brotkrume": "Sie befinden sich hier",
@@ -1034,13 +1036,13 @@ PACK = {
             "notfall": {"h": "Es geht gerade etwas nicht",
                         "t": "Die ersten 30 Minuten, Schritt für Schritt."},
             "betreuung": {"h": "Wir brauchen jemanden für die IT",
-                          "t": "Laufende Betreuung ab 29 € je Arbeitsplatz im Monat."},
+                          "t": "Laufende Betreuung je Arbeitsplatz und Monat."},
             # Design B1 (§2.4, §6 K1-2): ersetzt "preis" (doppelte Block 6) — der
             # Kostenrechner bleibt über Block 6 und den Kopf erreichbar.
             "einrichten": {"h": "Ein neuer PC, ein Netzwerk, Microsoft 365",
-                           "t": "Zum Festpreis, ohne Vertrag, ab 190 €."},
+                           "t": "Zum Festpreis, ohne Vertrag."},
             "hilfe": {"h": "Nur ein Problem, kein Vertrag",
-                      "t": "Per Fernwartung für 95 € je Stunde, meist am selben Tag."},
+                      "t": "Per Fernwartung, meist am selben Tag."},
             "web": {"h": "Wir brauchen eine Webseite",
                     "t": "Gebaut, gehostet und betreut aus einer Hand."},
             "branche": {"h": "Was heißt das für meine Branche?",

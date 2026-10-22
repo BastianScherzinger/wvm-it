@@ -138,30 +138,29 @@ def anfrage_fehler(request):
     return {"anfrage_fehler_text": text}
 
 
-# Vorschaubild (og:image, twitter:image) je Seitentyp — nur vorhandene Fotos aus static/img
-# (je 1200 × 800 px), nichts Neues. Seitentypen ohne passendes Foto behalten das Titelbild
-# aus content.json (`hero_bg`). Schub 2 (D3/T9, 16.10.2026).
-_OG_FOTOS = {"einrichtung": "foto_einrichten", "region": "foto_vorort", "branche": "foto_branche",
-             "it_hilfe": "foto_hilfe", "notfall": "foto_notfall"}
-_OG_LEISTUNG = {"it": "foto_betreuung", "sicht": "foto_web", "vorort": "foto_vorort"}
-_OG_LEISTUNG_AUSNAHMEN = {"server-datensicherung": "foto_server"}
+# Vorschaubild (og:image, twitter:image) je Seitentyp, je 1200 × 630 px. Schub 2 (D3/T9, 16.10.2026)
+# führte Fotos je Seitentyp ein; seit Design-Studio Runde 1 (22.10.2026) ohne KI-Fotos:
+# Seiten mit dem Fernwartungsfilm (oder seinem Thema) zeigen dessen Poster, der Microsoft-365-Ratgeber
+# das Poster seines Films, alle anderen das Standardbild aus content.json (`og_standard`: Florins
+# Porträt auf Papier-Fläche mit Wortmarke, gebaut von tools/og_bilder.py).
+_OG_FILM = {"region": "video/fernwartung-4-schritte-og.jpg",
+            "it_hilfe": "video/fernwartung-4-schritte-og.jpg",
+            "notfall": "video/fernwartung-4-schritte-og.jpg"}
+_OG_BEITRAG = {"microsoft-365-konto-gesperrt": "video/microsoft-365-konto-gesperrt-og.jpg"}
 
 
 def vorschaubild(request):
-    """`og_bild` (Pfad) samt Maßen für Seiten, deren Typ ein passendes Foto hat; sonst nichts."""
+    """`og_bild` (Pfad) für Seiten, deren Typ ein eigenes Filmposter hat; sonst nichts (→ Standardbild)."""
     treffer = getattr(request, "resolver_match", None)
     if not treffer:
         return {}
     name = treffer.url_name
-    foto = _OG_FOTOS.get(name)
-    if name == "leistung":
-        slug = (treffer.kwargs or {}).get("slug", "")
-        eintrag = leistungen.NACH_SLUG.get(slug)
-        if eintrag:
-            foto = _OG_LEISTUNG_AUSNAHMEN.get(slug) or _OG_LEISTUNG.get(eintrag.get("bereich"))
-    if not foto:
+    bild = _OG_FILM.get(name)
+    if name == "beitrag":
+        bild = _OG_BEITRAG.get((treffer.kwargs or {}).get("slug", ""))
+    if not bild:
         return {}
-    return {"og_bild": f"/static/img/{foto}.webp", "og_breite": 1200, "og_hoehe": 800}
+    return {"og_bild": f"/static/{bild}", "og_breite": 1200, "og_hoehe": 630}
 
 
 def navigation(request):

@@ -322,31 +322,39 @@ class VorschaubildTest(SimpleTestCase):
     def _og(self, pfad):
         return re.search(r'<meta property="og:image" content="([^"]*)"', _html(pfad)).group(1)
 
+    # Design-Studio Runde 1 (22.10.2026): keine KI-Fotos mehr als Vorschaubild. Filmposter, wo der Film
+    # (oder sein Thema) steht, sonst das Standardbild (Florins Porträt, tools/og_bilder.py), je 1200 × 630.
     def test_bild_je_seitentyp_aus_vorhandenen_dateien(self):
         erwartet = {
-            "/it-service/wels/": "foto_vorort.webp",
-            "/einrichten/arbeitsplatz/": "foto_einrichten.webp",
-            "/it-hilfe/": "foto_hilfe.webp",
-            "/it-notfall/": "foto_notfall.webp",
-            "/branchen/handwerk-baugewerbe/": "foto_branche.webp",
-            "/leistungen/edv-it-betreuung/": "foto_betreuung.webp",
-            "/leistungen/server-datensicherung/": "foto_server.webp",
-            "/leistungen/webseite-erstellen/": "foto_web.webp",
+            "/it-service/wels/": "video/fernwartung-4-schritte-og.jpg",
+            "/it-hilfe/": "video/fernwartung-4-schritte-og.jpg",
+            "/it-notfall/": "video/fernwartung-4-schritte-og.jpg",
+            "/aktuelles/microsoft-365-konto-gesperrt/": "video/microsoft-365-konto-gesperrt-og.jpg",
         }
         for pfad, datei in erwartet.items():
             with self.subTest(pfad=pfad):
                 url = self._og(pfad)
-                self.assertTrue(url.endswith("/static/img/" + datei), url)
-                self.assertTrue((Path(settings.BASE_DIR) / "static" / "img" / datei).exists())
+                self.assertTrue(url.endswith("/static/" + datei), url)
+                self.assertTrue((Path(settings.BASE_DIR) / "static" / datei).exists())
 
-    def test_ohne_passendes_foto_bleibt_das_titelbild(self):
-        for pfad in ("/", "/kosten/", "/aktuelles/was-kostet-it-betreuung/"):
-            self.assertTrue(self._og(pfad).endswith("/static/img/hero_bg.jpg"), pfad)
+    def test_ohne_filmposter_steht_das_standardbild(self):
+        for pfad in ("/", "/kosten/", "/aktuelles/was-kostet-it-betreuung/", "/einrichten/arbeitsplatz/",
+                     "/leistungen/edv-it-betreuung/", "/branchen/handwerk-baugewerbe/", "/en/"):
+            self.assertTrue(self._og(pfad).endswith("/static/img/og_standard.jpg"), pfad)
 
-    def test_masse_stimmen_zum_foto(self):
-        html = _html("/it-service/wels/")
-        self.assertIn('property="og:image:width" content="1200"', html)
-        self.assertIn('property="og:image:height" content="800"', html)
+    def test_kein_ki_foto_als_vorschaubild(self):
+        for pfad in ("/", "/it-service/wels/", "/leistungen/server-datensicherung/", "/angebot/"):
+            html = _html(pfad)
+            og = re.findall(r'<meta (?:property|name)="(?:og|twitter):image" content="([^"]*)"', html)
+            self.assertTrue(og, pfad)
+            for url in og:
+                self.assertNotRegex(url, r"foto_|hero_bg|robot", pfad)
+
+    def test_masse_stimmen_zum_bild(self):
+        for pfad in ("/it-service/wels/", "/"):
+            html = _html(pfad)
+            self.assertIn('property="og:image:width" content="1200"', html)
+            self.assertIn('property="og:image:height" content="630"', html)
 
 
 class JsonLdTest(SimpleTestCase):

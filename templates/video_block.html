@@ -1,17 +1,19 @@
 {% load static %}{% comment %}Erklärfilm (landing/videos.py). Poster = sichtbarer Zustand ohne JS und bei prefers-reduced-motion;
 js/video.js startet den stummen Loop erst im Viewport und bietet Pause/Abspielen (WCAG 2.2.2).
-Kein Film im LCP-Bereich: der Block steht weit unter dem Seitenkopf.{% endcomment %}
+Kein Film im LCP-Bereich und nie als Hintergrund: der Block steht unter dem Seitenkopf (Startseite: im Wegweiser).
+WebM (VP9) zuerst, MP4 (H.264) als Rückfall; beide ohne Tonspur. `unterschrift_zusatz` (optional): Ortsbezug.{% endcomment %}
 <figure class="vid {{ video.klasse }}">
   <div class="vid-rahmen">
     <video class="vid-el" playsinline muted loop preload="none" width="{{ video.breite }}" height="{{ video.hoehe }}"
            poster="{% static video.poster %}" aria-label="{{ video.aria }}" data-vid>
-      <source src="{% static video.datei %}" type="video/mp4">
+      {% if video.webm %}<source src="{% static video.webm %}" type="video/webm">
+      {% endif %}<source src="{% static video.datei %}" type="video/mp4">
     </video>
     <button type="button" class="vid-knopf" data-vid-knopf aria-pressed="false" hidden>
       <span class="vid-knopf-t">Pausieren</span>
     </button>
   </div>
-  <figcaption class="vid-unter">{{ video.unterschrift }}</figcaption>
+  <figcaption class="vid-unter"><span>{% if unterschrift_zusatz and video.unterschrift_kopf %}{{ video.unterschrift_kopf }} · {{ unterschrift_zusatz }} · {{ video.unterschrift_dauer }}{% else %}{{ video.unterschrift }}{% endif %}</span></figcaption>
   {% if video_transkript %}<details class="vid-text">
     <summary>Text zum Film</summary>
     <p>{% for satz in video_transkript %}{{ satz }}{% if not forloop.last %} {% endif %}{% endfor %}</p>

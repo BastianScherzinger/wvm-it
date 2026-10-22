@@ -46,10 +46,10 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
 
 <section class="section">
   <div class="wrap sp-wrap">
-    {% comment %}Optik der Ortsseite (12.10.2026, Punkt 22): Einleitung und Wirtschaft links, ein vorhandenes
-    Foto (static/img, kein neues Bild) rechts; direkt danach ein Zwischen-Rückruf. Die Texte sind
-    unverändert (Inhalt gehört Strang 2).{% endcomment %}
-    <div class="rg-eroeffnung">
+    {% comment %}Optik der Ortsseite (12.10.2026, Punkt 22): Einleitung und Wirtschaft links, rechts seit
+    Design-Studio Runde 1 (22.10.2026) der stumme Fernwartungsfilm statt des KI-Fotos (nur DE, Unterschrift
+    mit Ort); EN/RO einspaltig. Direkt danach ein Zwischen-Rückruf. Texte unverändert.{% endcomment %}
+    <div class="rg-eroeffnung{% if not video_fernwartung %} rg-eroeffnung-ohne{% endif %}">
       <div class="rg-eroeffnung-text">
         <p class="sp-intro" data-reveal>{{ region.intro|safe }}</p>
         <p class="sp-intro" data-reveal>{{ region.wirtschaft|safe }}</p>
@@ -59,7 +59,7 @@ Regionsseite haben kann — und der Unterschied zu einer Doorway-Page.
         </p>
         {% endif %}
       </div>
-      <img class="rg-foto" src="{% static 'img/foto_vorort_480.webp' %}" srcset="{% static 'img/foto_vorort_480.webp' %} 480w, {% static 'img/foto_vorort_800.webp' %} 800w" sizes="(max-width:900px) 100vw, 360px" width="480" height="320" alt="" loading="lazy" decoding="async">
+      {% if video_fernwartung %}<div class="rg-film">{% include 'video_block.html' with video=video_fernwartung unterschrift_zusatz=video_ort %}</div>{% endif %}
     </div>
 
     <div class="rg-band" data-reveal>

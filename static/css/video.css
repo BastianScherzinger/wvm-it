@@ -1,15 +1,16 @@
 /* Erklärfilme (Runde 4, 14./15.10.2026). Nur vorhandene Tokens; Seitenverhältnis fest, damit kein Layoutsprung entsteht.
-   Karte: abgerundet, Schatten im Seitenstil (--shadow-lg), Beschriftung darunter. Am Handy volle Spaltenbreite. */
+   Karte: Radius 12 px (Design-Studio Runde 1, 22.10.2026: sachlich statt Pille), Schatten im Seitenstil (--shadow-lg),
+   Beschriftung darunter. Am Handy volle Spaltenbreite. */
 .vid{margin:32px 0;max-width:100%}
-.vid-rahmen{position:relative;border:1px solid var(--line-2);border-radius:20px;overflow:hidden;background:#0b1116;line-height:0;
+.vid-rahmen{position:relative;border:1px solid var(--line-2);border-radius:12px;overflow:hidden;background:#0b1116;line-height:0;
   box-shadow:var(--shadow-lg);isolation:isolate}
 .vid-quer{max-width:880px}
 .vid-quer .vid-rahmen{aspect-ratio:16/9}
 .vid-hoch{max-width:320px}
 .vid-hoch .vid-rahmen{aspect-ratio:9/16}
 .vid-el{display:block;width:100%;height:100%;object-fit:cover;background:#0b1116}
-.vid-unter{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:14px 2px 0;font-size:14px;line-height:1.45;color:var(--ink-soft)}
-.vid-unter::before{content:"";flex:none;width:22px;height:2px;border-radius:1px;background:var(--accent2)}
+.vid-unter{display:flex;align-items:baseline;gap:10px;margin:14px 2px 0;font-size:14px;line-height:1.45;color:var(--ink-soft)}
+.vid-unter::before{content:"";flex:none;width:22px;height:2px;border-radius:1px;background:var(--accent2);align-self:flex-start;margin-top:.7em}
 .vid-knopf{position:absolute;right:12px;bottom:12px;font:600 13px/1 var(--sans);color:#f2f6f9;
   background:rgba(11,17,22,.78);border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:9px 14px;min-height:40px;cursor:pointer;
   opacity:.9;transition:opacity .2s,background .2s}
@@ -29,7 +30,7 @@
 }
 @media (max-width:899px){
   .vid-hoch{margin-left:auto;margin-right:auto;max-width:440px}
-  .vid-rahmen{border-radius:16px}
+  .vid-rahmen{border-radius:10px}
 }
 @media (max-width:480px){
   .vid-hoch{max-width:none}

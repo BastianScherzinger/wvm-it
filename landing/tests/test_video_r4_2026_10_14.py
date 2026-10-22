@@ -4,8 +4,10 @@
 
 Was nicht auseinanderlaufen darf:
 
-1. Die Dateien (MP4 und Poster) existieren unter static/video/ und bleiben unter 2 MB.
-2. Der Film steht nur dort, wo er hingehört; die Startseite bleibt videofrei (R4-A §4b).
+1. Die Dateien (MP4, WebM und Poster) existieren unter static/video/ und bleiben unter 2 MB.
+2. Der Film steht nur dort, wo er hingehört. Seit Design-Studio Runde 1 (22.10.2026, Bastian) steht der
+   Fernwartungsfilm auch auf der Startseite (im Wegweiser unter dem Hero, nie im Hero) und auf allen
+   deutschen Ortsseiten; die alte Regel „Startseite bleibt videofrei“ (R4-A §4b) ist bewusst aufgehoben.
 3. Das Tag trägt `playsinline muted loop preload="none"` und ein Poster; kein `autoplay`.
 4. `VideoObject` hat alle Pflichtfelder und steht nur auf den Seiten mit eingebettetem Film.
 5. Die Meldung im Film ist wörtlich die im Ratgeber.
@@ -40,7 +42,7 @@ def _video_tag(html):
 class DateienTest(SimpleTestCase):
     def test_dateien_vorhanden_und_klein(self):
         for schluessel, v in videos.VIDEOS.items():
-            for feld in ("datei", "poster"):
+            for feld in ("datei", "webm", "poster"):
                 pfad = STATIC / v[feld]
                 self.assertTrue(pfad.is_file(), f"{schluessel}: {v[feld]} fehlt")
                 self.assertLessEqual(pfad.stat().st_size, GRENZE, f"{schluessel}: {v[feld]} über 2 MB")
@@ -61,6 +63,17 @@ class SeitenTest(SimpleTestCase):
         self.assertIn("fernwartung-4-schritte.mp4", html)
         self.assertIn("js/video.js", html)
 
+    def test_webm_vor_mp4(self):
+        # Runde 1: VP9 zuerst (kleiner), H.264 als Rückfall
+        html = self.c.get("/it-hilfe/").content.decode()
+        self.assertLess(html.index('type="video/webm"'), html.index('type="video/mp4"'))
+
+    def test_it_hilfe_film_steht_oben(self):
+        # Runde 1: nach dem Antwortabsatz, vor dem ersten Abschnitt (vorher ≈ 5.000 px tief)
+        html = self.c.get("/it-hilfe/").content.decode()
+        self.assertGreater(html.index("<video"), html.index('class="antwort'))
+        self.assertLess(html.index("<video"), html.index('<h2 class="sp-h2"'))
+
     def test_ratgeber_hat_den_film(self):
         html = self.c.get("/aktuelles/microsoft-365-konto-gesperrt/").content.decode()
         tag = _video_tag(html)
@@ -75,15 +88,38 @@ class SeitenTest(SimpleTestCase):
         self.assertGreater(html.index("<video"), html.index('class="bt-abschnitt"'))
 
     def test_andere_seiten_ohne_film(self):
-        for pfad in ("/", "/aktuelles/outlook-email-geht-nicht/", "/en/it-hilfe/", "/ro/it-hilfe/", "/kosten/"):
+        # Runde 1: Startseite und deutsche Ortsseiten tragen jetzt den Film; EN/RO nicht (Texte im Film deutsch).
+        for pfad in ("/aktuelles/outlook-email-geht-nicht/", "/en/it-hilfe/", "/ro/it-hilfe/", "/kosten/",
+                     "/en/", "/ro/", "/en/it-service/wels/", "/ro/it-service/lenzing/", "/it-service/"):
             antwort = self.c.get(pfad)
             self.assertEqual(antwort.status_code, 200, pfad)
             self.assertNotIn("<video", antwort.content.decode(), pfad)
             self.assertNotIn('"VideoObject"', antwort.content.decode(), pfad)
 
-    def test_hero_der_startseite_bleibt_videofrei(self):
+    def test_startseite_film_steht_unter_dem_hero(self):
+        # Runde 1 (Bastian 22.10.2026): ein Film an der Stelle der KI-Fotos — im Wegweiser, nie im Hero.
         html = self.c.get("/").content.decode()
-        self.assertNotIn("fernwartung-4-schritte", html)
+        self.assertEqual(html.count("<video"), 1)
+        self.assertGreater(html.index("<video"), html.index('id="finder"'))
+        hero = re.search(r'<section class="hero.*?</section>', html, re.S)
+        self.assertTrue(hero)
+        self.assertNotIn("<video", hero.group(0))
+        tag = _video_tag(html)
+        for attr in ("playsinline", "muted", "loop", 'preload="none"', "poster="):
+            self.assertIn(attr, tag)
+        self.assertNotIn("autoplay", tag)
+
+    def test_ortsseiten_tragen_genau_einen_film(self):
+        from landing import regionen
+        for r in regionen.REGIONEN:
+            with self.subTest(ort=r["slug"]):
+                html = self.c.get(f"/it-service/{r['slug']}/").content.decode()
+                self.assertEqual(html.count("<video"), 1)
+                tag = _video_tag(html)
+                for attr in ("muted", "poster=", 'preload="none"'):
+                    self.assertIn(attr, tag)
+                self.assertIn(f"auch in {r['ort']}", html)
+                self.assertNotIn("foto_vorort", html)
 
 
 class SchemaTest(SimpleTestCase):
@@ -94,7 +130,8 @@ class SchemaTest(SimpleTestCase):
         return [k for k in _json_ld(html) if k.get("@type") == "VideoObject"]
 
     def test_videoobject_vollstaendig(self):
-        for pfad, schluessel in (("/it-hilfe/", "fernwartung"),
+        for pfad, schluessel in (("/it-hilfe/", "fernwartung"), ("/", "fernwartung"),
+                                 ("/it-service/wels/", "fernwartung"),
                                  ("/aktuelles/microsoft-365-konto-gesperrt/", "konto-gesperrt")):
             knoten = self._knoten(pfad)
             self.assertEqual(len(knoten), 1, pfad)
@@ -137,11 +174,24 @@ class StartVerhaltenTest(SimpleTestCase):
         self.assertIn("prefers-reduced-motion", js)
 
     def test_filmlaengen_und_ohne_alte_zeit(self):
-        # Fassung 3 (15.10. abends): Fernwartung 15 s, Microsoft 365 27 s
-        self.assertEqual(videos.VIDEOS["fernwartung"]["sekunden"], 15)
-        self.assertEqual(videos.VIDEOS["konto-gesperrt"]["sekunden"], 27)
+        # Fassung 4 web (22.10.2026, ffprobe): Fernwartung 25,3 s, Microsoft 365 31,3 s
+        self.assertEqual(videos.VIDEOS["fernwartung"]["sekunden"], 25)
+        self.assertEqual(videos.VIDEOS["konto-gesperrt"]["sekunden"], 31)
         for v in videos.VIDEOS.values():
             self.assertIn(f"{v['sekunden']} Sekunden", v["unterschrift"])
             for feld in ("beschreibung", "aria"):
                 self.assertNotIn("9–18", v[feld])
                 self.assertNotIn("24/7", v[feld])
+
+
+class VideoSitemapTest(SimpleTestCase):
+    """Runde 1: die Video-Sitemap nennt genau die Seiten, auf denen der Film steht."""
+
+    def test_startseite_und_ortsseiten_in_der_video_sitemap(self):
+        from landing import regionen
+        xml = _util.client().get("/sitemap-video.xml").content.decode()
+        self.assertIn("/</loc><video:video>", xml)
+        for r in regionen.REGIONEN:
+            self.assertIn(f"/it-service/{r['slug']}/</loc>", xml)
+        self.assertEqual(xml.count("<video:video>"), 3 + len(regionen.REGIONEN))
+        self.assertNotIn("/en/", xml)

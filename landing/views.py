@@ -355,34 +355,47 @@ def _startpakete(lang):
 # sagen; hier stehen die Wege, die sie danach gehen wollen — einschließlich der
 # beiden, die nicht zu einer Leistungsseite führen (Notfall und Preis).
 FINDER = [
-    {"id": "notfall", "bild": "img/foto_notfall.webp", "icon": "bolt", "route": "notfall", "dringend": True},
+    {"id": "notfall", "route": "notfall", "dringend": True},
     # Seit 24.09.2026 der zweite Weg: ein einzelnes Problem, ohne Vertrag. Er
     # ersetzt den Konfigurator, der weiter in Kopfzeile und Fusszeile steht —
-    # sechs Karten bleiben sechs, das Raster bleibt, wie es gemessen ist (BF26).
-    {"id": "hilfe", "bild": "img/foto_hilfe.webp", "icon": "phone", "route": "it_hilfe"},
-    {"id": "betreuung", "bild": "img/foto_betreuung.webp", "icon": "care", "route": "leistung", "slug": "edv-it-betreuung"},
+    # sechs Wege bleiben sechs (BF26).
+    {"id": "hilfe", "route": "it_hilfe", "preis": "it_support"},  # = _HILFE_STUNDE
+    {"id": "betreuung", "route": "leistung", "slug": "edv-it-betreuung", "preis": "it_betreuung"},
     # Design B1 (§2.4, §6 K1-2, 25.09.2026): "preis" (→ Rechner) ersetzt durch
-    # "einrichten" (→ Festpreise) — der Rechner doppelte sonst Block 6. Der
-    # Kostenrechner bleibt über Block 6 und den Kopf erreichbar.
-    {"id": "einrichten", "bild": "img/foto_einrichten.webp", "icon": "monitor", "route": "einrichtungen"},
-    {"id": "web", "bild": "img/foto_web.webp", "icon": "web", "route": "leistung", "slug": "webseite-erstellen"},
-    {"id": "branche", "bild": "img/foto_branche.webp", "icon": "consulting", "route": "branchen"},
+    # "einrichten" (→ Festpreise) — der Rechner doppelte sonst Block 6.
+    {"id": "einrichten", "route": "einrichtungen", "preis": "arbeitsplatz"},
+    {"id": "web", "route": "leistung", "slug": "webseite-erstellen", "preis": "onepager"},
+    {"id": "branche", "route": "branchen"},
 ]
+
+# Design-Studio Runde 1 (22.10.2026): Die sechs KI-Fotokarten sind raus. Der Wegweiser ist ein
+# Verzeichnis (Titel, ein Satz, Preisanker in Mono aus ANGEBOT_GROUPS) neben dem stummen
+# Fernwartungsfilm. Umschalter für Bastians Karte `ds-wegweiser-ohne-fotos`:
+#   "verzeichnis" (Option a, empfohlen): Film links (7/12), Verzeichnis rechts (5/12), am Handy untereinander.
+#   "karten"      (Option b): Film darüber in voller Breite (max. 880 px), darunter die bisherige
+#                 zweispaltige Liste ohne Bild.
+# Umgebungsvariable WEGWEISER_FORM überschreibt den Standard (nur für Aufnahmen/Abnahme).
+WEGWEISER_FORM = os.environ.get("WEGWEISER_FORM", "verzeichnis").strip().lower()
+if WEGWEISER_FORM not in ("verzeichnis", "karten"):
+    WEGWEISER_FORM = "verzeichnis"
 
 
 def _finder(lang):
-    """Die sechs Einstiege mit Text und fertiger URL."""
-    texte = i18n.get_pack(lang).get("finder", {}).get("wege", {})
+    """Die sechs Einstiege mit Text, fertiger URL und – wo es einen gibt – Preisanker.
+
+    Der Preisanker kommt ausschließlich aus ANGEBOT_GROUPS (`_make_price_label`), wie überall."""
+    pack = i18n.get_pack(lang)
+    texte = pack.get("finder", {}).get("wege", {})
+    words = pack.get("catalog_words", {})
     raus = []
     for eintrag in FINDER:
         if eintrag["route"] == "leistung":
             url = reverse("leistung", kwargs={"slug": eintrag["slug"]})
         else:
             url = reverse(eintrag["route"])
-        # Upgrade 01.10.2026: jede Karte trägt ein Foto (Fassungen _480/_800
-        # werden abgeleitet, siehe _mit_bildvarianten).
-        eintrag = _mit_bildvarianten([eintrag], "bild", (480, 800))[0]
-        raus.append({**eintrag, "url": url,
+        preis = (_make_price_label(_ANGEBOT_INDEX[eintrag["preis"]], words)
+                 if eintrag.get("preis") else "")
+        raus.append({**eintrag, "url": url, "preis_label": preis,
                      "h": texte.get(eintrag["id"], {}).get("h", ""),
                      "t": texte.get(eintrag["id"], {}).get("t", "")})
     return raus
@@ -2564,7 +2577,8 @@ def _structured_data(c, lang, *, mit_katalog=True):
                            "Veranstaltungstechnik"],
         "url": f"{base}/",
         "logo": f"{base}{c.get('logo_mark', '')}",
-        "image": f"{base}{c.get('hero_bg', '')}",
+        # Runde 1 (22.10.2026): Vorschaubild ohne KI (Florins Porträt), nicht mehr hero_bg.
+        "image": f"{base}{c.get('og_standard', '')}",
         "telephone": c.get("telefon", ""),
         "email": c.get("email", ""),
         # Aus dem Katalog, nicht aus content.json (EIG12, 25.09.2026): Hier stand
@@ -2789,8 +2803,20 @@ def index(request):
                 kontakt_werte = {feld: _feld(request, feld) for feld in
                                  ("name", "email", "telefon", "budget", "nachricht")}
     lang = get_language()
+    # Design-Studio Runde 1 (22.10.2026, Bastian): der stumme Fernwartungsfilm steht im Wegweiser
+    # an der Stelle der KI-Fotos — unter dem Hero, nie als Hintergrund. Nur Deutsch, weil die
+    # Texte im Film eingebrannt sind (wie auf /it-hilfe/); EN/RO zeigen das Verzeichnis allein.
+    film = videos_modul.video("fernwartung") if lang == "de" else None
+    schema = _startseiten_schema(c, lang)
+    if film:
+        base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
+        schema = _mit_video(schema, videos_modul.schema_knoten(
+            base, "fernwartung", "/", settings.STATIC_URL))
     return render(request, "index.html", {
         "partner_domaintechnik_url": PARTNER_DOMAINTECHNIK_URL,
+        "video_fernwartung": film,
+        "video_transkript": videos_modul.transkript_saetze(film),
+        "wegweiser_form": WEGWEISER_FORM,
         "c": c, "sent": sent, "news_sent": news_sent,
         "news_fehler": news_fehler,
         # Bremse getroffen (EIG239/251): eigene Meldung statt „bitte prüfen“.
@@ -2837,7 +2863,7 @@ def index(request):
         "kr_saetze": _rechner_saetze(),
         "kr_werte": _rechner_werte(QueryDict("")),
         "kr_e": _rechner_rechnen(_rechner_werte(QueryDict("")), lang),
-        "structured_data": _startseiten_schema(c, lang),
+        "structured_data": schema,
     })
 
 
@@ -3101,11 +3127,11 @@ def _webpage_knoten(base, lang, url, breadcrumb, speakable=True, seitentyp="WebP
 
 
 def _artikel_bild(base):
-    """Das Bild der `Article`-Knoten: das vorhandene Titelbild der Seite (`hero_bg`).
+    """Das Bild der `Article`-Knoten: das Standard-Vorschaubild (`og_standard`, seit 22.10.2026 statt `hero_bg`).
 
     Google verlangt für Artikel-Rich-Results ein Bild (Analyse 12.10.2026, K3); eigene
     Bilder je Artikel gibt es nicht, und eines zu erfinden wäre mehr als die Lücke wert."""
-    return f"{base}{_content().get('hero_bg', '')}"
+    return f"{base}{_content().get('og_standard', '')}"
 
 
 def _ratgeber_artikel(base, pfad, *, titel, beschreibung, worte=0, sprache="de-AT"):
@@ -4521,8 +4547,22 @@ def region_seite(request, slug):
             "billingDuration": 1},
     }
     schwerpunkt = leistungen.NACH_SLUG.get(eintrag.get("schwerpunkt", ""))
+    # Design-Studio Runde 1 (22.10.2026): Fernwartungsfilm statt KI-Foto neben der Einleitung,
+    # Unterschrift mit Ortsbezug (`seite.vid_ort`). Nur Deutsch (eingebrannte Texte); EN/RO ohne Bild.
+    film = videos_modul.video("fernwartung") if lang == "de" else None
+    schema = _seiten_schema(
+        c, lang, service=service, faq=region.get("faq") or [], faq_id=pfad,
+        breadcrumb=_breadcrumb(base, [
+            (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen")),
+            (region.get("ort", slug), pfad)]))
+    if film:
+        schema = _mit_video(schema, videos_modul.schema_knoten(
+            base, "fernwartung", pfad, settings.STATIC_URL))
     return render(request, "region.html", {
         "seiten_stand": _seiten_stand(request.path, lang),
+        "video_fernwartung": film,
+        "video_transkript": videos_modul.transkript_saetze(film),
+        "video_ort": pack["seite"].get("vid_ort", "").replace("{ort}", region.get("ort", "")),
         "c": c, "region": region, "ortfrage": _ortfrage(eintrag, region, pack),
         "weiter_satz": _weiter_satz(pack, "rg_weiter", region.get("ort", "")),
         "schwerpunkt": _leistung_daten(schwerpunkt, lang) if schwerpunkt else None,
@@ -4538,11 +4578,7 @@ def region_seite(request, slug):
         # es ein Stichpunkt ohne Ziel.
         "einrichtungen": [_einrichtung_daten(e, lang)
                           for e in einrichtungen.EINRICHTUNGEN],
-        "structured_data": _seiten_schema(
-            c, lang, service=service, faq=region.get("faq") or [], faq_id=pfad,
-            breadcrumb=_breadcrumb(base, [
-                (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen")),
-                (region.get("ort", slug), pfad)])),
+        "structured_data": schema,
     })
 
 
@@ -5897,7 +5933,9 @@ def _sitemap_klasse(pfad):
 # Seite dasselbe Markenzeichen steht, sagt einer Bildersuche nichts — sie macht
 # die Datei nur groesser und die Angabe wertlos.
 SITEMAP_BILDER = {
-    "/": ["img/hero_bg.jpg", "img/florin.jpg", "img/ref_ruempelwerk.webp",
+    # Runde 1 (22.10.2026): hero_bg (KI-Bild, nicht sichtbar) raus. ref_smarthome/konferenz/buehne
+    # stehen nicht auf der Startseite – Altlast, entfällt mit Karte ds-altlasten-raus.
+    "/": ["img/florin.jpg", "img/ref_ruempelwerk.webp",
           "img/ref_smarthome.webp", "img/ref_konferenz.webp", "img/ref_buehne.webp"],
     "/referenzen/": ["img/ref_ruempelwerk.webp"],
     "/ueber-uns/": ["img/florin.jpg"],
@@ -5992,8 +6030,16 @@ def sitemap_segment(request, klasse):
 
 
 # Video-Sitemap: welcher Film auf welcher Seite eingebettet ist (nur Deutsch, siehe videos.py).
-VIDEO_SEITEN = (("fernwartung", "/it-hilfe/"),
+# Design-Studio Runde 1 (22.10.2026): dazu die Startseite und alle deutschen Ortsseiten.
+VIDEO_SEITEN = (("fernwartung", "/"),
+                ("fernwartung", "/it-hilfe/"),
                 ("konto-gesperrt", "/aktuelles/microsoft-365-konto-gesperrt/"))
+
+
+def _video_seiten():
+    """VIDEO_SEITEN plus je deutsche Ortsseite der Fernwartungsfilm (eine Quelle: regionen.REGIONEN)."""
+    orte = tuple(("fernwartung", f"/it-service/{r['slug']}/") for r in regionen.REGIONEN)
+    return VIDEO_SEITEN + orte
 
 
 @_maschinenantwort(120)
@@ -6007,7 +6053,7 @@ def sitemap_video(request):
     base = _sitemap_basis(request)
     statisch = settings.STATIC_URL
     eintraege = []
-    for schluessel, pfad in VIDEO_SEITEN:
+    for schluessel, pfad in _video_seiten():
         v = videos_modul.video(schluessel)
         eintraege.append(
             f"<url><loc>{base}{pfad}</loc><video:video>"
