@@ -2811,7 +2811,7 @@ def index(request):
     if film:
         base = (c.get("wvm_url") or "").rstrip("/") or "https://www.wvm-it.tech"
         schema = _mit_video(schema, videos_modul.schema_knoten(
-            base, "fernwartung", "/", settings.STATIC_URL))
+            base, "fernwartung", "/", settings.STATIC_URL, startseite=True))
     return render(request, "index.html", {
         "partner_domaintechnik_url": PARTNER_DOMAINTECHNIK_URL,
         "video_fernwartung": film,
@@ -4557,7 +4557,7 @@ def region_seite(request, slug):
             (region.get("ort", slug), pfad)]))
     if film:
         schema = _mit_video(schema, videos_modul.schema_knoten(
-            base, "fernwartung", pfad, settings.STATIC_URL))
+            base, "fernwartung", pfad, settings.STATIC_URL, ort=region.get("ort", slug)))
     return render(request, "region.html", {
         "seiten_stand": _seiten_stand(request.path, lang),
         "video_fernwartung": film,
@@ -6029,17 +6029,20 @@ def sitemap_segment(request, klasse):
     return HttpResponse(xml, content_type="application/xml; charset=utf-8")
 
 
-# Video-Sitemap: welcher Film auf welcher Seite eingebettet ist (nur Deutsch, siehe videos.py).
-# Design-Studio Runde 1 (22.10.2026): dazu die Startseite und alle deutschen Ortsseiten.
-VIDEO_SEITEN = (("fernwartung", "/"),
-                ("fernwartung", "/it-hilfe/"),
+# Video-Sitemap: nur die Seiten, auf denen der Film der Hauptinhalt ist (nur Deutsch, siehe videos.py).
+# Google (developers.google.com/search/docs/appearance/video): ein Video wird nur über eine
+# „Watch page“ indexiert, deren Hauptzweck der Film ist; auf Seiten, wo er Beiwerk ist, bleibt er
+# Bild-/Textergebnis mit VideoObject. Darum stehen hier /it-hilfe/ (Fernwartungsfilm) und der
+# Ratgeber „Konto gesperrt“ (Film = die drei Schritte des Ratgebers). Startseite und die 20 Ortsseiten
+# tragen VideoObject mit eigener Beschreibung, aber keinen Sitemap-Eintrag — derselbe Film unter
+# 22 Adressen würde sich nur selbst Konkurrenz machen (Runde 23.10.2026).
+VIDEO_SEITEN = (("fernwartung", "/it-hilfe/"),
                 ("konto-gesperrt", "/aktuelles/microsoft-365-konto-gesperrt/"))
 
 
 def _video_seiten():
-    """VIDEO_SEITEN plus je deutsche Ortsseite der Fernwartungsfilm (eine Quelle: regionen.REGIONEN)."""
-    orte = tuple(("fernwartung", f"/it-service/{r['slug']}/") for r in regionen.REGIONEN)
-    return VIDEO_SEITEN + orte
+    """Die Watch pages der Video-Sitemap."""
+    return VIDEO_SEITEN
 
 
 @_maschinenantwort(120)

@@ -187,11 +187,47 @@ class StartVerhaltenTest(SimpleTestCase):
 class VideoSitemapTest(SimpleTestCase):
     """Runde 1: die Video-Sitemap nennt genau die Seiten, auf denen der Film steht."""
 
-    def test_startseite_und_ortsseiten_in_der_video_sitemap(self):
-        from landing import regionen
+    def test_nur_watch_pages_in_der_video_sitemap(self):
+        """23.10.2026: Startseite und Ortsseiten tragen VideoObject, stehen aber nicht in der Sitemap."""
         xml = _util.client().get("/sitemap-video.xml").content.decode()
-        self.assertIn("/</loc><video:video>", xml)
-        for r in regionen.REGIONEN:
-            self.assertIn(f"/it-service/{r['slug']}/</loc>", xml)
-        self.assertEqual(xml.count("<video:video>"), 3 + len(regionen.REGIONEN))
+        self.assertIn("/it-hilfe/</loc><video:video>", xml)
+        self.assertIn("/aktuelles/microsoft-365-konto-gesperrt/</loc>", xml)
+        self.assertNotIn("/it-service/", xml)
+        self.assertNotIn("/</loc><video:video>", xml.replace("/it-hilfe/</loc>", "").replace(
+            "/microsoft-365-konto-gesperrt/</loc>", ""))
+        self.assertEqual(xml.count("<video:video>"), 2)
         self.assertNotIn("/en/", xml)
+
+
+class JedeSeiteEigeneAngabenTest(SimpleTestCase):
+    """23.10.2026: Google will je Seite eigenen Namen und eigene Beschreibung des Videos."""
+
+    def _knoten(self, pfad):
+        html = _util.client().get(pfad).content.decode()
+        return [k for k in _json_ld(html) if k.get("@type") == "VideoObject"][0]
+
+    def test_ortsseiten_haben_eigene_beschreibung_mit_ort(self):
+        from landing import regionen
+        gesehen = set()
+        for r in regionen.REGIONEN:
+            k = self._knoten(f"/it-service/{r['slug']}/")
+            self.assertIn(r["ort"], k["name"], r["slug"])
+            self.assertIn(r["ort"], k["description"], r["slug"])
+            self.assertNotIn(k["description"], gesehen)
+            gesehen.add(k["description"])
+            self.assertLessEqual(len(k["description"]), 2048)
+        self.assertEqual(len(gesehen), len(regionen.REGIONEN))
+
+    def test_startseite_hilfe_und_ortsseite_unterscheiden_sich(self):
+        texte = {self._knoten(p)["description"] for p in ("/", "/it-hilfe/", "/it-service/wels/")}
+        namen = {self._knoten(p)["name"] for p in ("/", "/it-hilfe/", "/it-service/wels/")}
+        self.assertEqual(len(texte), 3)
+        self.assertEqual(len(namen), 3)
+
+    def test_transcript_steht_im_schema_und_sichtbar_auf_der_seite(self):
+        for pfad in ("/it-hilfe/", "/", "/aktuelles/microsoft-365-konto-gesperrt/"):
+            html = _util.client().get(pfad).content.decode()
+            k = [x for x in _json_ld(html) if x.get("@type") == "VideoObject"][0]
+            self.assertIn("Text zum Film", html, pfad)
+            for satz in k["transcript"].split(". ")[:2]:
+                self.assertIn(satz.rstrip(".").replace("€", "€")[:25], html, pfad)

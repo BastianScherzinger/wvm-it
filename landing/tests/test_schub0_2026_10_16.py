@@ -74,7 +74,7 @@ class VideoSchemaTest(SimpleTestCase):
         ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9",
               "v": "http://www.google.com/schemas/sitemap-video/1.1"}
         eintraege = wurzel.findall("s:url", ns)
-        # Design-Studio Runde 1 (22.10.2026): dazu Startseite und deutsche Ortsseiten (views._video_seiten)
+        # 23.10.2026: nur die Watch pages (views._video_seiten)
         from landing.views import _video_seiten
         locs = [e.find("s:loc", ns).text for e in eintraege]
         self.assertEqual(locs, [BASIS + p for _, p in _video_seiten()])

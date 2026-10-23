@@ -92,14 +92,37 @@ def video(schluessel):
     return VIDEOS.get(schluessel)
 
 
-def schema_knoten(base, schluessel, seiten_pfad, static_url="/static/"):
+def fassung(schluessel, ort=None, startseite=False):
+    """(Name, Beschreibung) des Films für eine bestimmte Seite.
+
+    Google verlangt je Seite eigene Angaben (developers.google.com/search/docs/appearance/video:
+    „name, description and thumbnailUrl should be unique“). Der Fernwartungsfilm steht auf 22 Seiten;
+    nur `/it-hilfe/` ist die Video-Seite (Film = Hauptinhalt), dort gilt der Grundtext. Auf den
+    Ortsseiten und der Startseite ist der Film Beiwerk — dort sagt die Beschreibung, wofür er an
+    dieser Stelle steht. Nichts davon behauptet mehr als der Film selbst."""
+    v = VIDEOS[schluessel]
+    if schluessel == "fernwartung" and ort:
+        return (f"Fernwartung für Betriebe in {ort}: so läuft sie ab",
+                f"Kurzfilm, 25 Sekunden, ohne Ton: So betreut WVM-IT aus Lenzing Betriebe in {ort} per "
+                "Fernwartung. Sie erlauben den Zugriff, sehen alles mit und können ihn jederzeit beenden. "
+                "95 € je Stunde netto. Erreichbar " + zeiten.LANG["de"] + ".")
+    if schluessel == "fernwartung" and startseite:
+        return ("WVM-IT: EDV-Betreuung per Fernwartung in 4 Schritten",
+                "Kurzfilm, 25 Sekunden, ohne Ton: Wie die EDV-Betreuung von WVM-IT per Fernwartung abläuft, "
+                "von der Freigabe über die Ursachensuche bis zur Lösung. Für Betriebe in ganz Österreich, "
+                "95 € je Stunde netto. Erreichbar " + zeiten.LANG["de"] + ".")
+    return v["name"], v["beschreibung"]
+
+
+def schema_knoten(base, schluessel, seiten_pfad, static_url="/static/", ort=None, startseite=False):
     """`VideoObject` (schema.org) für eine Seite, auf der der Film eingebettet ist."""
     v = VIDEOS[schluessel]
-    return {
+    name, beschreibung = fassung(schluessel, ort=ort, startseite=startseite)
+    knoten = {
         "@type": "VideoObject",
         "@id": f"{base}{seiten_pfad}#video",
-        "name": v["name"],
-        "description": v["beschreibung"],
+        "name": name,
+        "description": beschreibung,
         "thumbnailUrl": [f"{base}{static_url}{v['poster']}"],
         "uploadDate": UPLOAD_DATUM,
         "contentUrl": f"{base}{static_url}{v['datei']}",
@@ -109,3 +132,8 @@ def schema_knoten(base, schluessel, seiten_pfad, static_url="/static/"):
         "isFamilyFriendly": True,
         "publisher": {"@id": f"{base}/#business"},
     }
+    saetze = transkript_saetze(v)
+    if saetze:
+        # Der Text steht sichtbar unter „Text zum Film“ — Schema und Seite sagen dasselbe.
+        knoten["transcript"] = " ".join(saetze)
+    return knoten
