@@ -35,7 +35,7 @@ DE = {
             {"q": "Arbeiten Sie auch für Vereine und die Gemeinde?",
              "a": "Wir arbeiten für Betriebe, Praxen, Kanzleien und auch für Vereine mit fester Technik. Aufträge öffentlicher Stellen unterliegen oft eigenen Vergaberegeln. Bei solchen Anfragen klären wir zuerst, ob das für uns überhaupt passt."},
             {"q": "Können wir bei Ihnen im Büro vorbeikommen?",
-             "a": "Ja, nach Terminvereinbarung. So sind wir sicher da und haben Zeit für Sie. Ein spontanes Vorbeikommen ohne Anmeldung klappt nur, wenn wir gerade im Büro sind."},
+             "a": "Ja, nach Terminvereinbarung. So sind wir sicher da und haben Zeit für Sie. Ein spontanes Vorbeikommen ohne Termin klappt nur, wenn wir gerade im Büro sind."},
         ],
         "auftraege_h": "Beispiele, wie Anfragen aus Lenzing aussehen können",
         "auftraege": [
