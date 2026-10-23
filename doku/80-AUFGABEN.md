@@ -18,6 +18,7 @@ rest_bei: bastian, kunde
 - [x] Bilder: Bild-Sitemap bereinigt; `srcset`, Größenangaben, og:image gemessen und in Ordnung (PF16 erledigt)
 - [x] Handy 390 px: Fuß-Status sprengte die Seitenbreite (Cookie-Hinweis, Anruf-Leiste abgeschnitten); Leerraum über dem Film der Ortsseiten
 - [x] Geprüft, schon erledigt: GE15, IS11, BF21, IS21 (301 auf Deutsch), Antwortsatz EN/RO
+- [x] Schub 23.10. Ortsseiten (Gesamtliste B1/B2/C5): jede Ortsseite und der Hub `/it-service/` führen mit wechselnden Ankern auf `/kosten/` und `/it-hilfe/`, DE/EN/RO, Test `test_ortsseiten_ziele_2026_10_23.py`; bewusst nicht gebaut: Gemeinden-Link (L8) und Serverplatz Salzburg bis Florin bestätigt
 - [x] Prüfbefunde 23.10. (TS16, PR06, IS43, IS13, GE56, GE57, BF26, BF29 behoben; BT14, FO02, BF18 Messartefakt; IS42 zurückgestellt bis 28.10.), Details `docs/LOGBUCH.md`
 - [ ] Nach dem Deploy: Sitemaps und Adressen laut `doku/extern/INDEXIERUNG-2026-10-23.md` (Bastian/Claude, Search Console)
 - [ ] **Bei Bastian/Florin (Rechtstext, EIG349):** Der Cookie-Hinweis nennt noch den „3D-Assistenten“. Text nicht angefasst.

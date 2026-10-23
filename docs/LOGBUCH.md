@@ -7,6 +7,12 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 23.10.2026 (nachts) — Ortsseiten führen auf Preis und Fernwartung (gleicher Zweig, nicht gepusht)
+
+Die Analyse vom 16.10. sagt: Es fehlen keine Texte mehr, der Engpass ist der Rang (Ortsseiten Pos. 9 bis 53). Darum
+Verlinkung statt neuer Absätze: ein Satz mit zwei Textlinks (`/kosten/`, `/it-hilfe/`) auf allen 20 Ortsseiten und im Hub, in
+DE/EN/RO, mit drei wechselnden Ankern. Test `test_ortsseiten_ziele_2026_10_23.py`. Offen bei Florin: L8, Serverplatz, Netzwerkgeräte.
+
 ## 23.10.2026 (abends) — Prüfbefunde der Overview-Messung abgearbeitet (gleicher Zweig, nicht gepusht)
 
 Zwölf Befunde der Messung vom 23.10. gegen diesen Stand geprüft; Test je Befund in

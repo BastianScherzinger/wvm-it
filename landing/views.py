@@ -4460,6 +4460,19 @@ def _weiter_satz(pack, schluessel, ort=""):
     return satz.replace("{ort}", ort)
 
 
+def _ziel_satz(pack, schluessel, nr):
+    """Satz mit Links auf `/kosten/` und `/it-hilfe/` (Schub 23.10.2026, B1/B2/C5).
+
+    `nr` wählt die Ankervariante (Stelle des Ortes in `regionen.REGIONEN`), damit die Anker über die
+    Ortsseiten variieren statt 20-mal gleich zu lauten. Ohne Eintrag im Sprachpaket kommt nichts."""
+    satz = pack["seite"].get(f"{schluessel}_satz", "")
+    anker = pack["seite"].get(f"{schluessel}_anker", {})
+    ziele = {"kosten": reverse("kosten"), "hilfe": reverse("it_hilfe")}
+    for k, liste in anker.items():
+        satz = satz.replace("{" + k + "}", f'<a href="{ziele[k]}">{liste[nr % len(liste)]}</a>')
+    return satz
+
+
 def _ortfrage(eintrag, region, pack):
     """Frage-Überschrift mit Direktantwort für eine Ortsseite (Schub 2, A1/T8).
 
@@ -4565,6 +4578,7 @@ def region_seite(request, slug):
         "video_ort": pack["seite"].get("vid_ort", "").replace("{ort}", region.get("ort", "")),
         "c": c, "region": region, "ortfrage": _ortfrage(eintrag, region, pack),
         "weiter_satz": _weiter_satz(pack, "rg_weiter", region.get("ort", "")),
+        "ziel_satz": _ziel_satz(pack, "rg_ziel", regionen.REGIONEN.index(eintrag)),
         "schwerpunkt": _leistung_daten(schwerpunkt, lang) if schwerpunkt else None,
         "alle_regionen": [_region_daten(r, lang) for r in sorted(
             regionen.REGIONEN, key=lambda r: r["km"]) if r["slug"] != slug],
@@ -4591,6 +4605,7 @@ def regionen_hub(request):
     liste = [_region_daten(r, lang) for r in sorted(regionen.REGIONEN, key=lambda r: r["km"])]
     return render(request, "regionen.html", {
         "c": c, "regionen": liste,
+        "ziel_satz": _ziel_satz(pack, "rg_ziel", 1),
         "structured_data": _mit_itemlist(
             _seiten_schema(c, lang, breadcrumb=_breadcrumb(base, [
                 (pack["seite"].get("regionen_titel", "Regionen"), reverse("regionen"))])),

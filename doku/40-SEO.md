@@ -33,6 +33,14 @@ quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SE
 
 **Die vier Bereichswerte** (SEO — Technik, SEO — Inhalt, GEO — KI-Sichtbarkeit, Substanz & Reichweite) **stehen im Messblock von [00-STATUS.md](00-STATUS.md)** — hier standen sie bis zum 04.09.2026 als Satz und waren zwei Katalogstände später falsch. Sichtbarkeit selbst (Klicks, Positionen) misst keine der 244 Regeln — dafür ist die Search Console zuständig, siehe [50-LOCAL-SEO.md](50-LOCAL-SEO.md).
 
+## Ortsseiten: Link-Satz auf Preis und Fernwartung (23.10.2026, Gesamtliste B1/B2/C5)
+
+Jede der 20 Ortsseiten und der Hub tragen einen Satz mit zwei Textlinks, `/kosten/` und `/it-hilfe/` (`views._ziel_satz`,
+Texte `rg_ziel_satz`/`rg_ziel_anker` je Sprache). Der Anker wechselt je Ort (drei Varianten, Stelle in `regionen.REGIONEN`),
+statt 20-mal denselben zu setzen; die Ziele sind die Anfragen, auf denen die Ortsseiten schon stehen („edv fernwartung“,
+„it betreuung kosten“). Der Satz nennt keine Zahl. Nicht gebaut, weil Florin bestätigen muss: Gemeinden als Zielgruppe (L8),
+Serverplatz Salzburg, Netzwerkgeräte. Messen mit `02.11.` zusammen mit den Kern-Seiten.
+
 ## Video und Bild, Runde 23.10.2026
 
 Zweig `seo/2026-10-23-bilder-videos` (nicht gepusht), Details `docs/LOGBUCH.md`, Liste `extern/INDEXIERUNG-2026-10-23.md`.

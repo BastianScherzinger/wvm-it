@@ -590,6 +590,11 @@ PACK = {
         # werden in views._weiter_satz() durch Links ersetzt.
         "rg_weiter_satz": "Die laufende {edv} für Betriebe in {ort} und Umgebung übernimmt Florin Feier selbst; mehr {ueber}, Arbeitsbeispiele unter {ref}.",
         "rg_weiter_anker": {"edv": "EDV-Betreuung", "ueber": "über ihn", "ref": "Referenzen"},
+        # Schub 23.10.2026 (B1/B2/C5): Ortsseiten führen auf Preisseite und Fernwartungsseite; je Ort eine
+        # andere Ankervariante (views._ziel_satz), damit nicht 20-mal derselbe Anker steht.
+        "rg_ziel_satz": "Zum Weiterlesen: {kosten}, und für ein einzelnes Problem {hilfe}.",
+        "rg_ziel_anker": {"kosten": ["IT-Betreuung Kosten", "Was IT-Betreuung kostet", "Preise der EDV-Betreuung"],
+                          "hilfe": ["EDV-Fernwartung", "IT-Hilfe per Fernwartung", "Fernwartung ohne Vertrag"]},
         "lz_weiter_satz": "Wer hinter dieser Leistung steht, lesen Sie {ueber}; Arbeitsbeispiele finden Sie unter {ref}.",
         "lz_weiter_anker": {"ueber": "auf der Seite Über uns", "ref": "Referenzen"},
         "rg_quellen": "Quellen zu den Angaben über den Ort",
