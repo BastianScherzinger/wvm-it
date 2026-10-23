@@ -5575,6 +5575,11 @@ def llms_txt(request):
         *_llms_glossar(base),
         "\n## Fachbeiträge (Antwort jeweils im ersten Absatz)",
         *_llms_beitraege(base),
+        "\n## Kurzfilme (stumm, mit Text zum Film auf der Seite)",
+        *[f"- [{videos_modul.video(k)['name']}]({base}{pfad}): {videos_modul.video(k)['sekunden']} Sekunden, "
+          "eingeblendete Texte, der Wortlaut steht unter „Text zum Film“ auf der Seite. "
+          f"Videodatei und Metadaten: {base}/sitemap-video.xml"
+          for k, pfad in VIDEO_SEITEN],
         "\n## Webseiten, Hosting und E-Mail",
         f"- [Kostenlose Testseite]({base}/leistungen/webseite-erstellen/): Sie sehen vorher, was Sie "
         "bekommen; die kostenlose Testseite steht in etwa zehn Minuten, ohne Verpflichtung.",

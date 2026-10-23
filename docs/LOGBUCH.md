@@ -7,6 +7,29 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 23.10.2026 — Bilder und Videos fit für Google (Zweig `seo/2026-10-23-bilder-videos`)
+
+**Nicht gepusht.** Basis `0a71ef7`. Drei Commits, Tests 968 → 977, alle grün. Hergeleitet aus den Google-Richtlinien
+(developers.google.com/search/docs/appearance/video) und einer Messung aller 265 URLs.
+
+- **Video:** Google indexiert ein Video nur über eine „Watch page“, deren Hauptzweck der Film ist; wo er Beiwerk ist,
+  bleibt er Bild-/Textergebnis. Entscheidung: `/it-hilfe/` und der Ratgeber „Konto gesperrt“ sind Watch pages und stehen
+  allein in `/sitemap-video.xml` (vorher 22 Einträge mit demselben Film). Startseite und 20 Ortsseiten behalten
+  `VideoObject`, aber mit **eigenem** Namen und eigener Beschreibung (`videos.fassung()`, Ort im Text), weil Google je
+  Seite eigene Angaben verlangt. Neu: `transcript` im Schema (= sichtbarer „Text zum Film“), Film-Abschnitt in `llms.txt`.
+- **Bilder:** Messung: 475 `<img>`, alle mit `width`/`height`, alle mit `srcset` (PF16 war schon erledigt), og:image überall
+  1200 × 630 und ohne KI. Leere `alt` nur beim Porträt neben dem Namen (dekorativ, 436×). Korrigiert: Bild-Sitemap nannte
+  Bilder, die auf der Seite nicht (mehr) stehen. Neuer Test prüft, dass jedes Sitemap-Bild auf seiner Seite steht.
+- **Handy (Bastians Fund, 390 px):** `.sl-status` bekommt unter 420 px `nowrap` (Kopfleiste) und machte im Fuß die Seite 477 px
+  breit; Cookie-Hinweis und Anruf-Leiste (fixed) ragten dadurch über den Rand. Nur CSS. Außerdem 112 px Leerraum über dem
+  Film der Ortsseiten (`.section.rg-start`). Gemessen mit Playwright: `scrollWidth` 390.
+- **Geprüft, schon erledigt:** GE15 (alle 50 Einzelseiten Article), IS11 (233/234, Ausnahme gewollt), BF21 (0 doppelte Titel),
+  IS21 (EN/RO-Rechtstexte 301 auf Deutsch), Antwortsatz in EN/RO (alle 69 + 69 Seiten). Nichts davon musste neu gebaut werden.
+- **Offen, nicht angefasst:** Cookie-Banner nennt noch den „3D-Assistenten“ (Rechtstext-Punkt EIG349, Bastian/Florin).
+- Liste für die Search Console: `doku/extern/INDEXIERUNG-2026-10-23.md`.
+
+---
+
 ## 22.10.2026 — Design-Studio Runde 1: Filme statt KI-Bilder (Zweig `design/2026-10-22-videos`)
 
 **Nicht gemergt, nicht gepusht nach `main`.** Auftrag Bastian 22.10.: die ChatGPT-Fotos (seit 02.10.) raus, die Erklärfilme

@@ -1,7 +1,7 @@
 ---
 bereich: seo
 titel: SEO und GEO
-stand: 2026-10-03
+stand: 2026-10-23
 status: vollständig
 fortschritt: 97
 zusammenfassung: 02.10.2026, gegen origin/main und Live-Seite geprüft: alles Code-seitige ist auf main und live (234 URLs, Sitemap-Index mit vier Segmenten, JSON-LD mit geo, SearchAction und sameAs auf das verwaltete Google-Profil und den WKO-Eintrag, llms.txt, Feed). Fortschritt 97 = Mittel der Bereichswerte SEO — Technik 94, SEO — Inhalt 100, GEO 98 aus Lauf 1824 (02.10.2026). Von den früheren Offen-Punkten sind elf erledigt; drei bleiben, alle außerhalb des Codes: Indexierungsanträge in der Search Console (Bastian, ~10 je Property und Tag), IS11-Ausnahme Vöcklabruck nach ~23.10.2026, GEO-Messung im Oktober. Weitere sameAs-Profile (LinkedIn, Herold) liegen bei Florin (80-AUFGABEN.md, Beim Kunden). V1.0.1 (03.10.2026): llms.txt zieht Preise, Zählwörter und Erreichbarkeit aus den Listen und dem Katalog statt aus Festtext, die Suche kennt das Einrichten-Silo, die Open-Graph-Angaben sind je Adresse eindeutig (alle 108 Basispfade in drei Sprachen geprüft). Conversion-Runde 03.10.2026 (Zweig `seo/2026-10-03-conversion`, nicht gemergt): Startseiten-Title mit Oberösterreich, Fuß-Orte nach Messdaten, Antwortabsätze und Folgefragen der Ortsseiten, 301 /ratgeber/, Partnerlink Domaintechnik gekennzeichnet und nicht im Schema; Analyse, offene Punkte und Messplan in ../docs/SEO-CONVERSION-2026-10-03.md.
@@ -32,6 +32,20 @@ quellen: docs/AUSBAU-2026-09.md, docs/SEO-AUSBAU-3.md, docs/SEO-PLAN.md, docs/SE
 **Ausgangslage** (`../docs/seo/BASELINE.md`, Search Console, drei Monate bis 28.08.2026): **7 Klicks, 54 Impressionen, CTR 13 %, Ø Position 13,9, drei Suchanfragen — `wvm`, `wwwwvm`, `vm it`, alle Markenname, null Impressionen für irgendeine Leistung.** Index 6 von 6, Bing `site:` 6 Ergebnisse, CWV „nicht genügend Nutzungsdaten".
 
 **Die vier Bereichswerte** (SEO — Technik, SEO — Inhalt, GEO — KI-Sichtbarkeit, Substanz & Reichweite) **stehen im Messblock von [00-STATUS.md](00-STATUS.md)** — hier standen sie bis zum 04.09.2026 als Satz und waren zwei Katalogstände später falsch. Sichtbarkeit selbst (Klicks, Positionen) misst keine der 244 Regeln — dafür ist die Search Console zuständig, siehe [50-LOCAL-SEO.md](50-LOCAL-SEO.md).
+
+## Video und Bild, Runde 23.10.2026
+
+Zweig `seo/2026-10-23-bilder-videos` (nicht gepusht), Details `docs/LOGBUCH.md`, Liste `extern/INDEXIERUNG-2026-10-23.md`.
+
+- **Watch page oder Beiwerk?** Google: ein Video wird nur über eine Seite indexiert, deren Hauptzweck der Film ist. Das sind
+  `/it-hilfe/` (Fernwartungsfilm) und der Ratgeber „Microsoft-365-Konto gesperrt“. Nur sie stehen in `/sitemap-video.xml`.
+  Startseite und Ortsseiten zeigen den Film als Beiwerk: `VideoObject` ja (Rich-Kontext, Bildergebnis mit Video-Marke),
+  Sitemap-Eintrag nein — derselbe Film unter 22 Adressen konkurriert nur mit sich selbst.
+- **Je Seite eigene Angaben:** `videos.fassung()` liefert Name und Beschreibung für Startseite und je Ortsseite (mit Ort);
+  `thumbnailUrl` (1280 × 720 bzw. 720 × 1280, erreichbar), `uploadDate` mit Zeitzone, `duration`, `contentUrl`, `transcript`.
+- **Bilder:** alle `<img>` mit `width`/`height`/`srcset`, og:image 1200 × 630, Bild-Sitemap nur mit Bildern, die auf der Seite
+  stehen (`SITEMAP_BILDER`, Test `BilderSitemapTest`). Dateinamen (`florin.webp`, `ref_ruempelwerk.webp`) bleiben: Umbenennen
+  bricht URLs, die Google schon kennt, für keinen messbaren Gewinn.
 
 ## Search Console, 90 Tage bis 07.09.2026 — die erste Messung nach dem Ausbau
 

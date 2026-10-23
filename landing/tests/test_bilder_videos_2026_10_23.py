@@ -48,3 +48,12 @@ class OrtsseiteAbstandTest(SimpleTestCase):
         for r in regionen.REGIONEN[:5]:
             html = _util.client().get(f"/it-service/{r['slug']}/").content.decode()
             self.assertEqual(len(re.findall(r'<section class="section rg-start">', html)), 1, r["slug"])
+
+
+class LlmsKurzfilmeTest(SimpleTestCase):
+    def test_llms_nennt_beide_filme_mit_seite_und_sitemap(self):
+        txt = _util.client().get("/llms.txt").content.decode()
+        self.assertIn("## Kurzfilme", txt)
+        self.assertIn("https://www.wvm-it.tech/it-hilfe/", txt)
+        self.assertIn("/aktuelles/microsoft-365-konto-gesperrt/", txt)
+        self.assertIn("/sitemap-video.xml", txt)

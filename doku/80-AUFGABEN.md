@@ -1,7 +1,7 @@
 ---
 bereich: aufgaben
 titel: Aufgaben
-stand: 2026-10-03
+stand: 2026-10-23
 status: teilweise
 fortschritt: 80
 zusammenfassung: 03.10.2026 (V1.0.1), gegen den Leiterzweig auf origin/main, den Testlauf (685 Tests grün) und die Live-Seite geprüft: Alle 193 offenen eigenen Punkte (EIG) sind einzeln gegen Code und gerenderte Seite entschieden — 141 erledigt (98 davon mit Code- oder Textänderung, Commit `b080ad4`), 2 entfallen, 44 beim Kunden (je mit der Frage an Florin in der Ausnahmetabelle), 6 bei Bastian (EIG207, EIG247, EIG293, EIG294, EIG320, EIG372). Sechs erledigte Messpunkte sind aus der Ausnahmetabelle nach „Erledigt“ verschoben. Offen (2): Rechtstexte über den Generator nachziehen (Bastian) und die Entscheidung über 22 nicht gemergte Zweige. Beim Kunden (22): Angaben und Zugänge, die nur Florin liefern kann. Fortschritt 80 nach der Formel unter der Überschrift (Erledigt gegen Erledigt + Offen + Beim Kunden, auf Zehner gerundet); der Rest liegt bei Florin oder Bastian, nicht bei uns. Conversion-Runde 03.10.2026 (Zweig seo/2026-10-03-conversion, abgenommen, nicht gemergt): Nachtrag Nr. 19 bis 36 unter „Beim Kunden“ mit Wer und Anleitung, noch nicht in der Zählung oben; Gesamtbild ../docs/SEO-CONVERSION-2026-10-03.md.
@@ -11,6 +11,16 @@ rest_bei: bastian, kunde
 ---
 
 # Aufgaben
+
+## Neu 23.10.2026 (Bilder und Videos, Zweig `seo/2026-10-23-bilder-videos`, Details `docs/LOGBUCH.md`)
+
+- [x] Videos: eigene `VideoObject`-Angaben je Seite, `transcript`, Video-Sitemap nur mit Watch pages, `llms.txt`-Abschnitt Kurzfilme
+- [x] Bilder: Bild-Sitemap bereinigt; `srcset`, Größenangaben, og:image gemessen und in Ordnung (PF16 erledigt)
+- [x] Handy 390 px: Fuß-Status sprengte die Seitenbreite (Cookie-Hinweis, Anruf-Leiste abgeschnitten); Leerraum über dem Film der Ortsseiten
+- [x] Geprüft, schon erledigt: GE15, IS11, BF21, IS21 (301 auf Deutsch), Antwortsatz EN/RO
+- [ ] Nach dem Deploy: Sitemaps und Adressen laut `doku/extern/INDEXIERUNG-2026-10-23.md` (Bastian/Claude, Search Console)
+- [ ] **Bei Bastian/Florin (Rechtstext, EIG349):** Der Cookie-Hinweis nennt noch den „3D-Assistenten“. Text nicht angefasst.
+- [ ] Beim Deploy: `videos.UPLOAD_DATUM` auf den Veröffentlichungstag setzen (ab 26.10. Winterzeit `+01:00`)
 
 ## Neu 13.10.2026 (Komplettanalyse, Details in [extern/UMSETZUNG-2026-10-12-KOMPLETT.md](extern/UMSETZUNG-2026-10-12-KOMPLETT.md))
 
