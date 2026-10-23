@@ -5933,12 +5933,13 @@ def _sitemap_klasse(pfad):
 # Seite dasselbe Markenzeichen steht, sagt einer Bildersuche nichts — sie macht
 # die Datei nur groesser und die Angabe wertlos.
 SITEMAP_BILDER = {
-    # Runde 1 (22.10.2026): hero_bg (KI-Bild, nicht sichtbar) raus. ref_smarthome/konferenz/buehne
-    # stehen nicht auf der Startseite – Altlast, entfällt mit Karte ds-altlasten-raus.
-    "/": ["img/florin.jpg", "img/ref_ruempelwerk.webp",
-          "img/ref_smarthome.webp", "img/ref_konferenz.webp", "img/ref_buehne.webp"],
+    # 23.10.2026: nur Bilder, die auf der Seite wirklich stehen (Test `BilderSitemapTest`). Vorher
+    # standen auf der Startseite drei Referenzbilder, die dort nicht mehr vorkommen, und ein JPG,
+    # während die Seite die WebP-Fassung ausliefert. Das Logo der Webagentur (coop_webagentur) ist
+    # eine Marke, kein Inhaltsbild.
+    "/": ["img/florin.webp", "img/ref_ruempelwerk.webp"],
     "/referenzen/": ["img/ref_ruempelwerk.webp"],
-    "/ueber-uns/": ["img/florin.jpg"],
+    "/ueber-uns/": ["img/florin.webp"],
 }
 
 

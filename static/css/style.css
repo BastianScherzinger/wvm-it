@@ -2964,3 +2964,15 @@ td.web-partner{padding:8px 14px;margin:0}
   .rg-eroeffnung{grid-template-columns:1fr}
   .rg-film{order:-1}
 }
+
+/* 23.10.2026 (Handy 390 px): Die Statuszeile der Kopfleiste setzt unter 420 px `white-space:nowrap`.
+   Dieselbe Klasse `.sl-status` steht im Fuß; dort machte der Satz die Seite 477 px breit. Folge: der
+   Cookie-Hinweis und die Anruf-Leiste (fixed, volle Layoutbreite) ragten rechts über den sichtbaren Rand
+   („Alle akzeptieren“ und der WhatsApp-Knopf abgeschnitten). Im Fuß darf der Satz umbrechen, und die
+   Spalten des Fußkopfs dürfen unter ihre Inhaltsbreite schrumpfen. Nur Layout, keine Texte. */
+.foot-kopf>*{min-width:0}
+.foot-status .sl-status{white-space:normal;overflow:visible;text-overflow:clip}
+
+/* 23.10.2026: Ortsseite — zwischen Kopfkasten („So gemessen“) und Film/Einleitung standen 112 px
+   Standard-Abstand einer Sektion (am Handy eine große weiße Fläche). Obere Sektion enger, wie bei Artikeln. */
+.section.rg-start{padding-top:clamp(28px,4vw,48px)}
