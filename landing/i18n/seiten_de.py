@@ -353,7 +353,7 @@ SEITEN = {
         "titel": "Hosting & Wartung ab 15 €/Monat | WVM-IT",
         "desc": "Hosting mit SSL und täglichen Sicherungen ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr. Jetzt unverbindlich anfragen.",
         "h1": "Hosting und Wartung: damit die Seite auch läuft, wenn niemand hinsieht",
-        "kurz": "Hosting und Domain für Betriebe in Österreich von WVM-IT: eigenes Hosting mit SSL und täglichen Sicherungen ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat, Domain ab 15 € im Jahr — zusammen ab 54 € im Monat, dazu E-Mail mit Microsoft 365 zum Festpreis von 290 €. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
+        "kurz": "Hosting und Domain für Betriebe in Österreich von WVM-IT aus Lenzing: eigenes Hosting mit SSL und täglichen Sicherungen ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat, Domain ab 15 € im Jahr — zusammen ab 54 € im Monat, dazu E-Mail mit Microsoft 365 zum Festpreis von 290 €. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
         "intro": "Eine Webseite ist keine Anschaffung, sondern ein Betriebsmittel. Zertifikate laufen ab, Systeme brauchen Sicherheits-Updates, Kontaktformulare hören irgendwann still auf zu funktionieren. Das fällt selten sofort auf — meistens erst dann, wenn wochenlang keine Anfrage mehr kam und jemand nachsieht. Wartung ist die günstigste Versicherung gegen genau diese Wochen.",
         "problem_h": "Was ohne Wartung passiert",
         "probleme": [

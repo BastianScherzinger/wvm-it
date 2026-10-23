@@ -936,7 +936,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                'Meldepflichtig ist nur, was personenbezogene Daten betrifft, '
                                                'und dann binnen 72 Stunden.'},
  'email-postfach-gehackt': {'titel': 'E-Mail-Postfach gehackt: Erste Hilfe und Aufräumen',
-                            'meta_titel': 'E-Mail-Postfach gehackt: Erste Hilfe und Aufräumen | WVM-IT',
+                            'meta_titel': 'Postfach gehackt? Sofortmaßnahmen der Reihe nach | WVM-IT',
                             'desc': 'Postfach gehackt? Kennwort ändern, Weiterleitungsregeln löschen, '
                                     'Zwei-Faktor einschalten, Kontakte warnen: die Schritte der Reihe nach. '
                                     'Jetzt Hilfe holen.',

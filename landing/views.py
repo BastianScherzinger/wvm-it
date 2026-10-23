@@ -6065,7 +6065,7 @@ def sitemap_video(request):
     for schluessel, pfad in _video_seiten():
         v = videos_modul.video(schluessel)
         eintraege.append(
-            f"<url><loc>{base}{pfad}</loc><video:video>"
+            f"<url><loc>{base}{pfad}</loc><lastmod>{stand.datum(pfad)}</lastmod><video:video>"
             f"<video:thumbnail_loc>{base}{statisch}{v['poster']}</video:thumbnail_loc>"
             f"<video:title>{escape(v['name'])}</video:title>"
             f"<video:description>{escape(v['beschreibung'])}</video:description>"

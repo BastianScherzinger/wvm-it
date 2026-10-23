@@ -570,7 +570,7 @@ html:has(:target) .section ~ .section{content-visibility:visible!important}
      Rechner nicht am echten Fenster geprueft werden (Chrome laesst sich nicht unter
      1280 CSS-px verkleinern) — deshalb bewusst grosszuegig statt knapp. */
   .tool-tab{font-size:13.5px;padding:13px 5px;hyphens:auto}
-  .ang-item-grid{grid-template-columns:1fr}
+  .ang-item-grid{grid-template-columns:minmax(0,1fr)}
   .ang-menge{margin-top:9px}
   .ang-menge input{width:96px}
   .sp-einstieg-kopf{flex-direction:column;gap:4px}
@@ -620,7 +620,7 @@ html:has(:target) .section ~ .section{content-visibility:visible!important}
    mit Symbolkästchen und Schatten-Hopser). Zelle aus Zeile + optionalem
    Mengenfeld. Das Zahlenfeld steht ausserhalb des <label>, damit ein Klick
    hinein nicht die Auswahl umschaltet (06.09.2026). */
-.ang-zelle{display:flex;flex-direction:column}
+.ang-zelle{display:flex;flex-direction:column;min-width:0}
 .ang-menge{display:flex;align-items:center;gap:9px;margin:0 0 10px;padding:0 4px}
 .ang-menge label{font-size:12.5px;color:var(--ink-soft);font-weight:600;letter-spacing:.02em}
 .ang-menge-einheit{color:var(--ink-dim);font-weight:400}
@@ -725,7 +725,7 @@ html:has(:target) .section ~ .section{content-visibility:visible!important}
     border:1px solid var(--line-2);border-radius:var(--radius);padding:11px 13px;box-shadow:0 20px 50px -18px rgba(0,0,0,.8)}
 }
 @media (max-width:560px){
-  .ang-item-grid{grid-template-columns:1fr}
+  .ang-item-grid{grid-template-columns:minmax(0,1fr)}
   .ang-lead .f-row{grid-template-columns:1fr}
   .ang-promise{gap:8px}
 }
@@ -809,6 +809,7 @@ html:has(:target) .section ~ .section{content-visibility:visible!important}
 .ang-top-sec::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:none}
 .ang-top{display:grid;grid-template-columns:0.8fr 1.2fr;gap:clamp(26px,3.6vw,52px);align-items:start}
+.ang-top>*{min-width:0}
 .ang-top-copy{position:sticky;top:90px}
 .ang-top-copy h1{font-size:clamp(1.85rem,3.3vw,2.85rem);font-weight:700;letter-spacing:-.02em;line-height:1.05;max-width:14ch;
   color:var(--ink)}
@@ -826,7 +827,7 @@ html:has(:target) .section ~ .section{content-visibility:visible!important}
 .ang-top-config .ang-cart,.ang-top-config .ang-lead{background:var(--bg-2)}
 
 @media (max-width:980px){
-  .ang-top{grid-template-columns:1fr;gap:24px}
+  .ang-top{grid-template-columns:minmax(0,1fr);gap:24px}
   .ang-top-copy{position:static}
   .ang-top-copy h1{max-width:20ch}
 }
@@ -1500,6 +1501,7 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .sp-intro + .sp-intro{margin-top:1.15em}
 .sp-h2{font-family:var(--serif);font-size:clamp(1.32rem,2.4vw,1.8rem);font-weight:600;
   letter-spacing:-.022em;line-height:1.15;margin:clamp(40px,5vw,60px) 0 var(--s4)}
+.sp-main,.sp-aside{min-width:0}
 .sp-main > .sp-h2:first-of-type{margin-top:clamp(32px,4vw,48px)}
 .sp-liste{list-style:none;display:grid;gap:11px;margin:0;padding:0;max-width:68ch}
 /* Probleme bekommen einen Gedankenstrich statt eines Hakens , es sind Befunde,
@@ -1584,7 +1586,10 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .rt-body p{margin-bottom:var(--s4)}
 
 @media (max-width:1080px){
-  .sp-grid{grid-template-columns:1fr}
+  /* minmax(0,1fr): Eine Spur mit 1fr ist mindestens so breit wie ihr breitester Inhalt
+     (Tabelle, langes Wort) - bei 320 px liess die Reaktionszeiten-Tabelle auf /kontakt/
+     die Seite um 44 px ueberlaufen (BF26, 23.10.2026). */
+  .sp-grid{grid-template-columns:minmax(0,1fr)}
   .sp-aside{position:static;max-width:520px}
   .sp-top-grid{grid-template-columns:1fr;align-items:start}
   .lk-grid{grid-template-columns:repeat(2,1fr)}
@@ -1633,6 +1638,7 @@ label.fld-color{flex-direction:row;align-items:center;gap:10px}
 .rg-sw-a:focus-visible{outline:none}
 .rg-sw-a:focus-visible::after{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:3px}
 .rg-sw-link strong{display:block;font-size:17px;margin-bottom:4px}
+.rg-sw-link>span:not(.lk-ic):not(.ein-preis){min-width:0;overflow-wrap:anywhere}
 .rg-sw-t{display:block;font-size:14.5px;color:var(--ink-soft);line-height:1.65}
 .rg-sw-link:hover strong,.rg-sw-link:focus-within strong{color:var(--accent-ink)}
 

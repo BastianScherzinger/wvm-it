@@ -143,7 +143,7 @@ _DE = {
              "a": "Sicher ist es, wenn es vom Betriebsnetz getrennt ist. Hängen Gäste im selben Netz wie Kasse, Büro-PC und Kamera, kann jedes Handy dort theoretisch suchen, was erreichbar ist. Wir richten ein eigenes Gästenetz ein, das nur ins Internet führt, und prüfen, dass Kasse und Büro nicht darin erscheinen."},
             {"q": "Was tun wir, wenn wir schon auf einen Betrug hereingefallen sind?",
              "a": "Sofort die Bank anrufen, um die Überweisung zurückzuholen, und danach uns. Wir ändern Passwörter, prüfen, ob in den Postfächern Weiterleitungen eingerichtet wurden, und klären, was der Täter sehen konnte. Anzeige und Meldung an die Datenschutzbehörde sind Ihre Sache, wir liefern die technischen Fakten dazu."},
-            {"q": "Kommen Sie für Sicherheitsfragen nach Frankenmarkt?",
+            {"q": "Was kostet ein Einsatz in Frankenmarkt, und wann kommen Sie vorbei?",
              "a": "Die meisten Fragen klären wir per Fernwartung. Vor Ort sind wir für Firewall, Netzwerktrennung und Geräte, die man sehen muss. Die Strecke von Lenzing beträgt rund 20 Kilometer. Ein Einsatz kostet 120 € je Stunde zuzüglich Anfahrt, Fernwartung 95 € je Stunde ohne Anfahrt."},
         ],
         "auftraege_h": "Beispiele, wie Anfragen aus Frankenmarkt aussehen können",

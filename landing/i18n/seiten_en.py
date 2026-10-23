@@ -15,7 +15,7 @@ SEITEN = {
         "titel": "IT support for small businesses from €29/month | WVM-IT",
         "desc": "IT support for small businesses in Austria and Germany: managed IT services from €29 per workstation and month, remote support €95/hour. Request a quote.",
         "h1": "IT support for businesses without an IT department",
-        "kurz": "WVM-IT takes on the day-to-day IT of small and mid-sized businesses in Austria and Germany: workstations, servers, email, printers, updates and backups. Ongoing support costs from €29 per workstation and month, individual help without a contract from €95 per hour. We answer within 24 hours on working days and work mostly remotely — the route to you runs over a secured connection rather than the motorway.",
+        "kurz": "WVM-IT from Lenzing takes on the day-to-day IT of small and mid-sized businesses in Austria and Germany: workstations, servers, email, printers, updates and backups. Ongoing support costs from €29 per workstation and month, individual help without a contract from €95 per hour. We answer within 24 hours on working days and work mostly remotely — the route to you runs over a secured connection rather than the motorway.",
         "intro": "In most businesses under fifty staff there is no IT department. There is somebody who “knows a bit about computers” — and who actually has another job to do. As long as nothing happens, that works. It shows the moment the office printer stops while quotes have to go out, or when a program the whole company depends on refuses to start after a Windows update. That is the gap we close: you get a number, an email address and one contact who knows how your technology is put together.",
         "problem_h": "What goes wrong in small businesses without their own IT",
         "probleme": [
@@ -67,7 +67,7 @@ SEITEN = {
         "titel": "Server management & backup from €49/mo | WVM-IT",
         "desc": "Server monitoring from €89/month, verified backups from €49/month. We spot the failure before the business stops. Request a quote today.",
         "h1": "Server management and backups that hold when it matters",
-        "kurz": "WVM-IT monitors business servers automatically and runs backups so that they also work when it counts: backed up daily, every backup checked, the restore tested regularly. Server management costs from €89 per month, monitored backups from €49 per month. Everything is handled remotely across Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing monitors business servers automatically and runs backups so that they also work when it counts: backed up daily, every backup checked, the restore tested regularly. Server management costs from €89 per month, monitored backups from €49 per month. Everything is handled remotely across Austria and Germany.",
         "intro": "Almost every business has a backup. Considerably fewer know when it last ran, and hardly any have ever tried to get something back out of it. That becomes apparent exactly once — on the day it matters. A backup that has never been restored is not a backup, it is a hope. So we treat it as a part of the business that needs checking, not as a setting that was switched on at some point. In that sense a backup is a verified copy of the data the business needs in order to keep working, kept separately from the server — verified meaning: every run is checked, and the restore is tested at regular intervals. A copy that sits on a disk in the same room and has never been restored meets neither condition, and is therefore not a backup.",
         "problem_h": "The four sentences that usually get expensive",
         "probleme": [
@@ -112,7 +112,7 @@ SEITEN = {
         "titel": "Network & Wi-Fi setup from €890 | WVM-IT",
         "desc": "Network and Wi-Fi surveyed, planned and installed — from €890, including workshops and multiple floors. Request a free quote now.",
         "h1": "A network and Wi-Fi that also works in the workshop",
-        "kurz": "WVM-IT plans, surveys and builds business networks: structured cabling, Wi-Fi with gap-free coverage, separate networks for guests and operations, firewall and VPN for access from outside. Setting up network and Wi-Fi costs from €890, firewall and VPN from €690. Planning happens remotely, building happens on site.",
+        "kurz": "WVM-IT from Lenzing plans, surveys and builds business networks: structured cabling, Wi-Fi with gap-free coverage, separate networks for guests and operations, firewall and VPN for access from outside. Setting up network and Wi-Fi costs from €890, firewall and VPN from €690. Planning happens remotely, building happens on site.",
         "intro": "Wi-Fi problems are almost always answered with another access point. Usually that makes it worse: two devices on the same channel interfere with each other, and the client attaches itself to the wrong one. A network that holds is not built from more hardware but from a survey, a plan and clean channel allocation. In workshops, older buildings and across several floors that is the difference between “it works” and “it works, except at the back on the left”.",
         "problem_h": "When a network needs replanning",
         "probleme": [
@@ -160,7 +160,7 @@ SEITEN = {
         "titel": "IT security check from €490 | WVM-IT",
         "desc": "IT security check from €490 with a written report and a list of actions. Firewall and VPN from €690. Request a quote today.",
         "h1": "IT security sized for a business, not for a corporation",
-        "kurz": "WVM-IT reviews the IT security of small and mid-sized businesses and implements the measures that genuinely help: permissions, passwords, firewall, VPN, updates, verified backups. The one-off IT security check costs from €490 and ends with a written report and a list of actions; firewall and VPN are set up from €690. Reviews and support are delivered remotely across Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing reviews the IT security of small and mid-sized businesses and implements the measures that genuinely help: permissions, passwords, firewall, VPN, updates, verified backups. The one-off IT security check costs from €490 and ends with a written report and a list of actions; firewall and VPN are set up from €690. Reviews and support are delivered remotely across Austria and Germany.",
         "intro": "Most damage in small businesses is not caused by a targeted attack but by everyday things: a password that works everywhere, the account of somebody who left long ago, a machine without updates, a backup that is worthless. You do not need a corporate security concept to fix that. You need somebody to look systematically once and then work through the points that actually prevent damage.",
         "problem_h": "What we find almost everywhere",
         "probleme": [
@@ -256,7 +256,7 @@ SEITEN = {
         "titel": "SEO support from €149/month | WVM-IT",
         "desc": "Get found on Google and in AI answers: SEO groundwork from €390, ongoing support from €149/month. Request a free quote now.",
         "h1": "SEO support: getting found by people who do not know you yet",
-        "kurz": "WVM-IT brings businesses forward on Google and in AI answers such as ChatGPT and Perplexity: technical foundations, one page per service, content that genuinely answers search questions, and monthly measurement. The one-off groundwork costs from €390, ongoing support from €149 per month. The work is location-independent for clients in Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing brings businesses forward on Google and in AI answers such as ChatGPT and Perplexity: technical foundations, one page per service, content that genuinely answers search questions, and monthly measurement. The one-off groundwork costs from €390, ongoing support from €149 per month. The work is location-independent for clients in Austria and Germany.",
         "intro": "The most common finding on small company sites is always the same: they are found — but only under their own company name. That is, by people who already know the company. For everybody who has a problem and searches for the solution, the site does not exist. The reason is rarely the technology. It is that every service sits in paragraphs on a single page, and Google cannot rank paragraphs, only pages.",
         "problem_h": "What it usually comes down to",
         "probleme": [
@@ -301,7 +301,7 @@ SEITEN = {
         "titel": "Google Ads management from €199/mo | WVM-IT",
         "desc": "Google Ads setup from €490, ongoing management from €199/month plus budget, with conversion tracking and a monthly report. Request a quote today.",
         "h1": "Google Ads that bring enquiries — not just clicks",
-        "kurz": "WVM-IT sets up Google Ads accounts and runs them: campaigns, search terms, ads, negative keywords and above all conversion tracking that actually works. Setup costs from €490, ongoing management from €199 per month plus your advertising budget. The work is location-independent for businesses in Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing sets up Google Ads accounts and runs them: campaigns, search terms, ads, negative keywords and above all conversion tracking that actually works. Setup costs from €490, ongoing management from €199 per month plus your advertising budget. The work is location-independent for businesses in Austria and Germany.",
         "intro": "Ads are the fastest route to enquiries — and the fastest way to burn money. The difference is almost never the ad itself but whether what comes out at the end is measured. Anybody counting only clicks is optimising for visits. Anybody measuring enquiries can switch off search terms that are expensive and bring nothing — and in practice that is most of them.",
         "problem_h": "What ails ad accounts",
         "probleme": [
@@ -346,7 +346,7 @@ SEITEN = {
         "titel": "Hosting & maintenance from €15/mo | WVM-IT",
         "desc": "Hosting with SSL and daily backups from €15/month, maintenance from €39/month, domain from €15/year. Request a free quote now.",
         "h1": "Hosting and maintenance: so the site runs when nobody is looking",
-        "kurz": "Hosting and domain for businesses in Austria from WVM-IT: our own hosting with SSL and daily backups from €15 per month, maintenance with updates and small changes from €39 per month, domain from €15 per year — together from €54 per month, plus email with Microsoft 365 set up for a fixed price of €290. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
+        "kurz": "Hosting and domain for businesses in Austria from WVM-IT in Lenzing: our own hosting with SSL and daily backups from €15 per month, maintenance with updates and small changes from €39 per month, domain from €15 per year — together from €54 per month, plus email with Microsoft 365 set up for a fixed price of €290. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
         "intro": "A website is not a purchase, it is a piece of operating equipment. Certificates expire, systems need security updates, contact forms eventually stop working quietly. That rarely shows immediately — usually only when no enquiry has arrived for weeks and somebody goes looking. Maintenance is the cheapest insurance against exactly those weeks.",
         "problem_h": "What happens without maintenance",
         "probleme": [
@@ -397,7 +397,7 @@ SEITEN = {
         "titel": "AI automation from €390 | WVM-IT",
         "desc": "Chatbots, WhatsApp and booking automation for businesses: booking from €390, chatbot from €690, CRM integration from €1,200. Request a quote.",
         "h1": "AI automation: let technology do the work that repeats",
-        "kurz": "WVM-IT builds automation for repetitive work in businesses: a chatbot that takes enquiries at night, booking and appointment flows, automatic replies by WhatsApp and email, and connections to existing systems. Booking automation costs from €390, an AI chatbot from €690, an integration with CRM or ERP from €1,200. Everything is delivered remotely across Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing builds automation for repetitive work in businesses: a chatbot that takes enquiries at night, booking and appointment flows, automatic replies by WhatsApp and email, and connections to existing systems. Booking automation costs from €390, an AI chatbot from €690, an integration with CRM or ERP from €1,200. Everything is delivered remotely across Austria and Germany.",
         "intro": "Automation pays off not where it looks impressive but where the same movement happens twenty times a day: answering the same question, entering the same appointment, writing the same confirmation. So we never start with the technology but with the question of which five minutes repeat most often. Everything else is a toy with an invoice attached. AI automation is not a product in its own right but a sequence: a program takes in a recurring task — the same question again, an appointment request, a confirmation — answers or forwards it, and files the result in the system people already work in. Whatever occurs only rarely, or has to be decided afresh each time, deliberately stays with a person.",
         "problem_h": "Where automation pays off",
         "probleme": [
@@ -449,7 +449,7 @@ SEITEN = {
         "titel": "Smart home with Loxone & KNX in Austria | WVM-IT",
         "desc": "Building automation with Loxone and KNX: lighting, heating, shading, access and security in one system. Request a free quote now.",
         "h1": "Building automation with Loxone and KNX",
-        "kurz": "WVM-IT plans, programmes and maintains building automation with Loxone and KNX: lighting, heating, shading, access, security and media technology in one system — KNX as a cross-vendor standard with more than 500 manufacturers, Loxone as a closed system from a single source. Installations of this kind are calculated per project and built on site — we quote after a short conversation and a survey, not before.",
+        "kurz": "WVM-IT from Lenzing plans, programmes and maintains building automation with Loxone and KNX: lighting, heating, shading, access, security and media technology in one system — KNX as a cross-vendor standard with more than 500 manufacturers, Loxone as a closed system from a single source. Installations of this kind are calculated per project and built on site — we quote after a short conversation and a survey, not before.",
         "intro": "In building automation the result is not decided by the hardware but by the programming. The same devices can produce a system nobody understands, which gets operated by hand again after the first summer — or one that simply does what you expect. So we plan the behaviour first and the parts list second.",
         "problem_h": "Where this pays off",
         "probleme": [
@@ -494,7 +494,7 @@ SEITEN = {
         "titel": "Conference room technology in Austria | WVM-IT",
         "desc": "Equipping meeting rooms: displays, cameras, microphones, sound and control at the push of a button. On-site from €120/hr. Request a quote.",
         "h1": "Meeting room technology that gets a meeting started on time",
-        "kurz": "WVM-IT equips meeting and training rooms with technology: displays, cameras, microphones, sound and a control system somebody who did not install it can also operate. A typical meeting room is finished in one to two days, provided the cabling is in place. Planning and calibration happen on site; on-site work is billed at €120 per hour plus travel, and we quote the project price after a site visit. For halls, stages and live events there's a dedicated page: Event technology.",
+        "kurz": "WVM-IT from Lenzing equips meeting and training rooms with technology: displays, cameras, microphones, sound and a control system somebody who did not install it can also operate. A typical meeting room is finished in one to two days, provided the cabling is in place. Planning and calibration happen on site; on-site work is billed at €120 per hour plus travel, and we quote the project price after a site visit. For halls, stages and live events there's a dedicated page: Event technology.",
         "intro": "The measure of conference technology is not what it can do but whether a meeting starts on time. Most rooms fail on the same small things: the wrong cable is on the table, the camera shows the wall, the other side cannot understand the sound. So we calibrate rooms and reduce operation to a single visible path — everything else disappears into the technology.",
         "problem_h": "The rooms we are talking about",
         "probleme": [
@@ -539,7 +539,7 @@ SEITEN = {
         "titel": "Video, sound & stage technology in Austria | WVM-IT",
         "desc": "Event technology for halls, clubs, municipalities and hotels: sound, light, video and stage. On-site from €120/hr. Request a quote.",
         "h1": "Video, sound and stage technology for halls and events",
-        "kurz": "WVM-IT plans, installs and supports event technology in Upper Austria and beyond: sound, light, video and stage technology for halls, clubhouses, community centres, hotels and company events. Fixed installations are quoted per project after a site visit; on-site work is billed at €120 per hour plus travel unless a fixed price is agreed. We reply to enquiries within 24 hours on working days.",
+        "kurz": "WVM-IT from Lenzing plans, installs and supports event technology in Upper Austria and beyond: sound, light, video and stage technology for halls, clubhouses, community centres, hotels and company events. Fixed installations are quoted per project after a site visit; on-site work is billed at €120 per hour plus travel unless a fixed price is agreed. We reply to enquiries within 24 hours on working days.",
         "intro": "In most halls there is technology somebody once set up and that nobody has really understood since. There are three remote controls, two of them without batteries, and a mixer that only one particular person is allowed to touch. As long as that person has time, it works. The evening it goes wrong is always the evening a hundred people are sitting in the room. We build systems somebody can operate the first time they see them — and document what is connected where.",
         "problem_h": "What usually holds a hall back",
         "probleme": [
@@ -589,7 +589,7 @@ SEITEN = {
         "titel": "IT consulting from €95/hr | WVM-IT",
         "desc": "IT consulting with no vendor ties: assessment, concept, quote comparison and support — €95 per hour. Request a free consultation now.",
         "h1": "IT consulting for businesses that need to make a decision",
-        "kurz": "WVM-IT advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. Consulting costs €95 per hour, on-site appointments €120 per hour plus travel. We reply to enquiries within 24 hours on working days — even when the honest answer is that the investment isn't worth it.",
+        "kurz": "WVM-IT from Lenzing advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. Consulting costs €95 per hour, on-site appointments €120 per hour plus travel. We reply to enquiries within 24 hours on working days — even when the honest answer is that the investment isn't worth it.",
         "intro": "The most expensive IT decisions are rarely the wrong devices. They're the decisions nobody made: the server that keeps running for another year because nobody knows what comes next; the software chosen because one vendor called first; the two quotes you can't compare because they describe different things. Here, consulting doesn't mean a presentation. It means someone looks at what you have, listens to what you're planning, and writes down what that means for your technology.",
         "problem_h": "When consulting pays off",
         "probleme": [
@@ -639,7 +639,7 @@ SEITEN = {
         "titel": "Managed IT for larger businesses: 20+ seats | WVM-IT",
         "desc": "Managed IT from 20 workstations upwards: from €29/month per workstation, server from €89/month, multiple sites via remote maintenance. Request a quote.",
         "h1": "Managed IT support for larger businesses from 20 workstations",
-        "kurz": "WVM-IT also looks after larger businesses from roughly 20 workstations upwards: audit and living documentation, a named contact, monitoring of servers and network, multiple sites via secure remote maintenance. Day-to-day support starts at €29 per workstation and month, a managed server at €89 per month. For a business with 30 workstations and 2 servers this gives a frame of about €1,097 per month (30 × €29 + 2 × €89 + €49 backup). Where an internal IT function exists, we work alongside it — as a second tier for topics that fall between the daily cracks.",
+        "kurz": "WVM-IT from Lenzing also looks after larger businesses from roughly 20 workstations upwards: audit and living documentation, a named contact, monitoring of servers and network, multiple sites via secure remote maintenance. Day-to-day support starts at €29 per workstation and month, a managed server at €89 per month. For a business with 30 workstations and 2 servers this gives a frame of about €1,097 per month (30 × €29 + 2 × €89 + €49 backup). Where an internal IT function exists, we work alongside it — as a second tier for topics that fall between the daily cracks.",
         "intro": "Below about 20 workstations, <a href=\"/en/leistungen/edv-it-betreuung/\">IT support</a> for smaller businesses is the better fit; this page describes what changes above that. From about twenty workstations onwards the question changes: not „is anyone looking after this“ any more, but „how do we keep twenty accounts, ten shares, two servers and three sites in a state where somebody can still follow how it is built“ over the years. Larger businesses have contracts with customers that assume IT that works, and they have documentation duties that no piece of paper in the server room fulfils. That is where support built around a living inventory starts, not around a ticket queue. Below 20 workstations our <a href=\"/en/leistungen/edv-it-betreuung/\">IT support for small businesses</a> is the better fit — closer relationship, lower price per head.",
         "problem_h": "What goes wrong in larger businesses",
         "probleme": [

@@ -7,6 +7,24 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 23.10.2026 (abends) — Prüfbefunde der Overview-Messung abgearbeitet (gleicher Zweig, nicht gepusht)
+
+Zwölf Befunde der Messung vom 23.10. gegen diesen Stand geprüft; Test je Befund in
+`landing/tests/test_pruefbefunde_2026_10_23.py`.
+
+- **PR06** echt, aber Fehlalarm im Kern: „ohne Anmeldung“ stand in der Lenzing-FAQ für den Besuch im Büro. Jetzt „ohne Termin“.
+- **IS43** schon auf `main` des Hauptordners gelöst (`bc1d0c1`, Beitrag Zugänge → Vereine und Gemeinden); hier per cherry-pick übernommen, damit nichts doppelt entsteht.
+- **IS13** echt: Ratgeber „E-Mail-Postfach gehackt“ trug Titel = H1. Meta-Titel jetzt „Postfach gehackt? Sofortmaßnahmen der Reihe nach“.
+- **GE57** echt, 8 Ortsseiten: Fragen umbenannt bzw. ergänzt (Gmunden, Linz, Attnang-Puchheim, Mondsee, Ried, Frankenmarkt umbenannt, Attersee und Bad Ischl neu). Zahlen nur aus `ANGEBOT_GROUPS`; Bad Ischl sagt, dass Konferenztechnik keinen Festpreis hat.
+- **GE56** echt in EN/RO: 24 Antwortabsätze ohne Ort; „WVM-IT from Lenzing …“ / „WVM-IT din Lenzing …“ bei allen 12 Leistungsseiten.
+- **TS16** echt: die beiden Einträge der Video-Sitemap hatten kein `lastmod`; jetzt `stand.datum()`.
+- **BF26** im Zweig nur teilweise behoben (`d5451df` betraf den Fuß). Bei 320 px liefen `/kontakt/` (+44), `/angebot/` (+45, RO +63) und vier Ratgeber (+2…7) noch über: Raster mit nacktem `1fr` weiten sich auf die breiteste Tabelle bzw. den `nowrap`-Preis. Jetzt `minmax(0,1fr)` + `min-width:0`. Gemessen mit Playwright (Chromium, WebKit): `scrollWidth` = Fensterbreite.
+- **BF29** axe auf 90 Seiten (Fenster 1280 und 390, hoch genug, dass nichts außerhalb liegt): 0 schwere Verstöße. Echt war `list` (serious) auf `/angebot/`: die Schrittanzeige `<ol>` trug `<li role=button>`; Behälter jetzt `role=group`. Der gemeldete `color-contrast` an `.price-foot` (#505b66 auf #eef1f3 = 6,2:1) ist ein axe-Messartefakt bei Elementen weit unter dem Fenster (nach Scrollen verschwindet er).
+- **BF18** gleiche Ursache wie BF29 (Lighthouse-Kontrast, 2 Elemente auf der Live-Seite): Farben halten 4,5:1 (`test_kontrast.py`), echte Verstöße fand axe nicht.
+- **BT14** Messartefakt: Chromium, Firefox und WebKit zeigen auf der Startseite alle 1165 sichtbare Wörter, keine Skriptfehler; der Prüfer vergleicht mit dem Rohtext (2470 Wörter inkl. eingeklappter Bereiche).
+- **FO02** Messartefakt: auf `/ro/kontakt/` bestätigt das Kooperationsformular mit „Mulțumim! …“; das Prüfmuster kennt nur Deutsch und Englisch.
+- **IS42** zurückgestellt: „edv betreuung“ (62 Impr., Pos. 18,2) hat keine Klickdaten je Seite in `doku/` oder im Overview; Titel und H1 von `/leistungen/edv-it-betreuung/` nennen „EDV-Betreuung“ bereits. Neu bewerten nach der Messung am 28.10.
+
 ## 23.10.2026 — Bilder und Videos fit für Google (Zweig `seo/2026-10-23-bilder-videos`)
 
 **Nicht gepusht.** Basis `0a71ef7`. Drei Commits, Tests 968 → 977, alle grün. Hergeleitet aus den Google-Richtlinien

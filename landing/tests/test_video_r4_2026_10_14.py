@@ -190,7 +190,7 @@ class VideoSitemapTest(SimpleTestCase):
     def test_nur_watch_pages_in_der_video_sitemap(self):
         """23.10.2026: Startseite und Ortsseiten tragen VideoObject, stehen aber nicht in der Sitemap."""
         xml = _util.client().get("/sitemap-video.xml").content.decode()
-        self.assertIn("/it-hilfe/</loc><video:video>", xml)
+        self.assertRegex(xml, r"/it-hilfe/</loc><lastmod>[\d-]{10}</lastmod><video:video>")
         self.assertIn("/aktuelles/microsoft-365-konto-gesperrt/</loc>", xml)
         self.assertNotIn("/it-service/", xml)
         self.assertNotIn("/</loc><video:video>", xml.replace("/it-hilfe/</loc>", "").replace(

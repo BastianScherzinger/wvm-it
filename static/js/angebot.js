@@ -63,6 +63,10 @@
   form.querySelectorAll(".wz-back").forEach(function (b) {
     b.addEventListener("click", function () { show(current - 1, true); });
   });
+  // Die Schritte tragen role=button; eine <ol> mit solchen <li> ist keine Liste mehr
+  // (axe: list, serious). Deshalb ist der Behaelter eine Gruppe von Knoepfen.
+  var stepsEl = document.getElementById("wzSteps");
+  if (stepsEl) stepsEl.setAttribute("role", "group");
   steps.forEach(function (s, idx) {
     s.addEventListener("click", function () { show(idx, true); });
     s.setAttribute("role", "button");
