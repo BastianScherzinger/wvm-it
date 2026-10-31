@@ -1850,7 +1850,7 @@ PACK = {
         "kenn_festpreis": "Fixed price",
         "kenn_anfrage": "After a look at it",
         "anfrage_warum": "Because every setup is different, we name the price after a brief look at it.",
-        "web_h": "Websites, built, hosted and maintained from one source",
+        "web_h": "Websites that bring enquiries – built and maintained from one source",
         "angebot_h": "Your estimate in two minutes",
         "angebot_lead": "Pick a typical need, adjust it, see the price right away. The quote arrives by email.",
         "angebot_einzeln": "Choose individual services",

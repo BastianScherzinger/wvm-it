@@ -1991,7 +1991,7 @@ PACK = {
         "kenn_festpreis": "feste Absprache vorab",
         "kenn_anfrage": "Nach Aufnahme",
         "anfrage_warum": "Weil jede Anlage anders ist, nennen wir den Preis nach einem kurzen Blick darauf.",
-        "web_h": "Webseiten, gebaut, gehostet und betreut aus einer Hand",
+        "web_h": "Webseiten, die Anfragen bringen – gebaut und betreut aus einer Hand",
         "angebot_h": "Ihr Richtangebot in zwei Minuten",
         "angebot_lead": "Typischen Bedarf anklicken, ergänzen, den Preis sofort sehen. Das Angebot kommt per E-Mail.",
         "angebot_einzeln": "Einzelne Leistungen auswählen",

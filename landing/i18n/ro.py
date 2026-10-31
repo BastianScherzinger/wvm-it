@@ -1842,7 +1842,7 @@ PACK = {
         "kenn_festpreis": "Preț fix",
         "kenn_anfrage": "După o evaluare",
         "anfrage_warum": "Pentru că fiecare instalație este diferită, comunicăm prețul după o scurtă evaluare.",
-        "web_h": "Site-uri web construite, găzduite și întreținute dintr-o singură mână",
+        "web_h": "Site-uri web care aduc cereri – construite și întreținute dintr-o singură mână",
         "angebot_h": "Oferta orientativă în două minute",
         "angebot_lead": "Alegeți o nevoie tipică, ajustați, vedeți imediat prețul. Oferta vine pe e-mail.",
         "angebot_einzeln": "Alegeți servicii individuale",

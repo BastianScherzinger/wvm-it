@@ -379,3 +379,7 @@ Kür, nicht gezählt, nicht geplant (die Seite ist an Florin verkauft):
 ## Erreichbarkeit (15.10.2026)
 
 `landing/zeiten.py` ist die einzige Quelle der Zeiten (Mo–Do 7:30–21, Fr bis 20:30, Sa bis 20 Uhr, So zu; Google-Profil). Statuszeile (`context._erreichbarkeit`), Schema, `llms.txt` und die Kopf-/Akut-Pakete ziehen davon; Fließtexte tragen die Bausteine `KURZ`/`INLINE`/`LANG` wörtlich. `landing/tests/test_zeiten.py` sucht die alte Zeit im Quelltext. Nie „rund um die Uhr“.
+
+## Zwischenspeicher (aus CLAUDE.md verschoben, 31.10.2026)
+
+ **HTML-Seiten werden nicht gecacht** (CSRF-Token je Anfrage). **Fragmente** (`{% cache %}`): nie mit csrf_token, Uhrzeit, Nonce; Schlüssel `lang`; `docs/UMSETZUNG-2026-10-13-r2-technik.md`. Cache-Köpfe nur über `_maschinenantwort()` und nur auf Endpunkten ohne Formular. Begründung `docs/CACHE-2026-09-06.md`, Test `landing/tests/test_cache.py`; `public` auf HTML nur, wenn die Antwort kein Cookie setzt (`SicherheitskoepfeMiddleware`) — heute trifft das keine Seite, weil jede das Rückruf-Formular trägt. Anwärmen nach dem Start: `manage.py anwaermen` (aus `start.sh`, `WARMUP=aus` schaltet ab)
