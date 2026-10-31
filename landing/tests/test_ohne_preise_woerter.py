@@ -24,6 +24,9 @@ VERBOTEN = [
     r"alle preise (?:auf|ansehen)", r"all prices (?:at|on|see)|see all prices", r"toate pre[tț]urile (?:dintr|pe o)|vede[tț]i toate pre[tț]urile", r"sunt nete", r"ballpark", r"preise stehen auf der seite", r"preț(?:urile)? stau pe site", r"prices are on the site",
     r"indicative price", r"price list", r"calculate your", r"net plus vat",
     # Rumaenisch
+    r"pre[tț]\w* orientativ", r"ofert\w* orientativ", r"valori orientative", r"imediat pre[tț]ul",
+    # Nachtrag 31.10.: Startseite/Angebot
+    r"richtangebot", r"preis sofort", r"price right away", r"guide price",
     r"pre[tț] orientativ", r"pre[tț]uri orientative", r"lista de pre[tț]uri", r"calcula[tț]i(?!on)", r"net plus tva",
 ]
 MUSTER = re.compile("|".join(VERBOTEN), re.I)
@@ -60,6 +63,7 @@ class OhnePreiseWoerterTest(SimpleTestCase):
             text = sichtbar(antwort.content.decode("utf-8"))
             for m in MUSTER.finditer(text):
                 funde.append(f"{url}: ...{' '.join(text[max(0, m.start() - 50):m.end() + 30].split())}")
+        self.maxDiff = None
         self.assertEqual(funde[:30], [], f"{len(funde)} Stellen mit Preis-Wortlaut")
 
     def test_schalter_ist_aus(self):

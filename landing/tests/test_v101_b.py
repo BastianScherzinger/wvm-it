@@ -83,7 +83,7 @@ class DatenschutzNenntDieDatenwegeTest(SimpleTestCase):
         self.assertNotIn("sobald die Anfrage bearbeitet ist", self.TEXT)
 
     def test_alle_drei_werbeeinwilligungen_stehen_da(self):
-        for stelle in ("IT-Sicherheits-Selbsttest", "Richtangebot auf der Startseite",
+        for stelle in ("IT-Sicherheits-Selbsttest", "Angebotsformular auf der Startseite",
                        "Formular für die kostenlose Beispiel-Website"):
             with self.subTest(stelle=stelle):
                 self.assertIn(stelle, self.TEXT)

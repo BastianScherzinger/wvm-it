@@ -293,3 +293,45 @@ TEXTE = {
   }
  }
 }
+
+
+# Nachtrag Leitung 31.10.2026: Reste auf Startseite/Angebot ("Richtangebot",
+# "Preis sofort sehen", RO "orientativ"), die der erste Wort-Test nicht kannte.
+_NACHTRAG = {
+ "de": {
+  "start": {"angebot_h": "Ihr Bedarf in zwei Minuten",
+            "angebot_lead": "Typischen Bedarf anklicken und ergänzen. Wir rufen zurück und klären den Preis im kurzen Gespräch."},
+  "angebot_page": {"lead": "In wenigen Schritten durchklicken: über 30 Positionen in 6 Bereichen, auswählen, was Sie brauchen – bevor Sie Namen oder E-Mail eingeben. Beides fragen wir erst, wenn Sie den Rückruf anfordern."},
+  "rb": {"eyebrow": "Ihre Auswahl", "card_h": "Ihre Auswahl",
+         "lead": "Tippen Sie an, was Sie interessiert – von Webseiten, Hosting und KI bis Smarthome, Netzwerk, EDV und Veranstaltungstechnik. Mit Ihrer E-Mail fordern Sie einen Rückruf an; den Preis klären wir im kurzen Gespräch. Unverbindlich, in unter einer Minute."},
+ },
+ "en": {
+  "meta": {"angebot_title": "Put together your request, price on a call"},
+  "start": {"angebot_h": "Your needs in two minutes",
+            "angebot_lead": "Pick a typical need and adjust it. We call you back and settle the price in a short conversation."},
+  "rechner": {"ergebnis_h": "Your needs"},
+ },
+ "ro": {
+  "start": {"angebot_h": "Nevoile dumneavoastră în două minute",
+            "angebot_lead": "Alegeți o nevoie tipică și ajustați-o. Vă sunăm înapoi și stabilim prețul într-o scurtă discuție."},
+  "angebot_page": {"lead": "Parcurgeți în câțiva pași: peste 30 de poziții în 6 domenii, alegeți ce vă trebuie – înainte să introduceți numele sau e-mailul. Pe amândouă le cerem abia când solicitați apelul înapoi."},
+  "rb": {"eyebrow": "Selecția dumneavoastră", "card_h": "Selecția dumneavoastră",
+         "lead": "Atingeți ce vă interesează – de la site-uri web, găzduire și AI până la casă inteligentă, rețea, IT și tehnică pentru evenimente. Cu e-mailul dumneavoastră solicitați un apel înapoi; prețul îl stabilim într-o scurtă discuție. Fără obligații, în mai puțin de un minut.",
+         "lock": "Solicitați un apel înapoi cu e-mailul"},
+  "meta": {"angebot_og_desc": "Alcătuiți site-uri web, AI, automatizări și altele în câțiva pași; prețul îl stabilim apoi într-o scurtă discuție."},
+  "rechner": {"ergebnis_h": "Nevoile dumneavoastră"},
+  "kosten_seite": {"bsp_cap": "Exemple de calcul; prețul îl stabilim în discuție"},
+ },
+}
+
+
+def _einmischen(ziel, quelle):
+    for k, v in quelle.items():
+        if isinstance(v, dict):
+            _einmischen(ziel.setdefault(k, {}), v)
+        else:
+            ziel[k] = v
+
+
+for _sprache, _texte in _NACHTRAG.items():
+    _einmischen(TEXTE.setdefault(_sprache, {}), _texte)
