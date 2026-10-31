@@ -1,0 +1,90 @@
+{% comment %}
+Kleine Bildanimation im Kopf einer Leistungsseite (Umbau auf Anfragen, W2, 31.10.2026).
+Reines SVG + CSS (nur transform/opacity), ohne Skript, ohne Fremdbild, ohne Preis, ohne Text im Bild
+(Bastians Regel „kein Text auf Bildern“). Dekorativ: aria-hidden; die Aussage steht in den
+drei Stichpunkten daneben. prefers-reduced-motion: Standbild (siehe style.css, Block „ks-“).
+Aufruf: {% include 'kopf_szene.html' with szene=seite.kopf_szene %}
+{% endcomment %}
+<div class="ks ks-{{ szene }}" aria-hidden="true">
+<svg viewBox="0 0 360 260" role="presentation" focusable="false">
+{% if szene == 'fernwartung' %}
+  <rect class="ks-flaeche" x="24" y="40" width="190" height="124" rx="10"/>
+  <rect class="ks-linie" x="40" y="58" width="90" height="8" rx="4"/>
+  <rect class="ks-linie" x="40" y="76" width="140" height="8" rx="4"/>
+  <rect class="ks-linie" x="40" y="94" width="110" height="8" rx="4"/>
+  <g class="ks-haken ks-h1"><circle cx="190" cy="62" r="9"/><path d="M185 62l3.5 3.5L195 58"/></g>
+  <g class="ks-haken ks-h2"><circle cx="190" cy="80" r="9"/><path d="M185 80l3.5 3.5L195 76"/></g>
+  <g class="ks-haken ks-h3"><circle cx="190" cy="98" r="9"/><path d="M185 98l3.5 3.5L195 94"/></g>
+  <rect class="ks-fuss" x="104" y="164" width="42" height="14" rx="2"/>
+  <rect class="ks-fuss" x="82" y="178" width="86" height="8" rx="4"/>
+  <path class="ks-zeiger" d="M70 120l0 24 7-6 5 12 6-3-5-11 9 0z"/>
+  <path class="ks-draht" d="M214 100 C250 100 250 190 286 190"/>
+  <circle class="ks-puls" cx="250" cy="145" r="5"/>
+  <rect class="ks-flaeche" x="262" y="150" width="76" height="52" rx="8"/>
+  <rect class="ks-linie" x="274" y="164" width="52" height="7" rx="3.5"/>
+  <rect class="ks-linie" x="274" y="180" width="34" height="7" rx="3.5"/>
+  <rect class="ks-fuss" x="252" y="202" width="96" height="8" rx="4"/>
+{% elif szene == 'server' %}
+  <g>
+    <rect class="ks-flaeche" x="30" y="36" width="150" height="46" rx="8"/>
+    <rect class="ks-flaeche" x="30" y="90" width="150" height="46" rx="8"/>
+    <rect class="ks-flaeche" x="30" y="144" width="150" height="46" rx="8"/>
+    <rect class="ks-linie" x="44" y="54" width="64" height="8" rx="4"/>
+    <rect class="ks-linie" x="44" y="108" width="64" height="8" rx="4"/>
+    <rect class="ks-linie" x="44" y="162" width="64" height="8" rx="4"/>
+    <circle class="ks-led ks-l1" cx="148" cy="59" r="5"/>
+    <circle class="ks-led ks-l2" cx="164" cy="59" r="5"/>
+    <circle class="ks-led ks-l3" cx="148" cy="113" r="5"/>
+    <circle class="ks-led ks-l1" cx="164" cy="113" r="5"/>
+    <circle class="ks-led ks-l2" cx="148" cy="167" r="5"/>
+    <circle class="ks-led ks-l3" cx="164" cy="167" r="5"/>
+  </g>
+  <path class="ks-draht" d="M184 113 H258"/>
+  <circle class="ks-paket" cx="190" cy="113" r="6"/>
+  <g>
+    <ellipse class="ks-flaeche" cx="298" cy="84" rx="40" ry="14"/>
+    <path class="ks-flaeche" d="M258 84v66c0 8 18 14 40 14s40-6 40-14V84"/>
+    <ellipse class="ks-linie" cx="298" cy="84" rx="40" ry="14"/>
+    <path class="ks-linie" d="M258 112c0 8 18 14 40 14s40-6 40-14" fill="none"/>
+  </g>
+  <g class="ks-haken ks-h1" transform="translate(298 192)"><circle r="14"/><path d="M-6 0l4.5 4.5L7 -4"/></g>
+{% elif szene == 'netz' %}
+  <g class="ks-wellen">
+    <path class="ks-welle ks-w1" d="M120 120a84 84 0 0 1 120 0"/>
+    <path class="ks-welle ks-w2" d="M140 142a56 56 0 0 1 80 0"/>
+    <path class="ks-welle ks-w3" d="M158 162a28 28 0 0 1 44 0"/>
+  </g>
+  <circle class="ks-led ks-l1" cx="180" cy="178" r="6"/>
+  <rect class="ks-flaeche" x="130" y="190" width="100" height="26" rx="8"/>
+  <circle class="ks-led ks-l2" cx="150" cy="203" r="4"/>
+  <circle class="ks-led ks-l3" cx="164" cy="203" r="4"/>
+  <rect class="ks-linie" x="184" y="199" width="34" height="8" rx="4"/>
+  <g class="ks-geraet ks-g1"><rect class="ks-flaeche" x="22" y="64" width="64" height="44" rx="6"/><rect class="ks-linie" x="34" y="78" width="40" height="7" rx="3.5"/><rect class="ks-fuss" x="14" y="108" width="80" height="6" rx="3"/></g>
+  <g class="ks-geraet ks-g2"><rect class="ks-flaeche" x="276" y="52" width="52" height="70" rx="7"/><rect class="ks-linie" x="288" y="66" width="28" height="7" rx="3.5"/><circle class="ks-fuss" cx="302" cy="110" r="4"/></g>
+  <g class="ks-geraet ks-g3"><rect class="ks-flaeche" x="246" y="170" width="36" height="58" rx="7"/><circle class="ks-fuss" cx="264" cy="218" r="3"/></g>
+  <g class="ks-geraet ks-g1"><rect class="ks-flaeche" x="64" y="168" width="54" height="40" rx="6"/><rect class="ks-linie" x="74" y="180" width="34" height="7" rx="3.5"/></g>
+{% elif szene == 'sicherheit' %}
+  <path class="ks-schild" d="M180 28l78 26v62c0 54-34 88-78 108-44-20-78-54-78-108V54z"/>
+  <path class="ks-haken-linie" d="M142 126l28 28 52-58"/>
+  <rect class="ks-scan" x="106" y="40" width="148" height="6" rx="3"/>
+  <circle class="ks-gefahr ks-f1" cx="40" cy="80" r="9"/>
+  <circle class="ks-gefahr ks-f2" cx="320" cy="140" r="9"/>
+  <circle class="ks-gefahr ks-f3" cx="52" cy="190" r="9"/>
+{% else %}
+  <rect class="ks-flaeche" x="26" y="26" width="230" height="170" rx="12"/>
+  <rect class="ks-linie" x="26" y="26" width="230" height="22" rx="0"/>
+  <circle class="ks-fuss" cx="42" cy="37" r="3.5"/><circle class="ks-fuss" cx="54" cy="37" r="3.5"/><circle class="ks-fuss" cx="66" cy="37" r="3.5"/>
+  <rect class="ks-block ks-b1" x="42" y="62" width="198" height="42" rx="8"/>
+  <rect class="ks-block ks-b2" x="42" y="116" width="60" height="62" rx="8"/>
+  <rect class="ks-block ks-b3" x="110" y="116" width="60" height="62" rx="8"/>
+  <rect class="ks-block ks-b4" x="178" y="116" width="62" height="62" rx="8"/>
+  <g class="ks-balken">
+    <rect class="ks-bar ks-r1" x="282" y="150" width="14" height="60" rx="3"/>
+    <rect class="ks-bar ks-r2" x="302" y="120" width="14" height="90" rx="3"/>
+    <rect class="ks-bar ks-r3" x="322" y="84" width="14" height="126" rx="3"/>
+  </g>
+  <path class="ks-draht" d="M272 76c14 0 20-10 34-10s18 8 30 8"/>
+  <g class="ks-ruf" transform="translate(300 40)"><circle r="16"/><path d="M-6 -6c2 8 5 11 12 12l3-4-5-3-2 2c-2-1-4-3-5-5l2-2-3-5z"/></g>
+{% endif %}
+</svg>
+</div>
