@@ -9,6 +9,8 @@ Sie erscheinen in keinem Suchergebnis, dort baut die Marke nichts auf.
 Die Seiten werden einmal je Klasse abgerufen und von beiden Prüfungen gelesen —
 zwei Durchläufe über 234 Adressen kosteten sonst doppelt.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import html
 import re
 
@@ -38,6 +40,7 @@ class MarkeImTitelTest(SimpleTestCase):
                 continue
             cls.titel.append((pfad, html.unescape(_TITLE.search(seite).group(1)).strip()))
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_marke_steht_hinter_trennzeichen_am_titelende(self):
         falsch = []
         for pfad, titel in self.titel:

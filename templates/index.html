@@ -165,7 +165,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
             <a class="fd-karte{% if w.dringend %} fd-karte-eilig{% endif %}" href="{{ w.url }}">
               <span class="fd-h">{{ w.h|safe }}</span>
               <span class="fd-t">{{ w.t|safe }}</span>
-              {% if w.preis_label %}<span class="fd-preis">{{ w.preis_label }}</span>{% endif %}
+              {% if w.preis_label and preise_sichtbar %}<span class="fd-preis">{{ w.preis_label }}</span>{% endif %}
             </a>
           </li>
           {% endfor %}
@@ -224,6 +224,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       </header>
       <div class="web-raster" data-reveal>
         <div class="web-links">
+          {% if preise_sichtbar %}
           <dl class="preiszeilen">
             <div><dt>{{ t.lb.web_h|safe }}</dt><dd>{{ startpreise.web }}</dd></div>
             <div><dt>{{ t.lb.hosting_h|safe }}</dt><dd>{{ startpreise.infra }}</dd></div>
@@ -231,6 +232,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
             <div><dt>{{ t.lb.ads_h|safe }}</dt><dd>{{ preise_item.ads_setup }}</dd></div>
             <div><dt>{{ t.lb.ki_h|safe }}</dt><dd>{{ startpreise.ki }}</dd></div>
           </dl>
+          {% endif %}
           <figure class="referenz">
             <a class="browser" href="https://ruempelwerk-mitteldeutschland.de/" target="_blank" rel="noopener">
               <span class="browser-leiste" aria-hidden="true"><span class="browser-punkte"><i></i><i></i><i></i></span><span class="browser-adresse">ruempelwerk-mitteldeutschland.de</span></span>
@@ -322,8 +324,8 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           {% if s.beliebt %}<p class="kenn preise-kenn">{{ t.it_stufen.beliebt|safe }}</p>{% endif %}
           <h3>{% if s.id == 'klein' %}{{ t.it_stufen.klein_h|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_h|safe }}{% else %}{{ t.it_stufen.gross_h|safe }}{% endif %}</h3>
           <p class="price-for">{% if s.id == 'klein' %}{{ t.it_stufen.klein_for|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_for|safe }}{% else %}{{ t.it_stufen.gross_for|safe }}{% endif %}</p>
-          <div class="price-tag">{{ s.mtl_anzeige }}<span class="cur">{{ t.it_stufen.unit|safe }}</span></div>
-          <p class="preise-zeile">{{ s.zeile }}</p>
+          {% if preise_sichtbar %}<div class="price-tag">{{ s.mtl_anzeige }}<span class="cur">{{ t.it_stufen.unit|safe }}</span></div>
+          <p class="preise-zeile">{{ s.zeile }}</p>{% else %}<div class="price-tag price-tag-anruf">{{ t.ohne_preise.kurz|safe }}</div>{% endif %}
           <ul class="price-list">
             {% if s.id == 'klein' %}{% for li in t.it_stufen.klein_li %}<li>{{ li|safe }}</li>{% endfor %}
             {% elif s.id == 'mittel' %}{% for li in t.it_stufen.mittel_li %}<li>{{ li|safe }}</li>{% endfor %}
@@ -529,6 +531,9 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       </div>
     </div>
   </section>{% endcache %}
+{% if not preise_sichtbar %}
+<section class="section anruf-schluss"><div class="wrap">{% include 'anruf_kasten.html' %}</div></section>
+{% endif %}
 {% endblock %}
 
 

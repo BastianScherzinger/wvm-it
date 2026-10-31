@@ -39,6 +39,7 @@ Zwei Regeln halten diese Seite zusammen:
   <div class="wrap">
     <p class="sp-intro" data-reveal>{{ rs.intro|safe }}</p>
 
+    {% if preise_sichtbar %}
     {{ saetze|json_script:"rechner-saetze" }}
 
     <form class="kr" method="get" action="{% url 'rechner' %}" id="krForm" data-kr-vorlage="{{ rs.anfrage_satz }}">
@@ -147,6 +148,11 @@ Zwei Regeln halten diese Seite zusammen:
         <p class="kr-hinweis">{{ rs.hinweis|safe }} {{ t.seite.stand|safe }} {{ preis_stand }}</p>
       </output>
     </form>
+    {% else %}
+    <h2 class="sp-h2">{{ t.ohne_preise.rechner_h|safe }}</h2>
+    <p class="sp-intro">{{ t.ohne_preise.rechner_t|safe }}</p>
+    {% include 'anruf_kasten.html' %}
+    {% endif %}
   </div>
 </section>
 
@@ -174,5 +180,5 @@ Zwei Regeln halten diese Seite zusammen:
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/kostenrechner.js' %}?v={{ asset_v }}" defer></script>
+{% if preise_sichtbar %}<script src="{% static 'js/kostenrechner.js' %}?v={{ asset_v }}" defer></script>{% endif %}
 {% endblock %}

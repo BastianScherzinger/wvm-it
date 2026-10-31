@@ -247,4 +247,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
   {% endif %}
 </article>
 {% endcache %}
+{% if not preise_sichtbar %}
+<section class="section anruf-schluss"><div class="wrap">{% include 'anruf_kasten.html' %}</div></section>
+{% endif %}
 {% endblock %}

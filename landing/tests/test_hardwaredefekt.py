@@ -7,6 +7,8 @@ richtig ist. Gehalten wird: Die Frage steht sichtbar auf der Seite UND im
 FAQPage-Schema, der erste Satz antwortet, der Wortlaut ist je Seite ein anderer,
 und der Antworttext verspricht nichts, was der Katalog nicht belegt.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import html as html_lib
 import json
 import re
@@ -84,6 +86,7 @@ class HardwaredefektTest(SimpleTestCase):
                 self.assertIn("/it-hilfe/", text_a)
                 self.assertIn("/einrichten/pc-tausch/", text_b)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_zahlen_aus_dem_katalog(self):
         stunde = str(_ANGEBOT_INDEX[_HILFE_STUNDE]["std"])
         vor_ort = str(_ANGEBOT_INDEX[_HILFE_VOR_ORT]["std"])

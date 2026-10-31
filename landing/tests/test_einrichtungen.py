@@ -13,6 +13,8 @@ musste am 05.09.2026 auf Besprechungsräume geschärft werden, weil sie sich mit
 der Veranstaltungstechnik um dieselbe Suchanfrage stritt. Ein Titel, der in beide
 Silos passt, ist deshalb hier ein Testfehler und keine Geschmacksfrage.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import json
 import re
 
@@ -108,6 +110,7 @@ class SeitenTest(SimpleTestCase):
             with self.subTest(pfad=pfad):
                 self.assertEqual(_util.client().get(pfad, follow=True).status_code, 200)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_der_preis_steht_auf_der_seite(self):
         """Wer hier landet, sucht eine Zahl. Steht sie nicht da, ist die Seite
         wertlos — egal wie gut der Text ist.
@@ -190,6 +193,7 @@ class SchemaTest(SimpleTestCase):
                           html, re.S).group(1)
         return json.loads(block)["@graph"]
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_jede_seite_meldet_einen_service_mit_preis(self):
         """Der Festpreis gehört ins Schema, sonst liest ihn keine Antwortmaschine."""
         for e in einrichtungen.EINRICHTUNGEN:
@@ -260,6 +264,7 @@ class FestpreisTest(SimpleTestCase):
                             f"{pfad}: '{treffer.strip()}' ist ein ab-Preis, "
                             "kein Festpreis")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_die_leistungsseiten_behalten_ihren_ab_preis(self):
         """Die Gegenprobe: Der Wegfall gilt nur hier, nicht überall. Ein
         Betreuungspreis von 29 € je Arbeitsplatz IST ein Startwert."""
@@ -280,6 +285,7 @@ class SichtbarkeitTest(SimpleTestCase):
     der Ersatz, und sie sind zusammen wirksamer als ein Menüeintrag.
     """
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_die_startseite_fuehrt_mit_preis_ins_silo(self):
         """Upgrade 01.10.2026: Das Band mit allen zehn Einrichtungen ist von der
         Startseite gegangen (zu viel Text vor der ersten Anfrage). Geblieben sind

@@ -16,6 +16,8 @@ Was hier geprüft wird:
   akzeptiert (das gemachte Register-Verhalten).
 """
 from __future__ import annotations
+import unittest as _ut_op
+from landing import views as _v_op
 
 import json
 import os
@@ -165,6 +167,7 @@ class KleinauftragNenntNurDenStundensatz(SimpleTestCase):
     """Befund 1: Im Block steht außer dem Katalog-Stundensatz keine Zahl mit €,
     und weder 120 € noch „Anfahrt"."""
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_nur_der_katalogsatz(self):
         erlaubt = str(_ANGEBOT_INDEX[_HILFE_STUNDE]["std"])
         for vor in _SPRACHEN:

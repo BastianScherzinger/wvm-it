@@ -6,6 +6,8 @@ stand die Zeile „Einmalig" fest getippt mit „ab 290 €" — dieselbe Leistu
 Versprechen. Die Preise kommen aus `ANGEBOT_GROUPS`, die Liste der Einrichtungen aus
 `einrichtungen.EINRICHTUNGEN`; wer eine Einrichtung ergänzt, muss den Test nicht anfassen.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 from django.test import SimpleTestCase
 
 from landing import einrichtungen, i18n
@@ -27,6 +29,7 @@ class LlmsFestpreisTest(SimpleTestCase):
         self.text = text[anfang:text.index("## Preise", anfang)] + einmalig
         self.words = i18n.get_pack("de").get("catalog_words", {})
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_festpreis_steht_nie_mit_ab(self):
         gepruft = 0
         for e in einrichtungen.EINRICHTUNGEN:

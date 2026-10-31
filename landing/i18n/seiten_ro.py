@@ -14,10 +14,10 @@ SEITEN = {
     # ══ IT ════════════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "Suport IT & administrare",
-        "titel": "Administrare IT pentru firme de la 29 €/lună | WVM-IT",
-        "desc": "Servicii IT și mentenanță pentru firme mici din Austria și Germania: administrare IT de la 29 €/lună pe stație, suport la distanță 95 €/oră. Cereți ofertă.",
+        "titel": "Administrare IT pentru firme | WVM-IT",
+        "desc": "Servicii IT și mentenanță pentru firme mici din Austria și Germania: administrare IT, suport la distanță. Cereți ofertă.",
         "h1": "Administrare IT pentru firmele fără departament IT propriu",
-        "kurz": "WVM-IT din Lenzing preia IT-ul curent al firmelor mici și mijlocii din Austria și Germania: posturi de lucru, servere, e-mail, imprimante, actualizări și copii de siguranță. Administrarea curentă costă de la 29 € per post de lucru și lună, ajutorul punctual fără contract de la 95 € pe oră. Răspundem în 24 de ore în zilele lucrătoare și lucrăm în cea mai mare parte la distanță — drumul spre dumneavoastră trece printr-o conexiune securizată, nu pe autostradă.",
+        "kurz": "WVM-IT din Lenzing preia IT-ul curent al firmelor mici și mijlocii din Austria și Germania: posturi de lucru, servere, e-mail, imprimante, actualizări și copii de siguranță. Prețul pentru administrarea curentă și ajutorul punctual îl stabilim în discuție. Răspundem în 24 de ore în zilele lucrătoare și lucrăm în cea mai mare parte la distanță — drumul spre dumneavoastră trece printr-o conexiune securizată, nu pe autostradă.",
         "intro": "În majoritatea firmelor sub cincizeci de angajați nu există departament IT. Există cineva care „se pricepe un pic” — și care de fapt ar avea altceva de făcut. Cât timp nu se întâmplă nimic, merge. Se vede abia când imprimanta din birou se blochează exact când trebuie trimise ofertele, sau când după o actualizare Windows nu mai pornește un program de care depinde toată firma. Exact acest gol îl acoperim: primiți un număr, o adresă de e-mail și o persoană de contact care știe cum e construită tehnica dumneavoastră.",
         "problem_h": "Ce se strică în firmele mici fără IT propriu",
         "probleme": [
@@ -42,7 +42,7 @@ SEITEN = {
             {"h": "Funcționare curentă", "t": "Vă adresați într-un singur loc, noi ne ocupăm. Actualizările și salvările rulează în fundal, iar o dată pe trimestru discutăm ce urmează."},
         ],
         "preis_h": "Cât costă",
-        "preis_t": "Administrarea curentă costă de la 29 € per post de lucru și lună, un server administrat de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Cine are nevoie doar punctual de ajutor plătește 95 € pe oră; intervențiile la fața locului costă 120 € pe oră plus deplasarea. Toate sunt prețuri orientative, net plus TVA. Administrarea merge de la trimestru la trimestru, cu reziliere cu o lună înainte de sfârșitul trimestrului.",
+        "preis_t": "Prețurile pentru administrarea curentă, servere, copii de siguranță și ajutor punctual le stabilim în discuție. Cine are nevoie doar punctual de ajutor, prețul se stabilește în funcție de complexitate. Intervențiile la fața locului se discută separat. Totul se clarifică în prealabil, fără surprize. Administrarea merge de la trimestru la trimestru, cu reziliere cu o lună înainte de sfârșitul trimestrului.",
         "ort_satz": "La fața locului lucrăm, printre altele, la <a href=\"/ro/it-service/lenzing/\">Lenzing</a>, <a href=\"/ro/it-service/voecklabruck/\">Vöcklabruck</a>, <a href=\"/ro/it-service/gmunden/\">Gmunden</a>, <a href=\"/ro/it-service/salzburg/\">Salzburg</a> și <a href=\"/ro/it-service/linz/\">Linz</a>, iar prin acces la distanță în toată Austria.",
         "faq": [
             {"q": "De la câte posturi de lucru merită administrarea IT curentă?",
@@ -56,9 +56,9 @@ SEITEN = {
             {"q": "Ce înseamnă la dumneavoastră firmă mică?",
              "a": "Ca reper general, tot ce este până la aproximativ 20 de posturi de lucru la unul sau două sedii — dimensiunea tipică a unui PFA, unei firme meșteșugărești, unui cabinet sau unui birou. Peste această limită asistența devine de obicei mai formală (standarde fixe, documentație mai largă, mai multe persoane de contact); pentru aceasta avem o <a href=\"/ro/leistungen/it-betreuung-groessere-betriebe/\">pagină separată pentru firmele mai mari</a>. Linia nu este strictă: o firmă cu 25 de stații și o singură aplicație se potrivește adesea mai bine aici decât una cu 15 stații și trei sedii."},
             {"q": "Cât costă concret administrarea IT pentru o firmă mică tipică?",
-             "a": "Exemplu de calcul pentru o firmă cu cinci stații, un server și copie de siguranță monitorizată: 5 × 29 € + 89 € + 49 € = 283 € pe lună, net fără TVA. Pentru zece stații cu server și copie de siguranță, 428 € pe lună (10 × 29 € + 89 € + 49 €). Dacă folosiți Microsoft 365, prețul licenței de la Microsoft se adaugă — îl plătiți direct la Microsoft, noi doar configurăm."},
+             "a": "Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Dacă folosiți Microsoft 365, prețul licenței de la Microsoft se adaugă — îl plătiți direct la Microsoft, noi doar configurăm."},
             {"q": "Avem doar două-trei calculatoare — este necesară deja administrarea?",
-             "a": "Rareori. Sub aproximativ cinci stații, facturarea la oră este mai onestă: 95 € pe oră prin mentenanță la distanță, fără contract, fără durată minimă. Pentru cazul individual există <a href=\"/ro/it-hilfe/\">/ro/it-hilfe/</a>. Vă spunem în prima discuție care variantă este mai ieftină pentru dimensiunea dumneavoastră — chiar dacă noi câștigăm mai puțin."},
+             "a": "Rareori. Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Pentru cazul individual există <a href=\"/ro/it-hilfe/\">/ro/it-hilfe/</a>. Vă spunem în prima discuție care variantă este mai ieftină pentru dimensiunea dumneavoastră — chiar dacă noi câștigăm mai puțin."},
         ],
         "cta_h": "Unde apasă acum?",
         "cta_t": "Descrieți într-o propoziție ce nu funcționează. Răspundem în 24 de ore în zilele lucrătoare cu o evaluare onestă — inclusiv atunci când răspunsul este că nu merită.",
@@ -66,10 +66,10 @@ SEITEN = {
 
     "server-datensicherung": {
         "nav": "Servere & copii de siguranță",
-        "titel": "Servere și copii de siguranță de la 49 €/lună | WVM-IT",
-        "desc": "Monitorizare server de la 89 €/lună, copii de siguranță verificate de la 49 €/lună. Vedem defecțiunea înainte să se oprească activitatea. Cereți o ofertă.",
+        "titel": "Servere și copii de siguranță | WVM-IT",
+        "desc": "Monitorizare server, copii de siguranță verificate. Vedem defecțiunea înainte să se oprească activitatea. Cereți o ofertă.",
         "h1": "Administrare de server și copii de siguranță care rezistă la nevoie",
-        "kurz": "WVM-IT din Lenzing supraveghează automat serverele firmelor și operează copiile de siguranță astfel încât ele să funcționeze și la nevoie: salvate zilnic, fiecare salvare verificată, restaurarea testată periodic. Administrarea serverului costă de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Totul se administrează la distanță în toată Austria și Germania.",
+        "kurz": "WVM-IT din Lenzing supraveghează automat serverele firmelor și operează copiile de siguranță astfel încât ele să funcționeze și la nevoie: salvate zilnic, fiecare salvare verificată, restaurarea testată periodic. Prețul pentru administrarea serverului și a copiilor de siguranță îl stabilim în discuție. Totul se administrează la distanță în toată Austria și Germania.",
         "intro": "Aproape orice firmă are o copie de siguranță. Considerabil mai puține știu când a rulat ultima dată, iar cele mai puține au încercat vreodată să recupereze ceva din ea. Asta se observă exact o singură dată — în ziua în care contează. O salvare care nu a fost niciodată restaurată nu este o salvare, ci o speranță. De aceea o tratăm ca pe o parte a firmei care trebuie verificată, nu ca pe o setare bifată cândva. În acest sens, o copie de siguranță este o copie verificată a datelor de care firma are nevoie ca să lucreze mai departe, păstrată separat de server — verificată înseamnă: fiecare rulare este controlată, iar restaurarea este testată periodic. O copie care stă pe un disc în aceeași încăpere și nu a fost niciodată restaurată nu îndeplinește niciuna dintre cele două condiții și, prin urmare, nu este o copie de siguranță.",
         "problem_h": "Cele patru propoziții după care devine de obicei scump",
         "probleme": [
@@ -94,7 +94,7 @@ SEITEN = {
             {"h": "Testăm, nu sperăm", "t": "Restaurăm date periodic și consemnăm cât a durat. Abia această cifră transformă o salvare într-o promisiune pe care vă puteți baza."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Un server administrat costă de la 89 € pe lună, copiile de siguranță monitorizate de la 49 € pe lună. Ambele se pot combina cu administrarea IT curentă de la 29 € per post de lucru și lună. Lucrările unice — o reinstalare sau mutarea pe hardware nou — se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
+        "preis_t": "Prețurile pentru servere administrate și copii de siguranță monitorizate le stabilim în discuție. Acestea se pot combina cu administrarea IT curentă. Lucrările unice — o reinstalare sau mutarea pe hardware nou — se stabilesc în funcție de complexitate. Intervențiile la fața locului se discută separat. Prețurile se stabilesc în prealabil, fără surprize.",
         "faq": [
             {"q": "Cât de des se face salvarea?",
              "a": "Standard este zilnic, în afara programului de lucru. La sistemele în care se lucrează continuu salvăm de mai multe ori pe zi. Cât de multă pierdere de date este acceptabilă în cel mai rău caz stabilim împreună dinainte — de acolo rezultă ritmul, nu invers."},
@@ -111,10 +111,10 @@ SEITEN = {
 
     "netzwerk-wlan": {
         "nav": "Rețea & Wi-Fi",
-        "titel": "Rețea și Wi-Fi montate de la 890 € | WVM-IT",
-        "desc": "Rețea și Wi-Fi măsurate, planificate și montate — de la 890 €, inclusiv hale și mai multe etaje. Solicitați acum o ofertă.",
+        "titel": "Rețea și Wi-Fi montate | WVM-IT",
+        "desc": "Rețea și Wi-Fi măsurate, planificate și montate — inclusiv hale și mai multe etaje. Solicitați acum o ofertă.",
         "h1": "Rețea și Wi-Fi care rezistă și în hală",
-        "kurz": "WVM-IT din Lenzing planifică, măsoară și construiește rețele pentru firme: cablare structurată, Wi-Fi cu acoperire fără goluri, rețele separate pentru oaspeți și activitate, firewall și VPN pentru accesul din exterior. Configurarea rețelei și a Wi-Fi-ului costă de la 890 €, firewall și VPN de la 690 €. Planificarea se face de la distanță, construcția la fața locului.",
+        "kurz": "WVM-IT din Lenzing planifică, măsoară și construiește rețele pentru firme: cablare structurată, Wi-Fi cu acoperire fără goluri, rețele separate pentru oaspeți și activitate, firewall și VPN pentru accesul din exterior. Prețul pentru configurarea rețelei și a Wi-Fi-ului, precum și pentru firewall și VPN, îl stabilim în discuție. Planificarea se face de la distanță, construcția la fața locului.",
         "intro": "Problemele de Wi-Fi primesc aproape întotdeauna ca răspuns încă un punct de acces. De obicei devine mai rău: două echipamente pe același canal se deranjează reciproc, iar dispozitivul se conectează la cel greșit. O rețea care rezistă nu se naște din mai mult hardware, ci dintr-o măsurare, un plan și o distribuție curată a canalelor. La hale, clădiri vechi și mai multe etaje aceasta este diferența dintre „merge” și „merge, în afară de colțul din spate”.",
         "problem_h": "Când o rețea trebuie replanificată",
         "probleme": [
@@ -139,11 +139,11 @@ SEITEN = {
             {"h": "Construim și predăm", "t": "Montaj, calibrare, etichetare, documentație. Apoi rețeaua intră în administrarea curentă sau o operați dumneavoastră mai departe."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Configurarea rețelei și a Wi-Fi-ului costă de la 890 €, firewall și VPN de la 690 €. Prețul final depinde de suprafață, de materialele de construcție și de numărul punctelor de acces — tocmai de aceea la început stă măsurarea, nu o ofertă în orb. Administrarea curentă a rețelei este disponibilă de la 29 € per post de lucru și lună. Lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
-        "einrichtung_satz": "Dacă lipsesc doar firewall-ul și VPN-ul: <a href=\"{url}\">instalarea firewall-ului și a VPN-ului</a> la preț fix de {preis} — acces securizat din exterior, rețea protejată în interior.",
+        "preis_t": "Prețurile pentru configurarea rețelei și a Wi-Fi-ului, precum și pentru firewall și VPN, le stabilim în discuție. Prețul final depinde de suprafață, de materialele de construcție și de numărul punctelor de acces — tocmai de aceea la început stă măsurarea, nu o ofertă în orb. Administrarea curentă a rețelei este disponibilă, prețul se discută. Lucrările la fața locului se stabilesc în funcție de complexitate. Prețurile se stabilesc în prealabil, fără surprize.",
+        "einrichtung_satz": "Dacă lipsesc doar firewall-ul și VPN-ul: <a href=\"{url}\">instalarea firewall-ului și a VPN-ului</a> cu preț stabilit din timp de {preis} — acces securizat din exterior, rețea protejată în interior.",
         "faq": [
             {"q": "Cât costă administrarea rețelei?",
-             "a": "Configurarea rețelei și a WLAN-ului costă la WVM-IT de la 890 €, firewall și VPN de la 690 €. Ajutorul punctual pentru o rețea existentă costă 95 € pe oră prin acces la distanță, fără contract."},
+             "a": "Rețeaua, WLAN-ul, firewall-ul și VPN-ul depind de dimensiune și de clădire; prețul îl stabilim în discuție."},
             {"q": "De ce nu ajută încă un repetor?",
              "a": "Un repetor înjumătățește lățimea de bandă disponibilă și ocupă încă o dată același canal radio. Într-un apartament mic asta aproape nu se observă, într-o firmă cu multe dispozitive înrăutățește măsurabil situația. Mai bune sunt puține puncte de acces bine poziționate, cu canale distribuite curat."},
             {"q": "Avem nevoie de o rețea separată pentru oaspeți?",
@@ -159,10 +159,10 @@ SEITEN = {
 
     "it-sicherheit": {
         "nav": "Securitate IT",
-        "titel": "Verificare de securitate IT de la 490 € | WVM-IT",
-        "desc": "Verificare de securitate IT de la 490 €, cu raport scris și listă de măsuri. Firewall și VPN de la 690 €. Cereți o ofertă.",
+        "titel": "Verificare de securitate IT – preț după discuție | WVM-IT",
+        "desc": "Verificare de securitate IT cu raport scris și listă de măsuri. Firewall și VPN configurate. Preț stabilit după scurtă discuție, fair și adaptat bugetului – sunați la +43 676 3808501 sau WhatsApp.",
         "h1": "Securitate IT pe măsura unei firme — nu a unui concern",
-        "kurz": "WVM-IT din Lenzing verifică securitatea IT a firmelor mici și mijlocii și implementează măsurile care chiar contează: drepturi, parole, firewall, VPN, actualizări, copii de siguranță verificate. Verificarea unică de securitate IT costă de la 490 € și se încheie cu un raport scris și o listă de măsuri; firewall și VPN le configurăm de la 690 €. Verificarea și administrarea se fac la distanță, în Austria și Germania.",
+        "kurz": "WVM-IT din Lenzing verifică securitatea IT a firmelor mici și mijlocii și implementează măsurile esențiale: drepturi, parole, firewall, VPN, actualizări, backup-uri verificate. Costul verificării unice depinde de dimensiune, infrastructură și domeniu de aplicare; prețul se stabilește într-o scurtă discuție, fair și potrivit bugetului. Firewall și VPN se configurează după nevoi. Administrarea curentă se prețuiește per post de lucru și lună. Totul la distanță, în Austria și Germania.",
         "intro": "Cele mai multe pagube din firmele mici nu apar dintr-un atac țintit, ci din lucruri banale: o parolă valabilă peste tot, contul unui angajat plecat demult, un calculator fără actualizări, o salvare care nu valorează nimic. Nu e nevoie de un concept de securitate la scară de corporație pentru a opri asta. E nevoie de cineva care să se uite o dată sistematic și apoi să rezolve punctele care chiar previn pagube.",
         "problem_h": "Ce găsim aproape peste tot",
         "probleme": [
@@ -187,7 +187,7 @@ SEITEN = {
             {"h": "Rezolvăm", "t": "Decideți ce se implementează — inclusiv nimic. Raportul vă aparține și poate fi rezolvat la fel de bine de un alt furnizor."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Verificarea unică de securitate IT costă de la 490 € și include raportul scris. Firewall și VPN le configurăm de la 690 €. Implementarea altor măsuri se facturează cu 95 € pe oră; cine vrea securitatea urmărită permanent alege administrarea curentă de la 29 € per post de lucru și lună, care include actualizările și monitorizarea. Prețuri orientative, net plus TVA.",
+        "preis_t": "Verificarea unică de securitate IT include raportul scris; firewall și VPN se configurează după cerințe. Implementarea altor măsuri se facturează pe oră; administrarea curentă cu actualizări și monitorizare se prețuiește per post de lucru și lună. Prețul final se stabilește înainte, fără surprize, după o scurtă discuție – sunați la +43 676 3808501 sau WhatsApp.",
         "faq": [
             {"q": "Suntem o firmă mică. Suntem chiar o țintă?",
              "a": "Cele mai multe atacuri nu sunt alese, ci automatizate: caută accese deschise și software vechi, nu firme anume. Tocmai firmele mici sunt lovite, pentru că acolo se uită cineva mai rar."},
@@ -205,10 +205,10 @@ SEITEN = {
     # ══ Vizibilitate ══════════════════════════════════════════════════════════
     "webseite-erstellen": {
         "nav": "Site web & magazin",
-        "titel": "Site web la comandă de la 350 € | WVM-IT",
-        "desc": "Site-uri pentru firme din Austria și Germania: one-pager de la 350 €, site de firmă de la 1.490 €, magazin de la 3.500 €. Cereți o ofertă.",
+        "titel": "Site web la comandă – preț după discuție | WVM-IT",
+        "desc": "Site-uri pentru firme din Austria și Germania: one-pager, site de firmă, magazin online. Prețul depinde de funcționalități, design și volum; se stabilește după scurtă discuție, fair și adaptat bugetului – sunați sau scrieți pe WhatsApp.",
         "h1": "Site web la comandă — și vedeți dinainte ce primiți",
-        "kurz": "Creați un site în Austria Superioară: WVM-IT din Lenzing construiește site-uri pentru firme din Austria și Germania — un one-pager de la 350 €, un site de firmă cu mai multe pagini de la 1.490 €, o pagină premium cu animații de la 2.900 €, un magazin online de la 3.500 €. În prealabil există o pagină de probă gratuită: introduceți doar adresa de e-mail și acceptați politica de confidențialitate, automatizarea noastră JARVIS construiește din ea în circa zece minute o pagină de probă reală, iar newsletterul nu este necesar. Găzduirea și întreținerea costă împreună de la 54 € pe lună.",
+        "kurz": "Creați un site în Austria Superioară: WVM-IT din Lenzing construiește site-uri pentru firme din Austria și Germania – one-pager, site business multipagină, pagină premium cu animații, magazin online. Există o pagină de probă gratuită: introduceți e-mailul, acceptați politica de confidențialitate, iar automatizarea JARVIS construiește în circa zece minute o pagină reală, fără newsletter obligatoriu. Găzduirea și întreținerea au preț stabilit după discuție, fair și potrivit bugetului.",
         "intro": "Cea mai frecventă dezamăgire legată de un site nou nu este aspectul, ci liniștea de după. Arată bine, a costat, și nu se întâmplă nimic. Cauza nu e aproape niciodată designul, ci faptul că pagina nu a fost construită pentru ca cineva să ia legătura: numărul de telefon e jos de tot, prețuri nu există, formularul are nouă câmpuri. Noi construim în direcția inversă — pornind de la scop.",
         "problem_h": "De ce eșuează paginile",
         "probleme": [
@@ -233,7 +233,7 @@ SEITEN = {
             {"h": "Construim, verificăm, publicăm", "t": "Vedeți stadiul pe parcurs. La lansare configurăm găzduirea, domeniul și măsurarea, ca din prima zi să fie vizibil ce se întâmplă."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Un one-pager pornește de la 350 €, un site business cu mai multe pagini de la 1.490 €, o pagină premium cu animații de la 2.900 €, un magazin online de la 3.500 €. Curent se adaugă găzduirea cu SSL și copii de siguranță de la 15 € pe lună și întreținerea de la 39 € pe lună, împreună de la 54 € pe lună; domeniul costă de la 15 € pe an. Prețuri orientative, net plus TVA.",
+        "preis_t": "One-pager, site business multipagină, pagină premium cu animații, magazin online – prețul depinde de complexitate și funcționalități. Găzduirea cu SSL și backup-uri, întreținerea și domeniul se prețuiesc lunar respectiv anual. Totul se stabilește înainte, fără surprize, după o scurtă discuție – sunați la +43 676 3808501 sau WhatsApp.",
         "faq": [
             {"q": "Cât durează până pagina este online?",
              "a": "Un one-pager este de obicei gata în una-două săptămâni, un site de firmă cu mai multe pagini în trei-cinci. Ritmul îl decide aproape întotdeauna cât de repede ajung la noi textele, imaginile și aprobările — nu programarea. Termenele strânse le confirmăm sau le refuzăm dinainte, nu după."},
@@ -244,7 +244,7 @@ SEITEN = {
             {"q": "Avem deja un site. Merită refăcut?",
              "a": "Uneori da, alteori nu. Ne uităm la pagina existentă și vă spunem dacă o revizuire ajunge sau dacă o reconstrucție iese mai ieftin. Dacă pagina actuală își face treaba, spunem și asta."},
             {"q": "Cât costă un site pentru o firmă mică?",
-             "a": "Un one-pager costă de la 350 €, un site de firmă cu mai multe pagini de la 1.490 €. La acestea se adaugă găzduirea cu SSL și copii de siguranță de la 15 € pe lună, întreținerea de la 39 € pe lună și domeniul de la 15 € pe an. Prețuri orientative, net plus TVA."},
+             "a": "Prețul unui site depinde de amploare și cerințe și se stabilește în discuție. La acestea se adaugă găzduirea cu SSL și copii de siguranță, întreținerea și domeniul."},
             {"q": "Pot vedea site-ul meu mai întâi gratuit?",
              "a": "Da. Introduceți pe pagina principală doar adresa de e-mail și acceptați politica de confidențialitate; automatizarea noastră JARVIS construiește din ea în circa zece minute o pagină de probă reală, accesibilă. Este gratuită și nu vă obligă la nimic, iar newsletterul nu este necesar.",
              "link": {"text": "Spre pagina de probă gratuită", "route": "index", "anker": "gratis"}},
@@ -255,10 +255,10 @@ SEITEN = {
 
     "seo-betreuung": {
         "nav": "Administrare SEO",
-        "titel": "Administrare SEO de la 149 €/lună | WVM-IT",
-        "desc": "Să fiți găsit pe Google și în răspunsurile AI: optimizare SEO de bază de la 390 €, administrare de la 149 €/lună. Solicitați o ofertă.",
+        "titel": "Administrare SEO – preț după discuție | WVM-IT",
+        "desc": "Fiți găsiți pe Google și în răspunsurile AI: optimizare SEO de bază și administrare curentă. Prețul depinde de obiective, concurență și volum; se stabilește după scurtă discuție, fair și adaptat bugetului – solicitați oferta prin apel sau WhatsApp.",
         "h1": "Administrare SEO: să vă găsească oamenii care nu vă cunosc încă",
-        "kurz": "WVM-IT din Lenzing aduce firmele în față pe Google și în răspunsuri AI precum ChatGPT și Perplexity: baze tehnice, câte o pagină pentru fiecare serviciu, conținut care chiar răspunde la întrebările de căutare și măsurare lunară. Optimizarea unică de bază costă de la 390 €, administrarea curentă de la 149 € pe lună. Lucrăm independent de loc pentru clienți din Austria și Germania.",
+        "kurz": "WVM-IT din Lenzing aduce firmele în față pe Google și în răspunsuri AI precum ChatGPT și Perplexity: baze tehnice, pagini per serviciu, conținut care răspunde întrebărilor de căutare, măsurare lunară. Costul optimizării unice de bază și al administrației curente depinde de etapă și obiective; prețul se clarifică într-o scurtă discuție, fair și potrivit bugetului. Lucrăm independent de locație pentru clienți din Austria și Germania.",
         "intro": "Cea mai frecventă constatare la site-urile mici de firmă este mereu aceeași: sunt găsite — dar numai după numele propriu al firmei. Adică de oameni care oricum cunosc firma. Pentru toți cei care au o problemă și caută soluția, pagina nu există. Cauza este rareori tehnica. Este faptul că toate serviciile stau în paragrafe pe o singură pagină, iar Google nu poate clasa paragrafe, ci doar pagini.",
         "problem_h": "De ce se întâmplă de obicei",
         "probleme": [
@@ -283,7 +283,7 @@ SEITEN = {
             {"h": "Conținut și administrare", "t": "Apoi pagina crește: pagini noi, răspunsuri mai bune, măsurare lunară. SEO nu este o acțiune, ci o parte a activității."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Optimizarea SEO unică de bază costă de la 390 €, administrarea curentă de la 149 € pe lună. Google Ads se pot rezerva separat — configurare de la 490 €, administrare de la 199 € pe lună — și au sens cât timp SEO încă nu produce efect. Prețuri orientative, net plus TVA. Nu există durată minimă peste trei luni; mai puțin nu se poate măsura.",
+        "preis_t": "Optimizarea SEO unică de bază și administrarea curentă se prețuiesc după efort și obiective. Google Ads opțional: configurare și administrare separate, au sens până când SEO produce efecte. Prețul final se stabilește înainte, fără surprize, după o scurtă discuție – sunați la +43 676 3808501 sau WhatsApp. Fără durată minimă sub trei luni; mai puțin nu se poate măsura.",
         "faq": [
             {"q": "Cât durează până SEO are efect?",
              "a": "Corecturile tehnice au efect în zile până în săptămâni. Paginile noi de servicii au nevoie, din experiență, de șase până la douăsprezece săptămâni ca să țină poziții stabile. Cine vă promite rezultate în două săptămâni vă vinde reclame și le numește SEO."},
@@ -300,10 +300,10 @@ SEITEN = {
 
     "google-ads": {
         "nav": "Google Ads",
-        "titel": "Administrare Google Ads de la 199 €/lună | WVM-IT",
-        "desc": "Configurare Google Ads de la 490 €, administrare curentă de la 199 €/lună plus buget, cu măsurarea conversiilor și raport lunar. Cereți o ofertă.",
+        "titel": "Administrare Google Ads | WVM-IT",
+        "desc": "Cât costă SEO sau Google Ads depinde de punctul de plecare și de amploare; stabilim în discuție. Cereți o ofertă.",
         "h1": "Google Ads care aduc solicitări — nu doar clicuri",
-        "kurz": "WVM-IT din Lenzing configurează conturi Google Ads și le administrează în continuare: campanii, cuvinte de căutare, anunțuri, cuvinte excluse și, mai ales, o măsurare a conversiilor care chiar funcționează. Configurarea costă de la 490 €, administrarea curentă de la 199 € pe lună plus bugetul dumneavoastră de publicitate. Lucrăm independent de loc pentru firme din Austria și Germania.",
+        "kurz": "WVM-IT din Lenzing configurează conturi Google Ads și le administrează în continuare: campanii, cuvinte de căutare, anunțuri, cuvinte excluse și, mai ales, o măsurare a conversiilor care chiar funcționează. Cât costă SEO sau Google Ads depinde de punctul de plecare și de amploare; stabilim în discuție. Lucrăm independent de loc pentru firme din Austria și Germania.",
         "intro": "Reclamele sunt calea cea mai rapidă spre solicitări — și calea cea mai rapidă de a arde bani. Diferența nu stă aproape niciodată în anunț, ci în faptul dacă se măsoară ce iese la capăt. Cine numără doar clicuri optimizează pentru vizite. Cine măsoară solicitări poate opri cuvintele de căutare care sunt scumpe și nu aduc nimic — iar din experiență acestea sunt majoritatea.",
         "problem_h": "De ce suferă conturile de reclame",
         "probleme": [
@@ -328,7 +328,7 @@ SEITEN = {
             {"h": "Ajustăm continuu", "t": "Săptămânal verificăm cuvintele de căutare, lunar raportăm. Dacă reclamele nu se justifică pentru dumneavoastră, v-o spunem, în loc să lăsăm bugetul să curgă."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Configurarea costă de la 490 € o singură dată și include măsurarea conversiilor. Administrarea curentă costă de la 199 € pe lună — plus bugetul dumneavoastră de publicitate, care merge direct la Google și nu trece prin noi. Din experiență devine util de la un buget media aflat într-un raport rezonabil cu tariful de administrare; vă spunem dinainte dacă bugetul dumneavoastră ajunge. Prețuri orientative, net plus TVA.",
+        "preis_t": "Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Din experiență devine util de la un buget media aflat într-un raport rezonabil cu tariful de administrare; vă spunem dinainte dacă bugetul dumneavoastră ajunge.",
         "faq": [
             {"q": "De cât buget de publicitate avem nevoie minim?",
              "a": "Depinde de domeniul dumneavoastră și de cât costă un clic acolo. Înainte de start calculăm cu câte clicuri și solicitări puteți conta realist la bugetul dumneavoastră. Dacă cifra este prea mică pentru a învăța ceva, vă sfătuim să renunțați."},
@@ -345,10 +345,10 @@ SEITEN = {
 
     "hosting-wartung": {
         "nav": "Găzduire & întreținere",
-        "titel": "Găzduire și întreținere de la 15 €/lună | WVM-IT",
-        "desc": "Găzduire cu SSL și copii zilnice de la 15 €/lună, întreținere de la 39 €/lună, domeniu de la 15 €/an. Solicitați o ofertă.",
+        "titel": "Găzduire și întreținere | WVM-IT",
+        "desc": "Găzduire cu SSL și copii zilnice, întreținere, domeniu Solicitați o ofertă.",
         "h1": "Găzduire și întreținere: ca pagina să meargă și când nu se uită nimeni",
-        "kurz": "Domeniu și găzduire pentru firme din Austria de la WVM-IT din Lenzing: găzduire proprie cu SSL și copii zilnice de siguranță de la 15 € pe lună, întreținere cu actualizări și modificări mici de la 39 € pe lună, domeniu de la 15 € pe an — împreună de la 54 € pe lună, plus e-mail cu Microsoft 365 configurat la preț fix de 290 €. Preluăm și site-uri construite de altcineva și le administrăm independent de loc, în Austria și Germania.",
+        "kurz": "Domeniu și găzduire pentru firme din Austria de la WVM-IT din Lenzing: găzduire proprie cu SSL și copii zilnice de siguranță, întreținere cu actualizări și modificări mici, domeniu — împreună, plus e-mail cu Microsoft 365 configurat. Preluăm și site-uri construite de altcineva și le administrăm independent de loc, în Austria și Germania.",
         "intro": "Un site web nu este o achiziție, ci un mijloc de lucru. Certificatele expiră, sistemele au nevoie de actualizări de securitate, formularele de contact se opresc la un moment dat în tăcere. Asta se observă rar imediat — de obicei abia când n-a mai venit nicio solicitare de săptămâni și cineva verifică. Întreținerea este cea mai ieftină asigurare împotriva exact acestor săptămâni.",
         "problem_h": "Ce se întâmplă fără întreținere",
         "probleme": [
@@ -373,7 +373,7 @@ SEITEN = {
             {"h": "Operăm", "t": "De atunci rulează actualizările, salvările și monitorizarea. Dorințele de modificare le trimiteți simplu pe e-mail."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Găzduirea inclusiv SSL și copii de siguranță costă de la 15 € pe lună, întreținerea cu actualizări și modificări mici de la 39 € pe lună — împreună de la 54 € pe lună. Domeniul costă de la 15 € pe an. Cine vrea administrate și servere proprii în firmă găsește asta la administrarea de server, de la 89 € pe lună. Prețuri orientative, net plus TVA.",
+        "preis_t": "Serverul administrat și backupul monitorizat depind de amploare; prețul îl stabilim în discuție. Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Cine vrea administrate și servere proprii în firmă găsește asta la administrarea de server.",
         "faq": [
             {"q": "Preluați și site-uri pe care nu le-ați construit dumneavoastră?",
              "a": "Da. Verificăm întâi în ce stare este pagina și vă spunem onest dacă operarea curentă merită sau dacă o revizuire iese mai ieftin."},
@@ -387,7 +387,7 @@ SEITEN = {
              "a": "Da, direct la partenerul nostru Domaintechnik (linkul de partener marcat se află pe această pagină), sau configurăm noi totul pentru dumneavoastră și ne ocupăm de întreținere și actualizări.",
              "ohne_schema": True},
             {"q": "Configurați și e-mail cu adresă proprie?",
-             "a": "Da. Căsuțe de e-mail pe domeniul dumneavoastră, Teams și OneDrive configurăm cu Microsoft 365 la preț fix de 290 € și le predăm gata de folosit. Preț orientativ, net plus TVA.",
+             "a": "Da. Căsuțe de e-mail pe domeniul dumneavoastră, Teams și OneDrive configurăm cu Microsoft 365 și le predăm gata de folosit.",
              "link": {"text": "Configurare Microsoft 365", "route": "einrichtung", "slug": "microsoft-365"}},
         ],
         "cta_h": "Pagina dumneavoastră rulează deja undeva?",
@@ -396,10 +396,10 @@ SEITEN = {
 
     "ki-automatisierung": {
         "nav": "Automatizare AI",
-        "titel": "Automatizare AI de la 390 € | WVM-IT",
-        "desc": "Chatboți, automatizare WhatsApp și programări pentru firme: programări de la 390 €, chatbot de la 690 €, integrare CRM de la 1.200 €. Cereți o ofertă.",
+        "titel": "Automatizare AI | WVM-IT",
+        "desc": "Chatboți, automatizare WhatsApp și programări pentru firme: programări, chatbot, integrare CRM. Cereți o ofertă.",
         "h1": "Automatizare AI: munca ce se repetă o face tehnica",
-        "kurz": "WVM-IT din Lenzing construiește automatizări pentru munca repetitivă din firme: un chatbot care preia solicitări noaptea, fluxuri de programare, răspunsuri automate pe WhatsApp și e-mail, precum și conexiuni cu sistemele existente. Automatizarea programărilor costă de la 390 €, un chatbot AI de la 690 €, o integrare cu CRM sau ERP de la 1.200 €. Totul se realizează la distanță, în Austria și Germania.",
+        "kurz": "WVM-IT din Lenzing construiește automatizări pentru munca repetitivă din firme: un chatbot care preia solicitări noaptea, fluxuri de programare, răspunsuri automate pe WhatsApp și e-mail, precum și conexiuni cu sistemele existente. Cât costă SEO sau Google Ads depinde de punctul de plecare și de amploare; stabilim în discuție. Totul se realizează la distanță, în Austria și Germania.",
         "intro": "Automatizarea nu merită acolo unde arată impresionant, ci acolo unde aceeași mișcare se repetă de douăzeci de ori pe zi: același răspuns la aceeași întrebare, aceeași programare, aceeași confirmare. De aceea nu pornim niciodată de la tehnică, ci de la întrebarea care cinci minute se repetă cel mai des. Restul este jucărie cu factură. Automatizarea cu inteligență artificială nu este un produs de sine stătător, ci un flux: un program preia o sarcină care se repetă — aceeași întrebare, o cerere de programare, o confirmare —, o rezolvă sau o transmite și așază rezultatul în sistemul în care se lucrează oricum. Ce apare rar sau trebuie decis de fiecare dată din nou rămâne în mod deliberat la un om.",
         "problem_h": "Unde merită automatizarea",
         "probleme": [
@@ -424,14 +424,14 @@ SEITEN = {
             {"h": "Extindem sau renunțăm", "t": "Dacă economisește timp, extindem. Dacă nu, o spunem. Nu vindem automatizări de care nu i-ar fi dor nimănui."},
         ],
         "abschnitte": [
-            {"h": "Automatizarea programărilor: de la 390 €",
-             "t": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e-mail sau WhatsApp. Automatizarea programărilor costă de la 390 €."},
+            {"h": "Automatizarea programărilor",
+             "t": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e‑mail sau WhatsApp. Costul se stabilește în urma unui scurt dialog telefonic sau pe WhatsApp, cu „feste Absprache vorab, keine Überraschungen”. Pentru detalii sunați la +43 676 3808501."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Automatizarea programărilor costă de la 390 €, automatizarea WhatsApp și e-mail de la 490 €, un chatbot AI de la 690 € plus 39 € pe lună pentru funcționare și întreținere, o integrare la comandă cu CRM sau ERP de la 1.200 €. Prețuri orientative, net plus TVA.",
+        "preis_t": "Cât costă SEO sau Google Ads depinde de punctul de plecare și de amploare; stabilim în discuție.",
         "faq": [
             {"q": "Cum se poate automatiza programarea?",
-             "a": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e-mail sau WhatsApp. Ce trebuie să decidă un om, de exemplu cazurile speciale, stabilim dinainte. Automatizarea programărilor costă de la 390 €."},
+             "a": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e‑mail sau WhatsApp. Ce trebuie să decidă un om, de exemplu cazurile speciale, stabilim dinainte. Costul se stabilește în urma unui scurt dialog, cu „feste Absprache vorab, keine Überraschungen”. Pentru informații suplimentare sunați la +43 676 3808501."},
             {"q": "Un chatbot înlocuiește un angajat?",
              "a": "Nu, și nici nu îl vindem așa. Preia întrebările mereu identice și adună solicitări în afara programului. Tot ce necesită o decizie ajunge la un om — asta o stabilim dinainte."},
             {"q": "Unde ajung datele clienților noștri?",
@@ -476,7 +476,7 @@ SEITEN = {
             {"h": "Montaj, programare, predare", "t": "Montăm, programăm și instruim. Documentația rămâne la dumneavoastră, ca să poată continua și o altă firmă de specialitate."},
         ],
         "preis_h": "De ce aici nu apare un preț de pornire",
-        "preis_t": "O cifră în acest loc ar fi ghicită. Prețul unei automatizări depinde de numărul de încăperi, de starea cablării și de faptul dacă se lucrează în construcție nouă sau existentă — intervalul este prea larg pentru un preț de pornire cu sens. Calculăm pe proiect și comunicăm prețul în scris după evaluare. Lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea, dacă nu s-a convenit un preț fix.",
+        "preis_t": "O cifră în acest loc ar fi ghicită. Prețul unei automatizări depinde de numărul de încăperi, de starea cablării și de faptul dacă se lucrează în construcție nouă sau existentă — intervalul este prea larg pentru un preț de pornire cu sens. Calculăm pe proiect și comunicăm prețul în scris după evaluare. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp.",
         "faq": [
             {"q": "Loxone sau KNX — care este mai bun?",
              "a": "KNX este un standard independent de producător, cu o ofertă foarte mare de echipamente și disponibilitate îndelungată; Loxone este un sistem mai închis, care se configurează mai repede și cere mai puțin efort de planificare. Care se potrivește depinde de mărime, buget și de cât de independent vreți să fiți mai târziu. În discuție vă spunem ce am recomanda pentru proiectul dumneavoastră."},
@@ -494,9 +494,9 @@ SEITEN = {
     "konferenztechnik": {
         "nav": "Tehnică de conferință",
         "titel": "Tehnică pentru sala de ședințe în Austria | WVM-IT",
-        "desc": "Dotarea sălilor de ședințe: ecrane, camere, microfoane, sunet și control la o apăsare de buton. La fața locului de la 120 €/oră. Cereți o ofertă.",
+        "desc": "Dotarea sălilor de ședințe: ecrane, camere, microfoane, sunet și control la o apăsare de buton. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Cereți o ofertă.",
         "h1": "Tehnică pentru sala de ședințe care pornește o întâlnire la timp",
-        "kurz": "WVM-IT din Lenzing dotează săli de ședințe și de instruire cu tehnică: ecrane, camere, microfoane, sunet și un sistem de control pe care îl poate folosi și cineva care nu l-a montat. O sală de ședințe obișnuită este gata într-una-două zile, dacă există cablarea. Planificarea și calibrarea se fac la fața locului, lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea; prețul proiectului îl comunicăm după vizionare. Pentru săli mari, scenă și evenimente live există pagina dedicată Tehnică pentru evenimente.",
+        "kurz": "WVM-IT din Lenzing dotează săli de ședințe și de instruire cu tehnică: ecrane, camere, microfoane, sunet și un sistem de control pe care îl poate folosi și cineva care nu l-a montat. O sală de ședințe obișnuită este gata într-una-două zile, dacă există cablarea. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Pentru săli mari, scenă și evenimente live există pagina dedicată Tehnică pentru evenimente.",
         "intro": "Măsura tehnicii de conferință nu este ce poate, ci dacă o ședință începe la timp. Cele mai multe săli eșuează la aceleași mărunțișuri: pe masă e cablul greșit, camera arată peretele, iar cei de la distanță nu înțeleg sunetul. De aceea calibrăm încăperile și reducem operarea la un singur drum vizibil — restul dispare în tehnică.",
         "problem_h": "Despre ce săli este vorba",
         "probleme": [
@@ -521,7 +521,7 @@ SEITEN = {
             {"h": "Montaj și instruire", "t": "Instalare, calibrare, scurtă instruire. Apoi încăperea funcționează și pentru cineva care intră prima dată."},
         ],
         "preis_h": "De ce aici nu apare un preț de pornire",
-        "preis_t": "Între o sală de ședințe pentru șase persoane și o sală mare cu tehnică de scenă sunt ordine de mărime distanță. Un preț de pornire aici nu ar spune nimic. Ne uităm la încăpere și calculăm pe proiect; lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea, dacă nu s-a convenit un preț fix.",
+        "preis_t": "Între o sală de ședințe pentru șase persoane și o sală mare cu tehnică de scenă sunt ordine de mărime distanță. Un preț de pornire aici nu ar spune nimic. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp.",
         "faq": [
             {"q": "Puteți moderniza o încăpere existentă?",
              "a": "De obicei da. Deseori nu lipsește tehnica, ci calibrarea și o operare rezonabilă. Verificăm întâi ce poate materialul existent, înainte să propunem ceva nou."},
@@ -539,9 +539,9 @@ SEITEN = {
     "veranstaltungstechnik": {
         "nav": "Tehnică pentru evenimente",
         "titel": "Tehnică video, audio și de scenă în Austria | WVM-IT",
-        "desc": "Tehnică pentru evenimente: săli, asociații, primării și hoteluri — sunet, lumină, video și scenă. La fața locului de la 120 €/oră. Cereți o ofertă.",
+        "desc": "Tehnică pentru evenimente: săli, asociații, primării și hoteluri — sunet, lumină, video și scenă. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Cereți o ofertă.",
         "h1": "Tehnică video, audio și de scenă pentru săli și evenimente",
-        "kurz": "WVM-IT din Lenzing planifică, instalează și asistă tehnica pentru evenimente în Austria Superioară și nu numai: sonorizare, lumină, tehnică video și de scenă pentru săli, sedii de asociații, centre comunitare, hoteluri și evenimente de firmă. Instalațiile fixe le calculăm pe proiect, după vizionare; lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea, dacă nu s-a convenit un preț fix. Răspundem la solicitări în 24 de ore în zilele lucrătoare.",
+        "kurz": "WVM-IT din Lenzing planifică, instalează și asistă tehnica pentru evenimente în Austria Superioară și nu numai: sonorizare, lumină, tehnică video și de scenă pentru săli, sedii de asociații, centre comunitare, hoteluri și evenimente de firmă. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Răspundem la solicitări în 24 de ore în zilele lucrătoare.",
         "intro": "În majoritatea sălilor există o tehnică pe care cineva a montat-o cândva și pe care de atunci nimeni nu o mai înțelege cu adevărat. Există trei telecomenzi, două fără baterii, și un mixer la care are voie să umble doar o anumită persoană. Cât timp persoana asta are timp, merge bine. Seara în care ceva merge prost este mereu seara în care în sală stau o sută de oameni. Construim instalații pe care le poate opera și cineva care le vede prima dată — și documentăm ce este conectat unde.",
         "problem_h": "De ce depinde de obicei o sală",
         "probleme": [
@@ -569,10 +569,10 @@ SEITEN = {
             {"h": "Rămânem la dispoziție și după aceea", "t": "Înainte de un eveniment mai mare, la cerere, mai verificăm o dată. Dacă totuși apare o problemă, ne găsiți de luni până joi între 7:30 și 21, vineri până la 20:30, sâmbătă până la 20 la numărul de pe această pagină."},
         ],
         "preis_h": "De ce aici nu apare un preț de pornire",
-        "preis_t": "Între o sonorizare pentru sala unei asociații și o scenă cu lumină, video și streaming sunt ordine de mărime distanță; un preț de pornire aici ar fi o cifră fără sens. Ne uităm la încăpere și calculăm pe proiect, cu listă de echipamente. Lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea, dacă nu s-a convenit un preț fix; planificarea și coordonarea de la distanță cu 95 € pe oră. Prețuri orientative, nete plus TVA.",
+        "preis_t": "Între o sonorizare pentru sala unei asociații și o scenă cu lumină, video și streaming sunt ordine de mărime distanță; un preț de pornire aici ar fi o cifră fără sens. Ne uităm la încăpere și calculăm pe proiect, cu listă de echipamente. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp.",
         "faq": [
             {"q": "Cât costă tehnica pentru evenimente într-o sală?",
-             "a": "Depinde aproape în întregime de mărimea încăperii și de ce trebuie să poată face aceasta. O sonorizare inteligibilă pentru sala unei asociații e un proiect diferit de o scenă cu lumină și redare video. După vizionare primiți o listă de echipamente cu preț — înainte de asta orice cifră ar fi doar o presupunere. Lucrările la fața locului se facturează cu 120 € pe oră plus deplasarea."},
+             "a": "Depinde aproape în întregime de mărimea încăperii și de ce trebuie să poată face aceasta. O sonorizare inteligibilă pentru sala unei asociații e un proiect diferit de o scenă cu lumină și redare video. După vizionare primiți o listă de echipamente cu preț — înainte de asta orice cifră ar fi doar o presupunere. Lucrările la fața locului se facturează în funcție de complexitate, costul fiind stabilit în prealabil, cu „feste Absprache vorab, keine Überraschungen”. Pentru o ofertă personalizată contactați-ne la +43 676 3808501."},
             {"q": "Modernizați tehnica existentă sau trebuie totul nou?",
              "a": "În majoritatea sălilor există mai mult material utilizabil decât cred utilizatorii. Deseori nu lipsește tehnica, ci calibrarea, o cablare sensibilă și o operare pe care oricine o poate folosi. Verificăm întâi ce poate oferi ce există deja."},
             {"q": "Asistați și la evenimente individuale?",
@@ -588,10 +588,10 @@ SEITEN = {
 
     "it-beratung": {
         "nav": "Consultanță IT",
-        "titel": "Consultanță IT de la 95 €/oră | WVM-IT",
-        "desc": "Consultanță IT fără legături cu producători: evaluare, concept, comparație de oferte și asistență — 95 € pe oră. Solicitați o consultanță.",
+        "titel": "Consultanță IT | WVM-IT",
+        "desc": "Consultanță IT fără legături cu producători: Preț stabilit la telefon. Solicitați o consultanță.",
         "h1": "Consultanță IT pentru firme care trebuie să ia o decizie",
-        "kurz": "WVM-IT din Lenzing consiliază firme mici și mijlocii din Austria și Germania înainte de investiții în IT și tehnică pentru clădiri: evaluare, concept scris, comparație de oferte externe și asistență la implementare. Consultanța costă 95 € pe oră, întâlnirile la fața locului 120 € pe oră plus deplasarea. Răspundem la solicitări în 24 de ore în zilele lucrătoare — chiar și atunci când răspunsul onest este că investiția nu se justifică.",
+        "kurz": "WVM-IT din Lenzing consiliază firme mici și mijlocii din Austria și Germania înainte de investiții în IT și tehnică pentru clădiri: evaluare, concept scris, comparație de oferte externe și asistență la implementare. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Răspundem la solicitări în 24 de ore în zilele lucrătoare — chiar și atunci când răspunsul onest este că investiția nu se justifică.",
         "intro": "Cele mai costisitoare decizii IT rareori sunt echipamentele greșite. Sunt deciziile pe care nu le-a luat nimeni: serverul care mai merge încă un an pentru că nimeni nu știe ce urmează; software-ul ales pentru că un furnizor a sunat primul; cele două oferte pe care nu le puteți compara pentru că descriu lucruri diferite. Aici, consultanța nu înseamnă o prezentare. Înseamnă că cineva se uită la ce aveți, ascultă ce plănuiți și scrie ce înseamnă asta pentru tehnica dumneavoastră.",
         "problem_h": "Când merită o consultanță",
         "probleme": [
@@ -618,10 +618,10 @@ SEITEN = {
             {"h": "Implementare — cu noi sau fără noi", "t": "Dacă ne dați nouă implementarea, decontăm orele de consultanță la proiect. Dacă o dați altcuiva, nu e o problemă: conceptul vă aparține."},
         ],
         "preis_h": "Cât costă consultanța",
-        "preis_t": "Consultanța costă 95 € pe oră, întâlnirile la fața locului 120 € pe oră plus deplasarea. Discuția inițială este gratuită. O evaluare cu concept scris necesită, de regulă, pentru o firmă obișnuită, între jumătate de zi și două zile de efort; estimarea o comunicăm dinainte și o respectăm sau anunțăm înainte să fie depășită. Dacă ne dați implementarea, decontăm orele de consultanță. Prețuri orientative, nete plus TVA.",
+        "preis_t": "Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Discuția inițială este gratuită. O evaluare cu concept scris necesită, de regulă, pentru o firmă obișnuită, între jumătate de zi și două zile de efort; estimarea o comunicăm dinainte și o respectăm sau anunțăm înainte să fie depășită. Dacă ne dați implementarea, decontăm orele de consultanță.",
         "faq": [
             {"q": "Cât costă o consultanță IT?",
-             "a": "95 € pe oră, la fața locului 120 € pe oră plus deplasarea; discuția inițială este gratuită. O evaluare completă cu concept scris pentru o firmă cu zece până la treizeci de posturi de lucru durează de obicei între patru și șaisprezece ore. Cadrul îl comunicăm înainte de început."},
+             "a": "Discuția inițială este gratuită. O evaluare completă cu concept scris pentru o firmă cu zece până la treizeci de posturi de lucru durează de obicei între patru și șaisprezece ore. Cadrul îl comunicăm înainte de început, iar tariful se stabilește după discuția inițială, cu „feste Absprache vorab, keine Überraschungen”. Pentru detalii sunați la +43 676 3808501."},
             {"q": "Sunteți legați de un anumit producător?",
              "a": "Nu. Colaborăm cu parteneri acolo unde e necesar din punct de vedere tehnic — la automatizarea clădirilor și tehnica pentru evenimente, de exemplu —, dar nu primim niciun comision pentru a recomanda un anumit produs. Dacă o recomandare este avantajoasă financiar pentru noi, spunem asta în concept."},
             {"q": "Consiliați și atunci când implementarea o face alt furnizor?",
@@ -639,9 +639,9 @@ SEITEN = {
     "it-betreuung-groessere-betriebe": {
         "nav": "Firme mai mari",
         "titel": "Administrare IT firme mari: de la 20 de stații | WVM-IT",
-        "desc": "Administrare IT de la 20 de stații: de la 29 €/lună pe stație, server de la 89 €/lună, mai multe sedii prin mentenanță la distanță. Cereți ofertă.",
+        "desc": "Administrare IT de la 20 de stații: Preț stabilit la telefon. Cereți ofertă.",
         "h1": "Administrare IT pentru firme mai mari, de la 20 de stații",
-        "kurz": "WVM-IT din Lenzing se ocupă și de firme mai mari, de la aproximativ 20 de stații în sus: evaluare și documentație vie, persoană de contact fixă, monitorizarea serverelor și rețelei, mai multe sedii prin mentenanță securizată la distanță. Asistența curentă începe de la 29 € pe stație și lună, un server administrat de la 89 € pe lună. Pentru o firmă cu 30 de stații și 2 servere rezultă un cadru de circa 1.097 € pe lună (30 × 29 € + 2 × 89 € + 49 € copie de siguranță). Acolo unde există un rol IT intern, lucrăm alături — ca al doilea nivel pentru temele care nu încap în ziua obișnuită.",
+        "kurz": "WVM-IT din Lenzing se ocupă și de firme mai mari, de la aproximativ 20 de stații în sus: evaluare și documentație vie, persoană de contact fixă, monitorizarea serverelor și rețelei, mai multe sedii prin mentenanță securizată la distanță. Asistența curentă începe, un server administrat. Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Acolo unde există un rol IT intern, lucrăm alături — ca al doilea nivel pentru temele care nu încap în ziua obișnuită.",
         "intro": "Sub circa 20 de posturi de lucru se potrivește mai bine <a href=\"/ro/leistungen/edv-it-betreuung/\">administrarea IT</a> pentru firme mai mici; această pagină descrie ce se schimbă peste această limită. De la aproximativ douăzeci de stații se schimbă întrebarea: nu mai „există cineva care să se ocupe”, ci „cum menținem douăzeci de conturi, zece partajări, două servere și trei sedii într-o stare în care cineva să mai poată urmări cum e construit totul” pe termen lung. Firmele mai mari au contracte cu clienți care presupun un IT care merge și au obligații de documentare pe care o hârtie în camera serverelor nu le acoperă. Aici pornește o asistență construită pe inventar viu, nu pe o coadă de tichete. Sub 20 de stații, <a href=\"/ro/leistungen/edv-it-betreuung/\">administrarea IT pentru firme mici</a> este alegerea potrivită — relație mai apropiată, preț mai mic pe cap.",
         "problem_h": "Ce se strică în firmele mai mari",
         "probleme": [
@@ -668,7 +668,7 @@ SEITEN = {
             {"h": "Operare cu documentație", "t": "De atunci persoana de contact se anunță când ceva iese în evidență, în loc să vă lase pe dumneavoastră să o faceți. Fiecare modificare este consemnată. Trimestrial discutăm ce urmează."},
         ],
         "preis_h": "Cât costă",
-        "preis_t": "Asistența curentă costă de la 29 € pe stație și lună, un server administrat de la 89 € pe lună, copia de siguranță monitorizată de la 49 € pe lună. Pentru o firmă tipică mai mare, cu 30 de stații și 2 servere plus copie de siguranță, rezultă circa 1.097 € pe lună (30 × 29 € + 2 × 89 € + 49 €). Lucrările punctuale se facturează cu 95 € pe oră, la fața locului cu 120 € pe oră plus deplasare. Prețuri orientative, net, fără TVA. Activitatea curentă prin mentenanță la distanță este independentă de locație; sediile suplimentare se facturează pe stație și server ca mai sus, iar pentru montaje și intervenții la fața locului deplasarea se comunică în scris înainte.",
+        "preis_t": "Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Pentru o firmă tipică mai mare, cu 30 de stații și 2 servere plus copie de siguranță. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Activitatea curentă prin mentenanță la distanță este independentă de locație; sediile suplimentare se facturează pe stație și server ca mai sus, iar pentru montaje și intervenții la fața locului deplasarea se comunică în scris înainte.",
         "faq": [
             {"q": "Unde este linia dintre această pagină și administrarea pentru firme mici?",
              "a": "La aproximativ 20 de stații. Sub această limită, o relație mai apropiată și personală este mai rapidă și mai simplă; peste, efortul pentru documentare curată și standarde fixe începe să merite, altfel nimeni nu mai are o privire de ansamblu. Linia nu este strictă: unele firme cu 15 stații pe trei sedii încap aici, unele firme cu 25 de stații pe un singur sediu aparțin celeilalte pagini. Vă spunem în prima discuție.",

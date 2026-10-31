@@ -9,23 +9,14 @@ und das ist Absicht.
 EINRICHTEN = {
     # ════════════════════════════════════════════════════════════════════════
     "arbeitsplatz": {
-        "titel": "PC einrichten lassen für Firmen — 190 € Festpreis | WVM-IT",
-        "desc": "Neuer Arbeitsplatz für 190 €: Windows, Programme, Benutzerkonto, "
-                "E-Mail, Drucker, Datenübernahme. Meist per Fernwartung, ohne Vertrag. "
-                "Jetzt anfragen.",
-        "h1": "Einen Arbeitsplatz einrichten lassen — Festpreis, ohne Vertrag",
+        "titel": "PC einrichten lassen für Firmen — feste Absprache vorab | WVM-IT",
+        "desc": "Neuer Arbeitsplatz mit fester Absprache vorab: Windows, Programme, Benutzerkonto, E-Mail, Drucker, Datenübernahme. Meist per Fernwartung, ohne Vertrag. Jetzt anfragen.",
+        "h1": "Einen Arbeitsplatz einrichten lassen — feste Absprache vorab, ohne Vertrag",
         "nav": "Arbeitsplatz einrichten",
-        "kurz": "WVM-IT aus Lenzing richtet für Betriebe in ganz Österreich einen neuen Arbeitsplatz zum Festpreis von 190 € ein, meist per Fernwartung in zwei bis drei Stunden und ohne Vertrag. Dazu gehören Windows, Treiber, die Programme des Betriebs, Benutzerkonto, E-Mail-Postfach, Drucker, Zugriff auf die gemeinsamen Dateien und die Übernahme der Daten vom alten Gerät. Der Preis gilt je Arbeitsplatz; es ist kein Vertrag nötig.",
-        "intro": "Ein neuer Rechner steht auf dem Tisch, und ab da wird es mühsam: "
-                 "Windows will eingerichtet werden, die Branchensoftware braucht ihre "
-                 "Lizenz, das Postfach soll die alten Mails behalten, der Drucker wird "
-                 "nicht gefunden, und die Dateien vom alten Gerät liegen noch dort. "
-                 "Erfahrungsgemäß gehen darüber ein halber bis ein ganzer Arbeitstag "
-                 "verloren — und zwar der Arbeitstag von jemandem, der eigentlich "
-                 "etwas anderes zu tun hat. Genau dafür gibt es diesen Festpreis. Wie der Ablauf beim neuen Mitarbeiter aussieht, steht im Ratgeber "
-                 "<a href='/aktuelles/neuer-mitarbeiter-pc-einrichten/'>Neuen Mitarbeiter-PC einrichten: Ablauf, Dauer und Kosten</a>.",
+        "kurz": "WVM-IT aus Lenzing richtet für Betriebe in ganz Österreich einen neuen Arbeitsplatz mit fester Absprache vorab, ohne Überraschungen ein, meist per Fernwartung in zwei bis drei Stunden und ohne Vertrag. Dazu gehören Windows, Treiber, die Programme des Betriebs, Benutzerkonto, E-Mail-Postfach, Drucker, Zugriff auf die gemeinsamen Dateien und die Übernahme der Daten vom alten Gerät. Die Absprache gilt je Arbeitsplatz; es ist kein Vertrag nötig.",
+        "intro": "Ein neuer Rechner steht auf dem Tisch, und ab da wird es mühsam: Windows will eingerichtet werden, die Branchensoftware braucht ihre Lizenz, das Postfach soll die alten Mails behalten, der Drucker wird nicht gefunden, und die Dateien vom alten Gerät liegen noch dort. Erfahrungsgemäß gehen darüber ein halber bis ein ganzer Arbeitstag verloren — und zwar der Arbeitstag von jemandem, der eigentlich etwas anderes zu tun hat. Genau dafür gibt es diesen feste Absprache vorab. Wie der Ablauf beim neuen Mitarbeiter aussieht, steht im Ratgeber <a href='/aktuelles/neuer-mitarbeiter-pc-einrichten/'>Neuen Mitarbeiter-PC einrichten: Ablauf, Dauer und Kosten</a>.",
 
-        "leistungen_h": "Was für 190 € enthalten ist",
+        "leistungen_h": "Was enthalten ist",
         "leistungen": [
             "Windows aufsetzen oder das vorinstallierte System einrichten, "
             "einschließlich aller Treiber",
@@ -62,35 +53,25 @@ EINRICHTEN = {
         ],
 
         "fern_h": "Fernwartung oder vor Ort?",
-        "fern_t": "Das meiste geht aus der Ferne, und dann gilt der Festpreis von "
-                  "190 €. Vor Ort nötig wird es, wenn das Gerät erst ausgepackt und "
-                  "angeschlossen werden muss, wenn mehrere Arbeitsplätze gleichzeitig "
-                  "umgestellt werden oder wenn kein funktionierender Internetzugang da "
-                  "ist, über den die Fernwartung laufen könnte. Ein Einsatz vor Ort "
-                  "kostet 120 € je Stunde zuzüglich Anfahrt; wir sagen vorher, ob und "
-                  "warum er nötig ist.",
+        "fern_t": "Das meiste geht aus der Ferne, und dann gilt die feste Absprache vorab, ohne Überraschungen. Vor Ort nötig wird es, wenn das Gerät erst ausgepackt und angeschlossen werden muss, wenn mehrere Arbeitsplätze gleichzeitig umgestellt werden oder wenn kein funktionierender Internetzugang da ist, über den die Fernwartung laufen könnte. Ein Einsatz vor Ort wird nach Aufwand abgerechnet; wir sagen vorher, ob und warum er nötig ist.",
 
         # Windows-10-Ende: Microsoft Support, „Windows 10 support ends on October 14, 2025“,
         # abgerufen 13.10.2026 (Supportende 14.10.2025; ESU für Privatanwender bis 12.10.2027).
         "anlass_h": "Windows 10 ist ausgelaufen: Zeit für neue Arbeitsplätze?",
-        "anlass_t": "Microsoft hat den Support für Windows 10 am 14. Oktober 2025 beendet; seitdem gibt es dafür keine regulären Sicherheitsupdates mehr. Für Privatgeräte bietet Microsoft erweiterte Sicherheitsupdates (ESU) bis zum 12. Oktober 2027 an. Rechner im Betrieb, die Windows 11 nicht unterstützen, sollten Sie deshalb nicht dauerhaft weiterbetreiben. Wir prüfen, ob sich ein vorhandenes Gerät auf <a href=\"/einrichten/windows-11/\">Windows 11</a> umstellen lässt, oder richten den Ersatz-Arbeitsplatz für 190 € ein.",
+        "anlass_t": "Microsoft hat den Support für Windows 10 am 14. Oktober 2025 beendet; seitdem gibt es dafür keine regulären Sicherheitsupdates mehr. Für Privatgeräte bietet Microsoft erweiterte Sicherheitsupdates (ESU) bis zum 12. Oktober 2027 an. Rechner im Betrieb, die Windows 11 nicht unterstützen, sollten Sie deshalb nicht dauerhaft weiterbetreiben. Wir prüfen, ob sich ein vorhandenes Gerät auf <a href=\"/einrichten/windows-11/\">Windows 11</a> umstellen lässt, oder richten den Ersatz-Arbeitsplatz nach fester Absprache vorab, ohne Überraschungen ein.",
 
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Was kostet es, einen PC einrichten zu lassen?",
-             "a": "Einen Arbeitsplatz einzurichten kostet 190 € Festpreis je Gerät, ohne Vertrag. Der Preis gilt, wenn es per Fernwartung geht, und das dauert in der Regel zwei bis drei Stunden. Muss jemand vor Ort sein, kommen 120 € je Stunde zuzüglich Anfahrt dazu. Hardware und Lizenzen sind nicht enthalten."},
+             "a": "Die Einrichtung eines Arbeitsplatzes wird nach Aufwand und Umfang vorab fest abgesprochen, ohne versteckte Kosten. Für Fernwartung klären wir den Aufwand in einem kurzen Gespräch – bei Vor-Ort‑Einsatz sprechen wir die Details telefonisch ab. Hardware und Lizenzen sind nicht inbegriffen. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie per WhatsApp, wir finden eine faire Lösung für Ihr Budget."},
             {"q": "Gilt der Preis je Gerät oder für alle zusammen?",
-             "a": "Je Arbeitsplatz. Fünf neue Rechner kosten also fünfmal 190 €. Bei "
-                  "mehreren Geräten gleichzeitig geht es schneller, weil die Einrichtung "
-                  "nur einmal durchdacht werden muss — das rechnen wir vorher an."},
+             "a": "Die Kosten für mehrere neue Rechner hängen von der Anzahl und dem Aufwand der Einrichtung ab. Bei mehreren Geräten gleichzeitig können wir den Prozess bündeln, sodass Sie von einer effizienten Planung profitieren. Lassen Sie uns in einem kurzen Gespräch die Details besprechen – wir finden eine passende Absprache, die zu Ihrem Budget passt."},
             {"q": "Was passiert mit dem alten Rechner?",
              "a": "Auf Wunsch löschen wir ihn sicher, damit keine Firmendaten darauf "
                   "zurückbleiben. Was mit dem Gerät danach geschieht — verkaufen, "
                   "weitergeben, entsorgen — entscheiden Sie."},
             {"q": "Wir haben gar keine IT-Betreuung. Geht das trotzdem?",
-             "a": "Ja, genau dafür gibt es diesen Festpreis. Es ist kein Vertrag nötig "
-                  "und keine laufende Betreuung. Wenn Sie später doch eine wollen, "
-                  "beginnt sie bei 29 € je Arbeitsplatz und Monat."},
+             "a": "Für die einmalige Einrichtung ohne Vertrag gibt es eine feste Absprache vorab, keine Überraschungen. Wenn Sie später eine laufende Betreuung wünschen, klären wir die Konditionen ebenfalls in einem kurzen Gespräch. Kontaktieren Sie uns telefonisch unter +43 676 3808501 oder per WhatsApp, wir erstellen ein Angebot, das zu Ihnen passt."},
             {"q": "Und wenn ein Gerät kaputt ist statt neu?",
              "a": "Dann stellen wir zuerst fest, woran es liegt. Ist es die Festplatte "
                   "oder der Arbeitsspeicher, lohnt sich der Tausch meistens noch. Ist "
@@ -107,13 +88,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "pc-tausch": {
-        "titel": "PC tauschen und einrichten lassen: 190 € je Gerät | WVM-IT",
-        "desc": "PC kaufen und einrichten, alter Rechner mit allen Daten: "
-                "Dateien, E-Mails, Zugänge, Programme. 190 € je Gerät, meist per "
-                "Fernwartung. Jetzt anfragen.",
+        "titel": "PC tauschen und einrichten lassen: feste Absprache vorab | WVM-IT",
+        "desc": "PC kaufen und einrichten, alter Rechner mit allen Daten: Dateien, E-Mails, Zugänge, Programme. Je Gerät mit fester Absprache vorab, ohne Überraschungen, meist per Fernwartung. Jetzt anfragen.",
         "h1": "Rechner tauschen, ohne dass etwas verlorengeht",
         "nav": "PC tauschen",
-        "kurz": "WVM-IT aus Lenzing überträgt beim Gerätewechsel Dateien, E-Mails und Programme für Betriebe in ganz Österreich, 190 € je Arbeitsplatz, meist per Fernwartung in zwei bis drei Stunden. Mitgenommen wird alles, was gebraucht wird: Dateien, E-Mails samt Ordnerstruktur, Browser-Lesezeichen, gespeicherte Zugänge und die eingerichteten Programme. Der alte Rechner wird auf Wunsch sicher gelöscht; die Person, die daran arbeitet, kann in dieser Zeit weiterarbeiten.",
+        "kurz": "WVM-IT aus Lenzing überträgt beim Gerätewechsel Dateien, E-Mails und Programme für Betriebe in ganz Österreich — der Preis richtet sich nach Arbeitsplätzen und Umfang, fair und passend zu Ihrem Budget. Mitgenommen wird alles, was gebraucht wird: Dateien, E-Mails samt Ordnerstruktur, Browser-Lesezeichen, gespeicherte Zugänge und die eingerichteten Programme. Der alte Rechner wird auf Wunsch sicher gelöscht; die Person, die daran arbeitet, kann in dieser Zeit weiterarbeiten.",
         "intro": "Der Gerätewechsel ist der Moment, in dem Daten verlorengehen — nicht "
                  "durch einen Defekt, sondern durch Unauffälligkeit. Die Dateien auf "
                  "dem Schreibtisch fallen sofort auf. Was Monate später fehlt, sind die "
@@ -163,16 +142,7 @@ EINRICHTEN = {
                   "Erst dann ist die Übernahme wirklich abgeschlossen.",
 
         "beschaff_h": "Geräte beschaffen und einrichten",
-        "beschaff_t": "Auf Wunsch übernehmen wir auch die Beschaffung der neuen "
-                      "Geräte: Bedarf klären, Angebot für passende Hardware zusammen"
-                      "stellen und danach zum Festpreis von 190 € je Arbeitsplatz "
-                      "einrichten samt Datenübernahme. Wir empfehlen nach dem "
-                      "tatsächlichen Bedarf, nicht nach Marke — was auf dem Gerät "
-                      "laufen soll, entscheidet mehr über den sinnvollen Preis als "
-                      "jede Empfehlung ins Blaue. Der Gerätepreis kommt nach Ihren "
-                      "Anforderungen; die Einrichtung bleibt bei 190 € je Gerät. "
-                      "Sie können die Geräte auch selbst besorgen und uns nur die "
-                      "Einrichtung geben — beides ist erprobt.",
+        "beschaff_t": "Auf Wunsch übernehmen wir auch die Beschaffung der neuen Geräte: Bedarf klären, Angebot für passende Hardware zusammenstellen und danach mit fester Absprache vorab, ohne Überraschungen einrichten samt Datenübernahme. Wir empfehlen nach dem tatsächlichen Bedarf, nicht nach Marke — was auf dem Gerät laufen soll, entscheidet mehr über den sinnvollen Preis als jede Empfehlung ins Blaue. Der Gerätepreis kommt nach Ihren Anforderungen; die Einrichtung wird vorab fest abgesprochen. Sie können die Geräte auch selbst besorgen und uns nur die Einrichtung geben — beides ist erprobt.",
 
         "faq_h": "Häufige Fragen",
         "faq": [
@@ -190,17 +160,7 @@ EINRICHTEN = {
                   "ist das eine Datenrettung — dann sprechen wir vorher über Aufwand "
                   "und Aussichten, statt eine Zahl zu nennen, die nicht zu halten ist."},
             {"q": "Was passiert mit einem defekten Rechner — wird er repariert?",
-             "a": "Nein, er wird ersetzt: Wir übernehmen die Daten vom defekten Gerät "
-                  "auf das neue und richten dieses zum Festpreis von 190 € je "
-                  "Arbeitsplatz ein. Eine Werkstatt sind wir nicht, Werkstatt"
-                  "reparaturen führen wir nicht durch — bei Bürogeräten sind sie fast "
-                  "nie günstiger als ein neues Gerät. Läuft das alte Gerät nicht mehr, "
-                  "stellen wir zuerst fest, woran es liegt; ist nur die Festplatte "
-                  "betroffen, ist das eine Datenrettung nach Aufwand. Was mit dem "
-                  "alten Gerät danach geschieht, entscheiden Sie. Wer erst einmal "
-                  "wissen will, was überhaupt kaputt ist, findet die <a "
-                  "href=\"/it-hilfe/\">Hilfe bei einzelnen Problemen</a> auf einer "
-                  "eigenen Seite."},
+             "a": "Wir übernehmen die Daten vom defekten Gerät und richten das neue Gerät mit einer festen Absprache vorab, ohne Überraschungen, ein. Werkstattreparaturen führen wir nicht durch; bei einem Defekt prüfen wir zunächst die Ursache und bieten Ihnen je nach Aufwand eine Lösung an. Weitere Informationen finden Sie in unserer <a href=\"/it-hilfe/\">Hilfe bei einzelnen Problemen</a>. Für ein persönliches Angebot melden Sie sich gern telefonisch oder per WhatsApp."},
             {"q": "Lohnt sich der Tausch überhaupt, oder reicht Aufrüsten?",
              "a": "Das hängt am Alter und am Zustand. Ist die Festplatte noch eine "
                   "klassische und der Rechner sonst gesund, bringt der Umstieg auf eine "
@@ -208,16 +168,9 @@ EINRICHTEN = {
                   "lohnt sich das selten noch, weil dann auch Netzteil und Lüfter am "
                   "Ende sind. Wir sagen Ihnen, was wir an Ihrer Stelle täten."},
             {"q": "Können wir die neuen Geräte auch bei Ihnen beschaffen?",
-             "a": "Ja. Bedarf klären, Angebot für die Geräte, Einrichtung zum "
-                  "Festpreis von 190 € je Arbeitsplatz, Datenübernahme wie oben. "
-                  "Der Preis der Geräte selbst kommt nach Ihren Anforderungen — "
-                  "was tatsächlich darauf laufen soll, entscheidet mehr über den "
-                  "sinnvollen Preis als jede Empfehlung ins Blaue."},
+             "a": "Nach Klärung Ihres Bedarfs erstellen wir ein Angebot für die Geräte und die Einrichtung mit fester Absprache vorab, keine Überraschungen. Der Preis für die Geräte richtet sich nach Ihren Anforderungen und dem gewünschten Funktionsumfang. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns via WhatsApp, wir besprechen alles im Detail."},
             {"q": "Was kostet das Gerät selbst?",
-             "a": "Auf Anfrage. Wir stellen ein Angebot passend zum tatsächlichen "
-                  "Bedarf zusammen — ohne Grafikleistung für Videoschnitt, wenn "
-                  "Excel und Outlook laufen sollen. Die Einrichtung je Gerät "
-                  "bleibt bei 190 €."},
+             "a": "Auf Anfrage stellen wir Ihnen ein Angebot zusammen, das exakt zu Ihrem tatsächlichen Bedarf passt – beispielsweise ohne Grafikleistung für Videoschnitt, wenn nur Excel und Outlook benötigt werden. Die Einrichtung jedes Geräts wird nach Aufwand und Umfang vorab fest abgesprochen. Kontaktieren Sie uns für ein unverbindliches Gespräch, wir finden die passende Lösung für Ihr Budget."},
         ],
 
         "cta_h": "Gerätewechsel anfragen",
@@ -228,13 +181,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "windows-11": {
-        "titel": "Windows 11 Umstellung im Betrieb — 190 € je Gerät | WVM-IT",
-        "desc": "Windows 10 bekommt seit Oktober 2025 keine Sicherheitsupdates mehr. "
-                "Umstellung je Arbeitsplatz 190 €, inklusive Prüfung der Programme. "
-                "Jetzt anfragen.",
+        "titel": "Windows 11 Umstellung im Betrieb — Preis im Gespräch | WVM-IT",
+        "desc": "Windows 10 bekommt seit Oktober 2025 keine Sicherheitsupdates mehr. Umstellung je Arbeitsplatz nach Aufwand, inklusive Prüfung der Programme. Jetzt anfragen.",
         "h1": "Windows 11 im Betrieb: umstellen oder Gerät tauschen?",
         "nav": "Windows 11",
-        "kurz": "WVM-IT aus Lenzing prüft Geräte und Programme und stellt Betriebe in ganz Österreich von Windows 10 auf Windows 11 um, 190 € je Arbeitsplatz. Windows 10 erhält seit Oktober 2025 keine Sicherheitsupdates mehr. Wir prüfen je Arbeitsplatz, ob das Gerät Windows 11 unterstützt und ob die eingesetzten Programme darauf laufen; wo die Hardware nicht mitkommt, sagen wir es vorher, statt es beim Umstieg herauszufinden.",
+        "kurz": "WVM-IT aus Lenzing prüft Geräte und Programme und stellt Betriebe in ganz Österreich von Windows 10 auf Windows 11 um. Der Aufwand wird nach einer kurzen Analyse vorab fest abgesprochen, ohne Überraschungen. Windows 10 erhält seit Oktober 2025 keine Sicherheitsupdates mehr. Wir prüfen je Arbeitsplatz, ob das Gerät Windows 11 unterstützt und ob die eingesetzten Programme darauf laufen; wo die Hardware nicht mitkommt, sagen wir es vorher, statt es beim Umstieg herauszufinden.",
         "intro": "Der Übergang wird gern verschoben, weil nichts weh tut: Windows 10 "
                  "startet weiter, die Programme laufen, es sieht aus wie immer. "
                  "Fehlende Sicherheitsupdates merkt man nicht — bis der Tag kommt, an "
@@ -243,7 +194,7 @@ EINRICHTEN = {
                  "zwei Rechner die Voraussetzungen nicht erfüllen und die "
                  "Branchensoftware eine neue Version braucht.",
 
-        "leistungen_h": "Was für 190 € je Arbeitsplatz enthalten ist",
+        "leistungen_h": "Was bei der Umstellung auf Windows 11 pro Arbeitsplatz enthalten ist",
         "leistungen": [
             "Prüfung, ob das Gerät Windows 11 unterstützt — Prozessor, Speicher, "
             "TPM 2.0, Secure Boot",
@@ -314,12 +265,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "microsoft-365": {
-        "titel": "Microsoft 365 (Office 365) einrichten lassen: 290 € | WVM-IT",
-        "desc": "Microsoft 365 / Office 365 einrichten lassen: 290 € Festpreis inkl. "
-                "Mailumzug, Teams, OneDrive. Meist per Fernwartung. Jetzt anfragen.",
+        "titel": "Microsoft 365 (Office 365) einrichten lassen – WVM‑IT",
+        "desc": "Microsoft 365 / Office 365 einrichten lassen – Preis im Gespräch. Inkl. Mailumzug, Teams, OneDrive. Meist per Fernwartung. Jetzt anfragen.",
         "h1": "Microsoft 365 einrichten — einmal richtig statt dreimal halb",
         "nav": "Microsoft 365",
-        "kurz": "WVM-IT aus Lenzing richtet Microsoft 365 (Office 365) für Betriebe in ganz Österreich zum Festpreis von 290 € ein, mit Postfächern, Zwei-Faktor-Anmeldung, Teams, OneDrive und Mailumzug; die Lizenzen zahlen Sie direkt an Microsoft. Dazu kommen Aliasse, die gemeinsamen Ablagen in SharePoint und der Umzug der bestehenden E-Mails samt Ordnern und Kalendern. Der Preis gilt für die Einrichtung.",
+        "kurz": "WVM-IT aus Lenzing richtet Microsoft 365 (Office 365) für Betriebe in ganz Österreich ein, mit Postfächern, Zwei‑Faktor‑Anmeldung, Teams, OneDrive und Mailumzug; die Lizenzen zahlen Sie direkt an Microsoft. Zusätzlich konfigurieren wir Aliasse, gemeinsame Ablagen in SharePoint und den Umzug bestehender E‑Mails samt Ordnern und Kalendern. Der Aufwand wird nach einem kurzen Gespräch mit fester Absprache vorab, keine Überraschungen, festgelegt.",
         "intro": "Microsoft 365 ist in zehn Minuten gekauft und in zehn Monaten immer "
                  "noch nicht richtig eingerichtet. Das ist der Normalfall: Die "
                  "Postfächer laufen, alles andere wird nach und nach danebengestellt. "
@@ -328,7 +278,7 @@ EINRICHTEN = {
                  "Und niemand weiß, wo die aktuelle Fassung des Angebots liegt. Wie die Einrichtung abläuft, beschreibt der Ratgeber "
                  "<a href='/aktuelles/microsoft-365-einrichten-lassen/'>Wie läuft die Einrichtung von Microsoft 365 ab?</a>",
 
-        "leistungen_h": "Office 365 einrichten lassen: Was für 290 € enthalten ist",
+        "leistungen_h": "Office 365 einrichten lassen – Leistungen im Überblick",
         "leistungen": [
             "Postfächer, Aliasse, Verteiler und gemeinsame Postfächer",
             "Zwei-Faktor-Anmeldung für alle Konten — der wirksamste einzelne Schritt "
@@ -370,12 +320,9 @@ EINRICHTEN = {
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Was kostet es, Office 365 einrichten zu lassen?",
-             "a": "Die Einrichtung von Office 365 (heute Microsoft 365) kostet bei WVM-IT 290 € Festpreis. Die Lizenzen zahlen Sie direkt an Microsoft."},
+             "a": "Die Einrichtung von Microsoft 365 wird bei uns nach Aufwand und Umfang vorab fest abgesprochen, ohne Überraschungen. Die Lizenzen zahlen Sie direkt an Microsoft. Für ein persönliches Angebot melden Sie sich telefonisch unter +43 676 3808501 oder per WhatsApp, wir besprechen Ihre Anforderungen im Detail."},
             {"q": "Ist Office 365 dasselbe wie Microsoft 365?",
-             "a": "Im Alltag ja: Microsoft hat die Abos von Office 365 in Microsoft 365 "
-                  "umbenannt. Wer nach Office 365 sucht, meint in der Regel das Abo mit "
-                  "Postfächern, Word, Excel, Teams und OneDrive. Wir richten es für "
-                  "290 € Festpreis ein; die Lizenzen zahlen Sie direkt an Microsoft."},
+             "a": "Wir richten Microsoft 365 für Sie ein und klären die Kosten in einem kurzen Gespräch – die Lizenzen zahlen Sie direkt an Microsoft. So erhalten Sie eine Lösung, die exakt zu Ihrem Bedarf passt, ohne versteckte Überraschungen. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns per WhatsApp, wir finden gemeinsam die passende Absprache."},
             {"q": "Verlieren wir alte E-Mails beim Umzug?",
              "a": "Nein. Die Postfächer werden mit Ordnerstruktur, Kalendern und "
                   "Kontakten übernommen, und die alten laufen während des Umzugs "
@@ -401,12 +348,10 @@ EINRICHTEN = {
     # ════════════════════════════════════════════════════════════════════════
     "server": {
         "titel": "Server einrichten lassen für kleine Firmen | WVM-IT",
-        "desc": "Server aufsetzen: Benutzer, Freigaben, Rechte, Sicherung — im Haus "
-                "oder virtuell. Preis nach Aufnahme, Betreuung ab 89 €/Monat. "
-                "Jetzt anfragen.",
+        "desc": "Server aufsetzen: Benutzer, Freigaben, Rechte, Sicherung – im Haus oder virtuell. Preis nach Aufnahme, Betreuung nach Absprache. Jetzt anfragen.",
         "h1": "Einen Server einrichten, der auch in fünf Jahren noch trägt",
         "nav": "Server einrichten",
-        "kurz": "WVM-IT aus Lenzing richtet Server für kleine und mittlere Betriebe in Österreich ein, der Preis steht nach einer Bestandsaufnahme schriftlich fest, die laufende Überwachung danach beginnt bei 89 € im Monat. Aufgesetzt werden Betriebssystem, Benutzer und Rechte, gemeinsame Freigaben, Datensicherung und Fernzugriff — im Haus oder virtuell. Was die Einrichtung kostet, hängt an Größe, vorhandener Technik und Anforderungen.",
+        "kurz": "WVM-IT aus Lenzing richtet Server für kleine und mittlere Betriebe in Österreich ein. Der Aufwand wird nach einer Bestandsaufnahme schriftlich mit fester Absprache vorab, keine Überraschungen, festgehalten; die laufende Überwachung wird individuell vereinbart. Aufgesetzt werden Betriebssystem, Benutzer und Rechte, gemeinsame Freigaben, Datensicherung und Fernzugriff – im Haus oder virtuell. Was die Einrichtung kostet, hängt von Größe, vorhandener Technik und Anforderungen ab.",
         "intro": "Ein Server ist keine Anschaffung, sondern eine Entscheidung für die "
                  "nächsten fünf Jahre. Die meisten Fehler dabei passieren nicht bei der "
                  "Hardware, sondern bei der Struktur: Freigaben, die historisch "
@@ -428,14 +373,8 @@ EINRICHTEN = {
             "Fernzugriff über VPN, wo er gebraucht wird",
             "Dokumentation, mit der auch ein anderer Dienstleister weiterarbeiten kann",
         ],
-        "nicht_h": "Warum hier kein Festpreis steht",
-        "nicht_t": "Weil er nicht zu halten wäre. Ob ein Betrieb einen kleinen Server "
-                   "für Dateien braucht oder eine Maschine, auf der die Branchensoftware "
-                   "für zwanzig Leute läuft, macht einen Unterschied von Tagen. Wir "
-                   "nennen den Preis schriftlich nach der Bestandsaufnahme — vor dem "
-                   "ersten Handgriff, und dann gilt er. Die Bestandsaufnahme selbst "
-                   "rechnen wir nach Stunde ab (95 € per Fernwartung, 120 € vor Ort "
-                   "zuzüglich Anfahrt).",
+        "nicht_h": "Warum der Preis hier im Gespräch geklärt wird",
+        "nicht_t": "Weil er nicht zu halten wäre. Ob ein Betrieb einen kleinen Server für Dateien braucht oder eine Maschine, auf der die Branchensoftware für zwanzig Leute läuft, macht einen Unterschied von Tagen. Wir nennen den Preis schriftlich nach der Bestandsaufnahme — vor dem ersten Handgriff, und dann gilt er. Die Bestandsaufnahme selbst rechnen wir nach Stunde ab; den Stundensatz klären wir im Gespräch, fair und passend zu Ihrem Budget.",
 
         "ablauf_h": "Wie es abläuft",
         "ablauf": [
@@ -471,11 +410,7 @@ EINRICHTEN = {
                   "Branchensoftware, Terminaldienste oder ein Umzug bestehender Daten "
                   "dazu, werden es zwei bis vier. Den Rahmen nennen wir im Angebot."},
             {"q": "Müssen wir danach eine Betreuung abschließen?",
-             "a": "Nein. Sie bekommen die Dokumentation und die Zugänge und können "
-                  "damit arbeiten oder jemand anderen beauftragen. Wenn Sie die "
-                  "Überwachung möchten, beginnt sie bei 89 € im Monat — dann sehen wir "
-                  "Speicherplatz, Auslastung und fehlgeschlagene Sicherungen, bevor Sie "
-                  "es merken."},
+             "a": "Nein. Sie bekommen die Dokumentation und die Zugänge und können damit arbeiten oder jemand anderen beauftragen. Wenn Sie die Überwachung möchten, klären wir den Aufwand gemeinsam – Preis nach kurzem Gespräch, fair und passend zu Ihrem Budget. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie per WhatsApp."},
             {"q": "Wir haben schon einen Server, aber niemand kennt sich mehr aus.",
              "a": "Auch das ist ein häufiger Fall. Dann steht am Anfang eine Aufnahme "
                   "dessen, was läuft, und eine ehrliche Einschätzung: weiterbetreiben, "
@@ -491,19 +426,18 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "netzwerk": {
-        "titel": "Netzwerk einrichten im Büro — ab 890 € | WVM-IT",
-        "desc": "Router, Switch, WLAN, Drucker im Netz und ein getrenntes Gastnetz — "
-                "eingerichtet und ausgemessen ab 890 €. Jetzt anfragen.",
+        "titel": "Netzwerk einrichten im Büro — Preis nach Absprache | WVM-IT",
+        "desc": "Router, Switch, WLAN, Drucker im Netz und ein getrenntes Gastnetz — eingerichtet und ausgemessen, Preis nach kurzem Gespräch. Jetzt anfragen.",
         "h1": "Netzwerk einrichten, das im ganzen Haus trägt",
         "nav": "Netzwerk einrichten",
-        "kurz": "WVM-IT aus Lenzing richtet Firmennetzwerke für Betriebe in Österreich ab 890 € ein, inklusive WLAN-Ausmessung und getrenntem Gastnetz; Verkabelung, Hallen und mehrere Stockwerke rechnen wir nach Aufnahme. Router und Switch werden konfiguriert, das WLAN so aufgestellt und ausgemessen, dass es überall trägt, Drucker und Netzlaufwerke eingebunden. Der Startpreis gilt für ein Büro üblicher Größe.",
+        "kurz": "WVM-IT aus Lenzing richtet Firmennetzwerke für Betriebe in Österreich ein, inklusive WLAN-Ausmessung und getrenntem Gastnetz; Verkabelung, Hallen und mehrere Stockwerke rechnen wir nach Aufnahme. Router und Switch werden konfiguriert, das WLAN so aufgestellt und ausgemessen, dass es überall trägt, Drucker und Netzlaufwerke eingebunden. Der Startpreis gilt für ein Büro üblicher Größe — was es genau kostet, klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget.",
         "intro": "Netzwerkprobleme sind selten laut. Sie zeigen sich als Video, das im "
                  "hinteren Besprechungsraum hakt, als Drucker, der zweimal die Woche "
                  "verschwindet, und als Kasse, die neben dem WLAN der Gäste hängt, weil "
                  "es damals gerade praktisch war. Fast immer liegt es an derselben "
                  "Sache: Das Netz ist gewachsen und nie geplant worden.",
 
-        "leistungen_h": "Was für 890 € enthalten ist",
+        "leistungen_h": "Was im Paket enthalten ist",
         "leistungen": [
             "Router und Switch eingerichtet — Adressbereiche, Namen, feste Adressen für "
             "alles, was erreichbar bleiben muss",
@@ -568,21 +502,14 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "firewall-vpn": {
-        "titel": "Firewall und VPN einrichten — 690 € Festpreis | WVM-IT",
-        "desc": "Firewall aufgesetzt und VPN für den Zugriff von unterwegs: 690 € "
-                "Festpreis, mit Regeln, die man später noch versteht. Jetzt anfragen.",
+        "titel": "Firewall und VPN einrichten — feste Absprache vorab, keine Überraschungen | WVM-IT",
+        "desc": "Firewall aufgesetzt und VPN für den Zugriff von unterwegs: Preis nach kurzem Gespräch, mit Regeln, die man später noch versteht. Jetzt anfragen.",
         "h1": "Firewall und VPN einrichten — Zugriff von außen, ohne offene Tür",
         "nav": "Firewall und VPN",
-        "kurz": "WVM-IT aus Lenzing richtet Firewall und VPN für Betriebe in Österreich für 690 € ein, per Fernwartung, sobald das Gerät erreichbar ist. Die Regeln folgen dem Grundsatz, dass zu ist, was nicht gebraucht wird; dazu kommen VPN-Zugänge für alle, die von unterwegs arbeiten, und eine schriftliche Übersicht, welche Regel wofür da ist.",
-        "intro": "Die meisten Firewalls in kleinen Betrieben sind nicht falsch "
-                 "eingestellt, sondern gar nicht: Der Router vom Anbieter macht, was er "
-                 "beim Auspacken gemacht hat, und irgendwann hat jemand eine "
-                 "Weiterleitung eingerichtet, damit die Buchhaltung von zu Hause "
-                 "arbeiten kann. Diese eine Weiterleitung ist dann jahrelang offen — "
-                 "und niemand weiß mehr, wofür sie war."
-                 "\n\nFirewall und VPN sind zwei Teile derselben Tür: Die Firewall entscheidet, was überhaupt ins Firmennetz darf, das VPN ist der verschlüsselte Weg, auf dem berechtigte Personen von außen hineinkommen. Gebraucht wird das in zwei Fällen. Der häufigere ist das Homeoffice: Mitarbeiter greifen von zu Hause oder unterwegs auf Dateien, Warenwirtschaft oder einen Server im Büro zu — dafür ist der Festpreis gemacht. Der seltenere ist die Verbindung zweier Standorte, etwa Büro und Lager; das ist ein eigener Auftrag, weil er von den Geräten an beiden Enden abhängt. Was ein VPN technisch ist, steht im <a href='/wissen/vpn/'>Glossar</a>, wie man Heimarbeitsplätze sicher anbindet, im <a href='/aktuelles/homeoffice-sicher-anbinden/'>Beitrag zum Homeoffice</a>.",
+        "kurz": "WVM-IT aus Lenzing richtet Firewall und VPN für Betriebe in Österreich ein, per Fernwartung, sobald das Gerät erreichbar ist. Der Preis wird vorab fest abgesprochen, ohne Überraschungen. Die Regeln folgen dem Grundsatz, dass zu ist, was nicht gebraucht wird; dazu kommen VPN-Zugänge für alle, die von unterwegs arbeiten, und eine schriftliche Übersicht, welche Regel wofür da ist.",
+        "intro": "Die meisten Firewalls in kleinen Betrieben sind nicht falsch eingestellt, sondern gar nicht: Der Router vom Anbieter macht, was er beim Auspacken gemacht hat, und irgendwann hat jemand eine Weiterleitung eingerichtet, damit die Buchhaltung von zu Hause arbeiten kann. Diese eine Weiterleitung ist dann jahrelang offen — und niemand weiß mehr, wofür sie war.\n\nFirewall und VPN sind zwei Teile derselben Tür: Die Firewall entscheidet, was überhaupt ins Firmennetz darf, das VPN ist der verschlüsselte Weg, auf dem berechtigte Personen von außen hineinkommen. Gebraucht wird das in zwei Fällen. Der häufigere ist das Homeoffice: Mitarbeiter greifen von zu Hause oder unterwegs auf Dateien, Warenwirtschaft oder einen Server im Büro zu — dafür ist der feste Absprache vorab gemacht. Der seltenere ist die Verbindung zweier Standorte, etwa Büro und Lager; das ist ein eigener Auftrag, weil er von den Geräten an beiden Enden abhängt. Was ein VPN technisch ist, steht im <a href='/wissen/vpn/'>Glossar</a>, wie man Heimarbeitsplätze sicher anbindet, im <a href='/aktuelles/homeoffice-sicher-anbinden/'>Beitrag zum Homeoffice</a>.",
 
-        "leistungen_h": "Was für 690 € enthalten ist",
+        "leistungen_h": "Was enthalten ist",
         "leistungen": [
             "Firewall eingerichtet: geschlossen als Ausgangspunkt, offen nur, was "
             "gebraucht wird",
@@ -624,11 +551,11 @@ EINRICHTEN = {
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Was ist der Unterschied zwischen Firewall und VPN?",
-             "a": "Die Firewall regelt, was ins Firmennetz hinein und aus ihm heraus darf; das VPN ist ein verschlüsselter Zugang, über den berechtigte Personen von außen hineinkommen. Das eine ohne das andere ist nur eine halbe Lösung: Ein VPN ohne saubere Firewall-Regeln öffnet zu viel, eine Firewall ohne VPN zwingt zu offenen Weiterleitungen. Für 690 € richten wir beides zusammen ein."},
+             "a": "Die Firewall regelt, was ins Firmennetz hinein und aus ihm heraus darf; das VPN ist ein verschlüsselter Zugang, über den berechtigte Personen von außen hineinkommen. Das eine ohne das andere ist nur eine halbe Lösung: Ein VPN ohne saubere Firewall‑Regeln öffnet zu viel, eine Firewall ohne VPN zwingt zu offenen Weiterleitungen. Die Kombination besprechen wir gern im Detail – Preis im Gespräch, passend zu Ihrem Budget. Kontaktieren Sie uns unter +43 676 3808501 oder per WhatsApp."},
             {"q": "Brauchen Mitarbeiter im Homeoffice ein VPN?",
              "a": "Wenn sie auf etwas im Büro zugreifen — Netzlaufwerk, Warenwirtschaft, einen Server —, ja. Arbeitet der Betrieb nur mit Cloud-Diensten wie Microsoft 365, ist kein VPN nötig; dann schützt die Zwei-Faktor-Anmeldung den Zugang. Welcher Fall bei Ihnen vorliegt, klären wir in der Bestandsaufnahme."},
             {"q": "Können wir zwei Standorte per VPN verbinden?",
-             "a": "Ja, aber das ist nicht Teil der 690 €. Eine Standortverbindung hängt an den Geräten an beiden Enden und an den Leitungen dort; was sie kostet, sagen wir nach einem Blick auf beide Seiten und vor jedem Auftrag."},
+             "a": "Ja, aber das ist nicht Teil der vorherigen Leistung. Eine Standortverbindung hängt an den Geräten an beiden Enden und an den Leitungen dort; was sie kostet, sagen wir nach einem Blick auf beide Seiten und vor jedem Auftrag."},
             {"q": "Wir haben doch schon eine Firewall im Router.",
              "a": "Die haben Sie, und sie tut das Nötigste. Der Unterschied liegt nicht "
                   "in der Existenz, sondern in den Regeln: getrennte Netze, "
@@ -662,7 +589,7 @@ EINRICHTEN = {
                 "hat. Jetzt anfragen.",
         "h1": "Loxone einrichten — auch wenn sie schon steht",
         "nav": "Loxone übernehmen",
-        "kurz": "WVM-IT aus Lenzing übernimmt bestehende Loxone- und KNX-Anlagen in Oberösterreich und Salzburg, die Aufnahme rechnen wir mit 120 € je Stunde vor Ort zuzüglich Anfahrt ab, danach nennen wir den Preis schriftlich. Wir erweitern und programmieren um: Licht, Heizung, Beschattung, Zutritt und Alarm. Das gilt ausdrücklich auch für Anlagen, deren Errichter nicht mehr erreichbar ist oder deren Programmierung niemand mehr kennt.",
+        "kurz": "Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Wir erweitern und programmieren um: Licht, Heizung, Beschattung, Zutritt und Alarm. Das gilt ausdrücklich auch für Anlagen, deren Errichter nicht mehr erreichbar ist oder deren Programmierung niemand mehr kennt.",
         "intro": "Eine Gebäudeautomation hat eine unangenehme Eigenschaft: Sie "
                  "funktioniert, bis sie es nicht mehr tut — und dann fehlt derjenige, "
                  "der weiß, warum das Licht im Flur um 22 Uhr ausgeht. Häuser werden "
@@ -681,13 +608,8 @@ EINRICHTEN = {
             "Einweisung, damit die Anlage auch ohne uns bedienbar bleibt",
             "Anbindung an das Netzwerk, sicher getrennt vom übrigen Betrieb",
         ],
-        "nicht_h": "Warum hier kein Festpreis steht",
-        "nicht_t": "Weil keine zwei Anlagen gleich sind. Eine dokumentierte "
-                   "Loxone-Anlage mit zwanzig Aktoren ist etwas anderes als eine "
-                   "gewachsene KNX-Installation über drei Stockwerke ohne Unterlagen. "
-                   "Die Aufnahme rechnen wir nach Stunde ab (120 € vor Ort zuzüglich "
-                   "Anfahrt); danach nennen wir den Preis schriftlich, und dann gilt er. "
-                   "",
+        "nicht_h": "Warum der Preis hier im Gespräch geklärt wird",
+        "nicht_t": "Weil keine zwei Anlagen gleich sind. Eine dokumentierte Loxone-Anlage mit zwanzig Aktoren ist etwas anderes als eine gewachsene KNX-Installation über drei Stockwerke ohne Unterlagen. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab.",
 
         "ablauf_h": "Wie es abläuft",
         "ablauf": [
@@ -715,7 +637,7 @@ EINRICHTEN = {
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Kann man eine bestehende Loxone-Anlage von einem anderen Programmierer übernehmen lassen?",
-             "a": "Ja. Wir übernehmen bestehende Loxone- und KNX-Anlagen, auch wenn der bisherige Programmierer oder Errichter nicht mehr erreichbar ist. Zuerst nehmen wir auf, was verbaut und wie es programmiert ist; die Aufnahme rechnen wir nach Stunde ab (120 € je Stunde vor Ort zuzüglich Anfahrt). Danach nennen wir den Preis schriftlich, und dann gilt er."},
+             "a": "Ja. Wir übernehmen bestehende Loxone‑ und KNX‑Anlagen, auch wenn der bisherige Programmierer oder Errichter nicht mehr erreichbar ist. Zuerst nehmen wir auf, was verbaut und wie es programmiert ist; die Aufnahme wird nach Aufwand und Aufwand fair abgerechnet. Danach nennen wir den Preis schriftlich, und dann gilt er."},
             {"q": "Wir haben keine Unterlagen und kein Passwort zur Anlage.",
              "a": "Das ist der Normalfall bei einer Übernahme. In den meisten Fällen "
                   "kommen wir über die Geräte selbst an die Konfiguration. Geht es "
@@ -745,12 +667,10 @@ EINRICHTEN = {
     # ── Runde 2 (24.09.2026) ────────────────────────────────────────────────
     "datensicherung": {
         "titel": "Datensicherung einrichten: automatisch, geprüft | WVM-IT",
-        "desc": "Datensicherung einrichten: was, wohin, wie oft, plus "
-                "Test-Wiederherstellung. Preis nach Aufnahme, Überwachung ab "
-                "49 €/Monat. Jetzt anfragen.",
+        "desc": "Datensicherung einrichten: was, wohin, wie oft, plus Test-Wiederherstellung. Den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Jetzt anfragen.",
         "h1": "Datensicherung einrichten, die im Ernstfall auch funktioniert",
         "nav": "Datensicherung einrichten",
-        "kurz": "WVM-IT aus Lenzing richtet die Datensicherung für Betriebe in Österreich ein (3-2-1-Regel, echter Wiederherstellungstest), die Einrichtung nennen wir nach einer Bestandsaufnahme, die laufende Überwachung beginnt bei 49 € im Monat. Geklärt wird zuerst, was gesichert wird, wohin und wie oft; die 3-2-1-Regel heißt drei Kopien, zwei Medien, eine außer Haus.",
+        "kurz": "WVM-IT aus Lenzing richtet die Datensicherung für Betriebe in Österreich ein (3-2-1-Regel, echter Wiederherstellungstest), die Einrichtung nennen wir nach einer Bestandsaufnahme. Die laufende Betreuung richtet sich nach Arbeitsplätzen, Servern und Umfang; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Geklärt wird zuerst, was gesichert wird, wohin und wie oft; die 3-2-1-Regel heißt drei Kopien, zwei Medien, eine außer Haus.",
         "intro": "Fast jeder Betrieb hat eine Datensicherung. Deutlich weniger "
                  "Betriebe wissen, wann sie zuletzt gelaufen ist, und die wenigsten "
                  "haben je versucht, etwas daraus zurückzuholen. Genau diese Lücke "
@@ -774,17 +694,8 @@ EINRICHTEN = {
             "Dokumentation: was wohin gesichert wird, wie lange es aufbewahrt wird, "
             "wer im Ernstfall zugreift",
         ],
-        "nicht_h": "Warum hier kein Festpreis steht",
-        "nicht_t": "Weil er nicht zu halten wäre. Ob ein Betrieb 200 GB an Dateien "
-                   "sichert oder 8 TB Datenbanken samt getrennter Kopie an einen "
-                   "zweiten Standort spiegelt, macht einen Unterschied von Tagen und "
-                   "einen Unterschied bei der benötigten Hardware. Wir nennen den "
-                   "Preis schriftlich nach der Bestandsaufnahme — vor dem ersten "
-                   "Handgriff, und dann gilt er. Die Bestandsaufnahme selbst rechnen "
-                   "wir nach Stunde ab (95 € per Fernwartung, 120 € vor Ort zuzüglich "
-                   "Anfahrt). Die "
-                   "laufende Überwachung der eingerichteten Sicherung beginnt bei "
-                   "49 € im Monat und ist der Preis, den es im Katalog dafür gibt.",
+        "nicht_h": "Warum der Preis hier im Gespräch geklärt wird",
+        "nicht_t": "Weil er nicht zu halten wäre. Ob ein Betrieb 200 GB an Dateien sichert oder 8 TB Datenbanken samt getrennter Kopie an einen zweiten Standort spiegelt, macht einen Unterschied von Tagen und einen Unterschied bei der benötigten Hardware. Wir nennen den Preis schriftlich nach der Bestandsaufnahme — vor dem ersten Handgriff, und dann gilt er. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Die laufende Betreuung richtet sich nach Arbeitsplätzen, Servern und Umfang; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget.",
 
         "ablauf_h": "Wie es abläuft",
         "ablauf": [
@@ -824,12 +735,7 @@ EINRICHTEN = {
                   "Erstsicherungen dazu, werden es zwei bis fünf. Den Rahmen "
                   "nennen wir im Angebot."},
             {"q": "Was ist der Unterschied zur laufenden Betreuung?",
-             "a": "Die Einrichtung ist einmalig — sie beantwortet die Frage „wer "
-                  "richtet das ordentlich ein“. Die laufende Überwachung ab 49 € "
-                  "im Monat beantwortet die Frage „wer merkt es, wenn die "
-                  "Sicherung morgen fehlschlägt“. Beides gehört zusammen, aber "
-                  "die eine Zahl bedingt die andere nicht: Wir richten auch ein, "
-                  "wenn Sie danach selbst überwachen wollen."},
+             "a": "Die Einrichtung ist einmalig – sie beantwortet die Frage „wer richtet das ordentlich ein“. Die laufende Überwachung wird individuell kalkuliert – Preis nach kurzem Gespräch, fair und passend zu Ihrem Budget. Beides gehört zusammen, aber die eine Leistung bedingt die andere nicht: Wir richten auch ein, wenn Sie danach selbst überwachen wollen."},
             {"q": "Was ist mit DSGVO und Datenschutz?",
              "a": "Die Sicherung ist Teil Ihres Verarbeitungsverzeichnisses: was "
                   "wird wohin gesichert, wie lange aufbewahrt, wer greift zu. Wir "
@@ -851,7 +757,7 @@ EINRICHTEN = {
                 "Aufnahme. Jetzt anfragen.",
         "h1": "IT-Umzug ins neue Büro — geplant statt improvisiert",
         "nav": "IT-Umzug",
-        "kurz": "WVM-IT aus Lenzing begleitet den IT-Umzug ins neue Büro in Oberösterreich und Salzburg, Bausteine: Arbeitsplatz einrichten 190 € je Platz, Netzwerk und WLAN ab 890 €, Einsatz vor Ort 120 € je Stunde zuzüglich Anfahrt. Server, Netzwerk und Arbeitsplätze werden vorher aufgenommen, mit einer Checkliste geplant, am Umzugstag abgebaut und aufgebaut und am ersten Arbeitstag getestet. Der Gesamtpreis hängt am Umfang und steht nach einer Aufnahme schriftlich fest.",
+        "kurz": "Netzwerk, WLAN, Firewall und VPN richten sich nach Größe und Gebäude; den Preis klären wir im Gespräch. Server, Netzwerk und Arbeitsplätze werden vorher aufgenommen, mit einer Checkliste geplant, am Umzugstag abgebaut und aufgebaut und am ersten Arbeitstag getestet. Der Gesamtpreis hängt am Umfang und steht nach einer Aufnahme schriftlich fest.",
         "intro": "Ein Büroumzug fällt meist auf denselben Tag wie ein Feiertag — nicht "
                  "wörtlich, aber vom Gefühl her: Das Regal war schneller im Auto als "
                  "in der Planung, und im neuen Haus ist die Internetleitung eine "
@@ -877,15 +783,8 @@ EINRICHTEN = {
             "Danach: die neue Dokumentation, damit ein späterer Umzug oder eine "
             "Übernahme nicht wieder bei null anfängt",
         ],
-        "nicht_h": "Warum hier kein Festpreis steht",
-        "nicht_t": "Weil er nicht zu halten wäre. Zwanzig Arbeitsplätze in einem "
-                   "Stockwerk sind etwas anderes als sechzig auf drei Etagen mit "
-                   "einem Serverumzug in der Nacht. Wir nennen den Preis schriftlich "
-                   "nach einer Aufnahme des alten und einer Besichtigung des neuen "
-                   "Standorts — mit den Bausteinen des Katalogs (Arbeitsplatz "
-                   "einrichten 190 € je Platz, Netzwerk ab 890 €, Vor-Ort-Einsatz "
-                   "120 € je Stunde zuzüglich Anfahrt). Die Aufnahme selbst rechnen "
-                   "wir nach Stunde ab.",
+        "nicht_h": "Warum der Preis hier im Gespräch geklärt wird",
+        "nicht_t": "Weil er nicht zu halten wäre. Zwanzig Arbeitsplätze in einem Stockwerk sind etwas anderes als sechzig auf drei Etagen mit einem Serverumzug in der Nacht. Wir nennen den Preis schriftlich nach einer Aufnahme des alten und einer Besichtigung des neuen Standorts — mit den Bausteinen des Katalogs. Die Aufnahme selbst rechnen wir nach Stunde ab.",
 
         "ablauf_h": "Wie es abläuft",
         "ablauf": [
@@ -914,7 +813,7 @@ EINRICHTEN = {
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Wie lässt sich das Netzwerk umziehen?",
-             "a": "Beim Netzwerk-Umzug zeichnen wir vorher den Netzplan: wo der Serverschrank steht, wo Kabel verlaufen und wo Zugangspunkte, Drucker und Terminals hängen. Die Leitungen am neuen Standort müssen früh bestellt werden (sechs bis acht Wochen). Am Umzugstag bauen wir Server und Netzwerktechnik zuerst auf, die Arbeitsplätze danach, jeden Rechner an derselben Buchse wie im Netzplan. Am ersten Arbeitstag testen wir jeden Platz. Für ein neu aufzubauendes Netzwerk samt WLAN rechnen wir mit ab 890 €."},
+             "a": "Beim Netzwerk‑Umzug zeichnen wir vorher den Netzplan: wo der Serverschrank steht, wo Kabel verlaufen und wo Zugangspunkte, Drucker und Terminals hängen. Die Leitungen am neuen Standort müssen früh bestellt werden (sechs bis acht Wochen). Am Umzugstag bauen wir Server und Netzwerktechnik zuerst auf, die Arbeitsplätze danach, jeden Rechner an derselben Buchse wie im Netzplan. Am ersten Arbeitstag testen wir jeden Platz. Für ein neu aufzubauendes Netzwerk samt WLAN besprechen wir den Aufwand im Gespräch – Preis nach kurzer Absprache, passend zu Ihrem Budget."},
             {"q": "Wie viel Vorlauf braucht ein IT-Umzug?",
              "a": "Für die IT selbst reichen zwei bis vier Wochen; die kritische "
                   "Frist ist die Bestellung von Internet und Telefon am neuen "
@@ -949,36 +848,11 @@ EINRICHTEN = {
 
 # ── Texte des Hubs /einrichten/ ─────────────────────────────────────────────
 HUB = {
-    "titel": "PC & IT einrichten lassen: Festpreise ohne Vertrag | WVM-IT",
-    "desc": "Arbeitsplatz, PC-Tausch, Microsoft 365, Server, Netzwerk: "
-            "Aufgaben zum Festpreis ohne Vertrag, Arbeitsplatz 190 €, meist per Fernwartung. "
-            "Jetzt anfragen.",
-    "h1": "Einzelne Aufgaben — Festpreis, ohne Vertrag",
-    "kurz": "WVM-IT erledigt einzelne IT-Aufgaben zum Festpreis, ohne dass eine "
-            "laufende Betreuung nötig ist: einen Arbeitsplatz einrichten für 190 €, "
-            "einen Rechner tauschen samt Datenübernahme für 190 €. Das meiste läuft "
-            "per Fernwartung in ganz Österreich und Deutschland; ein Einsatz vor Ort "
-            "kostet 120 € je Stunde zuzüglich Anfahrt.",
-    "intro": "Nicht jeder Betrieb braucht eine laufende IT-Betreuung. Manchmal steht "
-             "einfach ein neuer Rechner auf dem Tisch, ein Mitarbeiter fängt an, oder "
-             "ein Gerät ist am Ende. Für diese Fälle gibt es hier klare Preise und "
-             "keinen Vertrag — Sie beauftragen eine Aufgabe, wir erledigen sie, fertig. "
-             "Wenn daraus später mehr wird, ist das gut; nötig ist es nicht. "
-             "Ein Festpreis ist dabei ein vorher genannter Betrag für eine klar "
-             "abgegrenzte Aufgabe: Er gilt je Gerät oder je Vorgang, er setzt "
-             "weder einen Vertrag noch eine laufende Betreuung voraus, und er "
-             "deckt die Arbeit ab, die per Fernwartung erledigt wird. Wird ein "
-             "Einsatz vor Ort nötig — weil ein Gerät erst ausgepackt und "
-             "angeschlossen werden muss oder weil kein Internetzugang da ist, "
-             "über den die Fernwartung laufen könnte —, sagen wir das vorher "
-             "und rechnen ihn mit 120 € je Stunde zuzüglich Anfahrt ab. "
-             "Deshalb steht der Preis hier ohne ein vorangestelltes ab: Wo wir "
-             "einen Festpreis nennen, ist es einer.",
+    "titel": "PC & IT einrichten lassen: feste Absprachen ohne Vertrag | WVM-IT",
+    "desc": "Arbeitsplatz, PC-Tausch, Microsoft 365, Server, Netzwerk: Aufgaben mit fester Absprache vorab, ohne Überraschungen und ohne Vertrag, meist per Fernwartung. Jetzt anfragen.",
+    "h1": "Einzelne Aufgaben — feste Absprache vorab, ohne Vertrag",
+    "kurz": "WVM-IT erledigt einzelne IT-Aufgaben mit fester Absprache vorab, ohne Überraschungen und ohne laufende Betreuung: einen Arbeitsplatz einrichten, einen Rechner tauschen samt Datenübernahme. Das meiste läuft per Fernwartung in ganz Österreich und Deutschland; ein Einsatz vor Ort wird nach Aufwand abgerechnet. Was es kostet, hängt vom Umfang ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie an unter +43 676 3808501 oder schreiben Sie per WhatsApp.",
+    "intro": "Nicht jeder Betrieb braucht eine laufende IT-Betreuung. Manchmal steht einfach ein neuer Rechner auf dem Tisch, ein Mitarbeiter fängt an, oder ein Gerät ist am Ende. Für diese Fälle gibt es hier klare Absprachen und keinen Vertrag — Sie beauftragen eine Aufgabe, wir erledigen sie, fertig. Wenn daraus später mehr wird, ist das gut; nötig ist es nicht. Eine feste Absprache vorab, ohne Überraschungen, gilt für eine klar abgegrenzte Aufgabe: Sie gilt je Gerät oder je Vorgang, setzt weder einen Vertrag noch eine laufende Betreuung voraus und deckt die Arbeit ab, die per Fernwartung erledigt wird. Wird ein Einsatz vor Ort nötig — weil ein Gerät erst ausgepackt und angeschlossen werden muss oder weil kein Internetzugang da ist, über den die Fernwartung laufen könnte —, sagen wir das vorher und rechnen ihn nach Aufwand ab. Deshalb steht der Preis hier ohne ein vorangestelltes ab: Wo wir eine feste Absprache nennen, ist es eine.",
     "abgrenzung_h": "Und wenn es doch laufend sein soll?",
-    "abgrenzung_t": "Dann sind Sie bei den Leistungen richtig. Dort geht es um "
-                    "Betreuung, die weiterläuft: Arbeitsplätze und Server im Blick "
-                    "behalten, Datensicherung prüfen, erreichbar sein, wenn etwas "
-                    "steht. Das beginnt bei 29 € je Arbeitsplatz und Monat und ist "
-                    "etwas anderes als eine einzelne Aufgabe — deshalb steht es auf "
-                    "eigenen Seiten.",
+    "abgrenzung_t": "Dann sind Sie bei den Leistungen richtig. Dort geht es um Betreuung, die weiterläuft: Arbeitsplätze und Server im Blick behalten, Datensicherung prüfen, erreichbar sein, wenn etwas steht. Was das kostet, hängt von Arbeitsplätzen, Servern und Umfang ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie an unter +43 676 3808501 oder schreiben Sie per WhatsApp.",
 }

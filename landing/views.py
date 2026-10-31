@@ -483,6 +483,14 @@ KOOPERATIONEN = [
 ]
 
 
+# Verkaufsstrategie seit 31.10.2026: Die Website nennt keine Preise, sie fuehrt zu
+# Anruf/WhatsApp ("Preis im Gespraech"). Dieser Schalter ist die EINE Stelle; die
+# Zahlen in ANGEBOT_GROUPS bleiben (Konfigurator-Mail an den Inhaber, interne
+# Rechnung). Wieder einschalten: Umgebungsvariable WVM_PREISE_SICHTBAR=1 -- die
+# frei geschriebenen Texte in landing/i18n/ bleiben dann trotzdem preisfrei.
+PREISE_SICHTBAR = os.environ.get("WVM_PREISE_SICHTBAR", "").lower() in ("1", "ja", "true")
+
+
 def _eur(n) -> str:
     """1490 -> '1.490' (deutsche Tausendertrennung, ganze Euro)."""
     return f"{int(n):,.0f}".replace(",", ".")
@@ -527,7 +535,7 @@ def _gemerkt(schluessel, kopie=None):
 
 def _make_price_label(it, words) -> str:
     """Baut das Anzeige-Label einer Position in der gewünschten Sprache (aus catalog_words)."""
-    if it.get("anfrage"):
+    if it.get("anfrage") or not PREISE_SICHTBAR:
         return words.get("on_request", "auf Anfrage")
     sep = words.get("thousands", ".")
     parts = []
@@ -618,6 +626,9 @@ def _startpreise(lang):
     sep = words.get("thousands", ".")
     out = {}
     for g in ANGEBOT_GROUPS:
+        if not PREISE_SICHTBAR:
+            out[g["id"]] = words.get("on_request", "auf Anfrage")
+            continue
         preise = {
             "once": [it["once"] for it in g["items"] if it.get("once")],
             "mtl": [it["mtl"] for it in g["items"] if it.get("mtl")],
@@ -937,8 +948,8 @@ def _rechner_satz(werte, ergebnis, rs) -> str:
     laut Ihrem Rechner." Leer, wenn nichts gewählt wurde: Ein vorbelegtes Feld
     ohne Inhalt wäre schlechter als ein leeres mit Platzhalter.
     """
-    if ergebnis.get("leer"):
-        return ""
+    if ergebnis.get("leer") or not PREISE_SICHTBAR:
+        return ""  # ohne Preise keine Betragszeile im Anfragefeld (31.10.2026)
     teile = []
     for posten in ergebnis.get("laufend", []) + ergebnis.get("einmalig", []):
         if posten.get("menge"):
@@ -995,6 +1006,8 @@ def rechner(request):
 def _preis_stand(lang):
     """'Stand: August 2026' , datierte Preise werden von KI-Systemen bevorzugt zitiert
     und nehmen dem Besucher die Sorge, eine veraltete Zahl zu lesen."""
+    if not PREISE_SICHTBAR:
+        return ""
     from datetime import date
     monate = {
         "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli",
@@ -2505,31 +2518,9 @@ def _structured_data(c, lang, *, mit_katalog=True):
                 svc["areaServed"] = gebiet_fern
             elif it["id"] == "vor_ort":
                 svc["areaServed"] = gebiet_vor_ort
+            # Ohne Preise (31.10.2026): Angebot nur als Leistung, keine price-Felder.
             offer = {"@type": "Offer", "itemOffered": svc,
-                     "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}
-            price = it.get("once") or it.get("mtl") or it.get("yr") or it.get("std")
-            if price:
-                offer["price"] = str(price)
-                spez = {
-                    "@type": "PriceSpecification", "price": str(price),
-                    "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
-                }
-                # Wiederkehrende und stundenweise Preise werden ausgezeichnet, damit
-                # Suchmaschinen und KI-Antworten "29 €" nicht als Endpreis lesen.
-                if it.get("std"):
-                    spez = {"@type": "UnitPriceSpecification", "price": str(price),
-                            "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
-                            "unitCode": "HUR", "unitText": "Stunde"}
-                elif it.get("mtl"):
-                    spez = {"@type": "UnitPriceSpecification", "price": str(price),
-                            "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
-                            "unitCode": "MON", "unitText": "Monat",
-                            "billingIncrement": 1, "billingDuration": 1}
-                elif it.get("yr"):
-                    spez = {"@type": "UnitPriceSpecification", "price": str(price),
-                            "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
-                            "unitCode": "ANN", "unitText": "Jahr"}
-                offer["priceSpecification"] = spez
+                     "availability": "https://schema.org/InStock"}
             offers.append(offer)
 
     # Reihenfolge ist Aussage (Ausbau Lokal, 08.10.2026): Österreich zuerst und
@@ -2584,7 +2575,6 @@ def _structured_data(c, lang, *, mit_katalog=True):
         # Aus dem Katalog, nicht aus content.json (EIG12, 25.09.2026): Hier stand
         # „ab 350 EUR“ — der One-Pager-Preis, nicht der Einstieg ins Kerngeschäft —,
         # und mit „EUR“ statt „€“ sah die Preisprüfung die Zahl nie.
-        "priceRange": f"ab {_ANGEBOT_INDEX['it_betreuung']['mtl']} € je Arbeitsplatz und Monat",
         "currenciesAccepted": "EUR",
         "paymentAccepted": "Überweisung, Rechnung",
         "founder": {"@id": f"{base}/#inhaber"},
@@ -3388,12 +3378,7 @@ def leistung_seite(request, slug):
         seite = dict(seite, einrichtung_satz="")
 
     # Service-Schema mit Angebot und Einsatzgebiet, verbunden mit #business.
-    posten = _ANGEBOT_INDEX.get(eintrag["preis"], {})
-    angebot = {"@type": "Offer", "priceCurrency": "EUR",
-               "availability": "https://schema.org/InStock", "url": f"{base}{pfad}"}
-    zahl = posten.get("once") or posten.get("mtl") or posten.get("yr") or posten.get("std")
-    if zahl:
-        angebot["price"] = str(zahl)
+    # Ohne Preise (31.10.2026): kein Offer-Block, kein price-Feld.
     service = {
         "@type": "Service", "@id": f"{base}{pfad}#service",
         "name": seite.get("h1", ""), "description": seite.get("kurz", ""),
@@ -3402,7 +3387,6 @@ def leistung_seite(request, slug):
                        {"@type": "State", "name": "Oberösterreich"},
                        {"@type": "State", "name": "Salzburg"},
                        {"@type": "Country", "name": "Deutschland"}],
-        "offers": angebot,
     }
     return render(request, "leistung.html", {
         "seiten_stand": _seiten_stand(request.path, lang),
@@ -3529,12 +3513,7 @@ def branche_seite(request, slug):
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = seite["url"]
 
-    posten = _ANGEBOT_INDEX.get(eintrag["preis"], {})
-    angebot = {"@type": "Offer", "priceCurrency": "EUR",
-               "availability": "https://schema.org/InStock", "url": f"{base}{pfad}"}
-    zahl = posten.get("once") or posten.get("mtl") or posten.get("yr") or posten.get("std")
-    if zahl:
-        angebot["price"] = str(zahl)
+    # Ohne Preise (31.10.2026): kein Offer-Block, kein price-Feld.
     service = {
         "@type": "Service", "@id": f"{base}{pfad}#service",
         "name": seite.get("h1", ""), "description": seite.get("kurz", ""),
@@ -3543,7 +3522,6 @@ def branche_seite(request, slug):
         "audience": {"@type": "BusinessAudience", "name": seite.get("nav", slug)},
         "areaServed": [{"@type": "Country", "name": "Österreich"},
                        {"@type": "Country", "name": "Deutschland"}],
-        "offers": angebot,
     }
     schwerpunkt = leistungen.NACH_SLUG.get(eintrag.get("schwerpunkt", ""))
     return render(request, "branche.html", {
@@ -4000,7 +3978,8 @@ def _hilfe_karte(lang):
     stunde = _festpreis_label(_ANGEBOT_INDEX[_HILFE_STUNDE], pack.get("catalog_words", {}))
     return {"url": reverse("it_hilfe"), "label": hilfe.get("h1", "").split(" — ")[0],
             "nav": hilfe.get("nav", ""), "desc": hilfe.get("faelle_t", ""),
-            "preis": f"{stunde} {hilfe.get('preis_std', '')}".strip()}
+            "preis": (f"{stunde} {hilfe.get('preis_std', '')}".strip()
+                      if PREISE_SICHTBAR else stunde)}
 
 
 def it_hilfe(request):
@@ -4012,17 +3991,6 @@ def it_hilfe(request):
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = reverse("it_hilfe")
 
-    def _stundenangebot(iid):
-        posten = _ANGEBOT_INDEX[iid]
-        name = pack.get("catalog_items", {}).get(iid, {}).get("name", posten["name"])
-        return {"@type": "Offer", "name": name, "priceCurrency": "EUR",
-                "price": str(posten["std"]), "url": f"{base}{pfad}",
-                "availability": "https://schema.org/InStock",
-                "priceSpecification": {
-                    "@type": "UnitPriceSpecification", "price": str(posten["std"]),
-                    "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
-                    "unitCode": "HUR", "unitText": "Stunde"}}
-
     service = {
         "@type": "Service", "@id": f"{base}{pfad}#service",
         "name": hilfe.get("h1", ""), "description": hilfe.get("kurz", ""),
@@ -4033,7 +4001,6 @@ def it_hilfe(request):
         "availableChannel": {"@type": "ServiceChannel",
                              "servicePhone": c.get("telefon", ""),
                              "serviceUrl": f"{base}{pfad}"},
-        "offers": [_stundenangebot(_HILFE_STUNDE), _stundenangebot(_HILFE_VOR_ORT)],
     }
     # ?anliegen=klein (Kleinauftrag-Block): nur Werte aus _ANLIEGEN gelten,
     # alles andere faellt stillschweigend weg. Das Formular traegt den Wert als
@@ -4124,19 +4091,13 @@ def einrichtung_seite(request, slug):
     base = (c.get("wvm_url") or "").rstrip("/")
     pfad = seite["url"]
 
-    posten = _ANGEBOT_INDEX.get(eintrag["preis"], {})
-    angebot = {"@type": "Offer", "priceCurrency": "EUR",
-               "availability": "https://schema.org/InStock", "url": f"{base}{pfad}"}
-    zahl = posten.get("once") or posten.get("mtl") or posten.get("yr") or posten.get("std")
-    if zahl:
-        angebot["price"] = str(zahl)
+    # Ohne Preise (31.10.2026): kein Offer-Block, kein price-Feld.
     service = {
         "@type": "Service", "@id": f"{base}{pfad}#service",
         "name": seite.get("h1", ""), "description": seite.get("kurz", ""),
         "provider": {"@id": f"{base}/#business"},
         "areaServed": [{"@type": "Country", "name": "Österreich"},
                        {"@type": "Country", "name": "Deutschland"}],
-        "offers": angebot,
     }
     return render(request, "einrichtung.html", {
         "seiten_stand": _seiten_stand(request.path, lang),
@@ -4546,19 +4507,7 @@ def region_seite(request, slug):
                                    "addressLocality": region.get("ort", ""),
                                    "addressCountry": "AT"}},
     }
-    # Preisbezug (Analyse 12.10.2026, K4): die laufende Betreuung ab dem Katalogpreis je
-    # Arbeitsplatz und Monat, dieselbe Position und dieselbe Auszeichnung wie auf den
-    # Leistungsseiten — keine eigene Zahl.
-    betreuung = _ANGEBOT_INDEX["it_betreuung"]
-    service["offers"] = {
-        "@type": "Offer", "priceCurrency": "EUR", "price": str(betreuung["mtl"]),
-        "availability": "https://schema.org/InStock", "url": f"{base}{pfad}",
-        "priceSpecification": {
-            "@type": "UnitPriceSpecification", "price": str(betreuung["mtl"]),
-            "priceCurrency": "EUR", "valueAddedTaxIncluded": False,
-            "unitCode": "MON", "unitText": "Monat", "billingIncrement": 1,
-            "billingDuration": 1},
-    }
+    # Ohne Preise (31.10.2026): kein Preisbezug im Schema.
     schwerpunkt = leistungen.NACH_SLUG.get(eintrag.get("schwerpunkt", ""))
     # Design-Studio Runde 1 (22.10.2026): Fernwartungsfilm statt KI-Foto neben der Einleitung,
     # Unterschrift mit Ortsbezug (`seite.vid_ort`). Nur Deutsch (eingebrannte Texte); EN/RO ohne Bild.
@@ -5278,16 +5227,12 @@ def _llms_kopf(c, base):
         f"# WVM-IT , EDV und IT-Betreuung für Betriebe\n\n"
         f"> WVM-IT (Inhaber {inhaber}) betreut die EDV kleiner und mittlerer Betriebe in "
         f"Österreich und Deutschland: Arbeitsplätze, Server, Netzwerk, E-Mail und "
-        f"Datensicherung, überwiegend per Fernwartung. Die laufende IT-Betreuung kostet "
-        f"ab {p['it_betreuung']['mtl']} € je Arbeitsplatz und Monat, einzelne Hilfe "
-        f"{p['it_support']['std']} € je Stunde, Einsätze vor Ort {p['vor_ort']['std']} € je "
-        f"Stunde zzgl. Anfahrt. Dazu kommen Webseiten ab {p['onepager']['once']} €, SEO ab "
-        f"{p['seo_care']['mtl']} €/Monat, Google Ads ab {p['ads_care']['mtl']} €/Monat und "
-        f"KI-Automatisierung ab {p['termin']['once']} €. "
+        f"Datensicherung, überwiegend per Fernwartung. Dazu kommen Webseiten, SEO, "
+        f"Google Ads und KI-Automatisierung. Den Preis nennen wir nach einem kurzen "
+        f"Gespräch: fair und passend zum Budget, per Telefon oder WhatsApp. "
         f"Gebäudeautomation (Loxone, KNX) sowie Konferenz- und Veranstaltungstechnik "
         f"werden projektbezogen vor Ort umgesetzt. Ein fester Ansprechpartner, Antwort "
         f"an Werktagen innerhalb von 24 Stunden. {erreichbar_satz}"
-        f"Alle Preise sind Richtpreise netto zzgl. USt. "
         f"{standort}"
         f"Per Fernwartung in ganz Österreich und Deutschland. Vor Ort im Einzugsgebiet "
         f"{einzugsgebiet}, nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing.\n"
@@ -5428,6 +5373,12 @@ def _llms_beitraege(base):
 def _llms_einzelhilfe_satz():
     """Der zitierfaehige Satz zur Einzelhilfe (W10, 24.09.2026) — beide Zahlen
     aus ANGEBOT_GROUPS, derselbe Wortlaut in llms.txt und llms-full.txt."""
+    if not PREISE_SICHTBAR:
+        return ("Einzelne IT-Probleme (Drucker, E-Mail und Outlook, WLAN, langsamer PC, "
+                "Microsoft 365) löst WVM-IT ohne Vertrag per Fernwartung, meist am "
+                "selben Tag, in ganz Österreich und Deutschland; vor Ort nach "
+                "Terminabsprache. Der Preis wird nach einem kurzen Gespräch fair "
+                "abgesprochen.")
     std = _ANGEBOT_INDEX[_HILFE_STUNDE]["std"]
     vor_ort = _ANGEBOT_INDEX[_HILFE_VOR_ORT]["std"]
     return (f"Einzelne IT-Probleme (Drucker, E-Mail und Outlook, WLAN, langsamer PC, "
@@ -5451,7 +5402,10 @@ def _llms_festpreise(base):
     for e in einrichtungen.EINRICHTUNGEN:
         posten = _ANGEBOT_INDEX.get(e["preis"], {})
         name = texte.get(e["slug"], {}).get("nav", e["slug"])
-        if posten.get("once"):
+        if not PREISE_SICHTBAR:
+            raus.append(f"- [{name}]({base}/einrichten/{e['slug']}/): feste Absprache "
+                        f"vorab, keine Überraschungen; Preis nach kurzem Gespräch.")
+        elif posten.get("once"):
             raus.append(f"- [{name}]({base}/einrichten/{e['slug']}/): Festpreis "
                         f"{_festpreis_label(posten, words)}, ohne Vertrag.")
         else:
@@ -5469,6 +5423,9 @@ def _llms_einmalig_zeile():
     welche Zeile gilt. Jetzt tragen Einrichtungen mit eigener Seite in
     /einrichten/ dasselbe Label ohne „ab" wie dort; der IT-Sicherheitscheck hat
     keine Einrichtungsseite und behält sein „ab"."""
+    if not PREISE_SICHTBAR:
+        return ("- Einrichtungen (Arbeitsplatz, Microsoft 365, Firewall/VPN, Netzwerk/WLAN, "
+                "IT-Sicherheitscheck): feste Absprache vorab, keine Überraschungen.")
     words = i18n.get_pack("de").get("catalog_words", {})
     festpreis = [("Arbeitsplatz einrichten", "arbeitsplatz"),
                  ("Microsoft 365", "m365"),
@@ -5489,6 +5446,13 @@ def _llms_preise_zeilen():
     Fehlerklasse, die `_llms_kopf()` und `_llms_einmalig_zeile()` schon nicht mehr
     haben. Der Wortlaut ist unverändert; nur die Zahlen werden eingesetzt. Die
     Einrichtungen („Einmalig") bleiben in `_llms_einmalig_zeile()`."""
+    if not PREISE_SICHTBAR:
+        return [
+            "- Preise nennen wir nicht pauschal: Nach einem kurzen Gespräch bekommen Sie "
+            "einen fairen Preis, der zu Ihrem Budget passt. Telefon und WhatsApp stehen "
+            "oben im Kopf dieser Datei.",
+            _llms_einmalig_zeile(),
+        ]
     p = _ANGEBOT_INDEX
     sep = i18n.get_pack("de").get("catalog_words", {}).get("thousands", ".")
 

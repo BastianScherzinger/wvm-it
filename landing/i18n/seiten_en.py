@@ -12,10 +12,10 @@ SEITEN = {
     # ══ IT ════════════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "IT support & management",
-        "titel": "IT support for small businesses from €29/month | WVM-IT",
-        "desc": "IT support for small businesses in Austria and Germany: managed IT services from €29 per workstation and month, remote support €95/hour. Request a quote.",
+        "titel": "IT support for small businesses | WVM-IT",
+        "desc": "IT support for small businesses in Austria and Germany: managed IT services, remote support. Request a quote for pricing.",
         "h1": "IT support for businesses without an IT department",
-        "kurz": "WVM-IT from Lenzing takes on the day-to-day IT of small and mid-sized businesses in Austria and Germany: workstations, servers, email, printers, updates and backups. Ongoing support costs from €29 per workstation and month, individual help without a contract from €95 per hour. We answer within 24 hours on working days and work mostly remotely — the route to you runs over a secured connection rather than the motorway.",
+        "kurz": "WVM-IT from Lenzing takes on the day-to-day IT of small and mid-sized businesses in Austria and Germany: workstations, servers, email, printers, updates and backups. We offer ongoing support and individual help. We answer within 24 hours on working days and work mostly remotely — the route to you runs over a secured connection rather than the motorway. Pricing is based on your specific needs and will be discussed in a brief call, fair and fitting your budget.",
         "intro": "In most businesses under fifty staff there is no IT department. There is somebody who “knows a bit about computers” — and who actually has another job to do. As long as nothing happens, that works. It shows the moment the office printer stops while quotes have to go out, or when a program the whole company depends on refuses to start after a Windows update. That is the gap we close: you get a number, an email address and one contact who knows how your technology is put together.",
         "problem_h": "What goes wrong in small businesses without their own IT",
         "probleme": [
@@ -40,7 +40,7 @@ SEITEN = {
             {"h": "Run it", "t": "You get in touch in one place, we handle it. Updates and backups run in the background; once a quarter we talk about what is coming up."},
         ],
         "preis_h": "What it costs",
-        "preis_t": "Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. If you only need occasional help, that is €95 per hour; on-site work costs €120 per hour plus travel. All figures are guide prices, net plus VAT. Support runs from quarter to quarter, with one month’s notice to the end of a quarter.",
+        "preis_t": "For ongoing support, server management, and monitored backups, pricing is tailored to your requirements. If you only need occasional help, that is billed hourly. On-site work is also available. Support runs from quarter to quarter, with one month’s notice to the end of a quarter. For a precise quote, please call us.",
         "ort_satz": "On site we work in <a href=\"/en/it-service/lenzing/\">Lenzing</a>, <a href=\"/en/it-service/voecklabruck/\">Vöcklabruck</a>, <a href=\"/en/it-service/gmunden/\">Gmunden</a>, <a href=\"/en/it-service/salzburg/\">Salzburg</a> and <a href=\"/en/it-service/linz/\">Linz</a>, among other places, and by remote maintenance across Austria.",
         "faq": [
             {"q": "From how many workstations is ongoing IT support worth it?",
@@ -54,9 +54,9 @@ SEITEN = {
             {"q": "What counts as a small business to you?",
              "a": "As a rough frame, anything up to around 20 workstations at one or two sites — the typical size of a sole trader, a trades business, a practice or a firm. Above that support usually becomes more formal (fixed standards, broader documentation, several contacts); for that we have a <a href=\"/en/leistungen/it-betreuung-groessere-betriebe/\">separate page for larger businesses</a>. The line is not sharp: a 25-seat business with a single application often fits this page better than a 15-seat business with three sites."},
             {"q": "What does IT support for a typical small business cost in practice?",
-             "a": "Example for a business with five workstations, one server and monitored backup: 5 × €29 + €89 + €49 = €283 per month, net plus VAT. For ten workstations with server and backup it is €428 per month (10 × €29 + €89 + €49). If you use Microsoft 365, the licence price from Microsoft comes on top — you pay that directly to Microsoft, we only do the setup."},
+             "a": "Example for a business with five workstations, one server and monitored backup: the price is determined after a short conversation, with an agreed‑upfront arrangement, no surprises. For larger setups the same applies. If you use Microsoft 365, the licence price from Microsoft is paid directly to Microsoft; we only handle the setup."},
             {"q": "We only have two or three computers — do we already need support?",
-             "a": "Rarely. Below about five workstations, billing by the hour is more honest: €95 per hour via remote maintenance, no contract, no minimum term. For the individual case there is <a href=\"/en/it-hilfe/\">/en/it-hilfe/</a>. We tell you in the first conversation which route is cheaper for your size — even when it earns us less."},
+             "a": "Rarely. Below about five workstations, billing by the hour is more honest: the rate is clarified in a short conversation, with an agreed‑upfront arrangement, no surprises. For the individual case there is <a href=\"/en/it-hilfe/\">/en/it-hilfe/</a>. We tell you in the first conversation which route is cheaper for your size — even when it earns us less."},
         ],
         "cta_h": "Where does it hurt right now?",
         "cta_t": "Describe in one sentence what is not working. We answer within 24 hours on working days with an honest assessment — including when the answer is that it is not worth doing.",
@@ -64,10 +64,10 @@ SEITEN = {
 
     "server-datensicherung": {
         "nav": "Servers & backups",
-        "titel": "Server management & backup from €49/mo | WVM-IT",
-        "desc": "Server monitoring from €89/month, verified backups from €49/month. We spot the failure before the business stops. Request a quote today.",
+        "titel": "Server management & backup | WVM-IT",
+        "desc": "Server monitoring and verified backups. We spot the failure before the business stops. Request a quote today for pricing.",
         "h1": "Server management and backups that hold when it matters",
-        "kurz": "WVM-IT from Lenzing monitors business servers automatically and runs backups so that they also work when it counts: backed up daily, every backup checked, the restore tested regularly. Server management costs from €89 per month, monitored backups from €49 per month. Everything is handled remotely across Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing monitors business servers automatically and runs backups so that they also work when it counts: backed up daily, every backup checked, the restore tested regularly. Everything is handled remotely across Austria and Germany. The cost for these services will be discussed in a brief call, fair and fitting your budget.",
         "intro": "Almost every business has a backup. Considerably fewer know when it last ran, and hardly any have ever tried to get something back out of it. That becomes apparent exactly once — on the day it matters. A backup that has never been restored is not a backup, it is a hope. So we treat it as a part of the business that needs checking, not as a setting that was switched on at some point. In that sense a backup is a verified copy of the data the business needs in order to keep working, kept separately from the server — verified meaning: every run is checked, and the restore is tested at regular intervals. A copy that sits on a disk in the same room and has never been restored meets neither condition, and is therefore not a backup.",
         "problem_h": "The four sentences that usually get expensive",
         "probleme": [
@@ -92,7 +92,7 @@ SEITEN = {
             {"h": "Test rather than hope", "t": "We restore data regularly and record how long it took. Only that figure turns a backup into a promise you can rely on."},
         ],
         "preis_h": "Prices",
-        "preis_t": "A managed server costs from €89 per month, monitored backups from €49 per month. Both can be combined with ongoing IT support from €29 per workstation and month. One-off work — a reinstall or a move to new hardware, for instance — is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT.",
+        "preis_t": "A managed server and monitored backups can be combined with ongoing IT support. One-off work — a reinstall or a move to new hardware, for instance — is billed hourly, as is on-site work plus travel. For a precise quote, please call us.",
         "faq": [
             {"q": "How often do you back up?",
              "a": "Daily by default, outside working hours. For systems that are in constant use we back up several times a day. How much data loss is acceptable in the worst case is agreed beforehand — the frequency follows from that, not the other way round."},
@@ -109,10 +109,10 @@ SEITEN = {
 
     "netzwerk-wlan": {
         "nav": "Network & Wi-Fi",
-        "titel": "Network & Wi-Fi setup from €890 | WVM-IT",
-        "desc": "Network and Wi-Fi surveyed, planned and installed — from €890, including workshops and multiple floors. Request a free quote now.",
+        "titel": "Network & Wi-Fi setup | WVM-IT",
+        "desc": "Network and Wi-Fi surveyed, planned and installed. Request a free quote now for pricing.",
         "h1": "A network and Wi-Fi that also works in the workshop",
-        "kurz": "WVM-IT from Lenzing plans, surveys and builds business networks: structured cabling, Wi-Fi with gap-free coverage, separate networks for guests and operations, firewall and VPN for access from outside. Setting up network and Wi-Fi costs from €890, firewall and VPN from €690. Planning happens remotely, building happens on site.",
+        "kurz": "WVM-IT from Lenzing plans, surveys and builds business networks: structured cabling, Wi-Fi with gap-free coverage, separate networks for guests and operations, firewall and VPN for access from outside. Planning happens remotely, building happens on site. The cost for setting up network and Wi-Fi, or firewall and VPN, will be discussed in a brief call, fair and fitting your budget.",
         "intro": "Wi-Fi problems are almost always answered with another access point. Usually that makes it worse: two devices on the same channel interfere with each other, and the client attaches itself to the wrong one. A network that holds is not built from more hardware but from a survey, a plan and clean channel allocation. In workshops, older buildings and across several floors that is the difference between “it works” and “it works, except at the back on the left”.",
         "problem_h": "When a network needs replanning",
         "probleme": [
@@ -137,11 +137,11 @@ SEITEN = {
             {"h": "Build and hand over", "t": "Installation, calibration, labelling, documentation. After that the network either runs inside ongoing support or you operate it yourself."},
         ],
         "preis_h": "Prices",
-        "preis_t": "Setting up network and Wi-Fi costs from €890, firewall and VPN from €690. The final price depends on the area, the building materials and the number of access points — which is precisely why we survey first rather than quote blind. Ongoing management of the network is available from €29 per workstation and month. On-site work is billed at €120 per hour plus travel. Guide prices, net plus VAT.",
-        "einrichtung_satz": "If only the firewall and VPN are missing: <a href=\"{url}\">firewall and VPN setup</a> at a fixed price of {preis} — secure access from outside, protected network inside.",
+        "preis_t": "The setup of network and Wi-Fi, and firewall and VPN, depends on the area, the building materials and the number of access points — which is precisely why we survey first rather than quote blind. Ongoing management of the network is also available. On-site work is billed hourly plus travel. For a precise quote, please call us at +43 676 3808501 or send us a WhatsApp message.",
+        "einrichtung_satz": "If only the firewall and VPN are missing: <a href=\"{url}\">firewall and VPN setup</a> at a price agreed upfront of {preis} — secure access from outside, protected network inside.",
         "faq": [
             {"q": "What does network support cost?",
-             "a": "Setting up a network and Wi-Fi costs from €890 at WVM-IT, firewall and VPN from €690. Individual help with an existing network costs €95 per hour by remote maintenance, without a contract."},
+             "a": "Network, Wi-Fi, firewall and VPN depend on size and building; we clarify the price in a call."},
             {"q": "Why does another repeater not help?",
              "a": "A repeater halves the available bandwidth and occupies the same radio channel a second time. In a small flat that hardly shows; in a business with many devices it measurably makes things worse. A few correctly placed access points on well-distributed channels are better."},
             {"q": "Do we need a separate guest network?",
@@ -157,10 +157,10 @@ SEITEN = {
 
     "it-sicherheit": {
         "nav": "IT security",
-        "titel": "IT security check from €490 | WVM-IT",
-        "desc": "IT security check from €490 with a written report and a list of actions. Firewall and VPN from €690. Request a quote today.",
+        "titel": "IT security check – WVM-IT",
+        "desc": "IT security check with a written report and action list. Firewall and VPN setup available. Pricing is discussed in a short call – call +43 676 3808501 or WhatsApp.",
         "h1": "IT security sized for a business, not for a corporation",
-        "kurz": "WVM-IT from Lenzing reviews the IT security of small and mid-sized businesses and implements the measures that genuinely help: permissions, passwords, firewall, VPN, updates, verified backups. The one-off IT security check costs from €490 and ends with a written report and a list of actions; firewall and VPN are set up from €690. Reviews and support are delivered remotely across Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing reviews IT security of small and mid-sized businesses and implements measures that truly help: permissions, passwords, firewall, VPN, updates, verified backups. The one‑off security check includes a written report and action list; firewall and VPN can be set up as needed. Pricing is clarified in a brief conversation – call +43 676 3808501 or WhatsApp.",
         "intro": "Most damage in small businesses is not caused by a targeted attack but by everyday things: a password that works everywhere, the account of somebody who left long ago, a machine without updates, a backup that is worthless. You do not need a corporate security concept to fix that. You need somebody to look systematically once and then work through the points that actually prevent damage.",
         "problem_h": "What we find almost everywhere",
         "probleme": [
@@ -185,7 +185,7 @@ SEITEN = {
             {"h": "Work through", "t": "You decide what gets implemented — including nothing. The report is yours and can be worked through by another provider just as well."},
         ],
         "preis_h": "Prices",
-        "preis_t": "The one-off IT security check costs from €490 and includes the written report. Firewall and VPN are set up from €690. Implementing further measures is billed at €95 per hour; if you want security watched permanently, ongoing support from €29 per workstation and month covers updates and monitoring. Guide prices, net plus VAT.",
+        "preis_t": "The one‑off IT security check includes a written report. Firewall and VPN setup, additional measures, and ongoing support are priced individually based on your environment and needs. We agree on the details upfront, no surprises; contact us for a short discussion – +43 676 3808501 or WhatsApp.",
         "faq": [
             {"q": "We are a small business. Are we even a target?",
              "a": "Most attacks are not selected but automated: they look for open access and old software, not for particular companies. Small businesses get hit precisely because somebody looks less often."},
@@ -203,10 +203,10 @@ SEITEN = {
     # ══ Visibility ════════════════════════════════════════════════════════════
     "webseite-erstellen": {
         "nav": "Website & shop",
-        "titel": "Have a website built from €350 | WVM-IT",
-        "desc": "Websites for businesses in Austria and Germany: one-pager from €350, company site from €1,490, shop from €3,500. Request a quote today.",
+        "titel": "Have a website built – WVM-IT",
+        "desc": "Websites for businesses in Austria and Germany – one‑pager, company site, or online shop. Pricing is discussed in a brief call; request a quote today.",
         "h1": "Have a website built — and see what you get first",
-        "kurz": "Have a website built in Upper Austria: WVM-IT from Lenzing builds websites for businesses in Austria and Germany — a one-pager from €350, a multi-page company site from €1,490, a premium site with animations from €2,900, an online shop from €3,500. Beforehand there is a free sample site: you only enter your email address and agree to the privacy policy, our JARVIS automation builds a real sample page from it in about ten minutes, and you do not need the newsletter for it. Hosting and maintenance together cost from €54 per month.",
+        "kurz": "Have a website built in Upper Austria: WVM-IT from Lenzing creates websites for businesses in Austria and Germany – from simple one‑pagers to multi‑page company sites, premium sites with animations, and online shops. You can try a free sample site generated automatically after providing your email. Hosting and maintenance are offered as part of a tailored package. Pricing is clarified in a short conversation.",
         "intro": "The most common disappointment with a new website is not the way it looks but the silence afterwards. It looks good, it was expensive, and nothing happens. That is almost never the design; it is that the site was not built for somebody to get in touch: the phone number is at the very bottom, there are no prices, the form has nine fields. We build in the other direction — starting from the goal.",
         "problem_h": "Where sites fail",
         "probleme": [
@@ -231,7 +231,7 @@ SEITEN = {
             {"h": "Build, review, launch", "t": "You see progress along the way. At launch we set up hosting, domain and measurement so that from day one it is visible what happens."},
         ],
         "preis_h": "Prices",
-        "preis_t": "A one-pager starts at €350, a multi-page business website at €1,490, a premium site with animations at €2,900, an online shop at €3,500. Running costs add hosting with SSL and backups from €15 per month and maintenance from €39 per month, together from €54 per month; the domain costs from €15 per year. Guide prices, net plus VAT.",
+        "preis_t": "A one‑pager, a multi‑page business website, a premium site with animations, or an online shop can be created to match your needs. Ongoing costs include hosting with SSL, backups, and maintenance, all bundled in a customized plan. Domain registration is included as appropriate. Pricing is discussed in a brief call – call +43 676 3808501 or WhatsApp.",
         "faq": [
             {"q": "How long until the site is online?",
              "a": "A one-pager is usually ready in one to two weeks, a multi-page company site in three to five. What decides the pace is almost always how quickly copy, images and approvals reach us — not the programming. We confirm or decline tight deadlines up front, not afterwards."},
@@ -242,7 +242,7 @@ SEITEN = {
             {"q": "We already have a site. Is a rebuild worth it?",
              "a": "Sometimes yes, sometimes no. We look at the existing site and tell you whether a revision is enough or a rebuild comes out cheaper. If the current site does its job, we say that too."},
             {"q": "What does a website for a small business cost?",
-             "a": "A one-pager costs from €350, a multi-page company site from €1,490. On top come hosting with SSL and backups from €15 a month and maintenance from €39 a month, and the domain from €15 a year. Indicative prices, net plus VAT."},
+             "a": "We clarify the price in a short call, fair and suited to your budget. On top come hosting with SSL and backups and maintenance, and the domain."},
             {"q": "Can I see my website for free first?",
              "a": "Yes. You enter only your email address on the home page and agree to the privacy policy; our JARVIS automation builds a real, browsable sample page from it in about ten minutes. It is free and commits you to nothing, and you do not need the newsletter for it.",
              "link": {"text": "To the free sample site", "route": "index", "anker": "gratis"}},
@@ -253,10 +253,10 @@ SEITEN = {
 
     "seo-betreuung": {
         "nav": "SEO support",
-        "titel": "SEO support from €149/month | WVM-IT",
-        "desc": "Get found on Google and in AI answers: SEO groundwork from €390, ongoing support from €149/month. Request a free quote now.",
+        "titel": "SEO support | WVM-IT",
+        "desc": "Get found on Google and in AI answers: SEO groundworkongoing support Request a free quote now.",
         "h1": "SEO support: getting found by people who do not know you yet",
-        "kurz": "WVM-IT from Lenzing brings businesses forward on Google and in AI answers such as ChatGPT and Perplexity: technical foundations, one page per service, content that genuinely answers search questions, and monthly measurement. The one-off groundwork costs from €390, ongoing support from €149 per month. The work is location-independent for clients in Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing brings businesses forward on Google and in AI answers such as ChatGPT and Perplexity: technical foundations, one page per service, content that genuinely answers search questions, and monthly measurement. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. The work is location-independent for clients in Austria and Germany.",
         "intro": "The most common finding on small company sites is always the same: they are found — but only under their own company name. That is, by people who already know the company. For everybody who has a problem and searches for the solution, the site does not exist. The reason is rarely the technology. It is that every service sits in paragraphs on a single page, and Google cannot rank paragraphs, only pages.",
         "problem_h": "What it usually comes down to",
         "probleme": [
@@ -281,7 +281,7 @@ SEITEN = {
             {"h": "Content and support", "t": "After that the site grows: new pages, better answers, monthly measurement. SEO is not a campaign, it is part of operations."},
         ],
         "preis_h": "Prices",
-        "preis_t": "The one-off SEO groundwork costs from €390, ongoing support from €149 per month. Google Ads can be booked separately — setup from €490, management from €199 per month — and make sense while SEO is still working. Guide prices, net plus VAT. There is no minimum term beyond three months; less than that cannot be measured.",
+        "preis_t": "Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. Google Ads can be booked separately — setupmanagement — and make sense while SEO is still working. There is no minimum term beyond three months; less than that cannot be measured.",
         "faq": [
             {"q": "How long until SEO works?",
              "a": "Technical corrections take effect within days to weeks. New service pages typically need six to twelve weeks before they hold positions reliably. Anybody promising results in two weeks is selling you ads and calling it SEO."},
@@ -298,10 +298,10 @@ SEITEN = {
 
     "google-ads": {
         "nav": "Google Ads",
-        "titel": "Google Ads management from €199/mo | WVM-IT",
-        "desc": "Google Ads setup from €490, ongoing management from €199/month plus budget, with conversion tracking and a monthly report. Request a quote today.",
+        "titel": "Google Ads management | WVM-IT",
+        "desc": "What SEO or Google Ads cost depends on the starting point and scope; we clarify it in a call. Request a quote today.",
         "h1": "Google Ads that bring enquiries — not just clicks",
-        "kurz": "WVM-IT from Lenzing sets up Google Ads accounts and runs them: campaigns, search terms, ads, negative keywords and above all conversion tracking that actually works. Setup costs from €490, ongoing management from €199 per month plus your advertising budget. The work is location-independent for businesses in Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing sets up Google Ads accounts and runs them: campaigns, search terms, ads, negative keywords and above all conversion tracking that actually works. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. The work is location-independent for businesses in Austria and Germany.",
         "intro": "Ads are the fastest route to enquiries — and the fastest way to burn money. The difference is almost never the ad itself but whether what comes out at the end is measured. Anybody counting only clicks is optimising for visits. Anybody measuring enquiries can switch off search terms that are expensive and bring nothing — and in practice that is most of them.",
         "problem_h": "What ails ad accounts",
         "probleme": [
@@ -326,7 +326,7 @@ SEITEN = {
             {"h": "Steer continuously", "t": "Search terms reviewed weekly, reporting monthly. If ads do not pay off for you, we say so instead of letting the budget run on."},
         ],
         "preis_h": "Prices",
-        "preis_t": "Setup costs from €490 as a one-off and includes conversion tracking. Ongoing management costs from €199 per month — plus your advertising budget, which goes directly to Google and does not run through us. In practice it becomes worthwhile from a media budget that stands in a sensible ratio to the management fee; we tell you beforehand whether your budget is enough. Guide prices, net plus VAT.",
+        "preis_t": "We clarify the price in a short call, fair and suited to your budget. In practice it becomes worthwhile from a media budget that stands in a sensible ratio to the management fee; we tell you beforehand whether your budget is enough.",
         "faq": [
             {"q": "What is the minimum advertising budget we need?",
              "a": "That depends on your sector and what a click costs there. Before the start we calculate how many clicks and enquiries you can realistically expect at your budget. If the number is too small to learn anything, we advise against it."},
@@ -343,10 +343,10 @@ SEITEN = {
 
     "hosting-wartung": {
         "nav": "Hosting & maintenance",
-        "titel": "Hosting & maintenance from €15/mo | WVM-IT",
-        "desc": "Hosting with SSL and daily backups from €15/month, maintenance from €39/month, domain from €15/year. Request a free quote now.",
+        "titel": "Hosting & maintenance | WVM-IT",
+        "desc": "Hosting with SSL and daily backups, maintenance, domain Request a free quote now.",
         "h1": "Hosting and maintenance: so the site runs when nobody is looking",
-        "kurz": "Hosting and domain for businesses in Austria from WVM-IT in Lenzing: our own hosting with SSL and daily backups from €15 per month, maintenance with updates and small changes from €39 per month, domain from €15 per year — together from €54 per month, plus email with Microsoft 365 set up for a fixed price of €290. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
+        "kurz": "A managed server and monitored backup depend on scope; we clarify the price in a call. The setup is agreed upfront, no surprises. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
         "intro": "A website is not a purchase, it is a piece of operating equipment. Certificates expire, systems need security updates, contact forms eventually stop working quietly. That rarely shows immediately — usually only when no enquiry has arrived for weeks and somebody goes looking. Maintenance is the cheapest insurance against exactly those weeks.",
         "problem_h": "What happens without maintenance",
         "probleme": [
@@ -371,7 +371,7 @@ SEITEN = {
             {"h": "Operate", "t": "From then on updates, backups and monitoring run. You simply send change requests by email."},
         ],
         "preis_h": "Prices",
-        "preis_t": "Hosting including SSL and backups costs from €15 per month, maintenance with updates and small changes from €39 per month — together from €54 per month. The domain costs from €15 per year. If you also want servers on your own premises looked after, that is covered by server management from €89 per month. Guide prices, net plus VAT.",
+        "preis_t": "A managed server and monitored backup depend on scope; we clarify the price in a call. We clarify the price in a short call, fair and suited to your budget. If you also want servers on your own premises looked after, that is covered by server management.",
         "faq": [
             {"q": "Do you take over sites you did not build?",
              "a": "Yes. We first check the state the site is in and tell you honestly whether running it is worth it or a revision comes out cheaper."},
@@ -385,7 +385,7 @@ SEITEN = {
              "a": "Yes, directly with our partner Domaintechnik (the labelled partner link is on this page), or we set everything up for you and take care of maintenance and updates.",
              "ohne_schema": True},
             {"q": "Do you also set up email with your own address?",
-             "a": "Yes. We set up mailboxes on your domain, Teams and OneDrive with Microsoft 365 for a fixed price of €290 and hand them over ready to use. Indicative price, net plus VAT.",
+             "a": "Yes. The setup is agreed upfront, no surprises.",
              "link": {"text": "Have Microsoft 365 set up", "route": "einrichtung", "slug": "microsoft-365"}},
         ],
         "cta_h": "Is your site already running somewhere?",
@@ -394,10 +394,10 @@ SEITEN = {
 
     "ki-automatisierung": {
         "nav": "AI automation",
-        "titel": "AI automation from €390 | WVM-IT",
-        "desc": "Chatbots, WhatsApp and booking automation for businesses: booking from €390, chatbot from €690, CRM integration from €1,200. Request a quote.",
+        "titel": "AI automation | WVM-IT",
+        "desc": "Chatbots, WhatsApp and booking automation for businesses: bookingchatbotCRM integration Request a quote.",
         "h1": "AI automation: let technology do the work that repeats",
-        "kurz": "WVM-IT from Lenzing builds automation for repetitive work in businesses: a chatbot that takes enquiries at night, booking and appointment flows, automatic replies by WhatsApp and email, and connections to existing systems. Booking automation costs from €390, an AI chatbot from €690, an integration with CRM or ERP from €1,200. Everything is delivered remotely across Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing builds automation for repetitive work in businesses: a chatbot that takes enquiries at night, booking and appointment flows, automatic replies by WhatsApp and email, and connections to existing systems. We clarify the price in a short call, fair and suited to your budget. Everything is delivered remotely across Austria and Germany.",
         "intro": "Automation pays off not where it looks impressive but where the same movement happens twenty times a day: answering the same question, entering the same appointment, writing the same confirmation. So we never start with the technology but with the question of which five minutes repeat most often. Everything else is a toy with an invoice attached. AI automation is not a product in its own right but a sequence: a program takes in a recurring task — the same question again, an appointment request, a confirmation — answers or forwards it, and files the result in the system people already work in. Whatever occurs only rarely, or has to be decided afresh each time, deliberately stays with a person.",
         "problem_h": "Where automation pays off",
         "probleme": [
@@ -422,14 +422,14 @@ SEITEN = {
             {"h": "Extend or drop it", "t": "If it saves time, we extend. If not, we say so. We do not sell automation nobody would miss."},
         ],
         "abschnitte": [
-            {"h": "Automating appointment scheduling: from €390",
-             "t": "Customers book their appointment online into a calendar themselves instead of going back and forth by phone. Matching with your calendar prevents double bookings, and the confirmation goes out automatically by email or WhatsApp. Appointment automation costs from €390."},
+            {"h": "Automating appointment scheduling",
+             "t": "Customers book their appointment online into a calendar themselves instead of going back and forth by phone. Matching with your calendar prevents double bookings, and the confirmation goes out automatically by email or WhatsApp. We clarify the price in a short call, fair and suited to your budget."},
         ],
         "preis_h": "Prices",
-        "preis_t": "Appointment and booking automation costs from €390, WhatsApp and email automation from €490, an AI chatbot from €690 plus €39 per month for operation and upkeep, a tailored integration with CRM or ERP from €1,200. Guide prices, net plus VAT.",
+        "preis_t": "We clarify the price in a short call, fair and suited to your budget.",
         "faq": [
             {"q": "How can appointment scheduling be automated?",
-             "a": "Customers book their appointment online into a calendar themselves instead of going back and forth by phone. Matching with your calendar prevents double bookings, and the confirmation goes out automatically by email or WhatsApp. What a person must decide, such as special cases, we define beforehand. Appointment automation costs from €390."},
+             "a": "Customers book their appointment online into a calendar themselves instead of going back and forth by phone. Matching with your calendar prevents double bookings, and the confirmation goes out automatically by email or WhatsApp. What a person must decide, such as special cases, we define beforehand. We clarify the price in a short call, fair and suited to your budget."},
             {"q": "Does a chatbot replace an employee?",
              "a": "No, and we do not sell it that way. It takes the recurring questions off your desk and collects enquiries outside working hours. Anything that requires a decision goes to a person — we define that in advance."},
             {"q": "Where does our customers' data end up?",
@@ -470,11 +470,11 @@ SEITEN = {
         "ablauf_h": "How a project runs",
         "ablauf": [
             {"h": "Conversation and survey", "t": "We work out what the system should do and what state the building or the planning is in. For new builds as early as possible — after plastering, every change gets expensive."},
-            {"h": "Concept and fixed price", "t": "You receive a concept with a parts list, a description of the behaviour and the price. Only then is anything ordered."},
+            {"h": "Concept and upfront agreement", "t": "You receive a concept with a parts list, a description of the behaviour and the price. Only then is anything ordered."},
             {"h": "Install, programme, hand over", "t": "We install, programme and brief you. The documentation stays with you so another specialist could carry on."},
         ],
         "preis_h": "Why there is no starting price here",
-        "preis_t": "A figure at this point would be guesswork. The price of an installation depends on the number of rooms, the state of the cabling and whether the work is in a new build or an existing one — the range is too wide for a meaningful starting price. We calculate per project and quote in writing after the survey. On-site work is billed at €120 per hour plus travel unless a fixed price is agreed.",
+        "preis_t": "A figure at this point would be guesswork. The price of an installation depends on the number of rooms, the state of the cabling and whether the work is in a new build or an existing one — the range is too wide for a meaningful starting price. We calculate per project and quote in writing after the survey. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
         "faq": [
             {"q": "Loxone or KNX — which is better?",
              "a": "KNX is a manufacturer-independent standard with a very large device choice and long availability; Loxone is a more closed system that is quicker to set up and needs less planning effort. Which one fits depends on size, budget and how independent you want to be later. We tell you in the conversation what we would recommend for your project."},
@@ -492,9 +492,9 @@ SEITEN = {
     "konferenztechnik": {
         "nav": "Conference technology",
         "titel": "Conference room technology in Austria | WVM-IT",
-        "desc": "Equipping meeting rooms: displays, cameras, microphones, sound and control at the push of a button. On-site from €120/hr. Request a quote.",
+        "desc": "Equipping meeting rooms: displays, cameras, microphones, sound and control at the push of a button. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
         "h1": "Meeting room technology that gets a meeting started on time",
-        "kurz": "WVM-IT from Lenzing equips meeting and training rooms with technology: displays, cameras, microphones, sound and a control system somebody who did not install it can also operate. A typical meeting room is finished in one to two days, provided the cabling is in place. Planning and calibration happen on site; on-site work is billed at €120 per hour plus travel, and we quote the project price after a site visit. For halls, stages and live events there's a dedicated page: Event technology.",
+        "kurz": "WVM-IT from Lenzing equips meeting and training rooms with technology: displays, cameras, microphones, sound and a control system somebody who did not install it can also operate. A typical meeting room is finished in one to two days, provided the cabling is in place. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand. For halls, stages and live events there's a dedicated page: Event technology.",
         "intro": "The measure of conference technology is not what it can do but whether a meeting starts on time. Most rooms fail on the same small things: the wrong cable is on the table, the camera shows the wall, the other side cannot understand the sound. So we calibrate rooms and reduce operation to a single visible path — everything else disappears into the technology.",
         "problem_h": "The rooms we are talking about",
         "probleme": [
@@ -519,7 +519,7 @@ SEITEN = {
             {"h": "Install and brief", "t": "Installation, calibration, a short briefing. After that the room works for somebody entering it for the first time."},
         ],
         "preis_h": "Why there is no starting price here",
-        "preis_t": "Between a meeting room for six people and a hall with stage technology lie orders of magnitude. A starting price here would say nothing. We look at the room and calculate per project; on-site work is billed at €120 per hour plus travel unless a fixed price is agreed.",
+        "preis_t": "Between a meeting room for six people and a hall with stage technology lie orders of magnitude. A starting price here would say nothing. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
         "faq": [
             {"q": "Can you upgrade an existing room?",
              "a": "Usually yes. Often it is not the equipment that is missing but the calibration and a sensible way of operating it. We first check what the existing material can do before proposing anything new."},
@@ -537,9 +537,9 @@ SEITEN = {
     "veranstaltungstechnik": {
         "nav": "Event technology",
         "titel": "Video, sound & stage technology in Austria | WVM-IT",
-        "desc": "Event technology for halls, clubs, municipalities and hotels: sound, light, video and stage. On-site from €120/hr. Request a quote.",
+        "desc": "Event technology for halls, clubs, municipalities and hotels: sound, light, video and stage. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
         "h1": "Video, sound and stage technology for halls and events",
-        "kurz": "WVM-IT from Lenzing plans, installs and supports event technology in Upper Austria and beyond: sound, light, video and stage technology for halls, clubhouses, community centres, hotels and company events. Fixed installations are quoted per project after a site visit; on-site work is billed at €120 per hour plus travel unless a fixed price is agreed. We reply to enquiries within 24 hours on working days.",
+        "kurz": "WVM-IT from Lenzing plans, installs and supports event technology in Upper Austria and beyond: sound, light, video and stage technology for halls, clubhouses, community centres, hotels and company events. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand. We reply to enquiries within 24 hours on working days.",
         "intro": "In most halls there is technology somebody once set up and that nobody has really understood since. There are three remote controls, two of them without batteries, and a mixer that only one particular person is allowed to touch. As long as that person has time, it works. The evening it goes wrong is always the evening a hundred people are sitting in the room. We build systems somebody can operate the first time they see them — and document what is connected where.",
         "problem_h": "What usually holds a hall back",
         "probleme": [
@@ -567,10 +567,10 @@ SEITEN = {
             {"h": "Staying reachable afterwards", "t": "Before a bigger event we're happy to check in again on request. If something still comes up, you can reach us Monday to Thursday from 7:30am to 9pm, Friday until 8:30pm, Saturday until 8pm on the number on this page."},
         ],
         "preis_h": "Why there is no starting price here",
-        "preis_t": "Between sound for a club hall and a stage with light, video and streaming lie orders of magnitude; a starting price here would be a number that says nothing. We look at the room and calculate per project with an equipment list. On-site work is billed at €120 per hour plus travel unless a fixed price is agreed; remote planning and coordination at €95 per hour. Estimated prices, net plus VAT.",
+        "preis_t": "Between sound for a club hall and a stage with light, video and streaming lie orders of magnitude; a starting price here would be a number that says nothing. We look at the room and calculate per project with an equipment list. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
         "faq": [
             {"q": "What does event technology for a hall cost?",
-             "a": "That depends almost entirely on the room size and what the room needs to do. Intelligible speech sound for a club hall is a different project from a stage with lighting and a video feed. After a site visit you get an equipment list with a price — before that, any figure would be a guess. On-site work is billed at €120 per hour plus travel."},
+             "a": "That depends almost entirely on the room size and what the room needs to do. Intelligible speech sound for a club hall is a different project from a stage with lighting and a video feed. After a site visit you get an equipment list with a price — before that, any figure would be a guess. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand."},
             {"q": "Do you upgrade existing equipment, or does everything need to be new?",
              "a": "Most halls have more usable equipment than the people using them think. Often what's missing isn't the technology but the calibration, sensible cabling and operation that doesn't overwhelm anyone. We first check what the existing equipment can do."},
             {"q": "Do you also support individual events?",
@@ -586,10 +586,10 @@ SEITEN = {
 
     "it-beratung": {
         "nav": "IT consulting",
-        "titel": "IT consulting from €95/hr | WVM-IT",
-        "desc": "IT consulting with no vendor ties: assessment, concept, quote comparison and support — €95 per hour. Request a free consultation now.",
+        "titel": "IT consulting | WVM-IT",
+        "desc": "IT consulting with no vendor ties: assessment, concept, quote comparison and support — price discussed in a brief call. Request a free consultation now.",
         "h1": "IT consulting for businesses that need to make a decision",
-        "kurz": "WVM-IT from Lenzing advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. Consulting costs €95 per hour, on-site appointments €120 per hour plus travel. We reply to enquiries within 24 hours on working days — even when the honest answer is that the investment isn't worth it.",
+        "kurz": "WVM-IT from Lenzing advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. The cost depends on the scope and is clarified in a short conversation; call +43 676 3808501 or WhatsApp. We reply to enquiries within 24 hours on working days — even when the honest answer is that the investment isn’t worth it.",
         "intro": "The most expensive IT decisions are rarely the wrong devices. They're the decisions nobody made: the server that keeps running for another year because nobody knows what comes next; the software chosen because one vendor called first; the two quotes you can't compare because they describe different things. Here, consulting doesn't mean a presentation. It means someone looks at what you have, listens to what you're planning, and writes down what that means for your technology.",
         "problem_h": "When consulting pays off",
         "probleme": [
@@ -616,10 +616,10 @@ SEITEN = {
             {"h": "Implementation — with us or without us", "t": "If you give us the implementation, we credit the consulting hours to the project. If you give it to someone else, that's not a problem: the concept belongs to you."},
         ],
         "preis_h": "What consulting costs",
-        "preis_t": "Consulting costs €95 per hour, on-site appointments €120 per hour plus travel. The initial conversation is free. An assessment with a written concept typically takes between half a day and two days of effort for a typical business; we state the estimate beforehand and either keep to it or let you know before it's exceeded. If you give us the implementation, we credit the consulting hours. Estimated prices, net plus VAT.",
+        "preis_t": "Our consulting fees are set after a brief, no‑obligation conversation, with an agreed‑upfront arrangement, no surprises. The initial conversation is free. An assessment with a written concept typically takes between half a day and two days for a typical business; we state the estimate beforehand and either keep to it or let you know before it’s exceeded. If you give us the implementation, we credit the consulting hours. Contact us to discuss the details.",
         "faq": [
             {"q": "What does IT consulting cost?",
-             "a": "€95 per hour, €120 per hour plus travel on site; the initial conversation is free. A full assessment with a written concept for a business with ten to thirty workstations usually takes between four and sixteen hours. We state the range before starting."},
+             "a": "Single-case help and on-site visits are billed by effort; we discuss the cost beforehand. A full assessment with a written concept for a business with ten to thirty workstations usually takes between four and sixteen hours. We state the range before starting."},
             {"q": "Are you tied to any manufacturer?",
              "a": "No. We work with partners where it's technically necessary — for building automation and event technology, for example — but we get no payment for recommending a particular product. If a recommendation happens to be financially interesting for us, we say so in the concept."},
             {"q": "Do you also advise when another provider does the implementation?",
@@ -637,9 +637,9 @@ SEITEN = {
     "it-betreuung-groessere-betriebe": {
         "nav": "Larger businesses",
         "titel": "Managed IT for larger businesses: 20+ seats | WVM-IT",
-        "desc": "Managed IT from 20 workstations upwards: from €29/month per workstation, server from €89/month, multiple sites via remote maintenance. Request a quote.",
+        "desc": "Managed IT from 20 workstations upwards: pricing is discussed in a short call. Request a quote.",
         "h1": "Managed IT support for larger businesses from 20 workstations",
-        "kurz": "WVM-IT from Lenzing also looks after larger businesses from roughly 20 workstations upwards: audit and living documentation, a named contact, monitoring of servers and network, multiple sites via secure remote maintenance. Day-to-day support starts at €29 per workstation and month, a managed server at €89 per month. For a business with 30 workstations and 2 servers this gives a frame of about €1,097 per month (30 × €29 + 2 × €89 + €49 backup). Where an internal IT function exists, we work alongside it — as a second tier for topics that fall between the daily cracks.",
+        "kurz": "WVM-IT from Lenzing also looks after larger businesses from roughly 20 workstations upwards: audit and living documentation, a named contact, monitoring of servers and network, multiple sites via secure remote maintenance. Day‑to‑day support and managed servers are priced after an initial conversation, with an agreed‑upfront arrangement, no surprises. If you already have an internal IT function, we work alongside it as a second tier for topics that fall between the daily cracks. Call +43 676 3808501 or WhatsApp to discuss your needs.",
         "intro": "Below about 20 workstations, <a href=\"/en/leistungen/edv-it-betreuung/\">IT support</a> for smaller businesses is the better fit; this page describes what changes above that. From about twenty workstations onwards the question changes: not „is anyone looking after this“ any more, but „how do we keep twenty accounts, ten shares, two servers and three sites in a state where somebody can still follow how it is built“ over the years. Larger businesses have contracts with customers that assume IT that works, and they have documentation duties that no piece of paper in the server room fulfils. That is where support built around a living inventory starts, not around a ticket queue. Below 20 workstations our <a href=\"/en/leistungen/edv-it-betreuung/\">IT support for small businesses</a> is the better fit — closer relationship, lower price per head.",
         "problem_h": "What goes wrong in larger businesses",
         "probleme": [
@@ -666,7 +666,7 @@ SEITEN = {
             {"h": "Running with documentation", "t": "From then on the contact reaches out when something stands out, instead of waiting for you. Every change is recorded. Once a quarter we talk through what is coming."},
         ],
         "preis_h": "What it costs",
-        "preis_t": "Day-to-day support costs from €29 per workstation and month, a managed server from €89 per month, monitored backup from €49 per month. For a typical larger business with 30 workstations and 2 servers plus backup that comes to about €1,097 per month (30 × €29 + 2 × €89 + €49). Ad-hoc work is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT. Day-to-day remote support is location-independent; extra sites are billed per workstation and server as above, and any build-out or on-site travel is stated in writing before it starts.",
+        "preis_t": "Day‑to‑day support, managed servers and monitored backup are priced after a brief discussion, with an agreed‑upfront arrangement, no surprises. Ad‑hoc work and on‑site visits are billed based on the effort required; we always confirm the estimate in writing before starting. Contact us to get a tailored quote.",
         "faq": [
             {"q": "Where is the line between this page and small-business support?",
              "a": "At about 20 workstations. Below that a closer, more personal relationship is quicker and simpler; above it the effort for clean documentation and fixed standards starts to pay, because otherwise nobody has an overview. The line is not sharp: some 15-seat businesses with three sites belong here, some 25-seat businesses with one site belong on the other page. We tell you in the first conversation.",

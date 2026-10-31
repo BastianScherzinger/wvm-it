@@ -128,4 +128,7 @@ Leistungsseiten). Jede Zahl kommt aus ANGEBOT_GROUPS über das Sprachpaket bzw.
     {% include 'anfrage_karte.html' with bid='einzelhilfe' titel=hilfe.cta_h sub=hilfe.cta_t ph=hilfe.cta_ph %}
   </div>
 </section>
+{% if not preise_sichtbar %}
+<section class="section anruf-schluss"><div class="wrap">{% include 'anruf_kasten.html' %}</div></section>
+{% endif %}
 {% endblock %}

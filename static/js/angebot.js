@@ -23,6 +23,9 @@
   var T_PM = I.per_month || "€/Mt";
   var T_PY = I.per_year || "€/Jahr";
   var T_PH = I.per_hour || "€/Std.";
+  // Strategie "Preis im Gespraech" (31.10.2026): Die Seite setzt `no_price`, dann gibt es
+  // weder Positionspreise noch Summen -- nur die Auswahl, die als Anfrage rausgeht.
+  var NOPRICE = !!I.no_price;
   var T_ONE = I.leistung || "Leistung";
   var T_MANY = I.leistungen || "Leistungen";
   var T_REMOVE = I.remove || "Entfernen:";
@@ -101,6 +104,7 @@
   function eur(n) { return (n || 0).toLocaleString(NL); }
 
   function priceLabel(d) {
+    if (NOPRICE) return "";
     if (d.anfrage) return T_ON_REQ;
     var parts = [];
     if (d.once) parts.push(eur(d.once) + " €");
@@ -142,6 +146,7 @@
   }
 
   function runSummary(once, mtl, yr, std) {
+    if (NOPRICE) return I.no_price;
     var main = "";
     if (once) main = T_FROM + " " + eur(once) + " €";
     if (mtl) main += (main ? " + " : "") + eur(mtl) + " " + T_PM;
@@ -190,7 +195,7 @@
     setRow("mtl", mtl > 0);
     setRow("yr", yr > 0);
     if (anfrageEl) anfrageEl.hidden = !anfrage;
-    if (totalsEl) totalsEl.hidden = chosen.length === 0;
+    if (totalsEl) totalsEl.hidden = NOPRICE || chosen.length === 0;
 
     var label = chosen.length + " " + (chosen.length === 1 ? T_ONE : T_MANY);
     var sum = runSummary(once, mtl, yr, std);

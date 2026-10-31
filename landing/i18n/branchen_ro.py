@@ -13,10 +13,10 @@ BRANCHEN = {
 
     "steuerberater-kanzleien": {
         "nav": "Contabilitate & avocatură",
-        "titel": "IT pentru cabinete în Austria, de la 29 € | WVM-IT",
-        "desc": "IT pentru cabinete: mediu DATEV, separarea clienților, termene de arhivare, backup verificat, de la 29 € per stație. Solicitați o ofertă acum.",
+        "titel": "IT pentru cabinete în Austria | WVM-IT",
+        "desc": "IT pentru cabinete: mediu DATEV, separare clienți, termene arhivare, backup verificat. Preț stabilit după scurtă discuție, fair și adaptat bugetului.",
         "h1": "IT pentru cabinete de contabilitate și avocatură",
-        "kurz": "WVM-IT se ocupă de IT-ul cabinetelor de contabilitate, avocatură și audit din Austria și Germania: stații de lucru, mediul DATEV sau al software-ului de cabinet, datele clienților și backupul din spate. Asistența curentă costă de la 29 € per stație și lună, verificarea unică de securitate IT de la 490 €. Lucrăm preponderent prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu întrerupe munca.",
+        "kurz": "WVM-IT se ocupă de IT-ul cabinetelor de contabilitate, avocatură și audit din Austria și Germania: stații de lucru, mediul DATEV sau al software-ului de cabinet, datele clienților și backupul. Costul asistenței curente depinde de numărul stațiilor, server și amplitudine; prețul se stabilește într-o scurtă discuție, fair și potrivit bugetului. Verificarea unică de securitate IT se prețuiește după analiză; detalii la un apel sau WhatsApp la +43 676 3808501. Lucrăm preponderent prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu întrerupe munca.",
         "intro": "Într-un cabinet, IT-ul nu este un instrument, ci arhiva. Ce se află pe servere reprezintă patrimoniul altora sub formă de cifre — și este supus unor termene pe care nimeni nu le poate suspenda. De aceea tehnologia are aici alt rol decât într-o firmă care seara închide calculatoarele: trebuie să funcționeze demonstrabil, nu doar aparent.",
         "anders_h": "Ce este diferit într-un cabinet",
         "anders": [
@@ -38,9 +38,9 @@ BRANCHEN = {
         "software_h": "Software-ul de cabinet și ce presupune el",
         "software_t": "DATEV, BMD, RZL și sistemele comparabile rulează aproape întotdeauna printr-un server terminal sau o instalare centrală. Nu operăm software-ul specializat în sine — asta fac producătorii și partenerii lor —, ci tot ce se află sub el: server, versiune de Windows, drepturi, rețea, backup, imprimante și accesul securizat din exterior. Spunem această limită dinainte, nu în timpul unei defecțiuni.",
         "risiko_h": "De unde pornește de obicei în cabinete",
-        "risiko_t": "Nu de la un atac, ci de la obișnuință: un singur acces pentru toți, pentru că merge mai repede. Un backup pe un disc din aceeași încăpere. Un laptop necriptat cu date de clienți care pleacă acasă. Fostul angajat al cărui cont este încă activ. Fiecare dintre aceste puncte se rezolvă într-o după-amiază — dar numai dacă cineva îl scrie o dată. Exact asta este verificarea de securitate IT de la 490 €: o analiză cu raport scris și o listă ordonată după urgență.",
+        "risiko_t": "Nu de la un atac, ci de la obișnuință: un singur acces pentru toți, pentru că merge mai repede. Un backup pe un disc din aceeași încăpere. Un laptop necriptat cu date de clienți care pleacă acasă. Fostul angajat al cărui cont este încă activ. Fiecare dintre aceste puncte se rezolvă într-o după-amiază — dar numai dacă cineva îl scrie o dată. Exact asta este verificarea de securitate IT: o analiză cu raport scris și o listă ordonată după urgență, cu preț stabilit din timp, fără surprize.",
         "preis_h": "Cât costă",
-        "preis_t": "Asistența curentă costă de la 29 € per stație și lună, un server administrat de la 89 € pe lună, backupul supravegheat de la 49 € pe lună. Verificarea unică de securitate IT costă de la 490 € și se încheie cu un raport scris. Ajutorul punctual fără contract se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
+        "preis_t": "Asistența curentă, serverul administrat și backupul supravegheat se prețuiesc în funcție de numărul stațiilor, complexitatea infrastructurii și serviciile alese; prețul final se stabilește într-o scurtă discuție, fair și adaptat bugetului. Verificarea unică de securitate IT cu raport scris și ajutorul punctual fără contract se prețuiesc după efort real; intervențiile la fața locului includ deplasarea. Detalii la un apel sau WhatsApp la +43 676 3808501 — stabilim împreună o ofertă clară, fără costuri ascunse.",
         "faq": [
             {"q": "Vă ocupați și de mediul DATEV în sine?",
              "a": "Operăm tot ce se află sub software-ul specializat: server, server terminal, Windows, drepturi, rețea, backup, imprimante și accesul din exterior. Software-ul specializat rămâne la producător, respectiv la partenerul acestuia — nu este o scuză, ci o graniță curată. O spunem dinainte, ca în caz de defecțiune să fie clar cine atinge ce parte, iar la nevoie ne coordonăm direct cu suportul producătorului."},
@@ -57,10 +57,10 @@ BRANCHEN = {
 
     "handwerk-baugewerbe": {
         "nav": "Meșteșuguri & construcții",
-        "titel": "IT pentru construcții în Austria, de la 29 € | WVM-IT",
-        "desc": "IT pentru meserii și construcții: aparate pentru șantier, pontaj, software de branșă, documentare foto, de la 29 € per stație. Contactați-ne acum.",
+        "titel": "IT pentru construcții în Austria | WVM-IT",
+        "desc": "IT pentru meșteșuguri și construcții: aparate șantier, pontaj, software de branșă, documentare foto. Preț după scurtă discuție, fair și potrivit bugetului.",
         "h1": "IT pentru firme meșteșugărești și de construcții",
-        "kurz": "WVM-IT se ocupă de IT-ul firmelor meșteșugărești și de construcții din Austria și Germania: stații de birou, servere, software de branșă, aparate mobile pe șantier și legătura dintre ele. Asistența curentă costă de la 29 € per stație și lună, o rețea cu WLAN pentru atelier și depozit de la 890 €. Munca zilnică se face prin mentenanță la distanță; construirea și măsurarea se fac la fața locului.",
+        "kurz": "WVM-IT se ocupă de IT-ul firmelor meșteșugărești și de construcții din Austria și Germania: stații de birou, servere, software de branșă, aparate mobile pe șantier și legătura dintre ele. Costul asistenței curente depinde de numărul stațiilor și amplitudine; prețul se stabilește într-o scurtă discuție, fair și potrivit bugetului. Rețeaua cu WLAN pentru atelier și depozit se prețuiește după mărime și cerințe; detalii la un apel sau WhatsApp la +43 676 3808501. Munca zilnică se face prin mentenanță la distanță; construirea și măsurarea se fac la fața locului.",
         "intro": "În meserii, jumătate din firmă nu lucrează acolo unde se află IT-ul. În birou stau două-trei persoane cu oferte, facturi și programări; afară sunt montatori cu un telefon, o tabletă și o conexiune care în unele zile pur și simplu nu există. Tehnologia trebuie să servească ambele părți — astfel încât seara nimeni să nu retasteze totul.",
         "anders_h": "Ce este diferit față de birou",
         "anders": [
@@ -82,16 +82,16 @@ BRANCHEN = {
         "software_h": "Software-ul de branșă și legătura cu biroul",
         "software_t": "Fie că lucrați cu o soluție de branșă pentru măsurători și postcalcul, fie cu tabele: interesant este punctul în care datele de afară ajung în birou. Exact acolo apar dublurile — ore pe bilețele, fotografii pe telefoane private, avize în torpedou. Ne uităm la aceste treceri și le închidem înainte de a discuta despre programe noi. Adesea nu lipsește un software, ci o legătură funcțională și o arhivare clară.",
         "risiko_h": "Cea mai scumpă avarie în meserii",
-        "risiko_t": "Nu căderea serverului, ci pierderea tăcută de date: se pierde un telefon și cu el fotografiile unei săptămâni. Un montator pleacă și nimeni nu mai ajunge la contul lui. Un laptop este furat, necriptat, cu adrese de clienți. Nu sunt catastrofe IT, ci cotidian — și toate trei se pot rezolva dinainte: administrarea aparatelor, criptare, un proces de plecare. Verificarea de securitate IT de la 490 € parcurge exact aceste puncte și se încheie cu o listă ordonată.",
+        "risiko_t": "Nu căderea serverului, ci pierderea tăcută de date: se pierde un telefon și cu el fotografiile unei săptămâni. Un montator pleacă și nimeni nu mai ajunge la contul lui. Un laptop este furat, necriptat, cu adrese de clienți. Nu sunt catastrofe IT, ci cotidian — și toate trei se pot rezolva dinainte: administrarea aparatelor, criptare, un proces de plecare. Verificarea de securitate IT parcurge exact aceste puncte și se încheie cu o listă ordonată, cu preț stabilit din timp, fără surprize.",
         "preis_h": "Cât costă",
-        "preis_t": "Asistența curentă costă de la 29 € per stație și lună, un server administrat de la 89 € pe lună, backupul supravegheat de la 49 € pe lună. Instalarea rețelei și a WLAN-ului pentru atelier sau hală costă de la 890 €, o stație nou configurată 190 €. Ajutorul punctual se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
+        "preis_t": "Asistența curentă, serverul administrat și backupul supravegheat se prețuiesc după numărul stațiilor și complexitate; prețul final se stabilește într-o scurtă discuție, fair și adaptat bugetului. Instalarea rețelei și WLAN pentru atelier sau hală, precum și o stație nou configurată, se prețuiesc după efort real. Ajutorul punctual și intervențiile la fața locului (inclusiv deplasare) se clarifică la apel. Sună sau scrie pe WhatsApp la +43 676 3808501 pentru o ofertă concretă, fără surprize.",
         "faq": [
             {"q": "E-mailurile noastre de comandă ajung în spam. Ce putem face?",
              "a": "De obicei datele expeditorului domeniului nu sunt corecte: dacă lipsesc înregistrările pentru SPF, DKIM și DMARC, destinatarii consideră e-mailurile suspecte. Verificăm, adăugăm înregistrările și testăm trimiterea. Se poate face prin acces la distanță, fără ca cineva din firmă să trebuiască să aștepte."},
             {"q": "Ce include administrarea IT pentru meșteșugari?",
              "a": "Actualizările PC-urilor de birou rulează în afara programului, copia de siguranță este verificată zilnic, iar restaurarea este încercată la intervale. Angajații noi primesc contul, cei plecați îl pierd în aceeași zi. La defecțiuni trimiteți o poză cu mesajul de eroare pe WhatsApp sau sunați; rezolvăm cea mai mare parte prin acces la distanță, iar hardware-ul îl schimbăm la fața locului în zona noastră de deservire."},
             {"q": "Cât costă administrarea IT pentru o firmă de meșteșuguri cu patru PC-uri de birou?",
-             "a": "Administrarea curentă costă 29 € per post de lucru și lună, deci de patru ori 29 € pentru patru PC-uri de birou. La cerere se adaugă copia de siguranță monitorizată cu 49 € pe lună. Multe firme mici nu au nevoie de server propriu; dacă totuși aveți unul, se adaugă 89 € pe lună. Ajutorul în afara administrării costă 95 € pe oră prin acces la distanță. Toate prețurile sunt orientative, net plus TVA."},
+             "a": "Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Configurarea se stabilește din timp, fără surprize. Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Serverul administrat și backupul monitorizat depind de amploare; prețul îl stabilim în discuție. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp."},
             {"q": "WLAN-ul nostru nu ajunge în atelier. Este suficient un repetor?",
              "a": "De obicei nu. Un repetor înjumătățește lățimea de bandă disponibilă și emite pe același canal cu aparatul pe care ar trebui să îl extindă, așa că cele două se perturbă reciproc. Într-un atelier cu rafturi metalice și mașini, soluția este aproape întotdeauna o măsurătoare, un al doilea punct de acces pe cablu propriu și o repartizare curată a canalelor. Costă o dată și apoi ține."},
             {"q": "Pot lucra montatorii noștri și fără semnal?",
@@ -108,9 +108,9 @@ BRANCHEN = {
     "arztpraxen-therapie": {
         "nav": "Cabinete medicale & terapie",
         "titel": "Asistență IT pentru cabinete medicale | WVM-IT",
-        "desc": "Asistență IT pentru cabinete medicale: de la 29 €/lună pe stație, verificare de securitate de la 490 €. Mentenanță la distanță fără oprire. Cereți ofertă.",
+        "desc": "Asistență IT pentru cabinete medicale: preț per stație după scurtă discuție, verificare securitate cu preț stabilit din timp, fără surprize. Mentenanță la distanță fără oprire. Contactați-ne.",
         "h1": "IT pentru cabinete medicale, stomatologice și de terapie",
-        "kurz": "WVM-IT se ocupă de IT-ul cabinetelor medicale, stomatologice și de terapie din Austria și Germania: stații de lucru, mediul software-ului de cabinet, rețele separate pentru aparatura medicală, drepturi de acces și backupul din spate. Verificarea unică de securitate IT costă de la 490 €, asistența curentă de la 29 € per stație și lună. Lucrăm prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu oprește consultația.",
+        "kurz": "WVM-IT se ocupă de IT-ul cabinetelor medicale, stomatologice și de terapie din Austria și Germania: stații de lucru, mediul software-ului de cabinet, rețele separate pentru aparatura medicală, drepturi de acces și backup. Costul asistenței curente depinde de numărul stațiilor și amplitudine; prețul se stabilește într-o scurtă discuție, fair și potrivit bugetului. Verificarea unică de securitate IT se prețuiește după analiză, cu preț stabilit din timp, fără surprize. Lucrăm prin mentenanță la distanță — într-un cabinet acesta este singurul drum care nu oprește consultația.",
         "intro": "Un cabinet are două însușiri care împreună sunt pretențioase: prelucrează cea mai sensibilă categorie de date care există și nu are voie să stea între orele opt și douăsprezece. Împreună, asta înseamnă că tehnologia nu trebuie să fie spectaculoasă, ci plictisitor de fiabilă — și că fiecare modificare se face în afara programului de consultații.",
         "anders_h": "Ce este diferit într-un cabinet",
         "anders": [
@@ -132,9 +132,9 @@ BRANCHEN = {
         "software_h": "Software-ul de cabinet și limitele lui",
         "software_t": "Software-ul specializat rămâne la producător — noi operăm tot ce este dedesubt: servere, stații de lucru, rețea, drepturi, backup, imprimante și cititoare de carduri. Trasăm această linie dinainte, pentru că ea decide pe cine se sună în caz de defecțiune. La conexiunile cu infrastructura de telematică sau de decontare ne ținem strict de cerințele producătorului, în loc să construim o variantă proprie.",
         "risiko_h": "Cea mai frecventă constatare în cabinete",
-        "risiko_t": "Un acces comun pentru toată echipa, pentru că la recepție merge mai repede. Astfel orice jurnalizare devine inutilă — se poate dovedi că un dosar a fost deschis, dar nu de cine. A doua constatare frecventă: un aparat care stă de ani buni în aceeași rețea cu stațiile de lucru și nu mai primește actualizări. Ambele se rezolvă fără hardware nou. Verificarea de securitate IT de la 490 € analizează exact aceste puncte și livrează o listă ordonată după urgență, nu după efort.",
+        "risiko_t": "Un acces comun pentru toată echipa, pentru că la recepție merge mai repede. Astfel orice jurnalizare devine inutilă — se poate dovedi că un dosar a fost deschis, dar nu de cine. A doua constatare frecventă: un aparat care stă de ani buni în aceeași rețea cu stațiile de lucru și nu mai primește actualizări. Ambele se rezolvă fără hardware nou. Verificarea de securitate IT analizează exact aceste puncte și livrează o listă ordonată după urgență, nu după efort.",
         "preis_h": "Cât costă",
-        "preis_t": "Verificarea unică de securitate IT costă de la 490 € și se încheie cu un raport scris. Asistența curentă costă de la 29 € per stație și lună, un server administrat de la 89 € pe lună, backupul supravegheat de la 49 € pe lună. Instalarea unui firewall și a rețelelor separate costă de la 690 €. Ajutorul punctual se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
+        "preis_t": "Costul verificării de securitate IT depinde de dimensiunea rețelei și complexitatea sistemelor; asistența curentă se prețuiește după numărul de stații și servere, backupul după volumul de date, firewallul după efortul de configurare. Prețul final se stabilește după o scurtă discuție, fair și adaptat bugetului dumneavoastră. Sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
         "faq": [
             {"q": "Ce se întâmplă cu cititorul de carduri pentru e-card în rețeaua cabinetului?",
              "a": "Conectarea la sistemul e-card se face prin rețeaua de informații pentru sănătate a asigurărilor sociale și un furnizor de rețea de acces, nu prin noi; de acolo primiți și cititorul, și routerul. Nu înlocuim nici conexiunea, nici aparatul. Ne ocupăm de rețeaua cabinetului din jur: administrație, WLAN pentru oaspeți și aparate de la recepție separate curat, port de rețea și alimentare la cititor, acces la distanță doar cu aprobarea dumneavoastră. Pentru tipul de aparat și condiții întrebați asigurările sociale sau furnizorul."},
@@ -153,10 +153,10 @@ BRANCHEN = {
 
     "hotellerie-gastronomie": {
         "nav": "Hoteluri & restaurante",
-        "titel": "Rețea WLAN pentru hoteluri în Austria, de la 890 € | WVM-IT",
-        "desc": "IT pentru hotel și restaurant: WLAN pentru oaspeți separat de operare, casă de marcat, rezervări, sezon. Rețea de la 890 €. Solicitați o ofertă.",
+        "titel": "Rețea WLAN pentru hoteluri în Austria | WVM-IT",
+        "desc": "IT pentru hotel și restaurant: WLAN oaspeți separat de operare, casă de marcat, rezervări, sezon. Preț în discuție. Solicitați o ofertă.",
         "h1": "IT, WLAN și tehnică pentru hoteluri și restaurante",
-        "kurz": "WVM-IT planifică și întreține tehnica hotelurilor, pensiunilor și restaurantelor din Austria și Germania: WLAN pentru oaspeți separat de rețeaua de operare, casă de marcat, conexiuni de rezervare, stații de lucru și backup. O rețea măsurată cu WLAN costă de la 890 €, asistența curentă de la 29 € per stație și lună. Planificarea se face la distanță; construirea și măsurarea, la fața locului.",
+        "kurz": "WVM-IT planifică și întreține tehnica hotelurilor, pensiunilor și restaurantelor din Austria și Germania: WLAN pentru oaspeți separat de rețeaua de operare, casă de marcat, conexiuni de rezervare, stații de lucru și backup. Costul rețelei măsurate cu WLAN depinde de suprafață și cerințe; asistența curentă se prețuiește pe stație. Planificarea se face la distanță; construirea și măsurarea, la fața locului.",
         "intro": "În ospitalitate, IT-ul face parte din produs. Oaspetele evaluează WLAN-ul ca pe micul dejun și o face public. În același timp, pe aceeași linie atârnă lucruri care nu au nicio legătură cu oaspetele: casa de marcat, contabilitatea, pontajul, camerele. Separarea curată a acestor două lumi nu este un rafinament, ci baza.",
         "anders_h": "Ce este diferit în hotel și restaurant",
         "anders": [
@@ -180,7 +180,7 @@ BRANCHEN = {
         "risiko_h": "Greșeala care revine în fiecare vară",
         "risiko_t": "Încă un punct de acces, pentru că „în spate nu ajunge”. Emite pe același canal cu cel existent, cele două se perturbă, iar aparatele se agață de cel greșit. După aceea WLAN-ul nu este mai bun, ci mai slab — peste tot. O rețea pentru oaspeți care ține rezultă dintr-o măsurătoare, o repartizare a canalelor și puncte de acces pe cablu propriu. Este efort o singură dată și apoi ani de liniște, în loc de încă un aparat în fiecare vară.",
         "preis_h": "Cât costă",
-        "preis_t": "Măsurarea, planificarea și instalarea rețelei și a WLAN-ului costă de la 890 €, firewallul și rețelele separate de la 690 €. Asistența curentă costă de la 29 € per stație și lună, backupul supravegheat de la 49 € pe lună. Un site cu formular de cerere pornește de la 350 €. Ajutorul punctual se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
+        "preis_t": "Măsurarea, planificarea și instalarea rețelei și a WLAN-ului, precum și firewallul și rețelele separate, se prețuiesc după efortul de proiectare și complexitatea clădirii. Asistența curentă, serverul administrat și backupul supravegheat depind de numărul de stații și volumul de date. Prețul se stabilește după o scurtă discuție, fair și adaptat bugetului. Sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
         "faq": [
             {"q": "De câte puncte de acces are nevoie o casă cu treizeci de camere?",
              "a": "Asta se poate spune serios abia după o măsurătoare — structura clădirii, planul și materialele contează mai mult decât numărul camerelor. O construcție nouă, ușoară, are nevoie de considerabil mai puține decât o clădire veche cu ziduri de o jumătate de metru. Măsurăm și abia apoi spunem cifra; orice indicație înainte ar fi o presupunere."},
@@ -197,10 +197,10 @@ BRANCHEN = {
 
     "produktion-gewerbe": {
         "nav": "Producție & industrie",
-        "titel": "Rețea pentru firme de producție, de la 890 € | WVM-IT",
-        "desc": "IT pentru producție: rețea până în hală, scanere și terminale, rețele separate pentru mașini, siguranță, de la 890 €. Solicitați o ofertă acum.",
+        "titel": "Rețea pentru firme de producție în Austria | WVM-IT",
+        "desc": "IT pentru producție: rețea până în hală, scanere și terminale, rețele separate pentru mașini, siguranță. Preț în discuție. Solicitați o ofertă acum.",
         "h1": "IT și rețele pentru producție și firme industriale",
-        "kurz": "WVM-IT planifică și întreține IT-ul firmelor de producție și industriale din Austria și Germania: rețea până în hală, rețele separate pentru mașini, scanere și terminale, servere, stații de lucru și backup. O rețea de hală măsurată costă de la 890 €, administrarea unui server de la 89 € pe lună. Munca zilnică se face prin mentenanță la distanță; construirea și măsurarea, la fața locului.",
+        "kurz": "WVM-IT planifică și întreține IT-ul firmelor de producție și industriale din Austria și Germania: rețea până în hală, rețele separate pentru mașini, scanere și terminale, servere, stații de lucru și backup. Costul rețelei de hală măsurate depinde de dimensiuni și cerințe; administrarea serverului se prețuiește lunar. Munca zilnică se face prin mentenanță la distanță; construirea și măsurarea, la fața locului.",
         "intro": "Într-o firmă de producție, IT-ul nu se termină la ușa biroului. Continuă în hală, în depozit, la mașină — și acolo sunt alte reguli: praf, metal, vibrații, uși de hală care schimbă imaginea radio de fiecare dată când se deschid. Iar o mașină care trebuie să funcționeze zece ani nu se schimbă pentru că a îmbătrânit un sistem de operare.",
         "anders_h": "Ce este diferit în producție",
         "anders": [
@@ -224,7 +224,7 @@ BRANCHEN = {
         "risiko_h": "Punctul în care devine scump în producție",
         "risiko_t": "O rețea plată. Biroul, producția, mașinile și oaspeții stau, din motive istorice, în același segment, pentru că așa a început odată. Astfel fiecare aparat ajunge la fiecare altul — inclusiv la automatul care nu mai primește actualizări și la accesul de la distanță al furnizorului. Separarea ulterioară este muncă, dar rareori necesită hardware nou: în majoritatea firmelor switch-urile existente pot deja asta, doar că nu a fost configurat niciodată.",
         "preis_h": "Cât costă",
-        "preis_t": "Măsurarea, planificarea și instalarea rețelei și a WLAN-ului pentru hală și depozit costă de la 890 €, firewallul și rețelele separate de la 690 €. Un server administrat costă de la 89 € pe lună, backupul supravegheat de la 49 € pe lună, asistența curentă de la 29 € per stație și lună. Ajutorul punctual se facturează cu 95 € pe oră, intervențiile la fața locului cu 120 € pe oră plus deplasarea. Prețuri orientative, net plus TVA.",
+        "preis_t": "Măsurarea, planificarea și instalarea rețelei și a WLAN-ului pentru hală și depozit, firewallul și rețelele separate se prețuiesc după complexitatea proiectului. Serverul administrat, backupul supravegheat și asistența curentă depind de numărul de stații și volumul de date. Prețul final se stabilește după o scurtă discuție, fair și adaptat bugetului. Sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
         "faq": [
             {"q": "Automatul mașinii noastre rulează pe o versiune veche de Windows. Ce facem?",
              "a": "Nu îl înlocuiți — separați-l. Un sistem fără actualizări este controlabil atâta timp cât stă într-un segment propriu de rețea și are voie să comunice exclusiv cu ce trebuie. Aceasta este calea obișnuită în producție și, de regulă, considerabil mai ieftină decât o modernizare a mașinii care nici măcar nu este prevăzută tehnic."},
@@ -241,10 +241,10 @@ BRANCHEN = {
 
     "vereine-gemeinden": {
         "nav": "Asociații & primării",
-        "titel": "IT pentru asociații în Austria, 95 € pe oră | WVM-IT",
-        "desc": "IT pentru asociații și primării: predarea la schimbarea conducerii, bugete mici, site, tehnică în sală, facturat cu 95 € pe oră. Contactați-ne acum.",
+        "titel": "IT pentru asociații în Austria | WVM-IT",
+        "desc": "IT pentru asociații și primării: predare la schimbarea conducerii, bugete mici, site, tehnică în sală. Preț în discuție. Contactați-ne acum.",
         "h1": "IT pentru asociații, primării și organizații de voluntari",
-        "kurz": "WVM-IT sprijină asociații, instituții comunale și organizații conduse de voluntari din Austria și Germania: accese și conturi care supraviețuiesc unei schimbări de conducere, site și e-mail, backup, precum și tehnică în sală și în camera de ședințe. Facturăm de regulă după timpul lucrat, cu 95 € pe oră, în locul unui contract curent — asta se potrivește mai bine unui buget aprobat o dată pe an.",
+        "kurz": "WVM-IT sprijină asociații, instituții comunale și organizații conduse de voluntari din Austria și Germania: accese și conturi care supraviețuiesc unei schimbări de conducere, site și e-mail, backup, precum și tehnică în sală și în camera de ședințe. Facturăm de regulă după timpul lucrat, în locul unui contract curent — asta se potrivește mai bine unui buget aprobat o dată pe an.",
         "intro": "Într-o asociație nimeni nu se ocupă de tehnică cu normă întreagă. Există cineva care se pricepe și o face — până predă funcția. Exact aici se pierde mai mult decât prin orice defecțiune tehnică: parole, accesul la domeniu, listele de membri, contul la furnizorul de e-mail. Nu din rea intenție, ci pentru că nu a fost niciodată scris.",
         "anders_h": "Ce este diferit la asociații și primării",
         "anders": [
@@ -268,7 +268,7 @@ BRANCHEN = {
         "risiko_h": "Schimbarea conducerii este adevărata urgență",
         "risiko_t": "Nu avaria, ci schimbarea. Dacă fostul secretar a ținut domeniul pe un cont privat, doar el știa parola de e-mail, iar lista de membri era pe calculatorul lui, noua conducere începe de la zero — iar în cel mai rău caz adresa asociației dispare după următoarea reînnoire. Asta se poate pune în ordine într-o după-amiază, cât timp ambele părți încă vorbesc. După aceea devine anevoios până la imposibil.",
         "preis_h": "Cât costă",
-        "preis_t": "Pentru asociații facturăm de obicei după timpul lucrat: 95 € pe oră, intervenții la fața locului 120 € pe oră plus deplasarea. Acolo unde asistența curentă are sens, ea costă de la 29 € per stație și lună, găzduirea cu SSL și backup de la 15 € pe lună, mentenanța și actualizările de la 39 € pe lună. Un site simplu pornește de la 350 €. Prețuri orientative, net plus TVA — înainte de fiecare lucrare există o estimare, ca cenzorii să nu aibă ce reproșa.",
+        "preis_t": "Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră.",
         "faq": [
             {"q": "Suntem voluntari și aproape fără buget. Merită o discuție?",
              "a": "Da, iar rezultatul este de obicei mai mic decât credeți. Cel mai mare folos nu vine din tehnică nouă, ci din ordine: accesele puse pe asociație, o predare documentată, backupul verificat. Sunt câteva ore, nu costuri curente — iar după aceea organizația supraviețuiește următoarei schimbări de conducere fără pierderi."},

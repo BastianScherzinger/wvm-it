@@ -42,6 +42,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       <svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
 
+    {% if preise_sichtbar %}
     <div class="pt" data-reveal>
       <div class="pt-scroll">
       <table class="pt-table">
@@ -66,6 +67,10 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
     </div>
     <p class="pt-foot">{{ t.seite.preis_fuss|safe }}</p>
 
+    {% else %}
+    {% include 'anruf_kasten.html' %}
+    {% endif %}
+
     <details class="rr-mehr kosten-mehr" data-reveal>
       <summary>{{ t.conv.kosten_mehr|safe }}</summary>
       <div class="kosten-mehr-text">
@@ -80,6 +85,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       Einordnung (Richtwerte ab, Preis nach Bestandsaufnahme; keine fremde Quelle),
       und der Verweis auf den Ratgeber, der die Frage für kleine Firmen ausführt
       (diese Seite ist die Preisliste, der Ratgeber die Erklärung). {% endcomment %}
+    {% if preise_sichtbar %}
     <h2 class="sp-h2" id="beispiele">{{ ks.bsp_h|safe }}</h2>
     <p class="hb-intro">{{ ks.bsp_t|safe }}</p>
     <div class="pt" data-reveal>
@@ -101,6 +107,8 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       </div>
     </div>
     <p class="pt-foot">{{ ks.bsp_fuss|safe }}</p>
+
+    {% endif %}
 
     <div class="hb-text" data-reveal>
       <h2 class="sp-h2" id="einordnung">{{ ks.markt_h|safe }}</h2>
@@ -152,6 +160,7 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
 
     <p class="lk-alle"><a class="btn" href="{% url 'angebot' %}">{{ t.preise.tab_cta|safe }}<svg viewBox="0 0 24 24" class="ic-arrow" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
 
+    {% if not preise_sichtbar %}{% include 'anruf_kasten.html' %}{% endif %}
     {% include 'ansprechpartner.html' %}
   </div>
 </section>

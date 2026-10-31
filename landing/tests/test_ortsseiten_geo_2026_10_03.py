@@ -7,6 +7,8 @@ Description nennt den Rückruf ohne Zeitzusage; die Folgefragen stehen im
 FAQPage-Schema; der Anrufknopf steht vor den Fakten; kein Ortsseitentext nennt
 den Partner Domaintechnik; Webseite- und Hosting-Seite tragen ihre Zahlen aus dem
 Katalog. Zahlen kommen aus ANGEBOT_GROUPS und regionen.py, nie aus dem Test."""
+import unittest as _ut_op
+from landing import views as _v_op
 import json
 import re
 from html import unescape
@@ -53,6 +55,7 @@ def _schema_fragen(seite):
 
 
 class OrtsseitenAntwortTest(SimpleTestCase):
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_erster_satz_nennt_entfernung_und_preise(self):
         arbeitsplatz = _preis("it_betreuung", "mtl")
         stunde = _preis("it_support", "std")
@@ -73,6 +76,7 @@ class OrtsseitenAntwortTest(SimpleTestCase):
         self.assertIn("EDV-Betreuung in Salzburg", antwort)
         self.assertIn("IT-Dienste", antwort)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_description_mit_ort_preis_rueckruf_ohne_zeitzusage(self):
         for slug in IN_REICHWEITE:
             if slug == "voecklabruck":
@@ -133,6 +137,7 @@ class HubTest(SimpleTestCase):
 
 
 class WebseiteUndHostingTest(SimpleTestCase):
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_webseite_antwort_mit_preis_und_testseite(self):
         onepager = _preis("onepager", "once")
         for praefix in PRAEFIX.values():
@@ -152,6 +157,7 @@ class WebseiteUndHostingTest(SimpleTestCase):
             self.assertIn(f'href="{praefix}/#gratis"', seite, sprache)
             self.assertGreaterEqual(len(_schema_fragen(seite)), 6, sprache)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_hosting_antwort_und_partnerfrage(self):
         for sprache, praefix in PRAEFIX.items():
             seite = _seite(f"{praefix}/leistungen/hosting-wartung/")

@@ -4,6 +4,8 @@
 „ab 199 €/Mt“ (EIG177), im Katalog 149 €. Hier wird der Wert unabhängig nachgerechnet:
 Jede Gruppe zeigt den kleinsten Preis des Feldes, aus dem sie ihn bildet, in allen
 drei Sprachen."""
+import unittest as _ut_op
+from landing import views as _v_op
 import re
 
 from django.test import SimpleTestCase
@@ -21,6 +23,7 @@ class StartpreiseTest(SimpleTestCase):
         for g in views.ANGEBOT_GROUPS:
             self.assertNotIn("from_label", g)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_label_ist_kleinster_preis_der_gruppe(self):
         for lang in ("de", "en", "ro"):
             labels = views._startpreise(lang)

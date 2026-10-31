@@ -10,6 +10,8 @@ TS16  jeder Sitemap-Eintrag trägt ein lastmod
 BF26  keine Spur mit nacktem 1fr, die bei 320 px über den Rand läuft
 BF29  die Schrittanzeige des Konfigurators ist keine Liste mit Knöpfen
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import re
 from pathlib import Path
 
@@ -86,6 +88,7 @@ class Ge57Test(SimpleTestCase):
 
 
 class Ge56Test(SimpleTestCase):
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_antwortabsatz_der_leistungen_nennt_firma_und_ort_in_allen_sprachen(self):
         c = _util.client()
         for lang in ("", "/en", "/ro"):

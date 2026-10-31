@@ -2,6 +2,8 @@
 """SEO-Technik und Onpage vom 03.10.2026: Startseiten-Meta, Orte im Fuß,
 Kontextlinks, Kannibalisierung „it betreuung kosten“, Hub-Title, 301 für
 /ratgeber/, llms.txt. Zahlen kommen aus ANGEBOT_GROUPS, nie aus dem Test."""
+import unittest as _ut_op
+from landing import views as _v_op
 import re
 
 from django.test import SimpleTestCase
@@ -25,6 +27,7 @@ def _preis(iid, feld):
 
 
 class StartseitenMetaTest(SimpleTestCase):
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_title_nennt_oberoesterreich_und_betreuungspreis(self):
         titel = _titel(_seite("/"))
         self.assertIn("Oberösterreich", titel)
@@ -32,6 +35,7 @@ class StartseitenMetaTest(SimpleTestCase):
         self.assertIn("Upper Austria", _titel(_seite("/en/")))
         self.assertIn("Austria Superioară", _titel(_seite("/ro/")))
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_description_nennt_ort_zahlen_und_florin(self):
         seite = _seite("/")
         d = re.search(r'<meta name="description" content="(.*?)"', seite).group(1)
@@ -72,6 +76,7 @@ class KontextLinksTest(SimpleTestCase):
                 self.assertIn(f'href="{praefix}/it-service/salzburg/"', seite, seite_pfad)
                 self.assertIn(f'href="{praefix}/it-service/linz/"', seite, seite_pfad)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_firewall_vpn_mit_festpreis_ohne_ab(self):
         festpreis = f"{_preis('firewall', 'once')} €"
         for praefix in ("", "/en", "/ro"):

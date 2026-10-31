@@ -7,6 +7,8 @@ aus templates/icons_sprite.html, Anfrage-Quellen aus views._ANFRAGE_QUELLEN, ...
 nie aus einer selbst eingetippten Liste, damit ein neuer Eintrag diese Tests
 nicht bricht, solange er den Regeln der jeweiligen Datei folgt.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import json
 import re
 from datetime import date
@@ -299,6 +301,7 @@ class StufeVierTest(SimpleTestCase):
         self.assertEqual(treffer, [],
                          "tel:-Links müssen c.telefon_tel nutzen, nicht c.telefon")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_rechnersatz_nennt_mengen_und_summe(self):
         from django.http import QueryDict
         from landing.i18n import get_pack

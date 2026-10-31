@@ -185,4 +185,7 @@ Kein fester Satz in dieser Vorlage: Alle Texte kommen aus dem Sprachpaket unter
   {% endif %}
 
 </article>
+{% if not preise_sichtbar %}
+<section class="section anruf-schluss"><div class="wrap">{% include 'anruf_kasten.html' %}</div></section>
+{% endif %}
 {% endblock %}

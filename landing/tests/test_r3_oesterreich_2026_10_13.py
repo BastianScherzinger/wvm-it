@@ -15,6 +15,8 @@ e) Notfall: kein „24/7“, keine „24 Stunden“-Zusage, eigene Quelle, „[N
 f) Erfolgstext aller Formulare mit aria-live, Telefonnummer und Fortgang.
 g) Limit-Meldung nennt das echte Fenster; Akut-Ratgeber tragen Antwortsatz und Link.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import json
 import os
 import re
@@ -67,6 +69,7 @@ class EinsatzgebietTest(SimpleTestCase):
     GANZ = {"de": "ganz Österreich", "en": "across Austria", "ro": "toată Austria"}
     UMKREIS = {"de": "Fahrstunde um Lenzing", "en": "hour's drive of Lenzing", "ro": "o oră de mers cu mașina în jurul Lenzing"}
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_antwortabsatz_von_notfall_und_hilfe_nennt_ganz_oesterreich_und_vor_ort_getrennt(self):
         for lang, praefix in SPRACHEN:
             for seite in ("/it-notfall/", "/it-hilfe/"):
@@ -129,6 +132,7 @@ class HilfeSeiteOesterreichTest(SimpleTestCase):
                 self.assertIn(wort, titel)
                 self.assertIn(wort, h1)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_antwortsatz_hat_zeiten_der_kopfzeile_und_stundensatz_aus_dem_katalog(self):
         kopf = i18n.get_pack("de")["kopf"]["erreichbar"].replace("Erreichbar ", "")
         self.assertEqual(kopf, zeiten_quelle.KURZ["de"])
@@ -154,6 +158,7 @@ class HilfeSeiteOesterreichTest(SimpleTestCase):
             self.assertNotIn(stadt, slugs)
         self.assertFalse([p for p in _seiten_pfade() if re.search(r"wien|graz|innsbruck|klagenfurt", p[0])])
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_faq_wien_graz_innsbruck_klagenfurt_in_drei_sprachen_und_im_schema(self):
         frage = {"de": "Helfen Sie auch in Wien, Graz, Innsbruck oder Klagenfurt?",
                  "en": "Do you also help in Vienna, Graz, Innsbruck or Klagenfurt?",
@@ -384,6 +389,7 @@ class AkutRatgeberTest(SimpleTestCase):
         "wlan-im-buero-zu-langsam", "was-kostet-ein-serverausfall",
     )
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_hoechstens_acht_ratgeber_tragen_den_neuen_antwortsatz(self):
         self.assertLessEqual(len(self.MIT_ANTWORTSATZ), 8)
         for slug in self.MIT_ANTWORTSATZ:
@@ -394,6 +400,7 @@ class AkutRatgeberTest(SimpleTestCase):
                 self.assertIn(f"{STUNDE} € je Stunde", antwort)
                 self.assertNotIn("Oberösterreich und Salzburg", antwort)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_antwortsatz_steht_im_antwortfeld_nicht_im_template(self):
         from landing.i18n.beitraege_de import BEITRAEGE as A
         from landing.i18n import beitraege_neu_a_de as a, beitraege_neu_b_de as b

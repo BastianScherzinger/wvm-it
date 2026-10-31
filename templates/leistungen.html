@@ -133,4 +133,7 @@
     {% include 'ansprechpartner.html' %}
   </div>
 </section>
+{% if not preise_sichtbar %}
+<section class="section anruf-schluss"><div class="wrap">{% include 'anruf_kasten.html' %}</div></section>
+{% endif %}
 {% endblock %}

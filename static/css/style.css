@@ -2982,3 +2982,9 @@ td.web-partner{padding:8px 14px;margin:0}
 /* 23.10.2026: Ortsseite — zwischen Kopfkasten („So gemessen“) und Film/Einleitung standen 112 px
    Standard-Abstand einer Sektion (am Handy eine große weiße Fläche). Obere Sektion enger, wie bei Artikeln. */
 .section.rg-start{padding-top:clamp(28px,4vw,48px)}
+
+/* Strategie "Preis im Gespraech" (31.10.2026): Anruf-Kasten und Preis-Platzhalter */
+.anruf-schluss{padding-block:clamp(28px,5vw,56px)}
+.anruf-kasten{margin-block:24px}
+.price-tag-anruf{font-family:var(--sans);font-size:1.5rem;letter-spacing:-.02em;line-height:1.2}
+@media (max-width:700px){.anruf-kasten{grid-template-columns:1fr}.anruf-kasten .rg-cta-knoepfe{display:grid;gap:10px}.price-tag-anruf{font-size:1.3rem}}

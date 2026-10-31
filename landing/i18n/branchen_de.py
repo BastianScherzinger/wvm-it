@@ -22,10 +22,10 @@ BRANCHEN = {
     # ══ Steuerberater und Kanzleien ═══════════════════════════════════════════
     "steuerberater-kanzleien": {
         "nav": "Steuerberater & Kanzleien",
-        "titel": "IT-Betreuung für Kanzleien in Österreich ab 29 € | WVM-IT",
-        "desc": "IT-Betreuung für Kanzleien: DATEV-Umgebung, Mandantentrennung, Aufbewahrungsfristen, geprüfte Sicherung, ab 29 € je Arbeitsplatz. Jetzt anfragen.",
+        "titel": "IT-Betreuung für Kanzleien in Österreich | WVM-IT",
+        "desc": "IT-Betreuung für Kanzleien: DATEV-Umgebung, Mandantentrennung, Aufbewahrungsfristen, geprüfte Sicherung. Preis im kurzen Gespräch. Jetzt anfragen.",
         "h1": "IT-Betreuung für Steuerberater und Kanzleien",
-        "kurz": "WVM-IT betreut die EDV von Steuerberatungs-, Rechtsanwalts- und Wirtschaftsprüfungskanzleien in Österreich und Deutschland: Arbeitsplätze, DATEV- und Kanzleisoftware-Umgebung, Mandantendaten und die Sicherung dahinter. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, der einmalige IT-Sicherheitscheck ab 490 €. Betreut wird überwiegend per Fernwartung — was in einer Kanzlei ohnehin der einzige Weg ist, der die Arbeit nicht unterbricht.",
+        "kurz": "WVM-IT betreut die EDV von Steuerberatungs-, Rechtsanwalts- und Wirtschaftsprüfungskanzleien in Österreich und Deutschland: Arbeitsplätze, DATEV- und Kanzleisoftware-Umgebung, Mandantendaten und die Sicherung dahinter. Was die laufende Betreuung kostet, hängt von Arbeitsplätzen, Server und Umfang ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Der einmalige IT-Sicherheitscheck wird vorab fest abgesprochen, ohne Überraschungen. Betreut wird überwiegend per Fernwartung — was in einer Kanzlei ohnehin der einzige Weg ist, der die Arbeit nicht unterbricht.",
         "intro": "In einer Kanzlei ist die IT kein Hilfsmittel, sondern das Archiv. Was auf den Servern liegt, ist fremdes Vermögen in Zahlenform — und es unterliegt Fristen, die niemand aussetzen kann. Deshalb hat Technik hier eine andere Rolle als in einem Betrieb, der abends den Rechner ausschaltet: Sie muss nachweisbar funktionieren, nicht nur gefühlt.",
         "anders_h": "Was in einer Kanzlei anders ist als anderswo",
         "anders": [
@@ -47,9 +47,9 @@ BRANCHEN = {
         "software_h": "Kanzleisoftware und was sie voraussetzt",
         "software_t": "DATEV, BMD, RZL und vergleichbare Systeme laufen fast immer über einen Terminalserver oder eine zentrale Installation. Wir betreiben nicht die Fachsoftware selbst — dafür gibt es die Hersteller und ihre Partner —, sondern alles darunter: Server, Windows-Version, Rechte, Netzwerk, Sicherung, Drucker und den gesicherten Zugang von außen. Diese Trennung sagen wir vorher, statt sie im Störungsfall zu erklären.",
         "risiko_h": "Womit es in Kanzleien meistens anfängt",
-        "risiko_t": "Nicht mit einem Angriff, sondern mit Gewohnheit: Ein Zugang für alle, weil es schneller geht. Eine Sicherung auf der Platte im selben Raum. Ein Notebook mit Mandantendaten ohne Verschlüsselung, das mit ins Homeoffice fährt. Der ehemalige Mitarbeiter, dessen Konto noch aktiv ist. Jeder dieser Punkte ist an einem Nachmittag behoben — aber nur, wenn ihn jemand einmal aufschreibt. Genau das ist der IT-Sicherheitscheck ab 490 €: eine Prüfung mit schriftlichem Bericht und einer Liste, die nach Dringlichkeit sortiert ist.",
+        "risiko_t": "Nicht mit einem Angriff, sondern mit Gewohnheit: Ein Zugang für alle, weil es schneller geht. Eine Sicherung auf der Platte im selben Raum. Ein Notebook mit Mandantendaten ohne Verschlüsselung, das mit ins Homeoffice fährt. Der ehemalige Mitarbeiter, dessen Konto noch aktiv ist. Jeder dieser Punkte ist an einem Nachmittag behoben — aber nur, wenn ihn jemand einmal aufschreibt. Genau das ist der IT-Sicherheitscheck: eine Prüfung mit schriftlichem Bericht und einer Liste, die nach Dringlichkeit sortiert ist, mit fester Absprache vorab, keine Überraschungen.",
         "preis_h": "Was das kostet",
-        "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Der einmalige IT-Sicherheitscheck kostet ab 490 € und endet mit einem schriftlichen Bericht. Punktuelle Hilfe ohne Vertrag rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Die laufende Betreuung richtet sich nach Arbeitsplätzen, Server und Umfang; ein betreuter Server und die überwachte Datensicherung werden ebenso individuell kalkuliert. Der einmalige IT-Sicherheitscheck endet mit schriftlichem Bericht und wird vorab fest abgesprochen, ohne Überraschungen. Punktuelle Hilfe ohne Vertrag und Einsätze vor Ort rechnen wir nach Aufwand ab. Preis nach kurzem Gespräch, Anruf unter +43 676 3808501 oder WhatsApp.",
         "faq": [
             {"q": "Betreuen Sie auch die DATEV-Umgebung selbst?",
              "a": "Wir betreiben alles unter der Fachsoftware: Server, Terminalserver, Windows, Rechte, Netzwerk, Sicherung, Drucker und den Zugang von außen. Die Fachsoftware selbst bleibt beim Hersteller beziehungsweise dessen Partner — das ist keine Ausrede, sondern die saubere Grenze. Wir sagen sie vorher, damit im Störungsfall klar ist, wer welchen Teil anfasst, und stimmen uns bei Bedarf direkt mit dem Fachsoftware-Support ab."},
@@ -67,10 +67,10 @@ BRANCHEN = {
     # ══ Handwerk und Baugewerbe ═══════════════════════════════════════════════
     "handwerk-baugewerbe": {
         "nav": "Handwerk & Bau",
-        "titel": "IT für Handwerksbetriebe in Österreich ab 29 € | WVM-IT",
-        "desc": "IT für Handwerk und Bau: mobile Geräte für die Baustelle, Zeiterfassung, Handwerkersoftware, Fotodokumentation, ab 29 € je Arbeitsplatz. Jetzt anfragen.",
+        "titel": "IT für Handwerksbetriebe in Österreich | WVM-IT",
+        "desc": "IT für Handwerk und Bau: mobile Geräte für die Baustelle, Zeiterfassung, Handwerkersoftware, Fotodokumentation. Preis im kurzen Gespräch. Jetzt anfragen.",
         "h1": "IT für Handwerksbetriebe und das Baugewerbe",
-        "kurz": "WVM-IT betreut die EDV von Handwerks- und Bauunternehmen in Österreich und Deutschland: Büroarbeitsplätze, Server, Handwerkersoftware, mobile Geräte auf der Baustelle und die Verbindung dazwischen. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein Netzwerk samt WLAN für Werkstatt und Lager ab 890 €. Der laufende Betrieb läuft per Fernwartung, gebaut und ausgemessen wird vor Ort.",
+        "kurz": "WVM-IT betreut die EDV von Handwerks- und Bauunternehmen in Österreich und Deutschland: Büroarbeitsplätze, Server, Handwerkersoftware, mobile Geräte auf der Baustelle und die Verbindung dazwischen. Was die laufende Betreuung kostet, hängt von Arbeitsplätzen und Umfang ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Ein Netzwerk samt WLAN für Werkstatt und Lager wird vorab fest abgesprochen, ohne Überraschungen. Der laufende Betrieb läuft per Fernwartung, gebaut und ausgemessen wird vor Ort.",
         "intro": "Im Handwerk arbeitet die Hälfte des Betriebs nicht dort, wo die IT steht. Im Büro sitzen zwei, drei Leute mit Angeboten, Rechnungen und Terminen; draußen sind Monteure mit einem Telefon, einem Tablet und einer Verbindung, die es an manchen Tagen nicht gibt. Die Technik muss beide Seiten bedienen — und zwar so, dass niemand abends noch einmal alles abtippt.",
         "anders_h": "Was im Handwerk anders ist als im Büro",
         "anders": [
@@ -92,12 +92,12 @@ BRANCHEN = {
         "software_h": "Handwerkersoftware und die Anbindung ans Büro",
         "software_t": "Ob Sie mit einer Branchenlösung für Aufmaß und Nachkalkulation arbeiten oder mit Tabellen: Interessant ist die Stelle, an der die Daten von draußen ins Büro kommen. Genau dort entstehen die doppelten Erfassungen — Stunden auf Zetteln, Fotos auf privaten Telefonen, Lieferscheine im Handschuhfach. Wir sehen uns diese Übergänge an und schließen sie, bevor wir über neue Programme reden. Häufig fehlt keine Software, sondern eine funktionierende Verbindung und eine klare Ablage.",
         "risiko_h": "Der teuerste Ausfall im Handwerk",
-        "risiko_t": "Nicht der Serverausfall, sondern der stille Datenverlust: Ein Telefon geht verloren, und mit ihm die Fotos einer Woche. Ein Monteur verlässt den Betrieb, und niemand kommt mehr an sein Konto. Ein Notebook wird gestohlen, unverschlüsselt, mit Kundenadressen darauf. Das sind keine IT-Katastrophen, sondern Alltag — und alle drei lassen sich vorher lösen: Verwaltung der Geräte, Verschlüsselung, ein Ablauf beim Austritt. Der IT-Sicherheitscheck ab 490 € geht genau diese Punkte durch und endet mit einer sortierten Liste.",
+        "risiko_t": "Nicht der Serverausfall, sondern der stille Datenverlust: Ein Telefon geht verloren, und mit ihm die Fotos einer Woche. Ein Monteur verlässt den Betrieb, und niemand kommt mehr an sein Konto. Ein Notebook wird gestohlen, unverschlüsselt, mit Kundenadressen darauf. Das sind keine IT‑Katastrophen, sondern Alltag – und alle drei lassen sich vorher lösen: Verwaltung der Geräte, Verschlüsselung, ein Ablauf beim Austritt. Der IT‑Sicherheitscheck wird in einem kurzen Gespräch individuell abgestimmt, fair und passend zu Ihrem Budget. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns per WhatsApp.",
         "preis_h": "Was das kostet",
-        "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Netzwerk und WLAN für Werkstatt oder Halle einrichten kostet ab 890 €, ein neu eingerichteter Arbeitsplatz 190 €. Punktuelle Hilfe rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Die laufende Betreuung wird nach Anzahl der Arbeitsplätze und gewünschtem Serviceumfang kalkuliert; ein betreuter Server wird nach individuellem Bedarf vereinbart, ebenso die überwachte Datensicherung. Die Einrichtung von Netzwerk und WLAN für Werkstatt oder Halle sowie die Einrichtung neuer Arbeitsplätze werden nach Ihrem konkreten Projektumfang besprochen. Punktuelle Hilfe und Einsätze vor Ort werden ebenfalls nach Aufwand und Anfahrt abgestimmt. Alle Kosten klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Kontaktieren Sie uns telefonisch unter +43 676 3808501 oder per WhatsApp.",
         "faq": [
             {"q": "Was kostet die IT-Betreuung für einen Handwerksbetrieb mit vier Büro-PCs?",
-             "a": "Die laufende Betreuung kostet 29 € je Arbeitsplatz und Monat, bei vier Büro-PCs also viermal 29 €. Dazu kommt auf Wunsch die überwachte Datensicherung für 49 € im Monat. Einen eigenen Server brauchen viele kleine Betriebe nicht; wenn doch, kommen 89 € im Monat dazu. Hilfe außerhalb der Betreuung kostet 95 € je Stunde per Fernwartung. Alle Preise sind Richtpreise, netto zzgl. USt."},
+             "a": "Die laufende Betreuung wird individuell nach Ihren Bedürfnissen kalkuliert; wir besprechen im Gespräch, welche Arbeitsplätze und Services Sie benötigen, und kommen zu einer festen Absprache vorab, ohne Überraschungen. Auf Wunsch ergänzen wir überwachte Datensicherung, Server‑Lösungen oder Fernwartung – alles wird in einem kurzen Telefonat oder per WhatsApp fair und passend zu Ihrem Budget festgelegt. Kontaktieren Sie uns unter +43 676 3808501."},
             {"q": "Unsere Auftragsmails landen im Spam. Was tun?",
              "a": "Meist stimmen die Absenderangaben der Domain nicht: Fehlen die Einträge für SPF, DKIM und DMARC, stufen Empfänger Ihre Mails als verdächtig ein. Wir prüfen das, tragen die Einträge nach und testen den Versand. Das geht per Fernwartung, ohne dass jemand im Betrieb warten muss."},
             {"q": "Was gehört zur IT-Betreuung für Handwerker?",
@@ -119,9 +119,9 @@ BRANCHEN = {
     "arztpraxen-therapie": {
         "nav": "Arztpraxen & Therapie",
         "titel": "IT-Betreuung für Arzt- und Zahnarztpraxen | WVM-IT",
-        "desc": "IT-Betreuung für Arzt- und Zahnarztpraxen: ab 29 €/Monat je Arbeitsplatz, Sicherheitscheck ab 490 €. Fernwartung ohne Praxisstopp. Jetzt Beratung anfragen.",
+        "desc": "IT‑Betreuung für Arzt‑ und Zahnarztpraxen – sichere Fernwartung ohne Praxisstopp. Preis im Gespräch, fair und passend zu Ihrem Budget.",
         "h1": "IT für Arztpraxen, Therapie- und Gesundheitsbetriebe",
-        "kurz": "WVM-IT betreut die EDV von Arzt-, Zahnarzt- und Therapiepraxen in Österreich und Deutschland: Arbeitsplätze, Praxisverwaltungssoftware, getrennte Netze für medizinische Geräte, Zugriffsrechte und die Sicherung dahinter. Der einmalige IT-Sicherheitscheck kostet ab 490 €, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat. Gearbeitet wird per Fernwartung — in einer Praxis ist das der einzige Weg, der die Sprechstunde nicht anhält.",
+        "kurz": "WVM‑IT betreut die EDV von Arzt‑, Zahn‑ und Therapiepraxen in Österreich und Deutschland: Arbeitsplätze, Praxisverwaltungssoftware, getrennte Netze für medizinische Geräte, Zugriffsrechte und die Sicherung dahinter. Der einmalige IT‑Sicherheitscheck wird nach Aufwand individuell vereinbart, die laufende Betreuung richtet sich nach Anzahl der Arbeitsplätze und gewünschtem Serviceumfang. Wir arbeiten per Fernwartung – der einzige Weg, die Sprechstunde nicht zu unterbrechen. Die genauen Kosten besprechen wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Telefon +43 676 3808501 oder WhatsApp.",
         "intro": "Eine Praxis hat zwei Eigenschaften, die zusammen anspruchsvoll sind: Sie verarbeitet die sensibelste Datenkategorie, die es gibt, und sie darf zwischen acht und zwölf Uhr nicht stillstehen. Beides zugleich bedeutet, dass Technik hier nicht spektakulär sein muss, sondern langweilig zuverlässig — und dass jede Änderung außerhalb der Sprechzeit passiert.",
         "anders_h": "Was in einer Praxis anders ist",
         "anders": [
@@ -143,9 +143,9 @@ BRANCHEN = {
         "software_h": "Praxisverwaltungssoftware und ihre Grenzen",
         "software_t": "Die Fachsoftware bleibt beim Hersteller — wir betreiben alles darunter: Server, Arbeitsplätze, Netzwerk, Rechte, Sicherung, Drucker und Kartenlesegeräte. Diese Grenze ziehen wir vorher, weil sie im Störungsfall darüber entscheidet, wer angerufen wird. Bei Anbindungen an Telematik- oder Abrechnungsinfrastruktur richten wir uns strikt nach den Vorgaben des Herstellers, statt eine eigene Variante zu bauen.",
         "risiko_h": "Der häufigste Befund in Praxen",
-        "risiko_t": "Ein gemeinsamer Zugang für das ganze Team, weil es am Empfang schneller geht. Damit ist jede Protokollierung wertlos — es lässt sich nachweisen, dass eine Akte geöffnet wurde, aber nicht von wem. Der zweite häufige Befund: ein Gerät, das seit Jahren im selben Netz hängt wie die Arbeitsplätze und keine Updates mehr bekommt. Beides ist ohne neue Hardware lösbar. Der IT-Sicherheitscheck ab 490 € prüft genau diese Punkte und liefert eine Liste, die nach Dringlichkeit sortiert ist — nicht nach Aufwand.",
+        "risiko_t": "Ein gemeinsamer Zugang für das ganze Team, weil es am Empfang schneller geht. Damit ist jede Protokollierung wertlos – es lässt sich nachweisen, dass eine Akte geöffnet wurde, aber nicht von wem. Der zweite häufige Befund: ein Gerät, das seit Jahren im selben Netz hängt wie die Arbeitsplätze und keine Updates mehr bekommt. Beides ist ohne neue Hardware lösbar. Der IT‑Sicherheitscheck wird nach Ihren Bedürfnissen individuell abgestimmt, fair und passend zu Ihrem Budget. Rufen Sie uns an unter +43 676 3808501 oder kontaktieren Sie uns per WhatsApp.",
         "preis_h": "Was das kostet",
-        "preis_t": "Der einmalige IT-Sicherheitscheck kostet ab 490 € und endet mit einem schriftlichen Bericht. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Firewall und getrennte Netze einzurichten kostet ab 690 €. Punktuelle Hilfe rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Der einmalige IT‑Sicherheitscheck wird nach Aufwand individuell vereinbart und endet mit einem schriftlichen Bericht. Die laufende Betreuung richtet sich nach Anzahl der Arbeitsplätze und gewünschtem Serviceumfang, ein betreuter Server wird nach Bedarf kalkuliert, ebenso die überwachte Datensicherung. Die Einrichtung von Firewall und getrennten Netzen wird projektbezogen geplant. Punktuelle Hilfe und Vor-Ort‑Einsätze werden nach Aufwand und Anfahrt abgestimmt. Alle Kosten klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Telefon +43 676 3808501 oder WhatsApp.",
         "faq": [
             {"q": "Was ist mit dem Kartenlesegerät für die e-card im Praxisnetz?",
              "a": "Der Anschluss an das e-card-System läuft über das Gesundheitsinformationsnetz der Sozialversicherung und einen Zugangsnetz-Provider, nicht über uns; dort bekommen Sie auch Lesegerät und Router. Wir ersetzen weder Anschluss noch Gerät. Wir kümmern uns um das Praxisnetz drumherum: Verwaltung, Gäste-WLAN und Geräte am Empfang sauber getrennt, Netzwerkanschluss und Stromversorgung am Platz des Lesegeräts, Fernwartung nur nach Ihrer Freigabe. Zu Gerätetyp und Konditionen fragen Sie die Sozialversicherung oder Ihren Provider."},
@@ -165,10 +165,10 @@ BRANCHEN = {
     # ══ Hotellerie und Gastronomie ════════════════════════════════════════════
     "hotellerie-gastronomie": {
         "nav": "Hotellerie & Gastro",
-        "titel": "WLAN-Planung für Hotels in Österreich ab 890 € | WVM-IT",
-        "desc": "IT für Hotel und Gastronomie: Gäste-WLAN getrennt vom Betrieb, Kassensystem, Buchungsanbindung, Saisonlast. Netzwerk ab 890 €. Jetzt Angebot anfordern.",
+        "titel": "WLAN-Planung für Hotels in Österreich – WVM-IT",
+        "desc": "IT für Hotel und Gastronomie: getrenntes Gäste‑WLAN, Kassensystem, Buchungsanbindung, saisonale Last. Preis im Gespräch, fair und passend zu Ihrem Budget.",
         "h1": "IT, WLAN und Technik für Hotellerie und Gastronomie",
-        "kurz": "WVM-IT plant und betreut die Technik von Hotels, Pensionen und Gastronomiebetrieben in Österreich und Deutschland: Gäste-WLAN getrennt vom Betriebsnetz, Kassensystem, Buchungsanbindung, Arbeitsplätze und Datensicherung. Ein ausgemessenes Netzwerk mit WLAN kostet ab 890 €, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat. Geplant wird aus der Ferne, gebaut und eingemessen wird vor Ort.",
+        "kurz": "WVM-IT plant und betreut die Technik von Hotels, Pensionen und Gastronomiebetrieben in Österreich und Deutschland: Gäste-WLAN getrennt vom Betriebsnetz, Kassensystem, Buchungsanbindung, Arbeitsplätze und Datensicherung. Ein ausgemessenes Netzwerk mit WLAN wird vorab fest abgesprochen, ohne Überraschungen; die laufende Betreuung richtet sich nach Arbeitsplätzen und Umfang. Geplant wird aus der Ferne, gebaut und eingemessen wird vor Ort. Preis nach kurzem Gespräch, Anruf unter +43 676 3808501 oder WhatsApp.",
         "intro": "Im Gastgewerbe ist die IT Teil des Produkts. Ein Gast bewertet das WLAN wie das Frühstück, und er tut es öffentlich. Gleichzeitig hängen an derselben Leitung Dinge, die mit dem Gast nichts zu tun haben: Kasse, Buchhaltung, Zeiterfassung, Kameras. Diese beiden Welten sauber zu trennen ist keine Feinheit, sondern die Grundlage.",
         "anders_h": "Was in Hotel und Gastronomie anders ist",
         "anders": [
@@ -192,7 +192,7 @@ BRANCHEN = {
         "risiko_h": "Der Fehler, der jeden Sommer wiederkommt",
         "risiko_t": "Ein zusätzlicher Zugangspunkt, weil es „hinten nicht reicht“. Er sendet auf demselben Kanal wie der vorhandene, beide stören sich, und die Geräte hängen sich an den falschen. Danach ist das WLAN nicht besser, sondern schlechter — und zwar überall. Ein tragfähiges Gästenetz entsteht aus einer Messung, einer Kanalvergabe und Zugangspunkten mit eigener Leitung. Das ist einmal Aufwand und dann jahrelang Ruhe, statt jeden Sommer ein Gerät mehr.",
         "preis_h": "Was das kostet",
-        "preis_t": "Netzwerk und WLAN ausmessen, planen und einrichten kostet ab 890 €, Firewall und getrennte Netze ab 690 €. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, die überwachte Datensicherung ab 49 € im Monat. Eine Website mit Anfragestrecke beginnt bei 350 €. Punktuelle Hilfe rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Netzwerk und WLAN ausmessen, planen und einrichten sowie Firewall und getrennte Netze werden vorab fest abgesprochen, ohne Überraschungen. Die laufende Betreuung richtet sich nach Arbeitsplätzen und Umfang, die überwachte Datensicherung nach Volumen und Intervall. Eine Website mit Anfragestrecke kalkulieren wir individuell. Punktuelle Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab. Preis nach kurzem Gespräch, Anruf unter +43 676 3808501 oder WhatsApp.",
         "faq": [
             {"q": "Wie viele Zugangspunkte braucht ein Haus mit dreißig Zimmern?",
              "a": "Das lässt sich seriös erst nach einer Messung sagen — Bausubstanz, Grundriss und Materialien entscheiden mehr als die Zimmerzahl. Ein Neubau in Leichtbauweise braucht deutlich weniger als ein Altbau mit halbmeterdicken Mauern. Wir messen aus und nennen die Zahl danach; jede Angabe davor wäre geraten."},
@@ -210,10 +210,10 @@ BRANCHEN = {
     # ══ Produktion und Gewerbe ════════════════════════════════════════════════
     "produktion-gewerbe": {
         "nav": "Produktion & Gewerbe",
-        "titel": "Netzwerk für Produktionsbetriebe ab 890 € | WVM-IT",
-        "desc": "IT für Produktion: Netzwerk bis in die Halle, Scanner und Terminals, getrennte Netze für Maschinen, Ausfallsicherheit, ab 890 €. Jetzt anfragen.",
+        "titel": "Netzwerk für Produktionsbetriebe | WVM-IT",
+        "desc": "IT für Produktion: Netzwerk bis in die Halle, Scanner und Terminals, getrennte Netze für Maschinen, Ausfallsicherheit. Preis im kurzen Gespräch. Jetzt anfragen.",
         "h1": "IT und Netzwerk für Produktion und Gewerbebetriebe",
-        "kurz": "WVM-IT plant und betreut die IT von Produktions- und Gewerbebetrieben in Österreich und Deutschland: Netzwerk bis in die Halle, getrennte Netze für Maschinen, Scanner und Terminals, Server, Arbeitsplätze und Datensicherung. Ein ausgemessenes Hallennetz kostet ab 890 €, die Server-Betreuung ab 89 € im Monat. Der laufende Betrieb läuft per Fernwartung, gebaut und eingemessen wird vor Ort.",
+        "kurz": "WVM-IT plant und betreut die IT von Produktions- und Gewerbebetrieben in Österreich und Deutschland: Netzwerk bis in die Halle, getrennte Netze für Maschinen, Scanner und Terminals, Server, Arbeitsplätze und Datensicherung. Was ein ausgemessenes Hallennetz und die Server-Betreuung kosten, klären wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget. Der laufende Betrieb läuft per Fernwartung, gebaut und eingemessen wird vor Ort.",
         "intro": "In einem Produktionsbetrieb endet die IT nicht an der Bürotür. Sie geht weiter in die Halle, ans Lager, an die Maschine — und dort gelten andere Regeln: Staub, Metall, Erschütterung, Hallentore, die das Funkbild jedes Mal ändern, wenn sie aufgehen. Und eine Maschine, die zehn Jahre laufen soll, wird nicht ausgetauscht, weil ein Betriebssystem alt geworden ist.",
         "anders_h": "Was in der Produktion anders ist",
         "anders": [
@@ -237,7 +237,7 @@ BRANCHEN = {
         "risiko_h": "Der Punkt, an dem es in Produktionsbetrieben teuer wird",
         "risiko_t": "Ein flaches Netz. Büro, Produktion, Maschinen und Gäste hängen historisch gewachsen im selben Segment, weil es einmal so angefangen hat. Damit erreicht jedes Gerät jedes andere — auch die Steuerung, die keine Updates mehr bekommt, und auch der Fernzugang des Lieferanten. Die Trennung nachzuziehen ist Arbeit, aber sie erfordert selten neue Hardware: In den meisten Betrieben können die vorhandenen Switches das bereits, es wurde nur nie eingerichtet.",
         "preis_h": "Was das kostet",
-        "preis_t": "Netzwerk und WLAN für Halle und Lager ausmessen, planen und einrichten kostet ab 890 €, Firewall und getrennte Netze ab 690 €. Ein betreuter Server kostet ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat, die laufende Betreuung ab 29 € je Arbeitsplatz und Monat. Punktuelle Hilfe rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Netzwerk und WLAN für Halle und Lager ausmessen, planen und einrichten, Firewall und getrennte Netze, ein betreuter Server, die überwachte Datensicherung und die laufende Betreuung – was die einzelnen Posten kosten, besprechen wir kurz am Telefon oder per WhatsApp, fair und passend zu Ihrem Budget. Punktuelle Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab, die Anfahrt klären wir dabei gleich mit.",
         "faq": [
             {"q": "Unsere Maschinensteuerung läuft auf einer alten Windows-Version. Was nun?",
              "a": "Nicht austauschen — abtrennen. Ein System ohne Updates ist beherrschbar, solange es in einem eigenen Netzsegment steht und ausschließlich mit dem sprechen darf, mit dem es sprechen muss. Das ist der übliche Weg in der Produktion und in aller Regel deutlich günstiger als ein Maschinen-Upgrade, das technisch gar nicht vorgesehen ist."},
@@ -255,10 +255,10 @@ BRANCHEN = {
     # ══ Vereine und Gemeinden ═════════════════════════════════════════════════
     "vereine-gemeinden": {
         "nav": "Vereine & Gemeinden",
-        "titel": "IT für Vereine in Österreich, 95 € je Std | WVM-IT",
-        "desc": "IT für Vereine und Gemeinden: Übergabe bei Vorstandswechsel, kleine Budgets, Website, Technik im Saal, Abrechnung zu 95 € je Stunde. Jetzt anfragen.",
+        "titel": "IT für Vereine in Österreich | WVM-IT",
+        "desc": "IT für Vereine und Gemeinden: Übergabe bei Vorstandswechsel, kleine Budgets, Website, Technik im Saal. Preis im kurzen Gespräch geklärt. Jetzt anfragen.",
         "h1": "IT für Vereine, Gemeinden und ehrenamtliche Organisationen",
-        "kurz": "WVM-IT unterstützt Vereine, Gemeindeeinrichtungen und ehrenamtlich geführte Organisationen in Österreich und Deutschland: Zugänge und Konten, die einen Vorstandswechsel überstehen, Website und E-Mail, Datensicherung sowie Technik in Saal und Sitzungszimmer. Abgerechnet wird meist nach Aufwand mit 95 € je Stunde statt über einen laufenden Vertrag — das passt besser zu einem Budget, das jährlich beschlossen wird.",
+        "kurz": "WVM-IT unterstützt Vereine, Gemeindeeinrichtungen und ehrenamtlich geführte Organisationen in Österreich und Deutschland: Zugänge und Konten, die einen Vorstandswechsel überstehen, Website und E‑Mail, Datensicherung sowie Technik in Saal und Sitzungszimmer. Die Abrechnung erfolgt nach Aufwand; wir besprechen im kurzen Telefonat, was für Ihr Jahresbudget passend ist – fair und transparent.",
         "intro": "In einem Verein ist niemand hauptberuflich für die Technik zuständig. Es gibt jemanden, der es kann, und der macht es — bis er das Amt abgibt. Genau an dieser Stelle geht in Vereinen mehr verloren als durch jeden technischen Defekt: Passwörter, Domainzugänge, Mitgliederlisten, das Konto beim E-Mail-Anbieter. Nicht durch böse Absicht, sondern weil es nie aufgeschrieben wurde.",
         "anders_h": "Was bei Vereinen und Gemeinden anders ist",
         "anders": [
@@ -282,7 +282,7 @@ BRANCHEN = {
         "risiko_h": "Der Vorstandswechsel ist der eigentliche Ernstfall",
         "risiko_t": "Nicht der Ausfall, sondern der Wechsel. Wenn der bisherige Schriftführer die Domain auf seinem privaten Konto hatte, das E-Mail-Passwort nur er kannte und die Mitgliederliste auf seinem Rechner lag, beginnt der neue Vorstand bei null — und im schlechtesten Fall ist die Vereinsadresse nach der nächsten Verlängerung weg. Das ist an einem Nachmittag zu ordnen, solange beide Seiten noch reden. Danach wird es aufwendig bis unmöglich.",
         "preis_h": "Was das kostet",
-        "preis_t": "Für Vereine rechnen wir meist nach Aufwand: 95 € je Stunde, Einsätze vor Ort 120 € je Stunde zuzüglich Anfahrt. Wo eine laufende Betreuung sinnvoll ist, kostet sie ab 29 € je Arbeitsplatz und Monat, Hosting mit SSL und Sicherungen ab 15 € im Monat, Wartung und Updates ab 39 € im Monat. Eine einfache Website beginnt bei 350 €. Richtpreise, netto zzgl. USt. — vor jeder Arbeit steht eine Schätzung, damit die Kassenprüfung nichts zu bemängeln hat.",
+        "preis_t": "Für Vereine arbeiten wir nach Aufwand und klären im Gespräch, welche Leistungen Sie benötigen. Vor Ort‑Einsätze, Hosting mit SSL, Datensicherung, Wartung und Updates sowie einfache Websites werden individuell abgestimmt; der Preis wird nach einem kurzen Telefonat oder WhatsApp‑Austausch fair und passend zu Ihrem Budget vereinbart. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns per WhatsApp.",
         "faq": [
             {"q": "Wir sind ehrenamtlich und haben fast kein Budget. Lohnt sich ein Gespräch?",
              "a": "Ja, und meistens ist das Ergebnis kleiner, als Sie denken. Der größte Nutzen entsteht nicht durch neue Technik, sondern durch Ordnung: Zugänge auf den Verein stellen, eine Übergabe dokumentieren, die Sicherung prüfen. Das sind wenige Stunden, keine laufenden Kosten — und danach übersteht die Organisation den nächsten Vorstandswechsel ohne Verluste."},

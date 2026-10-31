@@ -5,26 +5,14 @@
 EINRICHTEN = {
     # ════════════════════════════════════════════════════════════════════════
     "arbeitsplatz": {
-        "titel": "Workstation setup for businesses — €190 fixed | WVM-IT",
-        "desc": "A new workstation for €190: Windows, software, user account, email, "
-                "printer, data transfer. Mostly remote, no contract. Get in touch.",
-        "h1": "Have a workstation set up — fixed price, no contract",
+        "titel": "Workstation setup for businesses | WVM-IT",
+        "desc": "A new workstation: Windows, software, user account, email, printer, data transfer. Mostly remote, no contract. Get in touch.",
+        "h1": "Have a workstation set up — price agreed upfront, no contract",
         "nav": "Workstation setup",
-        "kurz": "WVM-IT sets up a new workstation for €190: Windows, drivers, the "
-                "programs the business actually uses, the user account, the mailbox, "
-                "the printer, access to shared files and the transfer of everything "
-                "from the old machine. It usually takes two to three hours and runs "
-                "remotely, without anyone having to travel. No contract is needed; the "
-                "price is per workstation.",
-        "intro": "A new computer arrives, and from then on it gets tedious: Windows "
-                 "wants setting up, the industry software needs its licence, the "
-                 "mailbox should keep the old messages, the printer cannot be found, "
-                 "and the files are still on the old machine. In practice that costs "
-                 "half a working day to a full one — and it is the working day of "
-                 "someone who has other things to do. That is what this fixed price is "
-                 "for.",
+        "kurz": "WVM-IT sets up a new workstation: Windows, drivers, the programs the business actually uses, the user account, the mailbox, the printer, access to shared files and the transfer of everything from the old machine. It usually takes two to three hours and runs remotely, without anyone having to travel. No contract is needed; the price is per workstation.",
+        "intro": "A new computer arrives, and from then on it gets tedious: Windows wants setting up, the industry software needs its licence, the mailbox should keep the old messages, the printer cannot be found, and the files are still on the old machine. In practice that costs half a working day to a full one — and it is the working day of someone who has other things to do. That is what this upfront agreement is for.",
 
-        "leistungen_h": "What €190 includes",
+        "leistungen_h": "What is included",
         "leistungen": [
             "Setting up Windows, or configuring the pre-installed system, drivers "
             "included",
@@ -61,32 +49,23 @@ EINRICHTEN = {
         ],
 
         "fern_h": "Remote or on site?",
-        "fern_t": "Most of it works remotely, and then the fixed price of €190 applies. "
-                  "On site becomes necessary when the device has to be unpacked and "
-                  "connected first, when several workstations are changed at once, or "
-                  "when there is no working internet connection for the remote session. "
-                  "An on-site visit costs €120 per hour plus travel; we say beforehand "
-                  "whether it is needed and why.",
+        "fern_t": "Single-case help and on-site visits are billed by effort; we discuss the cost beforehand. On site becomes necessary when the device has to be unpacked and connected first, when several workstations are changed at once, or when there is no working internet connection for the remote session.",
 
         "anlass_h": "Windows 10 has expired: time for new workstations?",
-        "anlass_t": "Microsoft ended support for Windows 10 on 14 October 2025; since then there are no regular security updates for it. For consumer devices Microsoft offers Extended Security Updates (ESU) until 12 October 2027. Computers in a business that do not support Windows 11 should therefore not be run on for good. We check whether an existing device can be moved to <a href=\"/en/einrichten/windows-11/\">Windows 11</a>, or set up the replacement workstation for €190.",
+        "anlass_t": "Microsoft ended support for Windows 10 on 14 October 2025; since then there are no regular security updates for it. For consumer devices Microsoft offers Extended Security Updates (ESU) until 12 October 2027. Computers in a business that do not support Windows 11 should therefore not be run on for good. We check whether an existing device can be moved to <a href=\"/en/einrichten/windows-11/\">Windows 11</a>, or set up the replacement workstation",
 
         "faq_h": "Common questions",
         "faq": [
             {"q": "What does it cost to have a PC set up?",
-             "a": "Setting up a workstation costs a €190 fixed price per device, without a contract. The price applies when it can be done by remote support, which usually takes two to three hours. If someone has to be on site, €120 per hour plus travel is added. Hardware and licences are not included."},
+             "a": "Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. The price applies when it can be done by remote support, which usually takes two to three hours. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand. Hardware and licences are not included."},
             {"q": "Is the price per device or for all of them together?",
-             "a": "Per workstation. Five new computers therefore cost five times €190. "
-                  "With several devices at once it goes faster, because the setup only "
-                  "has to be thought through once — we take that into account beforehand."},
+             "a": "Per workstation. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand. With several devices at once it goes faster, because the setup only has to be thought through once — we take that into account beforehand."},
             {"q": "What happens to the old computer?",
              "a": "On request we wipe it securely, so no company data is left on it. "
                   "What happens to the device afterwards — sold, passed on, disposed of "
                   "— is your decision."},
             {"q": "We have no IT support at all. Does this still work?",
-             "a": "Yes, that is exactly what this fixed price is for. No contract and "
-                  "no running support are needed. If you want one later, it starts at "
-                  "€29 per workstation and month."},
+             "a": "Yes, that is exactly what this upfront agreement is for. No contract and no running support are needed. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget."},
             {"q": "And if a device is broken rather than new?",
              "a": "Then we first establish what is wrong. If it is the hard disk or the "
                   "memory, replacing it is usually still worth it. If it is the "
@@ -103,17 +82,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "pc-tausch": {
-        "titel": "PC replacement and setup: €190 per device | WVM-IT",
-        "desc": "New computer, everything comes across: files, email, credentials, "
-                "programs. €190 fixed per device, mostly remote. Get in touch.",
+        "titel": "PC replacement and setup | WVM-IT",
+        "desc": "New computer, everything comes across: Preis im Gespräch. Get in touch.",
         "h1": "Replace a computer without losing anything",
         "nav": "Replacing a PC",
-        "kurz": "When a device is replaced, WVM-IT moves everything that is needed — "
-                "files, email including the folder structure, browser bookmarks, saved "
-                "credentials and the configured programs — for €190 per workstation. "
-                "The old machine is securely wiped on request. It usually runs remotely "
-                "and takes two to three hours; the person working on it can carry on in "
-                "the meantime.",
+        "kurz": "When a device is replaced, WVM-IT moves everything that is needed — files, email including the folder structure, browser bookmarks, saved credentials and the configured programs —. The old machine is securely wiped on request. It usually runs remotely and takes two to three hours; the person working on it can carry on in the meantime.",
         "intro": "Replacing a device is the moment when data goes missing — not through "
                  "a fault, but through inconspicuousness. Files on the desktop are "
                  "noticed immediately. What is missing months later are the mails from "
@@ -162,15 +135,7 @@ EINRICHTEN = {
                   "really finished.",
 
         "beschaff_h": "Procure and set up the devices",
-        "beschaff_t": "On request we also take on procurement of the new hardware: "
-                      "clarify requirements, put together an offer for suitable "
-                      "devices and then set them up at the fixed €190 per workstation "
-                      "including data transfer. We recommend by actual need, not by "
-                      "brand — what the machine really has to run decides the sensible "
-                      "price more than any generic recommendation. The device price "
-                      "follows your requirements; the setup stays at €190 per unit. "
-                      "You can also buy the devices yourself and give us only the "
-                      "setup — both is well proven.",
+        "beschaff_t": "Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. We recommend by actual need, not by brand — what the machine really has to run decides the sensible price more than any generic recommendation. The setup is agreed upfront, no surprises. You can also buy the devices yourself and give us only the setup — both is well proven.",
 
         "faq_h": "Common questions",
         "faq": [
@@ -188,15 +153,7 @@ EINRICHTEN = {
                   "recovery — then we talk about effort and prospects beforehand, rather "
                   "than quoting a figure that cannot be held."},
             {"q": "What happens to a broken computer — is it repaired?",
-             "a": "No, it is replaced: we move the data from the broken device to the "
-                  "new one and set that up at the fixed price of €190 per workstation. "
-                  "We are not a repair workshop and do not carry out workshop repairs "
-                  "— on office devices they are almost never cheaper than a new one. "
-                  "If the old device no longer runs, we first find out what is wrong; "
-                  "if only the hard disk is affected, that is data recovery, billed by "
-                  "effort. What happens to the old device afterwards is up to you. If "
-                  "you first want to know what is actually broken, there is a separate "
-                  "page on <a href=\"/en/it-hilfe/\">help with individual problems</a>."},
+             "a": "Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. We are not a repair workshop and do not carry out workshop repairs — on office devices they are almost never cheaper than a new one. If the old device no longer runs, we first find out what is wrong; if only the hard disk is affected, that is data recovery, billed by effort. What happens to the old device afterwards is up to you. If you first want to know what is actually broken, there is a separate page on <a href=\"/en/it-hilfe/\">help with individual problems</a>."},
             {"q": "Is replacing it worth it at all, or would an upgrade do?",
              "a": "That depends on age and condition. If the hard disk is still a "
                   "classic one and the computer is otherwise healthy, moving to an SSD "
@@ -205,15 +162,9 @@ EINRICHTEN = {
                   "the fans are at the end too. We tell you what we would do in your "
                   "position."},
             {"q": "Can you also procure the new devices for us?",
-             "a": "Yes. We clarify what is needed, quote for the devices, set them "
-                  "up at the €190 fixed price per workstation and transfer the data "
-                  "as above. The price for the devices themselves comes from your "
-                  "actual requirements — what really runs on them decides the sensible "
-                  "price more than any guess."},
+             "a": "Yes. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. The price for the devices themselves comes from your actual requirements — what really runs on them decides the sensible price more than any guess."},
             {"q": "What does the device itself cost?",
-             "a": "On request. We put together a quote fitting the actual need — no "
-                  "graphics power for video editing when the job is Excel and Outlook. "
-                  "The setup per device stays at €190."},
+             "a": "On request. We put together a quote fitting the actual need — no graphics power for video editing when the job is Excel and Outlook. The setup is agreed upfront, no surprises."},
         ],
 
         "cta_h": "Request a device change",
@@ -224,16 +175,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "windows-11": {
-        "titel": "Windows 11 migration — €190 per device | WVM-IT",
-        "desc": "Windows 10 has had no security updates since October 2025. Migration "
-                "per workstation €190, including a check of your programs. Get in touch.",
+        "titel": "Windows 11 migration | WVM-IT",
+        "desc": "Windows 10 has had no security updates since October 2025. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. Get in touch.",
         "h1": "Windows 11 in the business: migrate or replace the device?",
         "nav": "Windows 11",
-        "kurz": "Windows 10 has received no security updates since October 2025. For "
-                "each workstation WVM-IT checks whether the device supports Windows 11 "
-                "at all and whether the programs in use will run on it, then carries "
-                "out the migration — €190 per workstation. Where the hardware cannot "
-                "follow, we say so beforehand rather than discovering it mid-migration.",
+        "kurz": "Windows 10 has received no security updates since October 2025. For each workstation WVM-IT checks whether the device supports Windows 11 at all and whether the programs in use will run on it, then carries out the migration. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. The setup is agreed upfront, no surprises. Where the hardware cannot follow, we say so beforehand rather than discovering it mid-migration.",
         "intro": "The move is easily postponed because nothing hurts: Windows 10 still "
                  "starts, the programs run, it looks like it always did. Missing "
                  "security updates are not noticed — until the day they would have "
@@ -241,7 +187,7 @@ EINRICHTEN = {
                  "when it is urgent discovers on the same day that two machines do not "
                  "meet the requirements and the industry software needs a new version.",
 
-        "leistungen_h": "What €190 per workstation includes",
+        "leistungen_h": "What is included",
         "leistungen": [
             "A check of whether the device supports Windows 11 — processor, memory, "
             "TPM 2.0, Secure Boot",
@@ -311,16 +257,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "microsoft-365": {
-        "titel": "Microsoft 365 (Office 365) setup — €290 fixed price | WVM-IT",
-        "desc": "Microsoft 365 / Office 365 set up: €290 fixed price including email "
-                "migration, Teams and OneDrive. Mostly by remote support. Get in touch.",
+        "titel": "Microsoft 365 (Office 365) setup | WVM-IT",
+        "desc": "Microsoft 365 / Office 365 set up: Price on a call. Mostly by remote support. Get in touch.",
         "h1": "Microsoft 365 setup — once properly instead of three times halfway",
         "nav": "Microsoft 365",
-        "kurz": "WVM-IT sets up Microsoft 365 for €290: mailboxes and aliases, "
-                "two-factor sign-in, Teams, OneDrive and the shared filing in "
-                "SharePoint, plus the migration of your existing email including folders "
-                "and calendars. The price covers the setup; you pay the licences "
-                "directly to Microsoft.",
+        "kurz": "WVM-IT sets up Microsoft 365: mailboxes and aliases, two-factor sign-in, Teams, OneDrive and the shared filing in SharePoint, plus the migration of your existing email including folders and calendars. The price covers the setup; you pay the licences directly to Microsoft.",
         "intro": "Microsoft 365 is bought in ten minutes and still not properly set up "
                  "ten months later. That is the normal case: the mailboxes run, "
                  "everything else gets placed alongside bit by bit. Files exist three "
@@ -328,7 +269,7 @@ EINRICHTEN = {
                  "the old server. Whoever leaves takes their access with them. And "
                  "nobody knows where the current version of the quote is.",
 
-        "leistungen_h": "Office 365 setup: what €290 includes",
+        "leistungen_h": "Office 365 setup: what is included",
         "leistungen": [
             "Mailboxes, aliases, distribution lists and shared mailboxes",
             "Two-factor sign-in for every account — the single most effective step "
@@ -369,12 +310,9 @@ EINRICHTEN = {
         "faq_h": "Common questions",
         "faq": [
             {"q": "What does it cost to have Office 365 set up?",
-             "a": "Setting up Office 365 (now Microsoft 365) costs a fixed €290 at WVM-IT. You pay the licences directly to Microsoft."},
+             "a": "The setup is agreed upfront, no surprises. You pay the licences directly to Microsoft."},
             {"q": "Is Office 365 the same as Microsoft 365?",
-             "a": "In everyday use, yes: Microsoft renamed the Office 365 subscriptions "
-                  "to Microsoft 365. Whoever searches for Office 365 usually means the "
-                  "subscription with mailboxes, Word, Excel, Teams and OneDrive. We set "
-                  "it up for a €290 fixed price; you pay the licences directly to Microsoft."},
+             "a": "In everyday use, yes: Microsoft renamed the Office 365 subscriptions to Microsoft 365. Whoever searches for Office 365 usually means the subscription with mailboxes, Word, Excel, Teams and OneDrive. We clarify the price in a short call, fair and suited to your budget."},
             {"q": "Will we lose old email in the migration?",
              "a": "No. The mailboxes are taken over with their folder structure, "
                   "calendars and contacts, and the old ones keep running throughout. "
@@ -399,16 +337,10 @@ EINRICHTEN = {
     # ════════════════════════════════════════════════════════════════════════
     "server": {
         "titel": "Server setup for small businesses | WVM-IT",
-        "desc": "Setting up a server: users, shares, permissions, backup — on site or "
-                "virtual. Price after taking stock, support afterwards from €89/month. "
-                "Get in touch.",
+        "desc": "Setting up a server: users, shares, permissions, backup — on site or virtual. We clarify the price in a short call, fair and suited to your budget. Get in touch.",
         "h1": "A server set up to still carry you in five years",
         "nav": "Server setup",
-        "kurz": "WVM-IT sets up servers for small and medium businesses: operating "
-                "system, users and permissions, shared folders, backup and remote "
-                "access — in the building or virtual. What it costs we say after taking "
-                "stock, because it depends on size, existing equipment and requirements. "
-                "The monitoring afterwards starts at €89 a month.",
+        "kurz": "WVM-IT sets up servers for small and medium businesses: operating system, users and permissions, shared folders, backup and remote access — in the building or virtual. What it costs we say after taking stock, because it depends on size, existing equipment and requirements. We clarify the price in a short call, fair and suited to your budget.",
         "intro": "A server is not a purchase but a decision for the next five years. "
                  "Most mistakes happen not with the hardware but with the structure: "
                  "shares that grew historically, permissions nobody can explain any "
@@ -428,13 +360,8 @@ EINRICHTEN = {
             "Remote access over VPN where it is needed",
             "Documentation another provider could carry on with",
         ],
-        "nicht_h": "Why there is no fixed price here",
-        "nicht_t": "Because it could not be held. Whether a business needs a small file "
-                   "server or a machine running the industry software for twenty people "
-                   "makes a difference of days. We quote in writing after taking stock — "
-                   "before the first move, and then it holds. The survey itself is "
-                   "billed by the hour (€95 remote, €120 on site plus travel)."
-                   "",
+        "nicht_h": "Why the price is agreed on a call here",
+        "nicht_t": "Because it could not be held. Whether a business needs a small file server or a machine running the industry software for twenty people makes a difference of days. We quote in writing after taking stock — before the first move, and then it holds. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
 
         "ablauf_h": "How it works",
         "ablauf": [
@@ -466,10 +393,7 @@ EINRICHTEN = {
                   "software, terminal services or a migration of existing data it becomes "
                   "two to four. We give the range in the quote."},
             {"q": "Do we have to take a support contract afterwards?",
-             "a": "No. You get the documentation and the access details and can work with "
-                  "them or commission someone else. If you want the monitoring it starts "
-                  "at €89 a month — then we see disk space, load and failed backups "
-                  "before you notice them."},
+             "a": "No. You get the documentation and the access details and can work with them or commission someone else. A managed server and monitored backup depend on scope; we clarify the price in a call. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand."},
             {"q": "We already have a server, but nobody knows it any more.",
              "a": "That is a common case too. Then it starts with a survey of what runs "
                   "and an honest assessment: keep it, rebuild it, or replace it. Taking "
@@ -485,23 +409,18 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "netzwerk": {
-        "titel": "Office network setup — from €890 | WVM-IT",
-        "desc": "Router, switch, Wi-Fi, printers on the network and a separate guest "
-                "network — set up and surveyed from €890. Get in touch.",
+        "titel": "Office network setup | WVM-IT",
+        "desc": "Router, switch, Wi-Fi, printers on the network and a separate guest network — set up and surveyed Get in touch.",
         "h1": "A network that carries through the whole building",
         "nav": "Network setup",
-        "kurz": "WVM-IT sets up business networks from €890: configuring router and "
-                "switch, placing and surveying Wi-Fi so it carries everywhere, "
-                "connecting printers and network drives, setting up a separate guest "
-                "network. For cabling, halls and multiple floors we quote after a "
-                "survey — the starting price covers an office of usual size.",
+        "kurz": "WVM-IT sets up business networks: configuring router and switch, placing and surveying Wi-Fi so it carries everywhere, connecting printers and network drives, setting up a separate guest network. For cabling, halls and multiple floors we quote after a survey — the starting price covers an office of usual size.",
         "intro": "Network problems are rarely loud. They show up as video stuttering in "
                  "the back meeting room, as a printer that disappears twice a week, and "
                  "as a till sitting on the guest Wi-Fi because that was convenient at the "
                  "time. Almost always it comes down to the same thing: the network grew "
                  "and was never planned.",
 
-        "leistungen_h": "What €890 includes",
+        "leistungen_h": "What is included",
         "leistungen": [
             "Router and switch configured — address ranges, names, fixed addresses for "
             "everything that has to stay reachable",
@@ -565,23 +484,14 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "firewall-vpn": {
-        "titel": "Firewall and VPN setup — €690 fixed price | WVM-IT",
-        "desc": "A firewall set up and VPN for access on the move: €690 fixed, with "
-                "rules you can still understand later. Get in touch.",
+        "titel": "Firewall and VPN setup | WVM-IT",
+        "desc": "A firewall set up and VPN for access on the move: Price on a call. Get in touch.",
         "h1": "Firewall and VPN — access from outside, without an open door",
         "nav": "Firewall and VPN",
-        "kurz": "WVM-IT sets up firewall and VPN for €690: rules on the principle that "
-                "whatever is not needed stays closed, VPN access for everyone who works "
-                "on the move, and a written overview of which rule exists for what. It "
-                "runs remotely as soon as the device is reachable.",
-        "intro": "Most firewalls in small businesses are not configured wrongly but not "
-                 "configured at all: the provider's router does what it did out of the "
-                 "box, and at some point someone set up a forwarding so that accounting "
-                 "could work from home. That single forwarding then stays open for years "
-                 "— and nobody remembers what it was for."
-                 "\n\nFirewall and VPN are two parts of the same door: the firewall decides what may enter the company network at all, the VPN is the encrypted route by which authorised people get in from outside. It is needed in two cases. The more common one is working from home: staff reach files, the merchandise management system or a server in the office from home or on the road — that is what the fixed price is made for. The rarer one is connecting two sites, such as an office and a warehouse; that is a separate job, because it depends on the devices at both ends.",
+        "kurz": "WVM-IT sets up firewall and VPN: rules on the principle that whatever is not needed stays closed, VPN access for everyone who works on the move, and a written overview of which rule exists for what. It runs remotely as soon as the device is reachable.",
+        "intro": "Most firewalls in small businesses are not configured wrongly but not configured at all: the provider's router does what it did out of the box, and at some point someone set up a forwarding so that accounting could work from home. That single forwarding then stays open for years — and nobody remembers what it was for.\n\nFirewall and VPN are two parts of the same door: the firewall decides what may enter the company network at all, the VPN is the encrypted route by which authorised people get in from outside. It is needed in two cases. The more common one is working from home: staff reach files, the merchandise management system or a server in the office from home or on the road — that is what the upfront agreement is made for. The rarer one is connecting two sites, such as an office and a warehouse; that is a separate job, because it depends on the devices at both ends.",
 
-        "leistungen_h": "What €690 includes",
+        "leistungen_h": "What is included",
         "leistungen": [
             "Firewall configured: closed as the starting point, open only for what is "
             "needed",
@@ -621,11 +531,11 @@ EINRICHTEN = {
         "faq_h": "Common questions",
         "faq": [
             {"q": "What is the difference between a firewall and a VPN?",
-             "a": "The firewall controls what may go into and out of the company network; the VPN is an encrypted access through which authorised people get in from outside. One without the other is only half a solution: a VPN without clean firewall rules opens too much, a firewall without a VPN forces open forwardings. For €690 we set up both together."},
+             "a": "The firewall controls what may go into and out of the company network; the VPN is an encrypted access through which authorised people get in from outside. One without the other is only half a solution: a VPN without clean firewall rules opens too much, a firewall without a VPN forces open forwardings. The setup is agreed upfront, no surprises."},
             {"q": "Do staff working from home need a VPN?",
              "a": "If they access something in the office — a network drive, the merchandise management system, a server — yes. If the business only works with cloud services such as Microsoft 365, no VPN is needed; two-factor sign-in then protects access. Which case applies to you we clarify in the initial review."},
             {"q": "Can we connect two sites by VPN?",
-             "a": "Yes, but that is not part of the €690. A site connection depends on the devices at both ends and on the lines there; we tell you what it costs after looking at both sides and before any order."},
+             "a": "We clarify the price in a short call, fair and suited to your budget. A site connection depends on the devices at both ends and on the lines there; we tell you what it costs after looking at both sides and before any order."},
             {"q": "We already have a firewall in the router.",
              "a": "You do, and it does the bare minimum. The difference is not in its "
                   "existence but in the rules: separate networks, traceable openings and "
@@ -677,12 +587,8 @@ EINRICHTEN = {
             "A briefing, so the system stays operable without us",
             "Connection to the network, safely separated from the rest of the business",
         ],
-        "nicht_h": "Why there is no fixed price here",
-        "nicht_t": "Because no two systems are alike. A documented Loxone system with "
-                   "twenty actuators is something other than a grown KNX installation "
-                   "across three floors without any papers. The survey is billed by the "
-                   "hour (€120 on site plus travel); after it we quote in writing, and "
-                   "then it holds.",
+        "nicht_h": "Why the price is agreed on a call here",
+        "nicht_t": "Because no two systems are alike. A documented Loxone system with twenty actuators is something other than a grown KNX installation across three floors without any papers. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
 
         "ablauf_h": "How it works",
         "ablauf": [
@@ -708,7 +614,7 @@ EINRICHTEN = {
         "faq_h": "Common questions",
         "faq": [
             {"q": "Can an existing Loxone system be taken over from another programmer?",
-             "a": "Yes. We take over existing Loxone and KNX systems, even if the previous programmer or installer can no longer be reached. First we record what is installed and how it is programmed; the survey is billed by the hour (€120 per hour on site plus travel). After that we state the price in writing, and then it holds."},
+             "a": "Yes. We take over existing Loxone and KNX systems, even if the previous programmer or installer can no longer be reached. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand. After that we state the price in writing, and then it holds."},
             {"q": "We have no documentation and no password for the system.",
              "a": "That is the normal case with a takeover. In most cases we reach the "
                   "configuration through the devices themselves. If it really cannot be "
@@ -737,17 +643,10 @@ EINRICHTEN = {
     # ── Round 2 (24.09.2026) ────────────────────────────────────────────────
     "datensicherung": {
         "titel": "Have automatic backups set up — verified | WVM-IT",
-        "desc": "Automatic backup set up: what, where to, how often, with a real "
-                "restore test. Price on request; ongoing monitoring from €49/month. "
-                "Ask now.",
+        "desc": "Automatic backup set up: what, where to, how often, with a real restore test. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. Ask now.",
         "h1": "Backups set up to actually work when it matters",
         "nav": "Backup setup",
-        "kurz": "WVM-IT sets up backups for businesses in a way that actually holds "
-                "up: we start with what is being backed up, where and how often; "
-                "then the 3-2-1 rule (three copies, two media, one off-site) and a "
-                "real restore test. What the setup costs, we say after an audit — "
-                "it depends on data volume, existing systems and requirements. "
-                "Ongoing monitoring after that starts at €49 per month.",
+        "kurz": "WVM-IT sets up backups for businesses in a way that actually holds up: we start with what is being backed up, where and how often; then the 3-2-1 rule (three copies, two media, one off-site) and a real restore test. What the setup costs, we say after an audit — it depends on data volume, existing systems and requirements. We clarify the price in a short call, fair and suited to your budget.",
         "intro": "Almost every business has a backup. Far fewer businesses know when "
                  "it last ran, and even fewer have ever tried to bring anything back "
                  "from it. That gap is exactly what a properly set up backup closes: "
@@ -770,15 +669,8 @@ EINRICHTEN = {
             "Alerting: who hears about it and how, when a backup fails",
             "Documentation: what goes where, how long it is kept, who reaches for it",
         ],
-        "nicht_h": "Why there is no fixed price here",
-        "nicht_t": "Because it would not hold up. Whether a business backs up 200 GB "
-                   "of files or mirrors 8 TB of databases to a second site is a "
-                   "difference of days and a difference in the hardware required. "
-                   "We give you the price in writing after the audit — before any "
-                   "work starts, and then it stands. The audit itself we bill by the "
-                   "hour (€95 remote, €120 on site plus travel). "
-                   "Ongoing monitoring of the "
-                   "resulting backup starts at €49 per month.",
+        "nicht_h": "Why the price is agreed on a call here",
+        "nicht_t": "Because it would not hold up. Whether a business backs up 200 GB of files or mirrors 8 TB of databases to a second site is a difference of days and a difference in the hardware required. We give you the price in writing after the audit — before any work starts, and then it stands. The audit itself we bill by the hour. A managed server and monitored backup depend on scope; we clarify the price in a call.",
 
         "ablauf_h": "How it runs",
         "ablauf": [
@@ -815,11 +707,7 @@ EINRICHTEN = {
                   "software with its own backup path or large first backups it "
                   "becomes two to five. We name the frame in the offer."},
             {"q": "What is the difference from ongoing support?",
-             "a": "The setup is one-off — it answers „who sets this up properly“. "
-                  "Ongoing monitoring from €49 per month answers „who notices when "
-                  "the backup fails tomorrow“. Both belong together, but one does "
-                  "not force the other: we also set it up if you want to monitor "
-                  "it yourself afterwards."},
+             "a": "The setup is one-off — it answers „who sets this up properly“. Ongoing monitoring answers „who notices when the backup fails tomorrow“. Both belong together, but one does not force the other: we also set it up if you want to monitor it yourself afterwards."},
             {"q": "What about GDPR and data protection?",
              "a": "The backup is part of your records of processing activities: "
                   "what is backed up where, how long it is kept, who has access. "
@@ -840,13 +728,7 @@ EINRICHTEN = {
                 "Price on request. Ask now.",
         "h1": "IT move to the new office — planned, not improvised",
         "nav": "IT move",
-        "kurz": "WVM-IT handles the IT move to a new office: server, network and "
-                "workstations are audited beforehand, planned with a checklist, "
-                "taken down and set up on moving day and tested on the first "
-                "working day. Building blocks from the catalogue: workstation "
-                "setup €190 per seat, network and Wi-Fi setup from €890, on-site "
-                "work €120 per hour plus travel. The total price depends on "
-                "scope and is given in writing after an audit.",
+        "kurz": "WVM-IT handles the IT move to a new office: server, network and workstations are audited beforehand, planned with a checklist, taken down and set up on moving day and tested on the first working day. Network, Wi-Fi, firewall and VPN depend on size and building; we clarify the price in a call. The total price depends on scope and is given in writing after an audit.",
         "intro": "An office move usually lands on the same day as a public holiday "
                  "— not literally, but it feels that way: the shelving was faster "
                  "in the van than in the plan, and at the new site the internet "
@@ -872,14 +754,8 @@ EINRICHTEN = {
             "After that: the new documentation, so a later move or handover does "
             "not start from zero again",
         ],
-        "nicht_h": "Why there is no fixed price here",
-        "nicht_t": "Because it would not hold up. Twenty workstations on one floor "
-                   "are different from sixty across three floors with a server move "
-                   "at night. We give you the price in writing after auditing the "
-                   "old site and inspecting the new one — using the catalogue "
-                   "building blocks (workstation setup €190 per seat, network from "
-                   "€890, on-site €120 per hour plus travel). The audit itself we "
-                   "bill by the hour.",
+        "nicht_h": "Why the price is agreed on a call here",
+        "nicht_t": "Because it would not hold up. Twenty workstations on one floor are different from sixty across three floors with a server move at night. We give you the price in writing after auditing the old site and inspecting the new one — using the catalogue building blocks. The audit itself we bill by the hour.",
 
         "ablauf_h": "How it runs",
         "ablauf": [
@@ -905,7 +781,7 @@ EINRICHTEN = {
         "faq_h": "Common questions",
         "faq": [
             {"q": "How can the network be moved?",
-             "a": "For a network move we first draw the network plan: where the server cabinet stands, where cables run and where access points, printers and terminals go. The lines at the new site must be ordered early (six to eight weeks). On moving day we set up servers and network equipment first, the workstations afterwards, each computer at the same socket as in the plan. On the first working day we test every workstation. For a network with Wi-Fi that has to be built from scratch we calculate from €890."},
+             "a": "For a network move we first draw the network plan: where the server cabinet stands, where cables run and where access points, printers and terminals go. The lines at the new site must be ordered early (six to eight weeks). On moving day we set up servers and network equipment first, the workstations afterwards, each computer at the same socket as in the plan. On the first working day we test every workstation. For a network with Wi-Fi that has to be built from scratch we calculate"},
             {"q": "How much lead time does an IT move need?",
              "a": "The IT itself needs two to four weeks; the critical deadline is "
                   "ordering internet and phone at the new site — six to eight "
@@ -937,32 +813,11 @@ EINRICHTEN = {
 }
 
 HUB = {
-    "titel": "Have a PC or IT set up: fixed prices, no contract | WVM-IT",
-    "desc": "Workstation, PC replacement, Microsoft 365, server, network: single tasks, "
-            "fixed price, no contract, e.g. a workstation €190, mostly remote. Get a quote.",
-    "h1": "Single tasks — fixed price, no contract",
-    "kurz": "WVM-IT handles single IT tasks at a fixed price, without any running "
-            "support being necessary: setting up a workstation for €190, replacing a "
-            "computer including the data transfer for €190. Most of it runs remotely "
-            "across Austria and Germany; an on-site visit costs €120 per hour plus "
-            "travel.",
-    "intro": "Not every business needs running IT support. Sometimes there is simply a "
-             "new computer on the desk, someone starts on Monday, or a device has "
-             "reached the end. For those cases there are clear prices here and no "
-             "contract — you commission a task, we do it, done. If more comes of it "
-             "later, good; necessary it is not. A fixed price is a figure named in "
-             "advance for a clearly bounded task: it applies per device or per job, "
-             "it requires neither a contract nor running support, and it covers the "
-             "work done remotely. If an on-site visit becomes necessary — because a "
-             "device has to be unpacked and connected first, or because there is no "
-             "internet connection for the remote session to run over — we say so "
-             "beforehand and charge €120 per hour plus travel. That is why the price "
-             "here carries no from in front of it: where we name a fixed price, it "
-             "is one.",
+    "titel": "Have a PC or IT set up: prices agreed upfront, no contract | WVM-IT",
+    "desc": "Workstation, PC replacement, Microsoft 365, server, network: Preis im Gespräch. Get a quote.",
+    "h1": "Single tasks — price agreed upfront, no contract",
+    "kurz": "WVM-IT handles single IT tasks at a price agreed upfront, without any running support being necessary: setting up a workstationreplacing a computer including the data transfer Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
+    "intro": "Not every business needs running IT support. Sometimes there is simply a new computer on the desk, someone starts on Monday, or a device has reached the end. For those cases there are clear prices here and no contract — you commission a task, we do it, done. If more comes of it later, good; necessary it is not. An upfront-agreed price is a figure named in advance for a clearly bounded task: it applies per device or per job, it requires neither a contract nor running support, and it covers the work done remotely. If an on-site visit becomes necessary because a device has to be unpacked and connected first, or because there is no internet connection for the remote session to run over. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand. That is why the price here carries no from in front of it: where we name a price agreed upfront, it is one.",
     "abgrenzung_h": "And if it should be ongoing after all?",
-    "abgrenzung_t": "Then the services pages are the right place. They are about support "
-                    "that continues: keeping an eye on workstations and servers, "
-                    "checking backups, being reachable when something stops. That starts "
-                    "at €29 per workstation and month and is something other than a "
-                    "single task — which is why it has its own pages.",
+    "abgrenzung_t": "Then the services pages are the right place. They are about support that continues: keeping an eye on workstations and servers, checking backups, being reachable when something stops. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget.",
 }

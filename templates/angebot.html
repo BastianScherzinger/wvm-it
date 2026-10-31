@@ -43,7 +43,8 @@
     ang: {
       leistung: "{{ t.angebot_page.js_leistung|escapejs }}", leistungen: "{{ t.angebot_page.js_leistungen|escapejs }}",
       remove: "{{ t.angebot_page.js_remove|escapejs }}", from: "{{ t.angebot_page.js_from|escapejs }}",
-      on_request: "{{ t.angebot_page.js_on_request|escapejs }}",
+      on_request: "{{ t.angebot_page.js_on_request|escapejs }}",{% if not preise_sichtbar %}
+      no_price: "{{ t.ohne_preise.angebot_sum|escapejs }}",{% endif %}
       per_month: "{{ t.angebot_page.js_per_month|escapejs }}", per_year: "{{ t.angebot_page.js_per_year|escapejs }}",
       per_hour: "{{ t.catalog_words.per_hour|escapejs }}"
     }
@@ -56,6 +57,9 @@
 
 <main id="main">
   {% comment %} ── KOPF: Überschrift links, Konfigurator rechts ──────────────────────── {% endcomment %}
+  {% if not preise_sichtbar %}
+  <section class="section anruf-schluss"><div class="wrap">{% include 'anruf_kasten.html' %}</div></section>
+  {% endif %}
   <section class="section ang-top-sec" id="konfigurator">
     <div class="wrap ang-top">
 
@@ -149,8 +153,8 @@
                   <input class="ang-check" type="checkbox" id="it-{{ it.id }}" name="item" value="{{ it.id }}"
                          {% if it.id in paket_items %}checked{% endif %}
                          data-name="{{ it.name }}" data-group="{{ g.title }}"
-                         data-once="{{ it.once|default:0 }}" data-mtl="{{ it.mtl|default:0 }}"
-                         data-yr="{{ it.yr|default:0 }}" data-std="{{ it.std|default:0 }}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}"
+                         data-once="{% if preise_sichtbar %}{{ it.once|default:0 }}{% else %}0{% endif %}" data-mtl="{% if preise_sichtbar %}{{ it.mtl|default:0 }}{% else %}0{% endif %}"
+                         data-yr="{% if preise_sichtbar %}{{ it.yr|default:0 }}{% else %}0{% endif %}" data-std="{% if preise_sichtbar %}{{ it.std|default:0 }}{% else %}0{% endif %}" data-anfrage="{% if it.anfrage %}1{% else %}0{% endif %}"
                          {% if it.menge_max %}data-menge="menge-{{ it.id }}"{% endif %}>
                   <span class="ang-item-box">
                     <span class="ang-item-ic">{% include 'icons.html' with name=it.icon %}</span>
@@ -158,7 +162,7 @@
                       <span class="ang-item-name">{{ it.name }}{% if it.popular %} <span class="ang-tag">{{ t.catalog_words.popular|safe }}</span>{% endif %}</span>
                       <span class="ang-item-desc">{{ it.desc }}</span>
                     </span>
-                    <span class="ang-item-price">{{ it.price_zahl }}</span>
+                    {% if preise_sichtbar %}<span class="ang-item-price">{{ it.price_zahl }}</span>{% endif %}
                     <span class="ang-item-check" aria-hidden="true">{% include 'icons.html' with name='check' %}</span>
                   </span>
                 </label>
@@ -204,12 +208,16 @@
                   <ul class="ang-cart-list" id="angCartList">
                     <li class="ang-cart-empty" id="angCartEmpty">{{ t.angebot_page.cart_empty|safe }}</li>
                   </ul>
+                  {% if preise_sichtbar %}
                   <div class="ang-totals" id="angTotals" hidden>
                     <div class="ang-total-row" data-total="once" hidden><span>{{ t.angebot_page.total_once|safe }}</span><strong><span id="angOnce">0</span> €</strong></div>
                     <div class="ang-total-row" data-total="mtl" hidden><span>{{ t.angebot_page.total_mtl|safe }}</span><strong><span id="angMtl">0</span> €<small>{{ t.angebot_page.per_month|safe }}</small></strong></div>
                     <div class="ang-total-row" data-total="yr" hidden><span>{{ t.angebot_page.total_yr|safe }}</span><strong><span id="angYr">0</span> €<small>{{ t.angebot_page.per_year|safe }}</small></strong></div>
                     <div class="ang-total-note" id="angAnfrage" hidden>{% include 'icons.html' with name='consulting' %} {{ t.angebot_page.anfrage_note|safe }}</div>
                   </div>
+                  {% else %}
+                  <div class="ang-totals ang-ohne-preis" id="angTotals" hidden></div>
+                  {% endif %}
                   <p class="ang-cart-fine">{{ t.angebot_page.cart_fine|safe }}</p>
                 </div>
 
@@ -248,7 +256,7 @@
           <div class="ang-mobar-in">
             <span class="ang-mobar-sum">
               <span id="angMobarCount">{{ t.angebot_page.cart_count|safe }}</span>
-              <strong id="angMobarSum">0&nbsp;€</strong>
+              <strong id="angMobarSum">{% if preise_sichtbar %}0&nbsp;€{% else %}{{ t.ohne_preise.angebot_sum|safe }}{% endif %}</strong>
             </span>
             <button type="button" class="btn ang-mobar-cta" id="angMobarBtn">{{ t.angebot_page.to_offer|safe }}</button>
           </div>
@@ -258,6 +266,7 @@
     </div>
   </section>
 
+  {% if preise_sichtbar %}
   {% comment %} ── PREISLISTE (volle Übersicht, darunter) ────────────────────────────── {% endcomment %}
   <section class="section section-alt" id="preisliste">
     <div class="wrap">
@@ -286,6 +295,17 @@
       <p class="price-foot" data-reveal>{{ t.angebot_page.pl_foot|safe }}</p>
     </div>
   </section>
+  {% else %}
+  <section class="section section-alt" id="preisliste">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <h2 class="section-t">{{ t.ohne_preise.rechner_h|safe }}</h2>
+        <p class="section-lead">{{ t.ohne_preise.rechner_t|safe }}</p>
+      </header>
+      {% include 'anruf_kasten.html' with kurz=True %}
+    </div>
+  </section>
+  {% endif %}
 
   <section class="section">
     <div class="wrap">

@@ -5,26 +5,14 @@
 EINRICHTEN = {
     # ════════════════════════════════════════════════════════════════════════
     "arbeitsplatz": {
-        "titel": "Configurare PC pentru firme — 190 € preț fix | WVM-IT",
-        "desc": "Post de lucru nou pentru 190 €: Windows, programe, cont, e-mail, "
-                "imprimantă, transfer de date. La distanță, fără contract. Cereți o ofertă.",
-        "h1": "Configurarea unui post de lucru — preț fix, fără contract",
+        "titel": "Configurare PC pentru firme | WVM-IT",
+        "desc": "Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. La distanță, fără contract. Cereți o ofertă.",
+        "h1": "Configurarea unui post de lucru — preț stabilit din timp, fără contract",
         "nav": "Configurare post de lucru",
-        "kurz": "WVM-IT configurează un post de lucru nou pentru 190 €: Windows, "
-                "drivere, programele de care are nevoie firma, contul de utilizator, "
-                "căsuța de e-mail, imprimanta, accesul la fișierele comune și "
-                "preluarea datelor de pe aparatul vechi. Durează de regulă două-trei "
-                "ore și se face la distanță, fără ca cineva să se deplaseze. Nu este "
-                "nevoie de contract; prețul este per post de lucru.",
-        "intro": "Sosește un calculator nou și de aici încolo începe bătaia de cap: "
-                 "Windows trebuie configurat, softul de specialitate are nevoie de "
-                 "licență, căsuța de e-mail ar trebui să păstreze mesajele vechi, "
-                 "imprimanta nu este găsită, iar fișierele sunt încă pe aparatul vechi. "
-                 "În practică se pierde astfel o jumătate de zi de lucru sau chiar una "
-                 "întreagă — și anume ziua cuiva care are altceva de făcut. Exact "
-                 "pentru asta există acest preț fix.",
+        "kurz": "Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Configurarea se stabilește din timp, fără surprize. Durează de regulă două-trei ore și se face la distanță, fără ca cineva să se deplaseze. Nu este nevoie de contract; prețul este per post de lucru.",
+        "intro": "Sosește un calculator nou și de aici încolo începe bătaia de cap: Windows trebuie configurat, softul de specialitate are nevoie de licență, căsuța de e-mail ar trebui să păstreze mesajele vechi, imprimanta nu este găsită, iar fișierele sunt încă pe aparatul vechi. În practică se pierde astfel o jumătate de zi de lucru sau chiar una întreagă — și anume ziua cuiva care are altceva de făcut. Exact pentru asta există această înțelegere din timp.",
 
-        "leistungen_h": "Ce include prețul de 190 €",
+        "leistungen_h": "Ce este inclus",
         "leistungen": [
             "Instalarea Windows sau configurarea sistemului preinstalat, inclusiv "
             "toate driverele",
@@ -61,34 +49,23 @@ EINRICHTEN = {
         ],
 
         "fern_h": "La distanță sau la fața locului?",
-        "fern_t": "Cea mai mare parte se face la distanță, iar atunci se aplică prețul "
-                  "fix de 190 €. Este nevoie de prezență la fața locului când aparatul "
-                  "trebuie mai întâi despachetat și conectat, când se schimbă mai multe "
-                  "posturi de lucru deodată sau când nu există o conexiune la internet "
-                  "funcțională pentru sesiunea la distanță. O intervenție la fața "
-                  "locului costă 120 € pe oră plus deplasare; spunem dinainte dacă este "
-                  "necesară și de ce.",
+        "fern_t": "Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Este nevoie de prezență la fața locului când aparatul trebuie mai întâi despachetat și conectat, când se schimbă mai multe posturi de lucru deodată sau când nu există o conexiune la internet funcțională pentru sesiunea la distanță. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp.",
 
         "anlass_h": "Windows 10 a expirat: e timpul pentru posturi de lucru noi?",
-        "anlass_t": "Microsoft a încheiat suportul pentru Windows 10 la 14 octombrie 2025; de atunci nu mai există actualizări de securitate regulate pentru el. Pentru dispozitivele personale, Microsoft oferă actualizări de securitate extinse (ESU) până la 12 octombrie 2027. Calculatoarele dintr-o firmă care nu acceptă Windows 11 nu ar trebui, de aceea, folosite mai departe pe termen lung. Verificăm dacă un aparat existent poate trece la <a href=\"/ro/einrichten/windows-11/\">Windows 11</a> sau configurăm postul de lucru de înlocuire cu 190 €.",
+        "anlass_t": "Microsoft a încheiat suportul pentru Windows 10 la 14 octombrie 2025; de atunci nu mai există actualizări de securitate regulate pentru el. Pentru dispozitivele personale, Microsoft oferă actualizări de securitate extinse (ESU) până la 12 octombrie 2027. Calculatoarele dintr-o firmă care nu acceptă Windows 11 nu ar trebui, de aceea, folosite mai departe pe termen lung. Verificăm dacă un aparat existent poate trece la <a href=\"/ro/einrichten/windows-11/\">Windows 11</a> sau configurăm postul de lucru de înlocuire.",
 
         "faq_h": "Întrebări frecvente",
         "faq": [
             {"q": "Cât costă configurarea unui PC?",
-             "a": "Configurarea unui post de lucru costă un preț fix de 190 € per aparat, fără contract. Prețul se aplică atunci când se poate face prin acces la distanță, de obicei în două–trei ore. Dacă cineva trebuie să fie la fața locului, se adaugă 120 € pe oră plus deplasarea. Hardware-ul și licențele nu sunt incluse."},
+             "a": "Configurarea unui post de lucru are un cost stabilit în urma unei scurte discuții, adaptat la necesitățile și bugetul dumneavoastră, fie că se realizează de la distanță, fie la fața locului. Pentru o ofertă personalizată, sunați la +43 676 3808501 sau contactați-ne pe WhatsApp."},
             {"q": "Prețul este per aparat sau pentru toate împreună?",
-             "a": "Per post de lucru. Cinci calculatoare noi costă deci de cinci ori "
-                  "190 €. Cu mai multe aparate deodată merge mai repede, pentru că "
-                  "configurarea trebuie gândită o singură dată — luăm asta în calcul "
-                  "dinainte."},
+             "a": "Per post de lucru. Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Cu mai multe aparate deodată merge mai repede, pentru că configurarea trebuie gândită o singură dată — luăm asta în calcul dinainte."},
             {"q": "Ce se întâmplă cu calculatorul vechi?",
              "a": "La cerere îl ștergem în siguranță, ca să nu rămână date ale firmei "
                   "pe el. Ce se întâmplă apoi cu aparatul — vândut, dat mai departe, "
                   "casat — decideți dumneavoastră."},
             {"q": "Nu avem deloc administrare IT. Se poate totuși?",
-             "a": "Da, exact pentru asta există acest preț fix. Nu este nevoie de "
-                  "contract și nici de administrare curentă. Dacă doriți una mai "
-                  "târziu, începe de la 29 € per post de lucru și lună."},
+             "a": "Da, exact pentru asta există această înțelegere din timp. Nu este nevoie de contract și nici de administrare curentă. Dacă doriți una mai târziu, începe de lucru și lună."},
             {"q": "Și dacă un aparat este defect, nu nou?",
              "a": "Atunci stabilim mai întâi care este problema. Dacă este hard diskul "
                   "sau memoria, înlocuirea merită de obicei. Dacă este placa de bază "
@@ -105,18 +82,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "pc-tausch": {
-        "titel": "Înlocuire și configurare PC: 190 € per aparat | WVM-IT",
-        "desc": "Calculator nou, toate datele vin cu el: fișiere, e-mailuri, date de "
-                "acces, programe. 190 € preț fix per aparat, de regulă la distanță. "
-                "Cereți o ofertă.",
+        "titel": "Înlocuire și configurare PC | WVM-IT",
+        "desc": "Calculator nou, toate datele vin cu el: Preț stabilit la telefon. Cereți o ofertă.",
         "h1": "Schimbarea calculatorului fără să se piardă ceva",
         "nav": "Înlocuirea PC-ului",
-        "kurz": "La schimbarea aparatului, WVM-IT transferă tot ce este necesar — "
-                "fișiere, e-mailuri cu structura de foldere, favorite din browser, date "
-                "de acces salvate și programele configurate — pentru 190 € per post de "
-                "lucru. Aparatul vechi este șters în siguranță la cerere. Se face de "
-                "regulă la distanță și durează două-trei ore; persoana care lucrează pe "
-                "el poate continua între timp.",
+        "kurz": "La schimbarea aparatului, WVM-IT transferă tot ce este necesar fișiere, e-mailuri cu structura de foldere, favorite din browser, date de acces salvate și programele configurate. Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Configurarea se stabilește din timp, fără surprize. Aparatul vechi este șters în siguranță la cerere. Se face de regulă la distanță și durează două-trei ore; persoana care lucrează pe el poate continua între timp.",
         "intro": "Schimbarea aparatului este momentul în care se pierd date — nu "
                  "printr-un defect, ci prin faptul că trec neobservate. Fișierele de pe "
                  "desktop se observă imediat. Ce lipsește după luni de zile sunt "
@@ -166,15 +136,7 @@ EINRICHTEN = {
                   "este cu adevărat încheiat.",
 
         "beschaff_h": "Achiziționare și configurare a echipamentelor",
-        "beschaff_t": "La cerere preluăm și achiziția noilor echipamente: "
-                      "clarificarea nevoilor, ofertă pentru hardware potrivit și apoi "
-                      "configurarea la prețul fix de 190 € pe stație, inclusiv "
-                      "transferul de date. Recomandăm după nevoia reală, nu după "
-                      "marcă — ce trebuie să ruleze pe aparat decide prețul rezonabil "
-                      "mai mult decât orice recomandare generică. Prețul aparatului "
-                      "urmează cerințele dumneavoastră; configurarea rămâne la 190 € "
-                      "pe unitate. Puteți cumpăra și singuri aparatele și să ne "
-                      "lăsați doar configurarea — ambele variante sunt încercate.",
+        "beschaff_t": "La cerere preluăm și achiziția noilor echipamente: clarificarea nevoilor, ofertă pentru hardware potrivit și apoi configurarea, inclusiv transferul de date. Recomandăm după nevoia reală, nu după marcă — ce trebuie să ruleze pe aparat decide prețul rezonabil mai mult decât orice recomandare generică. Prețul aparatului urmează cerințele dumneavoastră; configurarea rămâne. Puteți cumpăra și singuri aparatele și să ne lăsați doar configurarea — ambele variante sunt încercate.",
 
         "faq_h": "Întrebări frecvente",
         "faq": [
@@ -193,16 +155,7 @@ EINRICHTEN = {
                   "despre efort și șanse, în loc să dăm o cifră care nu poate fi "
                   "respectată."},
             {"q": "Ce se întâmplă cu un calculator defect — se repară?",
-             "a": "Nu, este înlocuit: preluăm datele de pe aparatul defect pe cel nou "
-                  "și îl configurăm la prețul fix de 190 € pe stație. Nu suntem un "
-                  "atelier și nu facem reparații de atelier — la aparatele de birou "
-                  "ele sunt aproape niciodată mai ieftine decât un aparat nou. Dacă "
-                  "aparatul vechi nu mai pornește, stabilim mai întâi ce are; dacă "
-                  "este afectat doar hard diskul, este vorba de recuperare de date, "
-                  "facturată după efort. Ce se întâmplă apoi cu aparatul vechi "
-                  "decideți dumneavoastră. Dacă vreți mai întâi să aflați ce este "
-                  "defect de fapt, găsiți <a href=\"/ro/it-hilfe/\">ajutorul pentru "
-                  "probleme punctuale</a> pe o pagină separată."},
+             "a": "Nu, este înlocuit: preluăm datele de pe aparatul defect pe cel nou și îl configurăm. Nu suntem un atelier și nu facem reparații de atelier — la aparatele de birou ele sunt aproape niciodată mai ieftine decât un aparat nou. Dacă aparatul vechi nu mai pornește, stabilim mai întâi ce are; dacă este afectat doar hard diskul, este vorba de recuperare de date, facturată după efort. Ce se întâmplă apoi cu aparatul vechi decideți dumneavoastră. Dacă vreți mai întâi să aflați ce este defect de fapt, găsiți <a href=\"/ro/it-hilfe/\">ajutorul pentru probleme punctuale</a> pe o pagină separată."},
             {"q": "Merită înlocuirea sau ar fi suficient un upgrade?",
              "a": "Depinde de vechime și de stare. Dacă hard diskul este încă unul "
                   "clasic, iar calculatorul este în rest sănătos, trecerea la un SSD "
@@ -211,15 +164,9 @@ EINRICHTEN = {
                   "și ventilatoarele sunt la capăt. Vă spunem ce am face noi în locul "
                   "dumneavoastră."},
             {"q": "Puteți achiziționa și aparatele noi pentru noi?",
-             "a": "Da. Clarificăm ce este nevoie, dăm ofertă pentru aparate, le "
-                  "configurăm la prețul fix de 190 € pe stație și transferăm datele "
-                  "ca mai sus. Prețul aparatelor rezultă din cerințele reale — ce "
-                  "urmează să ruleze pe ele decide prețul rezonabil mai mult decât "
-                  "orice recomandare la nimereală."},
+             "a": "Da. Clarificăm ce este nevoie, dăm ofertă pentru aparate, le configurăm și transferăm datele ca mai sus. Prețul aparatelor rezultă din cerințele reale — ce urmează să ruleze pe ele decide prețul rezonabil mai mult decât orice recomandare la nimereală."},
             {"q": "Cât costă aparatul propriu-zis?",
-             "a": "La cerere. Facem o ofertă pe măsura nevoii — fără plăci grafice "
-                  "pentru montaj video, când sarcina este Excel și Outlook. "
-                  "Configurarea pe aparat rămâne la 190 €."},
+             "a": "La cerere. Facem o ofertă pe măsura nevoii — fără plăci grafice pentru montaj video, când sarcina este Excel și Outlook. Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră."},
         ],
 
         "cta_h": "Solicitați schimbarea aparatului",
@@ -230,17 +177,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "windows-11": {
-        "titel": "Trecerea la Windows 11 în firmă — 190 € per aparat | WVM-IT",
-        "desc": "Windows 10 nu mai primește actualizări de securitate din octombrie "
-                "2025. Trecerea per post de lucru 190 €, cu verificarea programelor. "
-                "Cereți o ofertă.",
+        "titel": "Trecerea la Windows 11 în firmă | WVM-IT",
+        "desc": "Windows 10 nu mai primește actualizări de securitate din octombrie 2025. Verificarea de securitate IT se stabilește din timp, fără surprize. Cereți o ofertă.",
         "h1": "Windows 11 în firmă: trecem sau schimbăm aparatul?",
         "nav": "Windows 11",
-        "kurz": "Windows 10 nu mai primește actualizări de securitate din octombrie "
-                "2025. WVM-IT verifică pentru fiecare post de lucru dacă aparatul "
-                "suportă Windows 11 și dacă programele folosite rulează pe el, apoi face "
-                "trecerea — pentru 190 € per post de lucru. Acolo unde hardware-ul nu "
-                "ține pasul, spunem dinainte, în loc să aflăm în timpul trecerii.",
+        "kurz": "Windows 10 nu mai primește actualizări de securitate din octombrie 2025. WVM-IT verifică pentru fiecare post de lucru dacă aparatul suportă Windows 11 și dacă programele folosite rulează pe el, apoi face trecerea – costul se stabilește în urma unui scurt dialog, cu o acordare transparentă și fără surprize. Pentru detalii sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
         "intro": "Trecerea se amână ușor, pentru că nimic nu doare: Windows 10 pornește "
                  "în continuare, programele merg, arată ca întotdeauna. Lipsa "
                  "actualizărilor de securitate nu se observă — până în ziua în care ar "
@@ -249,7 +190,7 @@ EINRICHTEN = {
                  "calculatoare nu îndeplinesc cerințele și că softul de specialitate are "
                  "nevoie de o versiune nouă.",
 
-        "leistungen_h": "Ce include prețul de 190 € per post de lucru",
+        "leistungen_h": "Ce include serviciul de migrare la Windows 11 pentru fiecare post de lucru? Detaliile și prețul se discută într-un scurt apel, astfel încât să fie adaptate nevoilor și bugetului dumneavoastră.",
         "leistungen": [
             "Verificarea dacă aparatul suportă Windows 11 — procesor, memorie, "
             "TPM 2.0, Secure Boot",
@@ -319,16 +260,11 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "microsoft-365": {
-        "titel": "Configurare Microsoft 365 (Office 365): 290 € fix | WVM-IT",
-        "desc": "Microsoft 365 / Office 365 configurat: 290 € preț fix, cu mutarea "
-                "e-mailurilor, Teams și OneDrive. De obicei la distanță. Cereți o ofertă.",
+        "titel": "Configurare Microsoft 365 (Office 365) – WVM-IT",
+        "desc": "Configurăm Microsoft 365 / Office 365, inclusiv mutarea e‑mailurilor, Teams și OneDrive. Prețul se stabilește în discuție, adaptat la cerințele dvs.",
         "h1": "Microsoft 365 configurat — o dată bine, nu de trei ori pe jumătate",
         "nav": "Microsoft 365",
-        "kurz": "WVM-IT configurează Microsoft 365 pentru 290 €: căsuțe poștale și "
-                "aliasuri, autentificare în doi pași, Teams, OneDrive și arhivele comune "
-                "din SharePoint, plus mutarea e-mailurilor existente cu foldere și "
-                "calendare. Prețul acoperă configurarea; licențele le plătiți direct "
-                "către Microsoft.",
+        "kurz": "WVM-IT configurează Microsoft 365: căsuțe poștale și aliasuri, autentificare în doi pași, Teams, OneDrive și arhive comune în SharePoint, plus migrarea e‑mailurilor existente cu foldere și calendare. Costul este stabilit în urma unui scurt dialog, iar licențele se plătesc direct către Microsoft.",
         "intro": "Microsoft 365 se cumpără în zece minute și după zece luni tot nu este "
                  "configurat cum trebuie. Acesta este cazul obișnuit: căsuțele poștale "
                  "merg, restul se adaugă pe lângă, bucată cu bucată. Fișierele există în "
@@ -336,7 +272,7 @@ EINRICHTEN = {
                  "serverul vechi. Cine pleacă își ia accesul cu el. Și nimeni nu știe "
                  "unde este versiunea actuală a ofertei.",
 
-        "leistungen_h": "Office 365 configurat: ce include prețul de 290 €",
+        "leistungen_h": "Ce include configurarea Office 365? Toate detaliile și prețul se discută într-un scurt apel, pentru a se potrivi exact cu necesitățile și bugetul dumneavoastră.",
         "leistungen": [
             "Căsuțe poștale, aliasuri, liste de distribuție și căsuțe comune",
             "Autentificare în doi pași pentru toate conturile — pasul individual cel mai "
@@ -378,12 +314,9 @@ EINRICHTEN = {
         "faq_h": "Întrebări frecvente",
         "faq": [
             {"q": "Cât costă configurarea Office 365?",
-             "a": "Configurarea Office 365 (acum Microsoft 365) costă la WVM-IT 290 € preț fix. Licențele le plătiți direct către Microsoft."},
+             "a": "Configurarea se stabilește din timp, fără surprize. Licențele le plătiți direct către Microsoft."},
             {"q": "Este Office 365 același lucru cu Microsoft 365?",
-             "a": "În uz obișnuit, da: Microsoft a redenumit abonamentele Office 365 în "
-                  "Microsoft 365. Cine caută Office 365 se referă de obicei la abonamentul "
-                  "cu căsuțe poștale, Word, Excel, Teams și OneDrive. Îl configurăm pentru "
-                  "un preț fix de 290 €; licențele le plătiți direct la Microsoft."},
+             "a": "În uz obișnuit, da: Microsoft a redenumit abonamentele Office 365 în Microsoft 365. Cine caută Office 365 se referă de obicei la abonamentul cu căsuțe poștale, Word, Excel, Teams și OneDrive. Configurarea se stabilește din timp, fără surprize."},
             {"q": "Pierdem e-mailuri vechi la mutare?",
              "a": "Nu. Căsuțele sunt preluate cu structura de foldere, calendarele și "
                   "contactele, iar cele vechi funcționează pe tot parcursul mutării. "
@@ -409,16 +342,10 @@ EINRICHTEN = {
     # ════════════════════════════════════════════════════════════════════════
     "server": {
         "titel": "Configurare server pentru firme mici | WVM-IT",
-        "desc": "Server instalat: utilizatori, partajări, drepturi, copii de "
-                "siguranță. Preț după inventar, administrare de la 89 €/lună. "
-                "Cereți o ofertă.",
+        "desc": "Server instalat: utilizatori, partajări, drepturi, copii de siguranță. Prețul se stabilește după inventar și discuție, fără surprize. Cereți o ofertă.",
         "h1": "Un server configurat să reziste și peste cinci ani",
         "nav": "Configurare server",
-        "kurz": "WVM-IT instalează servere pentru firme mici și mijlocii: sistem de "
-                "operare, utilizatori și drepturi, partajări comune, copii de siguranță "
-                "și acces la distanță — în clădire sau virtual. Cât costă spunem după un "
-                "inventar, pentru că depinde de mărime, de echipamentele existente și de "
-                "cerințe. Supravegherea ulterioară începe de la 89 € pe lună.",
+        "kurz": "WVM-IT instalează servere pentru firme mici și mijlocii: sistem de operare, utilizatori și drepturi, partajări comune, copii de siguranță și acces la distanță – în clădire sau virtual. Costul se stabilește după un inventar detaliat, în funcție de dimensiune și cerințe. Supravegherea ulterioară se discută separat.",
         "intro": "Un server nu este o achiziție, ci o decizie pentru următorii cinci "
                  "ani. Cele mai multe greșeli nu apar la hardware, ci la structură: "
                  "partajări crescute istoric, drepturi pe care nimeni nu le mai poate "
@@ -439,14 +366,8 @@ EINRICHTEN = {
             "Acces la distanță prin VPN, acolo unde este necesar",
             "Documentație cu care poate lucra și un alt furnizor",
         ],
-        "nicht_h": "De ce nu există aici un preț fix",
-        "nicht_t": "Pentru că nu ar putea fi respectat. Dacă o firmă are nevoie de un "
-                   "server mic pentru fișiere sau de o mașină pe care rulează softul de "
-                   "specialitate pentru douăzeci de oameni, diferența este de zile. "
-                   "Numim prețul în scris după inventar — înainte de prima intervenție, "
-                   "și apoi rămâne valabil. Inventarul în sine se facturează pe oră "
-                   "(95 € la distanță, 120 € la fața locului plus deplasare)."
-                   "",
+        "nicht_h": "De ce prețul se stabilește aici la telefon",
+        "nicht_t": "Pentru că nu ar putea fi respectat. Dacă o firmă are nevoie de un server mic pentru fișiere sau de o mașină pe care rulează softul de specialitate pentru douăzeci de oameni, diferența este de zile. Numim prețul în scris după inventar — înainte de prima intervenție, și apoi rămâne valabil. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp.",
 
         "ablauf_h": "Cum decurge",
         "ablauf": [
@@ -478,10 +399,7 @@ EINRICHTEN = {
                   "de specialitate, servicii terminal sau mutarea datelor existente devin "
                   "două până la patru. Intervalul îl numim în ofertă."},
             {"q": "Trebuie să încheiem după aceea un contract de administrare?",
-             "a": "Nu. Primiți documentația și datele de acces și puteți lucra cu ele sau "
-                  "însărcina pe altcineva. Dacă doriți supravegherea, începe de la 89 € "
-                  "pe lună — atunci vedem spațiul, încărcarea și copiile de siguranță "
-                  "eșuate înainte să observați dumneavoastră."},
+             "a": "Nu. Primiți documentația și datele de acces și puteți lucra cu ele sau însărcina pe altcineva. Dacă doriți supravegherea, începe — atunci vedem spațiul, încărcarea și copiile de siguranță eșuate înainte să observați dumneavoastră."},
             {"q": "Avem deja un server, dar nimeni nu se mai descurcă cu el.",
              "a": "Și acesta este un caz frecvent. Atunci la început stă un inventar al "
                   "celor care rulează și o evaluare sinceră: menținem, reinstalăm sau "
@@ -497,23 +415,18 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "netzwerk": {
-        "titel": "Configurare rețea în birou — de la 890 € | WVM-IT",
-        "desc": "Router, switch, WiFi, imprimante în rețea și o rețea separată pentru "
-                "oaspeți — configurate și măsurate de la 890 €. Cereți o ofertă.",
+        "titel": "Configurare rețea în birou | WVM-IT",
+        "desc": "Router, switch, WiFi, imprimante în rețea și o rețea separată pentru oaspeți — configurate și măsurate. Cereți o ofertă.",
         "h1": "O rețea care ține în toată clădirea",
         "nav": "Configurare rețea",
-        "kurz": "WVM-IT configurează rețele de firmă de la 890 €: router și switch "
-                "configurate, WiFi amplasat și măsurat astfel încât să țină peste tot, "
-                "imprimante și unități de rețea integrate, o rețea separată pentru "
-                "oaspeți. Pentru cablare, hale și mai multe etaje calculăm după un "
-                "inventar — prețul de pornire acoperă un birou de mărime obișnuită.",
+        "kurz": "WVM-IT configurează rețele de firmă: router și switch configurate, WiFi amplasat și măsurat astfel încât să țină peste tot, imprimante și unități de rețea integrate, o rețea separată pentru oaspeți. Pentru cablare, hale și mai multe etaje calculăm după un inventar — prețul de pornire acoperă un birou de mărime obișnuită.",
         "intro": "Problemele de rețea sunt rareori zgomotoase. Se arată ca un video care "
                  "se blochează în sala de ședințe din spate, ca o imprimantă care dispare "
                  "de două ori pe săptămână și ca o casă de marcat conectată la WiFi-ul "
                  "oaspeților, pentru că atunci era la îndemână. Aproape întotdeauna este "
                  "același lucru: rețeaua a crescut și nu a fost niciodată planificată.",
 
-        "leistungen_h": "Ce include prețul de 890 €",
+        "leistungen_h": "Ce este inclus",
         "leistungen": [
             "Router și switch configurate — intervale de adrese, nume, adrese fixe "
             "pentru tot ce trebuie să rămână accesibil",
@@ -579,24 +492,14 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "firewall-vpn": {
-        "titel": "Configurare firewall și VPN — 690 € preț fix | WVM-IT",
-        "desc": "Firewall configurat și VPN pentru acces din deplasare: 690 € preț fix, "
-                "cu reguli pe care le înțelegeți și mai târziu. Cereți o ofertă.",
+        "titel": "Configurare firewall și VPN | WVM-IT",
+        "desc": "Firewall configurat și VPN pentru acces din deplasare: Preț stabilit la telefon. Cereți o ofertă.",
         "h1": "Firewall și VPN — acces din exterior, fără ușă deschisă",
         "nav": "Firewall și VPN",
-        "kurz": "WVM-IT configurează firewall și VPN pentru 690 €: reguli după principiul "
-                "că este închis ce nu este necesar, accese VPN pentru toți cei care "
-                "lucrează din deplasare și o privire de ansamblu scrisă despre ce regulă "
-                "există pentru ce. Se face la distanță, de îndată ce aparatul este "
-                "accesibil.",
-        "intro": "Cele mai multe firewalluri din firmele mici nu sunt configurate greșit, "
-                 "ci deloc: routerul furnizorului face ce făcea la scoaterea din cutie, "
-                 "iar la un moment dat cineva a configurat o redirecționare, ca "
-                 "contabilitatea să poată lucra de acasă. Acea unică redirecționare rămâne "
-                 "apoi deschisă ani de zile — și nimeni nu mai știe pentru ce era."
-                 "\n\nFirewallul și VPN-ul sunt două părți ale aceleiași uși: firewallul decide ce are voie să intre în rețeaua firmei, VPN-ul este drumul criptat pe care persoanele autorizate intră din exterior. E nevoie de ele în două situații. Cea mai frecventă este lucrul de acasă: angajații accesează de acasă sau din deplasare fișiere, programul de gestiune sau un server din birou — pentru asta este gândit prețul fix. Cea mai rară este legătura dintre două sedii, de exemplu birou și depozit; aceasta este o lucrare separată, pentru că depinde de aparatele de la ambele capete.",
+        "kurz": "Rețeaua, WLAN-ul, firewall-ul și VPN-ul depind de dimensiune și de clădire; prețul îl stabilim în discuție. Se face la distanță, de îndată ce aparatul este accesibil.",
+        "intro": "Cele mai multe firewalluri din firmele mici nu sunt configurate greșit, ci deloc: routerul furnizorului face ce făcea la scoaterea din cutie, iar la un moment dat cineva a configurat o redirecționare, ca contabilitatea să poată lucra de acasă. Acea unică redirecționare rămâne apoi deschisă ani de zile — și nimeni nu mai știe pentru ce era.\n\nFirewallul și VPN-ul sunt două părți ale aceleiași uși: firewallul decide ce are voie să intre în rețeaua firmei, VPN-ul este drumul criptat pe care persoanele autorizate intră din exterior. E nevoie de ele în două situații. Cea mai frecventă este lucrul de acasă: angajații accesează de acasă sau din deplasare fișiere, programul de gestiune sau un server din birou — pentru asta este gândit prețul stabilit din timp. Cea mai rară este legătura dintre două sedii, de exemplu birou și depozit; aceasta este o lucrare separată, pentru că depinde de aparatele de la ambele capete.",
 
-        "leistungen_h": "Ce include prețul de 690 €",
+        "leistungen_h": "Ce include costul, care se stabilește în urma unei scurte discuții, adaptat nevoilor și bugetului dumneavoastră. Pentru detalii sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
         "leistungen": [
             "Firewall configurat: închis ca punct de plecare, deschis doar ce este necesar",
             "Redirecționările existente puse în ordine — fiecare pe care nimeni nu o "
@@ -637,11 +540,11 @@ EINRICHTEN = {
         "faq_h": "Întrebări frecvente",
         "faq": [
             {"q": "Care este diferența dintre firewall și VPN?",
-             "a": "Firewallul reglează ce are voie să intre în rețeaua firmei și să iasă din ea; VPN-ul este un acces criptat prin care persoanele autorizate intră din exterior. Unul fără celălalt este doar o jumătate de soluție: un VPN fără reguli de firewall curate deschide prea mult, un firewall fără VPN obligă la redirecționări deschise. Pentru 690 € le configurăm pe amândouă împreună."},
+             "a": "Firewallul reglează ce are voie să intre în rețeaua firmei și să iasă din ea; VPN-ul este un acces criptat prin care persoanele autorizate intră din exterior. Unul fără celălalt este doar o jumătate de soluție: un VPN fără reguli de firewall curate deschide prea mult, un firewall fără VPN obligă la redirecționări deschise. Le configurăm împreună după o scurtă discuție, la un preț stabilit din timp, fără surprize."},
             {"q": "Au nevoie de VPN angajații care lucrează de acasă?",
              "a": "Dacă accesează ceva din birou — o unitate de rețea, programul de gestiune, un server —, da. Dacă firma lucrează doar cu servicii cloud precum Microsoft 365, nu e nevoie de VPN; atunci accesul este protejat de autentificarea în doi pași. Ce situație aveți clarificăm la inventarul inițial."},
             {"q": "Putem lega două sedii prin VPN?",
-             "a": "Da, dar aceasta nu face parte din cei 690 €. O legătură între sedii depinde de aparatele de la ambele capete și de liniile de acolo; vă spunem cât costă după ce ne uităm la ambele părți și înainte de orice comandă."},
+             "a": "Da, dar aceasta nu face parte din pachetul standard. O legătură între sedii depinde de aparatele de la ambele capete și de liniile de acolo; vă comunicăm prețul după o scurtă analiză a ambelor părți, fair și adaptat bugetului dumneavoastră."},
             {"q": "Avem deja un firewall în router.",
              "a": "Îl aveți și face strictul necesar. Diferența nu stă în existența lui, "
                   "ci în reguli: rețele separate, deschideri care se pot urmări și un VPN "
@@ -695,13 +598,8 @@ EINRICHTEN = {
             "Instruire, ca instalația să rămână utilizabilă și fără noi",
             "Conectarea la rețea, separată în siguranță de restul firmei",
         ],
-        "nicht_h": "De ce nu există aici un preț fix",
-        "nicht_t": "Pentru că nu există două instalații la fel. O instalație Loxone "
-                   "documentată cu douăzeci de actoare este altceva decât o instalație KNX "
-                   "crescută pe trei etaje, fără documente. Inventarul se facturează pe oră "
-                   "(120 € la fața locului plus deplasare); după aceea numim prețul în "
-                   "scris, și atunci rămâne valabil."
-                   "",
+        "nicht_h": "De ce prețul se stabilește aici la telefon",
+        "nicht_t": "Inventarul se facturează pe oră; după evaluare stabilim prețul în scris, valabil apoi. Pentru a afla costul, contactați-ne la +43 676 3808501 sau prin WhatsApp – vom discuta rapid și transparent.",
 
         "ablauf_h": "Cum decurge",
         "ablauf": [
@@ -727,7 +625,7 @@ EINRICHTEN = {
         "faq_h": "Întrebări frecvente",
         "faq": [
             {"q": "Se poate prelua o instalație Loxone existentă de la un alt programator?",
-             "a": "Da. Preluăm instalații Loxone și KNX existente, chiar dacă fostul programator sau instalator nu mai poate fi contactat. Mai întâi consemnăm ce este montat și cum este programat; evaluarea se facturează pe oră (120 € pe oră la fața locului plus deplasarea). Apoi comunicăm prețul în scris, iar atunci el este valabil."},
+             "a": "Da. Preluăm instalații Loxone și KNX existente, chiar dacă fostul programator sau instalator nu mai poate fi contactat. Mai întâi consemnăm ce este montat și cum este programat; evaluarea se facturează pe oră, prețul fiind stabilit din timp, fără surprize. Apoi comunicăm prețul în scris, iar atunci el este valabil."},
             {"q": "Nu avem documente și nici parolă pentru instalație.",
              "a": "Este cazul obișnuit la o preluare. În cele mai multe situații ajungem la "
                   "configurație prin aparatele înseși. Dacă într-adevăr nu se poate, o "
@@ -756,18 +654,10 @@ EINRICHTEN = {
     # ── Runda 2 (24.09.2026) ────────────────────────────────────────────────
     "datensicherung": {
         "titel": "Copie de siguranță: automată, verificată | WVM-IT",
-        "desc": "Configurare copie de siguranță: ce, unde, cât de des, cu test "
-                "real de restaurare. Preț la cerere; monitorizare de la "
-                "49 €/lună. Solicitați acum.",
+        "desc": "Costul se comunică la cerere; monitorizarea este stabilită în urma unei scurte discuții, adaptată bugetului dumneavoastră. Pentru informații suplimentare, sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
         "h1": "Copie de siguranță configurată să funcționeze la nevoie",
         "nav": "Copie de siguranță",
-        "kurz": "WVM-IT configurează copia de siguranță pentru firme astfel încât să "
-                "fie utilă la nevoie: clarificăm mai întâi ce se salvează, unde și "
-                "cât de des; apoi regula 3-2-1 (trei copii, două medii, una în "
-                "afara sediului) și un test real de restaurare. Prețul configurării "
-                "îl comunicăm după o evaluare, deoarece depinde de volumul de date, "
-                "sistemele existente și cerințe. Monitorizarea continuă începe de "
-                "la 49 € pe lună.",
+        "kurz": "WVM-IT configurează copia de siguranță pentru firme astfel încât să fie utilă la nevoie: clarificăm ce se salvează, unde și cât de des, apoi aplicăm regula 3‑2‑1 și testăm restaurarea. Costul configurării este comunicat după evaluare, în funcție de volumul de date și cerințe. Pentru o ofertă personalizată, contactați-ne la +43 676 3808501 sau prin WhatsApp.",
         "intro": "Aproape orice firmă are o copie de siguranță. Mult mai puține firme "
                  "știu când a rulat ultima oară, iar cele mai puține au încercat "
                  "vreodată să recupereze ceva din ea. Exact această lacună o închide "
@@ -790,15 +680,8 @@ EINRICHTEN = {
             "Notificare: cine află cum, dacă o salvare eșuează",
             "Documentație: ce se salvează unde, cât timp se păstrează, cine accesează",
         ],
-        "nicht_h": "De ce nu există un preț fix aici",
-        "nicht_t": "Pentru că nu ar rezista. Dacă o firmă salvează 200 GB de fișiere "
-                   "sau oglindește 8 TB de baze de date pe un al doilea sediu — este "
-                   "o diferență de zile și o diferență de echipamente. Vă comunicăm "
-                   "prețul în scris după evaluare — înainte de orice intervenție, "
-                   "iar apoi rămâne valabil. Evaluarea în sine se facturează la oră "
-                   "(95 € la distanță, 120 € la fața locului plus deplasare)."
-                   "Monitorizarea "
-                   "continuă a copiei configurate începe de la 49 € pe lună.",
+        "nicht_h": "De ce prețul se stabilește aici la telefon",
+        "nicht_t": "Vă comunicăm costul în scris după evaluare – înainte de orice intervenție, iar apoi rămâne valabil. Evaluarea se facturează pe oră, iar monitorizarea continuă este stabilită în urma unei scurte discuții, adaptată bugetului. Pentru detalii, sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
 
         "ablauf_h": "Cum se desfășoară",
         "ablauf": [
@@ -836,11 +719,7 @@ EINRICHTEN = {
                   "sau salvări inițiale mari, durează două până la cinci zile. "
                   "Cadrul îl comunicăm în ofertă."},
             {"q": "Care este diferența față de mentenanța curentă?",
-             "a": "Configurarea este o singură dată — răspunde la întrebarea „cine "
-                  "o configurează corect”. Monitorizarea continuă de la 49 € pe "
-                  "lună răspunde la întrebarea „cine observă când salvarea eșuează "
-                  "mâine”. Cele două se completează, dar nu se condiționează: "
-                  "configurăm și dacă doriți să monitorizați dumneavoastră."},
+             "a": "Configurarea este o singură dată — răspunde la întrebarea „cine o configurează corect”. Monitorizarea continuă, preț după scurtă discuție fair și adaptat bugetului, răspunde la întrebarea „cine observă când salvarea eșuează mâine”. Cele două se completează, dar nu se condiționează: configurăm și dacă doriți să monitorizați dumneavoastră."},
             {"q": "Cum stă situația cu GDPR și protecția datelor?",
              "a": "Copia de siguranță face parte din registrul activităților de "
                   "prelucrare: ce se salvează unde, cât timp se păstrează, cine "
@@ -862,13 +741,7 @@ EINRICHTEN = {
                 "Preț la cerere. Solicitați acum.",
         "h1": "Mutare IT în noul birou — planificată, nu improvizată",
         "nav": "Mutare IT",
-        "kurz": "WVM-IT însoțește mutarea IT în noul birou: serverul, rețeaua și "
-                "stațiile de lucru sunt evaluate în prealabil, planificate cu o "
-                "listă, demontate și montate în ziua mutării și testate în prima "
-                "zi de lucru. Componente din catalog: configurare stație 190 € pe "
-                "post, configurare rețea și Wi-Fi de la 890 €, intervenție la "
-                "fața locului 120 € pe oră plus deplasare. Prețul total depinde "
-                "de amploare și este comunicat în scris după evaluare.",
+        "kurz": "WVM-IT însoțește mutarea IT în noul birou: serverul, rețeaua și stațiile de lucru sunt evaluate, planificate, demontate și montate în ziua mutării și testate în prima zi de lucru. Costul total depinde de amploarea proiectului și este comunicat în scris după evaluare. Pentru o discuție rapidă, sunați la +43 676 3808501 sau contactați-ne pe WhatsApp.",
         "intro": "O mutare de birou pică de obicei în aceeași zi cu o sărbătoare — "
                  "nu la propriu, dar așa se simte: rafturile au ajuns mai repede în "
                  "camion decât în plan, iar la noul sediu linia de internet vine cu "
@@ -895,15 +768,8 @@ EINRICHTEN = {
             "După aceea: documentația nouă, ca o mutare sau o preluare ulterioară "
             "să nu înceapă de la zero",
         ],
-        "nicht_h": "De ce nu există un preț fix aici",
-        "nicht_t": "Pentru că nu ar rezista. Douăzeci de stații pe un etaj sunt "
-                   "altceva decât șaizeci pe trei etaje cu mutarea serverului "
-                   "peste noapte. Comunicăm prețul în scris după evaluarea sediului "
-                   "vechi și inspecția celui nou — cu componentele catalogului "
-                   "(configurare stație 190 € pe post, rețea de la 890 €, "
-                   "intervenție la fața locului 120 € pe oră plus deplasare). "
-                   "Evaluarea în sine se facturează la oră."
-                   "",
+        "nicht_h": "De ce prețul se stabilește aici la telefon",
+        "nicht_t": "Comunicăm costul în scris după evaluarea sediului vechi și inspecția celui nou, ținând cont de dimensiunea și complexitatea mutării. Evaluarea se facturează pe oră, iar prețul final este stabilit în urma unei scurte convorbiri. Pentru informații, sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
 
         "ablauf_h": "Cum se desfășoară",
         "ablauf": [
@@ -932,7 +798,7 @@ EINRICHTEN = {
         "faq_h": "Întrebări frecvente",
         "faq": [
             {"q": "Cum se poate muta rețeaua?",
-             "a": "La mutarea rețelei desenăm mai întâi planul rețelei: unde stă dulapul serverului, pe unde trec cablurile și unde sunt punctele de acces, imprimantele și terminalele. Liniile de la noul sediu trebuie comandate din timp (șase până la opt săptămâni). În ziua mutării montăm mai întâi serverul și echipamentele de rețea, apoi posturile de lucru, fiecare calculator la aceeași priză ca în plan. În prima zi de lucru testăm fiecare post. Pentru o rețea cu WLAN care trebuie construită de la zero calculăm de la 890 €."},
+             "a": "La mutarea rețelei desenăm mai întâi planul rețelei: unde stă dulapul serverului, pe unde trec cablurile și unde sunt punctele de acces, imprimantele și terminalele. Liniile de la noul sediu trebuie comandate din timp (șase până la opt săptămâni). În ziua mutării montăm mai întâi serverul și echipamentele de rețea, apoi posturile de lucru, fiecare calculator la aceeași poziție ca în plan. În prima zi de lucru testăm fiecare post. Prețul pentru o rețea WLAN construită de la zero se stabilește după o scurtă discuție, fair și adaptat bugetului."},
             {"q": "Cât timp de pregătire cere o mutare IT?",
              "a": "Pentru IT-ul propriu-zis sunt suficiente două-patru săptămâni; "
                   "termenul critic este comanda de internet și telefon la noul "
@@ -965,34 +831,10 @@ EINRICHTEN = {
 
 HUB = {
     "titel": "Configurare PC și IT: prețuri fixe, fără contract | WVM-IT",
-    "desc": "Post de lucru, înlocuire PC, Microsoft 365, server, rețea: sarcini "
-            "la preț fix, fără contract, post de lucru 190 €, "
-            "de regulă la distanță. Cereți o ofertă.",
-    "h1": "Sarcini individuale — preț fix, fără contract",
-    "kurz": "WVM-IT rezolvă sarcini IT individuale la preț fix, fără să fie nevoie de o "
-            "administrare curentă: configurarea unui post de lucru pentru 190 €, "
-            "înlocuirea unui calculator cu tot cu transferul datelor pentru 190 €. Cea "
-            "mai mare parte se face la distanță în toată Austria și Germania; o "
-            "intervenție la fața locului costă 120 € pe oră plus deplasare.",
-    "intro": "Nu orice firmă are nevoie de administrare IT curentă. Uneori pur și simplu "
-             "apare un calculator nou pe birou, începe un angajat nou sau un aparat "
-             "și-a încheiat viața. Pentru aceste cazuri există aici prețuri clare și "
-             "niciun contract — comandați o sarcină, o rezolvăm, gata. Dacă mai târziu "
-             "iese mai mult din asta, cu atât mai bine; necesar nu este. Un preț "
-             "fix este o sumă comunicată dinainte pentru o sarcină clar "
-             "delimitată: se aplică per aparat sau per intervenție, nu presupune "
-             "nici contract, nici administrare curentă, și acoperă munca făcută "
-             "la distanță. Dacă devine necesară o intervenție la fața locului — "
-             "pentru că un aparat trebuie mai întâi despachetat și conectat sau "
-             "pentru că nu există o conexiune la internet prin care să ruleze "
-             "sesiunea la distanță —, spunem asta dinainte și o facturăm cu "
-             "120 € pe oră plus deplasare. De aceea prețul stă aici fără un de "
-             "la în față: unde spunem preț fix, este preț fix.",
+    "desc": "Post de lucru, înlocuire PC, Microsoft 365, server, rețea: Preț stabilit la telefon. Cereți o ofertă.",
+    "h1": "Sarcini individuale — preț stabilit din timp, fără contract",
+    "kurz": "Asistența curentă depinde de numărul de posturi de lucru, servere și de amploare; prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Configurarea se stabilește din timp, fără surprize. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp.",
+    "intro": "Nu orice firmă are nevoie de administrare IT curentă. Uneori pur și simplu apare un calculator nou pe birou, începe un angajat nou sau un aparat și-a încheiat viața. Pentru aceste cazuri există aici prețuri clare și niciun contract — comandați o sarcină, o rezolvăm, gata. Dacă mai târziu iese mai mult din asta, cu atât mai bine; necesar nu este. Un preț stabilit din timp este o sumă comunicată dinainte pentru o sarcină clar delimitată: se aplică per aparat sau per intervenție, nu presupune nici contract, nici administrare curentă, și acoperă munca făcută la distanță. Dacă devine necesară o intervenție la fața locului — pentru că un aparat trebuie mai întâi despachetat și conectat sau pentru că nu există o conexiune la internet prin care să ruleze sesiunea la distanță —, spunem asta dinainte și o facturăm plus deplasare. De aceea prețul stă aici fără un de la în față: unde spunem preț stabilit din timp, este preț stabilit din timp.",
     "abgrenzung_h": "Și dacă totuși ar trebui să fie ceva curent?",
-    "abgrenzung_t": "Atunci paginile de servicii sunt locul potrivit. Acolo este vorba "
-                    "de administrare care continuă: supravegherea posturilor de lucru "
-                    "și a serverelor, verificarea copiilor de siguranță, "
-                    "disponibilitate când ceva se oprește. Începe de la 29 € per post "
-                    "de lucru și lună și este altceva decât o sarcină individuală — de "
-                    "aceea are pagini proprii.",
+    "abgrenzung_t": "Atunci paginile de servicii sunt locul potrivit. Acolo este vorba de administrare care continuă: supravegherea posturilor de lucru și a serverelor, verificarea copiilor de siguranță, disponibilitate când ceva se oprește. Începe de lucru și lună și este altceva decât o sarcină individuală — de aceea are pagini proprii.",
 }

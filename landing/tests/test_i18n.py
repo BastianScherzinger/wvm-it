@@ -7,6 +7,8 @@ Ausnahme , die drei rein deutschen Silos (Fachbeiträge, Glossar, Checklisten).
 Hinweis (EN/RO dürfen von DE erben) und ÜBERZÄHLIGE Schlüssel als Fehler , diese
 Tests übernehmen genau diese Unterscheidung.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 from django.test import SimpleTestCase
 
 from landing import i18n
@@ -69,6 +71,7 @@ class SprachpaketeTest(SimpleTestCase):
                 self.assertEqual(leer, set(),
                                  f"{lang}.py hat leere Textwerte bei: {sorted(leer)[:10]}")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_gemergte_pakete_haben_keine_leeren_werte_mehr(self):
         """Nach dem Deep-Merge (PACKS) darf keine Lücke mehr sichtbar sein , das
         ist der ganze Sinn des Merges: EN/RO erben von DE, statt leer zu bleiben."""

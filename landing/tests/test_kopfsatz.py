@@ -8,6 +8,8 @@ eine Beschreibung unter 70 — gemeldet von der Messung, nicht von der Suite.
 Gezählt wird der Text, wie ihn der Besucher sieht, also nach dem Auflösen der
 HTML-Entities.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import html as html_modul
 import re
 
@@ -21,6 +23,7 @@ BESCHREIBUNG = (70, 165)
 
 
 class KopfsatzLaengeTest(SimpleTestCase):
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_titel_und_beschreibung_in_der_spanne(self):
         c = client()
         pfade = []

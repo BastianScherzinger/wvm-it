@@ -16,6 +16,8 @@ den eigenen Seiten. Festgehalten wird:
 4. Die Startseite bleibt unter 1.500 Elementen (Overview-Regel PF30) — der Block
    ist deshalb bewusst ohne Symbole gebaut.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import re
 from html.parser import HTMLParser
 
@@ -75,6 +77,7 @@ class HostingBandTest(SimpleTestCase):
         # der gekennzeichnete Partnerlink (eigener Test unten).
         self.assertEqual(html.count("domaintechnik.at"), 1)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_preise_aus_dem_katalog(self):
         block = _block(_util.client().get("/").content.decode())
         self.assertIn(f"ab {_ANGEBOT_INDEX['domain']['yr']} €/Jahr", block)

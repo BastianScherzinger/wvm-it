@@ -13,10 +13,10 @@ BRANCHEN = {
 
     "steuerberater-kanzleien": {
         "nav": "Tax & law practices",
-        "titel": "IT support for tax practices in Austria, from €29 | WVM-IT",
-        "desc": "IT support for practices: DATEV environment, client separation, retention periods, verified backups, from €29 per workstation. Request a quote today.",
+        "titel": "IT support for tax practices in Austria | WVM-IT",
+        "desc": "IT support for practices: DATEV environment, client separation, retention periods, verified backups. Request a quote today.",
         "h1": "IT support for tax advisers and law practices",
-        "kurz": "WVM-IT looks after the IT of tax, law and audit practices in Austria and Germany: workstations, the DATEV or practice-software environment, client data and the backups behind it. Ongoing support costs from €29 per workstation and month, the one-off IT security check from €490. Work is done mostly by remote maintenance — in a practice that is the only route that does not interrupt the work.",
+        "kurz": "WVM-IT looks after the IT of tax, law and audit practices in Austria and Germany: workstations, the DATEV or practice-software environment, client data and the backups behind it. The IT security check is agreed upfront, no surprises. Work is done mostly by remote maintenance — in a practice that is the only route that does not interrupt the work.",
         "intro": "In a practice, IT is not a tool but the archive. What sits on the servers is other people's assets in numerical form — and it is subject to deadlines nobody can suspend. That gives technology a different role than in a business that switches the computers off at night: it has to work demonstrably, not just apparently.",
         "anders_h": "What is different in a practice",
         "anders": [
@@ -38,9 +38,9 @@ BRANCHEN = {
         "software_h": "Practice software and what it assumes",
         "software_t": "DATEV, BMD, RZL and comparable systems almost always run via a terminal server or a central installation. We do not operate the specialist software itself — the vendors and their partners do that — but everything underneath it: server, Windows version, permissions, network, backups, printers and secure external access. We state that boundary in advance rather than explaining it during an incident.",
         "risiko_h": "Where it usually starts in practices",
-        "risiko_t": "Not with an attack but with habit: one shared login because it is quicker. A backup on a disk in the same room. An unencrypted laptop holding client data that travels to the home office. The former employee whose account is still active. Every one of these is fixed in an afternoon — but only once somebody writes it down. That is exactly what the IT security check (from €490) is: an audit with a written report and a list sorted by urgency.",
+        "risiko_t": "Not with an attack but with habit: one shared login because it is quicker. A backup on a disk in the same room. An unencrypted laptop holding client data that travels to the home office. The former employee whose account is still active. Every one of these is fixed in an afternoon — but only once somebody writes it down. That is exactly what the IT security check is: an audit with a written report and a list sorted by urgency.",
         "preis_h": "What it costs",
-        "preis_t": "Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. The one-off IT security check costs from €490 and ends with a written report. Ad-hoc help without a contract is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT.",
+        "preis_t": "Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. The IT security check is agreed upfront, no surprises. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
         "faq": [
             {"q": "Do you look after the DATEV environment itself?",
              "a": "We run everything underneath the specialist software: server, terminal server, Windows, permissions, network, backups, printers and external access. The specialist software itself stays with the vendor or its partner — that is not an excuse but a clean boundary. We state it up front so that during an incident it is clear who touches which part, and we liaise directly with the vendor's support where needed."},
@@ -57,10 +57,10 @@ BRANCHEN = {
 
     "handwerk-baugewerbe": {
         "nav": "Trades & construction",
-        "titel": "IT for trades and construction in Austria, from €29 | WVM-IT",
-        "desc": "IT for trades and construction: rugged devices for site, time tracking, trade software, photo records, from €29 per workstation. Get in touch today.",
+        "titel": "IT for trades and construction in Austria | WVM-IT",
+        "desc": "IT for trades and construction: rugged devices for site, time tracking, trade software, photo records. Get in touch today.",
         "h1": "IT for trades businesses and the construction sector",
-        "kurz": "WVM-IT looks after the IT of trades and construction firms in Austria and Germany: office workstations, servers, trade software, mobile devices on site and the link between them. Ongoing support costs from €29 per workstation and month; a measured network with Wi-Fi for workshop and store starts at €890. Day-to-day work runs by remote maintenance; building and surveying happen on site.",
+        "kurz": "WVM-IT looks after the IT of trades and construction firms in Austria and Germany: office workstations, servers, trade software, mobile devices on site and the link between them. Network, Wi-Fi, firewall and VPN depend on size and building; we clarify the price in a call. Day-to-day work runs by remote maintenance; building and surveying happen on site.",
         "intro": "In the trades, half the business does not work where the IT sits. Two or three people handle quotes, invoices and appointments in the office; outside there are fitters with a phone, a tablet and a connection that on some days simply is not there. The technology has to serve both sides — in a way that does not have anyone retyping everything in the evening.",
         "anders_h": "What is different from an office",
         "anders": [
@@ -82,16 +82,16 @@ BRANCHEN = {
         "software_h": "Trade software and the link to the office",
         "software_t": "Whether you work with an industry package for measurement and costing or with spreadsheets: the interesting point is where data from outside reaches the office. That is exactly where duplicate entry appears — hours on slips of paper, photos on private phones, delivery notes in the glove box. We look at those handovers and close them before discussing new software. Frequently no software is missing, only a working connection and a clear filing structure.",
         "risiko_h": "The most expensive failure in the trades",
-        "risiko_t": "Not the server outage but the quiet data loss: a phone goes missing, and a week of photos with it. A fitter leaves, and nobody can get into his account. A laptop is stolen, unencrypted, with customer addresses on it. These are not IT disasters but everyday events — and all three can be solved beforehand: device management, encryption, a leaver process. The IT security check (from €490) walks through exactly these points and ends with a sorted list.",
+        "risiko_t": "Not the server outage but the quiet data loss: a phone goes missing, and a week of photos with it. A fitter leaves, and nobody can get into his account. A laptop is stolen, unencrypted, with customer addresses on it. These are not IT disasters but everyday events — and all three can be solved beforehand: device management, encryption, a leaver process. The IT security check walks through exactly these points and ends with a sorted list. The price is clarified in a short conversation, fair and fitting your budget.",
         "preis_h": "What it costs",
-        "preis_t": "Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. Setting up network and Wi-Fi for a workshop or hall starts at €890; a newly configured workstation costs €190. Ad-hoc help is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT.",
+        "preis_t": "Ongoing support is tailored to the number of workstations, servers and backup needs, with pricing agreed upfront, no surprises. Managed servers, monitored backups and network setups are priced after a brief discussion. Ad‑hoc help and on‑site work are also quoted in a short call. Call +43 676 3808501 or WhatsApp for a quick, fair estimate.",
         "faq": [
             {"q": "Our order emails end up in spam. What can we do?",
              "a": "Usually the sender details of the domain are wrong: if the entries for SPF, DKIM and DMARC are missing, recipients rate your emails as suspicious. We check this, add the entries and test sending. This works by remote support, without anyone at the business having to wait."},
             {"q": "What does IT support for tradespeople include?",
              "a": "Updates of the office PCs run outside working hours, the backup is checked daily and a restore is tried out at intervals. New employees get their account, departing ones lose it the same day. For faults you send a photo of the error message by WhatsApp or call; we solve most of it by remote support and replace hardware on site within our service area."},
             {"q": "What does IT support cost for a trades business with four office PCs?",
-             "a": "Ongoing support costs €29 per workstation and month, so four times €29 for four office PCs. On request the monitored backup adds €49 per month. Many small businesses need no server of their own; if you do, €89 per month is added. Help outside the support costs €95 per hour by remote support. All prices are guide prices, net plus VAT."},
+             "a": "Ongoing support is priced per workstation and month, with additional options such as monitored backups or server hosting discussed individually. Remote assistance outside the support package is billed after a quick chat to determine the effort required. All figures are provided after a short conversation, with a firm agreement up front, no surprises. Call +43 676 3808501 or send a WhatsApp message to learn more."},
             {"q": "Our Wi-Fi does not reach the workshop. Is a repeater enough?",
              "a": "Usually not. A repeater halves the available bandwidth and transmits on the same channel as the device it is meant to extend, so the two interfere. In a workshop with metal racking and machines the answer is nearly always a survey, a second access point on its own cable and clean channel planning. That costs once and then holds."},
             {"q": "Can our fitters work without a signal?",
@@ -108,9 +108,9 @@ BRANCHEN = {
     "arztpraxen-therapie": {
         "nav": "Medical & therapy practices",
         "titel": "IT support for medical and dental practices | WVM-IT",
-        "desc": "IT support for medical and dental practices: from €29/month per workstation, security check from €490. Remote maintenance, no downtime. Get a quote.",
+        "desc": "IT support for medical and dental practices: tailored pricing discussed in a short conversation. Remote maintenance, no downtime. Get a quote.",
         "h1": "IT for medical, dental and therapy practices",
-        "kurz": "WVM-IT looks after the IT of medical, dental and therapy practices in Austria and Germany: workstations, the practice management environment, separate networks for medical devices, access rights and the backups behind them. The one-off IT security check costs from €490, ongoing support from €29 per workstation and month. Work is done by remote maintenance — in a practice that is the only route that does not halt the consulting hour.",
+        "kurz": "WVM‑IT looks after the IT of medical, dental and therapy practices in Austria and Germany: workstations, practice management systems, separate networks for medical devices, access rights and backups. The one‑off IT security check and ongoing support are priced after a brief chat, with a clear agreement up front, no surprises. Work is done by remote maintenance — the only way that doesn’t halt consulting hours.",
         "intro": "A practice has two properties that are demanding in combination: it processes the most sensitive category of data there is, and it cannot stand still between eight and twelve. Together that means technology here does not need to be spectacular but reliably dull — and that every change happens outside consulting hours.",
         "anders_h": "What is different in a practice",
         "anders": [
@@ -132,9 +132,9 @@ BRANCHEN = {
         "software_h": "Practice management software and its limits",
         "software_t": "The specialist software stays with its vendor — we run everything underneath: servers, workstations, network, permissions, backups, printers and card readers. We draw that line in advance because it decides who gets called during an incident. For connections to telematics or billing infrastructure we follow the vendor's specifications strictly rather than inventing a variant of our own.",
         "risiko_h": "The most common finding in practices",
-        "risiko_t": "One shared login for the whole team, because it is quicker at reception. That makes every log worthless — you can show that a record was opened, but not by whom. The second common finding: a device that has sat on the same network as the workstations for years and no longer receives updates. Both are solvable without new hardware. The IT security check (from €490) examines exactly these points and delivers a list sorted by urgency, not by effort.",
+        "risiko_t": "One shared login for the whole team, because it is quicker at reception. That makes every log worthless — you can show that a record was opened, but not by whom. The second common finding: a device that has sat on the same network as the workstations for years and no longer receives updates. Both are solvable without new hardware. The IT security check examines exactly these points and delivers a prioritized list. Pricing is clarified in a short conversation, fair to your budget.",
         "preis_h": "What it costs",
-        "preis_t": "The one-off IT security check costs from €490 and ends with a written report. Ongoing support costs from €29 per workstation and month, a managed server from €89 per month, monitored backups from €49 per month. Setting up a firewall and separate networks starts at €690. Ad-hoc help is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT.",
+        "preis_t": "The one‑off IT security check is followed by a written report; ongoing support, managed servers, monitored backups and firewall setups are all priced after a brief discussion. All costs are agreed upfront, no surprises. For ad‑hoc help or on‑site work we provide a clear quote in a short call. Call +43 676 3808501 or WhatsApp to discuss your needs.",
         "faq": [
             {"q": "What about the card reader for the e-card in the practice network?",
              "a": "The connection to the e-card system runs through the health information network of the social insurance and an access-network provider, not through us; reader and router come from there. We replace neither connection nor device. We look after the practice network around it: administration, guest Wi-Fi and reception devices cleanly separated, a network port and power at the reader, remote support only with your approval. For device type and terms ask the social insurance or your provider."},
@@ -153,10 +153,10 @@ BRANCHEN = {
 
     "hotellerie-gastronomie": {
         "nav": "Hotels & hospitality",
-        "titel": "Wi-Fi planning for hotels in Austria, from €890 | WVM-IT",
-        "desc": "IT for hotels and restaurants: guest Wi-Fi separated from operations, POS, booking links, seasonal load. Network from €890. Request a quote now.",
+        "titel": "Wi‑Fi planning for hotels in Austria | WVM‑IT",
+        "desc": "IT for hotels and restaurants: guest Wi‑Fi separated from operations, POS, booking links, seasonal load. Pricing discussed in a short call. Request a quote.",
         "h1": "IT, Wi-Fi and technology for hotels and hospitality",
-        "kurz": "WVM-IT plans and looks after the technology of hotels, guesthouses and hospitality businesses in Austria and Germany: guest Wi-Fi separated from the operational network, POS systems, booking connections, workstations and backups. A measured network with Wi-Fi starts at €890, ongoing support at €29 per workstation and month. Planning is done remotely; building and surveying happen on site.",
+        "kurz": "WVM-IT plans and looks after the technology of hotels, guesthouses and hospitality businesses in Austria and Germany: guest Wi-Fi separated from the operational network, POS systems, booking connections, workstations and backups. Network, Wi-Fi, firewall and VPN depend on size and building; we clarify the price in a call. Planning is done remotely; building and surveying happen on site.",
         "intro": "In hospitality, IT is part of the product. Guests rate the Wi-Fi the way they rate breakfast, and they do it publicly. At the same time the same line carries things that have nothing to do with the guest: point of sale, accounts, time tracking, cameras. Separating those two worlds cleanly is not a refinement but the foundation.",
         "anders_h": "What is different in hotels and hospitality",
         "anders": [
@@ -180,7 +180,7 @@ BRANCHEN = {
         "risiko_h": "The mistake that returns every summer",
         "risiko_t": "One more access point, because \"it does not reach at the back\". It transmits on the same channel as the existing one, the two interfere, and devices attach to the wrong one. After that the Wi-Fi is not better but worse — everywhere. A guest network that holds comes from a survey, a channel plan and access points on their own cables. That is effort once and then years of quiet, instead of one more device every summer.",
         "preis_h": "What it costs",
-        "preis_t": "Surveying, planning and setting up network and Wi-Fi starts at €890, firewall and separate networks at €690. Ongoing support costs from €29 per workstation and month, monitored backups from €49 per month. A website with an enquiry path starts at €350. Ad-hoc help is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT.",
+        "preis_t": "Network, Wi-Fi, firewall and VPN depend on size and building; we clarify the price in a call. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. The price of a website depends on scope and requirements and is clarified in a call. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
         "faq": [
             {"q": "How many access points does a thirty-room house need?",
              "a": "That can only be answered seriously after a survey — fabric, layout and materials matter more than the number of rooms. A lightweight new build needs considerably fewer than an old building with half-metre walls. We survey and then give you the number; any figure before that would be a guess."},
@@ -197,10 +197,10 @@ BRANCHEN = {
 
     "produktion-gewerbe": {
         "nav": "Manufacturing & industry",
-        "titel": "Network setup for factories in Austria, from €890 | WVM-IT",
-        "desc": "IT for manufacturing: network into the hall, scanners and terminals, separate machine networks, resilience, from €890. Request a quote today.",
+        "titel": "Network setup for factories in Austria | WVM-IT",
+        "desc": "IT for manufacturing: network into the hall, scanners and terminals, separate machine networks, resilience Request a quote today.",
         "h1": "IT and networks for manufacturing and industrial businesses",
-        "kurz": "WVM-IT plans and looks after the IT of manufacturing and industrial businesses in Austria and Germany: networks reaching into the hall, separate networks for machines, scanners and terminals, servers, workstations and backups. A measured hall network starts at €890, managed servers at €89 per month. Day-to-day work runs by remote maintenance; building and surveying happen on site.",
+        "kurz": "WVM-IT plans and looks after the IT of manufacturing and industrial businesses in Austria and Germany: networks reaching into the hall, separate networks for machines, scanners and terminals, servers, workstations and backups. The investment for a measured hall network and managed servers depends on the scope; we clarify the price in a short call, fair and tailored to your budget. Day-to-day work runs by remote maintenance; building and surveying happen on site.",
         "intro": "In a manufacturing business, IT does not stop at the office door. It carries on into the hall, the store, the machine — and different rules apply there: dust, metal, vibration, roller doors that change the radio picture every time they open. And a machine meant to run for ten years does not get replaced because an operating system has aged.",
         "anders_h": "What is different in manufacturing",
         "anders": [
@@ -224,7 +224,7 @@ BRANCHEN = {
         "risiko_h": "Where it gets expensive in manufacturing",
         "risiko_t": "A flat network. Office, production, machines and guests sit in the same segment because that is how it once started. As a result every device reaches every other — including the controller that no longer gets updates, and the supplier's remote access. Retrofitting the separation is work, but it rarely needs new hardware: in most businesses the existing switches can already do it, it was simply never configured.",
         "preis_h": "What it costs",
-        "preis_t": "Surveying, planning and setting up network and Wi-Fi for hall and store starts at €890, firewall and separate networks at €690. A managed server costs from €89 per month, monitored backups from €49 per month, ongoing support from €29 per workstation and month. Ad-hoc help is billed at €95 per hour, on-site work at €120 per hour plus travel. Guide prices, net plus VAT.",
+        "preis_t": "Surveying, planning and setting up network and Wi-Fi for hall and store, firewall and separate networks, managed servers, and monitored backups are scoped individually; fixed fees are agreed upfront with no surprises. Ongoing support, ad-hoc help, and on-site work are billed based on actual effort; rates are clarified in a short conversation. Call +43 676 3808501 or WhatsApp for a fair quote tailored to your budget.",
         "faq": [
             {"q": "Our machine controller runs on an old Windows version. What now?",
              "a": "Do not replace it — segregate it. A system without updates is manageable as long as it sits in its own network segment and may only talk to what it needs to talk to. That is the usual route in manufacturing and as a rule considerably cheaper than a machine upgrade that was never designed for."},
@@ -241,10 +241,10 @@ BRANCHEN = {
 
     "vereine-gemeinden": {
         "nav": "Associations & municipalities",
-        "titel": "IT for associations in Austria, €95 per hour | WVM-IT",
-        "desc": "IT for associations and municipalities: handovers at committee change, small budgets, website, hall technology, billed at €95 per hour. Get in touch now.",
+        "titel": "IT for associations in Austria | WVM-IT",
+        "desc": "IT for associations and municipalities: handovers, website, hall technology. Price clarified in a quick call, fair and budget-friendly. Get in touch now.",
         "h1": "IT for associations, municipalities and volunteer organisations",
-        "kurz": "WVM-IT supports associations, municipal bodies and volunteer-run organisations in Austria and Germany: accounts and credentials that survive a change of committee, website and email, backups, plus technology in halls and meeting rooms. We usually bill by the hour at €95 rather than through an ongoing contract — that fits a budget decided once a year.",
+        "kurz": "WVM-IT supports associations, municipal bodies and volunteer‑run organisations in Austria and Germany: accounts and credentials that survive a change of committee, website and email, backups, plus technology in halls and meeting rooms. The cost depends on the number of hours and the specific services required; we discuss it in a short call, fair and fitting your budget. Call +43 676 3808501 or WhatsApp for a quick chat.",
         "intro": "In an association nobody looks after the technology full time. There is someone who can do it, and they do — until they hand over the office. More is lost at that point than through any technical defect: passwords, domain access, membership lists, the account with the email provider. Not through ill will, but because it was never written down.",
         "anders_h": "What is different for associations and municipalities",
         "anders": [
@@ -268,7 +268,7 @@ BRANCHEN = {
         "risiko_h": "The change of committee is the real emergency",
         "risiko_t": "Not the outage but the handover. If the outgoing secretary held the domain on a private account, was the only one who knew the email password and kept the membership list on his own computer, the new committee starts from zero — and in the worst case the association's address is gone after the next renewal. That can be sorted out in an afternoon while both sides are still talking. Afterwards it becomes laborious to impossible.",
         "preis_h": "What it costs",
-        "preis_t": "For associations we usually bill by effort: €95 per hour, on-site work €120 per hour plus travel. Where ongoing support makes sense it costs from €29 per workstation and month, hosting with SSL and backups from €15 per month, maintenance and updates from €39 per month. A simple website starts at €350. Guide prices, net plus VAT — every piece of work is preceded by an estimate, so the audit has nothing to query.",
+        "preis_t": "For associations we bill according to effort and travel, with on‑site work priced after a brief discussion. Ongoing support is tailored to the number of workstations, hosting needs, SSL, backups and maintenance, each clarified in a short conversation. A simple website is scoped and priced after we understand your requirements. All work starts with an estimate, so there are no surprises. Reach us by phone or WhatsApp to set up the call.",
         "faq": [
             {"q": "We are volunteers with almost no budget. Is a conversation worth it?",
              "a": "Yes, and the outcome is usually smaller than you expect. The greatest benefit does not come from new technology but from order: putting credentials in the organisation's name, documenting a handover, verifying the backup. That is a few hours, not an ongoing cost — and afterwards the organisation survives the next change of committee without losses."},

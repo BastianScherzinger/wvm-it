@@ -36,11 +36,11 @@ VIDEOS = {
         "name": "Fernwartung in ganz Österreich",
         "beschreibung": ("PC streikt? WVM-IT schaltet sich per Fernwartung auf Ihren Rechner, in ganz Österreich. "
                          "Sie sehen alles mit und können den Zugriff jederzeit beenden. "
-                         "95 € je Stunde netto. Erreichbar " + zeiten.LANG["de"] + "."),
+                         "Preis im Gespräch. Erreichbar " + zeiten.LANG["de"] + "."),
         # Wortlaut = eingeblendeter Bildtext der Fassung 4 (Einzelbilder gelesen 22.10.2026).
         "aria": ("Stummer Kurzfilm mit eingeblendeten Texten: PC streikt? Fernwartung, ganz Österreich. "
                  "Sie sehen alles mit: Zugriff erlaubt, Ursache gefunden, Lösung umgesetzt. Jederzeit beenden. "
-                 "Läuft wieder. Fernwartung: 95 € je Stunde, netto. Auch abends, auch samstags: "
+                 "Läuft wieder. Fernwartung in ganz Österreich. Auch abends, auch samstags: "
                  + zeiten.KURZ["de"] + ". Fernwartung in ganz Österreich: +43 676 3808501, www.wvm-it.tech."),
         "unterschrift": "Fernwartung in ganz Österreich · 25 Sekunden, ohne Ton",
         # Ortsseiten: Ortsbezug zwischen Titel und Dauer („… · auch in Wels · 25 Sekunden, ohne Ton“)
@@ -59,12 +59,12 @@ VIDEOS = {
         "beschreibung": ("Die Meldung „Ihr Konto ist vorübergehend gesperrt, um eine nicht autorisierte "
                          "Verwendung zu verhindern“ und was Sie selbst tun können: nicht weiter probieren, "
                          "die Meldung lesen, den Administrator fragen. Wenn das nicht reicht, hilft WVM-IT "
-                         "per Fernwartung in ganz Österreich, 95 € je Stunde netto, " + zeiten.INLINE["de"] + "."),
+                         "per Fernwartung in ganz Österreich, Preis im Gespräch, " + zeiten.INLINE["de"] + "."),
         # Wortlaut = eingeblendeter Bildtext der Fassung 4 (Einzelbilder gelesen 22.10.2026).
         "aria": ("Stummer Kurzfilm mit eingeblendeten Texten: Konto gesperrt? Bei Microsoft 365. Nichts geht mehr: "
                  "E-Mails, Termine, Dateien gesperrt. Erst selbst prüfen: nicht weiter probieren, Meldung "
                  "genau lesen, Administrator fragen. Reicht das nicht? Wir helfen per Fernwartung, "
-                 "ganz Österreich. Was es kostet: 95 € je Stunde, netto. Rufen Sie an: +43 676 3808501, "
+                 "ganz Österreich. Was es kostet, klären wir am Telefon. Rufen Sie an: +43 676 3808501, "
                  "www.wvm-it.tech, " + zeiten.INLINE["de"] + "."),
         "unterschrift": "Konto gesperrt? Drei Schritte · 31 Sekunden, ohne Ton",
         "klasse": "vid-hoch vid-seite",
@@ -105,12 +105,12 @@ def fassung(schluessel, ort=None, startseite=False):
         return (f"Fernwartung für Betriebe in {ort}: so läuft sie ab",
                 f"Kurzfilm, 25 Sekunden, ohne Ton: So betreut WVM-IT aus Lenzing Betriebe in {ort} per "
                 "Fernwartung. Sie erlauben den Zugriff, sehen alles mit und können ihn jederzeit beenden. "
-                "95 € je Stunde netto. Erreichbar " + zeiten.LANG["de"] + ".")
+                "Preis im Gespräch. Erreichbar " + zeiten.LANG["de"] + ".")
     if schluessel == "fernwartung" and startseite:
         return ("WVM-IT: EDV-Betreuung per Fernwartung in 4 Schritten",
                 "Kurzfilm, 25 Sekunden, ohne Ton: Wie die EDV-Betreuung von WVM-IT per Fernwartung abläuft, "
                 "von der Freigabe über die Ursachensuche bis zur Lösung. Für Betriebe in ganz Österreich, "
-                "95 € je Stunde netto. Erreichbar " + zeiten.LANG["de"] + ".")
+                "Preis im Gespräch. Erreichbar " + zeiten.LANG["de"] + ".")
     return v["name"], v["beschreibung"]
 
 

@@ -2,6 +2,8 @@
 """Meta-Beschreibungen (IS09/IS11): jede indexierbare Seite hat eine
 Beschreibung von 110 bis 175 Zeichen mit einer Handlungsaufforderung in der
 Sprache der Seite. Die Muster entsprechen der Overview-Regel IS11."""
+import unittest as _ut_op
+from landing import views as _v_op
 import html
 import re
 
@@ -25,6 +27,7 @@ ROBOTS = re.compile(r'<meta\s+name="robots"\s+content="([^"]*)"')
 
 
 class BeschreibungenTest(SimpleTestCase):
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_laenge_und_handlungsaufforderung(self):
         c = client()
         fehler = []

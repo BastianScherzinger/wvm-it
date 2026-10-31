@@ -19,10 +19,10 @@ SEITEN = {
     # ══ EDV & IT ══════════════════════════════════════════════════════════════
     "edv-it-betreuung": {
         "nav": "EDV-Betreuung",
-        "titel": "EDV-Betreuung Österreich & Deutschland ab 29 €/Mt | WVM-IT",
-        "desc": "Externe IT-Abteilung für kleine Betriebe in Österreich und Deutschland: ab 29 €/Monat je Arbeitsplatz, Support 95 €/Std. per Fernwartung. Jetzt anfragen.",
+        "titel": "EDV-Betreuung Österreich & Deutschland | WVM-IT",
+        "desc": "Externe IT-Abteilung für kleine Betriebe in Österreich und Deutschland: Support per Fernwartung. Jetzt anfragen.",
         "h1": "EDV- und IT-Betreuung für Betriebe ohne eigene IT-Abteilung",
-        "kurz": "WVM-IT übernimmt die laufende EDV kleiner und mittlerer Betriebe in Österreich und Deutschland: Arbeitsplätze, Server, E-Mail, Drucker, Updates und Datensicherung. Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, einzelne Hilfe ohne Vertrag ab 95 € je Stunde. Wir melden uns an Werktagen innerhalb von 24 Stunden und arbeiten überwiegend per Fernwartung — der Weg zu Ihnen führt über eine gesicherte Verbindung statt über die Autobahn.",
+        "kurz": "WVM-IT übernimmt die laufende EDV kleiner und mittlerer Betriebe in Österreich und Deutschland: Arbeitsplätze, Server, E-Mail, Drucker, Updates und Datensicherung. Was die laufende Betreuung kostet, klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Einzelne Hilfe ohne Vertrag besprechen wir ebenfalls. Wir melden uns an Werktagen innerhalb von 24 Stunden und arbeiten überwiegend per Fernwartung — der Weg zu Ihnen führt über eine gesicherte Verbindung statt über die Autobahn.",
         "intro": "In den meisten Betrieben unter fünfzig Mitarbeitern gibt es keine IT-Abteilung. Es gibt jemanden, der sich „ein bisschen auskennt“ — und der eigentlich etwas anderes zu tun hätte. Solange nichts passiert, funktioniert das. Es fällt erst auf, wenn der Drucker im Büro streikt, während gleichzeitig die Angebote raus müssen, oder wenn nach einem Windows-Update ein Programm nicht mehr startet, das der ganze Betrieb braucht. Genau diese Lücke schließen wir: Sie bekommen eine Nummer, eine E-Mail-Adresse und einen festen Ansprechpartner, der weiß, wie Ihre Technik aufgebaut ist. Der Ablauf in einem Kleinbetrieb ist bewusst schlank gehalten — drei Schritte, damit kein Vertrag entsteht, bevor beide Seiten wissen, worauf sie sich einlassen. Zuerst ein kurzes Gespräch am Telefon (rund zwanzig Minuten), in dem wir uns anhören, wie viele Arbeitsplätze und Server im Haus sind, was heute stört und wer sich bisher gekümmert hat. Danach eine Bestandsaufnahme per Fernwartung oder — wenn ein Netz erst dokumentiert werden muss — vor Ort, an deren Ende Sie eine schriftliche Liste dessen bekommen, was heute da ist und was uns Sorgen macht. Erst dann ein Angebot mit Zahlen: was laufend kostet, steht als Monatsbetrag, was einmalig anfällt, als Summe. Lohnt sich etwas nicht, sagen wir das im Gespräch — auch, wenn dabei weniger für uns herauskommt. Die Übernahme läuft danach in Abschnitten (Sicherung zuerst, dann Server und Zugänge, dann die Arbeitsplätze) und stört den laufenden Betrieb bewusst nicht.",
         "problem_h": "Was in Kleinbetrieben ohne eigene IT schiefläuft",
         "probleme": [
@@ -47,7 +47,7 @@ SEITEN = {
             {"h": "Laufender Betrieb", "t": "Sie melden sich bei einer Stelle, wir kümmern uns. Updates und Sicherungen laufen im Hintergrund, einmal im Quartal sprechen wir darüber, was ansteht."},
         ],
         "preis_h": "Was das kostet",
-        "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Wer nur punktuell Hilfe braucht, zahlt 95 € je Stunde; Einsätze vor Ort kosten 120 € je Stunde zuzüglich Anfahrt. Alle Angaben sind Richtpreise, netto zzgl. USt. Die Betreuung läuft von Quartal zu Quartal, Kündigung mit einem Monat Frist zum Quartalsende. Drei Rechenbeispiele, in denen ausschließlich die Sätze aus dieser Preisliste stecken: ein Betrieb mit fünf Arbeitsplätzen und einem Server samt überwachter Datensicherung zahlt 5 × 29 € + 89 € + 49 € = 283 € im Monat. Bei zehn Arbeitsplätzen mit Server und Datensicherung sind es 10 × 29 € + 89 € + 49 € = 428 € im Monat. Bei zwanzig Arbeitsplätzen mit zwei Servern und Datensicherung ergibt dieselbe Rechnung 20 × 29 € + 2 × 89 € + 49 € im Monat — den Endbetrag lassen wir bewusst offen, weil er als einzelne Zahl auf keiner unserer Preisseiten steht und sich am Kostenrechner mit denselben Werten selbst nachrechnen lässt. Kommen Microsoft-365-Lizenzen dazu, zahlen Sie diese direkt an Microsoft; wir richten sie ein und rechnen die Einrichtung getrennt ab. Punktuelle Zusatzarbeiten außerhalb der Betreuung — etwa der Umzug eines Arbeitsplatzes oder das Einrichten eines neuen Druckers — laufen wie oben zu 95 € je Stunde per Fernwartung oder 120 € vor Ort.",
+        "preis_t": "Die laufende Betreuung und die Kosten für Server sowie Datensicherung werden individuell besprochen. Wer nur punktuell Hilfe braucht, dessen Anliegen klären wir ebenfalls in einem persönlichen Gespräch. Einsätze vor Ort werden nach Absprache durchgeführt. Ob fünf, zehn oder zwanzig Arbeitsplätze, mit oder ohne Server und überwachte Datensicherung: Den Preis für Ihren Betrieb nennen wir Ihnen nach einem kurzen Gespräch, fair und passend zu Ihrem Budget. Kommen Microsoft-365-Lizenzen dazu, zahlen Sie diese direkt an Microsoft; wir richten sie ein und rechnen die Einrichtung getrennt ab. Punktuelle Zusatzarbeiten außerhalb der Betreuung — etwa der Umzug eines Arbeitsplatzes oder das Einrichten eines neuen Druckers — werden individuell besprochen.",
         "ort_satz": "Vor Ort sind wir u. a. in <a href=\"/it-service/lenzing/\">Lenzing</a>, <a href=\"/it-service/voecklabruck/\">Vöcklabruck</a>, <a href=\"/it-service/gmunden/\">Gmunden</a>, <a href=\"/it-service/salzburg/\">Salzburg</a> und <a href=\"/it-service/linz/\">Linz</a>, per Fernwartung in ganz Österreich.",
         "faq": [
             {"q": "Ab wie vielen Arbeitsplätzen lohnt sich eine laufende IT-Betreuung?",
@@ -61,9 +61,9 @@ SEITEN = {
             {"q": "Was zählt bei Ihnen als Kleinbetrieb?",
              "a": "Als grober Rahmen alles bis etwa 20 Arbeitsplätzen an einem oder zwei Standorten — die typische EPU-, Handwerks-, Praxis- oder Kanzleigröße. Darüber wird die Betreuung meist förmlicher (feste Standards, breitere Dokumentation, mehrere Ansprechpartner); dafür haben wir eine <a href=\"/leistungen/it-betreuung-groessere-betriebe/\">eigene Seite für größere Betriebe</a>. Die Grenze ist nicht scharf: Ein 25-Arbeitsplatz-Betrieb mit einer einzigen Anwendung liegt oft näher an dieser Seite als ein 15er mit drei Standorten."},
             {"q": "Was kostet die IT-Betreuung für einen typischen Kleinbetrieb konkret?",
-             "a": "Rechenbeispiel für einen Betrieb mit fünf Arbeitsplätzen, einem Server und einer Datensicherung: 5 × 29 € + 89 € + 49 € = 283 € im Monat, netto zzgl. USt. Bei zehn Arbeitsplätzen mit Server und Sicherung sind es 428 € im Monat (10 × 29 € + 89 € + 49 €). Kommen Ihre Mitarbeiter mit Microsoft 365, kommt der Lizenzpreis von Microsoft dazu — den zahlen Sie direkt an Microsoft, wir richten nur ein."},
+             "a": "Betreuter Server und überwachte Datensicherung richten sich nach dem Umfang; den Preis klären wir im Gespräch. Kommen Ihre Mitarbeiter mit Microsoft 365, kommt der Lizenzpreis von Microsoft dazu — den zahlen Sie direkt an Microsoft, wir richten nur ein."},
             {"q": "Wir haben nur zwei bis drei Rechner — braucht das schon Betreuung?",
-             "a": "Selten. Unterhalb von etwa fünf Arbeitsplätzen ist die Abrechnung nach Aufwand ehrlicher: 95 € je Stunde per Fernwartung, ohne Vertrag, ohne Mindestlaufzeit. Für den einzelnen Fall gibt es <a href=\"/it-hilfe/\">/it-hilfe/</a>. Wir sagen Ihnen im Erstgespräch, welcher Weg für Ihre Größe günstiger ist — auch wenn dabei weniger für uns herauskommt."},
+             "a": "Selten. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Für den einzelnen Fall gibt es <a href=\"/it-hilfe/\">/it-hilfe/</a>. Wir sagen Ihnen im Erstgespräch, welcher Weg für Ihre Größe günstiger ist — auch wenn dabei weniger für uns herauskommt."},
         ],
         "cta_h": "Wo drückt es gerade?",
         "cta_t": "Beschreiben Sie in einem Satz, was nicht läuft. Wir antworten an Werktagen innerhalb von 24 Stunden mit einer ehrlichen Einschätzung — auch dann, wenn die Antwort lautet, dass es sich nicht lohnt.",
@@ -71,10 +71,10 @@ SEITEN = {
 
     "server-datensicherung": {
         "nav": "Server & Datensicherung",
-        "titel": "Server-Betreuung & Backup ab 49 €/Monat | WVM-IT",
-        "desc": "Server-Überwachung ab 89 €/Monat, geprüfte Datensicherung ab 49 €/Monat. Wir sehen den Ausfall, bevor der Betrieb steht. Jetzt Angebot anfordern.",
+        "titel": "Server-Betreuung & Backup | WVM-IT",
+        "desc": "Server-Überwachung und geprüfte Datensicherung. Wir sehen den Ausfall, bevor der Betrieb steht. Jetzt Angebot anfordern.",
         "h1": "Server-Betreuung und Datensicherung, die im Ernstfall hält",
-        "kurz": "WVM-IT aus Lenzing überwacht Firmenserver und betreibt die Datensicherung (täglich gesichert, jede Sicherung geprüft), Server-Betreuung ab 89 € im Monat, überwachte Datensicherung ab 49 € im Monat, per Fernzugriff in Österreich und Deutschland. Die Wiederherstellung wird regelmäßig getestet, damit die Sicherung im Ernstfall auch funktioniert.",
+        "kurz": "WVM-IT aus Lenzing überwacht Firmenserver und betreibt die Datensicherung (täglich gesichert, jede Sicherung geprüft), per Fernzugriff in Österreich und Deutschland. Die Wiederherstellung wird regelmäßig getestet, damit die Sicherung im Ernstfall auch funktioniert. Die Kosten für Server-Betreuung und Datensicherung besprechen wir individuell.",
         "intro": "Fast jeder Betrieb hat eine Datensicherung. Deutlich weniger Betriebe wissen, wann sie zuletzt gelaufen ist, und die wenigsten haben je versucht, etwas daraus zurückzuholen. Das fällt genau einmal auf — an dem Tag, an dem es darauf ankommt. Eine Sicherung, die noch nie zurückgespielt wurde, ist keine Sicherung, sondern eine Hoffnung. Wir behandeln sie deshalb wie einen Betriebsteil, der geprüft gehört, und nicht wie eine Einstellung, die irgendwann einmal gesetzt wurde. Eine Datensicherung ist in diesem Sinn eine geprüfte, vom Server getrennt aufbewahrte Kopie der Daten, die der Betrieb zum Weiterarbeiten braucht — geprüft heißt: Jeder Lauf wird kontrolliert, und die Wiederherstellung wird regelmäßig getestet. Eine Kopie, die auf einer Platte im selben Raum liegt und nie zurückgespielt wurde, erfüllt keine der beiden Bedingungen und ist deshalb keine Sicherung.",
         "problem_h": "Die vier Sätze, nach denen es meistens teuer wird",
         "probleme": [
@@ -99,7 +99,7 @@ SEITEN = {
             {"h": "Testen, nicht hoffen", "t": "Wir spielen regelmäßig Daten zurück und halten fest, wie lange es gedauert hat. Erst diese Zahl macht aus einer Sicherung eine belastbare Zusage."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Ein betreuter Server kostet ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Beides lässt sich mit der laufenden IT-Betreuung ab 29 € je Arbeitsplatz und Monat kombinieren. Einmalige Arbeiten — etwa eine Neuinstallation oder der Umzug auf neue Hardware — rechnen wir mit 95 € je Stunde ab, Vor-Ort-Einsätze mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Ein betreuter Server und die überwachte Datensicherung werden individuell besprochen. Beides lässt sich mit der laufenden IT-Betreuung kombinieren. Einmalige Arbeiten — etwa eine Neuinstallation oder der Umzug auf neue Hardware — werden nach Absprache abgerechnet, Vor-Ort-Einsätze nach Vereinbarung.",
         "faq": [
             {"q": "Wie oft wird gesichert?",
              "a": "Standard ist täglich, außerhalb der Arbeitszeiten. Bei Systemen, in denen laufend gearbeitet wird, sichern wir mehrmals täglich. Wie viel Datenverlust im schlimmsten Fall verkraftbar ist, legen wir vorher gemeinsam fest — daraus ergibt sich der Takt, nicht umgekehrt."},
@@ -116,10 +116,10 @@ SEITEN = {
 
     "netzwerk-wlan": {
         "nav": "Netzwerk & WLAN",
-        "titel": "Netzwerk & WLAN einrichten ab 890 € | WVM-IT",
-        "desc": "Netzwerk und WLAN ausgemessen, geplant und aufgebaut — ab 890 €, auch für Hallen und mehrere Etagen. Jetzt unverbindlich anfragen.",
+        "titel": "Netzwerk & WLAN einrichten | WVM-IT",
+        "desc": "Netzwerk und WLAN ausgemessen, geplant und aufgebaut — auch für Hallen und mehrere Etagen. Jetzt unverbindlich anfragen.",
         "h1": "Netzwerk und WLAN, das auch in der Halle trägt",
-        "kurz": "WVM-IT aus Lenzing plant und misst Firmennetzwerke aus der Ferne in ganz Österreich und baut sie vor Ort nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing auf, Netzwerk und WLAN einrichten ab 890 €, Firewall und VPN ab 690 €. Dazu gehören strukturierte Verkabelung, WLAN mit lückenloser Abdeckung, getrennte Netze für Gäste und Betrieb sowie Firewall und VPN für den Zugriff von außen.",
+        "kurz": "WVM-IT aus Lenzing plant und misst Firmennetzwerke aus der Ferne in ganz Österreich und baut sie vor Ort nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing auf. Dazu gehören strukturierte Verkabelung, WLAN mit lückenloser Abdeckung, getrennte Netze für Gäste und Betrieb sowie Firewall und VPN für den Zugriff von außen. Die Kosten dafür besprechen wir individuell.",
         "intro": "WLAN-Probleme werden fast immer mit einem weiteren Zugangspunkt beantwortet. Meistens wird es davon schlechter: Zwei Geräte auf demselben Kanal stören sich gegenseitig, und das Endgerät hängt sich an das falsche. Ein Netz, das trägt, entsteht nicht durch mehr Hardware, sondern durch eine Messung, einen Plan und saubere Kanalvergabe. Bei Hallen, Altbau und mehreren Etagen ist das der Unterschied zwischen „läuft“ und „läuft, außer hinten links“.",
         "problem_h": "Wann ein Netz neu geplant gehört",
         "probleme": [
@@ -144,11 +144,11 @@ SEITEN = {
             {"h": "Bauen und übergeben", "t": "Aufbau, Einmessung, Beschriftung, Dokumentation. Danach läuft das Netz in der laufenden Betreuung mit oder Sie betreiben es selbst weiter."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Netzwerk und WLAN einrichten kostet ab 890 €, Firewall und VPN ab 690 €. Der Endpreis hängt an Fläche, Baustoffen und Zahl der Zugangspunkte — genau deshalb steht am Anfang die Messung und nicht ein Angebot ins Blaue. Laufende Betreuung des Netzes gibt es ab 29 € je Arbeitsplatz und Monat. Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab. Richtpreise, netto zzgl. USt.",
-        "einrichtung_satz": "Wenn nur Firewall und VPN fehlen: <a href=\"{url}\">Firewall und VPN einrichten lassen</a> zum Festpreis von {preis} — sicherer Zugriff von außen, geschütztes Netz nach innen.",
+        "preis_t": "Die Einrichtung von Netzwerk und WLAN sowie von Firewall und VPN wird individuell besprochen. Der Endpreis hängt an Fläche, Baustoffen und Zahl der Zugangspunkte — genau deshalb steht am Anfang die Messung und nicht ein Angebot ins Blaue. Laufende Betreuung des Netzes ist möglich. Arbeiten vor Ort werden nach Absprache abgerechnet. Die Kosten klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget.",
+        "einrichtung_satz": "Wenn nur Firewall und VPN fehlen: <a href=\"{url}\">Firewall und VPN einrichten lassen</a> zum feste Absprache vorab von {preis} — sicherer Zugriff von außen, geschütztes Netz nach innen.",
         "faq": [
             {"q": "Was kostet Netzwerkbetreuung?",
-             "a": "Netzwerk und WLAN einrichten kostet bei WVM-IT ab 890 €, Firewall und VPN ab 690 €. Einzelne Hilfe an einem bestehenden Netz kostet ohne Vertrag 95 € je Stunde per Fernwartung."},
+             "a": "Netzwerk, WLAN, Firewall und VPN richten sich nach Größe und Gebäude; den Preis klären wir im Gespräch. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab."},
             {"q": "Warum hilft ein zusätzlicher Repeater nicht?",
              "a": "Ein Repeater halbiert die verfügbare Bandbreite und belegt denselben Funkkanal noch einmal. In kleinen Wohnungen fällt das kaum auf, in einem Betrieb mit vielen Geräten verschlechtert es die Lage messbar. Besser sind wenige, richtig platzierte Zugangspunkte mit sauber verteilten Kanälen."},
             {"q": "Brauchen wir ein eigenes Gästenetz?",
@@ -164,10 +164,10 @@ SEITEN = {
 
     "it-sicherheit": {
         "nav": "IT-Sicherheit",
-        "titel": "IT-Sicherheitscheck ab 490 € | WVM-IT",
-        "desc": "IT-Sicherheitscheck ab 490 € mit schriftlichem Bericht und Maßnahmenliste. Firewall und VPN ab 690 €. Jetzt Angebot anfordern.",
+        "titel": "IT-Sicherheitscheck für Ihr Unternehmen | WVM-IT",
+        "desc": "IT-Sicherheitscheck mit schriftlichem Bericht und Maßnahmenliste. Firewall und VPN einrichten. Preis nach kurzem Gespräch, fair und passend zum Budget.",
         "h1": "IT-Sicherheit, die zu einem Betrieb passt — nicht zu einem Konzern",
-        "kurz": "WVM-IT aus Lenzing prüft die IT-Sicherheit von Betrieben in Österreich und Deutschland per Fernzugriff, IT-Sicherheitscheck ab 490 € mit schriftlichem Bericht und Maßnahmenliste, Firewall und VPN ab 690 €. Umgesetzt werden die Maßnahmen, die wirklich etwas bringen: Rechte, Passwörter, Updates und geprüfte Sicherungen.",
+        "kurz": "WVM-IT aus Lenzing prüft die IT-Sicherheit von Betrieben in Österreich und Deutschland per Fernzugriff. Der IT-Sicherheitscheck liefert einen schriftlichen Bericht und eine Maßnahmenliste. Firewall und VPN richten wir nach fester Absprache vorab, ohne Überraschungen ein. Umgesetzt werden die Maßnahmen, die wirklich etwas bringen: Rechte, Passwörter, Updates und geprüfte Sicherungen.",
         "intro": "Die meisten Schäden in kleinen Betrieben entstehen nicht durch einen gezielten Angriff, sondern durch Alltägliches: ein Passwort, das überall gilt, ein Konto eines längst ausgeschiedenen Mitarbeiters, ein Rechner ohne Updates, eine Sicherung, die nichts taugt. Man braucht kein Sicherheitskonzept nach Konzernmaßstab, um das abzustellen. Man braucht jemanden, der einmal systematisch nachsieht und danach die Punkte abarbeitet, die tatsächlich Schaden verhindern.",
         "problem_h": "Was wir fast überall finden",
         "probleme": [
@@ -192,7 +192,7 @@ SEITEN = {
             {"h": "Abarbeiten", "t": "Sie entscheiden, was umgesetzt wird — auch, wenn es nichts ist. Der Bericht gehört Ihnen und lässt sich auch von einem anderen Dienstleister abarbeiten."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Der einmalige IT-Sicherheitscheck kostet ab 490 € und schließt den schriftlichen Bericht ein. Firewall und VPN richten wir ab 690 € ein. Die Umsetzung weiterer Maßnahmen rechnen wir mit 95 € je Stunde ab; wer die Sicherheit dauerhaft im Blick behalten will, nimmt die laufende Betreuung ab 29 € je Arbeitsplatz und Monat, die Updates und Überwachung einschließt. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Was der einmalige IT-Sicherheitscheck kostet, hängt vom Umfang der Systeme und dem Prüfaufwand ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Firewall und VPN werden vorab fest abgesprochen. Die Umsetzung weiterer Maßnahmen rechnen wir nach Aufwand ab; wer die Sicherheit dauerhaft im Blick behalten will, nimmt die laufende Betreuung, deren Preis sich nach Arbeitsplätzen, Server und Umfang richtet. Anruf unter +43 676 3808501 oder WhatsApp.",
         "faq": [
             {"q": "Wir sind ein kleiner Betrieb. Sind wir überhaupt ein Ziel?",
              "a": "Die meisten Angriffe sind nicht ausgesucht, sondern automatisiert: Sie suchen offene Zugänge und alte Software, nicht bestimmte Firmen. Gerade kleine Betriebe werden getroffen, weil dort seltener jemand nachsieht."},
@@ -210,10 +210,10 @@ SEITEN = {
     # ══ Sichtbarkeit ══════════════════════════════════════════════════════════
     "webseite-erstellen": {
         "nav": "Webseite erstellen",
-        "titel": "Webseite erstellen lassen ab 350 € | WVM-IT",
-        "desc": "Webseiten für Betriebe in Österreich und Deutschland: One-Pager ab 350 €, Firmenseite ab 1.490 €, Shop ab 3.500 €. Jetzt Angebot anfordern.",
+        "titel": "Webseite erstellen lassen | WVM-IT",
+        "desc": "Webseiten für Betriebe in Österreich und Deutschland: One-Pager, Firmenseite, Shop. Preis nach kurzem Gespräch, fair und passend zum Budget.",
         "h1": "Webseite erstellen lassen — und vorher sehen, was Sie bekommen",
-        "kurz": "Webseite erstellen lassen in Oberösterreich: WVM-IT aus Lenzing baut Webseiten für Betriebe in Österreich und Deutschland — ein One-Pager ab 350 €, eine mehrseitige Firmenseite ab 1.490 €, eine Premium-Seite mit Animationen ab 2.900 €, ein Online-Shop ab 3.500 €. Vorab gibt es eine kostenlose Testseite: Sie tragen nur Ihre E-Mail-Adresse ein und stimmen der Datenschutzerklärung zu, unsere JARVIS-Automatik baut daraus in etwa zehn Minuten eine echte Beispielseite, und den Newsletter brauchen Sie dafür nicht. Hosting und Wartung kosten zusammen ab 54 € im Monat.",
+        "kurz": "Webseite erstellen lassen in Oberösterreich: WVM-IT aus Lenzing baut Webseiten für Betriebe in Österreich und Deutschland — ein One-Pager, eine mehrseitige Firmenseite, eine Premium-Seite mit Animationen, ein Online-Shop. Vorab gibt es eine kostenlose Testseite: Sie tragen nur Ihre E-Mail-Adresse ein und stimmen der Datenschutzerklärung zu, unsere JARVIS-Automatik baut daraus in etwa zehn Minuten eine echte Beispielseite, und den Newsletter brauchen Sie dafür nicht. Hosting und Wartung werden im Gespräch geklärt.",
         "intro": "Die häufigste Enttäuschung mit einer neuen Webseite ist nicht das Aussehen, sondern die Stille danach. Sie sieht gut aus, sie ist teuer gewesen, und es passiert nichts. Das liegt fast nie am Design, sondern daran, dass die Seite nicht dafür gebaut wurde, dass jemand Kontakt aufnimmt: Die Telefonnummer steht ganz unten, es gibt keine Preise, das Formular hat neun Felder. Wir bauen in die andere Richtung — vom Ziel her.",
         "problem_h": "Woran Seiten scheitern",
         "probleme": [
@@ -238,7 +238,7 @@ SEITEN = {
             {"h": "Bauen, prüfen, online gehen", "t": "Sie sehen den Stand zwischendurch. Zum Start richten wir Hosting, Domain und Messung ein, damit vom ersten Tag an sichtbar ist, was passiert."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Ein One-Pager startet ab 350 €, eine mehrseitige Business-Website ab 1.490 €, eine Premium-Seite mit Animationen ab 2.900 €, ein Online-Shop ab 3.500 €. Laufend kommen Hosting mit SSL und Sicherungen ab 15 € im Monat und Wartung ab 39 € im Monat dazu, zusammen ab 54 € im Monat; die Domain kostet ab 15 € im Jahr. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Was ein One-Pager kostet, hängt vom Designumfang ab; eine mehrseitige Business-Website richtet sich nach Seitenzahl und Funktionen; eine Premium-Seite mit Animationen und ein Online-Shop werden vorab fest abgesprochen, ohne Überraschungen. Laufend kommen Hosting mit SSL und Sicherungen sowie Wartung dazu, die Domain wird jährlich abgerechnet. Den genauen Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf unter +43 676 3808501 oder WhatsApp.",
         "faq": [
             {"q": "Wie lange dauert es, bis die Seite online ist?",
              "a": "Ein One-Pager ist meist in ein bis zwei Wochen fertig, eine mehrseitige Firmenseite in drei bis fünf Wochen. Das Tempo entscheidet fast immer, wie schnell Texte, Bilder und Freigaben von Ihnen kommen — nicht die Programmierung. Enge Termine sagen wir vorher zu oder ab, nicht hinterher."},
@@ -249,7 +249,7 @@ SEITEN = {
             {"q": "Wir haben schon eine Seite. Lohnt sich ein Umbau?",
              "a": "Manchmal ja, manchmal nicht. Wir sehen uns die bestehende Seite an und sagen Ihnen, ob eine Überarbeitung reicht oder ein Neubau günstiger kommt. Wenn die vorhandene Seite ihren Zweck erfüllt, sagen wir auch das."},
             {"q": "Was kostet eine Webseite für einen kleinen Betrieb?",
-             "a": "Ein One-Pager kostet ab 350 €, eine mehrseitige Firmenseite ab 1.490 €. Dazu kommen laufend Hosting mit SSL und Sicherungen ab 15 € im Monat und Wartung ab 39 € im Monat, die Domain ab 15 € im Jahr. Richtpreise, netto zzgl. USt."},
+             "a": "Der Preis einer Website richtet sich nach Umfang und Wünschen und wird im Gespräch geklärt. Betreuter Server und überwachte Datensicherung richten sich nach dem Umfang; den Preis klären wir im Gespräch."},
             {"q": "Kann ich meine Webseite erst kostenlos ansehen?",
              "a": "Ja. Sie tragen auf der Startseite nur Ihre E-Mail-Adresse ein und stimmen der Datenschutzerklärung zu; unsere JARVIS-Automatik baut daraus in etwa zehn Minuten eine echte, aufrufbare Beispielseite. Sie ist kostenlos und verpflichtet zu nichts, den Newsletter brauchen Sie dafür nicht.",
              "link": {"text": "Zur kostenlosen Testseite", "route": "index", "anker": "gratis"}},
@@ -260,10 +260,10 @@ SEITEN = {
 
     "seo-betreuung": {
         "nav": "SEO-Betreuung",
-        "titel": "SEO-Betreuung ab 149 €/Monat | WVM-IT",
-        "desc": "Bei Google und in KI-Antworten gefunden werden: SEO-Grundoptimierung ab 390 €, laufende Betreuung ab 149 €/Monat. Jetzt unverbindlich anfragen.",
+        "titel": "SEO-Betreuung für Google & KI-Antworten | WVM-IT",
+        "desc": "Bei Google und in KI-Antworten gefunden werden: SEO-Grundoptimierung und laufende Betreuung. Preis im Gespräch, jetzt unverbindlich anfragen.",
         "h1": "SEO-Betreuung: gefunden werden von Leuten, die Sie noch nicht kennen",
-        "kurz": "WVM-IT aus Lenzing optimiert Betriebe für Google und KI-Antworten wie ChatGPT und Perplexity, Grundoptimierung einmalig ab 390 €, laufende SEO-Betreuung ab 149 € im Monat, für Kunden in Österreich und Deutschland. Das umfasst technische Grundlagen, eine eigene Seite je Leistung, Inhalte, die Suchfragen wirklich beantworten, und monatliche Messung. Gearbeitet wird ortsunabhängig.",
+        "kurz": "WVM-IT aus Lenzing optimiert Betriebe für Google und KI-Antworten wie ChatGPT und Perplexity, einmalige Grundoptimierung und laufende SEO-Betreuung für Kunden in Österreich und Deutschland. Das umfasst technische Grundlagen, eine eigene Seite je Leistung, Inhalte, die Suchfragen wirklich beantworten, und monatliche Messung. Gearbeitet wird ortsunabhängig.",
         "intro": "Der häufigste Befund bei kleinen Firmenseiten ist immer derselbe: Sie werden gefunden — aber nur über den eigenen Firmennamen. Also von Leuten, die die Firma ohnehin kennen. Für alle, die ein Problem haben und nach der Lösung suchen, existiert die Seite nicht. Der Grund ist selten die Technik. Er liegt darin, dass alle Leistungen auf einer einzigen Seite in Absätzen stehen, und Google keine Absätze platzieren kann, sondern nur Seiten.",
         "problem_h": "Woran es meistens liegt",
         "probleme": [
@@ -288,7 +288,7 @@ SEITEN = {
             {"h": "Inhalte und Betreuung", "t": "Danach wächst die Seite: neue Seiten, bessere Antworten, monatliche Messung. SEO ist keine Aktion, sondern ein Betriebsteil."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Die einmalige SEO-Grundoptimierung kostet ab 390 €, die laufende Betreuung ab 149 € im Monat. Google Ads sind separat buchbar — Einrichtung ab 490 €, Betreuung ab 199 € im Monat — und ergeben Sinn, solange SEO noch wirkt. Richtpreise, netto zzgl. USt. Eine Mindestlaufzeit über drei Monate hinaus gibt es nicht; kürzer lässt sich allerdings nichts messen.",
+        "preis_t": "Was die einmalige SEO-Grundoptimierung kostet, hängt vom aktuellen Stand der Seite ab; die laufende Betreuung richtet sich nach Umfang und Zielen. Google Ads sind separat buchbar — Einrichtung und Betreuung werden im Gespräch geklärt — und ergeben Sinn, solange SEO noch wirkt. Eine Mindestlaufzeit über drei Monate hinaus gibt es nicht; kürzer lässt sich allerdings nichts messen. Den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf unter +43 676 3808501 oder WhatsApp.",
         "faq": [
             {"q": "Wie lange dauert es, bis SEO wirkt?",
              "a": "Technische Korrekturen wirken innerhalb von Tagen bis Wochen. Neue Leistungsseiten brauchen erfahrungsgemäß sechs bis zwölf Wochen, bis sie stabil Platzierungen halten. Wer Ihnen Ergebnisse in zwei Wochen verspricht, verkauft Ihnen Anzeigen und nennt es SEO."},
@@ -305,10 +305,10 @@ SEITEN = {
 
     "google-ads": {
         "nav": "Google Ads",
-        "titel": "Google Ads Betreuung ab 199 €/Monat | WVM-IT",
-        "desc": "Google Ads einrichten ab 490 €, laufende Betreuung ab 199 €/Monat zzgl. Budget, mit Conversion-Messung und Monatsbericht. Jetzt Angebot anfordern.",
+        "titel": "Google Ads Betreuung | WVM-IT",
+        "desc": "Google Ads einrichten, laufende Betreuung zzgl. Budget, mit Conversion-Messung und Monatsbericht. Jetzt Angebot anfordern.",
         "h1": "Google Ads, die Anfragen bringen — nicht nur Klicks",
-        "kurz": "WVM-IT aus Lenzing richtet Google-Ads-Konten für Betriebe in Österreich und Deutschland ein und betreut sie, Einrichtung ab 490 €, laufende Betreuung ab 199 € im Monat zuzüglich Werbebudget. Betreut werden Kampagnen, Suchbegriffe, Anzeigen, ausschließende Begriffe und vor allem eine funktionierende Conversion-Messung, ortsunabhängig.",
+        "kurz": "WVM-IT aus Lenzing richtet Google-Ads-Konten für Betriebe in Österreich und Deutschland ein und betreut sie, Einrichtung, laufende Betreuung zuzüglich Werbebudget. Betreut werden Kampagnen, Suchbegriffe, Anzeigen, ausschließende Begriffe und vor allem eine funktionierende Conversion-Messung, ortsunabhängig.",
         "intro": "Anzeigen sind der schnellste Weg zu Anfragen — und der schnellste Weg, Geld zu verbrennen. Der Unterschied liegt fast nie an der Anzeige selbst, sondern daran, ob gemessen wird, was hinten herauskommt. Wer nur Klicks zählt, optimiert auf Besuche. Wer Anfragen misst, kann Suchbegriffe abschalten, die teuer sind und nichts bringen — und das sind erfahrungsgemäß die meisten.",
         "problem_h": "Woran Anzeigenkonten kranken",
         "probleme": [
@@ -333,7 +333,7 @@ SEITEN = {
             {"h": "Laufend nachsteuern", "t": "Wöchentlich Suchbegriffe prüfen, monatlich berichten. Wenn Anzeigen sich für Sie nicht rechnen, sagen wir Ihnen das, statt das Budget weiterlaufen zu lassen."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Die Einrichtung kostet ab 490 € einmalig und schließt die Conversion-Messung ein. Die laufende Betreuung kostet ab 199 € im Monat — zuzüglich Ihres Werbebudgets, das direkt an Google geht und nicht über uns läuft. Sinnvoll wird es erfahrungsgemäß ab einem Mediabudget, das zur Betreuung in einem vernünftigen Verhältnis steht; wir sagen Ihnen vorher, ob Ihr Budget dafür reicht. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Die Einrichtung wird vorab fest abgesprochen, ohne Überraschungen. Die laufende Betreuung richtet sich nach Arbeitsplätzen, Servern und Umfang; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Sinnvoll wird es erfahrungsgemäß ab einem Mediabudget, das zur Betreuung in einem vernünftigen Verhältnis steht; wir sagen Ihnen vorher, ob Ihr Budget dafür reicht.",
         "faq": [
             {"q": "Wie viel Werbebudget brauchen wir mindestens?",
              "a": "Das hängt an Ihrer Branche und daran, was ein Klick dort kostet. Wir rechnen Ihnen vor dem Start aus, mit wie vielen Klicks und Anfragen Sie bei Ihrem Budget realistisch rechnen können. Ist die Zahl zu klein, um etwas zu lernen, raten wir ab."},
@@ -350,10 +350,10 @@ SEITEN = {
 
     "hosting-wartung": {
         "nav": "Hosting & Wartung",
-        "titel": "Hosting & Wartung ab 15 €/Monat | WVM-IT",
-        "desc": "Hosting mit SSL und täglichen Sicherungen ab 15 €/Monat, Wartung ab 39 €/Monat, Domain ab 15 €/Jahr. Jetzt unverbindlich anfragen.",
+        "titel": "Hosting & Wartung | WVM-IT",
+        "desc": "Hosting mit SSL und täglichen Sicherungen, Wartung, Domain Jetzt unverbindlich anfragen.",
         "h1": "Hosting und Wartung: damit die Seite auch läuft, wenn niemand hinsieht",
-        "kurz": "Hosting und Domain für Betriebe in Österreich von WVM-IT aus Lenzing: eigenes Hosting mit SSL und täglichen Sicherungen ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat, Domain ab 15 € im Jahr — zusammen ab 54 € im Monat, dazu E-Mail mit Microsoft 365 zum Festpreis von 290 €. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
+        "kurz": "Hosting und Domain für Betriebe in Österreich von WVM-IT aus Lenzing: eigenes Hosting mit SSL und täglichen Sicherungen, Wartung mit Updates und kleinen Änderungen, Domain im Jahr — zusammen, dazu E-Mail mit Microsoft 365. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
         "intro": "Eine Webseite ist keine Anschaffung, sondern ein Betriebsmittel. Zertifikate laufen ab, Systeme brauchen Sicherheits-Updates, Kontaktformulare hören irgendwann still auf zu funktionieren. Das fällt selten sofort auf — meistens erst dann, wenn wochenlang keine Anfrage mehr kam und jemand nachsieht. Wartung ist die günstigste Versicherung gegen genau diese Wochen.",
         "problem_h": "Was ohne Wartung passiert",
         "probleme": [
@@ -378,7 +378,7 @@ SEITEN = {
             {"h": "Betreiben", "t": "Ab da laufen Updates, Sicherungen und Überwachung. Sie melden Änderungswünsche einfach per E-Mail."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Hosting inklusive SSL und Sicherungen kostet ab 15 € im Monat, Wartung mit Updates und kleinen Änderungen ab 39 € im Monat — zusammen ab 54 € im Monat. Die Domain kostet ab 15 € im Jahr. Wer zusätzlich Server im eigenen Haus betreiben lässt, findet das unter der Server-Betreuung ab 89 € im Monat. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Betreuter Server und überwachte Datensicherung richten sich nach dem Umfang; den Preis klären wir im Gespräch.",
         "faq": [
             {"q": "Übernehmen Sie auch Seiten, die wir nicht bei Ihnen gebaut haben?",
              "a": "Ja. Wir prüfen zuerst, in welchem Zustand die Seite ist, und sagen Ihnen ehrlich, ob sich der laufende Betrieb lohnt oder ob eine Überarbeitung günstiger kommt."},
@@ -392,7 +392,7 @@ SEITEN = {
              "a": "Ja, direkt bei unserem Partner Domaintechnik (der gekennzeichnete Partnerlink steht auf dieser Seite), oder wir richten alles für Sie ein und übernehmen Wartung und Updates.",
              "ohne_schema": True},
             {"q": "Richten Sie auch E-Mail mit eigener Adresse ein?",
-             "a": "Ja. Postfächer auf Ihrer Domain, Teams und OneDrive richten wir mit Microsoft 365 zum Festpreis von 290 € ein und übergeben sie einsatzbereit. Richtpreis, netto zzgl. USt.",
+             "a": "Ja. Postfächer auf Ihrer Domain, Teams und OneDrive richten wir mit Microsoft 365 ein und übergeben sie einsatzbereit.",
              "link": {"text": "Microsoft 365 einrichten lassen", "route": "einrichtung", "slug": "microsoft-365"}},
         ],
         "cta_h": "Läuft Ihre Seite schon irgendwo?",
@@ -401,10 +401,10 @@ SEITEN = {
 
     "ki-automatisierung": {
         "nav": "KI-Automatisierung",
-        "titel": "KI-Automatisierung ab 390 € | WVM-IT",
-        "desc": "Chatbots, WhatsApp- und Termin-Automatisierung für Betriebe: Terminbuchung ab 390 €, Chatbot ab 690 €, CRM-Anbindung ab 1.200 €. Jetzt anfragen.",
+        "titel": "KI-Automatisierung | WVM-IT",
+        "desc": "Chatbots, WhatsApp- und Termin-Automatisierung für Betriebe: Terminbuchung, Chatbot, CRM-Anbindung. Jetzt anfragen.",
         "h1": "KI-Automatisierung: die Arbeit, die sich wiederholt, macht die Technik",
-        "kurz": "WVM-IT aus Lenzing baut Automatisierungen für Betriebe in Österreich und Deutschland, Terminvereinbarung automatisieren ab 390 €, KI-Chatbot ab 690 €, Anbindung an CRM oder ERP ab 1.200 €. Beispiele sind ein Chatbot, der nachts Anfragen entgegennimmt, Termin- und Buchungsabläufe, automatische Antworten per WhatsApp und E-Mail und Anbindungen an vorhandene Systeme, ortsunabhängig umgesetzt.",
+        "kurz": "WVM-IT aus Lenzing baut Automatisierungen für Betriebe in Österreich und Deutschland, Terminvereinbarung automatisieren, KI-Chatbot, Anbindung an CRM oder ERP. Beispiele sind ein Chatbot, der nachts Anfragen entgegennimmt, Termin- und Buchungsabläufe, automatische Antworten per WhatsApp und E-Mail und Anbindungen an vorhandene Systeme, ortsunabhängig umgesetzt.",
         "intro": "Automatisierung lohnt sich nicht dort, wo sie beeindruckend aussieht, sondern dort, wo dieselbe Handbewegung jeden Tag zwanzigmal passiert: dieselbe Frage beantworten, denselben Termin eintragen, dieselbe Bestätigung schreiben. Deshalb fangen wir nie mit der Technik an, sondern mit der Frage, welche fünf Minuten sich am häufigsten wiederholen. Alles andere ist Spielerei mit Rechnung. KI-Automatisierung ist dabei kein eigenes Produkt, sondern ein Ablauf: Ein Programm nimmt eine wiederkehrende Aufgabe entgegen — eine immer gleiche Frage, eine Terminanfrage, eine Bestätigung —, beantwortet oder überträgt sie und legt das Ergebnis in dem System ab, in dem ohnehin gearbeitet wird. Was nur selten vorkommt oder jedes Mal neu entschieden werden muss, bleibt bewusst bei einem Menschen.",
         "problem_h": "Wo sich Automatisierung rechnet",
         "probleme": [
@@ -429,14 +429,14 @@ SEITEN = {
             {"h": "Erweitern oder bleiben lassen", "t": "Wenn es Zeit spart, bauen wir aus. Wenn nicht, sagen wir es. Wir verkaufen keine Automatisierung, die niemand vermissen würde."},
         ],
         "abschnitte": [
-            {"h": "Terminvereinbarung automatisieren: ab 390 €",
-             "t": "Kunden buchen ihren Termin selbst online in einem Kalender, statt per Telefon hin und her zu schieben. Der Abgleich mit Ihrem Kalender verhindert Doppelbuchungen, die Bestätigung geht automatisch per E-Mail oder WhatsApp hinaus. Die Terminautomatisierung kostet ab 390 €."},
+            {"h": "Terminvereinbarung automatisieren",
+             "t": "Kunden buchen ihren Termin selbst online in einem Kalender, statt per Telefon hin und her zu schieben. Der Abgleich mit Ihrem Kalender verhindert Doppelbuchungen, die Bestätigung geht automatisch per E-Mail oder WhatsApp hinaus. Was SEO oder Google Ads kosten, hängt vom Ausgangspunkt und Umfang ab; das klären wir im Gespräch."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Termin- und Buchungsautomatisierung kostet ab 390 €, WhatsApp- und E-Mail-Automatisierung ab 490 €, ein KI-Chatbot ab 690 € zuzüglich 39 € im Monat für Betrieb und Pflege, eine maßgeschneiderte Anbindung an CRM oder ERP ab 1.200 €. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Was SEO oder Google Ads kosten, hängt vom Ausgangspunkt und Umfang ab; das klären wir im Gespräch.",
         "faq": [
             {"q": "Wie lässt sich die Terminvereinbarung automatisieren?",
-             "a": "Kunden buchen ihren Termin selbst online in einen Kalender, statt per Telefon hin und her zu schieben. Der Abgleich mit Ihrem Kalender verhindert Doppelbuchungen, die Bestätigung geht automatisch per E-Mail oder WhatsApp hinaus. Was ein Mensch entscheiden muss, etwa Sonderfälle, legen wir vorher fest. Die Terminautomatisierung kostet ab 390 €."},
+             "a": "Kunden buchen ihren Termin selbst online in einen Kalender, statt per Telefon hin und her zu schieben. Der Abgleich mit Ihrem Kalender verhindert Doppelbuchungen, die Bestätigung geht automatisch per E-Mail oder WhatsApp hinaus. Was ein Mensch entscheiden muss, etwa Sonderfälle, legen wir vorher fest. Was SEO oder Google Ads kosten, hängt vom Ausgangspunkt und Umfang ab; das klären wir im Gespräch."},
             {"q": "Ersetzt ein Chatbot einen Mitarbeiter?",
              "a": "Nein, und wir verkaufen ihn auch nicht so. Er nimmt die immer gleichen Fragen ab und sammelt Anfragen außerhalb der Arbeitszeit. Alles, was eine Entscheidung braucht, geht an einen Menschen — das legen wir vorher fest."},
             {"q": "Wo landen die Daten unserer Kunden?",
@@ -456,7 +456,7 @@ SEITEN = {
         "titel": "Smarthome mit Loxone & KNX in Österreich | WVM-IT",
         "desc": "Gebäudeautomation mit Loxone und KNX: Licht, Heizung, Beschattung, Zutritt und Sicherheit in einem System. Jetzt unverbindlich anfragen.",
         "h1": "Gebäudeautomation mit Loxone und KNX",
-        "kurz": "WVM-IT aus Lenzing plant, programmiert und betreut Gebäudeautomation mit Loxone und KNX in Oberösterreich und Salzburg, Preis nach kurzem Gespräch und Bestandsaufnahme, Arbeiten vor Ort 120 € je Stunde zuzüglich Anfahrt, sofern kein Festpreis vereinbart ist. Licht, Heizung, Beschattung, Zutritt, Sicherheit und Medientechnik laufen in einem System — KNX als herstellerübergreifende Norm mit über 500 Herstellern, Loxone als geschlossenes System aus einer Hand. Anlagen dieser Art werden projektbezogen kalkuliert und vor Ort aufgebaut.",
+        "kurz": "WVM-IT aus Lenzing plant, programmiert und betreut Gebäudeautomation mit Loxone und KNX in Oberösterreich und Salzburg, Preis nach kurzem Gespräch und Bestandsaufnahme. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Licht, Heizung, Beschattung, Zutritt, Sicherheit und Medientechnik laufen in einem System — KNX als herstellerübergreifende Norm mit über 500 Herstellern, Loxone als geschlossenes System aus einer Hand. Anlagen dieser Art werden projektbezogen kalkuliert und vor Ort aufgebaut.",
         "intro": "Bei Gebäudeautomation entscheidet nicht die Hardware über das Ergebnis, sondern die Programmierung. Dieselben Geräte können eine Anlage ergeben, die niemand versteht und die nach dem ersten Sommer wieder von Hand bedient wird — oder eine, die einfach tut, was man erwartet. Deshalb planen wir zuerst die Abläufe und erst danach die Komponentenliste.",
         "problem_h": "Wofür sich das lohnt",
         "probleme": [
@@ -477,11 +477,11 @@ SEITEN = {
         "ablauf_h": "Wie ein Projekt läuft",
         "ablauf": [
             {"h": "Gespräch und Aufnahme", "t": "Wir klären, was die Anlage können soll und in welchem Zustand Gebäude oder Planung sind. Bei Neubauten möglichst früh — nach dem Verputzen wird jede Änderung teuer."},
-            {"h": "Konzept und Festpreis", "t": "Sie bekommen ein Konzept mit Komponentenliste, Ablaufbeschreibung und Preis. Erst danach wird bestellt."},
+            {"h": "Konzept und feste Absprache", "t": "Sie bekommen ein Konzept mit Komponentenliste, Ablaufbeschreibung und Preis. Erst danach wird bestellt."},
             {"h": "Aufbau, Programmierung, Übergabe", "t": "Wir bauen auf, programmieren und weisen ein. Die Dokumentation bleibt bei Ihnen, damit auch ein anderer Fachbetrieb weiterarbeiten könnte."},
         ],
         "preis_h": "Warum hier kein Ab-Preis steht",
-        "preis_t": "Eine Zahl an dieser Stelle wäre geraten. Der Preis einer Automation hängt an der Zahl der Räume, am Zustand der Verkabelung und daran, ob im Neubau oder im Bestand gearbeitet wird — die Spanne ist zu groß für einen sinnvollen Startpreis. Wir kalkulieren projektbezogen und nennen den Preis nach der Bestandsaufnahme schriftlich. Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab, sofern kein Festpreis vereinbart ist.",
+        "preis_t": "Eine Zahl an dieser Stelle wäre geraten. Der Preis einer Automation hängt an der Zahl der Räume, am Zustand der Verkabelung und daran, ob im Neubau oder im Bestand gearbeitet wird — die Spanne ist zu groß für einen sinnvollen Startpreis. Wir kalkulieren projektbezogen und nennen den Preis nach der Bestandsaufnahme schriftlich. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab.",
         "faq": [
             {"q": "Loxone oder KNX — was ist besser?",
              "a": "KNX ist ein herstellerübergreifender Standard mit sehr großer Geräteauswahl und langer Verfügbarkeit; Loxone ist ein geschlosseneres System, das schneller aufgesetzt ist und weniger Planungsaufwand braucht. Welches passt, hängt an Größe, Budget und daran, wie unabhängig Sie später sein wollen. Wir sagen Ihnen im Gespräch, wozu wir bei Ihrem Vorhaben raten."},
@@ -499,9 +499,9 @@ SEITEN = {
     "konferenztechnik": {
         "nav": "Konferenztechnik",
         "titel": "Konferenzraum-Technik in Oberösterreich | WVM-IT",
-        "desc": "Besprechungsräume ausstatten: Displays, Kameras, Mikrofone, Ton und Steuerung auf einem Knopf. Vor Ort ab 120 €/Std. Jetzt anfragen.",
+        "desc": "Besprechungsräume ausstatten: Displays, Kameras, Mikrofone, Ton und Steuerung auf einem Knopf. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab.",
         "h1": "Konferenzraum-Technik, mit der eine Besprechung pünktlich anfängt",
-        "kurz": "WVM-IT aus Lenzing stattet Besprechungs- und Schulungsräume in Oberösterreich mit Displays, Kameras, Mikrofonen, Ton und Steuerung aus, Arbeiten vor Ort 120 € je Stunde zuzüglich Anfahrt, Projektpreis nach der Besichtigung. Die Steuerung ist so gebaut, dass auch jemand sie bedienen kann, der sie nicht eingebaut hat. Ein üblicher Besprechungsraum ist an ein bis zwei Tagen fertig, sofern die Verkabelung liegt. Für Säle, Bühnen und Live-Veranstaltungen gibt es die eigene Seite Veranstaltungstechnik.",
+        "kurz": "WVM-IT aus Lenzing stattet Besprechungs- und Schulungsräume in Oberösterreich mit Displays, Kameras, Mikrofonen, Ton und Steuerung aus. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Die Steuerung ist so gebaut, dass auch jemand sie bedienen kann, der sie nicht eingebaut hat. Ein üblicher Besprechungsraum ist an ein bis zwei Tagen fertig, sofern die Verkabelung liegt. Für Säle, Bühnen und Live-Veranstaltungen gibt es die eigene Seite Veranstaltungstechnik.",
         "intro": "Der Maßstab für Konferenztechnik ist nicht, was sie kann, sondern ob eine Besprechung pünktlich anfängt. Die meisten Räume scheitern an denselben Kleinigkeiten: Das falsche Kabel liegt am Tisch, die Kamera zeigt die Wand, den Ton versteht die Gegenseite nicht. Deshalb messen wir Räume ein und bauen die Bedienung auf einen einzigen sichtbaren Weg — alles andere verschwindet in der Technik.",
         "problem_h": "Die Räume, um die es geht",
         "probleme": [
@@ -526,7 +526,7 @@ SEITEN = {
             {"h": "Aufbau und Einweisung", "t": "Installation, Einmessung, kurze Einweisung. Danach funktioniert der Raum auch für jemanden, der ihn zum ersten Mal betritt."},
         ],
         "preis_h": "Warum hier kein Ab-Preis steht",
-        "preis_t": "Zwischen einem Besprechungsraum für sechs Personen und einem Saal mit Bühnentechnik liegen Größenordnungen. Ein Startpreis an dieser Stelle würde nichts aussagen. Wir sehen uns den Raum an und kalkulieren projektbezogen; Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab, sofern kein Festpreis vereinbart ist.",
+        "preis_t": "Zwischen einem Besprechungsraum für sechs Personen und einem Saal mit Bühnentechnik liegen Größenordnungen. Ein Startpreis an dieser Stelle würde nichts aussagen. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab.",
         "faq": [
             {"q": "Können Sie einen vorhandenen Raum nachrüsten?",
              "a": "Meistens ja. Häufig fehlt gar nicht die Technik, sondern die Einmessung und eine vernünftige Bedienung. Wir sehen zuerst nach, was das vorhandene Material hergibt, bevor wir Neues vorschlagen."},
@@ -544,9 +544,9 @@ SEITEN = {
     "veranstaltungstechnik": {
         "nav": "Veranstaltungstechnik",
         "titel": "Video-, Ton- & Bühnentechnik in Oberösterreich | WVM-IT",
-        "desc": "Veranstaltungstechnik für Säle, Vereine, Gemeinden und Hotels: Ton, Licht, Video und Bühne. Vor Ort ab 120 €/Std. Jetzt anfragen.",
+        "desc": "Veranstaltungstechnik für Säle, Vereine, Gemeinden und Hotels: Ton, Licht, Video und Bühne. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab.",
         "h1": "Video-, Ton- und Bühnentechnik für Säle und Veranstaltungen",
-        "kurz": "WVM-IT aus Lenzing plant, installiert und betreut Veranstaltungstechnik in Oberösterreich, Arbeiten vor Ort 120 € je Stunde zuzüglich Anfahrt, fest eingebaute Anlagen projektbezogen nach Besichtigung, sofern kein Festpreis vereinbart ist. Es geht um Beschallung, Licht, Video- und Bühnentechnik für Säle, Vereinsheime, Gemeindezentren, Hotels und Firmenveranstaltungen. Auf eine Anfrage antworten wir an Werktagen innerhalb von 24 Stunden.",
+        "kurz": "Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Es geht um Beschallung, Licht, Video- und Bühnentechnik für Säle, Vereinsheime, Gemeindezentren, Hotels und Firmenveranstaltungen. Auf eine Anfrage antworten wir an Werktagen innerhalb von 24 Stunden.",
         "intro": "In den meisten Sälen steht Technik, die einmal jemand aufgebaut hat und die seitdem niemand mehr versteht. Es gibt drei Fernbedienungen, zwei davon ohne Batterien, und einen Mischer, an dem nur ein bestimmter Mensch etwas verstellen darf. Solange dieser Mensch Zeit hat, geht das gut. Der Abend, an dem es schiefgeht, ist immer der Abend, an dem hundert Leute im Raum sitzen. Wir bauen Anlagen so, dass sie auch jemand bedienen kann, der sie zum ersten Mal sieht — und dokumentieren, was wo angeschlossen ist.",
         "problem_h": "Woran es in Sälen meistens hängt",
         "probleme": [
@@ -574,10 +574,10 @@ SEITEN = {
             {"h": "Danach erreichbar bleiben", "t": "Vor einer größeren Veranstaltung sehen wir auf Wunsch noch einmal nach. Kommt trotzdem etwas dazwischen, erreichen Sie uns Montag bis Donnerstag von 7:30 bis 21 Uhr, Freitag bis 20:30 Uhr, Samstag bis 20 Uhr über die Nummer auf dieser Seite."},
         ],
         "preis_h": "Warum hier kein Ab-Preis steht",
-        "preis_t": "Zwischen einer Beschallung für einen Vereinssaal und einer Bühne mit Licht, Video und Streaming liegen Größenordnungen; ein Startpreis an dieser Stelle wäre eine Zahl ohne Aussage. Wir sehen uns den Raum an und kalkulieren projektbezogen mit Geräteliste. Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab, sofern kein Festpreis vereinbart ist; Planung und Abstimmung aus der Ferne mit 95 € je Stunde. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Zwischen einer Beschallung für einen Vereinssaal und einer Bühne mit Licht, Video und Streaming liegen Größenordnungen; ein Startpreis an dieser Stelle wäre eine Zahl ohne Aussage. Wir sehen uns den Raum an und kalkulieren projektbezogen mit Geräteliste. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab.",
         "faq": [
             {"q": "Was kostet Veranstaltungstechnik für einen Saal?",
-             "a": "Das hängt fast vollständig an der Raumgröße und daran, was der Raum können soll. Eine verständliche Sprachbeschallung für einen Vereinssaal ist ein anderes Projekt als eine Bühne mit Licht und Videozuspielung. Nach der Besichtigung bekommen Sie eine Geräteliste mit Preis — vorher wäre jede Zahl geraten. Arbeiten vor Ort rechnen wir mit 120 € je Stunde zuzüglich Anfahrt ab."},
+             "a": "Das hängt fast vollständig an der Raumgröße und daran, was der Raum können soll. Eine verständliche Sprachbeschallung für einen Vereinssaal ist ein anderes Projekt als eine Bühne mit Licht und Videozuspielung. Nach der Besichtigung bekommen Sie eine Geräteliste mit Preis — vorher wäre jede Zahl geraten. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab."},
             {"q": "Rüsten Sie vorhandene Technik nach oder muss alles neu?",
              "a": "In den meisten Sälen ist mehr brauchbares Material vorhanden, als die Nutzer glauben. Häufig fehlt nicht die Technik, sondern die Einmessung, eine sinnvolle Verkabelung und eine Bedienung, die niemanden überfordert. Wir sehen zuerst nach, was das Vorhandene hergibt."},
             {"q": "Betreuen Sie auch einzelne Veranstaltungen?",
@@ -593,10 +593,10 @@ SEITEN = {
 
     "it-beratung": {
         "nav": "IT-Beratung",
-        "titel": "IT-Beratung ab 95 €/Std | WVM-IT",
-        "desc": "IT-Beratung ohne Herstellerbindung: Bestandsaufnahme, Konzept, Angebotsvergleich und Begleitung — 95 € je Stunde. Jetzt unverbindlich anfragen.",
+        "titel": "IT-Beratung | WVM-IT",
+        "desc": "IT-Beratung ohne Herstellerbindung: Preis im Gespräch. Jetzt unverbindlich anfragen.",
         "h1": "IT-Beratung für Betriebe, die eine Entscheidung treffen müssen",
-        "kurz": "WVM-IT aus Lenzing berät Betriebe in Österreich und Deutschland vor Investitionen in IT und Gebäudetechnik, 95 € je Stunde, Termine vor Ort 120 € je Stunde zuzüglich Anfahrt, Antwort an Werktagen innerhalb von 24 Stunden. Dazu gehören Bestandsaufnahme, schriftliches Konzept, Vergleich fremder Angebote und Begleitung bei der Umsetzung — auch dann, wenn die ehrliche Antwort lautet, dass sich die Investition nicht lohnt.",
+        "kurz": "Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Dazu gehören Bestandsaufnahme, schriftliches Konzept, Vergleich fremder Angebote und Begleitung bei der Umsetzung — auch dann, wenn die ehrliche Antwort lautet, dass sich die Investition nicht lohnt.",
         "intro": "Die teuersten IT-Entscheidungen sind selten die falschen Geräte. Es sind die Entscheidungen, die niemand getroffen hat: der Server, der noch ein Jahr mitläuft, weil keiner weiß, was danach kommt; die Software, die ausgesucht wurde, weil ein Anbieter zuerst angerufen hat; die zwei Angebote, die man nicht vergleichen kann, weil sie verschiedene Dinge beschreiben. Beratung heißt hier nicht Präsentation. Sie heißt: jemand sieht sich an, was Sie haben, hört zu, was Sie vorhaben, und schreibt auf, was das für Ihre Technik bedeutet.",
         "problem_h": "Wann eine Beratung sich rechnet",
         "probleme": [
@@ -623,10 +623,10 @@ SEITEN = {
             {"h": "Umsetzung — mit uns oder ohne uns", "t": "Wenn Sie die Umsetzung an uns geben, rechnen wir die Beratungsstunden auf das Projekt an. Wenn Sie sie an jemand anderen geben, ist das kein Problem: Das Konzept gehört Ihnen."},
         ],
         "preis_h": "Was Beratung kostet",
-        "preis_t": "Die Beratung kostet 95 € je Stunde, Termine vor Ort 120 € je Stunde zuzüglich Anfahrt. Das Erstgespräch ist kostenfrei. Eine Bestandsaufnahme mit schriftlichem Konzept liegt bei einem üblichen Betrieb erfahrungsgemäß zwischen einem halben und zwei Tagen Aufwand; die Schätzung nennen wir vorher und halten sie ein oder melden uns, bevor sie überschritten wird. Vergeben Sie die Umsetzung an uns, rechnen wir die Beratungsstunden an. Richtpreise, netto zzgl. USt.",
+        "preis_t": "Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Das Erstgespräch ist kostenfrei. Eine Bestandsaufnahme mit schriftlichem Konzept liegt bei einem üblichen Betrieb erfahrungsgemäß zwischen einem halben und zwei Tagen Aufwand; die Schätzung nennen wir vorher und halten sie ein oder melden uns, bevor sie überschritten wird. Vergeben Sie die Umsetzung an uns, rechnen wir die Beratungsstunden an.",
         "faq": [
             {"q": "Was kostet eine IT-Beratung?",
-             "a": "95 € je Stunde, vor Ort 120 € je Stunde zuzüglich Anfahrt; das Erstgespräch ist kostenfrei. Eine vollständige Bestandsaufnahme mit schriftlichem Konzept liegt bei einem Betrieb mit zehn bis dreißig Arbeitsplätzen meist zwischen vier und sechzehn Stunden. Den Rahmen nennen wir vor Beginn."},
+             "a": "Stundensätze richten sich nach Einsatzort (remote oder vor Ort) und Umfang; die Anfahrt wird vorab festgelegt. Das Erstgespräch ist kostenfrei. Eine vollständige Bestandsaufnahme mit schriftlichem Konzept für 10 bis 30 Arbeitsplätze liegt meist bei 4 bis 16 Stunden. Den genauen Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget – Anruf unter +43 676 3808501 oder WhatsApp."},
             {"q": "Sind Sie an Hersteller gebunden?",
              "a": "Nein. Wir arbeiten mit Partnern zusammen, wo es fachlich nötig ist — bei Gebäudeautomation und Veranstaltungstechnik etwa —, aber wir bekommen keine Vergütung dafür, dass wir ein bestimmtes Produkt empfehlen. Wenn eine Empfehlung für uns finanziell interessant ist, sagen wir das im Konzept dazu."},
             {"q": "Beraten Sie auch, wenn ein anderer Dienstleister die Umsetzung macht?",
@@ -644,9 +644,9 @@ SEITEN = {
     "it-betreuung-groessere-betriebe": {
         "nav": "Größere Betriebe",
         "titel": "IT-Betreuung größere Betriebe: ab 20 Arbeitsplätzen | WVM-IT",
-        "desc": "IT-Betreuung ab 20 Arbeitsplätzen: ab 29 €/Monat je Arbeitsplatz, Server ab 89 €/Monat, mehrere Standorte per Fernwartung. Jetzt anfragen.",
+        "desc": "IT-Betreuung ab 20 Arbeitsplätzen: Preis im Gespräch. Jetzt anfragen.",
         "h1": "IT-Betreuung für größere Betriebe ab 20 Arbeitsplätzen",
-        "kurz": "WVM-IT aus Lenzing betreut Betriebe ab etwa 20 Arbeitsplätzen in Österreich und Deutschland, laufend ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat. Dazu gehören Bestandsaufnahme und laufende Dokumentation, ein fester Ansprechpartner, Überwachung von Servern und Netzwerk und der Umgang mit mehreren Standorten per Fernwartung. Für einen Betrieb mit 30 Arbeitsplätzen und 2 Servern kommt so ein Rahmen von rund 1.097 € im Monat zustande (30 × 29 € + 2 × 89 € + 49 € Datensicherung). Wo eine interne IT existiert, arbeiten wir daneben — als zweite Stufe für die Themen, für die intern die Zeit fehlt.",
+        "kurz": "WVM-IT aus Lenzing betreut Betriebe ab etwa 20 Arbeitsplätzen in Österreich und Deutschland, ein betreuter Server. Dazu gehören Bestandsaufnahme und laufende Dokumentation, ein fester Ansprechpartner, Überwachung von Servern und Netzwerk und der Umgang mit mehreren Standorten per Fernwartung. Betreuter Server und überwachte Datensicherung richten sich nach dem Umfang; den Preis klären wir im Gespräch. Wo eine interne IT existiert, arbeiten wir daneben — als zweite Stufe für die Themen, für die intern die Zeit fehlt.",
         "intro": "Unter etwa 20 Arbeitsplätzen passt die <a href=\"/leistungen/edv-it-betreuung/\">EDV-Betreuung</a> für kleinere Betriebe besser; diese Seite beschreibt, was sich darüber ändert. Ab etwa zwanzig Arbeitsplätzen ändert sich die Frage: nicht mehr „gibt es überhaupt eine Betreuung“, sondern „wie halten wir zwanzig Konten, zehn Freigaben, zwei Server und drei Standorte über die nächsten Jahre in einem Zustand, in dem noch jemand nachvollziehen kann, wie das aufgebaut ist“. Größere Betriebe haben Verträge mit Kunden, die eine IT voraussetzen, die läuft, und sie haben eine Dokumentationspflicht, die kein Zettel im Serverraum erfüllt. Genau dort setzt eine Betreuung an, die nicht am Ticket denkt, sondern am Bestand. Unter 20 Arbeitsplätzen sind Sie auf unserer <a href=\"/leistungen/edv-it-betreuung/\">EDV- und IT-Betreuung für kleinere Betriebe</a> richtig — dort ist die Beziehung enger und der Preis pro Kopf günstiger.",
         "problem_h": "Was in größeren Betrieben schiefgeht",
         "probleme": [
@@ -673,7 +673,7 @@ SEITEN = {
             {"h": "Laufender Betrieb mit Dokumentation", "t": "Ab da meldet sich der Ansprechpartner, wenn etwas auffällt, statt Sie sich melden zu lassen. Jede Änderung wird eingetragen. Einmal im Quartal sprechen wir darüber, was ansteht."},
         ],
         "preis_h": "Was das kostet",
-        "preis_t": "Die laufende Betreuung kostet ab 29 € je Arbeitsplatz und Monat, ein betreuter Server ab 89 € im Monat, die überwachte Datensicherung ab 49 € im Monat. Für einen typischen größeren Betrieb mit 30 Arbeitsplätzen und 2 Servern samt Datensicherung ergibt das rund 1.097 € im Monat (30 × 29 € + 2 × 89 € + 49 €). Punktuelle Arbeiten rechnen wir mit 95 € je Stunde ab, Einsätze vor Ort mit 120 € je Stunde zuzüglich Anfahrt. Richtpreise, netto zzgl. USt. Der laufende Betrieb per Fernwartung ist ortsunabhängig; zusätzliche Standorte werden pro Arbeitsplatz und Server abgerechnet wie oben, für Aufbau und Vor-Ort-Arbeiten geben wir die Anfahrt vorher schriftlich an.",
+        "preis_t": "Die laufende Betreuung richtet sich nach Arbeitsplätzen, Servern und Umfang; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Betreuter Server und überwachte Datensicherung richten sich nach dem Umfang; den Preis klären wir im Gespräch. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab.",
         "faq": [
             {"q": "Wo liegt die Grenze zwischen dieser Seite und der EDV-Betreuung für kleinere Betriebe?",
              "a": "Bei etwa 20 Arbeitsplätzen. Darunter ist eine engere, persönliche Betreuung schneller und einfacher; darüber lohnt sich der Aufwand für saubere Dokumentation und feste Standards, weil sonst niemand mehr durchsieht. Die Grenze ist nicht scharf: Manche 15er-Betriebe mit drei Standorten passen hierher, manche 25er mit einem Standort auf die andere Seite. Wir sagen es Ihnen im Erstgespräch.",

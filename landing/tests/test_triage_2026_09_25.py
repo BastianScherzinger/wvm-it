@@ -7,6 +7,8 @@ Kennung, die sie sichert. Gemeinsam ist allen: Der Fehler war still. Keine
 Fehlermeldung, kein roter Test — nur eine Seite, ein Schema oder eine Mail, die
 etwas anderes sagte als der Rest.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import ast
 import json
 import re
@@ -191,6 +193,7 @@ class ZusagenTest(SimpleTestCase):
                 self.assertIn(zeiten.LANG[lang][:1].upper() + zeiten.LANG[lang][1:],
                               i18n.get_pack(lang)["kontakt_seite"]["zeiten_t"])
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_keine_rufnummer_im_sprachpaket(self):
         """EIG144: Die Nummer kommt aus content.json, nie getippt ins Paket."""
         for name, quelle in _paketquellen().items():
@@ -402,6 +405,7 @@ class MessungUeberNeustartTest(SimpleTestCase):
 
 # ── Preise: eine Quelle (EIG12/22/82/136/140/142/143/147/156/157/177) ─────────
 class PreisquelleTest(SimpleTestCase):
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_price_range_aus_dem_katalog(self):
         schema = views._structured_data({"wvm_url": "https://www.wvm-it.tech"}, "de")
         mtl = views._ANGEBOT_INDEX["it_betreuung"]["mtl"]
@@ -484,6 +488,7 @@ class EinzugsgebietTest(SimpleTestCase):
                 for minuten in re.findall(r"(?:rund|etwa) (\d+) Minuten", text):
                     self.assertEqual(int(minuten), r["fahrzeit"])
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_llms_preise_aus_dem_katalog(self):
         p = views._ANGEBOT_INDEX
         llms = _html("/llms.txt")

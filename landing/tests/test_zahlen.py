@@ -15,6 +15,8 @@ Prüfung macht den Fehler nicht: Sie verlangt hinter der Ziffer irgendein Wort
 oder ein Währungs- bzw. Prozentzeichen und kommt damit ohne Einheitenliste je
 Sprache aus. Übrig bleibt dann **eine** Seite statt neunzehn.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import re
 from pathlib import Path
 
@@ -58,6 +60,7 @@ def fliesstext(html):
 
 class ZahlenImInhaltTest(SimpleTestCase):
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_jede_seite_nennt_mindestens_eine_zahl(self):
         """Der Fall, den diese Prüfung am 12.09.2026 fand: Der Hub der
         Vergleichsseiten kam in allen drei Sprachen ohne eine einzige Zahl aus —

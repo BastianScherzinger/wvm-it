@@ -19,18 +19,8 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                           'für 8 Arbeitsplätze',
                                                  'meta_titel': 'Was kostet EDV-Betreuung? Beispiel für 8 Plätze | '
                                                                'WVM-IT',
-                                                 'desc': 'Preis für einen Kleinbetrieb in Oberösterreich: 29 € je '
-                                                         'Arbeitsplatz, was enthalten ist, Rechenbeispiel für 8 '
-                                                         'Plätze. Jetzt unverbindlich anfragen.',
-                                                 'antwort': 'Die EDV-Betreuung eines Kleinbetriebs in '
-                                                            'Oberösterreich kostet bei WVM-IT 29 € je '
-                                                            'Arbeitsplatz und Monat; die tägliche geprüfte '
-                                                            'Datensicherung kommt mit 49 € im Monat dazu, '
-                                                            'ein betreuter Server mit 89 €. Die Rechnung '
-                                                            'setzt sich also aus drei Posten zusammen, die '
-                                                            'jeder selbst nachrechnen kann. Enthalten sind '
-                                                            'Updates, Überwachung und die laufende Pflege '
-                                                            'der Geräte, meist per Fernwartung.',
+                                                 'desc': "Informationen zur IT‑Betreuung für einen Kleinbetrieb in Oberösterreich – Leistungen im Überblick, Preis im Gespräch.",
+                                                 'antwort': "Die EDV‑Betreuung eines Kleinbetriebs in Oberösterreich umfasst die Betreuung der Arbeitsplätze, tägliche geprüfte Datensicherung und optional die Betreuung von Servern. Welche Leistungen Sie benötigen und in welchem Umfang, klären wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget.",
                                                  'vorweg': 'Einen allgemeinen Überblick, ab wann sich '
                                                            'Monatsbetreuung gegenüber Stundenabrechnung '
                                                            'lohnt, gibt der Beitrag <a '
@@ -44,45 +34,11 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                            'sich die Summe zusammensetzt.',
                                                  'abschnitte': [{'h': 'Die drei Bausteine und was jeder '
                                                                       'kostet',
-                                                                 't': 'Die Rechnung besteht aus höchstens '
-                                                                      'drei Posten. Erstens die laufende '
-                                                                      'Betreuung: 29 € je Arbeitsplatz und '
-                                                                      'Monat. Ein Arbeitsplatz ist ein '
-                                                                      'Rechner, an dem regelmäßig jemand '
-                                                                      'arbeitet, ob Laptop oder Desktop. '
-                                                                      'Zweitens die Datensicherung: 49 € im '
-                                                                      'Monat, unabhängig von der Zahl der '
-                                                                      'Arbeitsplätze, mit täglicher '
-                                                                      'Sicherung und einer Prüfung, dass '
-                                                                      'sich die Daten auch zurückholen '
-                                                                      'lassen. Drittens, nur wenn es einen '
-                                                                      'gibt, die Betreuung eines Servers: 89 '
-                                                                      '€ im Monat je Server. Alle Preise '
-                                                                      'verstehen sich netto, die '
-                                                                      'Umsatzsteuer kommt dazu. Mehr Posten '
-                                                                      'gibt es nicht, und es gibt keine '
-                                                                      'Mindestlaufzeit, die in der '
-                                                                      'Preisliste versteckt wäre.'},
+                                                                 't': "Die Rechnung besteht aus bis zu drei Posten: laufende Betreuung der Arbeitsplätze, Datensicherung und optional die Betreuung eines Servers. Welche Posten für Sie relevant sind und in welchem Umfang, wird vorab fest abgesprochen – keine versteckten Kosten, keine Mindestlaufzeit."},
                                                                 {'h': 'Rechenbeispiel: Betrieb mit 8 '
                                                                       'Arbeitsplätzen',
-                                                                 't': 'Ein Betrieb mit 8 Arbeitsplätzen und '
-                                                                      'ohne eigenen Server, etwa ein '
-                                                                      'Planungsbüro, bei dem die Dateien in '
-                                                                      'der Cloud liegen, rechnet so: 8 '
-                                                                      'Arbeitsplätze mal 29 € im Monat, dazu '
-                                                                      '49 € für die Datensicherung. Hat '
-                                                                      'derselbe Betrieb einen eigenen Server '
-                                                                      'im Haus, kommen 89 € im Monat für '
-                                                                      'dessen Betreuung dazu. Wächst der '
-                                                                      'Betrieb auf 9 Arbeitsplätze, steigt '
-                                                                      'die Rechnung um genau 29 €. Diese '
-                                                                      'Rechenbarkeit ist der eigentliche '
-                                                                      'Vorteil gegenüber der '
-                                                                      'Stundenabrechnung: Sie wissen am '
-                                                                      'Monatsanfang, was am Monatsende auf '
-                                                                      'der Rechnung steht, auch wenn dreimal '
-                                                                      'etwas ausfällt.'},
-                                                                {'h': 'Was in den 29 € enthalten ist',
+                                                                 't': "Ein Betrieb mit mehreren Arbeitsplätzen und ohne eigenen Server rechnet mit einer klaren Struktur: Kosten pro Arbeitsplatz plus Datensicherung. Kommt ein Server hinzu, wird ein zusätzlicher Posten ergänzt. Wie sich die Gesamtkosten zusammensetzen, besprechen wir in einem kurzen Gespräch, damit Sie die Rechnung bereits zu Monatsbeginn kennen."},
+                                                                {'h': "Was in der IT‑Betreuung enthalten ist",
                                                                  't': 'Die Betreuung hält die Geräte im '
                                                                       'Hintergrund in Ordnung: Windows- und '
                                                                       'Programm-Updates werden eingespielt, '
@@ -102,21 +58,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                                       "href='/aktuelles/fernwartung-was-sieht-der-dienstleister/'>Fernwartung: "
                                                                       'Was sieht der Dienstleister?</a>.'},
                                                                 {'h': 'Was nicht enthalten ist',
-                                                                 't': 'Größere Einzelprojekte stecken nicht '
-                                                                      'in der Monatspauschale: ein neuer '
-                                                                      'Server, der Umzug auf neue Rechner, '
-                                                                      'die Planung eines Firmennetzwerks. '
-                                                                      'Dafür gibt es Festpreise (etwa für '
-                                                                      'die <a '
-                                                                      "href='/einrichten/arbeitsplatz/'>Einrichtung "
-                                                                      'eines neuen Arbeitsplatzes</a>) oder '
-                                                                      'den Stundensatz von 95 € für '
-                                                                      'Fernwartung. Einsätze vor Ort kosten '
-                                                                      '120 € je Stunde zuzüglich Anfahrt. '
-                                                                      'Auch Hardware und Lizenzen von '
-                                                                      'Dritten, etwa Microsoft-Abos, laufen '
-                                                                      'weiter über Ihre eigene Rechnung, und '
-                                                                      'es wird nichts aufgeschlagen.'},
+                                                                 't': "Größere Einzelprojekte wie ein neuer Server, ein Rechner‑Umzug oder die Planung eines Firmennetzwerks werden nach fester Absprache vorab, ohne Überraschungen, abgerechnet. Für Fernwartung und Vor-Ort‑Einsätze gilt ebenfalls: der Aufwand wird im Gespräch geklärt, Hardware und Lizenzen werden direkt von Ihnen bezogen."},
                                                                 {'h': 'Wann sich der Pauschalpreis nicht '
                                                                       'lohnt',
                                                                  't': 'Bei einem einzelnen Rechner, der ein '
@@ -211,14 +153,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                                       'besten bei der WKO Oberösterreich.'}],
                                                  'faq': [{'q': 'Gibt es eine Mindestlaufzeit oder '
                                                                'Einrichtungsgebühr?',
-                                                          'a': 'Der Preis der laufenden Betreuung ist 29 € '
-                                                               'je Arbeitsplatz und Monat, mehr nennt die '
-                                                               'Preisliste nicht. Eine einmalige '
-                                                               'Bestandsaufnahme zu Beginn gehört zur '
-                                                               'Betreuung dazu, denn ohne Überblick über '
-                                                               'Geräte und Zugänge lässt sich nichts '
-                                                               'überwachen. Die Vertragsbedingungen stehen '
-                                                               'im Angebot, bevor Sie zusagen.'},
+                                                          'a': "Der Preis der laufenden Betreuung wird individuell nach Anzahl der Arbeitsplätze, Server und Leistungsumfang festgelegt; wir besprechen das in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Eine einmalige Bestandsaufnahme zu Beginn gehört zur Betreuung dazu, denn ohne Überblick über Geräte und Zugänge lässt sich nichts überwachen. Die Vertragsbedingungen stehen im Angebot, bevor Sie zusagen."},
                                                          {'q': 'Zählen Handys und Tablets als Arbeitsplatz?',
                                                           'a': 'Nein, abgerechnet wird je Arbeitsplatz, also '
                                                                'je Rechner mit regelmäßigem Einsatz. Die '
@@ -227,14 +162,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                                'Handys erhöhen die Monatsrechnung nicht.'},
                                                          {'q': 'Muss der Server im Haus stehen, damit Sie '
                                                                'ihn betreuen?',
-                                                          'a': 'Nein. Die Betreuung von 89 € im Monat gilt '
-                                                               'je Server, ob er im Büro steht oder bei '
-                                                               'einem Anbieter läuft. Ob ein eigener Server '
-                                                               'für Ihre Größe überhaupt sinnvoll ist, klärt '
-                                                               '<a '
-                                                               "href='/aktuelles/wie-viele-arbeitsplaetze-eigener-server/'>Ab "
-                                                               'wie vielen Arbeitsplätzen lohnt ein eigener '
-                                                               'Server?</a>.'},
+                                                          'a': "Die Betreuung wird je nach Server und Einsatzort individuell kalkuliert; wir klären im Gespräch, ob ein eigener Server für Ihre Größe sinnvoll ist. Weitere Informationen finden Sie unter <a href='/aktuelles/wie-viele-arbeitsplaetze-eigener-server/'>Ab wie vielen Arbeitsplätzen lohnt ein eigener Server?</a>."},
                                                          {'q': 'Was passiert, wenn wir im Monat gar nichts '
                                                                'brauchen?',
                                                           'a': 'Die Pauschale fällt trotzdem an, denn '
@@ -245,29 +173,15 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                                'von der Stundenabrechnung, bei der nur dann '
                                                                'gearbeitet wird, wenn bereits etwas kaputt '
                                                                'ist.'},
-                                                         {'q': 'Gelten die Preise netto oder brutto?',
-                                                          'a': 'Alle Preise verstehen sich netto, die '
-                                                               'Umsatzsteuer kommt dazu. Wer '
-                                                               'vorsteuerabzugsberechtigt ist, zieht sie '
-                                                               'wieder ab; für Betriebe ohne Vorsteuerabzug '
-                                                               'zählt deshalb der Bruttobetrag.'}],
-                                                 'fazit': 'Drei Posten bestimmen die Rechnung: 29 € je '
-                                                          'Arbeitsplatz, 49 € für die Datensicherung und 89 '
-                                                          '€ je betreuten Server. Wer sie kennt, kann jedes '
-                                                          'Angebot nachrechnen, auch das von WVM-IT.'},
+                                                         {'q': 'Kommen zur Betreuung noch Lizenzen oder Hardware dazu?',
+                                                          'a': "Lizenzen (zum Beispiel Microsoft 365) und Hardware sind in aller Regel nicht enthalten; das ist bei allen Anbietern so. Was für Ihren Betrieb nötig ist, klären wir in einem kurzen Gespräch."}],
+                                                 'fazit': "Die Rechnung setzt sich aus den Posten Arbeitsplatz‑Betreuung, Datensicherung und Server‑Betreuung zusammen. Welche Posten für Sie relevant sind, besprechen wir im Gespräch."},
  'it-betreuung-handwerksbetriebe': {'titel': 'Welche IT braucht ein Handwerksbetrieb? Büro, Baustelle, Handy',
                                     'meta_titel': 'Welche IT braucht ein Handwerksbetrieb? | WVM-IT',
                                     'desc': 'Handwerksbetrieb ohne IT-Abteilung: Was im Büro, am Firmenhandy '
                                             'und auf der Baustelle abgesichert sein muss und was es kostet. '
                                             'Jetzt Betreuung anfragen.',
-                                    'antwort': 'Ein Handwerksbetrieb braucht keine eigene IT-Abteilung, aber '
-                                               'drei Dinge verlässlich geregelt: einen gepflegten '
-                                               'Büro-Rechner mit täglich geprüfter Datensicherung, '
-                                               'Firmenhandys mit Zugriff auf E-Mail und Kalender und eine '
-                                               'Ansprechperson, die erreichbar ist, wenn auf der Baustelle '
-                                               'etwas nicht geht. Das lässt sich mit der IT-Betreuung für 29 '
-                                               '€ je Arbeitsplatz und Monat plus 49 € für die Datensicherung '
-                                               'abdecken, meist per Fernwartung.',
+                                    'antwort': "Ein Handwerksbetrieb braucht keine eigene IT‑Abteilung, dafür aber: einen gepflegten Büro‑Rechner mit täglicher Datensicherung, Firmenhandys mit E‑Mail‑ und Kalender‑Zugriff und eine zuverlässige Ansprechperson. Diese Leistungen werden im Rahmen unserer IT‑Betreuung abgedeckt – den genauen Preis besprechen wir in einem kurzen Telefonat.",
                                     'vorweg': "Wer als Handwerker die IT nicht nebenbei selbst machen will, findet den Zuschnitt für die Branche unter <a href='/branchen/handwerk-baugewerbe/'>IT-Betreuung für Handwerker in Österreich</a>.",
                                     'abschnitte': [{'h': 'Wo die IT im Handwerksbetrieb wirklich steckt',
                                                     't': 'Im typischen Betrieb mit 5 bis 15 Beschäftigten '
@@ -330,19 +244,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                          'lassen sich Zeiten schriftlich vereinbaren.'},
                                                    {'h': 'Was das kostet, am Beispiel eines Betriebs mit '
                                                          'vier Büroarbeitsplätzen',
-                                                    't': 'Ein Betrieb mit vier Büroarbeitsplätzen (Chef, '
-                                                         'Büro, Kalkulation, Bauleitung) zahlt für die '
-                                                         'Betreuung 4 mal 29 € im Monat, dazu 49 € für die '
-                                                         'Datensicherung, jeweils netto. Der Server '
-                                                         'entfällt, wenn die Daten in der Cloud liegen; hat '
-                                                         'der Betrieb einen, kommen 89 € dazu. Einmalige '
-                                                         'Aufgaben wie ein neuer Rechner kosten 190 € je '
-                                                         'Arbeitsplatz für die Einrichtung (<a '
-                                                         "href='/einrichten/arbeitsplatz/'>Arbeitsplatz "
-                                                         'einrichten</a>). Eine Gegenüberstellung mit der '
-                                                         'Abrechnung nach Aufwand liefert <a '
-                                                         "href='/aktuelles/was-kostet-it-betreuung/'>Was "
-                                                         'kostet IT-Betreuung?</a>.'},
+                                                    't': "Ein Betrieb mit vier Büroarbeitsplätzen zahlt für die Betreuung nach individuellem Aufwand, die Datensicherung wird ebenfalls nach Bedarf abgerechnet. Der Server entfällt, wenn die Daten in der Cloud liegen; hat der Betrieb einen, wird das gesondert besprochen. Einmalige Aufgaben wie ein neuer Rechner werden nach kurzer Sichtung und Absprache kalkuliert. Eine Gegenüberstellung mit der Abrechnung nach Aufwand liefert <a href='/aktuelles/was-kostet-it-betreuung/'>Was kostet IT-Betreuung?</a>."},
                                                    {'h': 'Typische Fälle aus dem Betriebsalltag',
                                                     't': 'Es sind fast immer dieselben Handgriffe, die im '
                                                          'Handwerk Zeit kosten: Das Angebotsprogramm startet '
@@ -396,13 +298,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                          'Beratungsförderungen gibt die WKO Oberösterreich '
                                                          'Auskunft.'}],
                                     'faq': [{'q': 'Lohnt sich eine Betreuung bei nur zwei Rechnern im Büro?',
-                                             'a': 'Es kommt auf die Häufigkeit der Probleme an, nicht auf '
-                                                  'die Zahl der Rechner. Bei zwei Arbeitsplätzen sind es 2 '
-                                                  'mal 29 € im Monat plus 49 € für die Datensicherung; wer '
-                                                  'pro Jahr nur ein-, zweimal Hilfe braucht, fährt mit dem '
-                                                  "Stundensatz von 95 € für <a href='/it-hilfe/'>Einzelhilfe "
-                                                  'ohne Vertrag</a> günstiger, wer die Sicherung nicht '
-                                                  'selbst prüfen will, nicht.'},
+                                             'a': "Die Kosten hängen von der Häufigkeit der Probleme ab, nicht von der Zahl der Rechner. Wer pro Jahr nur ein‑ bis zweimal Hilfe braucht, kann den Stundensatz im Gespräch vereinbaren; wer die Sicherung nicht selbst prüfen will, wird ebenfalls individuell beraten."},
                                             {'q': 'Wer kümmert sich um die Handys der Mitarbeiter?',
                                              'a': 'Die Einrichtung von E-Mail und Kalender auf dem '
                                                   'Firmenhandy gehört zur normalen Hilfe, die Betreuung pro '
@@ -417,10 +313,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                   'OneDrive), in die Fotos direkt hochgeladen werden, und '
                                                   'eine kurze schriftliche Regel dazu.'},
                                             {'q': 'Kommen Sie auch auf die Baustelle oder ins Werkstattbüro?',
-                                             'a': 'Ja, bei Bedarf kommt Florin Feier vor Ort, zum Satz von '
-                                                  '120 € je Stunde zuzüglich Anfahrt. Die meisten Fälle '
-                                                  'lassen sich aber per Fernwartung lösen, was die Anfahrt '
-                                                  'spart.'},
+                                             'a': "Bei Bedarf kommt Florin Feier vor Ort; die Abrechnung erfolgt nach individueller Absprache, inklusive Anfahrt. Die meisten Fälle lassen sich jedoch per Fernwartung lösen, was die Anfahrt spart."},
                                             {'q': 'Was ist mit dem Zugriff auf Pläne und Aufmaße von '
                                                   'unterwegs?',
                                              'a': 'Am einfachsten läuft er über eine Cloud-Ablage mit '
@@ -428,22 +321,13 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                   'Büro-Rechner zugreift, braucht einen abgesicherten Zugang '
                                                   "(<a href='/wissen/vpn/'>VPN</a>), kein offenes "
                                                   'Fernzugriffsprogramm.'}],
-                                    'fazit': 'Im Handwerk sitzt die IT an zwei Orten, im Büro und in der '
-                                             'Hosentasche, und beide brauchen Updates, Sicherung und eine '
-                                             'Ansprechperson. Für vier Büroarbeitsplätze sind das 4 mal 29 € '
-                                             'plus 49 € im Monat, netto.'},
+                                    'fazit': "Im Handwerk ist die IT sowohl im Büro als auch mobil im Einsatz. Beide Bereiche benötigen Updates, Sicherung und Support. Die genauen Kosten klären wir in einem kurzen Gespräch, individuell nach Ihren Bedürfnissen."},
  'microsoft-365-einrichten-lassen': {'titel': 'Wie läuft die Einrichtung von Microsoft 365 ab? Drei Schritte',
                                      'meta_titel': 'Microsoft 365: So läuft die Einrichtung ab | WVM-IT',
                                      'desc': 'Wie läuft die Einrichtung von Microsoft 365 ab? Drei Schritte, '
                                              'was Sie bereithalten und wie der Mailumzug ohne Ausfall '
                                              'gelingt. Jetzt Termin anfragen.',
-                                     'antwort': 'Microsoft 365 einzurichten kostet bei WVM-IT 290 € als '
-                                                'Festpreis und läuft in drei Schritten: Struktur klären, '
-                                                'einrichten und E-Mails umziehen, am Abend umschalten und am '
-                                                'nächsten Morgen einweisen. Enthalten sind Postfächer, '
-                                                'Zwei-Faktor-Anmeldung, Teams, OneDrive, SharePoint und der '
-                                                'Umzug der bestehenden Mails. Die Lizenzen kaufen Sie direkt '
-                                                'bei Microsoft; sie sind nicht im Preis.',
+                                     'antwort': "Die Einrichtung von Microsoft 365 wird mit fester Absprache vorab, ohne Überraschungen durchgeführt. Der Ablauf besteht aus Struktur‑Klärung, Einrichtung und E‑Mail‑Umzug, inklusive Postfächern, Zwei‑Faktor‑Anmeldung, Teams, OneDrive und SharePoint. Lizenzen werden direkt bei Microsoft erworben und sind nicht im Service enthalten.",
                                      'abschnitte': [{'h': 'Schritt 1: Klären, was wohin soll',
                                                      't': 'Am Anfang steht ein Gespräch, kein Klick. Wir '
                                                           'klären, wie viele Postfächer es werden, welche '
@@ -499,20 +383,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                           'Grund, warum wir den Umschalttermin nicht auf '
                                                           'einen Freitag legen.'},
                                                     {'h': 'Zwei-Faktor und was nicht im Preis steckt',
-                                                     't': 'Die Zwei-Faktor-Anmeldung ist der wirksamste '
-                                                          'einzelne Schritt gegen übernommene Konten, und '
-                                                          'sie ist von Anfang an aktiv (siehe auch <a '
-                                                          "href='/wissen/zwei-faktor-authentifizierung/'>Zwei-Faktor-Authentifizierung</a>). "
-                                                          'Nicht im Festpreis enthalten sind die Lizenzen, '
-                                                          'Hardware und Aufräumarbeiten in einem bereits '
-                                                          'bestehenden, unordentlichen Microsoft-365-Konto: '
-                                                          'Das rechnen wir nach Aufwand mit 95 € je Stunde '
-                                                          'und nennen nach einer kurzen Sichtung eine '
-                                                          'Obergrenze. Ebenso nicht dabei ist eine eigene '
-                                                          'Sicherung der Microsoft-365-Daten; sie lässt sich '
-                                                          'mit der <a '
-                                                          "href='/aktuelles/backup-3-2-1-kleine-firma/'>Datensicherung "
-                                                          'nach der 3-2-1-Regel</a> ergänzen.'},
+                                                     't': "Die Zwei‑Faktor‑Anmeldung ist der wirksamste einzelne Schritt gegen übernommene Konten und ist von Anfang an aktiv (siehe auch <a href='/wissen/zwei-faktor-authentifizierung/'>Zwei‑Faktor‑Authentifizierung</a>). Nicht im Leistungsumfang enthalten sind Lizenzen, Hardware und Aufräumarbeiten in einem bereits bestehenden, unordentlichen Microsoft‑365‑Konto; diese werden nach Aufwand und kurzer Sichtung mit einer Preisobergrenze im Gespräch genannt. Ebenso nicht dabei ist eine eigene Sicherung der Microsoft‑365‑Daten; sie lässt sich mit der <a href='/aktuelles/backup-3-2-1-kleine-firma/'>Datensicherung nach der 3‑2‑1‑Regel</a> ergänzen."},
                                                     {'h': 'Typische Stolpersteine',
                                                      't': 'Vier Dinge bremsen eine Einrichtung regelmäßig. '
                                                           'Erstens: Niemand weiß, wo die Domain registriert '
@@ -529,30 +400,9 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                           'auftauchen. Deshalb fragen wir sie im ersten '
                                                           'Gespräch ab.'},
                                                     {'h': 'Was nach der Einrichtung bleibt',
-                                                     't': 'Nach der Umstellung bleibt eine kurze Übergabe: '
-                                                          'eine Liste der Konten und Adressen, die Namen der '
-                                                          'beiden Verwaltungsberechtigten, die '
-                                                          'Ablagestruktur auf einer Seite und der Hinweis, '
-                                                          'wo Sie bei Fragen anrufen. Wer das Konto laufend '
-                                                          'betreuen lassen möchte, bekommt es im Rahmen der '
-                                                          "<a href='/leistungen/edv-it-betreuung/'>laufenden "
-                                                          'IT-Betreuung</a> mit; das ist aber eine eigene '
-                                                          'Entscheidung und kein Teil des Festpreises. Ein '
-                                                          'einfaches Beispiel für den Nutzen: Ein '
-                                                          'Mitarbeiter fällt aus, die Vertretung braucht '
-                                                          'Zugriff auf dessen Postfach, und die Verwalterin '
-                                                          'richtet das in zwei Minuten ein, ohne ein '
-                                                          'Kennwort weiterzugeben. Das ist der Zweck der '
-                                                          'Struktur.'},
+                                                     't': "Nach der Umstellung bleibt eine kurze Übergabe: eine Liste der Konten und Adressen, die Namen der beiden Verwaltungsberechtigten, die Ablagestruktur auf einer Seite und der Hinweis, wo Sie bei Fragen anrufen. Wer das Konto laufend betreuen lassen möchte, bekommt es im Rahmen der <a href='/leistungen/edv-it-betreuung/'>laufenden IT-Betreuung</a> mit; das ist aber eine eigene Entscheidung und kein Teil des festen Absprache. Ein einfaches Beispiel für den Nutzen: Ein Mitarbeiter fällt aus, die Vertretung braucht Zugriff auf dessen Postfach, und die Verwalterin richtet das in zwei Minuten ein, ohne ein Kennwort weiterzugeben. Das ist der Zweck der Struktur."},
                                                     {'h': 'Wann eine Einrichtung von außen sinnvoll ist',
-                                                     't': 'Wer zwei Postfächer und keine gemeinsamen Dateien '
-                                                          'hat, richtet Microsoft 365 oft selbst ein. Sobald '
-                                                          'mehrere Personen gemeinsame Ablagen brauchen, '
-                                                          'Mails umgezogen werden müssen oder das Konto auch '
-                                                          'Handys und Drucker bedienen soll, lohnt der '
-                                                          'Festpreis, weil die Fehler der ersten Einrichtung '
-                                                          'später am meisten kosten: falsche Rechte, '
-                                                          'doppelte Ablagen, fehlende Absicherung.'},
+                                                     't': "Wer zwei Postfächer und keine gemeinsamen Dateien hat, richtet Microsoft 365 oft selbst ein. Sobald mehrere Personen gemeinsame Ablagen brauchen, Mails umgezogen werden müssen oder das Konto auch Handys und Drucker bedienen soll, lohnt der feste Absprache vorab, weil die Fehler der ersten Einrichtung später am meisten kosten: falsche Rechte, doppelte Ablagen, fehlende Absicherung."},
                                                     {'h': 'In Österreich: Daten, Konten, Vertretung',
                                                      't': 'Für Betriebe in Österreich zählt bei Microsoft '
                                                           '365 vor allem die Frage, wo die Daten liegen und '
@@ -579,7 +429,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                    'Kalendern und Kontakten übernommen, und die alten laufen '
                                                    'während des Umzugs weiter. Erst wenn alles übertragen '
                                                    'ist, wird die Zustellung umgeschaltet.'},
-                                             {'q': 'Gilt der Festpreis von 290 € für jede Betriebsgröße?',
+                                             {'q': "Die Preisgestaltung richtet sich nach der Betriebsgröße und wird im Gespräch individuell festgelegt; kontaktieren Sie uns für eine klare Absprache.",
                                               'a': 'Für einen üblichen Betrieb bis etwa fünfzehn Postfächer '
                                                    'ja. Darüber sagen wir vorher, was dazukommt, bevor Sie '
                                                    'beauftragen.'},
@@ -590,32 +440,18 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                    'dass jemand die Zugangsdaten der Domain findet.'},
                                              {'q': 'Was, wenn wir schon Microsoft 365 haben, aber es ist '
                                                    'unordentlich?',
-                                              'a': 'Dann ist es ein Aufräumauftrag und keine Einrichtung: '
-                                                   'Rechte sortieren, Ablagen zusammenführen, Zwei-Faktor '
-                                                   'nachziehen. Das rechnen wir nach Aufwand mit 95 € je '
-                                                   'Stunde, nach einer kurzen Sichtung mit genannter '
-                                                   'Obergrenze.'},
+                                              'a': "Dann ist es ein Aufräumauftrag und keine Einrichtung: Rechte sortieren, Ablagen zusammenführen, Zwei‑Faktor nachziehen. Wir rechnen nach Aufwand und geben nach kurzer Sichtung eine Preisobergrenze im Gespräch an."},
                                              {'q': 'Brauchen wir für die Einrichtung eine eigene Domain?',
                                               'a': 'Ja, eine eigene Domain erleichtert die Einrichtung, weil '
                                                    'Adressen wie name@ihrefirma.at darüber laufen. Haben Sie '
                                                    'bisher nur Adressen bei einem allgemeinen Anbieter, '
                                                    'klären wir im ersten Gespräch, ob eine Domain '
                                                    'registriert werden soll.'}],
-                                     'fazit': 'Der Festpreis von 290 € deckt die Einrichtung samt Mailumzug, '
-                                              'nicht die Lizenzen. Die Struktur vorab zu klären, ist der '
-                                              'Teil, der später Ärger spart. Wer die Einrichtung abgeben möchte: '
-                                              '<a href="/einrichten/microsoft-365/">Office 365 einrichten lassen: 290 € Festpreis</a>.'},
+                                     'fazit': "Die Einrichtung von Microsoft 365 wird nach fester Absprache vorab durchgeführt; Lizenzen sind separat zu beziehen. Weitere Infos finden Sie unter <a href=\"/einrichten/microsoft-365/\">Office 365 einrichten lassen</a>."},
  'backup-3-2-1-kleine-firma': {'titel': 'Backup für kleine Firmen: die 3-2-1-Regel in der Praxis',
                                'meta_titel': 'Backup für kleine Firmen: 3-2-1-Regel einfach | WVM-IT',
-                               'desc': 'Die 3-2-1-Regel für kleine Firmen praktisch umgesetzt: drei Kopien, '
-                                       'zwei Medien, eine außer Haus, geprüft. Datensicherung ab 49 € im '
-                                       'Monat. Jetzt anfragen.',
-                               'antwort': 'Die 3-2-1-Regel verlangt drei Kopien Ihrer Daten, auf zwei '
-                                          'verschiedenen Medien, davon eine an einem anderen Ort. Für eine '
-                                          'kleine Firma heißt das: die Originaldaten, eine Sicherung auf '
-                                          'einem eigenen Gerät im Haus und eine Kopie außer Haus, die vom '
-                                          'Netzwerk getrennt ist. Als tägliche, geprüfte Datensicherung '
-                                          'kostet das bei WVM-IT 49 € im Monat.',
+                               'desc': "Die 3‑2‑1‑Regel für kleine Firmen praktisch umgesetzt – drei Kopien, zwei Medien, eine externe Sicherung. Preis im Gespräch.",
+                               'antwort': "Die 3‑2‑1‑Regel verlangt drei Kopien Ihrer Daten auf zwei verschiedenen Medien, davon eine an einem anderen Ort. Für kleine Firmen bedeutet das: Originaldaten, eine interne Sicherung und eine externe, vom Netzwerk getrennte Kopie. Die tägliche, geprüfte Datensicherung besprechen wir gern im kurzen Gespräch.",
                                'vorweg': 'Wie Sie prüfen, ob eine bestehende Sicherung im Ernstfall '
                                          'zurückkommt, beschreibt <a '
                                          "href='/aktuelles/datensicherung-richtig-pruefen/'>Datensicherung "
@@ -648,18 +484,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                     'gelingt, hängt vom Betrieb ab; entscheidend ist, dass '
                                                     'sie existiert.'},
                                               {'h': 'Eine Umsetzung für 8 Arbeitsplätze',
-                                               't': 'Ein Betrieb mit 8 Arbeitsplätzen und einer zentralen '
-                                                    'Dateiablage könnte so aufgebaut sein: Die Originaldaten '
-                                                    'liegen auf dem Server oder in der Cloud. Jede Nacht '
-                                                    'läuft eine Sicherung auf einen Netzwerkspeicher im Haus '
-                                                    '(Kopie zwei, Medium zwei). Zusätzlich wird dieselbe '
-                                                    'Sicherung verschlüsselt zu einem Cloud-Speicher '
-                                                    'übertragen (Kopie drei, anderer Ort). Dazu kommt die '
-                                                    'Prüfung: In regelmäßigen Abständen wird eine Datei '
-                                                    'wirklich zurückgeholt. Genau diesen Dreiklang aus '
-                                                    'täglicher Sicherung, Kopie außer Haus und Prüfung '
-                                                    'bildet die Datensicherung von WVM-IT ab, für 49 € im '
-                                                    'Monat, unabhängig von der Zahl der Arbeitsplätze.'},
+                                               't': "Ein Betrieb mit 8 Arbeitsplätzen und einer zentralen Dateiablage könnte so aufgebaut sein: Die Originaldaten liegen auf dem Server oder in der Cloud. Jede Nacht läuft eine Sicherung auf einen Netzwerkspeicher im Haus (Kopie zwei, Medium zwei). Zusätzlich wird dieselbe Sicherung verschlüsselt zu einem Cloud‑Speicher übertragen (Kopie drei, anderer Ort). Dazu kommt die Prüfung: In regelmäßigen Abständen wird eine Datei wirklich zurückgeholt. Dieser Dreiklang aus täglicher Sicherung, Kopie außer Haus und Prüfung wird individuell nach Aufwand abgerechnet, unabhängig von der Zahl der Arbeitsplätze."},
                                               {'h': 'Was nicht gesichert wird, wenn man nicht daran denkt',
                                                't': 'Vier Lücken tauchen immer wieder auf. Erstens die '
                                                     'Postfächer: Microsoft 365 sichert die eigene '
@@ -741,10 +566,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                              'hat dagegen zurückliegende Stände, aus denen Sie wählen '
                                              'können.'},
                                        {'q': 'Was kostet die Datensicherung bei WVM-IT?',
-                                        'a': '49 € im Monat netto, unabhängig von der Zahl der '
-                                             'Arbeitsplätze, mit täglicher Sicherung und geprüfter '
-                                             'Wiederherstellung. Speicherplatz bei Dritten gilt als '
-                                             'gesonderte Position und wird vorab im Angebot genannt.'},
+                                        'a': "Die monatliche Datensicherung wird nach individuellem Aufwand berechnet, unabhängig von der Zahl der Arbeitsplätze, mit täglicher Sicherung und geprüfter Wiederherstellung. Speicherplatz bei Dritten gilt als gesonderte Position und wird vorab im Angebot genannt."},
                                        {'q': 'Wie oft sollte die Wiederherstellung getestet werden?',
                                         'a': 'Mindestens einmal im Quartal und nach jeder größeren Änderung '
                                              'an Servern oder Programmen. Der Test besteht darin, eine echte '
@@ -842,23 +664,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                            'fragen Sie jemanden, bevor die Frist abläuft.'},
                                                      {'h': 'Danach: Was Sie ändern, damit es nicht wieder '
                                                            'passiert',
-                                                      't': 'Aus einem Vorfall wird nützliche Erfahrung, wenn '
-                                                           'drei Dinge folgen. Erstens Zwei-Faktor für alle '
-                                                           'Konten, damit ein erbeutetes Kennwort allein '
-                                                           'nicht mehr genügt. Zweitens eine kurze Absprache '
-                                                           'im Betrieb, wohin verdächtige Mails gemeldet '
-                                                           'werden, ohne dass sich jemand schämen muss. '
-                                                           'Drittens ein Blick auf die Technik: Spamfilter, '
-                                                           'aktuelle Updates, Berechtigungen. Einen '
-                                                           'Überblick, wie gut der Betrieb aufgestellt ist, '
-                                                           'gibt der <a '
-                                                           "href='/it-sicherheit-test/'>IT-Sicherheits-Selbsttest</a>, "
-                                                           'eine gründliche Prüfung der IT-Sicherheitscheck '
-                                                           'für 490 €, siehe <a '
-                                                           "href='/aktuelles/it-sicherheit-kleine-firma/'>IT-Sicherheit "
-                                                           'in der kleinen Firma</a>. Wie solche Mails aufgebaut '
-                                                           'sind, erklärt der Glossareintrag <a '
-                                                           "href='/wissen/phishing/'>Phishing</a>."},
+                                                      't': "Aus einem Vorfall wird nützliche Erfahrung, wenn drei Dinge folgen. Erstens Zwei‑Faktor für alle Konten, damit ein erbeutetes Kennwort allein nicht mehr genügt. Zweitens eine kurze Absprache im Betrieb, wohin verdächtige Mails gemeldet werden, ohne dass sich jemand schämen muss. Drittens ein Blick auf die Technik: Spamfilter, aktuelle Updates, Berechtigungen. Einen Überblick, wie gut der Betrieb aufgestellt ist, gibt der <a href='/it-sicherheit-test/'>IT‑Sicherheits‑Selbsttest</a>. Für eine gründliche Prüfung können wir im Gespräch eine Preisobergrenze nennen; weitere Informationen finden Sie unter <a href='/aktuelles/it-sicherheit-kleine-firma/'>IT‑Sicherheit in der kleinen Firma</a> und im Glossareintrag <a href='/wissen/phishing/'>Phishing</a>."},
                                                      {'h': 'Fehler, die den Schaden vergrößern',
                                                       't': 'Drei Reaktionen verschlimmern die Lage häufig. '
                                                            'Erstens: aus Scham schweigen. Je länger niemand '
@@ -922,10 +728,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                     "href='/aktuelles/email-postfach-gehackt/'>E-Mail-Postfach "
                                                     'gehackt</a>.'},
                                               {'q': 'Was kostet Hilfe im Akutfall?',
-                                               'a': 'Einzelhilfe ohne Vertrag kostet 95 € je Stunde per '
-                                                    'Fernwartung, Einsätze vor Ort 120 € je Stunde zuzüglich '
-                                                    'Anfahrt. Wer schon in der laufenden Betreuung ist, ruft '
-                                                    'einfach an.'},
+                                               'a': "Einzelhilfe ohne Vertrag wird nach individuellem Stundensatz abgerechnet; Einsätze vor Ort werden ebenfalls nach Absprache inklusive Anfahrt berechnet. Wer bereits in der laufenden Betreuung ist, ruft einfach an."},
                                               {'q': 'Soll ich die Mail löschen oder aufheben?',
                                                'a': 'Heben Sie sie auf, zum Beispiel in einem eigenen '
                                                     'Ordner, und löschen Sie sie erst nach der Klärung. Die '
@@ -940,7 +743,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                             'desc': 'Postfach gehackt? Kennwort ändern, Weiterleitungsregeln löschen, '
                                     'Zwei-Faktor einschalten, Kontakte warnen: die Schritte der Reihe nach. '
                                     'Jetzt Hilfe holen.',
-                            'antwort': "Ist ein E-Mail-Postfach übernommen, ändern Sie als Erstes das Kennwort von einem sauberen Gerät aus, melden alle Sitzungen ab und löschen danach die Weiterleitungs- und Postfachregeln, mit denen sich Angreifer heimlich Kopien schicken lassen. Dann schalten Sie die Zwei-Faktor-Anmeldung ein und warnen Ihre Kontakte. Wurden personenbezogene Daten abgegriffen, ist die Datenschutzbehörde binnen 72 Stunden zu informieren. Bei einem gehackten Postfach hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, 95 € je Stunde ohne Vertrag.",
+                            'antwort': "Ist ein E-Mail-Postfach übernommen, ändern Sie als Erstes das Kennwort von einem sauberen Gerät aus, melden alle Sitzungen ab und löschen danach die Weiterleitungs- und Postfachregeln, mit denen sich Angreifer heimlich Kopien schicken lassen. Dann schalten Sie die Zwei-Faktor-Anmeldung ein und warnen Ihre Kontakte. Wurden personenbezogene Daten abgegriffen, ist die Datenschutzbehörde binnen 72 Stunden zu informieren. Bei einem gehackten Postfach hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, ohne Vertrag; den Preis klären wir in einem kurzen Gespräch.",
                             'abschnitte': [{'h': 'Woran Sie erkennen, dass jemand im Postfach war',
                                             't': 'Die Anzeichen sind selten dramatisch. Häufig melden sich '
                                                  'Kontakte, die seltsame Mails mit Ihrem Namen bekommen '
@@ -1063,9 +866,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                           'das bestehende Konto zu bereinigen und abzusichern; nur wenn die '
                                           'Kontrolle nicht zurückzugewinnen ist, hilft ein neues.'},
                                     {'q': 'Was kostet die Hilfe?',
-                                     'a': 'Die Prüfung und Bereinigung eines Postfachs per Fernwartung läuft '
-                                          'über den Stundensatz von 95 € ohne Vertrag. Meist dauert es ein '
-                                          'bis zwei Stunden, mit mehreren betroffenen Konten länger.'},
+                                     'a': "Die Prüfung und Bereinigung eines Postfachs per Fernwartung erfolgt nach individuellem Stundensatz ohne Vertrag. Meist dauert es ein bis zwei Stunden, bei mehreren betroffenen Konten länger."},
                                     {'q': 'Wie lange sollte ich das Konto danach im Auge behalten?',
                                      'a': 'Mindestens einige Wochen. Schauen Sie wöchentlich in die '
                                           'Kontoaktivität und in die Regeln des Postfachs, weil Angreifer '
@@ -1079,7 +880,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                'desc': 'Dateien verschlüsselt, Lösegeldforderung auf dem Bildschirm? Netz '
                                        'trennen, Backup prüfen, Zahlen abwägen, Meldung binnen 72 Stunden. '
                                        'Jetzt Hilfe anfordern.',
-                               'antwort': "Bei einem Ransomware-Befall trennen Sie sofort alle betroffenen Geräte vom Netzwerk, ohne sie auszuschalten, und lassen die Datensicherung unangetastet, bis geklärt ist, ob sie intakt ist. Lösegeld zu zahlen ist keine Lösung, die sich garantieren lässt; entscheidend ist, ob eine saubere Sicherung vorliegt. Sind personenbezogene Daten betroffen, ist die Datenschutzbehörde binnen 72 Stunden zu informieren. Bei Verdacht auf Verschlüsselung hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, 95 € je Stunde ohne Vertrag; rufen Sie an, bevor Sie etwas löschen.",
+                               'antwort': "Bei einem Ransomware‑Befall trennen Sie sofort alle betroffenen Geräte vom Netzwerk, lassen die Datensicherung unangetastet und prüfen deren Integrität. Lösegeld zu zahlen ist keine Lösung. Ist personenbezogene Daten betroffen, informieren Sie die Datenschutzbehörde innerhalb von 72 Stunden. Unsere Unterstützung per Fernwartung aus Lenzing besprechen wir in einem kurzen Gespräch, bevor Sie Maßnahmen ergreifen.",
                                'vorweg': 'Was Ransomware technisch ist, erklärt <a '
                                          "href='/wissen/ransomware/'>Ransomware</a> im Glossar; bei akuten "
                                          "Problemen ist <a href='/it-notfall/'>IT-Notfall</a> der kürzere "
@@ -1167,19 +968,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                     'kann bei einem kleinen Betrieb Tage dauern, und die '
                                                     'Zeit lässt sich vorab nicht verlässlich nennen.'},
                                               {'h': 'Was Sie vorab tun können',
-                                               't': 'Die Vorsorge ist unspektakulär: Updates einspielen, den '
-                                                    'zweiten Faktor für alle Konten einschalten, Fernzugänge '
-                                                    "nur über <a href='/wissen/vpn/'>VPN</a> zulassen, "
-                                                    'Rechte sparsam vergeben und eine Sicherung führen, die '
-                                                    'der Angreifer nicht erreicht. Den Stand Ihres Betriebs '
-                                                    'misst der <a '
-                                                    "href='/it-sicherheit-test/'>IT-Sicherheits-Selbsttest</a>; "
-                                                    'die gründliche Prüfung mit Bericht ist der '
-                                                    'IT-Sicherheitscheck für 490 €. Dazu passen <a '
-                                                    "href='/aktuelles/homeoffice-sicher-anbinden/'>Homeoffice "
-                                                    'sicher anbinden</a> und <a '
-                                                    "href='/aktuelles/phishing-mail-geklickt-was-jetzt/'>Phishing-Mail "
-                                                    'geklickt</a>.'},
+                                               't': "Die Vorsorge ist unspektakulär: Updates einspielen, den zweiten Faktor für alle Konten einschalten, Fernzugänge nur über <a href='/wissen/vpn/'>VPN</a> zulassen, Rechte sparsam vergeben und eine Sicherung führen, die der Angreifer nicht erreicht. Den Stand Ihres Betriebs misst der <a href='/it-sicherheit-test/'>IT‑Sicherheits‑Selbsttest</a>; für eine gründliche Prüfung mit Bericht können wir im Gespräch eine Preisobergrenze nennen. Dazu passen <a href='/aktuelles/homeoffice-sicher-anbinden/'>Homeoffice sicher anbinden</a> und <a href='/aktuelles/phishing-mail-geklickt-was-jetzt/'>Phishing‑Mail geklickt</a>."},
                                               {'h': 'In Österreich: Ansprechpartner und Hilfe vor Ort',
                                                't': 'Neben der Datenschutzbehörde und der Polizei ist die '
                                                     'WKO Oberösterreich Anlaufstelle für Betriebe, die Rat '
@@ -1212,9 +1001,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                              'Personenbezug, entfällt diese Meldepflicht; die Dokumentation '
                                              'bleibt trotzdem sinnvoll.'},
                                        {'q': 'Wie viel kostet Hilfe im Ernstfall?',
-                                        'a': 'Per Fernwartung rechnen wir 95 € je Stunde, vor Ort 120 € je '
-                                             'Stunde zuzüglich Anfahrt. Den Aufwand eines Wiederaufbaus kann '
-                                             'man erst nach der Einordnung nennen.'},
+                                        'a': "Per Fernwartung berechnen wir nach individuellem Stundensatz; vor Ort erfolgt die Abrechnung ebenfalls nach Absprache inklusive Anfahrt. Den Aufwand eines Wiederaufbaus können wir erst nach einer ersten Einordnung nennen."},
                                        {'q': 'Kommt Ransomware nur über E-Mail ins Haus?',
                                         'a': 'Nein. Häufige Wege sind außerdem offene Fernzugänge ohne '
                                              'zweiten Faktor, ungepatchte Programme und gestohlene '

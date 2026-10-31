@@ -4,6 +4,8 @@
 Alle Erwartungen leiten sich aus dem Katalog selbst ab , keine abgetippten IDs
 oder Zahlen, damit ein ergänzter Preis diese Tests nicht bricht.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 from django.http import QueryDict
 from django.test import SimpleTestCase
 
@@ -115,9 +117,11 @@ class FormatierungTest(SimpleTestCase):
         label = _make_price_label({"anfrage": True}, {"on_request": "auf Anfrage"})
         self.assertEqual(label, "auf Anfrage")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_make_price_label_ohne_preisfelder(self):
         self.assertEqual(_make_price_label({}, {}), "-")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_make_price_label_kombiniert_once_und_mtl(self):
         label = _make_price_label(
             {"once": 690, "mtl": 39},

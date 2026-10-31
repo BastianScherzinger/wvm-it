@@ -1,0 +1,17 @@
+{% comment %}
+Anruf-Kasten "Preis im Gespräch" (31.10.2026). Ersetzt jede Preisangabe als Handlungsaufforderung:
+Anrufen (gefüllt, mit sichtbarer Nummer) und WhatsApp. `tel:` nur über `c.telefon_tel`.
+Aufruf: {% include 'anruf_kasten.html' %} oder mit `kurz=True` (nur Satz + Knöpfe).
+Reihenfolge-Regel: oben (nach dem Kopf) und am Ende der Seite je einmal; auf dem Handy
+sitzt zusätzlich die feste Leiste (static/css/anruf-leiste.css, base.html).
+{% endcomment %}
+<aside class="rg-cta anruf-kasten" aria-label="{{ t.ohne_preise.aria|safe }}">
+  <div class="rg-cta-text">
+    <p class="rg-cta-kopf">{{ t.ohne_preise.kasten_h|safe }}</p>
+    <p class="rg-cta-t">{% if kurz %}{{ t.ohne_preise.kasten_t_kurz|safe }}{% else %}{{ t.ohne_preise.kasten_t|safe }}{% endif %}</p>
+  </div>
+  <div class="rg-cta-knoepfe">
+    {% if c.telefon %}<a class="btn way-call" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span class="way-call-t"><small>{{ t.ohne_preise.anrufen|safe }}</small><b>{{ c.telefon }}</b></span></a>{% endif %}
+    {% if c.whatsapp %}<a class="way way-wa" href="https://wa.me/{{ c.whatsapp }}?text={{ t.ohne_preise.wa_text|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ohne_preise.wa|safe }}</span></a>{% endif %}
+  </div>
+</aside>

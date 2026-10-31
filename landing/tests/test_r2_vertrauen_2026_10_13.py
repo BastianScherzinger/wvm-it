@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Runde 2, Strang „Vertrauen“ (13.10.2026): Notfallseite mit Selbsthilfe, Zeitentabelle,
 Fernwartungsablauf, Wechsel-Beitrag und Bewertungsband, das nur mit echten Werten rendert."""
+import unittest as _ut_op
+from landing import views as _v_op
 import json
 import re
 from unittest import mock
@@ -107,6 +109,7 @@ class FernwartungAblaufTest(SimpleTestCase):
 
 class WechselBeitragTest(SimpleTestCase):
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_ablauf_und_kosten_aus_dem_katalog(self):
         html = _html("/aktuelles/it-dienstleister-wechseln/")
         self.assertIn("Der Wechsel in fünf Schritten", html)

@@ -43,6 +43,15 @@ for _l in ("en", "ro"):
     PACKS[_l] = _deep_merge(_RAW["de"], _RAW[_l])
 
 
+# Strategie "Preis im Gespraech" (31.10.2026): feste Bausteine ohne Zahl, und das
+# Wort fuer "auf Anfrage" wird zum Label, das ueberall dort steht, wo vorher ein Preis stand.
+from . import ohne_preise as _op
+for _l in LANGS:
+    PACKS[_l]["ohne_preise"] = copy.deepcopy(_op.PAKETE[_l])
+    PACKS[_l].setdefault("catalog_words", {})["on_request"] = _op.PAKETE[_l]["label"]
+    PACKS[_l] = _deep_merge(PACKS[_l], _op.UEBERSCHREIBEN[_l])
+
+
 def norm_lang(lang):
     lang = (lang or "").lower().replace("_", "-").split("-")[0]
     return lang if lang in LANGS else DEFAULT_LANG
@@ -177,6 +186,11 @@ def nur_deutsch(base_path, lang):
     return base_path in _nur_deutsche_pfade()
 
 
+def _preise_sichtbar():
+    from .. import views
+    return views.PREISE_SICHTBAR
+
+
 def context_processor(request):
     """Stellt jedem Template t (aktives Paket), lang, den Sprachumschalter und die
     hreflang-Alternates bereit."""
@@ -248,4 +262,5 @@ def context_processor(request):
         "canonical_path": add_prefix(lang, base),
         # Cache-Busting-Version für ?v= an CSS/JS-Links (siehe settings.ASSET_VERSION)
         "asset_v": getattr(settings, "ASSET_VERSION", "1"),
+        "preise_sichtbar": _preise_sichtbar(),
     }

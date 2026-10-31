@@ -2,7 +2,7 @@
 Preistabelle aus dem Katalog (Schub 2, A1/T8): `posten` = Positionen aus views._localized_groups().
 Name, Beschreibung und Preis stammen aus ANGEBOT_GROUPS bzw. dem Katalog-Sprachpaket — hier steht keine Zahl.
 KI-Antworten übernehmen Tabellen besonders gern; für Leser ist es die schnellste Form.
-{% endcomment %}{% if posten %}
+{% endcomment %}{% if not preise_sichtbar %}{% include 'anruf_kasten.html' %}{% elif posten %}
 <div class="pt pt-klein">
   <div class="pt-scroll">
   <table class="pt-table">

@@ -15,6 +15,8 @@ auseinanderlaufen darf:
 4. Das optionale „Worum geht es?" im Rückruf nimmt nur bekannte Werte an.
 5. Die Öffnungszeiten im Schema sind dieselben, die /kontakt/ sichtbar nennt.
 """
+import unittest as _ut_op
+from landing import views as _v_op
 import json
 import os
 import re
@@ -64,6 +66,7 @@ class HilfeSeiteTest(SimpleTestCase):
         self.assertTrue(eintrag[0][3], "die Seite gibt es in drei Sprachen")
         self.assertEqual(_sitemap_klasse("/it-hilfe/"), "kern")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_antwortabsatz_nennt_beide_stundensaetze(self):
         for pfad in PFADE:
             with self.subTest(pfad=pfad):
@@ -73,6 +76,7 @@ class HilfeSeiteTest(SimpleTestCase):
                 self.assertIn(str(STUNDE), antwort.group(1))
                 self.assertIn(str(VOR_ORT), antwort.group(1))
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_schema_service_mit_stundenpreisen_aus_dem_katalog(self):
         for pfad in PFADE:
             with self.subTest(pfad=pfad):
@@ -112,6 +116,7 @@ class HilfeSeiteTest(SimpleTestCase):
         self.assertIn('href="/leistungen/edv-it-betreuung/"', html)
         self.assertIn('href="/it-notfall/"', html)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_festpreis_karten_zeigen_den_katalogpreis_ohne_ab(self):
         _, html = _html("/it-hilfe/")
         for iid in ("arbeitsplatz", "m365"):
@@ -150,6 +155,7 @@ class WegeZurHilfeTest(SimpleTestCase):
                 self.assertEqual(finder.count('class="fd-karte'), 6,
                                  "der Finder bleibt bei sechs Karten")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_vertrauensband_nennt_den_stundensatz_ohne_ab(self):
         _, html = _html("/")
         band = re.search(r'<ul class="hero-trust">(.*?)</ul>', html, re.S).group(1)
@@ -249,6 +255,7 @@ class OeffnungszeitenStimmenTest(SimpleTestCase):
 
 class LlmsEinzelhilfeTest(SimpleTestCase):
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_llms_nennt_die_einzelhilfe_mit_katalogpreis(self):
         for pfad in ("/llms.txt", "/llms-full.txt"):
             with self.subTest(pfad=pfad):
@@ -281,6 +288,7 @@ class AbnahmeNachbesserungTest(SimpleTestCase):
                 self.assertEqual(status, 200)
                 self.assertNotIn("techz", html)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_rechenbeispiele_stehen_mit_ab(self):
         from landing.views import _kosten_beispiele
         for pfad, lang, ab in (("/kosten/", "de", "ab"), ("/en/kosten/", "en", "from"),
@@ -304,6 +312,7 @@ class ZweiteAbnahmeTest(SimpleTestCase):
     „ab"-Wert, wie im Katalog und auf /kosten/, und die Datenschutzerklärung
     nennt das Rückruf-Anliegen bei Sicherung und Reichweitenmessung."""
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_laufende_betreuung_auf_it_hilfe_mit_ab(self):
         for pfad, soll, falsch in (
                 ("/it-hilfe/", ("ab 29 €", "ab 145 € im Monat (ohne Datensicherung)"),
@@ -320,6 +329,7 @@ class ZweiteAbnahmeTest(SimpleTestCase):
                 with self.subTest(pfad=pfad, falsch=text):
                     self.assertNotIn(text, html)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_beschreibungen_nennen_ab_29(self):
         for lang, ab in (("de", "ab 29 €"), ("en", "from €29"), ("ro", "de la 29 €")):
             for pfad in (("/" if lang == "de" else f"/{lang}/"),
