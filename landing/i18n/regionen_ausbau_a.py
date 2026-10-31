@@ -371,7 +371,7 @@ RO = {
             {"q": "Cât de repede poate ajunge cineva la firma noastră?",
              "a": "Răspundem în zilele lucrătoare în 24 de ore. Nu oferim serviciu de urgență non-stop. Fiindcă suntem în localitate, o programare la fața locului se poate face de obicei repede, iar multe lucruri le lămurim în prealabil prin acces la distanță."},
             {"q": "Avem nevoie de contract dacă avem o singură problemă?",
-             "a": "Nu. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. În Lenzing nu se adaugă taxă de deplasare. Prețurile sunt nete și comunicate dinainte."},
+             "a": "Nu. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. În Lenzing nu se adaugă taxă de deplasare. Prețul este comunicat dinainte."},
             {"q": "Firma noastră a apelat până acum la o cunoștință pentru IT. Cum se face preluarea?",
              "a": "Mai întâi inventariem ce există: dispozitive, conturi, contracte, copii de siguranță. Rezultatul îl punem în scris, ca nimic să nu rămână doar în capul unei persoane. Apoi preluăm pas cu pas, fără ca firma să se oprească. Ajutorul de până acum poate participa."},
             {"q": "Lucrați și pentru asociații și pentru comună?",

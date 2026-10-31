@@ -69,7 +69,7 @@ BEGRIFFE = {
     "managed-services": {
         "titel": "Managed Services",
         "meta_titel": "Managed Services: fester Preis, volle Leistung | WVM-IT",
-        "desc": "Managed Services heißt: fester Monatspreis, feste Leistung, Vorbeugung inklusive. Woran Sie ein leeres Angebot erkennen — jetzt nachlesen.",
+        "desc": "Managed Services heißt: feste Absprache, feste Leistung, Vorbeugung inklusive. Woran Sie ein leeres Angebot erkennen — jetzt nachlesen.",
         "kurz": "Managed Services bezeichnet die laufende Betreuung von IT zu einem festen Preis je Zeitraum — statt Abrechnung nach Aufwand im Störungsfall. Der entscheidende Unterschied ist nicht der Preis, sondern die Interessenlage: Wer monatlich betreut, verdient daran, dass wenig ausfällt. Enthalten sein müssen Updates, Überwachung, Benutzerverwaltung und die geprüfte Datensicherung. Die laufende Betreuung richtet sich nach Arbeitsplätzen, Servern und Umfang; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget.",
         "abschnitte": [
             {"h": "Woran man ein leeres Angebot erkennt",

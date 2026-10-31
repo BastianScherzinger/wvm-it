@@ -114,7 +114,7 @@ class SchemaTest(SimpleTestCase):
 class SeitenInhaltTest(SimpleTestCase):
     @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_kosten_h1_und_notfall(self):
-        self.assertIn("<h1>Was kostet IT-Betreuung? Alle Preise auf einer Seite</h1>", _html("/kosten/"))
+        self.assertIn("<h1>Was kostet IT-Betreuung? So kommt der Preis zustande</h1>", _html("/kosten/"))
         notfall = _html("/it-notfall/")
         for wort in ("Microsoft-365-Konto gesperrt", "E-Mail geht nicht", "PC startet nicht", "95 €"):
             self.assertIn(wort.replace("E-Mail geht", "E-Mail geht"), notfall.replace("Die E-Mail geht nicht", "E-Mail geht nicht"))

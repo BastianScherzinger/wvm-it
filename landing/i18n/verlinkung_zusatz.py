@@ -30,7 +30,7 @@ ZUSATZ = {
             "nas": "Wer Speicher im Betrieb aufstellen will, findet den Ablauf unter <a href='/einrichten/server/'>Server einrichten</a>.",
             "monitoring": "Wie ein Server mit Überwachung aufgebaut wird, steht unter <a href='/einrichten/server/'>Server einrichten</a>.",
             "zwei-faktor-authentifizierung": "Auch der Zugang von außen lässt sich mit einem zweiten Faktor absichern; wie das beim <a href='/einrichten/firewall-vpn/'>VPN mit Zwei-Faktor einrichten</a> aussieht, steht auf der Einrichtungsseite.",
-            "backup": "Was die Sicherung für den eigenen Betrieb kostet, lässt sich im Kostenrechner ausrechnen: <a href='/kosten/rechner/'>Kosten der Datensicherung berechnen</a>.",
+            "backup": "Was die Sicherung für den eigenen Betrieb kostet, klären wir in einem kurzen Gespräch; den Bedarf können Sie hier zusammenstellen: <a href='/kosten/rechner/'>Kosten der Datensicherung berechnen</a>.",
             "vpn": "Ob ein VPN für Ihren Betrieb überhaupt nötig ist, klärt vorab die <a href='/leistungen/it-beratung/'>IT-Beratung</a>.",
         },
     },

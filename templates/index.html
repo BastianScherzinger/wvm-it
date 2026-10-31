@@ -341,7 +341,7 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       <p class="lk-alle">
         <a class="textlink" href="{% url 'rechner' %}">{{ t.wissen.rechner_h|safe }}</a>
         <a class="textlink" href="{% url 'einrichtungen' %}">{{ t.einrichten_hub.h1|safe }}</a>
-        <a class="textlink" href="{% url 'angebot' %}#preisliste">{{ t.rb.all_link|safe }}</a>
+        <a class="textlink" href="{% if preise_sichtbar %}{% url 'angebot' %}#preisliste{% else %}{% url 'kontakt' %}{% endif %}">{{ t.rb.all_link|safe }}</a>
       </p>
     </div>
   </section>

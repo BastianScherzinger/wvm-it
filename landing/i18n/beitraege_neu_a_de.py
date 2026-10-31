@@ -26,7 +26,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                            'lohnt, gibt der Beitrag <a '
                                                            "href='/aktuelles/was-kostet-it-betreuung/'>Ab "
                                                            'wann rechnet sich Monatsbetreuung für eine '
-                                                           'kleine Firma?</a>; die vollständige Preisliste '
+                                                           'kleine Firma?</a>; den Preis klären wir im Gespräch, die Übersicht '
                                                            "steht auf <a href='/kosten/'>Was kostet "
                                                            'IT-Betreuung?</a>. Dieser Beitrag klärt etwas '
                                                            'anderes: was bei einem kleinen Betrieb in '

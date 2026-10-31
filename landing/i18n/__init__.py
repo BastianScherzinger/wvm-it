@@ -32,6 +32,12 @@ def _deep_merge(base, over):
     for k, v in over.items():
         if isinstance(v, dict) and isinstance(out.get(k), dict):
             out[k] = _deep_merge(out[k], v)
+        elif isinstance(v, dict) and isinstance(out.get(k), list):
+            # Listenelemente einzeln ueberschreiben: Schluessel "0", "1", ...
+            lst = out[k]
+            for i, w in v.items():
+                i = int(i)
+                lst[i] = _deep_merge(lst[i], w) if isinstance(w, dict) and isinstance(lst[i], dict) else copy.deepcopy(w)
         else:
             out[k] = copy.deepcopy(v)
     return out
@@ -46,10 +52,12 @@ for _l in ("en", "ro"):
 # Strategie "Preis im Gespraech" (31.10.2026): feste Bausteine ohne Zahl, und das
 # Wort fuer "auf Anfrage" wird zum Label, das ueberall dort steht, wo vorher ein Preis stand.
 from . import ohne_preise as _op
+from . import ohne_preise_texte as _opt
 for _l in LANGS:
     PACKS[_l]["ohne_preise"] = copy.deepcopy(_op.PAKETE[_l])
     PACKS[_l].setdefault("catalog_words", {})["on_request"] = _op.PAKETE[_l]["label"]
     PACKS[_l] = _deep_merge(PACKS[_l], _op.UEBERSCHREIBEN[_l])
+    PACKS[_l] = _deep_merge(PACKS[_l], _opt.TEXTE[_l])
 
 
 def norm_lang(lang):

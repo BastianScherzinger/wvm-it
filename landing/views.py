@@ -5501,12 +5501,12 @@ def llms_txt(request):
         f"- [Startseite]({base}/): Überblick, Kontaktwege und die häufigsten Fragen.",
         f"- [Alle Leistungen]({base}/leistungen/): Einstieg in die "
         f"{len(leistungen.LEISTUNGEN)} Leistungsseiten.",
-        f"- [Preise]({base}/kosten/): vollständige Preisliste mit Stand-Datum.",
-        f"- [Kostenrechner]({base}/kosten/rechner/): Arbeitsplätze, Server und Datensicherung "
-        "eingeben, Monats- und Jahressumme sofort sehen. Rechnet aus derselben Preisliste.",
+        f"- [Kosten]({base}/kosten/): wie der Preis zustande kommt; genannt wird er im kurzen Gespräch.",
+        f"- [Bedarf zusammenstellen]({base}/kosten/rechner/): Arbeitsplätze, Server und Datensicherung "
+        "angeben; wir rufen zurück und klären den Preis im kurzen Gespräch.",
         f"- [Referenzen]({base}/referenzen/): belegte Projekte mit Einverständnis der Kunden.",
         f"- [Kontakt]({base}/kontakt/): WhatsApp, Telefon, Rückruf, E-Mail.",
-        f"- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen, Richtpreis sofort.",
+        f"- [Angebot konfigurieren]({base}/angebot/): Leistungen zusammenstellen, Preis im kurzen Gespräch.",
         f"- [Branchen]({base}/branchen/): {len(branchen.BRANCHEN)} Branchen und was bei ihnen "
         "technisch anders ist (Liste unten).",
         f"- [Vergleiche]({base}/vergleich/): {len(vergleiche.VERGLEICHE)} Entscheidungen im "
@@ -5533,7 +5533,7 @@ def llms_txt(request):
         "\n## Einzelhilfe ohne Vertrag",
         f"- {_llms_einzelhilfe_satz()} Seite: {base}/it-hilfe/",
         *_llms_festpreise(base),
-        "\n## Preise (Richtpreise, netto zzgl. USt.)",
+        "\n## Preise",
         *_llms_preise_zeilen(),
         "- Gebäudeautomation, Konferenz- und Veranstaltungstechnik: projektbezogen nach Bestandsaufnahme.",
         "\n## Branchen (gleiche Leistung, anderer Zuschnitt)",

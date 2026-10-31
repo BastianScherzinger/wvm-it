@@ -142,7 +142,7 @@ Zwei Regeln halten diese Seite zusammen:
             <strong><span data-kr-out="schwelle">{{ e.schwelle }}</span> {{ rs.schwelle_l|safe }}</strong><br>
             {{ rs.schwelle_t|safe }}
           </p>
-          <p class="lk-alle"><a href="{% url 'kosten' %}">{{ rs.zur_preisliste|safe }}</a></p>
+          <p class="lk-alle"><a href="{% if preise_sichtbar %}{% url 'kosten' %}{% else %}{% url 'kontakt' %}{% endif %}">{{ rs.zur_preisliste|safe }}</a></p>
         </div>
 
         <p class="kr-hinweis">{{ rs.hinweis|safe }} {{ t.seite.stand|safe }} {{ preis_stand }}</p>
