@@ -5088,6 +5088,10 @@ def angebot_anfordern(request):
                                        consent_ip=_client_ip(request), unsub_token=unsub)
         except Exception as exc:
             print(f"[ANGEBOT-LEAD-FEHLER] {exc}", flush=True)
+    if not PREISE_SICHTBAR:
+        # Ohne Preise gehen keine Summen an den Browser; Florins Mail behält sie.
+        return JsonResponse({"ok": True, "once": 0, "mtl": 0, "yr": 0,
+                             "anfrage": True, "summe": "", "count": len(ids)})
     return JsonResponse({"ok": True, "once": once, "mtl": mtl, "yr": yr,
                          "anfrage": anfrage, "summe": summe_txt, "count": len(ids)})
 
