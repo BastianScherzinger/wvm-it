@@ -38,7 +38,7 @@ einrichtung_link
 """
 
 LEISTUNGEN = [
-    {"slug": "edv-it-betreuung", "bereich": "it", "icon": "host", "quelle": "it", "preis": "it_betreuung",
+    {"slug": "edv-it-betreuung", "bereich": "it", "icon": "host", "quelle": "it", "preis": "it_betreuung", "kopf_szene": "fernwartung",
      "vor_ort": False, "prio": "0.9",
      "verwandt": ["it-betreuung-groessere-betriebe", "server-datensicherung", "netzwerk-wlan", "it-sicherheit"],
      # 07.09.2026: war `sicherheitscheck` (490 EUR). Wer auf der EDV-Hauptseite
@@ -57,16 +57,16 @@ LEISTUNGEN = [
      "kleinauftrag": True,
      "einstieg": "sicherheitscheck",},
 
-    {"slug": "server-datensicherung", "bereich": "it", "icon": "server", "quelle": "it", "preis": "backup",
+    {"slug": "server-datensicherung", "bereich": "it", "icon": "server", "quelle": "it", "preis": "backup", "kopf_szene": "server",
      "vor_ort": False, "prio": "0.8",
-     "verwandt": ["edv-it-betreuung", "it-sicherheit", "hosting-wartung"], "einstieg": "sicherheitscheck",},
+     "verwandt": ["edv-it-betreuung", "it-sicherheit"], "einstieg": "sicherheitscheck",},
 
-    {"slug": "netzwerk-wlan", "bereich": "it", "icon": "net", "quelle": "it", "preis": "netzwerk_setup",
+    {"slug": "netzwerk-wlan", "bereich": "it", "icon": "net", "quelle": "it", "preis": "netzwerk_setup", "kopf_szene": "netz",
      "vor_ort": True, "prio": "0.8",
      "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone"], "einstieg": "it_support",
      "einrichtung_link": "firewall-vpn",},
 
-    {"slug": "it-sicherheit", "bereich": "it", "icon": "shield", "quelle": "it", "preis": "sicherheitscheck",
+    {"slug": "it-sicherheit", "bereich": "it", "icon": "shield", "quelle": "it", "preis": "sicherheitscheck", "kopf_szene": "sicherheit",
      "vor_ort": False, "prio": "0.8",
      "verwandt": ["edv-it-betreuung", "server-datensicherung", "netzwerk-wlan"], "einstieg": "sicherheitscheck",},
 
@@ -74,9 +74,9 @@ LEISTUNGEN = [
      "vor_ort": False, "prio": "0.8",
      "verwandt": ["edv-it-betreuung", "it-sicherheit", "smarthome-knx-loxone", "ki-automatisierung"], "einstieg": "it_support",},
 
-    {"slug": "webseite-erstellen", "bereich": "sicht", "icon": "web", "quelle": "web", "preis": "onepager",
+    {"slug": "webseite-erstellen", "bereich": "sicht", "icon": "web", "quelle": "web", "preis": "onepager", "kopf_szene": "web",
      "vor_ort": False, "prio": "0.9",
-     "verwandt": ["seo-betreuung", "hosting-wartung", "google-ads", "ki-automatisierung"], "einstieg": "onepager",},
+     "verwandt": ["seo-betreuung", "google-ads", "ki-automatisierung"], "einstieg": "onepager",},
 
     {"slug": "seo-betreuung", "bereich": "sicht", "icon": "seo", "quelle": "seo", "preis": "seo",
      "vor_ort": False, "prio": "0.9",
@@ -84,13 +84,7 @@ LEISTUNGEN = [
 
     {"slug": "google-ads", "bereich": "sicht", "icon": "rocket", "quelle": "ads", "preis": "ads_setup",
      "vor_ort": False, "prio": "0.8",
-     "verwandt": ["seo-betreuung", "webseite-erstellen", "hosting-wartung", "ki-automatisierung"]},
-
-    {"slug": "hosting-wartung", "bereich": "sicht", "icon": "domain", "quelle": "hosting", "preis": "hosting",
-     "vor_ort": False, "prio": "0.7",
-     # Partnerlink (03.10.2026): nur diese Seite und der Startseiten-Block zeigen ihn.
-     "partner": "domaintechnik",
-     "verwandt": ["webseite-erstellen", "server-datensicherung", "edv-it-betreuung"], "einstieg": "hosting",},
+     "verwandt": ["seo-betreuung", "webseite-erstellen", "ki-automatisierung"]},
 
     {"slug": "ki-automatisierung", "bereich": "sicht", "icon": "ai", "quelle": "ki", "preis": "termin",
      "vor_ort": False, "prio": "0.8",

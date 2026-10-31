@@ -39,7 +39,8 @@ class StartseitenMetaTest(SimpleTestCase):
     def test_description_nennt_ort_zahlen_und_florin(self):
         seite = _seite("/")
         d = re.search(r'<meta name="description" content="(.*?)"', seite).group(1)
-        for teil in ("Lenzing", "Florin", "Hosting", "E-Mail"):
+        # 31.10.2026 (Umbau auf Anfragen): Hosting/E-Mail sind kein Angebot mehr, dafuer Schulen.
+        for teil in ("Lenzing", "Florin", "Schulen"):
             self.assertIn(teil, d)
         _util.pruefe_betrag(self, d, [_preis("it_betreuung", "mtl"), _preis("it_support", "std"),
                                       _preis("onepager", "once")])
@@ -134,16 +135,17 @@ class RatgeberWeiterleitungTest(SimpleTestCase):
 
 
 class LlmsTxtTest(SimpleTestCase):
-    def test_testseite_und_partner_mit_provisionshinweis(self):
+    def test_testseite_ohne_hosting_und_partnerlink(self):
+        """Umbau 31.10.2026: Hosting/Domain ist kein Angebot mehr, der Partnerlink entfaellt."""
         text = client().get("/llms.txt").content.decode("utf-8")
-        self.assertIn("## Webseiten, Hosting und E-Mail", text)
+        self.assertIn("## Webseiten", text)
         self.assertIn("kostenlose Testseite", text)
-        self.assertIn("Partnerlink", text)
-        self.assertIn("Provision", text)
-        self.assertIn(views.PARTNER_DOMAINTECHNIK_URL, text)
+        self.assertNotIn("Partnerlink", text)
+        self.assertNotIn("domaintechnik", text.lower())
+        self.assertNotIn("hosting-wartung", text)
 
-    def test_partnerlink_nicht_im_schema(self):
-        for pfad in ("/", "/leistungen/hosting-wartung/", "/leistungen/webseite-erstellen/"):
+    def test_kein_partnerlink_im_schema(self):
+        for pfad in ("/", "/leistungen/webseite-erstellen/"):
             for block in re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>',
                                     _seite(pfad), re.S):
                 self.assertNotIn("domaintechnik", block.lower(), pfad)

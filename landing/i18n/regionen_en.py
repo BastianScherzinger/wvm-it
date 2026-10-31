@@ -65,6 +65,7 @@ REGIONEN = {
              "a": "Yes. By the lake that is a good part of the work: Wi-Fi, heating control, shading, access and cameras for properties that are not occupied year-round. Much of it can later be checked and controlled remotely without anyone driving out."},
             {"q": "Can you provide technology for an event by the lake?",
              "a": "Audio, lighting and presentation technology for events is part of what we do, and the Lake Atter municipalities are all in the catchment area. What exactly is needed depends on size, location and available power — we clarify that beforehand during a site visit, not over the phone."},
+            {"q": 'What does the technology on Lake Attersee cost?', "a": 'Network, Wi-Fi, firewall and VPN depend on size and building; we settle the price in a conversation. Individual help and on-site jobs are billed by effort, and we discuss the costs beforehand. Ongoing support is an offer, not a requirement.'},
         ],
     },
 
@@ -128,6 +129,7 @@ REGIONEN = {
              "a": "That is the more common case. Usually the hardware is not the problem but the cabling, the signal paths and the operation. We look at what is there and tell you what can be solved with the existing equipment and what genuinely needs replacing."},
             {"q": "Do you also come for a single event?",
              "a": "Yes, on a project basis for lectures, conferences, celebrations and company events. Scope, setup and support during the event are agreed beforehand at a site visit — event technology cannot be planned properly over the phone."},
+            {"q": 'What does the technology for a seminar room in Bad Ischl cost?', "a": 'Conference and event technology has no fixed arrangement in advance, because it depends on room, equipment and operation. After a site visit we state the total in writing beforehand. Individual help and on-site jobs are billed by effort, and we discuss the costs beforehand.'},
         ],
     },
 

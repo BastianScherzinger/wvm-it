@@ -72,7 +72,7 @@ class StartseiteTest(SimpleTestCase):
 
     def test_h1_bleibt_wie_sie_war(self):
         h1 = re.search(r"<h1>(.*?)</h1>", self.html, re.S).group(1)
-        self.assertIn("IT-Betreuung für Ihren Betrieb, persönlich und aus einer Hand.", h1)
+        self.assertIn("IT-Betreuung für Betriebe und Schulen", h1)
 
     def test_antwort_wiederholt_die_unterzeile_nicht(self):
         text = _antwort_absatz(self.html)

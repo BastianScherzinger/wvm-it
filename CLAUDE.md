@@ -62,7 +62,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
   Console, `docs/INDEXIERUNG.md`).
 - **Nach jeder Inhaltsänderung:** `python manage.py stand_schreiben` (Änderungsdaten nach
   `landing/stand.py`; `--pruefen` meldet Abweichung im CI mit Rückgabewert 1).
-- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 1003 Tests (Stand 31.10.2026) in
+- **Testsuite:** `python -X utf8 manage.py test landing.tests` — 1005 Tests (Stand 31.10.2026) in
   `landing/tests/`, strukturell geschrieben (URL-Liste aus `_seiten_pfade()`, Preise aus
   `ANGEBOT_GROUPS`). Läuft bei jedem Push über `.github/workflows/pruefen.yml`.
 - Skills: `design-pro` für alles Visuelle, `seo-audit` für Befunde, `seo-geo` für Umsetzung.
@@ -96,6 +96,7 @@ Zuerst `python manage.py seo_bericht` (Stand in dreißig Sekunden), dann `docs/S
 | Verlinkung | Neue Seitentypen bekommen ihr `thema` (Leistungs-Slug) — dann übernimmt `_thema_index()` die Querverlinkung. Kein Block wird von Hand gepflegt |
 | Cookies | Spline/3D lädt erst nach Einwilligung. Keine Tracking-Skripte ohne neue Einwilligung |
 | Recht | Jede neue Datenverarbeitung muss in `content.json` → Datenschutz stehen |
+| Umbau auf Anfragen | Seit 31.10.2026 (Plan `Kunde-02/UMBAU-KONVERSION-2026-10-31/PLAN.md`): Startseite = Fünf-Sekunden-Kopf (H1 „IT-Betreuung für Betriebe und Schulen“, Anrufen/WhatsApp, drei Punkte), dann sechs Kacheln (`views.UMBAU_KACHELN`), Rümpelwerk-Szene (`templates/rw_szene.html`, `static/js/szene.js`; Zahlen nur belegt aus der Search Console, keine Preise, keine Anzeigen, kein aggregateRating), erst darunter „Mehr erfahren“ (Wegweiser, Gratis, FAQ). **Hosting/Domain ist kein Angebot mehr**: `/leistungen/hosting-wartung/` leitet per 301 auf `/leistungen/webseite-erstellen/`. Texte in `landing/i18n/umbau.py` (über die Pakete gelegt), Schulen in `landing/i18n/schulen.py`. Leistungs-Kopf mit drei Stichpunkten und SVG-Animation (`templates/kopf_szene.html`, Feld `kopf_szene` in `leistungen.py`). Test `test_hosting_band.py` sichert das ab |
 | Hero | Die Überschrift trägt **zwei** Stufen (`hero.headline` + `hero.headline_2`) und das Vertrauensband **drei** Texte (`person_h`, `person_t`, `person_ort`) — je Sprache. Das Band steht **vor** der Subline. Begründung `docs/HERO-KONZEPT-2026-09-06.md`, Test `HeroKonzeptTest` |
 | Zwei Silos | `/leistungen/` beantwortet „wer betreut uns?“, `/einrichten/` „wer macht mir das jetzt?“. Kein Slug und kein Titel darf in beiden vorkommen, und jede Einrichtungsseite muss die Abgrenzung **aussprechen** (Block `id="laufend"` mit Gegenlink). Geprüft von `test_einrichtungen.py` |
 | Festpreise | Im Einrichtungs-Silo steht der Preis **ohne** „ab“ (`_festpreis_label()`), auf Leistungsseiten **mit** (`_make_price_label()`). Ein „ab“ auf einer Festpreisseite nimmt das Versprechen zurück |

@@ -132,7 +132,8 @@ class Command(BaseCommand):
                 fehlend.append(slug)
                 continue
             for lang in ("en", "ro"):
-                fremd = i18n._RAW[lang].get("seiten", {}).get(slug)
+                # Das fertig gemischte Paket (Rohdatei + Umbau-Texte), denn das ist, was die Seite zeigt.
+                fremd = i18n.get_pack(lang).get("seiten", {}).get(slug)
                 if not fremd:
                     continue        # erbt vollständig von DE — das meldet schon der Schlüsselvergleich
                 for feld in felder:

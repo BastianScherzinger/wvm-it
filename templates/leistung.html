@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load conv %}
+{% load conv static %}
 {% load cache %}
 {% comment %}
 Eine Leistung, eine URL, ein Hauptkeyword (docs/RELAUNCH-PLAN.md, R2.2).
@@ -28,15 +28,27 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
         <span aria-current="page">{{ seite.nav|safe }}</span>
       </nav>
 
-      <div class="sp-top-grid">
+      <div class="sp-top-grid{% if seite.kopf_szene %} sp-top-szene{% endif %}">
         <div>
           <h1>{{ seite.h1|safe }}</h1>
+          {% if seite.kopf_szene and seite.kopf_punkte %}
+          {% comment %} Ein-Sekunden-Kopf (Umbau auf Anfragen, W2): H1, drei Stichpunkte, Knöpfe;
+               der volle Antwortabsatz (Ziel von speakable) steht darunter, nicht mehr davor. {% endcomment %}
+          <p class="sp-kopf-h">{{ seite.kopf_h|safe }}</p>
+          <ul class="sp-kopf-punkte">{% for z in seite.kopf_punkte %}<li>{% include 'icons.html' with name='check' %}<span>{{ z|safe }}</span></li>{% endfor %}</ul>
+          {% include 'hero_ways.html' %}
+          {% include 'antwort.html' with text=seite.kurz %}
+          {% else %}
           {% comment %} Antwort zuerst: Dieser Absatz beantwortet die Suchfrage vollständig
                und ist das, was KI-Antwortmaschinen zitieren (SEO-PLAN.md, G1). {% endcomment %}
           {% include 'antwort.html' with text=seite.kurz teilen=True %}
           {% include 'hero_ways.html' with kurz=seite.kurz %}
+          {% endif %}
           {% include 'seiten_stand.html' %}
         </div>
+        {% if seite.kopf_szene %}
+        <div class="sp-szene">{% include 'kopf_szene.html' with szene=seite.kopf_szene %}</div>
+        {% else %}
         <aside class="sp-fakten">
           <div class="sp-fakt">
             <span class="sp-fakt-l">{{ t.seite.preis_kurz|safe }}</span>
@@ -47,9 +59,11 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
             <p class="sp-fakt-t">{% if seite.vor_ort %}{{ t.seite.vorort_t|safe }}{% else %}{{ t.seite.remote_t|safe }}{% endif %}</p>
           </div>
         </aside>
+        {% endif %}
       </div>
     </div>
   </header>
+  {% if seite.slug == 'webseite-erstellen' %}{% include 'rw_szene.html' with rw_cta='web' %}{% endif %}
 
   {% comment %} ── Inhalt links, Anfrage rechts (mitlaufend) ─────────────────────────── {% endcomment %}
   <section class="section">
@@ -251,3 +265,7 @@ einzigen festen Satz — sonst wäre sie nicht übersetzbar.
 <section class="section anruf-schluss"><div class="wrap">{% include 'anruf_kasten.html' %}</div></section>
 {% endif %}
 {% endblock %}
+
+{% block extra_js %}{% if seite.slug == 'webseite-erstellen' %}
+<script src="{% static 'js/szene.js' %}" defer></script>
+{% endif %}{% endblock %}

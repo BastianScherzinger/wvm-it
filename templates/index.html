@@ -55,6 +55,11 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           {% endif %}
         </div>
 
+        <ul class="hero-punkte">
+          {% for p in t.umbau.punkte %}<li>{% include 'icons.html' with name='check' %}<span>{{ p|safe }}</span></li>
+          {% endfor %}
+        </ul>
+
         <div class="rr-karte rr-kompakt" id="rueckruf">
           <h2 class="rr-karte-h">{{ t.hero.rr_h|safe }}</h2>
           <form class="lb-form rr-form" method="post" action="{% url 'leistung_anfrage' %}" data-anfrage>
@@ -109,11 +114,6 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
           </div>
         </div>
 
-        <ul class="hero-trust">
-          <li>{% include 'icons.html' with name='clock' %}{{ t.trust.t1|safe }}</li>
-          <li><a class="hero-trust-link" href="#gratis">{% include 'icons.html' with name='net' %}{{ t.trust.t6|safe }}</a></li>
-          <li><a class="hero-trust-link" href="{% url 'it_hilfe' %}">{% include 'icons.html' with name='phone' %}{{ t.trust.hilfe|safe }} {{ hilfe_preis }}</a></li>
-        </ul>
       </div>
 
       {% comment %} Großes Porträt: bis 700 px display:none (dort übernimmt die
@@ -140,6 +140,159 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
   <section class="start-antwort">
     <div class="wrap">
       {% include 'antwort.html' with text=t.hero.antwort stil='start-antwort-p' %}
+    </div>
+  </section>
+
+
+  {% comment %} ── Leistungs-Kacheln (Umbau auf Anfragen 31.10.2026, W1): sechs Wege direkt unter dem
+       Kopf, je Symbol, ein Satz, Pfeil. Texte im Sprachpaket unter umbau.kacheln; Ziele in
+       views.UMBAU_KACHELN. Die Schul-Kachel führt auf /branchen/schulen-bildung/. {% endcomment %}
+  <section class="section kacheln-sec" id="leistungen-start" aria-labelledby="kacheln-h">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-kick">{{ t.umbau.kachel_kick|safe }}</p>
+        <h2 class="section-t" id="kacheln-h">{{ t.umbau.kachel_h|safe }}</h2>
+      </header>
+      <ul class="kacheln">
+        {% for k in umbau_kacheln %}
+        <li><a class="kachel kachel-{{ k.id }}" href="{{ k.url }}">
+          <span class="kachel-ic" aria-hidden="true">{% include 'icons.html' with name=k.icon %}</span>
+          <span class="kachel-h">{{ k.h|safe }}</span>
+          <span class="kachel-t">{{ k.t|safe }}</span>
+          <span class="kachel-pf" aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span>
+        </a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  {% include 'rw_szene.html' with rw_cta='index' %}
+
+  {% comment %} ── Block 4: WER DAHINTERSTEHT `#ueber` (Papier). §2.6. ── {% endcomment %}
+  <section class="section section-alt" id="ueber">
+    <div class="wrap">
+      <p class="sec-kick" data-reveal>{{ t.abschnitt.ueber|safe }}</p>
+      <div class="ueber-raster" data-reveal>
+        <h2 class="section-t">{{ t.vertrauen.h|safe }}</h2>
+        <div class="ueber-text">
+          <p class="gross">{{ t.vertrauen.text|safe }}</p>
+        </div>
+      </div>
+
+      <ol class="zusagen" data-reveal>
+        <li>{{ t.vertrauen.p1|safe }}</li>
+        <li>{{ t.vertrauen.p2|safe }}</li>
+        <li>{{ t.vertrauen.p3|safe }}</li>
+      </ol>
+
+      <dl class="fakten" data-reveal>
+        {% if c.adresse %}<div><dt>{{ t.vertrauen.sitz_label|safe }}</dt><dd>{{ c.adresse }}, {{ c.plz }} {{ c.stadt }}<br><a class="ortlink" href="{% url 'region' slug='lenzing' %}">{{ t.vertrauen.sitz_link|safe }}</a></dd></div>{% endif %}
+        <div><dt>{{ t.vertrauen.fakt_vorort|safe }}</dt><dd>{{ t.vertrauen.orte_kern_label|safe }} {% for o in t.vertrauen.orte_kern %}<a class="ortlink" href="{% url 'region' slug=o.slug %}">{{ o.ort }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}. {{ t.vertrauen.orte_weit_label|safe }} {% for o in t.vertrauen.orte_weit %}<a class="ortlink" href="{% url 'region' slug=o.slug %}">{{ o.ort }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}.</dd></div>
+        <div><dt>{{ t.vertrauen.fakt_fern|safe }}</dt><dd>{{ t.vertrauen.fakt_fern_t|safe }}</dd></div>
+        <div><dt>{{ t.vertrauen.fakt_sprachen|safe }}</dt><dd>{{ t.vertrauen.sprachen|safe }}</dd></div>
+      </dl>
+
+      <div class="ueber-fuss" data-reveal>
+        <p class="signatur">
+          {% if c.founder_image %}<img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="40px" width="40" height="40" loading="lazy" alt="">{% endif %}
+          {{ c.inhaber_name }} · {{ c.site_name }}
+        </p>
+        {% if c.telefon %}<a class="textlink ueber-tel" href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a>{% endif %}
+        <a class="textlink" href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a>
+      </div>
+    </div>
+  </section>
+
+  {% comment %} ── Block 5: ABLAUF `#prozess` (dunkel). §2.7. Kasten "Im Blick" ohne
+       gruenen Punkt, ohne "läuft" (§6 K1-5). ── {% endcomment %}
+  <section class="section on-dark" id="prozess">
+    <div class="wrap">
+      <header class="sec-head" data-reveal>
+        <p class="sec-kick">{{ t.abschnitt.ablauf|safe }}</p>
+        <h2 class="section-t">{{ t.ablauf.h|safe }}</h2>
+        <p class="section-lead">{{ t.ablauf.sub|safe }}</p>
+      </header>
+      {% comment %} Runde 1 (22.10.2026): KI-Foto raus; die vier Schritte sind die eine Nummernreihe der Seite.
+           Ein echtes Foto von Florin kommt erst mit Karte ds-fotoauftrag-florin (Runde 2). {% endcomment %}
+      <ol class="timeline" data-reveal>
+        <li class="tl-item"><span class="tl-n">01</span><div class="tl-body"><h3>{{ t.ablauf.s1_h|safe }}</h3><p>{{ t.ablauf.s1_t|safe }}</p></div></li>
+        <li class="tl-item"><span class="tl-n">02</span><div class="tl-body"><h3>{{ t.ablauf.s2_h|safe }}</h3><p>{{ t.ablauf.s2_t|safe }}</p></div></li>
+        <li class="tl-item"><span class="tl-n">03</span><div class="tl-body"><h3>{{ t.ablauf.s3_h|safe }}</h3><p>{{ t.ablauf.s3_t|safe }}</p></div></li>
+        <li class="tl-item"><span class="tl-n">04</span><div class="tl-body"><h3>{{ t.ablauf.s4_h|safe }}</h3><p>{{ t.ablauf.s4_t|safe }}</p></div></li>
+      </ol>
+
+      <a class="btn btn-lg prozess-cta" href="#rueckruf">{{ t.start.ablauf_cta|safe }}</a>
+    </div>
+  </section>
+
+  {% comment %} ── Block 13: KONTAKT `#kontakt` (Papier). §2.15. Rückruf-Zeile
+       als <a href="#rueckruf"> ohne data-rueckruf (Startseite); form#kontakt-
+       form unveraendert. ── {% endcomment %}
+  <section class="section section-alt" id="kontakt">
+    <div class="wrap kontakt-raster">
+      <div class="kontakt-info" data-reveal>
+        <p class="sec-kick">{{ t.abschnitt.kontakt|safe }}</p>
+        {% if c.founder_image %}
+        <p class="kontakt-person"><img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="72px" width="72" height="72" loading="lazy" alt="{{ t.kontakt.person_alt|safe }}"></p>
+        {% endif %}
+        <h2 class="section-t">{{ t.kontakt.h|safe }}</h2>
+        <p class="section-lead">{{ t.kontakt.lead|safe }}</p>
+        <div class="contact-methods">
+          {% if c.telefon %}<a class="cm" href="tel:{{ c.telefon_tel }}"><span class="cm-ic">{% include 'icons.html' with name='phone' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_call|safe }}</strong><span>{{ c.telefon }}</span></span></a>{% endif %}
+          {% if c.whatsapp %}<a class="cm" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
+          {% if c.email %}<a class="cm" href="mailto:{{ c.email }}"><span class="cm-ic">{% include 'icons.html' with name='mail' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_mail|safe }}</strong><span>{{ c.email }}</span></span></a>{% endif %}
+          <a class="cm" href="#kontakt-form"><span class="cm-ic">{% include 'icons.html' with name='consulting' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_form|safe }}</strong><span>{{ t.kontakt.m_form_sub|safe }}</span></span></a>
+          <a class="cm" href="#rueckruf"><span class="cm-ic">{% include 'icons.html' with name='clock' %}</span><span class="cm-t"><strong>{{ t.ways.callback|safe }}</strong><span>{{ t.rueckruf.zeit_4|safe }}</span></span></a>
+        </div>
+        <p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='clock' %}</span> {{ t.kontakt.avail|safe }}</p>
+      </div>
+
+      {% if sent %}
+      <div class="contact-form form-sent" role="status" data-reveal>
+        <div class="sent-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</div>
+        <h3>{{ t.kontakt.sent_h|safe }}</h3>
+        <p>{{ t.kontakt.sent_p|safe }}</p>
+        {% if c.telefon %}<p class="done-tel">{{ t.akut.done_eilt|safe }} <a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a></p>{% endif %}
+      </div>
+      {% else %}
+      <form class="contact-form" id="kontakt-form" method="post" action="#kontakt" data-reveal>
+        {% csrf_token %}
+          {% include 'honigtopf.html' %}
+        <div class="f-row">
+          <label>{{ t.kontakt.f_name|safe }}<input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="{{ t.kontakt.f_name_ph|safe }}" value="{{ kontakt_werte.name|default:'' }}"></label>
+          <label>{{ t.kontakt.f_email|safe }}<input type="email" name="email" required maxlength="254" autocomplete="email" placeholder="name@firma.at" value="{{ kontakt_werte.email|default:'' }}"></label>
+        </div>
+        <div class="f-row">
+          <label>{{ t.kontakt.f_phone|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span><input type="tel" name="telefon" maxlength="40" autocomplete="tel" placeholder="{{ t.kontakt.f_phone_ph|safe }}" value="{{ kontakt_werte.telefon|default:'' }}"></label>
+          <label>{{ t.kontakt.f_budget|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span>
+            <select name="budget">
+              <option value="">{{ t.kontakt.budget_choose|safe }}</option>
+              <option>{{ t.kontakt.budget_1|safe }}</option>
+              <option>{{ t.kontakt.budget_2|safe }}</option>
+              <option>{{ t.kontakt.budget_3|safe }}</option>
+              <option>{{ t.kontakt.budget_4|safe }}</option>
+            </select>
+          </label>
+        </div>
+        <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required maxlength="4000" placeholder="{{ t.kontakt.f_project_ph|safe }}">{{ kontakt_werte.nachricht|default:'' }}</textarea></label>
+        <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.kontakt.consent_pre|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</span></label>
+        {% if kontakt_werte %}<p class="lb-err" role="alert">{% if limit_gesperrt %}{{ t.anfrage_done.limit_h|safe }} {{ t.akut.limit_p_kurz|safe }}{% else %}{{ t.kontakt.err|safe }}{% endif %}</p>{% endif %}
+        <button class="btn btn-lg" type="submit">{{ t.kontakt.submit|safe }}</button>
+        <p class="form-fine" aria-live="polite">{{ t.kontakt.fine|safe }}</p>
+      {% include 'datenschutzhinweis.html' %}
+      </form>
+      {% endif %}
+    </div>
+  </section>
+
+  {% comment %} ── „Mehr erfahren“: alles, was vorher die Startseite füllte, steht weiter unten. Der Text
+       bleibt im HTML (Suche, FAQPage-Schema), nur Reihenfolge und Gewicht ändern sich (W1, 31.10.2026).
+       Kosten-Beispiele und der Hosting-Block sind entfallen (keine Preise, kein Hosting-Angebot). {% endcomment %}
+  <section class="section mehr-kopf" id="mehr" aria-labelledby="mehr-h">
+    <div class="wrap">
+      <p class="sec-kick">{{ t.umbau.mehr_kick|safe }}</p>
+      <h2 class="section-t" id="mehr-h">{{ t.umbau.mehr_h|safe }}</h2>
+      <p class="section-lead">{{ t.umbau.mehr_t|safe }}</p>
     </div>
   </section>
 
@@ -172,20 +325,6 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
         </ul>
       </div>
 
-      {% comment %} Block „Domain, Hosting, E-Mail“ `#hosting` (03.10.2026): übernimmt die
-           Kacheln der alten Registrar-Parkseite unter wvm-it.tech, führt aber auf
-           die eigenen Seiten. Bewusst sparsam (keine Symbole, eine gekennzeichnete Partnerzeile), weil die
-           Startseite an der Grenze von 1.500 Elementen steht (PF30). Daten aus
-           views._hosting_band(), Preise aus ANGEBOT_GROUPS. {% endcomment %}
-      <div class="hb" id="hosting" data-reveal>
-        <h3 class="hb-titel">{{ t.hosting_band.h|safe }}</h3>
-        <p class="hb-lead">{{ t.hosting_band.lead|safe }} {{ t.hosting_band.web_frage|safe }} <a href="{% url 'leistung' slug='webseite-erstellen' %}">{{ t.hosting_band.web_link|safe }}</a></p>
-        <div class="hb-liste">
-          {% for k in hosting_band %}<a class="hb-karte" href="{{ k.url }}"><strong class="hb-h">{{ k.h|safe }}</strong>{{ k.t|safe }}<span class="hb-preis">{{ k.preis_label }}{% if k.route == 'einrichtung' %} {{ t.hosting_band.einmalig|safe }}{% endif %}</span></a>
-          {% endfor %}
-        </div>
-        <p class="hb-partner">{{ t.hosting_band.partner_t|safe }} <a href="{{ partner_domaintechnik_url }}" target="_blank" rel="sponsored noopener">{{ t.hosting_band.partner_link|safe }}</a> <small><span class="hb-anz">{{ t.hosting_band.partner_anz|safe }}</span> {{ t.hosting_band.partner_hinweis|safe }}</small></p>
-      </div>
 
       {% comment %} Upgrade 01.10.2026: „Was wir alles anbieten“ als eine ruhige
            Linkzeile je Bereich — alle Leistungsseiten bleiben von der Startseite
@@ -198,7 +337,6 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       </div>
     </div>
   </section>{% endcache %}
-
 
   {% comment %} ══════════════════════════════════════════════════════════════════════
        Reihenfolge (03.10.2026, Conversion-Umbau): Hero → Wegweiser `#finder` (mit
@@ -288,11 +426,9 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
     </div>
   </section>
 
-
-
   {% comment %} ── `#angebot`: die sechs Startpakete (startpakete.html), jede Kachel führt auf
        /angebot/?paket=…#konfigurator. Keine Summenkarte, kein Konfigurator hier. {% endcomment %}
-{% cache frag_ttl|default:0 "index_mitte" lang using="fragmente" %}  <section class="section section-alt rb-sec" id="angebot" aria-labelledby="rb-title">
+{% cache frag_ttl|default:0 "index_mitte2" lang using="fragmente" %}  <section class="section section-alt rb-sec" id="angebot" aria-labelledby="rb-title">
     <div class="wrap">
       <header class="sec-head" data-reveal>
         <p class="sec-kick">{{ t.abschnitt.angebot|safe }}</p>
@@ -304,112 +440,12 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
       <p class="lk-alle"><a class="textlink" href="{% url 'angebot' %}#preisliste">{{ t.start.angebot_preisliste|safe }}</a></p>
     </div>
-  </section>
-
-
-  {% comment %} ── Block 6: WAS LAUFENDE BETREUUNG KOSTET `#preise` (weiß). §2.8. Nur
-       Größen und Rechner — die Webseiten-Pakettabelle faellt hier weg (bleibt auf
-       /kosten/), die volle Preisliste zieht nach #angebot um. ── {% endcomment %}
-  <section class="section" id="preise">
-    <div class="wrap">
-      {% comment %} Runde 1 (22.10.2026): KI-Foto raus, Kopf einspaltig; die drei Stufen tragen den Block. {% endcomment %}
-      <header class="sec-head preise-kopf" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.kosten|safe }}</p>
-        <h2 class="section-t">{{ t.it_stufen.h|safe }}</h2>
-        <p class="section-lead">{{ t.it_stufen.lead|safe }}</p>
-      </header>
-      <div class="price-grid preise-stufen" data-reveal>
-        {% for s in it_stufen %}
-        <article class="price{% if s.beliebt %} price-featured{% endif %}">
-          {% if s.beliebt %}<p class="kenn preise-kenn">{{ t.it_stufen.beliebt|safe }}</p>{% endif %}
-          <h3>{% if s.id == 'klein' %}{{ t.it_stufen.klein_h|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_h|safe }}{% else %}{{ t.it_stufen.gross_h|safe }}{% endif %}</h3>
-          <p class="price-for">{% if s.id == 'klein' %}{{ t.it_stufen.klein_for|safe }}{% elif s.id == 'mittel' %}{{ t.it_stufen.mittel_for|safe }}{% else %}{{ t.it_stufen.gross_for|safe }}{% endif %}</p>
-          {% if preise_sichtbar %}<div class="price-tag">{{ s.mtl_anzeige }}<span class="cur">{{ t.it_stufen.unit|safe }}</span></div>
-          <p class="preise-zeile">{{ s.zeile }}</p>{% else %}<div class="price-tag price-tag-anruf">{{ t.ohne_preise.kurz|safe }}</div>{% endif %}
-          <ul class="price-list">
-            {% if s.id == 'klein' %}{% for li in t.it_stufen.klein_li %}<li>{{ li|safe }}</li>{% endfor %}
-            {% elif s.id == 'mittel' %}{% for li in t.it_stufen.mittel_li %}<li>{{ li|safe }}</li>{% endfor %}
-            {% else %}{% for li in t.it_stufen.gross_li %}<li>{{ li|safe }}</li>{% endfor %}{% endif %}
-          </ul>
-          <a class="btn btn-ghost" href="#rueckruf">{{ t.start.stufe_cta|safe }}</a>
-          <a class="textlink preise-rechner-link" href="{% url 'rechner' %}?ap={{ s.ap }}&amp;srv={{ s.srv }}&amp;backup=1">{{ t.it_stufen.cta|safe }}</a>
-        </article>
-        {% endfor %}
-      </div>
-      <p class="price-foot" data-reveal>{{ t.it_stufen.foot|safe }}</p>
-
-      <p class="lk-alle">
-        <a class="textlink" href="{% url 'rechner' %}">{{ t.wissen.rechner_h|safe }}</a>
-        <a class="textlink" href="{% url 'einrichtungen' %}">{{ t.einrichten_hub.h1|safe }}</a>
-        <a class="textlink" href="{% if preise_sichtbar %}{% url 'angebot' %}#preisliste{% else %}{% url 'kontakt' %}{% endif %}">{{ t.rb.all_link|safe }}</a>
-      </p>
-    </div>
-  </section>
-
-
-  {% comment %} ── Block 4: WER DAHINTERSTEHT `#ueber` (Papier). §2.6. ── {% endcomment %}
-  <section class="section section-alt" id="ueber">
-    <div class="wrap">
-      <p class="sec-kick" data-reveal>{{ t.abschnitt.ueber|safe }}</p>
-      <div class="ueber-raster" data-reveal>
-        <h2 class="section-t">{{ t.vertrauen.h|safe }}</h2>
-        <div class="ueber-text">
-          <p class="gross">{{ t.vertrauen.text|safe }}</p>
-        </div>
-      </div>
-
-      <ol class="zusagen" data-reveal>
-        <li>{{ t.vertrauen.p1|safe }}</li>
-        <li>{{ t.vertrauen.p2|safe }}</li>
-        <li>{{ t.vertrauen.p3|safe }}</li>
-      </ol>
-
-      <dl class="fakten" data-reveal>
-        {% if c.adresse %}<div><dt>{{ t.vertrauen.sitz_label|safe }}</dt><dd>{{ c.adresse }}, {{ c.plz }} {{ c.stadt }}<br><a class="ortlink" href="{% url 'region' slug='lenzing' %}">{{ t.vertrauen.sitz_link|safe }}</a></dd></div>{% endif %}
-        <div><dt>{{ t.vertrauen.fakt_vorort|safe }}</dt><dd>{{ t.vertrauen.orte_kern_label|safe }} {% for o in t.vertrauen.orte_kern %}<a class="ortlink" href="{% url 'region' slug=o.slug %}">{{ o.ort }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}. {{ t.vertrauen.orte_weit_label|safe }} {% for o in t.vertrauen.orte_weit %}<a class="ortlink" href="{% url 'region' slug=o.slug %}">{{ o.ort }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}.</dd></div>
-        <div><dt>{{ t.vertrauen.fakt_fern|safe }}</dt><dd>{{ t.vertrauen.fakt_fern_t|safe }}</dd></div>
-        <div><dt>{{ t.vertrauen.fakt_sprachen|safe }}</dt><dd>{{ t.vertrauen.sprachen|safe }}</dd></div>
-      </dl>
-
-      <div class="ueber-fuss" data-reveal>
-        <p class="signatur">
-          {% if c.founder_image %}<img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="40px" width="40" height="40" loading="lazy" alt="">{% endif %}
-          {{ c.inhaber_name }} · {{ c.site_name }}
-        </p>
-        {% if c.telefon %}<a class="textlink ueber-tel" href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a>{% endif %}
-        <a class="textlink" href="{% url 'ueber_uns' %}">{{ t.footer.u_ueber|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a>
-      </div>
-    </div>
-  </section>
-
-
-  {% comment %} ── Block 5: ABLAUF `#prozess` (dunkel). §2.7. Kasten "Im Blick" ohne
-       gruenen Punkt, ohne "läuft" (§6 K1-5). ── {% endcomment %}
-  <section class="section on-dark" id="prozess">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.ablauf|safe }}</p>
-        <h2 class="section-t">{{ t.ablauf.h|safe }}</h2>
-        <p class="section-lead">{{ t.ablauf.sub|safe }}</p>
-      </header>
-      {% comment %} Runde 1 (22.10.2026): KI-Foto raus; die vier Schritte sind die eine Nummernreihe der Seite.
-           Ein echtes Foto von Florin kommt erst mit Karte ds-fotoauftrag-florin (Runde 2). {% endcomment %}
-      <ol class="timeline" data-reveal>
-        <li class="tl-item"><span class="tl-n">01</span><div class="tl-body"><h3>{{ t.ablauf.s1_h|safe }}</h3><p>{{ t.ablauf.s1_t|safe }}</p></div></li>
-        <li class="tl-item"><span class="tl-n">02</span><div class="tl-body"><h3>{{ t.ablauf.s2_h|safe }}</h3><p>{{ t.ablauf.s2_t|safe }}</p></div></li>
-        <li class="tl-item"><span class="tl-n">03</span><div class="tl-body"><h3>{{ t.ablauf.s3_h|safe }}</h3><p>{{ t.ablauf.s3_t|safe }}</p></div></li>
-        <li class="tl-item"><span class="tl-n">04</span><div class="tl-body"><h3>{{ t.ablauf.s4_h|safe }}</h3><p>{{ t.ablauf.s4_t|safe }}</p></div></li>
-      </ol>
-
-      <a class="btn btn-lg prozess-cta" href="#rueckruf">{{ t.start.ablauf_cta|safe }}</a>
-    </div>
-  </section>
-
+  </section>{% endcache %}
 
   {% comment %} ── Block 12: FRAGEN UND ANTWORTEN `#faq` (weiß). §2.14.
        FAQPage-Schema unveraendert. Signaturzeile + Frage-Zeile als Handlung
        (§6 K1-3): Textlink zum Rückruf, Telefon-Textlink daneben. ── {% endcomment %}
-  <section class="section" id="faq" aria-labelledby="faq-title">
+{% cache frag_ttl|default:0 "index_faq" lang using="fragmente" %}  <section class="section" id="faq" aria-labelledby="faq-title">
     <div class="wrap">
       <div class="faq-raster" data-reveal>
         <div class="faq-side">
@@ -439,68 +475,6 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
       </div>
     </div>
   </section>{% endcache %}
-
-
-  {% comment %} ── Block 13: KONTAKT `#kontakt` (Papier). §2.15. Rückruf-Zeile
-       als <a href="#rueckruf"> ohne data-rueckruf (Startseite); form#kontakt-
-       form unveraendert. ── {% endcomment %}
-  <section class="section section-alt" id="kontakt">
-    <div class="wrap kontakt-raster">
-      <div class="kontakt-info" data-reveal>
-        <p class="sec-kick">{{ t.abschnitt.kontakt|safe }}</p>
-        {% if c.founder_image %}
-        <p class="kontakt-person"><img src="{% static 'img/florin_320.webp' %}" srcset="{% static 'img/florin_320.webp' %} 320w, {% static 'img/florin_480.webp' %} 480w" sizes="72px" width="72" height="72" loading="lazy" alt="{{ t.kontakt.person_alt|safe }}"></p>
-        {% endif %}
-        <h2 class="section-t">{{ t.kontakt.h|safe }}</h2>
-        <p class="section-lead">{{ t.kontakt.lead|safe }}</p>
-        <div class="contact-methods">
-          {% if c.telefon %}<a class="cm" href="tel:{{ c.telefon_tel }}"><span class="cm-ic">{% include 'icons.html' with name='phone' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_call|safe }}</strong><span>{{ c.telefon }}</span></span></a>{% endif %}
-          {% if c.whatsapp %}<a class="cm" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener"><span class="cm-ic">{% include 'icons.html' with name='wa' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_wa|safe }}</strong><span>{{ t.kontakt.m_wa_sub|safe }}</span></span></a>{% endif %}
-          {% if c.email %}<a class="cm" href="mailto:{{ c.email }}"><span class="cm-ic">{% include 'icons.html' with name='mail' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_mail|safe }}</strong><span>{{ c.email }}</span></span></a>{% endif %}
-          <a class="cm" href="#kontakt-form"><span class="cm-ic">{% include 'icons.html' with name='consulting' %}</span><span class="cm-t"><strong>{{ t.kontakt.m_form|safe }}</strong><span>{{ t.kontakt.m_form_sub|safe }}</span></span></a>
-          <a class="cm" href="#rueckruf"><span class="cm-ic">{% include 'icons.html' with name='clock' %}</span><span class="cm-t"><strong>{{ t.ways.callback|safe }}</strong><span>{{ t.rueckruf.zeit_4|safe }}</span></span></a>
-        </div>
-        <p class="contact-avail"><span class="cm-ic-sm">{% include 'icons.html' with name='clock' %}</span> {{ t.kontakt.avail|safe }}</p>
-      </div>
-
-      {% if sent %}
-      <div class="contact-form form-sent" role="status" data-reveal>
-        <div class="sent-ic" aria-hidden="true">{% include 'icons.html' with name='check' %}</div>
-        <h3>{{ t.kontakt.sent_h|safe }}</h3>
-        <p>{{ t.kontakt.sent_p|safe }}</p>
-        {% if c.telefon %}<p class="done-tel">{{ t.akut.done_eilt|safe }} <a href="tel:{{ c.telefon_tel }}">{{ c.telefon }}</a></p>{% endif %}
-      </div>
-      {% else %}
-      <form class="contact-form" id="kontakt-form" method="post" action="#kontakt" data-reveal>
-        {% csrf_token %}
-          {% include 'honigtopf.html' %}
-        <div class="f-row">
-          <label>{{ t.kontakt.f_name|safe }}<input type="text" name="name" required maxlength="120" autocomplete="name" placeholder="{{ t.kontakt.f_name_ph|safe }}" value="{{ kontakt_werte.name|default:'' }}"></label>
-          <label>{{ t.kontakt.f_email|safe }}<input type="email" name="email" required maxlength="254" autocomplete="email" placeholder="name@firma.at" value="{{ kontakt_werte.email|default:'' }}"></label>
-        </div>
-        <div class="f-row">
-          <label>{{ t.kontakt.f_phone|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span><input type="tel" name="telefon" maxlength="40" autocomplete="tel" placeholder="{{ t.kontakt.f_phone_ph|safe }}" value="{{ kontakt_werte.telefon|default:'' }}"></label>
-          <label>{{ t.kontakt.f_budget|safe }} <span class="opt">{{ t.kontakt.f_opt|safe }}</span>
-            <select name="budget">
-              <option value="">{{ t.kontakt.budget_choose|safe }}</option>
-              <option>{{ t.kontakt.budget_1|safe }}</option>
-              <option>{{ t.kontakt.budget_2|safe }}</option>
-              <option>{{ t.kontakt.budget_3|safe }}</option>
-              <option>{{ t.kontakt.budget_4|safe }}</option>
-            </select>
-          </label>
-        </div>
-        <label>{{ t.kontakt.f_project|safe }}<textarea name="nachricht" rows="4" required maxlength="4000" placeholder="{{ t.kontakt.f_project_ph|safe }}">{{ kontakt_werte.nachricht|default:'' }}</textarea></label>
-        <label class="check"><input type="checkbox" name="einwilligung" required><span>{{ t.kontakt.consent_pre|safe }} <a href="{{ recht_url.datenschutz }}">{{ t.kontakt.consent_link|safe }}</a> {{ t.kontakt.consent_post|safe }}</span></label>
-        {% if kontakt_werte %}<p class="lb-err" role="alert">{% if limit_gesperrt %}{{ t.anfrage_done.limit_h|safe }} {{ t.akut.limit_p_kurz|safe }}{% else %}{{ t.kontakt.err|safe }}{% endif %}</p>{% endif %}
-        <button class="btn btn-lg" type="submit">{{ t.kontakt.submit|safe }}</button>
-        <p class="form-fine" aria-live="polite">{{ t.kontakt.fine|safe }}</p>
-      {% include 'datenschutzhinweis.html' %}
-      </form>
-      {% endif %}
-    </div>
-  </section>
-
 
   {% comment %} ── `#kooperationen`: schmaler Streifen mit der bestehenden Partnerkarte.
        Das Formular „Kooperationspartner werden“ steht auf /kontakt/#kooperationen. {% endcomment %}
@@ -538,7 +512,5 @@ Die hohe Ladepriorität trägt also diese Vorladung, nicht das <img> selbst.
 
 
 {% block extra_js %}
-{% comment %}startpakete.js lädt seit 03.10.2026 nicht mehr auf der Startseite: Der Konfigurator
-wohnt nur noch auf /angebot/, die Kacheln sind hier reine Links dorthin. Der Kurzrechner
-ist am 01.10.2026 auf /kosten/rechner/ gewandert.{% endcomment %}
+<script src="{% static 'js/szene.js' %}" defer></script>
 {% endblock %}

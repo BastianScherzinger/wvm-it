@@ -122,9 +122,9 @@ class SprachfassungTest(SimpleTestCase):
 
     # Upgrade 01.10.2026: neue Hero-Überschrift je Sprache.
     ERKENNUNG = {
-        "/": "IT-Betreuung für Ihren Betrieb",
-        "/en/": "IT support for your business",
-        "/ro/": "Mentenanță IT pentru firma dumneavoastră",
+        "/": "IT-Betreuung für Betriebe und Schulen",
+        "/en/": "IT support for businesses and schools",
+        "/ro/": "Suport IT pentru firme și școli",
     }
 
     def test_jede_adresse_liefert_ihre_eigene_sprache(self):

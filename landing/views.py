@@ -401,43 +401,6 @@ def _finder(lang):
     return raus
 
 
-# ── Band „Domain, Hosting, E-Mail“ auf der Startseite (03.10.2026) ────────────
-# Ersetzt, was die Parkseite des Registrars unter der Apex-Domain an Kacheln
-# zeigte (Domain, Hosting, E-Mail-Hosting …) — nur dass die Kacheln hier auf
-# unsere eigenen Seiten führen. Texte im Sprachpaket unter "hosting_band",
-# jede Zahl aus ANGEBOT_GROUPS; E-Mail ist das Einrichten von Microsoft 365.
-# Partnerlink Domaintechnik (03.10.2026): Florin erhält eine Provision. Die URL steht
-# nur hier und wird an die Startseite (#hosting) und /leistungen/hosting-wartung/
-# durchgereicht; dort ist sie als Anzeige gekennzeichnet (rel="sponsored noopener").
-# Nicht in den Fuß und nicht auf Ortsseiten: Dann stünde Werbung auf jeder Seite.
-PARTNER_DOMAINTECHNIK_URL = "https://www.domaintechnik.at/?affiliate=24853"
-
-HOSTING_BAND = [
-    {"id": "domain", "icon": "domain", "preis": "domain",
-     "route": "leistung", "slug": "hosting-wartung"},
-    {"id": "hosting", "icon": "host", "preis": "hosting",
-     "route": "leistung", "slug": "hosting-wartung"},
-    {"id": "mail", "icon": "mail", "preis": "m365",
-     "route": "einrichtung", "slug": "microsoft-365"},
-]
-
-
-def _hosting_band(lang):
-    """Die drei Kacheln mit Text, Preis-Label und fertiger URL."""
-    pack = i18n.get_pack(lang)
-    texte = pack.get("hosting_band", {}).get("karten", {})
-    words = pack.get("catalog_words", {})
-    raus = []
-    for eintrag in HOSTING_BAND:
-        posten = _ANGEBOT_INDEX[eintrag["preis"]]
-        # Microsoft 365 ist im Silo /einrichten/ ein Festpreis: ohne „ab".
-        label = (_festpreis_label(posten, words) if eintrag["route"] == "einrichtung"
-                 else _make_price_label(posten, words))
-        raus.append({**eintrag, "preis_label": label,
-                     "url": reverse(eintrag["route"], kwargs={"slug": eintrag["slug"]}),
-                     "h": texte.get(eintrag["id"], {}).get("h", ""),
-                     "t": texte.get(eintrag["id"], {}).get("t", "")})
-    return raus
 
 
 # ── Problemband auf der Startseite ────────────────────────────────────────────
@@ -2763,6 +2726,25 @@ def _startseite_verteiler(lang):
     }
 
 
+# Kacheln direkt unter dem Startseiten-Kopf (31.10.2026, Umbau auf Anfragen). Texte im
+# Sprachpaket unter umbau.kacheln; hier nur Ziel und Symbol.
+UMBAU_KACHELN = [
+    ("edv", "host", "leistung", "edv-it-betreuung"),
+    ("server", "server", "leistung", "server-datensicherung"),
+    ("netz", "net", "leistung", "netzwerk-wlan"),
+    ("sicher", "shield", "leistung", "it-sicherheit"),
+    ("schule", "book", "branche", "schulen-bildung"),
+    ("web", "web", "leistung", "webseite-erstellen"),
+]
+
+
+def _umbau_kacheln(lang):
+    texte = {k["id"]: k for k in i18n.get_pack(lang).get("umbau", {}).get("kacheln", [])}
+    return [{"id": kid, "icon": icon, "url": reverse(route, kwargs={"slug": slug}),
+             "h": texte.get(kid, {}).get("h", ""), "t": texte.get(kid, {}).get("t", "")}
+            for kid, icon, route, slug in UMBAU_KACHELN]
+
+
 def index(request):
     # Der Einzel-Konfigurator wohnt seit 03.10.2026 nur noch auf /angebot/. Alte
     # Links und Lesezeichen mit ?paket=… führen dorthin (302, nicht 301: Die
@@ -2803,7 +2785,7 @@ def index(request):
         schema = _mit_video(schema, videos_modul.schema_knoten(
             base, "fernwartung", "/", settings.STATIC_URL, startseite=True))
     return render(request, "index.html", {
-        "partner_domaintechnik_url": PARTNER_DOMAINTECHNIK_URL,
+        "umbau_kacheln": _umbau_kacheln(lang),
         "video_fernwartung": film,
         "video_transkript": videos_modul.transkript_saetze(film),
         "wegweiser_form": WEGWEISER_FORM,
@@ -2816,7 +2798,6 @@ def index(request):
         "preise_item": _itempreise(lang),
         "probleme": _probleme(lang),
         "finder": _finder(lang),
-        "hosting_band": _hosting_band(lang),
         # Stundensatz der Einzelhilfe fuers Vertrauensband, ohne „ab" (24.09.2026).
         "hilfe_preis": _festpreis_label(_ANGEBOT_INDEX[_HILFE_STUNDE],
                                         i18n.get_pack(lang).get("catalog_words", {})),
@@ -3326,7 +3307,6 @@ _LEISTUNG_TABELLE = {
     "webseite-erstellen": ["onepager", "business", "premium", "shop"],
     "seo-betreuung": ["seo", "seo_care"],
     "google-ads": ["ads_setup", "ads_care"],
-    "hosting-wartung": ["domain", "hosting", "wartung"],
     "ki-automatisierung": ["chatbot", "wa_auto", "termin", "custom_ki"],
 }
 
@@ -3337,6 +3317,13 @@ def _leistung_preistabelle(slug, lang):
         return []
     nach_id = {it["id"]: it for g in _localized_groups(lang) for it in g["items"]}
     return [nach_id[i] for i in ids if i in nach_id]
+
+
+def hosting_umleiten(request):
+    """301: /leistungen/hosting-wartung/ gibt es nicht mehr (31.10.2026). Hosting und
+    Domain sind kein Angebot; die Sprache bleibt erhalten (EN/RO-Praefix)."""
+    return HttpResponsePermanentRedirect(
+        reverse("leistung", kwargs={"slug": "webseite-erstellen"}))
 
 
 def leistung_seite(request, slug):
@@ -5563,12 +5550,15 @@ def llms_txt(request):
           "eingeblendete Texte, der Wortlaut steht unter „Text zum Film“ auf der Seite. "
           f"Videodatei und Metadaten: {base}/sitemap-video.xml"
           for k, pfad in VIDEO_SEITEN if videos_modul.video(k)],
-        "\n## Webseiten, Hosting und E-Mail",
+        "\n## Webseiten",
         f"- [Kostenlose Testseite]({base}/leistungen/webseite-erstellen/): Sie sehen vorher, was Sie "
-        "bekommen; die kostenlose Testseite steht in etwa zehn Minuten, ohne Verpflichtung.",
-        f"- [Domain, Hosting und E-Mail]({base}/leistungen/hosting-wartung/): auch selbst buchbar beim "
-        f"Partner Domaintechnik ({PARTNER_DOMAINTECHNIK_URL}, Partnerlink: WVM-IT erhält dafür eine "
-        "Provision). Alternativ richtet WVM-IT alles ein und betreut es weiter.",
+        "bekommen; die kostenlose Testseite steht in etwa zehn Minuten, ohne Verpflichtung. "
+        "Referenz: ruempelwerk-mitteldeutschland.de (Google Search Console, August bis Oktober 2026: "
+        "Einblendungen von 5.492 auf 48.402 pro Monat, Klicks von 58 auf 365; Oktober inklusive zwei "
+        "vorläufiger Tage; ein Einzelfall, kein Versprechen).",
+        "\n## Schulen und Bildung",
+        f"- [IT-Betreuung für Schulen]({base}/branchen/schulen-bildung/): WLAN in Klassenräumen, Tablets und "
+        "Notebooks einrichten, Datensicherung, Zugriffsrechte; per Fernwartung in ganz Österreich.",
         "\n## Besonderheiten",
         f"- [Kostenlose Beispiel-Website]({base}/leistungen/webseite-erstellen/): in etwa zehn Minuten "
         "von der hauseigenen JARVIS-Automatik gebaut, ohne Verpflichtung.",
@@ -6218,7 +6208,6 @@ _ANFRAGE_QUELLEN = {
     "it": "EDV & IT-Betreuung",
     "web": "Webdesign & Shop",
     "ads": "Google Ads",
-    "hosting": "Hosting, Domain & Wartung",
     "ki": "KI & Automatisierung",
     "seo": "SEO & Sichtbarkeit",
     "technik": "Technik vor Ort",
@@ -6245,7 +6234,6 @@ _QUELLE_AUF_EIGENER_SEITE = {
     "web": "/leistungen/webseite-erstellen/",
     "seo": "/leistungen/seo-betreuung/",
     "ads": "/leistungen/google-ads/",
-    "hosting": "/leistungen/hosting-wartung/",
     "ki": "/leistungen/ki-automatisierung/",
     "technik": "/leistungen/smarthome-knx-loxone/",
 }

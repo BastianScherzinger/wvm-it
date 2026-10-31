@@ -6,11 +6,6 @@ Wird aus `ohne_preise.py` ueber die Sprachpakete gelegt. Listenelemente stehen a
 TEXTE = {
  "de": {
   "seiten": {
-   "hosting-wartung": {
-    "leistungen": {
-     "4": "Kleine Änderungen an Texten und Bildern in der laufenden Betreuung enthalten"
-    }
-   }
   },
   "lb": {
    "hosting_p3": "Kleine Änderungen in der Betreuung enthalten"

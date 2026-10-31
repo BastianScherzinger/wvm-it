@@ -133,7 +133,7 @@ class HubTest(SimpleTestCase):
             "Asistență IT în Austria Superioară și Salzburg"))
 
 
-class WebseiteUndHostingTest(SimpleTestCase):
+class WebseiteTest(SimpleTestCase):
     def test_webseite_antwort_mit_preis_und_testseite(self):
         onepager = _preis("onepager", "once")
         for praefix in PRAEFIX.values():
@@ -152,19 +152,3 @@ class WebseiteUndHostingTest(SimpleTestCase):
             seite = _seite(f"{praefix}/leistungen/webseite-erstellen/")
             self.assertIn(f'href="{praefix}/#gratis"', seite, sprache)
             self.assertGreaterEqual(len(_schema_fragen(seite)), 6, sprache)
-
-    def test_hosting_antwort_und_partnerfrage(self):
-        for sprache, praefix in PRAEFIX.items():
-            seite = _seite(f"{praefix}/leistungen/hosting-wartung/")
-            antwort = _antwort(seite)
-            for iid, feld in (("hosting", "mtl"), ("domain", "yr"), ("m365", "once")):
-                pruefe_betrag(self, antwort, [_preis(iid, feld)], (sprache, iid))
-            self.assertIn("Domaintechnik", seite)
-            self.assertNotIn("Domaintechnik", " ".join(_schema_fragen(seite)), sprache)
-            self.assertIn(f'href="{praefix}/einrichten/microsoft-365/"', seite, sprache)
-            self.assertNotIn("domaintechnik", antwort.lower())
-
-    def test_hosting_sagt_nichts_ueber_serverstandort_im_antwortabsatz(self):
-        antwort = _antwort(_seite("/leistungen/hosting-wartung/")).lower()
-        for wort in ("rechenzentrum", "standort", "serverstandort", "deutschland-server"):
-            self.assertNotIn(wort, antwort)

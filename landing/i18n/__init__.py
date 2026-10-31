@@ -53,11 +53,16 @@ for _l in ("en", "ro"):
 # Wort fuer "auf Anfrage" wird zum Label, das ueberall dort steht, wo vorher ein Preis stand.
 from . import ohne_preise as _op
 from . import ohne_preise_texte as _opt
+from . import umbau as _ub
 for _l in LANGS:
     PACKS[_l]["ohne_preise"] = copy.deepcopy(_op.PAKETE[_l])
     PACKS[_l].setdefault("catalog_words", {})["on_request"] = _op.PAKETE[_l]["label"]
     PACKS[_l] = _deep_merge(PACKS[_l], _op.UEBERSCHREIBEN[_l])
     PACKS[_l] = _deep_merge(PACKS[_l], _opt.TEXTE[_l])
+    # Umbau auf Anfragen (31.10.2026): Startseiten-Kopf, Kacheln, Rümpelwerk-Szene.
+    PACKS[_l] = _deep_merge(PACKS[_l], _ub.TEXTE[_l])
+    for _slug, _plus in _ub.FAQ_PLUS[_l].items():
+        PACKS[_l]["seiten"][_slug]["faq"] = list(PACKS[_l]["seiten"][_slug]["faq"]) + copy.deepcopy(_plus)
 
 
 def norm_lang(lang):

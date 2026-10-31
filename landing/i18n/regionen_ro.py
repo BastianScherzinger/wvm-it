@@ -65,6 +65,7 @@ REGIONEN = {
              "a": "Da. La lac aceasta este o bună parte din activitate: WLAN, controlul încălzirii, umbrire, acces și camere pentru imobile care nu sunt locuite tot anul. Multe dintre acestea pot fi ulterior verificate și comandate de la distanță, fără ca cineva să se deplaseze."},
             {"q": "Puteți asigura tehnica pentru un eveniment la lac?",
              "a": "Tehnica de sunet, lumini și prezentare pentru evenimente face parte din oferta noastră, iar comunele din jurul lacului sunt toate în zona noastră. Ce anume este necesar depinde de mărime, locație și alimentarea electrică — clarificăm asta dinainte, printr-o vizită, nu la telefon."},
+            {"q": 'Cât costă tehnica la Attersee?', "a": 'Rețeaua, Wi-Fi, firewall-ul și VPN-ul depind de dimensiune și clădire; prețul îl stabilim în discuție. Ajutorul punctual și intervențiile la fața locului se calculează după efort, iar costurile le discutăm dinainte. Suportul continuu este o ofertă, nu o condiție.'},
         ],
     },
 
@@ -128,6 +129,7 @@ REGIONEN = {
              "a": "Acesta este cazul mai frecvent. De obicei problema nu este echipamentul, ci cablarea, traseele de semnal și modul de utilizare. Ne uităm la ce există și vă spunem ce se poate rezolva cu dotarea actuală și ce trebuie într-adevăr înlocuit."},
             {"q": "Veniți și pentru un singur eveniment?",
              "a": "Da, pe bază de proiect, pentru prezentări, conferințe, festivități și evenimente de firmă. Amploarea, montajul și asistența în timpul evenimentului le stabilim dinainte, printr-o vizită — tehnica de evenimente nu se poate planifica serios la telefon."},
+            {"q": 'Cât costă tehnica pentru o sală de seminar în Bad Ischl?', "a": 'Tehnica de conferințe și evenimente nu are un preț stabilit din timp, deoarece depinde de sală, echipamente și operare. După vizită comunicăm suma în scris, înainte de lucrări. Ajutorul punctual și intervențiile la fața locului se calculează după efort, iar costurile le discutăm dinainte.'},
         ],
     },
 

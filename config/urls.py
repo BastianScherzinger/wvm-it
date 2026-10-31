@@ -87,6 +87,8 @@ urlpatterns += i18n_patterns(
     # Die Slugs sind in allen drei Sprachen gleich; das haelt die hreflang-
     # Zuordnung eindeutig und spart uebersetzte URL-Muster (gettext).
     path("leistungen/", views.leistungen_hub, name="leistungen"),
+    # 31.10.2026: Hosting/Domain ist kein Angebot mehr; dauerhaft auf die Webseiten-Seite.
+    path("leistungen/hosting-wartung/", views.hosting_umleiten, name="hosting_umleiten"),
     path("leistungen/<slug:slug>/", views.leistung_seite, name="leistung"),
     # ── Branchen-Silo (docs/SEO-AUSBAU-3.md, N1) ────────────────────────────
     # Eigener Pfad neben /leistungen/ und /it-service/: Leistung, Ort und Branche

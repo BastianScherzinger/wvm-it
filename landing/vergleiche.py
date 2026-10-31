@@ -47,7 +47,7 @@ VERGLEICHE = [
 
     {"slug": "microsoft365-vs-google-workspace", "icon": "mail",
      "quelle": "it", "preis": "m365", "rechner": False,
-     "leistungen": ["edv-it-betreuung", "hosting-wartung"], "prio": "0.7"},
+     "leistungen": ["edv-it-betreuung", "webseite-erstellen"], "prio": "0.7"},
 
     # 08.09.2026: Die Frage, die VOR dem Auftrag steht. "aufruest" kam bis dahin
     # im ganzen Projekt null Mal vor — bei einer Entscheidung, die jeder Betrieb
