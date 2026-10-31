@@ -283,3 +283,7 @@ BRANCHEN = {
         "cta_t": "Write briefly what it is about: handover, website, email or hall technology. We reply within 24 hours on working days with an assessment and an estimate of effort, before anything is commissioned.",
     },
 }
+
+
+from .schulen import EN as _SCHULEN
+BRANCHEN["schulen-bildung"] = _SCHULEN

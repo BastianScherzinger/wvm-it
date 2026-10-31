@@ -58,6 +58,11 @@ BRANCHEN = [
      "schwerpunkt": "netzwerk-wlan", "quelle": "it", "preis": "netzwerk_setup",
      "leistungen": ["server-datensicherung", "edv-it-betreuung"], "prio": "0.7"},
 
+    # 31.10.2026 (Umbau Konversion W4): Schulen, direkt aus der Startseiten-Kachel verlinkt.
+    {"slug": "schulen-bildung", "icon": "consulting",
+     "schwerpunkt": "edv-it-betreuung", "quelle": "it", "preis": "it_betreuung",
+     "leistungen": ["netzwerk-wlan", "server-datensicherung", "it-sicherheit"], "prio": "0.8"},
+
     {"slug": "vereine-gemeinden", "icon": "handshake",
      "schwerpunkt": "edv-it-betreuung", "quelle": "it", "preis": "it_support",
      "leistungen": ["webseite-erstellen", "konferenztechnik"], "prio": "0.6"},
@@ -66,5 +71,5 @@ BRANCHEN = [
 NACH_SLUG = {b["slug"]: b for b in BRANCHEN}
 
 # Reihenfolge im Footer: die vier, für die es die meiste Suchnachfrage gibt.
-FOOTER_SLUGS = ["steuerberater-kanzleien", "handwerk-baugewerbe",
+FOOTER_SLUGS = ["schulen-bildung", "steuerberater-kanzleien", "handwerk-baugewerbe",
                 "arztpraxen-therapie", "hotellerie-gastronomie"]

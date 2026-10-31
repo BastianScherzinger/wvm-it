@@ -297,3 +297,7 @@ BRANCHEN = {
         "cta_t": "Schreiben Sie kurz, worum es geht: Übergabe, Website, E-Mail oder Technik im Saal. Wir antworten an Werktagen innerhalb von 24 Stunden mit einer Einschätzung und einer Aufwandsschätzung, bevor irgendetwas beauftragt wird.",
     },
 }
+
+
+from .schulen import DE as _SCHULEN
+BRANCHEN["schulen-bildung"] = _SCHULEN

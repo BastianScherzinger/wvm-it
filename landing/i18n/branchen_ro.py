@@ -283,3 +283,7 @@ BRANCHEN = {
         "cta_t": "Scrieți pe scurt despre ce este vorba: predare, site, e-mail sau tehnică în sală. Răspundem în 24 de ore în zilele lucrătoare cu o evaluare și o estimare de efort, înainte ca ceva să fie comandat.",
     },
 }
+
+
+from .schulen import RO as _SCHULEN
+BRANCHEN["schulen-bildung"] = _SCHULEN
