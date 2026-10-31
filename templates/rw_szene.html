@@ -1,0 +1,57 @@
+{% load static %}
+{% comment %}
+Rümpelwerk-Scroll-Szene (Umbau auf Anfragen, W3, 31.10.2026). Ein Handy scrollt durch echte
+Ausschnitte der Rümpelwerk-Seite, daneben zählen zwei Zahlen hoch (Google Search Console,
+August bis Oktober 2026, Quelle und Stand in der Fußnote). Ohne JavaScript und bei
+prefers-reduced-motion steht ein ruhiges Standbild mit den Endwerten da; die Bewegung kommt
+allein aus static/js/szene.js (keine Inline-Skripte, kein Nonce nötig).
+Keine Preise, keine Kunden- oder Anfragezahlen von Rümpelwerk, keine Anzeigen, kein
+Versprechen von Platzierungen. Die Zahlen stehen nur hier (belegt in
+Kunde-02/UMBAU-KONVERSION-2026-10-31/PLAN.md); Parameter rw_cta: 'index' | 'web'.
+{% endcomment %}
+<section class="rw-szene on-dark" id="referenz-ruempelwerk" data-szene aria-labelledby="rw-h">
+  <div class="rw-spur">
+    <div class="rw-buehne">
+      <div class="wrap rw-grid">
+        <div class="rw-text">
+          <p class="sec-kick">{{ t.umbau.rw.kick|safe }}</p>
+          <h2 class="section-t" id="rw-h">{{ t.umbau.rw.h|safe }}</h2>
+          <p class="rw-lead">{{ t.umbau.rw.lead|safe }}</p>
+          <dl class="rw-zahlen">
+            <div class="rw-z">
+              <dt>{{ t.umbau.rw.z1|safe }}</dt>
+              <dd><span class="rw-von" data-von="5492">5.492</span><span class="rw-pfeil" aria-hidden="true">→</span><span class="rw-zahl" data-von="5492" data-bis="48402">48.402</span></dd>
+            </div>
+            <div class="rw-z">
+              <dt>{{ t.umbau.rw.z2|safe }}</dt>
+              <dd><span class="rw-von" data-von="58">58</span><span class="rw-pfeil" aria-hidden="true">→</span><span class="rw-zahl" data-von="58" data-bis="365">365</span></dd>
+            </div>
+          </dl>
+          <p class="rw-zeit">{{ t.umbau.rw.zeit|safe }}</p>
+        </div>
+        <figure class="rw-handy">
+          <div class="rw-rahmen">
+            <div class="rw-screen">
+              <img class="rw-bild" src="{% static 'img/rw_scroll_390.webp' %}"
+                   srcset="{% static 'img/rw_scroll_390.webp' %} 390w, {% static 'img/rw_scroll_780.webp' %} 780w"
+                   sizes="(max-width:700px) 56vw, 280px"
+                   width="390" height="1879" alt="{{ t.umbau.rw.alt|safe }}" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="wrap rw-fuss">
+    <p class="rw-quelle">{{ t.umbau.rw.fuss|safe }}</p>
+    <div class="rw-aktion">
+      {% if rw_cta == 'web' %}
+        {% if c.telefon %}<a class="btn btn-lg" href="tel:{{ c.telefon_tel }}">{% include 'icons.html' with name='phone' %}<span>{{ c.telefon }}</span></a>{% endif %}
+        {% if c.whatsapp %}<a class="btn btn-lg btn-ghost" href="https://wa.me/{{ c.whatsapp }}?text={{ wa_text|default:t.ways.wa_kurz|urlencode }}" target="_blank" rel="noopener">{% include 'icons.html' with name='wa' %}<span>{{ t.ways.wa|safe }}</span></a>{% endif %}
+      {% else %}
+        <a class="btn btn-lg" href="{% url 'leistung' slug='webseite-erstellen' %}">{{ t.umbau.rw.cta|safe }}</a>
+      {% endif %}
+      <a class="textlink" href="https://ruempelwerk-mitteldeutschland.de/" target="_blank" rel="noopener">{{ t.umbau.rw.seite|safe }}<span aria-hidden="true">{% include 'icons.html' with name='arrow' %}</span></a>
+    </div>
+  </div>
+</section>
