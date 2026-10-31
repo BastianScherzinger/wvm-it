@@ -175,7 +175,7 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "windows-11": {
-        "titel": "Windows 11 migration | WVM-IT",
+        "titel": "Windows 11 migration for offices | WVM-IT",
         "desc": "Windows 10 has had no security updates since October 2025. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. Get in touch.",
         "h1": "Windows 11 in the business: migrate or replace the device?",
         "nav": "Windows 11",
@@ -409,7 +409,7 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "netzwerk": {
-        "titel": "Office network setup | WVM-IT",
+        "titel": "Office network setup and Wi-Fi | WVM-IT",
         "desc": "Router, switch, Wi-Fi, printers on the network and a separate guest network — set up and surveyed Get in touch.",
         "h1": "A network that carries through the whole building",
         "nav": "Network setup",
@@ -813,7 +813,7 @@ EINRICHTEN = {
 }
 
 HUB = {
-    "titel": "Have a PC or IT set up: prices agreed upfront, no contract | WVM-IT",
+    "titel": "Have a PC or IT set up: price agreed upfront | WVM-IT",
     "desc": "Workstation, PC replacement, Microsoft 365, server, network: Preis im Gespräch. Get a quote.",
     "h1": "Single tasks — price agreed upfront, no contract",
     "kurz": "WVM-IT handles single IT tasks at a price agreed upfront, without any running support being necessary: setting up a workstationreplacing a computer including the data transfer Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",

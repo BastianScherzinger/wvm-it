@@ -396,7 +396,7 @@ SEITEN = {
 
     "ki-automatisierung": {
         "nav": "Automatizare AI",
-        "titel": "Automatizare AI | WVM-IT",
+        "titel": "Automatizare AI pentru firme mici | WVM-IT",
         "desc": "Chatboți, automatizare WhatsApp și programări pentru firme: programări, chatbot, integrare CRM. Cereți o ofertă.",
         "h1": "Automatizare AI: munca ce se repetă o face tehnica",
         "kurz": "WVM-IT din Lenzing construiește automatizări pentru munca repetitivă din firme: un chatbot care preia solicitări noaptea, fluxuri de programare, răspunsuri automate pe WhatsApp și e-mail, precum și conexiuni cu sistemele existente. Cât costă SEO sau Google Ads depinde de punctul de plecare și de amploare; stabilim în discuție. Totul se realizează la distanță, în Austria și Germania.",
@@ -588,7 +588,7 @@ SEITEN = {
 
     "it-beratung": {
         "nav": "Consultanță IT",
-        "titel": "Consultanță IT | WVM-IT",
+        "titel": "Consultanță IT pentru firme din Austria | WVM-IT",
         "desc": "Consultanță IT fără legături cu producători: Preț stabilit la telefon. Solicitați o consultanță.",
         "h1": "Consultanță IT pentru firme care trebuie să ia o decizie",
         "kurz": "WVM-IT din Lenzing consiliază firme mici și mijlocii din Austria și Germania înainte de investiții în IT și tehnică pentru clădiri: evaluare, concept scris, comparație de oferte externe și asistență la implementare. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Răspundem la solicitări în 24 de ore în zilele lucrătoare — chiar și atunci când răspunsul onest este că investiția nu se justifică.",

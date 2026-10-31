@@ -127,7 +127,6 @@ class OpenGraphEindeutigTest(SimpleTestCase):
         m = re.search(r'<meta property="%s" content="([^"]*)"' % name, seite)
         return html.unescape(m.group(1)).strip() if m else ""
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_kein_og_paar_gehoert_zwei_adressen(self):
         c = _util.client()
         titel, beschr = defaultdict(list), defaultdict(list)

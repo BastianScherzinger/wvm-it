@@ -66,15 +66,15 @@ class HilfeSeiteTest(SimpleTestCase):
         self.assertTrue(eintrag[0][3], "die Seite gibt es in drei Sprachen")
         self.assertEqual(_sitemap_klasse("/it-hilfe/"), "kern")
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_antwortabsatz_nennt_beide_stundensaetze(self):
         for pfad in PFADE:
             with self.subTest(pfad=pfad):
                 _, html = _html(pfad)
                 antwort = re.search(r'class="antwort[^"]*"[^>]*>(.*?)</', html, re.S)
                 self.assertIsNotNone(antwort, "Antwortabsatz fehlt")
-                self.assertIn(str(STUNDE), antwort.group(1))
-                self.assertIn(str(VOR_ORT), antwort.group(1))
+                _util.pruefe_betrag(self, antwort.group(1), [STUNDE, VOR_ORT])
+                self.assertIn("WVM-IT", antwort.group(1))
+                self.assertIn("Lenzing", antwort.group(1))
 
     @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_schema_service_mit_stundenpreisen_aus_dem_katalog(self):

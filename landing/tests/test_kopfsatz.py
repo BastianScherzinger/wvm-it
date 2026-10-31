@@ -23,7 +23,6 @@ BESCHREIBUNG = (70, 165)
 
 
 class KopfsatzLaengeTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_titel_und_beschreibung_in_der_spanne(self):
         c = client()
         pfade = []

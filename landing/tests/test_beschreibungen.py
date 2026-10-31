@@ -27,7 +27,6 @@ ROBOTS = re.compile(r'<meta\s+name="robots"\s+content="([^"]*)"')
 
 
 class BeschreibungenTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_laenge_und_handlungsaufforderung(self):
         c = client()
         fehler = []

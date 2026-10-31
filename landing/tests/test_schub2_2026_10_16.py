@@ -59,14 +59,13 @@ class StartseiteTest(SimpleTestCase):
     def setUp(self):
         self.html = _html("/")
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_antwortsatz_kurz_und_mit_ort_leistung_preis(self):
         text = _antwort_absatz(_html("/"))
         self.assertLessEqual(len(text.split()), 45)
         self.assertIn("Lenzing", text)
         self.assertIn("IT-Betreuung", text)
-        self.assertIn(f"{_ANGEBOT_INDEX['it_betreuung']['mtl']} €", text)
-        self.assertIn(f"{_ANGEBOT_INDEX['it_support']['std']} €", text)
+        _util.pruefe_betrag(self, text, [f"{_ANGEBOT_INDEX['it_betreuung']['mtl']} €",
+                                         f"{_ANGEBOT_INDEX['it_support']['std']} €"])
 
     def test_genau_ein_antwortabsatz_mit_id(self):
         self.assertEqual(self.html.count('id="antwort"'), 1)
@@ -86,7 +85,6 @@ class StartseiteTest(SimpleTestCase):
                 if knoten.get("@type") == "WebPage":
                     self.assertEqual(knoten["speakable"]["cssSelector"], [".antwort"])
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_englisch_und_rumaenisch_haben_den_satz(self):
         for pfad in ("/en/", "/ro/"):
             with self.subTest(pfad=pfad):
@@ -163,19 +161,21 @@ class PreistabelleTest(SimpleTestCase):
 
 
 class AntwortBloeckeTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_notfall_und_hilfe_hoechstens_60_woerter(self):
         for pfad in ("/it-notfall/", "/it-hilfe/", "/en/it-notfall/", "/en/it-hilfe/"):
             with self.subTest(pfad=pfad):
                 self.assertLessEqual(len(_antwort_absatz(_html(pfad)).split()), 60)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_der_rest_bleibt_als_absatz_darunter(self):
         html = _html("/it-notfall/")
         self.assertIn('class="antwort antwort-rest"', html)
         self.assertIn("Arbeitsspeicher und die Protokolle", html)
         hilfe = _html("/it-hilfe/")
-        self.assertIn("Festpreis: ein neuer Arbeitsplatz", hilfe)
+        if _v_op.PREISE_SICHTBAR:
+            self.assertIn("Festpreis: ein neuer Arbeitsplatz", hilfe)
+        else:
+            _util.pruefe_betrag(self, hilfe.split("antwort-rest", 1)[1][:3000], [])
+            self.assertIn("ein neuer Arbeitsplatz", hilfe)
 
 
 class AktualisiertTest(SimpleTestCase):

@@ -305,7 +305,7 @@ SEITEN = {
 
     "google-ads": {
         "nav": "Google Ads",
-        "titel": "Google Ads Betreuung | WVM-IT",
+        "titel": "Google Ads Betreuung für Betriebe | WVM-IT",
         "desc": "Google Ads einrichten, laufende Betreuung zzgl. Budget, mit Conversion-Messung und Monatsbericht. Jetzt Angebot anfordern.",
         "h1": "Google Ads, die Anfragen bringen — nicht nur Klicks",
         "kurz": "WVM-IT aus Lenzing richtet Google-Ads-Konten für Betriebe in Österreich und Deutschland ein und betreut sie, Einrichtung, laufende Betreuung zuzüglich Werbebudget. Betreut werden Kampagnen, Suchbegriffe, Anzeigen, ausschließende Begriffe und vor allem eine funktionierende Conversion-Messung, ortsunabhängig.",
@@ -350,7 +350,7 @@ SEITEN = {
 
     "hosting-wartung": {
         "nav": "Hosting & Wartung",
-        "titel": "Hosting & Wartung | WVM-IT",
+        "titel": "Hosting & Wartung für Webseiten | WVM-IT",
         "desc": "Hosting mit SSL und täglichen Sicherungen, Wartung, Domain Jetzt unverbindlich anfragen.",
         "h1": "Hosting und Wartung: damit die Seite auch läuft, wenn niemand hinsieht",
         "kurz": "Hosting und Domain für Betriebe in Österreich von WVM-IT aus Lenzing: eigenes Hosting mit SSL und täglichen Sicherungen, Wartung mit Updates und kleinen Änderungen, Domain im Jahr — zusammen, dazu E-Mail mit Microsoft 365. Wir übernehmen auch Seiten, die jemand anderes gebaut hat, und betreuen sie ortsunabhängig in Österreich und Deutschland.",
@@ -401,7 +401,7 @@ SEITEN = {
 
     "ki-automatisierung": {
         "nav": "KI-Automatisierung",
-        "titel": "KI-Automatisierung | WVM-IT",
+        "titel": "KI-Automatisierung für Betriebe | WVM-IT",
         "desc": "Chatbots, WhatsApp- und Termin-Automatisierung für Betriebe: Terminbuchung, Chatbot, CRM-Anbindung. Jetzt anfragen.",
         "h1": "KI-Automatisierung: die Arbeit, die sich wiederholt, macht die Technik",
         "kurz": "WVM-IT aus Lenzing baut Automatisierungen für Betriebe in Österreich und Deutschland, Terminvereinbarung automatisieren, KI-Chatbot, Anbindung an CRM oder ERP. Beispiele sind ein Chatbot, der nachts Anfragen entgegennimmt, Termin- und Buchungsabläufe, automatische Antworten per WhatsApp und E-Mail und Anbindungen an vorhandene Systeme, ortsunabhängig umgesetzt.",
@@ -593,7 +593,7 @@ SEITEN = {
 
     "it-beratung": {
         "nav": "IT-Beratung",
-        "titel": "IT-Beratung | WVM-IT",
+        "titel": "IT-Beratung für Betriebe in Österreich | WVM-IT",
         "desc": "IT-Beratung ohne Herstellerbindung: Preis im Gespräch. Jetzt unverbindlich anfragen.",
         "h1": "IT-Beratung für Betriebe, die eine Entscheidung treffen müssen",
         "kurz": "WVM-IT aus Lenzing berät Betriebe in Österreich und Deutschland vor Investitionen in IT und Gebäudetechnik; Termine vor Ort nach Absprache, Antwort an Werktagen innerhalb von 24 Stunden. Dazu gehören Bestandsaufnahme, schriftliches Konzept, Vergleich fremder Angebote und Begleitung bei der Umsetzung — auch dann, wenn die ehrliche Antwort lautet, dass sich die Investition nicht lohnt.",

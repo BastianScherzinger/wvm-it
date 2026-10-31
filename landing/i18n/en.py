@@ -113,7 +113,7 @@ PACK = {
         # Design B1 (25.09.2026): H1 as a plain sentence saying what Florin does.
         "headline": "IT support for your business, personal and from a single source.",
         "headline_2": "From a two-person office to a plant with 200 workstations.",
-        "antwort": "WVM-IT is an IT service provider based in Lenzing, Upper Austria. Florin Feier looks after the IT of small businesses by remote access across Austria. The cost of ongoing IT support is determined by your specific needs; we'll discuss it in a brief call, fair and suited to your budget. Single help without a contract is also available.",
+        "antwort": "WVM-IT is an IT service provider based in Lenzing, Upper Austria. Florin Feier looks after the IT of small businesses by remote access across Austria. Single help without a contract is also available. We settle the price in a short call or on WhatsApp.",
         "subline": "For businesses in and around Lenzing: ongoing support, help without a contract, websites with a free sample site, plus domain, email, AI and on-site technology. Pricing is discussed in a brief call, fair and suited to your budget.",
         "alt_frage": "Rather talk right away?",
         # Upgrade 01.10.2026: Anruf als Hauptknopf, Rückruf als schmale Zeile.
@@ -661,7 +661,7 @@ PACK = {
         "h1": "IT emergency: what to do in the first 30 minutes",
         "nav": "IT emergency",
         "wa_text": "IT emergency: ",
-        "kurz": "WVM-IT in Lenzing helps across Austria (and Germany) by remote maintenance with a locked Microsoft 365 account, failed email, a PC that will not start, encryption and server failure, Mon–Sat from 7:30am. On site we come by appointment within roughly an hour's drive of Lenzing. The price for our services is agreed in a short conversation, fair and fitting your budget.",
+        "kurz": "WVM-IT in Lenzing helps across Austria (and Germany) by remote maintenance with a locked Microsoft 365 account, failed email, a PC that will not start, encryption and server failure, Mon–Sat from 7:30am. On site we come by appointment within roughly an hour's drive of Lenzing. The price is agreed in a short call.",
         "kurz_mehr": "In an IT emergency the first minutes decide the damage. We are reachable on the number below and usually begin within minutes — including if you are not a client of ours. If you suspect an attack, one rule comes first: disconnect affected devices from the network, but do not switch them off and do not delete anything — memory and logs hold the traces needed for recovery and for any report.",
         "eilt_h": "It is urgent — this way",
         "eilt_t": "Call rather than write. During an ongoing incident a phone call saves more time than any description by email.",

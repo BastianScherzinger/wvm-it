@@ -602,7 +602,7 @@ BEITRAEGE = {
         "desc": "Vier Ursachen erklären fast alle langsamen Bürorechner. Woran man sie "
                 "erkennt, was sich beheben lässt und wann ein Neukauf "
                 "günstiger ist. Termin buchen.",
-        "antwort": "Die Wahl hängt daran, wo die Daten liegen und wie schwer sie sind. Liegt alles in Microsoft 365 oder einer Webanwendung, brauchen Sie weder VPN noch Terminalserver — dann genügen Zwei‑Faktor‑Anmeldung und verwaltete Geräte. Liegt eine Fachanwendung auf einem Server im Haus, ist ein Terminalserver meist die bessere Wahl als ein VPN, weil nur Bildschirminhalte übertragen werden und keine Daten auf dem heimischen Rechner landen. Ein VPN passt dort, wo einzelne Dienste im Firmennetz erreichbar sein müssen. Firewall und VPN richten wir nach individueller Absprache ein.",
+        "antwort": "In den allermeisten Fällen liegt es an der Festplatte: Ein Gerät mit klassischer Festplatte statt SSD ist bei jedem Start und bei jedem Programmaufruf langsam, egal wie stark der Prozessor ist. Danach folgen zu wenig Arbeitsspeicher, ein zugestelltes Autostart-Verzeichnis und — seltener, aber unterschätzt — Überhitzung durch verstaubte Lüfter. Alle vier lassen sich unterscheiden, ohne das Gerät zu öffnen. Bei einem langsamen PC hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, nach individueller Absprache, solange der Rechner noch startet.",
 
         "abschnitte": [
             {"h": "Ursache 1: eine klassische Festplatte",
@@ -687,7 +687,7 @@ BEITRAEGE = {
         "meta_titel": "Drucker druckt nicht: 5 Ursachen im Büro | WVM-IT",
         "desc": "Warteschlange hängt, neue IP-Adresse, Treiber nach Update, falscher "
                 "Standarddrucker, Scannen geht nicht: fünf Ursachen und was hilft. Hilfe anfragen.",
-        "antwort": "In den allermeisten Fällen liegt es an der Festplatte: Ein Gerät mit klassischer Festplatte statt SSD ist bei jedem Start und bei jedem Programmaufruf langsam, egal wie stark der Prozessor ist. Danach folgen zu wenig Arbeitsspeicher, ein zugestelltes Autostart‑Verzeichnis und — seltener, aber unterschätzt — Überhitzung durch verstaubte Lüfter. Alle vier lassen sich unterscheiden, ohne das Gerät zu öffnen. Bei einem langsamen PC hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, nach individueller Absprache, solange der Rechner noch startet.",
+        "antwort": "Wenn ein Bürodrucker nicht mehr druckt, liegt es fast immer an einer von fünf Ursachen: Die Druckwarteschlange hängt, der Drucker hat im Netz eine neue Adresse bekommen, ein Windows-Update hat den Treiber ersetzt, Windows druckt auf den falschen Standarddrucker, oder — beim Scannen — die hinterlegte Anmeldung stimmt nicht mehr. Die ersten vier lassen sich meist in wenigen Minuten selbst prüfen; WVM-IT aus Lenzing löst alle fünf in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, solange der Drucker im Netz erreichbar ist, ohne Vertrag; den Preis klären wir in einem kurzen Gespräch.",
         "abschnitte": [
             {"h": "Ursache 1: Die Druckwarteschlange hängt",
              "t": "Ein einzelner fehlerhafter Auftrag — oft ein großes PDF oder ein "
@@ -773,7 +773,7 @@ BEITRAEGE = {
         "meta_titel": "Outlook geht nicht: was Sie selbst prüfen können | WVM-IT",
         "desc": "Kennwortabfrage in Schleife, Mails im Postausgang, volles Postfach, "
                 "Outlook offline: häufige Ursachen und was Sie selbst prüfen. Sonst Kontakt aufnehmen.",
-        "antwort": "Wenn ein Bürodrucker nicht mehr druckt, liegt es fast immer an einer von fünf Ursachen: Die Druckwarteschlange hängt, der Drucker hat im Netz eine neue Adresse bekommen, ein Windows‑Update hat den Treiber ersetzt, Windows druckt auf den falschen Standarddrucker, oder — beim Scannen — die hinterlegte Anmeldung stimmt nicht mehr. Die ersten vier lassen sich meist in wenigen Minuten selbst prüfen; WVM-IT aus Lenzing löst alle fünf in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, nach individueller Absprache, solange der Drucker im Netz erreichbar ist.",
+        "antwort": "Wenn Outlook keine Mails mehr sendet oder empfängt, sind es meistens vier Dinge: ein geändertes oder abgelaufenes Kennwort, ein Anhang, der zu groß ist und im Postausgang hängt, ein volles Postfach oder ein Outlook, das versehentlich auf offline steht. Ob das Konto selbst funktioniert, zeigt der schnellste Test: im Browser anmelden. Klappt dort alles, liegt das Problem im Outlook auf diesem Rechner — und das löst WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, ohne Vertrag; den Preis klären wir in einem kurzen Gespräch.",
         "abschnitte": [
             {"h": "Der schnellste Test: im Browser anmelden",
              "t": "Bei Microsoft 365 unter outlook.office.com, bei anderen Anbietern "

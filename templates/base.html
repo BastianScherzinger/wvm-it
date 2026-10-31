@@ -1,10 +1,10 @@
-{% load static %}<!DOCTYPE html>
+{% load static meta %}<!DOCTYPE html>
 <html lang="{{ t.meta.html_lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{% block titel %}{{ t.meta.seo_title|safe }}{% endblock %}</title>
-  <meta name="description" content="{% block beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}">
+  <meta name="description" content="{% filter meta_desc:request.path %}{% block beschreibung %}{{ t.meta.seo_desc|safe }}{% endblock %}{% endfilter %}">
   <meta name="robots" content="{% block robots %}index,follow,max-image-preview:large{% endblock %}">
   <meta name="author" content="{{ c.site_name }} · {{ c.inhaber_name }}">
   {% comment %} Google Search Console (URL-Praefix-Property www.wvm-it.tech) {% endcomment %}

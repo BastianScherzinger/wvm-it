@@ -9,6 +9,7 @@ import re
 from django.test import SimpleTestCase
 
 from landing import regionen, views
+from . import _util
 from ._util import client
 
 
@@ -35,18 +36,17 @@ class StartseitenMetaTest(SimpleTestCase):
         self.assertIn("Upper Austria", _titel(_seite("/en/")))
         self.assertIn("Austria Superioară", _titel(_seite("/ro/")))
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_description_nennt_ort_zahlen_und_florin(self):
         seite = _seite("/")
         d = re.search(r'<meta name="description" content="(.*?)"', seite).group(1)
-        for teil in ("Lenzing", "Florin", "Hosting", "E-Mail",
-                     _preis("it_betreuung", "mtl"), _preis("it_support", "std"),
-                     _preis("onepager", "once")):
+        for teil in ("Lenzing", "Florin", "Hosting", "E-Mail"):
             self.assertIn(teil, d)
+        _util.pruefe_betrag(self, d, [_preis("it_betreuung", "mtl"), _preis("it_support", "std"),
+                                      _preis("onepager", "once")])
         for sprache, ort in (("/en/", "Lenzing"), ("/ro/", "Lenzing")):
             d2 = re.search(r'<meta name="description" content="(.*?)"', _seite(sprache)).group(1)
             self.assertIn(ort, d2)
-            self.assertIn(_preis("onepager", "once"), d2)
+            _util.pruefe_betrag(self, d2, [_preis("onepager", "once")])
 
 
 class FussOrteTest(SimpleTestCase):

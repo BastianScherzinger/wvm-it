@@ -60,7 +60,6 @@ def fliesstext(html):
 
 class ZahlenImInhaltTest(SimpleTestCase):
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_jede_seite_nennt_mindestens_eine_zahl(self):
         """Der Fall, den diese Prüfung am 12.09.2026 fand: Der Hub der
         Vergleichsseiten kam in allen drei Sprachen ohne eine einzige Zahl aus —

@@ -157,7 +157,7 @@ SEITEN = {
 
     "it-sicherheit": {
         "nav": "IT security",
-        "titel": "IT security check – WVM-IT",
+        "titel": "IT security check for businesses – WVM-IT",
         "desc": "IT security check with a written report and action list. Firewall and VPN setup available. Pricing is discussed in a short call – call us or WhatsApp.",
         "h1": "IT security sized for a business, not for a corporation",
         "kurz": "WVM-IT from Lenzing reviews IT security of small and mid-sized businesses and implements measures that truly help: permissions, passwords, firewall, VPN, updates, verified backups. The one‑off security check includes a written report and action list; firewall and VPN can be set up as needed. Pricing is clarified in a brief conversation – call us or WhatsApp.",
@@ -203,7 +203,7 @@ SEITEN = {
     # ══ Visibility ════════════════════════════════════════════════════════════
     "webseite-erstellen": {
         "nav": "Website & shop",
-        "titel": "Have a website built – WVM-IT",
+        "titel": "Have a website built in Austria – WVM-IT",
         "desc": "Websites for businesses in Austria and Germany – one‑pager, company site, or online shop. Pricing is discussed in a brief call; request a quote today.",
         "h1": "Have a website built — and see what you get first",
         "kurz": "Have a website built in Upper Austria: WVM-IT from Lenzing creates websites for businesses in Austria and Germany – from simple one‑pagers to multi‑page company sites, premium sites with animations, and online shops. You can try a free sample site generated automatically after providing your email. Hosting and maintenance are offered as part of a tailored package. Pricing is clarified in a short conversation.",
@@ -253,7 +253,7 @@ SEITEN = {
 
     "seo-betreuung": {
         "nav": "SEO support",
-        "titel": "SEO support | WVM-IT",
+        "titel": "SEO support for local businesses | WVM-IT",
         "desc": "Get found on Google and in AI answers: SEO groundworkongoing support Request a free quote now.",
         "h1": "SEO support: getting found by people who do not know you yet",
         "kurz": "WVM-IT from Lenzing brings businesses forward on Google and in AI answers such as ChatGPT and Perplexity: technical foundations, one page per service, content that genuinely answers search questions, and monthly measurement. Ongoing support depends on workstations, servers and scope; we agree the price in a short call, fair and suited to your budget. The work is location-independent for clients in Austria and Germany.",
@@ -346,7 +346,7 @@ SEITEN = {
         "titel": "Hosting & maintenance | WVM-IT",
         "desc": "Hosting with SSL and daily backups, maintenance, domain Request a free quote now.",
         "h1": "Hosting and maintenance: so the site runs when nobody is looking",
-        "kurz": "A managed server and monitored backup depend on scope; we clarify the price in a call. The setup is agreed upfront, no surprises. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
+        "kurz": "WVM-IT from Lenzing: a managed server and monitored backup depend on scope; we clarify the price in a call. The setup is agreed upfront, no surprises. We also take over sites somebody else built and run them independently of location across Austria and Germany.",
         "intro": "A website is not a purchase, it is a piece of operating equipment. Certificates expire, systems need security updates, contact forms eventually stop working quietly. That rarely shows immediately — usually only when no enquiry has arrived for weeks and somebody goes looking. Maintenance is the cheapest insurance against exactly those weeks.",
         "problem_h": "What happens without maintenance",
         "probleme": [
@@ -394,7 +394,7 @@ SEITEN = {
 
     "ki-automatisierung": {
         "nav": "AI automation",
-        "titel": "AI automation | WVM-IT",
+        "titel": "AI automation for small businesses | WVM-IT",
         "desc": "Chatbots, WhatsApp and booking automation for businesses: bookingchatbotCRM integration Request a quote.",
         "h1": "AI automation: let technology do the work that repeats",
         "kurz": "WVM-IT from Lenzing builds automation for repetitive work in businesses: a chatbot that takes enquiries at night, booking and appointment flows, automatic replies by WhatsApp and email, and connections to existing systems. We clarify the price in a short call, fair and suited to your budget. Everything is delivered remotely across Austria and Germany.",
@@ -586,7 +586,7 @@ SEITEN = {
 
     "it-beratung": {
         "nav": "IT consulting",
-        "titel": "IT consulting | WVM-IT",
+        "titel": "IT consulting for businesses in Austria | WVM-IT",
         "desc": "IT consulting with no vendor ties: assessment, concept, quote comparison and support — price discussed in a brief call. Request a free consultation now.",
         "h1": "IT consulting for businesses that need to make a decision",
         "kurz": "WVM-IT from Lenzing advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. The cost depends on the scope and is clarified in a short conversation; call us or WhatsApp. We reply to enquiries within 24 hours on working days — even when the honest answer is that the investment isn’t worth it.",

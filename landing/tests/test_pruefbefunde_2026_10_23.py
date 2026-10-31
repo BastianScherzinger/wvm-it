@@ -88,7 +88,6 @@ class Ge57Test(SimpleTestCase):
 
 
 class Ge56Test(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_antwortabsatz_der_leistungen_nennt_firma_und_ort_in_allen_sprachen(self):
         c = _util.client()
         for lang in ("", "/en", "/ro"):

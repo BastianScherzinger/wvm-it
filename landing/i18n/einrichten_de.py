@@ -502,7 +502,7 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "firewall-vpn": {
-        "titel": "Firewall und VPN einrichten — feste Absprache vorab, keine Überraschungen | WVM-IT",
+        "titel": "Firewall und VPN einrichten, feste Absprache | WVM-IT",
         "desc": "Firewall aufgesetzt und VPN für den Zugriff von unterwegs: Preis nach kurzem Gespräch, mit Regeln, die man später noch versteht. Jetzt anfragen.",
         "h1": "Firewall und VPN einrichten — Zugriff von außen, ohne offene Tür",
         "nav": "Firewall und VPN",

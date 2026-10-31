@@ -16,7 +16,7 @@ from html import unescape
 from django.test import SimpleTestCase
 
 from landing import regionen, views
-from ._util import client
+from ._util import client, pruefe_betrag
 
 IN_REICHWEITE = ("gmunden", "salzburg", "voecklabruck", "linz", "wels")
 PRAEFIX = {"de": "", "en": "/en", "ro": "/ro"}
@@ -55,7 +55,6 @@ def _schema_fragen(seite):
 
 
 class OrtsseitenAntwortTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_erster_satz_nennt_entfernung_und_preise(self):
         arbeitsplatz = _preis("it_betreuung", "mtl")
         stunde = _preis("it_support", "std")
@@ -65,8 +64,7 @@ class OrtsseitenAntwortTest(SimpleTestCase):
                 seite = _seite(f"{praefix}/it-service/{slug}/")
                 satz = _erster_satz(_antwort(seite))
                 self.assertIn(str(e["km"]), satz, (slug, sprache))
-                self.assertIn(arbeitsplatz, satz, (slug, sprache))
-                self.assertIn(stunde, satz, (slug, sprache))
+                pruefe_betrag(self, satz, [arbeitsplatz, stunde], (slug, sprache))
                 self.assertIn("Florin Feier", satz, (slug, sprache))
                 self.assertIn("Lenzing", satz, (slug, sprache))
 
@@ -76,7 +74,6 @@ class OrtsseitenAntwortTest(SimpleTestCase):
         self.assertIn("EDV-Betreuung in Salzburg", antwort)
         self.assertIn("IT-Dienste", antwort)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_description_mit_ort_preis_rueckruf_ohne_zeitzusage(self):
         for slug in IN_REICHWEITE:
             if slug == "voecklabruck":
@@ -86,7 +83,7 @@ class OrtsseitenAntwortTest(SimpleTestCase):
                 seite = _seite(f"{praefix}/it-service/{slug}/")
                 d = re.search(r'<meta\s+name="description"\s+content="([^"]*)"', seite).group(1)
                 self.assertIn(ort, d, (slug, sprache))
-                self.assertIn(_preis("it_betreuung", "mtl"), d, (slug, sprache))
+                pruefe_betrag(self, d, [_preis("it_betreuung", "mtl")], (slug, sprache))
                 self.assertIn("Florin Feier", d, (slug, sprache))
                 self.assertRegex(d, re.compile(r"(Rückruf|callback|apel înapoi)", re.I), (slug, sprache))
                 self.assertNotRegex(d, ZEITZUSAGE, (slug, sprache))
@@ -137,13 +134,12 @@ class HubTest(SimpleTestCase):
 
 
 class WebseiteUndHostingTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_webseite_antwort_mit_preis_und_testseite(self):
         onepager = _preis("onepager", "once")
         for praefix in PRAEFIX.values():
             seite = _seite(f"{praefix}/leistungen/webseite-erstellen/")
             antwort = _antwort(seite)
-            self.assertIn(onepager, antwort)
+            pruefe_betrag(self, antwort, [onepager])
             self.assertNotIn("domaintechnik", antwort.lower())
         de = _antwort(_seite("/leistungen/webseite-erstellen/"))
         self.assertTrue(de.startswith("Webseite erstellen lassen in Oberösterreich"))
@@ -157,13 +153,12 @@ class WebseiteUndHostingTest(SimpleTestCase):
             self.assertIn(f'href="{praefix}/#gratis"', seite, sprache)
             self.assertGreaterEqual(len(_schema_fragen(seite)), 6, sprache)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_hosting_antwort_und_partnerfrage(self):
         for sprache, praefix in PRAEFIX.items():
             seite = _seite(f"{praefix}/leistungen/hosting-wartung/")
             antwort = _antwort(seite)
             for iid, feld in (("hosting", "mtl"), ("domain", "yr"), ("m365", "once")):
-                self.assertIn(_preis(iid, feld), antwort, (sprache, iid))
+                pruefe_betrag(self, antwort, [_preis(iid, feld)], (sprache, iid))
             self.assertIn("Domaintechnik", seite)
             self.assertNotIn("Domaintechnik", " ".join(_schema_fragen(seite)), sprache)
             self.assertIn(f'href="{praefix}/einrichten/microsoft-365/"', seite, sprache)

@@ -56,7 +56,7 @@ RO = {
     "aria": "Preț stabilit la telefon: sunați sau scrieți pe WhatsApp",
     "fuss": "Nu afișăm prețuri fixe: după o scurtă discuție primiți un preț corect, potrivit bugetului dumneavoastră.",
     "rechner_h": "Cât costă, stabilim pe scurt la telefon",
-    "rechner_t": "Fiecare firmă este diferită: posturile de lucru, serverele și amploarea determină efortul. Sunați sau scrieți-ne și în câteva minute aveți un preț corect, potrivit bugetului dumneavoastră.",
+    "rechner_t": "Fiecare firmă este diferită: posturile de lucru, serverele și amploarea determină efortul. Sunați sau scrieți-ne și în câteva minute aveți un preț corect, potrivit bugetului dumneavoastră. Răspundem în zilele lucrătoare, în 24 ore.",
     "angebot_sum": "Preț stabilit la telefon",
     "angebot_hint": "Selecția dumneavoastră nu vă obligă la nimic. Vă contactăm noi sau ne sunați, iar prețul îl stabilim pe scurt, în discuție.",
     "senden": "Trimite selecția, prețul îl stabilim la telefon",

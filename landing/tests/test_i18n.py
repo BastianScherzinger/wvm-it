@@ -16,7 +16,7 @@ from landing.views import _content, _structured_data
 
 # Einzige bekannte Ausnahme im gesamten Baum (siehe landing/i18n/de.py): ein
 # bewusst leerer Fallback-Name für die Bestätigungsmail ohne Namen.
-_LEERE_WERTE_ERLAUBT = {"leistung_ack_fallback_name"}
+_LEERE_WERTE_ERLAUBT = {"leistung_ack_fallback_name", "stand"}  # stand: ohne Preise bewusst leer
 
 
 def _schluessel(d, praefix=""):
@@ -71,7 +71,6 @@ class SprachpaketeTest(SimpleTestCase):
                 self.assertEqual(leer, set(),
                                  f"{lang}.py hat leere Textwerte bei: {sorted(leer)[:10]}")
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_gemergte_pakete_haben_keine_leeren_werte_mehr(self):
         """Nach dem Deep-Merge (PACKS) darf keine Lücke mehr sichtbar sein , das
         ist der ganze Sinn des Merges: EN/RO erben von DE, statt leer zu bleiben."""

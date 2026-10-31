@@ -59,6 +59,16 @@ def basis_pfade_nur_de():
 
 
 def stichprobe():
+    """Siehe `_stichprobe`. Immer in der Standardsprache aufgebaut: Djangos
+    LocaleMiddleware aktiviert die Sprache der letzten Anfrage und laesst sie im
+    Thread aktiv. Nach einer /ro/-Anfrage lieferte `reverse()` sonst /ro/impressum/
+    und /ro/datenschutz/ (nur Deutsch, daher 301), je nach Reihenfolge der Tests."""
+    from django.utils import translation
+    with translation.override("de"):
+        return _stichprobe()
+
+
+def _stichprobe():
     """(Name, Pfad) je Seitentyp , abgeleitet vom jeweils ersten Eintrag jeder
     Strukturquelle. Fällt eine Quelle leer aus, wird der Typ ausgelassen statt
     mit einem erfundenen Slug zu scheitern."""
@@ -103,3 +113,25 @@ def stichprobe():
         seiten.append(("checkliste", reverse(
             "checkliste", kwargs={"slug": checklisten.CHECKLISTEN[0]["slug"]})))
     return seiten
+
+
+import re as _re_betrag
+
+_BETRAG = _re_betrag.compile(r"\d\s?(?:€|EUR\b)|(?:€|EUR\b)\s?\d|&euro;", _re_betrag.I)
+
+
+def hat_betrag(text):
+    """True, wenn der Text einen Geldbetrag (Zahl mit Euro-Zeichen/EUR) enthält."""
+    return bool(_BETRAG.search(text))
+
+
+def pruefe_betrag(test, text, betraege, msg=None):
+    """Betragsteil einer Assertion. Preise sichtbar: jeder Betrag muss im Text stehen.
+    Preise aus (Strategie "Preis im Gespräch", 31.10.2026): es darf KEIN Betrag
+    (Zahl mit €/EUR) vorkommen."""
+    from landing import views
+    if views.PREISE_SICHTBAR:
+        for b in betraege:
+            test.assertIn(str(b), text, msg)
+    else:
+        test.assertFalse(hat_betrag(text), msg or ("Betrag im Text: " + text[:200]))

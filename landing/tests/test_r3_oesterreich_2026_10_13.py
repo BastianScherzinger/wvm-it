@@ -131,19 +131,18 @@ class HilfeSeiteOesterreichTest(SimpleTestCase):
                 self.assertIn(wort, titel)
                 self.assertIn(wort, h1)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_antwortsatz_hat_zeiten_der_kopfzeile_und_stundensatz_aus_dem_katalog(self):
         kopf = i18n.get_pack("de")["kopf"]["erreichbar"].replace("Erreichbar ", "")
         self.assertEqual(kopf, zeiten_quelle.KURZ["de"])
         zeiten = zeiten_quelle.INLINE["de"]
         antwort = _antwort(_html("/it-hilfe/"))
         self.assertIn(zeiten, antwort)
-        self.assertIn(f"{STUNDE} € je Stunde", antwort)
+        _util.pruefe_betrag(self, antwort, [f"{STUNDE} € je Stunde"])
         # Die erste Aussage ist der zitierfähige Satz: Problem, Ort, Weg, Zeiten, Preis.
         erster = antwort.split(". ")[0]
         self.assertIn("in ganz Österreich per Fernwartung", erster)
         self.assertIn(zeiten, erster)
-        self.assertIn(f"{STUNDE} €", erster)
+        _util.pruefe_betrag(self, erster, [f"{STUNDE} €"])
 
     def test_absatz_wo_wir_helfen_einmal_und_ohne_stadtseiten(self):
         for lang, praefix in SPRACHEN:
@@ -157,7 +156,6 @@ class HilfeSeiteOesterreichTest(SimpleTestCase):
             self.assertNotIn(stadt, slugs)
         self.assertFalse([p for p in _seiten_pfade() if re.search(r"wien|graz|innsbruck|klagenfurt", p[0])])
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_faq_wien_graz_innsbruck_klagenfurt_in_drei_sprachen_und_im_schema(self):
         frage = {"de": "Helfen Sie auch in Wien, Graz, Innsbruck oder Klagenfurt?",
                  "en": "Do you also help in Vienna, Graz, Innsbruck or Klagenfurt?",
@@ -169,7 +167,7 @@ class HilfeSeiteOesterreichTest(SimpleTestCase):
                 faq = next(k for k in _graph(html) if k.get("@type") == "FAQPage")
                 antworten = {e["name"]: e["acceptedAnswer"]["text"] for e in faq["mainEntity"]}
                 antwort = antworten[frage[lang]]
-                self.assertIn(str(STUNDE), antwort)
+                _util.pruefe_betrag(self, antwort, [STUNDE])
                 self.assertRegex(antwort, "Fahrstunde um Lenzing|hour's drive of Lenzing|o oră de mers cu mașina în jurul Lenzing")
 
 
@@ -388,7 +386,6 @@ class AkutRatgeberTest(SimpleTestCase):
         "wlan-im-buero-zu-langsam", "was-kostet-ein-serverausfall",
     )
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_hoechstens_acht_ratgeber_tragen_den_neuen_antwortsatz(self):
         self.assertLessEqual(len(self.MIT_ANTWORTSATZ), 8)
         for slug in self.MIT_ANTWORTSATZ:
@@ -396,10 +393,10 @@ class AkutRatgeberTest(SimpleTestCase):
                 antwort = _antwort(_html(f"/aktuelles/{slug}/"))
                 self.assertIn("in ganz Österreich per Fernwartung", antwort)
                 self.assertIn(zeiten_quelle.INLINE["de"], antwort)
-                self.assertIn(f"{STUNDE} € je Stunde", antwort)
+                _util.pruefe_betrag(self, antwort, [f"{STUNDE} € je Stunde"])
+                self.assertIn("WVM-IT", antwort)
                 self.assertNotIn("Oberösterreich und Salzburg", antwort)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_antwortsatz_steht_im_antwortfeld_nicht_im_template(self):
         from landing.i18n.beitraege_de import BEITRAEGE as A
         from landing.i18n import beitraege_neu_a_de as a, beitraege_neu_b_de as b

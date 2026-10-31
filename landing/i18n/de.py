@@ -95,7 +95,7 @@ PACK = {
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
         # Schub 2 (A1, T7): zitierfähiger Antwortsatz unter dem Hero (≤ 45 Wörter, Ort + Leistung + Preis).
-        "antwort": "WVM-IT ist ein IT-Dienstleister mit Sitz in Lenzing, Oberösterreich. Florin Feier betreut die EDV kleiner Betriebe per Fernwartung in ganz Österreich: laufende IT-Betreuung, einzelne Hilfe ohne Vertrag. Was die Kosten betrifft, klären wir das gerne in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf oder WhatsApp.",
+        "antwort": "WVM-IT ist ein IT-Dienstleister mit Sitz in Lenzing, Oberösterreich. Florin Feier betreut die EDV kleiner Betriebe per Fernwartung in ganz Österreich: laufende IT-Betreuung, einzelne Hilfe ohne Vertrag. Den Preis klären wir in einem kurzen Gespräch: Anruf oder WhatsApp.",
         "subline": "Für Betriebe in Lenzing und Umgebung: laufende Betreuung, Hilfe ohne Vertrag, Webseiten mit kostenloser Testseite, dazu Domain, E-Mail, KI und Technik vor Ort. Die genauen Konditionen besprechen wir persönlich.",
         # Design B1: Frage neben dem Rückruf im Hero, führt zu Telefon/WhatsApp.
         "alt_frage": "Lieber gleich sprechen?",
@@ -1125,7 +1125,7 @@ PACK = {
         "hilfe_t": "Ein einzelnes Problem, ohne Vertrag, per Fernwartung.",
     },
     "hub": {
-        "titel": "IT-Leistungen | WVM-IT",
+        "titel": "IT-Leistungen für Betriebe in Österreich | WVM-IT",
         "desc": "EDV-Betreuung, Hilfe ohne Vertrag, Einrichtung, Webseiten in AT und DE. Preis im Gespräch. Jetzt anfragen.",
         "h1": "Was WVM-IT für Betriebe übernimmt",
         "kurz": "WVM-IT betreut die EDV kleiner und mittlerer Betriebe in Österreich und Deutschland und übernimmt zusätzlich alles, was digital sichtbar macht: Webseiten, SEO, Google Ads und Automatisierung. Der Schwerpunkt liegt auf laufender IT-Betreuung, überwiegend per Fernwartung. Gebäude- und Veranstaltungstechnik kommen projektbezogen vor Ort dazu. Alle vierzehn Leistungen laufen über denselben Ansprechpartner und dieselbe Preisliste, unabhängig davon, ob es um einen einzelnen Arbeitsplatz oder um ein größeres Projekt geht.",

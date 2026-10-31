@@ -177,7 +177,7 @@ AUSBAU = {
 
         "wels": {
             "titel": "IT‑Support Wels – Büro, Lager, Halle | WVM-IT",
-            "desc": "IT‑Support für Unternehmen in Wels – individuelle Betreuung, keine Vertragsbindung. Kontaktieren Sie Florin Feier aus Lenzing für einen Rückruf.",
+            "desc": "IT support for businesses in Wels, no contract, price on a call. Florin Feier from Lenzing calls back: contact us for a callback.",
             "auftraege_h": "Examples of what enquiries from Wels can look like",
             "auftraege": [
                 "A trade business whose order emails do not reach the customer because the sender is classed as suspicious. We check the sender details and set up delivery correctly.",
@@ -281,8 +281,8 @@ AUSBAU = {
         },
 
         "wels": {
-            "titel": "Administrare IT Wels: depozit și birou, tarifare flexibilă | WVM-IT",
-            "desc": "Administrare IT pentru firme din Wels, tarifare per stație și suport fără contract, prețul se stabilește în discuție. Florin Feier din Lenzing: solicitați un apel înapoi.",
+            "titel": "Administrare IT Wels: depozit și birou | WVM-IT",
+            "desc": "Administrare IT pentru firme din Wels, suport fără contract. Florin Feier din Lenzing: solicitați un apel înapoi, prețul îl stabilim la telefon.",
             "auftraege_h": "Exemple de cum pot arăta cererile din Wels",
             "auftraege": [
                 "O firmă de meșteșuguri ai cărei e-mailuri cu comenzi nu ajung la client, deoarece expeditorul este considerat suspect. Verificăm datele expeditorului și configurăm corect livrarea.",
