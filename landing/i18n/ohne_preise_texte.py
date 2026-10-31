@@ -303,6 +303,8 @@ _NACHTRAG = {
             "angebot_lead": "Typischen Bedarf anklicken und ergänzen. Wir rufen zurück und klären den Preis im kurzen Gespräch."},
   "angebot_page": {"lead": "In wenigen Schritten durchklicken: über 30 Positionen in 6 Bereichen, auswählen, was Sie brauchen – bevor Sie Namen oder E-Mail eingeben. Beides fragen wir erst, wenn Sie den Rückruf anfordern."},
   "rb": {"eyebrow": "Ihre Auswahl", "card_h": "Ihre Auswahl",
+         "email_label": "E-Mail für den Rückruf *", "submit": "Rückruf anfordern",
+         "done_h": "Angekommen — wir melden uns und klären den Preis im kurzen Gespräch.",
          "lead": "Tippen Sie an, was Sie interessiert – von Webseiten, Hosting und KI bis Smarthome, Netzwerk, EDV und Veranstaltungstechnik. Mit Ihrer E-Mail fordern Sie einen Rückruf an; den Preis klären wir im kurzen Gespräch. Unverbindlich, in unter einer Minute."},
  },
  "en": {

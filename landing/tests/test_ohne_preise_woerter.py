@@ -81,3 +81,33 @@ class OhnePreiseWoerterTest(SimpleTestCase):
         """Ratgeber, Glossar, Checklisten (nur Deutsch)."""
         nur = _util.basis_pfade_nur_de()
         self._pruefe(nur)
+
+
+class SprachpaketeOhnePreisWoerterTest(SimpleTestCase):
+    """Auch Texte, die erst per Skript erscheinen (Knöpfe, Meldungen), dürfen keinen
+    Preis-Wortlaut tragen. Ausgenommen: E-Mail-Vorlagen (Kundenmail ist aus)."""
+
+    def test_pakete(self):
+        from landing.i18n import PACKS
+        if views.PREISE_SICHTBAR:
+            self.skipTest("Preise sichtbar")
+        funde = []
+
+        def walk(d, p=()):
+            if isinstance(d, dict):
+                for k, v in d.items():
+                    yield from walk(v, p + (str(k),))
+            elif isinstance(d, list):
+                for i, v in enumerate(d):
+                    yield from walk(v, p + (str(i),))
+            elif isinstance(d, str):
+                yield p, d
+
+        for lang in ("de", "en", "ro"):
+            for pfad, text in walk(PACKS[lang]):
+                if pfad and pfad[0] == "emails":
+                    continue
+                if MUSTER.search(text):
+                    funde.append(f"{lang}:{'.'.join(pfad)}: {text[:80]}")
+        self.maxDiff = None
+        self.assertEqual(funde, [])
