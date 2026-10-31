@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """Runde 23.10.2026: Bilder-Sitemap, Handy-Überlauf im Fuß, Abstand über dem Film der Ortsseiten."""
+import unittest as _ut_op
+from landing import views as _v_op
 import re
 from pathlib import Path
 
@@ -51,6 +53,7 @@ class OrtsseiteAbstandTest(SimpleTestCase):
 
 
 class LlmsKurzfilmeTest(SimpleTestCase):
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_llms_nennt_beide_filme_mit_seite_und_sitemap(self):
         txt = _util.client().get("/llms.txt").content.decode()
         self.assertIn("## Kurzfilme", txt)

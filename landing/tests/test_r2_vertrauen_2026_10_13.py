@@ -109,7 +109,7 @@ class FernwartungAblaufTest(SimpleTestCase):
 
 class WechselBeitragTest(SimpleTestCase):
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_ablauf_und_kosten_aus_dem_katalog(self):
         html = _html("/aktuelles/it-dienstleister-wechseln/")
         self.assertIn("Der Wechsel in fünf Schritten", html)

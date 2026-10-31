@@ -28,7 +28,7 @@ AUSBAU = {
             ],
             "faq_plus": [
             {"q": "Was kostet EDV-Betreuung in Salzburg?",
-             "a": "Die laufende EDV‑Betreuung in Salzburg wird individuell nach Anzahl der Arbeitsplätze und gewünschtem Umfang kalkuliert und erfolgt überwiegend per Fernwartung. Einzelne Hilfen ohne Vertrag werden ebenfalls nach Aufwand abgerechnet. Vor Ort‑Einsätze werden nach vorheriger Absprache geplant; der Preis wird in einem kurzen Gespräch geklärt – rufen Sie an unter +43 676 3808501 oder schreiben Sie uns per WhatsApp."},
+             "a": "Die laufende EDV‑Betreuung in Salzburg wird individuell nach Anzahl der Arbeitsplätze und gewünschtem Umfang kalkuliert und erfolgt überwiegend per Fernwartung. Einzelne Hilfen ohne Vertrag werden ebenfalls nach Aufwand abgerechnet. Vor Ort‑Einsätze werden nach vorheriger Absprache geplant; der Preis wird in einem kurzen Gespräch geklärt – rufen Sie an oder schreiben Sie uns per WhatsApp."},
                 {"q": "Betreuen Sie auch Betriebe im Flachgau oder im Salzkammergut?",
                  "a": "Ja, für die laufende Betreuung spielt der Standort keine Rolle. Für Termine vor Ort liegen die Gemeinden im östlichen Flachgau und im Salzkammergut-Vorland auf unserem Weg und sind gut planbar. Je weiter Richtung Pongau, Pinzgau oder Lungau, desto eher erledigen wir alles per Fernwartung."},
                 {"q": "Wir haben schon einen Techniker vor Ort in Salzburg. Ergibt zusätzlich Fernbetreuung Sinn?",
@@ -72,7 +72,7 @@ AUSBAU = {
 
         "wels": {
             "titel": "EDV-Betreuung Wels: Büro, Lager, Halle | WVM-IT",
-            "desc": "EDV-Betreuer für Betriebe in Wels: Preis im Gespräch.",
+            "desc": "EDV-Betreuer für Betriebe in Wels: Florin Feier aus Lenzing: Preis im Gespräch, Rückruf anfordern.",
             "auftraege_h": "Beispiele, wie Anfragen aus Wels aussehen können",
             "auftraege": [
                 "Ein Handwerksbetrieb, dessen Auftragsmail beim Kunden nicht ankommt, weil der Absender als verdächtig eingestuft wird. Wir prüfen die Absenderangaben und stellen die Zustellung richtig ein.",
@@ -95,11 +95,11 @@ AUSBAU = {
             ],
             "faq_plus": [
             {"q": "Was kostet IT-Betreuung in Wels?",
-             "a": "Die laufende IT‑Betreuung in Wels wird individuell nach Anzahl der Arbeitsplätze, Servern und Leistungsumfang festgelegt; den genauen Preis besprechen wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget. Einzelne Hilfe per Fernwartung wird ebenfalls nach Aufwand vereinbart, ebenso Einsätze vor Ort, bei denen Anfahrt aus Lenzing berücksichtigt wird. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns per WhatsApp, um die Details zu klären."},
+             "a": "Die laufende IT‑Betreuung in Wels wird individuell nach Anzahl der Arbeitsplätze, Servern und Leistungsumfang festgelegt; den genauen Preis besprechen wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget. Einzelne Hilfe per Fernwartung wird ebenfalls nach Aufwand vereinbart, ebenso Einsätze vor Ort, bei denen Anfahrt aus Lenzing berücksichtigt wird. Rufen Sie uns an oder schreiben Sie uns per WhatsApp, um die Details zu klären."},
                 {"q": "Kommt die Auftragsmail unseres Betriebs beim Kunden an, und wie prüfen Sie das?",
                  "a": "Das lässt sich prüfen. Wir kontrollieren die Absenderangaben der Domain (SPF, DKIM und DMARC) und senden Testmails an verschiedene Anbieter. Landen Ihre Mails im Spamordner, liegt es meist an fehlenden oder falschen Einträgen und lässt sich beheben. Die Prüfung läuft per Fernwartung, Sie brauchen dafür keinen Termin."},
                 {"q": "Lohnt sich IT-Betreuung für einen Betrieb mit zwei oder drei Arbeitsplätzen?",
-                 "a": "Kleine Betriebe sind bei Rechnerausfällen, Datenverlust oder gestohlenen E‑Mail‑Zugängen besonders betroffen. Die laufende Betreuung wird nach Anzahl der Arbeitsplätze und gewünschtem Serviceumfang vereinbart; die Datensicherung erfolgt ebenfalls nach individuellem Bedarf. Wer nur gelegentlich Unterstützung benötigt, erhält ein Angebot, das auf den konkreten Aufwand abgestimmt ist. Preisnachfrage bitte im kurzen Gespräch unter +43 676 3808501 oder via WhatsApp."},
+                 "a": "Kleine Betriebe sind bei Rechnerausfällen, Datenverlust oder gestohlenen E‑Mail‑Zugängen besonders betroffen. Die laufende Betreuung wird nach Anzahl der Arbeitsplätze und gewünschtem Serviceumfang vereinbart; die Datensicherung erfolgt ebenfalls nach individuellem Bedarf. Wer nur gelegentlich Unterstützung benötigt, erhält ein Angebot, das auf den konkreten Aufwand abgestimmt ist. Preisnachfrage bitte im kurzen Gespräch oder via WhatsApp."},
                 {"q": "Was passiert, wenn der Server ausfällt und Sie 50 Minuten entfernt sind?",
                  "a": "Zuerst prüfen wir per Fernwartung, ob es ein Software- oder Konfigurationsproblem ist; das lässt sich oft ohne Anfahrt beheben. Liegt es an der Hardware, vereinbaren wir einen Termin und bringen Ersatz mit. Ein Notdienst ist das nicht. Entscheidend ist deshalb, dass die Datensicherung vorher funktioniert und die Wiederherstellung getestet ist."},
             ],
@@ -133,18 +133,18 @@ AUSBAU = {
             ],
             "faq_plus": [
             {"q": "What does IT support in Salzburg cost?",
-             "a": "Ongoing IT support in Salzburg is tailored to the number of workstations, servers and the required service level; we determine the price together in a brief conversation, fair and suited to your budget. Remote assistance is offered on an as‑needed basis, and on‑site work includes travel from Lenzing, all discussed beforehand. Contact us at +43 676 3808501 or via WhatsApp to get the details."},
+             "a": "Ongoing IT support in Salzburg is tailored to the number of workstations, servers and the required service level; we determine the price together in a brief conversation, fair and suited to your budget. Remote assistance is offered on an as‑needed basis, and on‑site work includes travel from Lenzing, all discussed beforehand. Contact us or via WhatsApp to get the details."},
                 {"q": "Do you also look after businesses in the Flachgau or the Salzkammergut?",
                  "a": "Yes, for ongoing support the location plays no role. For on-site appointments, the municipalities in the eastern Flachgau and at the edge of the Salzkammergut lie on our way and are easy to plan. The further towards the Pongau, Pinzgau or Lungau, the more we do everything by remote maintenance."},
                 {"q": "We already have a technician on site in Salzburg. Does additional remote support make sense?",
                  "a": "It can. The technician on site takes care of devices, cables and printers; we take monitoring, updates, backups, Microsoft 365 and IT security. What matters is that both know who is responsible for what. If you wish we coordinate with your current provider and put the responsibilities in writing."},
                 {"q": "Can you set up seasonal staff quickly at an accommodation business?",
-                 "a": "Yes, we can prepare the accounts before the season starts. We set up new user accounts with mailbox and permissions remotely; the cost for setting up a workstation is agreed upon in advance, without surprises. At season’s end we lock the accounts again to ensure no open access remains. For a precise quote, please call +43 676 3808501 or send us a WhatsApp message."},
+                 "a": "Yes, we can prepare the accounts before the season starts. We set up new user accounts with mailbox and permissions remotely; the cost for setting up a workstation is agreed upon in advance, without surprises. At season’s end we lock the accounts again to ensure no open access remains. For a precise quote, please call us or send us a WhatsApp message."},
             ],
         },
 
         "linz": {
-            "titel": "IT‑Service Linz – zuverlässige Betreuung | WVM‑IT",
+            "titel": "IT‑Service Linz – zuverlässige Betreuung | WVM-IT",
             "auftraege_h": "Examples of what enquiries from Linz can look like",
             "auftraege": [
                 "A supplier whose customer sends a questionnaire on information security and who needs evidence on backups, updates and access rights.",
@@ -171,12 +171,12 @@ AUSBAU = {
                 {"q": "How do we change provider without the business coming to a standstill?",
                  "a": "With an inventory first: we record devices, access, licences and backups without changing anything. Only when all access details have been handed over and documented do we take over support. Day-to-day operation is not touched in the process. The change happens in steps and not in one day."},
                 {"q": "How do we prove to a customer that our IT security is in order?",
-                 "a": "We provide a written report on the actual state of your IT security. The review includes backups with test restores, account checks, remote‑access assessment, updates and email security. The price is determined after a short conversation, ensuring it fits your budget and expectations. Contact us at +43 676 3808501 or via WhatsApp to discuss the details."},
+                 "a": "We provide a written report on the actual state of your IT security. The review includes backups with test restores, account checks, remote‑access assessment, updates and email security. The price is determined after a short conversation, ensuring it fits your budget and expectations. Contact us or via WhatsApp to discuss the details."},
             ],
         },
 
         "wels": {
-            "titel": "IT‑Support Wels – Büro, Lager, Halle | WVM‑IT",
+            "titel": "IT‑Support Wels – Büro, Lager, Halle | WVM-IT",
             "desc": "IT‑Support für Unternehmen in Wels – individuelle Betreuung, keine Vertragsbindung. Kontaktieren Sie Florin Feier aus Lenzing für einen Rückruf.",
             "auftraege_h": "Examples of what enquiries from Wels can look like",
             "auftraege": [
@@ -200,11 +200,11 @@ AUSBAU = {
             ],
             "faq_plus": [
             {"q": "What does IT support in Wels cost?",
-             "a": "Ongoing IT support in Wels is customized according to the number of workstations, servers and service scope; we agree on the price in a brief, transparent conversation. Remote assistance and on‑site work, including travel from Lenzing, are priced after we have clarified your specific needs. Call +43 676 3808501 or WhatsApp us for the exact figures."},
+             "a": "Ongoing IT support in Wels is customized according to the number of workstations, servers and service scope; we agree on the price in a brief, transparent conversation. Remote assistance and on‑site work, including travel from Lenzing, are priced after we have clarified your specific needs. Call us or WhatsApp us for the exact figures."},
                 {"q": "Do our business's order emails reach customers, and how do you check?",
                  "a": "That can be checked. We examine the sender records of the domain (SPF, DKIM and DMARC) and send test emails to several providers. If your emails land in the spam folder it is usually down to missing or wrong entries and can be fixed. The check runs by remote maintenance; you do not need an appointment."},
                 {"q": "Is IT support worthwhile for a business with two or three workstations?",
-                 "a": "Even small businesses suffer greatly from computer failures, data loss or stolen email access. Ongoing support is priced based on the number of workstations and the desired service level, while backups are offered according to your requirements. Ad‑hoc help is billed after we assess the individual case. For a personalized offer, please reach us at +43 676 3808501 or via WhatsApp."},
+                 "a": "Even small businesses suffer greatly from computer failures, data loss or stolen email access. Ongoing support is priced based on the number of workstations and the desired service level, while backups are offered according to your requirements. Ad‑hoc help is billed after we assess the individual case. For a personalized offer, please reach us or via WhatsApp."},
                 {"q": "What happens if the server fails and you are 50 minutes away?",
                  "a": "First we check by remote maintenance whether it is a software or configuration problem; that can often be fixed without travel. If it is hardware, we agree an appointment and bring a replacement. It is not an emergency service. What matters is therefore that the backup works beforehand and the restore has been tested."},
             ],
@@ -215,7 +215,7 @@ AUSBAU = {
     "ro": {
 
         "salzburg": {
-            "titel": "Administrare IT Salzburg – servicii la distanță | WVM‑IT",
+            "titel": "Administrare IT Salzburg – servicii la distanță | WVM-IT",
             "auftraege_h": "Exemple de cum pot arăta cererile din Salzburg",
             "auftraege": [
                 "Un birou de avocatură din orașul Salzburg, a cărui copie de siguranță rulează în fiecare noapte, dar nu a fost niciodată restaurată. Facem o restaurare de probă și notăm în scris cât ar dura o urgență reală.",
@@ -238,7 +238,7 @@ AUSBAU = {
             ],
             "faq_plus": [
             {"q": "Cât costă administrarea IT în Salzburg?",
-             "a": "Administrarea IT curentă în Salzburg se stabilește în funcție de numărul de posturi de lucru, servere și nivelul de servicii dorit; prețul este discutat într-o scurtă convorbire, adaptat bugetului dumneavoastră. Asistența la distanță și intervențiile la fața locului, inclusiv deplasarea din Lenzing, sunt negociate în prealabil. Pentru detalii, sunați la +43 676 3808501 sau trimiteți un mesaj pe WhatsApp."},
+             "a": "Administrarea IT curentă în Salzburg se stabilește în funcție de numărul de posturi de lucru, servere și nivelul de servicii dorit; prețul este discutat într-o scurtă convorbire, adaptat bugetului dumneavoastră. Asistența la distanță și intervențiile la fața locului, inclusiv deplasarea din Lenzing, sunt negociate în prealabil. Pentru detalii, sunați sau trimiteți un mesaj pe WhatsApp."},
                 {"q": "Asistați și firme din Flachgau sau din Salzkammergut?",
                  "a": "Da, pentru asistența curentă locația nu contează. Pentru întâlniri la fața locului, comunele din estul regiunii Flachgau și de la marginea regiunii Salzkammergut se află pe drumul nostru și se programează ușor. Cu cât mergem mai spre Pongau, Pinzgau sau Lungau, cu atât mai mult rezolvăm totul la distanță."},
                 {"q": "Avem deja un tehnician local în Salzburg. Are sens asistența suplimentară la distanță?",

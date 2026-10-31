@@ -219,7 +219,7 @@ VERGLEICHE = {
              "a": "Cleaning and fresh thermal paste often help",
              "b": "On older machines, a sign the end is near"},
             {"k": "What it costs",
-             "a": "On-site work is based on time, parts, and travel; price agreed upfront, no surprises. Call +43 676 3808501 or WhatsApp.",
+             "a": "On-site work is based on time, parts, and travel; price agreed upfront, no surprises. Call us or WhatsApp.",
              "b": "The device plus setup with data transfer"},
             {"k": "Windows 10 still running", "a": "An upgrade does not extend the lifespan if the device does not support Windows 11", "b": "A new device comes with Windows 11 and runs on regular security updates again"},
             {"k": "Laptop instead of desktop", "a": "SSD usually replaceable; on thin devices the memory is often soldered on", "b": "More often the way to go when memory and battery can no longer be upgraded"},
@@ -272,7 +272,7 @@ VERGLEICHE = {
             {"q": "Can I upgrade the computer if Windows 11 is not supported?",
              "a": "Mostly not through components. If only TPM 2.0 is missing or switched off in the BIOS, that can sometimes be fixed. If the processor is not on the list of supported processors, neither more memory nor an SSD helps, and buying new is the clean way. What to consider here is covered in the article <a href='/aktuelles/alte-windows-version-im-betrieb/'>End of Windows 10: what now?</a>."},
             {"q": "What does it cost to upgrade a computer or replace it with a new one?",
-             "a": "Fitting an SSD including system migration takes one to two hours on site, plus travel; the rate is agreed upfront with no surprises. Setting up a new device with data transfer is priced based on the hardware at current rates. For your exact price, call +43 676 3808501 or WhatsApp us."},
+             "a": "Fitting an SSD including system migration takes one to two hours on site, plus travel; the rate is agreed upfront with no surprises. Setting up a new device with data transfer is priced based on the hardware at current rates. For your exact price, call us or WhatsApp us."},
         ],
 
         "at_h": "For businesses in Upper Austria: old devices, data and Windows 11",

@@ -93,7 +93,7 @@ class KostenFaqTest(SimpleTestCase):
             self.assertTrue(faq, pfad)
             self.assertGreaterEqual(len(faq[0]["mainEntity"]), 3, pfad)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_kosten_faq_de_nennt_rechenbeispiel_aus_katalog(self):
         html = _html("/kosten/")
         self.assertIn("ab 194 € im Monat (5 ×", html)

@@ -95,7 +95,7 @@ PACK = {
         # "fuer jede Betriebsgroesse" ist eine Floskel.
         "headline_2": "Vom Zwei-Mann-Büro bis zum Betrieb mit 200 Arbeitsplätzen.",
         # Schub 2 (A1, T7): zitierfähiger Antwortsatz unter dem Hero (≤ 45 Wörter, Ort + Leistung + Preis).
-        "antwort": "WVM-IT ist ein IT-Dienstleister mit Sitz in Lenzing, Oberösterreich. Florin Feier betreut die EDV kleiner Betriebe per Fernwartung in ganz Österreich: laufende IT-Betreuung, einzelne Hilfe ohne Vertrag. Was die Kosten betrifft, klären wir das gerne in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf unter +43 676 3808501 oder WhatsApp.",
+        "antwort": "WVM-IT ist ein IT-Dienstleister mit Sitz in Lenzing, Oberösterreich. Florin Feier betreut die EDV kleiner Betriebe per Fernwartung in ganz Österreich: laufende IT-Betreuung, einzelne Hilfe ohne Vertrag. Was die Kosten betrifft, klären wir das gerne in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf oder WhatsApp.",
         "subline": "Für Betriebe in Lenzing und Umgebung: laufende Betreuung, Hilfe ohne Vertrag, Webseiten mit kostenloser Testseite, dazu Domain, E-Mail, KI und Technik vor Ort. Die genauen Konditionen besprechen wir persönlich.",
         # Design B1: Frage neben dem Rückruf im Hero, führt zu Telefon/WhatsApp.
         "alt_frage": "Lieber gleich sprechen?",

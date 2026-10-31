@@ -134,7 +134,7 @@ VERGLEICHE = {
     # ══ Microsoft 365 oder Google Workspace ═══════════════════════════════════
     "microsoft365-vs-google-workspace": {
         "nav": "Microsoft 365 oder Google",
-        "titel": "Microsoft 365 oder Google: Setup – WVM‑IT",
+        "titel": "Microsoft 365 oder Google: Setup – WVM-IT",
         "desc": "Microsoft 365 oder Google Workspace für kleine Betriebe: der sachliche Vergleich, wo beide Pakete sich unterscheiden. Jetzt beraten lassen.",
         "h1": "Microsoft 365 oder Google Workspace — was passt zu einem kleinen Betrieb?",
         "kurz": "Beide Pakete bieten, was ein Betrieb braucht: E‑Mail mit eigener Domain, Ablage, Kalender, Videobesprechungen und gemeinsames Arbeiten an Dokumenten. Der Unterschied liegt in zwei Punkten: Microsoft 365 liefert die installierten Office‑Programme und ist ideal, wenn Fachsoftware, Vorlagen oder Buchhaltung an Word und Excel hängen. Google Workspace arbeitet komplett im Browser und ist schneller, solange keine komplexen Excel‑Dateien benötigt werden. Die genauen Kosten der Einrichtung klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget.",

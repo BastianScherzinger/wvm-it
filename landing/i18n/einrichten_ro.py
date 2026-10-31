@@ -57,7 +57,7 @@ EINRICHTEN = {
         "faq_h": "Întrebări frecvente",
         "faq": [
             {"q": "Cât costă configurarea unui PC?",
-             "a": "Configurarea unui post de lucru are un cost stabilit în urma unei scurte discuții, adaptat la necesitățile și bugetul dumneavoastră, fie că se realizează de la distanță, fie la fața locului. Pentru o ofertă personalizată, sunați la +43 676 3808501 sau contactați-ne pe WhatsApp."},
+             "a": "Configurarea unui post de lucru are un cost stabilit în urma unei scurte discuții, adaptat la necesitățile și bugetul dumneavoastră, fie că se realizează de la distanță, fie la fața locului. Pentru o ofertă personalizată, sunați sau contactați-ne pe WhatsApp."},
             {"q": "Prețul este per aparat sau pentru toate împreună?",
              "a": "Per post de lucru. Prețul îl stabilim într-o scurtă discuție, corect și potrivit bugetului dumneavoastră. Cu mai multe aparate deodată merge mai repede, pentru că configurarea trebuie gândită o singură dată — luăm asta în calcul dinainte."},
             {"q": "Ce se întâmplă cu calculatorul vechi?",
@@ -181,7 +181,7 @@ EINRICHTEN = {
         "desc": "Windows 10 nu mai primește actualizări de securitate din octombrie 2025. Verificarea de securitate IT se stabilește din timp, fără surprize. Cereți o ofertă.",
         "h1": "Windows 11 în firmă: trecem sau schimbăm aparatul?",
         "nav": "Windows 11",
-        "kurz": "Windows 10 nu mai primește actualizări de securitate din octombrie 2025. WVM-IT verifică pentru fiecare post de lucru dacă aparatul suportă Windows 11 și dacă programele folosite rulează pe el, apoi face trecerea – costul se stabilește în urma unui scurt dialog, cu o acordare transparentă și fără surprize. Pentru detalii sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
+        "kurz": "Windows 10 nu mai primește actualizări de securitate din octombrie 2025. WVM-IT verifică pentru fiecare post de lucru dacă aparatul suportă Windows 11 și dacă programele folosite rulează pe el, apoi face trecerea – costul se stabilește în urma unui scurt dialog, cu o acordare transparentă și fără surprize. Pentru detalii sunați sau scrieți pe WhatsApp.",
         "intro": "Trecerea se amână ușor, pentru că nimic nu doare: Windows 10 pornește "
                  "în continuare, programele merg, arată ca întotdeauna. Lipsa "
                  "actualizărilor de securitate nu se observă — până în ziua în care ar "
@@ -499,7 +499,7 @@ EINRICHTEN = {
         "kurz": "Rețeaua, WLAN-ul, firewall-ul și VPN-ul depind de dimensiune și de clădire; prețul îl stabilim în discuție. Se face la distanță, de îndată ce aparatul este accesibil.",
         "intro": "Cele mai multe firewalluri din firmele mici nu sunt configurate greșit, ci deloc: routerul furnizorului face ce făcea la scoaterea din cutie, iar la un moment dat cineva a configurat o redirecționare, ca contabilitatea să poată lucra de acasă. Acea unică redirecționare rămâne apoi deschisă ani de zile — și nimeni nu mai știe pentru ce era.\n\nFirewallul și VPN-ul sunt două părți ale aceleiași uși: firewallul decide ce are voie să intre în rețeaua firmei, VPN-ul este drumul criptat pe care persoanele autorizate intră din exterior. E nevoie de ele în două situații. Cea mai frecventă este lucrul de acasă: angajații accesează de acasă sau din deplasare fișiere, programul de gestiune sau un server din birou — pentru asta este gândit prețul stabilit din timp. Cea mai rară este legătura dintre două sedii, de exemplu birou și depozit; aceasta este o lucrare separată, pentru că depinde de aparatele de la ambele capete.",
 
-        "leistungen_h": "Ce include costul, care se stabilește în urma unei scurte discuții, adaptat nevoilor și bugetului dumneavoastră. Pentru detalii sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
+        "leistungen_h": "Ce include costul, care se stabilește în urma unei scurte discuții, adaptat nevoilor și bugetului dumneavoastră. Pentru detalii sunați sau scrieți pe WhatsApp.",
         "leistungen": [
             "Firewall configurat: închis ca punct de plecare, deschis doar ce este necesar",
             "Redirecționările existente puse în ordine — fiecare pe care nimeni nu o "
@@ -599,7 +599,7 @@ EINRICHTEN = {
             "Conectarea la rețea, separată în siguranță de restul firmei",
         ],
         "nicht_h": "De ce prețul se stabilește aici la telefon",
-        "nicht_t": "Inventarul se facturează pe oră; după evaluare stabilim prețul în scris, valabil apoi. Pentru a afla costul, contactați-ne la +43 676 3808501 sau prin WhatsApp – vom discuta rapid și transparent.",
+        "nicht_t": "Inventarul se facturează pe oră; după evaluare stabilim prețul în scris, valabil apoi. Pentru a afla costul, contactați-ne sau prin WhatsApp – vom discuta rapid și transparent.",
 
         "ablauf_h": "Cum decurge",
         "ablauf": [
@@ -654,10 +654,10 @@ EINRICHTEN = {
     # ── Runda 2 (24.09.2026) ────────────────────────────────────────────────
     "datensicherung": {
         "titel": "Copie de siguranță: automată, verificată | WVM-IT",
-        "desc": "Costul se comunică la cerere; monitorizarea este stabilită în urma unei scurte discuții, adaptată bugetului dumneavoastră. Pentru informații suplimentare, sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
+        "desc": "Costul se comunică la cerere; monitorizarea este stabilită în urma unei scurte discuții, adaptată bugetului dumneavoastră. Pentru informații suplimentare, sunați sau scrieți pe WhatsApp.",
         "h1": "Copie de siguranță configurată să funcționeze la nevoie",
         "nav": "Copie de siguranță",
-        "kurz": "WVM-IT configurează copia de siguranță pentru firme astfel încât să fie utilă la nevoie: clarificăm ce se salvează, unde și cât de des, apoi aplicăm regula 3‑2‑1 și testăm restaurarea. Costul configurării este comunicat după evaluare, în funcție de volumul de date și cerințe. Pentru o ofertă personalizată, contactați-ne la +43 676 3808501 sau prin WhatsApp.",
+        "kurz": "WVM-IT configurează copia de siguranță pentru firme astfel încât să fie utilă la nevoie: clarificăm ce se salvează, unde și cât de des, apoi aplicăm regula 3‑2‑1 și testăm restaurarea. Costul configurării este comunicat după evaluare, în funcție de volumul de date și cerințe. Pentru o ofertă personalizată, contactați-ne sau prin WhatsApp.",
         "intro": "Aproape orice firmă are o copie de siguranță. Mult mai puține firme "
                  "știu când a rulat ultima oară, iar cele mai puține au încercat "
                  "vreodată să recupereze ceva din ea. Exact această lacună o închide "
@@ -681,7 +681,7 @@ EINRICHTEN = {
             "Documentație: ce se salvează unde, cât timp se păstrează, cine accesează",
         ],
         "nicht_h": "De ce prețul se stabilește aici la telefon",
-        "nicht_t": "Vă comunicăm costul în scris după evaluare – înainte de orice intervenție, iar apoi rămâne valabil. Evaluarea se facturează pe oră, iar monitorizarea continuă este stabilită în urma unei scurte discuții, adaptată bugetului. Pentru detalii, sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
+        "nicht_t": "Vă comunicăm costul în scris după evaluare – înainte de orice intervenție, iar apoi rămâne valabil. Evaluarea se facturează pe oră, iar monitorizarea continuă este stabilită în urma unei scurte discuții, adaptată bugetului. Pentru detalii, sunați sau scrieți pe WhatsApp.",
 
         "ablauf_h": "Cum se desfășoară",
         "ablauf": [
@@ -741,7 +741,7 @@ EINRICHTEN = {
                 "Preț la cerere. Solicitați acum.",
         "h1": "Mutare IT în noul birou — planificată, nu improvizată",
         "nav": "Mutare IT",
-        "kurz": "WVM-IT însoțește mutarea IT în noul birou: serverul, rețeaua și stațiile de lucru sunt evaluate, planificate, demontate și montate în ziua mutării și testate în prima zi de lucru. Costul total depinde de amploarea proiectului și este comunicat în scris după evaluare. Pentru o discuție rapidă, sunați la +43 676 3808501 sau contactați-ne pe WhatsApp.",
+        "kurz": "WVM-IT însoțește mutarea IT în noul birou: serverul, rețeaua și stațiile de lucru sunt evaluate, planificate, demontate și montate în ziua mutării și testate în prima zi de lucru. Costul total depinde de amploarea proiectului și este comunicat în scris după evaluare. Pentru o discuție rapidă, sunați sau contactați-ne pe WhatsApp.",
         "intro": "O mutare de birou pică de obicei în aceeași zi cu o sărbătoare — "
                  "nu la propriu, dar așa se simte: rafturile au ajuns mai repede în "
                  "camion decât în plan, iar la noul sediu linia de internet vine cu "
@@ -769,7 +769,7 @@ EINRICHTEN = {
             "să nu înceapă de la zero",
         ],
         "nicht_h": "De ce prețul se stabilește aici la telefon",
-        "nicht_t": "Comunicăm costul în scris după evaluarea sediului vechi și inspecția celui nou, ținând cont de dimensiunea și complexitatea mutării. Evaluarea se facturează pe oră, iar prețul final este stabilit în urma unei scurte convorbiri. Pentru informații, sunați la +43 676 3808501 sau scrieți pe WhatsApp.",
+        "nicht_t": "Comunicăm costul în scris după evaluarea sediului vechi și inspecția celui nou, ținând cont de dimensiunea și complexitatea mutării. Evaluarea se facturează pe oră, iar prețul final este stabilit în urma unei scurte convorbiri. Pentru informații, sunați sau scrieți pe WhatsApp.",
 
         "ablauf_h": "Cum se desfășoară",
         "ablauf": [

@@ -72,7 +72,7 @@ class ReaktionszeitTrennungTest(SimpleTestCase):
 class StundensatzIstKeinAbPreisTest(SimpleTestCase):
     """EIG218, EIG274, EIG370: 95 und 120 € je Stunde sind feste Sätze."""
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_reiner_stundensatz_ohne_ab(self):
         for lang in _SPRACHEN:
             worte = i18n.get_pack(lang)["catalog_words"]
@@ -82,7 +82,7 @@ class StundensatzIstKeinAbPreisTest(SimpleTestCase):
                     self.assertNotIn(worte.get("from", "ab") + " ", label)
                     self.assertIn(str(zahl), label)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_gemischte_position_behaelt_ab(self):
         worte = i18n.get_pack("de")["catalog_words"]
         label = views._make_price_label(views._ANGEBOT_INDEX["it_betreuung"], worte)

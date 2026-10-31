@@ -5558,7 +5558,7 @@ def llms_txt(request):
         *[f"- [{videos_modul.video(k)['name']}]({base}{pfad}): {videos_modul.video(k)['sekunden']} Sekunden, "
           "eingeblendete Texte, der Wortlaut steht unter „Text zum Film“ auf der Seite. "
           f"Videodatei und Metadaten: {base}/sitemap-video.xml"
-          for k, pfad in VIDEO_SEITEN],
+          for k, pfad in VIDEO_SEITEN if videos_modul.video(k)],
         "\n## Webseiten, Hosting und E-Mail",
         f"- [Kostenlose Testseite]({base}/leistungen/webseite-erstellen/): Sie sehen vorher, was Sie "
         "bekommen; die kostenlose Testseite steht in etwa zehn Minuten, ohne Verpflichtung.",
@@ -6026,8 +6026,8 @@ VIDEO_SEITEN = (("fernwartung", "/it-hilfe/"),
 
 
 def _video_seiten():
-    """Die Watch pages der Video-Sitemap."""
-    return VIDEO_SEITEN
+    """Die Watch pages der Video-Sitemap (nur Filme ohne Preis im Bild)."""
+    return tuple(x for x in VIDEO_SEITEN if videos_modul.video(x[0]))
 
 
 @_maschinenantwort(120)

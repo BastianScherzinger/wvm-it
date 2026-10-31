@@ -17,6 +17,7 @@ Sprecherstimme, weil keine zu hören ist (Render ``fw-169-web``/``konto-916-web`
 ``VideoObject`` steht nur auf den Seiten, auf denen der Film wirklich eingebettet ist.
 """
 
+import os
 import re
 
 from landing import zeiten
@@ -87,8 +88,15 @@ def transkript_saetze(v):
     return [x for x in re.split(r"(?<=[.?!])\s+", text.strip()) if x]
 
 
+PREISE_SICHTBAR = os.environ.get("WVM_PREISE_SICHTBAR", "").lower() in ("1", "ja", "true")
+PREIS_IM_BILD = {"fernwartung", "konto-gesperrt"}  # Standbilder 31.10.2026: „95 € je Stunde“ eingebrannt
+
+
 def video(schluessel):
-    """Das Video-Dict oder None."""
+    """Das Video-Dict oder None. Filme mit Preis im Bild (Fernwartung „95 €“, Konto gesperrt) sind aus,
+    solange die Preise ausgeblendet sind (gleicher Schalter wie views.PREISE_SICHTBAR)."""
+    if schluessel in PREIS_IM_BILD and not PREISE_SICHTBAR:
+        return None
     return VIDEOS.get(schluessel)
 
 

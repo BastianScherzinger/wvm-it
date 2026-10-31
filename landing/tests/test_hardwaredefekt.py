@@ -86,7 +86,7 @@ class HardwaredefektTest(SimpleTestCase):
                 self.assertIn("/it-hilfe/", text_a)
                 self.assertIn("/einrichten/pc-tausch/", text_b)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_zahlen_aus_dem_katalog(self):
         stunde = str(_ANGEBOT_INDEX[_HILFE_STUNDE]["std"])
         vor_ort = str(_ANGEBOT_INDEX[_HILFE_VOR_ORT]["std"])

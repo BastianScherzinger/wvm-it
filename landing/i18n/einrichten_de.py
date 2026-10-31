@@ -63,7 +63,7 @@ EINRICHTEN = {
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Was kostet es, einen PC einrichten zu lassen?",
-             "a": "Die Einrichtung eines Arbeitsplatzes wird nach Aufwand und Umfang vorab fest abgesprochen, ohne versteckte Kosten. Für Fernwartung klären wir den Aufwand in einem kurzen Gespräch – bei Vor-Ort‑Einsatz sprechen wir die Details telefonisch ab. Hardware und Lizenzen sind nicht inbegriffen. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie per WhatsApp, wir finden eine faire Lösung für Ihr Budget."},
+             "a": "Die Einrichtung eines Arbeitsplatzes wird nach Aufwand und Umfang vorab fest abgesprochen, ohne versteckte Kosten. Für Fernwartung klären wir den Aufwand in einem kurzen Gespräch – bei Vor-Ort‑Einsatz sprechen wir die Details telefonisch ab. Hardware und Lizenzen sind nicht inbegriffen. Rufen Sie uns an oder schreiben Sie per WhatsApp, wir finden eine faire Lösung für Ihr Budget."},
             {"q": "Gilt der Preis je Gerät oder für alle zusammen?",
              "a": "Die Kosten für mehrere neue Rechner hängen von der Anzahl und dem Aufwand der Einrichtung ab. Bei mehreren Geräten gleichzeitig können wir den Prozess bündeln, sodass Sie von einer effizienten Planung profitieren. Lassen Sie uns in einem kurzen Gespräch die Details besprechen – wir finden eine passende Absprache, die zu Ihrem Budget passt."},
             {"q": "Was passiert mit dem alten Rechner?",
@@ -71,7 +71,7 @@ EINRICHTEN = {
                   "zurückbleiben. Was mit dem Gerät danach geschieht — verkaufen, "
                   "weitergeben, entsorgen — entscheiden Sie."},
             {"q": "Wir haben gar keine IT-Betreuung. Geht das trotzdem?",
-             "a": "Für die einmalige Einrichtung ohne Vertrag gibt es eine feste Absprache vorab, keine Überraschungen. Wenn Sie später eine laufende Betreuung wünschen, klären wir die Konditionen ebenfalls in einem kurzen Gespräch. Kontaktieren Sie uns telefonisch unter +43 676 3808501 oder per WhatsApp, wir erstellen ein Angebot, das zu Ihnen passt."},
+             "a": "Für die einmalige Einrichtung ohne Vertrag gibt es eine feste Absprache vorab, keine Überraschungen. Wenn Sie später eine laufende Betreuung wünschen, klären wir die Konditionen ebenfalls in einem kurzen Gespräch. Kontaktieren Sie uns telefonisch oder per WhatsApp, wir erstellen ein Angebot, das zu Ihnen passt."},
             {"q": "Und wenn ein Gerät kaputt ist statt neu?",
              "a": "Dann stellen wir zuerst fest, woran es liegt. Ist es die Festplatte "
                   "oder der Arbeitsspeicher, lohnt sich der Tausch meistens noch. Ist "
@@ -168,7 +168,7 @@ EINRICHTEN = {
                   "lohnt sich das selten noch, weil dann auch Netzteil und Lüfter am "
                   "Ende sind. Wir sagen Ihnen, was wir an Ihrer Stelle täten."},
             {"q": "Können wir die neuen Geräte auch bei Ihnen beschaffen?",
-             "a": "Nach Klärung Ihres Bedarfs erstellen wir ein Angebot für die Geräte und die Einrichtung mit fester Absprache vorab, keine Überraschungen. Der Preis für die Geräte richtet sich nach Ihren Anforderungen und dem gewünschten Funktionsumfang. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns via WhatsApp, wir besprechen alles im Detail."},
+             "a": "Nach Klärung Ihres Bedarfs erstellen wir ein Angebot für die Geräte und die Einrichtung mit fester Absprache vorab, keine Überraschungen. Der Preis für die Geräte richtet sich nach Ihren Anforderungen und dem gewünschten Funktionsumfang. Rufen Sie uns an oder schreiben Sie uns via WhatsApp, wir besprechen alles im Detail."},
             {"q": "Was kostet das Gerät selbst?",
              "a": "Auf Anfrage stellen wir Ihnen ein Angebot zusammen, das exakt zu Ihrem tatsächlichen Bedarf passt – beispielsweise ohne Grafikleistung für Videoschnitt, wenn nur Excel und Outlook benötigt werden. Die Einrichtung jedes Geräts wird nach Aufwand und Umfang vorab fest abgesprochen. Kontaktieren Sie uns für ein unverbindliches Gespräch, wir finden die passende Lösung für Ihr Budget."},
         ],
@@ -265,7 +265,7 @@ EINRICHTEN = {
 
     # ════════════════════════════════════════════════════════════════════════
     "microsoft-365": {
-        "titel": "Microsoft 365 (Office 365) einrichten lassen – WVM‑IT",
+        "titel": "Microsoft 365 (Office 365) einrichten lassen – WVM-IT",
         "desc": "Microsoft 365 / Office 365 einrichten lassen – Preis im Gespräch. Inkl. Mailumzug, Teams, OneDrive. Meist per Fernwartung. Jetzt anfragen.",
         "h1": "Microsoft 365 einrichten — einmal richtig statt dreimal halb",
         "nav": "Microsoft 365",
@@ -320,9 +320,9 @@ EINRICHTEN = {
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Was kostet es, Office 365 einrichten zu lassen?",
-             "a": "Die Einrichtung von Microsoft 365 wird bei uns nach Aufwand und Umfang vorab fest abgesprochen, ohne Überraschungen. Die Lizenzen zahlen Sie direkt an Microsoft. Für ein persönliches Angebot melden Sie sich telefonisch unter +43 676 3808501 oder per WhatsApp, wir besprechen Ihre Anforderungen im Detail."},
+             "a": "Die Einrichtung von Microsoft 365 wird bei WVM-IT nach Aufwand und Umfang vorab fest abgesprochen, ohne Überraschungen. Die Lizenzen zahlen Sie direkt an Microsoft. Für ein persönliches Angebot melden Sie sich telefonisch oder per WhatsApp, wir besprechen Ihre Anforderungen im Detail."},
             {"q": "Ist Office 365 dasselbe wie Microsoft 365?",
-             "a": "Wir richten Microsoft 365 für Sie ein und klären die Kosten in einem kurzen Gespräch – die Lizenzen zahlen Sie direkt an Microsoft. So erhalten Sie eine Lösung, die exakt zu Ihrem Bedarf passt, ohne versteckte Überraschungen. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns per WhatsApp, wir finden gemeinsam die passende Absprache."},
+             "a": "Wir richten Microsoft 365 für Sie ein und klären die Kosten in einem kurzen Gespräch – die Lizenzen zahlen Sie direkt an Microsoft. So erhalten Sie eine Lösung, die exakt zu Ihrem Bedarf passt, ohne versteckte Überraschungen. Rufen Sie uns an oder schreiben Sie uns per WhatsApp, wir finden gemeinsam die passende Absprache."},
             {"q": "Verlieren wir alte E-Mails beim Umzug?",
              "a": "Nein. Die Postfächer werden mit Ordnerstruktur, Kalendern und "
                   "Kontakten übernommen, und die alten laufen während des Umzugs "
@@ -410,7 +410,7 @@ EINRICHTEN = {
                   "Branchensoftware, Terminaldienste oder ein Umzug bestehender Daten "
                   "dazu, werden es zwei bis vier. Den Rahmen nennen wir im Angebot."},
             {"q": "Müssen wir danach eine Betreuung abschließen?",
-             "a": "Nein. Sie bekommen die Dokumentation und die Zugänge und können damit arbeiten oder jemand anderen beauftragen. Wenn Sie die Überwachung möchten, klären wir den Aufwand gemeinsam – Preis nach kurzem Gespräch, fair und passend zu Ihrem Budget. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie per WhatsApp."},
+             "a": "Nein. Sie bekommen die Dokumentation und die Zugänge und können damit arbeiten oder jemand anderen beauftragen. Wenn Sie die Überwachung möchten, klären wir den Aufwand gemeinsam – Preis nach kurzem Gespräch, fair und passend zu Ihrem Budget. Rufen Sie uns an oder schreiben Sie per WhatsApp."},
             {"q": "Wir haben schon einen Server, aber niemand kennt sich mehr aus.",
              "a": "Auch das ist ein häufiger Fall. Dann steht am Anfang eine Aufnahme "
                   "dessen, was läuft, und eine ehrliche Einschätzung: weiterbetreiben, "
@@ -551,7 +551,7 @@ EINRICHTEN = {
         "faq_h": "Häufige Fragen",
         "faq": [
             {"q": "Was ist der Unterschied zwischen Firewall und VPN?",
-             "a": "Die Firewall regelt, was ins Firmennetz hinein und aus ihm heraus darf; das VPN ist ein verschlüsselter Zugang, über den berechtigte Personen von außen hineinkommen. Das eine ohne das andere ist nur eine halbe Lösung: Ein VPN ohne saubere Firewall‑Regeln öffnet zu viel, eine Firewall ohne VPN zwingt zu offenen Weiterleitungen. Die Kombination besprechen wir gern im Detail – Preis im Gespräch, passend zu Ihrem Budget. Kontaktieren Sie uns unter +43 676 3808501 oder per WhatsApp."},
+             "a": "Die Firewall regelt, was ins Firmennetz hinein und aus ihm heraus darf; das VPN ist ein verschlüsselter Zugang, über den berechtigte Personen von außen hineinkommen. Das eine ohne das andere ist nur eine halbe Lösung: Ein VPN ohne saubere Firewall‑Regeln öffnet zu viel, eine Firewall ohne VPN zwingt zu offenen Weiterleitungen. Die Kombination besprechen wir gern im Detail – Preis im Gespräch, passend zu Ihrem Budget. Kontaktieren Sie uns oder per WhatsApp."},
             {"q": "Brauchen Mitarbeiter im Homeoffice ein VPN?",
              "a": "Wenn sie auf etwas im Büro zugreifen — Netzlaufwerk, Warenwirtschaft, einen Server —, ja. Arbeitet der Betrieb nur mit Cloud-Diensten wie Microsoft 365, ist kein VPN nötig; dann schützt die Zwei-Faktor-Anmeldung den Zugang. Welcher Fall bei Ihnen vorliegt, klären wir in der Bestandsaufnahme."},
             {"q": "Können wir zwei Standorte per VPN verbinden?",
@@ -589,7 +589,7 @@ EINRICHTEN = {
                 "hat. Jetzt anfragen.",
         "h1": "Loxone einrichten — auch wenn sie schon steht",
         "nav": "Loxone übernehmen",
-        "kurz": "Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Wir erweitern und programmieren um: Licht, Heizung, Beschattung, Zutritt und Alarm. Das gilt ausdrücklich auch für Anlagen, deren Errichter nicht mehr erreichbar ist oder deren Programmierung niemand mehr kennt.",
+        "kurz": "WVM-IT aus Lenzing übernimmt bestehende Loxone‑ und KNX‑Anlagen in Oberösterreich und Salzburg; die Kosten für die Aufnahme besprechen wir vorab. Wir erweitern und programmieren um: Licht, Heizung, Beschattung, Zutritt und Alarm. Das gilt ausdrücklich auch für Anlagen, deren Errichter nicht mehr erreichbar ist oder deren Programmierung niemand mehr kennt.",
         "intro": "Eine Gebäudeautomation hat eine unangenehme Eigenschaft: Sie "
                  "funktioniert, bis sie es nicht mehr tut — und dann fehlt derjenige, "
                  "der weiß, warum das Licht im Flur um 22 Uhr ausgeht. Häuser werden "
@@ -757,7 +757,7 @@ EINRICHTEN = {
                 "Aufnahme. Jetzt anfragen.",
         "h1": "IT-Umzug ins neue Büro — geplant statt improvisiert",
         "nav": "IT-Umzug",
-        "kurz": "Netzwerk, WLAN, Firewall und VPN richten sich nach Größe und Gebäude; den Preis klären wir im Gespräch. Server, Netzwerk und Arbeitsplätze werden vorher aufgenommen, mit einer Checkliste geplant, am Umzugstag abgebaut und aufgebaut und am ersten Arbeitstag getestet. Der Gesamtpreis hängt am Umfang und steht nach einer Aufnahme schriftlich fest.",
+        "kurz": "WVM-IT aus Lenzing begleitet den IT‑Umzug ins neue Büro in Oberösterreich und Salzburg; den Preis klären wir im Gespräch. Server, Netzwerk und Arbeitsplätze werden vorher aufgenommen, mit einer Checkliste geplant, am Umzugstag abgebaut und aufgebaut und am ersten Arbeitstag getestet. Der Gesamtpreis hängt am Umfang und steht nach einer Aufnahme schriftlich fest.",
         "intro": "Ein Büroumzug fällt meist auf denselben Tag wie ein Feiertag — nicht "
                  "wörtlich, aber vom Gefühl her: Das Regal war schneller im Auto als "
                  "in der Planung, und im neuen Haus ist die Internetleitung eine "
@@ -851,8 +851,8 @@ HUB = {
     "titel": "PC & IT einrichten lassen: feste Absprachen ohne Vertrag | WVM-IT",
     "desc": "Arbeitsplatz, PC-Tausch, Microsoft 365, Server, Netzwerk: Aufgaben mit fester Absprache vorab, ohne Überraschungen und ohne Vertrag, meist per Fernwartung. Jetzt anfragen.",
     "h1": "Einzelne Aufgaben — feste Absprache vorab, ohne Vertrag",
-    "kurz": "WVM-IT erledigt einzelne IT-Aufgaben mit fester Absprache vorab, ohne Überraschungen und ohne laufende Betreuung: einen Arbeitsplatz einrichten, einen Rechner tauschen samt Datenübernahme. Das meiste läuft per Fernwartung in ganz Österreich und Deutschland; ein Einsatz vor Ort wird nach Aufwand abgerechnet. Was es kostet, hängt vom Umfang ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie an unter +43 676 3808501 oder schreiben Sie per WhatsApp.",
+    "kurz": "WVM-IT erledigt einzelne IT-Aufgaben mit fester Absprache vorab, ohne Überraschungen und ohne laufende Betreuung: einen Arbeitsplatz einrichten, einen Rechner tauschen samt Datenübernahme. Das meiste läuft per Fernwartung in ganz Österreich und Deutschland; ein Einsatz vor Ort wird nach Aufwand abgerechnet. Was es kostet, hängt vom Umfang ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie an oder schreiben Sie per WhatsApp.",
     "intro": "Nicht jeder Betrieb braucht eine laufende IT-Betreuung. Manchmal steht einfach ein neuer Rechner auf dem Tisch, ein Mitarbeiter fängt an, oder ein Gerät ist am Ende. Für diese Fälle gibt es hier klare Absprachen und keinen Vertrag — Sie beauftragen eine Aufgabe, wir erledigen sie, fertig. Wenn daraus später mehr wird, ist das gut; nötig ist es nicht. Eine feste Absprache vorab, ohne Überraschungen, gilt für eine klar abgegrenzte Aufgabe: Sie gilt je Gerät oder je Vorgang, setzt weder einen Vertrag noch eine laufende Betreuung voraus und deckt die Arbeit ab, die per Fernwartung erledigt wird. Wird ein Einsatz vor Ort nötig — weil ein Gerät erst ausgepackt und angeschlossen werden muss oder weil kein Internetzugang da ist, über den die Fernwartung laufen könnte —, sagen wir das vorher und rechnen ihn nach Aufwand ab. Deshalb steht der Preis hier ohne ein vorangestelltes ab: Wo wir eine feste Absprache nennen, ist es eine.",
     "abgrenzung_h": "Und wenn es doch laufend sein soll?",
-    "abgrenzung_t": "Dann sind Sie bei den Leistungen richtig. Dort geht es um Betreuung, die weiterläuft: Arbeitsplätze und Server im Blick behalten, Datensicherung prüfen, erreichbar sein, wenn etwas steht. Was das kostet, hängt von Arbeitsplätzen, Servern und Umfang ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie an unter +43 676 3808501 oder schreiben Sie per WhatsApp.",
+    "abgrenzung_t": "Dann sind Sie bei den Leistungen richtig. Dort geht es um Betreuung, die weiterläuft: Arbeitsplätze und Server im Blick behalten, Datensicherung prüfen, erreichbar sein, wenn etwas steht. Was das kostet, hängt von Arbeitsplätzen, Servern und Umfang ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie an oder schreiben Sie per WhatsApp.",
 }

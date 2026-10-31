@@ -8,10 +8,10 @@ private customers) appears here.
 
 HILFE = {
     "titel": "IT help across Austria: remote | WVM-IT",
-    "desc": "Locked account, e-mail, printer, Wi-Fi: Price on a call. Call now.",
+    "desc": "Locked account, e-mail, printer, Wi-Fi: WVM-IT from Lenzing helps across Austria by remote access, Mon–Sat from 7:30am. Price on a call. Call now.",
     "h1": "IT help by remote access across Austria — no contract, usually the same day",
     "nav": "IT help",
-    "kurz": "The setup is agreed upfront, no surprises. Single-case help and on-site visits are billed by effort; we discuss the cost beforehand.",
+    "kurz": "For a locked account, failed e-mail, or printer and PC problems, WVM-IT from Lenzing helps across Austria by remote access, Mon–Sat from 7:30am, usually the same day and without a contract. On site by appointment within roughly an hour's drive of Lenzing; we discuss the cost beforehand.",
     "kurz_mehr": "Complete tasks have a price agreed upfront: Price on a call. Remote support applies across Austria and Germany, even if you have not booked anything else with us.",
     "eilt_h": "The fastest way",
     "eilt_t": "Call or send a WhatsApp message saying what is not working. One sentence is enough, a photo of the error message helps.",

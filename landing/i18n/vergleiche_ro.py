@@ -275,7 +275,7 @@ VERGLEICHE = {
             {"q": "Pot face upgrade computerului dacă Windows 11 nu este suportat?",
              "a": "De regulă nu prin componente. Dacă lipsește doar TPM 2.0 sau este oprit în BIOS, uneori se poate rezolva. Dacă procesorul nu se află pe lista celor suportate, nici mai multă memorie, nici un SSD nu ajută, iar cumpărarea unui aparat nou este calea curată. Ce trebuie luat în calcul aici se află în articolul <a href='/aktuelles/alte-windows-version-im-betrieb/'>Sfârșitul Windows 10: ce urmează?</a>."},
             {"q": "Cât costă să modernizez un computer sau să-l înlocuiesc cu unul nou?",
-             "a": "Montarea unui SSD împreună cu mutarea sistemului durează una-două ore; costul final depinde de complexitate și deplasare, stabilit din timp, fără surprize. Configurarea unui aparat nou cu transferul datelor are prețul stabilit din timpat înainte, fără costuri ascunse. Prețul piesei sau al aparatului îl comunicăm actualizat, pentru că se schimbă. Pentru un preț exact, fair și adaptat bugetului, sunați la +43 676 3808501 sau scrieți pe WhatsApp."},
+             "a": "Montarea unui SSD împreună cu mutarea sistemului durează una-două ore; costul final depinde de complexitate și deplasare, stabilit din timp, fără surprize. Configurarea unui aparat nou cu transferul datelor are prețul stabilit din timpat înainte, fără costuri ascunse. Prețul piesei sau al aparatului îl comunicăm actualizat, pentru că se schimbă. Pentru un preț exact, fair și adaptat bugetului, sunați sau scrieți pe WhatsApp."},
         ],
 
         "at_h": "Pentru firmele din Austria Superioară: aparate vechi, date și Windows 11",

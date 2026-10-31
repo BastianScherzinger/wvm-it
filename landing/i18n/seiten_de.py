@@ -192,7 +192,7 @@ SEITEN = {
             {"h": "Abarbeiten", "t": "Sie entscheiden, was umgesetzt wird — auch, wenn es nichts ist. Der Bericht gehört Ihnen und lässt sich auch von einem anderen Dienstleister abarbeiten."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Was der einmalige IT-Sicherheitscheck kostet, hängt vom Umfang der Systeme und dem Prüfaufwand ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Firewall und VPN werden vorab fest abgesprochen. Die Umsetzung weiterer Maßnahmen rechnen wir nach Aufwand ab; wer die Sicherheit dauerhaft im Blick behalten will, nimmt die laufende Betreuung, deren Preis sich nach Arbeitsplätzen, Server und Umfang richtet. Anruf unter +43 676 3808501 oder WhatsApp.",
+        "preis_t": "Was der einmalige IT-Sicherheitscheck kostet, hängt vom Umfang der Systeme und dem Prüfaufwand ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Firewall und VPN werden vorab fest abgesprochen. Die Umsetzung weiterer Maßnahmen rechnen wir nach Aufwand ab; wer die Sicherheit dauerhaft im Blick behalten will, nimmt die laufende Betreuung, deren Preis sich nach Arbeitsplätzen, Server und Umfang richtet. Anruf oder WhatsApp.",
         "faq": [
             {"q": "Wir sind ein kleiner Betrieb. Sind wir überhaupt ein Ziel?",
              "a": "Die meisten Angriffe sind nicht ausgesucht, sondern automatisiert: Sie suchen offene Zugänge und alte Software, nicht bestimmte Firmen. Gerade kleine Betriebe werden getroffen, weil dort seltener jemand nachsieht."},
@@ -238,7 +238,7 @@ SEITEN = {
             {"h": "Bauen, prüfen, online gehen", "t": "Sie sehen den Stand zwischendurch. Zum Start richten wir Hosting, Domain und Messung ein, damit vom ersten Tag an sichtbar ist, was passiert."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Was ein One-Pager kostet, hängt vom Designumfang ab; eine mehrseitige Business-Website richtet sich nach Seitenzahl und Funktionen; eine Premium-Seite mit Animationen und ein Online-Shop werden vorab fest abgesprochen, ohne Überraschungen. Laufend kommen Hosting mit SSL und Sicherungen sowie Wartung dazu, die Domain wird jährlich abgerechnet. Den genauen Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf unter +43 676 3808501 oder WhatsApp.",
+        "preis_t": "Was ein One-Pager kostet, hängt vom Designumfang ab; eine mehrseitige Business-Website richtet sich nach Seitenzahl und Funktionen; eine Premium-Seite mit Animationen und ein Online-Shop werden vorab fest abgesprochen, ohne Überraschungen. Laufend kommen Hosting mit SSL und Sicherungen sowie Wartung dazu, die Domain wird jährlich abgerechnet. Den genauen Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf oder WhatsApp.",
         "faq": [
             {"q": "Wie lange dauert es, bis die Seite online ist?",
              "a": "Ein One-Pager ist meist in ein bis zwei Wochen fertig, eine mehrseitige Firmenseite in drei bis fünf Wochen. Das Tempo entscheidet fast immer, wie schnell Texte, Bilder und Freigaben von Ihnen kommen — nicht die Programmierung. Enge Termine sagen wir vorher zu oder ab, nicht hinterher."},
@@ -288,7 +288,7 @@ SEITEN = {
             {"h": "Inhalte und Betreuung", "t": "Danach wächst die Seite: neue Seiten, bessere Antworten, monatliche Messung. SEO ist keine Aktion, sondern ein Betriebsteil."},
         ],
         "preis_h": "Preise",
-        "preis_t": "Was die einmalige SEO-Grundoptimierung kostet, hängt vom aktuellen Stand der Seite ab; die laufende Betreuung richtet sich nach Umfang und Zielen. Google Ads sind separat buchbar — Einrichtung und Betreuung werden im Gespräch geklärt — und ergeben Sinn, solange SEO noch wirkt. Eine Mindestlaufzeit über drei Monate hinaus gibt es nicht; kürzer lässt sich allerdings nichts messen. Den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf unter +43 676 3808501 oder WhatsApp.",
+        "preis_t": "Was die einmalige SEO-Grundoptimierung kostet, hängt vom aktuellen Stand der Seite ab; die laufende Betreuung richtet sich nach Umfang und Zielen. Google Ads sind separat buchbar — Einrichtung und Betreuung werden im Gespräch geklärt — und ergeben Sinn, solange SEO noch wirkt. Eine Mindestlaufzeit über drei Monate hinaus gibt es nicht; kürzer lässt sich allerdings nichts messen. Den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Anruf oder WhatsApp.",
         "faq": [
             {"q": "Wie lange dauert es, bis SEO wirkt?",
              "a": "Technische Korrekturen wirken innerhalb von Tagen bis Wochen. Neue Leistungsseiten brauchen erfahrungsgemäß sechs bis zwölf Wochen, bis sie stabil Platzierungen halten. Wer Ihnen Ergebnisse in zwei Wochen verspricht, verkauft Ihnen Anzeigen und nennt es SEO."},
@@ -546,7 +546,7 @@ SEITEN = {
         "titel": "Video-, Ton- & Bühnentechnik in Oberösterreich | WVM-IT",
         "desc": "Veranstaltungstechnik für Säle, Vereine, Gemeinden und Hotels: Ton, Licht, Video und Bühne. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab.",
         "h1": "Video-, Ton- und Bühnentechnik für Säle und Veranstaltungen",
-        "kurz": "Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Es geht um Beschallung, Licht, Video- und Bühnentechnik für Säle, Vereinsheime, Gemeindezentren, Hotels und Firmenveranstaltungen. Auf eine Anfrage antworten wir an Werktagen innerhalb von 24 Stunden.",
+        "kurz": "WVM-IT aus Lenzing plant, installiert und betreut Veranstaltungstechnik in Oberösterreich; Arbeiten vor Ort nach Absprache, die Kosten klären wir vorab. Es geht um Beschallung, Licht, Video- und Bühnentechnik für Säle, Vereinsheime, Gemeindezentren, Hotels und Firmenveranstaltungen. Auf eine Anfrage antworten wir an Werktagen innerhalb von 24 Stunden.",
         "intro": "In den meisten Sälen steht Technik, die einmal jemand aufgebaut hat und die seitdem niemand mehr versteht. Es gibt drei Fernbedienungen, zwei davon ohne Batterien, und einen Mischer, an dem nur ein bestimmter Mensch etwas verstellen darf. Solange dieser Mensch Zeit hat, geht das gut. Der Abend, an dem es schiefgeht, ist immer der Abend, an dem hundert Leute im Raum sitzen. Wir bauen Anlagen so, dass sie auch jemand bedienen kann, der sie zum ersten Mal sieht — und dokumentieren, was wo angeschlossen ist.",
         "problem_h": "Woran es in Sälen meistens hängt",
         "probleme": [
@@ -596,7 +596,7 @@ SEITEN = {
         "titel": "IT-Beratung | WVM-IT",
         "desc": "IT-Beratung ohne Herstellerbindung: Preis im Gespräch. Jetzt unverbindlich anfragen.",
         "h1": "IT-Beratung für Betriebe, die eine Entscheidung treffen müssen",
-        "kurz": "Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Dazu gehören Bestandsaufnahme, schriftliches Konzept, Vergleich fremder Angebote und Begleitung bei der Umsetzung — auch dann, wenn die ehrliche Antwort lautet, dass sich die Investition nicht lohnt.",
+        "kurz": "WVM-IT aus Lenzing berät Betriebe in Österreich und Deutschland vor Investitionen in IT und Gebäudetechnik; Termine vor Ort nach Absprache, Antwort an Werktagen innerhalb von 24 Stunden. Dazu gehören Bestandsaufnahme, schriftliches Konzept, Vergleich fremder Angebote und Begleitung bei der Umsetzung — auch dann, wenn die ehrliche Antwort lautet, dass sich die Investition nicht lohnt.",
         "intro": "Die teuersten IT-Entscheidungen sind selten die falschen Geräte. Es sind die Entscheidungen, die niemand getroffen hat: der Server, der noch ein Jahr mitläuft, weil keiner weiß, was danach kommt; die Software, die ausgesucht wurde, weil ein Anbieter zuerst angerufen hat; die zwei Angebote, die man nicht vergleichen kann, weil sie verschiedene Dinge beschreiben. Beratung heißt hier nicht Präsentation. Sie heißt: jemand sieht sich an, was Sie haben, hört zu, was Sie vorhaben, und schreibt auf, was das für Ihre Technik bedeutet.",
         "problem_h": "Wann eine Beratung sich rechnet",
         "probleme": [
@@ -626,7 +626,7 @@ SEITEN = {
         "preis_t": "Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Das Erstgespräch ist kostenfrei. Eine Bestandsaufnahme mit schriftlichem Konzept liegt bei einem üblichen Betrieb erfahrungsgemäß zwischen einem halben und zwei Tagen Aufwand; die Schätzung nennen wir vorher und halten sie ein oder melden uns, bevor sie überschritten wird. Vergeben Sie die Umsetzung an uns, rechnen wir die Beratungsstunden an.",
         "faq": [
             {"q": "Was kostet eine IT-Beratung?",
-             "a": "Stundensätze richten sich nach Einsatzort (remote oder vor Ort) und Umfang; die Anfahrt wird vorab festgelegt. Das Erstgespräch ist kostenfrei. Eine vollständige Bestandsaufnahme mit schriftlichem Konzept für 10 bis 30 Arbeitsplätze liegt meist bei 4 bis 16 Stunden. Den genauen Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget – Anruf unter +43 676 3808501 oder WhatsApp."},
+             "a": "Stundensätze richten sich nach Einsatzort (remote oder vor Ort) und Umfang; die Anfahrt wird vorab festgelegt. Das Erstgespräch ist kostenfrei. Eine vollständige Bestandsaufnahme mit schriftlichem Konzept für 10 bis 30 Arbeitsplätze liegt meist bei 4 bis 16 Stunden. Den genauen Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget – Anruf oder WhatsApp."},
             {"q": "Sind Sie an Hersteller gebunden?",
              "a": "Nein. Wir arbeiten mit Partnern zusammen, wo es fachlich nötig ist — bei Gebäudeautomation und Veranstaltungstechnik etwa —, aber wir bekommen keine Vergütung dafür, dass wir ein bestimmtes Produkt empfehlen. Wenn eine Empfehlung für uns finanziell interessant ist, sagen wir das im Konzept dazu."},
             {"q": "Beraten Sie auch, wenn ein anderer Dienstleister die Umsetzung macht?",

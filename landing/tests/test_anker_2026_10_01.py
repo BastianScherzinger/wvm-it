@@ -133,7 +133,7 @@ class FromDichteTest(SimpleTestCase):
                 wort, anteil = _haeufigstes_wort(pfad)
                 self.assertLess(anteil, 0.05, (pfad, wort, anteil))
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_startpreis_bleibt_als_startpreis_gekennzeichnet(self):
         # Die Bedeutung (Startpreis) darf nicht verloren gehen: Tabelle sagt es im
         # Kopf, Karten sagen „starting at“, die Zahlen kommen aus dem Katalog.
@@ -143,7 +143,7 @@ class FromDichteTest(SimpleTestCase):
         self.assertIn("All prices are starting prices.", _html("/en/angebot/"))
         self.assertIn("starting at 490 €", _html("/en/branchen/"))
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_deutsch_und_rumaenisch_unveraendert(self):
         self.assertIn("ab 29 €/Mt", _html("/kosten/"))
         self.assertIn("de la 29 €/lună", _html("/ro/kosten/"))

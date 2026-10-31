@@ -77,7 +77,7 @@ class HostingBandTest(SimpleTestCase):
         # der gekennzeichnete Partnerlink (eigener Test unten).
         self.assertEqual(html.count("domaintechnik.at"), 1)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_preise_aus_dem_katalog(self):
         block = _block(_util.client().get("/").content.decode())
         self.assertIn(f"ab {_ANGEBOT_INDEX['domain']['yr']} €/Jahr", block)

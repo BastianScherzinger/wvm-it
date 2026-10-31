@@ -1194,7 +1194,7 @@ PACK = {
             {"q": "What does one-off help without a contract cost?",
              "a": "Individual help by remote maintenance or on-site work is agreed upfront, with no surprises. Travel costs apply for on-site work. No contract is needed for it."},
             {"q": "What does IT support cost per month in Austria?",
-             "a": "Ongoing IT support at WVM-IT is tailored to your needs. The price depends on the number of workstations, server requirements, and backup scope. For 5 workstations without a server, we'll find a solution that fits your budget. Individual help without a contract is also available. We'll discuss all details in a brief conversation to ensure a fair price, perfectly suited to your budget. Contact us at +43 676 3808501 or via WhatsApp."},
+             "a": "Ongoing IT support at WVM-IT is tailored to your needs. The price depends on the number of workstations, server requirements, and backup scope. For 5 workstations without a server, we'll find a solution that fits your budget. Individual help without a contract is also available. We'll discuss all details in a brief conversation to ensure a fair price, perfectly suited to your budget. Contact us or via WhatsApp."},
         ],
     },
     "rechner": {

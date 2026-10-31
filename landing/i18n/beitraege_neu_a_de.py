@@ -20,7 +20,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                  'meta_titel': 'Was kostet EDV-Betreuung? Beispiel für 8 Plätze | '
                                                                'WVM-IT',
                                                  'desc': "Informationen zur IT‑Betreuung für einen Kleinbetrieb in Oberösterreich – Leistungen im Überblick, Preis im Gespräch.",
-                                                 'antwort': "Die EDV‑Betreuung eines Kleinbetriebs in Oberösterreich umfasst die Betreuung der Arbeitsplätze, tägliche geprüfte Datensicherung und optional die Betreuung von Servern. Welche Leistungen Sie benötigen und in welchem Umfang, klären wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget.",
+                                                 'antwort': "Die EDV‑Betreuung eines Kleinbetriebs in Oberösterreich umfasst bei WVM-IT die Betreuung der Arbeitsplätze, tägliche geprüfte Datensicherung und optional die Betreuung von Servern. Welche Leistungen Sie benötigen und in welchem Umfang, klären wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget.",
                                                  'vorweg': 'Einen allgemeinen Überblick, ab wann sich '
                                                            'Monatsbetreuung gegenüber Stundenabrechnung '
                                                            'lohnt, gibt der Beitrag <a '
@@ -175,7 +175,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                                'ist.'},
                                                          {'q': 'Kommen zur Betreuung noch Lizenzen oder Hardware dazu?',
                                                           'a': "Lizenzen (zum Beispiel Microsoft 365) und Hardware sind in aller Regel nicht enthalten; das ist bei allen Anbietern so. Was für Ihren Betrieb nötig ist, klären wir in einem kurzen Gespräch."}],
-                                                 'fazit': "Die Rechnung setzt sich aus den Posten Arbeitsplatz‑Betreuung, Datensicherung und Server‑Betreuung zusammen. Welche Posten für Sie relevant sind, besprechen wir im Gespräch."},
+                                                 'fazit': "Bei WVM-IT setzt sich die Rechnung aus den Posten Arbeitsplatz‑Betreuung, Datensicherung und Server‑Betreuung zusammen. Welche Posten für Sie relevant sind, besprechen wir im Gespräch."},
  'it-betreuung-handwerksbetriebe': {'titel': 'Welche IT braucht ein Handwerksbetrieb? Büro, Baustelle, Handy',
                                     'meta_titel': 'Welche IT braucht ein Handwerksbetrieb? | WVM-IT',
                                     'desc': 'Handwerksbetrieb ohne IT-Abteilung: Was im Büro, am Firmenhandy '
@@ -451,7 +451,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
  'backup-3-2-1-kleine-firma': {'titel': 'Backup für kleine Firmen: die 3-2-1-Regel in der Praxis',
                                'meta_titel': 'Backup für kleine Firmen: 3-2-1-Regel einfach | WVM-IT',
                                'desc': "Die 3‑2‑1‑Regel für kleine Firmen praktisch umgesetzt – drei Kopien, zwei Medien, eine externe Sicherung. Preis im Gespräch.",
-                               'antwort': "Die 3‑2‑1‑Regel verlangt drei Kopien Ihrer Daten auf zwei verschiedenen Medien, davon eine an einem anderen Ort. Für kleine Firmen bedeutet das: Originaldaten, eine interne Sicherung und eine externe, vom Netzwerk getrennte Kopie. Die tägliche, geprüfte Datensicherung besprechen wir gern im kurzen Gespräch.",
+                               'antwort': "Die 3‑2‑1‑Regel verlangt drei Kopien Ihrer Daten auf zwei verschiedenen Medien, davon eine an einem anderen Ort. Für kleine Firmen bedeutet das: Originaldaten, eine interne Sicherung und eine externe, vom Netzwerk getrennte Kopie. Die tägliche, geprüfte Datensicherung bietet WVM-IT als eigene Leistung an; die Kosten besprechen wir im kurzen Gespräch.",
                                'vorweg': 'Wie Sie prüfen, ob eine bestehende Sicherung im Ernstfall '
                                          'zurückkommt, beschreibt <a '
                                          "href='/aktuelles/datensicherung-richtig-pruefen/'>Datensicherung "
@@ -880,7 +880,7 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                'desc': 'Dateien verschlüsselt, Lösegeldforderung auf dem Bildschirm? Netz '
                                        'trennen, Backup prüfen, Zahlen abwägen, Meldung binnen 72 Stunden. '
                                        'Jetzt Hilfe anfordern.',
-                               'antwort': "Bei einem Ransomware‑Befall trennen Sie sofort alle betroffenen Geräte vom Netzwerk, lassen die Datensicherung unangetastet und prüfen deren Integrität. Lösegeld zu zahlen ist keine Lösung. Ist personenbezogene Daten betroffen, informieren Sie die Datenschutzbehörde innerhalb von 72 Stunden. Unsere Unterstützung per Fernwartung aus Lenzing besprechen wir in einem kurzen Gespräch, bevor Sie Maßnahmen ergreifen.",
+                               'antwort': "Bei einem Ransomware‑Befall trennen Sie sofort alle betroffenen Geräte vom Netzwerk, lassen die Datensicherung unangetastet und prüfen deren Integrität. Lösegeld zu zahlen ist keine Lösung. Sind personenbezogene Daten betroffen, informieren Sie die Datenschutzbehörde innerhalb von 72 Stunden. Bei Verdacht auf Verschlüsselung hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr; rufen Sie an, bevor Sie etwas löschen.",
                                'vorweg': 'Was Ransomware technisch ist, erklärt <a '
                                          "href='/wissen/ransomware/'>Ransomware</a> im Glossar; bei akuten "
                                          "Problemen ist <a href='/it-notfall/'>IT-Notfall</a> der kürzere "

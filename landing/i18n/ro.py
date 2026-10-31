@@ -1184,9 +1184,9 @@ PACK = {
             {"q": "Cât costă un contract de mentenanță IT?",
              "a": "Un simplu „contract de mentenanță” există la WVM-IT sub forma administrării curente: administrare per post de lucru, un server administrat, backup monitorizat. Administrarea merge de la trimestru la trimestru și poate fi reziliată cu un preaviz de o lună până la sfârșitul trimestrului. Cine are nevoie doar ocazional de ajutor beneficiază de acces la distanță, fără contract. Prețul depinde de numărul de posturi, server și amplitudine; îl stabilim într-o scurtă discuție, fair și adaptat bugetului dumneavoastră."},
             {"q": "Cât costă ajutorul punctual, fără contract?",
-             "a": "Costul ajutorului punctual depinde de tipul intervenției — acces la distanță sau la fața locului — și de deplasare; prețul se stabilește într-o scurtă discuție, fair și adaptat bugetului dumneavoastră. Sunăți-ne la +43 676 3808501 sau scrieți-ne pe WhatsApp. Nu este nevoie de contract."},
+             "a": "Costul ajutorului punctual depinde de tipul intervenției — acces la distanță sau la fața locului — și de deplasare; prețul se stabilește într-o scurtă discuție, fair și adaptat bugetului dumneavoastră. Sunăți-ne sau scrieți-ne pe WhatsApp. Nu este nevoie de contract."},
             {"q": "Cât costă administrarea IT pe lună în Austria?",
-             "a": "Administrarea IT curentă la WVM-IT se face per post de lucru și lună, prin acces la distanță în toată Austria; un server administrat și copiile de siguranță monitorizate se adaugă conform necesarului. Pentru 5 posturi de lucru fără server propriu, costul depinde de amplitudine; ajutorul punctual fără contract se taxează pe oră. Prețul final se stabilește într-o scurtă discuție, fair și adaptat bugetului dumneavoastră — sunăți-ne la +43 676 3808501 sau scrieți-ne pe WhatsApp."},
+             "a": "Administrarea IT curentă la WVM-IT se face per post de lucru și lună, prin acces la distanță în toată Austria; un server administrat și copiile de siguranță monitorizate se adaugă conform necesarului. Pentru 5 posturi de lucru fără server propriu, costul depinde de amplitudine; ajutorul punctual fără contract se taxează pe oră. Prețul final se stabilește într-o scurtă discuție, fair și adaptat bugetului dumneavoastră — sunăți-ne sau scrieți-ne pe WhatsApp."},
         ],
     },
     "rechner": {
@@ -1377,7 +1377,7 @@ PACK = {
         "barrierefreiheit_desc": "Cât de accesibil este wvm-it.tech, ce lipsește încă și cum semnalați o barieră. Răspuns în 24 de ore în zilele lucrătoare. Scrieți-ne.",
     },
     "angebot_page": {
-        "antwort": "Configuratorul de ofertă WVM-IT alcătuiește un preț orientativ în mai puțin de un minut: peste 30 de poziții din 6 domenii, majoritatea cu preț de pornire. Administrarea IT curentă începe, un site de la, ajutorul pe oră. Preț orientativ înseamnă că cifra este valabilă pentru cazul obișnuit, fiindcă efortul poate să difere de la caz la caz. Nu este nevoie de cont, iar solicitarea nu obligă la nimic. Prețul pentru fiecare post de lucru pe lună, pentru un site și ajutorul pe oră se clarifică în discuție. Sunteți binevenit să ne contactați la +43 676 3808501 sau pe WhatsApp.",
+        "antwort": "Configuratorul de ofertă WVM-IT alcătuiește un preț orientativ în mai puțin de un minut: peste 30 de poziții din 6 domenii, majoritatea cu preț de pornire. Administrarea IT curentă începe, un site de la, ajutorul pe oră. Preț orientativ înseamnă că cifra este valabilă pentru cazul obișnuit, fiindcă efortul poate să difere de la caz la caz. Nu este nevoie de cont, iar solicitarea nu obligă la nimic. Prețul pentru fiecare post de lucru pe lună, pentru un site și ajutorul pe oră se clarifică în discuție. Sunteți binevenit să ne contactați sau pe WhatsApp.",
         "eyebrow": "Configurator de ofertă",
         "h1": "Alcătuiți-vă singur oferta.",
         "lead": "Parcurgeți în câțiva pași: peste 30 de poziții în 6 domenii, alegeți ce vă trebuie și vedeți prețul orientativ imediat — înainte să introduceți numele sau e-mailul. Pe amândouă le cerem abia când solicitați oferta.",

@@ -40,7 +40,7 @@ class RatgeberTest(SimpleTestCase):
                 self.assertRegex(schluss.group(1), r'href="/angebot/"')
                 self.assertNotIn("hier klicken", schluss.group(1).lower())
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_m365_hat_handgeschriebenen_text_und_katalogpreis(self):
         h = _html("/aktuelles/microsoft-365-konto-gesperrt/")
         self.assertIn("Dann kommt gerade niemand an Mail und Dateien", h)
@@ -87,7 +87,7 @@ class FormularTest(SimpleTestCase):
 
 
 class KostenAngebotTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_tabelle_vor_erklaerung_und_text_bleibt(self):
         h = _html("/kosten/")
         self.assertLess(h.index("pt-table"), h.index("kosten-mehr"))

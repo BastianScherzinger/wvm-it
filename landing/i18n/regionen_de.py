@@ -209,7 +209,7 @@ REGIONEN = {
             {"q": "Kommen Sie für IT-Arbeiten nach Salzburg?",
              "a": "Ja, für alles, was vor Ort gemacht werden muss, etwa die Begehung im Sicherheitscheck oder neue Technik. Einzelne Hilfe und Einsätze vor Ort rechnen wir nach Aufwand ab; die Kosten besprechen wir vorab. Den laufenden Betrieb übernehmen wir per Fernwartung."},
             {"q": "Geht es auch ohne Vertrag?",
-             "a": "Ja. Einzelne Probleme per Fernwartung rechnen wir nach Aufwand ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Die laufende EDV‑Betreuung für Betriebe in Salzburg wird individuell nach Arbeitsplätzen, Servern und Umfang vereinbart – feste Absprache vorab, keine Überraschungen. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie per WhatsApp."},
+             "a": "Ja. Einzelne Probleme per Fernwartung rechnen wir nach Aufwand ab; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Die laufende EDV‑Betreuung für Betriebe in Salzburg wird individuell nach Arbeitsplätzen, Servern und Umfang vereinbart – feste Absprache vorab, keine Überraschungen. Rufen Sie uns an oder schreiben Sie per WhatsApp."},
         ],
     },
 
@@ -240,9 +240,9 @@ REGIONEN = {
             {"q": "Können Sie unsere bestehende IT übernehmen?",
              "a": "Ja, das ist der Normalfall. Wir beginnen mit einer Bestandsaufnahme — meist vor Ort, weil sich gewachsene Netzwerke aus der Ferne schlecht beurteilen lassen — und sagen Ihnen danach, was gut läuft, was ungesichert ist und was wir zuerst anfassen würden."},
             {"q": "Kommen Sie für IT-Arbeiten nach Linz?",
-             "a": "Ja. Von Lenzing nach Linz sind es etwa 82 Kilometer, rund 60 Minuten. Ein Einsatz vor Ort wird nach Aufwand berechnet; Termin, Anfahrt und Umfang besprechen wir vorher und finden gemeinsam eine faire Lösung. Den laufenden Betrieb erledigen wir per gesicherter Fernwartung. Preis im Gespräch, fair und passend zu Ihrem Budget. Kontaktieren Sie uns unter +43 676 3808501 oder per WhatsApp."},
+             "a": "Ja. Von Lenzing nach Linz sind es etwa 82 Kilometer, rund 60 Minuten. Ein Einsatz vor Ort wird nach Aufwand berechnet; Termin, Anfahrt und Umfang besprechen wir vorher und finden gemeinsam eine faire Lösung. Den laufenden Betrieb erledigen wir per gesicherter Fernwartung. Preis im Gespräch, fair und passend zu Ihrem Budget. Kontaktieren Sie uns oder per WhatsApp."},
             {"q": "Was kostet die Hilfe bei einem einzelnen Problem in Linz?",
-             "a": "Ja. Wer in Linz nur ein einzelnes Problem hat, bekommt Hilfe ohne Vertrag, meist per Fernwartung und nach Aufwand. Der Preis wird in einem kurzen Gespräch fair und passend zu Ihrem Budget festgelegt. Die laufende Betreuung wird nur dann ergänzt, wenn Sie sie wünschen – feste Absprache vorab, keine Überraschungen. Rufen Sie uns an: +43 676 3808501 oder schreiben Sie per WhatsApp."},
+             "a": "Ja. Wer in Linz nur ein einzelnes Problem hat, bekommt Hilfe ohne Vertrag, meist per Fernwartung und nach Aufwand. Der Preis wird in einem kurzen Gespräch fair und passend zu Ihrem Budget festgelegt. Die laufende Betreuung wird nur dann ergänzt, wenn Sie sie wünschen – feste Absprache vorab, keine Überraschungen. Rufen Sie uns an oder schreiben Sie per WhatsApp."},
         ],
     },
 
@@ -275,7 +275,7 @@ REGIONEN = {
             {"q": "Wie schnell sind Sie in Attnang-Puchheim vor Ort?",
              "a": "Von Lenzing sind es 12 Kilometer, rund 20 Minuten. Bei einem Ausfall, der sich nicht aus der Ferne beheben lässt, ist das ein Einsatz am selben Vormittag, wenn Sie früh melden. Termine für geplante Arbeiten vereinbaren wir trotzdem vorher, damit Ersatzteile und Zugänge bereitliegen."},
             {"q": "Was kostet ein einzelnes Problem, und geht das ohne Vertrag?",
-             "a": "Ja. Einzelne Probleme lösen wir meist per Fernwartung nach Aufwand; den Preis besprechen wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Muss jemand kommen, wird der Aufwand vorher abgestimmt und transparent kalkuliert. Ersetzen wir einen PC, richten wir den neuen nach individueller Absprache ein – feste Absprache vorab, keine Überraschungen. Kontakt per +43 676 3808501 oder WhatsApp."},
+             "a": "Ja. Einzelne Probleme lösen wir meist per Fernwartung nach Aufwand; den Preis besprechen wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Muss jemand kommen, wird der Aufwand vorher abgestimmt und transparent kalkuliert. Ersetzen wir einen PC, richten wir den neuen nach individueller Absprache ein – feste Absprache vorab, keine Überraschungen.  oder WhatsApp."},
         ],
     },
 
@@ -304,11 +304,11 @@ REGIONEN = {
             {"q": "Kümmern Sie sich auch um die Registrierkasse selbst?",
              "a": "Nein, nur um ihr Umfeld. Die gesetzlichen Vorgaben der Kasse (Belege, Signatur, Abschlüsse) bleiben bei Ihrem Kassenanbieter und Ihrer Steuerberatung. Wir sorgen dafür, dass Netz, WLAN, Terminal, Drucker und Sicherung drumherum stimmen und dass Updates nicht in die Öffnungszeit fallen."},
             {"q": "Lohnt sich eine Webseite für ein Geschäft am Stadtplatz?",
-             "a": "Wenn Kundschaft zuerst am Handy nachsieht, ob geöffnet ist und was es gibt, ja. Eine schlanke Seite mit Öffnungszeiten, Sortiment, Anfahrt und Telefonnummer ist oft wichtiger als ein Shop. Wir erstellen One‑Pager oder Business‑Website nach Ihren Bedürfnissen; den Preis besprechen wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie per WhatsApp."},
+             "a": "Wenn Kundschaft zuerst am Handy nachsieht, ob geöffnet ist und was es gibt, ja. Eine schlanke Seite mit Öffnungszeiten, Sortiment, Anfahrt und Telefonnummer ist oft wichtiger als ein Shop. Wir erstellen One‑Pager oder Business‑Website nach Ihren Bedürfnissen; den Preis besprechen wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie uns an oder schreiben Sie per WhatsApp."},
             {"q": "Wie weit ist es von Lenzing nach Schwanenstadt?",
              "a": "Es sind 19 Kilometer, rund 25 Minuten Fahrt. Einen Termin vor Ort legen wir deshalb auf einen Vormittag vor Ladenöffnung oder in eine ruhige Stunde, und wir bringen mit, was wir für den Einsatz brauchen."},
             {"q": "Der Bondrucker streikt, sonst läuft alles. Brauche ich dafür einen Betreuungsvertrag?",
-             "a": "Nein. Ein einzelner Fall wird nach Aufwand abgerechnet; wir klären Preis und Umfang in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Erst wenn es öfter vorkommt, lohnt sich die laufende Betreuung – diese wird nach Ihren Arbeitsplätzen und Anforderungen individuell vereinbart, feste Absprache vorab, keine Überraschungen. Kontaktieren Sie uns unter +43 676 3808501 oder per WhatsApp."},
+             "a": "Nein. Ein einzelner Fall wird nach Aufwand abgerechnet; wir klären Preis und Umfang in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Erst wenn es öfter vorkommt, lohnt sich die laufende Betreuung – diese wird nach Ihren Arbeitsplätzen und Anforderungen individuell vereinbart, feste Absprache vorab, keine Überraschungen. Kontaktieren Sie uns oder per WhatsApp."},
         ],
     },
 
@@ -333,7 +333,7 @@ REGIONEN = {
         "remote": "Die Beratung selbst, das Auswahlgespräch, der Vergleich von Angeboten und die Einführung per Bildschirmfreigabe, dazu Konten, Geräteverwaltung für Firmenhandys, Freigaben, Updates und Datensicherung — und die laufende Betreuung der Büro-Arbeitsplätze. Webseite, SEO und Google Ads gehören ebenfalls dazu. Anfahren müssen wir nur, wenn jemand etwas anschließen, verkabeln oder in der Halle ausmessen muss.",
         "faq": [
             {"q": "Wir wollen unsere Warenwirtschaft wechseln. Wobei helfen Sie?",
-             "a": "Wir halten mit Ihnen fest, was das Programm können muss, vergleichen Angebote anhand dieser Liste und begleiten Datenübernahme und Einführung. Die Beratung rechnen wir nach Aufwand ab; den Preis nennen wir Ihnen im Gespräch, fair und passend zu Ihrem Budget. Welches Programm es wird, entscheiden Sie. Rufen Sie uns an: +43 676 3808501 oder schreiben Sie per WhatsApp."},
+             "a": "Wir halten mit Ihnen fest, was das Programm können muss, vergleichen Angebote anhand dieser Liste und begleiten Datenübernahme und Einführung. Die Beratung rechnen wir nach Aufwand ab; den Preis nennen wir Ihnen im Gespräch, fair und passend zu Ihrem Budget. Welches Programm es wird, entscheiden Sie. Rufen Sie uns an oder schreiben Sie per WhatsApp."},
             {"q": "Monteure und Fahrer schicken Lieferscheine und Fotos per WhatsApp. Ist das ein Problem?",
              "a": "Es ist bequem, aber Kundendaten liegen dann auf privaten Handys und in Gruppen, die niemand verwaltet. Besser ist eine gemeinsame Ablage und ein Firmengerät mit eigenem Konto, das sich bei Verlust sperren lässt. Was im Einzelfall rechtlich verlangt wird, klären Sie im Zweifel mit Ihrer Datenschutzberatung."},
             {"q": "Wie kommen Zeichnungen und Auftragsdaten sicher zwischen Büro und Werkstatt?",
@@ -341,7 +341,7 @@ REGIONEN = {
             {"q": "Wie weit ist es von Lenzing nach Vöcklamarkt?",
              "a": "Es sind 16 Kilometer, rund 20 Minuten Fahrt. Ein Termin vor Ort ist damit gut planbar, und die Beratung vorab läuft ohnehin per Videocall — den Weg machen wir erst, wenn es etwas zu sehen oder anzuschließen gibt."},
             {"q": "Ich brauche nur ein Tablet für den Außendienst. Geht das ohne Vertrag?",
-             "a": "Ja. Ein einzelner Auftrag wird nach Aufwand berechnet; wir besprechen Preis, Termin und Umfang in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Die laufende Betreuung wird nach Ihren Arbeitsplätzen und Bedürfnissen individuell vereinbart – feste Absprache vorab, keine Überraschungen. Kontaktieren Sie uns unter +43 676 3808501 oder per WhatsApp."},
+             "a": "Ja. Ein einzelner Auftrag wird nach Aufwand berechnet; wir besprechen Preis, Termin und Umfang in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Die laufende Betreuung wird nach Ihren Arbeitsplätzen und Bedürfnissen individuell vereinbart – feste Absprache vorab, keine Überraschungen. Kontaktieren Sie uns oder per WhatsApp."},
         ],
     },
 
@@ -374,7 +374,7 @@ REGIONEN = {
             {"q": "Betreuen Sie auch Betriebe auf der Salzburger Seite der Grenze?",
              "a": "Für die laufende Betreuung ja, die läuft ortsunabhängig. Für Termine vor Ort haben wir die Stadt Salzburg auf einer eigenen Seite; dort steht, was wir für welche Entfernung zusagen und was nicht."},
             {"q": "Was kostet ein einzelnes Problem, und geht das ohne Vertrag?",
-             "a": "Ja. Für einen einzelnen Fall berechnen wir die Fernwartung nach Aufwand; ein Vor-Ort‑Einsatz wird zusätzlich mit Anfahrt berechnet. Einen neuen PC richten wir nach individueller Absprache ein. Alle Preise werden in einem kurzen Gespräch geklärt – fair und passend zu Ihrem Budget, mit fester Absprache vorab, keine Überraschungen. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns per WhatsApp."},
+             "a": "Ja. Für einen einzelnen Fall berechnen wir die Fernwartung nach Aufwand; ein Vor-Ort‑Einsatz wird zusätzlich mit Anfahrt berechnet. Einen neuen PC richten wir nach individueller Absprache ein. Alle Preise werden in einem kurzen Gespräch geklärt – fair und passend zu Ihrem Budget, mit fester Absprache vorab, keine Überraschungen. Rufen Sie uns an oder schreiben Sie uns per WhatsApp."},
         ],
     },
     "ried-im-innkreis": {
@@ -406,7 +406,7 @@ REGIONEN = {
             {"q": "Wie läuft die Betreuung, wenn Sie 38 Kilometer entfernt sitzen?",
              "a": "Für den laufenden Betrieb gibt es keinen Unterschied zu einem Anbieter im Ort: Sie melden sich, wir greifen über die gesicherte Fernwartung zu. Für Arbeiten vor Ort sind es rund 45 Minuten Fahrt, deshalb vereinbaren wir diese Termine vorher und bringen mit, was nötig ist. Wenn Sie jemanden brauchen, der binnen einer Stunde im Haus steht, ist ein Anbieter in Ried besser geeignet — das sagen wir Ihnen im Erstgespräch."},
             {"q": "Was kostet die Hilfe bei einem Laden-PC, und geht das ohne Vertrag?",
-             "a": "Ja. Für einen einzelnen Fall berechnen wir die Fernwartung nach Aufwand; ein Vor-Ort‑Einsatz beinhaltet die Anfahrt. Beim Austausch eines PCs erfolgt die Einrichtung nach individueller Absprache. Die Kosten für eine laufende Betreuung klären wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget, mit fester Absprache vorab, keine Überraschungen. Kontaktieren Sie uns telefonisch unter +43 676 3808501 oder per WhatsApp."},
+             "a": "Ja. Für einen einzelnen Fall berechnen wir die Fernwartung nach Aufwand; ein Vor-Ort‑Einsatz beinhaltet die Anfahrt. Beim Austausch eines PCs erfolgt die Einrichtung nach individueller Absprache. Die Kosten für eine laufende Betreuung klären wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget, mit fester Absprache vorab, keine Überraschungen. Kontaktieren Sie uns telefonisch oder per WhatsApp."},
         ],
     },
 
@@ -439,7 +439,7 @@ REGIONEN = {
             {"q": "Wie weit ist es von Lenzing nach Grieskirchen?",
              "a": "Es sind 45 Kilometer, rund 55 Minuten Fahrt. Geplante Termine, etwa die Bestandsaufnahme oder ein Gerätetausch, sind damit gut machbar; „mal eben vorbeikommen“ ist es nicht. Die laufende Betreuung braucht die Strecke nicht, sie läuft über die gesicherte Fernwartung."},
             {"q": "Ich möchte nur Beratung zu einem Problem, ohne Vertrag. Geht das?",
-             "a": "Ja. Beratung und Einzelhilfe rechnen wir nach Aufwand – Fernwartung und Vor-Ort‑Einsatz inklusive Anfahrt. Einen neuen PC richten wir nach individueller Absprache ein. Die Konditionen für eine laufende Betreuung besprechen wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget, mit fester Absprache vorab, keine Überraschungen. Melden Sie sich gern telefonisch unter +43 676 3808501 oder per WhatsApp."},
+             "a": "Ja. Beratung und Einzelhilfe rechnen wir nach Aufwand – Fernwartung und Vor-Ort‑Einsatz inklusive Anfahrt. Einen neuen PC richten wir nach individueller Absprache ein. Die Konditionen für eine laufende Betreuung besprechen wir in einem kurzen Gespräch – fair und passend zu Ihrem Budget, mit fester Absprache vorab, keine Überraschungen. Melden Sie sich gern telefonisch oder per WhatsApp."},
         ],
     },
 
@@ -472,7 +472,7 @@ REGIONEN = {
             {"q": "Wie weit ist es von Lenzing nach Kirchdorf an der Krems?",
              "a": "Es sind 65 Kilometer, rund 50 Minuten Fahrt. Das ist ein gutes Stück, deshalb planen wir Termine vor Ort sorgfältig und bringen Ersatzteile mit. Wenn Sie jemanden brauchen, der binnen einer Stunde im Haus steht, sind Sie mit einem Anbieter im Tal besser bedient. Die laufende Betreuung ist davon nicht berührt."},
             {"q": "Wir haben ein einzelnes Problem. Geht das auch ohne Vertrag?",
-             "a": "Ja. Einen einzelnen Fall bearbeiten wir nach Aufwand – Fernwartung, bei Bedarf Vor-Ort‑Einsatz mit Anfahrt. Einen neuen PC richten wir nach individueller Absprache ein. Alle Angaben werden in einem kurzen Gespräch geklärt – fair und passend zu Ihrem Budget, mit fester Absprache vorab, keine Überraschungen. Rufen Sie uns an unter +43 676 3808501 oder schreiben Sie uns per WhatsApp."},
+             "a": "Ja. Einen einzelnen Fall bearbeiten wir nach Aufwand – Fernwartung, bei Bedarf Vor-Ort‑Einsatz mit Anfahrt. Einen neuen PC richten wir nach individueller Absprache ein. Alle Angaben werden in einem kurzen Gespräch geklärt – fair und passend zu Ihrem Budget, mit fester Absprache vorab, keine Überraschungen. Rufen Sie uns an oder schreiben Sie uns per WhatsApp."},
         ],
     },
 }

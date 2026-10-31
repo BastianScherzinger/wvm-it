@@ -93,7 +93,7 @@ class SchemaTest(SimpleTestCase):
 
 
 class TitelTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_wels_title_enthaelt_edv_und_preis_aus_katalog(self):
         html = _html("/it-service/wels/")
         titel = re.search(r"<title>(.*?)</title>", html, re.S).group(1)
@@ -103,7 +103,7 @@ class TitelTest(SimpleTestCase):
         self.assertLessEqual(len(desc), 155)
         self.assertIn("EDV", desc)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_wels_en_ro_haben_eigene_beschreibung(self):
         for pfad in ("/en/it-service/wels/", "/ro/it-service/wels/"):
             with self.subTest(pfad=pfad):
@@ -113,7 +113,7 @@ class TitelTest(SimpleTestCase):
 
 
 class KostenUndRatgeberTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_kosten_h2_und_faq_nennen_it_betreuung_kosten(self):
         html = _html("/kosten/")
         self.assertIn("IT-Betreuung Kosten im Monat", html)
@@ -141,7 +141,7 @@ class KostenUndRatgeberTest(SimpleTestCase):
         # Seit Schub 2 (16.10.2026) steht dort Variante B; der Test heißt aus Verlaufsgründen noch so.
         self.assertIn("<title>Konto vorübergehend gesperrt (Microsoft 365): Hilfe | WVM-IT</title>", html)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_einrichten_lassen_verlinkt_die_festpreisseite(self):
         html = _html("/aktuelles/microsoft-365-einrichten-lassen/")
         self.assertIn("Office 365 einrichten lassen: 290 € Festpreis</a>", html)

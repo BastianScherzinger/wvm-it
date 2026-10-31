@@ -137,7 +137,7 @@ SEITEN = {
             {"h": "Build and hand over", "t": "Installation, calibration, labelling, documentation. After that the network either runs inside ongoing support or you operate it yourself."},
         ],
         "preis_h": "Prices",
-        "preis_t": "The setup of network and Wi-Fi, and firewall and VPN, depends on the area, the building materials and the number of access points — which is precisely why we survey first rather than quote blind. Ongoing management of the network is also available. On-site work is billed hourly plus travel. For a precise quote, please call us at +43 676 3808501 or send us a WhatsApp message.",
+        "preis_t": "The setup of network and Wi-Fi, and firewall and VPN, depends on the area, the building materials and the number of access points — which is precisely why we survey first rather than quote blind. Ongoing management of the network is also available. On-site work is billed hourly plus travel. For a precise quote, please call us or send us a WhatsApp message.",
         "einrichtung_satz": "If only the firewall and VPN are missing: <a href=\"{url}\">firewall and VPN setup</a> at a price agreed upfront of {preis} — secure access from outside, protected network inside.",
         "faq": [
             {"q": "What does network support cost?",
@@ -158,9 +158,9 @@ SEITEN = {
     "it-sicherheit": {
         "nav": "IT security",
         "titel": "IT security check – WVM-IT",
-        "desc": "IT security check with a written report and action list. Firewall and VPN setup available. Pricing is discussed in a short call – call +43 676 3808501 or WhatsApp.",
+        "desc": "IT security check with a written report and action list. Firewall and VPN setup available. Pricing is discussed in a short call – call us or WhatsApp.",
         "h1": "IT security sized for a business, not for a corporation",
-        "kurz": "WVM-IT from Lenzing reviews IT security of small and mid-sized businesses and implements measures that truly help: permissions, passwords, firewall, VPN, updates, verified backups. The one‑off security check includes a written report and action list; firewall and VPN can be set up as needed. Pricing is clarified in a brief conversation – call +43 676 3808501 or WhatsApp.",
+        "kurz": "WVM-IT from Lenzing reviews IT security of small and mid-sized businesses and implements measures that truly help: permissions, passwords, firewall, VPN, updates, verified backups. The one‑off security check includes a written report and action list; firewall and VPN can be set up as needed. Pricing is clarified in a brief conversation – call us or WhatsApp.",
         "intro": "Most damage in small businesses is not caused by a targeted attack but by everyday things: a password that works everywhere, the account of somebody who left long ago, a machine without updates, a backup that is worthless. You do not need a corporate security concept to fix that. You need somebody to look systematically once and then work through the points that actually prevent damage.",
         "problem_h": "What we find almost everywhere",
         "probleme": [
@@ -185,7 +185,7 @@ SEITEN = {
             {"h": "Work through", "t": "You decide what gets implemented — including nothing. The report is yours and can be worked through by another provider just as well."},
         ],
         "preis_h": "Prices",
-        "preis_t": "The one‑off IT security check includes a written report. Firewall and VPN setup, additional measures, and ongoing support are priced individually based on your environment and needs. We agree on the details upfront, no surprises; contact us for a short discussion – +43 676 3808501 or WhatsApp.",
+        "preis_t": "The one‑off IT security check includes a written report. Firewall and VPN setup, additional measures, and ongoing support are priced individually based on your environment and needs. We agree on the details upfront, no surprises; contact us for a short discussion  or WhatsApp.",
         "faq": [
             {"q": "We are a small business. Are we even a target?",
              "a": "Most attacks are not selected but automated: they look for open access and old software, not for particular companies. Small businesses get hit precisely because somebody looks less often."},
@@ -231,7 +231,7 @@ SEITEN = {
             {"h": "Build, review, launch", "t": "You see progress along the way. At launch we set up hosting, domain and measurement so that from day one it is visible what happens."},
         ],
         "preis_h": "Prices",
-        "preis_t": "A one‑pager, a multi‑page business website, a premium site with animations, or an online shop can be created to match your needs. Ongoing costs include hosting with SSL, backups, and maintenance, all bundled in a customized plan. Domain registration is included as appropriate. Pricing is discussed in a brief call – call +43 676 3808501 or WhatsApp.",
+        "preis_t": "A one‑pager, a multi‑page business website, a premium site with animations, or an online shop can be created to match your needs. Ongoing costs include hosting with SSL, backups, and maintenance, all bundled in a customized plan. Domain registration is included as appropriate. Pricing is discussed in a brief call – call us or WhatsApp.",
         "faq": [
             {"q": "How long until the site is online?",
              "a": "A one-pager is usually ready in one to two weeks, a multi-page company site in three to five. What decides the pace is almost always how quickly copy, images and approvals reach us — not the programming. We confirm or decline tight deadlines up front, not afterwards."},
@@ -589,7 +589,7 @@ SEITEN = {
         "titel": "IT consulting | WVM-IT",
         "desc": "IT consulting with no vendor ties: assessment, concept, quote comparison and support — price discussed in a brief call. Request a free consultation now.",
         "h1": "IT consulting for businesses that need to make a decision",
-        "kurz": "WVM-IT from Lenzing advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. The cost depends on the scope and is clarified in a short conversation; call +43 676 3808501 or WhatsApp. We reply to enquiries within 24 hours on working days — even when the honest answer is that the investment isn’t worth it.",
+        "kurz": "WVM-IT from Lenzing advises small and medium-sized businesses in Austria and Germany before they invest in IT and building technology: assessment, written concept, comparison of outside quotes and support during implementation. The cost depends on the scope and is clarified in a short conversation; call us or WhatsApp. We reply to enquiries within 24 hours on working days — even when the honest answer is that the investment isn’t worth it.",
         "intro": "The most expensive IT decisions are rarely the wrong devices. They're the decisions nobody made: the server that keeps running for another year because nobody knows what comes next; the software chosen because one vendor called first; the two quotes you can't compare because they describe different things. Here, consulting doesn't mean a presentation. It means someone looks at what you have, listens to what you're planning, and writes down what that means for your technology.",
         "problem_h": "When consulting pays off",
         "probleme": [
@@ -639,7 +639,7 @@ SEITEN = {
         "titel": "Managed IT for larger businesses: 20+ seats | WVM-IT",
         "desc": "Managed IT from 20 workstations upwards: pricing is discussed in a short call. Request a quote.",
         "h1": "Managed IT support for larger businesses from 20 workstations",
-        "kurz": "WVM-IT from Lenzing also looks after larger businesses from roughly 20 workstations upwards: audit and living documentation, a named contact, monitoring of servers and network, multiple sites via secure remote maintenance. Day‑to‑day support and managed servers are priced after an initial conversation, with an agreed‑upfront arrangement, no surprises. If you already have an internal IT function, we work alongside it as a second tier for topics that fall between the daily cracks. Call +43 676 3808501 or WhatsApp to discuss your needs.",
+        "kurz": "WVM-IT from Lenzing also looks after larger businesses from roughly 20 workstations upwards: audit and living documentation, a named contact, monitoring of servers and network, multiple sites via secure remote maintenance. Day‑to‑day support and managed servers are priced after an initial conversation, with an agreed‑upfront arrangement, no surprises. If you already have an internal IT function, we work alongside it as a second tier for topics that fall between the daily cracks. Call us or WhatsApp to discuss your needs.",
         "intro": "Below about 20 workstations, <a href=\"/en/leistungen/edv-it-betreuung/\">IT support</a> for smaller businesses is the better fit; this page describes what changes above that. From about twenty workstations onwards the question changes: not „is anyone looking after this“ any more, but „how do we keep twenty accounts, ten shares, two servers and three sites in a state where somebody can still follow how it is built“ over the years. Larger businesses have contracts with customers that assume IT that works, and they have documentation duties that no piece of paper in the server room fulfils. That is where support built around a living inventory starts, not around a ticket queue. Below 20 workstations our <a href=\"/en/leistungen/edv-it-betreuung/\">IT support for small businesses</a> is the better fit — closer relationship, lower price per head.",
         "problem_h": "What goes wrong in larger businesses",
         "probleme": [

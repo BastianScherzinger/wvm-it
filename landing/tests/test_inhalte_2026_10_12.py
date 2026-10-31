@@ -95,7 +95,7 @@ class SchemaTest(SimpleTestCase):
             for k in artikel:
                 self.assertTrue(str(k.get("image", "")).startswith("https://"), pfad)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_ortsseiten_service_hat_offers(self):
         for r in regionen.REGIONEN:
             dienste = [k for k in _graph(_html(f"/it-service/{r['slug']}/")) if k.get("@type") == "Service"]
@@ -112,7 +112,7 @@ class SchemaTest(SimpleTestCase):
 
 
 class SeitenInhaltTest(SimpleTestCase):
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_kosten_h1_und_notfall(self):
         self.assertIn("<h1>Was kostet IT-Betreuung? Alle Preise auf einer Seite</h1>", _html("/kosten/"))
         notfall = _html("/it-notfall/")

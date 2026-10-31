@@ -160,7 +160,7 @@ SEITEN = {
     "it-sicherheit": {
         "nav": "Securitate IT",
         "titel": "Verificare de securitate IT – preț după discuție | WVM-IT",
-        "desc": "Verificare de securitate IT cu raport scris și listă de măsuri. Firewall și VPN configurate. Preț stabilit după scurtă discuție, fair și adaptat bugetului – sunați la +43 676 3808501 sau WhatsApp.",
+        "desc": "Verificare de securitate IT cu raport scris și listă de măsuri. Firewall și VPN configurate. Preț stabilit după scurtă discuție, fair și adaptat bugetului – sunați sau WhatsApp.",
         "h1": "Securitate IT pe măsura unei firme — nu a unui concern",
         "kurz": "WVM-IT din Lenzing verifică securitatea IT a firmelor mici și mijlocii și implementează măsurile esențiale: drepturi, parole, firewall, VPN, actualizări, backup-uri verificate. Costul verificării unice depinde de dimensiune, infrastructură și domeniu de aplicare; prețul se stabilește într-o scurtă discuție, fair și potrivit bugetului. Firewall și VPN se configurează după nevoi. Administrarea curentă se prețuiește per post de lucru și lună. Totul la distanță, în Austria și Germania.",
         "intro": "Cele mai multe pagube din firmele mici nu apar dintr-un atac țintit, ci din lucruri banale: o parolă valabilă peste tot, contul unui angajat plecat demult, un calculator fără actualizări, o salvare care nu valorează nimic. Nu e nevoie de un concept de securitate la scară de corporație pentru a opri asta. E nevoie de cineva care să se uite o dată sistematic și apoi să rezolve punctele care chiar previn pagube.",
@@ -187,7 +187,7 @@ SEITEN = {
             {"h": "Rezolvăm", "t": "Decideți ce se implementează — inclusiv nimic. Raportul vă aparține și poate fi rezolvat la fel de bine de un alt furnizor."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Verificarea unică de securitate IT include raportul scris; firewall și VPN se configurează după cerințe. Implementarea altor măsuri se facturează pe oră; administrarea curentă cu actualizări și monitorizare se prețuiește per post de lucru și lună. Prețul final se stabilește înainte, fără surprize, după o scurtă discuție – sunați la +43 676 3808501 sau WhatsApp.",
+        "preis_t": "Verificarea unică de securitate IT include raportul scris; firewall și VPN se configurează după cerințe. Implementarea altor măsuri se facturează pe oră; administrarea curentă cu actualizări și monitorizare se prețuiește per post de lucru și lună. Prețul final se stabilește înainte, fără surprize, după o scurtă discuție – sunați sau WhatsApp.",
         "faq": [
             {"q": "Suntem o firmă mică. Suntem chiar o țintă?",
              "a": "Cele mai multe atacuri nu sunt alese, ci automatizate: caută accese deschise și software vechi, nu firme anume. Tocmai firmele mici sunt lovite, pentru că acolo se uită cineva mai rar."},
@@ -233,7 +233,7 @@ SEITEN = {
             {"h": "Construim, verificăm, publicăm", "t": "Vedeți stadiul pe parcurs. La lansare configurăm găzduirea, domeniul și măsurarea, ca din prima zi să fie vizibil ce se întâmplă."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "One-pager, site business multipagină, pagină premium cu animații, magazin online – prețul depinde de complexitate și funcționalități. Găzduirea cu SSL și backup-uri, întreținerea și domeniul se prețuiesc lunar respectiv anual. Totul se stabilește înainte, fără surprize, după o scurtă discuție – sunați la +43 676 3808501 sau WhatsApp.",
+        "preis_t": "One-pager, site business multipagină, pagină premium cu animații, magazin online – prețul depinde de complexitate și funcționalități. Găzduirea cu SSL și backup-uri, întreținerea și domeniul se prețuiesc lunar respectiv anual. Totul se stabilește înainte, fără surprize, după o scurtă discuție – sunați sau WhatsApp.",
         "faq": [
             {"q": "Cât durează până pagina este online?",
              "a": "Un one-pager este de obicei gata în una-două săptămâni, un site de firmă cu mai multe pagini în trei-cinci. Ritmul îl decide aproape întotdeauna cât de repede ajung la noi textele, imaginile și aprobările — nu programarea. Termenele strânse le confirmăm sau le refuzăm dinainte, nu după."},
@@ -283,7 +283,7 @@ SEITEN = {
             {"h": "Conținut și administrare", "t": "Apoi pagina crește: pagini noi, răspunsuri mai bune, măsurare lunară. SEO nu este o acțiune, ci o parte a activității."},
         ],
         "preis_h": "Prețuri",
-        "preis_t": "Optimizarea SEO unică de bază și administrarea curentă se prețuiesc după efort și obiective. Google Ads opțional: configurare și administrare separate, au sens până când SEO produce efecte. Prețul final se stabilește înainte, fără surprize, după o scurtă discuție – sunați la +43 676 3808501 sau WhatsApp. Fără durată minimă sub trei luni; mai puțin nu se poate măsura.",
+        "preis_t": "Optimizarea SEO unică de bază și administrarea curentă se prețuiesc după efort și obiective. Google Ads opțional: configurare și administrare separate, au sens până când SEO produce efecte. Prețul final se stabilește înainte, fără surprize, după o scurtă discuție – sunați sau WhatsApp. Fără durată minimă sub trei luni; mai puțin nu se poate măsura.",
         "faq": [
             {"q": "Cât durează până SEO are efect?",
              "a": "Corecturile tehnice au efect în zile până în săptămâni. Paginile noi de servicii au nevoie, din experiență, de șase până la douăsprezece săptămâni ca să țină poziții stabile. Cine vă promite rezultate în două săptămâni vă vinde reclame și le numește SEO."},
@@ -425,13 +425,13 @@ SEITEN = {
         ],
         "abschnitte": [
             {"h": "Automatizarea programărilor",
-             "t": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e‑mail sau WhatsApp. Costul se stabilește în urma unui scurt dialog telefonic sau pe WhatsApp, cu „feste Absprache vorab, keine Überraschungen”. Pentru detalii sunați la +43 676 3808501."},
+             "t": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e‑mail sau WhatsApp. Costul se stabilește în urma unui scurt dialog telefonic sau pe WhatsApp, cu „feste Absprache vorab, keine Überraschungen”. Pentru detalii sunați."},
         ],
         "preis_h": "Prețuri",
         "preis_t": "Cât costă SEO sau Google Ads depinde de punctul de plecare și de amploare; stabilim în discuție.",
         "faq": [
             {"q": "Cum se poate automatiza programarea?",
-             "a": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e‑mail sau WhatsApp. Ce trebuie să decidă un om, de exemplu cazurile speciale, stabilim dinainte. Costul se stabilește în urma unui scurt dialog, cu „feste Absprache vorab, keine Überraschungen”. Pentru informații suplimentare sunați la +43 676 3808501."},
+             "a": "Clienții își rezervă singuri programarea online într-un calendar, în loc să o negocieze la telefon. Sincronizarea cu calendarul dumneavoastră previne dubla rezervare, iar confirmarea pleacă automat prin e‑mail sau WhatsApp. Ce trebuie să decidă un om, de exemplu cazurile speciale, stabilim dinainte. Costul se stabilește în urma unui scurt dialog, cu „feste Absprache vorab, keine Überraschungen”. Pentru informații suplimentare sunați."},
             {"q": "Un chatbot înlocuiește un angajat?",
              "a": "Nu, și nici nu îl vindem așa. Preia întrebările mereu identice și adună solicitări în afara programului. Tot ce necesită o decizie ajunge la un om — asta o stabilim dinainte."},
             {"q": "Unde ajung datele clienților noștri?",
@@ -572,7 +572,7 @@ SEITEN = {
         "preis_t": "Între o sonorizare pentru sala unei asociații și o scenă cu lumină, video și streaming sunt ordine de mărime distanță; un preț de pornire aici ar fi o cifră fără sens. Ne uităm la încăpere și calculăm pe proiect, cu listă de echipamente. Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp.",
         "faq": [
             {"q": "Cât costă tehnica pentru evenimente într-o sală?",
-             "a": "Depinde aproape în întregime de mărimea încăperii și de ce trebuie să poată face aceasta. O sonorizare inteligibilă pentru sala unei asociații e un proiect diferit de o scenă cu lumină și redare video. După vizionare primiți o listă de echipamente cu preț — înainte de asta orice cifră ar fi doar o presupunere. Lucrările la fața locului se facturează în funcție de complexitate, costul fiind stabilit în prealabil, cu „feste Absprache vorab, keine Überraschungen”. Pentru o ofertă personalizată contactați-ne la +43 676 3808501."},
+             "a": "Depinde aproape în întregime de mărimea încăperii și de ce trebuie să poată face aceasta. O sonorizare inteligibilă pentru sala unei asociații e un proiect diferit de o scenă cu lumină și redare video. După vizionare primiți o listă de echipamente cu preț — înainte de asta orice cifră ar fi doar o presupunere. Lucrările la fața locului se facturează în funcție de complexitate, costul fiind stabilit în prealabil, cu „feste Absprache vorab, keine Überraschungen”. Pentru o ofertă personalizată contactați-ne."},
             {"q": "Modernizați tehnica existentă sau trebuie totul nou?",
              "a": "În majoritatea sălilor există mai mult material utilizabil decât cred utilizatorii. Deseori nu lipsește tehnica, ci calibrarea, o cablare sensibilă și o operare pe care oricine o poate folosi. Verificăm întâi ce poate oferi ce există deja."},
             {"q": "Asistați și la evenimente individuale?",
@@ -621,7 +621,7 @@ SEITEN = {
         "preis_t": "Ajutorul punctual și intervențiile la fața locului se facturează după efort; costurile le discutăm din timp. Discuția inițială este gratuită. O evaluare cu concept scris necesită, de regulă, pentru o firmă obișnuită, între jumătate de zi și două zile de efort; estimarea o comunicăm dinainte și o respectăm sau anunțăm înainte să fie depășită. Dacă ne dați implementarea, decontăm orele de consultanță.",
         "faq": [
             {"q": "Cât costă o consultanță IT?",
-             "a": "Discuția inițială este gratuită. O evaluare completă cu concept scris pentru o firmă cu zece până la treizeci de posturi de lucru durează de obicei între patru și șaisprezece ore. Cadrul îl comunicăm înainte de început, iar tariful se stabilește după discuția inițială, cu „feste Absprache vorab, keine Überraschungen”. Pentru detalii sunați la +43 676 3808501."},
+             "a": "Discuția inițială este gratuită. O evaluare completă cu concept scris pentru o firmă cu zece până la treizeci de posturi de lucru durează de obicei între patru și șaisprezece ore. Cadrul îl comunicăm înainte de început, iar tariful se stabilește după discuția inițială, cu „feste Absprache vorab, keine Überraschungen”. Pentru detalii sunați."},
             {"q": "Sunteți legați de un anumit producător?",
              "a": "Nu. Colaborăm cu parteneri acolo unde e necesar din punct de vedere tehnic — la automatizarea clădirilor și tehnica pentru evenimente, de exemplu —, dar nu primim niciun comision pentru a recomanda un anumit produs. Dacă o recomandare este avantajoasă financiar pentru noi, spunem asta în concept."},
             {"q": "Consiliați și atunci când implementarea o face alt furnizor?",

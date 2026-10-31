@@ -77,7 +77,7 @@ class LlmsAusDenListenTest(SimpleTestCase):
         with mock.patch.dict(pack["kopf"], {"erreichbar": "Erreichbar Mo–Do 8–12 Uhr"}):
             self.assertIn("Erreichbar Mo–Do 8–12 Uhr.", _llms().split("\n## ")[0])
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_preisabschnitt_folgt_dem_katalog(self):
         """Der Abschnitt „Preise“ hat keine zweite Zahl: eine geänderte Katalogzahl
         erscheint dort, die alte nicht mehr."""
@@ -91,7 +91,7 @@ class LlmsAusDenListenTest(SimpleTestCase):
         self.assertIn(f"One-Pager ab {neu} €", abschnitt(nachher))
         self.assertNotIn(f"One-Pager ab {alt} €", abschnitt(nachher))
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_preisabschnitt_nennt_jede_katalogzahl_seiner_zeilen(self):
         p = views._ANGEBOT_INDEX
         abschnitt = _llms()
@@ -107,7 +107,7 @@ class LlmsAusDenListenTest(SimpleTestCase):
             with self.subTest(posten=pid):
                 self.assertIn(f"{views._thousands(p[pid][feld], sep)} €", abschnitt)
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Betrag-Assertion: Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_einrichtungen_stehen_nie_mit_ab_neben_festpreis(self):
         """EIG213: Die Zeile „Einmalig“ nennt dieselben Einrichtungen wie die Liste
         darüber, ohne „ab“."""
@@ -127,7 +127,7 @@ class OpenGraphEindeutigTest(SimpleTestCase):
         m = re.search(r'<meta property="%s" content="([^"]*)"' % name, seite)
         return html.unescape(m.group(1)).strip() if m else ""
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "GEO-OFFEN: Assertion mischt Betrag und Signal, Text noch nachschaerfen (Lauf 3, 31.10.2026)")
     def test_kein_og_paar_gehoert_zwei_adressen(self):
         c = _util.client()
         titel, beschr = defaultdict(list), defaultdict(list)

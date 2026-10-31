@@ -13,6 +13,8 @@ Was nicht auseinanderlaufen darf:
 5. Die Meldung im Film ist wörtlich die im Ratgeber.
 """
 import json
+import unittest as _ut_op
+from landing import views as _v_op
 import re
 from pathlib import Path
 
@@ -54,6 +56,7 @@ class SeitenTest(SimpleTestCase):
     def setUp(self):
         self.c = _util.client()
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_it_hilfe_hat_den_film(self):
         html = self.c.get("/it-hilfe/").content.decode()
         tag = _video_tag(html)
@@ -63,17 +66,20 @@ class SeitenTest(SimpleTestCase):
         self.assertIn("fernwartung-4-schritte.mp4", html)
         self.assertIn("js/video.js", html)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_webm_vor_mp4(self):
         # Runde 1: VP9 zuerst (kleiner), H.264 als Rückfall
         html = self.c.get("/it-hilfe/").content.decode()
         self.assertLess(html.index('type="video/webm"'), html.index('type="video/mp4"'))
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_it_hilfe_film_steht_oben(self):
         # Runde 1: nach dem Antwortabsatz, vor dem ersten Abschnitt (vorher ≈ 5.000 px tief)
         html = self.c.get("/it-hilfe/").content.decode()
         self.assertGreater(html.index("<video"), html.index('class="antwort'))
         self.assertLess(html.index("<video"), html.index('<h2 class="sp-h2"'))
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_ratgeber_hat_den_film(self):
         html = self.c.get("/aktuelles/microsoft-365-konto-gesperrt/").content.decode()
         tag = _video_tag(html)
@@ -82,6 +88,7 @@ class SeitenTest(SimpleTestCase):
         self.assertNotIn("autoplay", tag)
         self.assertIn("microsoft-365-konto-gesperrt.mp4", html)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_film_steht_nicht_im_kopfbereich_des_ratgebers(self):
         # LCP: der Film darf nicht vor der Antwort und dem ersten Anrufkasten stehen
         html = self.c.get("/aktuelles/microsoft-365-konto-gesperrt/").content.decode()
@@ -96,6 +103,7 @@ class SeitenTest(SimpleTestCase):
             self.assertNotIn("<video", antwort.content.decode(), pfad)
             self.assertNotIn('"VideoObject"', antwort.content.decode(), pfad)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_startseite_film_steht_unter_dem_hero(self):
         # Runde 1 (Bastian 22.10.2026): ein Film an der Stelle der KI-Fotos — im Wegweiser, nie im Hero.
         html = self.c.get("/").content.decode()
@@ -109,6 +117,7 @@ class SeitenTest(SimpleTestCase):
             self.assertIn(attr, tag)
         self.assertNotIn("autoplay", tag)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_ortsseiten_tragen_genau_einen_film(self):
         from landing import regionen
         for r in regionen.REGIONEN:
@@ -129,6 +138,7 @@ class SchemaTest(SimpleTestCase):
         html = _util.client().get(pfad).content.decode()
         return [k for k in _json_ld(html) if k.get("@type") == "VideoObject"]
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_videoobject_vollstaendig(self):
         for pfad, schluessel in (("/it-hilfe/", "fernwartung"), ("/", "fernwartung"),
                                  ("/it-service/wels/", "fernwartung"),
@@ -187,6 +197,7 @@ class StartVerhaltenTest(SimpleTestCase):
 class VideoSitemapTest(SimpleTestCase):
     """Runde 1: die Video-Sitemap nennt genau die Seiten, auf denen der Film steht."""
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_nur_watch_pages_in_der_video_sitemap(self):
         """23.10.2026: Startseite und Ortsseiten tragen VideoObject, stehen aber nicht in der Sitemap."""
         xml = _util.client().get("/sitemap-video.xml").content.decode()
@@ -206,6 +217,7 @@ class JedeSeiteEigeneAngabenTest(SimpleTestCase):
         html = _util.client().get(pfad).content.decode()
         return [k for k in _json_ld(html) if k.get("@type") == "VideoObject"][0]
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_ortsseiten_haben_eigene_beschreibung_mit_ort(self):
         from landing import regionen
         gesehen = set()
@@ -218,12 +230,14 @@ class JedeSeiteEigeneAngabenTest(SimpleTestCase):
             self.assertLessEqual(len(k["description"]), 2048)
         self.assertEqual(len(gesehen), len(regionen.REGIONEN))
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_startseite_hilfe_und_ortsseite_unterscheiden_sich(self):
         texte = {self._knoten(p)["description"] for p in ("/", "/it-hilfe/", "/it-service/wels/")}
         namen = {self._knoten(p)["name"] for p in ("/", "/it-hilfe/", "/it-service/wels/")}
         self.assertEqual(len(texte), 3)
         self.assertEqual(len(namen), 3)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_transcript_steht_im_schema_und_sichtbar_auf_der_seite(self):
         for pfad in ("/it-hilfe/", "/", "/aktuelles/microsoft-365-konto-gesperrt/"):
             html = _util.client().get(pfad).content.decode()

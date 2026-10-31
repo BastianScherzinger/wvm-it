@@ -40,7 +40,6 @@ class MarkeImTitelTest(SimpleTestCase):
                 continue
             cls.titel.append((pfad, html.unescape(_TITLE.search(seite).group(1)).strip()))
 
-    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Preise ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_marke_steht_hinter_trennzeichen_am_titelende(self):
         falsch = []
         for pfad, titel in self.titel:

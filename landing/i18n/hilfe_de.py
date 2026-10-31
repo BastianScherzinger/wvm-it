@@ -24,11 +24,11 @@ Regeln für diese Texte:
 
 HILFE = {
     "titel": "IT-Hilfe in ganz Österreich – Fernwartung von WVM-IT",
-    "desc": "Konto gesperrt, E‑Mail, Drucker, WLAN – WVM‑IT aus Lenzing unterstützt Österreich per Fernwartung, ohne Vertrag, Mo–Sa ab 7:30 Uhr. Preis im Gespräch.",
+    "desc": "Konto gesperrt, E‑Mail, Drucker, WLAN – WVM-IT aus Lenzing unterstützt Österreich per Fernwartung, ohne Vertrag, Mo–Sa ab 7:30 Uhr. Preis im Gespräch.",
     "h1": "IT-Hilfe per Fernwartung in ganz Österreich — ohne Vertrag, meist am selben Tag",
     # Kurzlabel für Navigation, Fußzeile und Brotkrume.
     "nav": "IT-Hilfe",
-    "kurz": "Bei gesperrtem Konto, ausgefallener E‑Mail, Drucker‑ oder PC‑Problemen hilft WVM‑IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, meist am selben Tag und ohne Vertrag. Vor Ort klären wir den Aufwand nach kurzer Absprache, fair und passend zu Ihrem Budget.",
+    "kurz": "Bei gesperrtem Konto, ausgefallener E‑Mail, Drucker‑ oder PC‑Problemen hilft WVM-IT aus Lenzing in ganz Österreich per Fernwartung, Mo–Sa ab 7:30 Uhr, meist am selben Tag und ohne Vertrag. Vor Ort kommen wir nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing; den Aufwand klären wir vorab.",
     "kurz_mehr": "Ganze Aufgaben haben eine feste Absprache vorab, keine Überraschungen: ein neuer Arbeitsplatz, Microsoft 365‑Einrichtung usw. Die Fernwartung gilt in ganz Österreich und Deutschland, auch ohne weitere Buchungen.",
     "eilt_h": "Am schnellsten geht es so",
     "eilt_t": "Rufen Sie an oder schreiben Sie per WhatsApp, was nicht geht. Ein Satz genügt, ein Foto der Fehlermeldung hilft.",
@@ -83,7 +83,7 @@ HILFE = {
     "vergleich_link": "Betreuung oder Stundenabrechnung? Der Vergleich",
     "faq": [
         {"q": "Was kostet eine Stunde Fernwartung?",
-         "a": "Die Abrechnung erfolgt nach Aufwand, ohne Vertrag; vor Ort wird der Aufwand nach kurzer Absprache berechnet."},
+         "a": "Bei WVM-IT gilt in ganz Österreich dasselbe: Abrechnung nach Aufwand, ohne Vertrag; vor Ort wird der Aufwand nach kurzer Absprache vorab geklärt."},
         {"q": "Brauche ich einen Vertrag, damit Sie mir helfen?",
          "a": "Nein. Einzelne Hilfe rechnen wir nach Aufwand ab: Fernwartung und Vor‑Ort‑Einsatz werden im Gespräch individuell abgestimmt."},
         {"q": "Wie schnell bekomme ich Hilfe?",

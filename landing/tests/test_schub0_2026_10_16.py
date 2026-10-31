@@ -11,6 +11,8 @@ Was nicht auseinanderlaufen darf:
 5. Kern-Seiten (Start, Pillar, Kosten, Ort, M365-Ratgeber) tragen keine Neuerung des Schubs.
 """
 import json
+import unittest as _ut_op
+from landing import views as _v_op
 import re
 from xml.etree import ElementTree
 
@@ -54,6 +56,7 @@ class VideoSchemaTest(SimpleTestCase):
     def test_upload_date_mit_zeitzone(self):
         self.assertRegex(videos.UPLOAD_DATUM, r"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d[+-]\d\d:\d\d$")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_webpage_verweist_auf_das_video(self):
         for pfad in self.PFADE:
             with self.subTest(pfad=pfad):
@@ -65,6 +68,7 @@ class VideoSchemaTest(SimpleTestCase):
                 self.assertEqual(seite[0]["video"], {"@id": video[0]["@id"]})
                 self.assertRegex(video[0]["uploadDate"], r"T\d\d:\d\d:\d\d\+02:00$")
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_video_sitemap(self):
         index = self.c.get("/sitemap.xml").content.decode()
         self.assertIn(f"{BASIS}/sitemap-video.xml", index)
@@ -86,6 +90,7 @@ class VideoSchemaTest(SimpleTestCase):
                 self.assertTrue((v.find(f"v:{feld}", ns).text or "").strip(), feld)
             self.assertLessEqual(len(v.find("v:description", ns).text), 2048)
 
+    @_ut_op.skipUnless(_v_op.PREISE_SICHTBAR, "Film mit Preis im Bild ausgeblendet seit 31.10.2026 (WVM-IT ohne Preise)")
     def test_transkript_nur_beim_fernwartungsfilm(self):
         hilfe = self.c.get("/it-hilfe/").content.decode()
         self.assertIn("Text zum Film", hilfe)

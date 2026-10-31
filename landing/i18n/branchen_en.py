@@ -84,14 +84,14 @@ BRANCHEN = {
         "risiko_h": "The most expensive failure in the trades",
         "risiko_t": "Not the server outage but the quiet data loss: a phone goes missing, and a week of photos with it. A fitter leaves, and nobody can get into his account. A laptop is stolen, unencrypted, with customer addresses on it. These are not IT disasters but everyday events — and all three can be solved beforehand: device management, encryption, a leaver process. The IT security check walks through exactly these points and ends with a sorted list. The price is clarified in a short conversation, fair and fitting your budget.",
         "preis_h": "What it costs",
-        "preis_t": "Ongoing support is tailored to the number of workstations, servers and backup needs, with pricing agreed upfront, no surprises. Managed servers, monitored backups and network setups are priced after a brief discussion. Ad‑hoc help and on‑site work are also quoted in a short call. Call +43 676 3808501 or WhatsApp for a quick, fair estimate.",
+        "preis_t": "Ongoing support is tailored to the number of workstations, servers and backup needs, with pricing agreed upfront, no surprises. Managed servers, monitored backups and network setups are priced after a brief discussion. Ad‑hoc help and on‑site work are also quoted in a short call. Call us or WhatsApp for a quick, fair estimate.",
         "faq": [
             {"q": "Our order emails end up in spam. What can we do?",
              "a": "Usually the sender details of the domain are wrong: if the entries for SPF, DKIM and DMARC are missing, recipients rate your emails as suspicious. We check this, add the entries and test sending. This works by remote support, without anyone at the business having to wait."},
             {"q": "What does IT support for tradespeople include?",
              "a": "Updates of the office PCs run outside working hours, the backup is checked daily and a restore is tried out at intervals. New employees get their account, departing ones lose it the same day. For faults you send a photo of the error message by WhatsApp or call; we solve most of it by remote support and replace hardware on site within our service area."},
             {"q": "What does IT support cost for a trades business with four office PCs?",
-             "a": "Ongoing support is priced per workstation and month, with additional options such as monitored backups or server hosting discussed individually. Remote assistance outside the support package is billed after a quick chat to determine the effort required. All figures are provided after a short conversation, with a firm agreement up front, no surprises. Call +43 676 3808501 or send a WhatsApp message to learn more."},
+             "a": "Ongoing support is priced per workstation and month, with additional options such as monitored backups or server hosting discussed individually. Remote assistance outside the support package is billed after a quick chat to determine the effort required. All figures are provided after a short conversation, with a firm agreement up front, no surprises. Call us or send a WhatsApp message to learn more."},
             {"q": "Our Wi-Fi does not reach the workshop. Is a repeater enough?",
              "a": "Usually not. A repeater halves the available bandwidth and transmits on the same channel as the device it is meant to extend, so the two interfere. In a workshop with metal racking and machines the answer is nearly always a survey, a second access point on its own cable and clean channel planning. That costs once and then holds."},
             {"q": "Can our fitters work without a signal?",
@@ -110,7 +110,7 @@ BRANCHEN = {
         "titel": "IT support for medical and dental practices | WVM-IT",
         "desc": "IT support for medical and dental practices: tailored pricing discussed in a short conversation. Remote maintenance, no downtime. Get a quote.",
         "h1": "IT for medical, dental and therapy practices",
-        "kurz": "WVM‑IT looks after the IT of medical, dental and therapy practices in Austria and Germany: workstations, practice management systems, separate networks for medical devices, access rights and backups. The one‑off IT security check and ongoing support are priced after a brief chat, with a clear agreement up front, no surprises. Work is done by remote maintenance — the only way that doesn’t halt consulting hours.",
+        "kurz": "WVM-IT looks after the IT of medical, dental and therapy practices in Austria and Germany: workstations, practice management systems, separate networks for medical devices, access rights and backups. The one‑off IT security check and ongoing support are priced after a brief chat, with a clear agreement up front, no surprises. Work is done by remote maintenance — the only way that doesn’t halt consulting hours.",
         "intro": "A practice has two properties that are demanding in combination: it processes the most sensitive category of data there is, and it cannot stand still between eight and twelve. Together that means technology here does not need to be spectacular but reliably dull — and that every change happens outside consulting hours.",
         "anders_h": "What is different in a practice",
         "anders": [
@@ -134,7 +134,7 @@ BRANCHEN = {
         "risiko_h": "The most common finding in practices",
         "risiko_t": "One shared login for the whole team, because it is quicker at reception. That makes every log worthless — you can show that a record was opened, but not by whom. The second common finding: a device that has sat on the same network as the workstations for years and no longer receives updates. Both are solvable without new hardware. The IT security check examines exactly these points and delivers a prioritized list. Pricing is clarified in a short conversation, fair to your budget.",
         "preis_h": "What it costs",
-        "preis_t": "The one‑off IT security check is followed by a written report; ongoing support, managed servers, monitored backups and firewall setups are all priced after a brief discussion. All costs are agreed upfront, no surprises. For ad‑hoc help or on‑site work we provide a clear quote in a short call. Call +43 676 3808501 or WhatsApp to discuss your needs.",
+        "preis_t": "The one‑off IT security check is followed by a written report; ongoing support, managed servers, monitored backups and firewall setups are all priced after a brief discussion. All costs are agreed upfront, no surprises. For ad‑hoc help or on‑site work we provide a clear quote in a short call. Call us or WhatsApp to discuss your needs.",
         "faq": [
             {"q": "What about the card reader for the e-card in the practice network?",
              "a": "The connection to the e-card system runs through the health information network of the social insurance and an access-network provider, not through us; reader and router come from there. We replace neither connection nor device. We look after the practice network around it: administration, guest Wi-Fi and reception devices cleanly separated, a network port and power at the reader, remote support only with your approval. For device type and terms ask the social insurance or your provider."},
@@ -153,7 +153,7 @@ BRANCHEN = {
 
     "hotellerie-gastronomie": {
         "nav": "Hotels & hospitality",
-        "titel": "Wi‑Fi planning for hotels in Austria | WVM‑IT",
+        "titel": "Wi‑Fi planning for hotels in Austria | WVM-IT",
         "desc": "IT for hotels and restaurants: guest Wi‑Fi separated from operations, POS, booking links, seasonal load. Pricing discussed in a short call. Request a quote.",
         "h1": "IT, Wi-Fi and technology for hotels and hospitality",
         "kurz": "WVM-IT plans and looks after the technology of hotels, guesthouses and hospitality businesses in Austria and Germany: guest Wi-Fi separated from the operational network, POS systems, booking connections, workstations and backups. Network, Wi-Fi, firewall and VPN depend on size and building; we clarify the price in a call. Planning is done remotely; building and surveying happen on site.",
@@ -224,7 +224,7 @@ BRANCHEN = {
         "risiko_h": "Where it gets expensive in manufacturing",
         "risiko_t": "A flat network. Office, production, machines and guests sit in the same segment because that is how it once started. As a result every device reaches every other — including the controller that no longer gets updates, and the supplier's remote access. Retrofitting the separation is work, but it rarely needs new hardware: in most businesses the existing switches can already do it, it was simply never configured.",
         "preis_h": "What it costs",
-        "preis_t": "Surveying, planning and setting up network and Wi-Fi for hall and store, firewall and separate networks, managed servers, and monitored backups are scoped individually; fixed fees are agreed upfront with no surprises. Ongoing support, ad-hoc help, and on-site work are billed based on actual effort; rates are clarified in a short conversation. Call +43 676 3808501 or WhatsApp for a fair quote tailored to your budget.",
+        "preis_t": "Surveying, planning and setting up network and Wi-Fi for hall and store, firewall and separate networks, managed servers, and monitored backups are scoped individually; fixed fees are agreed upfront with no surprises. Ongoing support, ad-hoc help, and on-site work are billed based on actual effort; rates are clarified in a short conversation. Call us or WhatsApp for a fair quote tailored to your budget.",
         "faq": [
             {"q": "Our machine controller runs on an old Windows version. What now?",
              "a": "Do not replace it — segregate it. A system without updates is manageable as long as it sits in its own network segment and may only talk to what it needs to talk to. That is the usual route in manufacturing and as a rule considerably cheaper than a machine upgrade that was never designed for."},
@@ -244,7 +244,7 @@ BRANCHEN = {
         "titel": "IT for associations in Austria | WVM-IT",
         "desc": "IT for associations and municipalities: handovers, website, hall technology. Price clarified in a quick call, fair and budget-friendly. Get in touch now.",
         "h1": "IT for associations, municipalities and volunteer organisations",
-        "kurz": "WVM-IT supports associations, municipal bodies and volunteer‑run organisations in Austria and Germany: accounts and credentials that survive a change of committee, website and email, backups, plus technology in halls and meeting rooms. The cost depends on the number of hours and the specific services required; we discuss it in a short call, fair and fitting your budget. Call +43 676 3808501 or WhatsApp for a quick chat.",
+        "kurz": "WVM-IT supports associations, municipal bodies and volunteer‑run organisations in Austria and Germany: accounts and credentials that survive a change of committee, website and email, backups, plus technology in halls and meeting rooms. The cost depends on the number of hours and the specific services required; we discuss it in a short call, fair and fitting your budget. Call us or WhatsApp for a quick chat.",
         "intro": "In an association nobody looks after the technology full time. There is someone who can do it, and they do — until they hand over the office. More is lost at that point than through any technical defect: passwords, domain access, membership lists, the account with the email provider. Not through ill will, but because it was never written down.",
         "anders_h": "What is different for associations and municipalities",
         "anders": [
