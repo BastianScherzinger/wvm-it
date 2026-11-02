@@ -524,8 +524,8 @@ EINRICHTEN = {
         "nicht_t": "Das Gerät selbst. Ein Router aus dem Elektromarkt kann vieles davon "
                    "nicht — vor allem keine sauber getrennten Netze und kein VPN mit "
                    "Zwei-Faktor. Was ein passendes Gerät kostet, sagen wir vorher; für "
-                   "einen kleinen Betrieb liegt es meist deutlich unter dieser "
-                   "Einrichtung.",
+                   "einen kleinen Betrieb ist es meist deutlich weniger Aufwand als "
+                   "die Einrichtung selbst.",
 
         "ablauf_h": "Wie es abläuft",
         "ablauf": [

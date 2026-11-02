@@ -82,7 +82,7 @@ muss vor dem ersten `href="/einrichten/"` stehen (Test).
   </div>{% endcache %}
 
   <div class="wrap foot-bottom">
-    <span>© {{ c.jahr }} {{ c.site_name }}{% if c.webagentur_url %} · {{ t.footer.credit_vor|safe }}<a class="foot-credit-link" href="{{ c.webagentur_url }}/">{{ t.footer.credit_marke|safe }}</a>{% endif %}</span>
+    <span>© {{ c.jahr }} {{ c.site_name }}{% if c.webagentur_url %} · {{ t.footer.credit_vor|safe }}<a class="foot-credit-link" href="{{ c.webagentur_url }}/webdesign/">{{ t.footer.credit_marke|safe }}</a>{% endif %}</span>
     {% sprachumschalter %}
     <a class="foot-join" href="{% url 'kontakt' %}#kooperationen">{{ t.koop.join_h|safe }}</a>
     <span class="foot-credit">{{ c.wvm_url|cut:"https://"|cut:"http://" }}</span>

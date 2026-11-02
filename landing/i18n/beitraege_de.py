@@ -932,3 +932,8 @@ BEITRAEGE.update(_neu_b.TEXTE)
 from . import beitraege_saison_de as _saison  # noqa: E402
 
 BEITRAEGE.update(_saison.TEXTE)
+
+# SEO/GEO-Upgrade 02.11.2026 (B1)
+from . import beitraege_server_de as _server  # noqa: E402
+
+BEITRAEGE.update(_server.TEXTE)

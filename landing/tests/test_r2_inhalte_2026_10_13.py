@@ -67,7 +67,7 @@ class QuellenTest(SimpleTestCase):
     def test_beitrag_zeigt_quellenblock_mit_follow_links_und_citation(self):
         html = _html("/aktuelles/ransomware-befall-was-tun/")
         self.assertIn("bt-quellen", html)
-        self.assertIn("13.10.2026", html)
+        self.assertIn("02.11.2026", html)
         block = html.split("bt-quellen", 1)[1].split("</aside>", 1)[0]
         self.assertIn('href="https://', block)
         self.assertNotIn("nofollow", block)

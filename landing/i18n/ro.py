@@ -391,7 +391,7 @@ PACK = {
         "agb": "Condiții", "barrierefreiheit": "Accesibilitate",
         # Credit-Link in der Copyright-Leiste (03.10.2026, mit Zustimmung von Florin):
         # nur der Markenname ist verlinkt, normaler Link ohne nofollow.
-        "credit_vor": "Website realizat de ", "credit_marke": "Webagentur Scherzinger",
+        "credit_vor": "Website realizat de Webagentur Scherzinger, ", "credit_marke": "web design din Lübeck",
     },
     "mobilebar": {"call": "Sunați"},
     "fehler": {
@@ -1151,6 +1151,13 @@ PACK = {
         "h1": "Cât costă administrarea IT? Toate prețurile pe o singură pagină",
         "kurz": "WVM-IT din Lenzing deservește firme prin acces la distanță în toată Austria (și Germania) și la fața locului, cu programare, pe o rază de aproximativ o oră de mers cu mașina în jurul Lenzing; administrarea IT curentă, un server administrat, copiile de siguranță monitorizate. Ajutorul punctual, intervențiile la fața locului. Un site, administrarea SEO, Google Ads.",
         "intro": "\u201ePreț la cerere\u201d este comod pentru furnizor și enervant pentru client. De aceea aici scrie tot ce se poate cuantifica rezonabil – iar acolo unde nu se poate, scrie de ce. Cifrele de mai jos vin din aceeași sursă ca și configuratorul și ofertele noastre; nu există o a doua listă de prețuri.",
+        "faktoren": [
+            {"n": "Posturi de lucru", "t": "Fiecare PC și laptop administrat are nevoie de actualizări, monitorizare și ajutor zilnic; efortul curent crește cu numărul de dispozitive."},
+            {"n": "Servere", "t": "Un server propriu este monitorizat și întreținut suplimentar. Dacă datele sunt în cloud, această parte dispare."},
+            {"n": "Copii de siguranță", "t": "Câte date se salvează, unde și cât de des, și dacă restaurarea trebuie testată periodic."},
+            {"n": "Partea la fața locului", "t": "Cea mai mare parte se face prin acces la distanță; deplasările la fața locului se adaugă, plus transportul, și depind de distanța față de Lenzing."},
+            {"n": "Disponibilitate dorită", "t": "Cât de repede și în ce intervale să fie disponibil ajutorul se stabilește în discuție și se consemnează în scris."},
+        ],
         "ort_satz": "La fața locului lucrăm, printre altele, la <a href=\"/ro/it-service/salzburg/\">Salzburg</a> și <a href=\"/ro/it-service/linz/\">Linz</a>, iar prin acces la distanță în toată Austria.",
         "warum_h": "De ce la unele nu apare un preț",
         "warum_t": "La automatizarea clădirilor și la tehnica pentru conferințe și evenimente prețul depinde atât de mult de încăpere, de instalația existentă și de amploare, încât un preț de pornire nu ar spune nimic. Aceste lucrări le calculăm pe proiect și dăm prețul în scris după o evaluare la fața locului – înainte de prima intervenție.",

@@ -3423,6 +3423,11 @@ def _mit_zusatz(daten, art, lang="de"):
     Österreich-Absatz (`at_t2`, sonst `at_t`). Ohne Eintrag bleibt `daten` unverändert."""
     from .i18n.verlinkung_zusatz import PILLAR_SAETZE, PILLAR_URL, ZUSATZ
     satz = ZUSATZ.get(art, {}).get(lang, {}).get(daten.get("slug"))
+    if lang == "de":
+        from .i18n.seo_1102 import ZUSATZ_PLUS
+        plus = ZUSATZ_PLUS.get(art, {}).get(daten.get("slug"))
+        if plus:
+            satz = ((satz + " ") if satz else "") + " ".join(plus)
     if art == "beitrag" and lang == "de" and daten.get("slug") in PILLAR_SAETZE:
         # W2 (R2-01): zweiter Satz mit eigenem Anker, der auf den Leitbeitrag verweist.
         satz = ((satz + " ") if satz else "") + PILLAR_SAETZE[daten["slug"]] % {"u": PILLAR_URL}

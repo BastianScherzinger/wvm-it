@@ -36,7 +36,7 @@ CONV = {
     "ak_submit": "Rückruf anfordern",
     "ds_kurz": "Ihre Angaben nutzen wir nur, um diese Anfrage zu beantworten, keine Werbung ohne Ihre Zustimmung. Mehr in der",
     # ── Aufklapper Kosten / Angebot ─────────────────────────────────────────────
-    "kosten_mehr": "Wie diese Preise zustande kommen",
+    "kosten_mehr": "Wovon der Preis abhängt",
     "angebot_mehr": "Was Richtpreis bedeutet",
     # ── Ortsseiten ──────────────────────────────────────────────────────────────
     "rg_band_h": "Lieber gleich sprechen?",

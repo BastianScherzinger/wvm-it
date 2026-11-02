@@ -16,12 +16,12 @@ ZUSATZ = {
     "beitrag": {
         "de": {
             "loxone-oder-knx": "Wie wir eine Anlage ans Netz anbinden und worauf dabei zu achten ist, steht unter <a href='/einrichten/loxone/'>Loxone einrichten lassen</a>.",
-            "alte-windows-version-im-betrieb": "Wie ein umgestellter Arbeitsplatz aussieht und was die Einrichtung kostet, zeigt die Seite <a href='/einrichten/windows-11/'>Windows 11 einrichten lassen</a>.",
+            "alte-windows-version-im-betrieb": "Wie ein umgestellter Arbeitsplatz aussieht und wie die Einrichtung abläuft, zeigt die Seite <a href='/einrichten/windows-11/'>Windows 11 einrichten lassen</a>.",
             "pc-langsam-woran-liegt-es": "Wenn es um ein einzelnes Gerät geht und Sie keinen Vertrag wollen, hilft die <a href='/it-hilfe/'>IT-Hilfe ohne Vertrag</a> per Fernwartung – den Preis besprechen wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Rufen Sie uns an oder schreiben Sie uns per WhatsApp.",
-            "aufbewahrungsfristen-oesterreich": "Was Sicherung und Archiv im Betrieb kosten, steht auf der Seite mit den <a href='/kosten/'>Preisen für Datensicherung</a>.",
+            "aufbewahrungsfristen-oesterreich": "Wovon die Kosten für Sicherung und Archiv im Betrieb abhängen, steht auf der Seite <a href='/kosten/'>IT-Betreuung Kosten</a>.",
             "zugaenge-fuer-it-dienstleister": "Wie eine <a href='/leistungen/edv-it-betreuung/'>laufende IT-Betreuung</a> mit sauber vergebenen Zugängen aussieht, beschreibt die Leistungsseite. Wo die Zugänge ehrenamtlich verwaltet werden und mit dem Vorstand wechseln, ist das Thema auf der Seite <a href='/branchen/vereine-gemeinden/'>IT für Vereine und Gemeinden</a> ausgeführt.",
-            "was-kostet-it-betreuung": "Die vollständige Liste aller Preise steht unter <a href='/kosten/'>IT-Betreuung Kosten</a>.",
-            "edv-betreuung-kleinbetriebe-oberoesterreich": "Alle Posten im Überblick, auch für andere Betriebsgrößen: <a href='/kosten/'>IT-Betreuung Kosten</a>.",
+            "was-kostet-it-betreuung": "Wovon der Preis einer laufenden Betreuung abhängt, steht unter <a href='/kosten/'>IT-Betreuung Kosten</a>.",
+            "edv-betreuung-kleinbetriebe-oberoesterreich": "Wovon die Kosten auch bei anderen Betriebsgrößen abhängen: <a href='/kosten/'>IT-Betreuung Kosten</a>.",
             "kassa-kartenterminal-netzwerk": "Wie wir Kassa und Netz absichern, beschreibt die Leistung <a href='/leistungen/it-sicherheit/'>IT-Sicherheit für Kassa und Netz</a>.",
         },
     },
@@ -60,7 +60,7 @@ ZUSATZ = {
             "hotellerie-gastronomie": "Zu Kassa und Zahlungsnetz in der Gastronomie lesen Sie den Beitrag <a href='/aktuelles/kassa-kartenterminal-netzwerk/'>Kassa und Kartenterminal im Netzwerk</a>.",
             "arztpraxen-therapie": "Zu den Aufbewahrungspflichten finden Sie den Beitrag <a href='/aktuelles/aufbewahrungsfristen-oesterreich/'>Aufbewahrungsfristen in Österreich</a>.",
             "steuerberater-kanzleien": "Wie sich eine Datensicherung wirklich prüfen lässt, steht im Beitrag <a href='/aktuelles/datensicherung-richtig-pruefen/'>Datensicherung richtig prüfen</a>.",
-            "handwerk-baugewerbe": "Mehr aus der Praxis steht im Beitrag <a href='/aktuelles/it-betreuung-handwerksbetriebe/'>Welche IT braucht ein Handwerksbetrieb?</a>",
+            "handwerk-baugewerbe": "Ein <a href='/aktuelles/it-betreuung-handwerksbetriebe/'>Beispiel aus dem Betriebsalltag</a> steht im Ratgeber zur IT im Handwerksbetrieb.",
         },
         "en": {
             "vereine-gemeinden": "For clubs and businesses around Vöcklabruck there is the page <a href='/en/it-service/voecklabruck/'>IT service in Vöcklabruck</a>.",

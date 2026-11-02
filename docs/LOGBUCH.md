@@ -7,6 +7,14 @@ Neues kommt oben dazu. Eine Zeile pro Etappe, nicht pro Änderung.
 
 ---
 
+## 02.11.2026 — SEO/GEO-Upgrade Block A + B1 (Zweig seo/2026-11-02-wvm, nicht gepusht)
+
+Plan `Analysen/SEO-UPGRADE-2026-11-02/wvm/02-ANALYSE-PLAN.md`, Punkte A1-A11 und B1. Nur Fließtext, Überschriften, FAQ, Links, Descriptions;
+keine Titel/URLs (Sperre bis 14.11.), kein Betrag. Alle deutschen Änderungen liegen gebündelt in `landing/i18n/seo_1102.py`
+(zuletzt über das DE-Paket gelegt, `ZUSATZ_PLUS` für Ratgeber-Links), neuer Ratgeber `/aktuelles/server-ausgefallen-was-tun/`
+(`beitraege_server_de.py`), Quellen am 02.11. abgerufen (`quellen.ABRUF`). Test `test_seo_upgrade_2026_11_02.py`.
+Apex `wvm-it.tech` liefert 200 von einem IONOS-Apache (nicht Django): DNS/Hoster, nicht im Code lösbar.
+
 ## 23.10.2026 (nachts) — Ortsseiten führen auf Preis und Fernwartung (gleicher Zweig, nicht gepusht)
 
 Die Analyse vom 16.10. sagt: Es fehlen keine Texte mehr, der Engpass ist der Rang (Ortsseiten Pos. 9 bis 53). Darum

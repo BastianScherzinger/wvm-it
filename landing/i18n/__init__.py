@@ -64,6 +64,10 @@ for _l in LANGS:
     for _slug, _plus in _ub.FAQ_PLUS[_l].items():
         PACKS[_l]["seiten"][_slug]["faq"] = list(PACKS[_l]["seiten"][_slug]["faq"]) + copy.deepcopy(_plus)
 
+# SEO/GEO-Upgrade 02.11.2026: nur deutsche Textänderungen, als letzter Schritt über das DE-Paket.
+from . import seo_1102 as _s1102
+_s1102.anwenden(PACKS)
+
 
 def norm_lang(lang):
     lang = (lang or "").lower().replace("_", "-").split("-")[0]

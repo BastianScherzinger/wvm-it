@@ -76,6 +76,12 @@ Jede Zahl kommt aus ANGEBOT_GROUPS; hier steht nichts abgetipptes.
       <div class="kosten-mehr-text">
         {% with rest=ks.kurz|antwort_rest %}{% if rest %}<p class="hb-intro">{{ rest|safe }}</p>{% endif %}{% endwith %}
         <p class="hb-intro">{{ ks.intro|safe }}{% if ks.ort_satz %} {{ ks.ort_satz|safe }}{% endif %}</p>
+        {% if ks.faktoren %}
+        <ul class="sp-liste">
+          {% for f in ks.faktoren %}<li><strong>{{ f.n|safe }}:</strong> {{ f.t|safe }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </div>
     </details>
 

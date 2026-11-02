@@ -20,7 +20,7 @@ Regeln
    `stand_schreiben` ihren Zeilenbereich je Seite lesen kann (Änderungsdatum je Seite).
 """
 
-ABRUF = "2026-10-13"          # ISO; die Seite zeigt es als „13.10.2026“
+ABRUF = "2026-11-02"          # ISO; die Seite zeigt es als „02.11.2026“
 
 QUELLEN = {
     "smart_lockout": {
@@ -63,6 +63,10 @@ QUELLEN = {
         "titel": "Datenschutzbehörde: Meldung einer Verletzung des Schutzes personenbezogener Daten (Data Breach)",
         "url": "https://www.dsb.gv.at/eingabe-an-die-dsb/-meldung-data-breach",
         "art": "recht"},
+    "wbadmin_recovery": {
+        "titel": "Microsoft Learn: wbadmin start recovery (Windows Server, Wiederherstellung)",
+        "url": "https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/wbadmin-start-recovery",
+        "art": "hersteller"},
     "cert_at": {
         "titel": "CERT.at: Computer Emergency Response Team Österreich",
         "url": "https://cert.at/",
@@ -117,6 +121,8 @@ ZUORDNUNG = {
         "quellen": ["dsb_breach"]},
     "it-notfall-am-wochenende": {
         "quellen": ["dsb_breach", "cert_at"]},
+    "server-ausgefallen-was-tun": {
+        "quellen": ["cert_at", "dsb_breach", "bsi_con3", "wbadmin_recovery"]},
     "it-sicherheit-kleine-firma": {
         "quellen": ["dsb_breach", "cert_at"]},
     "microsoft-365-einrichten-lassen": {

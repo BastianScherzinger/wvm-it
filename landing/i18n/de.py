@@ -433,7 +433,7 @@ PACK = {
         "agb": "AGB", "barrierefreiheit": "Barrierefreiheit",
         # Credit-Link in der Copyright-Leiste (03.10.2026, mit Zustimmung von Florin):
         # nur der Markenname ist verlinkt, normaler Link ohne nofollow.
-        "credit_vor": "Website: ", "credit_marke": "Webagentur Scherzinger",
+        "credit_vor": "Website: Webagentur Scherzinger, ", "credit_marke": "Webdesign aus Lübeck",
         "impressum_ph": "<strong>Angaben gemäß Paragraf 5 TMG.</strong> Bitte echte Firmendaten einsetzen: Firmenname, Anschrift, vertretungsberechtigte Person, Kontakt (E-Mail und Telefon), gegebenenfalls USt-IdNr. und Registereintrag.",
         "datenschutz_ph": "<strong>Platzhalter.</strong> Vor Veröffentlichung eine DSGVO-konforme Datenschutzerklärung einsetzen (Verantwortlicher, Hosting, Kontaktformular, Cookies und Tracking, Betroffenenrechte).",
     },
@@ -1197,10 +1197,17 @@ PACK = {
     },
     "kosten_seite": {
         "titel": "Was kostet IT-Betreuung? | WVM-IT",
-        "desc": "Was IT-Betreuung kostet: Preis im Gespräch. Support, mit Beispielen für verschiedene Arbeitsplatzgrößen. AT und DE. Angebot holen.",
-        "h1": "Was kostet IT-Betreuung? Alle Preise auf einer Seite",
-        "kurz": "IT-Hilfe per Fernwartung kostet in ganz Österreich, ohne Vertrag; ein Einsatz vor Ort zuzüglich Anfahrt. WVM-IT aus Lenzing betreut Betriebe per Fernwartung in ganz Österreich (und Deutschland) und vor Ort nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing, die laufende IT-Betreuung, ein betreuter Server, die überwachte Datensicherung. Eine Webseite, SEO-Betreuung, Google Ads.",
-        "intro": "Preise auf Anfrage sind für den Anbieter bequem und für den Kunden ärgerlich. Deshalb steht hier alles, was sich sinnvoll beziffern lässt – und bei dem, was sich nicht sinnvoll beziffern lässt, steht warum. Die Zahlen unten kommen aus derselben Quelle wie unser Konfigurator und unsere Angebote; eine zweite Preisliste gibt es nicht.",
+        "desc": "Was IT-Betreuung kostet, hängt von Arbeitsplätzen, Servern, Datensicherung und Vor-Ort-Anteil ab. Preis nach kurzem Gespräch, schriftlich. AT und DE.",
+        "h1": "Was kostet IT-Betreuung? Wovon der Preis abhängt",
+        "kurz": "Was IT-Betreuung bei WVM-IT in ganz Österreich kostet, hängt von Arbeitsplätzen, Servern, Datensicherung und dem Anteil an Einsätzen vor Ort ab; Florin Feier nennt den Preis nach einem kurzen Gespräch schriftlich, bevor etwas beginnt. Hilfe per Fernwartung gibt es ohne Vertrag, ein Einsatz vor Ort kommt zuzüglich Anfahrt dazu. WVM-IT aus Lenzing betreut Betriebe per Fernwartung in ganz Österreich (und Deutschland) und vor Ort nach Terminabsprache im Umkreis von rund einer Fahrstunde um Lenzing: die laufende IT-Betreuung, einen betreuten Server und die überwachte Datensicherung, außerdem Webseiten, SEO-Betreuung und Google Ads.",
+        "intro": "Eine Pauschale ohne Gespräch wäre bei IT-Betreuung geraten, denn der Aufwand hängt davon ab, was in Ihrem Betrieb steht. Deshalb steht hier, wovon der Preis abhängt – und bei dem, was sich vorab nicht beziffern lässt, steht warum. Den Preis nennt Florin Feier nach einem kurzen Gespräch schriftlich, bevor etwas beginnt.",
+        "faktoren": [
+            {"n": "Arbeitsplätze", "t": "Jeder betreute PC und jedes Notebook braucht Updates, Überwachung und Hilfe im Alltag; mit der Zahl der Geräte wächst der laufende Aufwand."},
+            {"n": "Server", "t": "Ein eigener Server wird zusätzlich überwacht und gepflegt. Liegen die Daten in der Cloud, entfällt dieser Teil."},
+            {"n": "Datensicherung", "t": "Wie viele Daten gesichert werden, wohin und wie oft, und ob die Wiederherstellung regelmäßig geprüft werden soll."},
+            {"n": "Anteil vor Ort", "t": "Per Fernwartung läuft das meiste; Einsätze vor Ort kommen zuzüglich Anfahrt dazu und hängen an der Entfernung von Lenzing."},
+            {"n": "Gewünschte Erreichbarkeit", "t": "Wie schnell und zu welchen Zeiten Hilfe verfügbar sein soll, wird im Gespräch festgelegt und schriftlich vereinbart."},
+        ],
         "ort_satz": "Vor Ort sind wir u. a. in <a href=\"/it-service/salzburg/\">Salzburg</a> und <a href=\"/it-service/linz/\">Linz</a>, per Fernwartung in ganz Österreich.",
         "warum_h": "Warum bei manchem kein Preis steht",
         "warum_t": "Bei Gebäudeautomation, Konferenz- und Veranstaltungstechnik hängt der Preis so stark an Raum, Bestand und Umfang, dass ein Startpreis nichts aussagen würde. Diese Arbeiten kalkulieren wir projektbezogen und nennen den Preis schriftlich nach einer Bestandsaufnahme – vor dem ersten Handgriff.",
@@ -1222,14 +1229,14 @@ PACK = {
         "bsp_server_n": " + {n} × {srv} € Server-Betreuung",
         "bsp_fuss": "Ihre eigene Zahl rechnet der Kostenrechner aus denselben Sätzen — mit Ihren Arbeitsplätzen und Servern.",
         "markt_h": "Wie sich das einordnet",
-        "markt_t": "Die Beispiele sind Richtwerte für den kleinsten Umfang. Wie viel Betreuung Ihr Betrieb wirklich braucht, zeigt sich erst nach einer kurzen Bestandsaufnahme; danach bekommen Sie ein schriftliches Angebot. Einzelne Hilfe ohne Vertrag klären wir im Gespräch, der Einstiegspreis für die laufende Betreuung gilt in Österreich und Deutschland gleich.",
+        "markt_t": "Wie viel Betreuung Ihr Betrieb wirklich braucht, zeigt sich erst nach einer kurzen Bestandsaufnahme; danach bekommen Sie ein schriftliches Angebot. Was bei einem Kleinbetrieb an Posten zusammenkommt, zeigt das Beispiel <a href=\"/aktuelles/edv-betreuung-kleinbetriebe-oberoesterreich/\">Posten einer EDV-Betreuung</a>. Einzelne Hilfe ohne Vertrag klären wir im Gespräch, der Einstiegspreis für die laufende Betreuung gilt in Österreich und Deutschland gleich.",
         "ratgeber_t": "Diese Seite ist die Preisliste. Warum kleine Firmen für IT-Betreuung so unterschiedliche Angebote bekommen und worauf man beim Vergleich achten sollte, steht im Ratgeber.",
         "ratgeber_link": "Ratgeber: IT-Betreuung Kosten für kleine Firmen",
         # Schub 2 (B1): Festpreise im Text verlinkt. {p_…} = Katalogpreis, {u_…} = Adresse der Einrichtungsseite.
         "einrichten_t": "Für einzelne Aufgaben ohne Vertrag gibt es feste Absprachen vorab: einen <a href=\"{u_arbeitsplatz}\">PC einrichten lassen</a> oder <a href=\"{u_m365}\">Microsoft 365 (Office 365) einrichten lassen</a> — ohne Überraschungen.",
         "faq": [
             {"q": "Was kostet IT-Betreuung für kleine Unternehmen?",
-             "a": "Die laufende Betreuung richtet sich nach Arbeitsplätzen, Servern und Umfang; den Preis klären wir in einem kurzen Gespräch, fair und passend zu Ihrem Budget. Betreuter Server und überwachte Datensicherung richten sich nach dem Umfang; den Preis klären wir im Gespräch."},
+             "a": "Was IT-Betreuung bei WVM-IT aus Lenzing kostet, hängt von Arbeitsplätzen, Servern, Datensicherung und dem Anteil an Einsätzen vor Ort ab; Florin Feier nennt den Preis nach einem kurzen Gespräch schriftlich, bevor etwas beginnt. Hilfe per Fernwartung gibt es ohne Vertrag."},
             {"q": "Was kostet die Betreuung und Überwachung eines Servers?",
              "a": "Ein betreuter Server und die dazugehörige überwachte Datensicherung sind Teil unserer individuellen Betreuungsangebote. Die laufende Betreuung ist mit einem Monat Frist zum Quartalsende kündbar. Die genauen Kosten besprechen wir persönlich."},
             {"q": "Was kostet ein IT-Wartungsvertrag?",

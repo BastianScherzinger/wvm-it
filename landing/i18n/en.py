@@ -397,7 +397,7 @@ PACK = {
         "agb": "Terms", "barrierefreiheit": "Accessibility",
         # Credit-Link in der Copyright-Leiste (03.10.2026, mit Zustimmung von Florin):
         # nur der Markenname ist verlinkt, normaler Link ohne nofollow.
-        "credit_vor": "Website by ", "credit_marke": "Webagentur Scherzinger",
+        "credit_vor": "Website by Webagentur Scherzinger, ", "credit_marke": "web design from Lübeck",
     },
     "mobilebar": {"call": "Call"},
     "fehler": {
@@ -1159,6 +1159,13 @@ PACK = {
         "h1": "What does IT support cost? All prices on one page",
         "kurz": "WVM-IT from Lenzing looks after businesses by remote maintenance across Austria (and Germany) and on site by appointment within roughly an hour's drive of Lenzing; ongoing IT support, a managed server, monitored backups. Individual help costs per hour, on-site work per hour plus travel. A website, SEO support, Google Ads. The exact price for any service is agreed in a short conversation, fair and fitting your budget.",
         "intro": "\u201cPrice on request\u201d is convenient for the supplier and annoying for the customer. So everything that can sensibly be quantified is listed here – and where it cannot, the reason is given. The figures below come from the same source as our configurator and our quotes; there is no second price list.",
+        "faktoren": [
+            {"n": "Workstations", "t": "Every managed PC and notebook needs updates, monitoring and everyday help; the ongoing effort grows with the number of devices."},
+            {"n": "Servers", "t": "An own server is monitored and maintained in addition. If the data lives in the cloud, this part falls away."},
+            {"n": "Backup", "t": "How much data is backed up, where to and how often, and whether recovery should be tested regularly."},
+            {"n": "On-site share", "t": "Most work runs by remote maintenance; on-site visits come on top plus travel and depend on the distance from Lenzing."},
+            {"n": "Desired availability", "t": "How fast and at what times help should be available is agreed in the conversation and put in writing."},
+        ],
         "ort_satz": "On site we work in <a href=\"/en/it-service/salzburg/\">Salzburg</a> and <a href=\"/en/it-service/linz/\">Linz</a>, among other places, and by remote maintenance across Austria.",
         "warum_h": "Why some items carry no price",
         "warum_t": "For building automation, conference and event technology the price depends so heavily on the room, the existing installation and the scope that a starting price would say nothing. We calculate these per project and quote in writing after a survey – before the first cable is pulled.",

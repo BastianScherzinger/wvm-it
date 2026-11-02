@@ -40,6 +40,14 @@ gefüllt + WhatsApp. Zwei Mal: direkt unter der Antwort und nach dem dritten Abs
   <div class="wrap sp-wrap">
     {% comment %}Der Absatz, den eine KI-Antwort zitiert. Deshalb steht er zuerst.{% endcomment %}
     <div data-reveal>{% include 'antwort.html' with text=beitrag.antwort stil='bt-antwort' %}</div>
+    {% if beitrag.schritte %}
+    <section class="bt-abschnitt" data-reveal>
+      <h2>{{ beitrag.schritte.h|safe }}</h2>
+      <ol class="nf-schritte">
+        {% for s in beitrag.schritte.liste %}<li>{{ s|safe }}</li>{% endfor %}
+      </ol>
+    </section>
+    {% endif %}
     {% include 'ratgeber_cta.html' with cta=cta %}
     {% if beitrag.vorweg %}<p class="bt-vorweg" data-reveal>{{ beitrag.vorweg|safe }}</p>{% endif %}
 

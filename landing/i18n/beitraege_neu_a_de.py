@@ -29,15 +29,15 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                            'kleine Firma?</a>; den Preis klären wir im Gespräch, die Übersicht '
                                                            "steht auf <a href='/kosten/'>Was kostet "
                                                            'IT-Betreuung?</a>. Dieser Beitrag klärt etwas '
-                                                           'anderes: was bei einem kleinen Betrieb in '
-                                                           'Oberösterreich konkret im Preis steckt und wie '
-                                                           'sich die Summe zusammensetzt.',
+                                                           'anderes: welche Posten bei einem kleinen Betrieb in '
+                                                           'Oberösterreich zusammenkommen und wovon der '
+                                                           'Preis abhängt.',
                                                  'abschnitte': [{'h': 'Die drei Bausteine und was jeder '
                                                                       'kostet',
                                                                  't': "Die Rechnung besteht aus bis zu drei Posten: laufende Betreuung der Arbeitsplätze, Datensicherung und optional die Betreuung eines Servers. Welche Posten für Sie relevant sind und in welchem Umfang, wird vorab fest abgesprochen – keine versteckten Kosten, keine Mindestlaufzeit."},
-                                                                {'h': 'Rechenbeispiel: Betrieb mit 8 '
-                                                                      'Arbeitsplätzen',
-                                                                 't': "Ein Betrieb mit mehreren Arbeitsplätzen und ohne eigenen Server rechnet mit einer klaren Struktur: Kosten pro Arbeitsplatz plus Datensicherung. Kommt ein Server hinzu, wird ein zusätzlicher Posten ergänzt. Wie sich die Gesamtkosten zusammensetzen, besprechen wir in einem kurzen Gespräch, damit Sie die Rechnung bereits zu Monatsbeginn kennen."},
+                                                                {'h': 'Welche Posten bei 8 Arbeitsplätzen '
+                                                                      'zusammenkommen',
+                                                                 't': "Ein Betrieb mit mehreren Arbeitsplätzen und ohne eigenen Server rechnet mit einer klaren Struktur: Kosten pro Arbeitsplatz plus Datensicherung. Kommt ein Server hinzu, wird ein zusätzlicher Posten ergänzt. Wie sich die Gesamtkosten zusammensetzen, besprechen wir in einem kurzen Gespräch, damit Sie den Preis kennen, bevor etwas beginnt."},
                                                                 {'h': "Was in der IT‑Betreuung enthalten ist",
                                                                  't': 'Die Betreuung hält die Geräte im '
                                                                       'Hintergrund in Ordnung: Windows- und '
@@ -242,8 +242,8 @@ TEXTE = {'edv-betreuung-kleinbetriebe-oberoesterreich': {'titel': 'Was kostet ED
                                                          'ins Büro fahren muss. Zusagen zu Reaktionszeiten '
                                                          'geben wir bewusst nicht pauschal, aber im Angebot '
                                                          'lassen sich Zeiten schriftlich vereinbaren.'},
-                                                   {'h': 'Was das kostet, am Beispiel eines Betriebs mit '
-                                                         'vier Büroarbeitsplätzen',
+                                                   {'h': 'Wovon die Kosten bei vier Büroarbeitsplätzen '
+                                                         'abhängen',
                                                     't': "Ein Betrieb mit vier Büroarbeitsplätzen zahlt für die Betreuung nach individuellem Aufwand, die Datensicherung wird ebenfalls nach Bedarf abgerechnet. Der Server entfällt, wenn die Daten in der Cloud liegen; hat der Betrieb einen, wird das gesondert besprochen. Einmalige Aufgaben wie ein neuer Rechner werden nach kurzer Sichtung und Absprache kalkuliert. Eine Gegenüberstellung mit der Abrechnung nach Aufwand liefert <a href='/aktuelles/was-kostet-it-betreuung/'>Was kostet IT-Betreuung?</a>."},
                                                    {'h': 'Typische Fälle aus dem Betriebsalltag',
                                                     't': 'Es sind fast immer dieselben Handgriffe, die im '
